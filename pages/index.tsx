@@ -20,6 +20,7 @@ import GameFilter from '../components/GameFilter';
 import TeamStatsTable from '../components/TeamStatsTable';
 import RosterStatsTable from '../components/RosterStatsTable';
 import RosterCompareTable from '../components/RosterCompareTable';
+import GenericCollapsibleCard from '../components/GenericCollapsibleCard';
 
 const Home: NextPage<{}> = () => {
   return <Container>
@@ -27,16 +28,24 @@ const Home: NextPage<{}> = () => {
       <h2>CBB On/Off Analysis Tool</h2>
     </Row>
     <Row>
-      <GameFilter/>
+      <GenericCollapsibleCard title="Team and Game Filter">
+        <GameFilter/>
+      </GenericCollapsibleCard>
     </Row>
     <Row>
-      <TeamStatsTable title="Team Analysis"/>
+      <GenericCollapsibleCard title="Team Analysis">
+        <TeamStatsTable/>
+      </GenericCollapsibleCard>
     </Row>
     <Row>
-      <RosterCompareTable title="Lineup Comparison"/>
+      <GenericCollapsibleCard title="Lineup Comparison">
+        <RosterCompareTable/>
+      </GenericCollapsibleCard>
     </Row>
     <Row>
-      <RosterStatsTable title="Lineup Analysis"/>
+      <GenericCollapsibleCard title="Lineup Analysis">
+        <RosterStatsTable/>
+      </GenericCollapsibleCard>
     </Row>
   </Container>;
 }

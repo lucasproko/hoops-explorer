@@ -9,20 +9,14 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Card from 'react-bootstrap/Card';
-import Table from 'react-bootstrap/Table';
-import Collapse from 'react-bootstrap/Collapse';
 
 // Component imports
 import GenericTable, { GenericTableOps, GenericTableColProps } from "./GenericTable"
 
 type Props = {
-  readonly title: string
 }
 
-const TeamStatsTable: React.FunctionComponent<Props> = ({title}) => {
-  // 1] State
-  const [ showTable, setShowTable ] = useState(true)
+const TeamStatsTable: React.FunctionComponent<Props> = ({}) => {
 
   //TODO: sample data
   const commonData = {
@@ -90,22 +84,13 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({title}) => {
   // 3] Utils
 
   // 4] View
-  return <Card className="w-100">
-    <Card.Body>
-      <Card.Title
-        onClick={() => { setShowTable(!showTable); return false } }
-      ><a href="#">({showTable ? "+" : "-"}) {title}</a></Card.Title>
-      <Collapse in={showTable}>
-        <Container>
-          <Row>
-            <Col>
-              <GenericTable tableFields={tableFields} tableData={sampleTableData}/>
-            </Col>
-          </Row>
-        </Container>
-      </Collapse>
-    </Card.Body>
-  </Card>;
+  return <Container>
+    <Row>
+      <Col>
+        <GenericTable tableFields={tableFields} tableData={sampleTableData}/>
+      </Col>
+    </Row>
+  </Container>;
 };
 
 export default TeamStatsTable;
