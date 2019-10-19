@@ -24,6 +24,7 @@ const GameFilter: React.FunctionComponent<{}> = ({}) => {
   const [ autoOffQuery, toggleAutoOffQuery ] = useState(true)
   const [ onQuery, setOnQuery ] = useState("")
   const [ offQuery, setOffQuery ] = useState("")
+  const [ baseQuery, setBaseQuery ] = useState("")
 
   const [ minRankFilter, setMinRankFilter ] = useState("0")
   const [ maxRankFilter, setMaxRankFilter ] = useState("400")
@@ -108,6 +109,26 @@ const GameFilter: React.FunctionComponent<{}> = ({}) => {
                   toggleAutoOffQuery(!autoOffQuery);
                 }}
                 label="Auto"
+              />
+            </Col>
+          </Form.Group>
+          <Form.Group as={Row}>
+            <Form.Label column sm="2">Baseline Query</Form.Label>
+            <Col sm="8">
+              <Form.Control
+                placeholder="eg 'Player0' - applied to both 'On' and 'Off' queries"
+                value={baseQuery}
+                onChange={(ev: any) => {
+                  setBaseQuery(ev.target.value);
+                }}
+              />
+            </Col>
+            <Col sm="2">
+              <Form.Check type="switch"
+                id="excludeWalkons"
+                checked={false}
+                disabled
+                label="Auto Walk-ons"
               />
             </Col>
           </Form.Group>

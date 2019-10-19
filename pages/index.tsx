@@ -19,6 +19,7 @@ import { Typeahead } from 'react-bootstrap-typeahead';
 import GameFilter from '../components/GameFilter';
 import TeamStatsTable from '../components/TeamStatsTable';
 import RosterStatsTable from '../components/RosterStatsTable';
+import RosterCompareTable from '../components/RosterCompareTable';
 
 const Home: NextPage<{}> = () => {
   return <Container>
@@ -29,22 +30,13 @@ const Home: NextPage<{}> = () => {
       <GameFilter/>
     </Row>
     <Row>
-      <TeamStatsTable title="'On' Team Stats"/>
+      <TeamStatsTable title="Team Analysis"/>
     </Row>
     <Row>
-      <RosterStatsTable title="'On' Roster Stats"/>
+      <RosterCompareTable title="Lineup Comparison"/>
     </Row>
     <Row>
-      <TeamStatsTable title="'Baseline' Team Stats"/>
-    </Row>
-    <Row>
-      <RosterStatsTable title="'Baseline' Roster Stats"/>
-    </Row>
-    <Row>
-      <TeamStatsTable title="'Off' Team Stats"/>
-    </Row>
-    <Row>
-      <RosterStatsTable title="'Off' Roster Stats"/>
+      <RosterStatsTable title="Lineup Analysis"/>
     </Row>
   </Container>;
 }

@@ -16,7 +16,7 @@ type Props = {
   title: string
 }
 
-const RosterStatsTable: React.FunctionComponent<Props> = ({title}) => {
+const RosterCompareTable: React.FunctionComponent<Props> = ({title}) => {
   const [ showTable, toggleShowTable ] = useState(true)
 
   return <Card className="w-100">
@@ -31,4 +31,4 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({title}) => {
   </Card>;
 }
 
-export default RosterStatsTable;
+export default RosterCompareTable;

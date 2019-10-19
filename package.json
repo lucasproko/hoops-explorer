@@ -20,9 +20,11 @@
   },
   "homepage": "https://github.com/Alex-At-Home/cbb-on-off-analyzer#readme",
   "dependencies": {
+    "@types/chroma-js": "^1.4.3",
     "@types/react-bootstrap-typeahead": "^3.4.5",
     "@zeit/next-css": "^1.0.1",
     "bootstrap": "^4.3.1",
+    "chroma-js": "^2.0.6",
     "jquery": "^1.9.1",
     "next": "^9.1.1",
     "react": "^16.10.2",
