@@ -96,24 +96,25 @@ const GenericTable: React.FunctionComponent<Props> = ({tableFields, tableData}) 
   function renderTableHeaders() {
     return Object.values(tableFields).map((colProp, index) => {
         const style = getColStyle(colProp);
-        return <th style={style}>{colProp.colName}</th>;
+        return <th key={"" + index} style={style}>{colProp.colName}</th>;
     });
   }
   function renderTableRow(row: GenericTableDataRow) {
-    return Object.entries(tableFields).map((keyVal) => {
+    return Object.entries(tableFields).map((keyVal, index) => {
         const key: string = keyVal[0];
         const colProp: GenericTableColProps = keyVal[1];
         const tmpVal = row.dataObj[row.prefixFn(key)];
         const style = getRowStyle(key, tmpVal, colProp, row);
         const val = (tmpVal && (tmpVal != "")) ? colProp.formatter(tmpVal) : "";
-        return <td style={style}>{val}</td>;
+        return <td key={"" + index} style={style}>{val}</td>;
     });
   }
   function renderTableRows() {
-    return tableData.map(row => {
-      switch (row.kind) { //TODO: why is the "as T" required, shouldn't this be an ADT?
-        case "data-row": return <tr>{ renderTableRow(row as GenericTableDataRow) }</tr>;
-        case "separator": return <tr className="divider"><td colSpan={totalTableCols}></td></tr>;
+    return tableData.map((row, index) => {
+      if (row instanceof GenericTableDataRow) {
+        return <tr key={"" + index}>{ renderTableRow(row) }</tr>;
+      } else {
+        return <tr className="divider" key={"" + index}><td colSpan={totalTableCols}></td></tr>;
       }
     });
   }

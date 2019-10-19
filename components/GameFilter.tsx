@@ -34,6 +34,7 @@ const GameFilter: React.FunctionComponent<{}> = ({}) => {
       <Row>
         <Col xs={2}>
           <Typeahead
+            id="teamGenderTypeahead"
             multiple={false}
             options={[
               "Men"
@@ -43,6 +44,7 @@ const GameFilter: React.FunctionComponent<{}> = ({}) => {
         </Col>
         <Col xs={2}>
           <Typeahead
+            id="teamYearTypeahead"
             multiple={false}
             options={[
               "2018/9"
@@ -52,6 +54,7 @@ const GameFilter: React.FunctionComponent<{}> = ({}) => {
         </Col>
         <Col xs={6}>
           <Typeahead
+            id="teamTypeahead"
             multiple={false}
             options={[
               "Maryland"
