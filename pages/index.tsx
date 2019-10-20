@@ -49,5 +49,5 @@ const Home: NextPage<{}> = () => {
     </Row>
   </Container>;
 }
-
+console.log(`Check that no secrets are leaked to client side: ${process.env.CLUSTER_USER == undefined}`)
 export default Home;

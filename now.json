@@ -1,0 +1,7 @@
+{
+  "env": {
+    "CLUSTER_ID": "@cluster-id",
+    "CLUSTER_USER": "@cluster-user",
+    "CLUSTER_PASS": "@cluster-pass"
+  }
+}

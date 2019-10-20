@@ -16,6 +16,9 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import 'react-bootstrap-typeahead/css/Typeahead.css';
 import { Typeahead } from 'react-bootstrap-typeahead';
 
+// Library imports:
+import fetch from 'isomorphic-unfetch';
+
 const GameFilter: React.FunctionComponent<{}> = ({}) => {
   const [ autoOffQuery, toggleAutoOffQuery ] = useState(true)
   const [ onQuery, setOnQuery ] = useState("")
@@ -27,6 +30,13 @@ const GameFilter: React.FunctionComponent<{}> = ({}) => {
 
   const setAutoOffQuery = (onQuery: string) => {
     setOffQuery(onQuery == "" ? "" : `NOT (${onQuery})`);
+  }
+
+  function onSubmit() {
+    //TODO: add overlay with spinner and cancel button (remove in log)
+    fetch("/api/calculateTeamStats").then(function(response) {
+      console.log(response.json()); //(TODO NOTE: response.json is a promise)
+    });
   }
 
   return <Form>
@@ -153,7 +163,7 @@ const GameFilter: React.FunctionComponent<{}> = ({}) => {
       </Col>
       <Form.Label column sm="2">(out of 352 teams)</Form.Label>
     </Form.Group>
-    <Button variant="primary">Submit</Button>
+    <Button variant="primary" onClick={onSubmit}>Submit</Button>
   </Form>;
 }
 
