@@ -103,7 +103,8 @@ const GenericTable: React.FunctionComponent<Props> = ({tableFields, tableData}) 
     return Object.entries(tableFields).map((keyVal, index) => {
         const key: string = keyVal[0];
         const colProp: GenericTableColProps = keyVal[1];
-        const tmpVal = row.dataObj[row.prefixFn(key)];
+        const tmpValObj = row.dataObj[row.prefixFn(key)] || {};
+        const tmpVal = (tmpValObj instanceof Object) ? tmpValObj.value : tmpValObj;
         const style = getRowStyle(key, tmpVal, colProp, row);
         const val = (tmpVal && (tmpVal != "")) ? colProp.formatter(tmpVal) : "";
         return <td key={"" + index} style={style}>{val}</td>;

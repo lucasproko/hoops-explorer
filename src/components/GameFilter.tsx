@@ -16,10 +16,17 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import 'react-bootstrap-typeahead/css/Typeahead.css';
 import { Typeahead } from 'react-bootstrap-typeahead';
 
+// Component imports:
+import { TeamStatsModel } from '../components/TeamStatsTable';
+
 // Library imports:
 import fetch from 'isomorphic-unfetch';
 
-const GameFilter: React.FunctionComponent<{}> = ({}) => {
+type Props = {
+  onTeamStats: (stats: TeamStatsModel) => void;
+}
+
+const GameFilter: React.FunctionComponent<Props> = ({onTeamStats}) => {
   const [ autoOffQuery, toggleAutoOffQuery ] = useState(true)
   const [ onQuery, setOnQuery ] = useState("")
   const [ offQuery, setOffQuery ] = useState("")
@@ -35,7 +42,18 @@ const GameFilter: React.FunctionComponent<{}> = ({}) => {
   function onSubmit() {
     //TODO: add overlay with spinner and cancel button (remove in log)
     fetch("/api/calculateTeamStats").then(function(response) {
-      console.log(response.json()); //(TODO NOTE: response.json is a promise)
+      response.json().then(function(json) {
+        console.log(json)
+        if (json && json.aggregations && json.aggregations.tri_filter && json.aggregations.tri_filter.buckets) {
+          onTeamStats({
+            on: json.aggregations.tri_filter.buckets.on || {},
+            off: json.aggregations.tri_filter.buckets.off || {},
+            baseline: json.aggregations.tri_filter.buckets.baseline || {},
+          });
+        } else {
+          onTeamStats({ on: {}, off: {}, baseline: {} });
+        }
+      })
     });
   }
 

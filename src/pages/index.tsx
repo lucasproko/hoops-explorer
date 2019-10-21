@@ -17,24 +17,31 @@ import { Typeahead } from 'react-bootstrap-typeahead';
 
 // App compnents:
 import GameFilter from '../components/GameFilter';
-import TeamStatsTable from '../components/TeamStatsTable';
+import TeamStatsTable, { TeamStatsModel } from '../components/TeamStatsTable';
 import RosterStatsTable from '../components/RosterStatsTable';
 import RosterCompareTable from '../components/RosterCompareTable';
 import GenericCollapsibleCard from '../components/GenericCollapsibleCard';
 
 const Home: NextPage<{}> = () => {
+
+  const [ teamStats, setTeamStats ] = useState({on: {}, off: {}, baseline: {}} as TeamStatsModel);
+
+  const injectTeamStats = (stats: TeamStatsModel) => {
+    setTeamStats(stats);
+  }
+
   return <Container>
     <Row>
       <h2>CBB On/Off Analysis Tool</h2>
     </Row>
     <Row>
       <GenericCollapsibleCard title="Team and Game Filter">
-        <GameFilter/>
+        <GameFilter onTeamStats={injectTeamStats}/>
       </GenericCollapsibleCard>
     </Row>
     <Row>
       <GenericCollapsibleCard title="Team Analysis">
-        <TeamStatsTable/>
+        <TeamStatsTable teamStats={teamStats}/>
       </GenericCollapsibleCard>
     </Row>
     <Row>
