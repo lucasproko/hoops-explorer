@@ -1,0 +1,336 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GameFilter GameFilter - should create snapshot 1`] = `
+<Form
+  inline={false}
+>
+  <FormGroup>
+    <ForwardRef
+      noGutters={false}
+    >
+      <Col
+        xs={2}
+      >
+        <TypeaheadContainer(WrappedTypeahead)
+          a11yNumResults={[Function]}
+          a11yNumSelected={[Function]}
+          align="justify"
+          allowNew={false}
+          autoFocus={false}
+          caseSensitive={false}
+          clearButton={false}
+          defaultInputValue="Men"
+          defaultOpen={false}
+          defaultSelected={Array []}
+          disabled={false}
+          dropup={false}
+          emptyLabel="No matches found."
+          filterBy={Array []}
+          flip={false}
+          highlightOnlyResult={false}
+          id="teamGenderTypeahead"
+          ignoreDiacritics={true}
+          inputProps={Object {}}
+          isInvalid={false}
+          isLoading={false}
+          isValid={false}
+          labelKey="label"
+          maxResults={100}
+          minLength={0}
+          multiple={false}
+          onBlur={[Function]}
+          onFocus={[Function]}
+          onInputChange={[Function]}
+          onKeyDown={[Function]}
+          onPaginate={[Function]}
+          options={
+            Array [
+              "Men",
+            ]
+          }
+          paginate={true}
+          paginationText="Display additional results..."
+          placeholder=""
+          selectHintOnEnter={false}
+        />
+      </Col>
+      <Col
+        xs={2}
+      >
+        <TypeaheadContainer(WrappedTypeahead)
+          a11yNumResults={[Function]}
+          a11yNumSelected={[Function]}
+          align="justify"
+          allowNew={false}
+          autoFocus={false}
+          caseSensitive={false}
+          clearButton={false}
+          defaultInputValue="2018/9"
+          defaultOpen={false}
+          defaultSelected={Array []}
+          disabled={false}
+          dropup={false}
+          emptyLabel="No matches found."
+          filterBy={Array []}
+          flip={false}
+          highlightOnlyResult={false}
+          id="teamYearTypeahead"
+          ignoreDiacritics={true}
+          inputProps={Object {}}
+          isInvalid={false}
+          isLoading={false}
+          isValid={false}
+          labelKey="label"
+          maxResults={100}
+          minLength={0}
+          multiple={false}
+          onBlur={[Function]}
+          onFocus={[Function]}
+          onInputChange={[Function]}
+          onKeyDown={[Function]}
+          onPaginate={[Function]}
+          options={
+            Array [
+              "2018/9",
+            ]
+          }
+          paginate={true}
+          paginationText="Display additional results..."
+          placeholder=""
+          selectHintOnEnter={false}
+        />
+      </Col>
+      <Col
+        xs={6}
+      >
+        <TypeaheadContainer(WrappedTypeahead)
+          a11yNumResults={[Function]}
+          a11yNumSelected={[Function]}
+          align="justify"
+          allowNew={false}
+          autoFocus={false}
+          caseSensitive={false}
+          clearButton={false}
+          defaultInputValue="Maryland"
+          defaultOpen={false}
+          defaultSelected={Array []}
+          disabled={false}
+          dropup={false}
+          emptyLabel="No matches found."
+          filterBy={Array []}
+          flip={false}
+          highlightOnlyResult={false}
+          id="teamTypeahead"
+          ignoreDiacritics={true}
+          inputProps={Object {}}
+          isInvalid={false}
+          isLoading={false}
+          isValid={false}
+          labelKey="label"
+          maxResults={100}
+          minLength={0}
+          multiple={false}
+          onBlur={[Function]}
+          onFocus={[Function]}
+          onInputChange={[Function]}
+          onKeyDown={[Function]}
+          onPaginate={[Function]}
+          options={
+            Array [
+              "Maryland",
+            ]
+          }
+          paginate={true}
+          paginationText="Display additional results..."
+          placeholder=""
+          selectHintOnEnter={false}
+        />
+      </Col>
+    </ForwardRef>
+  </FormGroup>
+  <FormGroup
+    as={
+      Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "defaultProps": Object {
+          "noGutters": false,
+        },
+        "render": [Function],
+      }
+    }
+  >
+    <FormLabel
+      column={true}
+      sm="2"
+      srOnly={false}
+    >
+      On Query
+    </FormLabel>
+    <Col
+      sm="8"
+    >
+      <FormControl
+        onChange={[Function]}
+        placeholder="eg 'Player1 AND Player2'"
+        value=""
+      />
+    </Col>
+  </FormGroup>
+  <FormGroup
+    as={
+      Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "defaultProps": Object {
+          "noGutters": false,
+        },
+        "render": [Function],
+      }
+    }
+  >
+    <FormLabel
+      column={true}
+      sm="2"
+      srOnly={false}
+    >
+      Off Query
+    </FormLabel>
+    <Col
+      sm="8"
+    >
+      <FormControl
+        onChange={[Function]}
+        placeholder="eg 'NOT (Player1 AND Player2)'"
+        readOnly={true}
+        value=""
+      />
+    </Col>
+    <Col
+      sm="2"
+    >
+      <FormCheck
+        checked={true}
+        disabled={false}
+        id="autoOffQuery"
+        inline={false}
+        isInvalid={false}
+        isValid={false}
+        label="Auto"
+        onChange={[Function]}
+        title=""
+        type="switch"
+      />
+    </Col>
+  </FormGroup>
+  <FormGroup
+    as={
+      Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "defaultProps": Object {
+          "noGutters": false,
+        },
+        "render": [Function],
+      }
+    }
+  >
+    <FormLabel
+      column={true}
+      sm="2"
+      srOnly={false}
+    >
+      Baseline Query
+    </FormLabel>
+    <Col
+      sm="8"
+    >
+      <FormControl
+        onChange={[Function]}
+        placeholder="eg 'Player0' - applied to both 'On' and 'Off' queries"
+        value=""
+      />
+    </Col>
+    <Col
+      sm="2"
+    >
+      <FormCheck
+        checked={false}
+        disabled={true}
+        id="excludeWalkons"
+        inline={false}
+        isInvalid={false}
+        isValid={false}
+        label="Auto Walk-ons"
+        title=""
+        type="switch"
+      />
+    </Col>
+  </FormGroup>
+  <FormGroup
+    as={
+      Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "defaultProps": Object {
+          "noGutters": false,
+        },
+        "render": [Function],
+      }
+    }
+    controlId="oppositionFilter"
+  >
+    <FormLabel
+      column={true}
+      sm="2"
+      srOnly={false}
+    >
+      Opponent Strength
+    </FormLabel>
+    <FormLabel
+      column={true}
+      sm="1"
+      srOnly={false}
+    >
+      Best
+    </FormLabel>
+    <Col
+      sm="2"
+    >
+      <FormControl
+        onChange={[Function]}
+        placeholder="eg 0"
+        value="0"
+      />
+    </Col>
+    <FormLabel
+      column={true}
+      sm="1"
+      srOnly={false}
+    >
+      Worst
+    </FormLabel>
+    <Col
+      sm="2"
+    >
+      <FormControl
+        onChange={[Function]}
+        placeholder="eg 400"
+        value="400"
+      />
+    </Col>
+    <FormLabel
+      column={true}
+      sm="2"
+      srOnly={false}
+    >
+      (out of 352 teams)
+    </FormLabel>
+  </FormGroup>
+  <Button
+    active={false}
+    disabled={false}
+    onClick={[Function]}
+    type="button"
+    variant="primary"
+  >
+    Submit
+  </Button>
+</Form>
+`;
