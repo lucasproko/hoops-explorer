@@ -147,7 +147,7 @@ const GenericTable: React.FunctionComponent<Props> = ({tableFields, tableData}) 
     };
   }
 
-  return <Table size="sm">
+  return <Table size="sm" responsive>
     <thead><tr>{ renderTableHeaders() }</tr></thead>
     <tbody>{ renderTableRows() }</tbody>
   </Table>;

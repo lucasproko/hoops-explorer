@@ -1,5 +1,5 @@
 // React imports:
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 // Next imports:
 import { NextPage } from 'next';
@@ -15,6 +15,7 @@ import InputGroup from 'react-bootstrap/InputGroup';
 // Additional components:
 import 'react-bootstrap-typeahead/css/Typeahead.css';
 import { Typeahead } from 'react-bootstrap-typeahead';
+import queryString from "query-string";
 
 // Component imports:
 import { TeamStatsModel } from '../components/TeamStatsTable';
@@ -22,29 +23,73 @@ import { TeamStatsModel } from '../components/TeamStatsTable';
 // Library imports:
 import fetch from 'isomorphic-unfetch';
 
+export type GameFilterParams = {
+  autoOffQuery?: string;
+  onQuery?: string,
+  offQuery?: string,
+  baseQuery?: string,
+  minRank?: string,
+  maxRank?: string
+}
 type Props = {
   onTeamStats: (stats: TeamStatsModel) => void;
+  startingState: GameFilterParams;
+  onChangeState: (newParams: GameFilterParams) => void;
 }
 
-const GameFilter: React.FunctionComponent<Props> = ({onTeamStats}) => {
-  const [ autoOffQuery, toggleAutoOffQuery ] = useState(true)
-  const [ onQuery, setOnQuery ] = useState("")
-  const [ offQuery, setOffQuery ] = useState("")
-  const [ baseQuery, setBaseQuery ] = useState("")
+const GameFilter: React.FunctionComponent<Props> = ({onTeamStats, startingState, onChangeState}) => {
+  const [ pageJustLoaded, setPageJustLoaded ] = useState(true);
+  const [ currState, setCurrState ] = useState(startingState);
 
-  const [ minRankFilter, setMinRankFilter ] = useState("0")
-  const [ maxRankFilter, setMaxRankFilter ] = useState("400")
+  const [ autoOffQuery, toggleAutoOffQuery ] = useState("true" == (startingState.autoOffQuery || "false"))
+  const [ onQuery, setOnQuery ] = useState(startingState.onQuery || "")
+  const [ offQuery, setOffQuery ] = useState(startingState.offQuery || "")
+  const [ baseQuery, setBaseQuery ] = useState(startingState.baseQuery || "")
+
+  const [ minRankFilter, setMinRankFilter ] = useState(startingState.minRank || "0")
+  const [ maxRankFilter, setMaxRankFilter ] = useState(startingState.maxRank || "400")
+
+  const [ submitDisabled, setSubmitDisabled ] = useState(false) // (always start as true on page load)
+    //TODO: do need an extra flag I think? otherwise
+
+  useEffect(() => {
+    setSubmitDisabled(shouldSubmitBeDisabled())
+  });
 
   const setAutoOffQuery = (onQuery: string) => {
     setOffQuery(onQuery == "" ? "" : `NOT (${onQuery})`);
   }
 
+  function buildParamsFromState(): GameFilterParams {
+    return {
+      autoOffQuery: autoOffQuery.toString(),
+      onQuery: onQuery,
+      offQuery: offQuery,
+      baseQuery: baseQuery,
+      minRank: minRankFilter,
+      maxRank: maxRankFilter
+    };
+  }
+
+  function shouldSubmitBeDisabled() {
+    const newParams = buildParamsFromState();
+    const paramsUnchanged = Object.keys(newParams).every(
+      (key: string) => (newParams as any)[key] == (currState as any)[key]
+    );
+    return !pageJustLoaded && paramsUnchanged;
+  }
+
   function onSubmit() {
+    const newParamsStr = queryString.stringify(buildParamsFromState());
     //TODO: add overlay with spinner and cancel button (remove in log)
-    fetch("/api/calculateTeamStats").then(function(response) {
+    fetch(`/api/calculateTeamStats?${newParamsStr}`).then(function(response) {
       response.json().then(function(json) {
         console.log(json)
         if (json && json.aggregations && json.aggregations.tri_filter && json.aggregations.tri_filter.buckets) {
+          const newParams = buildParamsFromState();
+          setCurrState(newParams);
+          onChangeState(newParams);
+          setPageJustLoaded(false);
           onTeamStats({
             on: json.aggregations.tri_filter.buckets.on || {},
             off: json.aggregations.tri_filter.buckets.off || {},
@@ -52,6 +97,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onTeamStats}) => {
           });
         } else {
           onTeamStats({ on: {}, off: {}, baseline: {} });
+          // (leave params alone)
         }
       })
     });
@@ -62,6 +108,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onTeamStats}) => {
       <Row>
         <Col xs={2}>
           <Typeahead
+            disabled //TODO
             id="teamGenderTypeahead"
             multiple={false}
             options={[
@@ -72,6 +119,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onTeamStats}) => {
         </Col>
         <Col xs={2}>
           <Typeahead
+            disabled //TODO
             id="teamYearTypeahead"
             multiple={false}
             options={[
@@ -82,6 +130,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onTeamStats}) => {
         </Col>
         <Col xs={6}>
           <Typeahead
+            disabled //TODO
             id="teamTypeahead"
             multiple={false}
             options={[
@@ -181,7 +230,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onTeamStats}) => {
       </Col>
       <Form.Label column sm="2">(out of 352 teams)</Form.Label>
     </Form.Group>
-    <Button variant="primary" onClick={onSubmit}>Submit</Button>
+    <Button disabled={submitDisabled} variant="primary" onClick={onSubmit}>Submit</Button>
   </Form>;
 }
 

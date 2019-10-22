@@ -1,6 +1,7 @@
 
 // React imports:
 import React, { useState } from 'react';
+import Router, { useRouter } from 'next/router'
 
 // Next imports:
 import { NextPage } from 'next';
@@ -12,17 +13,20 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 // Additional components:
-import 'react-bootstrap-typeahead/css/Typeahead.css';
-import { Typeahead } from 'react-bootstrap-typeahead';
+import queryString from "query-string";
 
 // App compnents:
-import GameFilter from '../components/GameFilter';
+import GameFilter, { GameFilterParams } from '../components/GameFilter';
 import TeamStatsTable, { TeamStatsModel } from '../components/TeamStatsTable';
 import RosterStatsTable from '../components/RosterStatsTable';
 import RosterCompareTable from '../components/RosterCompareTable';
 import GenericCollapsibleCard from '../components/GenericCollapsibleCard';
 
-const Home: NextPage<{}> = () => {
+const OnOffAnalysisPage: NextPage<{}> = () => {
+
+  //TODO: store state for collapsable cards
+
+  // Team Stats interface
 
   const [ teamStats, setTeamStats ] = useState({on: {}, off: {}, baseline: {}} as TeamStatsModel);
 
@@ -30,13 +34,35 @@ const Home: NextPage<{}> = () => {
     setTeamStats(stats);
   }
 
+  // Game filter
+
+  const [ gameFilterParams, setGameFilterParams ] = useState(
+    (typeof window === `undefined`) ? //(ensures SSR code still compiles)
+      ({}) :
+      (queryString.parse(window.location.search) as GameFilterParams)
+  )
+
+  const onGameFilterParamsChange = (params: GameFilterParams) => {
+    //TODO: get URL?
+    //TODO: build params
+    const href = `/?${queryString.stringify(params)}`
+    const as = href
+    Router.push(href, as, { shallow: true })
+  }
+
+  // View
+
   return <Container>
     <Row>
       <h2>CBB On/Off Analysis Tool</h2>
     </Row>
     <Row>
       <GenericCollapsibleCard title="Team and Game Filter">
-        <GameFilter onTeamStats={injectTeamStats}/>
+        <GameFilter
+          onTeamStats={injectTeamStats}
+          startingState={gameFilterParams}
+          onChangeState={onGameFilterParamsChange}
+        />
       </GenericCollapsibleCard>
     </Row>
     <Row>
@@ -56,5 +82,4 @@ const Home: NextPage<{}> = () => {
     </Row>
   </Container>;
 }
-console.log(`Check that no secrets are leaked to client side: ${process.env.CLUSTER_USER == undefined}`)
-export default Home;
+export default OnOffAnalysisPage;
