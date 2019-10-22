@@ -16,6 +16,8 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import 'react-bootstrap-typeahead/css/Typeahead.css';
 import { Typeahead } from 'react-bootstrap-typeahead';
 import queryString from "query-string";
+// @ts-ignore
+import LoadingOverlay from 'react-loading-overlay';
 
 // Component imports:
 import { TeamStatsModel } from '../components/TeamStatsTable';
@@ -38,6 +40,7 @@ type Props = {
 }
 
 const GameFilter: React.FunctionComponent<Props> = ({onTeamStats, startingState, onChangeState}) => {
+  const [ queryIsLoading, setQueryIsLoading ] = useState(false);
   const [ pageJustLoaded, setPageJustLoaded ] = useState(true);
   const [ currState, setCurrState ] = useState(startingState);
 
@@ -80,11 +83,12 @@ const GameFilter: React.FunctionComponent<Props> = ({onTeamStats, startingState,
   }
 
   function onSubmit() {
+    setQueryIsLoading(true);
     const newParamsStr = queryString.stringify(buildParamsFromState());
     //TODO: add overlay with spinner and cancel button (remove in log)
     fetch(`/api/calculateTeamStats?${newParamsStr}`).then(function(response) {
       response.json().then(function(json) {
-        console.log(json)
+        setQueryIsLoading(false);
         if (json && json.aggregations && json.aggregations.tri_filter && json.aggregations.tri_filter.buckets) {
           const newParams = buildParamsFromState();
           setCurrState(newParams);
@@ -103,7 +107,11 @@ const GameFilter: React.FunctionComponent<Props> = ({onTeamStats, startingState,
     });
   }
 
-  return <Form>
+  return <LoadingOverlay
+    active={queryIsLoading}
+    spinner
+    text="Calculating statistics"
+  ><Form>
     <Form.Group>
       <Row>
         <Col xs={2}>
@@ -231,7 +239,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onTeamStats, startingState,
       <Form.Label column sm="2">(out of 352 teams)</Form.Label>
     </Form.Group>
     <Button disabled={submitDisabled} variant="primary" onClick={onSubmit}>Submit</Button>
-  </Form>;
+  </Form></LoadingOverlay>;
 }
 
 export default GameFilter;

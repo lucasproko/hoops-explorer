@@ -54,7 +54,7 @@ const OnOffAnalysisPage: NextPage<{}> = () => {
 
   return <Container>
     <Row>
-      <h2>CBB On/Off Analysis Tool</h2>
+      <h3>CBB On/Off Analysis Tool <span className="badge badge-pill badge-info">BETA!</span></h3>
     </Row>
     <Row>
       <GenericCollapsibleCard title="Team and Game Filter">

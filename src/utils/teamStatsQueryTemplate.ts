@@ -454,7 +454,7 @@ export const teamStatsQuery2018 = function(params: any) {
                  },
                  "baseline": {
                     "query_string": {
-                       "query": `(${params.baseQuery || "*"})`
+                       "query": `players.id:(${params.baseQuery || "*"})`
                     }
                  }
               }
