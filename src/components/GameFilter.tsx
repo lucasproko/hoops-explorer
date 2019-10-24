@@ -56,6 +56,9 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
   const [ submitDisabled, setSubmitDisabled ] = useState(false) // (always start as true on page load)
     //TODO: do need an extra flag I think? otherwise
 
+/**/
+console.log("??? " + autoOffQuery);
+
   useEffect(() => {
     setSubmitDisabled(shouldSubmitBeDisabled())
   });
@@ -109,6 +112,20 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
         });
       })
     });
+  }
+
+  /* Ran into issues with SSR and 'readOnly' property, so have to fix like this */
+  function renderOffQueryFormField() {
+    if (typeof window !== `undefined`) {
+      return <Form.Control
+        placeholder="eg 'NOT (Player1 AND Player2)'"
+        onChange={(ev: any) => {
+          setOffQuery(ev.target.value);
+        }}
+        value={offQuery}
+        readOnly={autoOffQuery}
+      />
+    }
   }
 
   return <LoadingOverlay
@@ -171,14 +188,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
     <Form.Group as={Row}>
       <Form.Label column sm="2">Off Query</Form.Label>
       <Col sm="8">
-        <Form.Control
-          placeholder="eg 'NOT (Player1 AND Player2)'"
-          onChange={(ev: any) => {
-            setOffQuery(ev.target.value);
-          }}
-          value={offQuery}
-          readOnly={autoOffQuery}
-        />
+        { renderOffQueryFormField() }
       </Col>
       <Col sm="2">
         <Form.Check type="switch"
