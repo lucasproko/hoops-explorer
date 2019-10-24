@@ -21,6 +21,7 @@ import LoadingOverlay from 'react-loading-overlay';
 
 // Component imports:
 import { TeamStatsModel } from '../components/TeamStatsTable';
+import { RosterCompareModel } from '../components/RosterCompareTable';
 
 // Library imports:
 import fetch from 'isomorphic-unfetch';
@@ -34,12 +35,12 @@ export type GameFilterParams = {
   maxRank?: string
 }
 type Props = {
-  onTeamStats: (stats: TeamStatsModel) => void;
+  onStats: (teamStats: TeamStatsModel, rosterCompareStats: RosterCompareModel) => void;
   startingState: GameFilterParams;
   onChangeState: (newParams: GameFilterParams) => void;
 }
 
-const GameFilter: React.FunctionComponent<Props> = ({onTeamStats, startingState, onChangeState}) => {
+const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onChangeState}) => {
   const [ queryIsLoading, setQueryIsLoading ] = useState(false);
   const [ pageJustLoaded, setPageJustLoaded ] = useState(true);
   const [ currState, setCurrState ] = useState(startingState);
@@ -86,23 +87,26 @@ const GameFilter: React.FunctionComponent<Props> = ({onTeamStats, startingState,
     setQueryIsLoading(true);
     const newParamsStr = queryString.stringify(buildParamsFromState());
     //TODO: add overlay with spinner and cancel button (remove in log)
-    fetch(`/api/calculateTeamStats?${newParamsStr}`).then(function(response) {
+    fetch(`/api/calculateStats?${newParamsStr}`).then(function(response) {
       response.json().then(function(json) {
         setQueryIsLoading(false);
-        if (json && json.aggregations && json.aggregations.tri_filter && json.aggregations.tri_filter.buckets) {
-          const newParams = buildParamsFromState();
-          setCurrState(newParams);
-          onChangeState(newParams);
-          setPageJustLoaded(false);
-          onTeamStats({
-            on: json.aggregations.tri_filter.buckets.on || {},
-            off: json.aggregations.tri_filter.buckets.off || {},
-            baseline: json.aggregations.tri_filter.buckets.baseline || {},
-          });
-        } else {
-          onTeamStats({ on: {}, off: {}, baseline: {} });
-          // (leave params alone)
-        }
+        const jsons = json?.responses || [];
+        const teamJson = (jsons.length > 0) ? jsons[0] : {};
+        const rosterCompareJson = (jsons.length > 1) ? jsons[1] : {};
+
+        const newParams = buildParamsFromState();
+        setCurrState(newParams);
+        onChangeState(newParams);
+        setPageJustLoaded(false);
+        onStats({
+          on: teamJson?.aggregations?.tri_filter?.buckets?.on || {},
+          off: teamJson?.aggregations?.tri_filter?.buckets?.off || {},
+          baseline: teamJson?.aggregations?.tri_filter?.buckets?.baseline || {},
+        }, {
+          on: rosterCompareJson?.aggregations?.tri_filter?.buckets?.on || {},
+          off: rosterCompareJson?.aggregations?.tri_filter?.buckets?.off || {},
+          baseline: rosterCompareJson?.aggregations?.tri_filter?.buckets?.baseline || {},
+        });
       })
     });
   }

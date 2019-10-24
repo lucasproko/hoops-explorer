@@ -10,1626 +10,1630 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
     <div
       className="col"
     >
-      <table
-        className="table table-sm"
+      <div
+        className="table-responsive"
       >
-        <thead>
-          <tr>
-            <th
-              style={
-                Object {
-                  "fontWeight": "bold",
-                  "textAlign": "right",
-                  "width": "15.8%",
-                }
-              }
-            >
-              
-            </th>
-            <th
-              style={
-                Object {
-                  "fontWeight": "bold",
-                  "textAlign": "center",
-                  "width": "2.6%",
-                }
-              }
-            >
-              
-            </th>
-            <th
-              style={
-                Object {
-                  "fontWeight": "bold",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              pp100
-            </th>
-            <th
-              style={
-                Object {
-                  "fontWeight": "bold",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              eFG%
-            </th>
-            <th
-              style={
-                Object {
-                  "fontWeight": "bold",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              TO%
-            </th>
-            <th
-              style={
-                Object {
-                  "fontWeight": "bold",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              ORB%
-            </th>
-            <th
-              style={
-                Object {
-                  "fontWeight": "bold",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              FTR
-            </th>
-            <th
-              style={
-                Object {
-                  "fontWeight": "bold",
-                  "textAlign": "center",
-                  "width": "2.6%",
-                }
-              }
-            >
-              
-            </th>
-            <th
-              style={
-                Object {
-                  "fontWeight": "bold",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              3PR
-            </th>
-            <th
-              style={
-                Object {
-                  "fontWeight": "bold",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              2PR rim
-            </th>
-            <th
-              style={
-                Object {
-                  "fontWeight": "bold",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              2PR mid
-            </th>
-            <th
-              style={
-                Object {
-                  "fontWeight": "bold",
-                  "textAlign": "center",
-                  "width": "2.6%",
-                }
-              }
-            >
-              
-            </th>
-            <th
-              style={
-                Object {
-                  "fontWeight": "bold",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              3P%
-            </th>
-            <th
-              style={
-                Object {
-                  "fontWeight": "bold",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              2P%
-            </th>
-            <th
-              style={
-                Object {
-                  "fontWeight": "bold",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              2P% mid
-            </th>
-            <th
-              style={
-                Object {
-                  "fontWeight": "bold",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              2P% rim
-            </th>
-            <th
-              style={
-                Object {
-                  "fontWeight": "bold",
-                  "textAlign": "center",
-                  "width": "2.6%",
-                }
-              }
-            >
-              
-            </th>
-            <th
-              style={
-                Object {
-                  "fontWeight": "bold",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              Poss
-            </th>
-            <th
-              style={
-                Object {
-                  "fontWeight": "bold",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              SoS
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td
-              style={
-                Object {
-                  "backgroundColor": undefined,
-                  "fontWeight": "bold",
-                  "textAlign": "right",
-                  "width": "15.8%",
-                }
-              }
-            >
-              'On' Offense
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": undefined,
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "2.6%",
-                }
-              }
-            >
-              
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": "#6eb76e",
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              111.4
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": "#cee6ce",
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              51.9
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": "#ffa9a9",
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              18.0
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": "#40a040",
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              33.7
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": "#9dce9d",
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              33.8
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": undefined,
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "2.6%",
-                }
-              }
-            >
-              
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": "#ffe8bf",
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              37.3
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": "#eff7fa",
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              29.5
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": "#fffefc",
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              33.2
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": undefined,
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "2.6%",
-                }
-              }
-            >
-              
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": "#acd6ac",
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              35.3
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": "#dceedc",
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              51.4
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": "#c2e1c2",
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              42.4
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": "#ffeeee",
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              59.3
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": undefined,
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "2.6%",
-                }
-              }
-            >
-              
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": undefined,
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              1293
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": undefined,
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              110.8
-            </td>
-          </tr>
-          <tr>
-            <td
-              style={
-                Object {
-                  "backgroundColor": undefined,
-                  "fontWeight": "bold",
-                  "textAlign": "right",
-                  "width": "15.8%",
-                }
-              }
-            >
-              'On' Defense
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": undefined,
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "2.6%",
-                }
-              }
-            >
-              
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": "#ffeeee",
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              101.3
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": "#b5dab5",
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              47.1
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": "#ff7070",
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              12.6
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": "#a1d0a1",
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              23.7
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": "#a4d2a4",
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              26.4
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": undefined,
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "2.6%",
-                }
-              }
-            >
-              
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": "#ffd17c",
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              41.7
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": "#fffaf1",
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              33.9
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": "#d7ecf3",
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              24.3
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": undefined,
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "2.6%",
-                }
-              }
-            >
-              
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": "#edf6ed",
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              32.5
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": "#98cc98",
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              45.9
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": "#c9e4c9",
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              37.9
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": "#b7dbb7",
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              57.2
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": undefined,
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "2.6%",
-                }
-              }
-            >
-              
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": undefined,
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              1274
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": undefined,
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              98.3
-            </td>
-          </tr>
-          <tr
-            className="divider"
-          >
-            <td
-              colSpan={19}
-            />
-          </tr>
-          <tr>
-            <td
-              style={
-                Object {
-                  "backgroundColor": undefined,
-                  "fontWeight": "bold",
-                  "textAlign": "right",
-                  "width": "15.8%",
-                }
-              }
-            >
-              'Off' Offense
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": undefined,
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "2.6%",
-                }
-              }
-            >
-              
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": "#8ac58a",
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              109.2
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": "#bddebd",
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              52.6
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": "#ff4e4e",
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              20.2
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": "#1e8f1e",
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              34.9
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": "#f4f9f4",
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              30.4
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": undefined,
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "2.6%",
-                }
-              }
-            >
-              
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": "#ffebc7",
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              36.8
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": "#f6fbfc",
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              31.0
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": "#fbfdfe",
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              32.2
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": undefined,
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "2.6%",
-                }
-              }
-            >
-              
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": "#f3f9f3",
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              33.3
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": "#97cb97",
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              54.1
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": "#bbddbb",
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              42.7
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": "#7fbf7f",
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              65.0
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": undefined,
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "2.6%",
-                }
-              }
-            >
-              
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": undefined,
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              590
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": undefined,
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              109.2
-            </td>
-          </tr>
-          <tr>
-            <td
-              style={
-                Object {
-                  "backgroundColor": undefined,
-                  "fontWeight": "bold",
-                  "textAlign": "right",
-                  "width": "15.8%",
-                }
-              }
-            >
-              'Off' Defense
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": undefined,
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "2.6%",
-                }
-              }
-            >
-              
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": "#94ca94",
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              91.6
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": "#45a245",
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              42.7
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": "#a5d2a5",
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              18.1
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": "#dceedc",
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              25.8
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": "#98cc98",
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              26.0
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": undefined,
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "2.6%",
-                }
-              }
-            >
-              
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": "#ffeac4",
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              36.9
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": "#fff4e1",
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              35.0
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": "#e9f4f8",
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              28.1
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": undefined,
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "2.6%",
-                }
-              }
-            >
-              
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": "#99cc99",
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              30.2
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": "#1e8f1e",
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              41.2
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": "#68b468",
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              34.1
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": "#008000",
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              50.0
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": undefined,
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "2.6%",
-                }
-              }
-            >
-              
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": undefined,
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              596
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": undefined,
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              99.3
-            </td>
-          </tr>
-          <tr
-            className="divider"
-          >
-            <td
-              colSpan={19}
-            />
-          </tr>
-          <tr>
-            <td
-              style={
-                Object {
-                  "backgroundColor": undefined,
-                  "fontWeight": "bold",
-                  "textAlign": "right",
-                  "width": "15.8%",
-                }
-              }
-            >
-              'Baseline' Offense
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": undefined,
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "2.6%",
-                }
-              }
-            >
-              
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": "#77bb77",
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              110.7
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": "#c9e4c9",
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              52.1
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": "#ff8d8d",
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              18.7
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": "#359b35",
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              34.1
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": "#b8dcb8",
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              32.8
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": undefined,
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "2.6%",
-                }
-              }
-            >
-              
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": "#ffe9c1",
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              37.1
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": "#f1f8fb",
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              30.0
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": "#ffffff",
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              32.9
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": undefined,
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "2.6%",
-                }
-              }
-            >
-              
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": "#c2e1c2",
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              34.7
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": "#c7e3c7",
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              52.2
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": "#c0e0c0",
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              42.5
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": "#e3f1e3",
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              61.1
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": undefined,
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "2.6%",
-                }
-              }
-            >
-              
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": undefined,
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              1883
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": undefined,
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              110.3
-            </td>
-          </tr>
-          <tr>
-            <td
-              style={
-                Object {
-                  "backgroundColor": undefined,
-                  "fontWeight": "bold",
-                  "textAlign": "right",
-                  "width": "15.8%",
-                }
-              }
-            >
-              'Baseline' Defense
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": undefined,
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "2.6%",
-                }
-              }
-            >
-              
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": "#e9f4e9",
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              98.2
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": "#92c992",
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              45.7
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": "#ffbaba",
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              14.4
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": "#b5dab5",
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              24.4
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": "#a0d0a0",
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              26.3
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": undefined,
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "2.6%",
-                }
-              }
-            >
-              
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": "#ffd993",
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              40.2
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": "#fff8ec",
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              34.3
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": "#ddeff5",
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              25.5
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": undefined,
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "2.6%",
-                }
-              }
-            >
-              
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": "#d5ead5",
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              31.8
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": "#6fb76f",
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              44.4
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": "#aad5aa",
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              36.7
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": "#78bc78",
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              54.7
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": undefined,
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "2.6%",
-                }
-              }
-            >
-              
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": undefined,
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              1870
-            </td>
-            <td
-              style={
-                Object {
-                  "backgroundColor": undefined,
-                  "fontWeight": "normal",
-                  "textAlign": "center",
-                  "width": "5.3%",
-                }
-              }
-            >
-              98.6
-            </td>
-          </tr>
-          <tr
-            className="divider"
-          >
-            <td
-              colSpan={19}
-            />
-          </tr>
-        </tbody>
-      </table>
+        <table
+          className="table table-sm"
+        >
+          <thead>
+            <tr>
+              <th
+                style={
+                  Object {
+                    "fontWeight": "bold",
+                    "textAlign": "right",
+                    "width": "15.8%",
+                  }
+                }
+              >
+                
+              </th>
+              <th
+                style={
+                  Object {
+                    "fontWeight": "bold",
+                    "textAlign": "center",
+                    "width": "2.6%",
+                  }
+                }
+              >
+                
+              </th>
+              <th
+                style={
+                  Object {
+                    "fontWeight": "bold",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                pp100
+              </th>
+              <th
+                style={
+                  Object {
+                    "fontWeight": "bold",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                eFG%
+              </th>
+              <th
+                style={
+                  Object {
+                    "fontWeight": "bold",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                TO%
+              </th>
+              <th
+                style={
+                  Object {
+                    "fontWeight": "bold",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                ORB%
+              </th>
+              <th
+                style={
+                  Object {
+                    "fontWeight": "bold",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                FTR
+              </th>
+              <th
+                style={
+                  Object {
+                    "fontWeight": "bold",
+                    "textAlign": "center",
+                    "width": "2.6%",
+                  }
+                }
+              >
+                
+              </th>
+              <th
+                style={
+                  Object {
+                    "fontWeight": "bold",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                3PR
+              </th>
+              <th
+                style={
+                  Object {
+                    "fontWeight": "bold",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                2PR rim
+              </th>
+              <th
+                style={
+                  Object {
+                    "fontWeight": "bold",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                2PR mid
+              </th>
+              <th
+                style={
+                  Object {
+                    "fontWeight": "bold",
+                    "textAlign": "center",
+                    "width": "2.6%",
+                  }
+                }
+              >
+                
+              </th>
+              <th
+                style={
+                  Object {
+                    "fontWeight": "bold",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                3P%
+              </th>
+              <th
+                style={
+                  Object {
+                    "fontWeight": "bold",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                2P%
+              </th>
+              <th
+                style={
+                  Object {
+                    "fontWeight": "bold",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                2P% mid
+              </th>
+              <th
+                style={
+                  Object {
+                    "fontWeight": "bold",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                2P% rim
+              </th>
+              <th
+                style={
+                  Object {
+                    "fontWeight": "bold",
+                    "textAlign": "center",
+                    "width": "2.6%",
+                  }
+                }
+              >
+                
+              </th>
+              <th
+                style={
+                  Object {
+                    "fontWeight": "bold",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                Poss
+              </th>
+              <th
+                style={
+                  Object {
+                    "fontWeight": "bold",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                SoS
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": undefined,
+                    "fontWeight": "bold",
+                    "textAlign": "right",
+                    "width": "15.8%",
+                  }
+                }
+              >
+                'On' Offense
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": undefined,
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "2.6%",
+                  }
+                }
+              >
+                
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": "#6eb76e",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                111.4
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": "#cee6ce",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                51.9
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": "#ffa9a9",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                18.0
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": "#40a040",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                33.7
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": "#9dce9d",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                33.8
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": undefined,
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "2.6%",
+                  }
+                }
+              >
+                
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": "#ffe8bf",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                37.3
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": "#eff7fa",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                29.5
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": "#fffefc",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                33.2
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": undefined,
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "2.6%",
+                  }
+                }
+              >
+                
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": "#acd6ac",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                35.3
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": "#dceedc",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                51.4
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": "#c2e1c2",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                42.4
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": "#ffeeee",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                59.3
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": undefined,
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "2.6%",
+                  }
+                }
+              >
+                
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": undefined,
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                1293
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": undefined,
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                110.8
+              </td>
+            </tr>
+            <tr>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": undefined,
+                    "fontWeight": "bold",
+                    "textAlign": "right",
+                    "width": "15.8%",
+                  }
+                }
+              >
+                'On' Defense
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": undefined,
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "2.6%",
+                  }
+                }
+              >
+                
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": "#ffeeee",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                101.3
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": "#b5dab5",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                47.1
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": "#ff7070",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                12.6
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": "#a1d0a1",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                23.7
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": "#a4d2a4",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                26.4
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": undefined,
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "2.6%",
+                  }
+                }
+              >
+                
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": "#ffd17c",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                41.7
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": "#fffaf1",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                33.9
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": "#d7ecf3",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                24.3
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": undefined,
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "2.6%",
+                  }
+                }
+              >
+                
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": "#edf6ed",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                32.5
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": "#98cc98",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                45.9
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": "#c9e4c9",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                37.9
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": "#b7dbb7",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                57.2
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": undefined,
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "2.6%",
+                  }
+                }
+              >
+                
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": undefined,
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                1274
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": undefined,
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                98.3
+              </td>
+            </tr>
+            <tr
+              className="divider"
+            >
+              <td
+                colSpan={19}
+              />
+            </tr>
+            <tr>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": undefined,
+                    "fontWeight": "bold",
+                    "textAlign": "right",
+                    "width": "15.8%",
+                  }
+                }
+              >
+                'Off' Offense
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": undefined,
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "2.6%",
+                  }
+                }
+              >
+                
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": "#8ac58a",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                109.2
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": "#bddebd",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                52.6
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": "#ff4e4e",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                20.2
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": "#1e8f1e",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                34.9
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": "#f4f9f4",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                30.4
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": undefined,
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "2.6%",
+                  }
+                }
+              >
+                
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": "#ffebc7",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                36.8
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": "#f6fbfc",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                31.0
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": "#fbfdfe",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                32.2
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": undefined,
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "2.6%",
+                  }
+                }
+              >
+                
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": "#f3f9f3",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                33.3
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": "#97cb97",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                54.1
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": "#bbddbb",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                42.7
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": "#7fbf7f",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                65.0
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": undefined,
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "2.6%",
+                  }
+                }
+              >
+                
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": undefined,
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                590
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": undefined,
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                109.2
+              </td>
+            </tr>
+            <tr>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": undefined,
+                    "fontWeight": "bold",
+                    "textAlign": "right",
+                    "width": "15.8%",
+                  }
+                }
+              >
+                'Off' Defense
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": undefined,
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "2.6%",
+                  }
+                }
+              >
+                
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": "#94ca94",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                91.6
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": "#45a245",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                42.7
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": "#a5d2a5",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                18.1
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": "#dceedc",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                25.8
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": "#98cc98",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                26.0
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": undefined,
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "2.6%",
+                  }
+                }
+              >
+                
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": "#ffeac4",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                36.9
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": "#fff4e1",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                35.0
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": "#e9f4f8",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                28.1
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": undefined,
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "2.6%",
+                  }
+                }
+              >
+                
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": "#99cc99",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                30.2
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": "#1e8f1e",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                41.2
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": "#68b468",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                34.1
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": "#008000",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                50.0
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": undefined,
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "2.6%",
+                  }
+                }
+              >
+                
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": undefined,
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                596
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": undefined,
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                99.3
+              </td>
+            </tr>
+            <tr
+              className="divider"
+            >
+              <td
+                colSpan={19}
+              />
+            </tr>
+            <tr>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": undefined,
+                    "fontWeight": "bold",
+                    "textAlign": "right",
+                    "width": "15.8%",
+                  }
+                }
+              >
+                'Baseline' Offense
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": undefined,
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "2.6%",
+                  }
+                }
+              >
+                
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": "#77bb77",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                110.7
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": "#c9e4c9",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                52.1
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": "#ff8d8d",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                18.7
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": "#359b35",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                34.1
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": "#b8dcb8",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                32.8
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": undefined,
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "2.6%",
+                  }
+                }
+              >
+                
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": "#ffe9c1",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                37.1
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": "#f1f8fb",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                30.0
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": "#ffffff",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                32.9
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": undefined,
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "2.6%",
+                  }
+                }
+              >
+                
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": "#c2e1c2",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                34.7
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": "#c7e3c7",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                52.2
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": "#c0e0c0",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                42.5
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": "#e3f1e3",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                61.1
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": undefined,
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "2.6%",
+                  }
+                }
+              >
+                
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": undefined,
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                1883
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": undefined,
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                110.3
+              </td>
+            </tr>
+            <tr>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": undefined,
+                    "fontWeight": "bold",
+                    "textAlign": "right",
+                    "width": "15.8%",
+                  }
+                }
+              >
+                'Baseline' Defense
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": undefined,
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "2.6%",
+                  }
+                }
+              >
+                
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": "#e9f4e9",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                98.2
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": "#92c992",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                45.7
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": "#ffbaba",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                14.4
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": "#b5dab5",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                24.4
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": "#a0d0a0",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                26.3
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": undefined,
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "2.6%",
+                  }
+                }
+              >
+                
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": "#ffd993",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                40.2
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": "#fff8ec",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                34.3
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": "#ddeff5",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                25.5
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": undefined,
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "2.6%",
+                  }
+                }
+              >
+                
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": "#d5ead5",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                31.8
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": "#6fb76f",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                44.4
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": "#aad5aa",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                36.7
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": "#78bc78",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                54.7
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": undefined,
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "2.6%",
+                  }
+                }
+              >
+                
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": undefined,
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                1870
+              </td>
+              <td
+                style={
+                  Object {
+                    "backgroundColor": undefined,
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "5.3%",
+                  }
+                }
+              >
+                98.6
+              </td>
+            </tr>
+            <tr
+              className="divider"
+            >
+              <td
+                colSpan={19}
+              />
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>

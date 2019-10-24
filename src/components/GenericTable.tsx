@@ -54,6 +54,7 @@ export class GenericTableOps {
   static readonly defaultFormatter = (val: any) => "" + val;
   static readonly percentFormatter = (val: any) => ((val as number)*100.0).toFixed(1); //(no % it's too ugly)
   static readonly pointsFormatter = (val: any) => (val as number).toFixed(1);
+  static readonly defaultCellMeta = (key: string, value: any) => "";
   static readonly defaultColorPicker =  (val: any, cellMeta: string) => undefined;
 
   // Rows:

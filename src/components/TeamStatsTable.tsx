@@ -34,7 +34,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({teamStats}) => {
   const teamStatsOn = { off_title:  "'On' Offense", def_title: "'On' Defense", ...teamStats.on };
   const teamStatsOff = { off_title:"'Off' Offense", def_title: "'Off' Defense", ...teamStats.off };
   const teamStatsBaseline = { off_title: "'Baseline' Offense", def_title: "'Baseline' Defense", ...teamStats.baseline };
-  const sampleTableData = [
+  const tableData = [
     GenericTableOps.buildDataRow(teamStatsOn, offPrefixFn, offCellMetaFn),
     GenericTableOps.buildDataRow(teamStatsOn, defPrefixFn, defCellMetaFn),
     GenericTableOps.buildRowSeparator(),
@@ -81,7 +81,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({teamStats}) => {
   return <Container>
     <Row>
       <Col>
-        <GenericTable tableFields={tableFields} tableData={sampleTableData}/>
+        <GenericTable tableFields={tableFields} tableData={tableData}/>
       </Col>
     </Row>
   </Container>;

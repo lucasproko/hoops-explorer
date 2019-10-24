@@ -13,7 +13,7 @@ type Props = {
 
 const RosterStatsTable: React.FunctionComponent<Props> = ({}) => {
 
-  return <Card.Text>No data loaded</Card.Text>;
+  return <Card.Text>Coming Soon!</Card.Text>;
 }
 
 export default RosterStatsTable;
