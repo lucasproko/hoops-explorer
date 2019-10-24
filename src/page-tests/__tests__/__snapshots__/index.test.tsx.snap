@@ -74,3 +74,78 @@ exports[`GameFilter OnOffAnalysisPage - should create snapshot 1`] = `
   </ForwardRef>
 </Container>
 `;
+
+exports[`OnOffAnalysisPage OnOffAnalysisPage - should create snapshot 1`] = `
+<Container
+  fluid={false}
+>
+  <ForwardRef
+    noGutters={false}
+  >
+    <h3>
+      CBB On/Off Analysis Tool 
+      <span
+        className="badge badge-pill badge-info"
+      >
+        BETA!
+      </span>
+    </h3>
+  </ForwardRef>
+  <ForwardRef
+    noGutters={false}
+  >
+    <GenericCollapsibleCard
+      title="Team and Game Filter"
+    >
+      <GameFilter
+        onChangeState={[Function]}
+        onStats={[Function]}
+        startingState={Object {}}
+      />
+    </GenericCollapsibleCard>
+  </ForwardRef>
+  <ForwardRef
+    noGutters={false}
+  >
+    <GenericCollapsibleCard
+      title="Team Analysis"
+    >
+      <TeamStatsTable
+        teamStats={
+          Object {
+            "baseline": Object {},
+            "off": Object {},
+            "on": Object {},
+          }
+        }
+      />
+    </GenericCollapsibleCard>
+  </ForwardRef>
+  <ForwardRef
+    noGutters={false}
+  >
+    <GenericCollapsibleCard
+      title="Lineup Comparison"
+    >
+      <RosterCompareTable
+        rosterCompareStats={
+          Object {
+            "baseline": Object {},
+            "off": Object {},
+            "on": Object {},
+          }
+        }
+      />
+    </GenericCollapsibleCard>
+  </ForwardRef>
+  <ForwardRef
+    noGutters={false}
+  >
+    <GenericCollapsibleCard
+      title="Individual Analysis"
+    >
+      <RosterStatsTable />
+    </GenericCollapsibleCard>
+  </ForwardRef>
+</Container>
+`;
