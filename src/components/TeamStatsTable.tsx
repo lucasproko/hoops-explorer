@@ -1,5 +1,5 @@
 // React imports:
-import React, { useState } from 'react';
+import React from 'react';
 
 // Next imports:
 import { NextPage } from 'next';
@@ -81,7 +81,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({teamStats}) => {
   return <Container>
     <Row>
       <Col>
-        <GenericTable tableFields={tableFields} tableData={tableData}/>
+        <GenericTable tableCopyId="teamStatsTable" tableFields={tableFields} tableData={tableData}/>
       </Col>
     </Row>
   </Container>;

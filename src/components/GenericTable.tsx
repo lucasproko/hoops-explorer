@@ -1,5 +1,5 @@
 // React imports:
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 // Next imports:
 import { NextPage } from 'next';
@@ -7,6 +7,12 @@ import { NextPage } from 'next';
 // Bootstrap imports:
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Table from 'react-bootstrap/Table';
+import Button from 'react-bootstrap/Button';
+
+// Libary imports
+import ClipboardJS from 'clipboard';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faClipboard } from '@fortawesome/free-solid-svg-icons'
 
 type GenericTableColorPickerFn =  (val: any, cellMeta: string) => string | undefined
 export class GenericTableColProps {
@@ -86,18 +92,47 @@ export class GenericTableOps {
 }
 type Props = {
   tableFields: Record<string, GenericTableColProps>,
-  tableData: Array<GenericTableRow>
+  tableData: Array<GenericTableRow>,
+  tableCopyId?: string
 }
-const GenericTable: React.FunctionComponent<Props> = ({tableFields, tableData}) => {
+const GenericTable: React.FunctionComponent<Props> = ({tableFields, tableData, tableCopyId}) => {
+
+  const tableId = tableCopyId
+  const buttonId = tableCopyId + "_copy";
+
+  const [ clipboard, setClipboard] = useState(null as null | ClipboardJS);
+  useEffect(() => {
+    // This grovelling is needed to ensure that clipboard is only loaded client side
+    if ((null == clipboard) && (typeof tableId === "string")) {
+      var newClipboard = new ClipboardJS(`#${buttonId}`, {
+        target: function(trigger) {
+          return document.getElementById(tableId) as Element; //exists by construction
+        }
+      });
+      newClipboard.on('success', (event: ClipboardJS.Event) => {
+        setTimeout(function() {
+          event.clearSelection();
+        }, 150);
+      });
+      setClipboard(newClipboard);
+    }
+  });
 
   const totalTableCols = Object.values(tableFields).length;
   const totalWidthUnits =
     Object.values(tableFields).map((col) => col.widthUnits).reduce((acc, v) => acc + v);
 
   function renderTableHeaders() {
+    function insertCopyButton(insert: boolean) {
+      if (tableId && insert) {
+        return  <Button className="float-left" id={buttonId} variant="outline-secondary" size="sm">
+          <FontAwesomeIcon icon={faClipboard} />
+        </Button>;
+      }
+    }
     return Object.values(tableFields).map((colProp, index) => {
         const style = getColStyle(colProp);
-        return <th key={"" + index} style={style}>{colProp.colName}</th>;
+        return <th key={"" + index} style={style}>{colProp.colName}{insertCopyButton(index == 0)}</th>;
     });
   }
   function renderTableRow(row: GenericTableDataRow) {
@@ -148,8 +183,10 @@ const GenericTable: React.FunctionComponent<Props> = ({tableFields, tableData}) 
     };
   }
 
-  return <Table size="sm" responsive>
-    <thead><tr>{ renderTableHeaders() }</tr></thead>
+  return <Table id={tableId} size="sm" responsive>
+    <thead>
+      <tr>{ renderTableHeaders() }</tr>
+    </thead>
     <tbody>{ renderTableRows() }</tbody>
   </Table>;
 }

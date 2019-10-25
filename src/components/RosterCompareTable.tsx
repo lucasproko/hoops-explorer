@@ -50,7 +50,7 @@ const RosterCompareTable: React.FunctionComponent<Props> = ({rosterCompareStats}
         <Card className="w-100">
         <Card.Body>
         <Card.Title>'On' Roster</Card.Title>
-        <GenericTable tableFields={tableFields} tableData={tableData("on")}/>
+        <GenericTable tableCopyId="rosterOnTable" tableFields={tableFields} tableData={tableData("on")}/>
         </Card.Body>
         </Card>
       </Col>
@@ -58,7 +58,7 @@ const RosterCompareTable: React.FunctionComponent<Props> = ({rosterCompareStats}
         <Card className="w-100">
         <Card.Body>
         <Card.Title>'Off' Roster</Card.Title>
-        <GenericTable tableFields={tableFields} tableData={tableData("off")}/>
+        <GenericTable tableCopyId="rosterOffTable" tableFields={tableFields} tableData={tableData("off")}/>
         </Card.Body>
         </Card>
       </Col>
@@ -66,7 +66,7 @@ const RosterCompareTable: React.FunctionComponent<Props> = ({rosterCompareStats}
         <Card className="w-100">
         <Card.Body>
         <Card.Title>'Baseline' Roster</Card.Title>
-        <GenericTable tableFields={tableFields} tableData={tableData("baseline")}/>
+        <GenericTable tableCopyId="rosterBaseTable" tableFields={tableFields} tableData={tableData("baseline")}/>
         </Card.Body>
         </Card>
       </Col>

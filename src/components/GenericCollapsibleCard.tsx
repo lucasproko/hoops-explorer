@@ -19,9 +19,11 @@ const GenericCollapsibleCard: React.FunctionComponent<Props> = ({children, title
 
   return <Card className="w-100">
     <Card.Body>
-      <Card.Title
-        onClick={() => { toggleShowTable(!showTable); return false } }
-      ><a href="#">({showTable ? "+" : "-"}) {title}</a></Card.Title>
+      <Card.Title>
+        <span><a href="#" onClick={() => { toggleShowTable(!showTable); return false } }>
+          ({showTable ? "+" : "-"}) {title}
+        </a></span>
+      </Card.Title>
       <Collapse in={showTable}>
         <Container>
           {children}

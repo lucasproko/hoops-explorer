@@ -56,9 +56,6 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
   const [ submitDisabled, setSubmitDisabled ] = useState(false) // (always start as true on page load)
     //TODO: do need an extra flag I think? otherwise
 
-/**/
-console.log("??? " + autoOffQuery);
-
   useEffect(() => {
     setSubmitDisabled(shouldSubmitBeDisabled())
   });
@@ -250,7 +247,7 @@ console.log("??? " + autoOffQuery);
           value={maxRankFilter}
         />
       </Col>
-      <Form.Label column sm="2">(out of 352 teams)</Form.Label>
+      <Form.Label column sm="2">(out of <360 teams)</Form.Label>
     </Form.Group>
     <Button disabled={submitDisabled} variant="primary" onClick={onSubmit}>Submit</Button>
   </Form></LoadingOverlay>;
