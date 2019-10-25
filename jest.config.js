@@ -1,7 +1,10 @@
 module.exports = {
   globals: {
     'ts-jest': {
-      babelConfig: '.babelrc'
+      babelConfig: '.babelrc',
+      diagnostics: {
+        ignoreCodes: "TS2307" //(sometimes get these spurious errors during coverage testing)
+      }
     }
   },
   roots: [

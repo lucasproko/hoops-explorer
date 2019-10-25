@@ -1,4 +1,9 @@
 {
+  "build": {
+    "env": {
+      "GA_KEY": "@ga-key"
+    }
+  },
   "env": {
     "CLUSTER_ID": "@cluster-id",
     "CLUSTER_USER": "@cluster-user",

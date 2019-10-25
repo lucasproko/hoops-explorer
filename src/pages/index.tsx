@@ -1,7 +1,9 @@
+// Google analytics:
+import { initGA, logPageView } from '../utils/analytics';
 
 // React imports:
-import React, { useState } from 'react';
-import Router, { useRouter } from 'next/router'
+import React, { useState, useEffect } from 'react';
+import Router, { useRouter } from 'next/router';
 
 // Next imports:
 import { NextPage } from 'next';
@@ -24,10 +26,19 @@ import GenericCollapsibleCard from '../components/GenericCollapsibleCard';
 
 const OnOffAnalysisPage: NextPage<{}> = () => {
 
-  //TODO: store state for collapsable cards
+  useEffect(() => { // Set up GA
+    if ((process.env.NODE_ENV === 'production') && (typeof window !== undefined)) {
+      if (!gaInited) {
+        initGA();
+        setGaInited(true);
+      }
+      logPageView();
+    }
+  }); //(on any change to the DOM)
 
   // Team Stats interface
 
+  const [ gaInited, setGaInited ] = useState(false);
   const [ teamStats, setTeamStats ] = useState({on: {}, off: {}, baseline: {}} as TeamStatsModel);
   const [ rosterCompareStats, setRosterCompareStats ] = useState({on: {}, off: {}, baseline: {}} as RosterCompareModel);
 
