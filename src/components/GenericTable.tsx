@@ -84,7 +84,7 @@ export class GenericTableOps {
     return new GenericTableColProps(colName, toolTip, 2, false, GenericTableOps.defaultFormatter, colorPicker)
   }
   static addTitle(colName: string, toolTip: string) {
-    return new GenericTableColProps(colName, toolTip, 6, true, GenericTableOps.defaultFormatter, GenericTableOps.defaultColorPicker)
+    return new GenericTableColProps(colName, toolTip, 8, true, GenericTableOps.defaultFormatter, GenericTableOps.defaultColorPicker)
   }
   static addColSeparator() {
     return new GenericTableColProps("", "", 1, false, GenericTableOps.defaultFormatter, GenericTableOps.defaultColorPicker)
