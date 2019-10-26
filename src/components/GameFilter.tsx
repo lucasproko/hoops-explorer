@@ -247,7 +247,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
           value={maxRankFilter}
         />
       </Col>
-      <Form.Label column sm="2">(out of <360 teams)</Form.Label>
+      <Form.Label column sm="2">(out of ~360 teams)</Form.Label>
     </Form.Group>
     <Button disabled={submitDisabled} variant="primary" onClick={onSubmit}>Submit</Button>
   </Form></LoadingOverlay>;
