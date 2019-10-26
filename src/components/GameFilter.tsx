@@ -18,15 +18,22 @@ import { Typeahead } from 'react-bootstrap-typeahead';
 import queryString from "query-string";
 // @ts-ignore
 import LoadingOverlay from 'react-loading-overlay';
+// @ts-ignore
+import ls from 'local-storage';
 
 // Component imports:
 import { TeamStatsModel } from '../components/TeamStatsTable';
 import { RosterCompareModel } from '../components/RosterCompareTable';
+import { dataLastUpdated } from '../utils/dataLastUpdated';
+import { preloadedData } from '../utils/preloadedData';
 
 // Library imports:
 import fetch from 'isomorphic-unfetch';
 
 export type GameFilterParams = {
+  year?: string,
+  team?: string,
+  gender?: string,
   autoOffQuery?: string;
   onQuery?: string,
   offQuery?: string,
@@ -45,7 +52,12 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
   const [ pageJustLoaded, setPageJustLoaded ] = useState(true);
   const [ currState, setCurrState ] = useState(startingState);
 
-  const [ autoOffQuery, toggleAutoOffQuery ] = useState("true" == (startingState.autoOffQuery || "false"))
+  const [ team, setTeam ] = useState("Maryland");
+  const [ year, setYear ] = useState("2018/9");
+  const [ gender, setGender ] = useState("Men");
+  const [ autoOffQuery, toggleAutoOffQuery ] = useState(
+    "true" == (((startingState.autoOffQuery == undefined) ? "true" : startingState.autoOffQuery) || "false")
+  )
   const [ onQuery, setOnQuery ] = useState(startingState.onQuery || "")
   const [ offQuery, setOffQuery ] = useState(startingState.offQuery || "")
   const [ baseQuery, setBaseQuery ] = useState(startingState.baseQuery || "")
@@ -54,18 +66,44 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
   const [ maxRankFilter, setMaxRankFilter ] = useState(startingState.maxRank || "400")
 
   const [ submitDisabled, setSubmitDisabled ] = useState(false) // (always start as true on page load)
-    //TODO: do need an extra flag I think? otherwise
+
+  const isDebug = (process.env.NODE_ENV !== 'production');
 
   useEffect(() => {
-    setSubmitDisabled(shouldSubmitBeDisabled())
-  });
+    setSubmitDisabled(shouldSubmitBeDisabled());
 
+    // Check if object is in cache and onSubmit if so
+    if (pageJustLoaded) {
+      // Check for pre-loads:
+      Object.entries(preloadedData || {}).map(function(keyVal) {
+        const cachedJson = getCachedData(keyVal[0]);
+        if (cachedJson) {
+          if (isDebug) {
+            console.log(`Already pre-loaded [${keyVal[0]}]`);
+          }
+        } else {
+          if (isDebug) {
+            console.log(`Pre-loading [${keyVal[0]}]`);
+          }
+          (ls as any).set(keyVal[0], keyVal[1]);
+        }
+      });
+      const newParamsStr = queryString.stringify(buildParamsFromState());
+      const cachedJson = getCachedData(newParamsStr);
+      if (cachedJson) {
+        handleResponse(cachedJson);
+      }
+    }
+  });
   const setAutoOffQuery = (onQuery: string) => {
     setOffQuery(onQuery == "" ? "" : `NOT (${onQuery})`);
   }
 
   function buildParamsFromState(): GameFilterParams {
     return {
+      team: team,
+      year: year,
+      gender: gender,
       autoOffQuery: autoOffQuery.toString(),
       onQuery: onQuery,
       offQuery: offQuery,
@@ -82,33 +120,61 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
     );
     return !pageJustLoaded && paramsUnchanged;
   }
+  const currentJsonEpoch = dataLastUpdated[year] || -1;
+  function getCachedData(str: string) {
+    const cachedJson = JSON.parse((ls as any).get(str) || "{}");
+    const cachedJsonEpoch = cachedJson.cacheEpoch || 0;
+    if (cachedJsonEpoch == currentJsonEpoch) {
+      if (isDebug) {
+        console.log(`Found cache for ${str}`);
+      }
+      return cachedJson;
+    } else {
+      return null;
+    }
+  }
 
+  function handleResponse(json: any) {
+    setQueryIsLoading(false);
+    const jsons = json?.responses || [];
+    const teamJson = (jsons.length > 0) ? jsons[0] : {};
+    const rosterCompareJson = (jsons.length > 1) ? jsons[1] : {};
+    const newParams = buildParamsFromState();
+    setCurrState(newParams);
+    onChangeState(newParams);
+    setPageJustLoaded(false);
+    onStats({
+      on: teamJson?.aggregations?.tri_filter?.buckets?.on || {},
+      off: teamJson?.aggregations?.tri_filter?.buckets?.off || {},
+      baseline: teamJson?.aggregations?.tri_filter?.buckets?.baseline || {},
+    }, {
+      on: rosterCompareJson?.aggregations?.tri_filter?.buckets?.on || {},
+      off: rosterCompareJson?.aggregations?.tri_filter?.buckets?.off || {},
+      baseline: rosterCompareJson?.aggregations?.tri_filter?.buckets?.baseline || {},
+    });
+  }
   function onSubmit() {
     setQueryIsLoading(true);
     const newParamsStr = queryString.stringify(buildParamsFromState());
-    //TODO: add overlay with spinner and cancel button (remove in log)
-    fetch(`/api/calculateStats?${newParamsStr}`).then(function(response) {
-      response.json().then(function(json) {
-        setQueryIsLoading(false);
-        const jsons = json?.responses || [];
-        const teamJson = (jsons.length > 0) ? jsons[0] : {};
-        const rosterCompareJson = (jsons.length > 1) ? jsons[1] : {};
 
-        const newParams = buildParamsFromState();
-        setCurrState(newParams);
-        onChangeState(newParams);
-        setPageJustLoaded(false);
-        onStats({
-          on: teamJson?.aggregations?.tri_filter?.buckets?.on || {},
-          off: teamJson?.aggregations?.tri_filter?.buckets?.off || {},
-          baseline: teamJson?.aggregations?.tri_filter?.buckets?.baseline || {},
-        }, {
-          on: rosterCompareJson?.aggregations?.tri_filter?.buckets?.on || {},
-          off: rosterCompareJson?.aggregations?.tri_filter?.buckets?.off || {},
-          baseline: rosterCompareJson?.aggregations?.tri_filter?.buckets?.baseline || {},
-        });
-      })
-    });
+    // Check if it's in the cache:
+    const cachedJson = getCachedData(newParamsStr);
+    if (cachedJson) {
+      handleResponse(cachedJson);
+    } else {
+      fetch(`/api/calculateStats?${newParamsStr}`).then(function(response) {
+        response.json().then(function(json) {
+          // Cache result locally:
+          const newCacheVal = JSON.stringify({cacheEpoch: currentJsonEpoch, ...json});
+          if (isDebug) {
+            console.log(`CACHE_KEY=[${newParamsStr}]`);
+            console.log(`CACHE_VAL=[${newCacheVal}]`);
+          }
+          (ls as any).set(newParamsStr, newCacheVal);
+          handleResponse(json);
+        })
+      });
+    }
   }
 
   /* Ran into issues with SSR and 'readOnly' property, so have to fix like this */
@@ -134,35 +200,35 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
       <Row>
         <Col xs={2}>
           <Typeahead
-            disabled //TODO
             id="teamGenderTypeahead"
             multiple={false}
             options={[
               "Men"
             ]}
-            defaultInputValue="Men"
+            onChange={(genders) => setYear(genders[0])}
+            selected={[gender]}
           />
         </Col>
         <Col xs={2}>
           <Typeahead
-            disabled //TODO
             id="teamYearTypeahead"
             multiple={false}
             options={[
               "2018/9"
             ]}
-            defaultInputValue="2018/9"
+            onChange={(years) => setYear(years[0])}
+            selected={[year]}
           />
         </Col>
         <Col xs={6}>
           <Typeahead
-            disabled //TODO
             id="teamTypeahead"
             multiple={false}
             options={[
               "Maryland"
             ]}
-            defaultInputValue="Maryland"
+            onChange={(teams) => setTeam(teams[0])}
+            selected={[team]}
           />
         </Col>
       </Row>

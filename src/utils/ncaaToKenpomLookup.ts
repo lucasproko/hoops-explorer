@@ -1,5 +1,5 @@
 
-//TODO: make this be a full list, but differences only
+/** The NCAA name to KenPom name mappings */
 export const ncaaToKenpomLookup = {
    "A&M-Corpus Christi": {
       "pbp_kp_team": "Texas A&M Corpus Chris"
