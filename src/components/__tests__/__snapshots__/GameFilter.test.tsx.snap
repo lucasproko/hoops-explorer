@@ -321,7 +321,7 @@ exports[`GameFilter GameFilter - should create snapshot 1`] = `
         sm="2"
         srOnly={false}
       >
-        (out of 352 teams)
+        (out of ~360 teams)
       </FormLabel>
     </FormGroup>
     <Button
