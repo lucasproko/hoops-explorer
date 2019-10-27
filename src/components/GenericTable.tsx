@@ -8,6 +8,8 @@ import { NextPage } from 'next';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
+import Tooltip from 'react-bootstrap/Tooltip';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 
 // Libary imports
 import ClipboardJS from 'clipboard';
@@ -97,13 +99,14 @@ type Props = {
 }
 const GenericTable: React.FunctionComponent<Props> = ({tableFields, tableData, tableCopyId}) => {
 
-  const tableId = tableCopyId
-  const buttonId = tableCopyId + "_copy";
+  const tableId: string = tableCopyId || Math.random().toString(36).substring(8);
+  const buttonId = tableId + "_copy";
+  const toolTipId = tableId + "_toolTip";
 
   const [ clipboard, setClipboard] = useState(null as null | ClipboardJS);
   useEffect(() => {
     // This grovelling is needed to ensure that clipboard is only loaded client side
-    if ((null == clipboard) && (typeof tableId === "string")) {
+    if ((null == clipboard) && (typeof tableCopyId === "string")) {
       var newClipboard = new ClipboardJS(`#${buttonId}`, {
         target: function(trigger) {
           return document.getElementById(tableId) as Element; //exists by construction
@@ -124,15 +127,34 @@ const GenericTable: React.FunctionComponent<Props> = ({tableFields, tableData, t
 
   function renderTableHeaders() {
     function insertCopyButton(insert: boolean) {
-      if (tableId && insert) {
-        return  <Button className="float-left" id={buttonId} variant="outline-secondary" size="sm">
-          <FontAwesomeIcon icon={faClipboard} />
-        </Button>;
+      if (tableCopyId && insert) {
+        const tooltip = (
+          <Tooltip id={`${toolTipId}-copy`}>Copies formatted table to clipboard</Tooltip>
+        );
+        return  <OverlayTrigger placement="top" overlay={tooltip}>
+            <Button className="float-left" id={buttonId} variant="outline-secondary" size="sm">
+              <FontAwesomeIcon icon={faClipboard} />
+            </Button>
+          </OverlayTrigger>;
       }
     }
     return Object.values(tableFields).map((colProp, index) => {
         const style = getColStyle(colProp);
-        return <th key={"" + index} style={style}>{colProp.colName}{insertCopyButton(index == 0)}</th>;
+        const tooltip = (
+          <Tooltip id={`${toolTipId}-${index}`}>{colProp.toolTip}</Tooltip>
+        );
+        const header = (
+          <th key={"" + index} style={style}>
+              {colProp.colName}
+              {insertCopyButton(index == 0)}
+          </th>
+        );
+        return (colProp.toolTip == "") ?
+          (header)
+          :
+          (<OverlayTrigger placement="top" overlay={tooltip} key={"" + index}>
+            {header}
+          </OverlayTrigger>);
     });
   }
   function renderTableRow(row: GenericTableDataRow) {
@@ -183,7 +205,8 @@ const GenericTable: React.FunctionComponent<Props> = ({tableFields, tableData, t
     };
   }
 
-  return <Table id={tableId} size="sm" responsive>
+  // (tooltips don't work if table has `responsive` attribute, see popper.js #276)
+  return <Table id={tableId} size="sm">
     <thead>
       <tr>{ renderTableHeaders() }</tr>
     </thead>
