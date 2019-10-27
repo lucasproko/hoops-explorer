@@ -69,25 +69,37 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
 
   const isDebug = (process.env.NODE_ENV !== 'production');
 
+  const currentJsonEpoch = dataLastUpdated[year] || -1;
   useEffect(() => {
     setSubmitDisabled(shouldSubmitBeDisabled());
 
-    // Check if object is in cache and onSubmit if so
+    // Cached reesponse and pre-load handling:
     if (pageJustLoaded) {
+      const cachedEpochKey = `data-epoch-${year}`;
+      const cachedEpoch = (ls as any).get(cachedEpochKey) || 0;
+      if (cachedEpoch != currentJsonEpoch) {
+        if (isDebug) {
+          console.log(`Force reloading preloads because [${cachedEpoch}] != curr [${currentJsonEpoch}]`);
+        }
+        (ls as any).set(cachedEpochKey, currentJsonEpoch);
+      }
       // Check for pre-loads:
       Object.entries(preloadedData || {}).map(function(keyVal) {
-        const cachedJson = getCachedData(keyVal[0]);
-        if (cachedJson) {
+        const key = keyVal[0];
+        const valAsJson = keyVal[1];
+        if ((cachedEpoch == currentJsonEpoch) && getCachedData(keyVal[0])) {
           if (isDebug) {
-            console.log(`Already pre-loaded [${keyVal[0]}]`);
+            console.log(`Already pre-loaded [${key}]`);
           }
         } else {
           if (isDebug) {
-            console.log(`Pre-loading [${keyVal[0]}]`);
+            console.log(`Pre-loading [${key}]`);
           }
-          (ls as any).set(keyVal[0], keyVal[1]);
+          valAsJson.cacheEpoch = currentJsonEpoch;
+          (ls as any).set(key, JSON.stringify(valAsJson));
         }
       });
+      // Check if object is in cache and onSubmit if so
       const newParamsStr = queryString.stringify(buildParamsFromState());
       const cachedJson = getCachedData(newParamsStr);
       if (cachedJson) {
@@ -113,6 +125,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
     };
   }
 
+  /** If the params match the last request, disable submit */
   function shouldSubmitBeDisabled() {
     const newParams = buildParamsFromState();
     const paramsUnchanged = Object.keys(newParams).every(
@@ -120,7 +133,8 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
     );
     return !pageJustLoaded && paramsUnchanged;
   }
-  const currentJsonEpoch = dataLastUpdated[year] || -1;
+
+  /** Check if we have an up-todate local cache for this set of params */
   function getCachedData(str: string) {
     const cachedJson = JSON.parse((ls as any).get(str) || "{}");
     const cachedJsonEpoch = cachedJson.cacheEpoch || 0;
@@ -134,6 +148,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
     }
   }
 
+  /** Handles the response from ES to a stats calc request */
   function handleResponse(json: any) {
     setQueryIsLoading(false);
     const jsons = json?.responses || [];
@@ -177,7 +192,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
     }
   }
 
-  /* Ran into issues with SSR and 'readOnly' property, so have to fix like this */
+  /** Ran into issues with SSR and 'readOnly' property, so have to fix like this */
   function renderOffQueryFormField() {
     if (typeof window !== `undefined`) {
       return <Form.Control

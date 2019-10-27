@@ -27,10 +27,10 @@ exports[`GameFilter GameFilter - should create snapshot 1`] = `
             autoFocus={false}
             caseSensitive={false}
             clearButton={false}
-            defaultInputValue="Men"
+            defaultInputValue=""
             defaultOpen={false}
             defaultSelected={Array []}
-            disabled={true}
+            disabled={false}
             dropup={false}
             emptyLabel="No matches found."
             filterBy={Array []}
@@ -47,6 +47,7 @@ exports[`GameFilter GameFilter - should create snapshot 1`] = `
             minLength={0}
             multiple={false}
             onBlur={[Function]}
+            onChange={[Function]}
             onFocus={[Function]}
             onInputChange={[Function]}
             onKeyDown={[Function]}
@@ -60,6 +61,11 @@ exports[`GameFilter GameFilter - should create snapshot 1`] = `
             paginationText="Display additional results..."
             placeholder=""
             selectHintOnEnter={false}
+            selected={
+              Array [
+                "Men",
+              ]
+            }
           />
         </Col>
         <Col
@@ -73,10 +79,10 @@ exports[`GameFilter GameFilter - should create snapshot 1`] = `
             autoFocus={false}
             caseSensitive={false}
             clearButton={false}
-            defaultInputValue="2018/9"
+            defaultInputValue=""
             defaultOpen={false}
             defaultSelected={Array []}
-            disabled={true}
+            disabled={false}
             dropup={false}
             emptyLabel="No matches found."
             filterBy={Array []}
@@ -93,6 +99,7 @@ exports[`GameFilter GameFilter - should create snapshot 1`] = `
             minLength={0}
             multiple={false}
             onBlur={[Function]}
+            onChange={[Function]}
             onFocus={[Function]}
             onInputChange={[Function]}
             onKeyDown={[Function]}
@@ -106,6 +113,11 @@ exports[`GameFilter GameFilter - should create snapshot 1`] = `
             paginationText="Display additional results..."
             placeholder=""
             selectHintOnEnter={false}
+            selected={
+              Array [
+                "2018/9",
+              ]
+            }
           />
         </Col>
         <Col
@@ -119,10 +131,10 @@ exports[`GameFilter GameFilter - should create snapshot 1`] = `
             autoFocus={false}
             caseSensitive={false}
             clearButton={false}
-            defaultInputValue="Maryland"
+            defaultInputValue=""
             defaultOpen={false}
             defaultSelected={Array []}
-            disabled={true}
+            disabled={false}
             dropup={false}
             emptyLabel="No matches found."
             filterBy={Array []}
@@ -139,6 +151,7 @@ exports[`GameFilter GameFilter - should create snapshot 1`] = `
             minLength={0}
             multiple={false}
             onBlur={[Function]}
+            onChange={[Function]}
             onFocus={[Function]}
             onInputChange={[Function]}
             onKeyDown={[Function]}
@@ -152,6 +165,11 @@ exports[`GameFilter GameFilter - should create snapshot 1`] = `
             paginationText="Display additional results..."
             placeholder=""
             selectHintOnEnter={false}
+            selected={
+              Array [
+                "Maryland",
+              ]
+            }
           />
         </Col>
       </ForwardRef>
@@ -209,7 +227,7 @@ exports[`GameFilter GameFilter - should create snapshot 1`] = `
         sm="2"
       >
         <FormCheck
-          checked={false}
+          checked={true}
           disabled={false}
           id="autoOffQuery"
           inline={false}
