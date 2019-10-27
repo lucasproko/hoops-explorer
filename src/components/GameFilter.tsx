@@ -216,6 +216,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
         <Col xs={2}>
           <Typeahead
             id="teamGenderTypeahead"
+            disabled
             multiple={false}
             options={[
               "Men"
@@ -227,6 +228,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
         <Col xs={2}>
           <Typeahead
             id="teamYearTypeahead"
+            disabled
             multiple={false}
             options={[
               "2018/9"
@@ -238,6 +240,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
         <Col xs={6}>
           <Typeahead
             id="teamTypeahead"
+            disabled
             multiple={false}
             options={[
               "Maryland"
