@@ -34,9 +34,9 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({teamStats}) => {
   const avgOff2018 = 104.3; //TODO - lookup vs year
   const calcAdfEff = (stats: any) => {
     return {
-      off_adj_ppp: stats.def_adj_opp ?
+      off_adj_ppp: (stats.def_adj_opp?.value) ?
         (stats.off_ppp.value || 100.0)*(avgOff2018/stats.def_adj_opp.value) : undefined,
-      def_adj_ppp: stats.off_adj_opp ?
+      def_adj_ppp: (stats.off_adj_opp?.value) ?
         (stats.def_ppp.value || 100.0)*(avgOff2018/stats.off_adj_opp.value) : undefined
     };
   };
