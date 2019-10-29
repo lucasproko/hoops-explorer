@@ -10,6 +10,10 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
+// Additional components:
+// @ts-ignore
+import LoadingOverlay from 'react-loading-overlay';
+
 // Component imports
 import GenericTable, { GenericTableOps, GenericTableColProps } from "./GenericTable"
 
@@ -90,14 +94,25 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({teamStats}) => {
       return ("off" == valMeta) ? offScale(num) : defScale(num);
     };
   }
+  /** Sticks an overlay on top of the table if no query has ever been loaded */
+  function needToLoadQuery() {
+    return (Object.keys(teamStats.on).length == 0) &&
+      (Object.keys(teamStats.off).length == 0) &&
+      (Object.keys(teamStats.baseline).length == 0);
+  }
 
   // 4] View
   return <Container>
-    <Row>
-      <Col>
-        <GenericTable tableCopyId="teamStatsTable" tableFields={tableFields} tableData={tableData}/>
-      </Col>
-    </Row>
+    <LoadingOverlay
+      active={needToLoadQuery()}
+      text="Press 'Submit' to view results"
+    >
+      <Row>
+        <Col>
+          <GenericTable tableCopyId="teamStatsTable" tableFields={tableFields} tableData={tableData}/>
+        </Col>
+      </Row>
+    </LoadingOverlay>
   </Container>;
 };
 

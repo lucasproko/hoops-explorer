@@ -10,6 +10,10 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 
+// Additional components:
+// @ts-ignore
+import LoadingOverlay from 'react-loading-overlay';
+
 // Component imports
 import GenericTable, { GenericTableOps, GenericTableColProps } from "./GenericTable"
 
@@ -44,33 +48,44 @@ const RosterCompareTable: React.FunctionComponent<Props> = ({rosterCompareStats}
       }, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta);
     });
   }
+  /** Sticks an overlay on top of the table if no query has ever been loaded */
+  function needToLoadQuery() {
+    return (Object.keys(rosterCompareStats.on).length == 0) &&
+      (Object.keys(rosterCompareStats.off).length == 0) &&
+      (Object.keys(rosterCompareStats.baseline).length == 0);
+  }
 
-  return <Row>
-      <Col>
-        <Card className="w-100">
-        <Card.Body>
-        <Card.Title>'On' Roster</Card.Title>
-        <GenericTable tableCopyId="rosterOnTable" tableFields={tableFields} tableData={tableData("on")}/>
-        </Card.Body>
-        </Card>
-      </Col>
-      <Col>
-        <Card className="w-100">
-        <Card.Body>
-        <Card.Title>'Off' Roster</Card.Title>
-        <GenericTable tableCopyId="rosterOffTable" tableFields={tableFields} tableData={tableData("off")}/>
-        </Card.Body>
-        </Card>
-      </Col>
-      <Col>
-        <Card className="w-100">
-        <Card.Body>
-        <Card.Title>'Baseline' Roster</Card.Title>
-        <GenericTable tableCopyId="rosterBaseTable" tableFields={tableFields} tableData={tableData("baseline")}/>
-        </Card.Body>
-        </Card>
-      </Col>
-    </Row>;
+  return <LoadingOverlay
+    active={needToLoadQuery()}
+    text="Press 'Submit' to view results"
+  >
+    <Row>
+        <Col>
+          <Card className="w-100">
+          <Card.Body>
+          <Card.Title>'On' Roster</Card.Title>
+          <GenericTable tableCopyId="rosterOnTable" tableFields={tableFields} tableData={tableData("on")}/>
+          </Card.Body>
+          </Card>
+        </Col>
+        <Col>
+          <Card className="w-100">
+          <Card.Body>
+          <Card.Title>'Off' Roster</Card.Title>
+          <GenericTable tableCopyId="rosterOffTable" tableFields={tableFields} tableData={tableData("off")}/>
+          </Card.Body>
+          </Card>
+        </Col>
+        <Col>
+          <Card className="w-100">
+          <Card.Body>
+          <Card.Title>'Baseline' Roster</Card.Title>
+          <GenericTable tableCopyId="rosterBaseTable" tableFields={tableFields} tableData={tableData("baseline")}/>
+          </Card.Body>
+          </Card>
+        </Col>
+      </Row>
+    </LoadingOverlay>;
 }
 
 export default RosterCompareTable;
