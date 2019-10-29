@@ -90,7 +90,7 @@ export const rosterCompareQuery2018 = function(params: any) {
               },
               {
                  "query_string": {
-                    "query": "*"
+                   "query": `team.team: "${params.team}"`
                  }
               }
            ]

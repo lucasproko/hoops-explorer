@@ -53,9 +53,9 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
   const [ pageJustLoaded, setPageJustLoaded ] = useState(true);
   const [ currState, setCurrState ] = useState(startingState);
 
-  const [ team, setTeam ] = useState("Maryland");
-  const [ year, setYear ] = useState("2018/9");
-  const [ gender, setGender ] = useState("Men");
+  const [ team, setTeam ] = useState(startingState.team || "");
+  const [ year, setYear ] = useState(startingState.year || "2018/9");
+  const [ gender, setGender ] = useState(startingState.gender || "Men");
   const [ autoOffQuery, toggleAutoOffQuery ] = useState(
     "true" == (((startingState.autoOffQuery == undefined) ? "true" : startingState.autoOffQuery) || "false")
   )
@@ -151,6 +151,15 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
     }
   }
 
+  /** Whether any of the queries returned an error - we'll treat them all as errors if so */
+  function isResponseError(resp: any) {
+    const jsons = resp?.responses || [];
+    const teamJson = (jsons.length > 0) ? jsons[0] : {};
+    const rosterCompareJson = (jsons.length > 1) ? jsons[1] : {};
+    return (Object.keys(teamJson?.error || {}).length > 0) ||
+      (Object.keys(rosterCompareJson?.error || {}).length > 0);
+  }
+
   /** Handles the response from ES to a stats calc request */
   function handleResponse(json: any) {
     setQueryIsLoading(false);
@@ -159,17 +168,21 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
     const teamJson = (jsons.length > 0) ? jsons[0] : {};
     const rosterCompareJson = (jsons.length > 1) ? jsons[1] : {};
     const newParams = buildParamsFromState();
-    setCurrState(newParams);
-    onChangeState(newParams);
-    setPageJustLoaded(false);
+    const wasError = isResponseError(json);
+    if (!wasError) {
+      setCurrState(newParams);
+      onChangeState(newParams);
+    }
     onStats({
       on: teamJson?.aggregations?.tri_filter?.buckets?.on || {},
       off: teamJson?.aggregations?.tri_filter?.buckets?.off || {},
       baseline: teamJson?.aggregations?.tri_filter?.buckets?.baseline || {},
+      error_code: wasError ? teamJson?.status : undefined
     }, {
       on: rosterCompareJson?.aggregations?.tri_filter?.buckets?.on || {},
       off: rosterCompareJson?.aggregations?.tri_filter?.buckets?.off || {},
       baseline: rosterCompareJson?.aggregations?.tri_filter?.buckets?.baseline || {},
+      error_code: wasError ? rosterCompareJson?.status : undefined
     });
   }
   function onSubmit() {
@@ -189,7 +202,9 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
             console.log(`CACHE_KEY=[${newParamsStr}]`);
             console.log(`CACHE_VAL=[${newCacheVal}]`);
           }
-          (ls as any).set(newParamsStr, newCacheVal);
+          if (!isResponseError(json)) { //(never cache errors)
+            (ls as any).set(newParamsStr, newCacheVal);
+          }
           handleResponse(json);
         })
       });
@@ -225,7 +240,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
             options={[
               "Men"
             ]}
-            onChange={(genders) => setYear(genders[0])}
+            onChange={(genders) => { if (genders.length > 0) setTeam(genders[0])}}
             selected={[gender]}
           />
         </Col>
@@ -237,20 +252,26 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
             options={[
               "2018/9"
             ]}
-            onChange={(years) => setYear(years[0])}
+            onChange={(years) => { if (years.length > 0) setTeam(years[0])}}
             selected={[year]}
           />
         </Col>
         <Col xs={6}>
           <Typeahead
             id="teamTypeahead"
-            disabled
             multiple={false}
             options={[
-              "Maryland"
+              "Maryland",
+              "Cincinnati",
+              "Kentucky",
+              "Louisville",
+              "Saint Mary's (CA)",
+              "Virginia",
+              "UConn",
             ]}
-            onChange={(teams) => setTeam(teams[0])}
-            selected={[team]}
+            placeholder="Choose a team..."
+            onChange={(teams) => { if (teams.length > 0) setTeam(teams[0])}}
+            selected={team == "" ? [] : [team]}
           />
         </Col>
       </Row>
