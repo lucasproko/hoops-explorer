@@ -1,12 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`GameFilter GameFilter - should create snapshot 1`] = `
-<LoadingOverlayWrapper
+<LoadingOverlay
   active={false}
-  classNamePrefix="_loading_overlay_"
-  fadeSpeed={500}
   spinner={true}
-  styles={Object {}}
   text="Calculating statistics"
 >
   <Form
@@ -352,5 +349,5 @@ exports[`GameFilter GameFilter - should create snapshot 1`] = `
       Submit
     </Button>
   </Form>
-</LoadingOverlayWrapper>
+</LoadingOverlay>
 `;

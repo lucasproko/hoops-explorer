@@ -49,6 +49,7 @@ type Props = {
 
 const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onChangeState}) => {
   const [ queryIsLoading, setQueryIsLoading ] = useState(false);
+  const [ atLeastOneQueryMade, setAtLeastOneQueryMade ] = useState(false);
   const [ pageJustLoaded, setPageJustLoaded ] = useState(true);
   const [ currState, setCurrState ] = useState(startingState);
 
@@ -75,6 +76,8 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
 
     // Cached reesponse and pre-load handling:
     if (pageJustLoaded) {
+      setPageJustLoaded(false); //(ensures this code only gets called once)
+
       const cachedEpochKey = `data-epoch-${year}`;
       const cachedEpoch = (ls as any).get(cachedEpochKey) || 0;
       if (cachedEpoch != currentJsonEpoch) {
@@ -131,7 +134,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
     const paramsUnchanged = Object.keys(newParams).every(
       (key: string) => (newParams as any)[key] == (currState as any)[key]
     );
-    return !pageJustLoaded && paramsUnchanged;
+    return atLeastOneQueryMade && paramsUnchanged;
   }
 
   /** Check if we have an up-todate local cache for this set of params */
@@ -140,7 +143,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
     const cachedJsonEpoch = cachedJson.cacheEpoch || 0;
     if (cachedJsonEpoch == currentJsonEpoch) {
       if (isDebug) {
-        console.log(`Found cache for ${str}`);
+        console.log(`Found cache for ${str} epochs: [${cachedJsonEpoch}, ${currentJsonEpoch}]`);
       }
       return cachedJson;
     } else {
@@ -151,6 +154,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
   /** Handles the response from ES to a stats calc request */
   function handleResponse(json: any) {
     setQueryIsLoading(false);
+    setAtLeastOneQueryMade(true);
     const jsons = json?.responses || [];
     const teamJson = (jsons.length > 0) ? jsons[0] : {};
     const rosterCompareJson = (jsons.length > 1) ? jsons[1] : {};

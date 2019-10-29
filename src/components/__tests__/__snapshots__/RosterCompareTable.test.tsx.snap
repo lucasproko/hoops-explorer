@@ -1,1606 +1,1764 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
-<div
-  className="row"
->
+<div>
   <div
-    className="col"
+    className="row"
   >
     <div
-      className="w-100 card"
+      className="col"
     >
       <div
-        className="card-body"
+        className="w-100 card"
       >
         <div
-          className="card-title h5"
+          className="card-body"
         >
-          'On' Roster
+          <div
+            className="card-title h5"
+          >
+            'On' Roster
+          </div>
+          <table
+            className="table table-sm"
+            id="rosterOnTable"
+          >
+            <thead>
+              <tr>
+                <th
+                  style={
+                    Object {
+                      "fontWeight": "bold",
+                      "textAlign": "right",
+                      "width": "61.5%",
+                    }
+                  }
+                >
+                  
+                  <div>
+                    <button
+                      className="float-left btn btn-outline-secondary btn-sm"
+                      disabled={false}
+                      id="rosterOnTable_copy"
+                      type="button"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        className="svg-inline--fa fa-clipboard fa-w-12 "
+                        data-icon="clipboard"
+                        data-prefix="fas"
+                        focusable="false"
+                        role="img"
+                        style={Object {}}
+                        viewBox="0 0 384 512"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M384 112v352c0 26.51-21.49 48-48 48H48c-26.51 0-48-21.49-48-48V112c0-26.51 21.49-48 48-48h80c0-35.29 28.71-64 64-64s64 28.71 64 64h80c26.51 0 48 21.49 48 48zM192 40c-13.255 0-24 10.745-24 24s10.745 24 24 24 24-10.745 24-24-10.745-24-24-24m96 114v-20a6 6 0 0 0-6-6H102a6 6 0 0 0-6 6v20a6 6 0 0 0 6 6h180a6 6 0 0 0 6-6z"
+                          fill="currentColor"
+                          style={Object {}}
+                        />
+                      </svg>
+                    </button>
+                  </div>
+                </th>
+                <th
+                  style={
+                    Object {
+                      "fontWeight": "bold",
+                      "textAlign": "center",
+                      "width": "7.7%",
+                    }
+                  }
+                >
+                  
+                </th>
+                <div>
+                  <th
+                    style={
+                      Object {
+                        "fontWeight": "bold",
+                        "textAlign": "center",
+                        "width": "15.4%",
+                      }
+                    }
+                  >
+                    %
+                  </th>
+                </div>
+                <div>
+                  <th
+                    style={
+                      Object {
+                        "fontWeight": "bold",
+                        "textAlign": "center",
+                        "width": "15.4%",
+                      }
+                    }
+                  >
+                    Poss
+                  </th>
+                </div>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "bold",
+                      "textAlign": "right",
+                      "width": "61.5%",
+                    }
+                  }
+                >
+                  Cowan, Anthony
+                </td>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "normal",
+                      "textAlign": "center",
+                      "width": "7.7%",
+                    }
+                  }
+                >
+                  
+                </td>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "normal",
+                      "textAlign": "center",
+                      "width": "15.4%",
+                    }
+                  }
+                >
+                  100.0
+                </td>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "normal",
+                      "textAlign": "center",
+                      "width": "15.4%",
+                    }
+                  }
+                >
+                  798
+                </td>
+              </tr>
+              <tr>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "bold",
+                      "textAlign": "right",
+                      "width": "61.5%",
+                    }
+                  }
+                >
+                  Wiggins, Aaron
+                </td>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "normal",
+                      "textAlign": "center",
+                      "width": "7.7%",
+                    }
+                  }
+                >
+                  
+                </td>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "normal",
+                      "textAlign": "center",
+                      "width": "15.4%",
+                    }
+                  }
+                >
+                  100.0
+                </td>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "normal",
+                      "textAlign": "center",
+                      "width": "15.4%",
+                    }
+                  }
+                >
+                  798
+                </td>
+              </tr>
+              <tr>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "bold",
+                      "textAlign": "right",
+                      "width": "61.5%",
+                    }
+                  }
+                >
+                  Fernando, Bruno
+                </td>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "normal",
+                      "textAlign": "center",
+                      "width": "7.7%",
+                    }
+                  }
+                >
+                  
+                </td>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "normal",
+                      "textAlign": "center",
+                      "width": "15.4%",
+                    }
+                  }
+                >
+                  69.7
+                </td>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "normal",
+                      "textAlign": "center",
+                      "width": "15.4%",
+                    }
+                  }
+                >
+                  556
+                </td>
+              </tr>
+              <tr>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "bold",
+                      "textAlign": "right",
+                      "width": "61.5%",
+                    }
+                  }
+                >
+                  Smith, Jalen
+                </td>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "normal",
+                      "textAlign": "center",
+                      "width": "7.7%",
+                    }
+                  }
+                >
+                  
+                </td>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "normal",
+                      "textAlign": "center",
+                      "width": "15.4%",
+                    }
+                  }
+                >
+                  53.3
+                </td>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "normal",
+                      "textAlign": "center",
+                      "width": "15.4%",
+                    }
+                  }
+                >
+                  425
+                </td>
+              </tr>
+              <tr>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "bold",
+                      "textAlign": "right",
+                      "width": "61.5%",
+                    }
+                  }
+                >
+                  Ayala, Eric
+                </td>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "normal",
+                      "textAlign": "center",
+                      "width": "7.7%",
+                    }
+                  }
+                >
+                  
+                </td>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "normal",
+                      "textAlign": "center",
+                      "width": "15.4%",
+                    }
+                  }
+                >
+                  50.4
+                </td>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "normal",
+                      "textAlign": "center",
+                      "width": "15.4%",
+                    }
+                  }
+                >
+                  402
+                </td>
+              </tr>
+              <tr>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "bold",
+                      "textAlign": "right",
+                      "width": "61.5%",
+                    }
+                  }
+                >
+                  Morsell, Darryl
+                </td>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "normal",
+                      "textAlign": "center",
+                      "width": "7.7%",
+                    }
+                  }
+                >
+                  
+                </td>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "normal",
+                      "textAlign": "center",
+                      "width": "15.4%",
+                    }
+                  }
+                >
+                  44.1
+                </td>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "normal",
+                      "textAlign": "center",
+                      "width": "15.4%",
+                    }
+                  }
+                >
+                  352
+                </td>
+              </tr>
+              <tr>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "bold",
+                      "textAlign": "right",
+                      "width": "61.5%",
+                    }
+                  }
+                >
+                  Lindo Jr., Ricky
+                </td>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "normal",
+                      "textAlign": "center",
+                      "width": "7.7%",
+                    }
+                  }
+                >
+                  
+                </td>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "normal",
+                      "textAlign": "center",
+                      "width": "15.4%",
+                    }
+                  }
+                >
+                  37.0
+                </td>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "normal",
+                      "textAlign": "center",
+                      "width": "15.4%",
+                    }
+                  }
+                >
+                  295
+                </td>
+              </tr>
+              <tr>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "bold",
+                      "textAlign": "right",
+                      "width": "61.5%",
+                    }
+                  }
+                >
+                  Smith Jr., Serrel
+                </td>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "normal",
+                      "textAlign": "center",
+                      "width": "7.7%",
+                    }
+                  }
+                >
+                  
+                </td>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "normal",
+                      "textAlign": "center",
+                      "width": "15.4%",
+                    }
+                  }
+                >
+                  34.3
+                </td>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "normal",
+                      "textAlign": "center",
+                      "width": "15.4%",
+                    }
+                  }
+                >
+                  274
+                </td>
+              </tr>
+              <tr>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "bold",
+                      "textAlign": "right",
+                      "width": "61.5%",
+                    }
+                  }
+                >
+                  Bender, Ivan
+                </td>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "normal",
+                      "textAlign": "center",
+                      "width": "7.7%",
+                    }
+                  }
+                >
+                  
+                </td>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "normal",
+                      "textAlign": "center",
+                      "width": "15.4%",
+                    }
+                  }
+                >
+                  6.8
+                </td>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "normal",
+                      "textAlign": "center",
+                      "width": "15.4%",
+                    }
+                  }
+                >
+                  54
+                </td>
+              </tr>
+              <tr>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "bold",
+                      "textAlign": "right",
+                      "width": "61.5%",
+                    }
+                  }
+                >
+                  Tomaic, Joshua
+                </td>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "normal",
+                      "textAlign": "center",
+                      "width": "7.7%",
+                    }
+                  }
+                >
+                  
+                </td>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "normal",
+                      "textAlign": "center",
+                      "width": "15.4%",
+                    }
+                  }
+                >
+                  4.5
+                </td>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "normal",
+                      "textAlign": "center",
+                      "width": "15.4%",
+                    }
+                  }
+                >
+                  36
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-        <table
-          className="table table-sm"
-          id="rosterOnTable"
-        >
-          <thead>
-            <tr>
-              <th
-                style={
-                  Object {
-                    "fontWeight": "bold",
-                    "textAlign": "right",
-                    "width": "61.5%",
-                  }
-                }
-              >
-                
-              </th>
-              <th
-                style={
-                  Object {
-                    "fontWeight": "bold",
-                    "textAlign": "center",
-                    "width": "7.7%",
-                  }
-                }
-              >
-                
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "bold",
-                    "textAlign": "right",
-                    "width": "61.5%",
-                  }
-                }
-              >
-                Cowan, Anthony
-              </td>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "7.7%",
-                  }
-                }
-              >
-                
-              </td>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "15.4%",
-                  }
-                }
-              >
-                100.0
-              </td>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "15.4%",
-                  }
-                }
-              >
-                798
-              </td>
-            </tr>
-            <tr>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "bold",
-                    "textAlign": "right",
-                    "width": "61.5%",
-                  }
-                }
-              >
-                Wiggins, Aaron
-              </td>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "7.7%",
-                  }
-                }
-              >
-                
-              </td>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "15.4%",
-                  }
-                }
-              >
-                100.0
-              </td>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "15.4%",
-                  }
-                }
-              >
-                798
-              </td>
-            </tr>
-            <tr>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "bold",
-                    "textAlign": "right",
-                    "width": "61.5%",
-                  }
-                }
-              >
-                Fernando, Bruno
-              </td>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "7.7%",
-                  }
-                }
-              >
-                
-              </td>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "15.4%",
-                  }
-                }
-              >
-                69.7
-              </td>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "15.4%",
-                  }
-                }
-              >
-                556
-              </td>
-            </tr>
-            <tr>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "bold",
-                    "textAlign": "right",
-                    "width": "61.5%",
-                  }
-                }
-              >
-                Smith, Jalen
-              </td>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "7.7%",
-                  }
-                }
-              >
-                
-              </td>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "15.4%",
-                  }
-                }
-              >
-                53.3
-              </td>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "15.4%",
-                  }
-                }
-              >
-                425
-              </td>
-            </tr>
-            <tr>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "bold",
-                    "textAlign": "right",
-                    "width": "61.5%",
-                  }
-                }
-              >
-                Ayala, Eric
-              </td>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "7.7%",
-                  }
-                }
-              >
-                
-              </td>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "15.4%",
-                  }
-                }
-              >
-                50.4
-              </td>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "15.4%",
-                  }
-                }
-              >
-                402
-              </td>
-            </tr>
-            <tr>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "bold",
-                    "textAlign": "right",
-                    "width": "61.5%",
-                  }
-                }
-              >
-                Morsell, Darryl
-              </td>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "7.7%",
-                  }
-                }
-              >
-                
-              </td>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "15.4%",
-                  }
-                }
-              >
-                44.1
-              </td>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "15.4%",
-                  }
-                }
-              >
-                352
-              </td>
-            </tr>
-            <tr>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "bold",
-                    "textAlign": "right",
-                    "width": "61.5%",
-                  }
-                }
-              >
-                Lindo Jr., Ricky
-              </td>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "7.7%",
-                  }
-                }
-              >
-                
-              </td>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "15.4%",
-                  }
-                }
-              >
-                37.0
-              </td>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "15.4%",
-                  }
-                }
-              >
-                295
-              </td>
-            </tr>
-            <tr>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "bold",
-                    "textAlign": "right",
-                    "width": "61.5%",
-                  }
-                }
-              >
-                Smith Jr., Serrel
-              </td>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "7.7%",
-                  }
-                }
-              >
-                
-              </td>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "15.4%",
-                  }
-                }
-              >
-                34.3
-              </td>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "15.4%",
-                  }
-                }
-              >
-                274
-              </td>
-            </tr>
-            <tr>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "bold",
-                    "textAlign": "right",
-                    "width": "61.5%",
-                  }
-                }
-              >
-                Bender, Ivan
-              </td>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "7.7%",
-                  }
-                }
-              >
-                
-              </td>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "15.4%",
-                  }
-                }
-              >
-                6.8
-              </td>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "15.4%",
-                  }
-                }
-              >
-                54
-              </td>
-            </tr>
-            <tr>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "bold",
-                    "textAlign": "right",
-                    "width": "61.5%",
-                  }
-                }
-              >
-                Tomaic, Joshua
-              </td>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "7.7%",
-                  }
-                }
-              >
-                
-              </td>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "15.4%",
-                  }
-                }
-              >
-                4.5
-              </td>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "15.4%",
-                  }
-                }
-              >
-                36
-              </td>
-            </tr>
-          </tbody>
-        </table>
       </div>
     </div>
-  </div>
-  <div
-    className="col"
-  >
     <div
-      className="w-100 card"
+      className="col"
     >
       <div
-        className="card-body"
+        className="w-100 card"
       >
         <div
-          className="card-title h5"
+          className="card-body"
         >
-          'Off' Roster
+          <div
+            className="card-title h5"
+          >
+            'Off' Roster
+          </div>
+          <table
+            className="table table-sm"
+            id="rosterOffTable"
+          >
+            <thead>
+              <tr>
+                <th
+                  style={
+                    Object {
+                      "fontWeight": "bold",
+                      "textAlign": "right",
+                      "width": "61.5%",
+                    }
+                  }
+                >
+                  
+                  <div>
+                    <button
+                      className="float-left btn btn-outline-secondary btn-sm"
+                      disabled={false}
+                      id="rosterOffTable_copy"
+                      type="button"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        className="svg-inline--fa fa-clipboard fa-w-12 "
+                        data-icon="clipboard"
+                        data-prefix="fas"
+                        focusable="false"
+                        role="img"
+                        style={Object {}}
+                        viewBox="0 0 384 512"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M384 112v352c0 26.51-21.49 48-48 48H48c-26.51 0-48-21.49-48-48V112c0-26.51 21.49-48 48-48h80c0-35.29 28.71-64 64-64s64 28.71 64 64h80c26.51 0 48 21.49 48 48zM192 40c-13.255 0-24 10.745-24 24s10.745 24 24 24 24-10.745 24-24-10.745-24-24-24m96 114v-20a6 6 0 0 0-6-6H102a6 6 0 0 0-6 6v20a6 6 0 0 0 6 6h180a6 6 0 0 0 6-6z"
+                          fill="currentColor"
+                          style={Object {}}
+                        />
+                      </svg>
+                    </button>
+                  </div>
+                </th>
+                <th
+                  style={
+                    Object {
+                      "fontWeight": "bold",
+                      "textAlign": "center",
+                      "width": "7.7%",
+                    }
+                  }
+                >
+                  
+                </th>
+                <div>
+                  <th
+                    style={
+                      Object {
+                        "fontWeight": "bold",
+                        "textAlign": "center",
+                        "width": "15.4%",
+                      }
+                    }
+                  >
+                    %
+                  </th>
+                </div>
+                <div>
+                  <th
+                    style={
+                      Object {
+                        "fontWeight": "bold",
+                        "textAlign": "center",
+                        "width": "15.4%",
+                      }
+                    }
+                  >
+                    Poss
+                  </th>
+                </div>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "bold",
+                      "textAlign": "right",
+                      "width": "61.5%",
+                    }
+                  }
+                >
+                  Cowan, Anthony
+                </td>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "normal",
+                      "textAlign": "center",
+                      "width": "7.7%",
+                    }
+                  }
+                >
+                  
+                </td>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "normal",
+                      "textAlign": "center",
+                      "width": "15.4%",
+                    }
+                  }
+                >
+                  100.0
+                </td>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "normal",
+                      "textAlign": "center",
+                      "width": "15.4%",
+                    }
+                  }
+                >
+                  724
+                </td>
+              </tr>
+              <tr>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "bold",
+                      "textAlign": "right",
+                      "width": "61.5%",
+                    }
+                  }
+                >
+                  Morsell, Darryl
+                </td>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "normal",
+                      "textAlign": "center",
+                      "width": "7.7%",
+                    }
+                  }
+                >
+                  
+                </td>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "normal",
+                      "textAlign": "center",
+                      "width": "15.4%",
+                    }
+                  }
+                >
+                  98.1
+                </td>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "normal",
+                      "textAlign": "center",
+                      "width": "15.4%",
+                    }
+                  }
+                >
+                  710
+                </td>
+              </tr>
+              <tr>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "bold",
+                      "textAlign": "right",
+                      "width": "61.5%",
+                    }
+                  }
+                >
+                  Ayala, Eric
+                </td>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "normal",
+                      "textAlign": "center",
+                      "width": "7.7%",
+                    }
+                  }
+                >
+                  
+                </td>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "normal",
+                      "textAlign": "center",
+                      "width": "15.4%",
+                    }
+                  }
+                >
+                  91.7
+                </td>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "normal",
+                      "textAlign": "center",
+                      "width": "15.4%",
+                    }
+                  }
+                >
+                  664
+                </td>
+              </tr>
+              <tr>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "bold",
+                      "textAlign": "right",
+                      "width": "61.5%",
+                    }
+                  }
+                >
+                  Fernando, Bruno
+                </td>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "normal",
+                      "textAlign": "center",
+                      "width": "7.7%",
+                    }
+                  }
+                >
+                  
+                </td>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "normal",
+                      "textAlign": "center",
+                      "width": "15.4%",
+                    }
+                  }
+                >
+                  88.5
+                </td>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "normal",
+                      "textAlign": "center",
+                      "width": "15.4%",
+                    }
+                  }
+                >
+                  641
+                </td>
+              </tr>
+              <tr>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "bold",
+                      "textAlign": "right",
+                      "width": "61.5%",
+                    }
+                  }
+                >
+                  Smith, Jalen
+                </td>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "normal",
+                      "textAlign": "center",
+                      "width": "7.7%",
+                    }
+                  }
+                >
+                  
+                </td>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "normal",
+                      "textAlign": "center",
+                      "width": "15.4%",
+                    }
+                  }
+                >
+                  82.6
+                </td>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "normal",
+                      "textAlign": "center",
+                      "width": "15.4%",
+                    }
+                  }
+                >
+                  598
+                </td>
+              </tr>
+              <tr>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "bold",
+                      "textAlign": "right",
+                      "width": "61.5%",
+                    }
+                  }
+                >
+                  Lindo Jr., Ricky
+                </td>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "normal",
+                      "textAlign": "center",
+                      "width": "7.7%",
+                    }
+                  }
+                >
+                  
+                </td>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "normal",
+                      "textAlign": "center",
+                      "width": "15.4%",
+                    }
+                  }
+                >
+                  18.2
+                </td>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "normal",
+                      "textAlign": "center",
+                      "width": "15.4%",
+                    }
+                  }
+                >
+                  132
+                </td>
+              </tr>
+              <tr>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "bold",
+                      "textAlign": "right",
+                      "width": "61.5%",
+                    }
+                  }
+                >
+                  Smith Jr., Serrel
+                </td>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "normal",
+                      "textAlign": "center",
+                      "width": "7.7%",
+                    }
+                  }
+                >
+                  
+                </td>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "normal",
+                      "textAlign": "center",
+                      "width": "15.4%",
+                    }
+                  }
+                >
+                  15.6
+                </td>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "normal",
+                      "textAlign": "center",
+                      "width": "15.4%",
+                    }
+                  }
+                >
+                  113
+                </td>
+              </tr>
+              <tr>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "bold",
+                      "textAlign": "right",
+                      "width": "61.5%",
+                    }
+                  }
+                >
+                  Bender, Ivan
+                </td>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "normal",
+                      "textAlign": "center",
+                      "width": "7.7%",
+                    }
+                  }
+                >
+                  
+                </td>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "normal",
+                      "textAlign": "center",
+                      "width": "15.4%",
+                    }
+                  }
+                >
+                  3.7
+                </td>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "normal",
+                      "textAlign": "center",
+                      "width": "15.4%",
+                    }
+                  }
+                >
+                  27
+                </td>
+              </tr>
+              <tr>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "bold",
+                      "textAlign": "right",
+                      "width": "61.5%",
+                    }
+                  }
+                >
+                  Tomaic, Joshua
+                </td>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "normal",
+                      "textAlign": "center",
+                      "width": "7.7%",
+                    }
+                  }
+                >
+                  
+                </td>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "normal",
+                      "textAlign": "center",
+                      "width": "15.4%",
+                    }
+                  }
+                >
+                  1.5
+                </td>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "normal",
+                      "textAlign": "center",
+                      "width": "15.4%",
+                    }
+                  }
+                >
+                  11
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-        <table
-          className="table table-sm"
-          id="rosterOffTable"
-        >
-          <thead>
-            <tr>
-              <th
-                style={
-                  Object {
-                    "fontWeight": "bold",
-                    "textAlign": "right",
-                    "width": "61.5%",
-                  }
-                }
-              >
-                
-              </th>
-              <th
-                style={
-                  Object {
-                    "fontWeight": "bold",
-                    "textAlign": "center",
-                    "width": "7.7%",
-                  }
-                }
-              >
-                
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "bold",
-                    "textAlign": "right",
-                    "width": "61.5%",
-                  }
-                }
-              >
-                Cowan, Anthony
-              </td>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "7.7%",
-                  }
-                }
-              >
-                
-              </td>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "15.4%",
-                  }
-                }
-              >
-                100.0
-              </td>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "15.4%",
-                  }
-                }
-              >
-                724
-              </td>
-            </tr>
-            <tr>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "bold",
-                    "textAlign": "right",
-                    "width": "61.5%",
-                  }
-                }
-              >
-                Morsell, Darryl
-              </td>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "7.7%",
-                  }
-                }
-              >
-                
-              </td>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "15.4%",
-                  }
-                }
-              >
-                98.1
-              </td>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "15.4%",
-                  }
-                }
-              >
-                710
-              </td>
-            </tr>
-            <tr>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "bold",
-                    "textAlign": "right",
-                    "width": "61.5%",
-                  }
-                }
-              >
-                Ayala, Eric
-              </td>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "7.7%",
-                  }
-                }
-              >
-                
-              </td>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "15.4%",
-                  }
-                }
-              >
-                91.7
-              </td>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "15.4%",
-                  }
-                }
-              >
-                664
-              </td>
-            </tr>
-            <tr>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "bold",
-                    "textAlign": "right",
-                    "width": "61.5%",
-                  }
-                }
-              >
-                Fernando, Bruno
-              </td>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "7.7%",
-                  }
-                }
-              >
-                
-              </td>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "15.4%",
-                  }
-                }
-              >
-                88.5
-              </td>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "15.4%",
-                  }
-                }
-              >
-                641
-              </td>
-            </tr>
-            <tr>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "bold",
-                    "textAlign": "right",
-                    "width": "61.5%",
-                  }
-                }
-              >
-                Smith, Jalen
-              </td>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "7.7%",
-                  }
-                }
-              >
-                
-              </td>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "15.4%",
-                  }
-                }
-              >
-                82.6
-              </td>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "15.4%",
-                  }
-                }
-              >
-                598
-              </td>
-            </tr>
-            <tr>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "bold",
-                    "textAlign": "right",
-                    "width": "61.5%",
-                  }
-                }
-              >
-                Lindo Jr., Ricky
-              </td>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "7.7%",
-                  }
-                }
-              >
-                
-              </td>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "15.4%",
-                  }
-                }
-              >
-                18.2
-              </td>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "15.4%",
-                  }
-                }
-              >
-                132
-              </td>
-            </tr>
-            <tr>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "bold",
-                    "textAlign": "right",
-                    "width": "61.5%",
-                  }
-                }
-              >
-                Smith Jr., Serrel
-              </td>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "7.7%",
-                  }
-                }
-              >
-                
-              </td>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "15.4%",
-                  }
-                }
-              >
-                15.6
-              </td>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "15.4%",
-                  }
-                }
-              >
-                113
-              </td>
-            </tr>
-            <tr>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "bold",
-                    "textAlign": "right",
-                    "width": "61.5%",
-                  }
-                }
-              >
-                Bender, Ivan
-              </td>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "7.7%",
-                  }
-                }
-              >
-                
-              </td>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "15.4%",
-                  }
-                }
-              >
-                3.7
-              </td>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "15.4%",
-                  }
-                }
-              >
-                27
-              </td>
-            </tr>
-            <tr>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "bold",
-                    "textAlign": "right",
-                    "width": "61.5%",
-                  }
-                }
-              >
-                Tomaic, Joshua
-              </td>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "7.7%",
-                  }
-                }
-              >
-                
-              </td>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "15.4%",
-                  }
-                }
-              >
-                1.5
-              </td>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "15.4%",
-                  }
-                }
-              >
-                11
-              </td>
-            </tr>
-          </tbody>
-        </table>
       </div>
     </div>
-  </div>
-  <div
-    className="col"
-  >
     <div
-      className="w-100 card"
+      className="col"
     >
       <div
-        className="card-body"
+        className="w-100 card"
       >
         <div
-          className="card-title h5"
+          className="card-body"
         >
-          'Baseline' Roster
+          <div
+            className="card-title h5"
+          >
+            'Baseline' Roster
+          </div>
+          <table
+            className="table table-sm"
+            id="rosterBaseTable"
+          >
+            <thead>
+              <tr>
+                <th
+                  style={
+                    Object {
+                      "fontWeight": "bold",
+                      "textAlign": "right",
+                      "width": "61.5%",
+                    }
+                  }
+                >
+                  
+                  <div>
+                    <button
+                      className="float-left btn btn-outline-secondary btn-sm"
+                      disabled={false}
+                      id="rosterBaseTable_copy"
+                      type="button"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        className="svg-inline--fa fa-clipboard fa-w-12 "
+                        data-icon="clipboard"
+                        data-prefix="fas"
+                        focusable="false"
+                        role="img"
+                        style={Object {}}
+                        viewBox="0 0 384 512"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M384 112v352c0 26.51-21.49 48-48 48H48c-26.51 0-48-21.49-48-48V112c0-26.51 21.49-48 48-48h80c0-35.29 28.71-64 64-64s64 28.71 64 64h80c26.51 0 48 21.49 48 48zM192 40c-13.255 0-24 10.745-24 24s10.745 24 24 24 24-10.745 24-24-10.745-24-24-24m96 114v-20a6 6 0 0 0-6-6H102a6 6 0 0 0-6 6v20a6 6 0 0 0 6 6h180a6 6 0 0 0 6-6z"
+                          fill="currentColor"
+                          style={Object {}}
+                        />
+                      </svg>
+                    </button>
+                  </div>
+                </th>
+                <th
+                  style={
+                    Object {
+                      "fontWeight": "bold",
+                      "textAlign": "center",
+                      "width": "7.7%",
+                    }
+                  }
+                >
+                  
+                </th>
+                <div>
+                  <th
+                    style={
+                      Object {
+                        "fontWeight": "bold",
+                        "textAlign": "center",
+                        "width": "15.4%",
+                      }
+                    }
+                  >
+                    %
+                  </th>
+                </div>
+                <div>
+                  <th
+                    style={
+                      Object {
+                        "fontWeight": "bold",
+                        "textAlign": "center",
+                        "width": "15.4%",
+                      }
+                    }
+                  >
+                    Poss
+                  </th>
+                </div>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "bold",
+                      "textAlign": "right",
+                      "width": "61.5%",
+                    }
+                  }
+                >
+                  Cowan, Anthony
+                </td>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "normal",
+                      "textAlign": "center",
+                      "width": "7.7%",
+                    }
+                  }
+                >
+                  
+                </td>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "normal",
+                      "textAlign": "center",
+                      "width": "15.4%",
+                    }
+                  }
+                >
+                  100.0
+                </td>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "normal",
+                      "textAlign": "center",
+                      "width": "15.4%",
+                    }
+                  }
+                >
+                  1522
+                </td>
+              </tr>
+              <tr>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "bold",
+                      "textAlign": "right",
+                      "width": "61.5%",
+                    }
+                  }
+                >
+                  Fernando, Bruno
+                </td>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "normal",
+                      "textAlign": "center",
+                      "width": "7.7%",
+                    }
+                  }
+                >
+                  
+                </td>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "normal",
+                      "textAlign": "center",
+                      "width": "15.4%",
+                    }
+                  }
+                >
+                  78.6
+                </td>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "normal",
+                      "textAlign": "center",
+                      "width": "15.4%",
+                    }
+                  }
+                >
+                  1197
+                </td>
+              </tr>
+              <tr>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "bold",
+                      "textAlign": "right",
+                      "width": "61.5%",
+                    }
+                  }
+                >
+                  Ayala, Eric
+                </td>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "normal",
+                      "textAlign": "center",
+                      "width": "7.7%",
+                    }
+                  }
+                >
+                  
+                </td>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "normal",
+                      "textAlign": "center",
+                      "width": "15.4%",
+                    }
+                  }
+                >
+                  70.0
+                </td>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "normal",
+                      "textAlign": "center",
+                      "width": "15.4%",
+                    }
+                  }
+                >
+                  1066
+                </td>
+              </tr>
+              <tr>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "bold",
+                      "textAlign": "right",
+                      "width": "61.5%",
+                    }
+                  }
+                >
+                  Morsell, Darryl
+                </td>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "normal",
+                      "textAlign": "center",
+                      "width": "7.7%",
+                    }
+                  }
+                >
+                  
+                </td>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "normal",
+                      "textAlign": "center",
+                      "width": "15.4%",
+                    }
+                  }
+                >
+                  69.8
+                </td>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "normal",
+                      "textAlign": "center",
+                      "width": "15.4%",
+                    }
+                  }
+                >
+                  1062
+                </td>
+              </tr>
+              <tr>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "bold",
+                      "textAlign": "right",
+                      "width": "61.5%",
+                    }
+                  }
+                >
+                  Smith, Jalen
+                </td>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "normal",
+                      "textAlign": "center",
+                      "width": "7.7%",
+                    }
+                  }
+                >
+                  
+                </td>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "normal",
+                      "textAlign": "center",
+                      "width": "15.4%",
+                    }
+                  }
+                >
+                  67.2
+                </td>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "normal",
+                      "textAlign": "center",
+                      "width": "15.4%",
+                    }
+                  }
+                >
+                  1023
+                </td>
+              </tr>
+              <tr>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "bold",
+                      "textAlign": "right",
+                      "width": "61.5%",
+                    }
+                  }
+                >
+                  Wiggins, Aaron
+                </td>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "normal",
+                      "textAlign": "center",
+                      "width": "7.7%",
+                    }
+                  }
+                >
+                  
+                </td>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "normal",
+                      "textAlign": "center",
+                      "width": "15.4%",
+                    }
+                  }
+                >
+                  52.4
+                </td>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "normal",
+                      "textAlign": "center",
+                      "width": "15.4%",
+                    }
+                  }
+                >
+                  798
+                </td>
+              </tr>
+              <tr>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "bold",
+                      "textAlign": "right",
+                      "width": "61.5%",
+                    }
+                  }
+                >
+                  Lindo Jr., Ricky
+                </td>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "normal",
+                      "textAlign": "center",
+                      "width": "7.7%",
+                    }
+                  }
+                >
+                  
+                </td>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "normal",
+                      "textAlign": "center",
+                      "width": "15.4%",
+                    }
+                  }
+                >
+                  28.1
+                </td>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "normal",
+                      "textAlign": "center",
+                      "width": "15.4%",
+                    }
+                  }
+                >
+                  427
+                </td>
+              </tr>
+              <tr>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "bold",
+                      "textAlign": "right",
+                      "width": "61.5%",
+                    }
+                  }
+                >
+                  Smith Jr., Serrel
+                </td>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "normal",
+                      "textAlign": "center",
+                      "width": "7.7%",
+                    }
+                  }
+                >
+                  
+                </td>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "normal",
+                      "textAlign": "center",
+                      "width": "15.4%",
+                    }
+                  }
+                >
+                  25.4
+                </td>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "normal",
+                      "textAlign": "center",
+                      "width": "15.4%",
+                    }
+                  }
+                >
+                  387
+                </td>
+              </tr>
+              <tr>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "bold",
+                      "textAlign": "right",
+                      "width": "61.5%",
+                    }
+                  }
+                >
+                  Bender, Ivan
+                </td>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "normal",
+                      "textAlign": "center",
+                      "width": "7.7%",
+                    }
+                  }
+                >
+                  
+                </td>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "normal",
+                      "textAlign": "center",
+                      "width": "15.4%",
+                    }
+                  }
+                >
+                  5.3
+                </td>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "normal",
+                      "textAlign": "center",
+                      "width": "15.4%",
+                    }
+                  }
+                >
+                  81
+                </td>
+              </tr>
+              <tr>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "bold",
+                      "textAlign": "right",
+                      "width": "61.5%",
+                    }
+                  }
+                >
+                  Tomaic, Joshua
+                </td>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "normal",
+                      "textAlign": "center",
+                      "width": "7.7%",
+                    }
+                  }
+                >
+                  
+                </td>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "normal",
+                      "textAlign": "center",
+                      "width": "15.4%",
+                    }
+                  }
+                >
+                  3.1
+                </td>
+                <td
+                  style={
+                    Object {
+                      "backgroundColor": undefined,
+                      "fontWeight": "normal",
+                      "textAlign": "center",
+                      "width": "15.4%",
+                    }
+                  }
+                >
+                  47
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-        <table
-          className="table table-sm"
-          id="rosterBaseTable"
-        >
-          <thead>
-            <tr>
-              <th
-                style={
-                  Object {
-                    "fontWeight": "bold",
-                    "textAlign": "right",
-                    "width": "61.5%",
-                  }
-                }
-              >
-                
-              </th>
-              <th
-                style={
-                  Object {
-                    "fontWeight": "bold",
-                    "textAlign": "center",
-                    "width": "7.7%",
-                  }
-                }
-              >
-                
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "bold",
-                    "textAlign": "right",
-                    "width": "61.5%",
-                  }
-                }
-              >
-                Cowan, Anthony
-              </td>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "7.7%",
-                  }
-                }
-              >
-                
-              </td>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "15.4%",
-                  }
-                }
-              >
-                100.0
-              </td>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "15.4%",
-                  }
-                }
-              >
-                1522
-              </td>
-            </tr>
-            <tr>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "bold",
-                    "textAlign": "right",
-                    "width": "61.5%",
-                  }
-                }
-              >
-                Fernando, Bruno
-              </td>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "7.7%",
-                  }
-                }
-              >
-                
-              </td>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "15.4%",
-                  }
-                }
-              >
-                78.6
-              </td>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "15.4%",
-                  }
-                }
-              >
-                1197
-              </td>
-            </tr>
-            <tr>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "bold",
-                    "textAlign": "right",
-                    "width": "61.5%",
-                  }
-                }
-              >
-                Ayala, Eric
-              </td>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "7.7%",
-                  }
-                }
-              >
-                
-              </td>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "15.4%",
-                  }
-                }
-              >
-                70.0
-              </td>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "15.4%",
-                  }
-                }
-              >
-                1066
-              </td>
-            </tr>
-            <tr>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "bold",
-                    "textAlign": "right",
-                    "width": "61.5%",
-                  }
-                }
-              >
-                Morsell, Darryl
-              </td>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "7.7%",
-                  }
-                }
-              >
-                
-              </td>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "15.4%",
-                  }
-                }
-              >
-                69.8
-              </td>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "15.4%",
-                  }
-                }
-              >
-                1062
-              </td>
-            </tr>
-            <tr>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "bold",
-                    "textAlign": "right",
-                    "width": "61.5%",
-                  }
-                }
-              >
-                Smith, Jalen
-              </td>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "7.7%",
-                  }
-                }
-              >
-                
-              </td>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "15.4%",
-                  }
-                }
-              >
-                67.2
-              </td>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "15.4%",
-                  }
-                }
-              >
-                1023
-              </td>
-            </tr>
-            <tr>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "bold",
-                    "textAlign": "right",
-                    "width": "61.5%",
-                  }
-                }
-              >
-                Wiggins, Aaron
-              </td>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "7.7%",
-                  }
-                }
-              >
-                
-              </td>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "15.4%",
-                  }
-                }
-              >
-                52.4
-              </td>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "15.4%",
-                  }
-                }
-              >
-                798
-              </td>
-            </tr>
-            <tr>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "bold",
-                    "textAlign": "right",
-                    "width": "61.5%",
-                  }
-                }
-              >
-                Lindo Jr., Ricky
-              </td>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "7.7%",
-                  }
-                }
-              >
-                
-              </td>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "15.4%",
-                  }
-                }
-              >
-                28.1
-              </td>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "15.4%",
-                  }
-                }
-              >
-                427
-              </td>
-            </tr>
-            <tr>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "bold",
-                    "textAlign": "right",
-                    "width": "61.5%",
-                  }
-                }
-              >
-                Smith Jr., Serrel
-              </td>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "7.7%",
-                  }
-                }
-              >
-                
-              </td>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "15.4%",
-                  }
-                }
-              >
-                25.4
-              </td>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "15.4%",
-                  }
-                }
-              >
-                387
-              </td>
-            </tr>
-            <tr>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "bold",
-                    "textAlign": "right",
-                    "width": "61.5%",
-                  }
-                }
-              >
-                Bender, Ivan
-              </td>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "7.7%",
-                  }
-                }
-              >
-                
-              </td>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "15.4%",
-                  }
-                }
-              >
-                5.3
-              </td>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "15.4%",
-                  }
-                }
-              >
-                81
-              </td>
-            </tr>
-            <tr>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "bold",
-                    "textAlign": "right",
-                    "width": "61.5%",
-                  }
-                }
-              >
-                Tomaic, Joshua
-              </td>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "7.7%",
-                  }
-                }
-              >
-                
-              </td>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "15.4%",
-                  }
-                }
-              >
-                3.1
-              </td>
-              <td
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "15.4%",
-                  }
-                }
-              >
-                47
-              </td>
-            </tr>
-          </tbody>
-        </table>
       </div>
     </div>
   </div>

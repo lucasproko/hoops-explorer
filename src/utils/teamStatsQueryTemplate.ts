@@ -444,12 +444,12 @@ export const teamStatsQuery2018 = function(params: any) {
               "filters": {
                  "off": {
                     "query_string": {
-                       "query": `players.id:((${params.offQuery || "*"}) AND (${params.baseQuery || "*"}))`
+                       "query": `players.id:((${params.offQuery || "NOT *"}) AND (${params.baseQuery || "*"}))`
                     }
                  },
                  "on": {
                     "query_string": {
-                      "query": `players.id:((${params.onQuery || "*"}) AND (${params.baseQuery || "*"}))`
+                      "query": `players.id:((${params.onQuery || "NOT *"}) AND (${params.baseQuery || "*"}))`
                     }
                  },
                  "baseline": {
