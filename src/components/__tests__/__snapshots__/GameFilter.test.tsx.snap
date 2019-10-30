@@ -16,156 +16,103 @@ exports[`GameFilter GameFilter - should create snapshot 1`] = `
         <Col
           xs={2}
         >
-          <TypeaheadContainer(WrappedTypeahead)
-            a11yNumResults={[Function]}
-            a11yNumSelected={[Function]}
-            align="justify"
-            allowNew={false}
-            autoFocus={false}
-            caseSensitive={false}
-            clearButton={false}
+          <StateManager
             defaultInputValue=""
-            defaultOpen={false}
-            defaultSelected={Array []}
-            disabled={true}
-            dropup={false}
-            emptyLabel="No matches found."
-            filterBy={Array []}
-            flip={false}
-            highlightOnlyResult={false}
-            id="teamGenderTypeahead"
-            ignoreDiacritics={true}
-            inputProps={Object {}}
-            isInvalid={false}
-            isLoading={false}
-            isValid={false}
-            labelKey="label"
-            maxResults={100}
-            minLength={0}
-            multiple={false}
-            onBlur={[Function]}
+            defaultMenuIsOpen={false}
+            defaultValue={null}
             onChange={[Function]}
-            onFocus={[Function]}
-            onInputChange={[Function]}
-            onKeyDown={[Function]}
-            onPaginate={[Function]}
             options={
               Array [
-                "Men",
+                Object {
+                  "label": "Men",
+                  "value": "Men",
+                },
+                Object {
+                  "label": "Women",
+                  "value": "Women",
+                },
               ]
             }
-            paginate={true}
-            paginationText="Display additional results..."
-            placeholder=""
-            selectHintOnEnter={false}
-            selected={
-              Array [
-                "Men",
-              ]
+            value={
+              Object {
+                "label": "Men",
+                "value": "Men",
+              }
             }
           />
         </Col>
         <Col
           xs={2}
         >
-          <TypeaheadContainer(WrappedTypeahead)
-            a11yNumResults={[Function]}
-            a11yNumSelected={[Function]}
-            align="justify"
-            allowNew={false}
-            autoFocus={false}
-            caseSensitive={false}
-            clearButton={false}
+          <StateManager
             defaultInputValue=""
-            defaultOpen={false}
-            defaultSelected={Array []}
-            disabled={true}
-            dropup={false}
-            emptyLabel="No matches found."
-            filterBy={Array []}
-            flip={false}
-            highlightOnlyResult={false}
-            id="teamYearTypeahead"
-            ignoreDiacritics={true}
-            inputProps={Object {}}
-            isInvalid={false}
-            isLoading={false}
-            isValid={false}
-            labelKey="label"
-            maxResults={100}
-            minLength={0}
-            multiple={false}
-            onBlur={[Function]}
+            defaultMenuIsOpen={false}
+            defaultValue={null}
             onChange={[Function]}
-            onFocus={[Function]}
-            onInputChange={[Function]}
-            onKeyDown={[Function]}
-            onPaginate={[Function]}
             options={
               Array [
-                "2018/9",
+                Object {
+                  "label": "2016/7",
+                  "value": "2016/7",
+                },
+                Object {
+                  "label": "2018/9",
+                  "value": "2018/9",
+                },
               ]
             }
-            paginate={true}
-            paginationText="Display additional results..."
-            placeholder=""
-            selectHintOnEnter={false}
-            selected={
-              Array [
-                "2018/9",
-              ]
+            value={
+              Object {
+                "label": "2018/9",
+                "value": "2018/9",
+              }
             }
           />
         </Col>
         <Col
           xs={6}
         >
-          <TypeaheadContainer(WrappedTypeahead)
-            a11yNumResults={[Function]}
-            a11yNumSelected={[Function]}
-            align="justify"
-            allowNew={false}
-            autoFocus={false}
-            caseSensitive={false}
-            clearButton={false}
+          <StateManager
             defaultInputValue=""
-            defaultOpen={false}
-            defaultSelected={Array []}
-            disabled={true}
-            dropup={false}
-            emptyLabel="No matches found."
-            filterBy={Array []}
-            flip={false}
-            highlightOnlyResult={false}
-            id="teamTypeahead"
-            ignoreDiacritics={true}
-            inputProps={Object {}}
-            isInvalid={false}
-            isLoading={false}
-            isValid={false}
-            labelKey="label"
-            maxResults={100}
-            minLength={0}
-            multiple={false}
-            onBlur={[Function]}
+            defaultMenuIsOpen={false}
+            defaultValue={null}
             onChange={[Function]}
-            onFocus={[Function]}
-            onInputChange={[Function]}
-            onKeyDown={[Function]}
-            onPaginate={[Function]}
             options={
               Array [
-                "Maryland",
+                Object {
+                  "label": "Maryland",
+                  "value": "Maryland",
+                },
+                Object {
+                  "label": "Cincinnati",
+                  "value": "Cincinnati",
+                },
+                Object {
+                  "label": "Kentucky",
+                  "value": "Kentucky",
+                },
+                Object {
+                  "label": "Louisville",
+                  "value": "Louisville",
+                },
+                Object {
+                  "label": "Saint Mary's (CA)",
+                  "value": "Saint Mary's (CA)",
+                },
+                Object {
+                  "label": "Virginia",
+                  "value": "Virginia",
+                },
+                Object {
+                  "label": "UConn",
+                  "value": "UConn",
+                },
               ]
             }
-            paginate={true}
-            paginationText="Display additional results..."
-            placeholder=""
-            selectHintOnEnter={false}
-            selected={
-              Array [
-                "Maryland",
-              ]
+            value={
+              Object {
+                "label": "Choose Team...",
+              }
             }
           />
         </Col>

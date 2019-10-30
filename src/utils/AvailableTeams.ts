@@ -26,11 +26,53 @@ export class AvailableTeams {
       return (retVal.length > 0) ? retVal[0] : null;
   }
   static readonly byName: Record<string, Array<AvailableTeamMeta>> = {
+    // Maryland!
     "Maryland": [
       { team: "Maryland", year: "2016/7", gender: "Men", index_template: "maryland" },
       { team: "Maryland", year: "2018/9", gender: "Men", index_template: "misc_conf" },
-      { team: "Maryland", year: "2018/9", gender: "Women", index_template: "women_big10" },
+      { team: "Maryland", year: "2018/9", gender: "Women", index_template: "women_bigten" },
     ],
+    // Other BIG
+    "Indiana": [
+      { team: "Indiana", year: "2018/9", gender: "Men", index_template: "bigten" },
+    ],
+    "Nebraska": [
+      { team: "Nebraska", year: "2018/9", gender: "Men", index_template: "bigten" },
+    ],
+    "Wisconsin": [
+      { team: "Wisconsin", year: "2018/9", gender: "Men", index_template: "bigten" },
+    ],
+    "Ohio St.": [
+      { team: "Ohio St.", year: "2018/9", gender: "Men", index_template: "bigten" },
+    ],
+    "Michigan St.": [
+      { team: "Michigan St.", year: "2018/9", gender: "Men", index_template: "bigten" },
+    ],
+    "Iowa": [
+      { team: "Iowa", year: "2018/9", gender: "Men", index_template: "bigten" },
+    ],
+    "Michigan": [
+      { team: "Michigan", year: "2018/9", gender: "Men", index_template: "bigten" },
+    ],
+    "Purdue": [
+      { team: "Purdue", year: "2018/9", gender: "Men", index_template: "bigten" },
+    ],
+    "Illinois": [
+      { team: "Illinois", year: "2018/9", gender: "Men", index_template: "bigten" },
+    ],
+    "Penn St.": [
+      { team: "Penn St.", year: "2018/9", gender: "Men", index_template: "bigten" },
+    ],
+    "Northwestern": [
+      { team: "Northwestern", year: "2018/9", gender: "Men", index_template: "bigten" },
+    ],
+    "Rutgers": [
+      { team: "Rutgers", year: "2018/9", gender: "Men", index_template: "bigten" },
+    ],
+    "Minnesota": [
+      { team: "Minnesota", year: "2018/9", gender: "Men", index_template: "bigten" },
+    ],
+    // Misc
     "Cincinnati": [
       { team: "Cincinnati", year: "2018/9", gender: "Men", index_template: "misc_conf" },
     ],

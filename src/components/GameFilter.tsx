@@ -10,11 +10,11 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Alert from 'react-bootstrap/Alert';
 import InputGroup from 'react-bootstrap/InputGroup';
 
 // Additional components:
-import 'react-bootstrap-typeahead/css/Typeahead.css';
-import { Typeahead } from 'react-bootstrap-typeahead';
+import Select, { components} from "react-select"
 import queryString from "query-string";
 // @ts-ignore
 import LoadingOverlay from 'react-loading-overlay';
@@ -49,14 +49,23 @@ type Props = {
 }
 
 const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onChangeState}) => {
+
+  // Data model
+
+  // Ugly internals
   const [ queryIsLoading, setQueryIsLoading ] = useState(false);
   const [ atLeastOneQueryMade, setAtLeastOneQueryMade ] = useState(false);
   const [ pageJustLoaded, setPageJustLoaded ] = useState(true);
   const [ currState, setCurrState ] = useState(startingState);
 
+  // Data source
   const [ team, setTeam ] = useState(startingState.team || "");
   const [ year, setYear ] = useState(startingState.year || "2018/9");
   const [ gender, setGender ] = useState(startingState.gender || "Men");
+  /** Pre-calculate this */
+  const teamList = AvailableTeams.getTeams(null, year, gender);
+
+  // Queries and filters:
   const [ autoOffQuery, toggleAutoOffQuery ] = useState(
     "true" == (((startingState.autoOffQuery == undefined) ? "true" : startingState.autoOffQuery) || "false")
   )
@@ -70,6 +79,8 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
   const [ submitDisabled, setSubmitDisabled ] = useState(false) // (always start as true on page load)
 
   const isDebug = (process.env.NODE_ENV !== 'production');
+
+  // Utils
 
   const currentJsonEpoch = dataLastUpdated[year] || -1;
   useEffect(() => {
@@ -225,6 +236,33 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
       />
     }
   }
+  /** For use in selects */
+  function stringToOption(s: String) {
+    return { label: s, value: s};
+  }
+  /** For use in team select */
+  function getCurrentTeamOrPlaceholder() {
+    return (team == "") ? { label: 'Choose Team...' } : stringToOption(team);
+  }
+
+  /** Adds the MenuList component with user prompt if there are teams fitered out*/
+  function maybeMenuList() {
+    if (teamList.length < Object.keys(AvailableTeams.byName).length) {
+      return { MenuList };
+    }
+  }
+
+  // Visual components:
+
+  /** Let the user know that he might need to change */
+  const MenuList = (props: any)  => {
+    return (
+      <components.MenuList {...props}>
+        <p className="text-secondary text-center">(Teams filtered by gender/year)</p>
+        {props.children}
+      </components.MenuList>
+    );
+  };
 
   return <LoadingOverlay
     active={queryIsLoading}
@@ -234,31 +272,37 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
     <Form.Group>
       <Row>
         <Col xs={2}>
-          <Typeahead
-            id="teamGenderTypeahead"
-            multiple={false}
-            options={AvailableTeams.getTeams(team, year, null).map((r) => r.gender)}
-            onChange={(genders) => { if (genders.length > 0) setGender(genders[0])}}
-            selected={[gender]}
+          <Select
+            value={ stringToOption(gender) }
+            options={Array.from(new Set(AvailableTeams.getTeams(team, year, null).map(
+              (r) => r.gender
+            ))).map(
+              (gender) => stringToOption(gender)
+            )}
+            onChange={(option) => { if ((option as any)?.value) setGender((option as any).value) }}
           />
         </Col>
         <Col xs={2}>
-          <Typeahead
-            id="teamYearTypeahead"
-            multiple={false}
-            options={AvailableTeams.getTeams(team, null, gender).map((r) => r.year)}
-            onChange={(years) => { if (years.length > 0) setYear(years[0])}}
-            selected={[year]}
+          <Select
+            value={ stringToOption(year) }
+            options={Array.from(new Set(AvailableTeams.getTeams(team, null, gender).map(
+              (r) => r.year
+            ))).map(
+              (year) => stringToOption(year)
+            )}
+            onChange={(option) => { if ((option as any)?.value) setYear((option as any).value) }}
           />
         </Col>
         <Col xs={6}>
-          <Typeahead
-            id="teamTypeahead"
-            multiple={false}
-            options={AvailableTeams.getTeams(null, year, gender).map((r) => r.team)}
-            placeholder="Choose a team..."
-            onChange={(teams) => { if (teams.length > 0) setTeam(teams[0]); else setTeam("");}}
-            selected={team == "" ? [] : [team]}
+          <Select
+            components = { maybeMenuList() }
+            value={ getCurrentTeamOrPlaceholder() }
+            options={teamList.map(
+              (r) => stringToOption(r.team)
+            )}
+            onChange={(option) => {
+              setTeam((option as any)?.value || "")
+            }}
           />
         </Col>
       </Row>
