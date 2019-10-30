@@ -26,6 +26,7 @@ import { TeamStatsModel } from '../components/TeamStatsTable';
 import { RosterCompareModel } from '../components/RosterCompareTable';
 import { dataLastUpdated } from '../utils/dataLastUpdated';
 import { preloadedData } from '../utils/preloadedData';
+import { AvailableTeams } from '../utils/AvailableTeams';
 
 // Library imports:
 import fetch from 'isomorphic-unfetch';
@@ -134,7 +135,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
     const paramsUnchanged = Object.keys(newParams).every(
       (key: string) => (newParams as any)[key] == (currState as any)[key]
     );
-    return atLeastOneQueryMade && paramsUnchanged;
+    return (atLeastOneQueryMade && paramsUnchanged) || (team == "");
   }
 
   /** Check if we have an up-todate local cache for this set of params */
@@ -235,24 +236,18 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
         <Col xs={2}>
           <Typeahead
             id="teamGenderTypeahead"
-            disabled
             multiple={false}
-            options={[
-              "Men"
-            ]}
-            onChange={(genders) => { if (genders.length > 0) setTeam(genders[0])}}
+            options={AvailableTeams.getTeams(team, year, null).map((r) => r.gender)}
+            onChange={(genders) => { if (genders.length > 0) setGender(genders[0])}}
             selected={[gender]}
           />
         </Col>
         <Col xs={2}>
           <Typeahead
             id="teamYearTypeahead"
-            disabled
             multiple={false}
-            options={[
-              "2018/9"
-            ]}
-            onChange={(years) => { if (years.length > 0) setTeam(years[0])}}
+            options={AvailableTeams.getTeams(team, null, gender).map((r) => r.year)}
+            onChange={(years) => { if (years.length > 0) setYear(years[0])}}
             selected={[year]}
           />
         </Col>
@@ -260,17 +255,9 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
           <Typeahead
             id="teamTypeahead"
             multiple={false}
-            options={[
-              "Maryland",
-              "Cincinnati",
-              "Kentucky",
-              "Louisville",
-              "Saint Mary's (CA)",
-              "Virginia",
-              "UConn",
-            ]}
+            options={AvailableTeams.getTeams(null, year, gender).map((r) => r.team)}
             placeholder="Choose a team..."
-            onChange={(teams) => { if (teams.length > 0) setTeam(teams[0])}}
+            onChange={(teams) => { if (teams.length > 0) setTeam(teams[0]); else setTeam("");}}
             selected={team == "" ? [] : [team]}
           />
         </Col>
