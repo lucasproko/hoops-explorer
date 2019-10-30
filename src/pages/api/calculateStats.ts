@@ -17,11 +17,11 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   const params = queryString.parse(require('url').parse(req.url).query);
 
   const team =
-    (params.team && params.year && params.gender)
-    ? AvailableTeams.getTeam(
+    (params.team && params.year && params.gender) ?
+    AvailableTeams.getTeam( //(params is string|string[], so toString is needed for type safety)
         params.team.toString(), params.year.toString(), params.gender.toString()
-      )
-    : null;
+    ) :
+    null;
 
   const kenpom: Record<string, any> = {
     "Men_2018/9": publicKenpomEfficiency2018

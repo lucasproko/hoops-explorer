@@ -7,12 +7,21 @@ export type AvailableTeamMeta = {
 }
 
 export class AvailableTeams {
+
+  private static flatten(
+    arr: Array<Array<AvailableTeamMeta>>
+  ): Array<AvailableTeamMeta> {
+    return arr.reduce(function(acc, v) {
+      return acc.concat(v);
+    }, [] as Array<AvailableTeamMeta>);
+  }
+
   static getTeams(
     team: string | null, year: string | null, gender: string | null
   ): Array<AvailableTeamMeta> {
     const list = team ?
       (AvailableTeams.byName[team] || ([] as Array<AvailableTeamMeta>)) :
-      (Object.values(AvailableTeams.byName).flat(1) as Array<AvailableTeamMeta>);
+      AvailableTeams.flatten(Object.values(AvailableTeams.byName));
 
     return list.filter(function(record) {
       return (!team || (team == record.team)) &&
