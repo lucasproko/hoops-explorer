@@ -10,11 +10,11 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Alert from 'react-bootstrap/Alert';
 import InputGroup from 'react-bootstrap/InputGroup';
 
 // Additional components:
-import 'react-bootstrap-typeahead/css/Typeahead.css';
-import { Typeahead } from 'react-bootstrap-typeahead';
+import Select, { components} from "react-select"
 import queryString from "query-string";
 // @ts-ignore
 import LoadingOverlay from 'react-loading-overlay';
@@ -26,6 +26,7 @@ import { TeamStatsModel } from '../components/TeamStatsTable';
 import { RosterCompareModel } from '../components/RosterCompareTable';
 import { dataLastUpdated } from '../utils/dataLastUpdated';
 import { preloadedData } from '../utils/preloadedData';
+import { AvailableTeams } from '../utils/AvailableTeams';
 
 // Library imports:
 import fetch from 'isomorphic-unfetch';
@@ -48,14 +49,23 @@ type Props = {
 }
 
 const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onChangeState}) => {
+
+  // Data model
+
+  // Ugly internals
   const [ queryIsLoading, setQueryIsLoading ] = useState(false);
   const [ atLeastOneQueryMade, setAtLeastOneQueryMade ] = useState(false);
   const [ pageJustLoaded, setPageJustLoaded ] = useState(true);
   const [ currState, setCurrState ] = useState(startingState);
 
-  const [ team, setTeam ] = useState("Maryland");
-  const [ year, setYear ] = useState("2018/9");
-  const [ gender, setGender ] = useState("Men");
+  // Data source
+  const [ team, setTeam ] = useState(startingState.team || "");
+  const [ year, setYear ] = useState(startingState.year || "2018/9");
+  const [ gender, setGender ] = useState(startingState.gender || "Men");
+  /** Pre-calculate this */
+  const teamList = AvailableTeams.getTeams(null, year, gender);
+
+  // Queries and filters:
   const [ autoOffQuery, toggleAutoOffQuery ] = useState(
     "true" == (((startingState.autoOffQuery == undefined) ? "true" : startingState.autoOffQuery) || "false")
   )
@@ -69,6 +79,8 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
   const [ submitDisabled, setSubmitDisabled ] = useState(false) // (always start as true on page load)
 
   const isDebug = (process.env.NODE_ENV !== 'production');
+
+  // Utils
 
   const currentJsonEpoch = dataLastUpdated[year] || -1;
   useEffect(() => {
@@ -134,7 +146,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
     const paramsUnchanged = Object.keys(newParams).every(
       (key: string) => (newParams as any)[key] == (currState as any)[key]
     );
-    return atLeastOneQueryMade && paramsUnchanged;
+    return (atLeastOneQueryMade && paramsUnchanged) || (team == "");
   }
 
   /** Check if we have an up-todate local cache for this set of params */
@@ -151,6 +163,15 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
     }
   }
 
+  /** Whether any of the queries returned an error - we'll treat them all as errors if so */
+  function isResponseError(resp: any) {
+    const jsons = resp?.responses || [];
+    const teamJson = (jsons.length > 0) ? jsons[0] : {};
+    const rosterCompareJson = (jsons.length > 1) ? jsons[1] : {};
+    return (Object.keys(teamJson?.error || {}).length > 0) ||
+      (Object.keys(rosterCompareJson?.error || {}).length > 0);
+  }
+
   /** Handles the response from ES to a stats calc request */
   function handleResponse(json: any) {
     setQueryIsLoading(false);
@@ -159,17 +180,21 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
     const teamJson = (jsons.length > 0) ? jsons[0] : {};
     const rosterCompareJson = (jsons.length > 1) ? jsons[1] : {};
     const newParams = buildParamsFromState();
-    setCurrState(newParams);
-    onChangeState(newParams);
-    setPageJustLoaded(false);
+    const wasError = isResponseError(json);
+    if (!wasError) {
+      setCurrState(newParams);
+      onChangeState(newParams);
+    }
     onStats({
       on: teamJson?.aggregations?.tri_filter?.buckets?.on || {},
       off: teamJson?.aggregations?.tri_filter?.buckets?.off || {},
       baseline: teamJson?.aggregations?.tri_filter?.buckets?.baseline || {},
+      error_code: wasError ? teamJson?.status : undefined
     }, {
       on: rosterCompareJson?.aggregations?.tri_filter?.buckets?.on || {},
       off: rosterCompareJson?.aggregations?.tri_filter?.buckets?.off || {},
       baseline: rosterCompareJson?.aggregations?.tri_filter?.buckets?.baseline || {},
+      error_code: wasError ? rosterCompareJson?.status : undefined
     });
   }
   function onSubmit() {
@@ -189,7 +214,9 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
             console.log(`CACHE_KEY=[${newParamsStr}]`);
             console.log(`CACHE_VAL=[${newCacheVal}]`);
           }
-          (ls as any).set(newParamsStr, newCacheVal);
+          if (!isResponseError(json)) { //(never cache errors)
+            (ls as any).set(newParamsStr, newCacheVal);
+          }
           handleResponse(json);
         })
       });
@@ -209,6 +236,33 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
       />
     }
   }
+  /** For use in selects */
+  function stringToOption(s: String) {
+    return { label: s, value: s};
+  }
+  /** For use in team select */
+  function getCurrentTeamOrPlaceholder() {
+    return (team == "") ? { label: 'Choose Team...' } : stringToOption(team);
+  }
+
+  /** Adds the MenuList component with user prompt if there are teams fitered out*/
+  function maybeMenuList() {
+    if (teamList.length < Object.keys(AvailableTeams.byName).length) {
+      return { MenuList };
+    }
+  }
+
+  // Visual components:
+
+  /** Let the user know that he might need to change */
+  const MenuList = (props: any)  => {
+    return (
+      <components.MenuList {...props}>
+        <p className="text-secondary text-center">(Teams filtered by gender/year)</p>
+        {props.children}
+      </components.MenuList>
+    );
+  };
 
   return <LoadingOverlay
     active={queryIsLoading}
@@ -218,39 +272,37 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
     <Form.Group>
       <Row>
         <Col xs={2}>
-          <Typeahead
-            id="teamGenderTypeahead"
-            disabled
-            multiple={false}
-            options={[
-              "Men"
-            ]}
-            onChange={(genders) => setYear(genders[0])}
-            selected={[gender]}
+          <Select
+            value={ stringToOption(gender) }
+            options={Array.from(new Set(AvailableTeams.getTeams(team, year, null).map(
+              (r) => r.gender
+            ))).map(
+              (gender) => stringToOption(gender)
+            )}
+            onChange={(option) => { if ((option as any)?.value) setGender((option as any).value) }}
           />
         </Col>
         <Col xs={2}>
-          <Typeahead
-            id="teamYearTypeahead"
-            disabled
-            multiple={false}
-            options={[
-              "2018/9"
-            ]}
-            onChange={(years) => setYear(years[0])}
-            selected={[year]}
+          <Select
+            value={ stringToOption(year) }
+            options={Array.from(new Set(AvailableTeams.getTeams(team, null, gender).map(
+              (r) => r.year
+            ))).map(
+              (year) => stringToOption(year)
+            )}
+            onChange={(option) => { if ((option as any)?.value) setYear((option as any).value) }}
           />
         </Col>
         <Col xs={6}>
-          <Typeahead
-            id="teamTypeahead"
-            disabled
-            multiple={false}
-            options={[
-              "Maryland"
-            ]}
-            onChange={(teams) => setTeam(teams[0])}
-            selected={[team]}
+          <Select
+            components = { maybeMenuList() }
+            value={ getCurrentTeamOrPlaceholder() }
+            options={teamList.map(
+              (r) => stringToOption(r.team)
+            )}
+            onChange={(option) => {
+              setTeam((option as any)?.value || "")
+            }}
           />
         </Col>
       </Row>

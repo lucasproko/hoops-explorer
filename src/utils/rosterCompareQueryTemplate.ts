@@ -1,7 +1,6 @@
 import { ncaaToKenpomLookup } from "./ncaaToKenpomLookup"
-import { publicKenpomEfficiency2018 } from "./publicKenpomEfficiency2018"
 
-export const rosterCompareQuery2018 = function(params: any) {
+export const rosterCompareQuery2018 = function(params: any, publicKenpomEfficiency: any) {
   return { //TODO: handle multiple years
      "_source": {
         "includes": [],
@@ -12,21 +11,21 @@ export const rosterCompareQuery2018 = function(params: any) {
         "tri_filter": {
           "filters": {
              "filters": {
-                "off": {
-                   "query_string": {
-                      "query": `players.id:((${params.offQuery || "*"}) AND (${params.baseQuery || "*"}))`
-                   }
-                },
-                "on": {
-                   "query_string": {
-                     "query": `players.id:((${params.onQuery || "*"}) AND (${params.baseQuery || "*"}))`
-                   }
-                },
-                "baseline": {
-                   "query_string": {
-                      "query": `players.id:(${params.baseQuery || "*"})`
-                   }
-                }
+               "off": {
+                  "query_string": {
+                     "query": `players.id:((${params.offQuery || "NOT *"}) AND (${params.baseQuery || "*"}))`
+                  }
+               },
+               "on": {
+                  "query_string": {
+                    "query": `players.id:((${params.onQuery || "NOT *"}) AND (${params.baseQuery || "*"}))`
+                  }
+               },
+               "baseline": {
+                  "query_string": {
+                     "query": `players.id:(${params.baseQuery || "*"})`
+                  }
+               }
              }
           },
            "aggregations": {
@@ -73,11 +72,11 @@ export const rosterCompareQuery2018 = function(params: any) {
               {
                  "script": {
                     "script": {
-                      "source": "def kp_name = params.pbp_to_kp[doc[\"opponent.team.keyword\"].value];\nif (kp_name == null) {\n   kp_name = doc[\"opponent.team.keyword\"].value;\n} else {\n   kp_name = kp_name.pbp_kp_team\n}\ndef oppo = params.kp[kp_name];\nif (oppo != null) {\n def kp_rank = oppo['stats.adj_margin.rank'];\n def game_filter = params.game_filter.game_filter;\n //TODO: high major\n return (kp_rank >= game_filter.min_kp) && (kp_rank <= game_filter.max_kp);\n} else {\n return false;\n}\n\n",
+                      "source": "if (params.kp.isEmpty()) return true;\ndef kp_name = params.pbp_to_kp[doc[\"opponent.team.keyword\"].value];\nif (kp_name == null) {\n   kp_name = doc[\"opponent.team.keyword\"].value;\n} else {\n   kp_name = kp_name.pbp_kp_team\n}\ndef oppo = params.kp[kp_name];\nif (oppo != null) {\n def kp_rank = oppo['stats.adj_margin.rank'];\n def game_filter = params.game_filter.game_filter;\n //TODO: high major\n return (kp_rank >= game_filter.min_kp) && (kp_rank <= game_filter.max_kp);\n} else {\n return false;\n}\n\n",
                        "lang": "painless",
                        "params": {
                           "pbp_to_kp": ncaaToKenpomLookup,
-                          "kp": publicKenpomEfficiency2018,
+                          "kp": publicKenpomEfficiency,
                           "game_filter": {
                              "game_filter": {
                                "min_kp": Number(params.minRank),
@@ -90,7 +89,7 @@ export const rosterCompareQuery2018 = function(params: any) {
               },
               {
                  "query_string": {
-                    "query": "*"
+                   "query": `team.team: "${params.team}"`
                  }
               }
            ]

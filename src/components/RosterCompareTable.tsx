@@ -23,7 +23,8 @@ import { CbbColors } from "../utils/CbbColors"
 export type RosterCompareModel = {
   on: any,
   off: any,
-  baseline: any
+  baseline: any,
+  error_code?: string
 }
 type Props = {
   rosterCompareStats: RosterCompareModel
@@ -57,7 +58,10 @@ const RosterCompareTable: React.FunctionComponent<Props> = ({rosterCompareStats}
 
   return <LoadingOverlay
     active={needToLoadQuery()}
-    text="Press 'Submit' to view results"
+    text={rosterCompareStats.error_code ?
+      `Query Error: ${rosterCompareStats.error_code}` :
+      "Press 'Submit' to view results"
+    }
   >
     <Row>
         <Col>

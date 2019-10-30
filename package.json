@@ -27,7 +27,7 @@
     "@types/chroma-js": "^1.4.3",
     "@types/clipboard": "^2.0.1",
     "@types/query-string": "^6.3.0",
-    "@types/react-bootstrap-typeahead": "^3.4.5",
+    "@types/react-select": "^3.0.6",
     "@zeit/next-css": "^1.0.1",
     "bootstrap": "^4.3.1",
     "chroma-js": "^2.0.6",
@@ -39,10 +39,10 @@
     "query-string": "^6.8.3",
     "react": "^16.10.2",
     "react-bootstrap": "^1.0.0-beta.14",
-    "react-bootstrap-typeahead": "^3.4.7",
     "react-dom": "^16.10.2",
     "react-ga": "^2.7.0",
-    "react-loading-overlay": "^1.0.1"
+    "react-loading-overlay": "^1.0.1",
+    "react-select": "^3.0.8"
   },
   "devDependencies": {
     "@babel/plugin-proposal-optional-chaining": "^7.6.0",

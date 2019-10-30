@@ -23,7 +23,8 @@ import { CbbColors } from "../utils/CbbColors"
 export type TeamStatsModel = {
   on: any,
   off: any,
-  baseline: any
+  baseline: any,
+  error_code?: string
 }
 type Props = {
   teamStats: TeamStatsModel
@@ -105,7 +106,10 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({teamStats}) => {
   return <Container>
     <LoadingOverlay
       active={needToLoadQuery()}
-      text="Press 'Submit' to view results"
+      text={teamStats.error_code ?
+        `Query Error: ${teamStats.error_code}` :
+        "Press 'Submit' to view results"
+      }
     >
       <Row>
         <Col>
