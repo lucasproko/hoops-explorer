@@ -84,6 +84,58 @@ exports[`GameFilter GameFilter - should create snapshot 1`] = `
                   "value": "Maryland",
                 },
                 Object {
+                  "label": "Indiana",
+                  "value": "Indiana",
+                },
+                Object {
+                  "label": "Nebraska",
+                  "value": "Nebraska",
+                },
+                Object {
+                  "label": "Wisconsin",
+                  "value": "Wisconsin",
+                },
+                Object {
+                  "label": "Ohio St.",
+                  "value": "Ohio St.",
+                },
+                Object {
+                  "label": "Michigan St.",
+                  "value": "Michigan St.",
+                },
+                Object {
+                  "label": "Iowa",
+                  "value": "Iowa",
+                },
+                Object {
+                  "label": "Michigan",
+                  "value": "Michigan",
+                },
+                Object {
+                  "label": "Purdue",
+                  "value": "Purdue",
+                },
+                Object {
+                  "label": "Illinois",
+                  "value": "Illinois",
+                },
+                Object {
+                  "label": "Penn St.",
+                  "value": "Penn St.",
+                },
+                Object {
+                  "label": "Northwestern",
+                  "value": "Northwestern",
+                },
+                Object {
+                  "label": "Rutgers",
+                  "value": "Rutgers",
+                },
+                Object {
+                  "label": "Minnesota",
+                  "value": "Minnesota",
+                },
+                Object {
                   "label": "Cincinnati",
                   "value": "Cincinnati",
                 },
