@@ -27,6 +27,7 @@ import { RosterCompareModel } from '../components/RosterCompareTable';
 import { dataLastUpdated } from '../utils/dataLastUpdated';
 import { preloadedData } from '../utils/preloadedData';
 import { AvailableTeams } from '../utils/AvailableTeams';
+import { efficiencyAverages } from '../utils/efficiencyAverages';
 
 // Library imports:
 import fetch from 'isomorphic-unfetch';
@@ -189,7 +190,8 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
       on: teamJson?.aggregations?.tri_filter?.buckets?.on || {},
       off: teamJson?.aggregations?.tri_filter?.buckets?.off || {},
       baseline: teamJson?.aggregations?.tri_filter?.buckets?.baseline || {},
-      error_code: wasError ? teamJson?.status : undefined
+      error_code: wasError ? teamJson?.status : undefined,
+      avgOff: efficiencyAverages[`${gender}_${year}`]
     }, {
       on: rosterCompareJson?.aggregations?.tri_filter?.buckets?.on || {},
       off: rosterCompareJson?.aggregations?.tri_filter?.buckets?.off || {},
@@ -227,7 +229,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
   function renderOffQueryFormField() {
     if (typeof window !== `undefined`) {
       return <Form.Control
-        placeholder="eg 'NOT (Player1 AND Player2)'"
+        placeholder="eg 'NOT (Player1 AND (Player2 OR Player3))'"
         onKeyUp={(ev: any) => setOffQuery(ev.target.value)}
         onChange={(ev: any) => setOffQuery(ev.target.value)}
         value={offQuery}
@@ -318,7 +320,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
       <Form.Label column sm="2">On Query</Form.Label>
       <Col sm="8">
         <Form.Control
-          placeholder="eg 'Player1 AND Player2'"
+          placeholder="eg 'Player1 AND (Player2 OR Player3)'"
           value={onQuery}
           onKeyUp={handleOnQueryChange}
           onChange={handleOnQueryChange}
@@ -348,7 +350,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
       <Form.Label column sm="2">Baseline Query</Form.Label>
       <Col sm="8">
         <Form.Control
-          placeholder="eg 'Player0' - applied to both 'On' and 'Off' queries"
+          placeholder="eg 'NOT (WalkOn1 OR WalkOn2)' - applied to both 'On' and 'Off' queries"
           value={baseQuery}
           onKeyUp={(ev: any) => setBaseQuery(ev.target.value)}
           onChange={(ev: any) => setBaseQuery(ev.target.value)}
