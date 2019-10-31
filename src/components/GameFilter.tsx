@@ -277,7 +277,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
     text="Calculating statistics"
   ><Form>
     <Form.Group as={Row}>
-      <Col xs={2}>
+      <Col xs={4} sm={4} md={3} lg={2}>
         <Select
           value={ stringToOption(gender) }
           options={Array.from(new Set(AvailableTeams.getTeams(team, year, null).map(
@@ -285,10 +285,11 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
           ))).map(
             (gender) => stringToOption(gender)
           )}
+          isSearchable={false}
           onChange={(option) => { if ((option as any)?.value) setGender((option as any).value) }}
         />
       </Col>
-      <Col xs={2}>
+      <Col xs={4} sm={4} md={3} lg={2}>
         <Select
           value={ stringToOption(year) }
           options={Array.from(new Set(AvailableTeams.getTeams(team, null, gender).map(
@@ -296,10 +297,11 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
           ))).map(
             (year) => stringToOption(year)
           )}
+          isSearchable={false}
           onChange={(option) => { if ((option as any)?.value) setYear((option as any).value) }}
         />
       </Col>
-      <Col xs={6}>
+      <Col xs={4} sm={4} md={6} lg={6}>
         <Select
           components = { maybeMenuList() }
           value={ getCurrentTeamOrPlaceholder() }
