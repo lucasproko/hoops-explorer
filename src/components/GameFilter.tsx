@@ -228,9 +228,8 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
     if (typeof window !== `undefined`) {
       return <Form.Control
         placeholder="eg 'NOT (Player1 AND Player2)'"
-        onChange={(ev: any) => {
-          setOffQuery(ev.target.value);
-        }}
+        onKeyUp={(ev: any) => setOffQuery(ev.target.value)}
+        onChange={(ev: any) => setOffQuery(ev.target.value)}
         value={offQuery}
         readOnly={autoOffQuery}
       />
@@ -252,6 +251,14 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
     }
   }
 
+  /** Works around a bug in the input where it was ignoring the first select/delete of a page load */
+  const handleOnQueryChange = (ev: any) => {
+    setOnQuery(ev.target.value);
+    if (autoOffQuery) {
+      setAutoOffQuery(ev.target.value);
+    }
+  };
+
   // Visual components:
 
   /** Let the user know that he might need to change */
@@ -269,43 +276,41 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
     spinner
     text="Calculating statistics"
   ><Form>
-    <Form.Group>
-      <Row>
-        <Col xs={2}>
-          <Select
-            value={ stringToOption(gender) }
-            options={Array.from(new Set(AvailableTeams.getTeams(team, year, null).map(
-              (r) => r.gender
-            ))).map(
-              (gender) => stringToOption(gender)
-            )}
-            onChange={(option) => { if ((option as any)?.value) setGender((option as any).value) }}
-          />
-        </Col>
-        <Col xs={2}>
-          <Select
-            value={ stringToOption(year) }
-            options={Array.from(new Set(AvailableTeams.getTeams(team, null, gender).map(
-              (r) => r.year
-            ))).map(
-              (year) => stringToOption(year)
-            )}
-            onChange={(option) => { if ((option as any)?.value) setYear((option as any).value) }}
-          />
-        </Col>
-        <Col xs={6}>
-          <Select
-            components = { maybeMenuList() }
-            value={ getCurrentTeamOrPlaceholder() }
-            options={teamList.map(
-              (r) => stringToOption(r.team)
-            )}
-            onChange={(option) => {
-              setTeam((option as any)?.value || "")
-            }}
-          />
-        </Col>
-      </Row>
+    <Form.Group as={Row}>
+      <Col xs={2}>
+        <Select
+          value={ stringToOption(gender) }
+          options={Array.from(new Set(AvailableTeams.getTeams(team, year, null).map(
+            (r) => r.gender
+          ))).map(
+            (gender) => stringToOption(gender)
+          )}
+          onChange={(option) => { if ((option as any)?.value) setGender((option as any).value) }}
+        />
+      </Col>
+      <Col xs={2}>
+        <Select
+          value={ stringToOption(year) }
+          options={Array.from(new Set(AvailableTeams.getTeams(team, null, gender).map(
+            (r) => r.year
+          ))).map(
+            (year) => stringToOption(year)
+          )}
+          onChange={(option) => { if ((option as any)?.value) setYear((option as any).value) }}
+        />
+      </Col>
+      <Col xs={6}>
+        <Select
+          components = { maybeMenuList() }
+          value={ getCurrentTeamOrPlaceholder() }
+          options={teamList.map(
+            (r) => stringToOption(r.team)
+          )}
+          onChange={(option) => {
+            setTeam((option as any)?.value || "")
+          }}
+        />
+      </Col>
     </Form.Group>
     <Form.Group as={Row}>
       <Form.Label column sm="2">On Query</Form.Label>
@@ -313,12 +318,8 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
         <Form.Control
           placeholder="eg 'Player1 AND Player2'"
           value={onQuery}
-          onChange={(ev: any) => {
-            setOnQuery(ev.target.value);
-            if (autoOffQuery) {
-              setAutoOffQuery(ev.target.value);
-            }
-          }}
+          onKeyUp={handleOnQueryChange}
+          onChange={handleOnQueryChange}
         />
       </Col>
     </Form.Group>
@@ -347,9 +348,8 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
         <Form.Control
           placeholder="eg 'Player0' - applied to both 'On' and 'Off' queries"
           value={baseQuery}
-          onChange={(ev: any) => {
-            setBaseQuery(ev.target.value);
-          }}
+          onKeyUp={(ev: any) => setBaseQuery(ev.target.value)}
+          onChange={(ev: any) => setBaseQuery(ev.target.value)}
         />
       </Col>
       <Col sm="2">
