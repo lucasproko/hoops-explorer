@@ -1,5 +1,5 @@
 // Google analytics:
-import { initGA, logPageView } from '../utils/analytics';
+import { initGA, logPageView } from '../utils/GoogleAnalytics';
 
 // React imports:
 import React, { useState, useEffect } from 'react';

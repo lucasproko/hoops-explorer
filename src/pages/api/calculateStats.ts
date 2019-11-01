@@ -4,12 +4,12 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import fetch from 'isomorphic-unfetch';
 
 // Application imports
-import { teamStatsQuery2018 } from "../../utils/teamStatsQueryTemplate";
-import { rosterCompareQuery2018 } from "../../utils/rosterCompareQueryTemplate";
-import { AvailableTeams } from '../../utils/AvailableTeams';
-import { publicKenpomEfficiency2015_6 } from "../../utils/publicKenpomEfficiency2015_6";
-import { publicKenpomEfficiency2018_9 } from "../../utils/publicKenpomEfficiency2018_9";
-import { publicHerhoopstatsEfficiency2018_9 } from "../../utils/publicHerhoopstatsEfficiency2018_9";
+import { teamStatsQuery } from "../../utils/es-queries/teamStatsQueryTemplate";
+import { rosterCompareQuery } from "../../utils/es-queries/rosterCompareQueryTemplate";
+import { AvailableTeams } from '../../utils/internal-data/AvailableTeams';
+import { publicKenpomEfficiency2015_6 } from "../../utils/public-data/publicKenpomEfficiency2015_6";
+import { publicKenpomEfficiency2018_9 } from "../../utils/public-data/publicKenpomEfficiency2018_9";
+import { publicHerhoopstatsEfficiency2018_9 } from "../../utils/public-data/publicHerhoopstatsEfficiency2018_9";
 
 // Additional imports
 import queryString from "query-string";
@@ -38,9 +38,9 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     const body = [
       JSON.stringify({ index: team.index_template + "_" + team.year.substring(0, 4) }),
-      JSON.stringify(teamStatsQuery2018(params, thisKenpom)),
+      JSON.stringify(teamStatsQuery(params, thisKenpom)),
       JSON.stringify({ index: team.index_template + "_" + team.year.substring(0, 4) }),
-      JSON.stringify(rosterCompareQuery2018(params, thisKenpom))
+      JSON.stringify(rosterCompareQuery(params, thisKenpom))
     ].join('\n') + "\n";
 
     try {

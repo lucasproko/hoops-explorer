@@ -24,10 +24,10 @@ import ls from 'local-storage';
 // Component imports:
 import { TeamStatsModel } from '../components/TeamStatsTable';
 import { RosterCompareModel } from '../components/RosterCompareTable';
-import { dataLastUpdated } from '../utils/dataLastUpdated';
-import { preloadedData } from '../utils/preloadedData';
-import { AvailableTeams } from '../utils/AvailableTeams';
-import { efficiencyAverages } from '../utils/efficiencyAverages';
+import { dataLastUpdated } from '../utils/internal-data/dataLastUpdated';
+import { preloadedData } from '../utils/internal-data/preloadedData';
+import { AvailableTeams } from '../utils/internal-data/AvailableTeams';
+import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
 
 // Library imports:
 import fetch from 'isomorphic-unfetch';
