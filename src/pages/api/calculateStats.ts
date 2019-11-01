@@ -7,7 +7,9 @@ import fetch from 'isomorphic-unfetch';
 import { teamStatsQuery2018 } from "../../utils/teamStatsQueryTemplate";
 import { rosterCompareQuery2018 } from "../../utils/rosterCompareQueryTemplate";
 import { AvailableTeams } from '../../utils/AvailableTeams';
-import { publicKenpomEfficiency2018 } from "../../utils/publicKenpomEfficiency2018";
+import { publicKenpomEfficiency2015_6 } from "../../utils/publicKenpomEfficiency2015_6";
+import { publicKenpomEfficiency2018_9 } from "../../utils/publicKenpomEfficiency2018_9";
+import { publicHerhoopstatsEfficiency2018_9 } from "../../utils/publicHerhoopstatsEfficiency2018_9";
 
 // Additional imports
 import queryString from "query-string";
@@ -24,7 +26,9 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     null;
 
   const kenpom: Record<string, any> = {
-    "Men_2018/9": publicKenpomEfficiency2018
+    "Men_2015/6": publicKenpomEfficiency2015_6,
+    "Men_2018/9": publicKenpomEfficiency2018_9,
+    "Women_2018/9": publicHerhoopstatsEfficiency2018_9
   };
   const thisKenpom = kenpom[`${params.gender}_${params.year}`] || {};
 

@@ -1,4 +1,4 @@
-export const publicKenpomEfficiency2018 = {
+export const publicKenpomEfficiency2018_9 = {
    "Milwaukee": {
       "stats.adj_tempo.rank": 259,
       "stats.adj_off.value": 98.6,

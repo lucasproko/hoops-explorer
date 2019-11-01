@@ -9,166 +9,183 @@ exports[`GameFilter GameFilter - should create snapshot 1`] = `
   <Form
     inline={false}
   >
-    <FormGroup>
-      <ForwardRef
-        noGutters={false}
+    <FormGroup
+      as={
+        Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "defaultProps": Object {
+            "noGutters": false,
+          },
+          "render": [Function],
+        }
+      }
+    >
+      <Col
+        lg={2}
+        md={3}
+        sm={4}
+        xs={4}
       >
-        <Col
-          xs={2}
-        >
-          <StateManager
-            defaultInputValue=""
-            defaultMenuIsOpen={false}
-            defaultValue={null}
-            onChange={[Function]}
-            options={
-              Array [
-                Object {
-                  "label": "Men",
-                  "value": "Men",
-                },
-                Object {
-                  "label": "Women",
-                  "value": "Women",
-                },
-              ]
-            }
-            value={
+        <StateManager
+          defaultInputValue=""
+          defaultMenuIsOpen={false}
+          defaultValue={null}
+          isSearchable={false}
+          onChange={[Function]}
+          options={
+            Array [
               Object {
                 "label": "Men",
                 "value": "Men",
-              }
+              },
+              Object {
+                "label": "Women",
+                "value": "Women",
+              },
+            ]
+          }
+          value={
+            Object {
+              "label": "Men",
+              "value": "Men",
             }
-          />
-        </Col>
-        <Col
-          xs={2}
-        >
-          <StateManager
-            defaultInputValue=""
-            defaultMenuIsOpen={false}
-            defaultValue={null}
-            onChange={[Function]}
-            options={
-              Array [
-                Object {
-                  "label": "2016/7",
-                  "value": "2016/7",
-                },
-                Object {
-                  "label": "2018/9",
-                  "value": "2018/9",
-                },
-              ]
-            }
-            value={
+          }
+        />
+      </Col>
+      <Col
+        lg={2}
+        md={3}
+        sm={4}
+        xs={4}
+      >
+        <StateManager
+          defaultInputValue=""
+          defaultMenuIsOpen={false}
+          defaultValue={null}
+          isSearchable={false}
+          onChange={[Function]}
+          options={
+            Array [
+              Object {
+                "label": "2015/6",
+                "value": "2015/6",
+              },
               Object {
                 "label": "2018/9",
                 "value": "2018/9",
-              }
+              },
+            ]
+          }
+          value={
+            Object {
+              "label": "2018/9",
+              "value": "2018/9",
             }
-          />
-        </Col>
-        <Col
-          xs={6}
-        >
-          <StateManager
-            defaultInputValue=""
-            defaultMenuIsOpen={false}
-            defaultValue={null}
-            onChange={[Function]}
-            options={
-              Array [
-                Object {
-                  "label": "Maryland",
-                  "value": "Maryland",
-                },
-                Object {
-                  "label": "Indiana",
-                  "value": "Indiana",
-                },
-                Object {
-                  "label": "Nebraska",
-                  "value": "Nebraska",
-                },
-                Object {
-                  "label": "Wisconsin",
-                  "value": "Wisconsin",
-                },
-                Object {
-                  "label": "Ohio St.",
-                  "value": "Ohio St.",
-                },
-                Object {
-                  "label": "Michigan St.",
-                  "value": "Michigan St.",
-                },
-                Object {
-                  "label": "Iowa",
-                  "value": "Iowa",
-                },
-                Object {
-                  "label": "Michigan",
-                  "value": "Michigan",
-                },
-                Object {
-                  "label": "Purdue",
-                  "value": "Purdue",
-                },
-                Object {
-                  "label": "Illinois",
-                  "value": "Illinois",
-                },
-                Object {
-                  "label": "Penn St.",
-                  "value": "Penn St.",
-                },
-                Object {
-                  "label": "Northwestern",
-                  "value": "Northwestern",
-                },
-                Object {
-                  "label": "Rutgers",
-                  "value": "Rutgers",
-                },
-                Object {
-                  "label": "Minnesota",
-                  "value": "Minnesota",
-                },
-                Object {
-                  "label": "Cincinnati",
-                  "value": "Cincinnati",
-                },
-                Object {
-                  "label": "Kentucky",
-                  "value": "Kentucky",
-                },
-                Object {
-                  "label": "Louisville",
-                  "value": "Louisville",
-                },
-                Object {
-                  "label": "Saint Mary's (CA)",
-                  "value": "Saint Mary's (CA)",
-                },
-                Object {
-                  "label": "Virginia",
-                  "value": "Virginia",
-                },
-                Object {
-                  "label": "UConn",
-                  "value": "UConn",
-                },
-              ]
-            }
-            value={
+          }
+        />
+      </Col>
+      <Col
+        lg={6}
+        md={6}
+        sm={4}
+        xs={4}
+      >
+        <StateManager
+          defaultInputValue=""
+          defaultMenuIsOpen={false}
+          defaultValue={null}
+          onChange={[Function]}
+          options={
+            Array [
               Object {
-                "label": "Choose Team...",
-              }
+                "label": "Maryland",
+                "value": "Maryland",
+              },
+              Object {
+                "label": "Indiana",
+                "value": "Indiana",
+              },
+              Object {
+                "label": "Nebraska",
+                "value": "Nebraska",
+              },
+              Object {
+                "label": "Wisconsin",
+                "value": "Wisconsin",
+              },
+              Object {
+                "label": "Ohio St.",
+                "value": "Ohio St.",
+              },
+              Object {
+                "label": "Michigan St.",
+                "value": "Michigan St.",
+              },
+              Object {
+                "label": "Iowa",
+                "value": "Iowa",
+              },
+              Object {
+                "label": "Michigan",
+                "value": "Michigan",
+              },
+              Object {
+                "label": "Purdue",
+                "value": "Purdue",
+              },
+              Object {
+                "label": "Illinois",
+                "value": "Illinois",
+              },
+              Object {
+                "label": "Penn St.",
+                "value": "Penn St.",
+              },
+              Object {
+                "label": "Northwestern",
+                "value": "Northwestern",
+              },
+              Object {
+                "label": "Rutgers",
+                "value": "Rutgers",
+              },
+              Object {
+                "label": "Minnesota",
+                "value": "Minnesota",
+              },
+              Object {
+                "label": "Cincinnati",
+                "value": "Cincinnati",
+              },
+              Object {
+                "label": "Kentucky",
+                "value": "Kentucky",
+              },
+              Object {
+                "label": "Louisville",
+                "value": "Louisville",
+              },
+              Object {
+                "label": "Saint Mary's (CA)",
+                "value": "Saint Mary's (CA)",
+              },
+              Object {
+                "label": "Virginia",
+                "value": "Virginia",
+              },
+              Object {
+                "label": "UConn",
+                "value": "UConn",
+              },
+            ]
+          }
+          value={
+            Object {
+              "label": "Choose Team...",
             }
-          />
-        </Col>
-      </ForwardRef>
+          }
+        />
+      </Col>
     </FormGroup>
     <FormGroup
       as={
@@ -193,7 +210,8 @@ exports[`GameFilter GameFilter - should create snapshot 1`] = `
       >
         <FormControl
           onChange={[Function]}
-          placeholder="eg 'Player1 AND Player2'"
+          onKeyUp={[Function]}
+          placeholder="eg 'Player1 AND (Player2 OR Player3)'"
           value=""
         />
       </Col>
@@ -259,7 +277,8 @@ exports[`GameFilter GameFilter - should create snapshot 1`] = `
       >
         <FormControl
           onChange={[Function]}
-          placeholder="eg 'Player0' - applied to both 'On' and 'Off' queries"
+          onKeyUp={[Function]}
+          placeholder="eg 'NOT (WalkOn1 OR WalkOn2)' - applied to both 'On' and 'Off' queries"
           value=""
         />
       </Col>

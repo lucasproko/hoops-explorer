@@ -24,6 +24,7 @@ export type TeamStatsModel = {
   on: any,
   off: any,
   baseline: any,
+  avgOff?: number,
   error_code?: string
 }
 type Props = {
@@ -36,13 +37,14 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({teamStats}) => {
   const offCellMetaFn = (key: string, val: any) => "off";
   const defPrefixFn = (key: string) => "def_" + key;
   const defCellMetaFn = (key: string, val: any) => "def";
-  const avgOff2018 = 104.3; //TODO - lookup vs year
+  const avgOff = teamStats.avgOff || 100.0;
+
   const calcAdfEff = (stats: any) => {
     return {
       off_adj_ppp: (stats.def_adj_opp?.value) ?
-        (stats.off_ppp.value || 100.0)*(avgOff2018/stats.def_adj_opp.value) : undefined,
+        (stats.off_ppp.value || 100.0)*(avgOff/stats.def_adj_opp.value) : undefined,
       def_adj_ppp: (stats.off_adj_opp?.value) ?
-        (stats.def_ppp.value || 100.0)*(avgOff2018/stats.off_adj_opp.value) : undefined
+        (stats.def_ppp.value || 100.0)*(avgOff/stats.off_adj_opp.value) : undefined
     };
   };
   const adjOn = calcAdfEff(teamStats.on);

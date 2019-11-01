@@ -37,7 +37,7 @@ export class AvailableTeams {
   static readonly byName: Record<string, Array<AvailableTeamMeta>> = {
     // Maryland!
     "Maryland": [
-      { team: "Maryland", year: "2016/7", gender: "Men", index_template: "maryland" },
+      { team: "Maryland", year: "2015/6", gender: "Men", index_template: "maryland" },
       { team: "Maryland", year: "2018/9", gender: "Men", index_template: "misc_conf" },
       { team: "Maryland", year: "2018/9", gender: "Women", index_template: "women_bigten" },
     ],

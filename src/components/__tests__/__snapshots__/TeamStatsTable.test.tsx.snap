@@ -347,14 +347,14 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
               <td
                 style={
                   Object {
-                    "backgroundColor": "#178c17",
+                    "backgroundColor": "#55ab55",
                     "fontWeight": "normal",
                     "textAlign": "center",
                     "width": "4.7%",
                   }
                 }
               >
-                118.2
+                113.3
               </td>
               <td
                 style={
@@ -601,14 +601,14 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
               <td
                 style={
                   Object {
-                    "backgroundColor": "#c4e1c4",
+                    "backgroundColor": "#92c992",
                     "fontWeight": "normal",
                     "textAlign": "center",
                     "width": "4.7%",
                   }
                 }
               >
-                95.4
+                91.4
               </td>
               <td
                 style={
@@ -862,14 +862,14 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
               <td
                 style={
                   Object {
-                    "backgroundColor": "#44a244",
+                    "backgroundColor": "#80c080",
                     "fontWeight": "normal",
                     "textAlign": "center",
                     "width": "4.7%",
                   }
                 }
               >
-                114.7
+                110.0
               </td>
               <td
                 style={
@@ -1116,14 +1116,14 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
               <td
                 style={
                   Object {
-                    "backgroundColor": "#5fb05f",
+                    "backgroundColor": "#319931",
                     "fontWeight": "normal",
                     "textAlign": "center",
                     "width": "4.7%",
                   }
                 }
               >
-                87.5
+                83.9
               </td>
               <td
                 style={
@@ -1377,14 +1377,14 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
               <td
                 style={
                   Object {
-                    "backgroundColor": "#259325",
+                    "backgroundColor": "#63b163",
                     "fontWeight": "normal",
                     "textAlign": "center",
                     "width": "4.7%",
                   }
                 }
               >
-                117.1
+                112.2
               </td>
               <td
                 style={
@@ -1631,14 +1631,14 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
               <td
                 style={
                   Object {
-                    "backgroundColor": "#a4d2a4",
+                    "backgroundColor": "#73b973",
                     "fontWeight": "normal",
                     "textAlign": "center",
                     "width": "4.7%",
                   }
                 }
               >
-                92.9
+                89.0
               </td>
               <td
                 style={
