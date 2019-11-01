@@ -309,6 +309,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
           <tbody>
             <tr>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": undefined,
@@ -321,6 +323,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 'On' Offense
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": undefined,
@@ -333,6 +337,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": "#6eb76e",
@@ -345,6 +351,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 111.4
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": "#55ab55",
@@ -357,6 +365,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 113.3
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": undefined,
@@ -369,6 +379,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": "#cee6ce",
@@ -381,6 +393,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 51.9
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": "#ffa9a9",
@@ -393,6 +407,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 18.0
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": "#40a040",
@@ -405,6 +421,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 33.7
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": "#9dce9d",
@@ -417,6 +435,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 33.8
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": undefined,
@@ -429,6 +449,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": "#ffe8bf",
@@ -441,6 +463,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 37.3
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": "#eff7fa",
@@ -453,6 +477,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 29.5
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": "#fffefc",
@@ -465,6 +491,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 33.2
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": undefined,
@@ -477,6 +505,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": "#acd6ac",
@@ -489,6 +519,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 35.3
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": "#dceedc",
@@ -501,6 +533,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 51.4
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": "#c2e1c2",
@@ -513,6 +547,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 42.4
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": "#ffeeee",
@@ -525,6 +561,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 59.3
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": undefined,
@@ -537,6 +575,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": undefined,
@@ -549,6 +589,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 1293
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": undefined,
@@ -563,6 +605,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
             </tr>
             <tr>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": undefined,
@@ -575,6 +619,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 'On' Defense
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": undefined,
@@ -587,6 +633,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": "#ffeeee",
@@ -599,6 +647,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 101.3
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": "#92c992",
@@ -611,6 +661,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 91.4
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": undefined,
@@ -623,6 +675,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": "#b5dab5",
@@ -635,6 +689,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 47.1
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": "#ff7070",
@@ -647,6 +703,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 12.6
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": "#a1d0a1",
@@ -659,6 +717,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 23.7
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": "#a4d2a4",
@@ -671,6 +731,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 26.4
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": undefined,
@@ -683,6 +745,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": "#ffd17c",
@@ -695,6 +759,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 41.7
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": "#fffaf1",
@@ -707,6 +773,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 33.9
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": "#d7ecf3",
@@ -719,6 +787,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 24.3
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": undefined,
@@ -731,6 +801,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": "#edf6ed",
@@ -743,6 +815,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 32.5
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": "#98cc98",
@@ -755,6 +829,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 45.9
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": "#c9e4c9",
@@ -767,6 +843,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 37.9
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": "#b7dbb7",
@@ -779,6 +857,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 57.2
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": undefined,
@@ -791,6 +871,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": undefined,
@@ -803,6 +885,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 1274
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": undefined,
@@ -824,6 +908,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
             </tr>
             <tr>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": undefined,
@@ -836,6 +922,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 'Off' Offense
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": undefined,
@@ -848,6 +936,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": "#8ac58a",
@@ -860,6 +950,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 109.2
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": "#80c080",
@@ -872,6 +964,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 110.0
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": undefined,
@@ -884,6 +978,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": "#bddebd",
@@ -896,6 +992,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 52.6
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": "#ff4e4e",
@@ -908,6 +1006,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 20.2
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": "#1e8f1e",
@@ -920,6 +1020,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 34.9
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": "#f4f9f4",
@@ -932,6 +1034,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 30.4
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": undefined,
@@ -944,6 +1048,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": "#ffebc7",
@@ -956,6 +1062,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 36.8
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": "#f6fbfc",
@@ -968,6 +1076,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 31.0
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": "#fbfdfe",
@@ -980,6 +1090,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 32.2
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": undefined,
@@ -992,6 +1104,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": "#f3f9f3",
@@ -1004,6 +1118,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 33.3
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": "#97cb97",
@@ -1016,6 +1132,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 54.1
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": "#bbddbb",
@@ -1028,6 +1146,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 42.7
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": "#7fbf7f",
@@ -1040,6 +1160,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 65.0
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": undefined,
@@ -1052,6 +1174,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": undefined,
@@ -1064,6 +1188,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 590
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": undefined,
@@ -1078,6 +1204,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
             </tr>
             <tr>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": undefined,
@@ -1090,6 +1218,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 'Off' Defense
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": undefined,
@@ -1102,6 +1232,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": "#94ca94",
@@ -1114,6 +1246,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 91.6
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": "#319931",
@@ -1126,6 +1260,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 83.9
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": undefined,
@@ -1138,6 +1274,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": "#45a245",
@@ -1150,6 +1288,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 42.7
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": "#a5d2a5",
@@ -1162,6 +1302,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 18.1
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": "#dceedc",
@@ -1174,6 +1316,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 25.8
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": "#98cc98",
@@ -1186,6 +1330,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 26.0
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": undefined,
@@ -1198,6 +1344,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": "#ffeac4",
@@ -1210,6 +1358,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 36.9
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": "#fff4e1",
@@ -1222,6 +1372,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 35.0
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": "#e9f4f8",
@@ -1234,6 +1386,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 28.1
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": undefined,
@@ -1246,6 +1400,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": "#99cc99",
@@ -1258,6 +1414,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 30.2
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": "#1e8f1e",
@@ -1270,6 +1428,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 41.2
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": "#68b468",
@@ -1282,6 +1442,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 34.1
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": "#008000",
@@ -1294,6 +1456,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 50.0
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": undefined,
@@ -1306,6 +1470,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": undefined,
@@ -1318,6 +1484,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 596
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": undefined,
@@ -1339,6 +1507,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
             </tr>
             <tr>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": undefined,
@@ -1351,6 +1521,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 'Baseline' Offense
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": undefined,
@@ -1363,6 +1535,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": "#77bb77",
@@ -1375,6 +1549,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 110.7
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": "#63b163",
@@ -1387,6 +1563,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 112.2
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": undefined,
@@ -1399,6 +1577,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": "#c9e4c9",
@@ -1411,6 +1591,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 52.1
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": "#ff8d8d",
@@ -1423,6 +1605,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 18.7
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": "#359b35",
@@ -1435,6 +1619,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 34.1
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": "#b8dcb8",
@@ -1447,6 +1633,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 32.8
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": undefined,
@@ -1459,6 +1647,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": "#ffe9c1",
@@ -1471,6 +1661,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 37.1
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": "#f1f8fb",
@@ -1483,6 +1675,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 30.0
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": "#ffffff",
@@ -1495,6 +1689,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 32.9
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": undefined,
@@ -1507,6 +1703,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": "#c2e1c2",
@@ -1519,6 +1717,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 34.7
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": "#c7e3c7",
@@ -1531,6 +1731,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 52.2
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": "#c0e0c0",
@@ -1543,6 +1745,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 42.5
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": "#e3f1e3",
@@ -1555,6 +1759,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 61.1
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": undefined,
@@ -1567,6 +1773,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": undefined,
@@ -1579,6 +1787,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 1883
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": undefined,
@@ -1593,6 +1803,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
             </tr>
             <tr>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": undefined,
@@ -1605,6 +1817,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 'Baseline' Defense
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": undefined,
@@ -1617,6 +1831,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": "#e9f4e9",
@@ -1629,6 +1845,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 98.2
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": "#73b973",
@@ -1641,6 +1859,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 89.0
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": undefined,
@@ -1653,6 +1873,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": "#92c992",
@@ -1665,6 +1887,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 45.7
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": "#ffbaba",
@@ -1677,6 +1901,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 14.4
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": "#b5dab5",
@@ -1689,6 +1915,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 24.4
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": "#a0d0a0",
@@ -1701,6 +1929,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 26.3
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": undefined,
@@ -1713,6 +1943,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": "#ffd993",
@@ -1725,6 +1957,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 40.2
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": "#fff8ec",
@@ -1737,6 +1971,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 34.3
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": "#ddeff5",
@@ -1749,6 +1985,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 25.5
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": undefined,
@@ -1761,6 +1999,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": "#d5ead5",
@@ -1773,6 +2013,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 31.8
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": "#6fb76f",
@@ -1785,6 +2027,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 44.4
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": "#aad5aa",
@@ -1797,6 +2041,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 36.7
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": "#78bc78",
@@ -1809,6 +2055,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 54.7
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": undefined,
@@ -1821,6 +2069,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": undefined,
@@ -1833,6 +2083,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 1870
               </td>
               <td
+                className=""
+                rowSpan={1}
                 style={
                   Object {
                     "backgroundColor": undefined,

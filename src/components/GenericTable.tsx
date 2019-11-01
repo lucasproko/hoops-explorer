@@ -20,9 +20,11 @@ type GenericTableColorPickerFn =  (val: any, cellMeta: string) => string | undef
 export class GenericTableColProps {
   constructor(
     colName: string, toolTip: string,
-    widthUnits: number, isTitle: boolean,
-    formatter: (val: any) => string,
-    colorPicker: GenericTableColorPickerFn
+    widthUnits: number, isTitle: boolean = false,
+    formatter: (val: any) => string = GenericTableOps.defaultFormatter,
+    colorPicker: GenericTableColorPickerFn = GenericTableOps.defaultColorPicker,
+    rowSpan: (key: string) => number = GenericTableOps.defaultRowSpanCalculator,
+    className: string = ""
   ) {
     this.colName = colName;
     this.toolTip = toolTip;
@@ -30,6 +32,8 @@ export class GenericTableColProps {
     this.isTitle = isTitle;
     this.formatter = formatter;
     this.colorPicker = colorPicker;
+    this.rowSpan = rowSpan;
+    this.className = className;
   }
   readonly colName: string;
   readonly toolTip: string;
@@ -37,6 +41,8 @@ export class GenericTableColProps {
   readonly isTitle: boolean;
   readonly formatter: (val: any) => string;
   readonly colorPicker:  GenericTableColorPickerFn;
+  readonly rowSpan: (key: string) => number;
+  readonly className: string;
 }
 class GenericTableDataRow { //TODO: remove generic table
   constructor(
@@ -64,6 +70,7 @@ export class GenericTableOps {
   static readonly pointsFormatter = (val: any) => (val as number).toFixed(1);
   static readonly defaultCellMeta = (key: string, value: any) => "";
   static readonly defaultColorPicker =  (val: any, cellMeta: string) => undefined;
+  static readonly defaultRowSpanCalculator = (key: string) => 1;
 
   // Rows:
 
@@ -77,19 +84,26 @@ export class GenericTableOps {
   // Cols:
 
   static addPctCol(colName: string, toolTip: string, colorPicker: GenericTableColorPickerFn) {
-    return new GenericTableColProps(colName, toolTip, 2, false, GenericTableOps.percentFormatter, colorPicker)
+    return new GenericTableColProps(colName, toolTip, 2, false, GenericTableOps.percentFormatter, colorPicker);
   }
   static addPtsCol(colName: string, toolTip: string, colorPicker: GenericTableColorPickerFn) {
-    return new GenericTableColProps(colName, toolTip, 2, false, GenericTableOps.pointsFormatter, colorPicker)
+    return new GenericTableColProps(colName, toolTip, 2, false, GenericTableOps.pointsFormatter, colorPicker);
   }
   static addIntCol(colName: string, toolTip: string, colorPicker: GenericTableColorPickerFn) {
-    return new GenericTableColProps(colName, toolTip, 2, false, GenericTableOps.defaultFormatter, colorPicker)
+    return new GenericTableColProps(colName, toolTip, 2, false, GenericTableOps.defaultFormatter, colorPicker);
   }
-  static addTitle(colName: string, toolTip: string) {
-    return new GenericTableColProps(colName, toolTip, 8, true, GenericTableOps.defaultFormatter, GenericTableOps.defaultColorPicker)
+  static addTitle(
+    colName: string, toolTip: string,
+    rowSpan: (key: string) => number = GenericTableOps.defaultRowSpanCalculator,
+    className: string = ""
+  ) {
+    return new GenericTableColProps(colName, toolTip, 8, true,
+      GenericTableOps.defaultFormatter, GenericTableOps.defaultColorPicker,
+      rowSpan, className
+    );
   }
   static addColSeparator() {
-    return new GenericTableColProps("", "", 1, false, GenericTableOps.defaultFormatter, GenericTableOps.defaultColorPicker)
+    return new GenericTableColProps("", "", 1);
   }
 }
 type Props = {
@@ -161,11 +175,19 @@ const GenericTable: React.FunctionComponent<Props> = ({tableFields, tableData, t
     return Object.entries(tableFields).map((keyVal, index) => {
         const key: string = keyVal[0];
         const colProp: GenericTableColProps = keyVal[1];
-        const tmpValObj = row.dataObj[row.prefixFn(key)] || {};
+        const actualKey = row.prefixFn(key);
+        const tmpValObj = row.dataObj[actualKey] || {};
         const tmpVal = (tmpValObj instanceof Object) ? tmpValObj.value : tmpValObj;
         const style = getRowStyle(key, tmpVal, colProp, row);
         const val = (tmpVal && (tmpVal != "")) ? colProp.formatter(tmpVal) : "";
-        return <td key={"" + index} style={style}>{val}</td>;
+
+        const cellMeta = row.cellMetaFn(key, val);
+        const rowSpan = colProp.rowSpan(cellMeta);
+        const className = colProp.className;
+
+        return (rowSpan > 0) ?
+          <td className={className} rowSpan={rowSpan} key={"" + index} style={style}>{val}</td> :
+          (null);
     });
   }
   function renderTableRows() {

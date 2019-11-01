@@ -56,8 +56,6 @@ const OnOffAnalysisPage: NextPage<{}> = () => {
   )
 
   const onGameFilterParamsChange = (params: GameFilterParams) => {
-    //TODO: get URL?
-    //TODO: build params
     const href = `/?${queryString.stringify(params)}`
     const as = href
     Router.push(href, as, { shallow: true })

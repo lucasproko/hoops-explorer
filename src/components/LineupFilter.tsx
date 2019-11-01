@@ -22,8 +22,7 @@ import LoadingOverlay from 'react-loading-overlay';
 import ls from 'local-storage';
 
 // Component imports:
-import { TeamStatsModel } from '../components/TeamStatsTable';
-import { RosterCompareModel } from '../components/RosterCompareTable';
+import { LineupStatsModel } from '../components/LineupStatsModel';
 import { dataLastUpdated } from '../utils/internal-data/dataLastUpdated';
 import { preloadedData } from '../utils/internal-data/preloadedData';
 import { AvailableTeams } from '../utils/internal-data/AvailableTeams';
@@ -32,24 +31,21 @@ import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
 // Library imports:
 import fetch from 'isomorphic-unfetch';
 
-export type GameFilterParams = {
+export type LineupFilterParams = {
   year?: string,
   team?: string,
   gender?: string,
-  autoOffQuery?: string;
-  onQuery?: string,
-  offQuery?: string,
-  baseQuery?: string,
+  lineupQuery?: string,
   minRank?: string,
   maxRank?: string
 }
 type Props = {
-  onStats: (teamStats: TeamStatsModel, rosterCompareStats: RosterCompareModel) => void;
-  startingState: GameFilterParams;
-  onChangeState: (newParams: GameFilterParams) => void;
+  onStats: (lineupStats: LineupStatsModel) => void;
+  startingState: LineupFilterParams;
+  onChangeState: (newParams: LineupFilterParams) => void;
 }
 
-const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onChangeState}) => {
+const LineupFilter: React.FunctionComponent<Props> = ({onStats, startingState, onChangeState}) => {
 
   // Data model
 
@@ -67,12 +63,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
   const teamList = AvailableTeams.getTeams(null, year, gender);
 
   // Queries and filters:
-  const [ autoOffQuery, toggleAutoOffQuery ] = useState(
-    "true" == (((startingState.autoOffQuery == undefined) ? "true" : startingState.autoOffQuery) || "false")
-  )
-  const [ onQuery, setOnQuery ] = useState(startingState.onQuery || "")
-  const [ offQuery, setOffQuery ] = useState(startingState.offQuery || "")
-  const [ baseQuery, setBaseQuery ] = useState(startingState.baseQuery || "")
+  const [ baseQuery, setBaseQuery ] = useState(startingState.lineupQuery || "")
 
   const [ minRankFilter, setMinRankFilter ] = useState(startingState.minRank || "0")
   const [ maxRankFilter, setMaxRankFilter ] = useState(startingState.maxRank || "400")
@@ -81,9 +72,11 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
 
   const isDebug = (process.env.NODE_ENV !== 'production');
 
+  const cacheKeyPrefix = "lineups-";
+
   // Utils
 
-  const currentJsonEpoch = dataLastUpdated[year] || -1;
+  const currentJsonEpoch = dataLastUpdated[`${gender}_${year}`] || -1;
   useEffect(() => {
     setSubmitDisabled(shouldSubmitBeDisabled());
 
@@ -100,7 +93,9 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
         (ls as any).set(cachedEpochKey, currentJsonEpoch);
       }
       // Check for pre-loads:
-      Object.entries(preloadedData || {}).map(function(keyVal) {
+      Object.entries(preloadedData || {}).filter(function(key) {
+        return key.indexOf(cacheKeyPrefix) == 0;
+      }).map(function(keyVal) {
         const key = keyVal[0];
         const valAsJson = keyVal[1];
         if ((cachedEpoch == currentJsonEpoch) && getCachedData(keyVal[0])) {
@@ -117,25 +112,19 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
       });
       // Check if object is in cache and onSubmit if so
       const newParamsStr = queryString.stringify(buildParamsFromState());
-      const cachedJson = getCachedData(newParamsStr);
+      const cachedJson = getCachedData(cacheKeyPrefix + newParamsStr);
       if (cachedJson) {
         handleResponse(cachedJson);
       }
     }
   });
-  const setAutoOffQuery = (onQuery: string) => {
-    setOffQuery(onQuery == "" ? "" : `NOT (${onQuery})`);
-  }
 
-  function buildParamsFromState(): GameFilterParams {
+  function buildParamsFromState(): LineupFilterParams {
     return {
       team: team,
       year: year,
       gender: gender,
-      autoOffQuery: autoOffQuery.toString(),
-      onQuery: onQuery,
-      offQuery: offQuery,
-      baseQuery: baseQuery,
+      lineupQuery: baseQuery,
       minRank: minRankFilter,
       maxRank: maxRankFilter
     };
@@ -167,19 +156,16 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
   /** Whether any of the queries returned an error - we'll treat them all as errors if so */
   function isResponseError(resp: any) {
     const jsons = resp?.responses || [];
-    const teamJson = (jsons.length > 0) ? jsons[0] : resp;
+    const lineupJson = (jsons.length > 0) ? jsons[0] : resp;
       //(error can be so low level there's not even a responses)
-    const rosterCompareJson = (jsons.length > 1) ? jsons[1] : {};
-    return (Object.keys(teamJson?.error || {}).length > 0) ||
-      (Object.keys(rosterCompareJson?.error || {}).length > 0);
+    return (Object.keys(lineupJson?.error || {}).length > 0);
   }
 
   /** Handles the response from ES to a stats calc request */
   function handleResponse(json: any) {
     setQueryIsLoading(false);
     const jsons = json?.responses || [];
-    const teamJson = (jsons.length > 0) ? jsons[0] : {};
-    const rosterCompareJson = (jsons.length > 1) ? jsons[1] : {};
+    const lineupJson = (jsons.length > 0) ? jsons[0] : {};
     const newParams = buildParamsFromState();
     const wasError = isResponseError(json);
     if (!wasError) {
@@ -188,16 +174,9 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
       onChangeState(newParams);
     }
     onStats({
-      on: teamJson?.aggregations?.tri_filter?.buckets?.on || {},
-      off: teamJson?.aggregations?.tri_filter?.buckets?.off || {},
-      baseline: teamJson?.aggregations?.tri_filter?.buckets?.baseline || {},
-      error_code: wasError ? (teamJson?.status || json?.status) : undefined,
+      lineups: lineupJson?.aggregations?.lineups?.buckets,
+      error_code: wasError ? (lineupJson?.status || json?.status) : undefined,
       avgOff: efficiencyAverages[`${gender}_${year}`]
-    }, {
-      on: rosterCompareJson?.aggregations?.tri_filter?.buckets?.on || {},
-      off: rosterCompareJson?.aggregations?.tri_filter?.buckets?.off || {},
-      baseline: rosterCompareJson?.aggregations?.tri_filter?.buckets?.baseline || {},
-      error_code: wasError ? (rosterCompareJson?.status || json?.status) : undefined
     });
   }
   function onSubmit() {
@@ -205,20 +184,20 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
     const newParamsStr = queryString.stringify(buildParamsFromState());
 
     // Check if it's in the cache:
-    const cachedJson = getCachedData(newParamsStr);
+    const cachedJson = getCachedData(cacheKeyPrefix + newParamsStr);
     if (cachedJson) {
       handleResponse(cachedJson);
     } else {
-      fetch(`/api/calculateOnOffStats?${newParamsStr}`).then(function(response) {
+      fetch(`/api/calculateLineupStats?${newParamsStr}`).then(function(response) {
         response.json().then(function(json) {
           // Cache result locally:
           const newCacheVal = JSON.stringify({cacheEpoch: currentJsonEpoch, ...json});
           if (isDebug) {
-            console.log(`CACHE_KEY=[${newParamsStr}]`);
+            console.log(`CACHE_KEY=[${cacheKeyPrefix}${newParamsStr}]`);
             console.log(`CACHE_VAL=[${newCacheVal}]`);
           }
           if (!isResponseError(json)) { //(never cache errors)
-            (ls as any).set(newParamsStr, newCacheVal);
+            (ls as any).set(cacheKeyPrefix + newParamsStr, newCacheVal);
           }
           handleResponse(json);
         })
@@ -226,18 +205,6 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
     }
   }
 
-  /** Ran into issues with SSR and 'readOnly' property, so have to fix like this */
-  function renderOffQueryFormField() {
-    if (typeof window !== `undefined`) {
-      return <Form.Control
-        placeholder="eg 'NOT (Player1 AND (Player2 OR Player3))'"
-        onKeyUp={(ev: any) => setOffQuery(ev.target.value)}
-        onChange={(ev: any) => setOffQuery(ev.target.value)}
-        value={offQuery}
-        readOnly={autoOffQuery}
-      />
-    }
-  }
   /** For use in selects */
   function stringToOption(s: String) {
     return { label: s, value: s};
@@ -253,14 +220,6 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
       return { MenuList };
     }
   }
-
-  /** Works around a bug in the input where it was ignoring the first select/delete of a page load */
-  const handleOnQueryChange = (ev: any) => {
-    setOnQuery(ev.target.value);
-    if (autoOffQuery) {
-      setAutoOffQuery(ev.target.value);
-    }
-  };
 
   // Visual components:
 
@@ -318,40 +277,10 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
       </Col>
     </Form.Group>
     <Form.Group as={Row}>
-      <Form.Label column sm="2">On Query</Form.Label>
-      <Col sm="8">
-        <Form.Control
-          placeholder="eg 'Player1 AND (Player2 OR Player3)'"
-          value={onQuery}
-          onKeyUp={handleOnQueryChange}
-          onChange={handleOnQueryChange}
-        />
-      </Col>
-    </Form.Group>
-    <Form.Group as={Row}>
-      <Form.Label column sm="2">Off Query</Form.Label>
-      <Col sm="8">
-        { renderOffQueryFormField() }
-      </Col>
-      <Col sm="2">
-        <Form.Check type="switch"
-          id="autoOffQuery"
-          checked={autoOffQuery}
-          onChange={() => {
-            if (!autoOffQuery) {
-              setAutoOffQuery(onQuery);
-            }
-            toggleAutoOffQuery(!autoOffQuery);
-          }}
-          label="Auto"
-        />
-      </Col>
-    </Form.Group>
-    <Form.Group as={Row}>
       <Form.Label column sm="2">Baseline Query</Form.Label>
       <Col sm="8">
         <Form.Control
-          placeholder="eg 'NOT (WalkOn1 OR WalkOn2)' - applied to both 'On' and 'Off' queries"
+          placeholder="eg 'Player1 AND NOT (WalkOn1 OR WalkOn2)'"
           value={baseQuery}
           onKeyUp={(ev: any) => setBaseQuery(ev.target.value)}
           onChange={(ev: any) => setBaseQuery(ev.target.value)}
@@ -398,4 +327,4 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
   </Form></LoadingOverlay>;
 }
 
-export default GameFilter;
+export default LineupFilter;

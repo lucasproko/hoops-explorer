@@ -23,24 +23,22 @@ import GenericTable, { GenericTableOps, GenericTableColProps } from "./GenericTa
 // Util imports
 import { CbbColors } from "../utils/CbbColors"
 
-export type TeamStatsModel = {
-  on: any,
-  off: any,
-  baseline: any,
+export type LineupStatsModel = {
+  lineups?: Array<any>,
   avgOff?: number,
   error_code?: string
 }
 type Props = {
-  teamStats: TeamStatsModel
+  lineupStats: LineupStatsModel
 }
 
-const TeamStatsTable: React.FunctionComponent<Props> = ({teamStats}) => {
+const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats}) => {
 
   const offPrefixFn = (key: string) => "off_" + key;
   const offCellMetaFn = (key: string, val: any) => "off";
   const defPrefixFn = (key: string) => "def_" + key;
   const defCellMetaFn = (key: string, val: any) => "def";
-  const avgOff = teamStats.avgOff || 100.0;
+  const avgOff = lineupStats.avgOff || 100.0;
 
   const calcAdfEff = (stats: any) => {
     return {
@@ -50,32 +48,21 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({teamStats}) => {
         (stats.def_ppp.value || 100.0)*(avgOff/stats.off_adj_opp.value) : undefined
     };
   };
-  const adjOn = calcAdfEff(teamStats.on);
-  const adjOff = calcAdfEff(teamStats.off);
-  const adjBase = calcAdfEff(teamStats.baseline);
-  const teamStatsOn = { off_title:  "'On' Offense", def_title: "'On' Defense", ...teamStats.on, ...adjOn };
-  const teamStatsOff = { off_title:"'Off' Offense", def_title: "'Off' Defense", ...teamStats.off, ...adjOff };
-  const teamStatsBaseline = { off_title: "'Baseline' Offense", def_title: "'Baseline' Defense", ...teamStats.baseline, ...adjBase };
-
-  const tableData = _.flatMap([
-    (teamStats.on?.doc_count) ? [
-      GenericTableOps.buildDataRow(teamStatsOn, offPrefixFn, offCellMetaFn),
-      GenericTableOps.buildDataRow(teamStatsOn, defPrefixFn, defCellMetaFn),
+  const lineups = lineupStats?.lineups || [];
+  const tableData = _.flatMap(lineups.map((lineup) => {
+    const adjOffDef = calcAdfEff(lineup);
+    const title = lineup.key.replace(/_/g, " / "); //TODO: merge the lines
+    const stats = { off_title: title, def_title: "", ...lineup, ...adjOffDef };
+    return [
+      GenericTableOps.buildDataRow(stats, offPrefixFn, offCellMetaFn),
+      GenericTableOps.buildDataRow(stats, defPrefixFn, defCellMetaFn),
       GenericTableOps.buildRowSeparator()
-    ] : [],
-    (teamStats.off?.doc_count) ? [
-      GenericTableOps.buildDataRow(teamStatsOff, offPrefixFn, offCellMetaFn),
-      GenericTableOps.buildDataRow(teamStatsOff, defPrefixFn, defCellMetaFn),
-      GenericTableOps.buildRowSeparator()
-    ] : [],
-    [ GenericTableOps.buildDataRow(teamStatsBaseline, offPrefixFn, offCellMetaFn),
-    GenericTableOps.buildDataRow(teamStatsBaseline, defPrefixFn, defCellMetaFn),
-    GenericTableOps.buildRowSeparator() ],
-  ]);
+    ];
+  }));
 
   // 2] Data Model
   const tableFields = { //accessors vs column metadata
-    "title": GenericTableOps.addTitle("", ""),
+    "title": GenericTableOps.addTitle("", "", rowSpanCalculator, "small"),
     "sep0": GenericTableOps.addColSeparator(),
     "ppp": GenericTableOps.addPtsCol("P/100", "Points per 100 possessions", picker(...CbbColors.pp100)),
     "adj_ppp": GenericTableOps.addPtsCol("Adj P/100", "Approximate schedule-adjusted Points per 100 possessions", picker(...CbbColors.pp100)),
@@ -107,27 +94,32 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({teamStats}) => {
   }
   /** Sticks an overlay on top of the table if no query has ever been loaded */
   function needToLoadQuery() {
-    return (Object.keys(teamStats.on).length == 0) &&
-      (Object.keys(teamStats.off).length == 0) &&
-      (Object.keys(teamStats.baseline).length == 0);
+    return lineupStats.lineups === undefined;
+  }
+  function rowSpanCalculator(cellMeta: string) {
+    switch(cellMeta) {
+      case "off": return 2;
+      case "def": return 0;
+      default: return 1;
+    }
   }
 
   // 4] View
   return <Container>
     <LoadingOverlay
       active={needToLoadQuery()}
-      text={teamStats.error_code ?
-        `Query Error: ${teamStats.error_code}` :
+      text={lineupStats.error_code ?
+        `Query Error: ${lineupStats.error_code}` :
         "Press 'Submit' to view results"
       }
     >
       <Row>
         <Col>
-          <GenericTable tableCopyId="teamStatsTable" tableFields={tableFields} tableData={tableData}/>
+          <GenericTable tableCopyId="lineupStatsTable" tableFields={tableFields} tableData={tableData}/>
         </Col>
       </Row>
     </LoadingOverlay>
   </Container>;
 };
 
-export default TeamStatsTable;
+export default LineupStatsTable;
