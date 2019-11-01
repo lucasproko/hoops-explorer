@@ -1,8 +1,7 @@
-import { ncaaToKenpomLookup } from "./ncaaToKenpomLookup";
 import { commonTeamQuery } from "./commonTeamQuery";
 import { commonOnOffBaseQuery } from "./commonOnOffBaseQuery";
 
-export const rosterCompareQuery = function(params: any, publicKenpomEfficiency: any) {
+export const rosterCompareQuery = function(params: any, publicEfficiency: any, lookup: any) {
   return {
      "_source": {
         "includes": [],
@@ -47,6 +46,6 @@ export const rosterCompareQuery = function(params: any, publicKenpomEfficiency: 
            }
         }
      },
-     "query": commonTeamQuery(params, publicKenpomEfficiency)
+     "query": commonTeamQuery(params, publicEfficiency, lookup)
   };
 }

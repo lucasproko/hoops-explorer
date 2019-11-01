@@ -1,9 +1,8 @@
-import { ncaaToKenpomLookup } from "./ncaaToKenpomLookup";
 import { commonTeamQuery } from "./commonTeamQuery";
 import { commonOnOffBaseQuery } from "./commonOnOffBaseQuery";
 import { commonLineupAggregations } from "./commonLineupAggregations";
 
-export const teamStatsQuery = function(params: any, publicKenpomEfficiency: any) {
+export const teamStatsQuery = function(params: any, publicEfficiency: any, lookup: any) {
   return {
      "_source": {
         "includes": [],
@@ -12,10 +11,10 @@ export const teamStatsQuery = function(params: any, publicKenpomEfficiency: any)
      "size": 0,
      "aggregations": {
         "tri_filter": {
-           "aggregations": commonLineupAggregations(publicKenpomEfficiency),
+           "aggregations": commonLineupAggregations(publicEfficiency, lookup),
            "filters": commonOnOffBaseQuery(params)
         }
      },
-     "query": commonTeamQuery(params, publicKenpomEfficiency)
+     "query": commonTeamQuery(params, publicEfficiency, lookup)
   };
 }

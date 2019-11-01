@@ -1,6 +1,4 @@
-import { ncaaToKenpomLookup } from "../public-data/ncaaToKenpomLookup"
-
-export const commonLineupAggregations = function(publicKenpomEfficiency: any) {
+export const commonLineupAggregations = function(publicEfficiency: any, lookup: any) {
   return {
      "off_adj_opp": {
         "weighted_avg": {
@@ -12,8 +10,8 @@ export const commonLineupAggregations = function(publicKenpomEfficiency: any) {
                  "source": "def kp_name = params.pbp_to_kp[doc[\"opponent.team.keyword\"].value];\nif (kp_name == null) {\n   kp_name = doc[\"opponent.team.keyword\"].value;\n} else {\n   kp_name = kp_name.pbp_kp_team;\n}\ndef oppo = params.kp[kp_name];\nif (oppo != null) {\n return oppo['stats.adj_off.value'];\n} else {\n return null;\n}\n",
                  "lang": "painless",
                  "params": {
-                    "pbp_to_kp": ncaaToKenpomLookup,
-                    "kp": publicKenpomEfficiency
+                    "pbp_to_kp": lookup,
+                    "kp": publicEfficiency
                  }
               }
            }
@@ -166,8 +164,8 @@ export const commonLineupAggregations = function(publicKenpomEfficiency: any) {
                  "source": "def kp_name = params.pbp_to_kp[doc[\"opponent.team.keyword\"].value];\nif (kp_name == null) {\n   kp_name = doc[\"opponent.team.keyword\"].value;\n} else {\n   kp_name = kp_name.pbp_kp_team;\n}\ndef oppo = params.kp[kp_name];\nif (oppo != null) {\n return oppo['stats.adj_def.value'];\n} else {\n return null;\n}\n",
                  "lang": "painless",
                  "params": {
-                   "pbp_to_kp": ncaaToKenpomLookup,
-                   "kp": publicKenpomEfficiency
+                   "pbp_to_kp": lookup,
+                   "kp": publicEfficiency
                  }
               }
            }
