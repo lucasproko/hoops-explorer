@@ -8,32 +8,7 @@ export type AvailableTeamMeta = {
 
 export class AvailableTeams {
 
-  private static flatten(
-    arr: Array<Array<AvailableTeamMeta>>
-  ): Array<AvailableTeamMeta> {
-    return arr.reduce(function(acc, v) {
-      return acc.concat(v);
-    }, [] as Array<AvailableTeamMeta>);
-  }
-
-  static getTeams(
-    team: string | null, year: string | null, gender: string | null
-  ): Array<AvailableTeamMeta> {
-    const list = team ?
-      (AvailableTeams.byName[team] || ([] as Array<AvailableTeamMeta>)) :
-      AvailableTeams.flatten(Object.values(AvailableTeams.byName));
-
-    return list.filter(function(record) {
-      return (!team || (team == record.team)) &&
-        (!year || (year == record.year)) && (!gender || (gender == record.gender));
-    });
-  }
-  static getTeam(
-    team: string, year: string, gender: string
-  ): AvailableTeamMeta | null {
-      const retVal = AvailableTeams.getTeams(team, year, gender);
-      return (retVal.length > 0) ? retVal[0] : null;
-  }
+  /** A list of all the teams with lineup data available */
   static readonly byName: Record<string, Array<AvailableTeamMeta>> = {
     // Maryland!
     "Maryland": [
@@ -100,5 +75,36 @@ export class AvailableTeams {
     "UConn": [
       { team: "UConn", year: "2018/9", gender: "Men", index_template: "misc_conf" },
     ],
+  }
+
+  ////////////////////////////////////////////////////////
+
+  // UTILS
+
+  private static flatten(
+    arr: Array<Array<AvailableTeamMeta>>
+  ): Array<AvailableTeamMeta> {
+    return arr.reduce(function(acc, v) {
+      return acc.concat(v);
+    }, [] as Array<AvailableTeamMeta>);
+  }
+
+  static getTeams(
+    team: string | null, year: string | null, gender: string | null
+  ): Array<AvailableTeamMeta> {
+    const list = team ?
+      (AvailableTeams.byName[team] || ([] as Array<AvailableTeamMeta>)) :
+      AvailableTeams.flatten(Object.values(AvailableTeams.byName));
+
+    return list.filter(function(record) {
+      return (!team || (team == record.team)) &&
+        (!year || (year == record.year)) && (!gender || (gender == record.gender));
+    });
+  }
+  static getTeam(
+    team: string, year: string, gender: string
+  ): AvailableTeamMeta | null {
+      const retVal = AvailableTeams.getTeams(team, year, gender);
+      return (retVal.length > 0) ? retVal[0] : null;
   }
 }

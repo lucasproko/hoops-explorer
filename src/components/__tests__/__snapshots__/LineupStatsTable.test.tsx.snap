@@ -13,7 +13,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
       >
         <table
           className="table table-sm"
-          id="teamStatsTable"
+          id="lineupStatsTable"
         >
           <thead>
             <tr>
@@ -31,7 +31,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                   <button
                     className="float-left btn btn-outline-secondary btn-sm"
                     disabled={false}
-                    id="teamStatsTable_copy"
+                    id="lineupStatsTable_copy"
                     type="button"
                   >
                     <svg
@@ -309,8 +309,8 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
           <tbody>
             <tr>
               <td
-                className=""
-                rowSpan={1}
+                className="small"
+                rowSpan={2}
                 style={
                   Object {
                     "backgroundColor": undefined,
@@ -320,7 +320,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                   }
                 }
               >
-                'On' Offense
+                AnCowan / BrFernando / DaMorsell / ErAyala / JaSmith
               </td>
               <td
                 className=""
@@ -341,28 +341,28 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 rowSpan={1}
                 style={
                   Object {
-                    "backgroundColor": "#6eb76e",
+                    "backgroundColor": "#62b162",
                     "fontWeight": "normal",
                     "textAlign": "center",
                     "width": "4.7%",
                   }
                 }
               >
-                111.4
+                112.3
               </td>
               <td
                 className=""
                 rowSpan={1}
                 style={
                   Object {
-                    "backgroundColor": "#55ab55",
+                    "backgroundColor": undefined,
                     "fontWeight": "normal",
                     "textAlign": "center",
                     "width": "4.7%",
                   }
                 }
               >
-                113.3
+                
               </td>
               <td
                 className=""
@@ -383,56 +383,56 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 rowSpan={1}
                 style={
                   Object {
-                    "backgroundColor": "#cee6ce",
+                    "backgroundColor": "#7bbd7b",
                     "fontWeight": "normal",
                     "textAlign": "center",
                     "width": "4.7%",
                   }
                 }
               >
-                51.9
+                55.2
               </td>
               <td
                 className=""
                 rowSpan={1}
                 style={
                   Object {
-                    "backgroundColor": "#ffa9a9",
+                    "backgroundColor": "#ff8a8a",
                     "fontWeight": "normal",
                     "textAlign": "center",
                     "width": "4.7%",
                   }
                 }
               >
-                18.0
+                18.8
               </td>
               <td
                 className=""
                 rowSpan={1}
                 style={
                   Object {
-                    "backgroundColor": "#40a040",
+                    "backgroundColor": "#7dbe7d",
                     "fontWeight": "normal",
                     "textAlign": "center",
                     "width": "4.7%",
                   }
                 }
               >
-                33.7
+                31.6
               </td>
               <td
                 className=""
                 rowSpan={1}
                 style={
                   Object {
-                    "backgroundColor": "#9dce9d",
+                    "backgroundColor": "#ffe2e2",
                     "fontWeight": "normal",
                     "textAlign": "center",
                     "width": "4.7%",
                   }
                 }
               >
-                33.8
+                28.9
               </td>
               <td
                 className=""
@@ -453,627 +453,28 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 rowSpan={1}
                 style={
                   Object {
-                    "backgroundColor": "#ffe8bf",
+                    "backgroundColor": "#fff1d9",
                     "fontWeight": "normal",
                     "textAlign": "center",
                     "width": "4.7%",
                   }
                 }
               >
-                37.3
+                35.6
               </td>
               <td
                 className=""
                 rowSpan={1}
                 style={
                   Object {
-                    "backgroundColor": "#eff7fa",
+                    "backgroundColor": "#fcfefe",
                     "fontWeight": "normal",
                     "textAlign": "center",
                     "width": "4.7%",
                   }
                 }
               >
-                29.5
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#fffefc",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                33.2
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "2.3%",
-                  }
-                }
-              >
-                
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#acd6ac",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                35.3
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#dceedc",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                51.4
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#c2e1c2",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                42.4
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#ffeeee",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                59.3
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "2.3%",
-                  }
-                }
-              >
-                
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                1293
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                110.8
-              </td>
-            </tr>
-            <tr>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "bold",
-                    "textAlign": "right",
-                    "width": "18.6%",
-                  }
-                }
-              >
-                'On' Defense
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "2.3%",
-                  }
-                }
-              >
-                
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#ffeeee",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                101.3
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#92c992",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                91.4
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "2.3%",
-                  }
-                }
-              >
-                
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#b5dab5",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                47.1
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#ff7070",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                12.6
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#a1d0a1",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                23.7
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#a4d2a4",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                26.4
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "2.3%",
-                  }
-                }
-              >
-                
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#ffd17c",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                41.7
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#fffaf1",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                33.9
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#d7ecf3",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                24.3
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "2.3%",
-                  }
-                }
-              >
-                
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#edf6ed",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                32.5
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#98cc98",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                45.9
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#c9e4c9",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                37.9
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#b7dbb7",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                57.2
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "2.3%",
-                  }
-                }
-              >
-                
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                1274
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                98.3
-              </td>
-            </tr>
-            <tr
-              className="divider"
-            >
-              <td
-                colSpan={21}
-              />
-            </tr>
-            <tr>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "bold",
-                    "textAlign": "right",
-                    "width": "18.6%",
-                  }
-                }
-              >
-                'Off' Offense
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "2.3%",
-                  }
-                }
-              >
-                
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#8ac58a",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                109.2
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#80c080",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                110.0
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "2.3%",
-                  }
-                }
-              >
-                
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#bddebd",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                52.6
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#ff4e4e",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                20.2
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#1e8f1e",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                34.9
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#f4f9f4",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                30.4
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "2.3%",
-                  }
-                }
-              >
-                
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#ffebc7",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                36.8
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#f6fbfc",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                31.0
+                32.3
               </td>
               <td
                 className=""
@@ -1087,7 +488,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                   }
                 }
               >
-                32.2
+                32.1
               </td>
               <td
                 className=""
@@ -1108,56 +509,56 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 rowSpan={1}
                 style={
                   Object {
-                    "backgroundColor": "#f3f9f3",
+                    "backgroundColor": "#b1d8b1",
                     "fontWeight": "normal",
                     "textAlign": "center",
                     "width": "4.7%",
                   }
                 }
               >
-                33.3
+                35.2
               </td>
               <td
                 className=""
                 rowSpan={1}
                 style={
                   Object {
-                    "backgroundColor": "#97cb97",
+                    "backgroundColor": "#59ac59",
                     "fontWeight": "normal",
                     "textAlign": "center",
                     "width": "4.7%",
                   }
                 }
               >
-                54.1
+                56.5
               </td>
               <td
                 className=""
                 rowSpan={1}
                 style={
                   Object {
-                    "backgroundColor": "#bbddbb",
+                    "backgroundColor": "#77bb77",
                     "fontWeight": "normal",
                     "textAlign": "center",
                     "width": "4.7%",
                   }
                 }
               >
-                42.7
+                45.3
               </td>
               <td
                 className=""
                 rowSpan={1}
                 style={
                   Object {
-                    "backgroundColor": "#7fbf7f",
+                    "backgroundColor": "#389c38",
                     "fontWeight": "normal",
                     "textAlign": "center",
                     "width": "4.7%",
                   }
                 }
               >
-                65.0
+                67.8
               </td>
               <td
                 className=""
@@ -1185,7 +586,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                   }
                 }
               >
-                590
+                544
               </td>
               <td
                 className=""
@@ -1199,7 +600,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                   }
                 }
               >
-                109.2
+                
               </td>
             </tr>
             <tr>
@@ -1209,13 +610,302 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 style={
                   Object {
                     "backgroundColor": undefined,
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "2.3%",
+                  }
+                }
+              >
+                
+              </td>
+              <td
+                className=""
+                rowSpan={1}
+                style={
+                  Object {
+                    "backgroundColor": "#fff8f8",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "4.7%",
+                  }
+                }
+              >
+                100.6
+              </td>
+              <td
+                className=""
+                rowSpan={1}
+                style={
+                  Object {
+                    "backgroundColor": undefined,
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "4.7%",
+                  }
+                }
+              >
+                
+              </td>
+              <td
+                className=""
+                rowSpan={1}
+                style={
+                  Object {
+                    "backgroundColor": undefined,
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "2.3%",
+                  }
+                }
+              >
+                
+              </td>
+              <td
+                className=""
+                rowSpan={1}
+                style={
+                  Object {
+                    "backgroundColor": "#4fa74f",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "4.7%",
+                  }
+                }
+              >
+                43.1
+              </td>
+              <td
+                className=""
+                rowSpan={1}
+                style={
+                  Object {
+                    "backgroundColor": "#ff0000",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "4.7%",
+                  }
+                }
+              >
+                9.5
+              </td>
+              <td
+                className=""
+                rowSpan={1}
+                style={
+                  Object {
+                    "backgroundColor": "#fffafa",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "4.7%",
+                  }
+                }
+              >
+                27.2
+              </td>
+              <td
+                className=""
+                rowSpan={1}
+                style={
+                  Object {
+                    "backgroundColor": "#73b973",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "4.7%",
+                  }
+                }
+              >
+                24.5
+              </td>
+              <td
+                className=""
+                rowSpan={1}
+                style={
+                  Object {
+                    "backgroundColor": undefined,
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "2.3%",
+                  }
+                }
+              >
+                
+              </td>
+              <td
+                className=""
+                rowSpan={1}
+                style={
+                  Object {
+                    "backgroundColor": "#ffcf76",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "4.7%",
+                  }
+                }
+              >
+                42.1
+              </td>
+              <td
+                className=""
+                rowSpan={1}
+                style={
+                  Object {
+                    "backgroundColor": "#fff1d8",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "4.7%",
+                  }
+                }
+              >
+                35.6
+              </td>
+              <td
+                className=""
+                rowSpan={1}
+                style={
+                  Object {
+                    "backgroundColor": "#cee8f0",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "4.7%",
+                  }
+                }
+              >
+                22.2
+              </td>
+              <td
+                className=""
+                rowSpan={1}
+                style={
+                  Object {
+                    "backgroundColor": undefined,
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "2.3%",
+                  }
+                }
+              >
+                
+              </td>
+              <td
+                className=""
+                rowSpan={1}
+                style={
+                  Object {
+                    "backgroundColor": "#2e972e",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "4.7%",
+                  }
+                }
+              >
+                27.3
+              </td>
+              <td
+                className=""
+                rowSpan={1}
+                style={
+                  Object {
+                    "backgroundColor": "#78bc78",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "4.7%",
+                  }
+                }
+              >
+                44.7
+              </td>
+              <td
+                className=""
+                rowSpan={1}
+                style={
+                  Object {
+                    "backgroundColor": "#a7d3a7",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "4.7%",
+                  }
+                }
+              >
+                36.6
+              </td>
+              <td
+                className=""
+                rowSpan={1}
+                style={
+                  Object {
+                    "backgroundColor": "#c6e3c6",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "4.7%",
+                  }
+                }
+              >
+                57.8
+              </td>
+              <td
+                className=""
+                rowSpan={1}
+                style={
+                  Object {
+                    "backgroundColor": undefined,
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "2.3%",
+                  }
+                }
+              >
+                
+              </td>
+              <td
+                className=""
+                rowSpan={1}
+                style={
+                  Object {
+                    "backgroundColor": undefined,
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "4.7%",
+                  }
+                }
+              >
+                539
+              </td>
+              <td
+                className=""
+                rowSpan={1}
+                style={
+                  Object {
+                    "backgroundColor": undefined,
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "4.7%",
+                  }
+                }
+              >
+                
+              </td>
+            </tr>
+            <tr
+              className="divider"
+            >
+              <td
+                colSpan={21}
+              />
+            </tr>
+            <tr>
+              <td
+                className="small"
+                rowSpan={2}
+                style={
+                  Object {
+                    "backgroundColor": undefined,
                     "fontWeight": "bold",
                     "textAlign": "right",
                     "width": "18.6%",
                   }
                 }
               >
-                'Off' Defense
+                AaWiggins / AnCowan / BrFernando / ErAyala / JaSmith
               </td>
               <td
                 className=""
@@ -1236,28 +926,28 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 rowSpan={1}
                 style={
                   Object {
-                    "backgroundColor": "#94ca94",
+                    "backgroundColor": "#85c285",
                     "fontWeight": "normal",
                     "textAlign": "center",
                     "width": "4.7%",
                   }
                 }
               >
-                91.6
+                109.5
               </td>
               <td
                 className=""
                 rowSpan={1}
                 style={
                   Object {
-                    "backgroundColor": "#319931",
+                    "backgroundColor": undefined,
                     "fontWeight": "normal",
                     "textAlign": "center",
                     "width": "4.7%",
                   }
                 }
               >
-                83.9
+                
               </td>
               <td
                 className=""
@@ -1278,56 +968,56 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 rowSpan={1}
                 style={
                   Object {
-                    "backgroundColor": "#45a245",
+                    "backgroundColor": "#ff7a7a",
                     "fontWeight": "normal",
                     "textAlign": "center",
                     "width": "4.7%",
                   }
                 }
               >
-                42.7
+                44.8
               </td>
               <td
                 className=""
                 rowSpan={1}
                 style={
                   Object {
-                    "backgroundColor": "#a5d2a5",
+                    "backgroundColor": "#add6ad",
                     "fontWeight": "normal",
                     "textAlign": "center",
                     "width": "4.7%",
                   }
                 }
               >
-                18.1
+                14.1
               </td>
               <td
                 className=""
                 rowSpan={1}
                 style={
                   Object {
-                    "backgroundColor": "#dceedc",
+                    "backgroundColor": "#008000",
                     "fontWeight": "normal",
                     "textAlign": "center",
                     "width": "4.7%",
                   }
                 }
               >
-                25.8
+                38.3
               </td>
               <td
                 className=""
                 rowSpan={1}
                 style={
                   Object {
-                    "backgroundColor": "#98cc98",
+                    "backgroundColor": "#008000",
                     "fontWeight": "normal",
                     "textAlign": "center",
                     "width": "4.7%",
                   }
                 }
               >
-                26.0
+                48.8
               </td>
               <td
                 className=""
@@ -1348,63 +1038,35 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 rowSpan={1}
                 style={
                   Object {
-                    "backgroundColor": "#ffeac4",
+                    "backgroundColor": "#ffd68c",
                     "fontWeight": "normal",
                     "textAlign": "center",
                     "width": "4.7%",
                   }
                 }
               >
-                36.9
+                40.7
               </td>
               <td
                 className=""
                 rowSpan={1}
                 style={
                   Object {
-                    "backgroundColor": "#fff4e1",
+                    "backgroundColor": "#edf6fa",
                     "fontWeight": "normal",
                     "textAlign": "center",
                     "width": "4.7%",
                   }
                 }
               >
-                35.0
+                29.1
               </td>
               <td
                 className=""
                 rowSpan={1}
                 style={
                   Object {
-                    "backgroundColor": "#e9f4f8",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                28.1
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "2.3%",
-                  }
-                }
-              >
-                
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#99cc99",
+                    "backgroundColor": "#f2f9fb",
                     "fontWeight": "normal",
                     "textAlign": "center",
                     "width": "4.7%",
@@ -1418,28 +1080,627 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 rowSpan={1}
                 style={
                   Object {
-                    "backgroundColor": "#1e8f1e",
+                    "backgroundColor": undefined,
                     "fontWeight": "normal",
                     "textAlign": "center",
-                    "width": "4.7%",
+                    "width": "2.3%",
                   }
                 }
               >
-                41.2
+                
               </td>
               <td
                 className=""
                 rowSpan={1}
                 style={
                   Object {
-                    "backgroundColor": "#68b468",
+                    "backgroundColor": "#ff0000",
                     "fontWeight": "normal",
                     "textAlign": "center",
                     "width": "4.7%",
                   }
                 }
               >
-                34.1
+                25.7
+              </td>
+              <td
+                className=""
+                rowSpan={1}
+                style={
+                  Object {
+                    "backgroundColor": "#ffe6e6",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "4.7%",
+                  }
+                }
+              >
+                49.0
+              </td>
+              <td
+                className=""
+                rowSpan={1}
+                style={
+                  Object {
+                    "backgroundColor": "#99cc99",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "4.7%",
+                  }
+                }
+              >
+                44.0
+              </td>
+              <td
+                className=""
+                rowSpan={1}
+                style={
+                  Object {
+                    "backgroundColor": "#ff6262",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "4.7%",
+                  }
+                }
+              >
+                53.8
+              </td>
+              <td
+                className=""
+                rowSpan={1}
+                style={
+                  Object {
+                    "backgroundColor": undefined,
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "2.3%",
+                  }
+                }
+              >
+                
+              </td>
+              <td
+                className=""
+                rowSpan={1}
+                style={
+                  Object {
+                    "backgroundColor": undefined,
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "4.7%",
+                  }
+                }
+              >
+                199
+              </td>
+              <td
+                className=""
+                rowSpan={1}
+                style={
+                  Object {
+                    "backgroundColor": undefined,
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "4.7%",
+                  }
+                }
+              >
+                
+              </td>
+            </tr>
+            <tr>
+              <td
+                className=""
+                rowSpan={1}
+                style={
+                  Object {
+                    "backgroundColor": undefined,
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "2.3%",
+                  }
+                }
+              >
+                
+              </td>
+              <td
+                className=""
+                rowSpan={1}
+                style={
+                  Object {
+                    "backgroundColor": "#bfdfbf",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "4.7%",
+                  }
+                }
+              >
+                95.0
+              </td>
+              <td
+                className=""
+                rowSpan={1}
+                style={
+                  Object {
+                    "backgroundColor": undefined,
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "4.7%",
+                  }
+                }
+              >
+                
+              </td>
+              <td
+                className=""
+                rowSpan={1}
+                style={
+                  Object {
+                    "backgroundColor": undefined,
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "2.3%",
+                  }
+                }
+              >
+                
+              </td>
+              <td
+                className=""
+                rowSpan={1}
+                style={
+                  Object {
+                    "backgroundColor": "#8dc68d",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "4.7%",
+                  }
+                }
+              >
+                45.5
+              </td>
+              <td
+                className=""
+                rowSpan={1}
+                style={
+                  Object {
+                    "backgroundColor": "#ff6161",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "4.7%",
+                  }
+                }
+              >
+                12.3
+              </td>
+              <td
+                className=""
+                rowSpan={1}
+                style={
+                  Object {
+                    "backgroundColor": "#008000",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "4.7%",
+                  }
+                }
+              >
+                16.5
+              </td>
+              <td
+                className=""
+                rowSpan={1}
+                style={
+                  Object {
+                    "backgroundColor": "#6bb56b",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "4.7%",
+                  }
+                }
+              >
+                24.2
+              </td>
+              <td
+                className=""
+                rowSpan={1}
+                style={
+                  Object {
+                    "backgroundColor": undefined,
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "2.3%",
+                  }
+                }
+              >
+                
+              </td>
+              <td
+                className=""
+                rowSpan={1}
+                style={
+                  Object {
+                    "backgroundColor": "#ffd994",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "4.7%",
+                  }
+                }
+              >
+                40.1
+              </td>
+              <td
+                className=""
+                rowSpan={1}
+                style={
+                  Object {
+                    "backgroundColor": "#ffe3b1",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "4.7%",
+                  }
+                }
+              >
+                38.2
+              </td>
+              <td
+                className=""
+                rowSpan={1}
+                style={
+                  Object {
+                    "backgroundColor": "#cbe6ef",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "4.7%",
+                  }
+                }
+              >
+                21.7
+              </td>
+              <td
+                className=""
+                rowSpan={1}
+                style={
+                  Object {
+                    "backgroundColor": undefined,
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "2.3%",
+                  }
+                }
+              >
+                
+              </td>
+              <td
+                className=""
+                rowSpan={1}
+                style={
+                  Object {
+                    "backgroundColor": "#ff7f7f",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "4.7%",
+                  }
+                }
+              >
+                36.5
+              </td>
+              <td
+                className=""
+                rowSpan={1}
+                style={
+                  Object {
+                    "backgroundColor": "#008000",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "4.7%",
+                  }
+                }
+              >
+                39.4
+              </td>
+              <td
+                className=""
+                rowSpan={1}
+                style={
+                  Object {
+                    "backgroundColor": "#2a952a",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "4.7%",
+                  }
+                }
+              >
+                31.7
+              </td>
+              <td
+                className=""
+                rowSpan={1}
+                style={
+                  Object {
+                    "backgroundColor": "#4ba54b",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "4.7%",
+                  }
+                }
+              >
+                52.9
+              </td>
+              <td
+                className=""
+                rowSpan={1}
+                style={
+                  Object {
+                    "backgroundColor": undefined,
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "2.3%",
+                  }
+                }
+              >
+                
+              </td>
+              <td
+                className=""
+                rowSpan={1}
+                style={
+                  Object {
+                    "backgroundColor": undefined,
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "4.7%",
+                  }
+                }
+              >
+                179
+              </td>
+              <td
+                className=""
+                rowSpan={1}
+                style={
+                  Object {
+                    "backgroundColor": undefined,
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "4.7%",
+                  }
+                }
+              >
+                
+              </td>
+            </tr>
+            <tr
+              className="divider"
+            >
+              <td
+                colSpan={21}
+              />
+            </tr>
+            <tr>
+              <td
+                className="small"
+                rowSpan={2}
+                style={
+                  Object {
+                    "backgroundColor": undefined,
+                    "fontWeight": "bold",
+                    "textAlign": "right",
+                    "width": "18.6%",
+                  }
+                }
+              >
+                AaWiggins / AnCowan / BrFernando / DaMorsell / ErAyala
+              </td>
+              <td
+                className=""
+                rowSpan={1}
+                style={
+                  Object {
+                    "backgroundColor": undefined,
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "2.3%",
+                  }
+                }
+              >
+                
+              </td>
+              <td
+                className=""
+                rowSpan={1}
+                style={
+                  Object {
+                    "backgroundColor": "#008000",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "4.7%",
+                  }
+                }
+              >
+                134.1
+              </td>
+              <td
+                className=""
+                rowSpan={1}
+                style={
+                  Object {
+                    "backgroundColor": undefined,
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "4.7%",
+                  }
+                }
+              >
+                
+              </td>
+              <td
+                className=""
+                rowSpan={1}
+                style={
+                  Object {
+                    "backgroundColor": undefined,
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "2.3%",
+                  }
+                }
+              >
+                
+              </td>
+              <td
+                className=""
+                rowSpan={1}
+                style={
+                  Object {
+                    "backgroundColor": "#008000",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "4.7%",
+                  }
+                }
+              >
+                60.2
+              </td>
+              <td
+                className=""
+                rowSpan={1}
+                style={
+                  Object {
+                    "backgroundColor": "#fff3f3",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "4.7%",
+                  }
+                }
+              >
+                16.3
+              </td>
+              <td
+                className=""
+                rowSpan={1}
+                style={
+                  Object {
+                    "backgroundColor": "#008000",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "4.7%",
+                  }
+                }
+              >
+                45.9
+              </td>
+              <td
+                className=""
+                rowSpan={1}
+                style={
+                  Object {
+                    "backgroundColor": "#ffc9c9",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "4.7%",
+                  }
+                }
+              >
+                27.9
+              </td>
+              <td
+                className=""
+                rowSpan={1}
+                style={
+                  Object {
+                    "backgroundColor": undefined,
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "2.3%",
+                  }
+                }
+              >
+                
+              </td>
+              <td
+                className=""
+                rowSpan={1}
+                style={
+                  Object {
+                    "backgroundColor": "#fff7ea",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "4.7%",
+                  }
+                }
+              >
+                34.4
+              </td>
+              <td
+                className=""
+                rowSpan={1}
+                style={
+                  Object {
+                    "backgroundColor": "#d1e9f1",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "4.7%",
+                  }
+                }
+              >
+                23.0
+              </td>
+              <td
+                className=""
+                rowSpan={1}
+                style={
+                  Object {
+                    "backgroundColor": "#ffcc6f",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "4.7%",
+                  }
+                }
+              >
+                42.6
+              </td>
+              <td
+                className=""
+                rowSpan={1}
+                style={
+                  Object {
+                    "backgroundColor": undefined,
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "2.3%",
+                  }
+                }
+              >
+                
+              </td>
+              <td
+                className=""
+                rowSpan={1}
+                style={
+                  Object {
+                    "backgroundColor": "#008000",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "4.7%",
+                  }
+                }
+              >
+                45.2
+              </td>
+              <td
+                className=""
+                rowSpan={1}
+                style={
+                  Object {
+                    "backgroundColor": "#60b060",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "4.7%",
+                  }
+                }
+              >
+                56.3
               </td>
               <td
                 className=""
@@ -1460,303 +1721,14 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 rowSpan={1}
                 style={
                   Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "2.3%",
-                  }
-                }
-              >
-                
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": undefined,
+                    "backgroundColor": "#fff5f5",
                     "fontWeight": "normal",
                     "textAlign": "center",
                     "width": "4.7%",
                   }
                 }
               >
-                596
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                99.3
-              </td>
-            </tr>
-            <tr
-              className="divider"
-            >
-              <td
-                colSpan={21}
-              />
-            </tr>
-            <tr>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "bold",
-                    "textAlign": "right",
-                    "width": "18.6%",
-                  }
-                }
-              >
-                'Baseline' Offense
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "2.3%",
-                  }
-                }
-              >
-                
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#77bb77",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                110.7
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#63b163",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                112.2
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "2.3%",
-                  }
-                }
-              >
-                
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#c9e4c9",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                52.1
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#ff8d8d",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                18.7
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#359b35",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                34.1
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#b8dcb8",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                32.8
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "2.3%",
-                  }
-                }
-              >
-                
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#ffe9c1",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                37.1
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#f1f8fb",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                30.0
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#ffffff",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                32.9
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "2.3%",
-                  }
-                }
-              >
-                
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#c2e1c2",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                34.7
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#c7e3c7",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                52.2
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#c0e0c0",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                42.5
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#e3f1e3",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                61.1
+                59.6
               </td>
               <td
                 className=""
@@ -1784,7 +1756,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                   }
                 }
               >
-                1883
+                129
               </td>
               <td
                 className=""
@@ -1798,7 +1770,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                   }
                 }
               >
-                110.3
+                
               </td>
             </tr>
             <tr>
@@ -1808,13 +1780,41 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 style={
                   Object {
                     "backgroundColor": undefined,
-                    "fontWeight": "bold",
-                    "textAlign": "right",
-                    "width": "18.6%",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "2.3%",
                   }
                 }
               >
-                'Baseline' Defense
+                
+              </td>
+              <td
+                className=""
+                rowSpan={1}
+                style={
+                  Object {
+                    "backgroundColor": "#a7d3a7",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "4.7%",
+                  }
+                }
+              >
+                93.1
+              </td>
+              <td
+                className=""
+                rowSpan={1}
+                style={
+                  Object {
+                    "backgroundColor": undefined,
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "4.7%",
+                  }
+                }
+              >
+                
               </td>
               <td
                 className=""
@@ -1829,6 +1829,146 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 }
               >
                 
+              </td>
+              <td
+                className=""
+                rowSpan={1}
+                style={
+                  Object {
+                    "backgroundColor": "#9cce9c",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "4.7%",
+                  }
+                }
+              >
+                46.1
+              </td>
+              <td
+                className=""
+                rowSpan={1}
+                style={
+                  Object {
+                    "backgroundColor": "#9cce9c",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "4.7%",
+                  }
+                }
+              >
+                18.3
+              </td>
+              <td
+                className=""
+                rowSpan={1}
+                style={
+                  Object {
+                    "backgroundColor": "#309830",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "4.7%",
+                  }
+                }
+              >
+                19.7
+              </td>
+              <td
+                className=""
+                rowSpan={1}
+                style={
+                  Object {
+                    "backgroundColor": "#ff1e1e",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "4.7%",
+                  }
+                }
+              >
+                38.8
+              </td>
+              <td
+                className=""
+                rowSpan={1}
+                style={
+                  Object {
+                    "backgroundColor": undefined,
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "2.3%",
+                  }
+                }
+              >
+                
+              </td>
+              <td
+                className=""
+                rowSpan={1}
+                style={
+                  Object {
+                    "backgroundColor": "#ffc150",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "4.7%",
+                  }
+                }
+              >
+                44.7
+              </td>
+              <td
+                className=""
+                rowSpan={1}
+                style={
+                  Object {
+                    "backgroundColor": "#e5f2f7",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "4.7%",
+                  }
+                }
+              >
+                27.2
+              </td>
+              <td
+                className=""
+                rowSpan={1}
+                style={
+                  Object {
+                    "backgroundColor": "#e9f5f8",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "4.7%",
+                  }
+                }
+              >
+                28.2
+              </td>
+              <td
+                className=""
+                rowSpan={1}
+                style={
+                  Object {
+                    "backgroundColor": undefined,
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "2.3%",
+                  }
+                }
+              >
+                
+              </td>
+              <td
+                className=""
+                rowSpan={1}
+                style={
+                  Object {
+                    "backgroundColor": "#52a952",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "4.7%",
+                  }
+                }
+              >
+                28.3
               </td>
               <td
                 className=""
@@ -1842,217 +1982,35 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                   }
                 }
               >
-                98.2
+                49.1
               </td>
               <td
                 className=""
                 rowSpan={1}
                 style={
                   Object {
-                    "backgroundColor": "#73b973",
+                    "backgroundColor": "#ffb6b6",
                     "fontWeight": "normal",
                     "textAlign": "center",
                     "width": "4.7%",
                   }
                 }
               >
-                89.0
+                42.9
               </td>
               <td
                 className=""
                 rowSpan={1}
                 style={
                   Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "2.3%",
-                  }
-                }
-              >
-                
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#92c992",
+                    "backgroundColor": "#84c284",
                     "fontWeight": "normal",
                     "textAlign": "center",
                     "width": "4.7%",
                   }
                 }
               >
-                45.7
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#ffbaba",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                14.4
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#b5dab5",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                24.4
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#a0d0a0",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                26.3
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "2.3%",
-                  }
-                }
-              >
-                
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#ffd993",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                40.2
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#fff8ec",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                34.3
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#ddeff5",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                25.5
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "2.3%",
-                  }
-                }
-              >
-                
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#d5ead5",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                31.8
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#6fb76f",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                44.4
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#aad5aa",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                36.7
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#78bc78",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                54.7
+                55.2
               </td>
               <td
                 className=""
@@ -2080,7 +2038,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                   }
                 }
               >
-                1870
+                131
               </td>
               <td
                 className=""
@@ -2094,7 +2052,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                   }
                 }
               >
-                98.6
+                
               </td>
             </tr>
             <tr

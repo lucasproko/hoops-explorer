@@ -4,12 +4,12 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import fetch from 'isomorphic-unfetch';
 
 // Application imports
-import { teamStatsQuery2018 } from "../../utils/teamStatsQueryTemplate";
-import { rosterCompareQuery2018 } from "../../utils/rosterCompareQueryTemplate";
-import { AvailableTeams } from '../../utils/AvailableTeams';
-import { publicKenpomEfficiency2015_6 } from "../../utils/publicKenpomEfficiency2015_6";
-import { publicKenpomEfficiency2018_9 } from "../../utils/publicKenpomEfficiency2018_9";
-import { publicHerhoopstatsEfficiency2018_9 } from "../../utils/publicHerhoopstatsEfficiency2018_9";
+import { lineupStatsQuery } from "../../utils/es-queries/lineupStatsQueryTemplate";
+import { AvailableTeams } from '../../utils/internal-data/AvailableTeams';
+import { ncaaToKenpomLookup } from "../../utils/public-data/ncaaToKenpomLookup"
+import { publicKenpomEfficiency2015_6 } from "../../utils/public-data/publicKenpomEfficiency2015_6";
+import { publicKenpomEfficiency2018_9 } from "../../utils/public-data/publicKenpomEfficiency2018_9";
+import { publicHerhoopstatsEfficiency2018_9 } from "../../utils/public-data/publicHerhoopstatsEfficiency2018_9";
 
 // Additional imports
 import queryString from "query-string";
@@ -25,22 +25,21 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     ) :
     null;
 
-  const kenpom: Record<string, any> = {
-    "Men_2015/6": publicKenpomEfficiency2015_6,
-    "Men_2018/9": publicKenpomEfficiency2018_9,
-    "Women_2018/9": publicHerhoopstatsEfficiency2018_9
+  const efficiencyInfo: Record<string, [ Record<string, any>, Record<string, any> ]> = {
+    "Men_2015/6": [ publicKenpomEfficiency2015_6, ncaaToKenpomLookup ],
+    "Men_2018/9": [ publicKenpomEfficiency2018_9, ncaaToKenpomLookup ],
+    "Women_2018/9": [ publicHerhoopstatsEfficiency2018_9, {} ] //(herhoopstats uses NCAA team names)
   };
-  const thisKenpom = kenpom[`${params.gender}_${params.year}`] || {};
+  const [ efficiency, lookup ] = efficiencyInfo[`${params.gender}_${params.year}`] || [ {}, {} ];
 
   if (team == null) {
     res.status(404).json({});
   } else {
+    const index = team.index_template + "_" + team.year.substring(0, 4);
 
     const body = [
-      JSON.stringify({ index: team.index_template + "_" + team.year.substring(0, 4) }),
-      JSON.stringify(teamStatsQuery2018(params, thisKenpom)),
-      JSON.stringify({ index: team.index_template + "_" + team.year.substring(0, 4) }),
-      JSON.stringify(rosterCompareQuery2018(params, thisKenpom))
+      JSON.stringify({ index: index }),
+      JSON.stringify(lineupStatsQuery(params, efficiency, lookup))
     ].join('\n') + "\n";
 
     try {
