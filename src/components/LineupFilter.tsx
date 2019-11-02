@@ -22,7 +22,7 @@ import LoadingOverlay from 'react-loading-overlay';
 import ls from 'local-storage';
 
 // Component imports:
-import { LineupStatsModel } from '../components/LineupStatsModel';
+import { LineupStatsModel } from '../components/LineupStatsTable';
 import { dataLastUpdated } from '../utils/internal-data/dataLastUpdated';
 import { preloadedData } from '../utils/internal-data/preloadedData';
 import { AvailableTeams } from '../utils/internal-data/AvailableTeams';
@@ -266,6 +266,8 @@ const LineupFilter: React.FunctionComponent<Props> = ({onStats, startingState, o
       <Col xs={4} sm={4} md={6} lg={6}>
         <Select
           components = { maybeMenuList() }
+          isClearable={true}
+          styles={{ menu: base => ({ ...base, zIndex: 1000 }) }}
           value={ getCurrentTeamOrPlaceholder() }
           options={teamList.map(
             (r) => stringToOption(r.team)

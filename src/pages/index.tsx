@@ -4,6 +4,7 @@ import { initGA, logPageView } from '../utils/GoogleAnalytics';
 // React imports:
 import React, { useState, useEffect } from 'react';
 import Router, { useRouter } from 'next/router';
+import Link from 'next/Link';
 
 // Next imports:
 import { NextPage } from 'next';
@@ -14,15 +15,16 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-// Additional components:
-import queryString from "query-string";
-
-// App compnents:
+// App components:
 import GameFilter, { GameFilterParams } from '../components/GameFilter';
+import { LineupFilterParams } from '../components/LineupFilter';
 import TeamStatsTable, { TeamStatsModel } from '../components/TeamStatsTable';
 import RosterStatsTable from '../components/RosterStatsTable';
 import RosterCompareTable, { RosterCompareModel } from '../components/RosterCompareTable';
 import GenericCollapsibleCard from '../components/GenericCollapsibleCard';
+
+// Utils:
+import { UrlRouting } from "../utils/UrlRouting";
 
 const OnOffAnalysisPage: NextPage<{}> = () => {
 
@@ -47,25 +49,50 @@ const OnOffAnalysisPage: NextPage<{}> = () => {
     setRosterCompareStats(rosterCompareStats);
   }
 
-  // Game filter
+  // Game and Lineup filters
+
+  const allParams = (typeof window === `undefined`) ? //(ensures SSR code still compiles)
+    "" : window.location.search;
 
   const [ gameFilterParams, setGameFilterParams ] = useState(
-    (typeof window === `undefined`) ? //(ensures SSR code still compiles)
-      ({}) :
-      (queryString.parse(window.location.search) as GameFilterParams)
+    UrlRouting.removedSavedKeys(allParams) as GameFilterParams
   )
 
+  const [ savedLineupFilterParams, setSavedLineupFilterParams ] = useState(
+    UrlRouting.extractSavedKeys(allParams, UrlRouting.savedLineupSuffix) as LineupFilterParams
+  )
+
+  function getRootUrl(params: GameFilterParams) {
+    return `/?${UrlRouting.getUrl({
+      [UrlRouting.noSuffix]: params,
+      [UrlRouting.savedLineupSuffix]: savedLineupFilterParams
+    })}`;
+  }
+  function getLineupUrl() {
+    return `/LineupAnalyzer?${UrlRouting.getUrl({
+      [UrlRouting.noSuffix]: savedLineupFilterParams,
+      [UrlRouting.savedGameSuffix]: gameFilterParams
+    })}`;
+  }
+
   const onGameFilterParamsChange = (params: GameFilterParams) => {
-    const href = `/?${queryString.stringify(params)}`
-    const as = href
+    const href = getRootUrl(params);
+    const as = href;
     Router.push(href, as, { shallow: true })
+    //TODO (update lineup params as well?)
+    setGameFilterParams(params); //(to ensure the new params are included in links)
   }
 
   // View
 
   return <Container>
     <Row>
-      <h3>CBB On/Off Analysis Tool <span className="badge badge-pill badge-info">BETA!</span></h3>
+      <Col xs={10}>
+        <h3>CBB On/Off Analysis Tool <span className="badge badge-pill badge-info">BETA!</span></h3>
+      </Col>
+      <Col>
+        <span className="float-right"><Link href={getLineupUrl()}>Lineup Analysis</Link></span>
+      </Col>
     </Row>
     <Row>
       <GenericCollapsibleCard title="Team and Game Filter">

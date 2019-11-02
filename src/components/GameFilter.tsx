@@ -307,6 +307,8 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
       <Col xs={4} sm={4} md={6} lg={6}>
         <Select
           components = { maybeMenuList() }
+          isClearable={true}
+          styles={{ menu: base => ({ ...base, zIndex: 1000 }) }}
           value={ getCurrentTeamOrPlaceholder() }
           options={teamList.map(
             (r) => stringToOption(r.team)
