@@ -4,7 +4,7 @@ import { initGA, logPageView } from '../utils/GoogleAnalytics';
 // React imports:
 import React, { useState, useEffect } from 'react';
 import Router, { useRouter } from 'next/router';
-import Link from 'next/Link';
+import Link from 'next/link';
 
 // Next imports:
 import { NextPage } from 'next';
@@ -93,7 +93,7 @@ const OnOffAnalysisPage: NextPage<{}> = () => {
         <h3>CBB On/Off Analysis Tool <span className="badge badge-pill badge-info">BETA!</span></h3>
       </Col>
       <Col>
-        <span className="float-right"><Link href={getLineupUrl()}>Lineup Analysis</Link></span>
+        <span className="float-right"><Link href={getLineupUrl()}><a>Lineup Analysis</a></Link></span>
       </Col>
     </Row>
     <Row>
