@@ -7,14 +7,29 @@ exports[`OnOffAnalysisPage OnOffAnalysisPage - should create snapshot 1`] = `
   <ForwardRef
     noGutters={false}
   >
-    <h3>
-      CBB On/Off Analysis Tool 
+    <Col
+      xs={10}
+    >
+      <h3>
+        CBB On/Off Analysis Tool 
+        <span
+          className="badge badge-pill badge-info"
+        >
+          BETA!
+        </span>
+      </h3>
+    </Col>
+    <Col>
       <span
-        className="badge badge-pill badge-info"
+        className="float-right"
       >
-        BETA!
+        <Link
+          href="/LineupAnalyzer?"
+        >
+          Lineup Analysis
+        </Link>
       </span>
-    </h3>
+    </Col>
   </ForwardRef>
   <ForwardRef
     noGutters={false}

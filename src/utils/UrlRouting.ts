@@ -15,6 +15,22 @@ export class UrlRouting {
     UrlRouting.savedLineupSuffix, UrlRouting.savedGameSuffix
   ];
 
+  /** If any of these change then copy between saved (and reset the others) */
+  static readonly commonParams = [ "year", "team", "gender" ];
+
+  /** If one of the common params changed, then copy across and */
+  static checkForCommonParamChange(
+    newParams: any, oldParams: any,
+    onParamChanges: Array<(params: any) => void>
+  ) {
+    if (_.some(UrlRouting.commonParams, (param) => newParams[param] != oldParams[param])) {
+      const newObj = _.fromPairs(
+        UrlRouting.commonParams.map((param) => [param, newParams[param]])
+      );
+      _.forEach(onParamChanges, (onParamChange) => onParamChange(newObj));
+    }
+  }
+
   /** Filters out _lineup or _game from object to avoid them getting chained repeatedly */
   static removedSavedKeys(urlParams: string, suffices: Array<string> = UrlRouting.savedKeySuffices) {
     return _.pickBy(queryString.parse(urlParams), (value, key) => {

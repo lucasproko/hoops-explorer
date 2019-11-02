@@ -79,7 +79,9 @@ const OnOffAnalysisPage: NextPage<{}> = () => {
     const href = getRootUrl(params);
     const as = href;
     Router.push(href, as, { shallow: true })
-    //TODO (update lineup params as well?)
+    UrlRouting.checkForCommonParamChange(params, gameFilterParams,
+      [ (params: any) => setSavedLineupFilterParams(params as LineupFilterParams) ]
+    );
     setGameFilterParams(params); //(to ensure the new params are included in links)
   }
 

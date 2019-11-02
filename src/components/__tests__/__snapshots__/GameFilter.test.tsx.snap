@@ -94,6 +94,7 @@ exports[`GameFilter GameFilter - should create snapshot 1`] = `
           defaultInputValue=""
           defaultMenuIsOpen={false}
           defaultValue={null}
+          isClearable={true}
           onChange={[Function]}
           options={
             Array [
@@ -178,6 +179,11 @@ exports[`GameFilter GameFilter - should create snapshot 1`] = `
                 "value": "UConn",
               },
             ]
+          }
+          styles={
+            Object {
+              "menu": [Function],
+            }
           }
           value={
             Object {
