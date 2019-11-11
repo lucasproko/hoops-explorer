@@ -38,10 +38,6 @@ exports[`GameFilter GameFilter - should create snapshot 1`] = `
                 "label": "Men",
                 "value": "Men",
               },
-              Object {
-                "label": "Women",
-                "value": "Women",
-              },
             ]
           }
           value={
@@ -82,8 +78,8 @@ exports[`GameFilter GameFilter - should create snapshot 1`] = `
           }
           value={
             Object {
-              "label": "2018/9",
-              "value": "2018/9",
+              "label": "2019/20",
+              "value": "2019/20",
             }
           }
         />
@@ -95,6 +91,11 @@ exports[`GameFilter GameFilter - should create snapshot 1`] = `
         xs={4}
       >
         <StateManager
+          components={
+            Object {
+              "MenuList": [Function],
+            }
+          }
           defaultInputValue=""
           defaultMenuIsOpen={false}
           defaultValue={null}
@@ -157,30 +158,6 @@ exports[`GameFilter GameFilter - should create snapshot 1`] = `
               Object {
                 "label": "Minnesota",
                 "value": "Minnesota",
-              },
-              Object {
-                "label": "Cincinnati",
-                "value": "Cincinnati",
-              },
-              Object {
-                "label": "Kentucky",
-                "value": "Kentucky",
-              },
-              Object {
-                "label": "Louisville",
-                "value": "Louisville",
-              },
-              Object {
-                "label": "Saint Mary's (CA)",
-                "value": "Saint Mary's (CA)",
-              },
-              Object {
-                "label": "Virginia",
-                "value": "Virginia",
-              },
-              Object {
-                "label": "UConn",
-                "value": "UConn",
               },
             ]
           }

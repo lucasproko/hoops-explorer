@@ -61,7 +61,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
 
   // Data source
   const [ team, setTeam ] = useState(startingState.team || "");
-  const [ year, setYear ] = useState(startingState.year || "2018/9");
+  const [ year, setYear ] = useState(startingState.year || "2019/20");
   const [ gender, setGender ] = useState(startingState.gender || "Men");
   /** Pre-calculate this */
   const teamList = AvailableTeams.getTeams(null, year, gender);
