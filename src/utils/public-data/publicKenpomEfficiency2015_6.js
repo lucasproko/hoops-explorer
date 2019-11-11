@@ -5264,4 +5264,4 @@ export const publicKenpomEfficiency2015_6 = {
       "is_high_major": 0,
       "good_md_comp": 0
    }
-}
+};

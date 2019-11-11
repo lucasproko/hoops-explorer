@@ -19,16 +19,7 @@ export const lineupStatsQuery = function(params: any, publicEfficiency: any, loo
                      {"off_poss": {"order": "desc"}},
                   ]
                 }
-             },
-             "filter_by_poss": {
-                "bucket_selector": {
-                  "buckets_path": {
-                    "offPoss": "off_poss",
-                    "defPoss": "def_poss"
-                  },
-                  "script": "params.offPoss >= 10 && params.defPoss >= 10"
-                }
-              }
+             }
            },
            "terms": {
              "field": "lineup_id.keyword", //TODO: 2015/6 has wrong mapping?!

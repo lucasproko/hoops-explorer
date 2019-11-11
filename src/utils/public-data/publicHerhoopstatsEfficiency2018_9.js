@@ -2105,4 +2105,4 @@ export const publicHerhoopstatsEfficiency2018_9 = {
       "stats.adj_margin.value": -32.89999999999999,
       "stats.adj_margin.rank": 351
    }
-}
+};

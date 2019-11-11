@@ -83,7 +83,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
 
   // Utils
 
-  const currentJsonEpoch = dataLastUpdated[year] || -1;
+  const currentJsonEpoch = dataLastUpdated[`${gender}_${year}`] || -1;
   useEffect(() => {
     setSubmitDisabled(shouldSubmitBeDisabled());
 
@@ -91,7 +91,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
     if (pageJustLoaded) {
       setPageJustLoaded(false); //(ensures this code only gets called once)
 
-      const cachedEpochKey = `data-epoch-${year}`;
+      const cachedEpochKey = `data-epoch-${gender}-${year}`;
       const cachedEpoch = (ls as any).get(cachedEpochKey) || 0;
       if (cachedEpoch != currentJsonEpoch) {
         if (isDebug) {

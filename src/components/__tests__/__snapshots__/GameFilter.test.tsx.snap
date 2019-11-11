@@ -74,6 +74,10 @@ exports[`GameFilter GameFilter - should create snapshot 1`] = `
                 "label": "2018/9",
                 "value": "2018/9",
               },
+              Object {
+                "label": "2019/20",
+                "value": "2019/20",
+              },
             ]
           }
           value={

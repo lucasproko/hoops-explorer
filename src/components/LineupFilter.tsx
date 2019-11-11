@@ -84,7 +84,7 @@ const LineupFilter: React.FunctionComponent<Props> = ({onStats, startingState, o
     if (pageJustLoaded) {
       setPageJustLoaded(false); //(ensures this code only gets called once)
 
-      const cachedEpochKey = `data-epoch-${year}`;
+      const cachedEpochKey = `data-epoch-${gender}-${year}`;
       const cachedEpoch = (ls as any).get(cachedEpochKey) || 0;
       if (cachedEpoch != currentJsonEpoch) {
         if (isDebug) {
