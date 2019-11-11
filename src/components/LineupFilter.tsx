@@ -57,7 +57,7 @@ const LineupFilter: React.FunctionComponent<Props> = ({onStats, startingState, o
 
   // Data source
   const [ team, setTeam ] = useState(startingState.team || "");
-  const [ year, setYear ] = useState(startingState.year || "2018/9");
+  const [ year, setYear ] = useState(startingState.year || "2019/20");
   const [ gender, setGender ] = useState(startingState.gender || "Men");
   /** Pre-calculate this */
   const teamList = AvailableTeams.getTeams(null, year, gender);
@@ -84,7 +84,7 @@ const LineupFilter: React.FunctionComponent<Props> = ({onStats, startingState, o
     if (pageJustLoaded) {
       setPageJustLoaded(false); //(ensures this code only gets called once)
 
-      const cachedEpochKey = `data-epoch-${year}`;
+      const cachedEpochKey = `data-epoch-${gender}-${year}`;
       const cachedEpoch = (ls as any).get(cachedEpochKey) || 0;
       if (cachedEpoch != currentJsonEpoch) {
         if (isDebug) {

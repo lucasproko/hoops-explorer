@@ -5294,4 +5294,4 @@ export const publicKenpomEfficiency2018_9 = {
       "team_season.year": 2019,
       "stats.adj_margin.value": 24.099999999999994
    }
-}
+};
