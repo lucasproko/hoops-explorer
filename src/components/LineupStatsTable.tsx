@@ -1,5 +1,5 @@
 // React imports:
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 // Next imports:
 import { NextPage } from 'next';
@@ -12,13 +12,17 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Form from 'react-bootstrap/Form';
+import InputGroup from 'react-bootstrap/InputGroup';
 
 // Additional components:
 // @ts-ignore
 import LoadingOverlay from 'react-loading-overlay';
+import Select, { components} from "react-select"
 
 // Component imports
 import GenericTable, { GenericTableOps, GenericTableColProps } from "./GenericTable"
+import { LineupFilterParams } from './LineupFilter';
 
 // Util imports
 import { CbbColors } from "../utils/CbbColors"
@@ -29,36 +33,27 @@ export type LineupStatsModel = {
   error_code?: string
 }
 type Props = {
-  lineupStats: LineupStatsModel
+  lineupStats: LineupStatsModel,
+  startingState: LineupFilterParams;
+  onChangeState: (newParams: LineupFilterParams) => void;
 }
 
-const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats}) => {
+const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, startingState, onChangeState}) => {
 
-  const offPrefixFn = (key: string) => "off_" + key;
-  const offCellMetaFn = (key: string, val: any) => "off";
-  const defPrefixFn = (key: string) => "def_" + key;
-  const defCellMetaFn = (key: string, val: any) => "def";
-  const avgOff = lineupStats.avgOff || 100.0;
+  // 1] State
 
-  const calcAdfEff = (stats: any) => {
-    return {
-      off_adj_ppp: (stats.def_adj_opp?.value) ?
-        (stats.off_ppp.value || 100.0)*(avgOff/stats.def_adj_opp.value) : undefined,
-      def_adj_ppp: (stats.off_adj_opp?.value) ?
-        (stats.def_ppp.value || 100.0)*(avgOff/stats.off_adj_opp.value) : undefined
-    };
-  };
-  const lineups = lineupStats?.lineups || [];
-  const tableData = _.flatMap(lineups.map((lineup) => {
-    const adjOffDef = calcAdfEff(lineup);
-    const title = lineup.key.replace(/_/g, " / "); //TODO: merge the lines
-    const stats = { off_title: title, def_title: "", ...lineup, ...adjOffDef };
-    return [
-      GenericTableOps.buildDataRow(stats, offPrefixFn, offCellMetaFn),
-      GenericTableOps.buildDataRow(stats, defPrefixFn, defCellMetaFn),
-      GenericTableOps.buildRowSeparator()
-    ];
-  }));
+  const [ minPoss, setMinPoss ] = useState(startingState.minPoss || "5");
+  const [ maxTableSize, setMaxTableSize ] = useState(startingState.maxTableSize || "50");
+  const [ sortBy, setSortBy ] = useState(startingState.sortBy || "desc:off_poss");
+
+  useEffect(() => {
+    const newState = _.merge(startingState, {
+      minPoss: minPoss,
+      maxTableSize: maxTableSize,
+      sortBy: sortBy
+    });
+    onChangeState(newState);
+  }, [ minPoss, maxTableSize, sortBy ]);
 
   // 2] Data Model
   const tableFields = { //accessors vs column metadata
@@ -86,6 +81,95 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats}) => {
   };
 
   // 3] Utils
+
+  // 3.1] Table building
+
+  const offPrefixFn = (key: string) => "off_" + key;
+  const offCellMetaFn = (key: string, val: any) => "off";
+  const defPrefixFn = (key: string) => "def_" + key;
+  const defCellMetaFn = (key: string, val: any) => "def";
+  const avgOff = lineupStats.avgOff || 100.0;
+
+  const calcAdjEff = (stats: any) => {
+    return {
+      off_adj_ppp: { value: (stats.def_adj_opp?.value) ?
+        (stats.off_ppp.value || 0.0)*(avgOff/stats.def_adj_opp.value) : undefined
+      },
+      def_adj_ppp: { value: (stats.off_adj_opp?.value) ?
+        (stats.def_ppp.value || 0.0)*(avgOff/stats.off_adj_opp.value) : undefined
+      }
+    };
+  };
+
+  const sorter = (sortStr: string) => { // format: (asc|desc):(off_|def_|diff_)<field>
+    const sortComps = sortStr.split(":"); //asc/desc
+    const dir = (sortComps[0] == "desc") ? -1 : 1;
+    const fieldComps = _.split(sortComps[1], "_", 1); //off/def/diff
+    const fieldName = sortComps[1].substring(fieldComps[0].length + 1); //+1 for _
+    const field = (lineup: any) => {
+      switch(fieldComps[0]) {
+        case "diff": //(off-def)
+          return (lineup["off_" + fieldName]?.value || 0.0)
+                - (lineup["def_" + fieldName]?.value || 0.0);
+        default: return lineup[sortComps[1]].value; //(off or def)
+      }
+    };
+    return (lineup: any) => {
+      return dir*(field(lineup) || 0);
+    };
+  };
+
+  const lineups = lineupStats?.lineups || [];
+  const tableData = _.flatMap(_.take(_.sortBy(lineups
+    .filter((lineup) => {
+      const minPossInt = parseInt(minPoss);
+      const offPos = lineup.off_poss?.value || 0;
+      const defPos = lineup.def_poss?.value || 0;
+      return offPos >= minPossInt || defPos >= minPossInt; //(unclear which of || vs && is best...)
+    }).map((lineup) => {
+      const adjOffDef = calcAdjEff(lineup);
+      return { ...lineup, ...adjOffDef };
+    }), [ sorter(sortBy) ]), parseInt(maxTableSize)
+  ).map((lineup) => {
+    const title = lineup.key.replace(/_/g, " / "); //TODO: merge the lines
+    const stats = { off_title: title, def_title: "", ...lineup };
+    return [
+      GenericTableOps.buildDataRow(stats, offPrefixFn, offCellMetaFn),
+      GenericTableOps.buildDataRow(stats, defPrefixFn, defCellMetaFn),
+      GenericTableOps.buildRowSeparator()
+    ];
+  }));
+
+  // 3.2] Sorting utils
+
+  const sortOptions: Array<any> = _.flatten(
+    _.toPairs(tableFields)
+      .filter(keycol => keycol[1].colName && keycol[1].colName != "")
+      .map(keycol => {
+        return [
+          ["desc","off"], ["asc","off"], ["desc","def"], ["asc","def"], ["desc","diff"], ["asc","diff"]
+        ].map(combo => {
+          const ascOrDesc = (s: string) => { switch(s) {
+            case "asc": return "Ascending";
+            case "desc": return "Descending";
+          }}
+          const offOrDef = (s: string) => { switch(s) {
+            case "off": return "Offensive";
+            case "def": return "Defensive";
+            case "diff": return "Off-Def Delta";
+          }}
+          return {
+            label: `${keycol[1].colName} (${ascOrDesc(combo[0])} / ${offOrDef(combo[1])})`,
+            value: `${combo[0]}:${combo[1]}_${keycol[0]}`
+          };
+        });
+      })
+  );
+  const sortOptionsByValue = _.fromPairs(
+    sortOptions.map(opt => [opt.value, opt])
+  );
+
+  // 3] Utils
   function picker(offScale: (val: number) => string, defScale: (val: number) => string) {
     return (val: any, valMeta: string) => {
       const num = val as number;
@@ -104,6 +188,11 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats}) => {
     }
   }
 
+  /** For use in selects */
+  function stringToOption(s: string) {
+    return sortOptionsByValue[s];
+  }
+
   // 4] View
   return <Container>
     <LoadingOverlay
@@ -113,6 +202,55 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats}) => {
         "Press 'Submit' to view results"
       }
     >
+      <Form.Row>
+        <Form.Group as={Col} sm="3">
+          <InputGroup>
+            <InputGroup.Prepend>
+              <InputGroup.Text id="maxLineups">Max Lineups</InputGroup.Text>
+            </InputGroup.Prepend>
+            <Form.Control
+              onChange={(ev: any) => {
+                if (ev.target.value.match("^[0-9]*$") != null) {
+                  setMaxTableSize(ev.target.value);
+                }
+              }}
+              placeholder = "eg 50"
+              value={maxTableSize}
+            />
+          </InputGroup>
+        </Form.Group>
+        <Form.Group as={Col} sm="3">
+          <InputGroup>
+            <InputGroup.Prepend>
+              <InputGroup.Text id="minPossessions">Min Poss #</InputGroup.Text>
+            </InputGroup.Prepend>
+            <Form.Control
+              onChange={(ev: any) => {
+                if (ev.target.value.match("^[0-9]*$") != null) {
+                  setMinPoss(ev.target.value);
+                }
+              }}
+              placeholder = "eg 5"
+              value={minPoss}
+            />
+          </InputGroup>
+        </Form.Group>
+        <Form.Group as={Col} sm="6">
+          <InputGroup>
+            <InputGroup.Prepend>
+              <InputGroup.Text id="sortBy">Sort By</InputGroup.Text>
+            </InputGroup.Prepend>
+            <Select
+              className="w-75"
+              value={ stringToOption(sortBy) }
+              options={ sortOptions }
+              onChange={(option) => { if ((option as any)?.value)
+                setSortBy((option as any)?.value);
+              }}
+            />
+          </InputGroup>
+        </Form.Group>
+      </Form.Row>
       <Row>
         <Col>
           <GenericTable tableCopyId="lineupStatsTable" tableFields={tableFields} tableData={tableData}/>

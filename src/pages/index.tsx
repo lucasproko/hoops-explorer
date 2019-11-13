@@ -89,11 +89,14 @@ const OnOffAnalysisPage: NextPage<{}> = () => {
 
   return <Container>
     <Row>
-      <Col xs={10}>
+      <Col xs={8}>
         <h3>CBB On/Off Analysis Tool <span className="badge badge-pill badge-info">BETA!</span></h3>
       </Col>
       <Col>
-        <span className="float-right"><Link href={getLineupUrl()}><a>Lineup Analysis</a></Link></span>
+        <span className="float-right">
+          <span><b>Other Tools: </b></span>
+          <Link href={getLineupUrl()}><a>Lineup Analysis</a></Link>
+        </span>
       </Col>
     </Row>
     <Row>

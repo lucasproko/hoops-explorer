@@ -239,7 +239,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
     }
   }
   /** For use in selects */
-  function stringToOption(s: String) {
+  function stringToOption(s: string) {
     return { label: s, value: s};
   }
   /** For use in team select */
@@ -280,7 +280,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
     text="Calculating statistics"
   ><Form>
     <Form.Group as={Row}>
-      <Col xs={4} sm={4} md={3} lg={2}>
+      <Col xs={6} sm={6} md={3} lg={2}>
         <Select
           value={ stringToOption(gender) }
           options={Array.from(new Set(AvailableTeams.getTeams(team, year, null).map(
@@ -292,7 +292,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
           onChange={(option) => { if ((option as any)?.value) setGender((option as any).value) }}
         />
       </Col>
-      <Col xs={4} sm={4} md={3} lg={2}>
+      <Col xs={6} sm={6} md={3} lg={2}>
         <Select
           value={ stringToOption(year) }
           options={Array.from(new Set(AvailableTeams.getTeams(team, null, gender).map(
@@ -304,7 +304,8 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
           onChange={(option) => { if ((option as any)?.value) setYear((option as any).value) }}
         />
       </Col>
-      <Col xs={4} sm={4} md={6} lg={6}>
+      <Col className="w-100" bsPrefix="d-lg-none d-md-none"/>
+      <Col xs={12} sm={12} md={6} lg={6}>
         <Select
           components = { maybeMenuList() }
           isClearable={true}
@@ -370,30 +371,38 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
     </Form.Group>
     <Form.Group as={Row} controlId="oppositionFilter">
       <Form.Label column sm="2">Opponent Strength</Form.Label>
-      <Form.Label column sm="1">Best</Form.Label>
       <Col sm="2">
-        <Form.Control
-          onChange={(ev: any) => {
-            if (ev.target.value.match("^[0-9]*$") != null) {
-              setMinRankFilter(ev.target.value);
-            }
-          }}
-          placeholder = "eg 0"
-          value={minRankFilter}
-        />
+        <InputGroup>
+          <InputGroup.Prepend>
+            <InputGroup.Text id="filterOppoBest">Best</InputGroup.Text>
+          </InputGroup.Prepend>
+          <Form.Control
+            onChange={(ev: any) => {
+              if (ev.target.value.match("^[0-9]*$") != null) {
+                setMinRankFilter(ev.target.value);
+              }
+            }}
+            placeholder = "eg 0"
+            value={minRankFilter}
+          />
+        </InputGroup>
       </Col>
-      <Form.Label column sm="1">Worst</Form.Label>
-      <Col sm="2">
-        <Form.Control
-          onChange={(ev: any) => {
-            if (ev.target.value.match("^[0-9]*$") != null) {
-              setMaxRankFilter(ev.target.value);
-            }
-          }}
-          placeholder = "eg 400"
-          value={maxRankFilter}
-        />
-      </Col>
+        <Col sm="2">
+          <InputGroup>
+            <InputGroup.Prepend>
+              <InputGroup.Text id="filterOppoWorst">Worst</InputGroup.Text>
+            </InputGroup.Prepend>
+            <Form.Control
+              onChange={(ev: any) => {
+                if (ev.target.value.match("^[0-9]*$") != null) {
+                  setMaxRankFilter(ev.target.value);
+                }
+              }}
+              placeholder = "eg 400"
+              value={maxRankFilter}
+            />
+            </InputGroup>
+        </Col>
       <Form.Label column sm="2">(out of ~360 teams)</Form.Label>
     </Form.Group>
     <Button disabled={submitDisabled} variant="primary" onClick={onSubmit}>Submit</Button>

@@ -78,7 +78,6 @@ const LineupAnalyzerPage: NextPage<{}> = () => {
     UrlRouting.checkForCommonParamChange(params, lineupFilterParams,
       [ (params: any) => setSavedGamesFilterParams(params as GameFilterParams) ]
     );
-    //TODO (update game params as well?)
     setLineupFilterParams(params); // (to ensure the new params are included in links)
   }
 
@@ -86,11 +85,14 @@ const LineupAnalyzerPage: NextPage<{}> = () => {
 
   return <Container>
     <Row>
-    <Col xs={10}>
+    <Col xs={6}>
       <h3>CBB Lineup Analysis Tool <span className="badge badge-pill badge-info">BETA!</span></h3>
     </Col>
     <Col>
-      <span className="float-right"><Link href={getGameUrl()}><a>On/Off Analysis</a></Link></span>
+      <span className="float-right">
+        <span><b>Other Tools: </b></span>
+        <Link href={getGameUrl()}><a>On/Off Analysis</a></Link>
+      </span>
     </Col>
     </Row>
     <Row>
@@ -104,7 +106,11 @@ const LineupAnalyzerPage: NextPage<{}> = () => {
     </Row>
     <Row>
       <GenericCollapsibleCard title="Lineup Analysis">
-        <LineupStatsTable lineupStats={lineupStats}/>
+        <LineupStatsTable
+          lineupStats={lineupStats}
+          startingState={lineupFilterParams}
+          onChangeState={onLineupFilterParamsChange}
+        />
       </GenericCollapsibleCard>
     </Row>
   </Container>;

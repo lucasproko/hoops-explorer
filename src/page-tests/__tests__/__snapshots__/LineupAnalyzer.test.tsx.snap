@@ -8,7 +8,7 @@ exports[`LineupAnalyzerPage LineupAnalyzerPage - should create snapshot 1`] = `
     noGutters={false}
   >
     <Col
-      xs={10}
+      xs={6}
     >
       <h3>
         CBB Lineup Analysis Tool 
@@ -23,6 +23,11 @@ exports[`LineupAnalyzerPage LineupAnalyzerPage - should create snapshot 1`] = `
       <span
         className="float-right"
       >
+        <span>
+          <b>
+            Other Tools: 
+          </b>
+        </span>
         <Link
           href="/?"
         >
@@ -54,6 +59,8 @@ exports[`LineupAnalyzerPage LineupAnalyzerPage - should create snapshot 1`] = `
     >
       <LineupStatsTable
         lineupStats={Object {}}
+        onChangeState={[Function]}
+        startingState={Object {}}
       />
     </GenericCollapsibleCard>
   </ForwardRef>
