@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`GameFilter GameFilter - should create snapshot 1`] = `
+exports[`LineupFilter LineupFilter - should create snapshot 1`] = `
 <LoadingOverlay
   active={false}
   spinner={true}
@@ -194,73 +194,6 @@ exports[`GameFilter GameFilter - should create snapshot 1`] = `
         sm="2"
         srOnly={false}
       >
-        On Query
-      </FormLabel>
-      <Col
-        sm="8"
-      >
-        <FormControl
-          onChange={[Function]}
-          onKeyUp={[Function]}
-          placeholder="eg 'Player1 AND (Player2 OR Player3)'"
-          value=""
-        />
-      </Col>
-    </FormGroup>
-    <FormGroup
-      as={
-        Object {
-          "$$typeof": Symbol(react.forward_ref),
-          "defaultProps": Object {
-            "noGutters": false,
-          },
-          "render": [Function],
-        }
-      }
-    >
-      <FormLabel
-        column={true}
-        sm="2"
-        srOnly={false}
-      >
-        Off Query
-      </FormLabel>
-      <Col
-        sm="8"
-      />
-      <Col
-        sm="2"
-      >
-        <FormCheck
-          checked={true}
-          disabled={false}
-          id="autoOffQuery"
-          inline={false}
-          isInvalid={false}
-          isValid={false}
-          label="Auto"
-          onChange={[Function]}
-          title=""
-          type="switch"
-        />
-      </Col>
-    </FormGroup>
-    <FormGroup
-      as={
-        Object {
-          "$$typeof": Symbol(react.forward_ref),
-          "defaultProps": Object {
-            "noGutters": false,
-          },
-          "render": [Function],
-        }
-      }
-    >
-      <FormLabel
-        column={true}
-        sm="2"
-        srOnly={false}
-      >
         Baseline Query
       </FormLabel>
       <Col
@@ -269,7 +202,7 @@ exports[`GameFilter GameFilter - should create snapshot 1`] = `
         <FormControl
           onChange={[Function]}
           onKeyUp={[Function]}
-          placeholder="eg 'NOT (WalkOn1 OR WalkOn2)' - applied to both 'On' and 'Off' queries"
+          placeholder="eg 'Player1 AND NOT (WalkOn1 OR WalkOn2)'"
           value=""
         />
       </Col>

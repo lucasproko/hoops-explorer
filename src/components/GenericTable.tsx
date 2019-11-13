@@ -4,6 +4,9 @@ import React, { useState, useEffect } from 'react';
 // Next imports:
 import { NextPage } from 'next';
 
+// Lodash:
+import _ from "lodash";
+
 // Bootstrap imports:
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Table from 'react-bootstrap/Table';
@@ -24,6 +27,7 @@ export class GenericTableColProps {
     formatter: (val: any) => string = GenericTableOps.defaultFormatter,
     colorPicker: GenericTableColorPickerFn = GenericTableOps.defaultColorPicker,
     rowSpan: (key: string) => number = GenericTableOps.defaultRowSpanCalculator,
+    missingData: any | undefined = undefined,
     className: string = ""
   ) {
     this.colName = colName;
@@ -33,6 +37,7 @@ export class GenericTableColProps {
     this.formatter = formatter;
     this.colorPicker = colorPicker;
     this.rowSpan = rowSpan;
+    this.missingData = missingData;
     this.className = className;
   }
   readonly colName: string;
@@ -42,6 +47,7 @@ export class GenericTableColProps {
   readonly formatter: (val: any) => string;
   readonly colorPicker:  GenericTableColorPickerFn;
   readonly rowSpan: (key: string) => number;
+  readonly missingData: any | undefined;
   readonly className: string;
 }
 class GenericTableDataRow { //TODO: remove generic table
@@ -84,13 +90,13 @@ export class GenericTableOps {
   // Cols:
 
   static addPctCol(colName: string, toolTip: string, colorPicker: GenericTableColorPickerFn) {
-    return new GenericTableColProps(colName, toolTip, 2, false, GenericTableOps.percentFormatter, colorPicker);
+    return new GenericTableColProps(colName, toolTip, 2, false, GenericTableOps.percentFormatter, colorPicker, GenericTableOps.defaultRowSpanCalculator, 0.0);
   }
   static addPtsCol(colName: string, toolTip: string, colorPicker: GenericTableColorPickerFn) {
-    return new GenericTableColProps(colName, toolTip, 2, false, GenericTableOps.pointsFormatter, colorPicker);
+    return new GenericTableColProps(colName, toolTip, 2, false, GenericTableOps.pointsFormatter, colorPicker, GenericTableOps.defaultRowSpanCalculator, 0);
   }
   static addIntCol(colName: string, toolTip: string, colorPicker: GenericTableColorPickerFn) {
-    return new GenericTableColProps(colName, toolTip, 2, false, GenericTableOps.defaultFormatter, colorPicker);
+    return new GenericTableColProps(colName, toolTip, 2, false, GenericTableOps.defaultFormatter, colorPicker, GenericTableOps.defaultRowSpanCalculator, 0);
   }
   static addTitle(
     colName: string, toolTip: string,
@@ -99,7 +105,7 @@ export class GenericTableOps {
   ) {
     return new GenericTableColProps(colName, toolTip, 8, true,
       GenericTableOps.defaultFormatter, GenericTableOps.defaultColorPicker,
-      rowSpan, className
+      rowSpan, undefined, className
     );
   }
   static addColSeparator() {
@@ -177,9 +183,9 @@ const GenericTable: React.FunctionComponent<Props> = ({tableFields, tableData, t
         const colProp: GenericTableColProps = keyVal[1];
         const actualKey = row.prefixFn(key);
         const tmpValObj = row.dataObj[actualKey] || {};
-        const tmpVal = (tmpValObj instanceof Object) ? tmpValObj.value : tmpValObj;
+        const tmpVal = ((tmpValObj instanceof Object) ? tmpValObj.value : tmpValObj) || colProp.missingData;
         const style = getRowStyle(key, tmpVal, colProp, row);
-        const val = (tmpVal && (tmpVal != "")) ? colProp.formatter(tmpVal) : "";
+        const val = !_.isNil(tmpVal) ? colProp.formatter(tmpVal) : "";
 
         const cellMeta = row.cellMetaFn(key, val);
         const rowSpan = colProp.rowSpan(cellMeta);
@@ -214,7 +220,7 @@ const GenericTable: React.FunctionComponent<Props> = ({tableFields, tableData, t
     row: GenericTableDataRow
   ) {
     const backgroundColorFn = () => {
-      if (val) {
+      if (!_.isNil(val)) {
         const cellMeta = row.cellMetaFn(key, val);
         return colProps.colorPicker(val, cellMeta);
       } else return undefined;

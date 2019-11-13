@@ -8,7 +8,7 @@ exports[`OnOffAnalysisPage OnOffAnalysisPage - should create snapshot 1`] = `
     noGutters={false}
   >
     <Col
-      xs={10}
+      xs={8}
     >
       <h3>
         CBB On/Off Analysis Tool 
@@ -23,6 +23,11 @@ exports[`OnOffAnalysisPage OnOffAnalysisPage - should create snapshot 1`] = `
       <span
         className="float-right"
       >
+        <span>
+          <b>
+            Other Tools: 
+          </b>
+        </span>
         <Link
           href="/LineupAnalyzer?"
         >

@@ -1,2071 +1,1577 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
-<div
-  className="container"
+exports[`LineupStatsTable LineupStatsTable - should create snapshot 1`] = `
+<Container
+  fluid={false}
 >
-  <div>
-    <div
-      className="row"
-    >
-      <div
-        className="col"
+  <LoadingOverlay
+    active={false}
+    text="Press 'Submit' to view results"
+  >
+    <FormRow>
+      <FormGroup
+        as={
+          Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "displayName": "Col",
+            "render": [Function],
+          }
+        }
+        sm="3"
       >
-        <table
-          className="table table-sm"
-          id="lineupStatsTable"
-        >
-          <thead>
-            <tr>
-              <th
-                style={
-                  Object {
-                    "fontWeight": "bold",
-                    "textAlign": "right",
-                    "width": "18.6%",
-                  }
-                }
-              >
-                
-                <div>
-                  <button
-                    className="float-left btn btn-outline-secondary btn-sm"
-                    disabled={false}
-                    id="lineupStatsTable_copy"
-                    type="button"
-                  >
-                    <svg
-                      aria-hidden="true"
-                      className="svg-inline--fa fa-clipboard fa-w-12 "
-                      data-icon="clipboard"
-                      data-prefix="fas"
-                      focusable="false"
-                      role="img"
-                      style={Object {}}
-                      viewBox="0 0 384 512"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M384 112v352c0 26.51-21.49 48-48 48H48c-26.51 0-48-21.49-48-48V112c0-26.51 21.49-48 48-48h80c0-35.29 28.71-64 64-64s64 28.71 64 64h80c26.51 0 48 21.49 48 48zM192 40c-13.255 0-24 10.745-24 24s10.745 24 24 24 24-10.745 24-24-10.745-24-24-24m96 114v-20a6 6 0 0 0-6-6H102a6 6 0 0 0-6 6v20a6 6 0 0 0 6 6h180a6 6 0 0 0 6-6z"
-                        fill="currentColor"
-                        style={Object {}}
-                      />
-                    </svg>
-                  </button>
-                </div>
-              </th>
-              <th
-                style={
-                  Object {
-                    "fontWeight": "bold",
-                    "textAlign": "center",
-                    "width": "2.3%",
-                  }
-                }
-              >
-                
-              </th>
-              <div>
-                <th
-                  style={
-                    Object {
-                      "fontWeight": "bold",
-                      "textAlign": "center",
-                      "width": "4.7%",
-                    }
-                  }
-                >
-                  P/100
-                </th>
-              </div>
-              <div>
-                <th
-                  style={
-                    Object {
-                      "fontWeight": "bold",
-                      "textAlign": "center",
-                      "width": "4.7%",
-                    }
-                  }
-                >
-                  Adj P/100
-                </th>
-              </div>
-              <th
-                style={
-                  Object {
-                    "fontWeight": "bold",
-                    "textAlign": "center",
-                    "width": "2.3%",
-                  }
-                }
-              >
-                
-              </th>
-              <div>
-                <th
-                  style={
-                    Object {
-                      "fontWeight": "bold",
-                      "textAlign": "center",
-                      "width": "4.7%",
-                    }
-                  }
-                >
-                  eFG%
-                </th>
-              </div>
-              <div>
-                <th
-                  style={
-                    Object {
-                      "fontWeight": "bold",
-                      "textAlign": "center",
-                      "width": "4.7%",
-                    }
-                  }
-                >
-                  TO%
-                </th>
-              </div>
-              <div>
-                <th
-                  style={
-                    Object {
-                      "fontWeight": "bold",
-                      "textAlign": "center",
-                      "width": "4.7%",
-                    }
-                  }
-                >
-                  ORB%
-                </th>
-              </div>
-              <div>
-                <th
-                  style={
-                    Object {
-                      "fontWeight": "bold",
-                      "textAlign": "center",
-                      "width": "4.7%",
-                    }
-                  }
-                >
-                  FTR
-                </th>
-              </div>
-              <th
-                style={
-                  Object {
-                    "fontWeight": "bold",
-                    "textAlign": "center",
-                    "width": "2.3%",
-                  }
-                }
-              >
-                
-              </th>
-              <div>
-                <th
-                  style={
-                    Object {
-                      "fontWeight": "bold",
-                      "textAlign": "center",
-                      "width": "4.7%",
-                    }
-                  }
-                >
-                  3PR
-                </th>
-              </div>
-              <div>
-                <th
-                  style={
-                    Object {
-                      "fontWeight": "bold",
-                      "textAlign": "center",
-                      "width": "4.7%",
-                    }
-                  }
-                >
-                  2PR mid
-                </th>
-              </div>
-              <div>
-                <th
-                  style={
-                    Object {
-                      "fontWeight": "bold",
-                      "textAlign": "center",
-                      "width": "4.7%",
-                    }
-                  }
-                >
-                  2PR rim
-                </th>
-              </div>
-              <th
-                style={
-                  Object {
-                    "fontWeight": "bold",
-                    "textAlign": "center",
-                    "width": "2.3%",
-                  }
-                }
-              >
-                
-              </th>
-              <div>
-                <th
-                  style={
-                    Object {
-                      "fontWeight": "bold",
-                      "textAlign": "center",
-                      "width": "4.7%",
-                    }
-                  }
-                >
-                  3P%
-                </th>
-              </div>
-              <div>
-                <th
-                  style={
-                    Object {
-                      "fontWeight": "bold",
-                      "textAlign": "center",
-                      "width": "4.7%",
-                    }
-                  }
-                >
-                  2P%
-                </th>
-              </div>
-              <div>
-                <th
-                  style={
-                    Object {
-                      "fontWeight": "bold",
-                      "textAlign": "center",
-                      "width": "4.7%",
-                    }
-                  }
-                >
-                  2P% mid
-                </th>
-              </div>
-              <div>
-                <th
-                  style={
-                    Object {
-                      "fontWeight": "bold",
-                      "textAlign": "center",
-                      "width": "4.7%",
-                    }
-                  }
-                >
-                  2P% rim
-                </th>
-              </div>
-              <th
-                style={
-                  Object {
-                    "fontWeight": "bold",
-                    "textAlign": "center",
-                    "width": "2.3%",
-                  }
-                }
-              >
-                
-              </th>
-              <div>
-                <th
-                  style={
-                    Object {
-                      "fontWeight": "bold",
-                      "textAlign": "center",
-                      "width": "4.7%",
-                    }
-                  }
-                >
-                  Poss
-                </th>
-              </div>
-              <div>
-                <th
-                  style={
-                    Object {
-                      "fontWeight": "bold",
-                      "textAlign": "center",
-                      "width": "4.7%",
-                    }
-                  }
-                >
-                  SoS
-                </th>
-              </div>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td
-                className="small"
-                rowSpan={2}
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "bold",
-                    "textAlign": "right",
-                    "width": "18.6%",
-                  }
-                }
-              >
-                AnCowan / BrFernando / DaMorsell / ErAyala / JaSmith
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "2.3%",
-                  }
-                }
-              >
-                
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#62b162",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                112.3
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "2.3%",
-                  }
-                }
-              >
-                
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#7bbd7b",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                55.2
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#ff8a8a",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                18.8
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#7dbe7d",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                31.6
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#ffe2e2",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                28.9
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "2.3%",
-                  }
-                }
-              >
-                
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#fff1d9",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                35.6
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#fcfefe",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                32.3
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#fbfdfe",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                32.1
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "2.3%",
-                  }
-                }
-              >
-                
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#b1d8b1",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                35.2
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#59ac59",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                56.5
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#77bb77",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                45.3
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#389c38",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                67.8
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "2.3%",
-                  }
-                }
-              >
-                
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                544
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                
-              </td>
-            </tr>
-            <tr>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "2.3%",
-                  }
-                }
-              >
-                
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#fff8f8",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                100.6
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "2.3%",
-                  }
-                }
-              >
-                
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#4fa74f",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                43.1
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#ff0000",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                9.5
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#fffafa",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                27.2
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#73b973",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                24.5
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "2.3%",
-                  }
-                }
-              >
-                
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#ffcf76",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                42.1
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#fff1d8",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                35.6
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#cee8f0",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                22.2
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "2.3%",
-                  }
-                }
-              >
-                
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#2e972e",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                27.3
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#78bc78",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                44.7
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#a7d3a7",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                36.6
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#c6e3c6",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                57.8
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "2.3%",
-                  }
-                }
-              >
-                
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                539
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                
-              </td>
-            </tr>
-            <tr
-              className="divider"
+        <InputGroup>
+          <InputGroupPrepend>
+            <InputGroupText
+              id="maxLineups"
             >
-              <td
-                colSpan={21}
-              />
-            </tr>
-            <tr>
-              <td
-                className="small"
-                rowSpan={2}
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "bold",
-                    "textAlign": "right",
-                    "width": "18.6%",
-                  }
-                }
-              >
-                AaWiggins / AnCowan / BrFernando / ErAyala / JaSmith
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "2.3%",
-                  }
-                }
-              >
-                
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#85c285",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                109.5
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "2.3%",
-                  }
-                }
-              >
-                
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#ff7a7a",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                44.8
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#add6ad",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                14.1
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#008000",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                38.3
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#008000",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                48.8
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "2.3%",
-                  }
-                }
-              >
-                
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#ffd68c",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                40.7
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#edf6fa",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                29.1
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#f2f9fb",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                30.2
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "2.3%",
-                  }
-                }
-              >
-                
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#ff0000",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                25.7
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#ffe6e6",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                49.0
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#99cc99",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                44.0
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#ff6262",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                53.8
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "2.3%",
-                  }
-                }
-              >
-                
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                199
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                
-              </td>
-            </tr>
-            <tr>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "2.3%",
-                  }
-                }
-              >
-                
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#bfdfbf",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                95.0
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "2.3%",
-                  }
-                }
-              >
-                
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#8dc68d",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                45.5
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#ff6161",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                12.3
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#008000",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                16.5
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#6bb56b",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                24.2
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "2.3%",
-                  }
-                }
-              >
-                
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#ffd994",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                40.1
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#ffe3b1",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                38.2
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#cbe6ef",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                21.7
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "2.3%",
-                  }
-                }
-              >
-                
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#ff7f7f",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                36.5
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#008000",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                39.4
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#2a952a",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                31.7
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#4ba54b",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                52.9
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "2.3%",
-                  }
-                }
-              >
-                
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                179
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                
-              </td>
-            </tr>
-            <tr
-              className="divider"
+              Max Lineups
+            </InputGroupText>
+          </InputGroupPrepend>
+          <FormControl
+            onChange={[Function]}
+            placeholder="eg 50"
+            value="50"
+          />
+        </InputGroup>
+      </FormGroup>
+      <FormGroup
+        as={
+          Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "displayName": "Col",
+            "render": [Function],
+          }
+        }
+        sm="3"
+      >
+        <InputGroup>
+          <InputGroupPrepend>
+            <InputGroupText
+              id="minPossessions"
             >
-              <td
-                colSpan={21}
-              />
-            </tr>
-            <tr>
-              <td
-                className="small"
-                rowSpan={2}
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "bold",
-                    "textAlign": "right",
-                    "width": "18.6%",
-                  }
-                }
-              >
-                AaWiggins / AnCowan / BrFernando / DaMorsell / ErAyala
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "2.3%",
-                  }
-                }
-              >
-                
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#008000",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                134.1
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "2.3%",
-                  }
-                }
-              >
-                
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#008000",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                60.2
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#fff3f3",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                16.3
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#008000",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                45.9
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#ffc9c9",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                27.9
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "2.3%",
-                  }
-                }
-              >
-                
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#fff7ea",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                34.4
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#d1e9f1",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                23.0
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#ffcc6f",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                42.6
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "2.3%",
-                  }
-                }
-              >
-                
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#008000",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                45.2
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#60b060",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                56.3
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#008000",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                50.0
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#fff5f5",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                59.6
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "2.3%",
-                  }
-                }
-              >
-                
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                129
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                
-              </td>
-            </tr>
-            <tr>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "2.3%",
-                  }
-                }
-              >
-                
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#a7d3a7",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                93.1
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "2.3%",
-                  }
-                }
-              >
-                
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#9cce9c",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                46.1
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#9cce9c",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                18.3
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#309830",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                19.7
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#ff1e1e",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                38.8
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "2.3%",
-                  }
-                }
-              >
-                
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#ffc150",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                44.7
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#e5f2f7",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                27.2
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#e9f5f8",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                28.2
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "2.3%",
-                  }
-                }
-              >
-                
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#52a952",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                28.3
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#e9f4e9",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                49.1
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#ffb6b6",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                42.9
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": "#84c284",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                55.2
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "2.3%",
-                  }
-                }
-              >
-                
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                131
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
-                    "backgroundColor": undefined,
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                
-              </td>
-            </tr>
-            <tr
-              className="divider"
+              Min Poss #
+            </InputGroupText>
+          </InputGroupPrepend>
+          <FormControl
+            onChange={[Function]}
+            placeholder="eg 5"
+            value="5"
+          />
+        </InputGroup>
+      </FormGroup>
+      <FormGroup
+        as={
+          Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "displayName": "Col",
+            "render": [Function],
+          }
+        }
+        sm="6"
+      >
+        <InputGroup>
+          <InputGroupPrepend>
+            <InputGroupText
+              id="sortBy"
             >
-              <td
-                colSpan={21}
-              />
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-</div>
+              Sort By
+            </InputGroupText>
+          </InputGroupPrepend>
+          <StateManager
+            className="w-75"
+            defaultInputValue=""
+            defaultMenuIsOpen={false}
+            defaultValue={null}
+            onChange={[Function]}
+            options={
+              Array [
+                Object {
+                  "label": "P/100 (Descending / Offensive)",
+                  "value": "desc:off_ppp",
+                },
+                Object {
+                  "label": "P/100 (Ascending / Offensive)",
+                  "value": "asc:off_ppp",
+                },
+                Object {
+                  "label": "P/100 (Descending / Defensive)",
+                  "value": "desc:def_ppp",
+                },
+                Object {
+                  "label": "P/100 (Ascending / Defensive)",
+                  "value": "asc:def_ppp",
+                },
+                Object {
+                  "label": "P/100 (Descending / Off-Def Delta)",
+                  "value": "desc:diff_ppp",
+                },
+                Object {
+                  "label": "P/100 (Ascending / Off-Def Delta)",
+                  "value": "asc:diff_ppp",
+                },
+                Object {
+                  "label": "Adj P/100 (Descending / Offensive)",
+                  "value": "desc:off_adj_ppp",
+                },
+                Object {
+                  "label": "Adj P/100 (Ascending / Offensive)",
+                  "value": "asc:off_adj_ppp",
+                },
+                Object {
+                  "label": "Adj P/100 (Descending / Defensive)",
+                  "value": "desc:def_adj_ppp",
+                },
+                Object {
+                  "label": "Adj P/100 (Ascending / Defensive)",
+                  "value": "asc:def_adj_ppp",
+                },
+                Object {
+                  "label": "Adj P/100 (Descending / Off-Def Delta)",
+                  "value": "desc:diff_adj_ppp",
+                },
+                Object {
+                  "label": "Adj P/100 (Ascending / Off-Def Delta)",
+                  "value": "asc:diff_adj_ppp",
+                },
+                Object {
+                  "label": "eFG% (Descending / Offensive)",
+                  "value": "desc:off_efg",
+                },
+                Object {
+                  "label": "eFG% (Ascending / Offensive)",
+                  "value": "asc:off_efg",
+                },
+                Object {
+                  "label": "eFG% (Descending / Defensive)",
+                  "value": "desc:def_efg",
+                },
+                Object {
+                  "label": "eFG% (Ascending / Defensive)",
+                  "value": "asc:def_efg",
+                },
+                Object {
+                  "label": "eFG% (Descending / Off-Def Delta)",
+                  "value": "desc:diff_efg",
+                },
+                Object {
+                  "label": "eFG% (Ascending / Off-Def Delta)",
+                  "value": "asc:diff_efg",
+                },
+                Object {
+                  "label": "TO% (Descending / Offensive)",
+                  "value": "desc:off_to",
+                },
+                Object {
+                  "label": "TO% (Ascending / Offensive)",
+                  "value": "asc:off_to",
+                },
+                Object {
+                  "label": "TO% (Descending / Defensive)",
+                  "value": "desc:def_to",
+                },
+                Object {
+                  "label": "TO% (Ascending / Defensive)",
+                  "value": "asc:def_to",
+                },
+                Object {
+                  "label": "TO% (Descending / Off-Def Delta)",
+                  "value": "desc:diff_to",
+                },
+                Object {
+                  "label": "TO% (Ascending / Off-Def Delta)",
+                  "value": "asc:diff_to",
+                },
+                Object {
+                  "label": "ORB% (Descending / Offensive)",
+                  "value": "desc:off_orb",
+                },
+                Object {
+                  "label": "ORB% (Ascending / Offensive)",
+                  "value": "asc:off_orb",
+                },
+                Object {
+                  "label": "ORB% (Descending / Defensive)",
+                  "value": "desc:def_orb",
+                },
+                Object {
+                  "label": "ORB% (Ascending / Defensive)",
+                  "value": "asc:def_orb",
+                },
+                Object {
+                  "label": "ORB% (Descending / Off-Def Delta)",
+                  "value": "desc:diff_orb",
+                },
+                Object {
+                  "label": "ORB% (Ascending / Off-Def Delta)",
+                  "value": "asc:diff_orb",
+                },
+                Object {
+                  "label": "FTR (Descending / Offensive)",
+                  "value": "desc:off_ftr",
+                },
+                Object {
+                  "label": "FTR (Ascending / Offensive)",
+                  "value": "asc:off_ftr",
+                },
+                Object {
+                  "label": "FTR (Descending / Defensive)",
+                  "value": "desc:def_ftr",
+                },
+                Object {
+                  "label": "FTR (Ascending / Defensive)",
+                  "value": "asc:def_ftr",
+                },
+                Object {
+                  "label": "FTR (Descending / Off-Def Delta)",
+                  "value": "desc:diff_ftr",
+                },
+                Object {
+                  "label": "FTR (Ascending / Off-Def Delta)",
+                  "value": "asc:diff_ftr",
+                },
+                Object {
+                  "label": "3PR (Descending / Offensive)",
+                  "value": "desc:off_3pr",
+                },
+                Object {
+                  "label": "3PR (Ascending / Offensive)",
+                  "value": "asc:off_3pr",
+                },
+                Object {
+                  "label": "3PR (Descending / Defensive)",
+                  "value": "desc:def_3pr",
+                },
+                Object {
+                  "label": "3PR (Ascending / Defensive)",
+                  "value": "asc:def_3pr",
+                },
+                Object {
+                  "label": "3PR (Descending / Off-Def Delta)",
+                  "value": "desc:diff_3pr",
+                },
+                Object {
+                  "label": "3PR (Ascending / Off-Def Delta)",
+                  "value": "asc:diff_3pr",
+                },
+                Object {
+                  "label": "2PR mid (Descending / Offensive)",
+                  "value": "desc:off_2pmidr",
+                },
+                Object {
+                  "label": "2PR mid (Ascending / Offensive)",
+                  "value": "asc:off_2pmidr",
+                },
+                Object {
+                  "label": "2PR mid (Descending / Defensive)",
+                  "value": "desc:def_2pmidr",
+                },
+                Object {
+                  "label": "2PR mid (Ascending / Defensive)",
+                  "value": "asc:def_2pmidr",
+                },
+                Object {
+                  "label": "2PR mid (Descending / Off-Def Delta)",
+                  "value": "desc:diff_2pmidr",
+                },
+                Object {
+                  "label": "2PR mid (Ascending / Off-Def Delta)",
+                  "value": "asc:diff_2pmidr",
+                },
+                Object {
+                  "label": "2PR rim (Descending / Offensive)",
+                  "value": "desc:off_2primr",
+                },
+                Object {
+                  "label": "2PR rim (Ascending / Offensive)",
+                  "value": "asc:off_2primr",
+                },
+                Object {
+                  "label": "2PR rim (Descending / Defensive)",
+                  "value": "desc:def_2primr",
+                },
+                Object {
+                  "label": "2PR rim (Ascending / Defensive)",
+                  "value": "asc:def_2primr",
+                },
+                Object {
+                  "label": "2PR rim (Descending / Off-Def Delta)",
+                  "value": "desc:diff_2primr",
+                },
+                Object {
+                  "label": "2PR rim (Ascending / Off-Def Delta)",
+                  "value": "asc:diff_2primr",
+                },
+                Object {
+                  "label": "3P% (Descending / Offensive)",
+                  "value": "desc:off_3p",
+                },
+                Object {
+                  "label": "3P% (Ascending / Offensive)",
+                  "value": "asc:off_3p",
+                },
+                Object {
+                  "label": "3P% (Descending / Defensive)",
+                  "value": "desc:def_3p",
+                },
+                Object {
+                  "label": "3P% (Ascending / Defensive)",
+                  "value": "asc:def_3p",
+                },
+                Object {
+                  "label": "3P% (Descending / Off-Def Delta)",
+                  "value": "desc:diff_3p",
+                },
+                Object {
+                  "label": "3P% (Ascending / Off-Def Delta)",
+                  "value": "asc:diff_3p",
+                },
+                Object {
+                  "label": "2P% (Descending / Offensive)",
+                  "value": "desc:off_2p",
+                },
+                Object {
+                  "label": "2P% (Ascending / Offensive)",
+                  "value": "asc:off_2p",
+                },
+                Object {
+                  "label": "2P% (Descending / Defensive)",
+                  "value": "desc:def_2p",
+                },
+                Object {
+                  "label": "2P% (Ascending / Defensive)",
+                  "value": "asc:def_2p",
+                },
+                Object {
+                  "label": "2P% (Descending / Off-Def Delta)",
+                  "value": "desc:diff_2p",
+                },
+                Object {
+                  "label": "2P% (Ascending / Off-Def Delta)",
+                  "value": "asc:diff_2p",
+                },
+                Object {
+                  "label": "2P% mid (Descending / Offensive)",
+                  "value": "desc:off_2pmid",
+                },
+                Object {
+                  "label": "2P% mid (Ascending / Offensive)",
+                  "value": "asc:off_2pmid",
+                },
+                Object {
+                  "label": "2P% mid (Descending / Defensive)",
+                  "value": "desc:def_2pmid",
+                },
+                Object {
+                  "label": "2P% mid (Ascending / Defensive)",
+                  "value": "asc:def_2pmid",
+                },
+                Object {
+                  "label": "2P% mid (Descending / Off-Def Delta)",
+                  "value": "desc:diff_2pmid",
+                },
+                Object {
+                  "label": "2P% mid (Ascending / Off-Def Delta)",
+                  "value": "asc:diff_2pmid",
+                },
+                Object {
+                  "label": "2P% rim (Descending / Offensive)",
+                  "value": "desc:off_2prim",
+                },
+                Object {
+                  "label": "2P% rim (Ascending / Offensive)",
+                  "value": "asc:off_2prim",
+                },
+                Object {
+                  "label": "2P% rim (Descending / Defensive)",
+                  "value": "desc:def_2prim",
+                },
+                Object {
+                  "label": "2P% rim (Ascending / Defensive)",
+                  "value": "asc:def_2prim",
+                },
+                Object {
+                  "label": "2P% rim (Descending / Off-Def Delta)",
+                  "value": "desc:diff_2prim",
+                },
+                Object {
+                  "label": "2P% rim (Ascending / Off-Def Delta)",
+                  "value": "asc:diff_2prim",
+                },
+                Object {
+                  "label": "Poss (Descending / Offensive)",
+                  "value": "desc:off_poss",
+                },
+                Object {
+                  "label": "Poss (Ascending / Offensive)",
+                  "value": "asc:off_poss",
+                },
+                Object {
+                  "label": "Poss (Descending / Defensive)",
+                  "value": "desc:def_poss",
+                },
+                Object {
+                  "label": "Poss (Ascending / Defensive)",
+                  "value": "asc:def_poss",
+                },
+                Object {
+                  "label": "Poss (Descending / Off-Def Delta)",
+                  "value": "desc:diff_poss",
+                },
+                Object {
+                  "label": "Poss (Ascending / Off-Def Delta)",
+                  "value": "asc:diff_poss",
+                },
+                Object {
+                  "label": "SoS (Descending / Offensive)",
+                  "value": "desc:off_adj_opp",
+                },
+                Object {
+                  "label": "SoS (Ascending / Offensive)",
+                  "value": "asc:off_adj_opp",
+                },
+                Object {
+                  "label": "SoS (Descending / Defensive)",
+                  "value": "desc:def_adj_opp",
+                },
+                Object {
+                  "label": "SoS (Ascending / Defensive)",
+                  "value": "asc:def_adj_opp",
+                },
+                Object {
+                  "label": "SoS (Descending / Off-Def Delta)",
+                  "value": "desc:diff_adj_opp",
+                },
+                Object {
+                  "label": "SoS (Ascending / Off-Def Delta)",
+                  "value": "asc:diff_adj_opp",
+                },
+              ]
+            }
+            value={
+              Object {
+                "label": "Poss (Descending / Offensive)",
+                "value": "desc:off_poss",
+              }
+            }
+          />
+        </InputGroup>
+      </FormGroup>
+    </FormRow>
+    <ForwardRef
+      noGutters={false}
+    >
+      <Col>
+        <GenericTable
+          tableCopyId="lineupStatsTable"
+          tableData={
+            Array [
+              GenericTableDataRow {
+                "cellMetaFn": [Function],
+                "dataObj": Object {
+                  "adj_opp_def": Object {
+                    "value": 96.89926470588235,
+                  },
+                  "adj_opp_off": Object {
+                    "value": 111.85324675324674,
+                  },
+                  "def_2p": Object {
+                    "value": 0.4470198675496689,
+                  },
+                  "def_2pmid": Object {
+                    "value": 0.3655913978494624,
+                  },
+                  "def_2pmidr": Object {
+                    "value": 0.3563218390804598,
+                  },
+                  "def_2prim": Object {
+                    "value": 0.5775862068965517,
+                  },
+                  "def_2primr": Object {
+                    "value": 0.2222222222222222,
+                  },
+                  "def_3p": Object {
+                    "value": 0.2727272727272727,
+                  },
+                  "def_3pr": Object {
+                    "value": 0.421455938697318,
+                  },
+                  "def_adj_ppp": Object {
+                    "value": undefined,
+                  },
+                  "def_efg": Object {
+                    "value": 0.43103448275862066,
+                  },
+                  "def_ftr": Object {
+                    "value": 0.24521072796934865,
+                  },
+                  "def_orb": Object {
+                    "value": 0.2716417910447761,
+                  },
+                  "def_poss": Object {
+                    "value": 539,
+                  },
+                  "def_ppp": Object {
+                    "value": 100.55658627087199,
+                  },
+                  "def_title": "",
+                  "def_to": Object {
+                    "value": 0.09461966604823747,
+                  },
+                  "doc_count": 97,
+                  "key": "AnCowan_BrFernando_DaMorsell_ErAyala_JaSmith",
+                  "off_2p": Object {
+                    "value": 0.5652173913043478,
+                  },
+                  "off_2pmid": Object {
+                    "value": 0.4533333333333333,
+                  },
+                  "off_2pmidr": Object {
+                    "value": 0.3232758620689655,
+                  },
+                  "off_2prim": Object {
+                    "value": 0.6778523489932886,
+                  },
+                  "off_2primr": Object {
+                    "value": 0.32112068965517243,
+                  },
+                  "off_3p": Object {
+                    "value": 0.3515151515151515,
+                  },
+                  "off_3pr": Object {
+                    "value": 0.35560344827586204,
+                  },
+                  "off_adj_ppp": Object {
+                    "value": undefined,
+                  },
+                  "off_efg": Object {
+                    "value": 0.5517241379310345,
+                  },
+                  "off_ftr": Object {
+                    "value": 0.28879310344827586,
+                  },
+                  "off_orb": Object {
+                    "value": 0.316,
+                  },
+                  "off_poss": Object {
+                    "value": 544,
+                  },
+                  "off_ppp": Object {
+                    "value": 112.31617647058823,
+                  },
+                  "off_title": "AnCowan / BrFernando / DaMorsell / ErAyala / JaSmith",
+                  "off_to": Object {
+                    "value": 0.1875,
+                  },
+                  "points_allowed": Object {
+                    "value": 542,
+                  },
+                  "points_scored": Object {
+                    "value": 611,
+                  },
+                  "total_def_2pmid_attempts": Object {
+                    "value": 186,
+                  },
+                  "total_def_2pmid_made": Object {
+                    "value": 68,
+                  },
+                  "total_def_2prim_attempts": Object {
+                    "value": 116,
+                  },
+                  "total_def_2prim_made": Object {
+                    "value": 67,
+                  },
+                  "total_def_fga": Object {
+                    "value": 522,
+                  },
+                  "total_def_fta": Object {
+                    "value": 128,
+                  },
+                  "total_off_2pmid_attempts": Object {
+                    "value": 150,
+                  },
+                  "total_off_2pmid_made": Object {
+                    "value": 68,
+                  },
+                  "total_off_2prim_attempts": Object {
+                    "value": 149,
+                  },
+                  "total_off_2prim_made": Object {
+                    "value": 101,
+                  },
+                  "total_off_fga": Object {
+                    "value": 464,
+                  },
+                  "total_off_fta": Object {
+                    "value": 134,
+                  },
+                },
+                "kind": "data-row",
+                "prefixFn": [Function],
+              },
+              GenericTableDataRow {
+                "cellMetaFn": [Function],
+                "dataObj": Object {
+                  "adj_opp_def": Object {
+                    "value": 96.89926470588235,
+                  },
+                  "adj_opp_off": Object {
+                    "value": 111.85324675324674,
+                  },
+                  "def_2p": Object {
+                    "value": 0.4470198675496689,
+                  },
+                  "def_2pmid": Object {
+                    "value": 0.3655913978494624,
+                  },
+                  "def_2pmidr": Object {
+                    "value": 0.3563218390804598,
+                  },
+                  "def_2prim": Object {
+                    "value": 0.5775862068965517,
+                  },
+                  "def_2primr": Object {
+                    "value": 0.2222222222222222,
+                  },
+                  "def_3p": Object {
+                    "value": 0.2727272727272727,
+                  },
+                  "def_3pr": Object {
+                    "value": 0.421455938697318,
+                  },
+                  "def_adj_ppp": Object {
+                    "value": undefined,
+                  },
+                  "def_efg": Object {
+                    "value": 0.43103448275862066,
+                  },
+                  "def_ftr": Object {
+                    "value": 0.24521072796934865,
+                  },
+                  "def_orb": Object {
+                    "value": 0.2716417910447761,
+                  },
+                  "def_poss": Object {
+                    "value": 539,
+                  },
+                  "def_ppp": Object {
+                    "value": 100.55658627087199,
+                  },
+                  "def_title": "",
+                  "def_to": Object {
+                    "value": 0.09461966604823747,
+                  },
+                  "doc_count": 97,
+                  "key": "AnCowan_BrFernando_DaMorsell_ErAyala_JaSmith",
+                  "off_2p": Object {
+                    "value": 0.5652173913043478,
+                  },
+                  "off_2pmid": Object {
+                    "value": 0.4533333333333333,
+                  },
+                  "off_2pmidr": Object {
+                    "value": 0.3232758620689655,
+                  },
+                  "off_2prim": Object {
+                    "value": 0.6778523489932886,
+                  },
+                  "off_2primr": Object {
+                    "value": 0.32112068965517243,
+                  },
+                  "off_3p": Object {
+                    "value": 0.3515151515151515,
+                  },
+                  "off_3pr": Object {
+                    "value": 0.35560344827586204,
+                  },
+                  "off_adj_ppp": Object {
+                    "value": undefined,
+                  },
+                  "off_efg": Object {
+                    "value": 0.5517241379310345,
+                  },
+                  "off_ftr": Object {
+                    "value": 0.28879310344827586,
+                  },
+                  "off_orb": Object {
+                    "value": 0.316,
+                  },
+                  "off_poss": Object {
+                    "value": 544,
+                  },
+                  "off_ppp": Object {
+                    "value": 112.31617647058823,
+                  },
+                  "off_title": "AnCowan / BrFernando / DaMorsell / ErAyala / JaSmith",
+                  "off_to": Object {
+                    "value": 0.1875,
+                  },
+                  "points_allowed": Object {
+                    "value": 542,
+                  },
+                  "points_scored": Object {
+                    "value": 611,
+                  },
+                  "total_def_2pmid_attempts": Object {
+                    "value": 186,
+                  },
+                  "total_def_2pmid_made": Object {
+                    "value": 68,
+                  },
+                  "total_def_2prim_attempts": Object {
+                    "value": 116,
+                  },
+                  "total_def_2prim_made": Object {
+                    "value": 67,
+                  },
+                  "total_def_fga": Object {
+                    "value": 522,
+                  },
+                  "total_def_fta": Object {
+                    "value": 128,
+                  },
+                  "total_off_2pmid_attempts": Object {
+                    "value": 150,
+                  },
+                  "total_off_2pmid_made": Object {
+                    "value": 68,
+                  },
+                  "total_off_2prim_attempts": Object {
+                    "value": 149,
+                  },
+                  "total_off_2prim_made": Object {
+                    "value": 101,
+                  },
+                  "total_off_fga": Object {
+                    "value": 464,
+                  },
+                  "total_off_fta": Object {
+                    "value": 134,
+                  },
+                },
+                "kind": "data-row",
+                "prefixFn": [Function],
+              },
+              GenericTableSeparator {
+                "kind": "separator",
+              },
+              GenericTableDataRow {
+                "cellMetaFn": [Function],
+                "dataObj": Object {
+                  "adj_opp_def": Object {
+                    "value": 98.80603015075377,
+                  },
+                  "adj_opp_off": Object {
+                    "value": 108.32122905027933,
+                  },
+                  "def_2p": Object {
+                    "value": 0.39361702127659576,
+                  },
+                  "def_2pmid": Object {
+                    "value": 0.31666666666666665,
+                  },
+                  "def_2pmidr": Object {
+                    "value": 0.3821656050955414,
+                  },
+                  "def_2prim": Object {
+                    "value": 0.5294117647058824,
+                  },
+                  "def_2primr": Object {
+                    "value": 0.21656050955414013,
+                  },
+                  "def_3p": Object {
+                    "value": 0.36507936507936506,
+                  },
+                  "def_3pr": Object {
+                    "value": 0.4012738853503185,
+                  },
+                  "def_adj_ppp": Object {
+                    "value": undefined,
+                  },
+                  "def_efg": Object {
+                    "value": 0.4554140127388535,
+                  },
+                  "def_ftr": Object {
+                    "value": 0.24203821656050956,
+                  },
+                  "def_orb": Object {
+                    "value": 0.1650485436893204,
+                  },
+                  "def_poss": Object {
+                    "value": 179,
+                  },
+                  "def_ppp": Object {
+                    "value": 94.97206703910615,
+                  },
+                  "def_title": "",
+                  "def_to": Object {
+                    "value": 0.12290502793296089,
+                  },
+                  "doc_count": 60,
+                  "key": "AaWiggins_AnCowan_BrFernando_ErAyala_JaSmith",
+                  "off_2p": Object {
+                    "value": 0.49019607843137253,
+                  },
+                  "off_2pmid": Object {
+                    "value": 0.44,
+                  },
+                  "off_2pmidr": Object {
+                    "value": 0.29069767441860467,
+                  },
+                  "off_2prim": Object {
+                    "value": 0.5384615384615384,
+                  },
+                  "off_2primr": Object {
+                    "value": 0.3023255813953488,
+                  },
+                  "off_3p": Object {
+                    "value": 0.2571428571428571,
+                  },
+                  "off_3pr": Object {
+                    "value": 0.4069767441860465,
+                  },
+                  "off_adj_ppp": Object {
+                    "value": undefined,
+                  },
+                  "off_efg": Object {
+                    "value": 0.4476744186046512,
+                  },
+                  "off_ftr": Object {
+                    "value": 0.4883720930232558,
+                  },
+                  "off_orb": Object {
+                    "value": 0.3826086956521739,
+                  },
+                  "off_poss": Object {
+                    "value": 199,
+                  },
+                  "off_ppp": Object {
+                    "value": 109.54773869346734,
+                  },
+                  "off_title": "AaWiggins / AnCowan / BrFernando / ErAyala / JaSmith",
+                  "off_to": Object {
+                    "value": 0.1407035175879397,
+                  },
+                  "points_allowed": Object {
+                    "value": 170,
+                  },
+                  "points_scored": Object {
+                    "value": 218,
+                  },
+                  "total_def_2pmid_attempts": Object {
+                    "value": 60,
+                  },
+                  "total_def_2pmid_made": Object {
+                    "value": 19,
+                  },
+                  "total_def_2prim_attempts": Object {
+                    "value": 34,
+                  },
+                  "total_def_2prim_made": Object {
+                    "value": 18,
+                  },
+                  "total_def_fga": Object {
+                    "value": 157,
+                  },
+                  "total_def_fta": Object {
+                    "value": 38,
+                  },
+                  "total_off_2pmid_attempts": Object {
+                    "value": 50,
+                  },
+                  "total_off_2pmid_made": Object {
+                    "value": 22,
+                  },
+                  "total_off_2prim_attempts": Object {
+                    "value": 52,
+                  },
+                  "total_off_2prim_made": Object {
+                    "value": 28,
+                  },
+                  "total_off_fga": Object {
+                    "value": 172,
+                  },
+                  "total_off_fta": Object {
+                    "value": 84,
+                  },
+                },
+                "kind": "data-row",
+                "prefixFn": [Function],
+              },
+              GenericTableDataRow {
+                "cellMetaFn": [Function],
+                "dataObj": Object {
+                  "adj_opp_def": Object {
+                    "value": 98.80603015075377,
+                  },
+                  "adj_opp_off": Object {
+                    "value": 108.32122905027933,
+                  },
+                  "def_2p": Object {
+                    "value": 0.39361702127659576,
+                  },
+                  "def_2pmid": Object {
+                    "value": 0.31666666666666665,
+                  },
+                  "def_2pmidr": Object {
+                    "value": 0.3821656050955414,
+                  },
+                  "def_2prim": Object {
+                    "value": 0.5294117647058824,
+                  },
+                  "def_2primr": Object {
+                    "value": 0.21656050955414013,
+                  },
+                  "def_3p": Object {
+                    "value": 0.36507936507936506,
+                  },
+                  "def_3pr": Object {
+                    "value": 0.4012738853503185,
+                  },
+                  "def_adj_ppp": Object {
+                    "value": undefined,
+                  },
+                  "def_efg": Object {
+                    "value": 0.4554140127388535,
+                  },
+                  "def_ftr": Object {
+                    "value": 0.24203821656050956,
+                  },
+                  "def_orb": Object {
+                    "value": 0.1650485436893204,
+                  },
+                  "def_poss": Object {
+                    "value": 179,
+                  },
+                  "def_ppp": Object {
+                    "value": 94.97206703910615,
+                  },
+                  "def_title": "",
+                  "def_to": Object {
+                    "value": 0.12290502793296089,
+                  },
+                  "doc_count": 60,
+                  "key": "AaWiggins_AnCowan_BrFernando_ErAyala_JaSmith",
+                  "off_2p": Object {
+                    "value": 0.49019607843137253,
+                  },
+                  "off_2pmid": Object {
+                    "value": 0.44,
+                  },
+                  "off_2pmidr": Object {
+                    "value": 0.29069767441860467,
+                  },
+                  "off_2prim": Object {
+                    "value": 0.5384615384615384,
+                  },
+                  "off_2primr": Object {
+                    "value": 0.3023255813953488,
+                  },
+                  "off_3p": Object {
+                    "value": 0.2571428571428571,
+                  },
+                  "off_3pr": Object {
+                    "value": 0.4069767441860465,
+                  },
+                  "off_adj_ppp": Object {
+                    "value": undefined,
+                  },
+                  "off_efg": Object {
+                    "value": 0.4476744186046512,
+                  },
+                  "off_ftr": Object {
+                    "value": 0.4883720930232558,
+                  },
+                  "off_orb": Object {
+                    "value": 0.3826086956521739,
+                  },
+                  "off_poss": Object {
+                    "value": 199,
+                  },
+                  "off_ppp": Object {
+                    "value": 109.54773869346734,
+                  },
+                  "off_title": "AaWiggins / AnCowan / BrFernando / ErAyala / JaSmith",
+                  "off_to": Object {
+                    "value": 0.1407035175879397,
+                  },
+                  "points_allowed": Object {
+                    "value": 170,
+                  },
+                  "points_scored": Object {
+                    "value": 218,
+                  },
+                  "total_def_2pmid_attempts": Object {
+                    "value": 60,
+                  },
+                  "total_def_2pmid_made": Object {
+                    "value": 19,
+                  },
+                  "total_def_2prim_attempts": Object {
+                    "value": 34,
+                  },
+                  "total_def_2prim_made": Object {
+                    "value": 18,
+                  },
+                  "total_def_fga": Object {
+                    "value": 157,
+                  },
+                  "total_def_fta": Object {
+                    "value": 38,
+                  },
+                  "total_off_2pmid_attempts": Object {
+                    "value": 50,
+                  },
+                  "total_off_2pmid_made": Object {
+                    "value": 22,
+                  },
+                  "total_off_2prim_attempts": Object {
+                    "value": 52,
+                  },
+                  "total_off_2prim_made": Object {
+                    "value": 28,
+                  },
+                  "total_off_fga": Object {
+                    "value": 172,
+                  },
+                  "total_off_fta": Object {
+                    "value": 84,
+                  },
+                },
+                "kind": "data-row",
+                "prefixFn": [Function],
+              },
+              GenericTableSeparator {
+                "kind": "separator",
+              },
+              GenericTableDataRow {
+                "cellMetaFn": [Function],
+                "dataObj": Object {
+                  "adj_opp_def": Object {
+                    "value": 100.44651162790699,
+                  },
+                  "adj_opp_off": Object {
+                    "value": 113.20381679389313,
+                  },
+                  "def_2p": Object {
+                    "value": 0.49122807017543857,
+                  },
+                  "def_2pmid": Object {
+                    "value": 0.42857142857142855,
+                  },
+                  "def_2pmidr": Object {
+                    "value": 0.27184466019417475,
+                  },
+                  "def_2prim": Object {
+                    "value": 0.5517241379310345,
+                  },
+                  "def_2primr": Object {
+                    "value": 0.2815533980582524,
+                  },
+                  "def_3p": Object {
+                    "value": 0.2826086956521739,
+                  },
+                  "def_3pr": Object {
+                    "value": 0.44660194174757284,
+                  },
+                  "def_adj_ppp": Object {
+                    "value": undefined,
+                  },
+                  "def_efg": Object {
+                    "value": 0.46116504854368934,
+                  },
+                  "def_ftr": Object {
+                    "value": 0.3883495145631068,
+                  },
+                  "def_orb": Object {
+                    "value": 0.19696969696969696,
+                  },
+                  "def_poss": Object {
+                    "value": 131,
+                  },
+                  "def_ppp": Object {
+                    "value": 93.12977099236642,
+                  },
+                  "def_title": "",
+                  "def_to": Object {
+                    "value": 0.183206106870229,
+                  },
+                  "doc_count": 38,
+                  "key": "AaWiggins_AnCowan_BrFernando_DaMorsell_ErAyala",
+                  "off_2p": Object {
+                    "value": 0.5625,
+                  },
+                  "off_2pmid": Object {
+                    "value": 0.5,
+                  },
+                  "off_2pmidr": Object {
+                    "value": 0.22950819672131148,
+                  },
+                  "off_2prim": Object {
+                    "value": 0.5961538461538461,
+                  },
+                  "off_2primr": Object {
+                    "value": 0.4262295081967213,
+                  },
+                  "off_3p": Object {
+                    "value": 0.4523809523809524,
+                  },
+                  "off_3pr": Object {
+                    "value": 0.3442622950819672,
+                  },
+                  "off_adj_ppp": Object {
+                    "value": undefined,
+                  },
+                  "off_efg": Object {
+                    "value": 0.6024590163934426,
+                  },
+                  "off_ftr": Object {
+                    "value": 0.2786885245901639,
+                  },
+                  "off_orb": Object {
+                    "value": 0.45901639344262296,
+                  },
+                  "off_poss": Object {
+                    "value": 129,
+                  },
+                  "off_ppp": Object {
+                    "value": 134.10852713178295,
+                  },
+                  "off_title": "AaWiggins / AnCowan / BrFernando / DaMorsell / ErAyala",
+                  "off_to": Object {
+                    "value": 0.16279069767441862,
+                  },
+                  "points_allowed": Object {
+                    "value": 122,
+                  },
+                  "points_scored": Object {
+                    "value": 173,
+                  },
+                  "total_def_2pmid_attempts": Object {
+                    "value": 28,
+                  },
+                  "total_def_2pmid_made": Object {
+                    "value": 12,
+                  },
+                  "total_def_2prim_attempts": Object {
+                    "value": 29,
+                  },
+                  "total_def_2prim_made": Object {
+                    "value": 16,
+                  },
+                  "total_def_fga": Object {
+                    "value": 103,
+                  },
+                  "total_def_fta": Object {
+                    "value": 40,
+                  },
+                  "total_off_2pmid_attempts": Object {
+                    "value": 28,
+                  },
+                  "total_off_2pmid_made": Object {
+                    "value": 14,
+                  },
+                  "total_off_2prim_attempts": Object {
+                    "value": 52,
+                  },
+                  "total_off_2prim_made": Object {
+                    "value": 31,
+                  },
+                  "total_off_fga": Object {
+                    "value": 122,
+                  },
+                  "total_off_fta": Object {
+                    "value": 34,
+                  },
+                },
+                "kind": "data-row",
+                "prefixFn": [Function],
+              },
+              GenericTableDataRow {
+                "cellMetaFn": [Function],
+                "dataObj": Object {
+                  "adj_opp_def": Object {
+                    "value": 100.44651162790699,
+                  },
+                  "adj_opp_off": Object {
+                    "value": 113.20381679389313,
+                  },
+                  "def_2p": Object {
+                    "value": 0.49122807017543857,
+                  },
+                  "def_2pmid": Object {
+                    "value": 0.42857142857142855,
+                  },
+                  "def_2pmidr": Object {
+                    "value": 0.27184466019417475,
+                  },
+                  "def_2prim": Object {
+                    "value": 0.5517241379310345,
+                  },
+                  "def_2primr": Object {
+                    "value": 0.2815533980582524,
+                  },
+                  "def_3p": Object {
+                    "value": 0.2826086956521739,
+                  },
+                  "def_3pr": Object {
+                    "value": 0.44660194174757284,
+                  },
+                  "def_adj_ppp": Object {
+                    "value": undefined,
+                  },
+                  "def_efg": Object {
+                    "value": 0.46116504854368934,
+                  },
+                  "def_ftr": Object {
+                    "value": 0.3883495145631068,
+                  },
+                  "def_orb": Object {
+                    "value": 0.19696969696969696,
+                  },
+                  "def_poss": Object {
+                    "value": 131,
+                  },
+                  "def_ppp": Object {
+                    "value": 93.12977099236642,
+                  },
+                  "def_title": "",
+                  "def_to": Object {
+                    "value": 0.183206106870229,
+                  },
+                  "doc_count": 38,
+                  "key": "AaWiggins_AnCowan_BrFernando_DaMorsell_ErAyala",
+                  "off_2p": Object {
+                    "value": 0.5625,
+                  },
+                  "off_2pmid": Object {
+                    "value": 0.5,
+                  },
+                  "off_2pmidr": Object {
+                    "value": 0.22950819672131148,
+                  },
+                  "off_2prim": Object {
+                    "value": 0.5961538461538461,
+                  },
+                  "off_2primr": Object {
+                    "value": 0.4262295081967213,
+                  },
+                  "off_3p": Object {
+                    "value": 0.4523809523809524,
+                  },
+                  "off_3pr": Object {
+                    "value": 0.3442622950819672,
+                  },
+                  "off_adj_ppp": Object {
+                    "value": undefined,
+                  },
+                  "off_efg": Object {
+                    "value": 0.6024590163934426,
+                  },
+                  "off_ftr": Object {
+                    "value": 0.2786885245901639,
+                  },
+                  "off_orb": Object {
+                    "value": 0.45901639344262296,
+                  },
+                  "off_poss": Object {
+                    "value": 129,
+                  },
+                  "off_ppp": Object {
+                    "value": 134.10852713178295,
+                  },
+                  "off_title": "AaWiggins / AnCowan / BrFernando / DaMorsell / ErAyala",
+                  "off_to": Object {
+                    "value": 0.16279069767441862,
+                  },
+                  "points_allowed": Object {
+                    "value": 122,
+                  },
+                  "points_scored": Object {
+                    "value": 173,
+                  },
+                  "total_def_2pmid_attempts": Object {
+                    "value": 28,
+                  },
+                  "total_def_2pmid_made": Object {
+                    "value": 12,
+                  },
+                  "total_def_2prim_attempts": Object {
+                    "value": 29,
+                  },
+                  "total_def_2prim_made": Object {
+                    "value": 16,
+                  },
+                  "total_def_fga": Object {
+                    "value": 103,
+                  },
+                  "total_def_fta": Object {
+                    "value": 40,
+                  },
+                  "total_off_2pmid_attempts": Object {
+                    "value": 28,
+                  },
+                  "total_off_2pmid_made": Object {
+                    "value": 14,
+                  },
+                  "total_off_2prim_attempts": Object {
+                    "value": 52,
+                  },
+                  "total_off_2prim_made": Object {
+                    "value": 31,
+                  },
+                  "total_off_fga": Object {
+                    "value": 122,
+                  },
+                  "total_off_fta": Object {
+                    "value": 34,
+                  },
+                },
+                "kind": "data-row",
+                "prefixFn": [Function],
+              },
+              GenericTableSeparator {
+                "kind": "separator",
+              },
+            ]
+          }
+          tableFields={
+            Object {
+              "2p": GenericTableColProps {
+                "className": "",
+                "colName": "2P%",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": 0,
+                "rowSpan": [Function],
+                "toolTip": "2 point field goal percentage",
+                "widthUnits": 2,
+              },
+              "2pmid": GenericTableColProps {
+                "className": "",
+                "colName": "2P% mid",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": 0,
+                "rowSpan": [Function],
+                "toolTip": "2 point field goal percentage (mid range)",
+                "widthUnits": 2,
+              },
+              "2pmidr": GenericTableColProps {
+                "className": "",
+                "colName": "2PR mid",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": 0,
+                "rowSpan": [Function],
+                "toolTip": "Percentage of mid range 2 pointers taken against all field goals",
+                "widthUnits": 2,
+              },
+              "2prim": GenericTableColProps {
+                "className": "",
+                "colName": "2P% rim",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": 0,
+                "rowSpan": [Function],
+                "toolTip": "2 point field goal percentage (layup/dunk/etc)",
+                "widthUnits": 2,
+              },
+              "2primr": GenericTableColProps {
+                "className": "",
+                "colName": "2PR rim",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": 0,
+                "rowSpan": [Function],
+                "toolTip": "Percentage of layup/dunk/etc 2 pointers taken against all field goals",
+                "widthUnits": 2,
+              },
+              "3p": GenericTableColProps {
+                "className": "",
+                "colName": "3P%",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": 0,
+                "rowSpan": [Function],
+                "toolTip": "3 point field goal percentage",
+                "widthUnits": 2,
+              },
+              "3pr": GenericTableColProps {
+                "className": "",
+                "colName": "3PR",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": 0,
+                "rowSpan": [Function],
+                "toolTip": "Percentage of 3 pointers taken against all field goals",
+                "widthUnits": 2,
+              },
+              "adj_opp": GenericTableColProps {
+                "className": "",
+                "colName": "SoS",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": 0,
+                "rowSpan": [Function],
+                "toolTip": "Weighted average of the offensive or defensive efficiencies of the lineups' opponents",
+                "widthUnits": 2,
+              },
+              "adj_ppp": GenericTableColProps {
+                "className": "",
+                "colName": "Adj P/100",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": 0,
+                "rowSpan": [Function],
+                "toolTip": "Approximate schedule-adjusted Points per 100 possessions",
+                "widthUnits": 2,
+              },
+              "efg": GenericTableColProps {
+                "className": "",
+                "colName": "eFG%",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": 0,
+                "rowSpan": [Function],
+                "toolTip": "Effective field goal% (3 pointers count 1.5x as much) for selected lineups",
+                "widthUnits": 2,
+              },
+              "ftr": GenericTableColProps {
+                "className": "",
+                "colName": "FTR",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": 0,
+                "rowSpan": [Function],
+                "toolTip": "Free throw rate for selected lineups",
+                "widthUnits": 2,
+              },
+              "orb": GenericTableColProps {
+                "className": "",
+                "colName": "ORB%",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": 0,
+                "rowSpan": [Function],
+                "toolTip": "Offensive rebounding % for selected lineups",
+                "widthUnits": 2,
+              },
+              "poss": GenericTableColProps {
+                "className": "",
+                "colName": "Poss",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": 0,
+                "rowSpan": [Function],
+                "toolTip": "Total number of possessions for selected lineups",
+                "widthUnits": 2,
+              },
+              "ppp": GenericTableColProps {
+                "className": "",
+                "colName": "P/100",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": 0,
+                "rowSpan": [Function],
+                "toolTip": "Points per 100 possessions",
+                "widthUnits": 2,
+              },
+              "sep0": GenericTableColProps {
+                "className": "",
+                "colName": "",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "",
+                "widthUnits": 1,
+              },
+              "sep1": GenericTableColProps {
+                "className": "",
+                "colName": "",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "",
+                "widthUnits": 1,
+              },
+              "sep2": GenericTableColProps {
+                "className": "",
+                "colName": "",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "",
+                "widthUnits": 1,
+              },
+              "sep3": GenericTableColProps {
+                "className": "",
+                "colName": "",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "",
+                "widthUnits": 1,
+              },
+              "sep4": GenericTableColProps {
+                "className": "",
+                "colName": "",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "",
+                "widthUnits": 1,
+              },
+              "title": GenericTableColProps {
+                "className": "small",
+                "colName": "",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": true,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "",
+                "widthUnits": 8,
+              },
+              "to": GenericTableColProps {
+                "className": "",
+                "colName": "TO%",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": 0,
+                "rowSpan": [Function],
+                "toolTip": "Turnover % for selected lineups",
+                "widthUnits": 2,
+              },
+            }
+          }
+        />
+      </Col>
+    </ForwardRef>
+  </LoadingOverlay>
+</Container>
 `;
