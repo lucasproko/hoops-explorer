@@ -26,7 +26,7 @@ import GenericCollapsibleCard from '../components/GenericCollapsibleCard';
 // Utils:
 import { UrlRouting } from "../utils/UrlRouting";
 
-const OnOffAnalysisPage: NextPage<{}> = () => {
+const OnOffAnalyzerPage: NextPage<{}> = () => {
 
   useEffect(() => { // Set up GA
     if ((process.env.NODE_ENV === 'production') && (typeof window !== undefined)) {
@@ -123,6 +123,18 @@ const OnOffAnalysisPage: NextPage<{}> = () => {
         <RosterStatsTable/>
       </GenericCollapsibleCard>
     </Row>
+    <Row>
+      <Col>
+        <i><small>Author: <a href="https://twitter.com/ItsATerp_CBB" target="_new">ItsATerp_CBB</a> (let me know if you see anything weird!)</small></i>
+      </Col>
+      <Col>
+        <span className="float-right">
+          <i><small>
+          SoS stats from <a href="https://kenpom.com" target="_new">kenpom.com</a> and <a href="https://herhoopstats.com" target="_new">herhoopstats.com</a>
+          </small></i>
+        </span>
+      </Col>
+    </Row>
   </Container>;
 }
-export default OnOffAnalysisPage;
+export default OnOffAnalyzerPage;
