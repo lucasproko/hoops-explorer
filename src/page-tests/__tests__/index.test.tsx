@@ -1,11 +1,11 @@
 import React from 'react';
-import OnOffAnalysisPage from '../../pages/index';
+import OnOffAnalyzerPage from '../../pages/index';
 import { shallow } from 'enzyme'
 import toJson from 'enzyme-to-json'
 
-describe("OnOffAnalysisPage", () => {
-  test("OnOffAnalysisPage - should create snapshot", () => {
-    const wrapper = shallow(<OnOffAnalysisPage/>);
+describe("OnOffAnalyzerPage", () => {
+  test("OnOffAnalyzerPage - should create snapshot", () => {
+    const wrapper = shallow(<OnOffAnalyzerPage/>);
     expect(toJson(wrapper)).toMatchSnapshot();
   });
 });
