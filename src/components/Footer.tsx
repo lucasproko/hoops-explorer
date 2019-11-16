@@ -35,8 +35,8 @@ const Footer: React.FunctionComponent<Props> = ({server, gender, year}) => {
   ]);
 
   const onMouseOver = (encoded: string) => (event: any) => {
-    if (!_.startsWith(event.target.href, "mailto") &&
-        !_.startsWith(event.target.href, "https"))
+    if (!_.startsWith(event.target.href, "mailto:") &&
+        !_.startsWith(event.target.href, "https://twitter.com"))
     {
       event.target.href = atob(encoded);
     }
