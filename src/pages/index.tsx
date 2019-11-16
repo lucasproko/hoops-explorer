@@ -22,6 +22,7 @@ import TeamStatsTable, { TeamStatsModel } from '../components/TeamStatsTable';
 import RosterStatsTable from '../components/RosterStatsTable';
 import RosterCompareTable, { RosterCompareModel } from '../components/RosterCompareTable';
 import GenericCollapsibleCard from '../components/GenericCollapsibleCard';
+import Footer from '../components/Footer';
 
 // Utils:
 import { UrlRouting } from "../utils/UrlRouting";
@@ -53,6 +54,9 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
 
   const allParams = (typeof window === `undefined`) ? //(ensures SSR code still compiles)
     "" : window.location.search;
+
+  const server = (typeof window === `undefined`) ? //(ensures SSR code still compiles)
+    "server" : window.location.hostname
 
   const [ gameFilterParams, setGameFilterParams ] = useState(
     UrlRouting.removedSavedKeys(allParams) as GameFilterParams
@@ -123,18 +127,7 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
         <RosterStatsTable/>
       </GenericCollapsibleCard>
     </Row>
-    <Row>
-      <Col>
-        <i><small>Author: <a href="https://twitter.com/ItsATerp_CBB" target="_new">ItsATerp_CBB</a> (let me know if you see anything weird!)</small></i>
-      </Col>
-      <Col>
-        <span className="float-right">
-          <i><small>
-          SoS stats from <a href="https://kenpom.com" target="_new">kenpom.com</a> and <a href="https://herhoopstats.com" target="_new">herhoopstats.com</a>
-          </small></i>
-        </span>
-      </Col>
-    </Row>
+    <Footer year={gameFilterParams.year} gender={gameFilterParams.gender} server={server}/>
   </Container>;
 }
 export default OnOffAnalyzerPage;

@@ -94,47 +94,8 @@ exports[`OnOffAnalyzerPage OnOffAnalyzerPage - should create snapshot 1`] = `
       <RosterStatsTable />
     </GenericCollapsibleCard>
   </ForwardRef>
-  <ForwardRef
-    noGutters={false}
-  >
-    <Col>
-      <i>
-        <small>
-          Author: 
-          <a
-            href="https://twitter.com/ItsATerp_CBB"
-            target="_new"
-          >
-            ItsATerp_CBB
-          </a>
-           (let me know if you see anything weird!)
-        </small>
-      </i>
-    </Col>
-    <Col>
-      <span
-        className="float-right"
-      >
-        <i>
-          <small>
-            SoS stats from 
-            <a
-              href="https://kenpom.com"
-              target="_new"
-            >
-              kenpom.com
-            </a>
-             and 
-            <a
-              href="https://herhoopstats.com"
-              target="_new"
-            >
-              herhoopstats
-            </a>
-          </small>
-        </i>
-      </span>
-    </Col>
-  </ForwardRef>
+  <Footer
+    server="server"
+  />
 </Container>
 `;

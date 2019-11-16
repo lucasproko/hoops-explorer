@@ -20,6 +20,7 @@ import LineupFilter, { LineupFilterParams } from '../components/LineupFilter';
 import { GameFilterParams } from '../components/GameFilter';
 import LineupStatsTable, { LineupStatsModel } from '../components/LineupStatsTable';
 import GenericCollapsibleCard from '../components/GenericCollapsibleCard';
+import Footer from '../components/Footer';
 
 // Utils:
 import { UrlRouting } from "../utils/UrlRouting";
@@ -49,6 +50,9 @@ const LineupAnalyzerPage: NextPage<{}> = () => {
 
   const allParams = (typeof window === `undefined`) ? //(ensures SSR code still compiles)
     "" : window.location.search;
+
+  const server = (typeof window === `undefined`) ? //(ensures SSR code still compiles)
+    "server" : window.location.hostname
 
   const [ lineupFilterParams, setLineupFilterParams ] = useState(
     UrlRouting.removedSavedKeys(allParams) as LineupFilterParams
@@ -113,18 +117,7 @@ const LineupAnalyzerPage: NextPage<{}> = () => {
         />
       </GenericCollapsibleCard>
     </Row>
-    <Row>
-      <Col>
-        <i><small>Author: <a href="https://twitter.com/ItsATerp_CBB" target="_new">ItsATerp_CBB</a> (let me know if you see anything weird!)</small></i>
-      </Col>
-      <Col>
-        <span className="float-right">
-          <i><small>
-          SoS stats from <a href="https://kenpom.com" target="_new">kenpom.com</a> and <a href="https://herhoopstats.com" target="_new">herhoopstats.com</a>
-          </small></i>
-        </span>
-      </Col>
-    </Row>
+    <Footer year={lineupFilterParams.year} gender={lineupFilterParams.gender} server={server}/>
   </Container>;
 }
 export default LineupAnalyzerPage;
