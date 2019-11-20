@@ -18,8 +18,6 @@ import Select, { components} from "react-select"
 import queryString from "query-string";
 // @ts-ignore
 import LoadingOverlay from 'react-loading-overlay';
-// @ts-ignore
-import ls from 'local-storage';
 
 // Component imports:
 import { TeamStatsModel } from '../components/TeamStatsTable';
@@ -28,6 +26,7 @@ import { dataLastUpdated } from '../utils/internal-data/dataLastUpdated';
 import { preloadedData } from '../utils/internal-data/preloadedData';
 import { AvailableTeams } from '../utils/internal-data/AvailableTeams';
 import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
+import { ClientRequestCache } from '../utils/ClientRequestCache';
 
 // Library imports:
 import fetch from 'isomorphic-unfetch';
@@ -81,6 +80,8 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
 
   const isDebug = (process.env.NODE_ENV !== 'production');
 
+  const cacheKeyPrefix = "";
+
   // Utils
 
   const currentJsonEpoch = dataLastUpdated[`${gender}_${year}`] || -1;
@@ -91,19 +92,13 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
     if (pageJustLoaded) {
       setPageJustLoaded(false); //(ensures this code only gets called once)
 
-      const cachedEpochKey = `data-epoch-${gender}-${year}`;
-      const cachedEpoch = (ls as any).get(cachedEpochKey) || 0;
-      if (cachedEpoch != currentJsonEpoch) {
-        if (isDebug) {
-          console.log(`Force reloading preloads because [${cachedEpoch}] != curr [${currentJsonEpoch}]`);
-        }
-        (ls as any).set(cachedEpochKey, currentJsonEpoch);
-      }
+      const epochRefreshed = ClientRequestCache.refreshEpoch(gender, year, currentJsonEpoch, isDebug);
+
       // Check for pre-loads:
       Object.entries(preloadedData || {}).map(function(keyVal) {
         const key = keyVal[0];
         const valAsJson = keyVal[1];
-        if ((cachedEpoch == currentJsonEpoch) && getCachedData(keyVal[0])) {
+        if (!epochRefreshed && ClientRequestCache.peekForResponse(key, "")) {
           if (isDebug) {
             console.log(`Already pre-loaded [${key}]`);
           }
@@ -111,13 +106,16 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
           if (isDebug) {
             console.log(`Pre-loading [${key}]`);
           }
-          valAsJson.cacheEpoch = currentJsonEpoch;
-          (ls as any).set(key, JSON.stringify(valAsJson));
+          ClientRequestCache.cacheResponse(
+            key, "", valAsJson, currentJsonEpoch, isDebug //(no prefix since the key already has it)
+          );
         }
       });
       // Check if object is in cache and onSubmit if so
       const newParamsStr = queryString.stringify(buildParamsFromState());
-      const cachedJson = getCachedData(newParamsStr);
+      const cachedJson = ClientRequestCache.decacheResponse(
+        newParamsStr, cacheKeyPrefix, currentJsonEpoch, isDebug
+      );
       if (cachedJson) {
         handleResponse(cachedJson);
       }
@@ -148,20 +146,6 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
       (key: string) => (newParams as any)[key] == (currState as any)[key]
     );
     return (atLeastOneQueryMade && paramsUnchanged) || (team == "");
-  }
-
-  /** Check if we have an up-todate local cache for this set of params */
-  function getCachedData(str: string) {
-    const cachedJson = JSON.parse((ls as any).get(str) || "{}");
-    const cachedJsonEpoch = cachedJson.cacheEpoch || 0;
-    if (cachedJsonEpoch == currentJsonEpoch) {
-      if (isDebug) {
-        console.log(`Found cache for ${str} epochs: [${cachedJsonEpoch}, ${currentJsonEpoch}]`);
-      }
-      return cachedJson;
-    } else {
-      return null;
-    }
   }
 
   /** Whether any of the queries returned an error - we'll treat them all as errors if so */
@@ -205,20 +189,23 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
     const newParamsStr = queryString.stringify(buildParamsFromState());
 
     // Check if it's in the cache:
-    const cachedJson = getCachedData(newParamsStr);
+    const cachedJson = ClientRequestCache.decacheResponse(
+      newParamsStr, cacheKeyPrefix, currentJsonEpoch, isDebug
+    );
     if (cachedJson) {
       handleResponse(cachedJson);
     } else {
       fetch(`/api/calculateOnOffStats?${newParamsStr}`).then(function(response) {
         response.json().then(function(json) {
           // Cache result locally:
-          const newCacheVal = JSON.stringify({cacheEpoch: currentJsonEpoch, ...json});
           if (isDebug) {
-            console.log(`CACHE_KEY=[${newParamsStr}]`);
-            console.log(`CACHE_VAL=[${newCacheVal}]`);
+            console.log(`CACHE_KEY=[${cacheKeyPrefix}${newParamsStr}]`);
+            console.log(`CACHE_VAL=[${JSON.stringify(json)}]`);
           }
           if (!isResponseError(json)) { //(never cache errors)
-            (ls as any).set(newParamsStr, newCacheVal);
+            ClientRequestCache.cacheResponse(
+              newParamsStr, cacheKeyPrefix, json, currentJsonEpoch, isDebug
+            );
           }
           handleResponse(json);
         })
