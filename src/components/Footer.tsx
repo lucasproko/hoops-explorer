@@ -45,7 +45,7 @@ const Footer: React.FunctionComponent<Props> = ({server, gender, year}) => {
   // (Display no footer on the non-public site:)
   if (!_.startsWith(server, "cbb-on-off-analyzer")) return <Container><Row>
       <Col>
-        <i><small>This year's data last updated: [{lastUpdated(year, gender)}]</small></i>
+        <i><small>Selected year's data last updated: [{lastUpdated(year, gender)}]</small></i>
       </Col>
       <Col>
         <span className="float-right">
@@ -72,7 +72,7 @@ const Footer: React.FunctionComponent<Props> = ({server, gender, year}) => {
       <Col>
         <span className="float-right">
           <i><small>
-          SoS stats from <a href="https://kenpom.com" target="_new">kenpom.com</a> and <a href="https://herhoopstats.com" target="_new">herhoopstats.com</a>
+          SoS stats with kind permission from <a href="https://kenpom.com" target="_new">kenpom.com</a> and <a href="https://herhoopstats.com" target="_new">herhoopstats.com</a>
           </small></i>
         </span>
       </Col>

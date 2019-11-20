@@ -228,54 +228,67 @@ export class AvailableTeams {
     ],
     // BIG (minus Maryland)
     "Indiana": [
+      { team: "Indiana", year: "2018/9", gender: "Women", index_template: "women_bigten" },
       { team: "Indiana", year: "2018/9", gender: "Men", index_template: "bigten" },
       { team: "Indiana", year: "2019/20", gender: "Men", index_template: "bigten" },
     ],
     "Nebraska": [
+      { team: "Nebraska", year: "2018/9", gender: "Women", index_template: "women_bigten" },
       { team: "Nebraska", year: "2018/9", gender: "Men", index_template: "bigten" },
       { team: "Nebraska", year: "2019/20", gender: "Men", index_template: "bigten" },
     ],
     "Wisconsin": [
+      { team: "Wisconsin", year: "2018/9", gender: "Women", index_template: "women_bigten" },
       { team: "Wisconsin", year: "2018/9", gender: "Men", index_template: "bigten" },
       { team: "Wisconsin", year: "2019/20", gender: "Men", index_template: "bigten" },
     ],
     "Ohio St.": [
+      { team: "Ohio St.", year: "2018/9", gender: "Women", index_template: "women_bigten" },
       { team: "Ohio St.", year: "2018/9", gender: "Men", index_template: "bigten" },
       { team: "Ohio St.", year: "2019/20", gender: "Men", index_template: "bigten" },
     ],
     "Michigan St.": [
+      { team: "Michigan St.", year: "2018/9", gender: "Women", index_template: "women_bigten" },
       { team: "Michigan St.", year: "2018/9", gender: "Men", index_template: "bigten" },
       { team: "Michigan St.", year: "2019/20", gender: "Men", index_template: "bigten" },
     ],
     "Iowa": [
+      { team: "Iowa", year: "2018/9", gender: "Women", index_template: "women_bigten" },
       { team: "Iowa", year: "2018/9", gender: "Men", index_template: "bigten" },
       { team: "Iowa", year: "2019/20", gender: "Men", index_template: "bigten" },
     ],
     "Michigan": [
+      { team: "Michigan", year: "2018/9", gender: "Women", index_template: "women_bigten" },
       { team: "Michigan", year: "2018/9", gender: "Men", index_template: "bigten" },
       { team: "Michigan", year: "2019/20", gender: "Men", index_template: "bigten" },
     ],
     "Purdue": [
+      { team: "Purdue", year: "2018/9", gender: "Women", index_template: "women_bigten" },
       { team: "Purdue", year: "2018/9", gender: "Men", index_template: "bigten" },
       { team: "Purdue", year: "2019/20", gender: "Men", index_template: "bigten" },
     ],
     "Illinois": [
+      { team: "Illinois", year: "2018/9", gender: "Women", index_template: "women_bigten" },
       { team: "Illinois", year: "2018/9", gender: "Men", index_template: "bigten" },
       { team: "Illinois", year: "2019/20", gender: "Men", index_template: "bigten" },
     ],
     "Penn St.": [
+      { team: "Penn St.", year: "2018/9", gender: "Women", index_template: "women_bigten" },
       { team: "Penn St.", year: "2018/9", gender: "Men", index_template: "bigten" },
       { team: "Penn St.", year: "2019/20", gender: "Men", index_template: "bigten" },
     ],
     "Northwestern": [
+      { team: "Northwestern", year: "2018/9", gender: "Women", index_template: "women_bigten" },
       { team: "Northwestern", year: "2018/9", gender: "Men", index_template: "bigten" },
       { team: "Northwestern", year: "2019/20", gender: "Men", index_template: "bigten" },
     ],
     "Rutgers": [
+      { team: "Rutgers", year: "2018/9", gender: "Women", index_template: "women_bigten" },
       { team: "Rutgers", year: "2018/9", gender: "Men", index_template: "bigten" },
       { team: "Rutgers", year: "2019/20", gender: "Men", index_template: "bigten" },
     ],
     "Minnesota": [
+      { team: "Minnesota", year: "2018/9", gender: "Women", index_template: "women_bigten" },
       { team: "Minnesota", year: "2018/9", gender: "Men", index_template: "bigten" },
       { team: "Minnesota", year: "2019/20", gender: "Men", index_template: "bigten" },
     ],
