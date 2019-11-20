@@ -1,0 +1,99 @@
+// Lodash
+import _ from "lodash";
+
+import LRUCache from 'lru-cache';
+
+// @ts-ignore
+import LZUTF8 from 'lzutf8';
+
+/** Wraps LRU and handles compression of the fields, clearing out if space is needed etc */
+export class ServerRequestCache {
+
+  private static readonly maxSizeMb: number = 150;
+  private static readonly logPeriodMs = 10*1000; //(Every 10s)
+
+  // Some debug vars
+  private static cacheLastLogged = new Date();
+  private static cacheMissesSinceLastLog = 0;
+  private static cacheSemiMissesSinceLastLog = 0;
+  private static cacheHitsSinceLastLog = 0;
+
+  private static cache = new LRUCache<string, string>({
+  	max: ServerRequestCache.maxSizeMb*1024*1024,
+    length: (value) => {
+        return value.length;
+    }
+  });
+
+  private static logCacheInfo(isDebug: boolean) {
+    const now = new Date();
+    const periodSinceLogMs = now.getTime() - ServerRequestCache.cacheLastLogged.getTime();
+    if (isDebug || (periodSinceLogMs > ServerRequestCache.logPeriodMs)) {
+      console.log(
+        `In last [${periodSinceLogMs/(60*1000.0)}]mins, hits=[${ServerRequestCache.cacheHitsSinceLastLog}], semi-misses=[${ServerRequestCache.cacheSemiMissesSinceLastLog}], misses=[${ServerRequestCache.cacheMissesSinceLastLog}] ` +
+        `(cache size=[${ServerRequestCache.cache.length/1024}]KB items=[${ServerRequestCache.cache.itemCount}])`
+      );
+      ServerRequestCache.cacheLastLogged = now;
+      ServerRequestCache.cacheHitsSinceLastLog = 0;
+      ServerRequestCache.cacheSemiMissesSinceLastLog = 0;
+      ServerRequestCache.cacheMissesSinceLastLog = 0;
+    }
+  }
+
+  /** Returns the cached JSON object, if it exists, has a matching epochKey (or epoch key is undefined) - else null */
+  static decacheResponse(
+    key: string, prefix: string, epochKey: number | undefined, isDebug: boolean = false
+  ): Record<string, any> | null {
+
+    if (0 == ServerRequestCache.maxSizeMb) {
+      return null;
+    } else {
+      const cacheStr = ServerRequestCache.cache.get(prefix + key);
+      if (cacheStr) {
+
+        const results =  _.split(cacheStr, ":", 1);
+        const cacheEpoch = parseInt(results[0] || "0");
+        const compCacheJsonTmp = cacheStr.substring(results[0].length + 1); // +1 for :
+        if (!epochKey || !cacheEpoch || (cacheEpoch == epochKey)) {
+          if (isDebug) {
+            console.log(`Found cache for [${prefix}][${key}] epochs: [${cacheEpoch}, ${epochKey}]`);
+          }
+          const decompStr = LZUTF8.decompress(
+            compCacheJsonTmp, { inputEncoding: "StorageBinaryString" }
+          );
+          ServerRequestCache.cacheHitsSinceLastLog++;
+
+          // Debug logging:
+          ServerRequestCache.logCacheInfo(isDebug);
+
+          return JSON.parse(decompStr);
+        } else {
+          ServerRequestCache.cacheSemiMissesSinceLastLog++;
+
+          // Debug logging:
+          ServerRequestCache.logCacheInfo(isDebug);
+
+          return null; //(will get written back into after the search)
+        }
+      } else {
+        ServerRequestCache.cacheMissesSinceLastLog++;
+
+        // Debug logging:
+        ServerRequestCache.logCacheInfo(isDebug);
+
+        return null;
+      }
+    }
+  }
+
+  /** Caches a JSON element */
+  static cacheResponse(
+    key: string, prefix: string, value: Record<string, any>, epochKey: number | undefined, isDebug: boolean = false
+  ) {
+    const valueStr = JSON.stringify(value);
+    const compressedVal = LZUTF8.compress(
+      valueStr, { outputEncoding: "StorageBinaryString" }
+    );
+    ServerRequestCache.cache.set(prefix + key, (epochKey || "0") + ":" + compressedVal);
+  }
+}

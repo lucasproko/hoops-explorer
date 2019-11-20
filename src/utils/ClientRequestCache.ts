@@ -7,8 +7,19 @@ import ls from 'local-storage';
 // @ts-ignore
 import LZUTF8 from 'lzutf8';
 
+// Internal components:
+import { preloadedData } from '../utils/internal-data/preloadedData';
+
 /** Wraps local storage and handles compression of the fields, clearing out if space is needed etc */
 export class ClientRequestCache {
+
+  static safeLocalStorage = (typeof window == `undefined`) ? {
+    length: 0,
+    getItem: function(key: string) { return ""; },
+    removeItem: function(key: string) {},
+    key: function(index: number) { return ""; }
+  } : window.localStorage;
+
 
   /** Check if a global refresh has occurred for this gender/year pairing */
   static refreshEpoch(
@@ -25,7 +36,7 @@ export class ClientRequestCache {
         if (success) {
           break;
         } else {
-          ClientRequestCache.removeLru();          
+          ClientRequestCache.removeLru(isDebug);
         }
       }
       return true;
@@ -42,6 +53,7 @@ export class ClientRequestCache {
   static decacheResponse(
     key: string, prefix: string, epochKey: number | undefined, isDebug: boolean = false
   ): Record<string, any> | null {
+
     const cacheStr = (ls as any).get(prefix + key);
     if (!cacheStr) {
       return null; // (cache miss)
@@ -91,14 +103,35 @@ export class ClientRequestCache {
       if (success) {
         return true;
       } else { // (remove the LRU and try again, up to 15 times)
-        ClientRequestCache.removeLru();
+        ClientRequestCache.removeLru(isDebug);
       }
     }//if we get to here then just let the caller know and exit)
     return false;
   }
 
-  private static removeLru() {
-    //TODO
+  private static removeLru(isDebug: boolean) {
+
+    const limit = ClientRequestCache.safeLocalStorage.length;
+    const toRemove = _.transform(_.range(20), (acc, v) => {
+      if (v < limit) {
+        const key = ClientRequestCache.safeLocalStorage.key(v) || "";
+        const val = ClientRequestCache.safeLocalStorage.getItem(key) || "";
+        if ((val.length > 32) && !preloadedData[key]) { // ignore small fields and pre-loaded data
+          acc.push(key);
+        }
+        if (acc.length >= 5) return false; // already have what we need
+      } else return false; //(nothing to do)
+    }, [] as Array<string>);
+    console.log(`To remove: ${toRemove}`);
+
+    _.forEach(toRemove, (key) => {
+      ClientRequestCache.safeLocalStorage.removeItem(key);
+    });
+
+    if (isDebug) {
+      console.log(`Removing following keys: [${toRemove}]`);
+      console.log(`From [${limit}] to [${ClientRequestCache.safeLocalStorage.length}] keys in local storage`);
+    }
   }
 
 }
