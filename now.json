@@ -1,12 +1,16 @@
 {
   "build": {
     "env": {
-      "GA_KEY": "@ga-key"
+      "GA_KEY": "@ga-key",
+      "MEN_CURR_UPDATE": "@men-curr-update",
+      "WOMEN_CURR_UPDATE": "@women-curr-update"
     }
   },
   "env": {
     "CLUSTER_ID": "@cluster-id",
     "CLUSTER_USER": "@cluster-user",
-    "CLUSTER_PASS": "@cluster-pass"
+    "CLUSTER_PASS": "@cluster-pass",
+    "MEN_CURR_UPDATE": "@men-curr-update",
+    "WOMEN_CURR_UPDATE": "@women-curr-update"
   }
 }
