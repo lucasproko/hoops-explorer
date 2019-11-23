@@ -12,7 +12,7 @@ now secrets add women-curr-update $NEW_DATE
 # Redeploy app (so that server side cache gets the new data)
 echo "Always deploy to dev:"
 now
-if ! git status > /dev/null && git status | grep -q "On branch master"; then
+if git status | grep -q "nothing to commit, working tree clean"  && git status | grep -q "On branch master"; then
   echo "Deploy to prod:"
   now --prod
 else
