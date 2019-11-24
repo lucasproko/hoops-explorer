@@ -89,8 +89,13 @@ const LineupAnalyzerPage: NextPage<{}> = () => {
 
   return <Container>
     <Row>
-    <Col xs={6}>
+    <Col xs={8}>
       <h3>CBB Lineup Analysis Tool <span className="badge badge-pill badge-info">BETA!</span></h3>
+    </Col>
+    <Col xs={1}>
+      <span className="float-right">
+        <a href="https://hoop-explorer.blogspot.com" target="_new">Blog</a>
+      </span>
     </Col>
     <Col>
       <span className="float-right">

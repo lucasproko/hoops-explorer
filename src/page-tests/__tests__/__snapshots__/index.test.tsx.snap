@@ -19,6 +19,20 @@ exports[`OnOffAnalyzerPage OnOffAnalyzerPage - should create snapshot 1`] = `
         </span>
       </h3>
     </Col>
+    <Col
+      xs={1}
+    >
+      <span
+        className="float-right"
+      >
+        <a
+          href="https://hoop-explorer.blogspot.com"
+          target="_new"
+        >
+          Blog
+        </a>
+      </span>
+    </Col>
     <Col>
       <span
         className="float-right"

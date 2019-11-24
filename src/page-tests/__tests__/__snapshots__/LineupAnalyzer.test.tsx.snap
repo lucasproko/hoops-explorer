@@ -8,7 +8,7 @@ exports[`LineupAnalyzerPage LineupAnalyzerPage - should create snapshot 1`] = `
     noGutters={false}
   >
     <Col
-      xs={6}
+      xs={8}
     >
       <h3>
         CBB Lineup Analysis Tool 
@@ -18,6 +18,20 @@ exports[`LineupAnalyzerPage LineupAnalyzerPage - should create snapshot 1`] = `
           BETA!
         </span>
       </h3>
+    </Col>
+    <Col
+      xs={1}
+    >
+      <span
+        className="float-right"
+      >
+        <a
+          href="https://hoop-explorer.blogspot.com"
+          target="_new"
+        >
+          Blog
+        </a>
+      </span>
     </Col>
     <Col>
       <span
