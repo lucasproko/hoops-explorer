@@ -9,6 +9,9 @@ import Link from 'next/link';
 // Next imports:
 import { NextPage } from 'next';
 
+// Lodash:
+import _ from "lodash";
+
 // Bootstrap imports:
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Container from 'react-bootstrap/Container';
@@ -91,15 +94,21 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
 
   // View
 
+  function maybeShowBlog() {
+    if (!_.startsWith(server, "cbb-on-off-analyzer")) {
+      return <span className="float-right">
+        <a href="https://hoop-explorer.blogspot.com" target="_new">Blog</a>
+      </span>;
+    }
+  }
+
   return <Container>
     <Row>
       <Col xs={8}>
         <h3>CBB On/Off Analysis Tool <span className="badge badge-pill badge-info">BETA!</span></h3>
       </Col>
       <Col xs={1}>
-        <span className="float-right">
-          <a href="https://hoop-explorer.blogspot.com" target="_new">Blog</a>
-        </span>
+        { maybeShowBlog() }
       </Col>
       <Col>
         <span className="float-right">
