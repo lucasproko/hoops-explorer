@@ -1,3 +1,25 @@
+/** Painless script used below to calculate average offensive and defensive SoS */
+const calculateSos = function(offOrDef: string) { return `
+  def hca = 0.0;
+  if (doc["location_type.keyword"].value == "Home") {
+    hca = params.${offOrDef}_hca;
+  } else if (doc["location_type.keyword"].value == "Away") {
+    hca = -params.${offOrDef}_hca;
+  }
+  def kp_name = params.pbp_to_kp[doc["opponent.team.keyword"].value];
+  if (kp_name == null) {
+     kp_name = doc["opponent.team.keyword"].value;
+  } else {
+     kp_name = kp_name.pbp_kp_team;
+  }
+  def oppo = params.kp[kp_name];
+  if (oppo != null) {
+   return oppo['stats.adj_${offOrDef}.value'] - hca;
+  } else {
+   return null;
+  }
+`; }
+
 export const commonLineupAggregations = function(publicEfficiency: any, lookup: any) {
   return {
      "off_adj_opp": {
@@ -7,11 +29,30 @@ export const commonLineupAggregations = function(publicEfficiency: any, lookup: 
            },
            "value": {
               "script": {
-                 "source": "def kp_name = params.pbp_to_kp[doc[\"opponent.team.keyword\"].value];\nif (kp_name == null) {\n   kp_name = doc[\"opponent.team.keyword\"].value;\n} else {\n   kp_name = kp_name.pbp_kp_team;\n}\ndef oppo = params.kp[kp_name];\nif (oppo != null) {\n return oppo['stats.adj_off.value'];\n} else {\n return null;\n}\n",
+                 "source": calculateSos("off"),
                  "lang": "painless",
                  "params": {
                     "pbp_to_kp": lookup,
-                    "kp": publicEfficiency
+                    "kp": publicEfficiency,
+                    "off_hca": 1.5 //(this should be derived from year/gender at some point?)
+                 }
+              }
+           }
+        }
+     },
+     "def_adj_opp": {
+        "weighted_avg": {
+           "weight": {
+              "field": "team_stats.num_possessions"
+           },
+           "value": {
+              "script": {
+                "source": calculateSos("def"),
+                 "lang": "painless",
+                 "params": {
+                   "pbp_to_kp": lookup,
+                   "kp": publicEfficiency,
+                   "def_hca": -1.5
                  }
               }
            }
@@ -150,23 +191,6 @@ export const commonLineupAggregations = function(publicEfficiency: any, lookup: 
                  "source": "def attempts = doc['team_stats.fg_3p.attempts.total'].value;\n\nif (attempts > 0) {\n return (1.0*doc['team_stats.fg_3p.made.total'].value)/attempts;\n} else {\n return 0;\n}",
                  "lang": "painless",
                  "params": {}
-              }
-           }
-        }
-     },
-     "def_adj_opp": {
-        "weighted_avg": {
-           "weight": {
-              "field": "team_stats.num_possessions"
-           },
-           "value": {
-              "script": {
-                 "source": "def kp_name = params.pbp_to_kp[doc[\"opponent.team.keyword\"].value];\nif (kp_name == null) {\n   kp_name = doc[\"opponent.team.keyword\"].value;\n} else {\n   kp_name = kp_name.pbp_kp_team;\n}\ndef oppo = params.kp[kp_name];\nif (oppo != null) {\n return oppo['stats.adj_def.value'];\n} else {\n return null;\n}\n",
-                 "lang": "painless",
-                 "params": {
-                   "pbp_to_kp": lookup,
-                   "kp": publicEfficiency
-                 }
               }
            }
         }
