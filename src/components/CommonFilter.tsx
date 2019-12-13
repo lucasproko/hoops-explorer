@@ -95,7 +95,19 @@ const CommonFilter: CommonFilterI = ({
   useEffect(() => {
     setSubmitDisabled(shouldSubmitBeDisabled());
 
-    // Cached reesponse and pre-load handling:
+    // Add "enter" to submit page (do on every effect, since removal occurs on every effect, see return below)
+    const submitListener = (event: any) => {
+      if (event.code === "Enter" || event.code === "NumpadEnter") {
+        if (!submitDisabled) {
+          onSubmit();
+        }
+      }
+    };
+    if (typeof document !== `undefined`) {
+      document.addEventListener("keydown", submitListener);
+    }
+
+    // Cached response and pre-load handling:
     if (pageJustLoaded) {
       setPageJustLoaded(false); //(ensures this code only gets called once)
 
@@ -127,6 +139,12 @@ const CommonFilter: CommonFilterI = ({
       if (cachedJson) {
         handleResponse(cachedJson);
       }
+    }
+    if (typeof document !== `undefined`) {
+      //(if we added a submitListener, then remove it on page close)
+      return () => {
+        document.removeEventListener("keydown", submitListener);
+      };
     }
   });
 
