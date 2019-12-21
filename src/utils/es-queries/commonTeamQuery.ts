@@ -25,8 +25,8 @@ export const commonTeamQuery = function(params: any, publicEfficiency: any, look
               }
            },
            {
-              "query_string": {
-                "query": `team.team: "${params.team}"`
+              "term": {
+                "team.team.keyword": `${params.team}`
               }
            }
         ]
