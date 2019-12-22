@@ -7,7 +7,11 @@ exports[`LineupFilter LineupFilter - should create snapshot 1`] = `
   childSubmitRequest={[Function]}
   onChangeCommonState={[Function]}
   onChangeState={[Function]}
-  startingState={Object {}}
+  startingState={
+    Object {
+      "kind": "lineup",
+    }
+  }
   tablePrefix="lineups-"
 >
   <FormGroup

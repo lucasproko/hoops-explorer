@@ -17,22 +17,11 @@ import Col from 'react-bootstrap/Col';
 import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
 import { LineupStatsModel } from '../components/LineupStatsTable';
 import CommonFilter, { CommonFilterParams } from '../components/CommonFilter';
+import { LineupFilterParams } from "../utils/FilterModels";
 
 // Library imports:
 import fetch from 'isomorphic-unfetch';
 
-export type LineupFilterParams = {
-  year?: string,
-  team?: string,
-  gender?: string,
-  lineupQuery?: string,
-  minRank?: string,
-  maxRank?: string,
-  // For sorting in the generated table:
-  minPoss?: string,
-  maxTableSize?: string,
-  sortBy?: string
-}
 type Props = {
   onStats: (lineupStats: LineupStatsModel) => void;
   startingState: LineupFilterParams;
@@ -73,6 +62,7 @@ const LineupFilter: React.FunctionComponent<Props> = ({onStats, startingState, o
         minPoss: startingState.minPoss,
         sortBy: startingState.sortBy
     }) : {
+      kind: "lineup",
       team: commonParams.team,
       year: commonParams.year,
       gender: commonParams.gender,

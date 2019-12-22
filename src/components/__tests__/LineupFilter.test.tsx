@@ -1,5 +1,6 @@
 import React from 'react';
-import LineupFilter, { LineupFilterParams } from '../LineupFilter';
+import LineupFilter from '../LineupFilter';
+import { LineupFilterParams } from "../utils/FilterModels";
 import { LineupStatsModel } from '../LineupStatsTable';
 import { shallow } from 'enzyme'
 import toJson from 'enzyme-to-json'
@@ -10,7 +11,7 @@ describe("LineupFilter", () => {
     const dummyChangeStateCallback = (stats: LineupFilterParams) => {};
     const wrapper = shallow(<LineupFilter
       onStats={dummySubmitCallback}
-      startingState={{}}
+      startingState={{kind: "lineup"}}
       onChangeState={dummyChangeStateCallback}
     />);
     expect(toJson(wrapper)).toMatchSnapshot();

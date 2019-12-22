@@ -12,12 +12,17 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Alert from 'react-bootstrap/Alert';
 import InputGroup from 'react-bootstrap/InputGroup';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Popover from 'react-bootstrap/Popover';
 
 // Additional components:
 import Select, { components} from "react-select"
 import queryString from "query-string";
 // @ts-ignore
 import LoadingOverlay from 'react-loading-overlay';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHistory } from '@fortawesome/free-solid-svg-icons'
+
 
 // Component imports:
 import { TeamStatsModel } from '../components/TeamStatsTable';
@@ -26,6 +31,8 @@ import { dataLastUpdated } from '../utils/internal-data/dataLastUpdated';
 import { preloadedData } from '../utils/internal-data/preloadedData';
 import { AvailableTeams } from '../utils/internal-data/AvailableTeams';
 import { ClientRequestCache } from '../utils/ClientRequestCache';
+import HistorySelector, { historySelectContainerWidth } from '../components/HistorySelector';
+import { ParamDefaults } from '../utils/FilterModels';
 
 // Library imports:
 import fetch from 'isomorphic-unfetch';
@@ -65,16 +72,16 @@ const CommonFilter: CommonFilterI = ({
   const [ currState, setCurrState ] = useState(startingState);
 
   // Data source
-  const [ team, setTeam ] = useState(startingState.team || "");
-  const [ year, setYear ] = useState(startingState.year || "2019/20");
-  const [ gender, setGender ] = useState(startingState.gender || "Men");
+  const [ team, setTeam ] = useState(startingState.team || ParamDefaults.defaultTeam);
+  const [ year, setYear ] = useState(startingState.year || ParamDefaults.defaultYear);
+  const [ gender, setGender ] = useState(startingState.gender || ParamDefaults.defaultGender);
   /** Pre-calculate this */
   const teamList = AvailableTeams.getTeams(null, year, gender);
 
   // Generic filters:
 
-  const [ minRankFilter, setMinRankFilter ] = useState(startingState.minRank || "0");
-  const [ maxRankFilter, setMaxRankFilter ] = useState(startingState.maxRank || "400");
+  const [ minRankFilter, setMinRankFilter ] = useState(startingState.minRank || ParamDefaults.defaultMinRank);
+  const [ maxRankFilter, setMaxRankFilter ] = useState(startingState.maxRank || ParamDefaults.defaultMaxRank);
 
   // Automatically update child state when any current param is changed:
   useEffect(() => {
@@ -238,6 +245,28 @@ const CommonFilter: CommonFilterI = ({
     );
   };
 
+  const getHistoryButton = () => {
+
+    return <OverlayTrigger
+      trigger="click"
+      key="left"
+      placement="left"
+      overlay={
+        <Popover id="popover-positioned-left" style={{ maxWidth: historySelectContainerWidth }}>
+          <Popover.Title as="h3">{`History`}</Popover.Title>
+          <Popover.Content>
+            <HistorySelector/>
+          </Popover.Content>
+        </Popover>
+      }
+    >
+      <Button className="float-left" id="historyButton" variant="outline-secondary" size="sm">
+        <FontAwesomeIcon icon={faHistory} />
+      </Button>
+    </OverlayTrigger>
+    ;
+  }
+
   return <LoadingOverlay
     active={queryIsLoading}
     spinner
@@ -282,6 +311,9 @@ const CommonFilter: CommonFilterI = ({
             setTeam((option as any)?.value || "")
           }}
         />
+      </Col>
+      <Col>
+        {getHistoryButton()}
       </Col>
     </Form.Group>
     { children }

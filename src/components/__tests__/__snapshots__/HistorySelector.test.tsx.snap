@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HistorySelector HistorySelector - should create snapshot 1`] = `
+<div
+  style={
+    Object {
+      "width": "500px",
+    }
+  }
+>
+  <StateManager
+    defaultInputValue=""
+    defaultMenuIsOpen={false}
+    defaultValue={null}
+    isClearable={true}
+    onChange={[Function]}
+    options={Array []}
+    styles={
+      Object {
+        "menu": [Function],
+      }
+    }
+    value={
+      Object {
+        "label": "Select analysis from history...",
+      }
+    }
+  />
+</div>
+`;

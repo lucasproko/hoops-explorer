@@ -22,7 +22,7 @@ import Select, { components} from "react-select"
 
 // Component imports
 import GenericTable, { GenericTableOps, GenericTableColProps } from "./GenericTable"
-import { LineupFilterParams } from './LineupFilter';
+import { LineupFilterParams, ParamDefaults } from '../utils/FilterModels';
 
 // Util imports
 import { CbbColors } from "../utils/CbbColors"
@@ -42,9 +42,9 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, starting
 
   // 1] State
 
-  const [ minPoss, setMinPoss ] = useState(startingState.minPoss || "5");
-  const [ maxTableSize, setMaxTableSize ] = useState(startingState.maxTableSize || "50");
-  const [ sortBy, setSortBy ] = useState(startingState.sortBy || "desc:off_poss");
+  const [ minPoss, setMinPoss ] = useState(startingState.minPoss || ParamDefaults.defaultLineupMinPos);
+  const [ maxTableSize, setMaxTableSize ] = useState(startingState.maxTableSize || ParamDefaults.defaultLineupMaxTableSize);
+  const [ sortBy, setSortBy ] = useState(startingState.sortBy || ParamDefaults.defaultLineupSortBy);
 
   useEffect(() => {
     const newState = _.merge(startingState, {

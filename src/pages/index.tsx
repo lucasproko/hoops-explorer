@@ -19,8 +19,8 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 // App components:
-import GameFilter, { GameFilterParams } from '../components/GameFilter';
-import { LineupFilterParams } from '../components/LineupFilter';
+import GameFilter from '../components/GameFilter';
+import { GameFilterParams, LineupFilterParams } from '../utils/FilterModels';
 import TeamStatsTable, { TeamStatsModel } from '../components/TeamStatsTable';
 import RosterStatsTable from '../components/RosterStatsTable';
 import RosterCompareTable, { RosterCompareModel } from '../components/RosterCompareTable';

@@ -1,6 +1,6 @@
 import React from 'react';
 import CommonFilter, { CommonFilterParams } from '../CommonFilter';
-import { LineupFilterParams } from '../LineupFilter';
+import { LineupFilterParams } from "../utils/FilterModels";
 import { LineupStatsModel } from '../LineupStatsTable';
 import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';

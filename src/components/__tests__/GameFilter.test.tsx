@@ -1,5 +1,6 @@
 import React from 'react';
-import GameFilter, { GameFilterParams } from '../GameFilter';
+import GameFilter from '../GameFilter';
+import { GameFilterParams } from "../utils/FilterModels";
 import { TeamStatsModel } from '../TeamStatsTable';
 import { RosterCompareModel } from '../RosterCompareTable';
 import { shallow } from 'enzyme'
@@ -11,7 +12,7 @@ describe("GameFilter", () => {
     const dummyChangeStateCallback = (stats: GameFilterParams) => {};
     const wrapper = shallow(<GameFilter
       onStats={dummySubmitCallback}
-      startingState={{}}
+      startingState={{kind: "game"}}
       onChangeState={dummyChangeStateCallback}
     />);
     expect(toJson(wrapper)).toMatchSnapshot();
