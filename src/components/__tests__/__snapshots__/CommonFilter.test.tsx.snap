@@ -721,15 +721,40 @@ exports[`CommonFilter CommonFilter - should create snapshot 1`] = `
         (out of ~360 teams)
       </FormLabel>
     </FormGroup>
-    <Button
-      active={false}
-      disabled={false}
-      onClick={[Function]}
-      type="button"
-      variant="primary"
-    >
-      Submit
-    </Button>
+    <Col>
+      <Button
+        active={false}
+        disabled={false}
+        onClick={[Function]}
+        type="button"
+        variant="primary"
+      >
+        Submit
+      </Button>
+      <Shake
+        className="float-right"
+        fixed={true}
+        h={20}
+        int={25}
+        q={5}
+        r={5}
+        v={5}
+      >
+        <Button
+          active={false}
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+          variant="warning"
+        >
+          <b>
+            See Example (
+            Men
+            )!
+          </b>
+        </Button>
+      </Shake>
+    </Col>
   </Form>
 </LoadingOverlay>
 `;
