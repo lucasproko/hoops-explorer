@@ -14,6 +14,7 @@ import Alert from 'react-bootstrap/Alert';
 import InputGroup from 'react-bootstrap/InputGroup';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Popover from 'react-bootstrap/Popover';
+import Tooltip from 'react-bootstrap/Tooltip';
 
 // Additional components:
 import Select, { components} from "react-select"
@@ -22,7 +23,8 @@ import queryString from "query-string";
 import LoadingOverlay from 'react-loading-overlay';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHistory } from '@fortawesome/free-solid-svg-icons'
-
+import { faLink } from '@fortawesome/free-solid-svg-icons'
+import ClipboardJS from 'clipboard';
 
 // Component imports:
 import { TeamStatsModel } from '../components/TeamStatsTable';
@@ -72,6 +74,8 @@ const CommonFilter: CommonFilterI = ({
   const [ pageJustLoaded, setPageJustLoaded ] = useState(true);
   const [ currState, setCurrState ] = useState(startingState);
 
+  const [ clipboard, setClipboard] = useState(null as null | ClipboardJS);
+
   // Data source
   const [ team, setTeam ] = useState(startingState.team || ParamDefaults.defaultTeam);
   const [ year, setYear ] = useState(startingState.year || ParamDefaults.defaultYear);
@@ -103,6 +107,7 @@ const CommonFilter: CommonFilterI = ({
 
   /** Checks if the input has been changed, and also handles on page load logic */
   useEffect(() => {
+    initClipboard();
     setSubmitDisabled(shouldSubmitBeDisabled());
 
     // Add "enter" to submit page (do on every effect, since removal occurs on every effect, see return below)
@@ -242,6 +247,23 @@ const CommonFilter: CommonFilterI = ({
     }
   }
 
+  /** This grovelling is needed to ensure that clipboard is only loaded client side */
+  function initClipboard() {
+    if (null == clipboard) {
+      var newClipboard = new ClipboardJS(`#copyLink`, {
+        text: function(trigger) {
+          return window.location.href;
+        }
+      });
+      newClipboard.on('success', (event: ClipboardJS.Event) => {
+        setTimeout(function() {
+          event.clearSelection();
+        }, 150);
+      });
+      setClipboard(newClipboard);
+    }
+  }
+
   // Visual components:
 
   /** Let the user know that he might need to change */
@@ -278,7 +300,17 @@ const CommonFilter: CommonFilterI = ({
       </Button>
     </OverlayTrigger>
     ;
-  }
+  };
+  const getCopyLinkButton = () => {
+    const tooltip = (
+      <Tooltip id="copyLinkTooltip">Copies URL to clipboard</Tooltip>
+    );
+    return  <OverlayTrigger placement="auto" overlay={tooltip}>
+        <Button className="float-left" id="copyLink" variant="outline-secondary" size="sm">
+          <FontAwesomeIcon icon={faLink} />
+        </Button>
+      </OverlayTrigger>;
+  };
 
   return <LoadingOverlay
     active={queryIsLoading}
@@ -327,6 +359,8 @@ const CommonFilter: CommonFilterI = ({
       </Col>
       <Col>
         {getHistoryButton()}
+        <div className="float-left">&nbsp;&nbsp;</div>
+        {getCopyLinkButton()}
       </Col>
     </Form.Group>
     { children }
