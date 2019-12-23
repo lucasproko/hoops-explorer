@@ -1,5 +1,6 @@
 import React from 'react';
-import GameFilter, { LineupFilterParams } from '../LineupFilter';
+import LineupFilter from '../LineupFilter';
+import { LineupFilterParams } from "../utils/FilterModels";
 import { LineupStatsModel } from '../LineupStatsTable';
 import { shallow } from 'enzyme'
 import toJson from 'enzyme-to-json'
@@ -8,7 +9,7 @@ describe("LineupFilter", () => {
   test("LineupFilter - should create snapshot", () => {
     const dummySubmitCallback = (stats: LineupStatsModel) => {};
     const dummyChangeStateCallback = (stats: LineupFilterParams) => {};
-    const wrapper = shallow(<GameFilter
+    const wrapper = shallow(<LineupFilter
       onStats={dummySubmitCallback}
       startingState={{}}
       onChangeState={dummyChangeStateCallback}

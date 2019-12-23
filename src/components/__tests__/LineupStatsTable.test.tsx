@@ -1,7 +1,7 @@
 import renderer from 'react-test-renderer';
 import React from 'react';
 import LineupStatsTable from '../LineupStatsTable';
-import { LineupFilterParams }from '../LineupFilter';
+import { LineupFilterParams } from "../utils/FilterModels";
 import { sampleLineupStatsResponse } from "../../sample-data/sampleLineupStatsResponse"
 import { shallow } from 'enzyme'
 import toJson from 'enzyme-to-json'

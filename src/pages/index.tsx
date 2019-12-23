@@ -19,8 +19,8 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 // App components:
-import GameFilter, { GameFilterParams } from '../components/GameFilter';
-import { LineupFilterParams } from '../components/LineupFilter';
+import GameFilter from '../components/GameFilter';
+import { GameFilterParams, LineupFilterParams } from '../utils/FilterModels';
 import TeamStatsTable, { TeamStatsModel } from '../components/TeamStatsTable';
 import RosterStatsTable from '../components/RosterStatsTable';
 import RosterCompareTable, { RosterCompareModel } from '../components/RosterCompareTable';
@@ -70,16 +70,10 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
   )
 
   function getRootUrl(params: GameFilterParams) {
-    return `/?${UrlRouting.getUrl({
-      [UrlRouting.noSuffix]: params,
-      [UrlRouting.savedLineupSuffix]: savedLineupFilterParams
-    })}`;
+    return UrlRouting.getGameUrl(params, savedLineupFilterParams);
   }
   function getLineupUrl() {
-    return `/LineupAnalyzer?${UrlRouting.getUrl({
-      [UrlRouting.noSuffix]: savedLineupFilterParams,
-      [UrlRouting.savedGameSuffix]: gameFilterParams
-    })}`;
+    return UrlRouting.getLineupUrl(savedLineupFilterParams, gameFilterParams);
   }
 
   const onGameFilterParamsChange = (params: GameFilterParams) => {
