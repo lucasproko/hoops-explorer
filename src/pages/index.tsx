@@ -29,6 +29,7 @@ import Footer from '../components/Footer';
 
 // Utils:
 import { UrlRouting } from "../utils/UrlRouting";
+import { HistoryManager } from '../utils/HistoryManager';
 
 const OnOffAnalyzerPage: NextPage<{}> = () => {
 
@@ -112,7 +113,10 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
       </Col>
     </Row>
     <Row>
-      <GenericCollapsibleCard title="Team and Game Filter">
+      <GenericCollapsibleCard
+        title="Team and Game Filter"
+        summary={HistoryManager.gameFilterSummary(gameFilterParams)}
+      >
         <GameFilter
           onStats={injectStats}
           startingState={gameFilterParams}

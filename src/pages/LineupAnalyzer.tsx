@@ -21,12 +21,13 @@ import Col from 'react-bootstrap/Col';
 // App components:
 import LineupFilter from '../components/LineupFilter';
 import { GameFilterParams, LineupFilterParams } from '../utils/FilterModels';
+import { HistoryManager } from '../utils/HistoryManager';
 import LineupStatsTable, { LineupStatsModel } from '../components/LineupStatsTable';
 import GenericCollapsibleCard from '../components/GenericCollapsibleCard';
-import Footer from '../components/Footer';
 
 // Utils:
 import { UrlRouting } from "../utils/UrlRouting";
+import Footer from '../components/Footer';
 
 const LineupAnalyzerPage: NextPage<{}> = () => {
 
@@ -108,7 +109,10 @@ const LineupAnalyzerPage: NextPage<{}> = () => {
     </Col>
     </Row>
     <Row>
-      <GenericCollapsibleCard title="Team and Game Filter">
+      <GenericCollapsibleCard
+        title="Team and Game Filter"
+        summary={HistoryManager.lineupFilterSummary(lineupFilterParams)}
+      >
         <LineupFilter
           onStats={injectStats}
           startingState={lineupFilterParams}

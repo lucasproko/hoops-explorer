@@ -12,10 +12,17 @@ import Container from 'react-bootstrap/Container';
 
 type Props = {
   readonly title: string
+  readonly summary?: string
 }
 
-const GenericCollapsibleCard: React.FunctionComponent<Props> = ({children, title}) => {
+const GenericCollapsibleCard: React.FunctionComponent<Props> = ({children, title, summary}) => {
   const [ showTable, toggleShowTable ] = useState(true)
+
+  const showSummaryIfHidden = () => {
+    if (!showTable && summary) {
+      return <div className="">{summary}</div>;
+    }
+  }
 
   return <Card className="w-100">
     <Card.Body>
@@ -24,6 +31,7 @@ const GenericCollapsibleCard: React.FunctionComponent<Props> = ({children, title
           ({showTable ? "+" : "-"}) {title}
         </a></span>
       </Card.Title>
+      {showSummaryIfHidden()}
       <Collapse in={showTable}>
         <Container>
           {children}
