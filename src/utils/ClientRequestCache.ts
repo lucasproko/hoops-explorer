@@ -6,12 +6,20 @@ import ls from 'local-storage';
 
 // @ts-ignore
 import LZUTF8 from 'lzutf8';
+// @ts-ignore
+import { Base64 } from 'js-base64';
 
 // Internal components:
 import { preloadedData } from '../utils/internal-data/preloadedData';
 
 /** Wraps local storage and handles compression of the fields, clearing out if space is needed etc */
 export class ClientRequestCache {
+
+  /** If true, then shows either cached or new version of this - for building preloadedData */
+  static readonly debugShowB64Encoded = false;
+
+  /** Strings prefixed with this are treated as B64 encoded LZUTF compressed JSON */
+  static readonly base64Prefix = "B64_";
 
   static safeLocalStorage = (typeof window == `undefined`) ? {
     length: 0,
@@ -73,11 +81,19 @@ export class ClientRequestCache {
       } else { // compressed
         const results =  _.split(cacheStr, ":", 1);
         const cacheEpoch = parseInt(results[0] || "0");
-        const compCacheJsonTmp = cacheStr.substring(results[0].length + 1); // +1 for :
+        var compCacheJsonTmp = cacheStr.substring(results[0].length + 1); // +1 for :
 
         if (!epochKey || !cacheEpoch || (cacheEpoch == epochKey)) {
           if (isDebug) {
             console.log(`Found cache for [${prefix}][${key}] epochs: [${cacheEpoch}, ${epochKey}]`);
+            if (ClientRequestCache.debugShowB64Encoded) {
+              console.log(`Compressed: [${Base64.encode(compCacheJsonTmp)}]`);
+            }
+          }
+          if (_.startsWith(compCacheJsonTmp, ClientRequestCache.base64Prefix)) {
+            compCacheJsonTmp = Base64.decode(
+              compCacheJsonTmp.substring(ClientRequestCache.base64Prefix.length)
+            );
           }
           const decompStr = LZUTF8.decompress(
             compCacheJsonTmp, { inputEncoding: "StorageBinaryString" }
@@ -98,8 +114,16 @@ export class ClientRequestCache {
     const compressedVal = LZUTF8.compress(
       valueStr, { outputEncoding: "StorageBinaryString" }
     );
+    if (isDebug && ClientRequestCache.debugShowB64Encoded) {
+      console.log(`Compressed: [${Base64.encode(compressedVal)}]`);
+    }
+    return ClientRequestCache.directInsertCache(key, prefix, compressedVal, epochKey, isDebug);
+  }
+
+  static directInsertCache(key: string, prefix: string, compressed: string, epochKey: number | undefined, isDebug: boolean = false
+  ) {
     for (let i = 0; i < 15; i++) {
-      const success = (ls as any).set(prefix + key, (epochKey || "0") + ":" + compressedVal);
+      const success = (ls as any).set(prefix + key, (epochKey || "0") + ":" + compressed);
       if (success) {
         return true;
       } else { // (remove the LRU and try again, up to 15 times)

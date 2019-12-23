@@ -4,6 +4,9 @@ import React, { useState, useEffect } from 'react';
 // Next imports:
 import { NextPage } from 'next';
 
+// Lodash
+import _ from "lodash";
+
 // Bootstrap imports:
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Form from 'react-bootstrap/Form';
@@ -25,16 +28,18 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHistory } from '@fortawesome/free-solid-svg-icons'
 import { faLink } from '@fortawesome/free-solid-svg-icons'
 import ClipboardJS from 'clipboard';
+// @ts-ignore
+import { Shake } from 'reshake'
 
 // Component imports:
 import { TeamStatsModel } from '../components/TeamStatsTable';
 import { RosterCompareModel } from '../components/RosterCompareTable';
 import { dataLastUpdated } from '../utils/internal-data/dataLastUpdated';
-import { preloadedData } from '../utils/internal-data/preloadedData';
+import { PreloadedDataSamples, preloadedData } from '../utils/internal-data/preloadedData';
 import { AvailableTeams } from '../utils/internal-data/AvailableTeams';
 import { ClientRequestCache } from '../utils/ClientRequestCache';
 import HistorySelector, { historySelectContainerWidth } from '../components/HistorySelector';
-import { ParamDefaults } from '../utils/FilterModels';
+import { ParamPrefixes, ParamDefaults } from '../utils/FilterModels';
 import { HistoryManager } from '../utils/HistoryManager';
 
 // Library imports:
@@ -140,22 +145,34 @@ const CommonFilter: CommonFilterI = ({
             console.log(`Already pre-loaded [${key}]`);
           }
         } else {
+          const isB64encoded = _.startsWith(valAsJson, ClientRequestCache.base64Prefix);
           if (isDebug) {
-            console.log(`Pre-loading [${key}]`);
+            console.log(`Pre-loading [${key}] B64=[${isB64encoded}]`);
           }
-          ClientRequestCache.cacheResponse(
-            key, "", valAsJson, currentJsonEpoch, isDebug //(no prefix since the key already has it)
-          );
+          if (isB64encoded) {
+            ClientRequestCache.directInsertCache(
+              key, "", valAsJson, currentJsonEpoch, isDebug //(no prefix since the key already has it)
+            )
+          } else {
+            ClientRequestCache.cacheResponse(
+              key, "", valAsJson, currentJsonEpoch, isDebug //(no prefix since the key already has it)
+            );
+          }
         }
       });
       // Check if object is in cache and handle response if so
       const newParamsStr = queryString.stringify(buildParamsFromState(false));
+      if (isDebug) {
+        console.log(`Looking for cache entry for [${tablePrefix}][${newParamsStr}]`);
+      }
       const cachedJson = ClientRequestCache.decacheResponse(
         newParamsStr, tablePrefix, currentJsonEpoch, isDebug
       );
       if (cachedJson) {
         HistoryManager.addParamsToHistory(`${tablePrefix}${newParamsStr}`);
         handleResponse(cachedJson);
+      } else {
+        console.log(`(no pre-cached entry found)`);
       }
     }
     if (typeof document !== `undefined`) {
@@ -230,6 +247,25 @@ const CommonFilter: CommonFilterI = ({
       })
     }
   }
+  function onSeeExample() {
+    if (tablePrefix == ParamPrefixes.game) {
+      if (gender == "Women") {
+        const newUrl = `${PreloadedDataSamples.womenOnOff}`;
+        window.location.href = `/?${newUrl}`;
+      } else { //(default is men)
+        const newUrl = `${PreloadedDataSamples.menOnOff}`;
+        window.location.href = `/?${newUrl}`;
+      }
+    } else if (tablePrefix == ParamPrefixes.lineup) {
+      if (gender == "Women") {
+        const newUrl = `${PreloadedDataSamples.womenLineup}`;
+        window.location.href = `/LineupAnalyzer?${newUrl}`;
+      } else { //(default is men)
+        const newUrl = `${PreloadedDataSamples.menLineup}`;
+        window.location.href = `/LineupAnalyzer?${newUrl}`;
+      }
+    }
+  }
 
   /** For use in selects */
   function stringToOption(s: string) {
@@ -276,6 +312,7 @@ const CommonFilter: CommonFilterI = ({
     );
   };
 
+  /** Add button to allow users to access their analysis history easily */
   const getHistoryButton = () => {
 
     return <OverlayTrigger
@@ -301,6 +338,7 @@ const CommonFilter: CommonFilterI = ({
     </OverlayTrigger>
     ;
   };
+  /** Copy to clipboard button */
   const getCopyLinkButton = () => {
     const tooltip = (
       <Tooltip id="copyLinkTooltip">Copies URL to clipboard</Tooltip>
@@ -311,6 +349,17 @@ const CommonFilter: CommonFilterI = ({
         </Button>
       </OverlayTrigger>;
   };
+  /** If no team is specified, add the option to jump to an example */
+  const getExampleButtonIfNoTeam = () => {
+    if (team == "") {
+      return <Shake
+        h={20} v={5} r={5} q={5} int={25} fixed={true}
+        className="float-right"
+      >
+        <Button variant="warning" onClick={onSeeExample}><b>See Example ({gender})!</b></Button>
+      </Shake>;
+    }
+  }
 
   return <LoadingOverlay
     active={queryIsLoading}
@@ -400,7 +449,10 @@ const CommonFilter: CommonFilterI = ({
         </Col>
       <Form.Label column sm="2">(out of ~360 teams)</Form.Label>
     </Form.Group>
-    <Button disabled={submitDisabled} variant="primary" onClick={onSubmit}>Submit</Button>
+    <Col>
+      <Button disabled={submitDisabled} variant="primary" onClick={onSubmit}>Submit</Button>
+      {getExampleButtonIfNoTeam()}
+    </Col>
   </Form></LoadingOverlay>;
 }
 
