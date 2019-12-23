@@ -15,7 +15,7 @@ describe("LineupStatsTable", () => {
     const wrapper = shallow(
       <LineupStatsTable
         lineupStats={testData}
-        startingState={{kind:"lineup"}}
+        startingState={{}}
         onChangeState={dummyChangeStateCallback}
       />
     );

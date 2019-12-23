@@ -15,7 +15,7 @@ import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
 import { TeamStatsModel } from '../components/TeamStatsTable';
 import { RosterCompareModel } from '../components/RosterCompareTable';
 import CommonFilter, { CommonFilterParams } from '../components/CommonFilter';
-import { GameFilterParams } from "../utils/FilterModels";
+import { ParamPrefixes, GameFilterParams } from "../utils/FilterModels";
 
 // Library imports:
 import fetch from 'isomorphic-unfetch';
@@ -46,7 +46,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
   const [ baseQuery, setBaseQuery ] = useState(startingState.baseQuery || "");
 
   /** Used to differentiate between the different implementations of the CommonFilter */
-  const cacheKeyPrefix = "game-";
+  const cacheKeyPrefix = ParamPrefixes.game;
 
   // Utils
 
@@ -58,7 +58,6 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
   /** Builds a game filter from the various state elements */
   function buildParamsFromState(inHandleResponse: Boolean): GameFilterParams {
     return {
-      kind: "game",
       team: commonParams.team,
       year: commonParams.year,
       gender: commonParams.gender,

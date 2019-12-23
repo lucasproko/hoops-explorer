@@ -66,16 +66,10 @@ const LineupAnalyzerPage: NextPage<{}> = () => {
   )
 
   function getRootUrl(params: LineupFilterParams) {
-    return `/LineupAnalyzer?${UrlRouting.getUrl({
-      [UrlRouting.noSuffix]: params,
-      [UrlRouting.savedGameSuffix]: savedGamesFilterParams
-    })}`;
+    return UrlRouting.getLineupUrl(params, savedGamesFilterParams);
   }
   function getGameUrl() {
-    return `/?${UrlRouting.getUrl({
-      [UrlRouting.noSuffix]: savedGamesFilterParams,
-      [UrlRouting.savedLineupSuffix]: lineupFilterParams
-    })}`;
+    return UrlRouting.getGameUrl(savedGamesFilterParams, lineupFilterParams);
   }
 
   const onLineupFilterParamsChange = (params: LineupFilterParams) => {

@@ -12,7 +12,7 @@ describe("GameFilter", () => {
     const dummyChangeStateCallback = (stats: GameFilterParams) => {};
     const wrapper = shallow(<GameFilter
       onStats={dummySubmitCallback}
-      startingState={{kind: "game"}}
+      startingState={{}}
       onChangeState={dummyChangeStateCallback}
     />);
     expect(toJson(wrapper)).toMatchSnapshot();

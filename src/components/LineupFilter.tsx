@@ -17,7 +17,7 @@ import Col from 'react-bootstrap/Col';
 import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
 import { LineupStatsModel } from '../components/LineupStatsTable';
 import CommonFilter, { CommonFilterParams } from '../components/CommonFilter';
-import { LineupFilterParams } from "../utils/FilterModels";
+import { ParamPrefixes, LineupFilterParams } from "../utils/FilterModels";
 
 // Library imports:
 import fetch from 'isomorphic-unfetch';
@@ -44,7 +44,7 @@ const LineupFilter: React.FunctionComponent<Props> = ({onStats, startingState, o
 
   const isDebug = (process.env.NODE_ENV !== 'production');
 
-  const cacheKeyPrefix = "lineups-";
+  const cacheKeyPrefix = ParamPrefixes.lineup;
 
   // Utils
 
@@ -62,7 +62,6 @@ const LineupFilter: React.FunctionComponent<Props> = ({onStats, startingState, o
         minPoss: startingState.minPoss,
         sortBy: startingState.sortBy
     }) : {
-      kind: "lineup",
       team: commonParams.team,
       year: commonParams.year,
       gender: commonParams.gender,

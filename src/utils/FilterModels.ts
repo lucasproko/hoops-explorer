@@ -1,7 +1,11 @@
 
+export class ParamPrefixes {
+  static readonly game = "game-";
+  static readonly lineup = "lineup-";
+}
+
 /** Params for game filtering */
 export type GameFilterParams = {
-  kind: "game",
   year?: string,
   team?: string,
   gender?: string,
@@ -15,7 +19,6 @@ export type GameFilterParams = {
 
 /** Params for lineup filtering */
 export type LineupFilterParams = {
-  kind: "lineup",
   year?: string,
   team?: string,
   gender?: string,

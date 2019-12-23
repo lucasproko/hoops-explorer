@@ -33,6 +33,7 @@ import { AvailableTeams } from '../utils/internal-data/AvailableTeams';
 import { ClientRequestCache } from '../utils/ClientRequestCache';
 import HistorySelector, { historySelectContainerWidth } from '../components/HistorySelector';
 import { ParamDefaults } from '../utils/FilterModels';
+import { HistoryManager } from '../utils/HistoryManager';
 
 // Library imports:
 import fetch from 'isomorphic-unfetch';
@@ -94,6 +95,8 @@ const CommonFilter: CommonFilterI = ({
 
   const isDebug = (process.env.NODE_ENV !== 'production');
 
+  var historyOverlay: any= null; // (Gets overwritten by the history overlay trigger)
+
   // Utils
 
   const currentJsonEpoch = dataLastUpdated[`${gender}_${year}`] || -1;
@@ -108,6 +111,8 @@ const CommonFilter: CommonFilterI = ({
         if (!submitDisabled) {
           onSubmit();
         }
+      } else if (event.code == "Escape") {
+        if (historyOverlay) historyOverlay.hide();
       }
     };
     if (typeof document !== `undefined`) {
@@ -138,12 +143,13 @@ const CommonFilter: CommonFilterI = ({
           );
         }
       });
-      // Check if object is in cache and onSubmit if so
+      // Check if object is in cache and handle response if so
       const newParamsStr = queryString.stringify(buildParamsFromState(false));
       const cachedJson = ClientRequestCache.decacheResponse(
         newParamsStr, tablePrefix, currentJsonEpoch, isDebug
       );
       if (cachedJson) {
+        HistoryManager.addParamsToHistory(`${tablePrefix}${newParamsStr}`);
         handleResponse(cachedJson);
       }
     }
@@ -191,6 +197,9 @@ const CommonFilter: CommonFilterI = ({
   function onSubmit() {
     setQueryIsLoading(true);
     const newParamsStr = queryString.stringify(buildParamsFromState(false));
+
+    // Store every request in history, successful or not:
+    HistoryManager.addParamsToHistory(`${tablePrefix}${newParamsStr}`);
 
     // Check if it's in the cache:
     const cachedJson = ClientRequestCache.decacheResponse(
@@ -248,6 +257,8 @@ const CommonFilter: CommonFilterI = ({
   const getHistoryButton = () => {
 
     return <OverlayTrigger
+      ref={(ref: any) => historyOverlay = ref}
+      rootClose={true}
       trigger="click"
       key="left"
       placement="left"
@@ -255,7 +266,9 @@ const CommonFilter: CommonFilterI = ({
         <Popover id="popover-positioned-left" style={{ maxWidth: historySelectContainerWidth }}>
           <Popover.Title as="h3">{`History`}</Popover.Title>
           <Popover.Content>
-            <HistorySelector/>
+            <HistorySelector
+              tablePrefix={tablePrefix}
+            />
           </Popover.Content>
         </Popover>
       }

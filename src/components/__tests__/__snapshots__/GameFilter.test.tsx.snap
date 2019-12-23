@@ -7,11 +7,7 @@ exports[`GameFilter GameFilter - should create snapshot 1`] = `
   childSubmitRequest={[Function]}
   onChangeCommonState={[Function]}
   onChangeState={[Function]}
-  startingState={
-    Object {
-      "kind": "game",
-    }
-  }
+  startingState={Object {}}
   tablePrefix="game-"
 >
   <FormGroup

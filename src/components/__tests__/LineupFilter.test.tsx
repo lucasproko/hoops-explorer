@@ -11,7 +11,7 @@ describe("LineupFilter", () => {
     const dummyChangeStateCallback = (stats: LineupFilterParams) => {};
     const wrapper = shallow(<LineupFilter
       onStats={dummySubmitCallback}
-      startingState={{kind: "lineup"}}
+      startingState={{}}
       onChangeState={dummyChangeStateCallback}
     />);
     expect(toJson(wrapper)).toMatchSnapshot();

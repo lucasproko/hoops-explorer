@@ -70,16 +70,10 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
   )
 
   function getRootUrl(params: GameFilterParams) {
-    return `/?${UrlRouting.getUrl({
-      [UrlRouting.noSuffix]: params,
-      [UrlRouting.savedLineupSuffix]: savedLineupFilterParams
-    })}`;
+    return UrlRouting.getGameUrl(params, savedLineupFilterParams);
   }
   function getLineupUrl() {
-    return `/LineupAnalyzer?${UrlRouting.getUrl({
-      [UrlRouting.noSuffix]: savedLineupFilterParams,
-      [UrlRouting.savedGameSuffix]: gameFilterParams
-    })}`;
+    return UrlRouting.getLineupUrl(savedLineupFilterParams, gameFilterParams);
   }
 
   const onGameFilterParamsChange = (params: GameFilterParams) => {

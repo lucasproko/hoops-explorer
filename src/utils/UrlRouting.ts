@@ -4,6 +4,9 @@ import _ from "lodash";
 // Additional components:
 import queryString from "query-string";
 
+// Utils
+import { GameFilterParams, LineupFilterParams } from '../utils/FilterModels';
+
 /** Url routing utils */
 export class UrlRouting {
 
@@ -29,6 +32,21 @@ export class UrlRouting {
       );
       _.forEach(onParamChanges, (onParamChange) => onParamChange(newObj));
     }
+  }
+
+  /** The URL to use to view the "On/Off" page */
+  static getGameUrl(params: GameFilterParams, lineupParams: LineupFilterParams) {
+    return `/?${UrlRouting.getUrl({
+      [UrlRouting.noSuffix]: params,
+      [UrlRouting.savedLineupSuffix]: lineupParams
+    })}`;
+  }
+  /** The URL to use to view the "Lineups" page */
+  static getLineupUrl(params: LineupFilterParams, gameParams: GameFilterParams) {
+    return `/LineupAnalyzer?${UrlRouting.getUrl({
+      [UrlRouting.noSuffix]: params,
+      [UrlRouting.savedGameSuffix]: gameParams
+    })}`;
   }
 
   /** Filters out _lineup or _game from object to avoid them getting chained repeatedly */

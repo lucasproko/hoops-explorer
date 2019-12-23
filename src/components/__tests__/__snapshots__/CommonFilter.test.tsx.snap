@@ -546,11 +546,14 @@ exports[`CommonFilter CommonFilter - should create snapshot 1`] = `
                 History
               </ForwardRef>
               <ForwardRef>
-                <HistorySelector />
+                <HistorySelector
+                  tablePrefix="test-"
+                />
               </ForwardRef>
             </ForwardRef(render)>
           }
           placement="left"
+          rootClose={true}
           trigger="click"
         >
           <Button
