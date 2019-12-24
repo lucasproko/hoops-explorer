@@ -3,5 +3,5 @@ export const efficiencyAverages: Record<string, number> = {
   "Men_2018/9": 104.3,
   "Men_2019/20": 100.1,
   "Women_2018/9": 93.5,
-  "Women_2019/20": 90.42
+  "Women_2019/20": 90.79
 };

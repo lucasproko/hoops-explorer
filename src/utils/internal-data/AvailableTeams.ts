@@ -130,50 +130,86 @@ export class AvailableTeams {
     "Tulsa": [
       { team: "Tulsa", year: "2018/9", gender: "Men", index_template: "american" },
       { team: "Tulsa", year: "2019/20", gender: "Men", index_template: "american" },
+
+      { team: "Tulsa", year: "2018/9", gender: "Women", index_template: "women_american" },
+      { team: "Tulsa", year: "2019/20", gender: "Women", index_template: "women_american" },
     ],
     "South Fla.": [
       { team: "South Fla.", year: "2018/9", gender: "Men", index_template: "american" },
       { team: "South Fla.", year: "2019/20", gender: "Men", index_template: "american" },
+
+      { team: "South Fla.", year: "2018/9", gender: "Women", index_template: "women_american" },
+      { team: "South Fla.", year: "2019/20", gender: "Women", index_template: "women_american" },
     ],
     "Houston": [
       { team: "Houston", year: "2018/9", gender: "Men", index_template: "american" },
       { team: "Houston", year: "2019/20", gender: "Men", index_template: "american" },
+
+      { team: "Houston", year: "2018/9", gender: "Women", index_template: "women_american" },
+      { team: "Houston", year: "2019/20", gender: "Women", index_template: "women_american" },
     ],
     "UCF": [
       { team: "UCF", year: "2018/9", gender: "Men", index_template: "american" },
       { team: "UCF", year: "2019/20", gender: "Men", index_template: "american" },
+
+      { team: "UCF", year: "2018/9", gender: "Women", index_template: "women_american" },
+      { team: "UCF", year: "2019/20", gender: "Women", index_template: "women_american" },
     ],
     "Cincinnati": [
       { team: "Cincinnati", year: "2018/9", gender: "Men", index_template: "american" },
       { team: "Cincinnati", year: "2019/20", gender: "Men", index_template: "american" },
+
+      { team: "Cincinnati", year: "2018/9", gender: "Women", index_template: "women_american" },
+      { team: "Cincinnati", year: "2019/20", gender: "Women", index_template: "women_american" },
     ],
     "Wichita St.": [
       { team: "Wichita St.", year: "2018/9", gender: "Men", index_template: "american" },
       { team: "Wichita St.", year: "2019/20", gender: "Men", index_template: "american" },
+
+      { team: "Wichita St.", year: "2018/9", gender: "Women", index_template: "women_american" },
+      { team: "Wichita St.", year: "2019/20", gender: "Women", index_template: "women_american" },
     ],
     "Memphis": [
       { team: "Memphis", year: "2018/9", gender: "Men", index_template: "american" },
       { team: "Memphis", year: "2019/20", gender: "Men", index_template: "american" },
+
+      { team: "Memphis", year: "2018/9", gender: "Women", index_template: "women_american" },
+      { team: "Memphis", year: "2019/20", gender: "Women", index_template: "women_american" },
     ],
     "East Carolina": [
       { team: "East Carolina", year: "2018/9", gender: "Men", index_template: "american" },
       { team: "East Carolina", year: "2019/20", gender: "Men", index_template: "american" },
+
+      { team: "East Carolina", year: "2018/9", gender: "Women", index_template: "women_american" },
+      { team: "East Carolina", year: "2019/20", gender: "Women", index_template: "women_american" },
     ],
     "Tulane": [
       { team: "Tulane", year: "2018/9", gender: "Men", index_template: "american" },
       { team: "Tulane", year: "2019/20", gender: "Men", index_template: "american" },
+
+      { team: "Tulane", year: "2018/9", gender: "Women", index_template: "women_american" },
+      { team: "Tulane", year: "2019/20", gender: "Women", index_template: "women_american" },
     ],
     "Temple": [
       { team: "Temple", year: "2018/9", gender: "Men", index_template: "american" },
       { team: "Temple", year: "2019/20", gender: "Men", index_template: "american" },
+
+      { team: "Temple", year: "2018/9", gender: "Women", index_template: "women_american" },
+      { team: "Temple", year: "2019/20", gender: "Women", index_template: "women_american" },
     ],
     "SMU": [
       { team: "SMU", year: "2018/9", gender: "Men", index_template: "american" },
       { team: "SMU", year: "2019/20", gender: "Men", index_template: "american" },
+
+      { team: "SMU", year: "2018/9", gender: "Women", index_template: "women_american" },
+      { team: "SMU", year: "2019/20", gender: "Women", index_template: "women_american" },
     ],
     "UConn": [
       { team: "UConn", year: "2018/9", gender: "Men", index_template: "american" },
       { team: "UConn", year: "2019/20", gender: "Men", index_template: "american" },
+
+      { team: "UConn", year: "2018/9", gender: "Women", index_template: "women_american" },
+      { team: "UConn", year: "2019/20", gender: "Women", index_template: "women_american" },
     ],
     // Atlantic-10
     "Richmond": [
