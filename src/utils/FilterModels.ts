@@ -36,8 +36,7 @@ export type TeamReportFilterParams = {
   year?: string,
   team?: string,
   gender?: string,
-  baseQuery?: string,
-  players?: Array<string>,
+  lineupQuery?: string,
   minRank?: string,
   maxRank?: string,
   // For sorting in the generated table:

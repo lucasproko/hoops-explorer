@@ -64,7 +64,7 @@ describe("HistoryManager", () => {
     const report2: TeamReportFilterParams = {
       team: "team3",
       year: "2018/19", gender: "Women",
-      baseQuery: "test ''",
+      lineupQuery: "test ''",
       minRank: "10", maxRank: "370",
       sortBy: "test-sort",
       players: [ "ignore1", "ignore2" ]

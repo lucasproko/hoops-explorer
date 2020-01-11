@@ -21,9 +21,11 @@ import queryString from "query-string";
 import GenericTable, { GenericTableOps, GenericTableColProps } from "./GenericTable";
 
 // Util imports
+import { ClientRequestCache } from "../utils/ClientRequestCache";
 import { CbbColors } from "../utils/CbbColors";
-import { GameFilterParams } from "../utils/FilterModels";
+import { ParamPrefixes, GameFilterParams } from "../utils/FilterModels";
 import { UrlRouting } from "../utils/UrlRouting";
+import { dataLastUpdated } from '../utils/internal-data/dataLastUpdated';
 
 export type RosterCompareModel = {
   on: any,
@@ -64,28 +66,36 @@ const RosterCompareTable: React.FunctionComponent<Props> = ({gameFilterParams, r
 
   const onOffReportLink = (tableName: string) => {
     const getQuery = () => { switch(tableName) {
-      case "on": return gameFilterParams.onQuery;
-      case "off": return gameFilterParams.offQuery;
+      case "on": return `(${gameFilterParams.onQuery}) AND (${gameFilterParams.baseQuery})`;
+      case "off": return `(${gameFilterParams.offQuery}) AND (${gameFilterParams.baseQuery})`;
       default: return gameFilterParams.baseQuery;
     }};
     const paramObj = {
       team: gameFilterParams.team,
       year: gameFilterParams.year,
       gender: gameFilterParams.gender,
-      baseQuery: getQuery(),
-      players: (tableData(tableName) || []).map(
-          (rec: any) => rec?.dataObj?.title
-        ).filter((name: string) => name),
+      lineupQuery: getQuery(),
       minRank: gameFilterParams.minRank,
       maxRank: gameFilterParams.maxRank
-    }
+    };
     const paramStr = queryString.stringify(paramObj);
+    const currentJsonEpoch = dataLastUpdated[`${paramObj.gender}_${paramObj.year}`] || -1;
+    const onClick = () => {
+      // Is this query already cached?
+      const cachedJson = ClientRequestCache.decacheResponse(
+        paramStr, ParamPrefixes.lineup, currentJsonEpoch, false
+      );
+      if (cachedJson) { // If not, inject {} which is interpreted as "make a call on page load"
+        ClientRequestCache.directInsertCache(
+          paramStr, ParamPrefixes.lineup, "{}", currentJsonEpoch, false
+        );
+      }
+    };
+    //(the div below is needed to provide both onClick and Link functionality:
+    // https://github.com/zeit/next.js/issues/1490#issuecomment-324643124)
     return <Link href={UrlRouting.getTeamReportUrl(paramObj)}>
-      <a>(report)</a>
+      <div><a onClick={() => onClick()}>(report)</a></div>
     </Link>;
-
-    //TODO: on press, inject "{}" into the cache entry (remove players, implied by baseQuery etc)
-    // this then needs to get interpreted as "cache miss but means actually perform query"
   };
 
   return <LoadingOverlay

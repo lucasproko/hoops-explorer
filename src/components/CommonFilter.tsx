@@ -60,7 +60,7 @@ interface Props<PARAMS> {
   buildParamsFromState: (inHandleResponse: Boolean) => PARAMS;
   childHandleResponse: (json: any, wasError: Boolean) => void;
   childSubmitRequest: (paramStr: string, callback: (resp: fetch.IsomorphicResponse) => void) => void;
-  majorParamsDisabled?: boolean;
+  majorParamsDisabled?: boolean; //(not currently used but would allow you to block changing team/seeason/gender)
 }
 
 /** Type workaround per https://stackoverflow.com/questions/51459971/type-of-generic-stateless-component-react-or-extending-generic-function-interfa */
@@ -170,7 +170,11 @@ const CommonFilter: CommonFilterI = ({
       const cachedJson = ClientRequestCache.decacheResponse(
         newParamsStr, tablePrefix, currentJsonEpoch, isDebug
       );
-      if (cachedJson) {
+      if (cachedJson && _.isEmpty(cachedJson)) {
+        // Special case: make an API call
+        console.log(`(Found a placeholder cache element for [${tablePrefix}${newParamsStr}])`);
+        onSubmit();
+      } else if (cachedJson) {
         HistoryManager.addParamsToHistory(`${tablePrefix}${newParamsStr}`);
         handleResponse(cachedJson);
       } else {

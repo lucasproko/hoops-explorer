@@ -18,13 +18,16 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
             className="card-title h5"
           >
             'On' Roster   
-            <a
-              href="/TeamReport?players=Cowan%2C%20Anthony&players=Wiggins%2C%20Aaron&players=Fernando%2C%20Bruno&players=Smith%2C%20Jalen&players=Ayala%2C%20Eric&players=Morsell%2C%20Darryl&players=Lindo%20Jr.%2C%20Ricky&players=Smith%20Jr.%2C%20Serrel&players=Bender%2C%20Ivan&players=Tomaic%2C%20Joshua&"
+            <div
               onClick={[Function]}
               onMouseEnter={[Function]}
             >
-              (report)
-            </a>
+              <a
+                onClick={[Function]}
+              >
+                (report)
+              </a>
+            </div>
           </div>
           <table
             className="table table-sm"
@@ -787,13 +790,16 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
             className="card-title h5"
           >
             'Off' Roster   
-            <a
-              href="/TeamReport?players=Cowan%2C%20Anthony&players=Morsell%2C%20Darryl&players=Ayala%2C%20Eric&players=Fernando%2C%20Bruno&players=Smith%2C%20Jalen&players=Lindo%20Jr.%2C%20Ricky&players=Smith%20Jr.%2C%20Serrel&players=Bender%2C%20Ivan&players=Tomaic%2C%20Joshua&"
+            <div
               onClick={[Function]}
               onMouseEnter={[Function]}
             >
-              (report)
-            </a>
+              <a
+                onClick={[Function]}
+              >
+                (report)
+              </a>
+            </div>
           </div>
           <table
             className="table table-sm"
@@ -1490,13 +1496,16 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
             className="card-title h5"
           >
             'Baseline' Roster   
-            <a
-              href="/TeamReport?players=Cowan%2C%20Anthony&players=Fernando%2C%20Bruno&players=Ayala%2C%20Eric&players=Morsell%2C%20Darryl&players=Smith%2C%20Jalen&players=Wiggins%2C%20Aaron&players=Lindo%20Jr.%2C%20Ricky&players=Smith%20Jr.%2C%20Serrel&players=Bender%2C%20Ivan&players=Tomaic%2C%20Joshua&"
+            <div
               onClick={[Function]}
               onMouseEnter={[Function]}
             >
-              (report)
-            </a>
+              <a
+                onClick={[Function]}
+              >
+                (report)
+              </a>
+            </div>
           </div>
           <table
             className="table table-sm"

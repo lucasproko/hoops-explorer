@@ -68,9 +68,9 @@ exports[`TeamReportPage TeamReportPage - should create snapshot 1`] = `
       title="Team Analysis"
     >
       <TeamReportStatsTable
+        lineupReport={Object {}}
         onChangeState={[Function]}
         startingState={Object {}}
-        teamReport={Object {}}
       />
     </GenericCollapsibleCard>
   </ForwardRef>

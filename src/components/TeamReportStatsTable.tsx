@@ -18,27 +18,30 @@ import InputGroup from 'react-bootstrap/InputGroup';
 // Additional components:
 // @ts-ignore
 import LoadingOverlay from 'react-loading-overlay';
-import Select, { components} from "react-select"
+import Select, { components} from "react-select";
 
 // Component imports
-import GenericTable, { GenericTableOps, GenericTableColProps } from "./GenericTable"
+import GenericTable, { GenericTableOps, GenericTableColProps } from "./GenericTable";
+import { LineupStatsModel } from './LineupStatsTable';
 import { TeamReportFilterParams, ParamDefaults } from '../utils/FilterModels';
+import { LineupUtils } from '../utils/LineupUtils';
 
 // Util imports
-import { CbbColors } from "../utils/CbbColors"
+import { CbbColors } from "../utils/CbbColors";
 
+/** Convert from LineupStatsModel into this */
 export type TeamReportStatsModel = {
   players?: Array<any>,
   avgOff?: number,
   error_code?: string
 }
 type Props = {
-  teamReport: TeamReportStatsModel,
+  lineupReport: LineupStatsModel,
   startingState: TeamReportFilterParams;
   onChangeState: (newParams: TeamReportFilterParams) => void;
 }
 
-const TeamReportStatsTable: React.FunctionComponent<Props> = ({teamReport, startingState, onChangeState}) => {
+const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, startingState, onChangeState}) => {
 
   // 1] State
 
@@ -59,6 +62,8 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({teamReport, start
     });
     onChangeState(newState);
   }, [ sortBy, filterStr ]);
+
+  const teamReport = LineupUtils.lineupToTeamReport(lineupReport);
 
   // 2] Data Model
   const tableFields = { //accessors vs column metadata

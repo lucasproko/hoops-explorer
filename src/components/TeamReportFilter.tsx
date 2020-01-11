@@ -15,7 +15,7 @@ import Col from 'react-bootstrap/Col';
 
 // Component imports:
 import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
-import { TeamReportStatsModel } from '../components/TeamReportStatsTable';
+import { LineupStatsModel } from '../components/LineupStatsTable';
 import CommonFilter, { CommonFilterParams } from '../components/CommonFilter';
 import { ParamPrefixes, TeamReportFilterParams } from "../utils/FilterModels";
 
@@ -23,7 +23,7 @@ import { ParamPrefixes, TeamReportFilterParams } from "../utils/FilterModels";
 import fetch from 'isomorphic-unfetch';
 
 type Props = {
-  onStats: (reportStats: TeamReportStatsModel) => void;
+  onStats: (reportStats: LineupStatsModel) => void;
   startingState: TeamReportFilterParams;
   onChangeState: (newParams: TeamReportFilterParams) => void;
 }
@@ -40,8 +40,7 @@ const TeamReportFilter: React.FunctionComponent<Props> = ({onStats, startingStat
 
   // Lineup Filter - custom queries and filters:
 
-  const [ baseQuery, setBaseQuery ] = useState(startingState.baseQuery || "");
-  const [ players, setPlayers ] = useState(startingState.players || []);
+  const [ baseQuery, setBaseQuery ] = useState(startingState.lineupQuery || "");
 
   const isDebug = (process.env.NODE_ENV !== 'production');
 
@@ -64,8 +63,7 @@ const TeamReportFilter: React.FunctionComponent<Props> = ({onStats, startingStat
       team: commonParams.team,
       year: commonParams.year,
       gender: commonParams.gender,
-      baseQuery: baseQuery,
-      players: players,
+      lineupQuery: baseQuery,
       minRank: commonParams.minRank,
       maxRank: commonParams.maxRank
     };
@@ -74,28 +72,17 @@ const TeamReportFilter: React.FunctionComponent<Props> = ({onStats, startingStat
   /** Handles the response from ES to a stats calc request */
   function handleResponse(json: any, wasError: Boolean) {
     const jsons = json?.responses || [];
-    const onOffJson = (jsons.length > 0) ? jsons[0] : {};
+    const lineupJson = (jsons.length > 0) ? jsons[0] : {};
     onStats({
-      players: _.chain(players).map((player) => {
-        const resultMap = onOffJson?.aggregations?.roster_filter?.buckets || {};
-        const normName = player.replace(/"/g, "'");
-        const onName = `'ON' ${normName}`;
-        const offName = `'OFF' ${normName}`;
-        const addKey = (name: string) => {
-          const temp = resultMap[name];
-          return temp ? { key: name, ...temp } : null;
-        };
-        return { on: addKey(onName), off: addKey(offName) };
-      }).filter((res: any) => res.on && res.off).value()
-      ,
-      error_code: wasError ? (onOffJson?.status || json?.status) : undefined,
+      lineups: lineupJson?.aggregations?.lineups?.buckets,
+      error_code: wasError ? (lineupJson?.status || json?.status) : undefined,
       avgOff: efficiencyAverages[`${commonParams.gender}_${commonParams.year}`]
     });
   }
 
   /** Builds the query issued to the API server - the response handling is generic */
   function onSubmit(paramStr: string, callback: (resp: fetch.IsomorphicResponse) => void) {
-    fetch(`/api/calculateTeamReportStats?${paramStr}`).then(callback);
+    fetch(`/api/calculateLineupStats?${paramStr}`).then(callback);
   }
 
   // Visual components:
@@ -110,7 +97,6 @@ const TeamReportFilter: React.FunctionComponent<Props> = ({onStats, startingStat
       buildParamsFromState={buildParamsFromState}
       childHandleResponse={handleResponse}
       childSubmitRequest={onSubmit}
-      majorParamsDisabled={true}
     >
       <Form.Group as={Row}>
         <Form.Label column sm="2">Baseline Query</Form.Label>
@@ -120,7 +106,6 @@ const TeamReportFilter: React.FunctionComponent<Props> = ({onStats, startingStat
             value={baseQuery}
             onKeyUp={(ev: any) => setBaseQuery(ev.target.value)}
             onChange={(ev: any) => setBaseQuery(ev.target.value)}
-            disabled
           />
         </Col>
         <Col sm="2">

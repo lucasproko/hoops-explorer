@@ -479,141 +479,182 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot 1`] = `
               GenericTableDataRow {
                 "cellMetaFn": [Function],
                 "dataObj": Object {
-                  "adj_opp_def": Object {
-                    "value": 96.89926470588235,
-                  },
-                  "adj_opp_off": Object {
-                    "value": 111.85324675324674,
-                  },
                   "def_2p": Object {
-                    "value": 0.4470198675496689,
+                    "value": 0.4222222222222222,
                   },
                   "def_2pmid": Object {
-                    "value": 0.3655913978494624,
+                    "value": 0.3137254901960784,
                   },
                   "def_2pmidr": Object {
-                    "value": 0.3563218390804598,
+                    "value": 0.32903225806451614,
                   },
                   "def_2prim": Object {
-                    "value": 0.5775862068965517,
+                    "value": 0.5641025641025641,
                   },
                   "def_2primr": Object {
-                    "value": 0.2222222222222222,
+                    "value": 0.25161290322580643,
                   },
                   "def_3p": Object {
-                    "value": 0.2727272727272727,
+                    "value": 0.2923076923076923,
                   },
                   "def_3pr": Object {
-                    "value": 0.421455938697318,
+                    "value": 0.41935483870967744,
+                  },
+                  "def_adj_opp": Object {
+                    "value": 95.5734375,
                   },
                   "def_adj_ppp": Object {
-                    "value": undefined,
+                    "value": 86.04146677234992,
                   },
                   "def_efg": Object {
-                    "value": 0.43103448275862066,
+                    "value": 0.4290322580645161,
                   },
                   "def_ftr": Object {
-                    "value": 0.24521072796934865,
+                    "value": 0.2903225806451613,
                   },
                   "def_orb": Object {
-                    "value": 0.2716417910447761,
+                    "value": 0.16666666666666666,
                   },
                   "def_poss": Object {
-                    "value": 539,
+                    "value": 185,
                   },
                   "def_ppp": Object {
-                    "value": 100.55658627087199,
+                    "value": 89.1891891891892,
                   },
                   "def_title": "",
                   "def_to": Object {
-                    "value": 0.09461966604823747,
+                    "value": 0.14054054054054055,
                   },
-                  "doc_count": 97,
-                  "key": "AnCowan_BrFernando_DaMorsell_ErAyala_JaSmith",
+                  "doc_count": 36,
+                  "key": "AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith",
                   "off_2p": Object {
-                    "value": 0.5652173913043478,
+                    "value": 0.5204081632653061,
                   },
                   "off_2pmid": Object {
-                    "value": 0.4533333333333333,
+                    "value": 0.2857142857142857,
                   },
                   "off_2pmidr": Object {
-                    "value": 0.3232758620689655,
+                    "value": 0.25925925925925924,
                   },
                   "off_2prim": Object {
-                    "value": 0.6778523489932886,
+                    "value": 0.6964285714285714,
                   },
                   "off_2primr": Object {
-                    "value": 0.32112068965517243,
+                    "value": 0.345679012345679,
                   },
                   "off_3p": Object {
-                    "value": 0.3515151515151515,
+                    "value": 0.28125,
                   },
                   "off_3pr": Object {
-                    "value": 0.35560344827586204,
+                    "value": 0.3950617283950617,
+                  },
+                  "off_adj_opp": Object {
+                    "value": 103.65837837837837,
                   },
                   "off_adj_ppp": Object {
-                    "value": undefined,
+                    "value": 117.71053018784639,
                   },
                   "off_efg": Object {
-                    "value": 0.5517241379310345,
+                    "value": 0.48148148148148145,
                   },
                   "off_ftr": Object {
-                    "value": 0.28879310344827586,
+                    "value": 0.5123456790123457,
                   },
                   "off_orb": Object {
-                    "value": 0.316,
+                    "value": 0.36538461538461536,
                   },
                   "off_poss": Object {
-                    "value": 544,
+                    "value": 192,
                   },
                   "off_ppp": Object {
-                    "value": 112.31617647058823,
+                    "value": 112.5,
                   },
-                  "off_title": "AnCowan / BrFernando / DaMorsell / ErAyala / JaSmith",
+                  "off_title": "AaWiggins / AnCowan / DaMorsell / ErAyala / JaSmith",
                   "off_to": Object {
-                    "value": 0.1875,
+                    "value": 0.14583333333333334,
+                  },
+                  "players_array": Object {
+                    "hits": Object {
+                      "hits": Array [
+                        Object {
+                          "_id": "k5mWzG4B8OZ7gWZVgjRk",
+                          "_index": "bigten_2019",
+                          "_score": 4.7398777,
+                          "_source": Object {
+                            "players": Array [
+                              Object {
+                                "code": "AaWiggins",
+                                "id": "Wiggins, Aaron",
+                              },
+                              Object {
+                                "code": "AnCowan",
+                                "id": "Cowan, Anthony",
+                              },
+                              Object {
+                                "code": "DaMorsell",
+                                "id": "Morsell, Darryl",
+                              },
+                              Object {
+                                "code": "ErAyala",
+                                "id": "Ayala, Eric",
+                              },
+                              Object {
+                                "code": "JaSmith",
+                                "id": "Smith, Jalen",
+                              },
+                            ],
+                          },
+                          "_type": "_doc",
+                        },
+                      ],
+                      "max_score": 4.7398777,
+                      "total": Object {
+                        "relation": "eq",
+                        "value": 36,
+                      },
+                    },
                   },
                   "points_allowed": Object {
-                    "value": 542,
+                    "value": 165,
                   },
                   "points_scored": Object {
-                    "value": 611,
+                    "value": 216,
                   },
                   "total_def_2pmid_attempts": Object {
-                    "value": 186,
+                    "value": 51,
                   },
                   "total_def_2pmid_made": Object {
-                    "value": 68,
+                    "value": 16,
                   },
                   "total_def_2prim_attempts": Object {
-                    "value": 116,
+                    "value": 39,
                   },
                   "total_def_2prim_made": Object {
-                    "value": 67,
+                    "value": 22,
                   },
                   "total_def_fga": Object {
-                    "value": 522,
+                    "value": 155,
                   },
                   "total_def_fta": Object {
-                    "value": 128,
+                    "value": 45,
                   },
                   "total_off_2pmid_attempts": Object {
-                    "value": 150,
+                    "value": 42,
                   },
                   "total_off_2pmid_made": Object {
-                    "value": 68,
+                    "value": 12,
                   },
                   "total_off_2prim_attempts": Object {
-                    "value": 149,
+                    "value": 56,
                   },
                   "total_off_2prim_made": Object {
-                    "value": 101,
+                    "value": 39,
                   },
                   "total_off_fga": Object {
-                    "value": 464,
+                    "value": 162,
                   },
                   "total_off_fta": Object {
-                    "value": 134,
+                    "value": 83,
                   },
                 },
                 "kind": "data-row",
@@ -622,141 +663,182 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot 1`] = `
               GenericTableDataRow {
                 "cellMetaFn": [Function],
                 "dataObj": Object {
-                  "adj_opp_def": Object {
-                    "value": 96.89926470588235,
-                  },
-                  "adj_opp_off": Object {
-                    "value": 111.85324675324674,
-                  },
                   "def_2p": Object {
-                    "value": 0.4470198675496689,
+                    "value": 0.4222222222222222,
                   },
                   "def_2pmid": Object {
-                    "value": 0.3655913978494624,
+                    "value": 0.3137254901960784,
                   },
                   "def_2pmidr": Object {
-                    "value": 0.3563218390804598,
+                    "value": 0.32903225806451614,
                   },
                   "def_2prim": Object {
-                    "value": 0.5775862068965517,
+                    "value": 0.5641025641025641,
                   },
                   "def_2primr": Object {
-                    "value": 0.2222222222222222,
+                    "value": 0.25161290322580643,
                   },
                   "def_3p": Object {
-                    "value": 0.2727272727272727,
+                    "value": 0.2923076923076923,
                   },
                   "def_3pr": Object {
-                    "value": 0.421455938697318,
+                    "value": 0.41935483870967744,
+                  },
+                  "def_adj_opp": Object {
+                    "value": 95.5734375,
                   },
                   "def_adj_ppp": Object {
-                    "value": undefined,
+                    "value": 86.04146677234992,
                   },
                   "def_efg": Object {
-                    "value": 0.43103448275862066,
+                    "value": 0.4290322580645161,
                   },
                   "def_ftr": Object {
-                    "value": 0.24521072796934865,
+                    "value": 0.2903225806451613,
                   },
                   "def_orb": Object {
-                    "value": 0.2716417910447761,
+                    "value": 0.16666666666666666,
                   },
                   "def_poss": Object {
-                    "value": 539,
+                    "value": 185,
                   },
                   "def_ppp": Object {
-                    "value": 100.55658627087199,
+                    "value": 89.1891891891892,
                   },
                   "def_title": "",
                   "def_to": Object {
-                    "value": 0.09461966604823747,
+                    "value": 0.14054054054054055,
                   },
-                  "doc_count": 97,
-                  "key": "AnCowan_BrFernando_DaMorsell_ErAyala_JaSmith",
+                  "doc_count": 36,
+                  "key": "AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith",
                   "off_2p": Object {
-                    "value": 0.5652173913043478,
+                    "value": 0.5204081632653061,
                   },
                   "off_2pmid": Object {
-                    "value": 0.4533333333333333,
+                    "value": 0.2857142857142857,
                   },
                   "off_2pmidr": Object {
-                    "value": 0.3232758620689655,
+                    "value": 0.25925925925925924,
                   },
                   "off_2prim": Object {
-                    "value": 0.6778523489932886,
+                    "value": 0.6964285714285714,
                   },
                   "off_2primr": Object {
-                    "value": 0.32112068965517243,
+                    "value": 0.345679012345679,
                   },
                   "off_3p": Object {
-                    "value": 0.3515151515151515,
+                    "value": 0.28125,
                   },
                   "off_3pr": Object {
-                    "value": 0.35560344827586204,
+                    "value": 0.3950617283950617,
+                  },
+                  "off_adj_opp": Object {
+                    "value": 103.65837837837837,
                   },
                   "off_adj_ppp": Object {
-                    "value": undefined,
+                    "value": 117.71053018784639,
                   },
                   "off_efg": Object {
-                    "value": 0.5517241379310345,
+                    "value": 0.48148148148148145,
                   },
                   "off_ftr": Object {
-                    "value": 0.28879310344827586,
+                    "value": 0.5123456790123457,
                   },
                   "off_orb": Object {
-                    "value": 0.316,
+                    "value": 0.36538461538461536,
                   },
                   "off_poss": Object {
-                    "value": 544,
+                    "value": 192,
                   },
                   "off_ppp": Object {
-                    "value": 112.31617647058823,
+                    "value": 112.5,
                   },
-                  "off_title": "AnCowan / BrFernando / DaMorsell / ErAyala / JaSmith",
+                  "off_title": "AaWiggins / AnCowan / DaMorsell / ErAyala / JaSmith",
                   "off_to": Object {
-                    "value": 0.1875,
+                    "value": 0.14583333333333334,
+                  },
+                  "players_array": Object {
+                    "hits": Object {
+                      "hits": Array [
+                        Object {
+                          "_id": "k5mWzG4B8OZ7gWZVgjRk",
+                          "_index": "bigten_2019",
+                          "_score": 4.7398777,
+                          "_source": Object {
+                            "players": Array [
+                              Object {
+                                "code": "AaWiggins",
+                                "id": "Wiggins, Aaron",
+                              },
+                              Object {
+                                "code": "AnCowan",
+                                "id": "Cowan, Anthony",
+                              },
+                              Object {
+                                "code": "DaMorsell",
+                                "id": "Morsell, Darryl",
+                              },
+                              Object {
+                                "code": "ErAyala",
+                                "id": "Ayala, Eric",
+                              },
+                              Object {
+                                "code": "JaSmith",
+                                "id": "Smith, Jalen",
+                              },
+                            ],
+                          },
+                          "_type": "_doc",
+                        },
+                      ],
+                      "max_score": 4.7398777,
+                      "total": Object {
+                        "relation": "eq",
+                        "value": 36,
+                      },
+                    },
                   },
                   "points_allowed": Object {
-                    "value": 542,
+                    "value": 165,
                   },
                   "points_scored": Object {
-                    "value": 611,
+                    "value": 216,
                   },
                   "total_def_2pmid_attempts": Object {
-                    "value": 186,
+                    "value": 51,
                   },
                   "total_def_2pmid_made": Object {
-                    "value": 68,
+                    "value": 16,
                   },
                   "total_def_2prim_attempts": Object {
-                    "value": 116,
+                    "value": 39,
                   },
                   "total_def_2prim_made": Object {
-                    "value": 67,
+                    "value": 22,
                   },
                   "total_def_fga": Object {
-                    "value": 522,
+                    "value": 155,
                   },
                   "total_def_fta": Object {
-                    "value": 128,
+                    "value": 45,
                   },
                   "total_off_2pmid_attempts": Object {
-                    "value": 150,
+                    "value": 42,
                   },
                   "total_off_2pmid_made": Object {
-                    "value": 68,
+                    "value": 12,
                   },
                   "total_off_2prim_attempts": Object {
-                    "value": 149,
+                    "value": 56,
                   },
                   "total_off_2prim_made": Object {
-                    "value": 101,
+                    "value": 39,
                   },
                   "total_off_fga": Object {
-                    "value": 464,
+                    "value": 162,
                   },
                   "total_off_fta": Object {
-                    "value": 134,
+                    "value": 83,
                   },
                 },
                 "kind": "data-row",
@@ -768,141 +850,182 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot 1`] = `
               GenericTableDataRow {
                 "cellMetaFn": [Function],
                 "dataObj": Object {
-                  "adj_opp_def": Object {
-                    "value": 98.80603015075377,
-                  },
-                  "adj_opp_off": Object {
-                    "value": 108.32122905027933,
-                  },
                   "def_2p": Object {
-                    "value": 0.39361702127659576,
+                    "value": 0.34,
                   },
                   "def_2pmid": Object {
-                    "value": 0.31666666666666665,
+                    "value": 0.13636363636363635,
                   },
                   "def_2pmidr": Object {
-                    "value": 0.3821656050955414,
+                    "value": 0.23655913978494625,
                   },
                   "def_2prim": Object {
-                    "value": 0.5294117647058824,
+                    "value": 0.5,
                   },
                   "def_2primr": Object {
-                    "value": 0.21656050955414013,
+                    "value": 0.3010752688172043,
                   },
                   "def_3p": Object {
-                    "value": 0.36507936507936506,
+                    "value": 0.23255813953488372,
                   },
                   "def_3pr": Object {
-                    "value": 0.4012738853503185,
+                    "value": 0.46236559139784944,
+                  },
+                  "def_adj_opp": Object {
+                    "value": 93.46372549019607,
                   },
                   "def_adj_ppp": Object {
-                    "value": undefined,
+                    "value": 76.79584120982987,
                   },
                   "def_efg": Object {
-                    "value": 0.4554140127388535,
+                    "value": 0.34408602150537637,
                   },
                   "def_ftr": Object {
-                    "value": 0.24203821656050956,
+                    "value": 0.2903225806451613,
                   },
                   "def_orb": Object {
-                    "value": 0.1650485436893204,
+                    "value": 0.38571428571428573,
                   },
                   "def_poss": Object {
-                    "value": 179,
+                    "value": 97,
                   },
                   "def_ppp": Object {
-                    "value": 94.97206703910615,
+                    "value": 80.41237113402062,
                   },
                   "def_title": "",
                   "def_to": Object {
-                    "value": 0.12290502793296089,
+                    "value": 0.21649484536082475,
                   },
-                  "doc_count": 60,
-                  "key": "AaWiggins_AnCowan_BrFernando_ErAyala_JaSmith",
+                  "doc_count": 24,
+                  "key": "AaWiggins_AnCowan_DoScott_ErAyala_JaSmith",
                   "off_2p": Object {
-                    "value": 0.49019607843137253,
+                    "value": 0.4642857142857143,
                   },
                   "off_2pmid": Object {
-                    "value": 0.44,
+                    "value": 0.4,
                   },
                   "off_2pmidr": Object {
-                    "value": 0.29069767441860467,
+                    "value": 0.2604166666666667,
                   },
                   "off_2prim": Object {
-                    "value": 0.5384615384615384,
+                    "value": 0.5161290322580645,
                   },
                   "off_2primr": Object {
-                    "value": 0.3023255813953488,
+                    "value": 0.3229166666666667,
                   },
                   "off_3p": Object {
-                    "value": 0.2571428571428571,
+                    "value": 0.375,
                   },
                   "off_3pr": Object {
-                    "value": 0.4069767441860465,
+                    "value": 0.4166666666666667,
+                  },
+                  "off_adj_opp": Object {
+                    "value": 104.70927835051546,
                   },
                   "off_adj_ppp": Object {
-                    "value": undefined,
+                    "value": 117.48292826198693,
                   },
                   "off_efg": Object {
-                    "value": 0.4476744186046512,
+                    "value": 0.5052083333333334,
                   },
                   "off_ftr": Object {
-                    "value": 0.4883720930232558,
+                    "value": 0.19791666666666666,
                   },
                   "off_orb": Object {
-                    "value": 0.3826086956521739,
+                    "value": 0.3684210526315789,
                   },
                   "off_poss": Object {
-                    "value": 199,
+                    "value": 102,
                   },
                   "off_ppp": Object {
-                    "value": 109.54773869346734,
+                    "value": 109.80392156862744,
                   },
-                  "off_title": "AaWiggins / AnCowan / BrFernando / ErAyala / JaSmith",
+                  "off_title": "AaWiggins / AnCowan / DoScott / ErAyala / JaSmith",
                   "off_to": Object {
-                    "value": 0.1407035175879397,
+                    "value": 0.20588235294117646,
+                  },
+                  "players_array": Object {
+                    "hits": Object {
+                      "hits": Array [
+                        Object {
+                          "_id": "aduWzG4B8AEahaIbfdEm",
+                          "_index": "bigten_2019",
+                          "_score": 4.7398777,
+                          "_source": Object {
+                            "players": Array [
+                              Object {
+                                "code": "AaWiggins",
+                                "id": "Wiggins, Aaron",
+                              },
+                              Object {
+                                "code": "AnCowan",
+                                "id": "Cowan, Anthony",
+                              },
+                              Object {
+                                "code": "DoScott",
+                                "id": "Scott, Donta",
+                              },
+                              Object {
+                                "code": "ErAyala",
+                                "id": "Ayala, Eric",
+                              },
+                              Object {
+                                "code": "JaSmith",
+                                "id": "Smith, Jalen",
+                              },
+                            ],
+                          },
+                          "_type": "_doc",
+                        },
+                      ],
+                      "max_score": 4.7398777,
+                      "total": Object {
+                        "relation": "eq",
+                        "value": 24,
+                      },
+                    },
                   },
                   "points_allowed": Object {
-                    "value": 170,
+                    "value": 78,
                   },
                   "points_scored": Object {
-                    "value": 218,
+                    "value": 112,
                   },
                   "total_def_2pmid_attempts": Object {
-                    "value": 60,
-                  },
-                  "total_def_2pmid_made": Object {
-                    "value": 19,
-                  },
-                  "total_def_2prim_attempts": Object {
-                    "value": 34,
-                  },
-                  "total_def_2prim_made": Object {
-                    "value": 18,
-                  },
-                  "total_def_fga": Object {
-                    "value": 157,
-                  },
-                  "total_def_fta": Object {
-                    "value": 38,
-                  },
-                  "total_off_2pmid_attempts": Object {
-                    "value": 50,
-                  },
-                  "total_off_2pmid_made": Object {
                     "value": 22,
                   },
-                  "total_off_2prim_attempts": Object {
-                    "value": 52,
+                  "total_def_2pmid_made": Object {
+                    "value": 3,
                   },
-                  "total_off_2prim_made": Object {
+                  "total_def_2prim_attempts": Object {
                     "value": 28,
                   },
+                  "total_def_2prim_made": Object {
+                    "value": 14,
+                  },
+                  "total_def_fga": Object {
+                    "value": 93,
+                  },
+                  "total_def_fta": Object {
+                    "value": 27,
+                  },
+                  "total_off_2pmid_attempts": Object {
+                    "value": 25,
+                  },
+                  "total_off_2pmid_made": Object {
+                    "value": 10,
+                  },
+                  "total_off_2prim_attempts": Object {
+                    "value": 31,
+                  },
+                  "total_off_2prim_made": Object {
+                    "value": 16,
+                  },
                   "total_off_fga": Object {
-                    "value": 172,
+                    "value": 96,
                   },
                   "total_off_fta": Object {
-                    "value": 84,
+                    "value": 19,
                   },
                 },
                 "kind": "data-row",
@@ -911,141 +1034,182 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot 1`] = `
               GenericTableDataRow {
                 "cellMetaFn": [Function],
                 "dataObj": Object {
-                  "adj_opp_def": Object {
-                    "value": 98.80603015075377,
-                  },
-                  "adj_opp_off": Object {
-                    "value": 108.32122905027933,
-                  },
                   "def_2p": Object {
-                    "value": 0.39361702127659576,
+                    "value": 0.34,
                   },
                   "def_2pmid": Object {
-                    "value": 0.31666666666666665,
+                    "value": 0.13636363636363635,
                   },
                   "def_2pmidr": Object {
-                    "value": 0.3821656050955414,
+                    "value": 0.23655913978494625,
                   },
                   "def_2prim": Object {
-                    "value": 0.5294117647058824,
+                    "value": 0.5,
                   },
                   "def_2primr": Object {
-                    "value": 0.21656050955414013,
+                    "value": 0.3010752688172043,
                   },
                   "def_3p": Object {
-                    "value": 0.36507936507936506,
+                    "value": 0.23255813953488372,
                   },
                   "def_3pr": Object {
-                    "value": 0.4012738853503185,
+                    "value": 0.46236559139784944,
+                  },
+                  "def_adj_opp": Object {
+                    "value": 93.46372549019607,
                   },
                   "def_adj_ppp": Object {
-                    "value": undefined,
+                    "value": 76.79584120982987,
                   },
                   "def_efg": Object {
-                    "value": 0.4554140127388535,
+                    "value": 0.34408602150537637,
                   },
                   "def_ftr": Object {
-                    "value": 0.24203821656050956,
+                    "value": 0.2903225806451613,
                   },
                   "def_orb": Object {
-                    "value": 0.1650485436893204,
+                    "value": 0.38571428571428573,
                   },
                   "def_poss": Object {
-                    "value": 179,
+                    "value": 97,
                   },
                   "def_ppp": Object {
-                    "value": 94.97206703910615,
+                    "value": 80.41237113402062,
                   },
                   "def_title": "",
                   "def_to": Object {
-                    "value": 0.12290502793296089,
+                    "value": 0.21649484536082475,
                   },
-                  "doc_count": 60,
-                  "key": "AaWiggins_AnCowan_BrFernando_ErAyala_JaSmith",
+                  "doc_count": 24,
+                  "key": "AaWiggins_AnCowan_DoScott_ErAyala_JaSmith",
                   "off_2p": Object {
-                    "value": 0.49019607843137253,
+                    "value": 0.4642857142857143,
                   },
                   "off_2pmid": Object {
-                    "value": 0.44,
+                    "value": 0.4,
                   },
                   "off_2pmidr": Object {
-                    "value": 0.29069767441860467,
+                    "value": 0.2604166666666667,
                   },
                   "off_2prim": Object {
-                    "value": 0.5384615384615384,
+                    "value": 0.5161290322580645,
                   },
                   "off_2primr": Object {
-                    "value": 0.3023255813953488,
+                    "value": 0.3229166666666667,
                   },
                   "off_3p": Object {
-                    "value": 0.2571428571428571,
+                    "value": 0.375,
                   },
                   "off_3pr": Object {
-                    "value": 0.4069767441860465,
+                    "value": 0.4166666666666667,
+                  },
+                  "off_adj_opp": Object {
+                    "value": 104.70927835051546,
                   },
                   "off_adj_ppp": Object {
-                    "value": undefined,
+                    "value": 117.48292826198693,
                   },
                   "off_efg": Object {
-                    "value": 0.4476744186046512,
+                    "value": 0.5052083333333334,
                   },
                   "off_ftr": Object {
-                    "value": 0.4883720930232558,
+                    "value": 0.19791666666666666,
                   },
                   "off_orb": Object {
-                    "value": 0.3826086956521739,
+                    "value": 0.3684210526315789,
                   },
                   "off_poss": Object {
-                    "value": 199,
+                    "value": 102,
                   },
                   "off_ppp": Object {
-                    "value": 109.54773869346734,
+                    "value": 109.80392156862744,
                   },
-                  "off_title": "AaWiggins / AnCowan / BrFernando / ErAyala / JaSmith",
+                  "off_title": "AaWiggins / AnCowan / DoScott / ErAyala / JaSmith",
                   "off_to": Object {
-                    "value": 0.1407035175879397,
+                    "value": 0.20588235294117646,
+                  },
+                  "players_array": Object {
+                    "hits": Object {
+                      "hits": Array [
+                        Object {
+                          "_id": "aduWzG4B8AEahaIbfdEm",
+                          "_index": "bigten_2019",
+                          "_score": 4.7398777,
+                          "_source": Object {
+                            "players": Array [
+                              Object {
+                                "code": "AaWiggins",
+                                "id": "Wiggins, Aaron",
+                              },
+                              Object {
+                                "code": "AnCowan",
+                                "id": "Cowan, Anthony",
+                              },
+                              Object {
+                                "code": "DoScott",
+                                "id": "Scott, Donta",
+                              },
+                              Object {
+                                "code": "ErAyala",
+                                "id": "Ayala, Eric",
+                              },
+                              Object {
+                                "code": "JaSmith",
+                                "id": "Smith, Jalen",
+                              },
+                            ],
+                          },
+                          "_type": "_doc",
+                        },
+                      ],
+                      "max_score": 4.7398777,
+                      "total": Object {
+                        "relation": "eq",
+                        "value": 24,
+                      },
+                    },
                   },
                   "points_allowed": Object {
-                    "value": 170,
+                    "value": 78,
                   },
                   "points_scored": Object {
-                    "value": 218,
+                    "value": 112,
                   },
                   "total_def_2pmid_attempts": Object {
-                    "value": 60,
-                  },
-                  "total_def_2pmid_made": Object {
-                    "value": 19,
-                  },
-                  "total_def_2prim_attempts": Object {
-                    "value": 34,
-                  },
-                  "total_def_2prim_made": Object {
-                    "value": 18,
-                  },
-                  "total_def_fga": Object {
-                    "value": 157,
-                  },
-                  "total_def_fta": Object {
-                    "value": 38,
-                  },
-                  "total_off_2pmid_attempts": Object {
-                    "value": 50,
-                  },
-                  "total_off_2pmid_made": Object {
                     "value": 22,
                   },
-                  "total_off_2prim_attempts": Object {
-                    "value": 52,
+                  "total_def_2pmid_made": Object {
+                    "value": 3,
                   },
-                  "total_off_2prim_made": Object {
+                  "total_def_2prim_attempts": Object {
                     "value": 28,
                   },
+                  "total_def_2prim_made": Object {
+                    "value": 14,
+                  },
+                  "total_def_fga": Object {
+                    "value": 93,
+                  },
+                  "total_def_fta": Object {
+                    "value": 27,
+                  },
+                  "total_off_2pmid_attempts": Object {
+                    "value": 25,
+                  },
+                  "total_off_2pmid_made": Object {
+                    "value": 10,
+                  },
+                  "total_off_2prim_attempts": Object {
+                    "value": 31,
+                  },
+                  "total_off_2prim_made": Object {
+                    "value": 16,
+                  },
                   "total_off_fga": Object {
-                    "value": 172,
+                    "value": 96,
                   },
                   "total_off_fta": Object {
-                    "value": 84,
+                    "value": 19,
                   },
                 },
                 "kind": "data-row",
@@ -1057,141 +1221,182 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot 1`] = `
               GenericTableDataRow {
                 "cellMetaFn": [Function],
                 "dataObj": Object {
-                  "adj_opp_def": Object {
-                    "value": 100.44651162790699,
-                  },
-                  "adj_opp_off": Object {
-                    "value": 113.20381679389313,
-                  },
                   "def_2p": Object {
-                    "value": 0.49122807017543857,
+                    "value": 0.3888888888888889,
                   },
                   "def_2pmid": Object {
-                    "value": 0.42857142857142855,
+                    "value": 0.27586206896551724,
                   },
                   "def_2pmidr": Object {
-                    "value": 0.27184466019417475,
+                    "value": 0.37662337662337664,
                   },
                   "def_2prim": Object {
-                    "value": 0.5517241379310345,
+                    "value": 0.52,
                   },
                   "def_2primr": Object {
-                    "value": 0.2815533980582524,
+                    "value": 0.3246753246753247,
                   },
                   "def_3p": Object {
-                    "value": 0.2826086956521739,
+                    "value": 0.34782608695652173,
                   },
                   "def_3pr": Object {
-                    "value": 0.44660194174757284,
+                    "value": 0.2987012987012987,
+                  },
+                  "def_adj_opp": Object {
+                    "value": 93.17920792079208,
                   },
                   "def_adj_ppp": Object {
-                    "value": undefined,
+                    "value": 75.67507705937726,
                   },
                   "def_efg": Object {
-                    "value": 0.46116504854368934,
+                    "value": 0.42857142857142855,
                   },
                   "def_ftr": Object {
-                    "value": 0.3883495145631068,
+                    "value": 0.2857142857142857,
                   },
                   "def_orb": Object {
-                    "value": 0.19696969696969696,
+                    "value": 0.21568627450980393,
                   },
                   "def_poss": Object {
-                    "value": 131,
+                    "value": 103,
                   },
                   "def_ppp": Object {
-                    "value": 93.12977099236642,
+                    "value": 79.6116504854369,
                   },
                   "def_title": "",
                   "def_to": Object {
-                    "value": 0.183206106870229,
+                    "value": 0.2524271844660194,
                   },
-                  "doc_count": 38,
-                  "key": "AaWiggins_AnCowan_BrFernando_DaMorsell_ErAyala",
+                  "doc_count": 25,
+                  "key": "AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith",
                   "off_2p": Object {
-                    "value": 0.5625,
+                    "value": 0.38461538461538464,
                   },
                   "off_2pmid": Object {
-                    "value": 0.5,
+                    "value": 0.125,
                   },
                   "off_2pmidr": Object {
-                    "value": 0.22950819672131148,
+                    "value": 0.3037974683544304,
                   },
                   "off_2prim": Object {
-                    "value": 0.5961538461538461,
+                    "value": 0.6071428571428571,
                   },
                   "off_2primr": Object {
-                    "value": 0.4262295081967213,
+                    "value": 0.35443037974683544,
                   },
                   "off_3p": Object {
-                    "value": 0.4523809523809524,
+                    "value": 0.25925925925925924,
                   },
                   "off_3pr": Object {
-                    "value": 0.3442622950819672,
+                    "value": 0.34177215189873417,
+                  },
+                  "off_adj_opp": Object {
+                    "value": 105.2019417475728,
                   },
                   "off_adj_ppp": Object {
-                    "value": undefined,
+                    "value": 97.75690408135073,
                   },
                   "off_efg": Object {
-                    "value": 0.6024590163934426,
+                    "value": 0.3860759493670886,
                   },
                   "off_ftr": Object {
-                    "value": 0.2786885245901639,
+                    "value": 0.5569620253164557,
                   },
                   "off_orb": Object {
-                    "value": 0.45901639344262296,
+                    "value": 0.3090909090909091,
                   },
                   "off_poss": Object {
-                    "value": 129,
+                    "value": 101,
                   },
                   "off_ppp": Object {
-                    "value": 134.10852713178295,
+                    "value": 91.08910891089108,
                   },
-                  "off_title": "AaWiggins / AnCowan / BrFernando / DaMorsell / ErAyala",
+                  "off_title": "AaWiggins / AnCowan / DaMorsell / DoScott / JaSmith",
                   "off_to": Object {
-                    "value": 0.16279069767441862,
+                    "value": 0.18811881188118812,
+                  },
+                  "players_array": Object {
+                    "hits": Object {
+                      "hits": Array [
+                        Object {
+                          "_id": "apmWzG4B8OZ7gWZVgTSi",
+                          "_index": "bigten_2019",
+                          "_score": 4.7398777,
+                          "_source": Object {
+                            "players": Array [
+                              Object {
+                                "code": "AaWiggins",
+                                "id": "Wiggins, Aaron",
+                              },
+                              Object {
+                                "code": "AnCowan",
+                                "id": "Cowan, Anthony",
+                              },
+                              Object {
+                                "code": "DaMorsell",
+                                "id": "Morsell, Darryl",
+                              },
+                              Object {
+                                "code": "DoScott",
+                                "id": "Scott, Donta",
+                              },
+                              Object {
+                                "code": "JaSmith",
+                                "id": "Smith, Jalen",
+                              },
+                            ],
+                          },
+                          "_type": "_doc",
+                        },
+                      ],
+                      "max_score": 4.7398777,
+                      "total": Object {
+                        "relation": "eq",
+                        "value": 25,
+                      },
+                    },
                   },
                   "points_allowed": Object {
-                    "value": 122,
+                    "value": 82,
                   },
                   "points_scored": Object {
-                    "value": 173,
+                    "value": 92,
                   },
                   "total_def_2pmid_attempts": Object {
-                    "value": 28,
-                  },
-                  "total_def_2pmid_made": Object {
-                    "value": 12,
-                  },
-                  "total_def_2prim_attempts": Object {
                     "value": 29,
                   },
+                  "total_def_2pmid_made": Object {
+                    "value": 8,
+                  },
+                  "total_def_2prim_attempts": Object {
+                    "value": 25,
+                  },
                   "total_def_2prim_made": Object {
-                    "value": 16,
+                    "value": 13,
                   },
                   "total_def_fga": Object {
-                    "value": 103,
+                    "value": 77,
                   },
                   "total_def_fta": Object {
-                    "value": 40,
+                    "value": 22,
                   },
                   "total_off_2pmid_attempts": Object {
-                    "value": 28,
+                    "value": 24,
                   },
                   "total_off_2pmid_made": Object {
-                    "value": 14,
+                    "value": 3,
                   },
                   "total_off_2prim_attempts": Object {
-                    "value": 52,
+                    "value": 28,
                   },
                   "total_off_2prim_made": Object {
-                    "value": 31,
+                    "value": 17,
                   },
                   "total_off_fga": Object {
-                    "value": 122,
+                    "value": 79,
                   },
                   "total_off_fta": Object {
-                    "value": 34,
+                    "value": 44,
                   },
                 },
                 "kind": "data-row",
@@ -1200,141 +1405,182 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot 1`] = `
               GenericTableDataRow {
                 "cellMetaFn": [Function],
                 "dataObj": Object {
-                  "adj_opp_def": Object {
-                    "value": 100.44651162790699,
-                  },
-                  "adj_opp_off": Object {
-                    "value": 113.20381679389313,
-                  },
                   "def_2p": Object {
-                    "value": 0.49122807017543857,
+                    "value": 0.3888888888888889,
                   },
                   "def_2pmid": Object {
-                    "value": 0.42857142857142855,
+                    "value": 0.27586206896551724,
                   },
                   "def_2pmidr": Object {
-                    "value": 0.27184466019417475,
+                    "value": 0.37662337662337664,
                   },
                   "def_2prim": Object {
-                    "value": 0.5517241379310345,
+                    "value": 0.52,
                   },
                   "def_2primr": Object {
-                    "value": 0.2815533980582524,
+                    "value": 0.3246753246753247,
                   },
                   "def_3p": Object {
-                    "value": 0.2826086956521739,
+                    "value": 0.34782608695652173,
                   },
                   "def_3pr": Object {
-                    "value": 0.44660194174757284,
+                    "value": 0.2987012987012987,
+                  },
+                  "def_adj_opp": Object {
+                    "value": 93.17920792079208,
                   },
                   "def_adj_ppp": Object {
-                    "value": undefined,
+                    "value": 75.67507705937726,
                   },
                   "def_efg": Object {
-                    "value": 0.46116504854368934,
+                    "value": 0.42857142857142855,
                   },
                   "def_ftr": Object {
-                    "value": 0.3883495145631068,
+                    "value": 0.2857142857142857,
                   },
                   "def_orb": Object {
-                    "value": 0.19696969696969696,
+                    "value": 0.21568627450980393,
                   },
                   "def_poss": Object {
-                    "value": 131,
+                    "value": 103,
                   },
                   "def_ppp": Object {
-                    "value": 93.12977099236642,
+                    "value": 79.6116504854369,
                   },
                   "def_title": "",
                   "def_to": Object {
-                    "value": 0.183206106870229,
+                    "value": 0.2524271844660194,
                   },
-                  "doc_count": 38,
-                  "key": "AaWiggins_AnCowan_BrFernando_DaMorsell_ErAyala",
+                  "doc_count": 25,
+                  "key": "AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith",
                   "off_2p": Object {
-                    "value": 0.5625,
+                    "value": 0.38461538461538464,
                   },
                   "off_2pmid": Object {
-                    "value": 0.5,
+                    "value": 0.125,
                   },
                   "off_2pmidr": Object {
-                    "value": 0.22950819672131148,
+                    "value": 0.3037974683544304,
                   },
                   "off_2prim": Object {
-                    "value": 0.5961538461538461,
+                    "value": 0.6071428571428571,
                   },
                   "off_2primr": Object {
-                    "value": 0.4262295081967213,
+                    "value": 0.35443037974683544,
                   },
                   "off_3p": Object {
-                    "value": 0.4523809523809524,
+                    "value": 0.25925925925925924,
                   },
                   "off_3pr": Object {
-                    "value": 0.3442622950819672,
+                    "value": 0.34177215189873417,
+                  },
+                  "off_adj_opp": Object {
+                    "value": 105.2019417475728,
                   },
                   "off_adj_ppp": Object {
-                    "value": undefined,
+                    "value": 97.75690408135073,
                   },
                   "off_efg": Object {
-                    "value": 0.6024590163934426,
+                    "value": 0.3860759493670886,
                   },
                   "off_ftr": Object {
-                    "value": 0.2786885245901639,
+                    "value": 0.5569620253164557,
                   },
                   "off_orb": Object {
-                    "value": 0.45901639344262296,
+                    "value": 0.3090909090909091,
                   },
                   "off_poss": Object {
-                    "value": 129,
+                    "value": 101,
                   },
                   "off_ppp": Object {
-                    "value": 134.10852713178295,
+                    "value": 91.08910891089108,
                   },
-                  "off_title": "AaWiggins / AnCowan / BrFernando / DaMorsell / ErAyala",
+                  "off_title": "AaWiggins / AnCowan / DaMorsell / DoScott / JaSmith",
                   "off_to": Object {
-                    "value": 0.16279069767441862,
+                    "value": 0.18811881188118812,
+                  },
+                  "players_array": Object {
+                    "hits": Object {
+                      "hits": Array [
+                        Object {
+                          "_id": "apmWzG4B8OZ7gWZVgTSi",
+                          "_index": "bigten_2019",
+                          "_score": 4.7398777,
+                          "_source": Object {
+                            "players": Array [
+                              Object {
+                                "code": "AaWiggins",
+                                "id": "Wiggins, Aaron",
+                              },
+                              Object {
+                                "code": "AnCowan",
+                                "id": "Cowan, Anthony",
+                              },
+                              Object {
+                                "code": "DaMorsell",
+                                "id": "Morsell, Darryl",
+                              },
+                              Object {
+                                "code": "DoScott",
+                                "id": "Scott, Donta",
+                              },
+                              Object {
+                                "code": "JaSmith",
+                                "id": "Smith, Jalen",
+                              },
+                            ],
+                          },
+                          "_type": "_doc",
+                        },
+                      ],
+                      "max_score": 4.7398777,
+                      "total": Object {
+                        "relation": "eq",
+                        "value": 25,
+                      },
+                    },
                   },
                   "points_allowed": Object {
-                    "value": 122,
+                    "value": 82,
                   },
                   "points_scored": Object {
-                    "value": 173,
+                    "value": 92,
                   },
                   "total_def_2pmid_attempts": Object {
-                    "value": 28,
-                  },
-                  "total_def_2pmid_made": Object {
-                    "value": 12,
-                  },
-                  "total_def_2prim_attempts": Object {
                     "value": 29,
                   },
+                  "total_def_2pmid_made": Object {
+                    "value": 8,
+                  },
+                  "total_def_2prim_attempts": Object {
+                    "value": 25,
+                  },
                   "total_def_2prim_made": Object {
-                    "value": 16,
+                    "value": 13,
                   },
                   "total_def_fga": Object {
-                    "value": 103,
+                    "value": 77,
                   },
                   "total_def_fta": Object {
-                    "value": 40,
+                    "value": 22,
                   },
                   "total_off_2pmid_attempts": Object {
-                    "value": 28,
+                    "value": 24,
                   },
                   "total_off_2pmid_made": Object {
-                    "value": 14,
+                    "value": 3,
                   },
                   "total_off_2prim_attempts": Object {
-                    "value": 52,
+                    "value": 28,
                   },
                   "total_off_2prim_made": Object {
-                    "value": 31,
+                    "value": 17,
                   },
                   "total_off_fga": Object {
-                    "value": 122,
+                    "value": 79,
                   },
                   "total_off_fta": Object {
-                    "value": 34,
+                    "value": 44,
                   },
                 },
                 "kind": "data-row",

@@ -22,7 +22,8 @@ import Col from 'react-bootstrap/Col';
 import TeamReportFilter from '../components/TeamReportFilter';
 import { TeamReportFilterParams } from '../utils/FilterModels';
 import { HistoryManager } from '../utils/HistoryManager';
-import TeamReportStatsTable, { TeamReportStatsModel } from '../components/TeamReportStatsTable';
+import TeamReportStatsTable from '../components/TeamReportStatsTable';
+import { LineupStatsModel } from '../components/LineupStatsTable';
 import GenericCollapsibleCard from '../components/GenericCollapsibleCard';
 
 // Utils:
@@ -44,9 +45,9 @@ const TeamReportPage: NextPage<{}> = () => {
   // Team Stats interface
 
   const [ gaInited, setGaInited ] = useState(false);
-  const [ teamReportStats, setTeamReportStats ] = useState({} as TeamReportStatsModel);
+  const [ teamReportStats, setTeamReportStats ] = useState({} as LineupStatsModel);
 
-  const injectStats = (teamReportStats: TeamReportStatsModel) => {
+  const injectStats = (teamReportStats: LineupStatsModel) => {
     setTeamReportStats(teamReportStats);
   }
 
@@ -114,7 +115,7 @@ const TeamReportPage: NextPage<{}> = () => {
     <Row>
       <GenericCollapsibleCard title="Team Analysis">
         <TeamReportStatsTable
-          teamReport={teamReportStats}
+          lineupReport={teamReportStats}
           startingState={teamReportFilterParams}
           onChangeState={onTeamReportFilterParamsChange}
         />

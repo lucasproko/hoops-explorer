@@ -104,10 +104,10 @@ export class HistoryManager {
 
   /** Returns a summary string for the game filter */
   static teamReportFilterSummary(p: TeamReportFilterParams) {
-    const baseQuery = `query:'${tidyQuery(p.baseQuery)}'`;
+    const lineupQuery = `query:'${tidyQuery(p.lineupQuery)}'`;
     const otherParams = `filter:'', ` +
       `sort:${p.sortBy || ParamDefaults.defaultLineupSortBy}`;
-    return `On/Off Report: ${HistoryManager.commonFilterSummary(p)}: ${baseQuery} (${otherParams})`;
+    return `On/Off Report: ${HistoryManager.commonFilterSummary(p)}: ${lineupQuery} (${otherParams})`;
   }
 }
 /** (handy util) */
