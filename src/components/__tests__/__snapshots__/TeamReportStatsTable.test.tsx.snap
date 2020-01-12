@@ -1175,143 +1175,98 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot 1`] 
                 "cellMetaFn": [Function],
                 "dataObj": Object {
                   "def_2p": Object {
-                    "value": 0.4222222222222222,
+                    "value": 0.3925887445887446,
                   },
                   "def_2pmid": Object {
-                    "value": 0.3137254901960784,
+                    "value": 0.25890982212206626,
                   },
                   "def_2pmidr": Object {
-                    "value": 0.32903225806451614,
+                    "value": 0.31846600543709885,
                   },
                   "def_2prim": Object {
-                    "value": 0.5641025641025641,
+                    "value": 0.5361531801531801,
                   },
                   "def_2primr": Object {
-                    "value": 0.25161290322580643,
+                    "value": 0.2836214197755882,
                   },
                   "def_3p": Object {
-                    "value": 0.2923076923076923,
+                    "value": 0.29210688199565854,
                   },
                   "def_3pr": Object {
-                    "value": 0.41935483870967744,
+                    "value": 0.3979125747873129,
                   },
                   "def_adj_opp": Object {
-                    "value": 95.5734375,
+                    "value": 94.40136552179376,
                   },
                   "def_adj_ppp": Object {
-                    "value": 86.04146677234992,
+                    "value": 80.9164083027969,
                   },
                   "def_efg": Object {
-                    "value": 0.4290322580645161,
+                    "value": 0.40750693239172503,
                   },
                   "def_ftr": Object {
-                    "value": 0.2903225806451613,
+                    "value": 0.2890897121311868,
                   },
                   "def_orb": Object {
-                    "value": 0.16666666666666666,
+                    "value": 0.2349696242133217,
                   },
                   "def_poss": Object {
-                    "value": 185,
+                    "value": 385,
                   },
                   "def_ppp": Object {
-                    "value": 89.1891891891892,
+                    "value": 84.41558441558442,
                   },
                   "def_title": "",
                   "def_to": Object {
-                    "value": 0.14054054054054055,
-                  },
-                  "doc_count": Object {
-                    "value": undefined,
+                    "value": 0.18961038961038962,
                   },
                   "key": "'ON' Wiggins, Aaron",
                   "off_2p": Object {
-                    "value": 0.5204081632653061,
+                    "value": 0.47119408620312775,
                   },
                   "off_2pmid": Object {
-                    "value": 0.2857142857142857,
+                    "value": 0.2741320072332731,
                   },
                   "off_2pmidr": Object {
-                    "value": 0.25925925925925924,
+                    "value": 0.2709463850166462,
                   },
                   "off_2prim": Object {
-                    "value": 0.6964285714285714,
+                    "value": 0.6270401913317388,
                   },
                   "off_2primr": Object {
-                    "value": 0.345679012345679,
+                    "value": 0.3420388322146854,
                   },
                   "off_3p": Object {
-                    "value": 0.28125,
+                    "value": 0.2998359118612283,
                   },
                   "off_3pr": Object {
-                    "value": 0.3950617283950617,
+                    "value": 0.38701478276866835,
                   },
                   "off_adj_opp": Object {
-                    "value": 103.65837837837837,
+                    "value": 104.32443330862299,
                   },
                   "off_adj_ppp": Object {
-                    "value": 117.71053018784639,
+                    "value": 112.6351439264967,
                   },
                   "off_efg": Object {
-                    "value": 0.48148148148148145,
+                    "value": 0.4632135831152416,
                   },
                   "off_ftr": Object {
-                    "value": 0.5123456790123457,
+                    "value": 0.4425595820945124,
                   },
                   "off_orb": Object {
-                    "value": 0.36538461538461536,
+                    "value": 0.3517746211150608,
                   },
                   "off_poss": Object {
-                    "value": 192,
+                    "value": 395,
                   },
                   "off_ppp": Object {
-                    "value": 112.5,
+                    "value": 106.32911392405063,
                   },
                   "off_title": "'ON' Wiggins, Aaron
 Adj: [31.7]-[NaN]=[NaN]",
                   "off_to": Object {
-                    "value": 0.14583333333333334,
-                  },
-                  "points_allowed": Object {
-                    "value": 165,
-                  },
-                  "points_scored": Object {
-                    "value": 216,
-                  },
-                  "total_def_2pmid_attempts": Object {
-                    "value": 102,
-                  },
-                  "total_def_2pmid_made": Object {
-                    "value": 27,
-                  },
-                  "total_def_2prim_attempts": Object {
-                    "value": 92,
-                  },
-                  "total_def_2prim_made": Object {
-                    "value": 49,
-                  },
-                  "total_def_fga": Object {
-                    "value": 325,
-                  },
-                  "total_def_fta": Object {
-                    "value": 94,
-                  },
-                  "total_off_2pmid_attempts": Object {
-                    "value": 91,
-                  },
-                  "total_off_2pmid_made": Object {
-                    "value": 25,
-                  },
-                  "total_off_2prim_attempts": Object {
-                    "value": 115,
-                  },
-                  "total_off_2prim_made": Object {
-                    "value": 72,
-                  },
-                  "total_off_fga": Object {
-                    "value": 337,
-                  },
-                  "total_off_fta": Object {
-                    "value": 146,
+                    "value": 0.17215189873417722,
                   },
                 },
                 "kind": "data-row",
@@ -1321,143 +1276,98 @@ Adj: [31.7]-[NaN]=[NaN]",
                 "cellMetaFn": [Function],
                 "dataObj": Object {
                   "def_2p": Object {
-                    "value": 0.4222222222222222,
+                    "value": 0.3925887445887446,
                   },
                   "def_2pmid": Object {
-                    "value": 0.3137254901960784,
+                    "value": 0.25890982212206626,
                   },
                   "def_2pmidr": Object {
-                    "value": 0.32903225806451614,
+                    "value": 0.31846600543709885,
                   },
                   "def_2prim": Object {
-                    "value": 0.5641025641025641,
+                    "value": 0.5361531801531801,
                   },
                   "def_2primr": Object {
-                    "value": 0.25161290322580643,
+                    "value": 0.2836214197755882,
                   },
                   "def_3p": Object {
-                    "value": 0.2923076923076923,
+                    "value": 0.29210688199565854,
                   },
                   "def_3pr": Object {
-                    "value": 0.41935483870967744,
+                    "value": 0.3979125747873129,
                   },
                   "def_adj_opp": Object {
-                    "value": 95.5734375,
+                    "value": 94.40136552179376,
                   },
                   "def_adj_ppp": Object {
-                    "value": 86.04146677234992,
+                    "value": 80.9164083027969,
                   },
                   "def_efg": Object {
-                    "value": 0.4290322580645161,
+                    "value": 0.40750693239172503,
                   },
                   "def_ftr": Object {
-                    "value": 0.2903225806451613,
+                    "value": 0.2890897121311868,
                   },
                   "def_orb": Object {
-                    "value": 0.16666666666666666,
+                    "value": 0.2349696242133217,
                   },
                   "def_poss": Object {
-                    "value": 185,
+                    "value": 385,
                   },
                   "def_ppp": Object {
-                    "value": 89.1891891891892,
+                    "value": 84.41558441558442,
                   },
                   "def_title": "",
                   "def_to": Object {
-                    "value": 0.14054054054054055,
-                  },
-                  "doc_count": Object {
-                    "value": undefined,
+                    "value": 0.18961038961038962,
                   },
                   "key": "'ON' Wiggins, Aaron",
                   "off_2p": Object {
-                    "value": 0.5204081632653061,
+                    "value": 0.47119408620312775,
                   },
                   "off_2pmid": Object {
-                    "value": 0.2857142857142857,
+                    "value": 0.2741320072332731,
                   },
                   "off_2pmidr": Object {
-                    "value": 0.25925925925925924,
+                    "value": 0.2709463850166462,
                   },
                   "off_2prim": Object {
-                    "value": 0.6964285714285714,
+                    "value": 0.6270401913317388,
                   },
                   "off_2primr": Object {
-                    "value": 0.345679012345679,
+                    "value": 0.3420388322146854,
                   },
                   "off_3p": Object {
-                    "value": 0.28125,
+                    "value": 0.2998359118612283,
                   },
                   "off_3pr": Object {
-                    "value": 0.3950617283950617,
+                    "value": 0.38701478276866835,
                   },
                   "off_adj_opp": Object {
-                    "value": 103.65837837837837,
+                    "value": 104.32443330862299,
                   },
                   "off_adj_ppp": Object {
-                    "value": 117.71053018784639,
+                    "value": 112.6351439264967,
                   },
                   "off_efg": Object {
-                    "value": 0.48148148148148145,
+                    "value": 0.4632135831152416,
                   },
                   "off_ftr": Object {
-                    "value": 0.5123456790123457,
+                    "value": 0.4425595820945124,
                   },
                   "off_orb": Object {
-                    "value": 0.36538461538461536,
+                    "value": 0.3517746211150608,
                   },
                   "off_poss": Object {
-                    "value": 192,
+                    "value": 395,
                   },
                   "off_ppp": Object {
-                    "value": 112.5,
+                    "value": 106.32911392405063,
                   },
                   "off_title": "'ON' Wiggins, Aaron
 Adj: [31.7]-[NaN]=[NaN]",
                   "off_to": Object {
-                    "value": 0.14583333333333334,
-                  },
-                  "points_allowed": Object {
-                    "value": 165,
-                  },
-                  "points_scored": Object {
-                    "value": 216,
-                  },
-                  "total_def_2pmid_attempts": Object {
-                    "value": 102,
-                  },
-                  "total_def_2pmid_made": Object {
-                    "value": 27,
-                  },
-                  "total_def_2prim_attempts": Object {
-                    "value": 92,
-                  },
-                  "total_def_2prim_made": Object {
-                    "value": 49,
-                  },
-                  "total_def_fga": Object {
-                    "value": 325,
-                  },
-                  "total_def_fta": Object {
-                    "value": 94,
-                  },
-                  "total_off_2pmid_attempts": Object {
-                    "value": 91,
-                  },
-                  "total_off_2pmid_made": Object {
-                    "value": 25,
-                  },
-                  "total_off_2prim_attempts": Object {
-                    "value": 115,
-                  },
-                  "total_off_2prim_made": Object {
-                    "value": 72,
-                  },
-                  "total_off_fga": Object {
-                    "value": 337,
-                  },
-                  "total_off_fta": Object {
-                    "value": 146,
+                    "value": 0.17215189873417722,
                   },
                 },
                 "kind": "data-row",
@@ -1510,9 +1420,6 @@ Adj: [31.7]-[NaN]=[NaN]",
                   },
                   "def_title": "",
                   "def_to": Object {
-                    "value": 0,
-                  },
-                  "doc_count": Object {
                     "value": 0,
                   },
                   "key": "'OFF' Wiggins, Aaron",
@@ -1563,48 +1470,6 @@ Poss: [100]% v [0]%",
                   "off_to": Object {
                     "value": 0,
                   },
-                  "points_allowed": Object {
-                    "value": 0,
-                  },
-                  "points_scored": Object {
-                    "value": 0,
-                  },
-                  "total_def_2pmid_attempts": Object {
-                    "value": 0,
-                  },
-                  "total_def_2pmid_made": Object {
-                    "value": 0,
-                  },
-                  "total_def_2prim_attempts": Object {
-                    "value": 0,
-                  },
-                  "total_def_2prim_made": Object {
-                    "value": 0,
-                  },
-                  "total_def_fga": Object {
-                    "value": 0,
-                  },
-                  "total_def_fta": Object {
-                    "value": 0,
-                  },
-                  "total_off_2pmid_attempts": Object {
-                    "value": 0,
-                  },
-                  "total_off_2pmid_made": Object {
-                    "value": 0,
-                  },
-                  "total_off_2prim_attempts": Object {
-                    "value": 0,
-                  },
-                  "total_off_2prim_made": Object {
-                    "value": 0,
-                  },
-                  "total_off_fga": Object {
-                    "value": 0,
-                  },
-                  "total_off_fta": Object {
-                    "value": 0,
-                  },
                 },
                 "kind": "data-row",
                 "prefixFn": [Function],
@@ -1656,9 +1521,6 @@ Poss: [100]% v [0]%",
                   },
                   "def_title": "",
                   "def_to": Object {
-                    "value": 0,
-                  },
-                  "doc_count": Object {
                     "value": 0,
                   },
                   "key": "'OFF' Wiggins, Aaron",
@@ -1709,48 +1571,6 @@ Poss: [100]% v [0]%",
                   "off_to": Object {
                     "value": 0,
                   },
-                  "points_allowed": Object {
-                    "value": 0,
-                  },
-                  "points_scored": Object {
-                    "value": 0,
-                  },
-                  "total_def_2pmid_attempts": Object {
-                    "value": 0,
-                  },
-                  "total_def_2pmid_made": Object {
-                    "value": 0,
-                  },
-                  "total_def_2prim_attempts": Object {
-                    "value": 0,
-                  },
-                  "total_def_2prim_made": Object {
-                    "value": 0,
-                  },
-                  "total_def_fga": Object {
-                    "value": 0,
-                  },
-                  "total_def_fta": Object {
-                    "value": 0,
-                  },
-                  "total_off_2pmid_attempts": Object {
-                    "value": 0,
-                  },
-                  "total_off_2pmid_made": Object {
-                    "value": 0,
-                  },
-                  "total_off_2prim_attempts": Object {
-                    "value": 0,
-                  },
-                  "total_off_2prim_made": Object {
-                    "value": 0,
-                  },
-                  "total_off_fga": Object {
-                    "value": 0,
-                  },
-                  "total_off_fta": Object {
-                    "value": 0,
-                  },
                 },
                 "kind": "data-row",
                 "prefixFn": [Function],
@@ -1762,143 +1582,98 @@ Poss: [100]% v [0]%",
                 "cellMetaFn": [Function],
                 "dataObj": Object {
                   "def_2p": Object {
-                    "value": 0.4222222222222222,
+                    "value": 0.3925887445887446,
                   },
                   "def_2pmid": Object {
-                    "value": 0.3137254901960784,
+                    "value": 0.25890982212206626,
                   },
                   "def_2pmidr": Object {
-                    "value": 0.32903225806451614,
+                    "value": 0.31846600543709885,
                   },
                   "def_2prim": Object {
-                    "value": 0.5641025641025641,
+                    "value": 0.5361531801531801,
                   },
                   "def_2primr": Object {
-                    "value": 0.25161290322580643,
+                    "value": 0.2836214197755882,
                   },
                   "def_3p": Object {
-                    "value": 0.2923076923076923,
+                    "value": 0.29210688199565854,
                   },
                   "def_3pr": Object {
-                    "value": 0.41935483870967744,
+                    "value": 0.3979125747873129,
                   },
                   "def_adj_opp": Object {
-                    "value": 95.5734375,
+                    "value": 94.40136552179376,
                   },
                   "def_adj_ppp": Object {
-                    "value": 86.04146677234992,
+                    "value": 80.9164083027969,
                   },
                   "def_efg": Object {
-                    "value": 0.4290322580645161,
+                    "value": 0.40750693239172503,
                   },
                   "def_ftr": Object {
-                    "value": 0.2903225806451613,
+                    "value": 0.2890897121311868,
                   },
                   "def_orb": Object {
-                    "value": 0.16666666666666666,
+                    "value": 0.2349696242133217,
                   },
                   "def_poss": Object {
-                    "value": 185,
+                    "value": 385,
                   },
                   "def_ppp": Object {
-                    "value": 89.1891891891892,
+                    "value": 84.41558441558442,
                   },
                   "def_title": "",
                   "def_to": Object {
-                    "value": 0.14054054054054055,
-                  },
-                  "doc_count": Object {
-                    "value": undefined,
+                    "value": 0.18961038961038962,
                   },
                   "key": "'ON' Cowan, Anthony",
                   "off_2p": Object {
-                    "value": 0.5204081632653061,
+                    "value": 0.47119408620312775,
                   },
                   "off_2pmid": Object {
-                    "value": 0.2857142857142857,
+                    "value": 0.2741320072332731,
                   },
                   "off_2pmidr": Object {
-                    "value": 0.25925925925925924,
+                    "value": 0.2709463850166462,
                   },
                   "off_2prim": Object {
-                    "value": 0.6964285714285714,
+                    "value": 0.6270401913317388,
                   },
                   "off_2primr": Object {
-                    "value": 0.345679012345679,
+                    "value": 0.3420388322146854,
                   },
                   "off_3p": Object {
-                    "value": 0.28125,
+                    "value": 0.2998359118612283,
                   },
                   "off_3pr": Object {
-                    "value": 0.3950617283950617,
+                    "value": 0.38701478276866835,
                   },
                   "off_adj_opp": Object {
-                    "value": 103.65837837837837,
+                    "value": 104.32443330862299,
                   },
                   "off_adj_ppp": Object {
-                    "value": 117.71053018784639,
+                    "value": 112.6351439264967,
                   },
                   "off_efg": Object {
-                    "value": 0.48148148148148145,
+                    "value": 0.4632135831152416,
                   },
                   "off_ftr": Object {
-                    "value": 0.5123456790123457,
+                    "value": 0.4425595820945124,
                   },
                   "off_orb": Object {
-                    "value": 0.36538461538461536,
+                    "value": 0.3517746211150608,
                   },
                   "off_poss": Object {
-                    "value": 192,
+                    "value": 395,
                   },
                   "off_ppp": Object {
-                    "value": 112.5,
+                    "value": 106.32911392405063,
                   },
                   "off_title": "'ON' Cowan, Anthony
 Adj: [31.7]-[NaN]=[NaN]",
                   "off_to": Object {
-                    "value": 0.14583333333333334,
-                  },
-                  "points_allowed": Object {
-                    "value": 165,
-                  },
-                  "points_scored": Object {
-                    "value": 216,
-                  },
-                  "total_def_2pmid_attempts": Object {
-                    "value": 102,
-                  },
-                  "total_def_2pmid_made": Object {
-                    "value": 27,
-                  },
-                  "total_def_2prim_attempts": Object {
-                    "value": 92,
-                  },
-                  "total_def_2prim_made": Object {
-                    "value": 49,
-                  },
-                  "total_def_fga": Object {
-                    "value": 325,
-                  },
-                  "total_def_fta": Object {
-                    "value": 94,
-                  },
-                  "total_off_2pmid_attempts": Object {
-                    "value": 91,
-                  },
-                  "total_off_2pmid_made": Object {
-                    "value": 25,
-                  },
-                  "total_off_2prim_attempts": Object {
-                    "value": 115,
-                  },
-                  "total_off_2prim_made": Object {
-                    "value": 72,
-                  },
-                  "total_off_fga": Object {
-                    "value": 337,
-                  },
-                  "total_off_fta": Object {
-                    "value": 146,
+                    "value": 0.17215189873417722,
                   },
                 },
                 "kind": "data-row",
@@ -1908,143 +1683,98 @@ Adj: [31.7]-[NaN]=[NaN]",
                 "cellMetaFn": [Function],
                 "dataObj": Object {
                   "def_2p": Object {
-                    "value": 0.4222222222222222,
+                    "value": 0.3925887445887446,
                   },
                   "def_2pmid": Object {
-                    "value": 0.3137254901960784,
+                    "value": 0.25890982212206626,
                   },
                   "def_2pmidr": Object {
-                    "value": 0.32903225806451614,
+                    "value": 0.31846600543709885,
                   },
                   "def_2prim": Object {
-                    "value": 0.5641025641025641,
+                    "value": 0.5361531801531801,
                   },
                   "def_2primr": Object {
-                    "value": 0.25161290322580643,
+                    "value": 0.2836214197755882,
                   },
                   "def_3p": Object {
-                    "value": 0.2923076923076923,
+                    "value": 0.29210688199565854,
                   },
                   "def_3pr": Object {
-                    "value": 0.41935483870967744,
+                    "value": 0.3979125747873129,
                   },
                   "def_adj_opp": Object {
-                    "value": 95.5734375,
+                    "value": 94.40136552179376,
                   },
                   "def_adj_ppp": Object {
-                    "value": 86.04146677234992,
+                    "value": 80.9164083027969,
                   },
                   "def_efg": Object {
-                    "value": 0.4290322580645161,
+                    "value": 0.40750693239172503,
                   },
                   "def_ftr": Object {
-                    "value": 0.2903225806451613,
+                    "value": 0.2890897121311868,
                   },
                   "def_orb": Object {
-                    "value": 0.16666666666666666,
+                    "value": 0.2349696242133217,
                   },
                   "def_poss": Object {
-                    "value": 185,
+                    "value": 385,
                   },
                   "def_ppp": Object {
-                    "value": 89.1891891891892,
+                    "value": 84.41558441558442,
                   },
                   "def_title": "",
                   "def_to": Object {
-                    "value": 0.14054054054054055,
-                  },
-                  "doc_count": Object {
-                    "value": undefined,
+                    "value": 0.18961038961038962,
                   },
                   "key": "'ON' Cowan, Anthony",
                   "off_2p": Object {
-                    "value": 0.5204081632653061,
+                    "value": 0.47119408620312775,
                   },
                   "off_2pmid": Object {
-                    "value": 0.2857142857142857,
+                    "value": 0.2741320072332731,
                   },
                   "off_2pmidr": Object {
-                    "value": 0.25925925925925924,
+                    "value": 0.2709463850166462,
                   },
                   "off_2prim": Object {
-                    "value": 0.6964285714285714,
+                    "value": 0.6270401913317388,
                   },
                   "off_2primr": Object {
-                    "value": 0.345679012345679,
+                    "value": 0.3420388322146854,
                   },
                   "off_3p": Object {
-                    "value": 0.28125,
+                    "value": 0.2998359118612283,
                   },
                   "off_3pr": Object {
-                    "value": 0.3950617283950617,
+                    "value": 0.38701478276866835,
                   },
                   "off_adj_opp": Object {
-                    "value": 103.65837837837837,
+                    "value": 104.32443330862299,
                   },
                   "off_adj_ppp": Object {
-                    "value": 117.71053018784639,
+                    "value": 112.6351439264967,
                   },
                   "off_efg": Object {
-                    "value": 0.48148148148148145,
+                    "value": 0.4632135831152416,
                   },
                   "off_ftr": Object {
-                    "value": 0.5123456790123457,
+                    "value": 0.4425595820945124,
                   },
                   "off_orb": Object {
-                    "value": 0.36538461538461536,
+                    "value": 0.3517746211150608,
                   },
                   "off_poss": Object {
-                    "value": 192,
+                    "value": 395,
                   },
                   "off_ppp": Object {
-                    "value": 112.5,
+                    "value": 106.32911392405063,
                   },
                   "off_title": "'ON' Cowan, Anthony
 Adj: [31.7]-[NaN]=[NaN]",
                   "off_to": Object {
-                    "value": 0.14583333333333334,
-                  },
-                  "points_allowed": Object {
-                    "value": 165,
-                  },
-                  "points_scored": Object {
-                    "value": 216,
-                  },
-                  "total_def_2pmid_attempts": Object {
-                    "value": 102,
-                  },
-                  "total_def_2pmid_made": Object {
-                    "value": 27,
-                  },
-                  "total_def_2prim_attempts": Object {
-                    "value": 92,
-                  },
-                  "total_def_2prim_made": Object {
-                    "value": 49,
-                  },
-                  "total_def_fga": Object {
-                    "value": 325,
-                  },
-                  "total_def_fta": Object {
-                    "value": 94,
-                  },
-                  "total_off_2pmid_attempts": Object {
-                    "value": 91,
-                  },
-                  "total_off_2pmid_made": Object {
-                    "value": 25,
-                  },
-                  "total_off_2prim_attempts": Object {
-                    "value": 115,
-                  },
-                  "total_off_2prim_made": Object {
-                    "value": 72,
-                  },
-                  "total_off_fga": Object {
-                    "value": 337,
-                  },
-                  "total_off_fta": Object {
-                    "value": 146,
+                    "value": 0.17215189873417722,
                   },
                 },
                 "kind": "data-row",
@@ -2097,9 +1827,6 @@ Adj: [31.7]-[NaN]=[NaN]",
                   },
                   "def_title": "",
                   "def_to": Object {
-                    "value": 0,
-                  },
-                  "doc_count": Object {
                     "value": 0,
                   },
                   "key": "'OFF' Cowan, Anthony",
@@ -2150,48 +1877,6 @@ Poss: [100]% v [0]%",
                   "off_to": Object {
                     "value": 0,
                   },
-                  "points_allowed": Object {
-                    "value": 0,
-                  },
-                  "points_scored": Object {
-                    "value": 0,
-                  },
-                  "total_def_2pmid_attempts": Object {
-                    "value": 0,
-                  },
-                  "total_def_2pmid_made": Object {
-                    "value": 0,
-                  },
-                  "total_def_2prim_attempts": Object {
-                    "value": 0,
-                  },
-                  "total_def_2prim_made": Object {
-                    "value": 0,
-                  },
-                  "total_def_fga": Object {
-                    "value": 0,
-                  },
-                  "total_def_fta": Object {
-                    "value": 0,
-                  },
-                  "total_off_2pmid_attempts": Object {
-                    "value": 0,
-                  },
-                  "total_off_2pmid_made": Object {
-                    "value": 0,
-                  },
-                  "total_off_2prim_attempts": Object {
-                    "value": 0,
-                  },
-                  "total_off_2prim_made": Object {
-                    "value": 0,
-                  },
-                  "total_off_fga": Object {
-                    "value": 0,
-                  },
-                  "total_off_fta": Object {
-                    "value": 0,
-                  },
                 },
                 "kind": "data-row",
                 "prefixFn": [Function],
@@ -2243,9 +1928,6 @@ Poss: [100]% v [0]%",
                   },
                   "def_title": "",
                   "def_to": Object {
-                    "value": 0,
-                  },
-                  "doc_count": Object {
                     "value": 0,
                   },
                   "key": "'OFF' Cowan, Anthony",
@@ -2296,48 +1978,6 @@ Poss: [100]% v [0]%",
                   "off_to": Object {
                     "value": 0,
                   },
-                  "points_allowed": Object {
-                    "value": 0,
-                  },
-                  "points_scored": Object {
-                    "value": 0,
-                  },
-                  "total_def_2pmid_attempts": Object {
-                    "value": 0,
-                  },
-                  "total_def_2pmid_made": Object {
-                    "value": 0,
-                  },
-                  "total_def_2prim_attempts": Object {
-                    "value": 0,
-                  },
-                  "total_def_2prim_made": Object {
-                    "value": 0,
-                  },
-                  "total_def_fga": Object {
-                    "value": 0,
-                  },
-                  "total_def_fta": Object {
-                    "value": 0,
-                  },
-                  "total_off_2pmid_attempts": Object {
-                    "value": 0,
-                  },
-                  "total_off_2pmid_made": Object {
-                    "value": 0,
-                  },
-                  "total_off_2prim_attempts": Object {
-                    "value": 0,
-                  },
-                  "total_off_2prim_made": Object {
-                    "value": 0,
-                  },
-                  "total_off_fga": Object {
-                    "value": 0,
-                  },
-                  "total_off_fta": Object {
-                    "value": 0,
-                  },
                 },
                 "kind": "data-row",
                 "prefixFn": [Function],
@@ -2349,1317 +1989,98 @@ Poss: [100]% v [0]%",
                 "cellMetaFn": [Function],
                 "dataObj": Object {
                   "def_2p": Object {
-                    "value": 0.4222222222222222,
+                    "value": 0.3925887445887446,
                   },
                   "def_2pmid": Object {
-                    "value": 0.3137254901960784,
+                    "value": 0.25890982212206626,
                   },
                   "def_2pmidr": Object {
-                    "value": 0.32903225806451614,
+                    "value": 0.31846600543709885,
                   },
                   "def_2prim": Object {
-                    "value": 0.5641025641025641,
+                    "value": 0.5361531801531801,
                   },
                   "def_2primr": Object {
-                    "value": 0.25161290322580643,
+                    "value": 0.2836214197755882,
                   },
                   "def_3p": Object {
-                    "value": 0.2923076923076923,
+                    "value": 0.29210688199565854,
                   },
                   "def_3pr": Object {
-                    "value": 0.41935483870967744,
+                    "value": 0.3979125747873129,
                   },
                   "def_adj_opp": Object {
-                    "value": 95.5734375,
+                    "value": 94.40136552179376,
                   },
                   "def_adj_ppp": Object {
-                    "value": 86.04146677234992,
+                    "value": 80.9164083027969,
                   },
                   "def_efg": Object {
-                    "value": 0.4290322580645161,
+                    "value": 0.40750693239172503,
                   },
                   "def_ftr": Object {
-                    "value": 0.2903225806451613,
+                    "value": 0.2890897121311868,
                   },
                   "def_orb": Object {
-                    "value": 0.16666666666666666,
+                    "value": 0.2349696242133217,
                   },
                   "def_poss": Object {
-                    "value": 185,
+                    "value": 385,
                   },
                   "def_ppp": Object {
-                    "value": 89.1891891891892,
+                    "value": 84.41558441558442,
                   },
                   "def_title": "",
                   "def_to": Object {
-                    "value": 0.14054054054054055,
-                  },
-                  "doc_count": Object {
-                    "value": undefined,
-                  },
-                  "key": "'ON' Morsell, Darryl",
-                  "off_2p": Object {
-                    "value": 0.5204081632653061,
-                  },
-                  "off_2pmid": Object {
-                    "value": 0.2857142857142857,
-                  },
-                  "off_2pmidr": Object {
-                    "value": 0.25925925925925924,
-                  },
-                  "off_2prim": Object {
-                    "value": 0.6964285714285714,
-                  },
-                  "off_2primr": Object {
-                    "value": 0.345679012345679,
-                  },
-                  "off_3p": Object {
-                    "value": 0.28125,
-                  },
-                  "off_3pr": Object {
-                    "value": 0.3950617283950617,
-                  },
-                  "off_adj_opp": Object {
-                    "value": 103.65837837837837,
-                  },
-                  "off_adj_ppp": Object {
-                    "value": 117.71053018784639,
-                  },
-                  "off_efg": Object {
-                    "value": 0.48148148148148145,
-                  },
-                  "off_ftr": Object {
-                    "value": 0.5123456790123457,
-                  },
-                  "off_orb": Object {
-                    "value": 0.36538461538461536,
-                  },
-                  "off_poss": Object {
-                    "value": 192,
-                  },
-                  "off_ppp": Object {
-                    "value": 112.5,
-                  },
-                  "off_title": "'ON' Morsell, Darryl
-Adj: [31.7]-[40.7]=[-9.0]",
-                  "off_to": Object {
-                    "value": 0.14583333333333334,
-                  },
-                  "points_allowed": Object {
-                    "value": 165,
-                  },
-                  "points_scored": Object {
-                    "value": 216,
-                  },
-                  "total_def_2pmid_attempts": Object {
-                    "value": 80,
-                  },
-                  "total_def_2pmid_made": Object {
-                    "value": 24,
-                  },
-                  "total_def_2prim_attempts": Object {
-                    "value": 64,
-                  },
-                  "total_def_2prim_made": Object {
-                    "value": 35,
-                  },
-                  "total_def_fga": Object {
-                    "value": 232,
-                  },
-                  "total_def_fta": Object {
-                    "value": 67,
-                  },
-                  "total_off_2pmid_attempts": Object {
-                    "value": 66,
-                  },
-                  "total_off_2pmid_made": Object {
-                    "value": 15,
-                  },
-                  "total_off_2prim_attempts": Object {
-                    "value": 84,
-                  },
-                  "total_off_2prim_made": Object {
-                    "value": 56,
-                  },
-                  "total_off_fga": Object {
-                    "value": 241,
-                  },
-                  "total_off_fta": Object {
-                    "value": 127,
-                  },
-                },
-                "kind": "data-row",
-                "prefixFn": [Function],
-              },
-              GenericTableDataRow {
-                "cellMetaFn": [Function],
-                "dataObj": Object {
-                  "def_2p": Object {
-                    "value": 0.4222222222222222,
-                  },
-                  "def_2pmid": Object {
-                    "value": 0.3137254901960784,
-                  },
-                  "def_2pmidr": Object {
-                    "value": 0.32903225806451614,
-                  },
-                  "def_2prim": Object {
-                    "value": 0.5641025641025641,
-                  },
-                  "def_2primr": Object {
-                    "value": 0.25161290322580643,
-                  },
-                  "def_3p": Object {
-                    "value": 0.2923076923076923,
-                  },
-                  "def_3pr": Object {
-                    "value": 0.41935483870967744,
-                  },
-                  "def_adj_opp": Object {
-                    "value": 95.5734375,
-                  },
-                  "def_adj_ppp": Object {
-                    "value": 86.04146677234992,
-                  },
-                  "def_efg": Object {
-                    "value": 0.4290322580645161,
-                  },
-                  "def_ftr": Object {
-                    "value": 0.2903225806451613,
-                  },
-                  "def_orb": Object {
-                    "value": 0.16666666666666666,
-                  },
-                  "def_poss": Object {
-                    "value": 185,
-                  },
-                  "def_ppp": Object {
-                    "value": 89.1891891891892,
-                  },
-                  "def_title": "",
-                  "def_to": Object {
-                    "value": 0.14054054054054055,
-                  },
-                  "doc_count": Object {
-                    "value": undefined,
-                  },
-                  "key": "'ON' Morsell, Darryl",
-                  "off_2p": Object {
-                    "value": 0.5204081632653061,
-                  },
-                  "off_2pmid": Object {
-                    "value": 0.2857142857142857,
-                  },
-                  "off_2pmidr": Object {
-                    "value": 0.25925925925925924,
-                  },
-                  "off_2prim": Object {
-                    "value": 0.6964285714285714,
-                  },
-                  "off_2primr": Object {
-                    "value": 0.345679012345679,
-                  },
-                  "off_3p": Object {
-                    "value": 0.28125,
-                  },
-                  "off_3pr": Object {
-                    "value": 0.3950617283950617,
-                  },
-                  "off_adj_opp": Object {
-                    "value": 103.65837837837837,
-                  },
-                  "off_adj_ppp": Object {
-                    "value": 117.71053018784639,
-                  },
-                  "off_efg": Object {
-                    "value": 0.48148148148148145,
-                  },
-                  "off_ftr": Object {
-                    "value": 0.5123456790123457,
-                  },
-                  "off_orb": Object {
-                    "value": 0.36538461538461536,
-                  },
-                  "off_poss": Object {
-                    "value": 192,
-                  },
-                  "off_ppp": Object {
-                    "value": 112.5,
-                  },
-                  "off_title": "'ON' Morsell, Darryl
-Adj: [31.7]-[40.7]=[-9.0]",
-                  "off_to": Object {
-                    "value": 0.14583333333333334,
-                  },
-                  "points_allowed": Object {
-                    "value": 165,
-                  },
-                  "points_scored": Object {
-                    "value": 216,
-                  },
-                  "total_def_2pmid_attempts": Object {
-                    "value": 80,
-                  },
-                  "total_def_2pmid_made": Object {
-                    "value": 24,
-                  },
-                  "total_def_2prim_attempts": Object {
-                    "value": 64,
-                  },
-                  "total_def_2prim_made": Object {
-                    "value": 35,
-                  },
-                  "total_def_fga": Object {
-                    "value": 232,
-                  },
-                  "total_def_fta": Object {
-                    "value": 67,
-                  },
-                  "total_off_2pmid_attempts": Object {
-                    "value": 66,
-                  },
-                  "total_off_2pmid_made": Object {
-                    "value": 15,
-                  },
-                  "total_off_2prim_attempts": Object {
-                    "value": 84,
-                  },
-                  "total_off_2prim_made": Object {
-                    "value": 56,
-                  },
-                  "total_off_fga": Object {
-                    "value": 241,
-                  },
-                  "total_off_fta": Object {
-                    "value": 127,
-                  },
-                },
-                "kind": "data-row",
-                "prefixFn": [Function],
-              },
-              GenericTableDataRow {
-                "cellMetaFn": [Function],
-                "dataObj": Object {
-                  "def_2p": Object {
-                    "value": 0.34,
-                  },
-                  "def_2pmid": Object {
-                    "value": 0.13636363636363635,
-                  },
-                  "def_2pmidr": Object {
-                    "value": 0.23655913978494625,
-                  },
-                  "def_2prim": Object {
-                    "value": 0.5,
-                  },
-                  "def_2primr": Object {
-                    "value": 0.3010752688172043,
-                  },
-                  "def_3p": Object {
-                    "value": 0.23255813953488372,
-                  },
-                  "def_3pr": Object {
-                    "value": 0.46236559139784944,
-                  },
-                  "def_adj_opp": Object {
-                    "value": 93.46372549019607,
-                  },
-                  "def_adj_ppp": Object {
-                    "value": 76.79584120982987,
-                  },
-                  "def_efg": Object {
-                    "value": 0.34408602150537637,
-                  },
-                  "def_ftr": Object {
-                    "value": 0.2903225806451613,
-                  },
-                  "def_orb": Object {
-                    "value": 0.38571428571428573,
-                  },
-                  "def_poss": Object {
-                    "value": 97,
-                  },
-                  "def_ppp": Object {
-                    "value": 80.41237113402062,
-                  },
-                  "def_title": "",
-                  "def_to": Object {
-                    "value": 0.21649484536082475,
-                  },
-                  "doc_count": Object {
-                    "value": undefined,
-                  },
-                  "key": "'OFF' Morsell, Darryl",
-                  "off_2p": Object {
-                    "value": 0.4642857142857143,
-                  },
-                  "off_2pmid": Object {
-                    "value": 0.4,
-                  },
-                  "off_2pmidr": Object {
-                    "value": 0.2604166666666667,
-                  },
-                  "off_2prim": Object {
-                    "value": 0.5161290322580645,
-                  },
-                  "off_2primr": Object {
-                    "value": 0.3229166666666667,
-                  },
-                  "off_3p": Object {
-                    "value": 0.375,
-                  },
-                  "off_3pr": Object {
-                    "value": 0.4166666666666667,
-                  },
-                  "off_adj_opp": Object {
-                    "value": 104.70927835051546,
-                  },
-                  "off_adj_ppp": Object {
-                    "value": 117.48292826198693,
-                  },
-                  "off_efg": Object {
-                    "value": 0.5052083333333334,
-                  },
-                  "off_ftr": Object {
-                    "value": 0.19791666666666666,
-                  },
-                  "off_orb": Object {
-                    "value": 0.3684210526315789,
-                  },
-                  "off_poss": Object {
-                    "value": 102,
-                  },
-                  "off_ppp": Object {
-                    "value": 109.80392156862744,
-                  },
-                  "off_title": "'OFF' Morsell, Darryl
-Poss: [65]% v [35]%",
-                  "off_to": Object {
-                    "value": 0.20588235294117646,
-                  },
-                  "points_allowed": Object {
-                    "value": 78,
-                  },
-                  "points_scored": Object {
-                    "value": 112,
-                  },
-                  "total_def_2pmid_attempts": Object {
-                    "value": 22,
-                  },
-                  "total_def_2pmid_made": Object {
-                    "value": 3,
-                  },
-                  "total_def_2prim_attempts": Object {
-                    "value": 28,
-                  },
-                  "total_def_2prim_made": Object {
-                    "value": 14,
-                  },
-                  "total_def_fga": Object {
-                    "value": 93,
-                  },
-                  "total_def_fta": Object {
-                    "value": 27,
-                  },
-                  "total_off_2pmid_attempts": Object {
-                    "value": 25,
-                  },
-                  "total_off_2pmid_made": Object {
-                    "value": 10,
-                  },
-                  "total_off_2prim_attempts": Object {
-                    "value": 31,
-                  },
-                  "total_off_2prim_made": Object {
-                    "value": 16,
-                  },
-                  "total_off_fga": Object {
-                    "value": 96,
-                  },
-                  "total_off_fta": Object {
-                    "value": 19,
-                  },
-                },
-                "kind": "data-row",
-                "prefixFn": [Function],
-              },
-              GenericTableDataRow {
-                "cellMetaFn": [Function],
-                "dataObj": Object {
-                  "def_2p": Object {
-                    "value": 0.34,
-                  },
-                  "def_2pmid": Object {
-                    "value": 0.13636363636363635,
-                  },
-                  "def_2pmidr": Object {
-                    "value": 0.23655913978494625,
-                  },
-                  "def_2prim": Object {
-                    "value": 0.5,
-                  },
-                  "def_2primr": Object {
-                    "value": 0.3010752688172043,
-                  },
-                  "def_3p": Object {
-                    "value": 0.23255813953488372,
-                  },
-                  "def_3pr": Object {
-                    "value": 0.46236559139784944,
-                  },
-                  "def_adj_opp": Object {
-                    "value": 93.46372549019607,
-                  },
-                  "def_adj_ppp": Object {
-                    "value": 76.79584120982987,
-                  },
-                  "def_efg": Object {
-                    "value": 0.34408602150537637,
-                  },
-                  "def_ftr": Object {
-                    "value": 0.2903225806451613,
-                  },
-                  "def_orb": Object {
-                    "value": 0.38571428571428573,
-                  },
-                  "def_poss": Object {
-                    "value": 97,
-                  },
-                  "def_ppp": Object {
-                    "value": 80.41237113402062,
-                  },
-                  "def_title": "",
-                  "def_to": Object {
-                    "value": 0.21649484536082475,
-                  },
-                  "doc_count": Object {
-                    "value": undefined,
-                  },
-                  "key": "'OFF' Morsell, Darryl",
-                  "off_2p": Object {
-                    "value": 0.4642857142857143,
-                  },
-                  "off_2pmid": Object {
-                    "value": 0.4,
-                  },
-                  "off_2pmidr": Object {
-                    "value": 0.2604166666666667,
-                  },
-                  "off_2prim": Object {
-                    "value": 0.5161290322580645,
-                  },
-                  "off_2primr": Object {
-                    "value": 0.3229166666666667,
-                  },
-                  "off_3p": Object {
-                    "value": 0.375,
-                  },
-                  "off_3pr": Object {
-                    "value": 0.4166666666666667,
-                  },
-                  "off_adj_opp": Object {
-                    "value": 104.70927835051546,
-                  },
-                  "off_adj_ppp": Object {
-                    "value": 117.48292826198693,
-                  },
-                  "off_efg": Object {
-                    "value": 0.5052083333333334,
-                  },
-                  "off_ftr": Object {
-                    "value": 0.19791666666666666,
-                  },
-                  "off_orb": Object {
-                    "value": 0.3684210526315789,
-                  },
-                  "off_poss": Object {
-                    "value": 102,
-                  },
-                  "off_ppp": Object {
-                    "value": 109.80392156862744,
-                  },
-                  "off_title": "'OFF' Morsell, Darryl
-Poss: [65]% v [35]%",
-                  "off_to": Object {
-                    "value": 0.20588235294117646,
-                  },
-                  "points_allowed": Object {
-                    "value": 78,
-                  },
-                  "points_scored": Object {
-                    "value": 112,
-                  },
-                  "total_def_2pmid_attempts": Object {
-                    "value": 22,
-                  },
-                  "total_def_2pmid_made": Object {
-                    "value": 3,
-                  },
-                  "total_def_2prim_attempts": Object {
-                    "value": 28,
-                  },
-                  "total_def_2prim_made": Object {
-                    "value": 14,
-                  },
-                  "total_def_fga": Object {
-                    "value": 93,
-                  },
-                  "total_def_fta": Object {
-                    "value": 27,
-                  },
-                  "total_off_2pmid_attempts": Object {
-                    "value": 25,
-                  },
-                  "total_off_2pmid_made": Object {
-                    "value": 10,
-                  },
-                  "total_off_2prim_attempts": Object {
-                    "value": 31,
-                  },
-                  "total_off_2prim_made": Object {
-                    "value": 16,
-                  },
-                  "total_off_fga": Object {
-                    "value": 96,
-                  },
-                  "total_off_fta": Object {
-                    "value": 19,
-                  },
-                },
-                "kind": "data-row",
-                "prefixFn": [Function],
-              },
-              GenericTableSeparator {
-                "kind": "separator",
-              },
-              GenericTableDataRow {
-                "cellMetaFn": [Function],
-                "dataObj": Object {
-                  "def_2p": Object {
-                    "value": 0.4222222222222222,
-                  },
-                  "def_2pmid": Object {
-                    "value": 0.3137254901960784,
-                  },
-                  "def_2pmidr": Object {
-                    "value": 0.32903225806451614,
-                  },
-                  "def_2prim": Object {
-                    "value": 0.5641025641025641,
-                  },
-                  "def_2primr": Object {
-                    "value": 0.25161290322580643,
-                  },
-                  "def_3p": Object {
-                    "value": 0.2923076923076923,
-                  },
-                  "def_3pr": Object {
-                    "value": 0.41935483870967744,
-                  },
-                  "def_adj_opp": Object {
-                    "value": 95.5734375,
-                  },
-                  "def_adj_ppp": Object {
-                    "value": 86.04146677234992,
-                  },
-                  "def_efg": Object {
-                    "value": 0.4290322580645161,
-                  },
-                  "def_ftr": Object {
-                    "value": 0.2903225806451613,
-                  },
-                  "def_orb": Object {
-                    "value": 0.16666666666666666,
-                  },
-                  "def_poss": Object {
-                    "value": 185,
-                  },
-                  "def_ppp": Object {
-                    "value": 89.1891891891892,
-                  },
-                  "def_title": "",
-                  "def_to": Object {
-                    "value": 0.14054054054054055,
-                  },
-                  "doc_count": Object {
-                    "value": undefined,
-                  },
-                  "key": "'ON' Ayala, Eric",
-                  "off_2p": Object {
-                    "value": 0.5204081632653061,
-                  },
-                  "off_2pmid": Object {
-                    "value": 0.2857142857142857,
-                  },
-                  "off_2pmidr": Object {
-                    "value": 0.25925925925925924,
-                  },
-                  "off_2prim": Object {
-                    "value": 0.6964285714285714,
-                  },
-                  "off_2primr": Object {
-                    "value": 0.345679012345679,
-                  },
-                  "off_3p": Object {
-                    "value": 0.28125,
-                  },
-                  "off_3pr": Object {
-                    "value": 0.3950617283950617,
-                  },
-                  "off_adj_opp": Object {
-                    "value": 103.65837837837837,
-                  },
-                  "off_adj_ppp": Object {
-                    "value": 117.71053018784639,
-                  },
-                  "off_efg": Object {
-                    "value": 0.48148148148148145,
-                  },
-                  "off_ftr": Object {
-                    "value": 0.5123456790123457,
-                  },
-                  "off_orb": Object {
-                    "value": 0.36538461538461536,
-                  },
-                  "off_poss": Object {
-                    "value": 192,
-                  },
-                  "off_ppp": Object {
-                    "value": 112.5,
-                  },
-                  "off_title": "'ON' Ayala, Eric
-Adj: [31.7]-[22.1]=[9.6]",
-                  "off_to": Object {
-                    "value": 0.14583333333333334,
-                  },
-                  "points_allowed": Object {
-                    "value": 165,
-                  },
-                  "points_scored": Object {
-                    "value": 216,
-                  },
-                  "total_def_2pmid_attempts": Object {
-                    "value": 73,
-                  },
-                  "total_def_2pmid_made": Object {
-                    "value": 19,
-                  },
-                  "total_def_2prim_attempts": Object {
-                    "value": 67,
-                  },
-                  "total_def_2prim_made": Object {
-                    "value": 36,
-                  },
-                  "total_def_fga": Object {
-                    "value": 248,
-                  },
-                  "total_def_fta": Object {
-                    "value": 72,
-                  },
-                  "total_off_2pmid_attempts": Object {
-                    "value": 67,
-                  },
-                  "total_off_2pmid_made": Object {
-                    "value": 22,
-                  },
-                  "total_off_2prim_attempts": Object {
-                    "value": 87,
-                  },
-                  "total_off_2prim_made": Object {
-                    "value": 55,
-                  },
-                  "total_off_fga": Object {
-                    "value": 258,
-                  },
-                  "total_off_fta": Object {
-                    "value": 102,
-                  },
-                },
-                "kind": "data-row",
-                "prefixFn": [Function],
-              },
-              GenericTableDataRow {
-                "cellMetaFn": [Function],
-                "dataObj": Object {
-                  "def_2p": Object {
-                    "value": 0.4222222222222222,
-                  },
-                  "def_2pmid": Object {
-                    "value": 0.3137254901960784,
-                  },
-                  "def_2pmidr": Object {
-                    "value": 0.32903225806451614,
-                  },
-                  "def_2prim": Object {
-                    "value": 0.5641025641025641,
-                  },
-                  "def_2primr": Object {
-                    "value": 0.25161290322580643,
-                  },
-                  "def_3p": Object {
-                    "value": 0.2923076923076923,
-                  },
-                  "def_3pr": Object {
-                    "value": 0.41935483870967744,
-                  },
-                  "def_adj_opp": Object {
-                    "value": 95.5734375,
-                  },
-                  "def_adj_ppp": Object {
-                    "value": 86.04146677234992,
-                  },
-                  "def_efg": Object {
-                    "value": 0.4290322580645161,
-                  },
-                  "def_ftr": Object {
-                    "value": 0.2903225806451613,
-                  },
-                  "def_orb": Object {
-                    "value": 0.16666666666666666,
-                  },
-                  "def_poss": Object {
-                    "value": 185,
-                  },
-                  "def_ppp": Object {
-                    "value": 89.1891891891892,
-                  },
-                  "def_title": "",
-                  "def_to": Object {
-                    "value": 0.14054054054054055,
-                  },
-                  "doc_count": Object {
-                    "value": undefined,
-                  },
-                  "key": "'ON' Ayala, Eric",
-                  "off_2p": Object {
-                    "value": 0.5204081632653061,
-                  },
-                  "off_2pmid": Object {
-                    "value": 0.2857142857142857,
-                  },
-                  "off_2pmidr": Object {
-                    "value": 0.25925925925925924,
-                  },
-                  "off_2prim": Object {
-                    "value": 0.6964285714285714,
-                  },
-                  "off_2primr": Object {
-                    "value": 0.345679012345679,
-                  },
-                  "off_3p": Object {
-                    "value": 0.28125,
-                  },
-                  "off_3pr": Object {
-                    "value": 0.3950617283950617,
-                  },
-                  "off_adj_opp": Object {
-                    "value": 103.65837837837837,
-                  },
-                  "off_adj_ppp": Object {
-                    "value": 117.71053018784639,
-                  },
-                  "off_efg": Object {
-                    "value": 0.48148148148148145,
-                  },
-                  "off_ftr": Object {
-                    "value": 0.5123456790123457,
-                  },
-                  "off_orb": Object {
-                    "value": 0.36538461538461536,
-                  },
-                  "off_poss": Object {
-                    "value": 192,
-                  },
-                  "off_ppp": Object {
-                    "value": 112.5,
-                  },
-                  "off_title": "'ON' Ayala, Eric
-Adj: [31.7]-[22.1]=[9.6]",
-                  "off_to": Object {
-                    "value": 0.14583333333333334,
-                  },
-                  "points_allowed": Object {
-                    "value": 165,
-                  },
-                  "points_scored": Object {
-                    "value": 216,
-                  },
-                  "total_def_2pmid_attempts": Object {
-                    "value": 73,
-                  },
-                  "total_def_2pmid_made": Object {
-                    "value": 19,
-                  },
-                  "total_def_2prim_attempts": Object {
-                    "value": 67,
-                  },
-                  "total_def_2prim_made": Object {
-                    "value": 36,
-                  },
-                  "total_def_fga": Object {
-                    "value": 248,
-                  },
-                  "total_def_fta": Object {
-                    "value": 72,
-                  },
-                  "total_off_2pmid_attempts": Object {
-                    "value": 67,
-                  },
-                  "total_off_2pmid_made": Object {
-                    "value": 22,
-                  },
-                  "total_off_2prim_attempts": Object {
-                    "value": 87,
-                  },
-                  "total_off_2prim_made": Object {
-                    "value": 55,
-                  },
-                  "total_off_fga": Object {
-                    "value": 258,
-                  },
-                  "total_off_fta": Object {
-                    "value": 102,
-                  },
-                },
-                "kind": "data-row",
-                "prefixFn": [Function],
-              },
-              GenericTableDataRow {
-                "cellMetaFn": [Function],
-                "dataObj": Object {
-                  "def_2p": Object {
-                    "value": 0.3888888888888889,
-                  },
-                  "def_2pmid": Object {
-                    "value": 0.27586206896551724,
-                  },
-                  "def_2pmidr": Object {
-                    "value": 0.37662337662337664,
-                  },
-                  "def_2prim": Object {
-                    "value": 0.52,
-                  },
-                  "def_2primr": Object {
-                    "value": 0.3246753246753247,
-                  },
-                  "def_3p": Object {
-                    "value": 0.34782608695652173,
-                  },
-                  "def_3pr": Object {
-                    "value": 0.2987012987012987,
-                  },
-                  "def_adj_opp": Object {
-                    "value": 93.17920792079208,
-                  },
-                  "def_adj_ppp": Object {
-                    "value": 75.67507705937726,
-                  },
-                  "def_efg": Object {
-                    "value": 0.42857142857142855,
-                  },
-                  "def_ftr": Object {
-                    "value": 0.2857142857142857,
-                  },
-                  "def_orb": Object {
-                    "value": 0.21568627450980393,
-                  },
-                  "def_poss": Object {
-                    "value": 103,
-                  },
-                  "def_ppp": Object {
-                    "value": 79.6116504854369,
-                  },
-                  "def_title": "",
-                  "def_to": Object {
-                    "value": 0.2524271844660194,
-                  },
-                  "doc_count": Object {
-                    "value": undefined,
-                  },
-                  "key": "'OFF' Ayala, Eric",
-                  "off_2p": Object {
-                    "value": 0.38461538461538464,
-                  },
-                  "off_2pmid": Object {
-                    "value": 0.125,
-                  },
-                  "off_2pmidr": Object {
-                    "value": 0.3037974683544304,
-                  },
-                  "off_2prim": Object {
-                    "value": 0.6071428571428571,
-                  },
-                  "off_2primr": Object {
-                    "value": 0.35443037974683544,
-                  },
-                  "off_3p": Object {
-                    "value": 0.25925925925925924,
-                  },
-                  "off_3pr": Object {
-                    "value": 0.34177215189873417,
-                  },
-                  "off_adj_opp": Object {
-                    "value": 105.2019417475728,
-                  },
-                  "off_adj_ppp": Object {
-                    "value": 97.75690408135073,
-                  },
-                  "off_efg": Object {
-                    "value": 0.3860759493670886,
-                  },
-                  "off_ftr": Object {
-                    "value": 0.5569620253164557,
-                  },
-                  "off_orb": Object {
-                    "value": 0.3090909090909091,
-                  },
-                  "off_poss": Object {
-                    "value": 101,
-                  },
-                  "off_ppp": Object {
-                    "value": 91.08910891089108,
-                  },
-                  "off_title": "'OFF' Ayala, Eric
-Poss: [66]% v [34]%",
-                  "off_to": Object {
-                    "value": 0.18811881188118812,
-                  },
-                  "points_allowed": Object {
-                    "value": 82,
-                  },
-                  "points_scored": Object {
-                    "value": 92,
-                  },
-                  "total_def_2pmid_attempts": Object {
-                    "value": 29,
-                  },
-                  "total_def_2pmid_made": Object {
-                    "value": 8,
-                  },
-                  "total_def_2prim_attempts": Object {
-                    "value": 25,
-                  },
-                  "total_def_2prim_made": Object {
-                    "value": 13,
-                  },
-                  "total_def_fga": Object {
-                    "value": 77,
-                  },
-                  "total_def_fta": Object {
-                    "value": 22,
-                  },
-                  "total_off_2pmid_attempts": Object {
-                    "value": 24,
-                  },
-                  "total_off_2pmid_made": Object {
-                    "value": 3,
-                  },
-                  "total_off_2prim_attempts": Object {
-                    "value": 28,
-                  },
-                  "total_off_2prim_made": Object {
-                    "value": 17,
-                  },
-                  "total_off_fga": Object {
-                    "value": 79,
-                  },
-                  "total_off_fta": Object {
-                    "value": 44,
-                  },
-                },
-                "kind": "data-row",
-                "prefixFn": [Function],
-              },
-              GenericTableDataRow {
-                "cellMetaFn": [Function],
-                "dataObj": Object {
-                  "def_2p": Object {
-                    "value": 0.3888888888888889,
-                  },
-                  "def_2pmid": Object {
-                    "value": 0.27586206896551724,
-                  },
-                  "def_2pmidr": Object {
-                    "value": 0.37662337662337664,
-                  },
-                  "def_2prim": Object {
-                    "value": 0.52,
-                  },
-                  "def_2primr": Object {
-                    "value": 0.3246753246753247,
-                  },
-                  "def_3p": Object {
-                    "value": 0.34782608695652173,
-                  },
-                  "def_3pr": Object {
-                    "value": 0.2987012987012987,
-                  },
-                  "def_adj_opp": Object {
-                    "value": 93.17920792079208,
-                  },
-                  "def_adj_ppp": Object {
-                    "value": 75.67507705937726,
-                  },
-                  "def_efg": Object {
-                    "value": 0.42857142857142855,
-                  },
-                  "def_ftr": Object {
-                    "value": 0.2857142857142857,
-                  },
-                  "def_orb": Object {
-                    "value": 0.21568627450980393,
-                  },
-                  "def_poss": Object {
-                    "value": 103,
-                  },
-                  "def_ppp": Object {
-                    "value": 79.6116504854369,
-                  },
-                  "def_title": "",
-                  "def_to": Object {
-                    "value": 0.2524271844660194,
-                  },
-                  "doc_count": Object {
-                    "value": undefined,
-                  },
-                  "key": "'OFF' Ayala, Eric",
-                  "off_2p": Object {
-                    "value": 0.38461538461538464,
-                  },
-                  "off_2pmid": Object {
-                    "value": 0.125,
-                  },
-                  "off_2pmidr": Object {
-                    "value": 0.3037974683544304,
-                  },
-                  "off_2prim": Object {
-                    "value": 0.6071428571428571,
-                  },
-                  "off_2primr": Object {
-                    "value": 0.35443037974683544,
-                  },
-                  "off_3p": Object {
-                    "value": 0.25925925925925924,
-                  },
-                  "off_3pr": Object {
-                    "value": 0.34177215189873417,
-                  },
-                  "off_adj_opp": Object {
-                    "value": 105.2019417475728,
-                  },
-                  "off_adj_ppp": Object {
-                    "value": 97.75690408135073,
-                  },
-                  "off_efg": Object {
-                    "value": 0.3860759493670886,
-                  },
-                  "off_ftr": Object {
-                    "value": 0.5569620253164557,
-                  },
-                  "off_orb": Object {
-                    "value": 0.3090909090909091,
-                  },
-                  "off_poss": Object {
-                    "value": 101,
-                  },
-                  "off_ppp": Object {
-                    "value": 91.08910891089108,
-                  },
-                  "off_title": "'OFF' Ayala, Eric
-Poss: [66]% v [34]%",
-                  "off_to": Object {
-                    "value": 0.18811881188118812,
-                  },
-                  "points_allowed": Object {
-                    "value": 82,
-                  },
-                  "points_scored": Object {
-                    "value": 92,
-                  },
-                  "total_def_2pmid_attempts": Object {
-                    "value": 29,
-                  },
-                  "total_def_2pmid_made": Object {
-                    "value": 8,
-                  },
-                  "total_def_2prim_attempts": Object {
-                    "value": 25,
-                  },
-                  "total_def_2prim_made": Object {
-                    "value": 13,
-                  },
-                  "total_def_fga": Object {
-                    "value": 77,
-                  },
-                  "total_def_fta": Object {
-                    "value": 22,
-                  },
-                  "total_off_2pmid_attempts": Object {
-                    "value": 24,
-                  },
-                  "total_off_2pmid_made": Object {
-                    "value": 3,
-                  },
-                  "total_off_2prim_attempts": Object {
-                    "value": 28,
-                  },
-                  "total_off_2prim_made": Object {
-                    "value": 17,
-                  },
-                  "total_off_fga": Object {
-                    "value": 79,
-                  },
-                  "total_off_fta": Object {
-                    "value": 44,
-                  },
-                },
-                "kind": "data-row",
-                "prefixFn": [Function],
-              },
-              GenericTableSeparator {
-                "kind": "separator",
-              },
-              GenericTableDataRow {
-                "cellMetaFn": [Function],
-                "dataObj": Object {
-                  "def_2p": Object {
-                    "value": 0.4222222222222222,
-                  },
-                  "def_2pmid": Object {
-                    "value": 0.3137254901960784,
-                  },
-                  "def_2pmidr": Object {
-                    "value": 0.32903225806451614,
-                  },
-                  "def_2prim": Object {
-                    "value": 0.5641025641025641,
-                  },
-                  "def_2primr": Object {
-                    "value": 0.25161290322580643,
-                  },
-                  "def_3p": Object {
-                    "value": 0.2923076923076923,
-                  },
-                  "def_3pr": Object {
-                    "value": 0.41935483870967744,
-                  },
-                  "def_adj_opp": Object {
-                    "value": 95.5734375,
-                  },
-                  "def_adj_ppp": Object {
-                    "value": 86.04146677234992,
-                  },
-                  "def_efg": Object {
-                    "value": 0.4290322580645161,
-                  },
-                  "def_ftr": Object {
-                    "value": 0.2903225806451613,
-                  },
-                  "def_orb": Object {
-                    "value": 0.16666666666666666,
-                  },
-                  "def_poss": Object {
-                    "value": 185,
-                  },
-                  "def_ppp": Object {
-                    "value": 89.1891891891892,
-                  },
-                  "def_title": "",
-                  "def_to": Object {
-                    "value": 0.14054054054054055,
-                  },
-                  "doc_count": Object {
-                    "value": undefined,
+                    "value": 0.18961038961038962,
                   },
                   "key": "'ON' Smith, Jalen",
                   "off_2p": Object {
-                    "value": 0.5204081632653061,
+                    "value": 0.47119408620312775,
                   },
                   "off_2pmid": Object {
-                    "value": 0.2857142857142857,
+                    "value": 0.2741320072332731,
                   },
                   "off_2pmidr": Object {
-                    "value": 0.25925925925925924,
+                    "value": 0.2709463850166462,
                   },
                   "off_2prim": Object {
-                    "value": 0.6964285714285714,
+                    "value": 0.6270401913317388,
                   },
                   "off_2primr": Object {
-                    "value": 0.345679012345679,
+                    "value": 0.3420388322146854,
                   },
                   "off_3p": Object {
-                    "value": 0.28125,
+                    "value": 0.2998359118612283,
                   },
                   "off_3pr": Object {
-                    "value": 0.3950617283950617,
+                    "value": 0.38701478276866835,
                   },
                   "off_adj_opp": Object {
-                    "value": 103.65837837837837,
+                    "value": 104.32443330862299,
                   },
                   "off_adj_ppp": Object {
-                    "value": 117.71053018784639,
+                    "value": 112.6351439264967,
                   },
                   "off_efg": Object {
-                    "value": 0.48148148148148145,
+                    "value": 0.4632135831152416,
                   },
                   "off_ftr": Object {
-                    "value": 0.5123456790123457,
+                    "value": 0.4425595820945124,
                   },
                   "off_orb": Object {
-                    "value": 0.36538461538461536,
+                    "value": 0.3517746211150608,
                   },
                   "off_poss": Object {
-                    "value": 192,
+                    "value": 395,
                   },
                   "off_ppp": Object {
-                    "value": 112.5,
+                    "value": 106.32911392405063,
                   },
                   "off_title": "'ON' Smith, Jalen
 Adj: [31.7]-[NaN]=[NaN]",
                   "off_to": Object {
-                    "value": 0.14583333333333334,
-                  },
-                  "points_allowed": Object {
-                    "value": 165,
-                  },
-                  "points_scored": Object {
-                    "value": 216,
-                  },
-                  "total_def_2pmid_attempts": Object {
-                    "value": 102,
-                  },
-                  "total_def_2pmid_made": Object {
-                    "value": 27,
-                  },
-                  "total_def_2prim_attempts": Object {
-                    "value": 92,
-                  },
-                  "total_def_2prim_made": Object {
-                    "value": 49,
-                  },
-                  "total_def_fga": Object {
-                    "value": 325,
-                  },
-                  "total_def_fta": Object {
-                    "value": 94,
-                  },
-                  "total_off_2pmid_attempts": Object {
-                    "value": 91,
-                  },
-                  "total_off_2pmid_made": Object {
-                    "value": 25,
-                  },
-                  "total_off_2prim_attempts": Object {
-                    "value": 115,
-                  },
-                  "total_off_2prim_made": Object {
-                    "value": 72,
-                  },
-                  "total_off_fga": Object {
-                    "value": 337,
-                  },
-                  "total_off_fta": Object {
-                    "value": 146,
+                    "value": 0.17215189873417722,
                   },
                 },
                 "kind": "data-row",
@@ -3669,143 +2090,98 @@ Adj: [31.7]-[NaN]=[NaN]",
                 "cellMetaFn": [Function],
                 "dataObj": Object {
                   "def_2p": Object {
-                    "value": 0.4222222222222222,
+                    "value": 0.3925887445887446,
                   },
                   "def_2pmid": Object {
-                    "value": 0.3137254901960784,
+                    "value": 0.25890982212206626,
                   },
                   "def_2pmidr": Object {
-                    "value": 0.32903225806451614,
+                    "value": 0.31846600543709885,
                   },
                   "def_2prim": Object {
-                    "value": 0.5641025641025641,
+                    "value": 0.5361531801531801,
                   },
                   "def_2primr": Object {
-                    "value": 0.25161290322580643,
+                    "value": 0.2836214197755882,
                   },
                   "def_3p": Object {
-                    "value": 0.2923076923076923,
+                    "value": 0.29210688199565854,
                   },
                   "def_3pr": Object {
-                    "value": 0.41935483870967744,
+                    "value": 0.3979125747873129,
                   },
                   "def_adj_opp": Object {
-                    "value": 95.5734375,
+                    "value": 94.40136552179376,
                   },
                   "def_adj_ppp": Object {
-                    "value": 86.04146677234992,
+                    "value": 80.9164083027969,
                   },
                   "def_efg": Object {
-                    "value": 0.4290322580645161,
+                    "value": 0.40750693239172503,
                   },
                   "def_ftr": Object {
-                    "value": 0.2903225806451613,
+                    "value": 0.2890897121311868,
                   },
                   "def_orb": Object {
-                    "value": 0.16666666666666666,
+                    "value": 0.2349696242133217,
                   },
                   "def_poss": Object {
-                    "value": 185,
+                    "value": 385,
                   },
                   "def_ppp": Object {
-                    "value": 89.1891891891892,
+                    "value": 84.41558441558442,
                   },
                   "def_title": "",
                   "def_to": Object {
-                    "value": 0.14054054054054055,
-                  },
-                  "doc_count": Object {
-                    "value": undefined,
+                    "value": 0.18961038961038962,
                   },
                   "key": "'ON' Smith, Jalen",
                   "off_2p": Object {
-                    "value": 0.5204081632653061,
+                    "value": 0.47119408620312775,
                   },
                   "off_2pmid": Object {
-                    "value": 0.2857142857142857,
+                    "value": 0.2741320072332731,
                   },
                   "off_2pmidr": Object {
-                    "value": 0.25925925925925924,
+                    "value": 0.2709463850166462,
                   },
                   "off_2prim": Object {
-                    "value": 0.6964285714285714,
+                    "value": 0.6270401913317388,
                   },
                   "off_2primr": Object {
-                    "value": 0.345679012345679,
+                    "value": 0.3420388322146854,
                   },
                   "off_3p": Object {
-                    "value": 0.28125,
+                    "value": 0.2998359118612283,
                   },
                   "off_3pr": Object {
-                    "value": 0.3950617283950617,
+                    "value": 0.38701478276866835,
                   },
                   "off_adj_opp": Object {
-                    "value": 103.65837837837837,
+                    "value": 104.32443330862299,
                   },
                   "off_adj_ppp": Object {
-                    "value": 117.71053018784639,
+                    "value": 112.6351439264967,
                   },
                   "off_efg": Object {
-                    "value": 0.48148148148148145,
+                    "value": 0.4632135831152416,
                   },
                   "off_ftr": Object {
-                    "value": 0.5123456790123457,
+                    "value": 0.4425595820945124,
                   },
                   "off_orb": Object {
-                    "value": 0.36538461538461536,
+                    "value": 0.3517746211150608,
                   },
                   "off_poss": Object {
-                    "value": 192,
+                    "value": 395,
                   },
                   "off_ppp": Object {
-                    "value": 112.5,
+                    "value": 106.32911392405063,
                   },
                   "off_title": "'ON' Smith, Jalen
 Adj: [31.7]-[NaN]=[NaN]",
                   "off_to": Object {
-                    "value": 0.14583333333333334,
-                  },
-                  "points_allowed": Object {
-                    "value": 165,
-                  },
-                  "points_scored": Object {
-                    "value": 216,
-                  },
-                  "total_def_2pmid_attempts": Object {
-                    "value": 102,
-                  },
-                  "total_def_2pmid_made": Object {
-                    "value": 27,
-                  },
-                  "total_def_2prim_attempts": Object {
-                    "value": 92,
-                  },
-                  "total_def_2prim_made": Object {
-                    "value": 49,
-                  },
-                  "total_def_fga": Object {
-                    "value": 325,
-                  },
-                  "total_def_fta": Object {
-                    "value": 94,
-                  },
-                  "total_off_2pmid_attempts": Object {
-                    "value": 91,
-                  },
-                  "total_off_2pmid_made": Object {
-                    "value": 25,
-                  },
-                  "total_off_2prim_attempts": Object {
-                    "value": 115,
-                  },
-                  "total_off_2prim_made": Object {
-                    "value": 72,
-                  },
-                  "total_off_fga": Object {
-                    "value": 337,
-                  },
-                  "total_off_fta": Object {
-                    "value": 146,
+                    "value": 0.17215189873417722,
                   },
                 },
                 "kind": "data-row",
@@ -3858,9 +2234,6 @@ Adj: [31.7]-[NaN]=[NaN]",
                   },
                   "def_title": "",
                   "def_to": Object {
-                    "value": 0,
-                  },
-                  "doc_count": Object {
                     "value": 0,
                   },
                   "key": "'OFF' Smith, Jalen",
@@ -3911,48 +2284,6 @@ Poss: [100]% v [0]%",
                   "off_to": Object {
                     "value": 0,
                   },
-                  "points_allowed": Object {
-                    "value": 0,
-                  },
-                  "points_scored": Object {
-                    "value": 0,
-                  },
-                  "total_def_2pmid_attempts": Object {
-                    "value": 0,
-                  },
-                  "total_def_2pmid_made": Object {
-                    "value": 0,
-                  },
-                  "total_def_2prim_attempts": Object {
-                    "value": 0,
-                  },
-                  "total_def_2prim_made": Object {
-                    "value": 0,
-                  },
-                  "total_def_fga": Object {
-                    "value": 0,
-                  },
-                  "total_def_fta": Object {
-                    "value": 0,
-                  },
-                  "total_off_2pmid_attempts": Object {
-                    "value": 0,
-                  },
-                  "total_off_2pmid_made": Object {
-                    "value": 0,
-                  },
-                  "total_off_2prim_attempts": Object {
-                    "value": 0,
-                  },
-                  "total_off_2prim_made": Object {
-                    "value": 0,
-                  },
-                  "total_off_fga": Object {
-                    "value": 0,
-                  },
-                  "total_off_fta": Object {
-                    "value": 0,
-                  },
                 },
                 "kind": "data-row",
                 "prefixFn": [Function],
@@ -4004,9 +2335,6 @@ Poss: [100]% v [0]%",
                   },
                   "def_title": "",
                   "def_to": Object {
-                    "value": 0,
-                  },
-                  "doc_count": Object {
                     "value": 0,
                   },
                   "key": "'OFF' Smith, Jalen",
@@ -4057,47 +2385,412 @@ Poss: [100]% v [0]%",
                   "off_to": Object {
                     "value": 0,
                   },
-                  "points_allowed": Object {
-                    "value": 0,
+                },
+                "kind": "data-row",
+                "prefixFn": [Function],
+              },
+              GenericTableSeparator {
+                "kind": "separator",
+              },
+              GenericTableDataRow {
+                "cellMetaFn": [Function],
+                "dataObj": Object {
+                  "def_2p": Object {
+                    "value": 0.39394011032308907,
                   },
-                  "points_scored": Object {
-                    "value": 0,
+                  "def_2pmid": Object {
+                    "value": 0.2527180440196711,
                   },
-                  "total_def_2pmid_attempts": Object {
-                    "value": 0,
+                  "def_2pmidr": Object {
+                    "value": 0.2972241287272173,
                   },
-                  "total_def_2pmid_made": Object {
-                    "value": 0,
+                  "def_2prim": Object {
+                    "value": 0.5420531005637389,
                   },
-                  "total_def_2prim_attempts": Object {
-                    "value": 0,
+                  "def_2primr": Object {
+                    "value": 0.26862655380157097,
                   },
-                  "total_def_2prim_made": Object {
-                    "value": 0,
+                  "def_3p": Object {
+                    "value": 0.2717555411766199,
                   },
-                  "total_def_fga": Object {
-                    "value": 0,
+                  "def_3pr": Object {
+                    "value": 0.43414931747121177,
                   },
-                  "total_def_fta": Object {
-                    "value": 0,
+                  "def_adj_opp": Object {
+                    "value": 94.84775641861353,
                   },
-                  "total_off_2pmid_attempts": Object {
-                    "value": 0,
+                  "def_adj_ppp": Object {
+                    "value": 82.83767279868688,
                   },
-                  "total_off_2pmid_made": Object {
-                    "value": 0,
+                  "def_efg": Object {
+                    "value": 0.39981316251048576,
                   },
-                  "total_off_2prim_attempts": Object {
-                    "value": 0,
+                  "def_ftr": Object {
+                    "value": 0.2903225806451613,
                   },
-                  "total_off_2prim_made": Object {
-                    "value": 0,
+                  "def_orb": Object {
+                    "value": 0.2420128335021952,
                   },
-                  "total_off_fga": Object {
-                    "value": 0,
+                  "def_poss": Object {
+                    "value": 282,
                   },
-                  "total_off_fta": Object {
-                    "value": 0,
+                  "def_ppp": Object {
+                    "value": 86.17021276595744,
+                  },
+                  "def_title": "",
+                  "def_to": Object {
+                    "value": 0.16666666666666666,
+                  },
+                  "key": "'ON' Ayala, Eric",
+                  "off_2p": Object {
+                    "value": 0.5009371095376927,
+                  },
+                  "off_2pmid": Object {
+                    "value": 0.3253644314868805,
+                  },
+                  "off_2pmidr": Object {
+                    "value": 0.2596608087679516,
+                  },
+                  "off_2prim": Object {
+                    "value": 0.6338756700837016,
+                  },
+                  "off_2primr": Object {
+                    "value": 0.3377818720080625,
+                  },
+                  "off_3p": Object {
+                    "value": 0.3137755102040816,
+                  },
+                  "off_3pr": Object {
+                    "value": 0.40255731922398585,
+                  },
+                  "off_adj_opp": Object {
+                    "value": 104.02297632789532,
+                  },
+                  "off_adj_ppp": Object {
+                    "value": 117.62494977524422,
+                  },
+                  "off_efg": Object {
+                    "value": 0.489713246409675,
+                  },
+                  "off_ftr": Object {
+                    "value": 0.403258062484253,
+                  },
+                  "off_orb": Object {
+                    "value": 0.3664380732049905,
+                  },
+                  "off_poss": Object {
+                    "value": 294,
+                  },
+                  "off_ppp": Object {
+                    "value": 111.56462585034014,
+                  },
+                  "off_title": "'ON' Ayala, Eric
+Adj: [34.8]-[22.1]=[12.7]",
+                  "off_to": Object {
+                    "value": 0.16666666666666666,
+                  },
+                },
+                "kind": "data-row",
+                "prefixFn": [Function],
+              },
+              GenericTableDataRow {
+                "cellMetaFn": [Function],
+                "dataObj": Object {
+                  "def_2p": Object {
+                    "value": 0.39394011032308907,
+                  },
+                  "def_2pmid": Object {
+                    "value": 0.2527180440196711,
+                  },
+                  "def_2pmidr": Object {
+                    "value": 0.2972241287272173,
+                  },
+                  "def_2prim": Object {
+                    "value": 0.5420531005637389,
+                  },
+                  "def_2primr": Object {
+                    "value": 0.26862655380157097,
+                  },
+                  "def_3p": Object {
+                    "value": 0.2717555411766199,
+                  },
+                  "def_3pr": Object {
+                    "value": 0.43414931747121177,
+                  },
+                  "def_adj_opp": Object {
+                    "value": 94.84775641861353,
+                  },
+                  "def_adj_ppp": Object {
+                    "value": 82.83767279868688,
+                  },
+                  "def_efg": Object {
+                    "value": 0.39981316251048576,
+                  },
+                  "def_ftr": Object {
+                    "value": 0.2903225806451613,
+                  },
+                  "def_orb": Object {
+                    "value": 0.2420128335021952,
+                  },
+                  "def_poss": Object {
+                    "value": 282,
+                  },
+                  "def_ppp": Object {
+                    "value": 86.17021276595744,
+                  },
+                  "def_title": "",
+                  "def_to": Object {
+                    "value": 0.16666666666666666,
+                  },
+                  "key": "'ON' Ayala, Eric",
+                  "off_2p": Object {
+                    "value": 0.5009371095376927,
+                  },
+                  "off_2pmid": Object {
+                    "value": 0.3253644314868805,
+                  },
+                  "off_2pmidr": Object {
+                    "value": 0.2596608087679516,
+                  },
+                  "off_2prim": Object {
+                    "value": 0.6338756700837016,
+                  },
+                  "off_2primr": Object {
+                    "value": 0.3377818720080625,
+                  },
+                  "off_3p": Object {
+                    "value": 0.3137755102040816,
+                  },
+                  "off_3pr": Object {
+                    "value": 0.40255731922398585,
+                  },
+                  "off_adj_opp": Object {
+                    "value": 104.02297632789532,
+                  },
+                  "off_adj_ppp": Object {
+                    "value": 117.62494977524422,
+                  },
+                  "off_efg": Object {
+                    "value": 0.489713246409675,
+                  },
+                  "off_ftr": Object {
+                    "value": 0.403258062484253,
+                  },
+                  "off_orb": Object {
+                    "value": 0.3664380732049905,
+                  },
+                  "off_poss": Object {
+                    "value": 294,
+                  },
+                  "off_ppp": Object {
+                    "value": 111.56462585034014,
+                  },
+                  "off_title": "'ON' Ayala, Eric
+Adj: [34.8]-[22.1]=[12.7]",
+                  "off_to": Object {
+                    "value": 0.16666666666666666,
+                  },
+                },
+                "kind": "data-row",
+                "prefixFn": [Function],
+              },
+              GenericTableDataRow {
+                "cellMetaFn": [Function],
+                "dataObj": Object {
+                  "def_2p": Object {
+                    "value": 0.3888888888888889,
+                  },
+                  "def_2pmid": Object {
+                    "value": 0.27586206896551724,
+                  },
+                  "def_2pmidr": Object {
+                    "value": 0.3766233766233766,
+                  },
+                  "def_2prim": Object {
+                    "value": 0.52,
+                  },
+                  "def_2primr": Object {
+                    "value": 0.3246753246753247,
+                  },
+                  "def_3p": Object {
+                    "value": 0.3478260869565217,
+                  },
+                  "def_3pr": Object {
+                    "value": 0.2987012987012987,
+                  },
+                  "def_adj_opp": Object {
+                    "value": 93.17920792079208,
+                  },
+                  "def_adj_ppp": Object {
+                    "value": 75.67507705937726,
+                  },
+                  "def_efg": Object {
+                    "value": 0.42857142857142855,
+                  },
+                  "def_ftr": Object {
+                    "value": 0.2857142857142857,
+                  },
+                  "def_orb": Object {
+                    "value": 0.21568627450980396,
+                  },
+                  "def_poss": Object {
+                    "value": 103,
+                  },
+                  "def_ppp": Object {
+                    "value": 79.6116504854369,
+                  },
+                  "def_title": "",
+                  "def_to": Object {
+                    "value": 0.2524271844660194,
+                  },
+                  "key": "'OFF' Ayala, Eric",
+                  "off_2p": Object {
+                    "value": 0.38461538461538464,
+                  },
+                  "off_2pmid": Object {
+                    "value": 0.125,
+                  },
+                  "off_2pmidr": Object {
+                    "value": 0.3037974683544304,
+                  },
+                  "off_2prim": Object {
+                    "value": 0.6071428571428571,
+                  },
+                  "off_2primr": Object {
+                    "value": 0.35443037974683544,
+                  },
+                  "off_3p": Object {
+                    "value": 0.25925925925925924,
+                  },
+                  "off_3pr": Object {
+                    "value": 0.34177215189873417,
+                  },
+                  "off_adj_opp": Object {
+                    "value": 105.2019417475728,
+                  },
+                  "off_adj_ppp": Object {
+                    "value": 97.75690408135073,
+                  },
+                  "off_efg": Object {
+                    "value": 0.38607594936708856,
+                  },
+                  "off_ftr": Object {
+                    "value": 0.5569620253164557,
+                  },
+                  "off_orb": Object {
+                    "value": 0.3090909090909091,
+                  },
+                  "off_poss": Object {
+                    "value": 101,
+                  },
+                  "off_ppp": Object {
+                    "value": 91.08910891089108,
+                  },
+                  "off_title": "'OFF' Ayala, Eric
+Poss: [74]% v [26]%",
+                  "off_to": Object {
+                    "value": 0.18811881188118812,
+                  },
+                },
+                "kind": "data-row",
+                "prefixFn": [Function],
+              },
+              GenericTableDataRow {
+                "cellMetaFn": [Function],
+                "dataObj": Object {
+                  "def_2p": Object {
+                    "value": 0.3888888888888889,
+                  },
+                  "def_2pmid": Object {
+                    "value": 0.27586206896551724,
+                  },
+                  "def_2pmidr": Object {
+                    "value": 0.3766233766233766,
+                  },
+                  "def_2prim": Object {
+                    "value": 0.52,
+                  },
+                  "def_2primr": Object {
+                    "value": 0.3246753246753247,
+                  },
+                  "def_3p": Object {
+                    "value": 0.3478260869565217,
+                  },
+                  "def_3pr": Object {
+                    "value": 0.2987012987012987,
+                  },
+                  "def_adj_opp": Object {
+                    "value": 93.17920792079208,
+                  },
+                  "def_adj_ppp": Object {
+                    "value": 75.67507705937726,
+                  },
+                  "def_efg": Object {
+                    "value": 0.42857142857142855,
+                  },
+                  "def_ftr": Object {
+                    "value": 0.2857142857142857,
+                  },
+                  "def_orb": Object {
+                    "value": 0.21568627450980396,
+                  },
+                  "def_poss": Object {
+                    "value": 103,
+                  },
+                  "def_ppp": Object {
+                    "value": 79.6116504854369,
+                  },
+                  "def_title": "",
+                  "def_to": Object {
+                    "value": 0.2524271844660194,
+                  },
+                  "key": "'OFF' Ayala, Eric",
+                  "off_2p": Object {
+                    "value": 0.38461538461538464,
+                  },
+                  "off_2pmid": Object {
+                    "value": 0.125,
+                  },
+                  "off_2pmidr": Object {
+                    "value": 0.3037974683544304,
+                  },
+                  "off_2prim": Object {
+                    "value": 0.6071428571428571,
+                  },
+                  "off_2primr": Object {
+                    "value": 0.35443037974683544,
+                  },
+                  "off_3p": Object {
+                    "value": 0.25925925925925924,
+                  },
+                  "off_3pr": Object {
+                    "value": 0.34177215189873417,
+                  },
+                  "off_adj_opp": Object {
+                    "value": 105.2019417475728,
+                  },
+                  "off_adj_ppp": Object {
+                    "value": 97.75690408135073,
+                  },
+                  "off_efg": Object {
+                    "value": 0.38607594936708856,
+                  },
+                  "off_ftr": Object {
+                    "value": 0.5569620253164557,
+                  },
+                  "off_orb": Object {
+                    "value": 0.3090909090909091,
+                  },
+                  "off_poss": Object {
+                    "value": 101,
+                  },
+                  "off_ppp": Object {
+                    "value": 91.08910891089108,
+                  },
+                  "off_title": "'OFF' Ayala, Eric
+Poss: [74]% v [26]%",
+                  "off_to": Object {
+                    "value": 0.18811881188118812,
                   },
                 },
                 "kind": "data-row",
@@ -4110,13 +2803,215 @@ Poss: [100]% v [0]%",
                 "cellMetaFn": [Function],
                 "dataObj": Object {
                   "def_2p": Object {
+                    "value": 0.41030092592592593,
+                  },
+                  "def_2pmid": Object {
+                    "value": 0.30018405829764855,
+                  },
+                  "def_2pmidr": Object {
+                    "value": 0.3460526928268864,
+                  },
+                  "def_2prim": Object {
+                    "value": 0.5483297720797721,
+                  },
+                  "def_2primr": Object {
+                    "value": 0.27774286645254387,
+                  },
+                  "def_3p": Object {
+                    "value": 0.3121632292827945,
+                  },
+                  "def_3pr": Object {
+                    "value": 0.37620444072056974,
+                  },
+                  "def_adj_opp": Object {
+                    "value": 94.71716789354716,
+                  },
+                  "def_adj_ppp": Object {
+                    "value": 82.31453141736604,
+                  },
+                  "def_efg": Object {
+                    "value": 0.4288674475166411,
+                  },
+                  "def_ftr": Object {
+                    "value": 0.28867447516641065,
+                  },
+                  "def_orb": Object {
+                    "value": 0.18419798474945534,
+                  },
+                  "def_poss": Object {
+                    "value": 288,
+                  },
+                  "def_ppp": Object {
+                    "value": 85.76388888888889,
+                  },
+                  "def_title": "",
+                  "def_to": Object {
+                    "value": 0.18055555555555555,
+                  },
+                  "key": "'ON' Morsell, Darryl",
+                  "off_2p": Object {
+                    "value": 0.4735990484405892,
+                  },
+                  "off_2pmid": Object {
+                    "value": 0.23031448074110192,
+                  },
+                  "off_2pmidr": Object {
+                    "value": 0.27461202075622954,
+                  },
+                  "off_2prim": Object {
+                    "value": 0.6656509019990249,
+                  },
+                  "off_2primr": Object {
+                    "value": 0.3486956953064872,
+                  },
+                  "off_3p": Object {
+                    "value": 0.27366957401087094,
+                  },
+                  "off_3pr": Object {
+                    "value": 0.37669228393728327,
+                  },
+                  "off_adj_opp": Object {
+                    "value": 104.19045994932935,
+                  },
+                  "off_adj_ppp": Object {
+                    "value": 110.98247156530132,
+                  },
+                  "off_efg": Object {
+                    "value": 0.4485942502748136,
+                  },
+                  "off_ftr": Object {
+                    "value": 0.5277253751786088,
+                  },
+                  "off_orb": Object {
+                    "value": 0.3459796176519726,
+                  },
+                  "off_poss": Object {
+                    "value": 293,
+                  },
+                  "off_ppp": Object {
+                    "value": 105.11945392491468,
+                  },
+                  "off_title": "'ON' Morsell, Darryl
+Adj: [28.7]-[40.7]=[-12.0]",
+                  "off_to": Object {
+                    "value": 0.16040955631399317,
+                  },
+                },
+                "kind": "data-row",
+                "prefixFn": [Function],
+              },
+              GenericTableDataRow {
+                "cellMetaFn": [Function],
+                "dataObj": Object {
+                  "def_2p": Object {
+                    "value": 0.41030092592592593,
+                  },
+                  "def_2pmid": Object {
+                    "value": 0.30018405829764855,
+                  },
+                  "def_2pmidr": Object {
+                    "value": 0.3460526928268864,
+                  },
+                  "def_2prim": Object {
+                    "value": 0.5483297720797721,
+                  },
+                  "def_2primr": Object {
+                    "value": 0.27774286645254387,
+                  },
+                  "def_3p": Object {
+                    "value": 0.3121632292827945,
+                  },
+                  "def_3pr": Object {
+                    "value": 0.37620444072056974,
+                  },
+                  "def_adj_opp": Object {
+                    "value": 94.71716789354716,
+                  },
+                  "def_adj_ppp": Object {
+                    "value": 82.31453141736604,
+                  },
+                  "def_efg": Object {
+                    "value": 0.4288674475166411,
+                  },
+                  "def_ftr": Object {
+                    "value": 0.28867447516641065,
+                  },
+                  "def_orb": Object {
+                    "value": 0.18419798474945534,
+                  },
+                  "def_poss": Object {
+                    "value": 288,
+                  },
+                  "def_ppp": Object {
+                    "value": 85.76388888888889,
+                  },
+                  "def_title": "",
+                  "def_to": Object {
+                    "value": 0.18055555555555555,
+                  },
+                  "key": "'ON' Morsell, Darryl",
+                  "off_2p": Object {
+                    "value": 0.4735990484405892,
+                  },
+                  "off_2pmid": Object {
+                    "value": 0.23031448074110192,
+                  },
+                  "off_2pmidr": Object {
+                    "value": 0.27461202075622954,
+                  },
+                  "off_2prim": Object {
+                    "value": 0.6656509019990249,
+                  },
+                  "off_2primr": Object {
+                    "value": 0.3486956953064872,
+                  },
+                  "off_3p": Object {
+                    "value": 0.27366957401087094,
+                  },
+                  "off_3pr": Object {
+                    "value": 0.37669228393728327,
+                  },
+                  "off_adj_opp": Object {
+                    "value": 104.19045994932935,
+                  },
+                  "off_adj_ppp": Object {
+                    "value": 110.98247156530132,
+                  },
+                  "off_efg": Object {
+                    "value": 0.4485942502748136,
+                  },
+                  "off_ftr": Object {
+                    "value": 0.5277253751786088,
+                  },
+                  "off_orb": Object {
+                    "value": 0.3459796176519726,
+                  },
+                  "off_poss": Object {
+                    "value": 293,
+                  },
+                  "off_ppp": Object {
+                    "value": 105.11945392491468,
+                  },
+                  "off_title": "'ON' Morsell, Darryl
+Adj: [28.7]-[40.7]=[-12.0]",
+                  "off_to": Object {
+                    "value": 0.16040955631399317,
+                  },
+                },
+                "kind": "data-row",
+                "prefixFn": [Function],
+              },
+              GenericTableDataRow {
+                "cellMetaFn": [Function],
+                "dataObj": Object {
+                  "def_2p": Object {
                     "value": 0.34,
                   },
                   "def_2pmid": Object {
                     "value": 0.13636363636363635,
                   },
                   "def_2pmidr": Object {
-                    "value": 0.23655913978494625,
+                    "value": 0.23655913978494628,
                   },
                   "def_2prim": Object {
                     "value": 0.5,
@@ -4128,7 +3023,7 @@ Poss: [100]% v [0]%",
                     "value": 0.23255813953488372,
                   },
                   "def_3pr": Object {
-                    "value": 0.46236559139784944,
+                    "value": 0.4623655913978494,
                   },
                   "def_adj_opp": Object {
                     "value": 93.46372549019607,
@@ -4137,7 +3032,7 @@ Poss: [100]% v [0]%",
                     "value": 76.79584120982987,
                   },
                   "def_efg": Object {
-                    "value": 0.34408602150537637,
+                    "value": 0.3440860215053764,
                   },
                   "def_ftr": Object {
                     "value": 0.2903225806451613,
@@ -4155,10 +3050,7 @@ Poss: [100]% v [0]%",
                   "def_to": Object {
                     "value": 0.21649484536082475,
                   },
-                  "doc_count": Object {
-                    "value": undefined,
-                  },
-                  "key": "'ON' Scott, Donta",
+                  "key": "'OFF' Morsell, Darryl",
                   "off_2p": Object {
                     "value": 0.4642857142857143,
                   },
@@ -4201,52 +3093,10 @@ Poss: [100]% v [0]%",
                   "off_ppp": Object {
                     "value": 109.80392156862744,
                   },
-                  "off_title": "'ON' Scott, Donta
-Adj: [40.7]-[31.7]=[9.0]",
+                  "off_title": "'OFF' Morsell, Darryl
+Poss: [74]% v [26]%",
                   "off_to": Object {
                     "value": 0.20588235294117646,
-                  },
-                  "points_allowed": Object {
-                    "value": 78,
-                  },
-                  "points_scored": Object {
-                    "value": 112,
-                  },
-                  "total_def_2pmid_attempts": Object {
-                    "value": 51,
-                  },
-                  "total_def_2pmid_made": Object {
-                    "value": 11,
-                  },
-                  "total_def_2prim_attempts": Object {
-                    "value": 53,
-                  },
-                  "total_def_2prim_made": Object {
-                    "value": 27,
-                  },
-                  "total_def_fga": Object {
-                    "value": 170,
-                  },
-                  "total_def_fta": Object {
-                    "value": 49,
-                  },
-                  "total_off_2pmid_attempts": Object {
-                    "value": 49,
-                  },
-                  "total_off_2pmid_made": Object {
-                    "value": 13,
-                  },
-                  "total_off_2prim_attempts": Object {
-                    "value": 59,
-                  },
-                  "total_off_2prim_made": Object {
-                    "value": 33,
-                  },
-                  "total_off_fga": Object {
-                    "value": 175,
-                  },
-                  "total_off_fta": Object {
-                    "value": 63,
                   },
                 },
                 "kind": "data-row",
@@ -4262,7 +3112,7 @@ Adj: [40.7]-[31.7]=[9.0]",
                     "value": 0.13636363636363635,
                   },
                   "def_2pmidr": Object {
-                    "value": 0.23655913978494625,
+                    "value": 0.23655913978494628,
                   },
                   "def_2prim": Object {
                     "value": 0.5,
@@ -4274,7 +3124,7 @@ Adj: [40.7]-[31.7]=[9.0]",
                     "value": 0.23255813953488372,
                   },
                   "def_3pr": Object {
-                    "value": 0.46236559139784944,
+                    "value": 0.4623655913978494,
                   },
                   "def_adj_opp": Object {
                     "value": 93.46372549019607,
@@ -4283,7 +3133,7 @@ Adj: [40.7]-[31.7]=[9.0]",
                     "value": 76.79584120982987,
                   },
                   "def_efg": Object {
-                    "value": 0.34408602150537637,
+                    "value": 0.3440860215053764,
                   },
                   "def_ftr": Object {
                     "value": 0.2903225806451613,
@@ -4301,10 +3151,7 @@ Adj: [40.7]-[31.7]=[9.0]",
                   "def_to": Object {
                     "value": 0.21649484536082475,
                   },
-                  "doc_count": Object {
-                    "value": undefined,
-                  },
-                  "key": "'ON' Scott, Donta",
+                  "key": "'OFF' Morsell, Darryl",
                   "off_2p": Object {
                     "value": 0.4642857142857143,
                   },
@@ -4347,52 +3194,215 @@ Adj: [40.7]-[31.7]=[9.0]",
                   "off_ppp": Object {
                     "value": 109.80392156862744,
                   },
-                  "off_title": "'ON' Scott, Donta
-Adj: [40.7]-[31.7]=[9.0]",
+                  "off_title": "'OFF' Morsell, Darryl
+Poss: [74]% v [26]%",
                   "off_to": Object {
                     "value": 0.20588235294117646,
                   },
-                  "points_allowed": Object {
-                    "value": 78,
+                },
+                "kind": "data-row",
+                "prefixFn": [Function],
+              },
+              GenericTableSeparator {
+                "kind": "separator",
+              },
+              GenericTableDataRow {
+                "cellMetaFn": [Function],
+                "dataObj": Object {
+                  "def_2p": Object {
+                    "value": 0.3651777777777778,
                   },
-                  "points_scored": Object {
-                    "value": 112,
+                  "def_2pmid": Object {
+                    "value": 0.208205329153605,
                   },
-                  "total_def_2pmid_attempts": Object {
-                    "value": 51,
+                  "def_2pmidr": Object {
+                    "value": 0.3086922217567379,
                   },
-                  "total_def_2pmid_made": Object {
-                    "value": 11,
+                  "def_2prim": Object {
+                    "value": 0.5103,
                   },
-                  "total_def_2prim_attempts": Object {
-                    "value": 53,
+                  "def_2primr": Object {
+                    "value": 0.3132292975841363,
                   },
-                  "total_def_2prim_made": Object {
-                    "value": 27,
+                  "def_3p": Object {
+                    "value": 0.2919211324570273,
                   },
-                  "total_def_fga": Object {
-                    "value": 170,
+                  "def_3pr": Object {
+                    "value": 0.3780784806591258,
                   },
-                  "total_def_fta": Object {
-                    "value": 49,
+                  "def_adj_opp": Object {
+                    "value": 93.31719894195301,
                   },
-                  "total_off_2pmid_attempts": Object {
-                    "value": 49,
+                  "def_adj_ppp": Object {
+                    "value": 76.22358147671169,
                   },
-                  "total_off_2pmid_made": Object {
-                    "value": 13,
+                  "def_efg": Object {
+                    "value": 0.3875960061443932,
                   },
-                  "total_off_2prim_attempts": Object {
-                    "value": 59,
+                  "def_ftr": Object {
+                    "value": 0.28794930875576036,
                   },
-                  "total_off_2prim_made": Object {
-                    "value": 33,
+                  "def_orb": Object {
+                    "value": 0.29814985994397764,
                   },
-                  "total_off_fga": Object {
-                    "value": 175,
+                  "def_poss": Object {
+                    "value": 200,
                   },
-                  "total_off_fta": Object {
-                    "value": 63,
+                  "def_ppp": Object {
+                    "value": 80,
+                  },
+                  "def_title": "",
+                  "def_to": Object {
+                    "value": 0.235,
+                  },
+                  "key": "'ON' Scott, Donta",
+                  "off_2p": Object {
+                    "value": 0.42464678178963894,
+                  },
+                  "off_2pmid": Object {
+                    "value": 0.26317733990147785,
+                  },
+                  "off_2pmidr": Object {
+                    "value": 0.28200021824530774,
+                  },
+                  "off_2prim": Object {
+                    "value": 0.5614117727179859,
+                  },
+                  "off_2primr": Object {
+                    "value": 0.33859590322379496,
+                  },
+                  "off_3p": Object {
+                    "value": 0.31741470534573984,
+                  },
+                  "off_3pr": Object {
+                    "value": 0.37940387853089724,
+                  },
+                  "off_adj_opp": Object {
+                    "value": 104.95439659240114,
+                  },
+                  "off_adj_ppp": Object {
+                    "value": 107.68927054909653,
+                  },
+                  "off_efg": Object {
+                    "value": 0.4459355708673693,
+                  },
+                  "off_ftr": Object {
+                    "value": 0.3765549978175469,
+                  },
+                  "off_orb": Object {
+                    "value": 0.3389021142197185,
+                  },
+                  "off_poss": Object {
+                    "value": 203,
+                  },
+                  "off_ppp": Object {
+                    "value": 100.49261083743842,
+                  },
+                  "off_title": "'ON' Scott, Donta
+Adj: [31.5]-[31.7]=[-0.2]",
+                  "off_to": Object {
+                    "value": 0.19704433497536947,
+                  },
+                },
+                "kind": "data-row",
+                "prefixFn": [Function],
+              },
+              GenericTableDataRow {
+                "cellMetaFn": [Function],
+                "dataObj": Object {
+                  "def_2p": Object {
+                    "value": 0.3651777777777778,
+                  },
+                  "def_2pmid": Object {
+                    "value": 0.208205329153605,
+                  },
+                  "def_2pmidr": Object {
+                    "value": 0.3086922217567379,
+                  },
+                  "def_2prim": Object {
+                    "value": 0.5103,
+                  },
+                  "def_2primr": Object {
+                    "value": 0.3132292975841363,
+                  },
+                  "def_3p": Object {
+                    "value": 0.2919211324570273,
+                  },
+                  "def_3pr": Object {
+                    "value": 0.3780784806591258,
+                  },
+                  "def_adj_opp": Object {
+                    "value": 93.31719894195301,
+                  },
+                  "def_adj_ppp": Object {
+                    "value": 76.22358147671169,
+                  },
+                  "def_efg": Object {
+                    "value": 0.3875960061443932,
+                  },
+                  "def_ftr": Object {
+                    "value": 0.28794930875576036,
+                  },
+                  "def_orb": Object {
+                    "value": 0.29814985994397764,
+                  },
+                  "def_poss": Object {
+                    "value": 200,
+                  },
+                  "def_ppp": Object {
+                    "value": 80,
+                  },
+                  "def_title": "",
+                  "def_to": Object {
+                    "value": 0.235,
+                  },
+                  "key": "'ON' Scott, Donta",
+                  "off_2p": Object {
+                    "value": 0.42464678178963894,
+                  },
+                  "off_2pmid": Object {
+                    "value": 0.26317733990147785,
+                  },
+                  "off_2pmidr": Object {
+                    "value": 0.28200021824530774,
+                  },
+                  "off_2prim": Object {
+                    "value": 0.5614117727179859,
+                  },
+                  "off_2primr": Object {
+                    "value": 0.33859590322379496,
+                  },
+                  "off_3p": Object {
+                    "value": 0.31741470534573984,
+                  },
+                  "off_3pr": Object {
+                    "value": 0.37940387853089724,
+                  },
+                  "off_adj_opp": Object {
+                    "value": 104.95439659240114,
+                  },
+                  "off_adj_ppp": Object {
+                    "value": 107.68927054909653,
+                  },
+                  "off_efg": Object {
+                    "value": 0.4459355708673693,
+                  },
+                  "off_ftr": Object {
+                    "value": 0.3765549978175469,
+                  },
+                  "off_orb": Object {
+                    "value": 0.3389021142197185,
+                  },
+                  "off_poss": Object {
+                    "value": 203,
+                  },
+                  "off_ppp": Object {
+                    "value": 100.49261083743842,
+                  },
+                  "off_title": "'ON' Scott, Donta
+Adj: [31.5]-[31.7]=[-0.2]",
+                  "off_to": Object {
+                    "value": 0.19704433497536947,
                   },
                 },
                 "kind": "data-row",
@@ -4420,7 +3430,7 @@ Adj: [40.7]-[31.7]=[9.0]",
                     "value": 0.2923076923076923,
                   },
                   "def_3pr": Object {
-                    "value": 0.41935483870967744,
+                    "value": 0.4193548387096774,
                   },
                   "def_adj_opp": Object {
                     "value": 95.5734375,
@@ -4429,7 +3439,7 @@ Adj: [40.7]-[31.7]=[9.0]",
                     "value": 86.04146677234992,
                   },
                   "def_efg": Object {
-                    "value": 0.4290322580645161,
+                    "value": 0.42903225806451617,
                   },
                   "def_ftr": Object {
                     "value": 0.2903225806451613,
@@ -4447,9 +3457,6 @@ Adj: [40.7]-[31.7]=[9.0]",
                   "def_to": Object {
                     "value": 0.14054054054054055,
                   },
-                  "doc_count": Object {
-                    "value": undefined,
-                  },
                   "key": "'OFF' Scott, Donta",
                   "off_2p": Object {
                     "value": 0.5204081632653061,
@@ -4461,7 +3468,7 @@ Adj: [40.7]-[31.7]=[9.0]",
                     "value": 0.25925925925925924,
                   },
                   "off_2prim": Object {
-                    "value": 0.6964285714285714,
+                    "value": 0.6964285714285715,
                   },
                   "off_2primr": Object {
                     "value": 0.345679012345679,
@@ -4494,51 +3501,9 @@ Adj: [40.7]-[31.7]=[9.0]",
                     "value": 112.5,
                   },
                   "off_title": "'OFF' Scott, Donta
-Poss: [35]% v [65]%",
+Poss: [51]% v [49]%",
                   "off_to": Object {
                     "value": 0.14583333333333334,
-                  },
-                  "points_allowed": Object {
-                    "value": 165,
-                  },
-                  "points_scored": Object {
-                    "value": 216,
-                  },
-                  "total_def_2pmid_attempts": Object {
-                    "value": 51,
-                  },
-                  "total_def_2pmid_made": Object {
-                    "value": 16,
-                  },
-                  "total_def_2prim_attempts": Object {
-                    "value": 39,
-                  },
-                  "total_def_2prim_made": Object {
-                    "value": 22,
-                  },
-                  "total_def_fga": Object {
-                    "value": 155,
-                  },
-                  "total_def_fta": Object {
-                    "value": 45,
-                  },
-                  "total_off_2pmid_attempts": Object {
-                    "value": 42,
-                  },
-                  "total_off_2pmid_made": Object {
-                    "value": 12,
-                  },
-                  "total_off_2prim_attempts": Object {
-                    "value": 56,
-                  },
-                  "total_off_2prim_made": Object {
-                    "value": 39,
-                  },
-                  "total_off_fga": Object {
-                    "value": 162,
-                  },
-                  "total_off_fta": Object {
-                    "value": 83,
                   },
                 },
                 "kind": "data-row",
@@ -4566,7 +3531,7 @@ Poss: [35]% v [65]%",
                     "value": 0.2923076923076923,
                   },
                   "def_3pr": Object {
-                    "value": 0.41935483870967744,
+                    "value": 0.4193548387096774,
                   },
                   "def_adj_opp": Object {
                     "value": 95.5734375,
@@ -4575,7 +3540,7 @@ Poss: [35]% v [65]%",
                     "value": 86.04146677234992,
                   },
                   "def_efg": Object {
-                    "value": 0.4290322580645161,
+                    "value": 0.42903225806451617,
                   },
                   "def_ftr": Object {
                     "value": 0.2903225806451613,
@@ -4593,9 +3558,6 @@ Poss: [35]% v [65]%",
                   "def_to": Object {
                     "value": 0.14054054054054055,
                   },
-                  "doc_count": Object {
-                    "value": undefined,
-                  },
                   "key": "'OFF' Scott, Donta",
                   "off_2p": Object {
                     "value": 0.5204081632653061,
@@ -4607,7 +3569,7 @@ Poss: [35]% v [65]%",
                     "value": 0.25925925925925924,
                   },
                   "off_2prim": Object {
-                    "value": 0.6964285714285714,
+                    "value": 0.6964285714285715,
                   },
                   "off_2primr": Object {
                     "value": 0.345679012345679,
@@ -4640,51 +3602,9 @@ Poss: [35]% v [65]%",
                     "value": 112.5,
                   },
                   "off_title": "'OFF' Scott, Donta
-Poss: [35]% v [65]%",
+Poss: [51]% v [49]%",
                   "off_to": Object {
                     "value": 0.14583333333333334,
-                  },
-                  "points_allowed": Object {
-                    "value": 165,
-                  },
-                  "points_scored": Object {
-                    "value": 216,
-                  },
-                  "total_def_2pmid_attempts": Object {
-                    "value": 51,
-                  },
-                  "total_def_2pmid_made": Object {
-                    "value": 16,
-                  },
-                  "total_def_2prim_attempts": Object {
-                    "value": 39,
-                  },
-                  "total_def_2prim_made": Object {
-                    "value": 22,
-                  },
-                  "total_def_fga": Object {
-                    "value": 155,
-                  },
-                  "total_def_fta": Object {
-                    "value": 45,
-                  },
-                  "total_off_2pmid_attempts": Object {
-                    "value": 42,
-                  },
-                  "total_off_2pmid_made": Object {
-                    "value": 12,
-                  },
-                  "total_off_2prim_attempts": Object {
-                    "value": 56,
-                  },
-                  "total_off_2prim_made": Object {
-                    "value": 39,
-                  },
-                  "total_off_fga": Object {
-                    "value": 162,
-                  },
-                  "total_off_fta": Object {
-                    "value": 83,
                   },
                 },
                 "kind": "data-row",
