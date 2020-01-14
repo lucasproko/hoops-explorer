@@ -48,6 +48,10 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
   const [ sortBy, setSortBy ] = useState(startingState.sortBy || ParamDefaults.defaultTeamReportSortBy);
   const [ filterStr, setFilterStr ] = useState(startingState.filter || ParamDefaults.defaultTeamReportFilter);
 
+  // (slight delay when typing into the filter to make it more responsive)
+  const [ timeoutId, setTimeoutId ] = useState(-1);
+  const [ tmpFilterStr, setTmpFilterStr ] = useState(filterStr);
+
   const filterFragments =
     filterStr.split(",").map(fragment => _.trim(fragment)).filter(fragment => fragment ? true : false);
   const filterFragmentsPve =
@@ -284,10 +288,17 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
             </InputGroup.Prepend>
             <Form.Control
               onChange={(ev: any) => {
-                setFilterStr(ev.target.value);
+                const toSet = ev.target.value;
+                setTmpFilterStr(toSet);
+                if (timeoutId != -1) {
+                  window.clearTimeout(timeoutId);
+                }
+                setTimeoutId(window.setTimeout(() => {
+                  setFilterStr(toSet);
+                }, 100));
               }}
               placeholder = "eg Player1Surname,Player2FirstName,-Player3Name"
-              value={filterStr}
+              value={tmpFilterStr}
             />
           </InputGroup>
         </Form.Group>
