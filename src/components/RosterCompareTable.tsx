@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 // Next imports:
 import { NextPage } from 'next';
 import Link from 'next/link';
+import Router from 'next/router'
 
 // Bootstrap imports:
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -91,11 +92,17 @@ const RosterCompareTable: React.FunctionComponent<Props> = ({gameFilterParams, r
         );
       }
     };
-    //(the div below is needed to provide both onClick and Link functionality:
-    // https://github.com/zeit/next.js/issues/1490#issuecomment-324643124)
-    return <Link href={UrlRouting.getTeamReportUrl(paramObj)}>
-      <div><a onClick={() => onClick()}>(report)</a></div>
-    </Link>;
+    // (see https://github.com/zeit/next.js/issues/1490#issuecomment-343350273)
+    const url = UrlRouting.getTeamReportUrl(paramObj);
+    return <a href={url} onClick={(event: any) => {
+        event.preventDefault();
+        onClick();
+        Router.push(url, url);
+      }}>(report)</a>;
+
+    // <Link href={UrlRouting.getTeamReportUrl(paramObj)}>
+    //   <div><a onClick={() => onClick()}>(report)</a></div>
+    // </Link>;
   };
 
   return <LoadingOverlay
