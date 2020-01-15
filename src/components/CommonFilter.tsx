@@ -175,7 +175,7 @@ const CommonFilter: CommonFilterI = ({
         console.log(`(Found a placeholder cache element for [${tablePrefix}${newParamsStr}])`);
         onSubmit();
       } else if (cachedJson) {
-        HistoryManager.addParamsToHistory(`${tablePrefix}${newParamsStr}`);
+        HistoryManager.addParamsToHistory(newParamsStr, tablePrefix);
         handleResponse(cachedJson);
       } else {
         console.log(`(no pre-cached entry found)`);
@@ -227,7 +227,7 @@ const CommonFilter: CommonFilterI = ({
     const newParamsStr = queryString.stringify(buildParamsFromState(false));
 
     // Store every request in history, successful or not:
-    HistoryManager.addParamsToHistory(`${tablePrefix}${newParamsStr}`);
+    HistoryManager.addParamsToHistory(newParamsStr, tablePrefix);
 
     // Check if it's in the cache:
     const cachedJson = ClientRequestCache.decacheResponse(

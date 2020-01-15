@@ -11,7 +11,7 @@ exports[`TeamReportPage TeamReportPage - should create snapshot 1`] = `
       xs={8}
     >
       <h3>
-        CBB Lineup Analysis Tool 
+        CBB Team On/Off Report Tool 
         <span
           className="badge badge-pill badge-info"
         >
@@ -37,11 +37,26 @@ exports[`TeamReportPage TeamReportPage - should create snapshot 1`] = `
       <span
         className="float-right"
       >
+        <span>
+          <b>
+            Other Tools: 
+          </b>
+        </span>
         <Link
-          href="#"
+          href="/?"
         >
           <a>
-            Back to On/Off Analysis
+            On/Off
+          </a>
+        </Link>
+        <span>
+            
+        </span>
+        <Link
+          href="/LineupAnalyzer?"
+        >
+          <a>
+            Lineups
           </a>
         </Link>
       </span>

@@ -20,7 +20,7 @@ import Col from 'react-bootstrap/Col';
 
 // App components:
 import TeamReportFilter from '../components/TeamReportFilter';
-import { TeamReportFilterParams } from '../utils/FilterModels';
+import { ParamPrefixes, GameFilterParams, LineupFilterParams, TeamReportFilterParams } from '../utils/FilterModels';
 import { HistoryManager } from '../utils/HistoryManager';
 import TeamReportStatsTable from '../components/TeamReportStatsTable';
 import { LineupStatsModel } from '../components/LineupStatsTable';
@@ -66,6 +66,12 @@ const TeamReportPage: NextPage<{}> = () => {
   function getRootUrl(params: TeamReportFilterParams) {
     return UrlRouting.getTeamReportUrl(params);
   }
+  function getGameUrl() {
+    return UrlRouting.getGameUrl(savedGamesFilterParams, {});
+  }
+  function getLineupUrl() {
+    return UrlRouting.getLineupUrl(savedLineupFilterParams, {});
+  }
 
   const onTeamReportFilterParamsChange = (params: TeamReportFilterParams) => {
     const href = getRootUrl(params);
@@ -83,20 +89,29 @@ const TeamReportPage: NextPage<{}> = () => {
       </span>;
     }
   }
-  //TODO: get referer?
-  //TODO: summary
+
+  const savedLineupFilterParams = UrlRouting.removedSavedKeys(
+    HistoryManager.getLastQuery(ParamPrefixes.lineup) || ""
+  ) as LineupFilterParams;
+  const savedGamesFilterParams = UrlRouting.removedSavedKeys(
+    HistoryManager.getLastQuery(ParamPrefixes.game) || ""
+  ) as GameFilterParams;
+  //TODO (in the || case, pull common params from gameFilterParams)
 
   return <Container>
     <Row>
     <Col xs={8}>
-      <h3>CBB Lineup Analysis Tool <span className="badge badge-pill badge-info">BETA!</span></h3>
+      <h3>CBB Team On/Off Report Tool <span className="badge badge-pill badge-info">BETA!</span></h3>
     </Col>
     <Col xs={1}>
       { maybeShowBlog() }
     </Col>
     <Col>
       <span className="float-right">
-        <Link href={"#"}><a>Back to On/Off Analysis</a></Link>
+        <span><b>Other Tools: </b></span>
+        <Link href={getGameUrl()}><a>On/Off</a></Link>
+        <span>&nbsp;&nbsp;</span>
+        <Link href={getLineupUrl()}><a>Lineups</a></Link>
       </span>
     </Col>
     </Row>

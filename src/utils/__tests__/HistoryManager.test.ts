@@ -3,22 +3,27 @@ import { HistoryManager } from "../HistoryManager"
 import { GameFilterParams, LineupFilterParams, TeamReportFilterParams } from "../utils/FilterModels";
 
 describe("HistoryManager", () => {
-  test("HistoryManager - getHistory/addParamsToHistory", () => {
-    HistoryManager.addParamsToHistory("game-year=2019/20&gender=Men");
-    HistoryManager.addParamsToHistory("lineup-year=2018/9&gender=Women");
+  test("HistoryManager - getHistory/addParamsToHistory/getLastQuery", () => {
+    HistoryManager.addParamsToHistory("year=2019/20&gender=Men", "game-");
+    expect(HistoryManager.getLastQuery("game-")).toBe("year=2019/20&gender=Men");
+    expect(HistoryManager.getLastQuery("lineup-")).toBe(undefined);
+    HistoryManager.addParamsToHistory("year=2018/9&gender=Women", "lineup-");
+    expect(HistoryManager.getLastQuery("lineup-")).toBe("year=2018/9&gender=Women");
     expect(HistoryManager.getHistory()).toEqual(
       [
         ["lineup-", { year: "2018/9", gender: "Women" }],
         ["game-", { year: "2019/20", gender: "Men" }],
       ]
     )
-    HistoryManager.addParamsToHistory("game-year=2019/20&gender=Men");
+    HistoryManager.addParamsToHistory("year=2019/20&gender=Men", "game-");
     expect(HistoryManager.getHistory()).toEqual(
       [
         ["game-", { year: "2019/20", gender: "Men" }],
         ["lineup-", { year: "2018/9", gender: "Women" }],
       ]
     )
+    HistoryManager.addParamsToHistory("year=2018/19&gender=Men", "game-");
+    expect(HistoryManager.getLastQuery("game-")).toBe("year=2018/19&gender=Men");
   });
   test("HistoryManager - gameFilterSummary", () => {
     const game1: GameFilterParams = {

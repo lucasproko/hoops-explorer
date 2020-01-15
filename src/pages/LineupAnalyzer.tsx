@@ -20,7 +20,7 @@ import Col from 'react-bootstrap/Col';
 
 // App components:
 import LineupFilter from '../components/LineupFilter';
-import { GameFilterParams, LineupFilterParams } from '../utils/FilterModels';
+import { ParamPrefixes, GameFilterParams, LineupFilterParams } from '../utils/FilterModels';
 import { HistoryManager } from '../utils/HistoryManager';
 import LineupStatsTable, { LineupStatsModel } from '../components/LineupStatsTable';
 import GenericCollapsibleCard from '../components/GenericCollapsibleCard';
@@ -62,24 +62,22 @@ const LineupAnalyzerPage: NextPage<{}> = () => {
     UrlRouting.removedSavedKeys(allParams) as LineupFilterParams
   )
 
-  const [ savedGamesFilterParams, setSavedGamesFilterParams ] = useState(
-    UrlRouting.extractSavedKeys(allParams, UrlRouting.savedGameSuffix) as GameFilterParams
-  )
+  const savedGamesFilterParams = UrlRouting.removedSavedKeys(
+    HistoryManager.getLastQuery(ParamPrefixes.game) || ""
+  ) as GameFilterParams;
+  //TODO (in the || case, pull common params from lineupFilterParams)
 
   function getRootUrl(params: LineupFilterParams) {
-    return UrlRouting.getLineupUrl(params, savedGamesFilterParams);
+    return UrlRouting.getLineupUrl(params, {});
   }
   function getGameUrl() {
-    return UrlRouting.getGameUrl(savedGamesFilterParams, lineupFilterParams);
+    return UrlRouting.getGameUrl(savedGamesFilterParams, {});
   }
 
   const onLineupFilterParamsChange = (params: LineupFilterParams) => {
     const href = getRootUrl(params);
     const as = href;
     Router.push(href, as, { shallow: true });
-    UrlRouting.checkForCommonParamChange(params, lineupFilterParams,
-      [ (params: any) => setSavedGamesFilterParams(params as GameFilterParams) ]
-    );
     setLineupFilterParams(params); // (to ensure the new params are included in links)
   }
 

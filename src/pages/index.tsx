@@ -20,7 +20,7 @@ import Col from 'react-bootstrap/Col';
 
 // App components:
 import GameFilter from '../components/GameFilter';
-import { GameFilterParams, LineupFilterParams } from '../utils/FilterModels';
+import { ParamPrefixes, GameFilterParams, LineupFilterParams } from '../utils/FilterModels';
 import TeamStatsTable, { TeamStatsModel } from '../components/TeamStatsTable';
 import RosterStatsTable from '../components/RosterStatsTable';
 import RosterCompareTable, { RosterCompareModel } from '../components/RosterCompareTable';
@@ -65,25 +65,22 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
   const [ gameFilterParams, setGameFilterParams ] = useState(
     UrlRouting.removedSavedKeys(allParams) as GameFilterParams
   )
-
-  const [ savedLineupFilterParams, setSavedLineupFilterParams ] = useState(
-    UrlRouting.extractSavedKeys(allParams, UrlRouting.savedLineupSuffix) as LineupFilterParams
-  )
+  const savedLineupFilterParams = UrlRouting.removedSavedKeys(
+    HistoryManager.getLastQuery(ParamPrefixes.lineup) || ""
+  ) as LineupFilterParams;
+  //TODO (in the || case, pull common params from gameFilterParams)
 
   function getRootUrl(params: GameFilterParams) {
-    return UrlRouting.getGameUrl(params, savedLineupFilterParams);
+    return UrlRouting.getGameUrl(params, {});
   }
   function getLineupUrl() {
-    return UrlRouting.getLineupUrl(savedLineupFilterParams, gameFilterParams);
+    return UrlRouting.getLineupUrl(savedLineupFilterParams, {});
   }
 
   const onGameFilterParamsChange = (params: GameFilterParams) => {
     const href = getRootUrl(params);
     const as = href;
-    Router.push(href, as, { shallow: true })
-    UrlRouting.checkForCommonParamChange(params, gameFilterParams,
-      [ (params: any) => setSavedLineupFilterParams(params as LineupFilterParams) ]
-    );
+    Router.push(href, as, { shallow: true });
     setGameFilterParams(params); //(to ensure the new params are included in links)
   }
 

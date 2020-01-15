@@ -13,7 +13,8 @@ import { ParamPrefixes, GameFilterParams, LineupFilterParams, TeamReportFilterPa
 /** Wraps the local storage based cache of recent requests */
 export class HistoryManager {
 
-  static readonly key = "analysisHistory"
+  static readonly lastQueryKeyPrefix = "lastQuery-";
+  static readonly key = "analysisHistory";
   static readonly maxHistorySize = 50;
 
   /** Returns an ordered list of filter params */
@@ -25,6 +26,9 @@ export class HistoryManager {
       } else if (_.startsWith(param, ParamPrefixes.lineup)) {
         const paramNoPrefix = param.substring(ParamPrefixes.lineup.length);
         return [ [ ParamPrefixes.lineup, queryString.parse(paramNoPrefix) ] ];
+      } else if (_.startsWith(param, ParamPrefixes.report)) {
+        const paramNoPrefix = param.substring(ParamPrefixes.report.length);
+        return [ [ ParamPrefixes.report, queryString.parse(paramNoPrefix) ] ];
       } else {
         return [];
       }
@@ -32,8 +36,10 @@ export class HistoryManager {
   }
 
   /** Called when a request is submitted to add/bring to front of history */
-  static addParamsToHistory(paramStrPlusPrefix: string) {
+  static addParamsToHistory(paramStr: string, prefix: string) {
+    const paramStrPlusPrefix = prefix + paramStr;
     const currParams = HistoryManager.getParamStrs();
+
     const newParamStrList = _.take(_.concat( // move to the front
       [ paramStrPlusPrefix ],
       _.filter(currParams, (param) => param != paramStrPlusPrefix)
@@ -43,6 +49,15 @@ export class HistoryManager {
         JSON.stringify(newParamStrList), { outputEncoding: "StorageBinaryString" }
       )
     );
+    // For each table, save the last query made
+    (ls as any).set(HistoryManager.lastQueryKeyPrefix + prefix,
+      paramStr
+    );
+  }
+
+  /** Gets the last query submitted for the given table */
+  static getLastQuery(prefix: string): string | undefined {
+    return (ls as any).get(HistoryManager.lastQueryKeyPrefix + prefix);
   }
 
   /** Retrieves */
@@ -63,6 +78,8 @@ export class HistoryManager {
       return HistoryManager.gameFilterSummary(p as GameFilterParams);
     } else if (prefix == ParamPrefixes.lineup) {
       return HistoryManager.lineupFilterSummary(p as LineupFilterParams);
+    } else if (prefix == ParamPrefixes.report) {
+      return HistoryManager.teamReportFilterSummary(p as TeamReportFilterParams);
     } else {
       return "unknown";
     }
