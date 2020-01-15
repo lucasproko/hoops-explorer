@@ -35,6 +35,18 @@ export class HistoryManager {
     });
   }
 
+  /** Clears history */
+  static clearHistory() {
+    (ls as any).set(HistoryManager.key,
+      LZUTF8.compress(
+        "[]", { outputEncoding: "StorageBinaryString" }
+      )
+    );
+    Object.values(ParamPrefixes).forEach((prefix) => {
+      (ls as any).remove(HistoryManager.lastQueryKeyPrefix + prefix);
+    });
+  }
+
   /** Called when a request is submitted to add/bring to front of history */
   static addParamsToHistory(paramStr: string, prefix: string) {
     const paramStrPlusPrefix = prefix + paramStr;

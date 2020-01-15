@@ -30,6 +30,7 @@ import Footer from '../components/Footer';
 // Utils:
 import { UrlRouting } from "../utils/UrlRouting";
 import { HistoryManager } from '../utils/HistoryManager';
+import { ClientRequestCache } from '../utils/ClientRequestCache';
 
 const OnOffAnalyzerPage: NextPage<{}> = () => {
 
@@ -61,6 +62,16 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
 
   const server = (typeof window === `undefined`) ? //(ensures SSR code still compiles)
     "server" : window.location.hostname
+
+  // Some cache management easter eggs, for development:
+  if (allParams.indexOf("__clear_cache__") >= 0) {
+    console.log("CLEAR CACHE");
+    ClientRequestCache.clearCache();
+  }
+  if (allParams.indexOf("__clear_history__") >= 0) {
+    console.log("CLEAR HISTORY");
+    HistoryManager.clearHistory();
+  }
 
   const [ gameFilterParams, setGameFilterParams ] = useState(
     UrlRouting.removedSavedKeys(allParams) as GameFilterParams

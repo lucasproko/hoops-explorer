@@ -11,6 +11,7 @@ import { Base64 } from 'js-base64';
 
 // Internal components:
 import { preloadedData } from '../utils/internal-data/preloadedData';
+import { ParamPrefixes } from "../utils/FilterModels";
 
 /** Wraps local storage and handles compression of the fields, clearing out if space is needed etc */
 export class ClientRequestCache {
@@ -30,6 +31,20 @@ export class ClientRequestCache {
     removeItem: function(key: string) {},
     key: function(index: number) { return ""; }
   } : window.localStorage;
+
+  /** Wipes the cache */
+  static clearCache() {
+    const limit = ClientRequestCache.safeLocalStorage.length;
+    _.range(limit).map((index) => {
+      return ClientRequestCache.safeLocalStorage.key(index) || "";
+    }).filter((key) => {
+      return _.some(Object.values(ParamPrefixes), (prefix) => {
+        return _.startsWith(key, prefix);
+      }) || _.startsWith(key, "autoOffQuery"); //(gets rid of legacy cache entries)
+    }).forEach((key) => {
+      ClientRequestCache.safeLocalStorage.removeItem(key);
+    });
+  }
 
   /** Check if a global refresh has occurred for this gender/year pairing */
   static refreshEpoch(
