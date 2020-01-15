@@ -83,13 +83,17 @@ const RosterCompareTable: React.FunctionComponent<Props> = ({gameFilterParams, r
     const currentJsonEpoch = dataLastUpdated[`${paramObj.gender}_${paramObj.year}`] || -1;
     const onClick = () => {
       // Is this query already cached?
-      const cachedJson = ClientRequestCache.decacheResponse(
-        paramStr, ParamPrefixes.lineup, currentJsonEpoch, false
-      );
-      if (cachedJson) { // If not, inject {} which is interpreted as "make a call on page load"
-        ClientRequestCache.directInsertCache(
-          paramStr, ParamPrefixes.lineup, "{}", currentJsonEpoch, false
+      try {
+        const cachedJson = ClientRequestCache.decacheResponse(
+          paramStr, ParamPrefixes.report, currentJsonEpoch, false
         );
+        if (!cachedJson) { // If not, inject {} which is interpreted as "make a call on page load"
+          ClientRequestCache.directInsertCache(
+            paramStr, ParamPrefixes.report, "{}", currentJsonEpoch, false
+          );
+        }
+      } catch (err) { //(much ugliness breaks out on error otherwise)
+        console.log(err.message, err);
       }
     };
     // (see https://github.com/zeit/next.js/issues/1490#issuecomment-343350273)
@@ -99,10 +103,6 @@ const RosterCompareTable: React.FunctionComponent<Props> = ({gameFilterParams, r
         onClick();
         Router.push(url, url);
       }}>(report)</a>;
-
-    // <Link href={UrlRouting.getTeamReportUrl(paramObj)}>
-    //   <div><a onClick={() => onClick()}>(report)</a></div>
-    // </Link>;
   };
 
   return <LoadingOverlay

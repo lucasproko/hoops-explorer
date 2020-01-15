@@ -17,7 +17,7 @@ import { ParamPrefixes } from "../utils/FilterModels";
 export class ClientRequestCache {
 
   /** Always cache miss if in debug AND disable client cache (this flag) requested */
-  static readonly debugDisableClientCache = true;
+  static readonly debugDisableClientCache = false;
 
   /** If true, then shows either cached or new version of this - for building preloadedData */
   static readonly debugShowB64Encoded = false;
@@ -88,7 +88,9 @@ export class ClientRequestCache {
     if (!cacheStr) {
       return null; // (cache miss)
     } else { // (cache hit) is it compressed or uncompressed?
-      if ('{' == cacheStr[0]) { // legacy
+      if ("{}" == cacheStr) { // Special placeholder element
+        return {};
+      } else if ('{' == cacheStr[0]) { // legacy
         const cacheJsonTmp = JSON.parse(cacheStr);
         if (!epochKey || !cacheJsonTmp.cacheEpoch || (cacheJsonTmp.cacheEpoch == epochKey)) {
           //(rewrite it back in compressed format)
@@ -142,14 +144,19 @@ export class ClientRequestCache {
     return ClientRequestCache.directInsertCache(key, prefix, compressedVal, epochKey, isDebug);
   }
 
+  /** Allows a compressed string or "{}" to be injected */
   static directInsertCache(key: string, prefix: string, compressed: string, epochKey: number | undefined, isDebug: boolean = false
   ) {
     for (let i = 0; i < 15; i++) {
-      const success = (ls as any).set(prefix + key, (epochKey || "0") + ":" + compressed);
-      if (success) {
-        return true;
-      } else { // (remove the LRU and try again, up to 15 times)
-        ClientRequestCache.removeLru(isDebug);
+      if (compressed == "{}") { //special case for "placeholder cache"
+        (ls as any).set(prefix + key, "{}");
+      } else {
+        const success = (ls as any).set(prefix + key, (epochKey || "0") + ":" + compressed);
+        if (success) {
+          return true;
+        } else { // (remove the LRU and try again, up to 15 times)
+          ClientRequestCache.removeLru(isDebug);
+        }
       }
     }//if we get to here then just let the caller know and exit)
     return false;

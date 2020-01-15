@@ -233,7 +233,7 @@ const CommonFilter: CommonFilterI = ({
     const cachedJson = ClientRequestCache.decacheResponse(
       newParamsStr, tablePrefix, currentJsonEpoch, isDebug
     );
-    if (cachedJson) {
+    if (cachedJson && !_.isEmpty(cachedJson)) { //(ignore placeholders here)
       handleResponse(cachedJson);
     } else {
       childSubmitRequest(newParamsStr, function(response: fetch.IsomorphicResponse) {
