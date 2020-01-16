@@ -71,7 +71,16 @@ export class ClientRequestCache {
 
   /** Quick look in the cache to see if an element is there */
   static peekForResponse(key: string, prefix: string): boolean {
-    return (ls as any).get(prefix + key);
+    return (ls as any).get(prefix + key) ? true : false;
+  }
+
+  /** Report and Lineup currently have identical queries so can re-use space */
+  private static cacheKey(key: string, prefix: string): string {
+    if (prefix == ParamPrefixes.report) {
+      return ParamPrefixes.lineup + key;
+    } else {
+      return prefix + key;
+    }
   }
 
   /** Returns the cached JSON object, if it exists, has a matching epochKey (or epoch key is undefined) - else null */
@@ -83,8 +92,7 @@ export class ClientRequestCache {
     if (isDebug && ClientRequestCache.debugDisableClientCache) {
       return null;
     }
-
-    const cacheStr = (ls as any).get(prefix + key);
+    const cacheStr = (ls as any).get(ClientRequestCache.cacheKey(key, prefix));
     if (!cacheStr) {
       return null; // (cache miss)
     } else { // (cache hit) is it compressed or uncompressed?
@@ -151,7 +159,10 @@ export class ClientRequestCache {
       if (compressed == "{}") { //special case for "placeholder cache"
         (ls as any).set(prefix + key, "{}");
       } else {
-        const success = (ls as any).set(prefix + key, (epochKey || "0") + ":" + compressed);
+        const success = (ls as any).set(
+          ClientRequestCache.cacheKey(key, prefix),
+          (epochKey || "0") + ":" + compressed
+        );
         if (success) {
           return true;
         } else { // (remove the LRU and try again, up to 15 times)

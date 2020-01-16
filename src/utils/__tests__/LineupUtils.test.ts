@@ -2,7 +2,7 @@
 
 import _ from 'lodash';
 
-import { LineupUtils } from "../LineupUtils"
+import { LineupUtils } from "../LineupUtils";
 import { GameFilterParams, LineupFilterParams, TeamReportFilterParams } from "../utils/FilterModels";
 import { sampleLineupStatsResponse } from "../../sample-data/sampleLineupStatsResponse";
 import { LineupStatsModel } from './LineupStatsTable';

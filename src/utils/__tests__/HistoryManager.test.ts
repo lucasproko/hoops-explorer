@@ -1,5 +1,5 @@
 
-import { HistoryManager } from "../HistoryManager"
+import { HistoryManager } from "../HistoryManager";
 import { GameFilterParams, LineupFilterParams, TeamReportFilterParams } from "../utils/FilterModels";
 
 describe("HistoryManager", () => {

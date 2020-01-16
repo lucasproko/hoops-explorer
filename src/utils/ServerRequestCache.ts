@@ -6,6 +6,9 @@ import LRUCache from 'lru-cache';
 // @ts-ignore
 import LZUTF8 from 'lzutf8';
 
+// Internal components:
+import { ParamPrefixes } from "../utils/FilterModels";
+
 /** Wraps LRU and handles compression of the fields, clearing out if space is needed etc */
 export class ServerRequestCache {
 
@@ -40,6 +43,15 @@ export class ServerRequestCache {
     }
   }
 
+  /** Report and Lineup currently have identical queries so can re-use space */
+  private static cacheKey(key: string, prefix: string): string {
+    if (prefix == ParamPrefixes.report) {
+      return ParamPrefixes.lineup + key;
+    } else {
+      return prefix + key;
+    }
+  }
+
   /** Returns the cached JSON object, if it exists, has a matching epochKey (or epoch key is undefined) - else null */
   static decacheResponse(
     key: string, prefix: string, epochKey: number | undefined, isDebug: boolean = false
@@ -48,7 +60,7 @@ export class ServerRequestCache {
     if (0 == ServerRequestCache.maxSizeMb) {
       return null;
     } else {
-      const cacheStr = ServerRequestCache.cache.get(prefix + key);
+      const cacheStr = ServerRequestCache.cache.get(ServerRequestCache.cacheKey(key, prefix));
       if (cacheStr) {
 
         const results =  _.split(cacheStr, ":", 1);
@@ -94,6 +106,9 @@ export class ServerRequestCache {
     const compressedVal = LZUTF8.compress(
       valueStr, { outputEncoding: "StorageBinaryString" }
     );
-    ServerRequestCache.cache.set(prefix + key, (epochKey || "0") + ":" + compressedVal);
+    ServerRequestCache.cache.set(
+      ServerRequestCache.cacheKey(key, prefix), 
+      (epochKey || "0") + ":" + compressedVal
+    );
   }
 }
