@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 
 // Next imports:
 import { NextPage } from 'next';
+import Router from 'next/router'
 
 // Lodash
 import _ from "lodash";
@@ -41,6 +42,7 @@ import { ClientRequestCache } from '../utils/ClientRequestCache';
 import HistorySelector, { historySelectContainerWidth } from '../components/HistorySelector';
 import { ParamPrefixes, ParamDefaults } from '../utils/FilterModels';
 import { HistoryManager } from '../utils/HistoryManager';
+import { UrlRouting } from '../utils/UrlRouting';
 
 // Library imports:
 import fetch from 'isomorphic-unfetch';
@@ -103,6 +105,8 @@ const CommonFilter: CommonFilterI = ({
   }, [ team, year, gender, minRankFilter, maxRankFilter ]);
 
   const [ submitDisabled, setSubmitDisabled ] = useState(false); // (always start as true on page load)
+  const [ reportIsDisabled, setReportIsDisabled ] = useState(false); //(same as above)
+
 
   const isDebug = (process.env.NODE_ENV !== 'production');
 
@@ -110,12 +114,14 @@ const CommonFilter: CommonFilterI = ({
 
   // Utils
 
-  const currentJsonEpoch = dataLastUpdated[`${gender}_${year}`] || -1;
+  const genderYear = `${gender}_${year}`;
+  const currentJsonEpoch = dataLastUpdated[genderYear] || -1;
 
   /** Checks if the input has been changed, and also handles on page load logic */
   useEffect(() => {
     initClipboard();
     setSubmitDisabled(shouldSubmitBeDisabled());
+    setReportIsDisabled(_.isEmpty(team) || _.isEmpty(gender) || _.isEmpty(year));
 
     // Add "enter" to submit page (do on every effect, since removal occurs on every effect, see return below)
     const submitListener = (event: any) => {
@@ -138,8 +144,8 @@ const CommonFilter: CommonFilterI = ({
       const epochRefreshed = ClientRequestCache.refreshEpoch(gender, year, currentJsonEpoch, isDebug);
 
       // Check for pre-loads:
-      Object.entries(preloadedData || {}).map(function(keyVal) {
-        //TODO: check for prefix?
+      Object.entries(preloadedData[genderYear] || {}).map(function(keyVal) {
+        // Ignore anything that isn't for my year or gender
         const key = keyVal[0];
         const valAsJson = keyVal[1];
         if (!epochRefreshed && ClientRequestCache.peekForResponse(key, "")) {
@@ -211,7 +217,7 @@ const CommonFilter: CommonFilterI = ({
   /** Handles the response from ES to a stats calc request */
   function handleResponse(json: any) {
     setQueryIsLoading(false);
-    const newParams = buildParamsFromState(true); //TODO need to merge optionally
+    const newParams = buildParamsFromState(true);
     const wasError = isResponseError(json);
     if (!wasError) {
       setAtLeastOneQueryMade(true);
@@ -255,8 +261,16 @@ const CommonFilter: CommonFilterI = ({
   }
 
   /** Load the designated example */
-  function onSeeExample() {
-    if (tablePrefix == ParamPrefixes.game) {
+  function onSeeExample(isReport: boolean = false) {
+    if (isReport || (tablePrefix == ParamPrefixes.report)) {
+      if (gender == "Women") {
+        const newUrl = `${PreloadedDataSamples.womenLineup}`;
+        window.location.href = `/TeamReport?${newUrl}`;
+      } else { //(default is men)
+        const newUrl = `${PreloadedDataSamples.menLineup}`;
+        window.location.href = `/TeamReport?${newUrl}`;
+      }
+    } else if (tablePrefix == ParamPrefixes.game) {
       if (gender == "Women") {
         const newUrl = `${PreloadedDataSamples.womenOnOff}`;
         window.location.href = `/?${newUrl}`;
@@ -310,6 +324,47 @@ const CommonFilter: CommonFilterI = ({
 
   // Visual components:
 
+  /** For on/off analysis, add a button that switches to a report button */
+  const getReportButton = () => {
+
+    const reportButtonTooltip = (
+      <Tooltip id="reportButtonTooltip">Shows On/Off report for the 'Baseline' query only</Tooltip>
+    );
+    const onReport = () => {
+
+      // Build a report query
+      const parentParams = buildParamsFromState(false);
+      const onOffReportParams = {
+        lineupQuery: (tablePrefix == ParamPrefixes.game) ? parentParams.baseQuery : parentParams.lineupQuery,
+        team: parentParams.team, year: parentParams.year, gender: parentParams.gender,
+        minRank: parentParams.minRank, maxRank: parentParams.maxRank
+      };
+      const paramStr = queryString.stringify(onOffReportParams);
+      const reportUrl = UrlRouting.getTeamReportUrl(onOffReportParams);
+
+      // Is this query already cached?
+      const cachedJson = ClientRequestCache.decacheResponse(
+        paramStr, ParamPrefixes.report, currentJsonEpoch, false
+      );
+      if (!cachedJson) { // If not, inject {} which is interpreted as "make a call on page load"
+        ClientRequestCache.directInsertCache(
+          paramStr, ParamPrefixes.report, "{}", currentJsonEpoch, false
+        );
+      }
+      Router.push(reportUrl, reportUrl);
+    };
+
+    if ((tablePrefix == ParamPrefixes.game) || (tablePrefix == ParamPrefixes.lineup)) {
+      return <span>
+        <span>&nbsp;&nbsp;</span>
+        <OverlayTrigger placement="auto" overlay={reportButtonTooltip}>
+          <Button disabled={reportIsDisabled} variant="secondary" onClick={onReport}>Report</Button>
+        </OverlayTrigger>
+      </span>;
+    }
+  };
+
+
   /** Let the user know that he might need to change */
   const MenuList = (props: any)  => {
     return (
@@ -358,13 +413,22 @@ const CommonFilter: CommonFilterI = ({
       </OverlayTrigger>;
   };
   /** If no team is specified, add the option to jump to an example */
-  const getExampleButtonIfNoTeam = () => {
+  const getExampleButtonsIfNoTeam = () => {
+    const getMaybeReportButton = () => {
+      if (tablePrefix == ParamPrefixes.game) {
+        return <span>
+          <span>&nbsp;&nbsp;</span>
+          <Button variant="warning" onClick={() => onSeeExample(true)}><b>Example Report!</b></Button>
+        </span>;
+      }
+    }
     if (team == "") {
       return <Shake
         h={20} v={5} r={5} q={5} int={25} fixed={true}
         className="float-right"
       >
-        <Button variant="warning" onClick={onSeeExample}><b>See Example ({gender})!</b></Button>
+        <Button variant="warning" onClick={() => onSeeExample()}><b>Example ({gender})!</b></Button>
+        {getMaybeReportButton()}
       </Shake>;
     }
   }
@@ -462,7 +526,8 @@ const CommonFilter: CommonFilterI = ({
     </Form.Group>
     <Col>
       <Button disabled={submitDisabled} variant="primary" onClick={onSubmit}>Submit</Button>
-      {getExampleButtonIfNoTeam()}
+      {getReportButton()}
+      {getExampleButtonsIfNoTeam()}
     </Col>
   </Form></LoadingOverlay>;
 }

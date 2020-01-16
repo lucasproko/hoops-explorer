@@ -22,8 +22,8 @@ describe("ClientRequestCache", () => {
   });
   test("ClientRequestCache - directInsertCache", () => {
 
-    const testObj = preloadedData[`lineup-${PreloadedDataSamples.menLineup}`];
-    const expectedObj = { cacheEpoch: 1, took: 56 }
+    const testObj = preloadedData['Men_2018/9'][`lineup-${PreloadedDataSamples.menLineup}`];
+    const expectedObj = { cacheEpoch: 1, took: 43 }
     ClientRequestCache.directInsertCache(PreloadedDataSamples.menLineup, "lineup-", testObj, 1, false);
 
     expect(

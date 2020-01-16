@@ -17,7 +17,7 @@ import { ParamPrefixes } from "../utils/FilterModels";
 export class ClientRequestCache {
 
   /** Always cache miss if in debug AND disable client cache (this flag) requested */
-  static readonly debugDisableClientCache = false;
+  static readonly debugDisableClientCache = true;
 
   /** If true, then shows either cached or new version of this - for building preloadedData */
   static readonly debugShowB64Encoded = false;
@@ -180,7 +180,10 @@ export class ClientRequestCache {
       if (v < limit) {
         const key = ClientRequestCache.safeLocalStorage.key(v) || "";
         const val = ClientRequestCache.safeLocalStorage.getItem(key) || "";
-        if ((val.length > 32) && !preloadedData[key]) { // ignore small fields and pre-loaded data
+        const isPreloaded = (key: string) => {
+          return _.chain(preloadedData).values().some((data) => data.hasOwnProperty(key)).value();
+        };
+        if ((val.length > 32) && !isPreloaded(key)) { // ignore small fields and pre-loaded data
           acc.push(key);
         }
         if (acc.length >= 5) return false; // already have what we need

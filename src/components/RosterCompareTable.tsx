@@ -12,6 +12,8 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip';
 
 // Additional components:
 // @ts-ignore
@@ -98,11 +100,17 @@ const RosterCompareTable: React.FunctionComponent<Props> = ({gameFilterParams, r
     };
     // (see https://github.com/zeit/next.js/issues/1490#issuecomment-343350273)
     const url = UrlRouting.getTeamReportUrl(paramObj);
-    return <a href={url} onClick={(event: any) => {
+
+    const tooltip = (
+      <Tooltip id={`tooltipFor${tableName}`}>Creates an on/off report for the possessions return by this lineup set (ie query)</Tooltip>
+    );
+    return <OverlayTrigger placement="auto" overlay={tooltip}>
+      <a href={url} onClick={(event: any) => {
         event.preventDefault();
         onClick();
         Router.push(url, url);
-      }}>(report)</a>;
+      }}>(report)</a>
+    </OverlayTrigger>;
   };
 
   return <LoadingOverlay

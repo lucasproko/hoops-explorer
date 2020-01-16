@@ -256,7 +256,7 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
   }
   /** Sticks an overlay on top of the table if no query has ever been loaded */
   function needToLoadQuery() {
-    return (teamReport.players || []).length == 0; //TODO: I think this is broken with other pages also?
+    return (teamReport.players || []).length == 0; 
   }
   function rowSpanCalculator(cellMeta: string) {
     switch(cellMeta) {
