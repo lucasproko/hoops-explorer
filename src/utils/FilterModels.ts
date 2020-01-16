@@ -29,7 +29,9 @@ export type LineupFilterParams = {
   // For sorting in the generated table:
   minPoss?: string,
   maxTableSize?: string,
-  sortBy?: string
+  sortBy?: string,
+  // Filtering:
+  filter?: string
 };
 
 export type TeamReportFilterParams = {

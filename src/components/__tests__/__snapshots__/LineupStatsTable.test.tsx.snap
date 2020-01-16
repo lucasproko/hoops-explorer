@@ -17,6 +17,33 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot 1`] = `
             "render": [Function],
           }
         }
+        sm="6"
+      >
+        <InputGroup>
+          <InputGroupPrepend>
+            <InputGroupText
+              id="filter"
+            >
+              Filter
+            </InputGroupText>
+          </InputGroupPrepend>
+          <FormControl
+            onChange={[Function]}
+            placeholder="eg Player1Surname,Player2FirstName,-Player3Name"
+            value=""
+          />
+        </InputGroup>
+      </FormGroup>
+    </FormRow>
+    <FormRow>
+      <FormGroup
+        as={
+          Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "displayName": "Col",
+            "render": [Function],
+          }
+        }
         sm="3"
       >
         <InputGroup>

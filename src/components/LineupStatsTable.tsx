@@ -45,6 +45,18 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, starting
   const [ minPoss, setMinPoss ] = useState(startingState.minPoss || ParamDefaults.defaultLineupMinPos);
   const [ maxTableSize, setMaxTableSize ] = useState(startingState.maxTableSize || ParamDefaults.defaultLineupMaxTableSize);
   const [ sortBy, setSortBy ] = useState(startingState.sortBy || ParamDefaults.defaultLineupSortBy);
+  const [ filterStr, setFilterStr ] = useState(startingState.filter || ParamDefaults.defaultTeamReportFilter);
+
+  // (slight delay when typing into the filter to make it more responsive)
+  const [ timeoutId, setTimeoutId ] = useState(-1);
+  const [ tmpFilterStr, setTmpFilterStr ] = useState(filterStr);
+
+  const filterFragments =
+    filterStr.split(",").map(fragment => _.trim(fragment)).filter(fragment => fragment ? true : false);
+  const filterFragmentsPve =
+    filterFragments.filter(fragment => fragment[0] != '-');
+  const filterFragmentsNve =
+    filterFragments.filter(fragment => fragment[0] == '-').map(fragment => fragment.substring(1));
 
   useEffect(() => {
     const newState = _.merge(startingState, {
@@ -125,6 +137,20 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, starting
       const offPos = lineup.off_poss?.value || 0;
       const defPos = lineup.def_poss?.value || 0;
       return offPos >= minPossInt || defPos >= minPossInt; //(unclear which of || vs && is best...)
+    }).filter((lineup) => {
+      const namesToTest = _.chain(lineup?.players_array?.hits?.hits).flatMap((pDoc) => {
+        return pDoc?._source.players.map((p: any) => p.id);
+      }).value();
+
+      const playerFilter =
+        (_.isEmpty(filterFragmentsPve) ||
+          _.every(filterFragmentsPve, (frag) => _.some(namesToTest, (name) => name.indexOf(frag) >= 0))
+        ) &&
+        (_.isEmpty(filterFragmentsNve) ||
+          !_.some(filterFragmentsNve, (frag) => _.some(namesToTest, (name) => name.indexOf(frag) >= 0))
+        );
+      return playerFilter;
+
     }).map((lineup) => {
       const adjOffDef = calcAdjEff(lineup);
       return { ...lineup, ...adjOffDef };
@@ -228,6 +254,29 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, starting
         "Press 'Submit' to view results"
       }
     >
+      <Form.Row>
+        <Form.Group as={Col} sm="6">
+          <InputGroup>
+            <InputGroup.Prepend>
+              <InputGroup.Text id="filter">Filter</InputGroup.Text>
+            </InputGroup.Prepend>
+            <Form.Control
+              onChange={(ev: any) => {
+                const toSet = ev.target.value;
+                setTmpFilterStr(toSet);
+                if (timeoutId != -1) {
+                  window.clearTimeout(timeoutId);
+                }
+                setTimeoutId(window.setTimeout(() => {
+                  setFilterStr(toSet);
+                }, 100));
+              }}
+              placeholder = "eg Player1Surname,Player2FirstName,-Player3Name"
+              value={tmpFilterStr}
+            />
+          </InputGroup>
+        </Form.Group>
+      </Form.Row>
       <Form.Row>
         <Form.Group as={Col} sm="3">
           <InputGroup>
