@@ -45,7 +45,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, starting
   const [ minPoss, setMinPoss ] = useState(startingState.minPoss || ParamDefaults.defaultLineupMinPos);
   const [ maxTableSize, setMaxTableSize ] = useState(startingState.maxTableSize || ParamDefaults.defaultLineupMaxTableSize);
   const [ sortBy, setSortBy ] = useState(startingState.sortBy || ParamDefaults.defaultLineupSortBy);
-  const [ filterStr, setFilterStr ] = useState(startingState.filter || ParamDefaults.defaultTeamReportFilter);
+  const [ filterStr, setFilterStr ] = useState(startingState.filter || ParamDefaults.defaultLineupFilter);
 
   // (slight delay when typing into the filter to make it more responsive)
   const [ timeoutId, setTimeoutId ] = useState(-1);
@@ -58,7 +58,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, starting
   const filterFragmentsNve =
     filterFragments.filter(fragment => fragment[0] == '-').map(fragment => fragment.substring(1));
 
-  useEffect(() => { //TODO: not sure why I'm doing this anymore, for any of these pages?
+  useEffect(() => { //(this ensures that the filter component is up to date with the union of these fields)
     const newState = _.merge(startingState, {
       minPoss: minPoss,
       maxTableSize: maxTableSize,
@@ -66,7 +66,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, starting
       filter: filterStr
     });
     onChangeState(newState);
-  }, [ minPoss, maxTableSize, sortBy ]); //(don't trigger on filterStr changes, bit chatty)
+  }, [ minPoss, maxTableSize, sortBy, filterStr ]);
 
   // 2] Data Model
   const tableFields = { //accessors vs column metadata

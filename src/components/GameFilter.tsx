@@ -4,6 +4,9 @@ import React, { useState, useEffect } from 'react';
 // Next imports:
 import { NextPage } from 'next';
 
+// Lodash:
+import _ from "lodash";
+
 // Bootstrap imports:
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Form from 'react-bootstrap/Form';
@@ -15,7 +18,7 @@ import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
 import { TeamStatsModel } from '../components/TeamStatsTable';
 import { RosterCompareModel } from '../components/RosterCompareTable';
 import CommonFilter, { CommonFilterParams } from '../components/CommonFilter';
-import { ParamPrefixes, GameFilterParams } from "../utils/FilterModels";
+import { ParamPrefixes, GameFilterParams, ParamDefaults } from "../utils/FilterModels";
 
 // Library imports:
 import fetch from 'isomorphic-unfetch';
@@ -39,7 +42,9 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
   // Game Filter - custom queries and filters:
 
   const [ autoOffQuery, toggleAutoOffQuery ] = useState(
-    "true" == (((startingState.autoOffQuery == undefined) ? "true" : startingState.autoOffQuery) || "false")
+    "true" == (
+      _.isNil(startingState.autoOffQuery) ? ParamDefaults.defaultAutoOffQuery : startingState.autoOffQuery
+    )
   );
   const [ onQuery, setOnQuery ] = useState(startingState.onQuery || "");
   const [ offQuery, setOffQuery ] = useState(startingState.offQuery || "");
@@ -56,7 +61,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
   }
 
   /** Builds a game filter from the various state elements */
-  function buildParamsFromState(inHandleResponse: Boolean): GameFilterParams {
+  function buildParamsFromState(includeFilterParams: Boolean): GameFilterParams {
     return {
       team: commonParams.team,
       year: commonParams.year,

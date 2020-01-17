@@ -609,7 +609,7 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
               id="copyLinkTooltip"
               placement="right"
             >
-              Copies URL to clipboard
+              Copies URL to clipboard (and saves state to history)
             </ForwardRef>
           }
           placement="auto"
@@ -1369,7 +1369,7 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
               id="copyLinkTooltip"
               placement="right"
             >
-              Copies URL to clipboard
+              Copies URL to clipboard (and saves state to history)
             </ForwardRef>
           }
           placement="auto"

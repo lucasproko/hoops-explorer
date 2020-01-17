@@ -54,13 +54,14 @@ const LineupFilter: React.FunctionComponent<Props> = ({onStats, startingState, o
   }
 
   /** Builds a game filter from the various state elements */
-  function buildParamsFromState(inHandleResponse: Boolean): LineupFilterParams {
-    return inHandleResponse ?
+  function buildParamsFromState(includeFilterParams: Boolean): LineupFilterParams {
+    return includeFilterParams ?
     _.merge(
       buildParamsFromState(false), {
         maxTableSize: startingState.maxTableSize,
         minPoss: startingState.minPoss,
-        sortBy: startingState.sortBy
+        sortBy: startingState.sortBy,
+        filter: startingState.filter
     }) : {
       team: commonParams.team,
       year: commonParams.year,

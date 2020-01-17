@@ -59,7 +59,7 @@ interface Props<PARAMS> {
   onChangeState: (newParams: PARAMS) => void;
   onChangeCommonState: (newCommonParams: CommonFilterParams) => void;
   tablePrefix: string,
-  buildParamsFromState: (inHandleResponse: Boolean) => PARAMS;
+  buildParamsFromState: (includeFilterParams: Boolean) => PARAMS;
   childHandleResponse: (json: any, wasError: Boolean) => void;
   childSubmitRequest: (paramStr: string, callback: (resp: fetch.IsomorphicResponse) => void) => void;
   majorParamsDisabled?: boolean; //(not currently used but would allow you to block changing team/seeason/gender)
@@ -233,7 +233,9 @@ const CommonFilter: CommonFilterI = ({
     const newParamsStr = queryString.stringify(buildParamsFromState(false));
 
     // Store every request in history, successful or not:
-    HistoryManager.addParamsToHistory(newParamsStr, tablePrefix);
+    // including the filtering on the results
+    const newParamsStrWithFilterParams = queryString.stringify(buildParamsFromState(true));
+    HistoryManager.addParamsToHistory(newParamsStrWithFilterParams, tablePrefix);
 
     // Check if it's in the cache:
     const cachedJson = ClientRequestCache.decacheResponse(
@@ -314,6 +316,14 @@ const CommonFilter: CommonFilterI = ({
         }
       });
       newClipboard.on('success', (event: ClipboardJS.Event) => {
+        // Add the saved entry to the clipbaorrd
+        const newParamsStrWithFilterParams = queryString.stringify(buildParamsFromState(true));
+
+/**/
+console.log("??? " + newParamsStrWithFilterParams + " / " + window.location.href);
+
+        HistoryManager.addParamsToHistory(newParamsStrWithFilterParams, tablePrefix);
+        // Clear the selection in some visually pleasing way
         setTimeout(function() {
           event.clearSelection();
         }, 150);
@@ -404,7 +414,7 @@ const CommonFilter: CommonFilterI = ({
   /** Copy to clipboard button */
   const getCopyLinkButton = () => {
     const tooltip = (
-      <Tooltip id="copyLinkTooltip">Copies URL to clipboard</Tooltip>
+      <Tooltip id="copyLinkTooltip">Copies URL to clipboard (and saves state to history)</Tooltip>
     );
     return  <OverlayTrigger placement="auto" overlay={tooltip}>
         <Button className="float-left" id="copyLink" variant="outline-secondary" size="sm">

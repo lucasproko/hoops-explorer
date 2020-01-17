@@ -115,7 +115,7 @@ export class HistoryManager {
   /** Returns a summary string for the game filter */
   static gameFilterSummary(p: GameFilterParams) {
     const isAutoOff =
-      (((p.autoOffQuery == undefined) ? "true" : p.autoOffQuery) || "false") == "true";
+      (_.isNil(p.autoOffQuery) ? ParamDefaults.defaultAutoOffQuery : p.autoOffQuery) == "true";
     const base = `base:'${tidyQuery(p.baseQuery)}'`;
     const on = `on:'${tidyQuery(p.onQuery)}'`;
     const off = isAutoOff ? `auto-off` : `off:'${tidyQuery(p.offQuery)}'`;
@@ -127,15 +127,24 @@ export class HistoryManager {
     const lineupQuery = `query:'${tidyQuery(p.lineupQuery)}'`;
     const otherParams = `max:${p.maxTableSize || ParamDefaults.defaultLineupMaxTableSize}, ` +
       `min-poss:${p.minPoss || ParamDefaults.defaultLineupMinPos}, ` +
-      `sort:${p.sortBy || ParamDefaults.defaultLineupSortBy}`;
+      `sort:${p.sortBy || ParamDefaults.defaultLineupSortBy}, ` +
+      `filter:'${tidyQuery(p.filter)}'`
+      ;
     return `Lineups: ${HistoryManager.commonFilterSummary(p)}: ${lineupQuery} (${otherParams})`;
   }
 
   /** Returns a summary string for the game filter */
   static teamReportFilterSummary(p: TeamReportFilterParams) {
     const lineupQuery = `query:'${tidyQuery(p.lineupQuery)}'`;
-    const otherParams = `filter:'', ` +
-      `sort:${p.sortBy || ParamDefaults.defaultLineupSortBy}`;
+    const showComps =
+      (_.isNil(p.showComps) ? ParamDefaults.defaultShowComps : p.showComps) == "true";
+    const showArray = showComps ? [ "comps"] : [];
+
+    const otherParams =
+      `sort:${p.sortBy || ParamDefaults.defaultLineupSortBy}, ` +
+      `filter:'${tidyQuery(p.filter)}', ` +
+      `show:[${_.join(showArray, ",")}]`
+      ;
     return `On/Off Report: ${HistoryManager.commonFilterSummary(p)}: ${lineupQuery} (${otherParams})`;
   }
 }

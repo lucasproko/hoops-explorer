@@ -58,7 +58,12 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
   const [ tmpFilterStr, setTmpFilterStr ] = useState(filterStr);
 
   // Display options:
-  const [ showLineupCompositions, setShowLineupCompositions ] = useState(true); //TODO make part of stuff
+  const [ showLineupCompositions, setShowLineupCompositions ] =
+    useState(
+      "true" == (
+        _.isNil(startingState.showComps) ? ParamDefaults.defaultShowComps : startingState.showComps
+      )
+    );
 
   const filterFragments =
     filterStr.split(",").map(fragment => _.trim(fragment)).filter(fragment => fragment ? true : false);
@@ -67,13 +72,14 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
   const filterFragmentsNve =
     filterFragments.filter(fragment => fragment[0] == '-').map(fragment => fragment.substring(1));
 
-  useEffect(() => {
+  useEffect(() => { //(this ensures that the filter component is up to date with the union of these fields)
     const newState = _.merge(startingState, {
       sortBy: sortBy,
-      filter: filterStr
+      filter: filterStr,
+      showComps: showLineupCompositions.toString()
     });
     onChangeState(newState);
-  }, [ sortBy ]); //(don't trigger on filterStr changes, bit chatty)
+  }, [ sortBy, filterStr, showLineupCompositions ]);
 
   const teamReport = LineupUtils.lineupToTeamReport(lineupReport);
 
@@ -172,8 +178,10 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
           onPct: 100.0*onPoss/totalOnPoss,
           offPct: 100.0*offPoss/totalOffPoss
         };
-      }).orderBy(["onPct"], ["desc"]).map((possObj) => {
-        return <span><b>{possObj.name}</b> ([{possObj.onPct.toFixed(1)}]% - [{possObj.offPct.toFixed(1)}]%);&nbsp;</span>;
+      }).orderBy(["onPct"], ["desc"]).map((possObj, index) => {
+        return <span key={"" + index}>
+            <b>{possObj.name}</b> ([{possObj.onPct.toFixed(1)}]% - [{possObj.offPct.toFixed(1)}]%);&nbsp;
+          </span>;
       }).value();
   };
 

@@ -54,11 +54,13 @@ const TeamReportFilter: React.FunctionComponent<Props> = ({onStats, startingStat
   }
 
   /** Builds a game filter from the various state elements */
-  function buildParamsFromState(inHandleResponse: Boolean): TeamReportFilterParams {
-    return inHandleResponse ?
+  function buildParamsFromState(includeFilterParams: Boolean): TeamReportFilterParams {
+    return includeFilterParams ?
     _.merge(
       buildParamsFromState(false), {
-        sortBy: startingState.sortBy
+        sortBy: startingState.sortBy,
+        filter: startingState.filter,
+        showComps: startingState.showComps,
     }) : {
       team: commonParams.team,
       year: commonParams.year,
