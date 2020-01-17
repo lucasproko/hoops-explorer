@@ -166,7 +166,7 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
   const buildLineupInfo = (playerObj: Record<string, any>) => {
     const totalOnPoss = _.max([playerObj.on.off_poss.value + playerObj.on.def_poss.value, 1]);
     const totalOffPoss = _.max([playerObj.off.off_poss.value + playerObj.off.def_poss.value, 1]);
-    return _.chain(playerObj.teammates).toPairs()
+    const playerPcts = _.chain(playerObj.teammates).toPairs()
       .filter((keyVal) => {
         return keyVal[0] != playerObj.playerId;
       }).map((keyVal) => {
@@ -178,15 +178,27 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
           onPct: 100.0*onPoss/totalOnPoss,
           offPct: 100.0*offPoss/totalOffPoss
         };
-      }).orderBy(["onPct"], ["desc"]).map((possObj, index) => {
-        return <span key={"" + index}>
-            <b>{possObj.name}</b> ([{possObj.onPct.toFixed(1)}]% - [{possObj.offPct.toFixed(1)}]%);&nbsp;
-          </span>;
       }).value();
+
+    const lineupPower = _.sumBy(playerPcts, (pctObj) => {
+        return 0.01*
+          (pctObj.onPct - pctObj.offPct)*(playerLineupPowerSet[pctObj.name] || 0);
+    });
+
+    return _.concat(_.chain(playerPcts).orderBy(["onPct"], ["desc"]).map((pctObj, index) => {
+        return <span key={"" + index}>
+            <b>{pctObj.name}</b> ([{pctObj.onPct.toFixed(1)}]% - [{pctObj.offPct.toFixed(1)}]%);&nbsp;
+          </span>;
+      }).value(),
+      <span key="last">
+        <b>Lineup power:</b> [{lineupPower.toFixed(1)}]
+      </span>
+    );
   };
 
   const players = teamReport?.players || [];
-  const tableData = _.chain(players).map((player) => {
+
+  const playersWithAdjEff = _.chain(players).map((player) => {
       const adjOffDefOn = calcAdjEff(player.on);
       const adjOffDefOff = calcAdjEff(player.off);
       return {
@@ -194,19 +206,26 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
         on: { ...player.on, ...adjOffDefOn }, off: { ...player.off, ...adjOffDefOff },
         teammates: player.teammates
       };
-    } ).filter((player) => {
-        const strToTest = player.on.key.substring(5);
-        return(
-          (filterFragmentsPve.length == 0) ||
-            (_.find(filterFragmentsPve, (fragment) => strToTest.indexOf(fragment) >= 0) ? true : false))
-          &&
-          ((filterFragmentsNve.length == 0) ||
-            (_.find(filterFragmentsNve, (fragment) => strToTest.indexOf(fragment) >= 0) ? false : true))
-          ;
+    } ).value();
+
+  const playerLineupPowerSet = _.chain(playersWithAdjEff).map((player) => {
+    const onMargin = player.on.off_adj_ppp.value - player.on.def_adj_ppp.value;
+    const offMargin = player.off.off_adj_ppp.value - player.off.def_adj_ppp.value;
+    return [ player.playerId, onMargin - offMargin ];
+  }).fromPairs().value();
+
+  const tableData = _.chain(playersWithAdjEff).filter((player) => {
+      const strToTest = player.on.key.substring(5);
+      return(
+        (filterFragmentsPve.length == 0) ||
+          (_.find(filterFragmentsPve, (fragment) => strToTest.indexOf(fragment) >= 0) ? true : false))
+        &&
+        ((filterFragmentsNve.length == 0) ||
+          (_.find(filterFragmentsNve, (fragment) => strToTest.indexOf(fragment) >= 0) ? false : true))
+        ;
     }).sortBy(
        [ sorter(sortBy) ]
     ).flatMap((player) => {
-
       const onMargin = player.on.off_adj_ppp.value - player.on.def_adj_ppp.value;
       const offMargin = player.off.off_adj_ppp.value - player.off.def_adj_ppp.value;
       const onSuffix = `\nAdj: [${onMargin.toFixed(1)}]-[${offMargin.toFixed(1)}]=[${(onMargin - offMargin).toFixed(1)}]`;
