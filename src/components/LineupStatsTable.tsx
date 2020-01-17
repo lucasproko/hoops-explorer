@@ -58,14 +58,15 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, starting
   const filterFragmentsNve =
     filterFragments.filter(fragment => fragment[0] == '-').map(fragment => fragment.substring(1));
 
-  useEffect(() => {
+  useEffect(() => { //TODO: not sure why I'm doing this anymore, for any of these pages?
     const newState = _.merge(startingState, {
       minPoss: minPoss,
       maxTableSize: maxTableSize,
-      sortBy: sortBy
+      sortBy: sortBy,
+      filter: filterStr
     });
     onChangeState(newState);
-  }, [ minPoss, maxTableSize, sortBy ]);
+  }, [ minPoss, maxTableSize, sortBy ]); //(don't trigger on filterStr changes, bit chatty)
 
   // 2] Data Model
   const tableFields = { //accessors vs column metadata

@@ -14,11 +14,16 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
+import Dropdown from 'react-bootstrap/Dropdown';
+import Button from 'react-bootstrap/Button';
 
 // Additional components:
 // @ts-ignore
 import LoadingOverlay from 'react-loading-overlay';
 import Select, { components} from "react-select";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCog } from '@fortawesome/free-solid-svg-icons'
+import { faCheck } from '@fortawesome/free-solid-svg-icons'
 
 // Component imports
 import GenericTable, { GenericTableOps, GenericTableColProps } from "./GenericTable";
@@ -52,6 +57,9 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
   const [ timeoutId, setTimeoutId ] = useState(-1);
   const [ tmpFilterStr, setTmpFilterStr ] = useState(filterStr);
 
+  // Display options:
+  const [ showLineupCompositions, setShowLineupCompositions ] = useState(true); //TODO make part of stuff
+
   const filterFragments =
     filterStr.split(",").map(fragment => _.trim(fragment)).filter(fragment => fragment ? true : false);
   const filterFragmentsPve =
@@ -65,7 +73,7 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
       filter: filterStr
     });
     onChangeState(newState);
-  }, [ sortBy, filterStr ]);
+  }, [ sortBy ]); //(don't trigger on filterStr changes, bit chatty)
 
   const teamReport = LineupUtils.lineupToTeamReport(lineupReport);
 
@@ -148,11 +156,36 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
     };
   };
 
+  /** Builds lineup composition info */
+  const buildLineupInfo = (playerObj: Record<string, any>) => {
+    const totalOnPoss = _.max([playerObj.on.off_poss.value + playerObj.on.def_poss.value, 1]);
+    const totalOffPoss = _.max([playerObj.off.off_poss.value + playerObj.off.def_poss.value, 1]);
+    return _.chain(playerObj.teammates).toPairs()
+      .filter((keyVal) => {
+        return keyVal[0] != playerObj.playerId;
+      }).map((keyVal) => {
+        const possObj = keyVal[1];
+        const onPoss = possObj.on.off_poss + possObj.on.def_poss;
+        const offPoss = possObj.off.off_poss + possObj.off.def_poss;
+        return {
+          name: keyVal[0],
+          onPct: 100.0*onPoss/totalOnPoss,
+          offPct: 100.0*offPoss/totalOffPoss
+        };
+      }).orderBy(["onPct"], ["desc"]).map((possObj) => {
+        return <span><b>{possObj.name}</b> ([{possObj.onPct.toFixed(1)}]% - [{possObj.offPct.toFixed(1)}]%);&nbsp;</span>;
+      }).value();
+  };
+
   const players = teamReport?.players || [];
   const tableData = _.chain(players).map((player) => {
       const adjOffDefOn = calcAdjEff(player.on);
       const adjOffDefOff = calcAdjEff(player.off);
-      return { on: { ...player.on, ...adjOffDefOn }, off: { ...player.off, ...adjOffDefOff } };
+      return {
+        playerId: player.playerId,
+        on: { ...player.on, ...adjOffDefOn }, off: { ...player.off, ...adjOffDefOff },
+        teammates: player.teammates
+      };
     } ).filter((player) => {
         const strToTest = player.on.key.substring(5);
         return(
@@ -165,6 +198,7 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
     }).sortBy(
        [ sorter(sortBy) ]
     ).flatMap((player) => {
+
       const onMargin = player.on.off_adj_ppp.value - player.on.def_adj_ppp.value;
       const offMargin = player.off.off_adj_ppp.value - player.off.def_adj_ppp.value;
       const onSuffix = `\nAdj: [${onMargin.toFixed(1)}]-[${offMargin.toFixed(1)}]=[${(onMargin - offMargin).toFixed(1)}]`;
@@ -174,13 +208,18 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
       const offSuffix = `\nPoss: [${onPoss.toFixed(0)}]% v [${offPoss.toFixed(0)}]%`;
       const statsOn = { off_title: player.on.key + onSuffix, def_title: "", ...player.on };
       const statsOff = { off_title: player.off.key + offSuffix, def_title: "", ...player.off };
-      return [
-        GenericTableOps.buildDataRow(statsOn, offPrefixFn, offCellMetaFn),
-        GenericTableOps.buildDataRow(statsOn, defPrefixFn, defCellMetaFn),
-        GenericTableOps.buildDataRow(statsOff, offPrefixFn, offCellMetaFn),
-        GenericTableOps.buildDataRow(statsOff, defPrefixFn, defCellMetaFn),
-        GenericTableOps.buildRowSeparator()
-      ];
+      return _.flatten([
+        [
+          GenericTableOps.buildDataRow(statsOn, offPrefixFn, offCellMetaFn),
+          GenericTableOps.buildDataRow(statsOn, defPrefixFn, defCellMetaFn),
+          GenericTableOps.buildDataRow(statsOff, offPrefixFn, offCellMetaFn),
+          GenericTableOps.buildDataRow(statsOff, defPrefixFn, defCellMetaFn),
+        ],
+        showLineupCompositions ? [ GenericTableOps.buildTextRow(
+          buildLineupInfo(player), "small"
+        ) ] : [],
+        [ GenericTableOps.buildRowSeparator() ]
+      ]);
     }).value();
 
   // 3.2] Sorting utils
@@ -256,7 +295,7 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
   }
   /** Sticks an overlay on top of the table if no query has ever been loaded */
   function needToLoadQuery() {
-    return (teamReport.players || []).length == 0; 
+    return (teamReport.players || []).length == 0;
   }
   function rowSpanCalculator(cellMeta: string) {
     switch(cellMeta) {
@@ -302,7 +341,7 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
             />
           </InputGroup>
         </Form.Group>
-        <Form.Group as={Col} sm="6">
+        <Form.Group as={Col} sm="5">
           <InputGroup>
             <InputGroup.Prepend>
               <InputGroup.Text id="sortBy">Sort By</InputGroup.Text>
@@ -317,6 +356,22 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
               formatGroupLabel={formatGroupLabel}
             />
           </InputGroup>
+        </Form.Group>
+        <Form.Group as={Col} sm="1">
+          <Dropdown alignRight>
+            <Dropdown.Toggle variant="outline-secondary" id="dropdown-basic">
+              <FontAwesomeIcon icon={faCog} />
+            </Dropdown.Toggle>
+            <Dropdown.Menu>
+              <Dropdown.Item as={Button}>
+                <div onClick={() => setShowLineupCompositions(!showLineupCompositions)}>
+                  <span>Show lineup compositions</span>
+                  <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                  {showLineupCompositions ? <FontAwesomeIcon icon={faCheck}/> : null}
+                </div>
+              </Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
         </Form.Group>
       </Form.Row>
       <Row>

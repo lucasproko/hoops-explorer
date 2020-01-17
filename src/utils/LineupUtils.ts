@@ -20,6 +20,11 @@ export class LineupUtils {
       players: _.keys(allPlayersSet).map((playerId) => {
         return {
           playerId: playerId,
+          teammates: _.chain(allPlayersSet).keys().map(
+              (player) => [ player, {
+                on: { off_poss: 0, def_poss: 0 }, off: { off_poss : 0, def_poss: 0 }
+              } ]
+            ).fromPairs().value(),
           on: {
             key: `'ON' ${playerId}`
           },
@@ -40,8 +45,16 @@ export class LineupUtils {
       _.chain(acc.players).forEach((playerObj) => {
         if (playersSet.hasOwnProperty(playerObj.playerId)) { //ON!
           LineupUtils.weightedAvg(playerObj.on, lineup);
+          // Lineup composition:
+          _.chain(playersSet).keys().forEach((player) =>
+            LineupUtils.updateLineupComposition(playerObj.teammates[player]?.on, player, lineup)
+          ).value();
         } else { //OFF!
           LineupUtils.weightedAvg(playerObj.off, lineup);
+          // Lineup composition:
+          _.chain(playersSet).keys().forEach((player) =>
+            LineupUtils.updateLineupComposition(playerObj.teammates[player]?.off, player, lineup)
+          ).value();
         }
       }).value();
     }, mutableState).value();
@@ -66,6 +79,14 @@ export class LineupUtils {
   private static readonly ignoreFieldSet =  //or anything that starts with total_
     { key: true, players_array: true, doc_count: true, points_scored: true, points_allowed: true };
   private static readonly sumFieldSet = { off_poss: true, def_poss: true };
+
+  /** Updates lineup info */
+  private static updateLineupComposition(mutableTeammateInfo: any, player: string, lineupInfo: any) {
+    if (mutableTeammateInfo) {
+      mutableTeammateInfo.off_poss += lineupInfo.off_poss?.value || 0;
+      mutableTeammateInfo.def_poss += lineupInfo.def_poss?.value || 0;
+    }
+  }
 
   /** Get the weights as a function of the key type (except for shot types) */
   private static getSimpleWeights(obj: any, defaultVal: number) {

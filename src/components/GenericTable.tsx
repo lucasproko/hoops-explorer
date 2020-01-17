@@ -68,7 +68,19 @@ class GenericTableDataRow { //TODO: remove generic table
 class GenericTableSeparator {
   readonly kind: string = "separator";
 }
-export type GenericTableRow = GenericTableDataRow | GenericTableSeparator;
+class GenericTableTextRow {
+  constructor(
+      text: React.ReactNode,
+      className: string
+  ) {
+    this.text = text;
+    this.className = className;
+  }
+  readonly kind: string = "text-row";
+  readonly text: React.ReactNode;
+  readonly className: string;
+}
+export type GenericTableRow = GenericTableDataRow | GenericTableSeparator | GenericTableTextRow;
 export class GenericTableOps {
 
   static readonly defaultFormatter = (val: any) => "" + val;
@@ -82,6 +94,9 @@ export class GenericTableOps {
 
   static buildDataRow(dataObj: any, prefixFn: (key: string) => string, cellMetaFn: (key: string, value: any) => string): GenericTableRow {
     return new GenericTableDataRow(dataObj, prefixFn, cellMetaFn);
+  }
+  static buildTextRow(text: React.ReactNode, className: string = ""): GenericTableRow {
+    return new GenericTableTextRow(text, className);
   }
   static buildRowSeparator(): GenericTableRow {
     return new GenericTableSeparator();
@@ -205,7 +220,9 @@ const GenericTable: React.FunctionComponent<Props> = ({tableFields, tableData, t
     return tableData.map((row, index) => {
       if (row instanceof GenericTableDataRow) {
         return <tr key={"" + index}>{ renderTableRow(row) }</tr>;
-      } else {
+      } else if (row instanceof GenericTableTextRow) {
+        return <tr key={"" + index}><td colSpan={totalTableCols} className={row.className}>{row.text}</td></tr>;
+      } else { //(separator)
         return <tr className="divider" key={"" + index}><td colSpan={totalTableCols}></td></tr>;
       }
     });

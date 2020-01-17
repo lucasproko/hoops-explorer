@@ -122,5 +122,17 @@ describe("LineupUtils", () => {
       }, toFixed),
     ]);
 
+
+    const lineupComp = _.chain(onOffReport.players).filter((p) => {
+      return p.on.key == "'ON' Ayala, Eric";
+    }).map((p) => _.pick(p.teammates, [ 'Cowan, Anthony' ])).value();
+
+    expect(lineupComp).toEqual([
+      { "Cowan, Anthony": {
+        on: { off_poss: 196 + 102, def_poss: 189 + 97 },
+        off: { off_poss: 111, def_poss: 114 }
+      }}
+    ]);
+
   });
 });
