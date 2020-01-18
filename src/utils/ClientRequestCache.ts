@@ -155,13 +155,13 @@ export class ClientRequestCache {
   /** Allows a compressed string or "{}" to be injected */
   static directInsertCache(key: string, prefix: string, compressed: string, epochKey: number | undefined, isDebug: boolean = false
   ) {
+    const prefixKey = ClientRequestCache.cacheKey(key, prefix);
     for (let i = 0; i < 15; i++) {
       if (compressed == "{}") { //special case for "placeholder cache"
-        (ls as any).set(prefix + key, "{}");
+        (ls as any).set(prefixKey, "{}");
       } else {
         const success = (ls as any).set(
-          ClientRequestCache.cacheKey(key, prefix),
-          (epochKey || "0") + ":" + compressed
+          prefixKey, (epochKey || "0") + ":" + compressed
         );
         if (success) {
           return true;

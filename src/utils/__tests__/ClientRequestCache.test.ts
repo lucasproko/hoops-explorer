@@ -38,6 +38,11 @@ describe("ClientRequestCache", () => {
     expect(ClientRequestCache.decacheResponse("test-empty-key", "test-prefix-", 1, false)).toEqual({});
     //(epoch ignored)
     expect(ClientRequestCache.decacheResponse("test-empty-key", "test-prefix-", 2, false)).toEqual({});
+
+    // Check handles report- vs lineup- below
+    ClientRequestCache.directInsertCache("test-empty-key", "report-", "{}", 1, false);
+    expect(ClientRequestCache.peekForResponse("test-empty-key", "report-")).toBe(false);
+    expect(ClientRequestCache.peekForResponse("test-empty-key", "lineup-")).toBe(true);
   });
   test("ClientRequestCache - special handling for report- vs lineup-", () => {
     const obj1 = { testKey: "testVal1" };

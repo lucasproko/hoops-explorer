@@ -2032,6 +2032,14 @@ Poss: [100]% v [0]%",
                     0.0
                     ]%); 
                   </span>,
+                  <span>
+                    <b>
+                      Lineup power:
+                    </b>
+                     [
+                    -1.4
+                    ]
+                  </span>,
                 ],
               },
               GenericTableSeparator {
@@ -2783,6 +2791,14 @@ Poss: [100]% v [0]%",
                     0.0
                     ]%); 
                   </span>,
+                  <span>
+                    <b>
+                      Lineup power:
+                    </b>
+                     [
+                    -1.4
+                    ]
+                  </span>,
                 ],
               },
               GenericTableSeparator {
@@ -3533,6 +3549,14 @@ Poss: [100]% v [0]%",
                     ]% - [
                     0.0
                     ]%); 
+                  </span>,
+                  <span>
+                    <b>
+                      Lineup power:
+                    </b>
+                     [
+                    -1.4
+                    ]
                   </span>,
                 ],
               },
@@ -4285,6 +4309,14 @@ Poss: [75]% v [25]%",
                     100.0
                     ]%); 
                   </span>,
+                  <span>
+                    <b>
+                      Lineup power:
+                    </b>
+                     [
+                    -5.2
+                    ]
+                  </span>,
                 ],
               },
               GenericTableSeparator {
@@ -5036,6 +5068,14 @@ Poss: [73]% v [27]%",
                     100.0
                     ]%); 
                   </span>,
+                  <span>
+                    <b>
+                      Lineup power:
+                    </b>
+                     [
+                    3.1
+                    ]
+                  </span>,
                 ],
               },
               GenericTableSeparator {
@@ -5786,6 +5826,14 @@ Poss: [52]% v [48]%",
                     ]% - [
                     100.0
                     ]%); 
+                  </span>,
+                  <span>
+                    <b>
+                      Lineup power:
+                    </b>
+                     [
+                    0.8
+                    ]
                   </span>,
                 ],
               },
