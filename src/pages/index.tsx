@@ -100,7 +100,7 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
   function maybeShowBlog() {
     if (!_.startsWith(server, "cbb-on-off-analyzer")) {
       return <span className="float-right">
-        <a href="https://hoop-explorer.blogspot.com" target="_new">Blog</a>
+        <a href="https://hoop-explorer.blogspot.com/p/blog-page.html" target="_new">Blog</a>
       </span>;
     }
   }
