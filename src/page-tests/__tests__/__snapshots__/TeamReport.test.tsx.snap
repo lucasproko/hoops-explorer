@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`OnOffAnalyzerPage OnOffAnalyzerPage - should create snapshot 1`] = `
+exports[`TeamReportPage TeamReportPage - should create snapshot 1`] = `
 <Container
   fluid={false}
 >
@@ -11,7 +11,7 @@ exports[`OnOffAnalyzerPage OnOffAnalyzerPage - should create snapshot 1`] = `
       xs={8}
     >
       <h3>
-        CBB On/Off Analysis Tool 
+        CBB Team On/Off Report Tool 
         <span
           className="badge badge-pill badge-info"
         >
@@ -43,10 +43,20 @@ exports[`OnOffAnalyzerPage OnOffAnalyzerPage - should create snapshot 1`] = `
           </b>
         </span>
         <Link
+          href="/?"
+        >
+          <a>
+            On/Off
+          </a>
+        </Link>
+        <span>
+            
+        </span>
+        <Link
           href="/LineupAnalyzer?"
         >
           <a>
-            Lineup Analysis
+            Lineups
           </a>
         </Link>
       </span>
@@ -56,10 +66,10 @@ exports[`OnOffAnalyzerPage OnOffAnalyzerPage - should create snapshot 1`] = `
     noGutters={false}
   >
     <GenericCollapsibleCard
-      summary="On/Off: 2019/20  (M): on:'', auto-off, base:''"
-      title="Team and Game Filter"
+      summary="On/Off Report: 2019/20  (M): query:'' (sort:desc:off_poss, filter:'', show:[comps])"
+      title="Team Report Filter"
     >
-      <GameFilter
+      <TeamReportFilter
         onChangeState={[Function]}
         onStats={[Function]}
         startingState={Object {}}
@@ -72,42 +82,11 @@ exports[`OnOffAnalyzerPage OnOffAnalyzerPage - should create snapshot 1`] = `
     <GenericCollapsibleCard
       title="Team Analysis"
     >
-      <TeamStatsTable
-        teamStats={
-          Object {
-            "baseline": Object {},
-            "off": Object {},
-            "on": Object {},
-          }
-        }
+      <TeamReportStatsTable
+        lineupReport={Object {}}
+        onChangeState={[Function]}
+        startingState={Object {}}
       />
-    </GenericCollapsibleCard>
-  </ForwardRef>
-  <ForwardRef
-    noGutters={false}
-  >
-    <GenericCollapsibleCard
-      title="Lineup Comparison"
-    >
-      <RosterCompareTable
-        gameFilterParams={Object {}}
-        rosterCompareStats={
-          Object {
-            "baseline": Object {},
-            "off": Object {},
-            "on": Object {},
-          }
-        }
-      />
-    </GenericCollapsibleCard>
-  </ForwardRef>
-  <ForwardRef
-    noGutters={false}
-  >
-    <GenericCollapsibleCard
-      title="Individual Analysis"
-    >
-      <RosterStatsTable />
     </GenericCollapsibleCard>
   </ForwardRef>
   <Footer

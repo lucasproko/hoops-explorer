@@ -9,6 +9,7 @@ import { AvailableTeams } from '../../utils/internal-data/AvailableTeams';
 import { efficiencyInfo } from '../../utils/internal-data/efficiencyInfo';
 import { ServerRequestCache } from '../../utils/ServerRequestCache';
 import { dataLastUpdated } from '../../utils/internal-data/dataLastUpdated';
+import { ParamDefaults } from '../../utils/FilterModels';
 
 const isDebug = (process.env.NODE_ENV !== 'production');
 
@@ -21,8 +22,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
   const url = require('url').parse(req.url);
   const params = queryString.parse(url.query);
-  const gender = params.gender || "Men";
-  const year = params.year || "2018/9";
+  const gender = params.gender || ParamDefaults.defaultGender;
+  const year = params.year || ParamDefaults.defaultYear;
 
   const currentJsonEpoch = dataLastUpdated[`${gender}_${year}`] || -1;
   const maybeCacheJson = ServerRequestCache.decacheResponse(url.query, queryPrefix, currentJsonEpoch, isDebug);
@@ -60,6 +61,9 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
         //console.log(JSON.stringify(esFetchJson, null, 3));
         //console.log(esFetch.status);
+        //(subset for testing)
+        //console.log(JSON.stringify(esFetchJson.responses[0].aggregations.lineups.buckets.slice(0, 3), null, 3));
+
         const jsonToUse = esFetch.ok ?
           esFetchJson :
           { error: { reason: "unknown" }, status_code: "" + esFetch.status }

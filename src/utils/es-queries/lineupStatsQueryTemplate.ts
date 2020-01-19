@@ -13,6 +13,14 @@ export const lineupStatsQuery = function(params: any, publicEfficiency: any, loo
         "lineups": {
            "aggregations": {
              ...commonLineupAggregations(publicEfficiency, lookup),
+             "players_array": {
+                "top_hits": {
+                  "size": 1,
+                  "_source": {
+                    "includes": "players"
+                  }
+                }
+             },
              "sort_by_poss": {
                 "bucket_sort": {
                   "sort": [
@@ -22,8 +30,8 @@ export const lineupStatsQuery = function(params: any, publicEfficiency: any, loo
              }
            },
            "terms": {
-             "field": "lineup_id.keyword", //TODO: 2015/6 has wrong mapping?!
-             "size": 200
+             "field": "lineup_id.keyword", 
+             "size": 1000
            }
         }
      },

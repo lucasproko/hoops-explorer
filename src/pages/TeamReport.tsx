@@ -19,17 +19,18 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 // App components:
-import LineupFilter from '../components/LineupFilter';
-import { ParamPrefixes, GameFilterParams, LineupFilterParams } from '../utils/FilterModels';
+import TeamReportFilter from '../components/TeamReportFilter';
+import { ParamPrefixes, GameFilterParams, LineupFilterParams, TeamReportFilterParams } from '../utils/FilterModels';
 import { HistoryManager } from '../utils/HistoryManager';
-import LineupStatsTable, { LineupStatsModel } from '../components/LineupStatsTable';
+import TeamReportStatsTable from '../components/TeamReportStatsTable';
+import { LineupStatsModel } from '../components/LineupStatsTable';
 import GenericCollapsibleCard from '../components/GenericCollapsibleCard';
 
 // Utils:
 import { UrlRouting } from "../utils/UrlRouting";
 import Footer from '../components/Footer';
 
-const LineupAnalyzerPage: NextPage<{}> = () => {
+const TeamReportPage: NextPage<{}> = () => {
 
   useEffect(() => { // Set up GA
     if ((process.env.NODE_ENV === 'production') && (typeof window !== undefined)) {
@@ -44,10 +45,10 @@ const LineupAnalyzerPage: NextPage<{}> = () => {
   // Team Stats interface
 
   const [ gaInited, setGaInited ] = useState(false);
-  const [ lineupStats, setLineupStats ] = useState({} as LineupStatsModel);
+  const [ teamReportStats, setTeamReportStats ] = useState({} as LineupStatsModel);
 
-  const injectStats = (lineupStats: LineupStatsModel) => {
-    setLineupStats(lineupStats);
+  const injectStats = (teamReportStats: LineupStatsModel) => {
+    setTeamReportStats(teamReportStats);
   }
 
   // Game filter
@@ -58,27 +59,25 @@ const LineupAnalyzerPage: NextPage<{}> = () => {
   const server = (typeof window === `undefined`) ? //(ensures SSR code still compiles)
     "server" : window.location.hostname
 
-  const [ lineupFilterParams, setLineupFilterParams ] = useState(
-    UrlRouting.removedSavedKeys(allParams) as LineupFilterParams
+  const [ teamReportFilterParams, setTeamReportFilterParams ] = useState(
+    UrlRouting.removedSavedKeys(allParams) as TeamReportFilterParams
   )
 
-  const savedGamesFilterParams = UrlRouting.removedSavedKeys(
-    HistoryManager.getLastQuery(ParamPrefixes.game) || ""
-  ) as GameFilterParams;
-  //TODO (in the || case, pull common params from lineupFilterParams)
-
-  function getRootUrl(params: LineupFilterParams) {
-    return UrlRouting.getLineupUrl(params, {});
+  function getRootUrl(params: TeamReportFilterParams) {
+    return UrlRouting.getTeamReportUrl(params);
   }
   function getGameUrl() {
     return UrlRouting.getGameUrl(savedGamesFilterParams, {});
   }
+  function getLineupUrl() {
+    return UrlRouting.getLineupUrl(savedLineupFilterParams, {});
+  }
 
-  const onLineupFilterParamsChange = (params: LineupFilterParams) => {
+  const onTeamReportFilterParamsChange = (params: TeamReportFilterParams) => {
     const href = getRootUrl(params);
     const as = href;
     Router.push(href, as, { shallow: true });
-    setLineupFilterParams(params); // (to ensure the new params are included in links)
+    setTeamReportFilterParams(params); // (to ensure the new params are included in links)
   }
 
   // View
@@ -91,10 +90,18 @@ const LineupAnalyzerPage: NextPage<{}> = () => {
     }
   }
 
+  const savedLineupFilterParams = UrlRouting.removedSavedKeys(
+    HistoryManager.getLastQuery(ParamPrefixes.lineup) || ""
+  ) as LineupFilterParams;
+  const savedGamesFilterParams = UrlRouting.removedSavedKeys(
+    HistoryManager.getLastQuery(ParamPrefixes.game) || ""
+  ) as GameFilterParams;
+  //TODO (in the || case, pull common params from gameFilterParams)
+
   return <Container>
     <Row>
     <Col xs={8}>
-      <h3>CBB Lineup Analysis Tool <span className="badge badge-pill badge-info">BETA!</span></h3>
+      <h3>CBB Team On/Off Report Tool <span className="badge badge-pill badge-info">BETA!</span></h3>
     </Col>
     <Col xs={1}>
       { maybeShowBlog() }
@@ -102,32 +109,34 @@ const LineupAnalyzerPage: NextPage<{}> = () => {
     <Col>
       <span className="float-right">
         <span><b>Other Tools: </b></span>
-        <Link href={getGameUrl()}><a>On/Off Analysis</a></Link>
+        <Link href={getGameUrl()}><a>On/Off</a></Link>
+        <span>&nbsp;&nbsp;</span>
+        <Link href={getLineupUrl()}><a>Lineups</a></Link>
       </span>
     </Col>
     </Row>
     <Row>
       <GenericCollapsibleCard
-        title="Team and Game Filter"
-        summary={HistoryManager.lineupFilterSummary(lineupFilterParams)}
+        title="Team Report Filter"
+        summary={HistoryManager.teamReportFilterSummary(teamReportFilterParams)}
       >
-        <LineupFilter
+        <TeamReportFilter
           onStats={injectStats}
-          startingState={lineupFilterParams}
-          onChangeState={onLineupFilterParamsChange}
+          startingState={teamReportFilterParams}
+          onChangeState={onTeamReportFilterParamsChange}
         />
       </GenericCollapsibleCard>
     </Row>
     <Row>
-      <GenericCollapsibleCard title="Lineup Analysis">
-        <LineupStatsTable
-          lineupStats={lineupStats}
-          startingState={lineupFilterParams}
-          onChangeState={onLineupFilterParamsChange}
+      <GenericCollapsibleCard title="Team Analysis">
+        <TeamReportStatsTable
+          lineupReport={teamReportStats}
+          startingState={teamReportFilterParams}
+          onChangeState={onTeamReportFilterParamsChange}
         />
       </GenericCollapsibleCard>
     </Row>
-    <Footer year={lineupFilterParams.year} gender={lineupFilterParams.gender} server={server}/>
+    <Footer year={teamReportFilterParams.year} gender={teamReportFilterParams.gender} server={server}/>
   </Container>;
 }
-export default LineupAnalyzerPage;
+export default TeamReportPage;

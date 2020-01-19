@@ -9,7 +9,7 @@ import toJson from 'enzyme-to-json'
 describe("LineupStatsTable", () => {
   test("LineupStatsTable - should create snapshot", () => {
     const testData = {
-      lineups: sampleLineupStatsResponse.aggregations.lineups.buckets
+      lineups: sampleLineupStatsResponse.responses[0].aggregations.lineups.buckets
     };
     const dummyChangeStateCallback = (stats: LineupFilterParams) => {};
     const wrapper = shallow(

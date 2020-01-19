@@ -3,22 +3,32 @@ import React, { useState } from 'react';
 
 // Next imports:
 import { NextPage } from 'next';
+import Link from 'next/link';
+import Router from 'next/router'
 
 // Bootstrap imports:
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip';
 
 // Additional components:
 // @ts-ignore
 import LoadingOverlay from 'react-loading-overlay';
+import queryString from "query-string";
 
 // Component imports
-import GenericTable, { GenericTableOps, GenericTableColProps } from "./GenericTable"
+import GenericTable, { GenericTableOps, GenericTableColProps } from "./GenericTable";
 
 // Util imports
-import { CbbColors } from "../utils/CbbColors"
+import { ClientRequestCache } from "../utils/ClientRequestCache";
+import { CbbColors } from "../utils/CbbColors";
+import { ParamPrefixes, GameFilterParams } from "../utils/FilterModels";
+import { UrlRouting } from "../utils/UrlRouting";
+import { dataLastUpdated } from '../utils/internal-data/dataLastUpdated';
 
 export type RosterCompareModel = {
   on: any,
@@ -27,10 +37,11 @@ export type RosterCompareModel = {
   error_code?: string
 }
 type Props = {
+  gameFilterParams: GameFilterParams
   rosterCompareStats: RosterCompareModel
 }
 
-const RosterCompareTable: React.FunctionComponent<Props> = ({rosterCompareStats}) => {
+const RosterCompareTable: React.FunctionComponent<Props> = ({gameFilterParams, rosterCompareStats}) => {
 
   const tableFields = { //accessors vs column metadata
     "title": GenericTableOps.addTitle("", ""),
@@ -56,6 +67,52 @@ const RosterCompareTable: React.FunctionComponent<Props> = ({rosterCompareStats}
       (Object.keys(rosterCompareStats.baseline).length == 0);
   }
 
+  const onOffReportLink = (tableName: string) => {
+    const getQuery = () => { switch(tableName) {
+      case "on": return `(${gameFilterParams.onQuery}) AND (${gameFilterParams.baseQuery})`;
+      case "off": return `(${gameFilterParams.offQuery}) AND (${gameFilterParams.baseQuery})`;
+      default: return gameFilterParams.baseQuery;
+    }};
+    const paramObj = {
+      team: gameFilterParams.team,
+      year: gameFilterParams.year,
+      gender: gameFilterParams.gender,
+      lineupQuery: getQuery(),
+      minRank: gameFilterParams.minRank,
+      maxRank: gameFilterParams.maxRank
+    };
+    const paramStr = queryString.stringify(paramObj);
+    const currentJsonEpoch = dataLastUpdated[`${paramObj.gender}_${paramObj.year}`] || -1;
+    const onClick = () => {
+      // Is this query already cached?
+      try {
+        const cachedJson = ClientRequestCache.decacheResponse(
+          paramStr, ParamPrefixes.report, currentJsonEpoch, false
+        );
+        if (!cachedJson) { // If not, inject {} which is interpreted as "make a call on page load"
+          ClientRequestCache.directInsertCache(
+            paramStr, ParamPrefixes.report, "{}", currentJsonEpoch, false
+          );
+        }
+      } catch (err) { //(much ugliness breaks out on error otherwise)
+        console.log(err.message, err);
+      }
+    };
+    // (see https://github.com/zeit/next.js/issues/1490#issuecomment-343350273)
+    const url = UrlRouting.getTeamReportUrl(paramObj);
+
+    const tooltip = (
+      <Tooltip id={`tooltipFor${tableName}`}>Creates an on/off report for the possessions return by this lineup set (ie query)</Tooltip>
+    );
+    return <OverlayTrigger placement="auto" overlay={tooltip}>
+      <a href={url} onClick={(event: any) => {
+        event.preventDefault();
+        onClick();
+        Router.push(url, url);
+      }}>(report)</a>
+    </OverlayTrigger>;
+  };
+
   return <LoadingOverlay
     active={needToLoadQuery()}
     text={rosterCompareStats.error_code ?
@@ -66,26 +123,26 @@ const RosterCompareTable: React.FunctionComponent<Props> = ({rosterCompareStats}
     <Row>
         <Col>
           <Card className="w-100">
-          <Card.Body>
-          <Card.Title>'On' Roster</Card.Title>
-          <GenericTable tableCopyId="rosterOnTable" tableFields={tableFields} tableData={tableData("on")}/>
-          </Card.Body>
+            <Card.Body>
+              <Card.Title>'On' Roster   {onOffReportLink("on")}</Card.Title>
+              <GenericTable tableCopyId="rosterOnTable" tableFields={tableFields} tableData={tableData("on")}/>
+            </Card.Body>
           </Card>
         </Col>
         <Col>
           <Card className="w-100">
-          <Card.Body>
-          <Card.Title>'Off' Roster</Card.Title>
-          <GenericTable tableCopyId="rosterOffTable" tableFields={tableFields} tableData={tableData("off")}/>
-          </Card.Body>
+            <Card.Body>
+              <Card.Title>'Off' Roster   {onOffReportLink("off")}</Card.Title>
+              <GenericTable tableCopyId="rosterOffTable" tableFields={tableFields} tableData={tableData("off")}/>
+            </Card.Body>
           </Card>
         </Col>
         <Col>
           <Card className="w-100">
-          <Card.Body>
-          <Card.Title>'Baseline' Roster</Card.Title>
-          <GenericTable tableCopyId="rosterBaseTable" tableFields={tableFields} tableData={tableData("baseline")}/>
-          </Card.Body>
+            <Card.Body>
+              <Card.Title>'Baseline' Roster   {onOffReportLink("baseline")}</Card.Title>
+              <GenericTable tableCopyId="rosterBaseTable" tableFields={tableFields} tableData={tableData("baseline")}/>
+            </Card.Body>
           </Card>
         </Col>
       </Row>

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CommonFilter CommonFilter - should create snapshot 1`] = `
+exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
 <LoadingOverlay
   active={false}
   spinner={true}
@@ -609,7 +609,7 @@ exports[`CommonFilter CommonFilter - should create snapshot 1`] = `
               id="copyLinkTooltip"
               placement="right"
             >
-              Copies URL to clipboard
+              Copies URL to clipboard (and saves state to history)
             </ForwardRef>
           }
           placement="auto"
@@ -748,12 +748,749 @@ exports[`CommonFilter CommonFilter - should create snapshot 1`] = `
           variant="warning"
         >
           <b>
-            See Example (
+            Example (
             Men
             )!
           </b>
         </Button>
       </Shake>
+    </Col>
+  </Form>
+</LoadingOverlay>
+`;
+
+exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
+<LoadingOverlay
+  active={false}
+  spinner={true}
+  text="Calculating statistics"
+>
+  <Form
+    inline={false}
+  >
+    <FormGroup
+      as={
+        Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "defaultProps": Object {
+            "noGutters": false,
+          },
+          "render": [Function],
+        }
+      }
+    >
+      <Col
+        lg={2}
+        md={3}
+        sm={6}
+        xs={6}
+      >
+        <StateManager
+          defaultInputValue=""
+          defaultMenuIsOpen={false}
+          defaultValue={null}
+          isSearchable={false}
+          onChange={[Function]}
+          options={
+            Array [
+              Object {
+                "label": "Men",
+                "value": "Men",
+              },
+              Object {
+                "label": "Women",
+                "value": "Women",
+              },
+            ]
+          }
+          value={
+            Object {
+              "label": "Men",
+              "value": "Men",
+            }
+          }
+        />
+      </Col>
+      <Col
+        lg={2}
+        md={3}
+        sm={6}
+        xs={6}
+      >
+        <StateManager
+          defaultInputValue=""
+          defaultMenuIsOpen={false}
+          defaultValue={null}
+          isSearchable={false}
+          onChange={[Function]}
+          options={
+            Array [
+              Object {
+                "label": "2018/9",
+                "value": "2018/9",
+              },
+              Object {
+                "label": "2019/20",
+                "value": "2019/20",
+              },
+            ]
+          }
+          value={
+            Object {
+              "label": "2018/9",
+              "value": "2018/9",
+            }
+          }
+        />
+      </Col>
+      <Col
+        bsPrefix="d-lg-none d-md-none"
+        className="w-100"
+      />
+      <Col
+        lg={6}
+        md={6}
+        sm={12}
+        xs={12}
+      >
+        <StateManager
+          defaultInputValue=""
+          defaultMenuIsOpen={false}
+          defaultValue={null}
+          isClearable={true}
+          onChange={[Function]}
+          options={
+            Array [
+              Object {
+                "label": "Maryland",
+                "value": "Maryland",
+              },
+              Object {
+                "label": "Clemson",
+                "value": "Clemson",
+              },
+              Object {
+                "label": "Georgia Tech",
+                "value": "Georgia Tech",
+              },
+              Object {
+                "label": "Florida St.",
+                "value": "Florida St.",
+              },
+              Object {
+                "label": "Boston College",
+                "value": "Boston College",
+              },
+              Object {
+                "label": "Wake Forest",
+                "value": "Wake Forest",
+              },
+              Object {
+                "label": "North Carolina",
+                "value": "North Carolina",
+              },
+              Object {
+                "label": "Virginia",
+                "value": "Virginia",
+              },
+              Object {
+                "label": "Syracuse",
+                "value": "Syracuse",
+              },
+              Object {
+                "label": "Virginia Tech",
+                "value": "Virginia Tech",
+              },
+              Object {
+                "label": "Duke",
+                "value": "Duke",
+              },
+              Object {
+                "label": "Notre Dame",
+                "value": "Notre Dame",
+              },
+              Object {
+                "label": "Louisville",
+                "value": "Louisville",
+              },
+              Object {
+                "label": "NC State",
+                "value": "NC State",
+              },
+              Object {
+                "label": "Miami (FL)",
+                "value": "Miami (FL)",
+              },
+              Object {
+                "label": "Pittsburgh",
+                "value": "Pittsburgh",
+              },
+              Object {
+                "label": "Tulsa",
+                "value": "Tulsa",
+              },
+              Object {
+                "label": "South Fla.",
+                "value": "South Fla.",
+              },
+              Object {
+                "label": "Houston",
+                "value": "Houston",
+              },
+              Object {
+                "label": "UCF",
+                "value": "UCF",
+              },
+              Object {
+                "label": "Cincinnati",
+                "value": "Cincinnati",
+              },
+              Object {
+                "label": "Wichita St.",
+                "value": "Wichita St.",
+              },
+              Object {
+                "label": "Memphis",
+                "value": "Memphis",
+              },
+              Object {
+                "label": "East Carolina",
+                "value": "East Carolina",
+              },
+              Object {
+                "label": "Tulane",
+                "value": "Tulane",
+              },
+              Object {
+                "label": "Temple",
+                "value": "Temple",
+              },
+              Object {
+                "label": "SMU",
+                "value": "SMU",
+              },
+              Object {
+                "label": "UConn",
+                "value": "UConn",
+              },
+              Object {
+                "label": "Richmond",
+                "value": "Richmond",
+              },
+              Object {
+                "label": "Dayton",
+                "value": "Dayton",
+              },
+              Object {
+                "label": "La Salle",
+                "value": "La Salle",
+              },
+              Object {
+                "label": "St. Bonaventure",
+                "value": "St. Bonaventure",
+              },
+              Object {
+                "label": "George Washington",
+                "value": "George Washington",
+              },
+              Object {
+                "label": "Saint Louis",
+                "value": "Saint Louis",
+              },
+              Object {
+                "label": "Massachusetts",
+                "value": "Massachusetts",
+              },
+              Object {
+                "label": "Fordham",
+                "value": "Fordham",
+              },
+              Object {
+                "label": "George Mason",
+                "value": "George Mason",
+              },
+              Object {
+                "label": "Saint Joseph's",
+                "value": "Saint Joseph's",
+              },
+              Object {
+                "label": "VCU",
+                "value": "VCU",
+              },
+              Object {
+                "label": "Davidson",
+                "value": "Davidson",
+              },
+              Object {
+                "label": "Duquesne",
+                "value": "Duquesne",
+              },
+              Object {
+                "label": "Rhode Island",
+                "value": "Rhode Island",
+              },
+              Object {
+                "label": "Providence",
+                "value": "Providence",
+              },
+              Object {
+                "label": "Villanova",
+                "value": "Villanova",
+              },
+              Object {
+                "label": "Marquette",
+                "value": "Marquette",
+              },
+              Object {
+                "label": "DePaul",
+                "value": "DePaul",
+              },
+              Object {
+                "label": "Seton Hall",
+                "value": "Seton Hall",
+              },
+              Object {
+                "label": "Xavier",
+                "value": "Xavier",
+              },
+              Object {
+                "label": "Butler",
+                "value": "Butler",
+              },
+              Object {
+                "label": "St. John's (NY)",
+                "value": "St. John's (NY)",
+              },
+              Object {
+                "label": "Georgetown",
+                "value": "Georgetown",
+              },
+              Object {
+                "label": "Creighton",
+                "value": "Creighton",
+              },
+              Object {
+                "label": "Indiana",
+                "value": "Indiana",
+              },
+              Object {
+                "label": "Nebraska",
+                "value": "Nebraska",
+              },
+              Object {
+                "label": "Wisconsin",
+                "value": "Wisconsin",
+              },
+              Object {
+                "label": "Ohio St.",
+                "value": "Ohio St.",
+              },
+              Object {
+                "label": "Michigan St.",
+                "value": "Michigan St.",
+              },
+              Object {
+                "label": "Iowa",
+                "value": "Iowa",
+              },
+              Object {
+                "label": "Michigan",
+                "value": "Michigan",
+              },
+              Object {
+                "label": "Purdue",
+                "value": "Purdue",
+              },
+              Object {
+                "label": "Illinois",
+                "value": "Illinois",
+              },
+              Object {
+                "label": "Penn St.",
+                "value": "Penn St.",
+              },
+              Object {
+                "label": "Northwestern",
+                "value": "Northwestern",
+              },
+              Object {
+                "label": "Rutgers",
+                "value": "Rutgers",
+              },
+              Object {
+                "label": "Minnesota",
+                "value": "Minnesota",
+              },
+              Object {
+                "label": "Texas Tech",
+                "value": "Texas Tech",
+              },
+              Object {
+                "label": "Iowa St.",
+                "value": "Iowa St.",
+              },
+              Object {
+                "label": "Texas",
+                "value": "Texas",
+              },
+              Object {
+                "label": "TCU",
+                "value": "TCU",
+              },
+              Object {
+                "label": "Oklahoma",
+                "value": "Oklahoma",
+              },
+              Object {
+                "label": "Baylor",
+                "value": "Baylor",
+              },
+              Object {
+                "label": "Kansas St.",
+                "value": "Kansas St.",
+              },
+              Object {
+                "label": "West Virginia",
+                "value": "West Virginia",
+              },
+              Object {
+                "label": "Kansas",
+                "value": "Kansas",
+              },
+              Object {
+                "label": "Oklahoma St.",
+                "value": "Oklahoma St.",
+              },
+              Object {
+                "label": "California",
+                "value": "California",
+              },
+              Object {
+                "label": "Oregon St.",
+                "value": "Oregon St.",
+              },
+              Object {
+                "label": "Washington",
+                "value": "Washington",
+              },
+              Object {
+                "label": "Arizona St.",
+                "value": "Arizona St.",
+              },
+              Object {
+                "label": "UCLA",
+                "value": "UCLA",
+              },
+              Object {
+                "label": "Southern California",
+                "value": "Southern California",
+              },
+              Object {
+                "label": "Utah",
+                "value": "Utah",
+              },
+              Object {
+                "label": "Washington St.",
+                "value": "Washington St.",
+              },
+              Object {
+                "label": "Stanford",
+                "value": "Stanford",
+              },
+              Object {
+                "label": "Arizona",
+                "value": "Arizona",
+              },
+              Object {
+                "label": "Colorado",
+                "value": "Colorado",
+              },
+              Object {
+                "label": "Oregon",
+                "value": "Oregon",
+              },
+              Object {
+                "label": "Texas A&M",
+                "value": "Texas A&M",
+              },
+              Object {
+                "label": "Auburn",
+                "value": "Auburn",
+              },
+              Object {
+                "label": "Ole Miss",
+                "value": "Ole Miss",
+              },
+              Object {
+                "label": "Florida",
+                "value": "Florida",
+              },
+              Object {
+                "label": "South Carolina",
+                "value": "South Carolina",
+              },
+              Object {
+                "label": "Arkansas",
+                "value": "Arkansas",
+              },
+              Object {
+                "label": "Tennessee",
+                "value": "Tennessee",
+              },
+              Object {
+                "label": "Georgia",
+                "value": "Georgia",
+              },
+              Object {
+                "label": "Missouri",
+                "value": "Missouri",
+              },
+              Object {
+                "label": "LSU",
+                "value": "LSU",
+              },
+              Object {
+                "label": "Alabama",
+                "value": "Alabama",
+              },
+              Object {
+                "label": "Vanderbilt",
+                "value": "Vanderbilt",
+              },
+              Object {
+                "label": "Kentucky",
+                "value": "Kentucky",
+              },
+              Object {
+                "label": "Mississippi St.",
+                "value": "Mississippi St.",
+              },
+              Object {
+                "label": "Saint Mary's (CA)",
+                "value": "Saint Mary's (CA)",
+              },
+              Object {
+                "label": "Gonzaga",
+                "value": "Gonzaga",
+              },
+            ]
+          }
+          styles={
+            Object {
+              "menu": [Function],
+            }
+          }
+          value={
+            Object {
+              "label": "Maryland",
+              "value": "Maryland",
+            }
+          }
+        />
+      </Col>
+      <Col>
+        <OverlayTrigger
+          key="left"
+          overlay={
+            <ForwardRef(render)
+              id="popover-positioned-left"
+              style={
+                Object {
+                  "maxWidth": "600px",
+                }
+              }
+            >
+              <ForwardRef
+                as="h3"
+              >
+                History
+              </ForwardRef>
+              <ForwardRef>
+                <HistorySelector
+                  tablePrefix="test-"
+                />
+              </ForwardRef>
+            </ForwardRef(render)>
+          }
+          placement="left"
+          rootClose={true}
+          trigger="click"
+        >
+          <Button
+            active={false}
+            className="float-left"
+            disabled={false}
+            id="historyButton"
+            size="sm"
+            type="button"
+            variant="outline-secondary"
+          >
+            <FontAwesomeIcon
+              border={false}
+              className=""
+              fixedWidth={false}
+              flip={null}
+              icon={
+                Object {
+                  "icon": Array [
+                    512,
+                    512,
+                    Array [],
+                    "f1da",
+                    "M504 255.531c.253 136.64-111.18 248.372-247.82 248.468-59.015.042-113.223-20.53-155.822-54.911-11.077-8.94-11.905-25.541-1.839-35.607l11.267-11.267c8.609-8.609 22.353-9.551 31.891-1.984C173.062 425.135 212.781 440 256 440c101.705 0 184-82.311 184-184 0-101.705-82.311-184-184-184-48.814 0-93.149 18.969-126.068 49.932l50.754 50.754c10.08 10.08 2.941 27.314-11.313 27.314H24c-8.837 0-16-7.163-16-16V38.627c0-14.254 17.234-21.393 27.314-11.314l49.372 49.372C129.209 34.136 189.552 8 256 8c136.81 0 247.747 110.78 248 247.531zm-180.912 78.784l9.823-12.63c8.138-10.463 6.253-25.542-4.21-33.679L288 256.349V152c0-13.255-10.745-24-24-24h-16c-13.255 0-24 10.745-24 24v135.651l65.409 50.874c10.463 8.137 25.541 6.253 33.679-4.21z",
+                  ],
+                  "iconName": "history",
+                  "prefix": "fas",
+                }
+              }
+              inverse={false}
+              listItem={false}
+              mask={null}
+              pull={null}
+              pulse={false}
+              rotation={null}
+              size={null}
+              spin={false}
+              swapOpacity={false}
+              symbol={false}
+              title=""
+              transform={null}
+            />
+          </Button>
+        </OverlayTrigger>
+        <div
+          className="float-left"
+        >
+            
+        </div>
+        <OverlayTrigger
+          overlay={
+            <ForwardRef
+              id="copyLinkTooltip"
+              placement="right"
+            >
+              Copies URL to clipboard (and saves state to history)
+            </ForwardRef>
+          }
+          placement="auto"
+        >
+          <Button
+            active={false}
+            className="float-left"
+            disabled={false}
+            id="copyLink"
+            size="sm"
+            type="button"
+            variant="outline-secondary"
+          >
+            <FontAwesomeIcon
+              border={false}
+              className=""
+              fixedWidth={false}
+              flip={null}
+              icon={
+                Object {
+                  "icon": Array [
+                    512,
+                    512,
+                    Array [],
+                    "f0c1",
+                    "M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z",
+                  ],
+                  "iconName": "link",
+                  "prefix": "fas",
+                }
+              }
+              inverse={false}
+              listItem={false}
+              mask={null}
+              pull={null}
+              pulse={false}
+              rotation={null}
+              size={null}
+              spin={false}
+              swapOpacity={false}
+              symbol={false}
+              title=""
+              transform={null}
+            />
+          </Button>
+        </OverlayTrigger>
+      </Col>
+    </FormGroup>
+    <FormGroup
+      as={
+        Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "defaultProps": Object {
+            "noGutters": false,
+          },
+          "render": [Function],
+        }
+      }
+      controlId="oppositionFilter"
+    >
+      <FormLabel
+        column={true}
+        sm="2"
+        srOnly={false}
+      >
+        Opponent Strength
+      </FormLabel>
+      <Col
+        sm="2"
+      >
+        <InputGroup>
+          <InputGroupPrepend>
+            <InputGroupText
+              id="filterOppoBest"
+            >
+              Best
+            </InputGroupText>
+          </InputGroupPrepend>
+          <FormControl
+            onChange={[Function]}
+            placeholder="eg 0"
+            value="0"
+          />
+        </InputGroup>
+      </Col>
+      <Col
+        sm="2"
+      >
+        <InputGroup>
+          <InputGroupPrepend>
+            <InputGroupText
+              id="filterOppoWorst"
+            >
+              Worst
+            </InputGroupText>
+          </InputGroupPrepend>
+          <FormControl
+            onChange={[Function]}
+            placeholder="eg 400"
+            value="400"
+          />
+        </InputGroup>
+      </Col>
+      <FormLabel
+        column={true}
+        sm="2"
+        srOnly={false}
+      >
+        (out of ~360 teams)
+      </FormLabel>
+    </FormGroup>
+    <Col>
+      <Button
+        active={false}
+        disabled={false}
+        onClick={[Function]}
+        type="button"
+        variant="primary"
+      >
+        Submit
+      </Button>
     </Col>
   </Form>
 </LoadingOverlay>

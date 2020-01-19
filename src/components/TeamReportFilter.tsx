@@ -17,18 +17,18 @@ import Col from 'react-bootstrap/Col';
 import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
 import { LineupStatsModel } from '../components/LineupStatsTable';
 import CommonFilter, { CommonFilterParams } from '../components/CommonFilter';
-import { ParamPrefixes, LineupFilterParams } from "../utils/FilterModels";
+import { ParamPrefixes, TeamReportFilterParams } from "../utils/FilterModels";
 
 // Library imports:
 import fetch from 'isomorphic-unfetch';
 
 type Props = {
-  onStats: (lineupStats: LineupStatsModel) => void;
-  startingState: LineupFilterParams;
-  onChangeState: (newParams: LineupFilterParams) => void;
+  onStats: (reportStats: LineupStatsModel) => void;
+  startingState: TeamReportFilterParams;
+  onChangeState: (newParams: TeamReportFilterParams) => void;
 }
 
-const LineupFilter: React.FunctionComponent<Props> = ({onStats, startingState, onChangeState}) => {
+const TeamReportFilter: React.FunctionComponent<Props> = ({onStats, startingState, onChangeState}) => {
 
   // Data model
 
@@ -40,11 +40,11 @@ const LineupFilter: React.FunctionComponent<Props> = ({onStats, startingState, o
 
   // Lineup Filter - custom queries and filters:
 
-  const [ baseQuery, setBaseQuery ] = useState(startingState.lineupQuery || "")
+  const [ baseQuery, setBaseQuery ] = useState(startingState.lineupQuery || "");
 
   const isDebug = (process.env.NODE_ENV !== 'production');
 
-  const cacheKeyPrefix = ParamPrefixes.lineup;
+  const cacheKeyPrefix = ParamPrefixes.report;
 
   // Utils
 
@@ -54,14 +54,13 @@ const LineupFilter: React.FunctionComponent<Props> = ({onStats, startingState, o
   }
 
   /** Builds a game filter from the various state elements */
-  function buildParamsFromState(includeFilterParams: Boolean): LineupFilterParams {
+  function buildParamsFromState(includeFilterParams: Boolean): TeamReportFilterParams {
     return includeFilterParams ?
     _.merge(
       buildParamsFromState(false), {
-        maxTableSize: startingState.maxTableSize,
-        minPoss: startingState.minPoss,
         sortBy: startingState.sortBy,
-        filter: startingState.filter
+        filter: startingState.filter,
+        showComps: startingState.showComps,
     }) : {
       team: commonParams.team,
       year: commonParams.year,
@@ -124,4 +123,4 @@ const LineupFilter: React.FunctionComponent<Props> = ({onStats, startingState, o
     ;
 }
 
-export default LineupFilter;
+export default TeamReportFilter;

@@ -45,15 +45,28 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, starting
   const [ minPoss, setMinPoss ] = useState(startingState.minPoss || ParamDefaults.defaultLineupMinPos);
   const [ maxTableSize, setMaxTableSize ] = useState(startingState.maxTableSize || ParamDefaults.defaultLineupMaxTableSize);
   const [ sortBy, setSortBy ] = useState(startingState.sortBy || ParamDefaults.defaultLineupSortBy);
+  const [ filterStr, setFilterStr ] = useState(startingState.filter || ParamDefaults.defaultLineupFilter);
 
-  useEffect(() => {
+  // (slight delay when typing into the filter to make it more responsive)
+  const [ timeoutId, setTimeoutId ] = useState(-1);
+  const [ tmpFilterStr, setTmpFilterStr ] = useState(filterStr);
+
+  const filterFragments =
+    filterStr.split(",").map(fragment => _.trim(fragment)).filter(fragment => fragment ? true : false);
+  const filterFragmentsPve =
+    filterFragments.filter(fragment => fragment[0] != '-');
+  const filterFragmentsNve =
+    filterFragments.filter(fragment => fragment[0] == '-').map(fragment => fragment.substring(1));
+
+  useEffect(() => { //(this ensures that the filter component is up to date with the union of these fields)
     const newState = _.merge(startingState, {
       minPoss: minPoss,
       maxTableSize: maxTableSize,
-      sortBy: sortBy
+      sortBy: sortBy,
+      filter: filterStr
     });
     onChangeState(newState);
-  }, [ minPoss, maxTableSize, sortBy ]);
+  }, [ minPoss, maxTableSize, sortBy, filterStr ]);
 
   // 2] Data Model
   const tableFields = { //accessors vs column metadata
@@ -111,7 +124,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, starting
         case "diff": //(off-def)
           return (lineup["off_" + fieldName]?.value || 0.0)
                 - (lineup["def_" + fieldName]?.value || 0.0);
-        default: return lineup[sortComps[1]].value; //(off or def)
+        default: return lineup[sortComps[1]]?.value; //(off or def)
       }
     };
     return (lineup: any) => {
@@ -120,25 +133,41 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, starting
   };
 
   const lineups = lineupStats?.lineups || [];
-  const tableData = _.flatMap(_.take(_.sortBy(lineups
-    .filter((lineup) => {
+  const tableData = _.chain(lineups).filter((lineup) => {
       const minPossInt = parseInt(minPoss);
       const offPos = lineup.off_poss?.value || 0;
       const defPos = lineup.def_poss?.value || 0;
       return offPos >= minPossInt || defPos >= minPossInt; //(unclear which of || vs && is best...)
+    }).filter((lineup) => {
+      const namesToTest = _.chain(lineup?.players_array?.hits?.hits).flatMap((pDoc) => {
+        return pDoc?._source.players.map((p: any) => p.id);
+      }).value();
+
+      const playerFilter =
+        (_.isEmpty(filterFragmentsPve) ||
+          _.every(filterFragmentsPve, (frag) => _.some(namesToTest, (name) => name.indexOf(frag) >= 0))
+        ) &&
+        (_.isEmpty(filterFragmentsNve) ||
+          !_.some(filterFragmentsNve, (frag) => _.some(namesToTest, (name) => name.indexOf(frag) >= 0))
+        );
+      return playerFilter;
+
     }).map((lineup) => {
       const adjOffDef = calcAdjEff(lineup);
       return { ...lineup, ...adjOffDef };
-    }), [ sorter(sortBy) ]), parseInt(maxTableSize)
-  ).map((lineup) => {
-    const title = lineup.key.replace(/_/g, " / "); //TODO: merge the lines
-    const stats = { off_title: title, def_title: "", ...lineup };
-    return [
-      GenericTableOps.buildDataRow(stats, offPrefixFn, offCellMetaFn),
-      GenericTableOps.buildDataRow(stats, defPrefixFn, defCellMetaFn),
-      GenericTableOps.buildRowSeparator()
-    ];
-  }));
+    } ).sortBy(
+       [ sorter(sortBy) ]
+    ).take(
+      parseInt(maxTableSize)
+    ).flatMap((lineup) => {
+      const title = lineup.key.replace(/_/g, " / "); //TODO: merge the lines
+      const stats = { off_title: title, def_title: "", ...lineup };
+      return [
+        GenericTableOps.buildDataRow(stats, offPrefixFn, offCellMetaFn),
+        GenericTableOps.buildDataRow(stats, defPrefixFn, defCellMetaFn),
+        GenericTableOps.buildRowSeparator()
+      ];
+    }).value();
 
   // 3.2] Sorting utils
 
@@ -150,13 +179,13 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, starting
           ["desc","off"], ["asc","off"], ["desc","def"], ["asc","def"], ["desc","diff"], ["asc","diff"]
         ].map(combo => {
           const ascOrDesc = (s: string) => { switch(s) {
-            case "asc": return "Ascending";
-            case "desc": return "Descending";
+            case "asc": return "Asc.";
+            case "desc": return "Desc.";
           }}
           const offOrDef = (s: string) => { switch(s) {
             case "off": return "Offensive";
             case "def": return "Defensive";
-            case "diff": return "Off-Def Delta";
+            case "diff": return "Off-Def";
           }}
           return {
             label: `${keycol[1].colName} (${ascOrDesc(combo[0])} / ${offOrDef(combo[1])})`,
@@ -167,6 +196,30 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, starting
   );
   const sortOptionsByValue = _.fromPairs(
     sortOptions.map(opt => [opt.value, opt])
+  );
+  /** Put these options at the front */
+  const mostUsefulSubset = [
+    "desc:off_poss",
+    "desc:diff_adj_ppp",
+    "desc:off_adj_ppp",
+    "asc:def_adj_ppp",
+  ];
+  /** The two sub-headers for the dropdown */
+  const groupedOptions = [
+    {
+      label: "Most useful",
+      options: _.chain(sortOptionsByValue).pick(mostUsefulSubset).values().value()
+    },
+    {
+      label: "Other",
+      options: _.chain(sortOptionsByValue).omit(mostUsefulSubset).values().value()
+    }
+  ];
+  /** The sub-header builder */
+  const formatGroupLabel = (data: any) => (
+    <div>
+      <span>{data.label}</span>
+    </div>
   );
 
   // 3] Utils
@@ -202,6 +255,29 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, starting
         "Press 'Submit' to view results"
       }
     >
+      <Form.Row>
+        <Form.Group as={Col} sm="6">
+          <InputGroup>
+            <InputGroup.Prepend>
+              <InputGroup.Text id="filter">Filter</InputGroup.Text>
+            </InputGroup.Prepend>
+            <Form.Control
+              onChange={(ev: any) => {
+                const toSet = ev.target.value;
+                setTmpFilterStr(toSet);
+                if (timeoutId != -1) {
+                  window.clearTimeout(timeoutId);
+                }
+                setTimeoutId(window.setTimeout(() => {
+                  setFilterStr(toSet);
+                }, 100));
+              }}
+              placeholder = "eg Player1Surname,Player2FirstName,-Player3Name"
+              value={tmpFilterStr}
+            />
+          </InputGroup>
+        </Form.Group>
+      </Form.Row>
       <Form.Row>
         <Form.Group as={Col} sm="3">
           <InputGroup>
@@ -243,10 +319,11 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, starting
             <Select
               className="w-75"
               value={ stringToOption(sortBy) }
-              options={ sortOptions }
+              options={ groupedOptions }
               onChange={(option) => { if ((option as any)?.value)
                 setSortBy((option as any)?.value);
               }}
+              formatGroupLabel={formatGroupLabel}
             />
           </InputGroup>
         </Form.Group>

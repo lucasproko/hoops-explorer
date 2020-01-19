@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 
 // Next imports:
 import { NextPage } from 'next';
+import Router from 'next/router'
 
 // Lodash
 import _ from "lodash";
@@ -41,6 +42,7 @@ import { ClientRequestCache } from '../utils/ClientRequestCache';
 import HistorySelector, { historySelectContainerWidth } from '../components/HistorySelector';
 import { ParamPrefixes, ParamDefaults } from '../utils/FilterModels';
 import { HistoryManager } from '../utils/HistoryManager';
+import { UrlRouting } from '../utils/UrlRouting';
 
 // Library imports:
 import fetch from 'isomorphic-unfetch';
@@ -57,9 +59,10 @@ interface Props<PARAMS> {
   onChangeState: (newParams: PARAMS) => void;
   onChangeCommonState: (newCommonParams: CommonFilterParams) => void;
   tablePrefix: string,
-  buildParamsFromState: (inHandleResponse: Boolean) => PARAMS;
+  buildParamsFromState: (includeFilterParams: Boolean) => PARAMS;
   childHandleResponse: (json: any, wasError: Boolean) => void;
   childSubmitRequest: (paramStr: string, callback: (resp: fetch.IsomorphicResponse) => void) => void;
+  majorParamsDisabled?: boolean; //(not currently used but would allow you to block changing team/seeason/gender)
 }
 
 /** Type workaround per https://stackoverflow.com/questions/51459971/type-of-generic-stateless-component-react-or-extending-generic-function-interfa */
@@ -68,7 +71,8 @@ type CommonFilterI<PARAMS = any> = React.FunctionComponent<Props<PARAMS>>
 const CommonFilter: CommonFilterI = ({
     children,
     startingState, onChangeState, onChangeCommonState,
-    tablePrefix, buildParamsFromState, childHandleResponse, childSubmitRequest
+    tablePrefix, buildParamsFromState, childHandleResponse, childSubmitRequest,
+    majorParamsDisabled
 }) => {
 
   // Data model
@@ -101,6 +105,8 @@ const CommonFilter: CommonFilterI = ({
   }, [ team, year, gender, minRankFilter, maxRankFilter ]);
 
   const [ submitDisabled, setSubmitDisabled ] = useState(false); // (always start as true on page load)
+  const [ reportIsDisabled, setReportIsDisabled ] = useState(false); //(same as above)
+
 
   const isDebug = (process.env.NODE_ENV !== 'production');
 
@@ -108,12 +114,14 @@ const CommonFilter: CommonFilterI = ({
 
   // Utils
 
-  const currentJsonEpoch = dataLastUpdated[`${gender}_${year}`] || -1;
+  const genderYear = `${gender}_${year}`;
+  const currentJsonEpoch = dataLastUpdated[genderYear] || -1;
 
   /** Checks if the input has been changed, and also handles on page load logic */
   useEffect(() => {
     initClipboard();
     setSubmitDisabled(shouldSubmitBeDisabled());
+    setReportIsDisabled(_.isEmpty(team) || _.isEmpty(gender) || _.isEmpty(year));
 
     // Add "enter" to submit page (do on every effect, since removal occurs on every effect, see return below)
     const submitListener = (event: any) => {
@@ -136,8 +144,8 @@ const CommonFilter: CommonFilterI = ({
       const epochRefreshed = ClientRequestCache.refreshEpoch(gender, year, currentJsonEpoch, isDebug);
 
       // Check for pre-loads:
-      Object.entries(preloadedData || {}).map(function(keyVal) {
-        //TODO: check for prefix?
+      Object.entries(preloadedData[genderYear] || {}).map(function(keyVal) {
+        // Ignore anything that isn't for my year or gender
         const key = keyVal[0];
         const valAsJson = keyVal[1];
         if (!epochRefreshed && ClientRequestCache.peekForResponse(key, "")) {
@@ -168,8 +176,12 @@ const CommonFilter: CommonFilterI = ({
       const cachedJson = ClientRequestCache.decacheResponse(
         newParamsStr, tablePrefix, currentJsonEpoch, isDebug
       );
-      if (cachedJson) {
-        HistoryManager.addParamsToHistory(`${tablePrefix}${newParamsStr}`);
+      if (cachedJson && _.isEmpty(cachedJson)) {
+        // Special case: make an API call
+        console.log(`(Found a placeholder cache element for [${tablePrefix}${newParamsStr}])`);
+        onSubmit();
+      } else if (cachedJson) {
+        HistoryManager.addParamsToHistory(newParamsStr, tablePrefix);
         handleResponse(cachedJson);
       } else {
         console.log(`(no pre-cached entry found)`);
@@ -205,7 +217,7 @@ const CommonFilter: CommonFilterI = ({
   /** Handles the response from ES to a stats calc request */
   function handleResponse(json: any) {
     setQueryIsLoading(false);
-    const newParams = buildParamsFromState(true); //TODO need to merge optionally
+    const newParams = buildParamsFromState(true);
     const wasError = isResponseError(json);
     if (!wasError) {
       setAtLeastOneQueryMade(true);
@@ -221,13 +233,15 @@ const CommonFilter: CommonFilterI = ({
     const newParamsStr = queryString.stringify(buildParamsFromState(false));
 
     // Store every request in history, successful or not:
-    HistoryManager.addParamsToHistory(`${tablePrefix}${newParamsStr}`);
+    // including the filtering on the results
+    const newParamsStrWithFilterParams = queryString.stringify(buildParamsFromState(true));
+    HistoryManager.addParamsToHistory(newParamsStrWithFilterParams, tablePrefix);
 
     // Check if it's in the cache:
     const cachedJson = ClientRequestCache.decacheResponse(
       newParamsStr, tablePrefix, currentJsonEpoch, isDebug
     );
-    if (cachedJson) {
+    if (cachedJson && !_.isEmpty(cachedJson)) { //(ignore placeholders here)
       handleResponse(cachedJson);
     } else {
       childSubmitRequest(newParamsStr, function(response: fetch.IsomorphicResponse) {
@@ -247,8 +261,18 @@ const CommonFilter: CommonFilterI = ({
       })
     }
   }
-  function onSeeExample() {
-    if (tablePrefix == ParamPrefixes.game) {
+
+  /** Load the designated example */
+  function onSeeExample(isReport: boolean = false) {
+    if (isReport || (tablePrefix == ParamPrefixes.report)) {
+      if (gender == "Women") {
+        const newUrl = `${PreloadedDataSamples.womenLineup}`;
+        window.location.href = `/TeamReport?${newUrl}`;
+      } else { //(default is men)
+        const newUrl = `${PreloadedDataSamples.menLineup}`;
+        window.location.href = `/TeamReport?${newUrl}`;
+      }
+    } else if (tablePrefix == ParamPrefixes.game) {
       if (gender == "Women") {
         const newUrl = `${PreloadedDataSamples.womenOnOff}`;
         window.location.href = `/?${newUrl}`;
@@ -292,6 +316,14 @@ const CommonFilter: CommonFilterI = ({
         }
       });
       newClipboard.on('success', (event: ClipboardJS.Event) => {
+        // Add the saved entry to the clipbaorrd
+        const newParamsStrWithFilterParams = queryString.stringify(buildParamsFromState(true));
+
+/**/
+console.log("??? " + newParamsStrWithFilterParams + " / " + window.location.href);
+
+        HistoryManager.addParamsToHistory(newParamsStrWithFilterParams, tablePrefix);
+        // Clear the selection in some visually pleasing way
         setTimeout(function() {
           event.clearSelection();
         }, 150);
@@ -301,6 +333,47 @@ const CommonFilter: CommonFilterI = ({
   }
 
   // Visual components:
+
+  /** For on/off analysis, add a button that switches to a report button */
+  const getReportButton = () => {
+
+    const reportButtonTooltip = (
+      <Tooltip id="reportButtonTooltip">Shows On/Off report for the 'Baseline' query only</Tooltip>
+    );
+    const onReport = () => {
+
+      // Build a report query
+      const parentParams = buildParamsFromState(false);
+      const onOffReportParams = {
+        lineupQuery: (tablePrefix == ParamPrefixes.game) ? parentParams.baseQuery : parentParams.lineupQuery,
+        team: parentParams.team, year: parentParams.year, gender: parentParams.gender,
+        minRank: parentParams.minRank, maxRank: parentParams.maxRank
+      };
+      const paramStr = queryString.stringify(onOffReportParams);
+      const reportUrl = UrlRouting.getTeamReportUrl(onOffReportParams);
+
+      // Is this query already cached?
+      const cachedJson = ClientRequestCache.decacheResponse(
+        paramStr, ParamPrefixes.report, currentJsonEpoch, false
+      );
+      if (!cachedJson) { // If not, inject {} which is interpreted as "make a call on page load"
+        ClientRequestCache.directInsertCache(
+          paramStr, ParamPrefixes.report, "{}", currentJsonEpoch, false
+        );
+      }
+      Router.push(reportUrl, reportUrl);
+    };
+
+    if ((tablePrefix == ParamPrefixes.game) || (tablePrefix == ParamPrefixes.lineup)) {
+      return <span>
+        <span>&nbsp;&nbsp;</span>
+        <OverlayTrigger placement="auto" overlay={reportButtonTooltip}>
+          <Button disabled={reportIsDisabled} variant="secondary" onClick={onReport}>Report</Button>
+        </OverlayTrigger>
+      </span>;
+    }
+  };
+
 
   /** Let the user know that he might need to change */
   const MenuList = (props: any)  => {
@@ -341,7 +414,7 @@ const CommonFilter: CommonFilterI = ({
   /** Copy to clipboard button */
   const getCopyLinkButton = () => {
     const tooltip = (
-      <Tooltip id="copyLinkTooltip">Copies URL to clipboard</Tooltip>
+      <Tooltip id="copyLinkTooltip">Copies URL to clipboard (and saves state to history)</Tooltip>
     );
     return  <OverlayTrigger placement="auto" overlay={tooltip}>
         <Button className="float-left" id="copyLink" variant="outline-secondary" size="sm">
@@ -350,13 +423,22 @@ const CommonFilter: CommonFilterI = ({
       </OverlayTrigger>;
   };
   /** If no team is specified, add the option to jump to an example */
-  const getExampleButtonIfNoTeam = () => {
+  const getExampleButtonsIfNoTeam = () => {
+    const getMaybeReportButton = () => {
+      if (tablePrefix == ParamPrefixes.game) {
+        return <span>
+          <span>&nbsp;&nbsp;</span>
+          <Button variant="warning" onClick={() => onSeeExample(true)}><b>Example Report!</b></Button>
+        </span>;
+      }
+    }
     if (team == "") {
       return <Shake
         h={20} v={5} r={5} q={5} int={25} fixed={true}
         className="float-right"
       >
-        <Button variant="warning" onClick={onSeeExample}><b>See Example ({gender})!</b></Button>
+        <Button variant="warning" onClick={() => onSeeExample()}><b>Example ({gender})!</b></Button>
+        {getMaybeReportButton()}
       </Shake>;
     }
   }
@@ -369,6 +451,7 @@ const CommonFilter: CommonFilterI = ({
     <Form.Group as={Row}>
       <Col xs={6} sm={6} md={3} lg={2}>
         <Select
+          isDisabled={majorParamsDisabled}
           value={ stringToOption(gender) }
           options={Array.from(new Set(AvailableTeams.getTeams(team, year, null).map(
             (r) => r.gender
@@ -381,6 +464,7 @@ const CommonFilter: CommonFilterI = ({
       </Col>
       <Col xs={6} sm={6} md={3} lg={2}>
         <Select
+          isDisabled={majorParamsDisabled}
           value={ stringToOption(year) }
           options={Array.from(new Set(AvailableTeams.getTeams(team, null, gender).map(
             (r) => r.year
@@ -394,6 +478,7 @@ const CommonFilter: CommonFilterI = ({
       <Col className="w-100" bsPrefix="d-lg-none d-md-none"/>
       <Col xs={12} sm={12} md={6} lg={6}>
         <Select
+          isDisabled={majorParamsDisabled}
           components = { maybeMenuList() }
           isClearable={true}
           styles={{ menu: base => ({ ...base, zIndex: 1000 }) }}
@@ -451,7 +536,8 @@ const CommonFilter: CommonFilterI = ({
     </Form.Group>
     <Col>
       <Button disabled={submitDisabled} variant="primary" onClick={onSubmit}>Submit</Button>
-      {getExampleButtonIfNoTeam()}
+      {getReportButton()}
+      {getExampleButtonsIfNoTeam()}
     </Col>
   </Form></LoadingOverlay>;
 }

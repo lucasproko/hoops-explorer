@@ -17,6 +17,33 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot 1`] = `
             "render": [Function],
           }
         }
+        sm="6"
+      >
+        <InputGroup>
+          <InputGroupPrepend>
+            <InputGroupText
+              id="filter"
+            >
+              Filter
+            </InputGroupText>
+          </InputGroupPrepend>
+          <FormControl
+            onChange={[Function]}
+            placeholder="eg Player1Surname,Player2FirstName,-Player3Name"
+            value=""
+          />
+        </InputGroup>
+      </FormGroup>
+    </FormRow>
+    <FormRow>
+      <FormGroup
+        as={
+          Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "displayName": "Col",
+            "render": [Function],
+          }
+        }
         sm="3"
       >
         <InputGroup>
@@ -82,374 +109,385 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot 1`] = `
             defaultInputValue=""
             defaultMenuIsOpen={false}
             defaultValue={null}
+            formatGroupLabel={[Function]}
             onChange={[Function]}
             options={
               Array [
                 Object {
-                  "label": "P/100 (Descending / Offensive)",
-                  "value": "desc:off_ppp",
-                },
-                Object {
-                  "label": "P/100 (Ascending / Offensive)",
-                  "value": "asc:off_ppp",
-                },
-                Object {
-                  "label": "P/100 (Descending / Defensive)",
-                  "value": "desc:def_ppp",
-                },
-                Object {
-                  "label": "P/100 (Ascending / Defensive)",
-                  "value": "asc:def_ppp",
-                },
-                Object {
-                  "label": "P/100 (Descending / Off-Def Delta)",
-                  "value": "desc:diff_ppp",
-                },
-                Object {
-                  "label": "P/100 (Ascending / Off-Def Delta)",
-                  "value": "asc:diff_ppp",
-                },
-                Object {
-                  "label": "Adj P/100 (Descending / Offensive)",
-                  "value": "desc:off_adj_ppp",
-                },
-                Object {
-                  "label": "Adj P/100 (Ascending / Offensive)",
-                  "value": "asc:off_adj_ppp",
-                },
-                Object {
-                  "label": "Adj P/100 (Descending / Defensive)",
-                  "value": "desc:def_adj_ppp",
-                },
-                Object {
-                  "label": "Adj P/100 (Ascending / Defensive)",
-                  "value": "asc:def_adj_ppp",
-                },
-                Object {
-                  "label": "Adj P/100 (Descending / Off-Def Delta)",
-                  "value": "desc:diff_adj_ppp",
-                },
-                Object {
-                  "label": "Adj P/100 (Ascending / Off-Def Delta)",
-                  "value": "asc:diff_adj_ppp",
-                },
-                Object {
-                  "label": "eFG% (Descending / Offensive)",
-                  "value": "desc:off_efg",
-                },
-                Object {
-                  "label": "eFG% (Ascending / Offensive)",
-                  "value": "asc:off_efg",
-                },
-                Object {
-                  "label": "eFG% (Descending / Defensive)",
-                  "value": "desc:def_efg",
-                },
-                Object {
-                  "label": "eFG% (Ascending / Defensive)",
-                  "value": "asc:def_efg",
-                },
-                Object {
-                  "label": "eFG% (Descending / Off-Def Delta)",
-                  "value": "desc:diff_efg",
-                },
-                Object {
-                  "label": "eFG% (Ascending / Off-Def Delta)",
-                  "value": "asc:diff_efg",
-                },
-                Object {
-                  "label": "TO% (Descending / Offensive)",
-                  "value": "desc:off_to",
-                },
-                Object {
-                  "label": "TO% (Ascending / Offensive)",
-                  "value": "asc:off_to",
-                },
-                Object {
-                  "label": "TO% (Descending / Defensive)",
-                  "value": "desc:def_to",
-                },
-                Object {
-                  "label": "TO% (Ascending / Defensive)",
-                  "value": "asc:def_to",
-                },
-                Object {
-                  "label": "TO% (Descending / Off-Def Delta)",
-                  "value": "desc:diff_to",
-                },
-                Object {
-                  "label": "TO% (Ascending / Off-Def Delta)",
-                  "value": "asc:diff_to",
-                },
-                Object {
-                  "label": "ORB% (Descending / Offensive)",
-                  "value": "desc:off_orb",
-                },
-                Object {
-                  "label": "ORB% (Ascending / Offensive)",
-                  "value": "asc:off_orb",
-                },
-                Object {
-                  "label": "ORB% (Descending / Defensive)",
-                  "value": "desc:def_orb",
-                },
-                Object {
-                  "label": "ORB% (Ascending / Defensive)",
-                  "value": "asc:def_orb",
-                },
-                Object {
-                  "label": "ORB% (Descending / Off-Def Delta)",
-                  "value": "desc:diff_orb",
-                },
-                Object {
-                  "label": "ORB% (Ascending / Off-Def Delta)",
-                  "value": "asc:diff_orb",
-                },
-                Object {
-                  "label": "FTR (Descending / Offensive)",
-                  "value": "desc:off_ftr",
-                },
-                Object {
-                  "label": "FTR (Ascending / Offensive)",
-                  "value": "asc:off_ftr",
-                },
-                Object {
-                  "label": "FTR (Descending / Defensive)",
-                  "value": "desc:def_ftr",
-                },
-                Object {
-                  "label": "FTR (Ascending / Defensive)",
-                  "value": "asc:def_ftr",
-                },
-                Object {
-                  "label": "FTR (Descending / Off-Def Delta)",
-                  "value": "desc:diff_ftr",
-                },
-                Object {
-                  "label": "FTR (Ascending / Off-Def Delta)",
-                  "value": "asc:diff_ftr",
-                },
-                Object {
-                  "label": "3PR (Descending / Offensive)",
-                  "value": "desc:off_3pr",
-                },
-                Object {
-                  "label": "3PR (Ascending / Offensive)",
-                  "value": "asc:off_3pr",
-                },
-                Object {
-                  "label": "3PR (Descending / Defensive)",
-                  "value": "desc:def_3pr",
-                },
-                Object {
-                  "label": "3PR (Ascending / Defensive)",
-                  "value": "asc:def_3pr",
-                },
-                Object {
-                  "label": "3PR (Descending / Off-Def Delta)",
-                  "value": "desc:diff_3pr",
-                },
-                Object {
-                  "label": "3PR (Ascending / Off-Def Delta)",
-                  "value": "asc:diff_3pr",
-                },
-                Object {
-                  "label": "2PR mid (Descending / Offensive)",
-                  "value": "desc:off_2pmidr",
-                },
-                Object {
-                  "label": "2PR mid (Ascending / Offensive)",
-                  "value": "asc:off_2pmidr",
-                },
-                Object {
-                  "label": "2PR mid (Descending / Defensive)",
-                  "value": "desc:def_2pmidr",
-                },
-                Object {
-                  "label": "2PR mid (Ascending / Defensive)",
-                  "value": "asc:def_2pmidr",
-                },
-                Object {
-                  "label": "2PR mid (Descending / Off-Def Delta)",
-                  "value": "desc:diff_2pmidr",
-                },
-                Object {
-                  "label": "2PR mid (Ascending / Off-Def Delta)",
-                  "value": "asc:diff_2pmidr",
-                },
-                Object {
-                  "label": "2PR rim (Descending / Offensive)",
-                  "value": "desc:off_2primr",
-                },
-                Object {
-                  "label": "2PR rim (Ascending / Offensive)",
-                  "value": "asc:off_2primr",
-                },
-                Object {
-                  "label": "2PR rim (Descending / Defensive)",
-                  "value": "desc:def_2primr",
-                },
-                Object {
-                  "label": "2PR rim (Ascending / Defensive)",
-                  "value": "asc:def_2primr",
-                },
-                Object {
-                  "label": "2PR rim (Descending / Off-Def Delta)",
-                  "value": "desc:diff_2primr",
-                },
-                Object {
-                  "label": "2PR rim (Ascending / Off-Def Delta)",
-                  "value": "asc:diff_2primr",
-                },
-                Object {
-                  "label": "3P% (Descending / Offensive)",
-                  "value": "desc:off_3p",
-                },
-                Object {
-                  "label": "3P% (Ascending / Offensive)",
-                  "value": "asc:off_3p",
-                },
-                Object {
-                  "label": "3P% (Descending / Defensive)",
-                  "value": "desc:def_3p",
-                },
-                Object {
-                  "label": "3P% (Ascending / Defensive)",
-                  "value": "asc:def_3p",
-                },
-                Object {
-                  "label": "3P% (Descending / Off-Def Delta)",
-                  "value": "desc:diff_3p",
-                },
-                Object {
-                  "label": "3P% (Ascending / Off-Def Delta)",
-                  "value": "asc:diff_3p",
-                },
-                Object {
-                  "label": "2P% (Descending / Offensive)",
-                  "value": "desc:off_2p",
-                },
-                Object {
-                  "label": "2P% (Ascending / Offensive)",
-                  "value": "asc:off_2p",
-                },
-                Object {
-                  "label": "2P% (Descending / Defensive)",
-                  "value": "desc:def_2p",
-                },
-                Object {
-                  "label": "2P% (Ascending / Defensive)",
-                  "value": "asc:def_2p",
-                },
-                Object {
-                  "label": "2P% (Descending / Off-Def Delta)",
-                  "value": "desc:diff_2p",
-                },
-                Object {
-                  "label": "2P% (Ascending / Off-Def Delta)",
-                  "value": "asc:diff_2p",
-                },
-                Object {
-                  "label": "2P% mid (Descending / Offensive)",
-                  "value": "desc:off_2pmid",
-                },
-                Object {
-                  "label": "2P% mid (Ascending / Offensive)",
-                  "value": "asc:off_2pmid",
-                },
-                Object {
-                  "label": "2P% mid (Descending / Defensive)",
-                  "value": "desc:def_2pmid",
-                },
-                Object {
-                  "label": "2P% mid (Ascending / Defensive)",
-                  "value": "asc:def_2pmid",
-                },
-                Object {
-                  "label": "2P% mid (Descending / Off-Def Delta)",
-                  "value": "desc:diff_2pmid",
-                },
-                Object {
-                  "label": "2P% mid (Ascending / Off-Def Delta)",
-                  "value": "asc:diff_2pmid",
-                },
-                Object {
-                  "label": "2P% rim (Descending / Offensive)",
-                  "value": "desc:off_2prim",
-                },
-                Object {
-                  "label": "2P% rim (Ascending / Offensive)",
-                  "value": "asc:off_2prim",
-                },
-                Object {
-                  "label": "2P% rim (Descending / Defensive)",
-                  "value": "desc:def_2prim",
-                },
-                Object {
-                  "label": "2P% rim (Ascending / Defensive)",
-                  "value": "asc:def_2prim",
-                },
-                Object {
-                  "label": "2P% rim (Descending / Off-Def Delta)",
-                  "value": "desc:diff_2prim",
-                },
-                Object {
-                  "label": "2P% rim (Ascending / Off-Def Delta)",
-                  "value": "asc:diff_2prim",
-                },
-                Object {
-                  "label": "Poss (Descending / Offensive)",
-                  "value": "desc:off_poss",
-                },
-                Object {
-                  "label": "Poss (Ascending / Offensive)",
-                  "value": "asc:off_poss",
-                },
-                Object {
-                  "label": "Poss (Descending / Defensive)",
-                  "value": "desc:def_poss",
-                },
-                Object {
-                  "label": "Poss (Ascending / Defensive)",
-                  "value": "asc:def_poss",
-                },
-                Object {
-                  "label": "Poss (Descending / Off-Def Delta)",
-                  "value": "desc:diff_poss",
-                },
-                Object {
-                  "label": "Poss (Ascending / Off-Def Delta)",
-                  "value": "asc:diff_poss",
-                },
-                Object {
-                  "label": "SoS (Descending / Offensive)",
-                  "value": "desc:off_adj_opp",
-                },
-                Object {
-                  "label": "SoS (Ascending / Offensive)",
-                  "value": "asc:off_adj_opp",
-                },
-                Object {
-                  "label": "SoS (Descending / Defensive)",
-                  "value": "desc:def_adj_opp",
-                },
-                Object {
-                  "label": "SoS (Ascending / Defensive)",
-                  "value": "asc:def_adj_opp",
-                },
-                Object {
-                  "label": "SoS (Descending / Off-Def Delta)",
-                  "value": "desc:diff_adj_opp",
-                },
-                Object {
-                  "label": "SoS (Ascending / Off-Def Delta)",
-                  "value": "asc:diff_adj_opp",
+                  "label": "Most useful",
+                  "options": Array [
+                    Object {
+                      "label": "Poss (Desc. / Offensive)",
+                      "value": "desc:off_poss",
+                    },
+                    Object {
+                      "label": "Adj P/100 (Desc. / Off-Def)",
+                      "value": "desc:diff_adj_ppp",
+                    },
+                    Object {
+                      "label": "Adj P/100 (Desc. / Offensive)",
+                      "value": "desc:off_adj_ppp",
+                    },
+                    Object {
+                      "label": "Adj P/100 (Asc. / Defensive)",
+                      "value": "asc:def_adj_ppp",
+                    },
+                  ],
+                },
+                Object {
+                  "label": "Other",
+                  "options": Array [
+                    Object {
+                      "label": "P/100 (Desc. / Offensive)",
+                      "value": "desc:off_ppp",
+                    },
+                    Object {
+                      "label": "P/100 (Asc. / Offensive)",
+                      "value": "asc:off_ppp",
+                    },
+                    Object {
+                      "label": "P/100 (Desc. / Defensive)",
+                      "value": "desc:def_ppp",
+                    },
+                    Object {
+                      "label": "P/100 (Asc. / Defensive)",
+                      "value": "asc:def_ppp",
+                    },
+                    Object {
+                      "label": "P/100 (Desc. / Off-Def)",
+                      "value": "desc:diff_ppp",
+                    },
+                    Object {
+                      "label": "P/100 (Asc. / Off-Def)",
+                      "value": "asc:diff_ppp",
+                    },
+                    Object {
+                      "label": "Adj P/100 (Asc. / Offensive)",
+                      "value": "asc:off_adj_ppp",
+                    },
+                    Object {
+                      "label": "Adj P/100 (Desc. / Defensive)",
+                      "value": "desc:def_adj_ppp",
+                    },
+                    Object {
+                      "label": "Adj P/100 (Asc. / Off-Def)",
+                      "value": "asc:diff_adj_ppp",
+                    },
+                    Object {
+                      "label": "eFG% (Desc. / Offensive)",
+                      "value": "desc:off_efg",
+                    },
+                    Object {
+                      "label": "eFG% (Asc. / Offensive)",
+                      "value": "asc:off_efg",
+                    },
+                    Object {
+                      "label": "eFG% (Desc. / Defensive)",
+                      "value": "desc:def_efg",
+                    },
+                    Object {
+                      "label": "eFG% (Asc. / Defensive)",
+                      "value": "asc:def_efg",
+                    },
+                    Object {
+                      "label": "eFG% (Desc. / Off-Def)",
+                      "value": "desc:diff_efg",
+                    },
+                    Object {
+                      "label": "eFG% (Asc. / Off-Def)",
+                      "value": "asc:diff_efg",
+                    },
+                    Object {
+                      "label": "TO% (Desc. / Offensive)",
+                      "value": "desc:off_to",
+                    },
+                    Object {
+                      "label": "TO% (Asc. / Offensive)",
+                      "value": "asc:off_to",
+                    },
+                    Object {
+                      "label": "TO% (Desc. / Defensive)",
+                      "value": "desc:def_to",
+                    },
+                    Object {
+                      "label": "TO% (Asc. / Defensive)",
+                      "value": "asc:def_to",
+                    },
+                    Object {
+                      "label": "TO% (Desc. / Off-Def)",
+                      "value": "desc:diff_to",
+                    },
+                    Object {
+                      "label": "TO% (Asc. / Off-Def)",
+                      "value": "asc:diff_to",
+                    },
+                    Object {
+                      "label": "ORB% (Desc. / Offensive)",
+                      "value": "desc:off_orb",
+                    },
+                    Object {
+                      "label": "ORB% (Asc. / Offensive)",
+                      "value": "asc:off_orb",
+                    },
+                    Object {
+                      "label": "ORB% (Desc. / Defensive)",
+                      "value": "desc:def_orb",
+                    },
+                    Object {
+                      "label": "ORB% (Asc. / Defensive)",
+                      "value": "asc:def_orb",
+                    },
+                    Object {
+                      "label": "ORB% (Desc. / Off-Def)",
+                      "value": "desc:diff_orb",
+                    },
+                    Object {
+                      "label": "ORB% (Asc. / Off-Def)",
+                      "value": "asc:diff_orb",
+                    },
+                    Object {
+                      "label": "FTR (Desc. / Offensive)",
+                      "value": "desc:off_ftr",
+                    },
+                    Object {
+                      "label": "FTR (Asc. / Offensive)",
+                      "value": "asc:off_ftr",
+                    },
+                    Object {
+                      "label": "FTR (Desc. / Defensive)",
+                      "value": "desc:def_ftr",
+                    },
+                    Object {
+                      "label": "FTR (Asc. / Defensive)",
+                      "value": "asc:def_ftr",
+                    },
+                    Object {
+                      "label": "FTR (Desc. / Off-Def)",
+                      "value": "desc:diff_ftr",
+                    },
+                    Object {
+                      "label": "FTR (Asc. / Off-Def)",
+                      "value": "asc:diff_ftr",
+                    },
+                    Object {
+                      "label": "3PR (Desc. / Offensive)",
+                      "value": "desc:off_3pr",
+                    },
+                    Object {
+                      "label": "3PR (Asc. / Offensive)",
+                      "value": "asc:off_3pr",
+                    },
+                    Object {
+                      "label": "3PR (Desc. / Defensive)",
+                      "value": "desc:def_3pr",
+                    },
+                    Object {
+                      "label": "3PR (Asc. / Defensive)",
+                      "value": "asc:def_3pr",
+                    },
+                    Object {
+                      "label": "3PR (Desc. / Off-Def)",
+                      "value": "desc:diff_3pr",
+                    },
+                    Object {
+                      "label": "3PR (Asc. / Off-Def)",
+                      "value": "asc:diff_3pr",
+                    },
+                    Object {
+                      "label": "2PR mid (Desc. / Offensive)",
+                      "value": "desc:off_2pmidr",
+                    },
+                    Object {
+                      "label": "2PR mid (Asc. / Offensive)",
+                      "value": "asc:off_2pmidr",
+                    },
+                    Object {
+                      "label": "2PR mid (Desc. / Defensive)",
+                      "value": "desc:def_2pmidr",
+                    },
+                    Object {
+                      "label": "2PR mid (Asc. / Defensive)",
+                      "value": "asc:def_2pmidr",
+                    },
+                    Object {
+                      "label": "2PR mid (Desc. / Off-Def)",
+                      "value": "desc:diff_2pmidr",
+                    },
+                    Object {
+                      "label": "2PR mid (Asc. / Off-Def)",
+                      "value": "asc:diff_2pmidr",
+                    },
+                    Object {
+                      "label": "2PR rim (Desc. / Offensive)",
+                      "value": "desc:off_2primr",
+                    },
+                    Object {
+                      "label": "2PR rim (Asc. / Offensive)",
+                      "value": "asc:off_2primr",
+                    },
+                    Object {
+                      "label": "2PR rim (Desc. / Defensive)",
+                      "value": "desc:def_2primr",
+                    },
+                    Object {
+                      "label": "2PR rim (Asc. / Defensive)",
+                      "value": "asc:def_2primr",
+                    },
+                    Object {
+                      "label": "2PR rim (Desc. / Off-Def)",
+                      "value": "desc:diff_2primr",
+                    },
+                    Object {
+                      "label": "2PR rim (Asc. / Off-Def)",
+                      "value": "asc:diff_2primr",
+                    },
+                    Object {
+                      "label": "3P% (Desc. / Offensive)",
+                      "value": "desc:off_3p",
+                    },
+                    Object {
+                      "label": "3P% (Asc. / Offensive)",
+                      "value": "asc:off_3p",
+                    },
+                    Object {
+                      "label": "3P% (Desc. / Defensive)",
+                      "value": "desc:def_3p",
+                    },
+                    Object {
+                      "label": "3P% (Asc. / Defensive)",
+                      "value": "asc:def_3p",
+                    },
+                    Object {
+                      "label": "3P% (Desc. / Off-Def)",
+                      "value": "desc:diff_3p",
+                    },
+                    Object {
+                      "label": "3P% (Asc. / Off-Def)",
+                      "value": "asc:diff_3p",
+                    },
+                    Object {
+                      "label": "2P% (Desc. / Offensive)",
+                      "value": "desc:off_2p",
+                    },
+                    Object {
+                      "label": "2P% (Asc. / Offensive)",
+                      "value": "asc:off_2p",
+                    },
+                    Object {
+                      "label": "2P% (Desc. / Defensive)",
+                      "value": "desc:def_2p",
+                    },
+                    Object {
+                      "label": "2P% (Asc. / Defensive)",
+                      "value": "asc:def_2p",
+                    },
+                    Object {
+                      "label": "2P% (Desc. / Off-Def)",
+                      "value": "desc:diff_2p",
+                    },
+                    Object {
+                      "label": "2P% (Asc. / Off-Def)",
+                      "value": "asc:diff_2p",
+                    },
+                    Object {
+                      "label": "2P% mid (Desc. / Offensive)",
+                      "value": "desc:off_2pmid",
+                    },
+                    Object {
+                      "label": "2P% mid (Asc. / Offensive)",
+                      "value": "asc:off_2pmid",
+                    },
+                    Object {
+                      "label": "2P% mid (Desc. / Defensive)",
+                      "value": "desc:def_2pmid",
+                    },
+                    Object {
+                      "label": "2P% mid (Asc. / Defensive)",
+                      "value": "asc:def_2pmid",
+                    },
+                    Object {
+                      "label": "2P% mid (Desc. / Off-Def)",
+                      "value": "desc:diff_2pmid",
+                    },
+                    Object {
+                      "label": "2P% mid (Asc. / Off-Def)",
+                      "value": "asc:diff_2pmid",
+                    },
+                    Object {
+                      "label": "2P% rim (Desc. / Offensive)",
+                      "value": "desc:off_2prim",
+                    },
+                    Object {
+                      "label": "2P% rim (Asc. / Offensive)",
+                      "value": "asc:off_2prim",
+                    },
+                    Object {
+                      "label": "2P% rim (Desc. / Defensive)",
+                      "value": "desc:def_2prim",
+                    },
+                    Object {
+                      "label": "2P% rim (Asc. / Defensive)",
+                      "value": "asc:def_2prim",
+                    },
+                    Object {
+                      "label": "2P% rim (Desc. / Off-Def)",
+                      "value": "desc:diff_2prim",
+                    },
+                    Object {
+                      "label": "2P% rim (Asc. / Off-Def)",
+                      "value": "asc:diff_2prim",
+                    },
+                    Object {
+                      "label": "Poss (Asc. / Offensive)",
+                      "value": "asc:off_poss",
+                    },
+                    Object {
+                      "label": "Poss (Desc. / Defensive)",
+                      "value": "desc:def_poss",
+                    },
+                    Object {
+                      "label": "Poss (Asc. / Defensive)",
+                      "value": "asc:def_poss",
+                    },
+                    Object {
+                      "label": "Poss (Desc. / Off-Def)",
+                      "value": "desc:diff_poss",
+                    },
+                    Object {
+                      "label": "Poss (Asc. / Off-Def)",
+                      "value": "asc:diff_poss",
+                    },
+                    Object {
+                      "label": "SoS (Desc. / Offensive)",
+                      "value": "desc:off_adj_opp",
+                    },
+                    Object {
+                      "label": "SoS (Asc. / Offensive)",
+                      "value": "asc:off_adj_opp",
+                    },
+                    Object {
+                      "label": "SoS (Desc. / Defensive)",
+                      "value": "desc:def_adj_opp",
+                    },
+                    Object {
+                      "label": "SoS (Asc. / Defensive)",
+                      "value": "asc:def_adj_opp",
+                    },
+                    Object {
+                      "label": "SoS (Desc. / Off-Def)",
+                      "value": "desc:diff_adj_opp",
+                    },
+                    Object {
+                      "label": "SoS (Asc. / Off-Def)",
+                      "value": "asc:diff_adj_opp",
+                    },
+                  ],
                 },
               ]
             }
             value={
               Object {
-                "label": "Poss (Descending / Offensive)",
+                "label": "Poss (Desc. / Offensive)",
                 "value": "desc:off_poss",
               }
             }
@@ -468,141 +506,218 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot 1`] = `
               GenericTableDataRow {
                 "cellMetaFn": [Function],
                 "dataObj": Object {
-                  "adj_opp_def": Object {
-                    "value": 96.89926470588235,
-                  },
-                  "adj_opp_off": Object {
-                    "value": 111.85324675324674,
-                  },
                   "def_2p": Object {
-                    "value": 0.4470198675496689,
+                    "value": 0.43478260869565216,
                   },
                   "def_2pmid": Object {
-                    "value": 0.3655913978494624,
+                    "value": 0.3269230769230769,
                   },
                   "def_2pmidr": Object {
-                    "value": 0.3563218390804598,
+                    "value": 0.3291139240506329,
                   },
                   "def_2prim": Object {
-                    "value": 0.5775862068965517,
+                    "value": 0.575,
                   },
                   "def_2primr": Object {
-                    "value": 0.2222222222222222,
+                    "value": 0.25316455696202533,
                   },
                   "def_3p": Object {
-                    "value": 0.2727272727272727,
+                    "value": 0.2878787878787879,
                   },
                   "def_3pr": Object {
-                    "value": 0.421455938697318,
+                    "value": 0.4177215189873418,
+                  },
+                  "def_adj_opp": Object {
+                    "value": 95.56989795918368,
                   },
                   "def_adj_ppp": Object {
-                    "value": undefined,
+                    "value": 87.04948075748321,
                   },
                   "def_efg": Object {
-                    "value": 0.43103448275862066,
+                    "value": 0.43354430379746833,
                   },
                   "def_ftr": Object {
-                    "value": 0.24521072796934865,
+                    "value": 0.2974683544303797,
                   },
                   "def_orb": Object {
-                    "value": 0.2716417910447761,
+                    "value": 0.1743119266055046,
                   },
                   "def_poss": Object {
-                    "value": 539,
+                    "value": 189,
                   },
                   "def_ppp": Object {
-                    "value": 100.55658627087199,
+                    "value": 90.47619047619048,
                   },
                   "def_title": "",
                   "def_to": Object {
-                    "value": 0.09461966604823747,
+                    "value": 0.14285714285714285,
                   },
-                  "doc_count": 97,
-                  "key": "AnCowan_BrFernando_DaMorsell_ErAyala_JaSmith",
+                  "doc_count": 38,
+                  "key": "AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith",
                   "off_2p": Object {
-                    "value": 0.5652173913043478,
+                    "value": 0.5098039215686274,
                   },
                   "off_2pmid": Object {
-                    "value": 0.4533333333333333,
+                    "value": 0.2727272727272727,
                   },
                   "off_2pmidr": Object {
-                    "value": 0.3232758620689655,
+                    "value": 0.2634730538922156,
                   },
                   "off_2prim": Object {
-                    "value": 0.6778523489932886,
+                    "value": 0.6896551724137931,
                   },
                   "off_2primr": Object {
-                    "value": 0.32112068965517243,
+                    "value": 0.3473053892215569,
                   },
                   "off_3p": Object {
-                    "value": 0.3515151515151515,
+                    "value": 0.27692307692307694,
                   },
                   "off_3pr": Object {
-                    "value": 0.35560344827586204,
+                    "value": 0.38922155688622756,
+                  },
+                  "off_adj_opp": Object {
+                    "value": 103.93650793650794,
                   },
                   "off_adj_ppp": Object {
-                    "value": undefined,
+                    "value": 116.38025379436998,
                   },
                   "off_efg": Object {
-                    "value": 0.5517241379310345,
+                    "value": 0.47305389221556887,
                   },
                   "off_ftr": Object {
-                    "value": 0.28879310344827586,
+                    "value": 0.49700598802395207,
                   },
                   "off_orb": Object {
-                    "value": 0.316,
+                    "value": 0.3644859813084112,
                   },
                   "off_poss": Object {
-                    "value": 544,
+                    "value": 196,
                   },
                   "off_ppp": Object {
-                    "value": 112.31617647058823,
+                    "value": 111.22448979591837,
                   },
-                  "off_title": "AnCowan / BrFernando / DaMorsell / ErAyala / JaSmith",
+                  "off_title": "AaWiggins / AnCowan / DaMorsell / ErAyala / JaSmith",
                   "off_to": Object {
-                    "value": 0.1875,
+                    "value": 0.14285714285714285,
+                  },
+                  "players_array": Object {
+                    "hits": Object {
+                      "hits": Array [
+                        Object {
+                          "_id": "k5mWzG4B8OZ7gWZVgjRk",
+                          "_index": "bigten_2019",
+                          "_score": 4.760141,
+                          "_source": Object {
+                            "players": Array [
+                              Object {
+                                "code": "AaWiggins",
+                                "id": "Wiggins, Aaron",
+                              },
+                              Object {
+                                "code": "AnCowan",
+                                "id": "Cowan, Anthony",
+                              },
+                              Object {
+                                "code": "DaMorsell",
+                                "id": "Morsell, Darryl",
+                              },
+                              Object {
+                                "code": "ErAyala",
+                                "id": "Ayala, Eric",
+                              },
+                              Object {
+                                "code": "JaSmith",
+                                "id": "Smith, Jalen",
+                              },
+                            ],
+                          },
+                          "_type": "_doc",
+                        },
+                      ],
+                      "max_score": 4.760141,
+                      "total": Object {
+                        "relation": "eq",
+                        "value": 38,
+                      },
+                    },
                   },
                   "points_allowed": Object {
-                    "value": 542,
+                    "value": 171,
                   },
                   "points_scored": Object {
-                    "value": 611,
+                    "value": 218,
+                  },
+                  "total_def_2p_attempts": Object {
+                    "value": 92,
+                  },
+                  "total_def_2p_made": Object {
+                    "value": 40,
                   },
                   "total_def_2pmid_attempts": Object {
-                    "value": 186,
+                    "value": 52,
                   },
                   "total_def_2pmid_made": Object {
-                    "value": 68,
+                    "value": 17,
                   },
                   "total_def_2prim_attempts": Object {
-                    "value": 116,
+                    "value": 40,
                   },
                   "total_def_2prim_made": Object {
-                    "value": 67,
+                    "value": 23,
                   },
-                  "total_def_fga": Object {
-                    "value": 522,
+                  "total_def_3p_attempts": Object {
+                    "value": 66,
                   },
-                  "total_def_fta": Object {
-                    "value": 128,
+                  "total_def_3p_made": Object {
+                    "value": 19,
                   },
-                  "total_off_2pmid_attempts": Object {
-                    "value": 150,
-                  },
-                  "total_off_2pmid_made": Object {
+                  "total_def_drb": Object {
                     "value": 68,
                   },
+                  "total_def_fga": Object {
+                    "value": 158,
+                  },
+                  "total_def_fta": Object {
+                    "value": 47,
+                  },
+                  "total_def_orb": Object {
+                    "value": 19,
+                  },
+                  "total_off_2p_attempts": Object {
+                    "value": 102,
+                  },
+                  "total_off_2p_made": Object {
+                    "value": 52,
+                  },
+                  "total_off_2pmid_attempts": Object {
+                    "value": 44,
+                  },
+                  "total_off_2pmid_made": Object {
+                    "value": 12,
+                  },
                   "total_off_2prim_attempts": Object {
-                    "value": 149,
+                    "value": 58,
                   },
                   "total_off_2prim_made": Object {
-                    "value": 101,
+                    "value": 40,
+                  },
+                  "total_off_3p_attempts": Object {
+                    "value": 65,
+                  },
+                  "total_off_3p_made": Object {
+                    "value": 18,
+                  },
+                  "total_off_drb": Object {
+                    "value": 90,
                   },
                   "total_off_fga": Object {
-                    "value": 464,
+                    "value": 167,
                   },
                   "total_off_fta": Object {
-                    "value": 134,
+                    "value": 83,
+                  },
+                  "total_off_orb": Object {
+                    "value": 39,
                   },
                 },
                 "kind": "data-row",
@@ -611,141 +726,218 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot 1`] = `
               GenericTableDataRow {
                 "cellMetaFn": [Function],
                 "dataObj": Object {
-                  "adj_opp_def": Object {
-                    "value": 96.89926470588235,
-                  },
-                  "adj_opp_off": Object {
-                    "value": 111.85324675324674,
-                  },
                   "def_2p": Object {
-                    "value": 0.4470198675496689,
+                    "value": 0.43478260869565216,
                   },
                   "def_2pmid": Object {
-                    "value": 0.3655913978494624,
+                    "value": 0.3269230769230769,
                   },
                   "def_2pmidr": Object {
-                    "value": 0.3563218390804598,
+                    "value": 0.3291139240506329,
                   },
                   "def_2prim": Object {
-                    "value": 0.5775862068965517,
+                    "value": 0.575,
                   },
                   "def_2primr": Object {
-                    "value": 0.2222222222222222,
+                    "value": 0.25316455696202533,
                   },
                   "def_3p": Object {
-                    "value": 0.2727272727272727,
+                    "value": 0.2878787878787879,
                   },
                   "def_3pr": Object {
-                    "value": 0.421455938697318,
+                    "value": 0.4177215189873418,
+                  },
+                  "def_adj_opp": Object {
+                    "value": 95.56989795918368,
                   },
                   "def_adj_ppp": Object {
-                    "value": undefined,
+                    "value": 87.04948075748321,
                   },
                   "def_efg": Object {
-                    "value": 0.43103448275862066,
+                    "value": 0.43354430379746833,
                   },
                   "def_ftr": Object {
-                    "value": 0.24521072796934865,
+                    "value": 0.2974683544303797,
                   },
                   "def_orb": Object {
-                    "value": 0.2716417910447761,
+                    "value": 0.1743119266055046,
                   },
                   "def_poss": Object {
-                    "value": 539,
+                    "value": 189,
                   },
                   "def_ppp": Object {
-                    "value": 100.55658627087199,
+                    "value": 90.47619047619048,
                   },
                   "def_title": "",
                   "def_to": Object {
-                    "value": 0.09461966604823747,
+                    "value": 0.14285714285714285,
                   },
-                  "doc_count": 97,
-                  "key": "AnCowan_BrFernando_DaMorsell_ErAyala_JaSmith",
+                  "doc_count": 38,
+                  "key": "AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith",
                   "off_2p": Object {
-                    "value": 0.5652173913043478,
+                    "value": 0.5098039215686274,
                   },
                   "off_2pmid": Object {
-                    "value": 0.4533333333333333,
+                    "value": 0.2727272727272727,
                   },
                   "off_2pmidr": Object {
-                    "value": 0.3232758620689655,
+                    "value": 0.2634730538922156,
                   },
                   "off_2prim": Object {
-                    "value": 0.6778523489932886,
+                    "value": 0.6896551724137931,
                   },
                   "off_2primr": Object {
-                    "value": 0.32112068965517243,
+                    "value": 0.3473053892215569,
                   },
                   "off_3p": Object {
-                    "value": 0.3515151515151515,
+                    "value": 0.27692307692307694,
                   },
                   "off_3pr": Object {
-                    "value": 0.35560344827586204,
+                    "value": 0.38922155688622756,
+                  },
+                  "off_adj_opp": Object {
+                    "value": 103.93650793650794,
                   },
                   "off_adj_ppp": Object {
-                    "value": undefined,
+                    "value": 116.38025379436998,
                   },
                   "off_efg": Object {
-                    "value": 0.5517241379310345,
+                    "value": 0.47305389221556887,
                   },
                   "off_ftr": Object {
-                    "value": 0.28879310344827586,
+                    "value": 0.49700598802395207,
                   },
                   "off_orb": Object {
-                    "value": 0.316,
+                    "value": 0.3644859813084112,
                   },
                   "off_poss": Object {
-                    "value": 544,
+                    "value": 196,
                   },
                   "off_ppp": Object {
-                    "value": 112.31617647058823,
+                    "value": 111.22448979591837,
                   },
-                  "off_title": "AnCowan / BrFernando / DaMorsell / ErAyala / JaSmith",
+                  "off_title": "AaWiggins / AnCowan / DaMorsell / ErAyala / JaSmith",
                   "off_to": Object {
-                    "value": 0.1875,
+                    "value": 0.14285714285714285,
+                  },
+                  "players_array": Object {
+                    "hits": Object {
+                      "hits": Array [
+                        Object {
+                          "_id": "k5mWzG4B8OZ7gWZVgjRk",
+                          "_index": "bigten_2019",
+                          "_score": 4.760141,
+                          "_source": Object {
+                            "players": Array [
+                              Object {
+                                "code": "AaWiggins",
+                                "id": "Wiggins, Aaron",
+                              },
+                              Object {
+                                "code": "AnCowan",
+                                "id": "Cowan, Anthony",
+                              },
+                              Object {
+                                "code": "DaMorsell",
+                                "id": "Morsell, Darryl",
+                              },
+                              Object {
+                                "code": "ErAyala",
+                                "id": "Ayala, Eric",
+                              },
+                              Object {
+                                "code": "JaSmith",
+                                "id": "Smith, Jalen",
+                              },
+                            ],
+                          },
+                          "_type": "_doc",
+                        },
+                      ],
+                      "max_score": 4.760141,
+                      "total": Object {
+                        "relation": "eq",
+                        "value": 38,
+                      },
+                    },
                   },
                   "points_allowed": Object {
-                    "value": 542,
+                    "value": 171,
                   },
                   "points_scored": Object {
-                    "value": 611,
+                    "value": 218,
+                  },
+                  "total_def_2p_attempts": Object {
+                    "value": 92,
+                  },
+                  "total_def_2p_made": Object {
+                    "value": 40,
                   },
                   "total_def_2pmid_attempts": Object {
-                    "value": 186,
+                    "value": 52,
                   },
                   "total_def_2pmid_made": Object {
-                    "value": 68,
+                    "value": 17,
                   },
                   "total_def_2prim_attempts": Object {
-                    "value": 116,
+                    "value": 40,
                   },
                   "total_def_2prim_made": Object {
-                    "value": 67,
+                    "value": 23,
                   },
-                  "total_def_fga": Object {
-                    "value": 522,
+                  "total_def_3p_attempts": Object {
+                    "value": 66,
                   },
-                  "total_def_fta": Object {
-                    "value": 128,
+                  "total_def_3p_made": Object {
+                    "value": 19,
                   },
-                  "total_off_2pmid_attempts": Object {
-                    "value": 150,
-                  },
-                  "total_off_2pmid_made": Object {
+                  "total_def_drb": Object {
                     "value": 68,
                   },
+                  "total_def_fga": Object {
+                    "value": 158,
+                  },
+                  "total_def_fta": Object {
+                    "value": 47,
+                  },
+                  "total_def_orb": Object {
+                    "value": 19,
+                  },
+                  "total_off_2p_attempts": Object {
+                    "value": 102,
+                  },
+                  "total_off_2p_made": Object {
+                    "value": 52,
+                  },
+                  "total_off_2pmid_attempts": Object {
+                    "value": 44,
+                  },
+                  "total_off_2pmid_made": Object {
+                    "value": 12,
+                  },
                   "total_off_2prim_attempts": Object {
-                    "value": 149,
+                    "value": 58,
                   },
                   "total_off_2prim_made": Object {
-                    "value": 101,
+                    "value": 40,
+                  },
+                  "total_off_3p_attempts": Object {
+                    "value": 65,
+                  },
+                  "total_off_3p_made": Object {
+                    "value": 18,
+                  },
+                  "total_off_drb": Object {
+                    "value": 90,
                   },
                   "total_off_fga": Object {
-                    "value": 464,
+                    "value": 167,
                   },
                   "total_off_fta": Object {
-                    "value": 134,
+                    "value": 83,
+                  },
+                  "total_off_orb": Object {
+                    "value": 39,
                   },
                 },
                 "kind": "data-row",
@@ -757,141 +949,218 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot 1`] = `
               GenericTableDataRow {
                 "cellMetaFn": [Function],
                 "dataObj": Object {
-                  "adj_opp_def": Object {
-                    "value": 98.80603015075377,
-                  },
-                  "adj_opp_off": Object {
-                    "value": 108.32122905027933,
-                  },
                   "def_2p": Object {
-                    "value": 0.39361702127659576,
+                    "value": 0.3793103448275862,
                   },
                   "def_2pmid": Object {
-                    "value": 0.31666666666666665,
+                    "value": 0.25806451612903225,
                   },
                   "def_2pmidr": Object {
-                    "value": 0.3821656050955414,
+                    "value": 0.36470588235294116,
                   },
                   "def_2prim": Object {
-                    "value": 0.5294117647058824,
+                    "value": 0.5185185185185185,
                   },
                   "def_2primr": Object {
-                    "value": 0.21656050955414013,
+                    "value": 0.3176470588235294,
                   },
                   "def_3p": Object {
-                    "value": 0.36507936507936506,
+                    "value": 0.3333333333333333,
                   },
                   "def_3pr": Object {
-                    "value": 0.4012738853503185,
+                    "value": 0.3176470588235294,
+                  },
+                  "def_adj_opp": Object {
+                    "value": 93.37927927927929,
                   },
                   "def_adj_ppp": Object {
-                    "value": undefined,
+                    "value": 72.6036664851575,
                   },
                   "def_efg": Object {
-                    "value": 0.4554140127388535,
+                    "value": 0.4176470588235294,
                   },
                   "def_ftr": Object {
-                    "value": 0.24203821656050956,
+                    "value": 0.2823529411764706,
                   },
                   "def_orb": Object {
-                    "value": 0.1650485436893204,
+                    "value": 0.24561403508771928,
                   },
                   "def_poss": Object {
-                    "value": 179,
+                    "value": 114,
                   },
                   "def_ppp": Object {
-                    "value": 94.97206703910615,
+                    "value": 77.19298245614036,
                   },
                   "def_title": "",
                   "def_to": Object {
-                    "value": 0.12290502793296089,
+                    "value": 0.2719298245614035,
                   },
-                  "doc_count": 60,
-                  "key": "AaWiggins_AnCowan_BrFernando_ErAyala_JaSmith",
+                  "doc_count": 27,
+                  "key": "AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith",
                   "off_2p": Object {
-                    "value": 0.49019607843137253,
+                    "value": 0.39285714285714285,
                   },
                   "off_2pmid": Object {
-                    "value": 0.44,
+                    "value": 0.14814814814814814,
                   },
                   "off_2pmidr": Object {
-                    "value": 0.29069767441860467,
+                    "value": 0.3103448275862069,
                   },
                   "off_2prim": Object {
-                    "value": 0.5384615384615384,
+                    "value": 0.6206896551724138,
                   },
                   "off_2primr": Object {
-                    "value": 0.3023255813953488,
+                    "value": 0.3333333333333333,
                   },
                   "off_3p": Object {
-                    "value": 0.2571428571428571,
+                    "value": 0.22580645161290322,
                   },
                   "off_3pr": Object {
-                    "value": 0.4069767441860465,
+                    "value": 0.3563218390804598,
+                  },
+                  "off_adj_opp": Object {
+                    "value": 106.32105263157895,
                   },
                   "off_adj_ppp": Object {
-                    "value": undefined,
+                    "value": 95.51282669728221,
                   },
                   "off_efg": Object {
-                    "value": 0.4476744186046512,
+                    "value": 0.3735632183908046,
                   },
                   "off_ftr": Object {
-                    "value": 0.4883720930232558,
+                    "value": 0.5517241379310345,
                   },
                   "off_orb": Object {
-                    "value": 0.3826086956521739,
+                    "value": 0.29508196721311475,
                   },
                   "off_poss": Object {
-                    "value": 199,
+                    "value": 111,
                   },
                   "off_ppp": Object {
-                    "value": 109.54773869346734,
+                    "value": 89.1891891891892,
                   },
-                  "off_title": "AaWiggins / AnCowan / BrFernando / ErAyala / JaSmith",
+                  "off_title": "AaWiggins / AnCowan / DaMorsell / DoScott / JaSmith",
                   "off_to": Object {
-                    "value": 0.1407035175879397,
+                    "value": 0.18018018018018017,
+                  },
+                  "players_array": Object {
+                    "hits": Object {
+                      "hits": Array [
+                        Object {
+                          "_id": "apmWzG4B8OZ7gWZVgTSi",
+                          "_index": "bigten_2019",
+                          "_score": 4.760141,
+                          "_source": Object {
+                            "players": Array [
+                              Object {
+                                "code": "AaWiggins",
+                                "id": "Wiggins, Aaron",
+                              },
+                              Object {
+                                "code": "AnCowan",
+                                "id": "Cowan, Anthony",
+                              },
+                              Object {
+                                "code": "DaMorsell",
+                                "id": "Morsell, Darryl",
+                              },
+                              Object {
+                                "code": "DoScott",
+                                "id": "Scott, Donta",
+                              },
+                              Object {
+                                "code": "JaSmith",
+                                "id": "Smith, Jalen",
+                              },
+                            ],
+                          },
+                          "_type": "_doc",
+                        },
+                      ],
+                      "max_score": 4.760141,
+                      "total": Object {
+                        "relation": "eq",
+                        "value": 27,
+                      },
+                    },
                   },
                   "points_allowed": Object {
-                    "value": 170,
+                    "value": 88,
                   },
                   "points_scored": Object {
-                    "value": 218,
+                    "value": 99,
                   },
-                  "total_def_2pmid_attempts": Object {
-                    "value": 60,
+                  "total_def_2p_attempts": Object {
+                    "value": 58,
                   },
-                  "total_def_2pmid_made": Object {
-                    "value": 19,
-                  },
-                  "total_def_2prim_attempts": Object {
-                    "value": 34,
-                  },
-                  "total_def_2prim_made": Object {
-                    "value": 18,
-                  },
-                  "total_def_fga": Object {
-                    "value": 157,
-                  },
-                  "total_def_fta": Object {
-                    "value": 38,
-                  },
-                  "total_off_2pmid_attempts": Object {
-                    "value": 50,
-                  },
-                  "total_off_2pmid_made": Object {
+                  "total_def_2p_made": Object {
                     "value": 22,
                   },
+                  "total_def_2pmid_attempts": Object {
+                    "value": 31,
+                  },
+                  "total_def_2pmid_made": Object {
+                    "value": 8,
+                  },
+                  "total_def_2prim_attempts": Object {
+                    "value": 27,
+                  },
+                  "total_def_2prim_made": Object {
+                    "value": 14,
+                  },
+                  "total_def_3p_attempts": Object {
+                    "value": 27,
+                  },
+                  "total_def_3p_made": Object {
+                    "value": 9,
+                  },
+                  "total_def_drb": Object {
+                    "value": 43,
+                  },
+                  "total_def_fga": Object {
+                    "value": 85,
+                  },
+                  "total_def_fta": Object {
+                    "value": 24,
+                  },
+                  "total_def_orb": Object {
+                    "value": 14,
+                  },
+                  "total_off_2p_attempts": Object {
+                    "value": 56,
+                  },
+                  "total_off_2p_made": Object {
+                    "value": 22,
+                  },
+                  "total_off_2pmid_attempts": Object {
+                    "value": 27,
+                  },
+                  "total_off_2pmid_made": Object {
+                    "value": 4,
+                  },
                   "total_off_2prim_attempts": Object {
-                    "value": 52,
+                    "value": 29,
                   },
                   "total_off_2prim_made": Object {
-                    "value": 28,
+                    "value": 18,
+                  },
+                  "total_off_3p_attempts": Object {
+                    "value": 31,
+                  },
+                  "total_off_3p_made": Object {
+                    "value": 7,
+                  },
+                  "total_off_drb": Object {
+                    "value": 43,
                   },
                   "total_off_fga": Object {
-                    "value": 172,
+                    "value": 87,
                   },
                   "total_off_fta": Object {
-                    "value": 84,
+                    "value": 48,
+                  },
+                  "total_off_orb": Object {
+                    "value": 18,
                   },
                 },
                 "kind": "data-row",
@@ -900,141 +1169,218 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot 1`] = `
               GenericTableDataRow {
                 "cellMetaFn": [Function],
                 "dataObj": Object {
-                  "adj_opp_def": Object {
-                    "value": 98.80603015075377,
-                  },
-                  "adj_opp_off": Object {
-                    "value": 108.32122905027933,
-                  },
                   "def_2p": Object {
-                    "value": 0.39361702127659576,
+                    "value": 0.3793103448275862,
                   },
                   "def_2pmid": Object {
-                    "value": 0.31666666666666665,
+                    "value": 0.25806451612903225,
                   },
                   "def_2pmidr": Object {
-                    "value": 0.3821656050955414,
+                    "value": 0.36470588235294116,
                   },
                   "def_2prim": Object {
-                    "value": 0.5294117647058824,
+                    "value": 0.5185185185185185,
                   },
                   "def_2primr": Object {
-                    "value": 0.21656050955414013,
+                    "value": 0.3176470588235294,
                   },
                   "def_3p": Object {
-                    "value": 0.36507936507936506,
+                    "value": 0.3333333333333333,
                   },
                   "def_3pr": Object {
-                    "value": 0.4012738853503185,
+                    "value": 0.3176470588235294,
+                  },
+                  "def_adj_opp": Object {
+                    "value": 93.37927927927929,
                   },
                   "def_adj_ppp": Object {
-                    "value": undefined,
+                    "value": 72.6036664851575,
                   },
                   "def_efg": Object {
-                    "value": 0.4554140127388535,
+                    "value": 0.4176470588235294,
                   },
                   "def_ftr": Object {
-                    "value": 0.24203821656050956,
+                    "value": 0.2823529411764706,
                   },
                   "def_orb": Object {
-                    "value": 0.1650485436893204,
+                    "value": 0.24561403508771928,
                   },
                   "def_poss": Object {
-                    "value": 179,
+                    "value": 114,
                   },
                   "def_ppp": Object {
-                    "value": 94.97206703910615,
+                    "value": 77.19298245614036,
                   },
                   "def_title": "",
                   "def_to": Object {
-                    "value": 0.12290502793296089,
+                    "value": 0.2719298245614035,
                   },
-                  "doc_count": 60,
-                  "key": "AaWiggins_AnCowan_BrFernando_ErAyala_JaSmith",
+                  "doc_count": 27,
+                  "key": "AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith",
                   "off_2p": Object {
-                    "value": 0.49019607843137253,
+                    "value": 0.39285714285714285,
                   },
                   "off_2pmid": Object {
-                    "value": 0.44,
+                    "value": 0.14814814814814814,
                   },
                   "off_2pmidr": Object {
-                    "value": 0.29069767441860467,
+                    "value": 0.3103448275862069,
                   },
                   "off_2prim": Object {
-                    "value": 0.5384615384615384,
+                    "value": 0.6206896551724138,
                   },
                   "off_2primr": Object {
-                    "value": 0.3023255813953488,
+                    "value": 0.3333333333333333,
                   },
                   "off_3p": Object {
-                    "value": 0.2571428571428571,
+                    "value": 0.22580645161290322,
                   },
                   "off_3pr": Object {
-                    "value": 0.4069767441860465,
+                    "value": 0.3563218390804598,
+                  },
+                  "off_adj_opp": Object {
+                    "value": 106.32105263157895,
                   },
                   "off_adj_ppp": Object {
-                    "value": undefined,
+                    "value": 95.51282669728221,
                   },
                   "off_efg": Object {
-                    "value": 0.4476744186046512,
+                    "value": 0.3735632183908046,
                   },
                   "off_ftr": Object {
-                    "value": 0.4883720930232558,
+                    "value": 0.5517241379310345,
                   },
                   "off_orb": Object {
-                    "value": 0.3826086956521739,
+                    "value": 0.29508196721311475,
                   },
                   "off_poss": Object {
-                    "value": 199,
+                    "value": 111,
                   },
                   "off_ppp": Object {
-                    "value": 109.54773869346734,
+                    "value": 89.1891891891892,
                   },
-                  "off_title": "AaWiggins / AnCowan / BrFernando / ErAyala / JaSmith",
+                  "off_title": "AaWiggins / AnCowan / DaMorsell / DoScott / JaSmith",
                   "off_to": Object {
-                    "value": 0.1407035175879397,
+                    "value": 0.18018018018018017,
+                  },
+                  "players_array": Object {
+                    "hits": Object {
+                      "hits": Array [
+                        Object {
+                          "_id": "apmWzG4B8OZ7gWZVgTSi",
+                          "_index": "bigten_2019",
+                          "_score": 4.760141,
+                          "_source": Object {
+                            "players": Array [
+                              Object {
+                                "code": "AaWiggins",
+                                "id": "Wiggins, Aaron",
+                              },
+                              Object {
+                                "code": "AnCowan",
+                                "id": "Cowan, Anthony",
+                              },
+                              Object {
+                                "code": "DaMorsell",
+                                "id": "Morsell, Darryl",
+                              },
+                              Object {
+                                "code": "DoScott",
+                                "id": "Scott, Donta",
+                              },
+                              Object {
+                                "code": "JaSmith",
+                                "id": "Smith, Jalen",
+                              },
+                            ],
+                          },
+                          "_type": "_doc",
+                        },
+                      ],
+                      "max_score": 4.760141,
+                      "total": Object {
+                        "relation": "eq",
+                        "value": 27,
+                      },
+                    },
                   },
                   "points_allowed": Object {
-                    "value": 170,
+                    "value": 88,
                   },
                   "points_scored": Object {
-                    "value": 218,
+                    "value": 99,
                   },
-                  "total_def_2pmid_attempts": Object {
-                    "value": 60,
+                  "total_def_2p_attempts": Object {
+                    "value": 58,
                   },
-                  "total_def_2pmid_made": Object {
-                    "value": 19,
-                  },
-                  "total_def_2prim_attempts": Object {
-                    "value": 34,
-                  },
-                  "total_def_2prim_made": Object {
-                    "value": 18,
-                  },
-                  "total_def_fga": Object {
-                    "value": 157,
-                  },
-                  "total_def_fta": Object {
-                    "value": 38,
-                  },
-                  "total_off_2pmid_attempts": Object {
-                    "value": 50,
-                  },
-                  "total_off_2pmid_made": Object {
+                  "total_def_2p_made": Object {
                     "value": 22,
                   },
+                  "total_def_2pmid_attempts": Object {
+                    "value": 31,
+                  },
+                  "total_def_2pmid_made": Object {
+                    "value": 8,
+                  },
+                  "total_def_2prim_attempts": Object {
+                    "value": 27,
+                  },
+                  "total_def_2prim_made": Object {
+                    "value": 14,
+                  },
+                  "total_def_3p_attempts": Object {
+                    "value": 27,
+                  },
+                  "total_def_3p_made": Object {
+                    "value": 9,
+                  },
+                  "total_def_drb": Object {
+                    "value": 43,
+                  },
+                  "total_def_fga": Object {
+                    "value": 85,
+                  },
+                  "total_def_fta": Object {
+                    "value": 24,
+                  },
+                  "total_def_orb": Object {
+                    "value": 14,
+                  },
+                  "total_off_2p_attempts": Object {
+                    "value": 56,
+                  },
+                  "total_off_2p_made": Object {
+                    "value": 22,
+                  },
+                  "total_off_2pmid_attempts": Object {
+                    "value": 27,
+                  },
+                  "total_off_2pmid_made": Object {
+                    "value": 4,
+                  },
                   "total_off_2prim_attempts": Object {
-                    "value": 52,
+                    "value": 29,
                   },
                   "total_off_2prim_made": Object {
-                    "value": 28,
+                    "value": 18,
+                  },
+                  "total_off_3p_attempts": Object {
+                    "value": 31,
+                  },
+                  "total_off_3p_made": Object {
+                    "value": 7,
+                  },
+                  "total_off_drb": Object {
+                    "value": 43,
                   },
                   "total_off_fga": Object {
-                    "value": 172,
+                    "value": 87,
                   },
                   "total_off_fta": Object {
-                    "value": 84,
+                    "value": 48,
+                  },
+                  "total_off_orb": Object {
+                    "value": 18,
                   },
                 },
                 "kind": "data-row",
@@ -1046,141 +1392,218 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot 1`] = `
               GenericTableDataRow {
                 "cellMetaFn": [Function],
                 "dataObj": Object {
-                  "adj_opp_def": Object {
-                    "value": 100.44651162790699,
-                  },
-                  "adj_opp_off": Object {
-                    "value": 113.20381679389313,
-                  },
                   "def_2p": Object {
-                    "value": 0.49122807017543857,
+                    "value": 0.34,
                   },
                   "def_2pmid": Object {
-                    "value": 0.42857142857142855,
+                    "value": 0.13636363636363635,
                   },
                   "def_2pmidr": Object {
-                    "value": 0.27184466019417475,
+                    "value": 0.23655913978494625,
                   },
                   "def_2prim": Object {
-                    "value": 0.5517241379310345,
+                    "value": 0.5,
                   },
                   "def_2primr": Object {
-                    "value": 0.2815533980582524,
+                    "value": 0.3010752688172043,
                   },
                   "def_3p": Object {
-                    "value": 0.2826086956521739,
+                    "value": 0.23255813953488372,
                   },
                   "def_3pr": Object {
-                    "value": 0.44660194174757284,
+                    "value": 0.46236559139784944,
+                  },
+                  "def_adj_opp": Object {
+                    "value": 93.46372549019607,
                   },
                   "def_adj_ppp": Object {
-                    "value": undefined,
+                    "value": 76.79584120982987,
                   },
                   "def_efg": Object {
-                    "value": 0.46116504854368934,
+                    "value": 0.34408602150537637,
                   },
                   "def_ftr": Object {
-                    "value": 0.3883495145631068,
+                    "value": 0.2903225806451613,
                   },
                   "def_orb": Object {
-                    "value": 0.19696969696969696,
+                    "value": 0.38571428571428573,
                   },
                   "def_poss": Object {
-                    "value": 131,
+                    "value": 97,
                   },
                   "def_ppp": Object {
-                    "value": 93.12977099236642,
+                    "value": 80.41237113402062,
                   },
                   "def_title": "",
                   "def_to": Object {
-                    "value": 0.183206106870229,
+                    "value": 0.21649484536082475,
                   },
-                  "doc_count": 38,
-                  "key": "AaWiggins_AnCowan_BrFernando_DaMorsell_ErAyala",
+                  "doc_count": 24,
+                  "key": "AaWiggins_AnCowan_DoScott_ErAyala_JaSmith",
                   "off_2p": Object {
-                    "value": 0.5625,
+                    "value": 0.4642857142857143,
                   },
                   "off_2pmid": Object {
-                    "value": 0.5,
+                    "value": 0.4,
                   },
                   "off_2pmidr": Object {
-                    "value": 0.22950819672131148,
+                    "value": 0.2604166666666667,
                   },
                   "off_2prim": Object {
-                    "value": 0.5961538461538461,
+                    "value": 0.5161290322580645,
                   },
                   "off_2primr": Object {
-                    "value": 0.4262295081967213,
+                    "value": 0.3229166666666667,
                   },
                   "off_3p": Object {
-                    "value": 0.4523809523809524,
+                    "value": 0.375,
                   },
                   "off_3pr": Object {
-                    "value": 0.3442622950819672,
+                    "value": 0.4166666666666667,
+                  },
+                  "off_adj_opp": Object {
+                    "value": 104.70927835051546,
                   },
                   "off_adj_ppp": Object {
-                    "value": undefined,
+                    "value": 117.48292826198693,
                   },
                   "off_efg": Object {
-                    "value": 0.6024590163934426,
+                    "value": 0.5052083333333334,
                   },
                   "off_ftr": Object {
-                    "value": 0.2786885245901639,
+                    "value": 0.19791666666666666,
                   },
                   "off_orb": Object {
-                    "value": 0.45901639344262296,
+                    "value": 0.3684210526315789,
                   },
                   "off_poss": Object {
-                    "value": 129,
+                    "value": 102,
                   },
                   "off_ppp": Object {
-                    "value": 134.10852713178295,
+                    "value": 109.80392156862744,
                   },
-                  "off_title": "AaWiggins / AnCowan / BrFernando / DaMorsell / ErAyala",
+                  "off_title": "AaWiggins / AnCowan / DoScott / ErAyala / JaSmith",
                   "off_to": Object {
-                    "value": 0.16279069767441862,
+                    "value": 0.20588235294117646,
+                  },
+                  "players_array": Object {
+                    "hits": Object {
+                      "hits": Array [
+                        Object {
+                          "_id": "FJmWzG4B8OZ7gWZVjTbp",
+                          "_index": "bigten_2019",
+                          "_score": 4.760141,
+                          "_source": Object {
+                            "players": Array [
+                              Object {
+                                "code": "AaWiggins",
+                                "id": "Wiggins, Aaron",
+                              },
+                              Object {
+                                "code": "AnCowan",
+                                "id": "Cowan, Anthony",
+                              },
+                              Object {
+                                "code": "DoScott",
+                                "id": "Scott, Donta",
+                              },
+                              Object {
+                                "code": "ErAyala",
+                                "id": "Ayala, Eric",
+                              },
+                              Object {
+                                "code": "JaSmith",
+                                "id": "Smith, Jalen",
+                              },
+                            ],
+                          },
+                          "_type": "_doc",
+                        },
+                      ],
+                      "max_score": 4.760141,
+                      "total": Object {
+                        "relation": "eq",
+                        "value": 24,
+                      },
+                    },
                   },
                   "points_allowed": Object {
-                    "value": 122,
+                    "value": 78,
                   },
                   "points_scored": Object {
-                    "value": 173,
+                    "value": 112,
+                  },
+                  "total_def_2p_attempts": Object {
+                    "value": 50,
+                  },
+                  "total_def_2p_made": Object {
+                    "value": 17,
                   },
                   "total_def_2pmid_attempts": Object {
-                    "value": 28,
+                    "value": 22,
                   },
                   "total_def_2pmid_made": Object {
-                    "value": 12,
+                    "value": 3,
                   },
                   "total_def_2prim_attempts": Object {
-                    "value": 29,
-                  },
-                  "total_def_2prim_made": Object {
-                    "value": 16,
-                  },
-                  "total_def_fga": Object {
-                    "value": 103,
-                  },
-                  "total_def_fta": Object {
-                    "value": 40,
-                  },
-                  "total_off_2pmid_attempts": Object {
                     "value": 28,
                   },
-                  "total_off_2pmid_made": Object {
+                  "total_def_2prim_made": Object {
                     "value": 14,
                   },
-                  "total_off_2prim_attempts": Object {
-                    "value": 52,
+                  "total_def_3p_attempts": Object {
+                    "value": 43,
                   },
-                  "total_off_2prim_made": Object {
+                  "total_def_3p_made": Object {
+                    "value": 10,
+                  },
+                  "total_def_drb": Object {
+                    "value": 36,
+                  },
+                  "total_def_fga": Object {
+                    "value": 93,
+                  },
+                  "total_def_fta": Object {
+                    "value": 27,
+                  },
+                  "total_def_orb": Object {
+                    "value": 27,
+                  },
+                  "total_off_2p_attempts": Object {
+                    "value": 56,
+                  },
+                  "total_off_2p_made": Object {
+                    "value": 26,
+                  },
+                  "total_off_2pmid_attempts": Object {
+                    "value": 25,
+                  },
+                  "total_off_2pmid_made": Object {
+                    "value": 10,
+                  },
+                  "total_off_2prim_attempts": Object {
                     "value": 31,
                   },
+                  "total_off_2prim_made": Object {
+                    "value": 16,
+                  },
+                  "total_off_3p_attempts": Object {
+                    "value": 40,
+                  },
+                  "total_off_3p_made": Object {
+                    "value": 15,
+                  },
+                  "total_off_drb": Object {
+                    "value": 43,
+                  },
                   "total_off_fga": Object {
-                    "value": 122,
+                    "value": 96,
                   },
                   "total_off_fta": Object {
-                    "value": 34,
+                    "value": 19,
+                  },
+                  "total_off_orb": Object {
+                    "value": 21,
                   },
                 },
                 "kind": "data-row",
@@ -1189,141 +1612,218 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot 1`] = `
               GenericTableDataRow {
                 "cellMetaFn": [Function],
                 "dataObj": Object {
-                  "adj_opp_def": Object {
-                    "value": 100.44651162790699,
-                  },
-                  "adj_opp_off": Object {
-                    "value": 113.20381679389313,
-                  },
                   "def_2p": Object {
-                    "value": 0.49122807017543857,
+                    "value": 0.34,
                   },
                   "def_2pmid": Object {
-                    "value": 0.42857142857142855,
+                    "value": 0.13636363636363635,
                   },
                   "def_2pmidr": Object {
-                    "value": 0.27184466019417475,
+                    "value": 0.23655913978494625,
                   },
                   "def_2prim": Object {
-                    "value": 0.5517241379310345,
+                    "value": 0.5,
                   },
                   "def_2primr": Object {
-                    "value": 0.2815533980582524,
+                    "value": 0.3010752688172043,
                   },
                   "def_3p": Object {
-                    "value": 0.2826086956521739,
+                    "value": 0.23255813953488372,
                   },
                   "def_3pr": Object {
-                    "value": 0.44660194174757284,
+                    "value": 0.46236559139784944,
+                  },
+                  "def_adj_opp": Object {
+                    "value": 93.46372549019607,
                   },
                   "def_adj_ppp": Object {
-                    "value": undefined,
+                    "value": 76.79584120982987,
                   },
                   "def_efg": Object {
-                    "value": 0.46116504854368934,
+                    "value": 0.34408602150537637,
                   },
                   "def_ftr": Object {
-                    "value": 0.3883495145631068,
+                    "value": 0.2903225806451613,
                   },
                   "def_orb": Object {
-                    "value": 0.19696969696969696,
+                    "value": 0.38571428571428573,
                   },
                   "def_poss": Object {
-                    "value": 131,
+                    "value": 97,
                   },
                   "def_ppp": Object {
-                    "value": 93.12977099236642,
+                    "value": 80.41237113402062,
                   },
                   "def_title": "",
                   "def_to": Object {
-                    "value": 0.183206106870229,
+                    "value": 0.21649484536082475,
                   },
-                  "doc_count": 38,
-                  "key": "AaWiggins_AnCowan_BrFernando_DaMorsell_ErAyala",
+                  "doc_count": 24,
+                  "key": "AaWiggins_AnCowan_DoScott_ErAyala_JaSmith",
                   "off_2p": Object {
-                    "value": 0.5625,
+                    "value": 0.4642857142857143,
                   },
                   "off_2pmid": Object {
-                    "value": 0.5,
+                    "value": 0.4,
                   },
                   "off_2pmidr": Object {
-                    "value": 0.22950819672131148,
+                    "value": 0.2604166666666667,
                   },
                   "off_2prim": Object {
-                    "value": 0.5961538461538461,
+                    "value": 0.5161290322580645,
                   },
                   "off_2primr": Object {
-                    "value": 0.4262295081967213,
+                    "value": 0.3229166666666667,
                   },
                   "off_3p": Object {
-                    "value": 0.4523809523809524,
+                    "value": 0.375,
                   },
                   "off_3pr": Object {
-                    "value": 0.3442622950819672,
+                    "value": 0.4166666666666667,
+                  },
+                  "off_adj_opp": Object {
+                    "value": 104.70927835051546,
                   },
                   "off_adj_ppp": Object {
-                    "value": undefined,
+                    "value": 117.48292826198693,
                   },
                   "off_efg": Object {
-                    "value": 0.6024590163934426,
+                    "value": 0.5052083333333334,
                   },
                   "off_ftr": Object {
-                    "value": 0.2786885245901639,
+                    "value": 0.19791666666666666,
                   },
                   "off_orb": Object {
-                    "value": 0.45901639344262296,
+                    "value": 0.3684210526315789,
                   },
                   "off_poss": Object {
-                    "value": 129,
+                    "value": 102,
                   },
                   "off_ppp": Object {
-                    "value": 134.10852713178295,
+                    "value": 109.80392156862744,
                   },
-                  "off_title": "AaWiggins / AnCowan / BrFernando / DaMorsell / ErAyala",
+                  "off_title": "AaWiggins / AnCowan / DoScott / ErAyala / JaSmith",
                   "off_to": Object {
-                    "value": 0.16279069767441862,
+                    "value": 0.20588235294117646,
+                  },
+                  "players_array": Object {
+                    "hits": Object {
+                      "hits": Array [
+                        Object {
+                          "_id": "FJmWzG4B8OZ7gWZVjTbp",
+                          "_index": "bigten_2019",
+                          "_score": 4.760141,
+                          "_source": Object {
+                            "players": Array [
+                              Object {
+                                "code": "AaWiggins",
+                                "id": "Wiggins, Aaron",
+                              },
+                              Object {
+                                "code": "AnCowan",
+                                "id": "Cowan, Anthony",
+                              },
+                              Object {
+                                "code": "DoScott",
+                                "id": "Scott, Donta",
+                              },
+                              Object {
+                                "code": "ErAyala",
+                                "id": "Ayala, Eric",
+                              },
+                              Object {
+                                "code": "JaSmith",
+                                "id": "Smith, Jalen",
+                              },
+                            ],
+                          },
+                          "_type": "_doc",
+                        },
+                      ],
+                      "max_score": 4.760141,
+                      "total": Object {
+                        "relation": "eq",
+                        "value": 24,
+                      },
+                    },
                   },
                   "points_allowed": Object {
-                    "value": 122,
+                    "value": 78,
                   },
                   "points_scored": Object {
-                    "value": 173,
+                    "value": 112,
+                  },
+                  "total_def_2p_attempts": Object {
+                    "value": 50,
+                  },
+                  "total_def_2p_made": Object {
+                    "value": 17,
                   },
                   "total_def_2pmid_attempts": Object {
-                    "value": 28,
+                    "value": 22,
                   },
                   "total_def_2pmid_made": Object {
-                    "value": 12,
+                    "value": 3,
                   },
                   "total_def_2prim_attempts": Object {
-                    "value": 29,
-                  },
-                  "total_def_2prim_made": Object {
-                    "value": 16,
-                  },
-                  "total_def_fga": Object {
-                    "value": 103,
-                  },
-                  "total_def_fta": Object {
-                    "value": 40,
-                  },
-                  "total_off_2pmid_attempts": Object {
                     "value": 28,
                   },
-                  "total_off_2pmid_made": Object {
+                  "total_def_2prim_made": Object {
                     "value": 14,
                   },
-                  "total_off_2prim_attempts": Object {
-                    "value": 52,
+                  "total_def_3p_attempts": Object {
+                    "value": 43,
                   },
-                  "total_off_2prim_made": Object {
+                  "total_def_3p_made": Object {
+                    "value": 10,
+                  },
+                  "total_def_drb": Object {
+                    "value": 36,
+                  },
+                  "total_def_fga": Object {
+                    "value": 93,
+                  },
+                  "total_def_fta": Object {
+                    "value": 27,
+                  },
+                  "total_def_orb": Object {
+                    "value": 27,
+                  },
+                  "total_off_2p_attempts": Object {
+                    "value": 56,
+                  },
+                  "total_off_2p_made": Object {
+                    "value": 26,
+                  },
+                  "total_off_2pmid_attempts": Object {
+                    "value": 25,
+                  },
+                  "total_off_2pmid_made": Object {
+                    "value": 10,
+                  },
+                  "total_off_2prim_attempts": Object {
                     "value": 31,
                   },
+                  "total_off_2prim_made": Object {
+                    "value": 16,
+                  },
+                  "total_off_3p_attempts": Object {
+                    "value": 40,
+                  },
+                  "total_off_3p_made": Object {
+                    "value": 15,
+                  },
+                  "total_off_drb": Object {
+                    "value": 43,
+                  },
                   "total_off_fga": Object {
-                    "value": 122,
+                    "value": 96,
                   },
                   "total_off_fta": Object {
-                    "value": 34,
+                    "value": 19,
+                  },
+                  "total_off_orb": Object {
+                    "value": 21,
                   },
                 },
                 "kind": "data-row",
