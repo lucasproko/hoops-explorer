@@ -53,6 +53,9 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         JSON.stringify(rosterCompareQuery(params, efficiency, lookup))
       ].join('\n') + "\n";
 
+      /**/
+      console.log(JSON.stringify(teamStatsQuery(params, efficiency, lookup).aggregations.tri_filter.filters, null, 3));
+
       try {
         const esFetch = await fetch(`${process.env.CLUSTER_ID}/_msearch`, {
                 method: 'post',
@@ -64,6 +67,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
         //console.log(JSON.stringify(esFetchJson, null, 3));
         //console.log(esFetch.status);
+
         const jsonToUse = esFetch.ok ?
           esFetchJson :
           { error: { reason: "unknown" }, status_code: "" + esFetch.status }
