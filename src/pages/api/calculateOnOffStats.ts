@@ -53,8 +53,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         JSON.stringify(rosterCompareQuery(params, efficiency, lookup))
       ].join('\n') + "\n";
 
-      /**/
-      console.log(JSON.stringify(teamStatsQuery(params, efficiency, lookup).aggregations.tri_filter.filters, null, 3));
+      // Debug logs:
+      //console.log(JSON.stringify(teamStatsQuery(params, efficiency, lookup).aggregations.tri_filter.filters, null, 3));
 
       try {
         const esFetch = await fetch(`${process.env.CLUSTER_ID}/_msearch`, {
@@ -65,6 +65,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
         const esFetchJson = await esFetch.json();
 
+        // Debug logs:
         //console.log(JSON.stringify(esFetchJson, null, 3));
         //console.log(esFetch.status);
 

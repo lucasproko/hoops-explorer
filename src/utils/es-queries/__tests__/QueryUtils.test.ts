@@ -10,7 +10,7 @@ describe("QueryUtils", () => {
     const query1 = ' [ test "]';
     const query2 = "te'st";
     const query3 = undefined;
-    const query4 = ' NOT [ test "]';
+    const query4 = ' NOT ([ test "] )';
 
     expect(QueryUtils.basicOrAdvancedQuery(query1, "1")).toBe(' test "');
     expect(QueryUtils.basicOrAdvancedQuery(query2, "2")).toBe("players.id:(te'st)");
