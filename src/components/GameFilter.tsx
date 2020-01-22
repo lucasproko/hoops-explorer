@@ -167,7 +167,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
         </Col>
       </Form.Group>
       <Form.Group as={Row}>
-        <Form.Label column sm="2">Baseline Query</Form.Label>
+        <Form.Label column sm="2">Baseline Query <a href="https://hoop-explorer.blogspot.com/2020/01/basic-and-advanced-queries-in-hoop.html" target="_blank">(?)</a></Form.Label>
         <Col sm="8">
           <Form.Control
             placeholder="eg 'NOT (WalkOn1 OR WalkOn2)' - applied to both 'On' and 'Off' queries"
