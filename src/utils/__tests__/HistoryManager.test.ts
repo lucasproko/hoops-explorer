@@ -60,7 +60,7 @@ describe("HistoryManager", () => {
     const lineup2: LineupFilterParams = {
       team: "team2",
       year: "2018/19", gender: "Women",
-      lineupQuery: "test ''", maxTableSize: 11,
+      baseQuery: "test ''", maxTableSize: 11,
       minRank: "1", maxRank: "370",
       minPoss: 10, sortBy: "test-sort",
       filter: "Test'Filter"
@@ -78,7 +78,7 @@ describe("HistoryManager", () => {
     const report2: TeamReportFilterParams = {
       team: "team3",
       year: "2018/19", gender: "Women",
-      lineupQuery: "test ''",
+      baseQuery: "test ''",
       minRank: "10", maxRank: "370",
       sortBy: "test-sort",
       players: [ "ignore1", "ignore2" ],

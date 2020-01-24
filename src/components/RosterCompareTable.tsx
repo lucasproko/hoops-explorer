@@ -18,7 +18,7 @@ import Tooltip from 'react-bootstrap/Tooltip';
 // Additional components:
 // @ts-ignore
 import LoadingOverlay from 'react-loading-overlay';
-import queryString from "query-string";
+import { QueryUtils } from "../utils/QueryUtils";
 
 // Component imports
 import GenericTable, { GenericTableOps, GenericTableColProps } from "./GenericTable";
@@ -77,11 +77,11 @@ const RosterCompareTable: React.FunctionComponent<Props> = ({gameFilterParams, r
       team: gameFilterParams.team,
       year: gameFilterParams.year,
       gender: gameFilterParams.gender,
-      lineupQuery: getQuery(),
+      baseQuery: getQuery(),
       minRank: gameFilterParams.minRank,
       maxRank: gameFilterParams.maxRank
     };
-    const paramStr = queryString.stringify(paramObj);
+    const paramStr = QueryUtils.stringify(paramObj);
     const currentJsonEpoch = dataLastUpdated[`${paramObj.gender}_${paramObj.year}`] || -1;
     const onClick = () => {
       // Is this query already cached?

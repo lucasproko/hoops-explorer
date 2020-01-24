@@ -36,7 +36,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
   /** The state managed by the CommonFilter element */
   const [ commonParams, setCommonParams ] = useState({
       year: startingState.year, team: startingState.team, gender: startingState.gender,
-      minRank: startingState.minRank, maxRank: startingState.maxRank,
+      minRank: startingState.minRank, maxRank: startingState.maxRank, baseQuery: startingState.baseQuery
   } as CommonFilterParams);
 
   // Game Filter - custom queries and filters:
@@ -48,7 +48,6 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
   );
   const [ onQuery, setOnQuery ] = useState(startingState.onQuery || "");
   const [ offQuery, setOffQuery ] = useState(startingState.offQuery || "");
-  const [ baseQuery, setBaseQuery ] = useState(startingState.baseQuery || "");
 
   /** Used to differentiate between the different implementations of the CommonFilter */
   const cacheKeyPrefix = ParamPrefixes.game;
@@ -69,7 +68,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
       autoOffQuery: autoOffQuery.toString(),
       onQuery: onQuery,
       offQuery: offQuery,
-      baseQuery: baseQuery,
+      baseQuery: commonParams.baseQuery,
       minRank: commonParams.minRank,
       maxRank: commonParams.maxRank
     };
@@ -163,25 +162,6 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
               toggleAutoOffQuery(!autoOffQuery);
             }}
             label="Auto"
-          />
-        </Col>
-      </Form.Group>
-      <Form.Group as={Row}>
-        <Form.Label column sm="2">Baseline Query <a href="https://hoop-explorer.blogspot.com/2020/01/basic-and-advanced-queries-in-hoop.html" target="_blank">(?)</a></Form.Label>
-        <Col sm="8">
-          <Form.Control
-            placeholder="eg 'NOT (WalkOn1 OR WalkOn2)' - applied to both 'On' and 'Off' queries"
-            value={baseQuery}
-            onKeyUp={(ev: any) => setBaseQuery(ev.target.value)}
-            onChange={(ev: any) => setBaseQuery(ev.target.value)}
-          />
-        </Col>
-        <Col sm="2">
-          <Form.Check type="switch"
-            id="excludeWalkons"
-            checked={false}
-            disabled
-            label="Auto Walk-ons"
           />
         </Col>
       </Form.Group>

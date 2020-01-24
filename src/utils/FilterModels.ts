@@ -23,7 +23,7 @@ export type LineupFilterParams = {
   year?: string,
   team?: string,
   gender?: string,
-  lineupQuery?: string,
+  baseQuery?: string,
   minRank?: string,
   maxRank?: string,
   // These params need to be explicitly merged in buildParamsFromState(true)
@@ -39,7 +39,7 @@ export type TeamReportFilterParams = {
   year?: string,
   team?: string,
   gender?: string,
-  lineupQuery?: string,
+  baseQuery?: string,
   minRank?: string,
   maxRank?: string,
   // These params need to be explicitly merged in buildParamsFromState(true)

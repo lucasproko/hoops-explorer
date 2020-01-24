@@ -20,7 +20,7 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
             'On' Roster   
             <div>
               <a
-                href="/TeamReport?lineupQuery=%28undefined%29%20AND%20%28undefined%29&"
+                href="/TeamReport?baseQuery=%28undefined%29%20AND%20%28undefined%29&"
                 onClick={[Function]}
               >
                 (report)
@@ -790,7 +790,7 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
             'Off' Roster   
             <div>
               <a
-                href="/TeamReport?lineupQuery=%28undefined%29%20AND%20%28undefined%29&"
+                href="/TeamReport?baseQuery=%28undefined%29%20AND%20%28undefined%29&"
                 onClick={[Function]}
               >
                 (report)

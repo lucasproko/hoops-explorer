@@ -668,6 +668,56 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
           "render": [Function],
         }
       }
+    >
+      <FormLabel
+        column={true}
+        sm="2"
+        srOnly={false}
+      >
+        Baseline Query 
+        <a
+          href="https://hoop-explorer.blogspot.com/2020/01/basic-and-advanced-queries-in-hoop.html"
+          target="_blank"
+        >
+          (?)
+        </a>
+      </FormLabel>
+      <Col
+        sm="8"
+      >
+        <FormControl
+          onChange={[Function]}
+          onKeyUp={[Function]}
+          placeholder="eg 'Player1 AND NOT (WalkOn1 OR WalkOn2)'"
+          value=""
+        />
+      </Col>
+      <Col
+        sm="2"
+      >
+        <FormCheck
+          checked={false}
+          disabled={true}
+          id="excludeWalkons"
+          inline={false}
+          isInvalid={false}
+          isValid={false}
+          label="Auto Walk-ons"
+          title=""
+          type="switch"
+        />
+      </Col>
+    </FormGroup>
+    <FormGroup
+      as={
+        Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "defaultProps": Object {
+            "noGutters": false,
+          },
+          "render": [Function],
+        }
+      }
       controlId="oppositionFilter"
     >
       <FormLabel
@@ -1416,6 +1466,56 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
             />
           </Button>
         </OverlayTrigger>
+      </Col>
+    </FormGroup>
+    <FormGroup
+      as={
+        Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "defaultProps": Object {
+            "noGutters": false,
+          },
+          "render": [Function],
+        }
+      }
+    >
+      <FormLabel
+        column={true}
+        sm="2"
+        srOnly={false}
+      >
+        Baseline Query 
+        <a
+          href="https://hoop-explorer.blogspot.com/2020/01/basic-and-advanced-queries-in-hoop.html"
+          target="_blank"
+        >
+          (?)
+        </a>
+      </FormLabel>
+      <Col
+        sm="8"
+      >
+        <FormControl
+          onChange={[Function]}
+          onKeyUp={[Function]}
+          placeholder="eg 'Player1 AND NOT (WalkOn1 OR WalkOn2)'"
+          value=""
+        />
+      </Col>
+      <Col
+        sm="2"
+      >
+        <FormCheck
+          checked={false}
+          disabled={true}
+          id="excludeWalkons"
+          inline={false}
+          isInvalid={false}
+          isValid={false}
+          label="Auto Walk-ons"
+          title=""
+          type="switch"
+        />
       </Col>
     </FormGroup>
     <FormGroup

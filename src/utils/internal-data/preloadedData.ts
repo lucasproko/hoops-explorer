@@ -9,10 +9,10 @@ export class PreloadedDataSamples {
     'autoOffQuery=true&baseQuery=NOT%20%28Terrell%20OR%20Valmon%20OR%20Clark%29&gender=Men&maxRank=100&minRank=0&offQuery=NOT%20%28Bruno%29&onQuery=Bruno&team=Maryland&year=2018%2F9';
 
   static readonly menLineup =
-    'gender=Men&lineupQuery=&maxRank=400&minRank=0&team=Virginia&year=2018%2F9';
+    'baseQuery=&gender=Men&maxRank=400&minRank=0&team=Virginia&year=2018%2F9';
 
   static readonly womenLineup =
-    'gender=Women&lineupQuery=&maxRank=100&minRank=0&team=Maryland&year=2018%2F9';
+    'baseQuery=&gender=Women&maxRank=100&minRank=0&team=Maryland&year=2018%2F9';
 
   //(menLineup and womenLineup re-used for pre-loaded Team On/Off Report samples)
 }

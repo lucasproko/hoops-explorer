@@ -1,5 +1,5 @@
 
-import { QueryUtils } from "./QueryUtils";
+import { QueryUtils } from "../QueryUtils";
 
 export const commonOnOffBaseQuery = function(params: any) {
 

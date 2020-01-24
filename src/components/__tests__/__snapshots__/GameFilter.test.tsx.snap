@@ -77,49 +77,5 @@ exports[`GameFilter GameFilter - should create snapshot 1`] = `
       />
     </Col>
   </FormGroup>
-  <FormGroup
-    as={
-      Object {
-        "$$typeof": Symbol(react.forward_ref),
-        "defaultProps": Object {
-          "noGutters": false,
-        },
-        "render": [Function],
-      }
-    }
-  >
-    <FormLabel
-      column={true}
-      sm="2"
-      srOnly={false}
-    >
-      Baseline Query
-    </FormLabel>
-    <Col
-      sm="8"
-    >
-      <FormControl
-        onChange={[Function]}
-        onKeyUp={[Function]}
-        placeholder="eg 'NOT (WalkOn1 OR WalkOn2)' - applied to both 'On' and 'Off' queries"
-        value=""
-      />
-    </Col>
-    <Col
-      sm="2"
-    >
-      <FormCheck
-        checked={false}
-        disabled={true}
-        id="excludeWalkons"
-        inline={false}
-        isInvalid={false}
-        isValid={false}
-        label="Auto Walk-ons"
-        title=""
-        type="switch"
-      />
-    </Col>
-  </FormGroup>
 </CommonFilter>
 `;

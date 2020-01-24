@@ -1,7 +1,7 @@
 import { commonTeamQuery } from "./commonTeamQuery";
 import { commonOnOffBaseQuery } from "./commonOnOffBaseQuery";
 import { commonLineupAggregations } from "./commonLineupAggregations";
-import { QueryUtils } from "./QueryUtils";
+import { QueryUtils } from "../QueryUtils";
 
 export const lineupStatsQuery = function(params: any, publicEfficiency: any, lookup: any) {
   return {
@@ -45,7 +45,7 @@ export const lineupStatsQuery = function(params: any, publicEfficiency: any, loo
              commonTeamQuery(params, publicEfficiency, lookup),
              {
                "query_string": {
-                  "query": `${QueryUtils.basicOrAdvancedQuery(params.lineupQuery, '*')}`
+                  "query": `${QueryUtils.basicOrAdvancedQuery(params.baseQuery, '*')}`
                }
              }
           ]

@@ -22,7 +22,7 @@ import Tooltip from 'react-bootstrap/Tooltip';
 
 // Additional components:
 import Select, { components} from "react-select"
-import queryString from "query-string";
+import { QueryUtils } from "../utils/QueryUtils";
 // @ts-ignore
 import LoadingOverlay from 'react-loading-overlay';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -52,7 +52,8 @@ export type CommonFilterParams = {
   team?: string,
   gender?: string,
   minRank?: string,
-  maxRank?: string
+  maxRank?: string,
+  baseQuery?: string
 }
 interface Props<PARAMS> {
   startingState: PARAMS;
@@ -96,13 +97,15 @@ const CommonFilter: CommonFilterI = ({
 
   const [ minRankFilter, setMinRankFilter ] = useState(startingState.minRank || ParamDefaults.defaultMinRank);
   const [ maxRankFilter, setMaxRankFilter ] = useState(startingState.maxRank || ParamDefaults.defaultMaxRank);
+  const [ baseQuery, setBaseQuery ] = useState(startingState.baseQuery || "")
 
   // Automatically update child state when any current param is changed:
   useEffect(() => {
     onChangeCommonState({
-      team: team, year: year, gender: gender, minRank: minRankFilter, maxRank: maxRankFilter
+      team: team, year: year, gender: gender, minRank: minRankFilter, maxRank: maxRankFilter,
+      baseQuery: baseQuery
     })
-  }, [ team, year, gender, minRankFilter, maxRankFilter ]);
+  }, [ team, year, gender, minRankFilter, maxRankFilter, baseQuery ]);
 
   const [ submitDisabled, setSubmitDisabled ] = useState(false); // (always start as true on page load)
   const [ reportIsDisabled, setReportIsDisabled ] = useState(false); //(same as above)
@@ -169,7 +172,7 @@ const CommonFilter: CommonFilterI = ({
         }
       });
       // Check if object is in cache and handle response if so
-      const newParamsStr = queryString.stringify(buildParamsFromState(false));
+      const newParamsStr = QueryUtils.stringify(buildParamsFromState(false));
       if (isDebug) {
         console.log(`Looking for cache entry for [${tablePrefix}][${newParamsStr}]`);
       }
@@ -230,11 +233,11 @@ const CommonFilter: CommonFilterI = ({
   /** The user has pressed the submit button - mix of generic and custom logic */
   function onSubmit() {
     setQueryIsLoading(true);
-    const newParamsStr = queryString.stringify(buildParamsFromState(false));
+    const newParamsStr = QueryUtils.stringify(buildParamsFromState(false));
 
     // Store every request in history, successful or not:
     // including the filtering on the results
-    const newParamsStrWithFilterParams = queryString.stringify(buildParamsFromState(true));
+    const newParamsStrWithFilterParams = QueryUtils.stringify(buildParamsFromState(true));
     HistoryManager.addParamsToHistory(newParamsStrWithFilterParams, tablePrefix);
 
     // Check if it's in the cache:
@@ -317,10 +320,7 @@ const CommonFilter: CommonFilterI = ({
       });
       newClipboard.on('success', (event: ClipboardJS.Event) => {
         // Add the saved entry to the clipbaorrd
-        const newParamsStrWithFilterParams = queryString.stringify(buildParamsFromState(true));
-
-/**/
-console.log("??? " + newParamsStrWithFilterParams + " / " + window.location.href);
+        const newParamsStrWithFilterParams = QueryUtils.stringify(buildParamsFromState(true));
 
         HistoryManager.addParamsToHistory(newParamsStrWithFilterParams, tablePrefix);
         // Clear the selection in some visually pleasing way
@@ -345,11 +345,11 @@ console.log("??? " + newParamsStrWithFilterParams + " / " + window.location.href
       // Build a report query
       const parentParams = buildParamsFromState(false);
       const onOffReportParams = {
-        lineupQuery: (tablePrefix == ParamPrefixes.game) ? parentParams.baseQuery : parentParams.lineupQuery,
+        baseQuery: parentParams.baseQuery,
         team: parentParams.team, year: parentParams.year, gender: parentParams.gender,
         minRank: parentParams.minRank, maxRank: parentParams.maxRank
       };
-      const paramStr = queryString.stringify(onOffReportParams);
+      const paramStr = QueryUtils.stringify(onOffReportParams);
       const reportUrl = UrlRouting.getTeamReportUrl(onOffReportParams);
 
       // Is this query already cached?
@@ -498,6 +498,25 @@ console.log("??? " + newParamsStrWithFilterParams + " / " + window.location.href
       </Col>
     </Form.Group>
     { children }
+    <Form.Group as={Row}>
+      <Form.Label column sm="2">Baseline Query <a href="https://hoop-explorer.blogspot.com/2020/01/basic-and-advanced-queries-in-hoop.html" target="_blank">(?)</a></Form.Label>
+      <Col sm="8">
+        <Form.Control
+          placeholder="eg 'Player1 AND NOT (WalkOn1 OR WalkOn2)'"
+          value={baseQuery}
+          onKeyUp={(ev: any) => setBaseQuery(ev.target.value)}
+          onChange={(ev: any) => setBaseQuery(ev.target.value)}
+        />
+      </Col>
+      <Col sm="2">
+        <Form.Check type="switch"
+          id="excludeWalkons"
+          checked={false}
+          disabled
+          label="Auto Walk-ons"
+        />
+      </Col>
+    </Form.Group>
     <Form.Group as={Row} controlId="oppositionFilter">
       <Form.Label column sm="2">Opponent Strength</Form.Label>
       <Col sm="2">

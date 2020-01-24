@@ -6,7 +6,7 @@ import ls from 'local-storage';
 
 // @ts-ignore
 import LZUTF8 from 'lzutf8';
-import queryString from "query-string";
+import { QueryUtils } from "./QueryUtils";
 
 import { ParamPrefixes, GameFilterParams, LineupFilterParams, TeamReportFilterParams, ParamDefaults } from "../utils/FilterModels";
 
@@ -22,13 +22,13 @@ export class HistoryManager {
     return _.flatMap(HistoryManager.getParamStrs(), (param) => {
       if (_.startsWith(param, ParamPrefixes.game)) {
         const paramNoPrefix = param.substring(ParamPrefixes.game.length);
-        return [ [ ParamPrefixes.game, queryString.parse(paramNoPrefix) ] ];
+        return [ [ ParamPrefixes.game, QueryUtils.parse(paramNoPrefix) ] ];
       } else if (_.startsWith(param, ParamPrefixes.lineup)) {
         const paramNoPrefix = param.substring(ParamPrefixes.lineup.length);
-        return [ [ ParamPrefixes.lineup, queryString.parse(paramNoPrefix) ] ];
+        return [ [ ParamPrefixes.lineup, QueryUtils.parse(paramNoPrefix) ] ];
       } else if (_.startsWith(param, ParamPrefixes.report)) {
         const paramNoPrefix = param.substring(ParamPrefixes.report.length);
-        return [ [ ParamPrefixes.report, queryString.parse(paramNoPrefix) ] ];
+        return [ [ ParamPrefixes.report, QueryUtils.parse(paramNoPrefix) ] ];
       } else {
         return [];
       }
@@ -124,18 +124,18 @@ export class HistoryManager {
 
   /** Returns a summary string for the game filter */
   static lineupFilterSummary(p: LineupFilterParams) {
-    const lineupQuery = `query:'${tidyQuery(p.lineupQuery)}'`;
+    const baseQuery = `query:'${tidyQuery(p.baseQuery)}'`;
     const otherParams = `max:${p.maxTableSize || ParamDefaults.defaultLineupMaxTableSize}, ` +
       `min-poss:${p.minPoss || ParamDefaults.defaultLineupMinPos}, ` +
       `sort:${p.sortBy || ParamDefaults.defaultLineupSortBy}, ` +
       `filter:'${tidyQuery(p.filter)}'`
       ;
-    return `Lineups: ${HistoryManager.commonFilterSummary(p)}: ${lineupQuery} (${otherParams})`;
+    return `Lineups: ${HistoryManager.commonFilterSummary(p)}: ${baseQuery} (${otherParams})`;
   }
 
   /** Returns a summary string for the game filter */
   static teamReportFilterSummary(p: TeamReportFilterParams) {
-    const lineupQuery = `query:'${tidyQuery(p.lineupQuery)}'`;
+    const baseQuery = `query:'${tidyQuery(p.baseQuery)}'`;
     const showComps =
       (_.isNil(p.showComps) ? ParamDefaults.defaultShowComps : p.showComps) == "true";
     const showArray = showComps ? [ "comps"] : [];
@@ -145,7 +145,7 @@ export class HistoryManager {
       `filter:'${tidyQuery(p.filter)}', ` +
       `show:[${_.join(showArray, ",")}]`
       ;
-    return `On/Off Report: ${HistoryManager.commonFilterSummary(p)}: ${lineupQuery} (${otherParams})`;
+    return `On/Off Report: ${HistoryManager.commonFilterSummary(p)}: ${baseQuery} (${otherParams})`;
   }
 }
 /** (handy util) */
