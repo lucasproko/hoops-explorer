@@ -113,6 +113,9 @@ const CommonFilter: CommonFilterI = ({
 
   const isDebug = (process.env.NODE_ENV !== 'production');
 
+  const server = (typeof window === `undefined`) ? //(ensures SSR code still compiles)
+    "server" : window.location.hostname
+
   var historyOverlay: any= null; // (Gets overwritten by the history overlay trigger)
 
   // Utils
@@ -443,6 +446,13 @@ const CommonFilter: CommonFilterI = ({
     }
   }
 
+  /** Shows the blog help when accessed via hoop-explorer, consistency with top-level maybeShowBlog */
+  function maybeShowBlogHelp() {
+    if (!_.startsWith(server, "cbb-on-off-analyzer")) {
+      return <a href="https://hoop-explorer.blogspot.com/2020/01/basic-and-advanced-queries-in-hoop.html" target="_blank">(?)</a>;
+    }
+  }
+
   return <LoadingOverlay
     active={queryIsLoading}
     spinner
@@ -499,7 +509,7 @@ const CommonFilter: CommonFilterI = ({
     </Form.Group>
     { children }
     <Form.Group as={Row}>
-      <Form.Label column sm="2">Baseline Query <a href="https://hoop-explorer.blogspot.com/2020/01/basic-and-advanced-queries-in-hoop.html" target="_blank">(?)</a></Form.Label>
+      <Form.Label column sm="2">Baseline Query {maybeShowBlogHelp()}</Form.Label>
       <Col sm="8">
         <Form.Control
           placeholder="eg 'Player1 AND NOT (WalkOn1 OR WalkOn2)'"
