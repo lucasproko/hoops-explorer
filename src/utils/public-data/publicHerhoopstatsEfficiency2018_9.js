@@ -1,2108 +1,2459 @@
 export const publicHerhoopstatsEfficiency2018_9 = {
    "Baylor": {
-      "stats.adj_off.value": 121,
-      "stats.adj_def.value": 69.6,
-      "stats.adj_margin.value": 51.400000000000006,
-      "stats.adj_margin.rank": 1
+      "hhs_off_rating": 120.9,
+      "stats.adj_off.value": 118.71282051282049,
+      "stats.adj_def.value": 71.58717948717953,
+      "stats.adj_margin.value": 47.12564102564096,
+      "stats.adj_margin.rank": 5
    },
    "Mississippi St.": {
-      "stats.adj_off.value": 124.9,
-      "stats.adj_def.value": 74,
-      "stats.adj_margin.value": 50.900000000000006,
-      "stats.adj_margin.rank": 2
-   },
-   "Notre Dame": {
-      "stats.adj_off.value": 125,
-      "stats.adj_def.value": 74.8,
-      "stats.adj_margin.value": 50.2,
+      "hhs_off_rating": 124.6,
+      "stats.adj_off.value": 122.41282051282047,
+      "stats.adj_def.value": 76.38717948717951,
+      "stats.adj_margin.value": 46.025641025640965,
       "stats.adj_margin.rank": 3
    },
+   "Notre Dame": {
+      "hhs_off_rating": 124.9,
+      "stats.adj_off.value": 122.71282051282049,
+      "stats.adj_def.value": 76.88717948717951,
+      "stats.adj_margin.value": 45.82564102564098,
+      "stats.adj_margin.rank": 2
+   },
    "UConn": {
-      "stats.adj_off.value": 122,
-      "stats.adj_def.value": 73.7,
-      "stats.adj_margin.value": 48.3,
+      "hhs_off_rating": 121.8,
+      "stats.adj_off.value": 119.61282051282049,
+      "stats.adj_def.value": 75.88717948717951,
+      "stats.adj_margin.value": 43.72564102564098,
       "stats.adj_margin.rank": 4
    },
    "Oregon": {
-      "stats.adj_off.value": 126.5,
-      "stats.adj_def.value": 79.5,
-      "stats.adj_margin.value": 47,
-      "stats.adj_margin.rank": 5
+      "hhs_off_rating": 126.4,
+      "stats.adj_off.value": 124.21282051282049,
+      "stats.adj_def.value": 81.58717948717953,
+      "stats.adj_margin.value": 42.62564102564096,
+      "stats.adj_margin.rank": 1
    },
    "Louisville": {
-      "stats.adj_off.value": 117.7,
-      "stats.adj_def.value": 76.3,
-      "stats.adj_margin.value": 41.400000000000006,
+      "hhs_off_rating": 117.6,
+      "stats.adj_off.value": 115.41282051282047,
+      "stats.adj_def.value": 78.4871794871795,
+      "stats.adj_margin.value": 36.92564102564097,
       "stats.adj_margin.rank": 6
    },
    "Marquette": {
-      "stats.adj_off.value": 117.3,
-      "stats.adj_def.value": 76.7,
-      "stats.adj_margin.value": 40.599999999999994,
+      "hhs_off_rating": 117.2,
+      "stats.adj_off.value": 115.0128205128205,
+      "stats.adj_def.value": 78.9871794871795,
+      "stats.adj_margin.value": 36.025641025640994,
       "stats.adj_margin.rank": 7
    },
    "Stanford": {
-      "stats.adj_off.value": 113.7,
-      "stats.adj_def.value": 77.2,
-      "stats.adj_margin.value": 36.5,
-      "stats.adj_margin.rank": 8
-   },
-   "Iowa St.": {
-      "stats.adj_off.value": 113.8,
-      "stats.adj_def.value": 78,
-      "stats.adj_margin.value": 35.8,
-      "stats.adj_margin.rank": 9
-   },
-   "South Dakota St.": {
-      "stats.adj_off.value": 116.3,
-      "stats.adj_def.value": 81.5,
-      "stats.adj_margin.value": 34.8,
-      "stats.adj_margin.rank": 10
-   },
-   "Oregon St.": {
-      "stats.adj_off.value": 114.6,
-      "stats.adj_def.value": 81.5,
-      "stats.adj_margin.value": 33.099999999999994,
-      "stats.adj_margin.rank": 11
-   },
-   "Iowa": {
-      "stats.adj_off.value": 117.1,
-      "stats.adj_def.value": 84.2,
-      "stats.adj_margin.value": 32.89999999999999,
-      "stats.adj_margin.rank": 12
-   },
-   "Gonzaga": {
-      "stats.adj_off.value": 109.9,
-      "stats.adj_def.value": 80.2,
-      "stats.adj_margin.value": 29.700000000000003,
+      "hhs_off_rating": 113.7,
+      "stats.adj_off.value": 111.5128205128205,
+      "stats.adj_def.value": 79.38717948717951,
+      "stats.adj_margin.value": 32.12564102564099,
       "stats.adj_margin.rank": 13
    },
+   "Iowa St.": {
+      "hhs_off_rating": 113.8,
+      "stats.adj_off.value": 111.61282051282049,
+      "stats.adj_def.value": 80.08717948717953,
+      "stats.adj_margin.value": 31.525641025640965,
+      "stats.adj_margin.rank": 12
+   },
+   "South Dakota St.": {
+      "hhs_off_rating": 116.1,
+      "stats.adj_off.value": 113.91282051282047,
+      "stats.adj_def.value": 83.68717948717952,
+      "stats.adj_margin.value": 30.225641025640954,
+      "stats.adj_margin.rank": 9
+   },
+   "Iowa": {
+      "hhs_off_rating": 117.1,
+      "stats.adj_off.value": 114.91282051282047,
+      "stats.adj_def.value": 86.28717948717951,
+      "stats.adj_margin.value": 28.62564102564096,
+      "stats.adj_margin.rank": 8
+   },
+   "Oregon St.": {
+      "hhs_off_rating": 114.5,
+      "stats.adj_off.value": 112.31282051282048,
+      "stats.adj_def.value": 83.68717948717952,
+      "stats.adj_margin.value": 28.62564102564096,
+      "stats.adj_margin.rank": 11
+   },
+   "Gonzaga": {
+      "hhs_off_rating": 109.9,
+      "stats.adj_off.value": 107.71282051282049,
+      "stats.adj_def.value": 82.38717948717951,
+      "stats.adj_margin.value": 25.325641025640977,
+      "stats.adj_margin.rank": 21
+   },
    "South Carolina": {
-      "stats.adj_off.value": 111.9,
-      "stats.adj_def.value": 82.4,
-      "stats.adj_margin.value": 29.5,
+      "hhs_off_rating": 111.8,
+      "stats.adj_off.value": 109.61282051282049,
+      "stats.adj_def.value": 84.58717948717953,
+      "stats.adj_margin.value": 25.025641025640965,
       "stats.adj_margin.rank": 14
    },
    "NC State": {
-      "stats.adj_off.value": 110.4,
-      "stats.adj_def.value": 81.2,
-      "stats.adj_margin.value": 29.200000000000003,
-      "stats.adj_margin.rank": 15
-   },
-   "Central Mich.": {
-      "stats.adj_off.value": 115.6,
-      "stats.adj_def.value": 86.4,
-      "stats.adj_margin.value": 29.19999999999999,
-      "stats.adj_margin.rank": 16
-   },
-   "Maryland": {
-      "stats.adj_off.value": 109.9,
-      "stats.adj_def.value": 81.7,
-      "stats.adj_margin.value": 28.200000000000003,
-      "stats.adj_margin.rank": 17
-   },
-   "Syracuse": {
-      "stats.adj_off.value": 110.3,
-      "stats.adj_def.value": 82.4,
-      "stats.adj_margin.value": 27.89999999999999,
+      "hhs_off_rating": 110.4,
+      "stats.adj_off.value": 108.21282051282049,
+      "stats.adj_def.value": 83.28717948717951,
+      "stats.adj_margin.value": 24.92564102564097,
       "stats.adj_margin.rank": 18
    },
-   "Arizona St.": {
-      "stats.adj_off.value": 108.4,
-      "stats.adj_def.value": 80.8,
-      "stats.adj_margin.value": 27.60000000000001,
-      "stats.adj_margin.rank": 19
+   "Central Mich.": {
+      "hhs_off_rating": 115.5,
+      "stats.adj_off.value": 113.31282051282048,
+      "stats.adj_def.value": 88.4871794871795,
+      "stats.adj_margin.value": 24.825641025640977,
+      "stats.adj_margin.rank": 10
    },
-   "Texas A&M": {
-      "stats.adj_off.value": 107.5,
-      "stats.adj_def.value": 80,
-      "stats.adj_margin.value": 27.5,
-      "stats.adj_margin.rank": 20
-   },
-   "Kentucky": {
-      "stats.adj_off.value": 107.2,
-      "stats.adj_def.value": 79.7,
-      "stats.adj_margin.value": 27.5,
-      "stats.adj_margin.rank": 21
-   },
-   "Miami (FL)": {
-      "stats.adj_off.value": 109.8,
-      "stats.adj_def.value": 83.4,
-      "stats.adj_margin.value": 26.39999999999999,
+   "Maryland": {
+      "hhs_off_rating": 109.7,
+      "stats.adj_off.value": 107.5128205128205,
+      "stats.adj_def.value": 83.78717948717951,
+      "stats.adj_margin.value": 23.725641025640982,
       "stats.adj_margin.rank": 22
    },
-   "Drake": {
-      "stats.adj_off.value": 110.1,
-      "stats.adj_def.value": 84,
-      "stats.adj_margin.value": 26.099999999999994,
-      "stats.adj_margin.rank": 23
-   },
-   "South Dakota": {
-      "stats.adj_off.value": 109.6,
-      "stats.adj_def.value": 83.5,
-      "stats.adj_margin.value": 26.099999999999994,
-      "stats.adj_margin.rank": 24
-   },
-   "Missouri": {
-      "stats.adj_off.value": 108.2,
-      "stats.adj_def.value": 82.4,
-      "stats.adj_margin.value": 25.799999999999997,
-      "stats.adj_margin.rank": 25
-   },
-   "Belmont": {
-      "stats.adj_off.value": 111.3,
-      "stats.adj_def.value": 86,
-      "stats.adj_margin.value": 25.299999999999997,
-      "stats.adj_margin.rank": 26
-   },
-   "UCLA": {
-      "stats.adj_off.value": 111,
-      "stats.adj_def.value": 85.8,
-      "stats.adj_margin.value": 25.200000000000003,
-      "stats.adj_margin.rank": 27
-   },
-   "Texas": {
-      "stats.adj_off.value": 107.4,
-      "stats.adj_def.value": 82.3,
-      "stats.adj_margin.value": 25.10000000000001,
-      "stats.adj_margin.rank": 28
-   },
-   "James Madison": {
-      "stats.adj_off.value": 104.1,
-      "stats.adj_def.value": 79.1,
-      "stats.adj_margin.value": 25,
-      "stats.adj_margin.rank": 29
-   },
-   "Bucknell": {
-      "stats.adj_off.value": 107.5,
-      "stats.adj_def.value": 83,
-      "stats.adj_margin.value": 24.5,
+   "Arizona St.": {
+      "hhs_off_rating": 108.4,
+      "stats.adj_off.value": 106.21282051282049,
+      "stats.adj_def.value": 82.88717948717951,
+      "stats.adj_margin.value": 23.325641025640977,
       "stats.adj_margin.rank": 30
    },
-   "FGCU": {
-      "stats.adj_off.value": 105.9,
-      "stats.adj_def.value": 81.6,
-      "stats.adj_margin.value": 24.30000000000001,
-      "stats.adj_margin.rank": 31
+   "Syracuse": {
+      "hhs_off_rating": 110,
+      "stats.adj_off.value": 107.81282051282048,
+      "stats.adj_def.value": 84.58717948717953,
+      "stats.adj_margin.value": 23.225641025640954,
+      "stats.adj_margin.rank": 20
    },
-   "Buffalo": {
-      "stats.adj_off.value": 108.6,
-      "stats.adj_def.value": 84.3,
-      "stats.adj_margin.value": 24.299999999999997,
-      "stats.adj_margin.rank": 32
-   },
-   "Rice": {
-      "stats.adj_off.value": 106,
-      "stats.adj_def.value": 81.8,
-      "stats.adj_margin.value": 24.200000000000003,
-      "stats.adj_margin.rank": 33
-   },
-   "DePaul": {
-      "stats.adj_off.value": 111.8,
-      "stats.adj_def.value": 88.2,
-      "stats.adj_margin.value": 23.599999999999994,
-      "stats.adj_margin.rank": 34
-   },
-   "West Virginia": {
-      "stats.adj_off.value": 104.3,
-      "stats.adj_def.value": 80.7,
-      "stats.adj_margin.value": 23.599999999999994,
-      "stats.adj_margin.rank": 35
-   },
-   "Arizona": {
-      "stats.adj_off.value": 105.2,
-      "stats.adj_def.value": 81.7,
-      "stats.adj_margin.value": 23.5,
-      "stats.adj_margin.rank": 36
-   },
-   "Quinnipiac": {
-      "stats.adj_off.value": 101.8,
-      "stats.adj_def.value": 78.5,
-      "stats.adj_margin.value": 23.299999999999997,
+   "Texas A&M": {
+      "hhs_off_rating": 107.4,
+      "stats.adj_off.value": 105.21282051282049,
+      "stats.adj_def.value": 82.18717948717952,
+      "stats.adj_margin.value": 23.025641025640965,
       "stats.adj_margin.rank": 37
    },
-   "Ohio": {
-      "stats.adj_off.value": 107.8,
-      "stats.adj_def.value": 85.2,
-      "stats.adj_margin.value": 22.599999999999994,
-      "stats.adj_margin.rank": 38
-   },
-   "Virginia Tech": {
-      "stats.adj_off.value": 107.6,
-      "stats.adj_def.value": 85.3,
-      "stats.adj_margin.value": 22.299999999999997,
-      "stats.adj_margin.rank": 39
-   },
-   "Middle Tenn.": {
-      "stats.adj_off.value": 107.8,
-      "stats.adj_def.value": 85.7,
-      "stats.adj_margin.value": 22.099999999999994,
-      "stats.adj_margin.rank": 40
-   },
-   "Michigan St.": {
-      "stats.adj_off.value": 108.5,
-      "stats.adj_def.value": 86.6,
-      "stats.adj_margin.value": 21.900000000000006,
-      "stats.adj_margin.rank": 41
-   },
-   "Florida St.": {
-      "stats.adj_off.value": 105.3,
-      "stats.adj_def.value": 83.5,
-      "stats.adj_margin.value": 21.799999999999997,
+   "Kentucky": {
+      "hhs_off_rating": 107.2,
+      "stats.adj_off.value": 105.0128205128205,
+      "stats.adj_def.value": 81.9871794871795,
+      "stats.adj_margin.value": 23.025641025640994,
       "stats.adj_margin.rank": 42
    },
-   "Tennessee": {
-      "stats.adj_off.value": 107.3,
-      "stats.adj_def.value": 85.6,
-      "stats.adj_margin.value": 21.700000000000003,
-      "stats.adj_margin.rank": 43
+   "Miami (FL)": {
+      "hhs_off_rating": 109.6,
+      "stats.adj_off.value": 107.41282051282047,
+      "stats.adj_def.value": 85.4871794871795,
+      "stats.adj_margin.value": 21.92564102564097,
+      "stats.adj_margin.rank": 24
    },
-   "Utah": {
-      "stats.adj_off.value": 109,
-      "stats.adj_def.value": 87.4,
-      "stats.adj_margin.value": 21.599999999999994,
-      "stats.adj_margin.rank": 44
+   "Drake": {
+      "hhs_off_rating": 110.1,
+      "stats.adj_off.value": 107.91282051282047,
+      "stats.adj_def.value": 86.08717948717953,
+      "stats.adj_margin.value": 21.825641025640948,
+      "stats.adj_margin.rank": 19
    },
-   "Michigan": {
-      "stats.adj_off.value": 105.4,
-      "stats.adj_def.value": 84.3,
-      "stats.adj_margin.value": 21.10000000000001,
-      "stats.adj_margin.rank": 45
+   "South Dakota": {
+      "hhs_off_rating": 109.5,
+      "stats.adj_off.value": 107.31282051282048,
+      "stats.adj_def.value": 85.58717948717953,
+      "stats.adj_margin.value": 21.725641025640954,
+      "stats.adj_margin.rank": 25
    },
-   "TCU": {
-      "stats.adj_off.value": 103.7,
-      "stats.adj_def.value": 82.6,
-      "stats.adj_margin.value": 21.10000000000001,
-      "stats.adj_margin.rank": 46
+   "Missouri": {
+      "hhs_off_rating": 108.1,
+      "stats.adj_off.value": 105.91282051282047,
+      "stats.adj_def.value": 84.4871794871795,
+      "stats.adj_margin.value": 21.42564102564097,
+      "stats.adj_margin.rank": 31
    },
-   "Missouri St.": {
-      "stats.adj_off.value": 104.6,
-      "stats.adj_def.value": 83.6,
-      "stats.adj_margin.value": 21,
-      "stats.adj_margin.rank": 47
+   "UCLA": {
+      "hhs_off_rating": 110.9,
+      "stats.adj_off.value": 108.71282051282049,
+      "stats.adj_def.value": 87.88717948717951,
+      "stats.adj_margin.value": 20.825641025640977,
+      "stats.adj_margin.rank": 17
    },
-   "Green Bay": {
-      "stats.adj_off.value": 102,
-      "stats.adj_def.value": 81,
-      "stats.adj_margin.value": 21,
-      "stats.adj_margin.rank": 48
+   "Texas": {
+      "hhs_off_rating": 107.4,
+      "stats.adj_off.value": 105.21282051282049,
+      "stats.adj_def.value": 84.38717948717951,
+      "stats.adj_margin.value": 20.825641025640977,
+      "stats.adj_margin.rank": 36
    },
-   "Rutgers": {
-      "stats.adj_off.value": 103.1,
-      "stats.adj_def.value": 82.5,
-      "stats.adj_margin.value": 20.599999999999994,
-      "stats.adj_margin.rank": 49
-   },
-   "Penn": {
-      "stats.adj_off.value": 102.7,
-      "stats.adj_def.value": 82.5,
-      "stats.adj_margin.value": 20.200000000000003,
-      "stats.adj_margin.rank": 50
-   },
-   "Arkansas": {
-      "stats.adj_off.value": 105.9,
-      "stats.adj_def.value": 85.9,
-      "stats.adj_margin.value": 20,
-      "stats.adj_margin.rank": 51
-   },
-   "UC Davis": {
-      "stats.adj_off.value": 104,
-      "stats.adj_def.value": 84,
-      "stats.adj_margin.value": 20,
-      "stats.adj_margin.rank": 52
-   },
-   "UAB": {
-      "stats.adj_off.value": 106.9,
-      "stats.adj_def.value": 87,
-      "stats.adj_margin.value": 19.900000000000006,
-      "stats.adj_margin.rank": 53
-   },
-   "Auburn": {
-      "stats.adj_off.value": 105.5,
-      "stats.adj_def.value": 85.8,
-      "stats.adj_margin.value": 19.700000000000003,
-      "stats.adj_margin.rank": 54
-   },
-   "Saint Mary's (CA)": {
-      "stats.adj_off.value": 107.5,
-      "stats.adj_def.value": 88.1,
-      "stats.adj_margin.value": 19.400000000000006,
-      "stats.adj_margin.rank": 55
-   },
-   "North Carolina": {
-      "stats.adj_off.value": 107.9,
-      "stats.adj_def.value": 88.9,
-      "stats.adj_margin.value": 19,
-      "stats.adj_margin.rank": 56
-   },
-   "LSU": {
-      "stats.adj_off.value": 99.7,
-      "stats.adj_def.value": 80.8,
-      "stats.adj_margin.value": 18.900000000000006,
-      "stats.adj_margin.rank": 57
-   },
-   "Wyoming": {
-      "stats.adj_off.value": 106,
-      "stats.adj_def.value": 87.2,
-      "stats.adj_margin.value": 18.799999999999997,
-      "stats.adj_margin.rank": 58
-   },
-   "California": {
-      "stats.adj_off.value": 109.8,
-      "stats.adj_def.value": 91.1,
-      "stats.adj_margin.value": 18.700000000000003,
+   "James Madison": {
+      "hhs_off_rating": 104.1,
+      "stats.adj_off.value": 101.91282051282047,
+      "stats.adj_def.value": 81.18717948717952,
+      "stats.adj_margin.value": 20.725641025640954,
       "stats.adj_margin.rank": 59
    },
-   "Princeton": {
-      "stats.adj_off.value": 104.1,
-      "stats.adj_def.value": 85.6,
-      "stats.adj_margin.value": 18.5,
-      "stats.adj_margin.rank": 60
+   "Belmont": {
+      "hhs_off_rating": 111,
+      "stats.adj_off.value": 108.81282051282048,
+      "stats.adj_def.value": 88.28717948717951,
+      "stats.adj_margin.value": 20.525641025640965,
+      "stats.adj_margin.rank": 16
    },
-   "Drexel": {
-      "stats.adj_off.value": 100.3,
-      "stats.adj_def.value": 81.8,
-      "stats.adj_margin.value": 18.5,
-      "stats.adj_margin.rank": 61
+   "West Virginia": {
+      "hhs_off_rating": 104.7,
+      "stats.adj_off.value": 102.5128205128205,
+      "stats.adj_def.value": 81.9871794871795,
+      "stats.adj_margin.value": 20.525641025640994,
+      "stats.adj_margin.rank": 54
    },
-   "UCF": {
-      "stats.adj_off.value": 98.4,
-      "stats.adj_def.value": 80.3,
-      "stats.adj_margin.value": 18.10000000000001,
-      "stats.adj_margin.rank": 62
+   "Bucknell": {
+      "hhs_off_rating": 107.3,
+      "stats.adj_off.value": 105.11282051282049,
+      "stats.adj_def.value": 85.08717948717953,
+      "stats.adj_margin.value": 20.025641025640965,
+      "stats.adj_margin.rank": 39
    },
-   "Northwestern": {
-      "stats.adj_off.value": 100.6,
-      "stats.adj_def.value": 82.5,
-      "stats.adj_margin.value": 18.099999999999994,
-      "stats.adj_margin.rank": 63
+   "Buffalo": {
+      "hhs_off_rating": 108.5,
+      "stats.adj_off.value": 106.31282051282048,
+      "stats.adj_def.value": 86.4871794871795,
+      "stats.adj_margin.value": 19.825641025640977,
+      "stats.adj_margin.rank": 29
    },
-   "Butler": {
-      "stats.adj_off.value": 100.1,
-      "stats.adj_def.value": 82,
-      "stats.adj_margin.value": 18.099999999999994,
-      "stats.adj_margin.rank": 64
+   "Rice": {
+      "hhs_off_rating": 105.8,
+      "stats.adj_off.value": 103.61282051282049,
+      "stats.adj_def.value": 83.78717948717951,
+      "stats.adj_margin.value": 19.825641025640977,
+      "stats.adj_margin.rank": 46
    },
-   "Harvard": {
-      "stats.adj_off.value": 104.7,
-      "stats.adj_def.value": 86.7,
-      "stats.adj_margin.value": 18,
-      "stats.adj_margin.rank": 65
+   "FGCU": {
+      "hhs_off_rating": 105.8,
+      "stats.adj_off.value": 103.61282051282049,
+      "stats.adj_def.value": 83.78717948717951,
+      "stats.adj_margin.value": 19.825641025640977,
+      "stats.adj_margin.rank": 47
    },
-   "Minnesota": {
-      "stats.adj_off.value": 102.9,
-      "stats.adj_def.value": 85.1,
-      "stats.adj_margin.value": 17.80000000000001,
-      "stats.adj_margin.rank": 66
+   "DePaul": {
+      "hhs_off_rating": 111.7,
+      "stats.adj_off.value": 109.5128205128205,
+      "stats.adj_def.value": 90.28717948717951,
+      "stats.adj_margin.value": 19.225641025640982,
+      "stats.adj_margin.rank": 15
    },
-   "Indiana": {
-      "stats.adj_off.value": 102.9,
-      "stats.adj_def.value": 85.1,
-      "stats.adj_margin.value": 17.80000000000001,
-      "stats.adj_margin.rank": 67
+   "Arizona": {
+      "hhs_off_rating": 105.1,
+      "stats.adj_off.value": 102.91282051282047,
+      "stats.adj_def.value": 83.68717948717952,
+      "stats.adj_margin.value": 19.225641025640954,
+      "stats.adj_margin.rank": 52
    },
-   "Maine": {
-      "stats.adj_off.value": 105.5,
-      "stats.adj_def.value": 87.8,
-      "stats.adj_margin.value": 17.700000000000003,
-      "stats.adj_margin.rank": 68
-   },
-   "UT Arlington": {
-      "stats.adj_off.value": 102.3,
-      "stats.adj_def.value": 84.6,
-      "stats.adj_margin.value": 17.700000000000003,
-      "stats.adj_margin.rank": 69
-   },
-   "South Fla.": {
-      "stats.adj_off.value": 100.5,
-      "stats.adj_def.value": 82.8,
-      "stats.adj_margin.value": 17.700000000000003,
-      "stats.adj_margin.rank": 70
-   },
-   "New Mexico": {
-      "stats.adj_off.value": 101.9,
-      "stats.adj_def.value": 84.4,
-      "stats.adj_margin.value": 17.5,
-      "stats.adj_margin.rank": 71
-   },
-   "Southern California": {
-      "stats.adj_off.value": 104.1,
-      "stats.adj_def.value": 87,
-      "stats.adj_margin.value": 17.099999999999994,
-      "stats.adj_margin.rank": 72
-   },
-   "BYU": {
-      "stats.adj_off.value": 103.7,
-      "stats.adj_def.value": 86.7,
-      "stats.adj_margin.value": 17,
-      "stats.adj_margin.rank": 73
-   },
-   "Georgia": {
-      "stats.adj_off.value": 100.4,
-      "stats.adj_def.value": 83.6,
-      "stats.adj_margin.value": 16.80000000000001,
-      "stats.adj_margin.rank": 74
-   },
-   "Boise St.": {
-      "stats.adj_off.value": 104.5,
-      "stats.adj_def.value": 87.7,
-      "stats.adj_margin.value": 16.799999999999997,
-      "stats.adj_margin.rank": 75
-   },
-   "SFA": {
-      "stats.adj_off.value": 100.7,
-      "stats.adj_def.value": 84,
-      "stats.adj_margin.value": 16.700000000000003,
-      "stats.adj_margin.rank": 76
-   },
-   "Cincinnati": {
-      "stats.adj_off.value": 102.4,
-      "stats.adj_def.value": 85.9,
-      "stats.adj_margin.value": 16.5,
-      "stats.adj_margin.rank": 77
-   },
-   "Georgetown": {
-      "stats.adj_off.value": 100.4,
-      "stats.adj_def.value": 84.1,
-      "stats.adj_margin.value": 16.30000000000001,
-      "stats.adj_margin.rank": 78
-   },
-   "Nebraska": {
-      "stats.adj_off.value": 104.8,
-      "stats.adj_def.value": 88.6,
-      "stats.adj_margin.value": 16.200000000000003,
-      "stats.adj_margin.rank": 79
-   },
-   "Kansas St.": {
-      "stats.adj_off.value": 101,
-      "stats.adj_def.value": 85.1,
-      "stats.adj_margin.value": 15.900000000000006,
-      "stats.adj_margin.rank": 80
-   },
-   "Villanova": {
-      "stats.adj_off.value": 105.1,
-      "stats.adj_def.value": 89.3,
-      "stats.adj_margin.value": 15.799999999999997,
-      "stats.adj_margin.rank": 81
-   },
-   "Clemson": {
-      "stats.adj_off.value": 98.4,
-      "stats.adj_def.value": 83.1,
-      "stats.adj_margin.value": 15.300000000000011,
-      "stats.adj_margin.rank": 82
-   },
-   "Youngstown St.": {
-      "stats.adj_off.value": 102.5,
-      "stats.adj_def.value": 87.2,
-      "stats.adj_margin.value": 15.299999999999997,
-      "stats.adj_margin.rank": 83
-   },
-   "Georgia Tech": {
-      "stats.adj_off.value": 98.5,
-      "stats.adj_def.value": 84,
-      "stats.adj_margin.value": 14.5,
-      "stats.adj_margin.rank": 84
-   },
-   "VCU": {
-      "stats.adj_off.value": 96.2,
-      "stats.adj_def.value": 81.7,
-      "stats.adj_margin.value": 14.5,
-      "stats.adj_margin.rank": 85
-   },
-   "Fordham": {
-      "stats.adj_off.value": 100.9,
-      "stats.adj_def.value": 86.5,
-      "stats.adj_margin.value": 14.400000000000006,
-      "stats.adj_margin.rank": 86
-   },
-   "Little Rock": {
-      "stats.adj_off.value": 99.4,
-      "stats.adj_def.value": 85.1,
-      "stats.adj_margin.value": 14.300000000000011,
-      "stats.adj_margin.rank": 87
-   },
-   "Purdue": {
-      "stats.adj_off.value": 102.7,
-      "stats.adj_def.value": 88.5,
-      "stats.adj_margin.value": 14.200000000000003,
-      "stats.adj_margin.rank": 88
-   },
-   "Portland St.": {
-      "stats.adj_off.value": 100.1,
-      "stats.adj_def.value": 85.9,
-      "stats.adj_margin.value": 14.199999999999989,
-      "stats.adj_margin.rank": 89
-   },
-   "Wright St.": {
-      "stats.adj_off.value": 101.2,
-      "stats.adj_def.value": 87.3,
-      "stats.adj_margin.value": 13.900000000000006,
+   "Quinnipiac": {
+      "hhs_off_rating": 101.5,
+      "stats.adj_off.value": 99.31282051282048,
+      "stats.adj_def.value": 80.68717948717952,
+      "stats.adj_margin.value": 18.62564102564096,
       "stats.adj_margin.rank": 90
    },
-   "American": {
-      "stats.adj_off.value": 100.5,
-      "stats.adj_def.value": 86.6,
-      "stats.adj_margin.value": 13.900000000000006,
-      "stats.adj_margin.rank": 91
+   "Virginia Tech": {
+      "hhs_off_rating": 107.5,
+      "stats.adj_off.value": 105.31282051282048,
+      "stats.adj_def.value": 87.28717948717951,
+      "stats.adj_margin.value": 18.025641025640965,
+      "stats.adj_margin.rank": 35
    },
-   "Idaho": {
-      "stats.adj_off.value": 109,
-      "stats.adj_def.value": 95.3,
-      "stats.adj_margin.value": 13.700000000000003,
-      "stats.adj_margin.rank": 92
+   "Ohio": {
+      "hhs_off_rating": 107.6,
+      "stats.adj_off.value": 105.41282051282047,
+      "stats.adj_def.value": 87.38717948717951,
+      "stats.adj_margin.value": 18.025641025640965,
+      "stats.adj_margin.rank": 34
    },
-   "Western Ky.": {
-      "stats.adj_off.value": 107.5,
-      "stats.adj_def.value": 93.9,
-      "stats.adj_margin.value": 13.599999999999994,
-      "stats.adj_margin.rank": 93
+   "Middle Tenn.": {
+      "hhs_off_rating": 107.8,
+      "stats.adj_off.value": 105.61282051282049,
+      "stats.adj_def.value": 87.78717948717951,
+      "stats.adj_margin.value": 17.825641025640977,
+      "stats.adj_margin.rank": 33
    },
-   "Idaho St.": {
-      "stats.adj_off.value": 99.3,
-      "stats.adj_def.value": 85.7,
-      "stats.adj_margin.value": 13.599999999999994,
-      "stats.adj_margin.rank": 94
+   "Michigan St.": {
+      "hhs_off_rating": 108.6,
+      "stats.adj_off.value": 106.41282051282047,
+      "stats.adj_def.value": 88.68717948717952,
+      "stats.adj_margin.value": 17.725641025640954,
+      "stats.adj_margin.rank": 28
    },
-   "Troy": {
-      "stats.adj_off.value": 101.7,
-      "stats.adj_def.value": 88.2,
-      "stats.adj_margin.value": 13.5,
-      "stats.adj_margin.rank": 95
+   "Tennessee": {
+      "hhs_off_rating": 107.2,
+      "stats.adj_off.value": 105.0128205128205,
+      "stats.adj_def.value": 87.78717948717951,
+      "stats.adj_margin.value": 17.225641025640982,
+      "stats.adj_margin.rank": 41
    },
-   "Toledo": {
-      "stats.adj_off.value": 99.7,
-      "stats.adj_def.value": 86.4,
-      "stats.adj_margin.value": 13.299999999999997,
-      "stats.adj_margin.rank": 96
+   "Utah": {
+      "hhs_off_rating": 108.9,
+      "stats.adj_off.value": 106.71282051282049,
+      "stats.adj_def.value": 89.58717948717953,
+      "stats.adj_margin.value": 17.12564102564096,
+      "stats.adj_margin.rank": 27
    },
-   "Marist": {
-      "stats.adj_off.value": 102.6,
-      "stats.adj_def.value": 89.4,
-      "stats.adj_margin.value": 13.199999999999989,
-      "stats.adj_margin.rank": 97
+   "Florida St.": {
+      "hhs_off_rating": 105.1,
+      "stats.adj_off.value": 102.91282051282047,
+      "stats.adj_def.value": 85.78717948717951,
+      "stats.adj_margin.value": 17.12564102564096,
+      "stats.adj_margin.rank": 53
    },
-   "St. John's (NY)": {
-      "stats.adj_off.value": 102.1,
-      "stats.adj_def.value": 88.9,
-      "stats.adj_margin.value": 13.199999999999989,
-      "stats.adj_margin.rank": 98
+   "Green Bay": {
+      "hhs_off_rating": 101.9,
+      "stats.adj_off.value": 99.71282051282049,
+      "stats.adj_def.value": 82.78717948717951,
+      "stats.adj_margin.value": 16.92564102564097,
+      "stats.adj_margin.rank": 84
    },
-   "Dayton": {
-      "stats.adj_off.value": 96.7,
-      "stats.adj_def.value": 83.6,
-      "stats.adj_margin.value": 13.100000000000009,
-      "stats.adj_margin.rank": 99
+   "Missouri St.": {
+      "hhs_off_rating": 104.6,
+      "stats.adj_off.value": 102.41282051282047,
+      "stats.adj_def.value": 85.68717948717952,
+      "stats.adj_margin.value": 16.725641025640954,
+      "stats.adj_margin.rank": 56
    },
-   "Miami (OH)": {
-      "stats.adj_off.value": 101.1,
-      "stats.adj_def.value": 88.1,
-      "stats.adj_margin.value": 13,
-      "stats.adj_margin.rank": 100
+   "TCU": {
+      "hhs_off_rating": 103.6,
+      "stats.adj_off.value": 101.41282051282047,
+      "stats.adj_def.value": 84.68717948717952,
+      "stats.adj_margin.value": 16.725641025640954,
+      "stats.adj_margin.rank": 65
    },
-   "Duke": {
-      "stats.adj_off.value": 98,
-      "stats.adj_def.value": 85.2,
-      "stats.adj_margin.value": 12.799999999999997,
-      "stats.adj_margin.rank": 101
+   "Michigan": {
+      "hhs_off_rating": 105.2,
+      "stats.adj_off.value": 103.0128205128205,
+      "stats.adj_def.value": 86.4871794871795,
+      "stats.adj_margin.value": 16.525641025640994,
+      "stats.adj_margin.rank": 49
    },
-   "Radford": {
-      "stats.adj_off.value": 96.1,
-      "stats.adj_def.value": 83.5,
-      "stats.adj_margin.value": 12.599999999999994,
-      "stats.adj_margin.rank": 102
+   "Rutgers": {
+      "hhs_off_rating": 102.9,
+      "stats.adj_off.value": 100.71282051282049,
+      "stats.adj_def.value": 84.58717948717953,
+      "stats.adj_margin.value": 16.12564102564096,
+      "stats.adj_margin.rank": 66
    },
-   "IUPUI": {
-      "stats.adj_off.value": 99.1,
-      "stats.adj_def.value": 86.7,
-      "stats.adj_margin.value": 12.399999999999991,
-      "stats.adj_margin.rank": 103
+   "UAB": {
+      "hhs_off_rating": 106.9,
+      "stats.adj_off.value": 104.71282051282049,
+      "stats.adj_def.value": 88.9871794871795,
+      "stats.adj_margin.value": 15.725641025640982,
+      "stats.adj_margin.rank": 43
    },
-   "Oklahoma St.": {
-      "stats.adj_off.value": 100.1,
-      "stats.adj_def.value": 87.8,
-      "stats.adj_margin.value": 12.299999999999997,
-      "stats.adj_margin.rank": 104
+   "Penn": {
+      "hhs_off_rating": 102.5,
+      "stats.adj_off.value": 100.31282051282048,
+      "stats.adj_def.value": 84.58717948717953,
+      "stats.adj_margin.value": 15.725641025640954,
+      "stats.adj_margin.rank": 71
    },
-   "Lehigh": {
-      "stats.adj_off.value": 96.9,
-      "stats.adj_def.value": 84.8,
-      "stats.adj_margin.value": 12.100000000000009,
-      "stats.adj_margin.rank": 105
+   "UC Davis": {
+      "hhs_off_rating": 103.9,
+      "stats.adj_off.value": 101.71282051282049,
+      "stats.adj_def.value": 86.08717948717953,
+      "stats.adj_margin.value": 15.62564102564096,
+      "stats.adj_margin.rank": 62
    },
-   "Lamar University": {
-      "stats.adj_off.value": 99,
-      "stats.adj_def.value": 87,
-      "stats.adj_margin.value": 12,
-      "stats.adj_margin.rank": 106
+   "Arkansas": {
+      "hhs_off_rating": 106,
+      "stats.adj_off.value": 103.81282051282048,
+      "stats.adj_def.value": 88.38717948717951,
+      "stats.adj_margin.value": 15.42564102564097,
+      "stats.adj_margin.rank": 44
    },
-   "Seton Hall": {
-      "stats.adj_off.value": 102.2,
-      "stats.adj_def.value": 90.6,
-      "stats.adj_margin.value": 11.600000000000009,
-      "stats.adj_margin.rank": 107
+   "Auburn": {
+      "hhs_off_rating": 105.1,
+      "stats.adj_off.value": 102.91282051282047,
+      "stats.adj_def.value": 87.9871794871795,
+      "stats.adj_margin.value": 14.92564102564097,
+      "stats.adj_margin.rank": 51
    },
-   "Hartford": {
-      "stats.adj_off.value": 95.5,
-      "stats.adj_def.value": 84,
-      "stats.adj_margin.value": 11.5,
-      "stats.adj_margin.rank": 108
+   "Saint Mary's (CA)": {
+      "hhs_off_rating": 107.3,
+      "stats.adj_off.value": 105.11282051282049,
+      "stats.adj_def.value": 90.28717948717951,
+      "stats.adj_margin.value": 14.825641025640977,
+      "stats.adj_margin.rank": 40
    },
-   "Old Dominion": {
-      "stats.adj_off.value": 99.5,
-      "stats.adj_def.value": 88.1,
-      "stats.adj_margin.value": 11.400000000000006,
-      "stats.adj_margin.rank": 109
-   },
-   "UT Martin": {
-      "stats.adj_off.value": 102.3,
-      "stats.adj_def.value": 91,
-      "stats.adj_margin.value": 11.299999999999997,
-      "stats.adj_margin.rank": 110
-   },
-   "Northeastern": {
-      "stats.adj_off.value": 101.9,
-      "stats.adj_def.value": 90.8,
-      "stats.adj_margin.value": 11.100000000000009,
-      "stats.adj_margin.rank": 111
-   },
-   "Creighton": {
-      "stats.adj_off.value": 102.8,
-      "stats.adj_def.value": 91.8,
-      "stats.adj_margin.value": 11,
-      "stats.adj_margin.rank": 112
-   },
-   "Texas Tech": {
-      "stats.adj_off.value": 101.4,
-      "stats.adj_def.value": 90.6,
-      "stats.adj_margin.value": 10.800000000000011,
-      "stats.adj_margin.rank": 113
-   },
-   "Fresno St.": {
-      "stats.adj_off.value": 102,
-      "stats.adj_def.value": 91.4,
-      "stats.adj_margin.value": 10.599999999999994,
+   "LSU": {
+      "hhs_off_rating": 99.8,
+      "stats.adj_off.value": 97.61282051282049,
+      "stats.adj_def.value": 82.88717948717951,
+      "stats.adj_margin.value": 14.725641025640982,
       "stats.adj_margin.rank": 114
    },
-   "Denver": {
-      "stats.adj_off.value": 103.7,
-      "stats.adj_def.value": 93.2,
-      "stats.adj_margin.value": 10.5,
-      "stats.adj_margin.rank": 115
+   "Wyoming": {
+      "hhs_off_rating": 106,
+      "stats.adj_off.value": 103.81282051282048,
+      "stats.adj_def.value": 89.28717948717951,
+      "stats.adj_margin.value": 14.525641025640965,
+      "stats.adj_margin.rank": 45
    },
-   "UNI": {
-      "stats.adj_off.value": 100.1,
-      "stats.adj_def.value": 89.7,
-      "stats.adj_margin.value": 10.399999999999991,
-      "stats.adj_margin.rank": 116
+   "North Carolina": {
+      "hhs_off_rating": 107.8,
+      "stats.adj_off.value": 105.61282051282049,
+      "stats.adj_def.value": 91.08717948717953,
+      "stats.adj_margin.value": 14.525641025640965,
+      "stats.adj_margin.rank": 32
    },
-   "Kent St.": {
-      "stats.adj_off.value": 96.4,
-      "stats.adj_def.value": 86.4,
-      "stats.adj_margin.value": 10,
-      "stats.adj_margin.rank": 117
+   "California": {
+      "hhs_off_rating": 109.7,
+      "stats.adj_off.value": 107.5128205128205,
+      "stats.adj_def.value": 93.18717948717952,
+      "stats.adj_margin.value": 14.325641025640977,
+      "stats.adj_margin.rank": 23
    },
-   "Providence": {
-      "stats.adj_off.value": 96.3,
-      "stats.adj_def.value": 86.3,
-      "stats.adj_margin.value": 10,
-      "stats.adj_margin.rank": 118
+   "Princeton": {
+      "hhs_off_rating": 104,
+      "stats.adj_off.value": 101.81282051282048,
+      "stats.adj_def.value": 87.68717948717952,
+      "stats.adj_margin.value": 14.12564102564096,
+      "stats.adj_margin.rank": 61
    },
-   "Pacific": {
-      "stats.adj_off.value": 101.9,
-      "stats.adj_def.value": 92,
-      "stats.adj_margin.value": 9.900000000000006,
-      "stats.adj_margin.rank": 119
+   "Drexel": {
+      "hhs_off_rating": 100,
+      "stats.adj_off.value": 97.81282051282048,
+      "stats.adj_def.value": 83.78717948717951,
+      "stats.adj_margin.value": 14.025641025640965,
+      "stats.adj_margin.rank": 108
    },
-   "Boston College": {
-      "stats.adj_off.value": 102,
-      "stats.adj_def.value": 92.2,
-      "stats.adj_margin.value": 9.799999999999997,
-      "stats.adj_margin.rank": 120
+   "Northwestern": {
+      "hhs_off_rating": 100.6,
+      "stats.adj_off.value": 98.41282051282047,
+      "stats.adj_def.value": 84.4871794871795,
+      "stats.adj_margin.value": 13.92564102564097,
+      "stats.adj_margin.rank": 97
    },
-   "Pepperdine": {
-      "stats.adj_off.value": 102.5,
-      "stats.adj_def.value": 92.8,
-      "stats.adj_margin.value": 9.700000000000003,
-      "stats.adj_margin.rank": 121
+   "Butler": {
+      "hhs_off_rating": 100,
+      "stats.adj_off.value": 97.81282051282048,
+      "stats.adj_def.value": 83.9871794871795,
+      "stats.adj_margin.value": 13.825641025640977,
+      "stats.adj_margin.rank": 109
    },
-   "Morehead St.": {
-      "stats.adj_off.value": 100.2,
-      "stats.adj_def.value": 90.5,
-      "stats.adj_margin.value": 9.700000000000003,
-      "stats.adj_margin.rank": 122
-   },
-   "Kansas": {
-      "stats.adj_off.value": 98.7,
-      "stats.adj_def.value": 89.1,
-      "stats.adj_margin.value": 9.600000000000009,
-      "stats.adj_margin.rank": 123
-   },
-   "Houston": {
-      "stats.adj_off.value": 97.8,
-      "stats.adj_def.value": 88.4,
-      "stats.adj_margin.value": 9.399999999999991,
-      "stats.adj_margin.rank": 124
-   },
-   "Mercer": {
-      "stats.adj_off.value": 100,
-      "stats.adj_def.value": 90.9,
-      "stats.adj_margin.value": 9.099999999999994,
-      "stats.adj_margin.rank": 125
-   },
-   "Stony Brook": {
-      "stats.adj_off.value": 99.6,
-      "stats.adj_def.value": 90.7,
-      "stats.adj_margin.value": 8.899999999999991,
-      "stats.adj_margin.rank": 126
-   },
-   "Robert Morris": {
-      "stats.adj_off.value": 93.5,
-      "stats.adj_def.value": 84.8,
-      "stats.adj_margin.value": 8.700000000000003,
-      "stats.adj_margin.rank": 127
-   },
-   "Washington St.": {
-      "stats.adj_off.value": 102.6,
-      "stats.adj_def.value": 94,
-      "stats.adj_margin.value": 8.599999999999994,
-      "stats.adj_margin.rank": 128
-   },
-   "Northern Ill.": {
-      "stats.adj_off.value": 99.3,
-      "stats.adj_def.value": 90.8,
-      "stats.adj_margin.value": 8.5,
-      "stats.adj_margin.rank": 129
-   },
-   "Southern Ill.": {
-      "stats.adj_off.value": 98.8,
-      "stats.adj_def.value": 90.3,
-      "stats.adj_margin.value": 8.5,
-      "stats.adj_margin.rank": 130
-   },
-   "LMU (CA)": {
-      "stats.adj_off.value": 96.6,
-      "stats.adj_def.value": 88.4,
-      "stats.adj_margin.value": 8.199999999999989,
+   "UCF": {
+      "hhs_off_rating": 98.3,
+      "stats.adj_off.value": 96.11282051282049,
+      "stats.adj_def.value": 82.38717948717951,
+      "stats.adj_margin.value": 13.725641025640982,
       "stats.adj_margin.rank": 131
    },
-   "Abilene Christian": {
-      "stats.adj_off.value": 102.7,
-      "stats.adj_def.value": 94.6,
-      "stats.adj_margin.value": 8.100000000000009,
-      "stats.adj_margin.rank": 132
+   "Minnesota": {
+      "hhs_off_rating": 102.8,
+      "stats.adj_off.value": 100.61282051282049,
+      "stats.adj_def.value": 87.08717948717953,
+      "stats.adj_margin.value": 13.525641025640965,
+      "stats.adj_margin.rank": 67
    },
-   "Tennessee Tech": {
-      "stats.adj_off.value": 100.6,
-      "stats.adj_def.value": 92.5,
-      "stats.adj_margin.value": 8.099999999999994,
-      "stats.adj_margin.rank": 133
+   "Harvard": {
+      "hhs_off_rating": 104.4,
+      "stats.adj_off.value": 102.21282051282049,
+      "stats.adj_def.value": 88.78717948717951,
+      "stats.adj_margin.value": 13.42564102564097,
+      "stats.adj_margin.rank": 58
    },
-   "Charlotte": {
-      "stats.adj_off.value": 98,
-      "stats.adj_def.value": 90,
-      "stats.adj_margin.value": 8,
+   "Maine": {
+      "hhs_off_rating": 105.5,
+      "stats.adj_off.value": 103.31282051282048,
+      "stats.adj_def.value": 89.88717948717951,
+      "stats.adj_margin.value": 13.42564102564097,
+      "stats.adj_margin.rank": 48
+   },
+   "UT Arlington": {
+      "hhs_off_rating": 102.2,
+      "stats.adj_off.value": 100.0128205128205,
+      "stats.adj_def.value": 86.68717948717952,
+      "stats.adj_margin.value": 13.325641025640977,
+      "stats.adj_margin.rank": 78
+   },
+   "New Mexico": {
+      "hhs_off_rating": 101.8,
+      "stats.adj_off.value": 99.61282051282049,
+      "stats.adj_def.value": 86.28717948717951,
+      "stats.adj_margin.value": 13.325641025640977,
+      "stats.adj_margin.rank": 86
+   },
+   "South Fla.": {
+      "hhs_off_rating": 100.3,
+      "stats.adj_off.value": 98.11282051282049,
+      "stats.adj_def.value": 84.9871794871795,
+      "stats.adj_margin.value": 13.125641025640988,
+      "stats.adj_margin.rank": 102
+   },
+   "Indiana": {
+      "hhs_off_rating": 102.5,
+      "stats.adj_off.value": 100.31282051282048,
+      "stats.adj_def.value": 87.28717948717951,
+      "stats.adj_margin.value": 13.025641025640965,
+      "stats.adj_margin.rank": 73
+   },
+   "BYU": {
+      "hhs_off_rating": 103.7,
+      "stats.adj_off.value": 101.5128205128205,
+      "stats.adj_def.value": 88.68717948717952,
+      "stats.adj_margin.value": 12.825641025640977,
+      "stats.adj_margin.rank": 63
+   },
+   "Southern California": {
+      "hhs_off_rating": 104,
+      "stats.adj_off.value": 101.81282051282048,
+      "stats.adj_def.value": 89.08717948717953,
+      "stats.adj_margin.value": 12.725641025640954,
+      "stats.adj_margin.rank": 60
+   },
+   "Georgia": {
+      "hhs_off_rating": 101,
+      "stats.adj_off.value": 98.81282051282048,
+      "stats.adj_def.value": 86.08717948717953,
+      "stats.adj_margin.value": 12.725641025640954,
+      "stats.adj_margin.rank": 93
+   },
+   "Cincinnati": {
+      "hhs_off_rating": 102.4,
+      "stats.adj_off.value": 100.21282051282049,
+      "stats.adj_def.value": 87.68717948717952,
+      "stats.adj_margin.value": 12.525641025640965,
+      "stats.adj_margin.rank": 76
+   },
+   "Boise St.": {
+      "hhs_off_rating": 104.4,
+      "stats.adj_off.value": 102.21282051282049,
+      "stats.adj_def.value": 89.78717948717951,
+      "stats.adj_margin.value": 12.42564102564097,
+      "stats.adj_margin.rank": 57
+   },
+   "SFA": {
+      "hhs_off_rating": 100.5,
+      "stats.adj_off.value": 98.31282051282048,
+      "stats.adj_def.value": 86.08717948717953,
+      "stats.adj_margin.value": 12.225641025640954,
+      "stats.adj_margin.rank": 99
+   },
+   "Villanova": {
+      "hhs_off_rating": 105.2,
+      "stats.adj_off.value": 103.0128205128205,
+      "stats.adj_def.value": 90.9871794871795,
+      "stats.adj_margin.value": 12.025641025640994,
+      "stats.adj_margin.rank": 50
+   },
+   "Georgetown": {
+      "hhs_off_rating": 100.3,
+      "stats.adj_off.value": 98.11282051282049,
+      "stats.adj_def.value": 86.18717948717952,
+      "stats.adj_margin.value": 11.92564102564097,
+      "stats.adj_margin.rank": 103
+   },
+   "Nebraska": {
+      "hhs_off_rating": 104.7,
+      "stats.adj_off.value": 102.5128205128205,
+      "stats.adj_def.value": 90.68717948717952,
+      "stats.adj_margin.value": 11.825641025640977,
+      "stats.adj_margin.rank": 55
+   },
+   "Kansas St.": {
+      "hhs_off_rating": 101,
+      "stats.adj_off.value": 98.81282051282048,
+      "stats.adj_def.value": 87.18717948717952,
+      "stats.adj_margin.value": 11.62564102564096,
+      "stats.adj_margin.rank": 94
+   },
+   "Youngstown St.": {
+      "hhs_off_rating": 102.4,
+      "stats.adj_off.value": 100.21282051282049,
+      "stats.adj_def.value": 89.28717948717951,
+      "stats.adj_margin.value": 10.92564102564097,
+      "stats.adj_margin.rank": 74
+   },
+   "Clemson": {
+      "hhs_off_rating": 98.3,
+      "stats.adj_off.value": 96.11282051282049,
+      "stats.adj_def.value": 85.28717948717951,
+      "stats.adj_margin.value": 10.825641025640977,
+      "stats.adj_margin.rank": 130
+   },
+   "VCU": {
+      "hhs_off_rating": 96.4,
+      "stats.adj_off.value": 94.21282051282049,
+      "stats.adj_def.value": 83.68717948717952,
+      "stats.adj_margin.value": 10.525641025640965,
+      "stats.adj_margin.rank": 151
+   },
+   "Georgia Tech": {
+      "hhs_off_rating": 98.3,
+      "stats.adj_off.value": 96.11282051282049,
+      "stats.adj_def.value": 85.9871794871795,
+      "stats.adj_margin.value": 10.125641025640988,
+      "stats.adj_margin.rank": 128
+   },
+   "Fordham": {
+      "hhs_off_rating": 100.8,
+      "stats.adj_off.value": 98.61282051282049,
+      "stats.adj_def.value": 88.58717948717953,
+      "stats.adj_margin.value": 10.025641025640965,
+      "stats.adj_margin.rank": 96
+   },
+   "Portland St.": {
+      "hhs_off_rating": 100.1,
+      "stats.adj_off.value": 97.91282051282047,
+      "stats.adj_def.value": 87.9871794871795,
+      "stats.adj_margin.value": 9.92564102564097,
+      "stats.adj_margin.rank": 107
+   },
+   "Little Rock": {
+      "hhs_off_rating": 99.3,
+      "stats.adj_off.value": 97.11282051282049,
+      "stats.adj_def.value": 87.18717948717952,
+      "stats.adj_margin.value": 9.92564102564097,
+      "stats.adj_margin.rank": 117
+   },
+   "Purdue": {
+      "hhs_off_rating": 102.3,
+      "stats.adj_off.value": 100.11282051282049,
+      "stats.adj_def.value": 90.4871794871795,
+      "stats.adj_margin.value": 9.625641025640988,
+      "stats.adj_margin.rank": 77
+   },
+   "Idaho": {
+      "hhs_off_rating": 109,
+      "stats.adj_off.value": 106.81282051282048,
+      "stats.adj_def.value": 97.28717948717951,
+      "stats.adj_margin.value": 9.525641025640965,
+      "stats.adj_margin.rank": 26
+   },
+   "American": {
+      "hhs_off_rating": 100.4,
+      "stats.adj_off.value": 98.21282051282049,
+      "stats.adj_def.value": 88.78717948717951,
+      "stats.adj_margin.value": 9.42564102564097,
+      "stats.adj_margin.rank": 101
+   },
+   "Wright St.": {
+      "hhs_off_rating": 101,
+      "stats.adj_off.value": 98.81282051282048,
+      "stats.adj_def.value": 89.4871794871795,
+      "stats.adj_margin.value": 9.325641025640977,
+      "stats.adj_margin.rank": 92
+   },
+   "Troy": {
+      "hhs_off_rating": 101.7,
+      "stats.adj_off.value": 99.5128205128205,
+      "stats.adj_def.value": 90.28717948717951,
+      "stats.adj_margin.value": 9.225641025640982,
+      "stats.adj_margin.rank": 87
+   },
+   "Toledo": {
+      "hhs_off_rating": 99.8,
+      "stats.adj_off.value": 97.61282051282049,
+      "stats.adj_def.value": 88.38717948717951,
+      "stats.adj_margin.value": 9.225641025640982,
+      "stats.adj_margin.rank": 112
+   },
+   "Idaho St.": {
+      "hhs_off_rating": 99.1,
+      "stats.adj_off.value": 96.91282051282047,
+      "stats.adj_def.value": 87.68717948717952,
+      "stats.adj_margin.value": 9.225641025640954,
+      "stats.adj_margin.rank": 121
+   },
+   "Western Ky.": {
+      "hhs_off_rating": 107.4,
+      "stats.adj_off.value": 105.21282051282049,
+      "stats.adj_def.value": 96.08717948717953,
+      "stats.adj_margin.value": 9.12564102564096,
+      "stats.adj_margin.rank": 38
+   },
+   "Dayton": {
+      "hhs_off_rating": 96.7,
+      "stats.adj_off.value": 94.5128205128205,
+      "stats.adj_def.value": 85.58717948717953,
+      "stats.adj_margin.value": 8.92564102564097,
+      "stats.adj_margin.rank": 148
+   },
+   "Marist": {
+      "hhs_off_rating": 102.5,
+      "stats.adj_off.value": 100.31282051282048,
+      "stats.adj_def.value": 91.58717948717953,
+      "stats.adj_margin.value": 8.725641025640954,
+      "stats.adj_margin.rank": 72
+   },
+   "St. John's (NY)": {
+      "hhs_off_rating": 101.9,
+      "stats.adj_off.value": 99.71282051282049,
+      "stats.adj_def.value": 91.18717948717952,
+      "stats.adj_margin.value": 8.525641025640965,
+      "stats.adj_margin.rank": 82
+   },
+   "Miami (OH)": {
+      "hhs_off_rating": 100.9,
+      "stats.adj_off.value": 98.71282051282049,
+      "stats.adj_def.value": 90.28717948717951,
+      "stats.adj_margin.value": 8.42564102564097,
+      "stats.adj_margin.rank": 95
+   },
+   "Duke": {
+      "hhs_off_rating": 98,
+      "stats.adj_off.value": 95.81282051282048,
+      "stats.adj_def.value": 87.38717948717951,
+      "stats.adj_margin.value": 8.42564102564097,
       "stats.adj_margin.rank": 134
    },
-   "Ohio St.": {
-      "stats.adj_off.value": 96.2,
-      "stats.adj_def.value": 88.3,
-      "stats.adj_margin.value": 7.900000000000006,
-      "stats.adj_margin.rank": 135
+   "Radford": {
+      "hhs_off_rating": 96.1,
+      "stats.adj_off.value": 93.91282051282047,
+      "stats.adj_def.value": 85.58717948717953,
+      "stats.adj_margin.value": 8.325641025640948,
+      "stats.adj_margin.rank": 158
    },
-   "Northern Colo.": {
-      "stats.adj_off.value": 99.5,
-      "stats.adj_def.value": 91.7,
-      "stats.adj_margin.value": 7.799999999999997,
-      "stats.adj_margin.rank": 136
+   "IUPUI": {
+      "hhs_off_rating": 99.1,
+      "stats.adj_off.value": 96.91282051282047,
+      "stats.adj_def.value": 88.78717948717951,
+      "stats.adj_margin.value": 8.12564102564096,
+      "stats.adj_margin.rank": 120
    },
-   "Yale": {
-      "stats.adj_off.value": 94.7,
-      "stats.adj_def.value": 87.1,
-      "stats.adj_margin.value": 7.6000000000000085,
-      "stats.adj_margin.rank": 137
+   "Oklahoma St.": {
+      "hhs_off_rating": 100,
+      "stats.adj_off.value": 97.81282051282048,
+      "stats.adj_def.value": 89.88717948717951,
+      "stats.adj_margin.value": 7.925641025640971,
+      "stats.adj_margin.rank": 111
    },
-   "High Point": {
-      "stats.adj_off.value": 97.6,
-      "stats.adj_def.value": 90,
-      "stats.adj_margin.value": 7.599999999999994,
-      "stats.adj_margin.rank": 138
+   "Lehigh": {
+      "hhs_off_rating": 96.8,
+      "stats.adj_off.value": 94.61282051282049,
+      "stats.adj_def.value": 86.88717948717951,
+      "stats.adj_margin.value": 7.725641025640982,
+      "stats.adj_margin.rank": 147
    },
-   "Oklahoma": {
-      "stats.adj_off.value": 99.9,
-      "stats.adj_def.value": 92.5,
-      "stats.adj_margin.value": 7.400000000000006,
+   "Old Dominion": {
+      "hhs_off_rating": 100.2,
+      "stats.adj_off.value": 98.0128205128205,
+      "stats.adj_def.value": 90.4871794871795,
+      "stats.adj_margin.value": 7.525641025640994,
+      "stats.adj_margin.rank": 105
+   },
+   "Seton Hall": {
+      "hhs_off_rating": 102.2,
+      "stats.adj_off.value": 100.0128205128205,
+      "stats.adj_def.value": 92.58717948717953,
+      "stats.adj_margin.value": 7.425641025640971,
+      "stats.adj_margin.rank": 79
+   },
+   "Lamar University": {
+      "hhs_off_rating": 98.8,
+      "stats.adj_off.value": 96.61282051282049,
+      "stats.adj_def.value": 89.38717948717951,
+      "stats.adj_margin.value": 7.225641025640982,
+      "stats.adj_margin.rank": 122
+   },
+   "Hartford": {
+      "hhs_off_rating": 95.3,
+      "stats.adj_off.value": 93.11282051282049,
+      "stats.adj_def.value": 86.08717948717953,
+      "stats.adj_margin.value": 7.025641025640965,
+      "stats.adj_margin.rank": 169
+   },
+   "Northeastern": {
+      "hhs_off_rating": 102,
+      "stats.adj_off.value": 99.81282051282048,
+      "stats.adj_def.value": 92.88717948717951,
+      "stats.adj_margin.value": 6.925641025640971,
+      "stats.adj_margin.rank": 81
+   },
+   "Creighton": {
+      "hhs_off_rating": 102.7,
+      "stats.adj_off.value": 100.5128205128205,
+      "stats.adj_def.value": 93.88717948717951,
+      "stats.adj_margin.value": 6.625641025640988,
+      "stats.adj_margin.rank": 68
+   },
+   "UT Martin": {
+      "hhs_off_rating": 102.1,
+      "stats.adj_off.value": 99.91282051282047,
+      "stats.adj_def.value": 93.28717948717951,
+      "stats.adj_margin.value": 6.6256410256409595,
+      "stats.adj_margin.rank": 80
+   },
+   "Texas Tech": {
+      "hhs_off_rating": 101.4,
+      "stats.adj_off.value": 99.21282051282049,
+      "stats.adj_def.value": 92.58717948717953,
+      "stats.adj_margin.value": 6.6256410256409595,
+      "stats.adj_margin.rank": 91
+   },
+   "Denver": {
+      "hhs_off_rating": 103.7,
+      "stats.adj_off.value": 101.5128205128205,
+      "stats.adj_def.value": 95.28717948717951,
+      "stats.adj_margin.value": 6.225641025640982,
+      "stats.adj_margin.rank": 64
+   },
+   "Fresno St.": {
+      "hhs_off_rating": 101.9,
+      "stats.adj_off.value": 99.71282051282049,
+      "stats.adj_def.value": 93.4871794871795,
+      "stats.adj_margin.value": 6.225641025640982,
+      "stats.adj_margin.rank": 83
+   },
+   "UNI": {
+      "hhs_off_rating": 100.1,
+      "stats.adj_off.value": 97.91282051282047,
+      "stats.adj_def.value": 91.78717948717951,
+      "stats.adj_margin.value": 6.1256410256409595,
+      "stats.adj_margin.rank": 106
+   },
+   "Pacific": {
+      "hhs_off_rating": 101.8,
+      "stats.adj_off.value": 99.61282051282049,
+      "stats.adj_def.value": 94.08717948717953,
+      "stats.adj_margin.value": 5.525641025640965,
+      "stats.adj_margin.rank": 85
+   },
+   "Kent St.": {
+      "hhs_off_rating": 96.3,
+      "stats.adj_off.value": 94.11282051282049,
+      "stats.adj_def.value": 88.58717948717953,
+      "stats.adj_margin.value": 5.525641025640965,
+      "stats.adj_margin.rank": 153
+   },
+   "Providence": {
+      "hhs_off_rating": 96.1,
+      "stats.adj_off.value": 93.91282051282047,
+      "stats.adj_def.value": 88.4871794871795,
+      "stats.adj_margin.value": 5.425641025640971,
+      "stats.adj_margin.rank": 157
+   },
+   "Kansas": {
+      "hhs_off_rating": 98.6,
+      "stats.adj_off.value": 96.41282051282047,
+      "stats.adj_def.value": 91.08717948717953,
+      "stats.adj_margin.value": 5.325641025640948,
+      "stats.adj_margin.rank": 125
+   },
+   "Pepperdine": {
+      "hhs_off_rating": 102.4,
+      "stats.adj_off.value": 100.21282051282049,
+      "stats.adj_def.value": 94.9871794871795,
+      "stats.adj_margin.value": 5.225641025640982,
+      "stats.adj_margin.rank": 75
+   },
+   "Boston College": {
+      "hhs_off_rating": 101.6,
+      "stats.adj_off.value": 99.41282051282047,
+      "stats.adj_def.value": 94.18717948717952,
+      "stats.adj_margin.value": 5.225641025640954,
+      "stats.adj_margin.rank": 89
+   },
+   "Houston": {
+      "hhs_off_rating": 97.6,
+      "stats.adj_off.value": 95.41282051282047,
+      "stats.adj_def.value": 90.28717948717951,
+      "stats.adj_margin.value": 5.1256410256409595,
       "stats.adj_margin.rank": 139
    },
-   "Penn St.": {
-      "stats.adj_off.value": 98.9,
-      "stats.adj_def.value": 91.6,
-      "stats.adj_margin.value": 7.300000000000011,
+   "Morehead St.": {
+      "hhs_off_rating": 100.2,
+      "stats.adj_off.value": 98.0128205128205,
+      "stats.adj_def.value": 93.18717948717952,
+      "stats.adj_margin.value": 4.8256410256409765,
+      "stats.adj_margin.rank": 104
+   },
+   "Mercer": {
+      "hhs_off_rating": 99.7,
+      "stats.adj_off.value": 97.5128205128205,
+      "stats.adj_def.value": 92.88717948717951,
+      "stats.adj_margin.value": 4.625641025640988,
+      "stats.adj_margin.rank": 115
+   },
+   "Washington St.": {
+      "hhs_off_rating": 102.6,
+      "stats.adj_off.value": 100.41282051282047,
+      "stats.adj_def.value": 95.9871794871795,
+      "stats.adj_margin.value": 4.425641025640971,
+      "stats.adj_margin.rank": 70
+   },
+   "Stony Brook": {
+      "hhs_off_rating": 99.4,
+      "stats.adj_off.value": 97.21282051282049,
+      "stats.adj_def.value": 92.88717948717951,
+      "stats.adj_margin.value": 4.3256410256409765,
+      "stats.adj_margin.rank": 116
+   },
+   "Southern Ill.": {
+      "hhs_off_rating": 98.7,
+      "stats.adj_off.value": 96.5128205128205,
+      "stats.adj_def.value": 92.18717948717952,
+      "stats.adj_margin.value": 4.3256410256409765,
+      "stats.adj_margin.rank": 124
+   },
+   "Robert Morris": {
+      "hhs_off_rating": 93.4,
+      "stats.adj_off.value": 91.21282051282049,
+      "stats.adj_def.value": 86.9871794871795,
+      "stats.adj_margin.value": 4.225641025640982,
+      "stats.adj_margin.rank": 206
+   },
+   "Northern Ill.": {
+      "hhs_off_rating": 99.2,
+      "stats.adj_off.value": 97.0128205128205,
+      "stats.adj_def.value": 92.9871794871795,
+      "stats.adj_margin.value": 4.025641025640994,
+      "stats.adj_margin.rank": 119
+   },
+   "Charlotte": {
+      "hhs_off_rating": 98,
+      "stats.adj_off.value": 95.81282051282048,
+      "stats.adj_def.value": 91.9871794871795,
+      "stats.adj_margin.value": 3.8256410256409765,
+      "stats.adj_margin.rank": 135
+   },
+   "LMU (CA)": {
+      "hhs_off_rating": 96.5,
+      "stats.adj_off.value": 94.31282051282048,
+      "stats.adj_def.value": 90.4871794871795,
+      "stats.adj_margin.value": 3.8256410256409765,
+      "stats.adj_margin.rank": 150
+   },
+   "Abilene Christian": {
+      "hhs_off_rating": 102.7,
+      "stats.adj_off.value": 100.5128205128205,
+      "stats.adj_def.value": 96.78717948717951,
+      "stats.adj_margin.value": 3.725641025640982,
+      "stats.adj_margin.rank": 69
+   },
+   "Tennessee Tech": {
+      "hhs_off_rating": 100.6,
+      "stats.adj_off.value": 98.41282051282047,
+      "stats.adj_def.value": 94.78717948717951,
+      "stats.adj_margin.value": 3.6256410256409595,
+      "stats.adj_margin.rank": 98
+   },
+   "Ohio St.": {
+      "hhs_off_rating": 96,
+      "stats.adj_off.value": 93.81282051282048,
+      "stats.adj_def.value": 90.38717948717951,
+      "stats.adj_margin.value": 3.425641025640971,
+      "stats.adj_margin.rank": 161
+   },
+   "Northern Colo.": {
+      "hhs_off_rating": 99.3,
+      "stats.adj_off.value": 97.11282051282049,
+      "stats.adj_def.value": 93.78717948717951,
+      "stats.adj_margin.value": 3.3256410256409765,
+      "stats.adj_margin.rank": 118
+   },
+   "Oklahoma": {
+      "hhs_off_rating": 100,
+      "stats.adj_off.value": 97.81282051282048,
+      "stats.adj_def.value": 94.58717948717953,
+      "stats.adj_margin.value": 3.225641025640954,
+      "stats.adj_margin.rank": 110
+   },
+   "High Point": {
+      "hhs_off_rating": 97.6,
+      "stats.adj_off.value": 95.41282051282047,
+      "stats.adj_def.value": 92.18717948717952,
+      "stats.adj_margin.value": 3.225641025640954,
       "stats.adj_margin.rank": 140
    },
    "New Mexico St.": {
-      "stats.adj_off.value": 95.9,
-      "stats.adj_def.value": 88.6,
-      "stats.adj_margin.value": 7.300000000000011,
-      "stats.adj_margin.rank": 141
-   },
-   "Oral Roberts": {
-      "stats.adj_off.value": 101.8,
-      "stats.adj_def.value": 94.6,
-      "stats.adj_margin.value": 7.200000000000003,
-      "stats.adj_margin.rank": 142
-   },
-   "Davidson": {
-      "stats.adj_off.value": 95.8,
-      "stats.adj_def.value": 88.8,
-      "stats.adj_margin.value": 7,
-      "stats.adj_margin.rank": 143
-   },
-   "South Alabama": {
-      "stats.adj_off.value": 95.4,
-      "stats.adj_def.value": 88.4,
-      "stats.adj_margin.value": 7,
-      "stats.adj_margin.rank": 144
-   },
-   "UMKC": {
-      "stats.adj_off.value": 100.5,
-      "stats.adj_def.value": 93.8,
-      "stats.adj_margin.value": 6.700000000000003,
-      "stats.adj_margin.rank": 145
-   },
-   "North Texas": {
-      "stats.adj_off.value": 96.3,
-      "stats.adj_def.value": 89.6,
-      "stats.adj_margin.value": 6.700000000000003,
-      "stats.adj_margin.rank": 146
-   },
-   "Appalachian St.": {
-      "stats.adj_off.value": 97.3,
-      "stats.adj_def.value": 90.7,
-      "stats.adj_margin.value": 6.599999999999994,
-      "stats.adj_margin.rank": 147
-   },
-   "Wisconsin": {
-      "stats.adj_off.value": 95.5,
-      "stats.adj_def.value": 89.1,
-      "stats.adj_margin.value": 6.400000000000006,
-      "stats.adj_margin.rank": 148
-   },
-   "Alabama": {
-      "stats.adj_off.value": 95.1,
-      "stats.adj_def.value": 88.7,
-      "stats.adj_margin.value": 6.3999999999999915,
-      "stats.adj_margin.rank": 149
-   },
-   "Washington": {
-      "stats.adj_off.value": 98.4,
-      "stats.adj_def.value": 92.1,
-      "stats.adj_margin.value": 6.300000000000011,
-      "stats.adj_margin.rank": 150
-   },
-   "Duquesne": {
-      "stats.adj_off.value": 97,
-      "stats.adj_def.value": 90.7,
-      "stats.adj_margin.value": 6.299999999999997,
-      "stats.adj_margin.rank": 151
-   },
-   "Virginia": {
-      "stats.adj_off.value": 96.3,
-      "stats.adj_def.value": 90,
-      "stats.adj_margin.value": 6.299999999999997,
-      "stats.adj_margin.rank": 152
-   },
-   "Louisiana Tech": {
-      "stats.adj_off.value": 97.9,
-      "stats.adj_def.value": 92,
-      "stats.adj_margin.value": 5.900000000000006,
-      "stats.adj_margin.rank": 153
-   },
-   "Temple": {
-      "stats.adj_off.value": 97.3,
-      "stats.adj_def.value": 91.4,
-      "stats.adj_margin.value": 5.8999999999999915,
-      "stats.adj_margin.rank": 154
-   },
-   "Milwaukee": {
-      "stats.adj_off.value": 95.4,
-      "stats.adj_def.value": 89.6,
-      "stats.adj_margin.value": 5.800000000000011,
-      "stats.adj_margin.rank": 155
-   },
-   "Colorado": {
-      "stats.adj_off.value": 98.4,
-      "stats.adj_def.value": 92.7,
-      "stats.adj_margin.value": 5.700000000000003,
-      "stats.adj_margin.rank": 156
-   },
-   "Akron": {
-      "stats.adj_off.value": 97.9,
-      "stats.adj_def.value": 92.3,
-      "stats.adj_margin.value": 5.6000000000000085,
-      "stats.adj_margin.rank": 157
-   },
-   "CSUN": {
-      "stats.adj_off.value": 93.7,
-      "stats.adj_def.value": 88.1,
-      "stats.adj_margin.value": 5.6000000000000085,
-      "stats.adj_margin.rank": 158
-   },
-   "California Baptist": {
-      "stats.adj_off.value": 97.5,
-      "stats.adj_def.value": 92.1,
-      "stats.adj_margin.value": 5.400000000000006,
-      "stats.adj_margin.rank": 159
-   },
-   "Towson": {
-      "stats.adj_off.value": 95.8,
-      "stats.adj_def.value": 90.4,
-      "stats.adj_margin.value": 5.3999999999999915,
-      "stats.adj_margin.rank": 160
-   },
-   "Chattanooga": {
-      "stats.adj_off.value": 95.9,
-      "stats.adj_def.value": 90.6,
-      "stats.adj_margin.value": 5.300000000000011,
-      "stats.adj_margin.rank": 161
-   },
-   "Southern Miss.": {
-      "stats.adj_off.value": 94.6,
-      "stats.adj_def.value": 89.3,
-      "stats.adj_margin.value": 5.299999999999997,
-      "stats.adj_margin.rank": 162
-   },
-   "Delaware": {
-      "stats.adj_off.value": 92.2,
-      "stats.adj_def.value": 86.9,
-      "stats.adj_margin.value": 5.299999999999997,
+      "hhs_off_rating": 95.8,
+      "stats.adj_off.value": 93.61282051282049,
+      "stats.adj_def.value": 90.4871794871795,
+      "stats.adj_margin.value": 3.125641025640988,
       "stats.adj_margin.rank": 163
    },
-   "Tulane": {
-      "stats.adj_off.value": 93.1,
-      "stats.adj_def.value": 87.9,
-      "stats.adj_margin.value": 5.199999999999989,
+   "Penn St.": {
+      "hhs_off_rating": 98.8,
+      "stats.adj_off.value": 96.61282051282049,
+      "stats.adj_def.value": 93.68717948717952,
+      "stats.adj_margin.value": 2.925641025640971,
+      "stats.adj_margin.rank": 123
+   },
+   "Appalachian St.": {
+      "hhs_off_rating": 97.7,
+      "stats.adj_off.value": 95.5128205128205,
+      "stats.adj_def.value": 92.68717948717952,
+      "stats.adj_margin.value": 2.8256410256409765,
+      "stats.adj_margin.rank": 137
+   },
+   "Yale": {
+      "hhs_off_rating": 94.4,
+      "stats.adj_off.value": 92.21282051282049,
+      "stats.adj_def.value": 89.4871794871795,
+      "stats.adj_margin.value": 2.725641025640982,
+      "stats.adj_margin.rank": 195
+   },
+   "Oral Roberts": {
+      "hhs_off_rating": 101.6,
+      "stats.adj_off.value": 99.41282051282047,
+      "stats.adj_def.value": 96.78717948717951,
+      "stats.adj_margin.value": 2.6256410256409595,
+      "stats.adj_margin.rank": 88
+   },
+   "Davidson": {
+      "hhs_off_rating": 95.8,
+      "stats.adj_off.value": 93.61282051282049,
+      "stats.adj_def.value": 90.9871794871795,
+      "stats.adj_margin.value": 2.625641025640988,
       "stats.adj_margin.rank": 164
    },
-   "William & Mary": {
-      "stats.adj_off.value": 96.8,
-      "stats.adj_def.value": 91.8,
-      "stats.adj_margin.value": 5,
+   "South Alabama": {
+      "hhs_off_rating": 95.3,
+      "stats.adj_off.value": 93.11282051282049,
+      "stats.adj_def.value": 90.4871794871795,
+      "stats.adj_margin.value": 2.625641025640988,
+      "stats.adj_margin.rank": 171
+   },
+   "Kansas City": {
+      "hhs_off_rating": 100.5,
+      "stats.adj_off.value": 98.31282051282048,
+      "stats.adj_def.value": 95.88717948717951,
+      "stats.adj_margin.value": 2.425641025640971,
+      "stats.adj_margin.rank": 100
+   },
+   "North Texas": {
+      "hhs_off_rating": 96.2,
+      "stats.adj_off.value": 94.0128205128205,
+      "stats.adj_def.value": 91.88717948717951,
+      "stats.adj_margin.value": 2.125641025640988,
+      "stats.adj_margin.rank": 155
+   },
+   "Alabama": {
+      "hhs_off_rating": 95,
+      "stats.adj_off.value": 92.81282051282048,
+      "stats.adj_def.value": 90.78717948717951,
+      "stats.adj_margin.value": 2.025641025640965,
+      "stats.adj_margin.rank": 176
+   },
+   "Duquesne": {
+      "hhs_off_rating": 96.9,
+      "stats.adj_off.value": 94.71282051282049,
+      "stats.adj_def.value": 92.78717948717951,
+      "stats.adj_margin.value": 1.9256410256409708,
+      "stats.adj_margin.rank": 146
+   },
+   "Washington": {
+      "hhs_off_rating": 98.2,
+      "stats.adj_off.value": 96.0128205128205,
+      "stats.adj_def.value": 94.08717948717953,
+      "stats.adj_margin.value": 1.9256410256409708,
+      "stats.adj_margin.rank": 133
+   },
+   "Virginia": {
+      "hhs_off_rating": 96.1,
+      "stats.adj_off.value": 93.91282051282047,
+      "stats.adj_def.value": 92.08717948717953,
+      "stats.adj_margin.value": 1.825641025640948,
+      "stats.adj_margin.rank": 159
+   },
+   "Louisiana Tech": {
+      "hhs_off_rating": 98.5,
+      "stats.adj_off.value": 96.31282051282048,
+      "stats.adj_def.value": 94.58717948717953,
+      "stats.adj_margin.value": 1.7256410256409538,
+      "stats.adj_margin.rank": 126
+   },
+   "Wisconsin": {
+      "hhs_off_rating": 95.2,
+      "stats.adj_off.value": 93.0128205128205,
+      "stats.adj_def.value": 91.38717948717951,
+      "stats.adj_margin.value": 1.625641025640988,
+      "stats.adj_margin.rank": 173
+   },
+   "Temple": {
+      "hhs_off_rating": 97.2,
+      "stats.adj_off.value": 95.0128205128205,
+      "stats.adj_def.value": 93.58717948717953,
+      "stats.adj_margin.value": 1.4256410256409708,
+      "stats.adj_margin.rank": 145
+   },
+   "Colorado": {
+      "hhs_off_rating": 98.3,
+      "stats.adj_off.value": 96.11282051282049,
+      "stats.adj_def.value": 94.78717948717951,
+      "stats.adj_margin.value": 1.3256410256409765,
+      "stats.adj_margin.rank": 129
+   },
+   "Milwaukee": {
+      "hhs_off_rating": 95,
+      "stats.adj_off.value": 92.81282051282048,
+      "stats.adj_def.value": 91.4871794871795,
+      "stats.adj_margin.value": 1.3256410256409765,
+      "stats.adj_margin.rank": 178
+   },
+   "Towson": {
+      "hhs_off_rating": 95.8,
+      "stats.adj_off.value": 93.61282051282049,
+      "stats.adj_def.value": 92.4871794871795,
+      "stats.adj_margin.value": 1.125641025640988,
+      "stats.adj_margin.rank": 162
+   },
+   "CSUN": {
+      "hhs_off_rating": 93.5,
+      "stats.adj_off.value": 91.31282051282048,
+      "stats.adj_def.value": 90.18717948717952,
+      "stats.adj_margin.value": 1.1256410256409595,
+      "stats.adj_margin.rank": 204
+   },
+   "Delaware": {
+      "hhs_off_rating": 92.2,
+      "stats.adj_off.value": 90.0128205128205,
+      "stats.adj_def.value": 88.9871794871795,
+      "stats.adj_margin.value": 1.0256410256409936,
+      "stats.adj_margin.rank": 221
+   },
+   "Southern Miss.": {
+      "hhs_off_rating": 94.6,
+      "stats.adj_off.value": 92.41282051282047,
+      "stats.adj_def.value": 91.4871794871795,
+      "stats.adj_margin.value": 0.9256410256409708,
+      "stats.adj_margin.rank": 190
+   },
+   "Tulane": {
+      "hhs_off_rating": 93.1,
+      "stats.adj_off.value": 90.91282051282047,
+      "stats.adj_def.value": 89.9871794871795,
+      "stats.adj_margin.value": 0.9256410256409708,
+      "stats.adj_margin.rank": 212
+   },
+   "Chattanooga": {
+      "hhs_off_rating": 95.7,
+      "stats.adj_off.value": 93.5128205128205,
+      "stats.adj_def.value": 92.68717948717952,
+      "stats.adj_margin.value": 0.8256410256409765,
       "stats.adj_margin.rank": 165
    },
+   "Akron": {
+      "hhs_off_rating": 97.7,
+      "stats.adj_off.value": 95.5128205128205,
+      "stats.adj_def.value": 94.78717948717951,
+      "stats.adj_margin.value": 0.7256410256409822,
+      "stats.adj_margin.rank": 138
+   },
+   "California Baptist": {
+      "hhs_off_rating": 97.2,
+      "stats.adj_off.value": 95.0128205128205,
+      "stats.adj_def.value": 94.28717948717951,
+      "stats.adj_margin.value": 0.7256410256409822,
+      "stats.adj_margin.rank": 144
+   },
+   "William & Mary": {
+      "hhs_off_rating": 96.6,
+      "stats.adj_off.value": 94.41282051282047,
+      "stats.adj_def.value": 93.88717948717951,
+      "stats.adj_margin.value": 0.5256410256409652,
+      "stats.adj_margin.rank": 149
+   },
    "Illinois St.": {
-      "stats.adj_off.value": 95.5,
-      "stats.adj_def.value": 90.8,
-      "stats.adj_margin.value": 4.700000000000003,
+      "hhs_off_rating": 95.4,
+      "stats.adj_off.value": 93.21282051282049,
+      "stats.adj_def.value": 92.78717948717951,
+      "stats.adj_margin.value": 0.42564102564097084,
       "stats.adj_margin.rank": 166
    },
    "Illinois": {
-      "stats.adj_off.value": 99.9,
-      "stats.adj_def.value": 95.3,
-      "stats.adj_margin.value": 4.6000000000000085,
-      "stats.adj_margin.rank": 167
-   },
-   "Liberty": {
-      "stats.adj_off.value": 94.7,
-      "stats.adj_def.value": 90.1,
-      "stats.adj_margin.value": 4.6000000000000085,
-      "stats.adj_margin.rank": 168
-   },
-   "Montana St.": {
-      "stats.adj_off.value": 98,
-      "stats.adj_def.value": 93.6,
-      "stats.adj_margin.value": 4.400000000000006,
-      "stats.adj_margin.rank": 169
-   },
-   "UNC Asheville": {
-      "stats.adj_off.value": 93.8,
-      "stats.adj_def.value": 89.4,
-      "stats.adj_margin.value": 4.3999999999999915,
-      "stats.adj_margin.rank": 170
+      "hhs_off_rating": 99.8,
+      "stats.adj_off.value": 97.61282051282049,
+      "stats.adj_def.value": 97.38717948717951,
+      "stats.adj_margin.value": 0.2256410256409822,
+      "stats.adj_margin.rank": 113
    },
    "Dartmouth": {
-      "stats.adj_off.value": 94.8,
-      "stats.adj_def.value": 90.5,
-      "stats.adj_margin.value": 4.299999999999997,
-      "stats.adj_margin.rank": 171
-   },
-   "Hawaii": {
-      "stats.adj_off.value": 95.1,
-      "stats.adj_def.value": 91.1,
-      "stats.adj_margin.value": 4,
-      "stats.adj_margin.rank": 172
-   },
-   "Saint Louis": {
-      "stats.adj_off.value": 94.4,
-      "stats.adj_def.value": 90.7,
-      "stats.adj_margin.value": 3.700000000000003,
-      "stats.adj_margin.rank": 173
-   },
-   "UNLV": {
-      "stats.adj_off.value": 92.7,
-      "stats.adj_def.value": 89,
-      "stats.adj_margin.value": 3.700000000000003,
-      "stats.adj_margin.rank": 174
-   },
-   "Bradley": {
-      "stats.adj_off.value": 95.4,
-      "stats.adj_def.value": 91.8,
-      "stats.adj_margin.value": 3.6000000000000085,
-      "stats.adj_margin.rank": 175
-   },
-   "North Ala.": {
-      "stats.adj_off.value": 92.5,
-      "stats.adj_def.value": 89.1,
-      "stats.adj_margin.value": 3.4000000000000057,
-      "stats.adj_margin.rank": 176
-   },
-   "Sam Houston St.": {
-      "stats.adj_off.value": 94.6,
-      "stats.adj_def.value": 91.2,
-      "stats.adj_margin.value": 3.3999999999999915,
-      "stats.adj_margin.rank": 177
-   },
-   "Sacred Heart": {
-      "stats.adj_off.value": 94.5,
-      "stats.adj_def.value": 91.3,
-      "stats.adj_margin.value": 3.200000000000003,
-      "stats.adj_margin.rank": 178
-   },
-   "Utah St.": {
-      "stats.adj_off.value": 94.3,
-      "stats.adj_def.value": 91.1,
-      "stats.adj_margin.value": 3.200000000000003,
-      "stats.adj_margin.rank": 179
-   },
-   "Boston U.": {
-      "stats.adj_off.value": 95.1,
-      "stats.adj_def.value": 92,
-      "stats.adj_margin.value": 3.0999999999999943,
-      "stats.adj_margin.rank": 180
-   },
-   "UNCW": {
-      "stats.adj_off.value": 96.4,
-      "stats.adj_def.value": 93.4,
-      "stats.adj_margin.value": 3,
-      "stats.adj_margin.rank": 181
-   },
-   "Georgia St.": {
-      "stats.adj_off.value": 93.4,
-      "stats.adj_def.value": 90.4,
-      "stats.adj_margin.value": 3,
-      "stats.adj_margin.rank": 182
-   },
-   "Massachusetts": {
-      "stats.adj_off.value": 94.7,
-      "stats.adj_def.value": 92.1,
-      "stats.adj_margin.value": 2.6000000000000085,
-      "stats.adj_margin.rank": 183
-   },
-   "Vanderbilt": {
-      "stats.adj_off.value": 97.4,
-      "stats.adj_def.value": 95,
-      "stats.adj_margin.value": 2.4000000000000057,
+      "hhs_off_rating": 94.8,
+      "stats.adj_off.value": 92.61282051282049,
+      "stats.adj_def.value": 92.4871794871795,
+      "stats.adj_margin.value": 0.1256410256409879,
       "stats.adj_margin.rank": 184
    },
-   "Coastal Caro.": {
-      "stats.adj_off.value": 95,
-      "stats.adj_def.value": 92.8,
-      "stats.adj_margin.value": 2.200000000000003,
-      "stats.adj_margin.rank": 185
-   },
-   "Furman": {
-      "stats.adj_off.value": 96.2,
-      "stats.adj_def.value": 94.1,
-      "stats.adj_margin.value": 2.1000000000000085,
-      "stats.adj_margin.rank": 186
-   },
-   "UC Riverside": {
-      "stats.adj_off.value": 92,
-      "stats.adj_def.value": 90.1,
-      "stats.adj_margin.value": 1.9000000000000057,
-      "stats.adj_margin.rank": 187
-   },
-   "N.C. A&T": {
-      "stats.adj_off.value": 87,
-      "stats.adj_def.value": 85.2,
-      "stats.adj_margin.value": 1.7999999999999972,
-      "stats.adj_margin.rank": 188
-   },
-   "UTRGV": {
-      "stats.adj_off.value": 93.5,
-      "stats.adj_def.value": 91.8,
-      "stats.adj_margin.value": 1.7000000000000028,
-      "stats.adj_margin.rank": 189
-   },
-   "St. Francis Brooklyn": {
-      "stats.adj_off.value": 98.5,
-      "stats.adj_def.value": 96.9,
-      "stats.adj_margin.value": 1.5999999999999943,
-      "stats.adj_margin.rank": 190
-   },
-   "San Diego St.": {
-      "stats.adj_off.value": 95.5,
-      "stats.adj_def.value": 94.2,
-      "stats.adj_margin.value": 1.2999999999999972,
+   "Liberty": {
+      "hhs_off_rating": 94.6,
+      "stats.adj_off.value": 92.41282051282047,
+      "stats.adj_def.value": 92.28717948717951,
+      "stats.adj_margin.value": 0.12564102564095947,
       "stats.adj_margin.rank": 191
    },
-   "Ole Miss": {
-      "stats.adj_off.value": 92.7,
-      "stats.adj_def.value": 91.6,
-      "stats.adj_margin.value": 1.1000000000000085,
-      "stats.adj_margin.rank": 192
-   },
-   "Cornell": {
-      "stats.adj_off.value": 89.1,
-      "stats.adj_def.value": 88,
-      "stats.adj_margin.value": 1.0999999999999943,
-      "stats.adj_margin.rank": 193
-   },
-   "Nevada": {
-      "stats.adj_off.value": 95.2,
-      "stats.adj_def.value": 94.2,
-      "stats.adj_margin.value": 1,
-      "stats.adj_margin.rank": 194
-   },
-   "Texas St.": {
-      "stats.adj_off.value": 95,
-      "stats.adj_def.value": 94,
-      "stats.adj_margin.value": 1,
-      "stats.adj_margin.rank": 195
-   },
-   "Holy Cross": {
-      "stats.adj_off.value": 94.4,
-      "stats.adj_def.value": 93.6,
-      "stats.adj_margin.value": 0.8000000000000114,
-      "stats.adj_margin.rank": 196
-   },
-   "Campbell": {
-      "stats.adj_off.value": 89.2,
-      "stats.adj_def.value": 88.4,
-      "stats.adj_margin.value": 0.7999999999999972,
-      "stats.adj_margin.rank": 197
-   },
-   "Xavier": {
-      "stats.adj_off.value": 93.4,
-      "stats.adj_def.value": 92.7,
-      "stats.adj_margin.value": 0.7000000000000028,
-      "stats.adj_margin.rank": 198
-   },
-   "Wake Forest": {
-      "stats.adj_off.value": 91.7,
-      "stats.adj_def.value": 91.2,
-      "stats.adj_margin.value": 0.5,
-      "stats.adj_margin.rank": 199
-   },
-   "Jacksonville St.": {
-      "stats.adj_off.value": 88.8,
-      "stats.adj_def.value": 88.3,
-      "stats.adj_margin.value": 0.5,
-      "stats.adj_margin.rank": 200
-   },
-   "UC Irvine": {
-      "stats.adj_off.value": 95.5,
-      "stats.adj_def.value": 95.1,
-      "stats.adj_margin.value": 0.4000000000000057,
+   "UNC Asheville": {
+      "hhs_off_rating": 93.7,
+      "stats.adj_off.value": 91.5128205128205,
+      "stats.adj_def.value": 91.4871794871795,
+      "stats.adj_margin.value": 0.025641025640993576,
       "stats.adj_margin.rank": 201
    },
-   "Nicholls St.": {
-      "stats.adj_off.value": 94.9,
-      "stats.adj_def.value": 94.7,
-      "stats.adj_margin.value": 0.20000000000000284,
-      "stats.adj_margin.rank": 202
+   "Montana St.": {
+      "hhs_off_rating": 97.8,
+      "stats.adj_off.value": 95.61282051282049,
+      "stats.adj_def.value": 95.68717948717952,
+      "stats.adj_margin.value": -0.07435897435902916,
+      "stats.adj_margin.rank": 136
    },
-   "Marshall": {
-      "stats.adj_off.value": 94.4,
-      "stats.adj_def.value": 94.2,
-      "stats.adj_margin.value": 0.20000000000000284,
-      "stats.adj_margin.rank": 203
+   "North Ala.": {
+      "hhs_off_rating": 93,
+      "stats.adj_off.value": 90.81282051282048,
+      "stats.adj_def.value": 91.08717948717953,
+      "stats.adj_margin.value": -0.2743589743590462,
+      "stats.adj_margin.rank": 214
    },
-   "George Mason": {
-      "stats.adj_off.value": 93.9,
-      "stats.adj_def.value": 93.7,
-      "stats.adj_margin.value": 0.20000000000000284,
-      "stats.adj_margin.rank": 204
+   "Hawaii": {
+      "hhs_off_rating": 95,
+      "stats.adj_off.value": 92.81282051282048,
+      "stats.adj_def.value": 93.18717948717952,
+      "stats.adj_margin.value": -0.37435897435904053,
+      "stats.adj_margin.rank": 177
    },
-   "Rider": {
-      "stats.adj_off.value": 92.8,
-      "stats.adj_def.value": 92.6,
-      "stats.adj_margin.value": 0.20000000000000284,
-      "stats.adj_margin.rank": 205
+   "Vanderbilt": {
+      "hhs_off_rating": 98.2,
+      "stats.adj_off.value": 96.0128205128205,
+      "stats.adj_def.value": 96.68717948717952,
+      "stats.adj_margin.value": -0.6743589743590235,
+      "stats.adj_margin.rank": 132
    },
-   "Eastern Mich.": {
-      "stats.adj_off.value": 91.2,
-      "stats.adj_def.value": 91,
-      "stats.adj_margin.value": 0.20000000000000284,
-      "stats.adj_margin.rank": 206
+   "Sam Houston St.": {
+      "hhs_off_rating": 94.7,
+      "stats.adj_off.value": 92.5128205128205,
+      "stats.adj_def.value": 93.18717948717952,
+      "stats.adj_margin.value": -0.6743589743590235,
+      "stats.adj_margin.rank": 187
    },
-   "Saint Francis (PA)": {
-      "stats.adj_off.value": 97.7,
-      "stats.adj_def.value": 97.6,
-      "stats.adj_margin.value": 0.10000000000000853,
-      "stats.adj_margin.rank": 207
+   "Saint Louis": {
+      "hhs_off_rating": 94.4,
+      "stats.adj_off.value": 92.21282051282049,
+      "stats.adj_def.value": 92.88717948717951,
+      "stats.adj_margin.value": -0.6743589743590235,
+      "stats.adj_margin.rank": 196
    },
-   "Columbia": {
-      "stats.adj_off.value": 94.9,
-      "stats.adj_def.value": 94.8,
-      "stats.adj_margin.value": 0.10000000000000853,
-      "stats.adj_margin.rank": 208
+   "Bradley": {
+      "hhs_off_rating": 95.4,
+      "stats.adj_off.value": 93.21282051282049,
+      "stats.adj_def.value": 93.9871794871795,
+      "stats.adj_margin.value": -0.7743589743590178,
+      "stats.adj_margin.rank": 168
    },
-   "Santa Clara": {
-      "stats.adj_off.value": 94.2,
-      "stats.adj_def.value": 94.1,
-      "stats.adj_margin.value": 0.10000000000000853,
+   "UNLV": {
+      "hhs_off_rating": 92.6,
+      "stats.adj_off.value": 90.41282051282047,
+      "stats.adj_def.value": 91.18717948717952,
+      "stats.adj_margin.value": -0.7743589743590462,
+      "stats.adj_margin.rank": 218
+   },
+   "Utah St.": {
+      "hhs_off_rating": 94.3,
+      "stats.adj_off.value": 92.11282051282049,
+      "stats.adj_def.value": 93.18717948717952,
+      "stats.adj_margin.value": -1.0743589743590292,
+      "stats.adj_margin.rank": 197
+   },
+   "Sacred Heart": {
+      "hhs_off_rating": 94.4,
+      "stats.adj_off.value": 92.21282051282049,
+      "stats.adj_def.value": 93.38717948717951,
+      "stats.adj_margin.value": -1.1743589743590235,
+      "stats.adj_margin.rank": 194
+   },
+   "UNCW": {
+      "hhs_off_rating": 96.4,
+      "stats.adj_off.value": 94.21282051282049,
+      "stats.adj_def.value": 95.4871794871795,
+      "stats.adj_margin.value": -1.2743589743590178,
+      "stats.adj_margin.rank": 152
+   },
+   "Boston U.": {
+      "hhs_off_rating": 95,
+      "stats.adj_off.value": 92.81282051282048,
+      "stats.adj_def.value": 94.08717948717953,
+      "stats.adj_margin.value": -1.2743589743590462,
+      "stats.adj_margin.rank": 179
+   },
+   "Georgia St.": {
+      "hhs_off_rating": 93.3,
+      "stats.adj_off.value": 91.11282051282049,
+      "stats.adj_def.value": 92.38717948717951,
+      "stats.adj_margin.value": -1.2743589743590178,
       "stats.adj_margin.rank": 209
    },
-   "ETSU": {
-      "stats.adj_off.value": 93.1,
-      "stats.adj_def.value": 93.1,
-      "stats.adj_margin.value": 0,
-      "stats.adj_margin.rank": 210
+   "Massachusetts": {
+      "hhs_off_rating": 94.6,
+      "stats.adj_off.value": 92.41282051282047,
+      "stats.adj_def.value": 94.28717948717951,
+      "stats.adj_margin.value": -1.8743589743590405,
+      "stats.adj_margin.rank": 189
    },
-   "SMU": {
-      "stats.adj_off.value": 86.3,
-      "stats.adj_def.value": 86.5,
-      "stats.adj_margin.value": -0.20000000000000284,
+   "Furman": {
+      "hhs_off_rating": 96.2,
+      "stats.adj_off.value": 94.0128205128205,
+      "stats.adj_def.value": 96.18717948717952,
+      "stats.adj_margin.value": -2.1743589743590235,
+      "stats.adj_margin.rank": 156
+   },
+   "Coastal Carolina": {
+      "hhs_off_rating": 94.9,
+      "stats.adj_off.value": 92.71282051282049,
+      "stats.adj_def.value": 94.88717948717951,
+      "stats.adj_margin.value": -2.1743589743590235,
+      "stats.adj_margin.rank": 180
+   },
+   "N.C. A&T": {
+      "hhs_off_rating": 87.2,
+      "stats.adj_off.value": 85.0128205128205,
+      "stats.adj_def.value": 87.28717948717951,
+      "stats.adj_margin.value": -2.274358974359018,
+      "stats.adj_margin.rank": 284
+   },
+   "UC Riverside": {
+      "hhs_off_rating": 91.9,
+      "stats.adj_off.value": 89.71282051282049,
+      "stats.adj_def.value": 92.08717948717953,
+      "stats.adj_margin.value": -2.3743589743590405,
+      "stats.adj_margin.rank": 226
+   },
+   "Cornell": {
+      "hhs_off_rating": 89.4,
+      "stats.adj_off.value": 87.21282051282049,
+      "stats.adj_def.value": 89.88717948717951,
+      "stats.adj_margin.value": -2.6743589743590235,
+      "stats.adj_margin.rank": 257
+   },
+   "St. Francis Brooklyn": {
+      "hhs_off_rating": 98.5,
+      "stats.adj_off.value": 96.31282051282048,
+      "stats.adj_def.value": 99.08717948717953,
+      "stats.adj_margin.value": -2.774358974359046,
+      "stats.adj_margin.rank": 127
+   },
+   "UTRGV": {
+      "hhs_off_rating": 93.2,
+      "stats.adj_off.value": 91.0128205128205,
+      "stats.adj_def.value": 93.88717948717951,
+      "stats.adj_margin.value": -2.874358974359012,
       "stats.adj_margin.rank": 211
    },
+   "San Diego St.": {
+      "hhs_off_rating": 95.4,
+      "stats.adj_off.value": 93.21282051282049,
+      "stats.adj_def.value": 96.28717948717951,
+      "stats.adj_margin.value": -3.074358974359029,
+      "stats.adj_margin.rank": 167
+   },
+   "Eastern Mich.": {
+      "hhs_off_rating": 91.7,
+      "stats.adj_off.value": 89.5128205128205,
+      "stats.adj_def.value": 92.78717948717951,
+      "stats.adj_margin.value": -3.274358974359018,
+      "stats.adj_margin.rank": 227
+   },
+   "Nevada": {
+      "hhs_off_rating": 95.1,
+      "stats.adj_off.value": 92.91282051282047,
+      "stats.adj_def.value": 96.28717948717951,
+      "stats.adj_margin.value": -3.3743589743590405,
+      "stats.adj_margin.rank": 175
+   },
+   "Ole Miss": {
+      "hhs_off_rating": 92.5,
+      "stats.adj_off.value": 90.31282051282048,
+      "stats.adj_def.value": 93.68717948717952,
+      "stats.adj_margin.value": -3.3743589743590405,
+      "stats.adj_margin.rank": 220
+   },
+   "Campbell": {
+      "hhs_off_rating": 89.2,
+      "stats.adj_off.value": 87.0128205128205,
+      "stats.adj_def.value": 90.38717948717951,
+      "stats.adj_margin.value": -3.374358974359012,
+      "stats.adj_margin.rank": 262
+   },
+   "Wake Forest": {
+      "hhs_off_rating": 91.7,
+      "stats.adj_off.value": 89.5128205128205,
+      "stats.adj_def.value": 92.9871794871795,
+      "stats.adj_margin.value": -3.4743589743590064,
+      "stats.adj_margin.rank": 229
+   },
+   "Xavier": {
+      "hhs_off_rating": 93.3,
+      "stats.adj_off.value": 91.11282051282049,
+      "stats.adj_def.value": 94.68717948717952,
+      "stats.adj_margin.value": -3.574358974359029,
+      "stats.adj_margin.rank": 210
+   },
+   "Texas St.": {
+      "hhs_off_rating": 94.7,
+      "stats.adj_off.value": 92.5128205128205,
+      "stats.adj_def.value": 96.18717948717952,
+      "stats.adj_margin.value": -3.6743589743590235,
+      "stats.adj_margin.rank": 185
+   },
+   "Holy Cross": {
+      "hhs_off_rating": 94.2,
+      "stats.adj_off.value": 92.0128205128205,
+      "stats.adj_def.value": 95.78717948717951,
+      "stats.adj_margin.value": -3.774358974359018,
+      "stats.adj_margin.rank": 198
+   },
+   "Marshall": {
+      "hhs_off_rating": 94.8,
+      "stats.adj_off.value": 92.61282051282049,
+      "stats.adj_def.value": 96.4871794871795,
+      "stats.adj_margin.value": -3.874358974359012,
+      "stats.adj_margin.rank": 183
+   },
+   "Nicholls St.": {
+      "hhs_off_rating": 94.9,
+      "stats.adj_off.value": 92.71282051282049,
+      "stats.adj_def.value": 96.78717948717951,
+      "stats.adj_margin.value": -4.074358974359029,
+      "stats.adj_margin.rank": 182
+   },
+   "UC Irvine": {
+      "hhs_off_rating": 95.3,
+      "stats.adj_off.value": 93.11282051282049,
+      "stats.adj_def.value": 97.18717948717952,
+      "stats.adj_margin.value": -4.074358974359029,
+      "stats.adj_margin.rank": 170
+   },
+   "Jacksonville St.": {
+      "hhs_off_rating": 88.6,
+      "stats.adj_off.value": 86.41282051282047,
+      "stats.adj_def.value": 90.4871794871795,
+      "stats.adj_margin.value": -4.074358974359029,
+      "stats.adj_margin.rank": 271
+   },
+   "Santa Clara": {
+      "hhs_off_rating": 94.2,
+      "stats.adj_off.value": 92.0128205128205,
+      "stats.adj_def.value": 96.18717948717952,
+      "stats.adj_margin.value": -4.1743589743590235,
+      "stats.adj_margin.rank": 199
+   },
+   "George Mason": {
+      "hhs_off_rating": 93.7,
+      "stats.adj_off.value": 91.5128205128205,
+      "stats.adj_def.value": 95.78717948717951,
+      "stats.adj_margin.value": -4.274358974359018,
+      "stats.adj_margin.rank": 202
+   },
+   "Rider": {
+      "hhs_off_rating": 92.7,
+      "stats.adj_off.value": 90.5128205128205,
+      "stats.adj_def.value": 94.78717948717951,
+      "stats.adj_margin.value": -4.274358974359018,
+      "stats.adj_margin.rank": 217
+   },
+   "Austin Peay": {
+      "hhs_off_rating": 97.6,
+      "stats.adj_off.value": 95.41282051282047,
+      "stats.adj_def.value": 99.68717948717952,
+      "stats.adj_margin.value": -4.274358974359046,
+      "stats.adj_margin.rank": 141
+   },
+   "Saint Francis (PA)": {
+      "hhs_off_rating": 97.5,
+      "stats.adj_off.value": 95.31282051282048,
+      "stats.adj_def.value": 99.68717948717952,
+      "stats.adj_margin.value": -4.3743589743590405,
+      "stats.adj_margin.rank": 143
+   },
+   "ETSU": {
+      "hhs_off_rating": 92.9,
+      "stats.adj_off.value": 90.71282051282049,
+      "stats.adj_def.value": 95.18717948717952,
+      "stats.adj_margin.value": -4.474358974359035,
+      "stats.adj_margin.rank": 215
+   },
+   "Columbia": {
+      "hhs_off_rating": 94.7,
+      "stats.adj_off.value": 92.5128205128205,
+      "stats.adj_def.value": 97.08717948717953,
+      "stats.adj_margin.value": -4.574358974359029,
+      "stats.adj_margin.rank": 186
+   },
    "Bowling Green": {
-      "stats.adj_off.value": 96,
-      "stats.adj_def.value": 96.5,
-      "stats.adj_margin.value": -0.5,
-      "stats.adj_margin.rank": 212
+      "hhs_off_rating": 96,
+      "stats.adj_off.value": 93.81282051282048,
+      "stats.adj_def.value": 98.58717948717953,
+      "stats.adj_margin.value": -4.774358974359046,
+      "stats.adj_margin.rank": 160
+   },
+   "SMU": {
+      "hhs_off_rating": 86,
+      "stats.adj_off.value": 83.81282051282048,
+      "stats.adj_def.value": 88.68717948717952,
+      "stats.adj_margin.value": -4.8743589743590405,
+      "stats.adj_margin.rank": 300
    },
    "Stetson": {
-      "stats.adj_off.value": 93.1,
-      "stats.adj_def.value": 93.6,
-      "stats.adj_margin.value": -0.5,
+      "hhs_off_rating": 93,
+      "stats.adj_off.value": 90.81282051282048,
+      "stats.adj_def.value": 95.78717948717951,
+      "stats.adj_margin.value": -4.974358974359035,
       "stats.adj_margin.rank": 213
    },
    "Southeast Mo. St.": {
-      "stats.adj_off.value": 93.4,
-      "stats.adj_def.value": 94,
-      "stats.adj_margin.value": -0.5999999999999943,
-      "stats.adj_margin.rank": 214
+      "hhs_off_rating": 93.3,
+      "stats.adj_off.value": 91.11282051282049,
+      "stats.adj_def.value": 96.08717948717953,
+      "stats.adj_margin.value": -4.974358974359035,
+      "stats.adj_margin.rank": 208
    },
    "Pittsburgh": {
-      "stats.adj_off.value": 91.3,
-      "stats.adj_def.value": 92,
-      "stats.adj_margin.value": -0.7000000000000028,
-      "stats.adj_margin.rank": 215
-   },
-   "Hampton": {
-      "stats.adj_off.value": 93.5,
-      "stats.adj_def.value": 94.3,
-      "stats.adj_margin.value": -0.7999999999999972,
-      "stats.adj_margin.rank": 216
-   },
-   "Norfolk St.": {
-      "stats.adj_off.value": 87.9,
-      "stats.adj_def.value": 88.8,
-      "stats.adj_margin.value": -0.8999999999999915,
-      "stats.adj_margin.rank": 217
-   },
-   "Portland": {
-      "stats.adj_off.value": 97.6,
-      "stats.adj_def.value": 98.5,
-      "stats.adj_margin.value": -0.9000000000000057,
-      "stats.adj_margin.rank": 218
-   },
-   "Tulsa": {
-      "stats.adj_off.value": 89.6,
-      "stats.adj_def.value": 90.5,
-      "stats.adj_margin.value": -0.9000000000000057,
-      "stats.adj_margin.rank": 219
-   },
-   "Austin Peay": {
-      "stats.adj_off.value": 96.7,
-      "stats.adj_def.value": 97.7,
-      "stats.adj_margin.value": -1,
-      "stats.adj_margin.rank": 220
-   },
-   "UMES": {
-      "stats.adj_off.value": 91.9,
-      "stats.adj_def.value": 92.9,
-      "stats.adj_margin.value": -1,
-      "stats.adj_margin.rank": 221
-   },
-   "Montana": {
-      "stats.adj_off.value": 95.4,
-      "stats.adj_def.value": 96.7,
-      "stats.adj_margin.value": -1.2999999999999972,
-      "stats.adj_margin.rank": 222
-   },
-   "Mount St. Mary's": {
-      "stats.adj_off.value": 94.9,
-      "stats.adj_def.value": 96.2,
-      "stats.adj_margin.value": -1.2999999999999972,
-      "stats.adj_margin.rank": 223
-   },
-   "San Francisco": {
-      "stats.adj_off.value": 94.5,
-      "stats.adj_def.value": 95.8,
-      "stats.adj_margin.value": -1.2999999999999972,
-      "stats.adj_margin.rank": 224
-   },
-   "Prairie View": {
-      "stats.adj_off.value": 88.8,
-      "stats.adj_def.value": 90.1,
-      "stats.adj_margin.value": -1.2999999999999972,
-      "stats.adj_margin.rank": 225
-   },
-   "Howard": {
-      "stats.adj_off.value": 91.9,
-      "stats.adj_def.value": 93.3,
-      "stats.adj_margin.value": -1.3999999999999915,
-      "stats.adj_margin.rank": 226
-   },
-   "Arkansas St.": {
-      "stats.adj_off.value": 95.2,
-      "stats.adj_def.value": 96.7,
-      "stats.adj_margin.value": -1.5,
-      "stats.adj_margin.rank": 227
-   },
-   "Western Ill.": {
-      "stats.adj_off.value": 96.2,
-      "stats.adj_def.value": 97.8,
-      "stats.adj_margin.value": -1.5999999999999943,
-      "stats.adj_margin.rank": 228
-   },
-   "Florida": {
-      "stats.adj_off.value": 93.8,
-      "stats.adj_def.value": 95.5,
-      "stats.adj_margin.value": -1.7000000000000028,
-      "stats.adj_margin.rank": 229
-   },
-   "Northern Ariz.": {
-      "stats.adj_off.value": 94.7,
-      "stats.adj_def.value": 96.6,
-      "stats.adj_margin.value": -1.8999999999999915,
-      "stats.adj_margin.rank": 230
-   },
-   "Saint Joseph's": {
-      "stats.adj_off.value": 89.4,
-      "stats.adj_def.value": 91.6,
-      "stats.adj_margin.value": -2.1999999999999886,
-      "stats.adj_margin.rank": 231
-   },
-   "Gardner-Webb": {
-      "stats.adj_off.value": 90.9,
-      "stats.adj_def.value": 93.2,
-      "stats.adj_margin.value": -2.299999999999997,
-      "stats.adj_margin.rank": 232
-   },
-   "Ball St.": {
-      "stats.adj_off.value": 92,
-      "stats.adj_def.value": 94.4,
-      "stats.adj_margin.value": -2.4000000000000057,
+      "hhs_off_rating": 91.2,
+      "stats.adj_off.value": 89.0128205128205,
+      "stats.adj_def.value": 94.08717948717953,
+      "stats.adj_margin.value": -5.074358974359029,
       "stats.adj_margin.rank": 233
    },
-   "Eastern Wash.": {
-      "stats.adj_off.value": 94.1,
-      "stats.adj_def.value": 96.6,
-      "stats.adj_margin.value": -2.5,
-      "stats.adj_margin.rank": 234
+   "Hampton": {
+      "hhs_off_rating": 93.4,
+      "stats.adj_off.value": 91.21282051282049,
+      "stats.adj_def.value": 96.38717948717951,
+      "stats.adj_margin.value": -5.1743589743590235,
+      "stats.adj_margin.rank": 205
+   },
+   "UMES": {
+      "hhs_off_rating": 92,
+      "stats.adj_off.value": 89.81282051282048,
+      "stats.adj_def.value": 94.9871794871795,
+      "stats.adj_margin.value": -5.1743589743590235,
+      "stats.adj_margin.rank": 222
+   },
+   "Portland": {
+      "hhs_off_rating": 97.5,
+      "stats.adj_off.value": 95.31282051282048,
+      "stats.adj_def.value": 100.58717948717953,
+      "stats.adj_margin.value": -5.274358974359046,
+      "stats.adj_margin.rank": 142
+   },
+   "Tulsa": {
+      "hhs_off_rating": 89.5,
+      "stats.adj_off.value": 87.31282051282048,
+      "stats.adj_def.value": 92.58717948717953,
+      "stats.adj_margin.value": -5.274358974359046,
+      "stats.adj_margin.rank": 255
+   },
+   "Mount St. Mary's": {
+      "hhs_off_rating": 94.9,
+      "stats.adj_off.value": 92.71282051282049,
+      "stats.adj_def.value": 98.18717948717952,
+      "stats.adj_margin.value": -5.474358974359035,
+      "stats.adj_margin.rank": 181
+   },
+   "San Francisco": {
+      "hhs_off_rating": 94.5,
+      "stats.adj_off.value": 92.31282051282048,
+      "stats.adj_def.value": 97.88717948717951,
+      "stats.adj_margin.value": -5.574358974359029,
+      "stats.adj_margin.rank": 193
+   },
+   "Montana": {
+      "hhs_off_rating": 95.3,
+      "stats.adj_off.value": 93.11282051282049,
+      "stats.adj_def.value": 98.78717948717951,
+      "stats.adj_margin.value": -5.6743589743590235,
+      "stats.adj_margin.rank": 172
+   },
+   "Prairie View": {
+      "hhs_off_rating": 88.7,
+      "stats.adj_off.value": 86.5128205128205,
+      "stats.adj_def.value": 92.18717948717952,
+      "stats.adj_margin.value": -5.6743589743590235,
+      "stats.adj_margin.rank": 270
+   },
+   "Norfolk St.": {
+      "hhs_off_rating": 87.6,
+      "stats.adj_off.value": 85.41282051282047,
+      "stats.adj_def.value": 91.18717948717952,
+      "stats.adj_margin.value": -5.774358974359046,
+      "stats.adj_margin.rank": 280
+   },
+   "Western Ill.": {
+      "hhs_off_rating": 96.2,
+      "stats.adj_off.value": 94.0128205128205,
+      "stats.adj_def.value": 99.88717948717951,
+      "stats.adj_margin.value": -5.874358974359012,
+      "stats.adj_margin.rank": 154
+   },
+   "Arkansas St.": {
+      "hhs_off_rating": 95.1,
+      "stats.adj_off.value": 92.91282051282047,
+      "stats.adj_def.value": 98.78717948717951,
+      "stats.adj_margin.value": -5.8743589743590405,
+      "stats.adj_margin.rank": 174
+   },
+   "Howard": {
+      "hhs_off_rating": 91.7,
+      "stats.adj_off.value": 89.5128205128205,
+      "stats.adj_def.value": 95.38717948717951,
+      "stats.adj_margin.value": -5.874358974359012,
+      "stats.adj_margin.rank": 228
+   },
+   "Ball St.": {
+      "hhs_off_rating": 91.9,
+      "stats.adj_off.value": 89.71282051282049,
+      "stats.adj_def.value": 95.78717948717951,
+      "stats.adj_margin.value": -6.074358974359029,
+      "stats.adj_margin.rank": 225
+   },
+   "Florida": {
+      "hhs_off_rating": 93.7,
+      "stats.adj_off.value": 91.5128205128205,
+      "stats.adj_def.value": 97.68717948717952,
+      "stats.adj_margin.value": -6.1743589743590235,
+      "stats.adj_margin.rank": 203
+   },
+   "Northern Ariz.": {
+      "hhs_off_rating": 94.5,
+      "stats.adj_off.value": 92.31282051282048,
+      "stats.adj_def.value": 98.78717948717951,
+      "stats.adj_margin.value": -6.474358974359035,
+      "stats.adj_margin.rank": 192
    },
    "A&M-Corpus Christi": {
-      "stats.adj_off.value": 89.2,
-      "stats.adj_def.value": 91.7,
-      "stats.adj_margin.value": -2.5,
-      "stats.adj_margin.rank": 235
+      "hhs_off_rating": 89.2,
+      "stats.adj_off.value": 87.0128205128205,
+      "stats.adj_def.value": 93.58717948717953,
+      "stats.adj_margin.value": -6.574358974359029,
+      "stats.adj_margin.rank": 260
    },
-   "Jacksonville": {
-      "stats.adj_off.value": 90.3,
-      "stats.adj_def.value": 93,
-      "stats.adj_margin.value": -2.700000000000003,
-      "stats.adj_margin.rank": 236
+   "Saint Joseph's": {
+      "hhs_off_rating": 89.2,
+      "stats.adj_off.value": 87.0128205128205,
+      "stats.adj_def.value": 93.68717948717952,
+      "stats.adj_margin.value": -6.6743589743590235,
+      "stats.adj_margin.rank": 259
    },
-   "Jackson St.": {
-      "stats.adj_off.value": 89.8,
-      "stats.adj_def.value": 92.6,
-      "stats.adj_margin.value": -2.799999999999997,
-      "stats.adj_margin.rank": 237
+   "Eastern Wash.": {
+      "hhs_off_rating": 94,
+      "stats.adj_off.value": 91.81282051282048,
+      "stats.adj_def.value": 98.68717948717952,
+      "stats.adj_margin.value": -6.8743589743590405,
+      "stats.adj_margin.rank": 200
    },
-   "Northern Ky.": {
-      "stats.adj_off.value": 90.5,
-      "stats.adj_def.value": 93.4,
-      "stats.adj_margin.value": -2.9000000000000057,
-      "stats.adj_margin.rank": 238
-   },
-   "East Carolina": {
-      "stats.adj_off.value": 87.9,
-      "stats.adj_def.value": 90.9,
-      "stats.adj_margin.value": -3,
-      "stats.adj_margin.rank": 239
-   },
-   "Colgate": {
-      "stats.adj_off.value": 91.9,
-      "stats.adj_def.value": 95,
-      "stats.adj_margin.value": -3.0999999999999943,
-      "stats.adj_margin.rank": 240
-   },
-   "Murray St.": {
-      "stats.adj_off.value": 95,
-      "stats.adj_def.value": 98.3,
-      "stats.adj_margin.value": -3.299999999999997,
-      "stats.adj_margin.rank": 241
-   },
-   "Bethune-Cookman": {
-      "stats.adj_off.value": 89.1,
-      "stats.adj_def.value": 92.4,
-      "stats.adj_margin.value": -3.3000000000000114,
-      "stats.adj_margin.rank": 242
-   },
-   "Loyola Chicago": {
-      "stats.adj_off.value": 90.9,
-      "stats.adj_def.value": 94.4,
-      "stats.adj_margin.value": -3.5,
+   "Gardner-Webb": {
+      "hhs_off_rating": 90.7,
+      "stats.adj_off.value": 88.5128205128205,
+      "stats.adj_def.value": 95.4871794871795,
+      "stats.adj_margin.value": -6.974358974359006,
       "stats.adj_margin.rank": 243
    },
-   "Wichita St.": {
-      "stats.adj_off.value": 87.3,
-      "stats.adj_def.value": 90.8,
-      "stats.adj_margin.value": -3.5,
-      "stats.adj_margin.rank": 244
-   },
-   "SIUE": {
-      "stats.adj_off.value": 91.4,
-      "stats.adj_def.value": 95.1,
-      "stats.adj_margin.value": -3.6999999999999886,
-      "stats.adj_margin.rank": 245
-   },
-   "UTEP": {
-      "stats.adj_off.value": 92.7,
-      "stats.adj_def.value": 96.5,
-      "stats.adj_margin.value": -3.799999999999997,
-      "stats.adj_margin.rank": 246
-   },
-   "Manhattan": {
-      "stats.adj_off.value": 84.7,
-      "stats.adj_def.value": 88.6,
-      "stats.adj_margin.value": -3.8999999999999915,
-      "stats.adj_margin.rank": 247
-   },
-   "Cal St. Fullerton": {
-      "stats.adj_off.value": 91.6,
-      "stats.adj_def.value": 95.5,
-      "stats.adj_margin.value": -3.9000000000000057,
+   "Jacksonville": {
+      "hhs_off_rating": 90.2,
+      "stats.adj_off.value": 88.0128205128205,
+      "stats.adj_def.value": 95.08717948717953,
+      "stats.adj_margin.value": -7.074358974359029,
       "stats.adj_margin.rank": 248
    },
-   "CSU Bakersfield": {
-      "stats.adj_off.value": 89.3,
-      "stats.adj_def.value": 93.2,
-      "stats.adj_margin.value": -3.9000000000000057,
-      "stats.adj_margin.rank": 249
+   "Northern Ky.": {
+      "hhs_off_rating": 90.4,
+      "stats.adj_off.value": 88.21282051282049,
+      "stats.adj_def.value": 95.4871794871795,
+      "stats.adj_margin.value": -7.274358974359018,
+      "stats.adj_margin.rank": 247
+   },
+   "East Carolina": {
+      "hhs_off_rating": 87.9,
+      "stats.adj_off.value": 85.71282051282049,
+      "stats.adj_def.value": 92.9871794871795,
+      "stats.adj_margin.value": -7.274358974359018,
+      "stats.adj_margin.rank": 278
+   },
+   "Jackson St.": {
+      "hhs_off_rating": 89.6,
+      "stats.adj_off.value": 87.41282051282047,
+      "stats.adj_def.value": 94.78717948717951,
+      "stats.adj_margin.value": -7.3743589743590405,
+      "stats.adj_margin.rank": 253
+   },
+   "Colgate": {
+      "hhs_off_rating": 91.7,
+      "stats.adj_off.value": 89.5128205128205,
+      "stats.adj_def.value": 97.08717948717953,
+      "stats.adj_margin.value": -7.574358974359029,
+      "stats.adj_margin.rank": 230
+   },
+   "Bethune-Cookman": {
+      "hhs_off_rating": 89.1,
+      "stats.adj_off.value": 86.91282051282047,
+      "stats.adj_def.value": 94.4871794871795,
+      "stats.adj_margin.value": -7.574358974359029,
+      "stats.adj_margin.rank": 265
+   },
+   "Wichita St.": {
+      "hhs_off_rating": 87.2,
+      "stats.adj_off.value": 85.0128205128205,
+      "stats.adj_def.value": 92.88717948717951,
+      "stats.adj_margin.value": -7.874358974359012,
+      "stats.adj_margin.rank": 286
+   },
+   "Loyola Chicago": {
+      "hhs_off_rating": 90.8,
+      "stats.adj_off.value": 88.61282051282049,
+      "stats.adj_def.value": 96.58717948717953,
+      "stats.adj_margin.value": -7.974358974359035,
+      "stats.adj_margin.rank": 241
+   },
+   "SIUE": {
+      "hhs_off_rating": 91.2,
+      "stats.adj_off.value": 89.0128205128205,
+      "stats.adj_def.value": 97.18717948717952,
+      "stats.adj_margin.value": -8.174358974359023,
+      "stats.adj_margin.rank": 232
+   },
+   "Murray St.": {
+      "hhs_off_rating": 94.6,
+      "stats.adj_off.value": 92.41282051282047,
+      "stats.adj_def.value": 100.58717948717953,
+      "stats.adj_margin.value": -8.174358974359052,
+      "stats.adj_margin.rank": 188
+   },
+   "UTEP": {
+      "hhs_off_rating": 92.5,
+      "stats.adj_off.value": 90.31282051282048,
+      "stats.adj_def.value": 98.58717948717953,
+      "stats.adj_margin.value": -8.274358974359046,
+      "stats.adj_margin.rank": 219
    },
    "Wofford": {
-      "stats.adj_off.value": 93.5,
-      "stats.adj_def.value": 97.6,
-      "stats.adj_margin.value": -4.099999999999994,
-      "stats.adj_margin.rank": 250
+      "hhs_off_rating": 93.4,
+      "stats.adj_off.value": 91.21282051282049,
+      "stats.adj_def.value": 99.58717948717953,
+      "stats.adj_margin.value": -8.37435897435904,
+      "stats.adj_margin.rank": 207
+   },
+   "CSU Bakersfield": {
+      "hhs_off_rating": 89.1,
+      "stats.adj_off.value": 86.91282051282047,
+      "stats.adj_def.value": 95.28717948717951,
+      "stats.adj_margin.value": -8.37435897435904,
+      "stats.adj_margin.rank": 264
+   },
+   "Cal St. Fullerton": {
+      "hhs_off_rating": 91.5,
+      "stats.adj_off.value": 89.31282051282048,
+      "stats.adj_def.value": 97.78717948717951,
+      "stats.adj_margin.value": -8.474358974359035,
+      "stats.adj_margin.rank": 231
+   },
+   "Manhattan": {
+      "hhs_off_rating": 84.5,
+      "stats.adj_off.value": 82.31282051282048,
+      "stats.adj_def.value": 90.78717948717951,
+      "stats.adj_margin.value": -8.474358974359035,
+      "stats.adj_margin.rank": 311
    },
    "George Washington": {
-      "stats.adj_off.value": 85.7,
-      "stats.adj_def.value": 90.1,
-      "stats.adj_margin.value": -4.3999999999999915,
-      "stats.adj_margin.rank": 251
+      "hhs_off_rating": 85.7,
+      "stats.adj_off.value": 83.5128205128205,
+      "stats.adj_def.value": 92.18717948717952,
+      "stats.adj_margin.value": -8.674358974359023,
+      "stats.adj_margin.rank": 302
+   },
+   "Central Ark.": {
+      "hhs_off_rating": 90.9,
+      "stats.adj_off.value": 88.71282051282049,
+      "stats.adj_def.value": 97.58717948717953,
+      "stats.adj_margin.value": -8.87435897435904,
+      "stats.adj_margin.rank": 240
    },
    "Indiana St.": {
-      "stats.adj_off.value": 89.8,
-      "stats.adj_def.value": 94.2,
-      "stats.adj_margin.value": -4.400000000000006,
+      "hhs_off_rating": 89.7,
+      "stats.adj_off.value": 87.5128205128205,
+      "stats.adj_def.value": 96.38717948717951,
+      "stats.adj_margin.value": -8.874358974359012,
       "stats.adj_margin.rank": 252
    },
    "North Dakota": {
-      "stats.adj_off.value": 92,
-      "stats.adj_def.value": 96.6,
-      "stats.adj_margin.value": -4.599999999999994,
-      "stats.adj_margin.rank": 253
-   },
-   "Army West Point": {
-      "stats.adj_off.value": 89.7,
-      "stats.adj_def.value": 94.4,
-      "stats.adj_margin.value": -4.700000000000003,
-      "stats.adj_margin.rank": 254
+      "hhs_off_rating": 91.9,
+      "stats.adj_off.value": 89.71282051282049,
+      "stats.adj_def.value": 98.78717948717951,
+      "stats.adj_margin.value": -9.07435897435903,
+      "stats.adj_margin.rank": 223
    },
    "North Florida": {
-      "stats.adj_off.value": 90.9,
-      "stats.adj_def.value": 95.7,
-      "stats.adj_margin.value": -4.799999999999997,
-      "stats.adj_margin.rank": 255
+      "hhs_off_rating": 90.9,
+      "stats.adj_off.value": 88.71282051282049,
+      "stats.adj_def.value": 97.88717948717951,
+      "stats.adj_margin.value": -9.174358974359023,
+      "stats.adj_margin.rank": 239
    },
-   "Bryant": {
-      "stats.adj_off.value": 90.4,
-      "stats.adj_def.value": 95.4,
-      "stats.adj_margin.value": -5,
-      "stats.adj_margin.rank": 256
-   },
-   "Western Mich.": {
-      "stats.adj_off.value": 90.8,
-      "stats.adj_def.value": 96,
-      "stats.adj_margin.value": -5.200000000000003,
-      "stats.adj_margin.rank": 257
-   },
-   "Central Ark.": {
-      "stats.adj_off.value": 90.7,
-      "stats.adj_def.value": 96.1,
-      "stats.adj_margin.value": -5.3999999999999915,
+   "Army West Point": {
+      "hhs_off_rating": 89.3,
+      "stats.adj_off.value": 87.11282051282049,
+      "stats.adj_def.value": 96.58717948717953,
+      "stats.adj_margin.value": -9.474358974359035,
       "stats.adj_margin.rank": 258
    },
+   "Western Mich.": {
+      "hhs_off_rating": 90.7,
+      "stats.adj_off.value": 88.5128205128205,
+      "stats.adj_def.value": 98.18717948717952,
+      "stats.adj_margin.value": -9.674358974359023,
+      "stats.adj_margin.rank": 244
+   },
    "Albany (NY)": {
-      "stats.adj_off.value": 88.3,
-      "stats.adj_def.value": 93.8,
-      "stats.adj_margin.value": -5.5,
-      "stats.adj_margin.rank": 259
+      "hhs_off_rating": 88.4,
+      "stats.adj_off.value": 86.21282051282049,
+      "stats.adj_def.value": 95.88717948717951,
+      "stats.adj_margin.value": -9.674358974359023,
+      "stats.adj_margin.rank": 274
+   },
+   "Bryant": {
+      "hhs_off_rating": 90.1,
+      "stats.adj_off.value": 87.91282051282047,
+      "stats.adj_def.value": 97.58717948717953,
+      "stats.adj_margin.value": -9.674358974359052,
+      "stats.adj_margin.rank": 249
    },
    "Texas Southern": {
-      "stats.adj_off.value": 87.4,
-      "stats.adj_def.value": 92.9,
-      "stats.adj_margin.value": -5.5,
-      "stats.adj_margin.rank": 260
-   },
-   "Air Force": {
-      "stats.adj_off.value": 87.1,
-      "stats.adj_def.value": 92.6,
-      "stats.adj_margin.value": -5.5,
-      "stats.adj_margin.rank": 261
+      "hhs_off_rating": 87.4,
+      "stats.adj_off.value": 85.21282051282049,
+      "stats.adj_def.value": 94.9871794871795,
+      "stats.adj_margin.value": -9.774358974359018,
+      "stats.adj_margin.rank": 281
    },
    "Memphis": {
-      "stats.adj_off.value": 87,
-      "stats.adj_def.value": 92.5,
-      "stats.adj_margin.value": -5.5,
-      "stats.adj_margin.rank": 262
+      "hhs_off_rating": 87,
+      "stats.adj_off.value": 84.81282051282048,
+      "stats.adj_def.value": 94.58717948717953,
+      "stats.adj_margin.value": -9.774358974359046,
+      "stats.adj_margin.rank": 290
    },
-   "Elon": {
-      "stats.adj_off.value": 90.8,
-      "stats.adj_def.value": 96.7,
-      "stats.adj_margin.value": -5.900000000000006,
-      "stats.adj_margin.rank": 263
-   },
-   "Fairfield": {
-      "stats.adj_off.value": 89.5,
-      "stats.adj_def.value": 95.5,
-      "stats.adj_margin.value": -6,
-      "stats.adj_margin.rank": 264
+   "Air Force": {
+      "hhs_off_rating": 87.1,
+      "stats.adj_off.value": 84.91282051282047,
+      "stats.adj_def.value": 94.78717948717951,
+      "stats.adj_margin.value": -9.87435897435904,
+      "stats.adj_margin.rank": 287
    },
    "Cleveland St.": {
-      "stats.adj_off.value": 88.6,
-      "stats.adj_def.value": 94.7,
-      "stats.adj_margin.value": -6.1000000000000085,
-      "stats.adj_margin.rank": 265
+      "hhs_off_rating": 88.6,
+      "stats.adj_off.value": 86.41282051282047,
+      "stats.adj_def.value": 96.68717948717952,
+      "stats.adj_margin.value": -10.274358974359046,
+      "stats.adj_margin.rank": 272
+   },
+   "Elon": {
+      "hhs_off_rating": 90.6,
+      "stats.adj_off.value": 88.41282051282047,
+      "stats.adj_def.value": 98.78717948717951,
+      "stats.adj_margin.value": -10.37435897435904,
+      "stats.adj_margin.rank": 246
    },
    "Hofstra": {
-      "stats.adj_off.value": 88.6,
-      "stats.adj_def.value": 94.7,
-      "stats.adj_margin.value": -6.1000000000000085,
-      "stats.adj_margin.rank": 266
+      "hhs_off_rating": 88.6,
+      "stats.adj_off.value": 86.41282051282047,
+      "stats.adj_def.value": 96.78717948717951,
+      "stats.adj_margin.value": -10.37435897435904,
+      "stats.adj_margin.rank": 273
+   },
+   "Fairfield": {
+      "hhs_off_rating": 89.4,
+      "stats.adj_off.value": 87.21282051282049,
+      "stats.adj_def.value": 97.68717948717952,
+      "stats.adj_margin.value": -10.474358974359035,
+      "stats.adj_margin.rank": 256
    },
    "Navy": {
-      "stats.adj_off.value": 83.6,
-      "stats.adj_def.value": 89.7,
-      "stats.adj_margin.value": -6.1000000000000085,
+      "hhs_off_rating": 83.5,
+      "stats.adj_off.value": 81.31282051282048,
+      "stats.adj_def.value": 91.78717948717951,
+      "stats.adj_margin.value": -10.474358974359035,
+      "stats.adj_margin.rank": 320
+   },
+   "Kennesaw St.": {
+      "hhs_off_rating": 89.1,
+      "stats.adj_off.value": 86.91282051282047,
+      "stats.adj_def.value": 97.4871794871795,
+      "stats.adj_margin.value": -10.57435897435903,
+      "stats.adj_margin.rank": 263
+   },
+   "Colorado St.": {
+      "hhs_off_rating": 88.9,
+      "stats.adj_off.value": 86.71282051282049,
+      "stats.adj_def.value": 97.38717948717951,
+      "stats.adj_margin.value": -10.674358974359023,
       "stats.adj_margin.rank": 267
    },
    "Monmouth": {
-      "stats.adj_off.value": 87.4,
-      "stats.adj_def.value": 93.6,
-      "stats.adj_margin.value": -6.199999999999989,
-      "stats.adj_margin.rank": 268
-   },
-   "Southern U.": {
-      "stats.adj_off.value": 86.7,
-      "stats.adj_def.value": 92.9,
-      "stats.adj_margin.value": -6.200000000000003,
-      "stats.adj_margin.rank": 269
-   },
-   "Colorado St.": {
-      "stats.adj_off.value": 88.9,
-      "stats.adj_def.value": 95.3,
-      "stats.adj_margin.value": -6.3999999999999915,
-      "stats.adj_margin.rank": 270
-   },
-   "Binghamton": {
-      "stats.adj_off.value": 88.9,
-      "stats.adj_def.value": 95.3,
-      "stats.adj_margin.value": -6.3999999999999915,
-      "stats.adj_margin.rank": 271
-   },
-   "Utah Valley": {
-      "stats.adj_off.value": 92.1,
-      "stats.adj_def.value": 98.6,
-      "stats.adj_margin.value": -6.5,
-      "stats.adj_margin.rank": 272
-   },
-   "Charleston So.": {
-      "stats.adj_off.value": 88.4,
-      "stats.adj_def.value": 95,
-      "stats.adj_margin.value": -6.599999999999994,
-      "stats.adj_margin.rank": 273
-   },
-   "UNC Greensboro": {
-      "stats.adj_off.value": 91,
-      "stats.adj_def.value": 97.7,
-      "stats.adj_margin.value": -6.700000000000003,
-      "stats.adj_margin.rank": 274
-   },
-   "Louisiana": {
-      "stats.adj_off.value": 89.8,
-      "stats.adj_def.value": 96.8,
-      "stats.adj_margin.value": -7,
-      "stats.adj_margin.rank": 275
-   },
-   "Kennesaw St.": {
-      "stats.adj_off.value": 89.4,
-      "stats.adj_def.value": 96.5,
-      "stats.adj_margin.value": -7.099999999999994,
-      "stats.adj_margin.rank": 276
-   },
-   "Canisius": {
-      "stats.adj_off.value": 87.6,
-      "stats.adj_def.value": 94.7,
-      "stats.adj_margin.value": -7.1000000000000085,
-      "stats.adj_margin.rank": 277
-   },
-   "Grambling": {
-      "stats.adj_off.value": 86.5,
-      "stats.adj_def.value": 93.7,
-      "stats.adj_margin.value": -7.200000000000003,
-      "stats.adj_margin.rank": 278
-   },
-   "Sacramento St.": {
-      "stats.adj_off.value": 91.1,
-      "stats.adj_def.value": 98.4,
-      "stats.adj_margin.value": -7.300000000000011,
-      "stats.adj_margin.rank": 279
-   },
-   "Long Beach St.": {
-      "stats.adj_off.value": 86.6,
-      "stats.adj_def.value": 94,
-      "stats.adj_margin.value": -7.400000000000006,
-      "stats.adj_margin.rank": 280
-   },
-   "Southern Utah": {
-      "stats.adj_off.value": 91.1,
-      "stats.adj_def.value": 98.8,
-      "stats.adj_margin.value": -7.700000000000003,
-      "stats.adj_margin.rank": 281
-   },
-   "Eastern Ill.": {
-      "stats.adj_off.value": 90.7,
-      "stats.adj_def.value": 98.6,
-      "stats.adj_margin.value": -7.8999999999999915,
-      "stats.adj_margin.rank": 282
-   },
-   "St. Bonaventure": {
-      "stats.adj_off.value": 87.6,
-      "stats.adj_def.value": 95.8,
-      "stats.adj_margin.value": -8.200000000000003,
-      "stats.adj_margin.rank": 283
-   },
-   "Brown": {
-      "stats.adj_off.value": 92.8,
-      "stats.adj_def.value": 101.2,
-      "stats.adj_margin.value": -8.400000000000006,
-      "stats.adj_margin.rank": 284
-   },
-   "Niagara": {
-      "stats.adj_off.value": 88,
-      "stats.adj_def.value": 97.1,
-      "stats.adj_margin.value": -9.099999999999994,
+      "hhs_off_rating": 87.2,
+      "stats.adj_off.value": 85.0128205128205,
+      "stats.adj_def.value": 95.68717948717952,
+      "stats.adj_margin.value": -10.674358974359023,
       "stats.adj_margin.rank": 285
    },
-   "Loyola Maryland": {
-      "stats.adj_off.value": 86.7,
-      "stats.adj_def.value": 95.8,
-      "stats.adj_margin.value": -9.099999999999994,
-      "stats.adj_margin.rank": 286
+   "UNC Greensboro": {
+      "hhs_off_rating": 91.1,
+      "stats.adj_off.value": 88.91282051282047,
+      "stats.adj_def.value": 99.58717948717953,
+      "stats.adj_margin.value": -10.674358974359052,
+      "stats.adj_margin.rank": 235
    },
-   "San Diego": {
-      "stats.adj_off.value": 90.8,
-      "stats.adj_def.value": 99.9,
-      "stats.adj_margin.value": -9.100000000000009,
-      "stats.adj_margin.rank": 287
-   },
-   "Rhode Island": {
-      "stats.adj_off.value": 86.7,
-      "stats.adj_def.value": 95.9,
-      "stats.adj_margin.value": -9.200000000000003,
-      "stats.adj_margin.rank": 288
-   },
-   "Valparaiso": {
-      "stats.adj_off.value": 91.3,
-      "stats.adj_def.value": 100.7,
-      "stats.adj_margin.value": -9.400000000000006,
-      "stats.adj_margin.rank": 289
-   },
-   "Lafayette": {
-      "stats.adj_off.value": 84.7,
-      "stats.adj_def.value": 94.3,
-      "stats.adj_margin.value": -9.599999999999994,
-      "stats.adj_margin.rank": 290
-   },
-   "Siena": {
-      "stats.adj_off.value": 85.8,
-      "stats.adj_def.value": 95.4,
-      "stats.adj_margin.value": -9.600000000000009,
-      "stats.adj_margin.rank": 291
-   },
-   "Samford": {
-      "stats.adj_off.value": 89.8,
-      "stats.adj_def.value": 99.6,
-      "stats.adj_margin.value": -9.799999999999997,
-      "stats.adj_margin.rank": 292
-   },
-   "Seattle U": {
-      "stats.adj_off.value": 88.8,
-      "stats.adj_def.value": 98.6,
-      "stats.adj_margin.value": -9.799999999999997,
-      "stats.adj_margin.rank": 293
-   },
-   "UC Santa Barbara": {
-      "stats.adj_off.value": 87.8,
-      "stats.adj_def.value": 98.2,
-      "stats.adj_margin.value": -10.400000000000006,
+   "Southern U.": {
+      "hhs_off_rating": 86.5,
+      "stats.adj_off.value": 84.31282051282048,
+      "stats.adj_def.value": 95.08717948717953,
+      "stats.adj_margin.value": -10.774358974359046,
       "stats.adj_margin.rank": 294
    },
-   "San Jose St.": {
-      "stats.adj_off.value": 89.1,
-      "stats.adj_def.value": 99.6,
-      "stats.adj_margin.value": -10.5,
+   "Binghamton": {
+      "hhs_off_rating": 88.8,
+      "stats.adj_off.value": 86.61282051282049,
+      "stats.adj_def.value": 97.4871794871795,
+      "stats.adj_margin.value": -10.874358974359012,
+      "stats.adj_margin.rank": 268
+   },
+   "Utah Valley": {
+      "hhs_off_rating": 91.9,
+      "stats.adj_off.value": 89.71282051282049,
+      "stats.adj_def.value": 100.68717948717952,
+      "stats.adj_margin.value": -10.974358974359035,
+      "stats.adj_margin.rank": 224
+   },
+   "Louisiana": {
+      "hhs_off_rating": 89.8,
+      "stats.adj_off.value": 87.61282051282049,
+      "stats.adj_def.value": 98.78717948717951,
+      "stats.adj_margin.value": -11.174358974359023,
+      "stats.adj_margin.rank": 251
+   },
+   "Charleston So.": {
+      "hhs_off_rating": 88.2,
+      "stats.adj_off.value": 86.0128205128205,
+      "stats.adj_def.value": 97.18717948717952,
+      "stats.adj_margin.value": -11.174358974359023,
+      "stats.adj_margin.rank": 276
+   },
+   "Long Beach St.": {
+      "hhs_off_rating": 86.9,
+      "stats.adj_off.value": 84.71282051282049,
+      "stats.adj_def.value": 95.88717948717951,
+      "stats.adj_margin.value": -11.174358974359023,
+      "stats.adj_margin.rank": 291
+   },
+   "Sacramento St.": {
+      "hhs_off_rating": 91,
+      "stats.adj_off.value": 88.81282051282048,
+      "stats.adj_def.value": 100.38717948717951,
+      "stats.adj_margin.value": -11.57435897435903,
+      "stats.adj_margin.rank": 236
+   },
+   "Canisius": {
+      "hhs_off_rating": 87.3,
+      "stats.adj_off.value": 85.11282051282049,
+      "stats.adj_def.value": 96.78717948717951,
+      "stats.adj_margin.value": -11.674358974359023,
+      "stats.adj_margin.rank": 283
+   },
+   "Grambling": {
+      "hhs_off_rating": 86.4,
+      "stats.adj_off.value": 84.21282051282049,
+      "stats.adj_def.value": 95.9871794871795,
+      "stats.adj_margin.value": -11.774358974359018,
       "stats.adj_margin.rank": 295
    },
-   "Central Conn. St.": {
-      "stats.adj_off.value": 86.3,
-      "stats.adj_def.value": 97.1,
-      "stats.adj_margin.value": -10.799999999999997,
-      "stats.adj_margin.rank": 296
+   "Southern Utah": {
+      "hhs_off_rating": 91,
+      "stats.adj_off.value": 88.81282051282048,
+      "stats.adj_def.value": 100.9871794871795,
+      "stats.adj_margin.value": -12.174358974359023,
+      "stats.adj_margin.rank": 238
    },
-   "Alabama A&M": {
-      "stats.adj_off.value": 85,
-      "stats.adj_def.value": 96.4,
-      "stats.adj_margin.value": -11.400000000000006,
+   "Eastern Ill.": {
+      "hhs_off_rating": 90.7,
+      "stats.adj_off.value": 88.5128205128205,
+      "stats.adj_def.value": 100.68717948717952,
+      "stats.adj_margin.value": -12.174358974359023,
+      "stats.adj_margin.rank": 245
+   },
+   "Brown": {
+      "hhs_off_rating": 92.7,
+      "stats.adj_off.value": 90.5128205128205,
+      "stats.adj_def.value": 103.18717948717952,
+      "stats.adj_margin.value": -12.674358974359023,
+      "stats.adj_margin.rank": 216
+   },
+   "St. Bonaventure": {
+      "hhs_off_rating": 87.4,
+      "stats.adj_off.value": 85.21282051282049,
+      "stats.adj_def.value": 97.9871794871795,
+      "stats.adj_margin.value": -12.774358974359018,
+      "stats.adj_margin.rank": 282
+   },
+   "Siena": {
+      "hhs_off_rating": 86.4,
+      "stats.adj_off.value": 84.21282051282049,
+      "stats.adj_def.value": 97.38717948717951,
+      "stats.adj_margin.value": -13.174358974359023,
       "stats.adj_margin.rank": 297
    },
+   "San Diego": {
+      "hhs_off_rating": 90.7,
+      "stats.adj_off.value": 88.5128205128205,
+      "stats.adj_def.value": 101.9871794871795,
+      "stats.adj_margin.value": -13.474358974359006,
+      "stats.adj_margin.rank": 242
+   },
+   "Rhode Island": {
+      "hhs_off_rating": 86.4,
+      "stats.adj_off.value": 84.21282051282049,
+      "stats.adj_def.value": 97.78717948717951,
+      "stats.adj_margin.value": -13.57435897435903,
+      "stats.adj_margin.rank": 296
+   },
+   "Loyola Maryland": {
+      "hhs_off_rating": 86.5,
+      "stats.adj_off.value": 84.31282051282048,
+      "stats.adj_def.value": 97.9871794871795,
+      "stats.adj_margin.value": -13.674358974359023,
+      "stats.adj_margin.rank": 293
+   },
+   "Valparaiso": {
+      "hhs_off_rating": 91.1,
+      "stats.adj_off.value": 88.91282051282047,
+      "stats.adj_def.value": 102.58717948717953,
+      "stats.adj_margin.value": -13.674358974359052,
+      "stats.adj_margin.rank": 234
+   },
+   "Samford": {
+      "hhs_off_rating": 89.8,
+      "stats.adj_off.value": 87.61282051282049,
+      "stats.adj_def.value": 101.58717948717953,
+      "stats.adj_margin.value": -13.974358974359035,
+      "stats.adj_margin.rank": 250
+   },
+   "Lafayette": {
+      "hhs_off_rating": 84.6,
+      "stats.adj_off.value": 82.41282051282047,
+      "stats.adj_def.value": 96.38717948717951,
+      "stats.adj_margin.value": -13.974358974359035,
+      "stats.adj_margin.rank": 310
+   },
+   "Seattle U": {
+      "hhs_off_rating": 88.7,
+      "stats.adj_off.value": 86.5128205128205,
+      "stats.adj_def.value": 100.78717948717951,
+      "stats.adj_margin.value": -14.274358974359018,
+      "stats.adj_margin.rank": 269
+   },
+   "Niagara": {
+      "hhs_off_rating": 87,
+      "stats.adj_off.value": 84.81282051282048,
+      "stats.adj_def.value": 99.38717948717951,
+      "stats.adj_margin.value": -14.57435897435903,
+      "stats.adj_margin.rank": 288
+   },
+   "UC Santa Barbara": {
+      "hhs_off_rating": 87.7,
+      "stats.adj_off.value": 85.5128205128205,
+      "stats.adj_def.value": 100.18717948717952,
+      "stats.adj_margin.value": -14.674358974359023,
+      "stats.adj_margin.rank": 279
+   },
+   "San Jose St.": {
+      "hhs_off_rating": 89.1,
+      "stats.adj_off.value": 86.91282051282047,
+      "stats.adj_def.value": 101.68717948717952,
+      "stats.adj_margin.value": -14.774358974359046,
+      "stats.adj_margin.rank": 266
+   },
+   "Alabama A&M": {
+      "hhs_off_rating": 85.1,
+      "stats.adj_off.value": 82.91282051282047,
+      "stats.adj_def.value": 98.38717948717951,
+      "stats.adj_margin.value": -15.474358974359035,
+      "stats.adj_margin.rank": 308
+   },
    "Presbyterian": {
-      "stats.adj_off.value": 85.8,
-      "stats.adj_def.value": 97.3,
-      "stats.adj_margin.value": -11.5,
-      "stats.adj_margin.rank": 298
-   },
-   "Col. of Charleston": {
-      "stats.adj_off.value": 86.4,
-      "stats.adj_def.value": 98.1,
-      "stats.adj_margin.value": -11.699999999999989,
-      "stats.adj_margin.rank": 299
-   },
-   "Wagner": {
-      "stats.adj_off.value": 89.5,
-      "stats.adj_def.value": 101.2,
-      "stats.adj_margin.value": -11.700000000000003,
-      "stats.adj_margin.rank": 300
-   },
-   "Cal Poly": {
-      "stats.adj_off.value": 85.5,
-      "stats.adj_def.value": 97.2,
-      "stats.adj_margin.value": -11.700000000000003,
-      "stats.adj_margin.rank": 301
-   },
-   "Weber St.": {
-      "stats.adj_off.value": 88.3,
-      "stats.adj_def.value": 100.1,
-      "stats.adj_margin.value": -11.799999999999997,
-      "stats.adj_margin.rank": 302
-   },
-   "Omaha": {
-      "stats.adj_off.value": 86.8,
-      "stats.adj_def.value": 98.9,
-      "stats.adj_margin.value": -12.100000000000009,
+      "hhs_off_rating": 85.7,
+      "stats.adj_off.value": 83.5128205128205,
+      "stats.adj_def.value": 99.38717948717951,
+      "stats.adj_margin.value": -15.874358974359012,
       "stats.adj_margin.rank": 303
    },
    "South Carolina St.": {
-      "stats.adj_off.value": 83.1,
-      "stats.adj_def.value": 95.2,
-      "stats.adj_margin.value": -12.100000000000009,
-      "stats.adj_margin.rank": 304
-   },
-   "Ga. Southern": {
-      "stats.adj_off.value": 91.3,
-      "stats.adj_def.value": 103.7,
-      "stats.adj_margin.value": -12.400000000000006,
-      "stats.adj_margin.rank": 305
-   },
-   "La Salle": {
-      "stats.adj_off.value": 81.5,
-      "stats.adj_def.value": 94.4,
-      "stats.adj_margin.value": -12.900000000000006,
-      "stats.adj_margin.rank": 306
-   },
-   "UTSA": {
-      "stats.adj_off.value": 85,
-      "stats.adj_def.value": 98.1,
-      "stats.adj_margin.value": -13.099999999999994,
-      "stats.adj_margin.rank": 307
-   },
-   "Richmond": {
-      "stats.adj_off.value": 83.6,
-      "stats.adj_def.value": 96.9,
-      "stats.adj_margin.value": -13.300000000000011,
-      "stats.adj_margin.rank": 308
-   },
-   "La.-Monroe": {
-      "stats.adj_off.value": 83.3,
-      "stats.adj_def.value": 96.8,
-      "stats.adj_margin.value": -13.5,
-      "stats.adj_margin.rank": 309
-   },
-   "Vermont": {
-      "stats.adj_off.value": 83.4,
-      "stats.adj_def.value": 97,
-      "stats.adj_margin.value": -13.599999999999994,
-      "stats.adj_margin.rank": 310
-   },
-   "Oakland": {
-      "stats.adj_off.value": 85.8,
-      "stats.adj_def.value": 99.6,
-      "stats.adj_margin.value": -13.799999999999997,
-      "stats.adj_margin.rank": 311
-   },
-   "Tennessee St.": {
-      "stats.adj_off.value": 85.4,
-      "stats.adj_def.value": 99.7,
-      "stats.adj_margin.value": -14.299999999999997,
-      "stats.adj_margin.rank": 312
-   },
-   "FIU": {
-      "stats.adj_off.value": 84.9,
-      "stats.adj_def.value": 99.3,
-      "stats.adj_margin.value": -14.399999999999991,
-      "stats.adj_margin.rank": 313
-   },
-   "Fla. Atlantic": {
-      "stats.adj_off.value": 84.2,
-      "stats.adj_def.value": 98.7,
-      "stats.adj_margin.value": -14.5,
-      "stats.adj_margin.rank": 314
-   },
-   "Southeastern La.": {
-      "stats.adj_off.value": 82.9,
-      "stats.adj_def.value": 97.4,
-      "stats.adj_margin.value": -14.5,
-      "stats.adj_margin.rank": 315
-   },
-   "North Dakota St.": {
-      "stats.adj_off.value": 89.3,
-      "stats.adj_def.value": 103.9,
-      "stats.adj_margin.value": -14.600000000000009,
-      "stats.adj_margin.rank": 316
-   },
-   "Winthrop": {
-      "stats.adj_off.value": 81.8,
-      "stats.adj_def.value": 96.4,
-      "stats.adj_margin.value": -14.600000000000009,
-      "stats.adj_margin.rank": 317
-   },
-   "Morgan St.": {
-      "stats.adj_off.value": 82.2,
-      "stats.adj_def.value": 97.1,
-      "stats.adj_margin.value": -14.899999999999991,
-      "stats.adj_margin.rank": 318
-   },
-   "Alabama St.": {
-      "stats.adj_off.value": 82.9,
-      "stats.adj_def.value": 98.1,
-      "stats.adj_margin.value": -15.199999999999989,
-      "stats.adj_margin.rank": 319
-   },
-   "Northwestern St.": {
-      "stats.adj_off.value": 87.2,
-      "stats.adj_def.value": 102.4,
-      "stats.adj_margin.value": -15.200000000000003,
-      "stats.adj_margin.rank": 320
-   },
-   "NJIT": {
-      "stats.adj_off.value": 82.2,
-      "stats.adj_def.value": 97.5,
-      "stats.adj_margin.value": -15.299999999999997,
-      "stats.adj_margin.rank": 321
-   },
-   "Longwood": {
-      "stats.adj_off.value": 85.6,
-      "stats.adj_def.value": 101.2,
-      "stats.adj_margin.value": -15.600000000000009,
-      "stats.adj_margin.rank": 322
-   },
-   "Houston Baptist": {
-      "stats.adj_off.value": 83.8,
-      "stats.adj_def.value": 99.4,
-      "stats.adj_margin.value": -15.600000000000009,
+      "hhs_off_rating": 83.3,
+      "stats.adj_off.value": 81.11282051282049,
+      "stats.adj_def.value": 96.9871794871795,
+      "stats.adj_margin.value": -15.874358974359012,
       "stats.adj_margin.rank": 323
    },
-   "Purdue Fort Wayne": {
-      "stats.adj_off.value": 88.2,
-      "stats.adj_def.value": 104,
-      "stats.adj_margin.value": -15.799999999999997,
-      "stats.adj_margin.rank": 324
+   "Wagner": {
+      "hhs_off_rating": 89.5,
+      "stats.adj_off.value": 87.31282051282048,
+      "stats.adj_def.value": 103.28717948717951,
+      "stats.adj_margin.value": -15.974358974359035,
+      "stats.adj_margin.rank": 254
    },
-   "Grand Canyon": {
-      "stats.adj_off.value": 84,
-      "stats.adj_def.value": 99.8,
-      "stats.adj_margin.value": -15.799999999999997,
+   "Cal Poly": {
+      "hhs_off_rating": 85.4,
+      "stats.adj_off.value": 83.21282051282049,
+      "stats.adj_def.value": 99.28717948717951,
+      "stats.adj_margin.value": -16.07435897435903,
+      "stats.adj_margin.rank": 306
+   },
+   "Weber St.": {
+      "hhs_off_rating": 88.2,
+      "stats.adj_off.value": 86.0128205128205,
+      "stats.adj_def.value": 102.18717948717952,
+      "stats.adj_margin.value": -16.174358974359023,
+      "stats.adj_margin.rank": 275
+   },
+   "Col. of Charleston": {
+      "hhs_off_rating": 86.3,
+      "stats.adj_off.value": 84.11282051282049,
+      "stats.adj_def.value": 100.28717948717951,
+      "stats.adj_margin.value": -16.174358974359023,
+      "stats.adj_margin.rank": 298
+   },
+   "Central Conn. St.": {
+      "hhs_off_rating": 85.9,
+      "stats.adj_off.value": 83.71282051282049,
+      "stats.adj_def.value": 99.88717948717951,
+      "stats.adj_margin.value": -16.174358974359023,
+      "stats.adj_margin.rank": 301
+   },
+   "Omaha": {
+      "hhs_off_rating": 86.6,
+      "stats.adj_off.value": 84.41282051282047,
+      "stats.adj_def.value": 101.08717948717953,
+      "stats.adj_margin.value": -16.674358974359052,
+      "stats.adj_margin.rank": 292
+   },
+   "Ga. Southern": {
+      "hhs_off_rating": 91,
+      "stats.adj_off.value": 88.81282051282048,
+      "stats.adj_def.value": 105.78717948717951,
+      "stats.adj_margin.value": -16.974358974359035,
+      "stats.adj_margin.rank": 237
+   },
+   "UTSA": {
+      "hhs_off_rating": 85,
+      "stats.adj_off.value": 82.81282051282048,
+      "stats.adj_def.value": 100.08717948717953,
+      "stats.adj_margin.value": -17.274358974359046,
+      "stats.adj_margin.rank": 309
+   },
+   "La Salle": {
+      "hhs_off_rating": 81.3,
+      "stats.adj_off.value": 79.11282051282049,
+      "stats.adj_def.value": 96.58717948717953,
+      "stats.adj_margin.value": -17.474358974359035,
+      "stats.adj_margin.rank": 340
+   },
+   "Richmond": {
+      "hhs_off_rating": 83.4,
+      "stats.adj_off.value": 81.21282051282049,
+      "stats.adj_def.value": 99.08717948717953,
+      "stats.adj_margin.value": -17.87435897435904,
+      "stats.adj_margin.rank": 321
+   },
+   "La.-Monroe": {
+      "hhs_off_rating": 83.2,
+      "stats.adj_off.value": 81.0128205128205,
+      "stats.adj_def.value": 98.88717948717951,
+      "stats.adj_margin.value": -17.874358974359012,
       "stats.adj_margin.rank": 325
    },
-   "Fairleigh Dickinson": {
-      "stats.adj_off.value": 84.3,
-      "stats.adj_def.value": 100.4,
-      "stats.adj_margin.value": -16.10000000000001,
-      "stats.adj_margin.rank": 326
+   "Vermont": {
+      "hhs_off_rating": 83.3,
+      "stats.adj_off.value": 81.11282051282049,
+      "stats.adj_def.value": 99.08717948717953,
+      "stats.adj_margin.value": -17.974358974359035,
+      "stats.adj_margin.rank": 322
    },
-   "UMBC": {
-      "stats.adj_off.value": 82.2,
-      "stats.adj_def.value": 98.4,
-      "stats.adj_margin.value": -16.200000000000003,
-      "stats.adj_margin.rank": 327
+   "Oakland": {
+      "hhs_off_rating": 85.5,
+      "stats.adj_off.value": 83.31282051282048,
+      "stats.adj_def.value": 101.88717948717951,
+      "stats.adj_margin.value": -18.57435897435903,
+      "stats.adj_margin.rank": 304
    },
-   "USC Upstate": {
-      "stats.adj_off.value": 83.5,
-      "stats.adj_def.value": 100.1,
-      "stats.adj_margin.value": -16.599999999999994,
-      "stats.adj_margin.rank": 328
+   "Tennessee St.": {
+      "hhs_off_rating": 85.4,
+      "stats.adj_off.value": 83.21282051282049,
+      "stats.adj_def.value": 101.88717948717951,
+      "stats.adj_margin.value": -18.674358974359023,
+      "stats.adj_margin.rank": 307
    },
-   "Coppin St.": {
-      "stats.adj_off.value": 84.6,
-      "stats.adj_def.value": 101.5,
-      "stats.adj_margin.value": -16.900000000000006,
-      "stats.adj_margin.rank": 329
+   "Fla. Atlantic": {
+      "hhs_off_rating": 84.2,
+      "stats.adj_off.value": 82.0128205128205,
+      "stats.adj_def.value": 100.68717948717952,
+      "stats.adj_margin.value": -18.674358974359023,
+      "stats.adj_margin.rank": 314
    },
-   "UMass Lowell": {
-      "stats.adj_off.value": 82.3,
-      "stats.adj_def.value": 100,
-      "stats.adj_margin.value": -17.700000000000003,
+   "FIU": {
+      "hhs_off_rating": 86.1,
+      "stats.adj_off.value": 83.91282051282047,
+      "stats.adj_def.value": 102.58717948717953,
+      "stats.adj_margin.value": -18.674358974359052,
+      "stats.adj_margin.rank": 299
+   },
+   "Winthrop": {
+      "hhs_off_rating": 81.6,
+      "stats.adj_off.value": 79.41282051282047,
+      "stats.adj_def.value": 98.28717948717951,
+      "stats.adj_margin.value": -18.87435897435904,
+      "stats.adj_margin.rank": 338
+   },
+   "Southeastern La.": {
+      "hhs_off_rating": 82.7,
+      "stats.adj_off.value": 80.5128205128205,
+      "stats.adj_def.value": 99.4871794871795,
+      "stats.adj_margin.value": -18.974358974359006,
       "stats.adj_margin.rank": 330
    },
+   "North Dakota St.": {
+      "hhs_off_rating": 89.2,
+      "stats.adj_off.value": 87.0128205128205,
+      "stats.adj_def.value": 106.08717948717953,
+      "stats.adj_margin.value": -19.07435897435903,
+      "stats.adj_margin.rank": 261
+   },
+   "Alabama St.": {
+      "hhs_off_rating": 82.9,
+      "stats.adj_off.value": 80.71282051282049,
+      "stats.adj_def.value": 100.28717948717951,
+      "stats.adj_margin.value": -19.57435897435903,
+      "stats.adj_margin.rank": 329
+   },
+   "Morgan St.": {
+      "hhs_off_rating": 82,
+      "stats.adj_off.value": 79.81282051282048,
+      "stats.adj_def.value": 99.38717948717951,
+      "stats.adj_margin.value": -19.57435897435903,
+      "stats.adj_margin.rank": 334
+   },
+   "Northwestern St.": {
+      "hhs_off_rating": 87,
+      "stats.adj_off.value": 84.81282051282048,
+      "stats.adj_def.value": 104.58717948717953,
+      "stats.adj_margin.value": -19.774358974359046,
+      "stats.adj_margin.rank": 289
+   },
+   "NJIT": {
+      "hhs_off_rating": 82.1,
+      "stats.adj_off.value": 79.91282051282047,
+      "stats.adj_def.value": 99.68717948717952,
+      "stats.adj_margin.value": -19.774358974359046,
+      "stats.adj_margin.rank": 333
+   },
+   "Longwood": {
+      "hhs_off_rating": 85.5,
+      "stats.adj_off.value": 83.31282051282048,
+      "stats.adj_def.value": 103.18717948717952,
+      "stats.adj_margin.value": -19.87435897435904,
+      "stats.adj_margin.rank": 305
+   },
+   "Houston Baptist": {
+      "hhs_off_rating": 83.7,
+      "stats.adj_off.value": 81.5128205128205,
+      "stats.adj_def.value": 101.4871794871795,
+      "stats.adj_margin.value": -19.974358974359006,
+      "stats.adj_margin.rank": 318
+   },
+   "Grand Canyon": {
+      "hhs_off_rating": 83.9,
+      "stats.adj_off.value": 81.71282051282049,
+      "stats.adj_def.value": 101.88717948717951,
+      "stats.adj_margin.value": -20.174358974359023,
+      "stats.adj_margin.rank": 316
+   },
+   "Purdue Fort Wayne": {
+      "hhs_off_rating": 88.1,
+      "stats.adj_off.value": 85.91282051282047,
+      "stats.adj_def.value": 106.08717948717953,
+      "stats.adj_margin.value": -20.174358974359052,
+      "stats.adj_margin.rank": 277
+   },
+   "UMBC": {
+      "hhs_off_rating": 82.2,
+      "stats.adj_off.value": 80.0128205128205,
+      "stats.adj_def.value": 100.4871794871795,
+      "stats.adj_margin.value": -20.474358974359006,
+      "stats.adj_margin.rank": 332
+   },
+   "Fairleigh Dickinson": {
+      "hhs_off_rating": 84.2,
+      "stats.adj_off.value": 82.0128205128205,
+      "stats.adj_def.value": 102.58717948717953,
+      "stats.adj_margin.value": -20.57435897435903,
+      "stats.adj_margin.rank": 313
+   },
+   "USC Upstate": {
+      "hhs_off_rating": 83.2,
+      "stats.adj_off.value": 81.0128205128205,
+      "stats.adj_def.value": 102.18717948717952,
+      "stats.adj_margin.value": -21.174358974359023,
+      "stats.adj_margin.rank": 326
+   },
+   "Coppin St.": {
+      "hhs_off_rating": 84.2,
+      "stats.adj_off.value": 82.0128205128205,
+      "stats.adj_def.value": 103.58717948717953,
+      "stats.adj_margin.value": -21.57435897435903,
+      "stats.adj_margin.rank": 315
+   },
    "Mississippi Val.": {
-      "stats.adj_off.value": 83.6,
-      "stats.adj_def.value": 101.4,
-      "stats.adj_margin.value": -17.80000000000001,
+      "hhs_off_rating": 83.6,
+      "stats.adj_off.value": 81.41282051282047,
+      "stats.adj_def.value": 103.38717948717951,
+      "stats.adj_margin.value": -21.974358974359035,
+      "stats.adj_margin.rank": 319
+   },
+   "UMass Lowell": {
+      "hhs_off_rating": 82.3,
+      "stats.adj_off.value": 80.11282051282049,
+      "stats.adj_def.value": 102.08717948717953,
+      "stats.adj_margin.value": -21.974358974359035,
       "stats.adj_margin.rank": 331
    },
    "New Hampshire": {
-      "stats.adj_off.value": 83.1,
-      "stats.adj_def.value": 100.9,
-      "stats.adj_margin.value": -17.80000000000001,
-      "stats.adj_margin.rank": 332
-   },
-   "New Orleans": {
-      "stats.adj_off.value": 82,
-      "stats.adj_def.value": 100.4,
-      "stats.adj_margin.value": -18.400000000000006,
-      "stats.adj_margin.rank": 333
+      "hhs_off_rating": 82.9,
+      "stats.adj_off.value": 80.71282051282049,
+      "stats.adj_def.value": 102.88717948717951,
+      "stats.adj_margin.value": -22.174358974359023,
+      "stats.adj_margin.rank": 328
    },
    "N.C. Central": {
-      "stats.adj_off.value": 83.2,
-      "stats.adj_def.value": 101.7,
-      "stats.adj_margin.value": -18.5,
-      "stats.adj_margin.rank": 334
+      "hhs_off_rating": 83.2,
+      "stats.adj_off.value": 81.0128205128205,
+      "stats.adj_def.value": 103.58717948717953,
+      "stats.adj_margin.value": -22.57435897435903,
+      "stats.adj_margin.rank": 324
    },
-   "UIW": {
-      "stats.adj_off.value": 83.2,
-      "stats.adj_def.value": 102,
-      "stats.adj_margin.value": -18.799999999999997,
-      "stats.adj_margin.rank": 335
-   },
-   "Eastern Ky.": {
-      "stats.adj_off.value": 83.1,
-      "stats.adj_def.value": 102.4,
-      "stats.adj_margin.value": -19.30000000000001,
+   "New Orleans": {
+      "hhs_off_rating": 81.9,
+      "stats.adj_off.value": 79.71282051282049,
+      "stats.adj_def.value": 102.58717948717953,
+      "stats.adj_margin.value": -22.87435897435904,
       "stats.adj_margin.rank": 336
    },
-   "Lipscomb": {
-      "stats.adj_off.value": 80.4,
-      "stats.adj_def.value": 100.3,
-      "stats.adj_margin.value": -19.89999999999999,
-      "stats.adj_margin.rank": 337
-   },
-   "Detroit Mercy": {
-      "stats.adj_off.value": 80.5,
-      "stats.adj_def.value": 100.6,
-      "stats.adj_margin.value": -20.099999999999994,
-      "stats.adj_margin.rank": 338
-   },
-   "Saint Peter's": {
-      "stats.adj_off.value": 80.8,
-      "stats.adj_def.value": 100.9,
-      "stats.adj_margin.value": -20.10000000000001,
-      "stats.adj_margin.rank": 339
+   "UIW": {
+      "hhs_off_rating": 83.2,
+      "stats.adj_off.value": 81.0128205128205,
+      "stats.adj_def.value": 104.18717948717952,
+      "stats.adj_margin.value": -23.174358974359023,
+      "stats.adj_margin.rank": 327
    },
    "Delaware St.": {
-      "stats.adj_off.value": 83.8,
-      "stats.adj_def.value": 104.1,
-      "stats.adj_margin.value": -20.299999999999997,
-      "stats.adj_margin.rank": 340
+      "hhs_off_rating": 84.3,
+      "stats.adj_off.value": 82.11282051282049,
+      "stats.adj_def.value": 105.4871794871795,
+      "stats.adj_margin.value": -23.374358974359012,
+      "stats.adj_margin.rank": 312
    },
-   "Iona": {
-      "stats.adj_off.value": 77.4,
-      "stats.adj_def.value": 98.1,
-      "stats.adj_margin.value": -20.69999999999999,
-      "stats.adj_margin.rank": 341
-   },
-   "Evansville": {
-      "stats.adj_off.value": 84.1,
-      "stats.adj_def.value": 104.9,
-      "stats.adj_margin.value": -20.80000000000001,
+   "Detroit Mercy": {
+      "hhs_off_rating": 80.3,
+      "stats.adj_off.value": 78.11282051282049,
+      "stats.adj_def.value": 102.58717948717953,
+      "stats.adj_margin.value": -24.474358974359035,
       "stats.adj_margin.rank": 342
    },
-   "Western Caro.": {
-      "stats.adj_off.value": 79.3,
-      "stats.adj_def.value": 101.3,
-      "stats.adj_margin.value": -22,
+   "Evansville": {
+      "hhs_off_rating": 83.8,
+      "stats.adj_off.value": 81.61282051282049,
+      "stats.adj_def.value": 106.78717948717951,
+      "stats.adj_margin.value": -25.174358974359023,
+      "stats.adj_margin.rank": 317
+   },
+   "Eastern Ky.": {
+      "hhs_off_rating": 81.8,
+      "stats.adj_off.value": 79.61282051282049,
+      "stats.adj_def.value": 104.78717948717951,
+      "stats.adj_margin.value": -25.174358974359023,
+      "stats.adj_margin.rank": 337
+   },
+   "Lipscomb": {
+      "hhs_off_rating": 79.9,
+      "stats.adj_off.value": 77.71282051282049,
+      "stats.adj_def.value": 102.88717948717951,
+      "stats.adj_margin.value": -25.174358974359023,
       "stats.adj_margin.rank": 343
    },
+   "Saint Peter's": {
+      "hhs_off_rating": 80.6,
+      "stats.adj_off.value": 78.41282051282047,
+      "stats.adj_def.value": 103.58717948717953,
+      "stats.adj_margin.value": -25.174358974359052,
+      "stats.adj_margin.rank": 341
+   },
+   "Iona": {
+      "hhs_off_rating": 77.2,
+      "stats.adj_off.value": 75.0128205128205,
+      "stats.adj_def.value": 100.28717948717951,
+      "stats.adj_margin.value": -25.274358974359018,
+      "stats.adj_margin.rank": 346
+   },
    "LIU": {
-      "stats.adj_off.value": 81.5,
-      "stats.adj_def.value": 103.7,
-      "stats.adj_margin.value": -22.200000000000003,
+      "hhs_off_rating": 81.4,
+      "stats.adj_off.value": 79.21282051282049,
+      "stats.adj_def.value": 105.68717948717952,
+      "stats.adj_margin.value": -26.474358974359035,
+      "stats.adj_margin.rank": 339
+   },
+   "Western Caro.": {
+      "hhs_off_rating": 79.2,
+      "stats.adj_off.value": 77.0128205128205,
+      "stats.adj_def.value": 103.58717948717953,
+      "stats.adj_margin.value": -26.57435897435903,
       "stats.adj_margin.rank": 344
    },
    "McNeese": {
-      "stats.adj_off.value": 82,
-      "stats.adj_def.value": 104.6,
-      "stats.adj_margin.value": -22.599999999999994,
-      "stats.adj_margin.rank": 345
+      "hhs_off_rating": 81.9,
+      "stats.adj_off.value": 79.71282051282049,
+      "stats.adj_def.value": 106.78717948717951,
+      "stats.adj_margin.value": -27.07435897435903,
+      "stats.adj_margin.rank": 335
    },
    "Florida A&M": {
-      "stats.adj_off.value": 74.7,
-      "stats.adj_def.value": 98.7,
-      "stats.adj_margin.value": -24,
-      "stats.adj_margin.rank": 346
-   },
-   "UIC": {
-      "stats.adj_off.value": 75.6,
-      "stats.adj_def.value": 100.3,
-      "stats.adj_margin.value": -24.700000000000003,
-      "stats.adj_margin.rank": 347
-   },
-   "Savannah St.": {
-      "stats.adj_off.value": 77.1,
-      "stats.adj_def.value": 102.3,
-      "stats.adj_margin.value": -25.200000000000003,
-      "stats.adj_margin.rank": 348
-   },
-   "Alcorn": {
-      "stats.adj_off.value": 78.3,
-      "stats.adj_def.value": 103.9,
-      "stats.adj_margin.value": -25.60000000000001,
-      "stats.adj_margin.rank": 349
-   },
-   "Ark.-Pine Bluff": {
-      "stats.adj_off.value": 70.4,
-      "stats.adj_def.value": 99.8,
-      "stats.adj_margin.value": -29.39999999999999,
+      "hhs_off_rating": 74.7,
+      "stats.adj_off.value": 72.5128205128205,
+      "stats.adj_def.value": 100.78717948717951,
+      "stats.adj_margin.value": -28.274358974359018,
       "stats.adj_margin.rank": 350
    },
-   "Chicago St.": {
-      "stats.adj_off.value": 76.2,
-      "stats.adj_def.value": 109.1,
-      "stats.adj_margin.value": -32.89999999999999,
+   "UIC": {
+      "hhs_off_rating": 75.4,
+      "stats.adj_off.value": 73.21282051282049,
+      "stats.adj_def.value": 102.38717948717951,
+      "stats.adj_margin.value": -29.174358974359023,
+      "stats.adj_margin.rank": 349
+   },
+   "Savannah St.": {
+      "hhs_off_rating": 77.1,
+      "stats.adj_off.value": 74.91282051282047,
+      "stats.adj_def.value": 104.38717948717951,
+      "stats.adj_margin.value": -29.474358974359035,
+      "stats.adj_margin.rank": 347
+   },
+   "Alcorn": {
+      "hhs_off_rating": 78.1,
+      "stats.adj_off.value": 75.91282051282047,
+      "stats.adj_def.value": 106.18717948717952,
+      "stats.adj_margin.value": -30.274358974359046,
+      "stats.adj_margin.rank": 345
+   },
+   "Ark.-Pine Bluff": {
+      "hhs_off_rating": 70.2,
+      "stats.adj_off.value": 68.0128205128205,
+      "stats.adj_def.value": 101.9871794871795,
+      "stats.adj_margin.value": -33.974358974359006,
       "stats.adj_margin.rank": 351
+   },
+   "Chicago St.": {
+      "hhs_off_rating": 75.8,
+      "stats.adj_off.value": 73.61282051282049,
+      "stats.adj_def.value": 111.08717948717953,
+      "stats.adj_margin.value": -37.474358974359035,
+      "stats.adj_margin.rank": 348
    }
 };
