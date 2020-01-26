@@ -115,7 +115,7 @@ export class HistoryManager {
   /** Returns a summary string for the game filter */
   static gameFilterSummary(p: GameFilterParams) {
     const isAutoOff =
-      (_.isNil(p.autoOffQuery) ? ParamDefaults.defaultAutoOffQuery : p.autoOffQuery) == "true";
+      _.isNil(p.autoOffQuery) ? ParamDefaults.defaultAutoOffQuery : p.autoOffQuery;
     const base = `base:'${tidyQuery(p.baseQuery)}'`;
     const on = `on:'${tidyQuery(p.onQuery)}'`;
     const off = isAutoOff ? `auto-off` : `off:'${tidyQuery(p.offQuery)}'`;
@@ -137,7 +137,7 @@ export class HistoryManager {
   static teamReportFilterSummary(p: TeamReportFilterParams) {
     const baseQuery = `query:'${tidyQuery(p.baseQuery)}'`;
     const showComps =
-      (_.isNil(p.showComps) ? ParamDefaults.defaultShowComps : p.showComps) == "true";
+      _.isNil(p.showComps) ? ParamDefaults.defaultShowComps : p.showComps;
     const showArray = showComps ? [ "comps"] : [];
 
     const otherParams =

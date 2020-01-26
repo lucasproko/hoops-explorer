@@ -53,7 +53,8 @@ export type CommonFilterParams = {
   gender?: string,
   minRank?: string,
   maxRank?: string,
-  baseQuery?: string
+  baseQuery?: string,
+  filterGarbage?: boolean //(missing iff "false")
 }
 interface Props<PARAMS> {
   startingState: PARAMS;
@@ -520,10 +521,10 @@ const CommonFilter: CommonFilterI = ({
       </Col>
       <Col sm="2">
         <Form.Check type="switch"
-          id="excludeWalkons"
+          id="excludeGarbage"
           checked={false}
           disabled
-          label="Auto Walk-ons"
+          label="Filter Garbage"
         />
       </Col>
     </Form.Group>

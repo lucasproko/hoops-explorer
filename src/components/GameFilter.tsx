@@ -42,9 +42,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
   // Game Filter - custom queries and filters:
 
   const [ autoOffQuery, toggleAutoOffQuery ] = useState(
-    "true" == (
-      _.isNil(startingState.autoOffQuery) ? ParamDefaults.defaultAutoOffQuery : startingState.autoOffQuery
-    )
+    _.isNil(startingState.autoOffQuery) ? ParamDefaults.defaultAutoOffQuery : startingState.autoOffQuery
   );
   const [ onQuery, setOnQuery ] = useState(startingState.onQuery || "");
   const [ offQuery, setOffQuery ] = useState(startingState.offQuery || "");
@@ -65,12 +63,13 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
       team: commonParams.team,
       year: commonParams.year,
       gender: commonParams.gender,
-      autoOffQuery: autoOffQuery.toString(),
+      autoOffQuery: autoOffQuery,
       onQuery: onQuery,
       offQuery: offQuery,
       baseQuery: commonParams.baseQuery,
       minRank: commonParams.minRank,
       maxRank: commonParams.maxRank
+//TODO: add garbage filteerr and turrn this into merge of common params + extra stuff (+elsewhere)
     };
   }
 

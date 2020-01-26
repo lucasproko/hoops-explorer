@@ -45,7 +45,7 @@ describe("HistoryManager", () => {
       year: "2019/20", gender: "Men",
       minRank: "1", maxRank: "150",
       onQuery: "testOn", baseQuery: "testBase",
-      offQuery: "testOff", autoOffQuery: "false",
+      offQuery: "testOff", autoOffQuery: false,
     };
     expect(HistoryManager.filterSummary("game-", game2)).toBe(
       `On/Off: 2019/20 test (M) [1:150]: on:'testOn', off:'testOff', base:'testBase'`
@@ -83,12 +83,12 @@ describe("HistoryManager", () => {
       sortBy: "test-sort",
       players: [ "ignore1", "ignore2" ],
       filter: "Test'Filter",
-      showComps: "false"
+      showComps: false
     };
     expect(HistoryManager.teamReportFilterSummary(report2)).toBe(
       `On/Off Report: 2018/19 team3 (W) [10:370]: query:'test ""' (sort:test-sort, filter:'Test"Filter', show:[])`
     );
-    expect(HistoryManager.teamReportFilterSummary(_.merge(report2, { showComps: "true" }))).toBe(
+    expect(HistoryManager.teamReportFilterSummary(_.merge(report2, { showComps: true }))).toBe(
       `On/Off Report: 2018/19 team3 (W) [10:370]: query:'test ""' (sort:test-sort, filter:'Test"Filter', show:[comps])`
     );
   });

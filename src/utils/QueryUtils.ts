@@ -12,7 +12,7 @@ export class QueryUtils {
 
   /** Wraps QueryUtils.parse but with baseQuery/lineupQuery handling */
   static parse(str: string): any {
-    const parsed: Record<string, any> = queryString.parse(str) as any;
+    const parsed: Record<string, any> = queryString.parse(str, {parseBooleans: true}) as any;
     if (parsed && parsed[QueryUtils.legacyQueryField]) {
       parsed[QueryUtils.newQueryField] = parsed[QueryUtils.legacyQueryField];
       delete parsed[QueryUtils.legacyQueryField];

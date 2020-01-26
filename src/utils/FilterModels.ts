@@ -10,10 +10,11 @@ export type GameFilterParams = {
   year?: string,
   team?: string,
   gender?: string,
-  autoOffQuery?: string;
+  autoOffQuery?: boolean,
   onQuery?: string,
   offQuery?: string,
   baseQuery?: string,
+  filterGarbage?: boolean, //(missing iff "false")
   minRank?: string,
   maxRank?: string
 };
@@ -24,6 +25,7 @@ export type LineupFilterParams = {
   team?: string,
   gender?: string,
   baseQuery?: string,
+  filterGarbage?: boolean, //(missing iff "false")
   minRank?: string,
   maxRank?: string,
   // These params need to be explicitly merged in buildParamsFromState(true)
@@ -40,6 +42,7 @@ export type TeamReportFilterParams = {
   team?: string,
   gender?: string,
   baseQuery?: string,
+  filterGarbage?: boolean, //(missing iff "false")
   minRank?: string,
   maxRank?: string,
   // These params need to be explicitly merged in buildParamsFromState(true)
@@ -47,12 +50,12 @@ export type TeamReportFilterParams = {
   sortBy?: string,
   // Filtering:
   filter?: string,
-  showComps?: string
+  showComps?: boolean
 };
 
 export class ParamDefaults {
   // Game
-  static readonly defaultAutoOffQuery = "true";
+  static readonly defaultAutoOffQuery = true;
   // Lineup
   static readonly defaultLineupMinPos = "5";
   static readonly defaultLineupMaxTableSize = "50";
@@ -61,11 +64,12 @@ export class ParamDefaults {
   // Report
   static readonly defaultTeamReportSortBy = "desc:off_poss:on";
   static readonly defaultTeamReportFilter = "";
-  static readonly defaultShowComps = "true";
+  static readonly defaultShowComps = true;
   // Common
   static readonly defaultTeam = "";
   static readonly defaultYear = "2019/20";
   static readonly defaultGender = "Men";
   static readonly defaultMinRank = "0";
   static readonly defaultMaxRank = "400";
+  static readonly defaultFilterGarbage = false;
 }

@@ -698,11 +698,11 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
         <FormCheck
           checked={false}
           disabled={true}
-          id="excludeWalkons"
+          id="excludeGarbage"
           inline={false}
           isInvalid={false}
           isValid={false}
-          label="Auto Walk-ons"
+          label="Filter Garbage"
           title=""
           type="switch"
         />
@@ -1508,11 +1508,11 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
         <FormCheck
           checked={false}
           disabled={true}
-          id="excludeWalkons"
+          id="excludeGarbage"
           inline={false}
           isInvalid={false}
           isValid={false}
-          label="Auto Walk-ons"
+          label="Filter Garbage"
           title=""
           type="switch"
         />

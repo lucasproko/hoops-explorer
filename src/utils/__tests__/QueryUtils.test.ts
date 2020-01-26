@@ -10,8 +10,8 @@ describe("QueryUtils", () => {
     expect(QueryUtils.stringify({lineupQuery: "a", otherField: true})).toEqual(
       "baseQuery=a&otherField=true"
     )
-    expect(QueryUtils.parse("lineupQuery=a&otherField=true")).toEqual(
-      {baseQuery: "a", otherField: "true"}
+    expect(QueryUtils.parse("lineupQuery=a&otherField=true&numField=1")).toEqual(
+      {baseQuery: "a", otherField: true, numField: "1"}
     )
   });
   test("QueryUtils - basicOrAdvancedQuery", () => {
