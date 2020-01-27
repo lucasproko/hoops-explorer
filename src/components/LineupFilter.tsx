@@ -16,8 +16,8 @@ import Col from 'react-bootstrap/Col';
 // Component imports:
 import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
 import { LineupStatsModel } from '../components/LineupStatsTable';
-import CommonFilter, { CommonFilterParams } from '../components/CommonFilter';
-import { ParamPrefixes, LineupFilterParams } from "../utils/FilterModels";
+import CommonFilter from '../components/CommonFilter';
+import { ParamPrefixes, CommonFilterParams, LineupFilterParams } from "../utils/FilterModels";
 
 // Library imports:
 import fetch from 'isomorphic-unfetch';
@@ -29,15 +29,20 @@ type Props = {
 }
 
 const LineupFilter: React.FunctionComponent<Props> = ({onStats, startingState, onChangeState}) => {
+  //console.log("Loading LineupFilter " + JSON.stringify(startingState));
 
   // Data model
 
+  const {
+    maxTableSize: startMaxTableSize,
+    minPoss: startMinPoss,
+    sortBy: startSortBy,
+    filter: startFilter,
+    ...startingCommonFilterParams
+  } = startingState;
+
   /** The state managed by the CommonFilter element */
-  const [ commonParams, setCommonParams ] = useState({
-      year: startingState.year, team: startingState.team, gender: startingState.gender,
-      minRank: startingState.minRank, maxRank: startingState.maxRank,
-      baseQuery: startingState.baseQuery
-  } as CommonFilterParams);
+  const [ commonParams, setCommonParams ] = useState(startingCommonFilterParams as CommonFilterParams);
 
   // Lineup Filter - custom queries and filters:
 
@@ -57,17 +62,12 @@ const LineupFilter: React.FunctionComponent<Props> = ({onStats, startingState, o
     return includeFilterParams ?
     _.merge(
       buildParamsFromState(false), {
-        maxTableSize: startingState.maxTableSize,
-        minPoss: startingState.minPoss,
-        sortBy: startingState.sortBy,
-        filter: startingState.filter
+        maxTableSize: startMaxTableSize,
+        minPoss: startMinPoss,
+        sortBy: startSortBy,
+        filter: startFilter
     }) : {
-      team: commonParams.team,
-      year: commonParams.year,
-      gender: commonParams.gender,
-      baseQuery: commonParams.baseQuery,
-      minRank: commonParams.minRank,
-      maxRank: commonParams.maxRank
+      ...commonParams
     };
   }
 

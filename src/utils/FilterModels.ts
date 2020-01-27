@@ -5,29 +5,30 @@ export class ParamPrefixes {
   static readonly report = "report-";
 }
 
-/** Params for game filtering */
-export type GameFilterParams = {
+/** Common params across all filter types */
+export type CommonFilterParams = {
   year?: string,
   team?: string,
   gender?: string,
-  autoOffQuery?: boolean,
+  minRank?: string,
+  maxRank?: string,
+  baseQuery?: string,
+  filterGarbage?: boolean //(missing iff "false")
+}
+
+/** Combined params for game filtering */
+export type GameFilterParams = {
+  [P in keyof CommonFilterParams]: CommonFilterParams[P];
+} & {
   onQuery?: string,
   offQuery?: string,
-  baseQuery?: string,
-  filterGarbage?: boolean, //(missing iff "false")
-  minRank?: string,
-  maxRank?: string
+  autoOffQuery?: boolean
 };
 
 /** Params for lineup filtering */
 export type LineupFilterParams = {
-  year?: string,
-  team?: string,
-  gender?: string,
-  baseQuery?: string,
-  filterGarbage?: boolean, //(missing iff "false")
-  minRank?: string,
-  maxRank?: string,
+  [P in keyof CommonFilterParams]: CommonFilterParams[P];
+} & {
   // These params need to be explicitly merged in buildParamsFromState(true)
   // For sorting in the generated table:
   minPoss?: string,
@@ -38,13 +39,8 @@ export type LineupFilterParams = {
 };
 
 export type TeamReportFilterParams = {
-  year?: string,
-  team?: string,
-  gender?: string,
-  baseQuery?: string,
-  filterGarbage?: boolean, //(missing iff "false")
-  minRank?: string,
-  maxRank?: string,
+  [P in keyof CommonFilterParams]: CommonFilterParams[P];
+} & {
   // These params need to be explicitly merged in buildParamsFromState(true)
   // For sorting in the generated table:
   sortBy?: string,

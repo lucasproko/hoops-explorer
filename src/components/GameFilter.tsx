@@ -17,8 +17,8 @@ import Col from 'react-bootstrap/Col';
 import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
 import { TeamStatsModel } from '../components/TeamStatsTable';
 import { RosterCompareModel } from '../components/RosterCompareTable';
-import CommonFilter, { CommonFilterParams } from '../components/CommonFilter';
-import { ParamPrefixes, GameFilterParams, ParamDefaults } from "../utils/FilterModels";
+import CommonFilter from '../components/CommonFilter';
+import { ParamPrefixes, CommonFilterParams, GameFilterParams, ParamDefaults } from "../utils/FilterModels";
 
 // Library imports:
 import fetch from 'isomorphic-unfetch';
@@ -33,19 +33,22 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
 
   // Data model
 
+  const {
+    autoOffQuery: startAutoOffQuery,
+    onQuery: startOnQuery, offQuery: startOffQuery,
+    ...startingCommonFilterParams
+  } = startingState;
+
   /** The state managed by the CommonFilter element */
-  const [ commonParams, setCommonParams ] = useState({
-      year: startingState.year, team: startingState.team, gender: startingState.gender,
-      minRank: startingState.minRank, maxRank: startingState.maxRank, baseQuery: startingState.baseQuery
-  } as CommonFilterParams);
+  const [ commonParams, setCommonParams ] = useState(startingCommonFilterParams as CommonFilterParams);
 
   // Game Filter - custom queries and filters:
 
   const [ autoOffQuery, toggleAutoOffQuery ] = useState(
-    _.isNil(startingState.autoOffQuery) ? ParamDefaults.defaultAutoOffQuery : startingState.autoOffQuery
+    _.isNil(startAutoOffQuery) ? ParamDefaults.defaultAutoOffQuery : startAutoOffQuery
   );
-  const [ onQuery, setOnQuery ] = useState(startingState.onQuery || "");
-  const [ offQuery, setOffQuery ] = useState(startingState.offQuery || "");
+  const [ onQuery, setOnQuery ] = useState(startOnQuery || "");
+  const [ offQuery, setOffQuery ] = useState(startOffQuery || "");
 
   /** Used to differentiate between the different implementations of the CommonFilter */
   const cacheKeyPrefix = ParamPrefixes.game;
@@ -60,16 +63,10 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
   /** Builds a game filter from the various state elements */
   function buildParamsFromState(includeFilterParams: Boolean): GameFilterParams {
     return {
-      team: commonParams.team,
-      year: commonParams.year,
-      gender: commonParams.gender,
+      ...commonParams,
       autoOffQuery: autoOffQuery,
       onQuery: onQuery,
       offQuery: offQuery,
-      baseQuery: commonParams.baseQuery,
-      minRank: commonParams.minRank,
-      maxRank: commonParams.maxRank
-//TODO: add garbage filteerr and turrn this into merge of common params + extra stuff (+elsewhere)
     };
   }
 

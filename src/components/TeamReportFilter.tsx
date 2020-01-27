@@ -16,8 +16,8 @@ import Col from 'react-bootstrap/Col';
 // Component imports:
 import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
 import { LineupStatsModel } from '../components/LineupStatsTable';
-import CommonFilter, { CommonFilterParams } from '../components/CommonFilter';
-import { ParamPrefixes, TeamReportFilterParams } from "../utils/FilterModels";
+import CommonFilter from '../components/CommonFilter';
+import { ParamPrefixes, CommonFilterParams, TeamReportFilterParams } from "../utils/FilterModels";
 
 // Library imports:
 import fetch from 'isomorphic-unfetch';
@@ -32,11 +32,15 @@ const TeamReportFilter: React.FunctionComponent<Props> = ({onStats, startingStat
 
   // Data model
 
+  const {
+    sortBy: startSortBy,
+    filter: startFilter,
+    showComps: startShowComps,
+    ...startingCommonFilterParams
+  } = startingState;
+
   /** The state managed by the CommonFilter element */
-  const [ commonParams, setCommonParams ] = useState({
-      year: startingState.year, team: startingState.team, gender: startingState.gender,
-      minRank: startingState.minRank, maxRank: startingState.maxRank, baseQuery: startingState.baseQuery
-  } as CommonFilterParams);
+  const [ commonParams, setCommonParams ] = useState(startingCommonFilterParams as CommonFilterParams);
 
   // Lineup Filter - custom queries and filters:
 
@@ -56,16 +60,11 @@ const TeamReportFilter: React.FunctionComponent<Props> = ({onStats, startingStat
     return includeFilterParams ?
     _.merge(
       buildParamsFromState(false), {
-        sortBy: startingState.sortBy,
-        filter: startingState.filter,
-        showComps: startingState.showComps,
+        sortBy: startSortBy,
+        filter: startFilter,
+        showComps: startShowComps,
     }) : {
-      team: commonParams.team,
-      year: commonParams.year,
-      gender: commonParams.gender,
-      baseQuery: commonParams.baseQuery,
-      minRank: commonParams.minRank,
-      maxRank: commonParams.maxRank
+      ...commonParams
     };
   }
 

@@ -40,22 +40,13 @@ import { PreloadedDataSamples, preloadedData } from '../utils/internal-data/prel
 import { AvailableTeams } from '../utils/internal-data/AvailableTeams';
 import { ClientRequestCache } from '../utils/ClientRequestCache';
 import HistorySelector, { historySelectContainerWidth } from '../components/HistorySelector';
-import { ParamPrefixes, ParamDefaults } from '../utils/FilterModels';
+import { ParamPrefixes, ParamDefaults, CommonFilterParams } from '../utils/FilterModels';
 import { HistoryManager } from '../utils/HistoryManager';
 import { UrlRouting } from '../utils/UrlRouting';
 
 // Library imports:
 import fetch from 'isomorphic-unfetch';
 
-export type CommonFilterParams = {
-  year?: string,
-  team?: string,
-  gender?: string,
-  minRank?: string,
-  maxRank?: string,
-  baseQuery?: string,
-  filterGarbage?: boolean //(missing iff "false")
-}
 interface Props<PARAMS> {
   startingState: PARAMS;
   onChangeState: (newParams: PARAMS) => void;
@@ -76,6 +67,7 @@ const CommonFilter: CommonFilterI = ({
     tablePrefix, buildParamsFromState, childHandleResponse, childSubmitRequest,
     majorParamsDisabled
 }) => {
+  //console.log("Loading CommonFilter " + JSON.stringify(startingState));
 
   // Data model
 
@@ -195,8 +187,13 @@ const CommonFilter: CommonFilterI = ({
       }
     }
     if (typeof document !== `undefined`) {
+      //(if we added a clipboard listener, then remove it on page close)
       //(if we added a submitListener, then remove it on page close)
       return () => {
+        if (clipboard) {
+          clipboard.destroy();
+          setClipboard(null);
+        }
         document.removeEventListener("keydown", submitListener);
       };
     }
@@ -317,7 +314,7 @@ const CommonFilter: CommonFilterI = ({
   /** This grovelling is needed to ensure that clipboard is only loaded client side */
   function initClipboard() {
     if (null == clipboard) {
-      var newClipboard = new ClipboardJS(`#copyLink`, {
+      var newClipboard = new ClipboardJS(`#copyLink_${tablePrefix}`, {
         text: function(trigger) {
           return window.location.href;
         }
@@ -325,7 +322,6 @@ const CommonFilter: CommonFilterI = ({
       newClipboard.on('success', (event: ClipboardJS.Event) => {
         // Add the saved entry to the clipbaorrd
         const newParamsStrWithFilterParams = QueryUtils.stringify(buildParamsFromState(true));
-
         HistoryManager.addParamsToHistory(newParamsStrWithFilterParams, tablePrefix);
         // Clear the selection in some visually pleasing way
         setTimeout(function() {
@@ -421,7 +417,7 @@ const CommonFilter: CommonFilterI = ({
       <Tooltip id="copyLinkTooltip">Copies URL to clipboard (and saves state to history)</Tooltip>
     );
     return  <OverlayTrigger placement="auto" overlay={tooltip}>
-        <Button className="float-left" id="copyLink" variant="outline-secondary" size="sm">
+        <Button className="float-left" id={`copyLink_${tablePrefix}`} variant="outline-secondary" size="sm">
           <FontAwesomeIcon icon={faLink} />
         </Button>
       </OverlayTrigger>;
