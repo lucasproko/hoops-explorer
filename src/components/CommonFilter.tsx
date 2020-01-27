@@ -40,7 +40,7 @@ import { PreloadedDataSamples, preloadedData } from '../utils/internal-data/prel
 import { AvailableTeams } from '../utils/internal-data/AvailableTeams';
 import { ClientRequestCache } from '../utils/ClientRequestCache';
 import HistorySelector, { historySelectContainerWidth } from '../components/HistorySelector';
-import { ParamPrefixes, ParamDefaults, CommonFilterParams } from '../utils/FilterModels';
+import { ParamPrefixes, ParamDefaults, CommonFilterParams, RequiredTeamReportFilterParams } from '../utils/FilterModels';
 import { HistoryManager } from '../utils/HistoryManager';
 import { UrlRouting } from '../utils/UrlRouting';
 
@@ -344,10 +344,12 @@ const CommonFilter: CommonFilterI = ({
 
       // Build a report query
       const parentParams = buildParamsFromState(false);
-      const onOffReportParams = {
+      const onOffReportParams: RequiredTeamReportFilterParams = {
+        //(not ideal but the Required ensures that none of these fields are forgotten)
         baseQuery: parentParams.baseQuery,
         team: parentParams.team, year: parentParams.year, gender: parentParams.gender,
-        minRank: parentParams.minRank, maxRank: parentParams.maxRank
+        minRank: parentParams.minRank, maxRank: parentParams.maxRank,
+        filterGarbage: parentParams.filterGarbage
       };
       const paramStr = QueryUtils.stringify(onOffReportParams);
       const reportUrl = UrlRouting.getTeamReportUrl(onOffReportParams);

@@ -18,7 +18,7 @@ export type CommonFilterParams = {
 
 /** Combined params for game filtering */
 export type GameFilterParams = {
-  [P in keyof CommonFilterParams]: CommonFilterParams[P];
+  [P in keyof CommonFilterParams]?: CommonFilterParams[P];
 } & {
   onQuery?: string,
   offQuery?: string,
@@ -27,7 +27,7 @@ export type GameFilterParams = {
 
 /** Params for lineup filtering */
 export type LineupFilterParams = {
-  [P in keyof CommonFilterParams]: CommonFilterParams[P];
+  [P in keyof CommonFilterParams]?: CommonFilterParams[P];
 } & {
   // These params need to be explicitly merged in buildParamsFromState(true)
   // For sorting in the generated table:
@@ -39,7 +39,7 @@ export type LineupFilterParams = {
 };
 
 export type TeamReportFilterParams = {
-  [P in keyof CommonFilterParams]: CommonFilterParams[P];
+  [P in keyof CommonFilterParams]?: CommonFilterParams[P];
 } & {
   // These params need to be explicitly merged in buildParamsFromState(true)
   // For sorting in the generated table:
@@ -47,6 +47,13 @@ export type TeamReportFilterParams = {
   // Filtering:
   filter?: string,
   showComps?: boolean
+};
+
+/** Used to give compile errors if a field is omitted, for fw compat */
+export type RequiredTeamReportFilterParams = {
+  [P in keyof TeamReportFilterParams]?: TeamReportFilterParams[P];
+} & {
+  [P in keyof Required<CommonFilterParams>]: CommonFilterParams[P] | undefined;
 };
 
 export class ParamDefaults {

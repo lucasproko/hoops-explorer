@@ -26,7 +26,7 @@ import GenericTable, { GenericTableOps, GenericTableColProps } from "./GenericTa
 // Util imports
 import { ClientRequestCache } from "../utils/ClientRequestCache";
 import { CbbColors } from "../utils/CbbColors";
-import { ParamPrefixes, GameFilterParams } from "../utils/FilterModels";
+import { ParamPrefixes, GameFilterParams, RequiredTeamReportFilterParams } from "../utils/FilterModels";
 import { UrlRouting } from "../utils/UrlRouting";
 import { dataLastUpdated } from '../utils/internal-data/dataLastUpdated';
 
@@ -73,13 +73,14 @@ const RosterCompareTable: React.FunctionComponent<Props> = ({gameFilterParams, r
       case "off": return `(${gameFilterParams.offQuery}) AND (${gameFilterParams.baseQuery})`;
       default: return gameFilterParams.baseQuery;
     }};
-    const paramObj = {
+    const paramObj: RequiredTeamReportFilterParams = {
       team: gameFilterParams.team,
       year: gameFilterParams.year,
       gender: gameFilterParams.gender,
       baseQuery: getQuery(),
       minRank: gameFilterParams.minRank,
-      maxRank: gameFilterParams.maxRank
+      maxRank: gameFilterParams.maxRank,
+      filterGarbage: gameFilterParams.filterGarbage
     };
     const paramStr = QueryUtils.stringify(paramObj);
     const currentJsonEpoch = dataLastUpdated[`${paramObj.gender}_${paramObj.year}`] || -1;
