@@ -16,8 +16,8 @@ import Col from 'react-bootstrap/Col';
 // Component imports:
 import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
 import { LineupStatsModel } from '../components/LineupStatsTable';
-import CommonFilter, { CommonFilterParams } from '../components/CommonFilter';
-import { ParamPrefixes, TeamReportFilterParams } from "../utils/FilterModels";
+import CommonFilter from '../components/CommonFilter';
+import { ParamPrefixes, CommonFilterParams, TeamReportFilterParams } from "../utils/FilterModels";
 
 // Library imports:
 import fetch from 'isomorphic-unfetch';
@@ -32,15 +32,17 @@ const TeamReportFilter: React.FunctionComponent<Props> = ({onStats, startingStat
 
   // Data model
 
+  const {
+    sortBy: startSortBy,
+    filter: startFilter,
+    showComps: startShowComps,
+    ...startingCommonFilterParams
+  } = startingState;
+
   /** The state managed by the CommonFilter element */
-  const [ commonParams, setCommonParams ] = useState({
-      year: startingState.year, team: startingState.team, gender: startingState.gender,
-      minRank: startingState.minRank, maxRank: startingState.maxRank,
-  } as CommonFilterParams);
+  const [ commonParams, setCommonParams ] = useState(startingCommonFilterParams as CommonFilterParams);
 
   // Lineup Filter - custom queries and filters:
-
-  const [ baseQuery, setBaseQuery ] = useState(startingState.lineupQuery || "");
 
   const isDebug = (process.env.NODE_ENV !== 'production');
 
@@ -58,16 +60,11 @@ const TeamReportFilter: React.FunctionComponent<Props> = ({onStats, startingStat
     return includeFilterParams ?
     _.merge(
       buildParamsFromState(false), {
-        sortBy: startingState.sortBy,
-        filter: startingState.filter,
-        showComps: startingState.showComps,
+        sortBy: startSortBy,
+        filter: startFilter,
+        showComps: startShowComps,
     }) : {
-      team: commonParams.team,
-      year: commonParams.year,
-      gender: commonParams.gender,
-      lineupQuery: baseQuery,
-      minRank: commonParams.minRank,
-      maxRank: commonParams.maxRank
+      ...commonParams
     };
   }
 
@@ -99,27 +96,7 @@ const TeamReportFilter: React.FunctionComponent<Props> = ({onStats, startingStat
       buildParamsFromState={buildParamsFromState}
       childHandleResponse={handleResponse}
       childSubmitRequest={onSubmit}
-    >
-      <Form.Group as={Row}>
-        <Form.Label column sm="2">Baseline Query <a href="https://hoop-explorer.blogspot.com/2020/01/basic-and-advanced-queries-in-hoop.html" target="_blank">(?)</a></Form.Label>
-        <Col sm="8">
-          <Form.Control
-            placeholder="eg 'Player1 AND NOT (WalkOn1 OR WalkOn2)'"
-            value={baseQuery}
-            onKeyUp={(ev: any) => setBaseQuery(ev.target.value)}
-            onChange={(ev: any) => setBaseQuery(ev.target.value)}
-          />
-        </Col>
-        <Col sm="2">
-          <Form.Check type="switch"
-            id="excludeWalkons"
-            checked={false}
-            disabled
-            label="Auto Walk-ons"
-          />
-        </Col>
-      </Form.Group>
-    </CommonFilter>
+    />
     ;
 }
 

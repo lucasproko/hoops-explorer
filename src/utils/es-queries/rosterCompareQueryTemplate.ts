@@ -1,7 +1,8 @@
 import { commonTeamQuery } from "./commonTeamQuery";
 import { commonOnOffBaseQuery } from "./commonOnOffBaseQuery";
+import { GameFilterParams } from "../FilterModels";
 
-export const rosterCompareQuery = function(params: any, publicEfficiency: any, lookup: any) {
+export const rosterCompareQuery = function(params: GameFilterParams, publicEfficiency: any, lookup: any) {
   return {
      "_source": {
         "includes": [],

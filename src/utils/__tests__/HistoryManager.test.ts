@@ -45,10 +45,11 @@ describe("HistoryManager", () => {
       year: "2019/20", gender: "Men",
       minRank: "1", maxRank: "150",
       onQuery: "testOn", baseQuery: "testBase",
-      offQuery: "testOff", autoOffQuery: "false",
+      offQuery: "testOff", autoOffQuery: false,
+      filterGarbage: true
     };
     expect(HistoryManager.filterSummary("game-", game2)).toBe(
-      `On/Off: 2019/20 test (M) [1:150]: on:'testOn', off:'testOff', base:'testBase'`
+      `On/Off: 2019/20 test (M) [1:150] [!garbage]: on:'testOn', off:'testOff', base:'testBase'`
     );
   });
   test("HistoryManager - lineupFilterSummary", () => {
@@ -60,7 +61,7 @@ describe("HistoryManager", () => {
     const lineup2: LineupFilterParams = {
       team: "team2",
       year: "2018/19", gender: "Women",
-      lineupQuery: "test ''", maxTableSize: 11,
+      baseQuery: "test ''", maxTableSize: 11,
       minRank: "1", maxRank: "370",
       minPoss: 10, sortBy: "test-sort",
       filter: "Test'Filter"
@@ -78,17 +79,17 @@ describe("HistoryManager", () => {
     const report2: TeamReportFilterParams = {
       team: "team3",
       year: "2018/19", gender: "Women",
-      lineupQuery: "test ''",
+      baseQuery: "test ''",
       minRank: "10", maxRank: "370",
       sortBy: "test-sort",
       players: [ "ignore1", "ignore2" ],
       filter: "Test'Filter",
-      showComps: "false"
+      showComps: false
     };
     expect(HistoryManager.teamReportFilterSummary(report2)).toBe(
       `On/Off Report: 2018/19 team3 (W) [10:370]: query:'test ""' (sort:test-sort, filter:'Test"Filter', show:[])`
     );
-    expect(HistoryManager.teamReportFilterSummary(_.merge(report2, { showComps: "true" }))).toBe(
+    expect(HistoryManager.teamReportFilterSummary(_.merge(report2, { showComps: true }))).toBe(
       `On/Off Report: 2018/19 team3 (W) [10:370]: query:'test ""' (sort:test-sort, filter:'Test"Filter', show:[comps])`
     );
   });

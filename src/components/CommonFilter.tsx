@@ -22,7 +22,7 @@ import Tooltip from 'react-bootstrap/Tooltip';
 
 // Additional components:
 import Select, { components} from "react-select"
-import queryString from "query-string";
+import { QueryUtils } from "../utils/QueryUtils";
 // @ts-ignore
 import LoadingOverlay from 'react-loading-overlay';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -40,20 +40,13 @@ import { PreloadedDataSamples, preloadedData } from '../utils/internal-data/prel
 import { AvailableTeams } from '../utils/internal-data/AvailableTeams';
 import { ClientRequestCache } from '../utils/ClientRequestCache';
 import HistorySelector, { historySelectContainerWidth } from '../components/HistorySelector';
-import { ParamPrefixes, ParamDefaults } from '../utils/FilterModels';
+import { ParamPrefixes, ParamDefaults, CommonFilterParams, RequiredTeamReportFilterParams } from '../utils/FilterModels';
 import { HistoryManager } from '../utils/HistoryManager';
 import { UrlRouting } from '../utils/UrlRouting';
 
 // Library imports:
 import fetch from 'isomorphic-unfetch';
 
-export type CommonFilterParams = {
-  year?: string,
-  team?: string,
-  gender?: string,
-  minRank?: string,
-  maxRank?: string
-}
 interface Props<PARAMS> {
   startingState: PARAMS;
   onChangeState: (newParams: PARAMS) => void;
@@ -74,6 +67,7 @@ const CommonFilter: CommonFilterI = ({
     tablePrefix, buildParamsFromState, childHandleResponse, childSubmitRequest,
     majorParamsDisabled
 }) => {
+  //console.log("Loading CommonFilter " + JSON.stringify(startingState));
 
   // Data model
 
@@ -96,19 +90,28 @@ const CommonFilter: CommonFilterI = ({
 
   const [ minRankFilter, setMinRankFilter ] = useState(startingState.minRank || ParamDefaults.defaultMinRank);
   const [ maxRankFilter, setMaxRankFilter ] = useState(startingState.maxRank || ParamDefaults.defaultMaxRank);
+  const [ baseQuery, setBaseQuery ] = useState(startingState.baseQuery || "")
+
+  const [ garbageTimeFiltered, setGarbageTimeFiltered ] = useState(
+    _.isNil(startingState.filterGarbage) ? ParamDefaults.defaultFilterGarbage : startingState.filterGarbage
+  );
 
   // Automatically update child state when any current param is changed:
   useEffect(() => {
     onChangeCommonState({
-      team: team, year: year, gender: gender, minRank: minRankFilter, maxRank: maxRankFilter
+      team: team, year: year, gender: gender, minRank: minRankFilter, maxRank: maxRankFilter,
+      baseQuery: baseQuery, filterGarbage: garbageTimeFiltered
     })
-  }, [ team, year, gender, minRankFilter, maxRankFilter ]);
+  }, [ team, year, gender, minRankFilter, maxRankFilter, baseQuery, garbageTimeFiltered ]);
 
   const [ submitDisabled, setSubmitDisabled ] = useState(false); // (always start as true on page load)
   const [ reportIsDisabled, setReportIsDisabled ] = useState(false); //(same as above)
 
 
   const isDebug = (process.env.NODE_ENV !== 'production');
+
+  const server = (typeof window === `undefined`) ? //(ensures SSR code still compiles)
+    "server" : window.location.hostname
 
   var historyOverlay: any= null; // (Gets overwritten by the history overlay trigger)
 
@@ -169,7 +172,7 @@ const CommonFilter: CommonFilterI = ({
         }
       });
       // Check if object is in cache and handle response if so
-      const newParamsStr = queryString.stringify(buildParamsFromState(false));
+      const newParamsStr = QueryUtils.stringify(buildParamsFromState(false));
       if (isDebug) {
         console.log(`Looking for cache entry for [${tablePrefix}][${newParamsStr}]`);
       }
@@ -188,8 +191,13 @@ const CommonFilter: CommonFilterI = ({
       }
     }
     if (typeof document !== `undefined`) {
+      //(if we added a clipboard listener, then remove it on page close)
       //(if we added a submitListener, then remove it on page close)
       return () => {
+        if (clipboard) {
+          clipboard.destroy();
+          setClipboard(null);
+        }
         document.removeEventListener("keydown", submitListener);
       };
     }
@@ -230,11 +238,11 @@ const CommonFilter: CommonFilterI = ({
   /** The user has pressed the submit button - mix of generic and custom logic */
   function onSubmit() {
     setQueryIsLoading(true);
-    const newParamsStr = queryString.stringify(buildParamsFromState(false));
+    const newParamsStr = QueryUtils.stringify(buildParamsFromState(false));
 
     // Store every request in history, successful or not:
     // including the filtering on the results
-    const newParamsStrWithFilterParams = queryString.stringify(buildParamsFromState(true));
+    const newParamsStrWithFilterParams = QueryUtils.stringify(buildParamsFromState(true));
     HistoryManager.addParamsToHistory(newParamsStrWithFilterParams, tablePrefix);
 
     // Check if it's in the cache:
@@ -310,18 +318,14 @@ const CommonFilter: CommonFilterI = ({
   /** This grovelling is needed to ensure that clipboard is only loaded client side */
   function initClipboard() {
     if (null == clipboard) {
-      var newClipboard = new ClipboardJS(`#copyLink`, {
+      var newClipboard = new ClipboardJS(`#copyLink_${tablePrefix}`, {
         text: function(trigger) {
           return window.location.href;
         }
       });
       newClipboard.on('success', (event: ClipboardJS.Event) => {
         // Add the saved entry to the clipbaorrd
-        const newParamsStrWithFilterParams = queryString.stringify(buildParamsFromState(true));
-
-/**/
-console.log("??? " + newParamsStrWithFilterParams + " / " + window.location.href);
-
+        const newParamsStrWithFilterParams = QueryUtils.stringify(buildParamsFromState(true));
         HistoryManager.addParamsToHistory(newParamsStrWithFilterParams, tablePrefix);
         // Clear the selection in some visually pleasing way
         setTimeout(function() {
@@ -344,12 +348,14 @@ console.log("??? " + newParamsStrWithFilterParams + " / " + window.location.href
 
       // Build a report query
       const parentParams = buildParamsFromState(false);
-      const onOffReportParams = {
-        lineupQuery: (tablePrefix == ParamPrefixes.game) ? parentParams.baseQuery : parentParams.lineupQuery,
+      const onOffReportParams: RequiredTeamReportFilterParams = {
+        //(not ideal but the Required ensures that none of these fields are forgotten)
+        baseQuery: parentParams.baseQuery,
         team: parentParams.team, year: parentParams.year, gender: parentParams.gender,
-        minRank: parentParams.minRank, maxRank: parentParams.maxRank
+        minRank: parentParams.minRank, maxRank: parentParams.maxRank,
+        filterGarbage: parentParams.filterGarbage
       };
-      const paramStr = queryString.stringify(onOffReportParams);
+      const paramStr = QueryUtils.stringify(onOffReportParams);
       const reportUrl = UrlRouting.getTeamReportUrl(onOffReportParams);
 
       // Is this query already cached?
@@ -417,7 +423,7 @@ console.log("??? " + newParamsStrWithFilterParams + " / " + window.location.href
       <Tooltip id="copyLinkTooltip">Copies URL to clipboard (and saves state to history)</Tooltip>
     );
     return  <OverlayTrigger placement="auto" overlay={tooltip}>
-        <Button className="float-left" id="copyLink" variant="outline-secondary" size="sm">
+        <Button className="float-left" id={`copyLink_${tablePrefix}`} variant="outline-secondary" size="sm">
           <FontAwesomeIcon icon={faLink} />
         </Button>
       </OverlayTrigger>;
@@ -442,6 +448,17 @@ console.log("??? " + newParamsStrWithFilterParams + " / " + window.location.href
       </Shake>;
     }
   }
+
+  /** Shows the blog help when accessed via hoop-explorer, consistency with top-level maybeShowBlog */
+  function maybeShowBlogHelp() {
+    if (!_.startsWith(server, "cbb-on-off-analyzer")) {
+      return <a href="https://hoop-explorer.blogspot.com/2020/01/basic-and-advanced-queries-in-hoop.html" target="_blank">(?)</a>;
+    }
+  }
+
+  const garbageFilterTooltip = (
+    <Tooltip id="garbageFilterTooltip">Filters out lineups in garbage time - see the "Garbage time" article under "Blog contents" for more details</Tooltip>
+  );
 
   return <LoadingOverlay
     active={queryIsLoading}
@@ -498,6 +515,31 @@ console.log("??? " + newParamsStrWithFilterParams + " / " + window.location.href
       </Col>
     </Form.Group>
     { children }
+    <Form.Group as={Row}>
+      <Form.Label column sm="2">Baseline Query {maybeShowBlogHelp()}</Form.Label>
+      <Col sm="8">
+        <Form.Control
+          placeholder="eg 'Player1 AND NOT (WalkOn1 OR WalkOn2)'"
+          value={baseQuery}
+          onKeyUp={(ev: any) => setBaseQuery(ev.target.value)}
+          onChange={(ev: any) => setBaseQuery(ev.target.value)}
+        />
+      </Col>
+      <Col sm="2">
+        <OverlayTrigger placement="auto" overlay={garbageFilterTooltip}>
+          <div>
+            <Form.Check type="switch"
+              id="excludeGarbage"
+              checked={garbageTimeFiltered}
+              onChange={() => {
+                setGarbageTimeFiltered(!garbageTimeFiltered);
+              }}
+              label="Filter Garbage"
+            />
+          </div>
+        </OverlayTrigger>
+      </Col>
+    </Form.Group>
     <Form.Group as={Row} controlId="oppositionFilter">
       <Form.Label column sm="2">Opponent Strength</Form.Label>
       <Col sm="2">

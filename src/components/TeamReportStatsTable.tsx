@@ -58,11 +58,8 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
   const [ tmpFilterStr, setTmpFilterStr ] = useState(filterStr);
 
   // Display options:
-  const [ showLineupCompositions, setShowLineupCompositions ] =
-    useState(
-      "true" == (
-        _.isNil(startingState.showComps) ? ParamDefaults.defaultShowComps : startingState.showComps
-      )
+  const [ showLineupCompositions, setShowLineupCompositions ] = useState(
+      _.isNil(startingState.showComps) ? ParamDefaults.defaultShowComps : startingState.showComps
     );
 
   const filterFragments =
@@ -76,7 +73,7 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
     const newState = _.merge(startingState, {
       sortBy: sortBy,
       filter: filterStr,
-      showComps: showLineupCompositions.toString()
+      showComps: showLineupCompositions
     });
     onChangeState(newState);
   }, [ sortBy, filterStr, showLineupCompositions ]);

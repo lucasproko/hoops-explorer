@@ -1,7 +1,7 @@
 // React imports:
 import React, { useState, useEffect } from 'react';
 import Router from 'next/router';
-import queryString from "query-string";
+import { QueryUtils } from "../utils/QueryUtils";
 
 // Bootstrap imports:
 import 'bootstrap/dist/css/bootstrap.min.css';

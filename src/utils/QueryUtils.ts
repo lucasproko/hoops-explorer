@@ -3,8 +3,37 @@
 import 'lodash.combinations';
 import _ from 'lodash';
 
+import queryString from "query-string";
+
+import { CommonFilterParams } from "./FilterModels";
+
 export class QueryUtils {
 
+  private static readonly legacyQueryField = "lineupQuery";
+  private static readonly newQueryField = "baseQuery";
+
+  /** Wraps QueryUtils.parse but with baseQuery/lineupQuery handling */
+  static parse(str: string): any {
+    const parsed: Record<string, any> = queryString.parse(str, {parseBooleans: true}) as any;
+    if (parsed && parsed[QueryUtils.legacyQueryField]) {
+      parsed[QueryUtils.newQueryField] = parsed[QueryUtils.legacyQueryField];
+      delete parsed[QueryUtils.legacyQueryField];
+    }
+    return parsed;
+  }
+  /** Wraps QueryUtils.parse but with baseQuery/lineupQuery handling */
+  static stringify(obj: CommonFilterParams): string {
+    if (obj && obj.hasOwnProperty(QueryUtils.legacyQueryField)) {
+      obj.baseQuery = (obj as any)[QueryUtils.legacyQueryField];
+      delete (obj as any)[QueryUtils.legacyQueryField];
+    }
+    if (!obj.filterGarbage) { //default==false => remove altogether
+      delete obj.filterGarbage;
+    }
+    return queryString.stringify(obj);
+  }
+
+  /** Converts a hoop-explorer lineup query into an ES query_string */
   static basicOrAdvancedQuery(query: string | undefined, fallback: string): string {
     // Firstly, let's sub-in the special case of {playerX|...}~N to take N from that set
     const subMatch = /[{]([^}]*)[}][~]([0-9]+)/g;

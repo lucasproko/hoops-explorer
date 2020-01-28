@@ -9,19 +9,19 @@ import { AvailableTeams } from '../../utils/internal-data/AvailableTeams';
 import { efficiencyInfo } from '../../utils/internal-data/efficiencyInfo';
 import { ServerRequestCache } from '../../utils/ServerRequestCache';
 import { dataLastUpdated } from '../../utils/internal-data/dataLastUpdated';
-import { ParamDefaults } from '../../utils/FilterModels';
+import { ParamDefaults, LineupFilterParams } from '../../utils/FilterModels';
 
 const isDebug = (process.env.NODE_ENV !== 'production');
 
 // Additional imports
-import queryString from "query-string";
+import { QueryUtils } from "../../utils/QueryUtils";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
 
   const queryPrefix = ""; //(for consistency with what the client side cache looks like)
 
   const url = require('url').parse(req.url);
-  const params = queryString.parse(url.query);
+  const params = QueryUtils.parse(url.query) as LineupFilterParams;
   const gender = params.gender || ParamDefaults.defaultGender;
   const year = params.year || ParamDefaults.defaultYear;
 

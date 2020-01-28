@@ -618,7 +618,7 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
             active={false}
             className="float-left"
             disabled={false}
-            id="copyLink"
+            id="copyLink_test-"
             size="sm"
             type="button"
             variant="outline-secondary"
@@ -655,6 +655,71 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
               transform={null}
             />
           </Button>
+        </OverlayTrigger>
+      </Col>
+    </FormGroup>
+    <FormGroup
+      as={
+        Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "defaultProps": Object {
+            "noGutters": false,
+          },
+          "render": [Function],
+        }
+      }
+    >
+      <FormLabel
+        column={true}
+        sm="2"
+        srOnly={false}
+      >
+        Baseline Query 
+        <a
+          href="https://hoop-explorer.blogspot.com/2020/01/basic-and-advanced-queries-in-hoop.html"
+          target="_blank"
+        >
+          (?)
+        </a>
+      </FormLabel>
+      <Col
+        sm="8"
+      >
+        <FormControl
+          onChange={[Function]}
+          onKeyUp={[Function]}
+          placeholder="eg 'Player1 AND NOT (WalkOn1 OR WalkOn2)'"
+          value=""
+        />
+      </Col>
+      <Col
+        sm="2"
+      >
+        <OverlayTrigger
+          overlay={
+            <ForwardRef
+              id="garbageFilterTooltip"
+              placement="right"
+            >
+              Filters out lineups in garbage time - see the "Garbage time" article under "Blog contents" for more details
+            </ForwardRef>
+          }
+          placement="auto"
+        >
+          <div>
+            <FormCheck
+              checked={false}
+              disabled={false}
+              id="excludeGarbage"
+              inline={false}
+              isInvalid={false}
+              isValid={false}
+              label="Filter Garbage"
+              onChange={[Function]}
+              title=""
+              type="switch"
+            />
+          </div>
         </OverlayTrigger>
       </Col>
     </FormGroup>
@@ -1378,7 +1443,7 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
             active={false}
             className="float-left"
             disabled={false}
-            id="copyLink"
+            id="copyLink_test-"
             size="sm"
             type="button"
             variant="outline-secondary"
@@ -1415,6 +1480,71 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
               transform={null}
             />
           </Button>
+        </OverlayTrigger>
+      </Col>
+    </FormGroup>
+    <FormGroup
+      as={
+        Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "defaultProps": Object {
+            "noGutters": false,
+          },
+          "render": [Function],
+        }
+      }
+    >
+      <FormLabel
+        column={true}
+        sm="2"
+        srOnly={false}
+      >
+        Baseline Query 
+        <a
+          href="https://hoop-explorer.blogspot.com/2020/01/basic-and-advanced-queries-in-hoop.html"
+          target="_blank"
+        >
+          (?)
+        </a>
+      </FormLabel>
+      <Col
+        sm="8"
+      >
+        <FormControl
+          onChange={[Function]}
+          onKeyUp={[Function]}
+          placeholder="eg 'Player1 AND NOT (WalkOn1 OR WalkOn2)'"
+          value=""
+        />
+      </Col>
+      <Col
+        sm="2"
+      >
+        <OverlayTrigger
+          overlay={
+            <ForwardRef
+              id="garbageFilterTooltip"
+              placement="right"
+            >
+              Filters out lineups in garbage time - see the "Garbage time" article under "Blog contents" for more details
+            </ForwardRef>
+          }
+          placement="auto"
+        >
+          <div>
+            <FormCheck
+              checked={false}
+              disabled={false}
+              id="excludeGarbage"
+              inline={false}
+              isInvalid={false}
+              isValid={false}
+              label="Filter Garbage"
+              onChange={[Function]}
+              title=""
+              type="switch"
+            />
+          </div>
         </OverlayTrigger>
       </Col>
     </FormGroup>

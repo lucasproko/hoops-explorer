@@ -1,8 +1,10 @@
 import { commonTeamQuery } from "./commonTeamQuery";
 import { commonOnOffBaseQuery } from "./commonOnOffBaseQuery";
 import { commonLineupAggregations } from "./commonLineupAggregations";
+import { GameFilterParams } from "../FilterModels";
 
-export const teamStatsQuery = function(params: any, publicEfficiency: any, lookup: any) {
+
+export const teamStatsQuery = function(params: GameFilterParams, publicEfficiency: any, lookup: any) {
   return {
      "_source": {
         "includes": [],

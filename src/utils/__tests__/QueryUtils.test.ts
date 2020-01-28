@@ -5,6 +5,22 @@ import _ from 'lodash';
 import { QueryUtils } from "../QueryUtils";
 
 describe("QueryUtils", () => {
+  test("QueryUtils - parse/stringify", () => {
+    //(just test lineupQuery/baseQuery handling)
+    expect(QueryUtils.stringify({lineupQuery: "a", otherField: true})).toEqual(
+      "baseQuery=a&otherField=true"
+    )
+    expect(QueryUtils.parse("lineupQuery=a&otherField=true&numField=1")).toEqual(
+      {baseQuery: "a", otherField: true, numField: "1"}
+    )
+    // Check garbageFilter handling
+    expect(QueryUtils.stringify({lineupQuery: "a", filterGarbage: true})).toEqual(
+      "baseQuery=a&filterGarbage=true"
+    )
+    expect(QueryUtils.stringify({lineupQuery: "a", filterGarbage: false})).toEqual(
+      "baseQuery=a"
+    )
+  });
   test("QueryUtils - basicOrAdvancedQuery", () => {
 
     const query1 = ' [ test "]';

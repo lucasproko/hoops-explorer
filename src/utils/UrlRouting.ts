@@ -2,7 +2,7 @@
 import _ from "lodash";
 
 // Additional components:
-import queryString from "query-string";
+import { QueryUtils } from "./QueryUtils";
 
 // Utils
 import { GameFilterParams, LineupFilterParams, TeamReportFilterParams } from '../utils/FilterModels';
@@ -58,14 +58,14 @@ export class UrlRouting {
 
   /** Filters out _lineup or _game from object to avoid them getting chained repeatedly */
   static removedSavedKeys(urlParams: string, suffices: Array<string> = UrlRouting.savedKeySuffices) {
-    return _.pickBy(queryString.parse(urlParams), (value, key) => {
+    return _.pickBy(QueryUtils.parse(urlParams), (value, key) => {
       return !_.some(suffices, (suffix) => key.indexOf(suffix) >= 0);
     });
   }
 
   /** Retries only the specified saved URL params */
   static extractSavedKeys(urlParams: string, suffixToKeep: string) {
-    return _.mapKeys(_.pickBy(queryString.parse(urlParams), (value, key) => {
+    return _.mapKeys(_.pickBy(QueryUtils.parse(urlParams), (value, key) => {
       return key.indexOf(suffixToKeep) >= 0;
     }), (value, key) => key.replace(suffixToKeep, ""));
   }
@@ -74,7 +74,7 @@ export class UrlRouting {
   static getUrl(paramsBySuffix: Record<string, any>) {
     return _.toPairs(paramsBySuffix).map((kv) => {
       const queryStr =
-        queryString.stringify(
+        QueryUtils.stringify(
           _.mapKeys(kv[1], (value, key) => key + kv[0])
         );
       return (queryStr == "") ? "" : (queryStr + "&");
