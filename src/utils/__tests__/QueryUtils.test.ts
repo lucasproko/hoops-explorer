@@ -13,6 +13,13 @@ describe("QueryUtils", () => {
     expect(QueryUtils.parse("lineupQuery=a&otherField=true&numField=1")).toEqual(
       {baseQuery: "a", otherField: true, numField: "1"}
     )
+    // Check garbageFilter handling
+    expect(QueryUtils.stringify({lineupQuery: "a", filterGarbage: true})).toEqual(
+      "baseQuery=a&filterGarbage=true"
+    )
+    expect(QueryUtils.stringify({lineupQuery: "a", filterGarbage: false})).toEqual(
+      "baseQuery=a"
+    )
   });
   test("QueryUtils - basicOrAdvancedQuery", () => {
 

@@ -10,7 +10,7 @@ import { AvailableTeams } from '../../utils/internal-data/AvailableTeams';
 import { efficiencyInfo } from '../../utils/internal-data/efficiencyInfo';
 import { ServerRequestCache } from '../../utils/ServerRequestCache';
 import { dataLastUpdated } from '../../utils/internal-data/dataLastUpdated';
-import { ParamDefaults } from '../../utils/FilterModels';
+import { ParamDefaults, GameFilterParams } from '../../utils/FilterModels';
 
 const isDebug = (process.env.NODE_ENV !== 'production');
 
@@ -22,7 +22,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   const queryPrefix = ""; //(for consistency with what the client side cache looks like)
 
   const url = require('url').parse(req.url);
-  const params = QueryUtils.parse(url.query);
+  const params = QueryUtils.parse(url.query) as GameFilterParams;
   const gender = params.gender || ParamDefaults.defaultGender;
   const year = params.year || ParamDefaults.defaultYear;
 
@@ -55,6 +55,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
       // Debug logs:
       //console.log(JSON.stringify(teamStatsQuery(params, efficiency, lookup).aggregations.tri_filter.filters, null, 3));
+      //console.log(JSON.stringify(teamStatsQuery(params, efficiency, lookup).query, null, 3));
 
       try {
         const esFetch = await fetch(`${process.env.CLUSTER_ID}/_msearch`, {

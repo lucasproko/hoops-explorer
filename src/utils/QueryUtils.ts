@@ -5,6 +5,8 @@ import _ from 'lodash';
 
 import queryString from "query-string";
 
+import { CommonFilterParams } from "./FilterModels";
+
 export class QueryUtils {
 
   private static readonly legacyQueryField = "lineupQuery";
@@ -20,10 +22,13 @@ export class QueryUtils {
     return parsed;
   }
   /** Wraps QueryUtils.parse but with baseQuery/lineupQuery handling */
-  static stringify(obj: any): string {
+  static stringify(obj: CommonFilterParams): string {
     if (obj && obj.hasOwnProperty(QueryUtils.legacyQueryField)) {
-      obj[QueryUtils.newQueryField] = obj[QueryUtils.legacyQueryField];
-      delete obj[QueryUtils.legacyQueryField];
+      obj.baseQuery = (obj as any)[QueryUtils.legacyQueryField];
+      delete (obj as any)[QueryUtils.legacyQueryField];
+    }
+    if (!obj.filterGarbage) { //default==false => remove altogether
+      delete obj.filterGarbage;
     }
     return queryString.stringify(obj);
   }

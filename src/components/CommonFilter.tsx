@@ -92,13 +92,17 @@ const CommonFilter: CommonFilterI = ({
   const [ maxRankFilter, setMaxRankFilter ] = useState(startingState.maxRank || ParamDefaults.defaultMaxRank);
   const [ baseQuery, setBaseQuery ] = useState(startingState.baseQuery || "")
 
+  const [ garbageTimeFiltered, setGarbageTimeFiltered ] = useState(
+    _.isNil(startingState.filterGarbage) ? ParamDefaults.defaultFilterGarbage : startingState.filterGarbage
+  );
+
   // Automatically update child state when any current param is changed:
   useEffect(() => {
     onChangeCommonState({
       team: team, year: year, gender: gender, minRank: minRankFilter, maxRank: maxRankFilter,
-      baseQuery: baseQuery
+      baseQuery: baseQuery, filterGarbage: garbageTimeFiltered
     })
-  }, [ team, year, gender, minRankFilter, maxRankFilter, baseQuery ]);
+  }, [ team, year, gender, minRankFilter, maxRankFilter, baseQuery, garbageTimeFiltered ]);
 
   const [ submitDisabled, setSubmitDisabled ] = useState(false); // (always start as true on page load)
   const [ reportIsDisabled, setReportIsDisabled ] = useState(false); //(same as above)
@@ -452,6 +456,10 @@ const CommonFilter: CommonFilterI = ({
     }
   }
 
+  const garbageFilterTooltip = (
+    <Tooltip id="garbageFilterTooltip">Filters out lineups in garbage time - see the "Garbage time" article under "Blog contents" for more details</Tooltip>
+  );
+
   return <LoadingOverlay
     active={queryIsLoading}
     spinner
@@ -518,12 +526,18 @@ const CommonFilter: CommonFilterI = ({
         />
       </Col>
       <Col sm="2">
-        <Form.Check type="switch"
-          id="excludeGarbage"
-          checked={false}
-          disabled
-          label="Filter Garbage"
-        />
+        <OverlayTrigger placement="auto" overlay={garbageFilterTooltip}>
+          <div>
+            <Form.Check type="switch"
+              id="excludeGarbage"
+              checked={garbageTimeFiltered}
+              onChange={() => {
+                setGarbageTimeFiltered(!garbageTimeFiltered);
+              }}
+              label="Filter Garbage"
+            />
+          </div>
+        </OverlayTrigger>
       </Col>
     </Form.Group>
     <Form.Group as={Row} controlId="oppositionFilter">

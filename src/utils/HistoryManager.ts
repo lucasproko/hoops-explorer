@@ -8,7 +8,7 @@ import ls from 'local-storage';
 import LZUTF8 from 'lzutf8';
 import { QueryUtils } from "./QueryUtils";
 
-import { ParamPrefixes, GameFilterParams, LineupFilterParams, TeamReportFilterParams, ParamDefaults } from "../utils/FilterModels";
+import { ParamPrefixes, CommonFilterParams, GameFilterParams, LineupFilterParams, TeamReportFilterParams, ParamDefaults } from "../utils/FilterModels";
 
 /** Wraps the local storage based cache of recent requests */
 export class HistoryManager {
@@ -98,7 +98,7 @@ export class HistoryManager {
   }
 
   /** The common component of the filter */
-  static commonFilterSummary(p: GameFilterParams | LineupFilterParams) {
+  static commonFilterSummary(p: CommonFilterParams) {
     const gender = p.gender || ParamDefaults.defaultGender;
     const getSosFilter = () => {
       if (parseInt(p.minRank || ParamDefaults.defaultMinRank) > 1
@@ -109,7 +109,14 @@ export class HistoryManager {
         return "";
       }
     };
-    return `${p.year || ParamDefaults.defaultYear} ${p.team || ParamDefaults.defaultTeam} (${gender[0]})${getSosFilter()}`;
+    const getGarbageFilter = () => {
+      if (p.filterGarbage) {
+        return ` [!garbage]`;
+      } else {
+        return "";
+      }
+    }
+    return `${p.year || ParamDefaults.defaultYear} ${p.team || ParamDefaults.defaultTeam} (${gender[0]})${getSosFilter()}${getGarbageFilter()}`;
   }
 
   /** Returns a summary string for the game filter */

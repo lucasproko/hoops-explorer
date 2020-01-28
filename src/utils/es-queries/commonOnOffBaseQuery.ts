@@ -1,7 +1,8 @@
+import { GameFilterParams } from "../FilterModels";
 
 import { QueryUtils } from "../QueryUtils";
 
-export const commonOnOffBaseQuery = function(params: any) {
+export const commonOnOffBaseQuery = function(params: GameFilterParams) {
 
   const baselineQuery = QueryUtils.basicOrAdvancedQuery(params.baseQuery, '*');
 
