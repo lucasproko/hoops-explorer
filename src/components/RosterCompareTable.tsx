@@ -69,8 +69,8 @@ const RosterCompareTable: React.FunctionComponent<Props> = ({gameFilterParams, r
 
   const onOffReportLink = (tableName: string) => {
     const getQuery = () => { switch(tableName) {
-      case "on": return `(${gameFilterParams.onQuery}) AND (${gameFilterParams.baseQuery})`;
-      case "off": return `(${gameFilterParams.offQuery}) AND (${gameFilterParams.baseQuery})`;
+      case "on": return `(${gameFilterParams.onQuery}) AND (${gameFilterParams.baseQuery || "*"})`;
+      case "off": return `(${gameFilterParams.offQuery}) AND (${gameFilterParams.baseQuery || "*"})`;
       default: return gameFilterParams.baseQuery;
     }};
     const paramObj: RequiredTeamReportFilterParams = {
