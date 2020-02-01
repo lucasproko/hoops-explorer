@@ -2,7 +2,8 @@
 export class ParamPrefixes {
   static readonly game = "game-";
   static readonly lineup = "lineup-";
-  static readonly report = "report-";
+  static readonly report = "report-"; //(not used currrently, we re-use lineup)
+  static readonly roster = "roster-";
 }
 
 /** Common params across all filter types */

@@ -4,12 +4,11 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import fetch from 'isomorphic-unfetch';
 
 // Application imports
-import { lineupStatsQuery } from "../../utils/es-queries/lineupStatsQueryTemplate";
+import { rosterCompareQuery } from "../../utils/es-queries/rosterCompareQueryTemplate";
 import { AvailableTeams } from '../../utils/internal-data/AvailableTeams';
-import { efficiencyInfo } from '../../utils/internal-data/efficiencyInfo';
 import { ServerRequestCache } from '../../utils/ServerRequestCache';
 import { dataLastUpdated } from '../../utils/internal-data/dataLastUpdated';
-import { ParamPrefixes, ParamDefaults, LineupFilterParams } from '../../utils/FilterModels';
+import { ParamPrefixes, ParamDefaults, CommonFilterParams } from '../../utils/FilterModels';
 
 const isDebug = (process.env.NODE_ENV !== 'production');
 
@@ -18,10 +17,10 @@ import { QueryUtils } from "../../utils/QueryUtils";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
 
-  const queryPrefix = ParamPrefixes.lineup;
+  const queryPrefix = ParamPrefixes.roster;
 
   const url = require('url').parse(req.url);
-  const params = QueryUtils.parse(url.query) as LineupFilterParams;
+  const params = QueryUtils.parse(url.query) as CommonFilterParams;
   const gender = params.gender || ParamDefaults.defaultGender;
   const year = params.year || ParamDefaults.defaultYear;
 
@@ -38,8 +37,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       ) :
       null;
 
-    const [ efficiency, lookup ] = efficiencyInfo[`${params.gender}_${params.year}`] || [ {}, {} ];
-
     if (team == null) {
       res.status(404).json({});
     } else {
@@ -47,7 +44,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
       const body = [
         JSON.stringify({ index: index }),
-        JSON.stringify(lineupStatsQuery(params, efficiency, lookup))
+        JSON.stringify(rosterCompareQuery(params, {}, {}))
       ].join('\n') + "\n";
 
       try {
@@ -59,10 +56,9 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
         const esFetchJson = await esFetch.json();
 
+        // Debug logs:
         //console.log(JSON.stringify(esFetchJson, null, 3));
         //console.log(esFetch.status);
-        //(subset for testing)
-        //console.log(JSON.stringify(esFetchJson.responses[0].aggregations.lineups.buckets.slice(0, 3), null, 3));
 
         const jsonToUse = esFetch.ok ?
           esFetchJson :

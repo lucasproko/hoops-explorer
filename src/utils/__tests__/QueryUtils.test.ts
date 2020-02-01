@@ -3,21 +3,22 @@
 import _ from 'lodash';
 
 import { QueryUtils } from "../QueryUtils";
+import { CommonFilterParams } from "../FilterModels";
 
 describe("QueryUtils", () => {
   test("QueryUtils - parse/stringify", () => {
     //(just test lineupQuery/baseQuery handling)
-    expect(QueryUtils.stringify({lineupQuery: "a", otherField: true})).toEqual(
+    expect(QueryUtils.stringify({lineupQuery: "a", otherField: true} as CommonFilterParams)).toEqual(
       "baseQuery=a&otherField=true"
     )
     expect(QueryUtils.parse("lineupQuery=a&otherField=true&numField=1")).toEqual(
       {baseQuery: "a", otherField: true, numField: "1"}
     )
     // Check garbageFilter handling
-    expect(QueryUtils.stringify({lineupQuery: "a", filterGarbage: true})).toEqual(
+    expect(QueryUtils.stringify({lineupQuery: "a", filterGarbage: true} as CommonFilterParams)).toEqual(
       "baseQuery=a&filterGarbage=true"
     )
-    expect(QueryUtils.stringify({lineupQuery: "a", filterGarbage: false})).toEqual(
+    expect(QueryUtils.stringify({lineupQuery: "a", filterGarbage: false} as CommonFilterParams)).toEqual(
       "baseQuery=a"
     )
   });

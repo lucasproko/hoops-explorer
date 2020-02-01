@@ -43,6 +43,7 @@ import HistorySelector, { historySelectContainerWidth } from '../components/Hist
 import { ParamPrefixes, ParamDefaults, CommonFilterParams, RequiredTeamReportFilterParams } from '../utils/FilterModels';
 import { HistoryManager } from '../utils/HistoryManager';
 import { UrlRouting } from '../utils/UrlRouting';
+import AutoSuggestText, { notFromAutoSuggest } from './AutoSuggestText';
 
 // Library imports:
 import fetch from 'isomorphic-unfetch';
@@ -57,6 +58,9 @@ interface Props<PARAMS> {
   childSubmitRequest: (paramStr: string, callback: (resp: fetch.IsomorphicResponse) => void) => void;
   majorParamsDisabled?: boolean; //(not currently used but would allow you to block changing team/seeason/gender)
 }
+
+/** Used to pass the submitListener to child components */
+export const GlobalKeypressManager = React.createContext((ev: any) => {});
 
 /** Type workaround per https://stackoverflow.com/questions/51459971/type-of-generic-stateless-component-react-or-extending-generic-function-interfa */
 type CommonFilterI<PARAMS = any> = React.FunctionComponent<Props<PARAMS>>
@@ -120,22 +124,32 @@ const CommonFilter: CommonFilterI = ({
   const genderYear = `${gender}_${year}`;
   const currentJsonEpoch = dataLastUpdated[genderYear] || -1;
 
+  /** Keyboard listener - handles global page overrides while supporting individual components */
+  const submitListenerFactory = (inAutoSuggest: boolean) => (event: any) => {
+    const allowKeypress = () => {
+      //(if this logic is run inside AutoSuggestText, we've already processed the special cases so carry on)
+      return inAutoSuggest || notFromAutoSuggest(event);
+    };
+    if (event.code === "Enter" || event.code === "NumpadEnter" || event.keyCode == 13) {
+      if (!submitDisabled && allowKeypress()) {
+        onSubmit();
+      }
+    } else if (event.code == "Escape" || event.keyCode == 27) {
+      if (!submitDisabled && allowKeypress()) {
+        if (historyOverlay) historyOverlay.hide();
+      }
+    }
+  };
+
   /** Checks if the input has been changed, and also handles on page load logic */
   useEffect(() => {
     initClipboard();
     setSubmitDisabled(shouldSubmitBeDisabled());
     setReportIsDisabled(_.isEmpty(team) || _.isEmpty(gender) || _.isEmpty(year));
 
+    const submitListener = submitListenerFactory(false);
+
     // Add "enter" to submit page (do on every effect, since removal occurs on every effect, see return below)
-    const submitListener = (event: any) => {
-      if (event.code === "Enter" || event.code === "NumpadEnter") {
-        if (!submitDisabled) {
-          onSubmit();
-        }
-      } else if (event.code == "Escape") {
-        if (historyOverlay) historyOverlay.hide();
-      }
-    };
     if (typeof document !== `undefined`) {
       document.addEventListener("keydown", submitListener);
     }
@@ -514,15 +528,22 @@ const CommonFilter: CommonFilterI = ({
         {getCopyLinkButton()}
       </Col>
     </Form.Group>
-    { children }
+    <GlobalKeypressManager.Provider value={submitListenerFactory(true)}>
+      {children}
+    </GlobalKeypressManager.Provider>
     <Form.Group as={Row}>
       <Form.Label column sm="2">Baseline Query {maybeShowBlogHelp()}</Form.Label>
       <Col sm="8">
-        <Form.Control
+        <AutoSuggestText
+          readOnly={false}
           placeholder="eg 'Player1 AND NOT (WalkOn1 OR WalkOn2)'"
-          value={baseQuery}
-          onKeyUp={(ev: any) => setBaseQuery(ev.target.value)}
+          initValue={baseQuery}
+          year={year}
+          gender={gender}
+          team={team}
           onChange={(ev: any) => setBaseQuery(ev.target.value)}
+          onKeyUp={(ev: any) => setBaseQuery(ev.target.value)}
+          onKeyDown={submitListenerFactory(true)}
         />
       </Col>
       <Col sm="2">
