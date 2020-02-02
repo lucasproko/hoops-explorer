@@ -1,10 +1,15 @@
 // React imports:
 import React, { useState, useEffect } from 'react';
 import Router from 'next/router';
-import { QueryUtils } from "../utils/QueryUtils";
+
+// Lodash
+import _ from "lodash";
 
 // Bootstrap imports:
 import 'bootstrap/dist/css/bootstrap.min.css';
+
+// Library imports:
+import fetch from 'isomorphic-unfetch';
 
 // Additional components:
 // @ts-ignore
@@ -13,6 +18,10 @@ import 'react-autocomplete-input/dist/bundle.css';
 
 // Utils:
 import { ParamPrefixes, CommonFilterParams } from '../utils/FilterModels';
+import { RosterCompareModel } from '../components/RosterCompareTable';
+import { dataLastUpdated } from '../utils/internal-data/dataLastUpdated';
+import { ClientRequestCache } from '../utils/ClientRequestCache';
+import { QueryUtils } from "../utils/QueryUtils";
 
 /** The keydown event does not come from AutoSuggestText element */
 export const notFromAutoSuggest = (event: any) => {
@@ -34,10 +43,80 @@ const AutoSuggestText: React.FunctionComponent<Props> = (
   {readOnly, placeholder, initValue, team, year, gender, onChange, onKeyUp, onKeyDown}
 ) => {
 
-  const internalOnKeyDown = (event: any) => {
-    if (event.keyCode == 13) { // Enter => submit
+  // Data model
+
+  const [ basicOptions, setBasicOptions ] = useState([] as Array<string>);
+  const [ advOptions, setAdvOptions ] = useState([] as Array<string>);
+
+  const isDebug = (process.env.NODE_ENV !== 'production');
+
+  const basicOperators = [
+    "AND", "OR", "NOT"
+  ];
+  const advancedFields = [
+    "AND", "OR", "NOT",
+    "players.id:", "opponent.team:", "start_min:", "end_min:",
+    "location_type:", "location_type:Home", "location_type:Away", "location_type:Neutral",
+    "date:",
+    "players_in.id:",  "players_out.id:",
+    "score_info.start_diff:", "score_info.end_diff:"
+  ];
+
+  // Utils
+
+  /** Makes an API call to elasticsearch to get the roster */
+  const fetchRoster = () => {
+    if (gender && year && team) {
+      const genderYear = `${gender}_${year}`;
+      const currentJsonEpoch = dataLastUpdated[genderYear] || -1;
+
+      const query: CommonFilterParams = {
+        gender: gender, year: year, team: team,
+        baseQuery: "*"
+      }
+      const paramStr = QueryUtils.stringify(query);
+      // Check if it's in the cache:
+      const cachedJson = ClientRequestCache.decacheResponse(
+        paramStr, ParamPrefixes.roster, currentJsonEpoch, isDebug
+      );
+      if (cachedJson && !_.isEmpty(cachedJson)) { //(ignore placeholders here)
+        handleResponse(cachedJson);
+      } else {
+        fetch(`/api/getRoster?${paramStr}`).then(function(response: fetch.IsomorphicResponse) {
+          response.json().then(function(json: any) {
+            // Cache result locally:
+            if (isDebug) {
+              console.log(`CACHE_KEY=[${ParamPrefixes.roster}${paramStr}]`);
+              //(this is a bit chatty)
+              //console.log(`CACHE_VAL=[${JSON.stringify(json)}]`);
+            }
+            if (response.ok) { //(never cache errors)
+              ClientRequestCache.cacheResponse(
+                paramStr, ParamPrefixes.roster, json, currentJsonEpoch, isDebug
+              );
+            }
+            handleResponse(json);
+          });
+        })
+      }
     }
   };
+
+  /** Parse the return from fetch Roster into name fragments */
+  const handleResponse = (json: any) => {
+    const jsons = json?.responses || [];
+    const rosterCompareJson = (jsons.length > 0) ? jsons[0] : {};
+    const roster = rosterCompareJson?.aggregations?.tri_filter?.buckets?.baseline?.player?.buckets || [];
+
+    const names = _.chain(roster)
+      .map((rosterObj) => `"${rosterObj.key}"`)
+      .value(); //TODO more complicated
+
+    setBasicOptions(names.concat(basicOperators));
+    setAdvOptions(names.concat(advancedFields)); //(TODO: also include with player.id: prefixed?)
+  };
+
+  // View
 
   return <TextInput
     Component={"input"}
@@ -45,10 +124,11 @@ const AutoSuggestText: React.FunctionComponent<Props> = (
     readOnly={readOnly}
     className="form-control auto-suggest"
     placeholder={placeholder}
-    options={(initValue && ('[' == initValue[0])) ? //TODO: ok write this!
-        ["players.id", "Cowan", "Anthony", `"Cowan, Anthony"`].concat([team || ""]) :
-        ["Cowan", "Anthony", `"Cowan, Anthony"`, "AND", "OR", "NOT"]
+    requestOnlyIfNoOptions={true} //(only requests if empty)
+    options={
+      (initValue && ('[' == initValue[0])) ? advOptions : basicOptions
     }
+    onRequestOptions = {fetchRoster}
     trigger=""
     regex='^[A-Za-z0-9\\-_"]+$'
     matchAny={true}
