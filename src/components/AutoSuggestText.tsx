@@ -1,5 +1,5 @@
 // React imports:
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, createRef } from 'react';
 import Router from 'next/router';
 
 // Lodash
@@ -53,14 +53,15 @@ const AutoSuggestText: React.FunctionComponent<Props> = (
   const basicOperators = [
     "AND", "OR", "NOT"
   ];
-  const advancedFields = [
-    "AND", "OR", "NOT",
+  const advancedFields = basicOperators.concat([
     "players.id:", "opponent.team:", "start_min:", "end_min:",
     "location_type:", "location_type:Home", "location_type:Away", "location_type:Neutral",
     "date:",
     "players_in.id:",  "players_out.id:",
     "score_info.start_diff:", "score_info.end_diff:"
-  ];
+  ]);
+
+  const textRef = createRef();
 
   // Utils
 
@@ -108,17 +109,28 @@ const AutoSuggestText: React.FunctionComponent<Props> = (
     const rosterCompareJson = (jsons.length > 0) ? jsons[0] : {};
     const roster = rosterCompareJson?.aggregations?.tri_filter?.buckets?.baseline?.player?.buckets || [];
 
+    const nameFrags = _.chain(roster)
+      .flatMap((rosterObj) => {
+        const nameFragments = _.split(rosterObj.key, /\s*,\s*|\s+/);
+        return _.chain(nameFragments)
+          .filter((s) => s.length >= 2)
+          .value();
+      }).sortBy().sortedUniq().value();
+
     const names = _.chain(roster)
       .map((rosterObj) => `"${rosterObj.key}"`)
-      .value(); //TODO more complicated
+      .sortBy().sortedUniq().value();
 
-    setBasicOptions(names.concat(basicOperators));
-    setAdvOptions(names.concat(advancedFields)); //(TODO: also include with player.id: prefixed?)
+    const namesAndFrags = nameFrags.concat(names); //(get the order to work well in practice)
+
+    setBasicOptions(namesAndFrags.concat(basicOperators));
+    setAdvOptions(namesAndFrags.concat(advancedFields));
   };
 
   // View
 
   return <TextInput
+    ref={textRef}
     Component={"input"}
     defaultValue={initValue}
     readOnly={readOnly}
@@ -133,10 +145,25 @@ const AutoSuggestText: React.FunctionComponent<Props> = (
     regex='^[A-Za-z0-9\\-_"]+$'
     matchAny={true}
     maxOptions={18}
-    spaceRemovers={[';', ')', ':']}
+    spaceRemovers={[';', ')', ':', ']']}
     onChange={(eventText: string) => onChange({target: { value: eventText}})}
     onKeyUp={onKeyUp}
-    onKeyDown={onKeyDown}
+    onKeyDown={(ev:any) => {
+      if (ev.keyCode == 9) {
+        // Understanding this requires understanding of internals:
+        //https://github.com/yury-dymov/react-autocomplete-input/blob/master/src/AutoCompleteTextField.js
+        const underlyingObj = textRef.current as any;
+        if (underlyingObj.state.helperVisible) {
+          ev.preventDefault();
+          ev.keyCode = 13;
+          (textRef.current as any).handleKeyDown(ev);
+        }
+        //(else will just get passed up)
+      } else {
+        //(doesn't work for enter/return because of the CommonFilter-specific handler)
+        onKeyDown(ev);
+      }
+    }}
   />;
 }
 export default AutoSuggestText;

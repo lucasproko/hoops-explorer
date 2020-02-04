@@ -130,7 +130,7 @@ const CommonFilter: CommonFilterI = ({
       //(if this logic is run inside AutoSuggestText, we've already processed the special cases so carry on)
       return inAutoSuggest || notFromAutoSuggest(event);
     };
-    if (event.code === "Enter" || event.code === "NumpadEnter" || event.keyCode == 13) {
+    if (event.code === "Enter" || event.code === "NumpadEnter" || event.keyCode == 13 || event.keyCode == 14) {
       if (!submitDisabled && allowKeypress()) {
         onSubmit();
       }
@@ -151,6 +151,9 @@ const CommonFilter: CommonFilterI = ({
 
     // Add "enter" to submit page (do on every effect, since removal occurs on every effect, see return below)
     if (typeof document !== `undefined`) {
+      //(TODO: this actually causes mass complications with AutoSuggestText - see the useContext grovelling
+      // 'cos for some reason preventDefault from AutoSuggestText gets ignored ... needs more investigation
+      // but the grovelling works fine for now!)
       document.addEventListener("keydown", submitListener);
     }
 
