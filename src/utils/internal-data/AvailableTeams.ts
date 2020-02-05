@@ -665,6 +665,18 @@ export class AvailableTeams {
       { team: "Gonzaga", year: "2018/9", gender: "Men", index_template: "misc_conf" },
       { team: "Gonzaga", year: "2019/20", gender: "Men", index_template: "misc_conf" }
     ],
+    "BYU": [
+      { team: "BYU", year: "2018/9", gender: "Men", index_template: "misc_conf" },
+      { team: "BYU", year: "2019/20", gender: "Men", index_template: "misc_conf" }
+    ],
+    "San Diego St.": [
+      { team: "San Diego St.", year: "2018/9", gender: "Men", index_template: "misc_conf" },
+      { team: "San Diego St.", year: "2019/20", gender: "Men", index_template: "misc_conf" }
+    ],
+    "Utah St.": [
+      { team: "Utah St.", year: "2018/9", gender: "Men", index_template: "misc_conf" },
+      { team: "Utah St.", year: "2019/20", gender: "Men", index_template: "misc_conf" }
+    ],
   }
 
   ////////////////////////////////////////////////////////
