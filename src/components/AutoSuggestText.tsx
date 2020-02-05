@@ -45,6 +45,7 @@ const AutoSuggestText: React.FunctionComponent<Props> = (
 
   // Data model
 
+  const [ savedParams, setSavedParams ] = useState({} as CommonFilterParams);
   const [ basicOptions, setBasicOptions ] = useState([] as Array<string>);
   const [ advOptions, setAdvOptions ] = useState([] as Array<string>);
 
@@ -64,6 +65,17 @@ const AutoSuggestText: React.FunctionComponent<Props> = (
   const textRef = createRef();
 
   // Utils
+
+  /** Reset everything if team/year/gender changes */
+  useEffect(() => {
+    const params: CommonFilterParams = { year: year, gender: gender, team: team }
+    if (!_.isEqual(params, savedParams)) {
+      if (isDebug) console.log(`Update params: old=[${JSON.stringify(savedParams)}] vs new=[${JSON.stringify(params)}]`);
+      setSavedParams(params);
+      setBasicOptions([]);
+      setAdvOptions([]);
+    }
+  });
 
   /** Makes an API call to elasticsearch to get the roster */
   const fetchRoster = () => {

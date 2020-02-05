@@ -139,9 +139,9 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
             readOnly={false}
             placeholder="eg 'Player1 AND (Player2 OR Player3)'"
             initValue={onQuery}
-            year={startingState.year}
-            gender={startingState.gender}
-            team={startingState.team}
+            year={commonParams.year}
+            gender={commonParams.gender}
+            team={commonParams.team}
             onKeyUp={handleOnQueryChange}
             onChange={handleOnQueryChange}
             onKeyDown={globalKeypressHandler}
@@ -156,9 +156,9 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
               readOnly={autoOffQuery}
               placeholder="eg 'NOT (Player1 AND (Player2 OR Player3))'"
               initValue={offQuery}
-              year={startingState.year}
-              gender={startingState.gender}
-              team={startingState.team}
+              year={commonParams.year}
+              gender={commonParams.gender}
+              team={commonParams.team}
               onKeyUp={(ev: any) => setOffQuery(ev.target.value)}
               onChange={(ev: any) => setOffQuery(ev.target.value)}
               onKeyDown={globalKeypressHandler}
