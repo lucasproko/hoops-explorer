@@ -10,7 +10,7 @@ import { AvailableTeams } from '../../utils/internal-data/AvailableTeams';
 import { efficiencyInfo } from '../../utils/internal-data/efficiencyInfo';
 import { ServerRequestCache } from '../../utils/ServerRequestCache';
 import { dataLastUpdated } from '../../utils/internal-data/dataLastUpdated';
-import { ParamDefaults, GameFilterParams } from '../../utils/FilterModels';
+import { ParamPrefixes, ParamDefaults, GameFilterParams } from '../../utils/FilterModels';
 
 const isDebug = (process.env.NODE_ENV !== 'production');
 
@@ -19,7 +19,7 @@ import { QueryUtils } from "../../utils/QueryUtils";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
 
-  const queryPrefix = ""; //(for consistency with what the client side cache looks like)
+  const queryPrefix = ParamPrefixes.game;
 
   const url = require('url').parse(req.url);
   const params = QueryUtils.parse(url.query) as GameFilterParams;

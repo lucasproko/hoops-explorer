@@ -17,8 +17,9 @@ import Col from 'react-bootstrap/Col';
 import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
 import { TeamStatsModel } from '../components/TeamStatsTable';
 import { RosterCompareModel } from '../components/RosterCompareTable';
-import CommonFilter from '../components/CommonFilter';
+import CommonFilter, { GlobalKeypressManager } from '../components/CommonFilter';
 import { ParamPrefixes, CommonFilterParams, GameFilterParams, ParamDefaults } from "../utils/FilterModels";
+import AutoSuggestText from './AutoSuggestText';
 
 // Library imports:
 import fetch from 'isomorphic-unfetch';
@@ -130,22 +131,39 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
       buildParamsFromState={buildParamsFromState}
       childHandleResponse={handleResponse}
       childSubmitRequest={onSubmit}
-    >
+    ><GlobalKeypressManager.Consumer>{ globalKeypressHandler => <div>
       <Form.Group as={Row}>
         <Form.Label column sm="2">On Query</Form.Label>
         <Col sm="8">
-          <Form.Control
+          <AutoSuggestText
+            readOnly={false}
             placeholder="eg 'Player1 AND (Player2 OR Player3)'"
-            value={onQuery}
+            initValue={onQuery}
+            year={commonParams.year}
+            gender={commonParams.gender}
+            team={commonParams.team}
             onKeyUp={handleOnQueryChange}
             onChange={handleOnQueryChange}
+            onKeyDown={globalKeypressHandler}
           />
         </Col>
       </Form.Group>
       <Form.Group as={Row}>
         <Form.Label column sm="2">Off Query</Form.Label>
         <Col sm="8">
-          { renderOffQueryFormField() }
+          { (typeof window !== `undefined`) ?
+            <AutoSuggestText
+              readOnly={autoOffQuery}
+              placeholder="eg 'NOT (Player1 AND (Player2 OR Player3))'"
+              initValue={offQuery}
+              year={commonParams.year}
+              gender={commonParams.gender}
+              team={commonParams.team}
+              onKeyUp={(ev: any) => setOffQuery(ev.target.value)}
+              onChange={(ev: any) => setOffQuery(ev.target.value)}
+              onKeyDown={globalKeypressHandler}
+            /> : <div/> //(this construct needed to address SSR/readonly issue)
+          }
         </Col>
         <Col sm="2">
           <Form.Check type="switch"
@@ -161,7 +179,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
           />
         </Col>
       </Form.Group>
-    </CommonFilter>
+    </div>}</GlobalKeypressManager.Consumer></CommonFilter>
     ;
 }
 

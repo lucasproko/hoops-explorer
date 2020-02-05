@@ -658,6 +658,9 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
         </OverlayTrigger>
       </Col>
     </FormGroup>
+    <ContextProvider
+      value={[Function]}
+    />
     <FormGroup
       as={
         Object {
@@ -685,11 +688,16 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
       <Col
         sm="8"
       >
-        <FormControl
+        <AutoSuggestText
+          gender="Men"
+          initValue=""
           onChange={[Function]}
+          onKeyDown={[Function]}
           onKeyUp={[Function]}
           placeholder="eg 'Player1 AND NOT (WalkOn1 OR WalkOn2)'"
-          value=""
+          readOnly={false}
+          team=""
+          year="2019/20"
         />
       </Col>
       <Col
@@ -1483,6 +1491,9 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
         </OverlayTrigger>
       </Col>
     </FormGroup>
+    <ContextProvider
+      value={[Function]}
+    />
     <FormGroup
       as={
         Object {
@@ -1510,11 +1521,16 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
       <Col
         sm="8"
       >
-        <FormControl
+        <AutoSuggestText
+          gender="Men"
+          initValue=""
           onChange={[Function]}
+          onKeyDown={[Function]}
           onKeyUp={[Function]}
           placeholder="eg 'Player1 AND NOT (WalkOn1 OR WalkOn2)'"
-          value=""
+          readOnly={false}
+          team="Maryland"
+          year="2018/9"
         />
       </Col>
       <Col
