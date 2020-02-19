@@ -14,7 +14,7 @@ export class AvailableTeams {
     "Maryland": [
       //(remove this for know, the indexed lineup data is broken)
 //      { team: "Maryland", year: "2015/6", gender: "Men", index_template: "maryland" },
-      { team: "Maryland", year: "2018/9", gender: "Men", index_template: "misc_conf" },
+      { team: "Maryland", year: "2018/9", gender: "Men", index_template: "bigten" },
       { team: "Maryland", year: "2019/20", gender: "Men", index_template: "bigten" },
 
       { team: "Maryland", year: "2018/9", gender: "Women", index_template: "women_bigten" },
