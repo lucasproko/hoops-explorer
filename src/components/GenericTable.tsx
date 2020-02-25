@@ -54,16 +54,19 @@ class GenericTableDataRow { //TODO: remove generic table
   constructor(
     dataObj: any,
     prefixFn: (key: string) => string,
-    cellMetaFn: (key: string, value: any) => string //TODO: make this a generic
+    cellMetaFn: (key: string, value: any) => string, //TODO: make this a generic
+    tableFieldsOverride: Record<string, GenericTableColProps> | undefined
   ) {
     this.dataObj = dataObj;
     this.prefixFn = prefixFn;
     this.cellMetaFn = cellMetaFn;
+    this.tableFieldsOverride = tableFieldsOverride;
   }
   readonly kind: string = "data-row";
   readonly dataObj: any;
   readonly prefixFn: (key: string) => string;
   readonly cellMetaFn: (key: string, value: any) => string;
+  readonly tableFieldsOverride: Record<string, GenericTableColProps> | undefined;
 }
 class GenericTableSeparator {
   readonly kind: string = "separator";
@@ -92,8 +95,13 @@ export class GenericTableOps {
 
   // Rows:
 
-  static buildDataRow(dataObj: any, prefixFn: (key: string) => string, cellMetaFn: (key: string, value: any) => string): GenericTableRow {
-    return new GenericTableDataRow(dataObj, prefixFn, cellMetaFn);
+  static buildDataRow(
+    dataObj: any,
+    prefixFn: (key: string) => string,
+    cellMetaFn: (key: string, value: any) => string,
+    tableFieldsOverride: Record<string, GenericTableColProps> | undefined = undefined
+  ): GenericTableRow {
+    return new GenericTableDataRow(dataObj, prefixFn, cellMetaFn, tableFieldsOverride);
   }
   static buildTextRow(text: React.ReactNode, className: string = ""): GenericTableRow {
     return new GenericTableTextRow(text, className);
@@ -195,7 +203,7 @@ const GenericTable: React.FunctionComponent<Props> = ({tableFields, tableData, t
   function renderTableRow(row: GenericTableDataRow) {
     return Object.entries(tableFields).map((keyVal, index) => {
         const key: string = keyVal[0];
-        const colProp: GenericTableColProps = keyVal[1];
+        const colProp: GenericTableColProps = row.tableFieldsOverride?.[key] || keyVal[1];
         const actualKey = row.prefixFn(key);
         const tmpValObj = row.dataObj[actualKey] || {};
         const tmpVal = ((tmpValObj instanceof Object) ? tmpValObj.value : tmpValObj) || colProp.missingData;

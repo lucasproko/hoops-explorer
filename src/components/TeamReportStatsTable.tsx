@@ -104,6 +104,7 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
     "poss": GenericTableOps.addIntCol("Poss", "Total number of possessions for selected lineups", GenericTableOps.defaultColorPicker),
     "adj_opp": GenericTableOps.addPtsCol("SoS", "Weighted average of the offensive or defensive efficiencies of the lineups' opponents", GenericTableOps.defaultColorPicker),
   };
+  //TODO: have another tableFields here that is the same except has different coloring rules
 
   // 3] Utils
 
@@ -242,6 +243,8 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
         showLineupCompositions ? [ GenericTableOps.buildTextRow(
           buildLineupInfo(player), "small"
         ) ] : [],
+        //TODO: if Ronoff: GenericTableOps.buildDataRow(statsOffDiff, offPrefixFn, offCellMetaFn, diffTableFields)
+        //TODO: if Ronoff: GenericTableOps.buildDataRow(statsDefDiff, offPrefixFn, defCellMetaFn, diffTableFields)
         [ GenericTableOps.buildRowSeparator() ]
       ]);
     }).value();

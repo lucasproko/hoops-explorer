@@ -7,14 +7,23 @@ import { LineupStatsModel } from "../components/LineupStatsTable";
 /** Wraps the local storage based cache of recent requests */
 export class LineupUtils {
 
+  /** Adds some logs for the more complex replacement on/off cals */
+  private static readonly debugReplacementOnOff = false;
+
   /** Builds on/off info out of lineups */
-  static lineupToTeamReport(lineupReport: LineupStatsModel): TeamReportStatsModel {
+  static lineupToTeamReport(lineupReport: LineupStatsModel, incReplacement: boolean = false): TeamReportStatsModel {
     const allPlayersSet = _.chain(lineupReport.lineups || []).reduce((acc: any, lineup: any) => {
       const players = lineup?.players_array?.hits?.hits?.[0]?._source?.players || [];
       return _.mergeWith(
         acc, _.chain(players).map((v) => [ v.id, v.code ]).fromPairs().value()
       );
     }, {}).value();
+
+    const getPlayerSet = (lineup: any) => {
+      return _.chain(
+        lineup?.players_array?.hits?.hits?.[0]?._source?.players || []
+      ).map((v) => [ v.id, v.code ]).fromPairs().value();
+    };
 
     const mutableState: TeamReportStatsModel = {
       players: _.keys(allPlayersSet).map((playerId) => {
@@ -30,7 +39,16 @@ export class LineupUtils {
           },
           off: {
             key: `'OFF' ${playerId}`
-          }
+          },
+          replacement: incReplacement ? {
+            key: `'REP. ON/OFF' ${playerId}`,
+            myLineups: _.chain(lineupReport.lineups || []).filter((lineup) => {
+              const playersSet = getPlayerSet(lineup);
+              return playersSet.hasOwnProperty(playerId);
+            }).map((lineup) => {
+              return _.merge({ offLineups: {} }, lineup); //(copies lineup and adds empty offLineups)
+            }).value()
+          } : undefined
         };
       }),
       avgOff: lineupReport.avgOff,
@@ -38,9 +56,7 @@ export class LineupUtils {
     };
 
     _.chain(lineupReport.lineups || []).transform((acc, lineup) => {
-      const playersSet = _.chain(
-        lineup?.players_array?.hits?.hits?.[0]?._source?.players || []
-      ).map((v) => [ v.id, v.code ]).fromPairs().value();
+      const playersSet = getPlayerSet(lineup);
 
       _.chain(acc.players).forEach((playerObj) => {
         if (playersSet.hasOwnProperty(playerObj.playerId)) { //ON!
@@ -55,6 +71,16 @@ export class LineupUtils {
           _.chain(playersSet).keys().forEach((player) =>
             LineupUtils.updateLineupComposition(playerObj.teammates[player]?.off, player, lineup)
           ).value();
+
+          if (incReplacement) {
+            _.chain(playerObj.replacement.myLineups).filter((onLineup) => {
+              const isComplement =
+                LineupUtils.isComplementLineup(playerObj.playerId, onLineup, lineup);
+              return isComplement;
+            }).forEach((onLineup) => {
+              LineupUtils.weightedAvg(onLineup.offLineups, lineup);
+            }).value();
+          }
         }
       }).value();
     }, mutableState).value();
@@ -70,6 +96,9 @@ export class LineupUtils {
       }
       if (playerObj.off.hasOwnProperty("off_poss")) {
         LineupUtils.completeWeightedAvg(playerObj.off);
+      }
+      if (incReplacement) {
+        LineupUtils.combineReplacementOnOff(playerObj.replacement);
       }
       return playerObj; // ('ON' exists by construction)
     }).value();
@@ -172,7 +201,7 @@ export class LineupUtils {
           mutableAcc[key].value = 1.0*val/(weights.orb_totals as any)[key];
         } else if (_.startsWith(key, "total_") || LineupUtils.sumFieldSet.hasOwnProperty(key)) {
           //(nothing to do)
-        } else if (key == "off_ftr") { // FTR are special case because you can have
+        } else if (key == "off_ftr") { // FTR are special case because you can have a FT but 0 FGA
           mutableAcc[key].value = 1.0*(mutableAcc.total_off_fta?.value || 0.0)/weights.fga_totals.off;
         } else if (key == "def_ftr") {
           mutableAcc[key].value = 1.0*(mutableAcc.total_def_fta?.value || 0.0)/weights.fga_totals.def;
@@ -193,4 +222,112 @@ export class LineupUtils {
       }
     }).value();
   }
+
+  // Replacement on/off calcs
+
+  /** Is this lineup the same except for the one player */
+  private static isComplementLineup(player: string, onLineup: any, offLineup: any): boolean {
+    // If the number of non-player matches == 4
+    const onLineupPlayerMap = _.chain(
+      onLineup?.players_array?.hits?.hits?.[0]?._source?.players || []
+    ).map((p) => [ p.id, p.code ]).fromPairs().value();
+
+    const isComplement = _.chain(
+        offLineup?.players_array?.hits?.hits?.[0]?._source?.players || []
+      ).map((k) => k.id)
+      .filter((k) => (k != player) && onLineupPlayerMap.hasOwnProperty(k))
+      .size().value() == 4;
+
+    if (LineupUtils.debugReplacementOnOff) {
+      console.log(`LineupUtils.isComplementLineup: ` +
+        `For [${player}][${onLineup.key}]: vs [${offLineup.key}]: [${isComplement}]`
+      );
+    }
+    return isComplement;
+  }
+
+  private static calcHarmonicMean(w1: number, w2: number): number {
+    return 2.0/((1/w1) + (1/w2));
+  }
+
+  /** Combines the deltas between the on/off numbers, weights, and averages */
+  private static combineReplacementOnOff(mutableReplacementObj: any) {
+    // x: mutableReplacementObj.myLineups ... a list of lineups
+    // x.offLineups the weighted average of the complements
+    const weightedLineups = _.chain(mutableReplacementObj.myLineups)
+      .filter((myLineup) => {
+        const offLineups = myLineup?.offLineups;
+
+        // remove lineups with no possessions at all
+        const retain = offLineups?.hasOwnProperty("off_poss")
+
+        if (LineupUtils.debugReplacementOnOff && !retain) {
+          console.log(`LineupUtils.combineReplacementOnOff.prefilter: [${mutableReplacementObj.key}]: ` +
+            `Filtering empty on/off lineup: [${myLineup.key}] ` +
+            `(poss=[${myLineup?.off_poss?.value}/${myLineup?.def_poss?.value}//${offLineups?.off_poss?.value}/${offLineups?.def_poss?.value}])`
+          );
+        }
+        return retain;
+      }).map((myLineup) => {
+        // Complete weighting
+        const offLineups = myLineup.offLineups;
+        LineupUtils.completeWeightedAvg(offLineups); //mutates this
+
+        // Calculate offensive and defensive harmonic means for possessions etc
+        const harmonicWeights = {
+          "off_poss": true, "def_poss": true,
+          "total_off_orb": true, "total_def_orb": true,
+          "total_off_fga": true, "total_def_fga": true
+        };
+
+        if (LineupUtils.debugReplacementOnOff) {
+          const someFields = [
+            "off_poss", "total_def_fga", "off_ppp", "def_3p"
+          ];
+          console.log(`LineupUtils.combineReplacementOnOff.counts: [${mutableReplacementObj.key}]: ` +
+            `[${myLineup.key}] counts: [${JSON.stringify(_.pick(myLineup, someFields))}] vs `+
+            `[${JSON.stringify(_.pick(offLineups, someFields))}]`
+          );
+        }
+
+        _.keys(harmonicWeights).forEach((key) => {
+          if ((myLineup?.[key]?.value > 0) && (offLineups?.[key]?.value > 0)) {
+            myLineup[key].value = LineupUtils.calcHarmonicMean(
+              myLineup[key].value, offLineups[key].value
+            );
+          } else {
+            myLineup[key] = { value: 0 };
+          }
+        });
+        _.chain(myLineup).toPairs().forEach((keyVal) => {
+          const key = keyVal[0];
+          if (!LineupUtils.ignoreFieldSet.hasOwnProperty(key) &&
+            !harmonicWeights.hasOwnProperty(key)
+          ) {
+            myLineup[key] = { // calc on-off
+              value: (keyVal[1]?.value || 0) - (offLineups[key]?.value || 0)
+            }; //(gets weigted by offensive pos/FGA/etc, so fine that it's nonsense if no samples)
+          }
+        }).value();
+
+        if (LineupUtils.debugReplacementOnOff) {
+          const someFields = [
+            "off_poss", "total_def_fga", "off_ppp", "def_3p"
+          ];
+          console.log(`LineupUtils.combineReplacementOnOff.diffs: [${mutableReplacementObj.key}]: ` +
+            `[${myLineup.key}] diffs: [${JSON.stringify(_.pick(myLineup, someFields))}]`
+          );
+        }
+
+        return myLineup;
+      }).value();
+
+    delete mutableReplacementObj.myLineups;
+
+    _.chain(weightedLineups || []).transform((acc, lineup) => {
+      LineupUtils.weightedAvg(acc, lineup);
+    }, mutableReplacementObj).value();
+    LineupUtils.completeWeightedAvg(mutableReplacementObj);
+  }
+
 };

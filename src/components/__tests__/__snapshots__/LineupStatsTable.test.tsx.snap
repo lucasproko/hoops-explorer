@@ -722,6 +722,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot 1`] = `
                 },
                 "kind": "data-row",
                 "prefixFn": [Function],
+                "tableFieldsOverride": undefined,
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
@@ -942,6 +943,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot 1`] = `
                 },
                 "kind": "data-row",
                 "prefixFn": [Function],
+                "tableFieldsOverride": undefined,
               },
               GenericTableSeparator {
                 "kind": "separator",
@@ -1165,6 +1167,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot 1`] = `
                 },
                 "kind": "data-row",
                 "prefixFn": [Function],
+                "tableFieldsOverride": undefined,
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
@@ -1385,6 +1388,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot 1`] = `
                 },
                 "kind": "data-row",
                 "prefixFn": [Function],
+                "tableFieldsOverride": undefined,
               },
               GenericTableSeparator {
                 "kind": "separator",
@@ -1608,6 +1612,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot 1`] = `
                 },
                 "kind": "data-row",
                 "prefixFn": [Function],
+                "tableFieldsOverride": undefined,
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
@@ -1828,6 +1833,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot 1`] = `
                 },
                 "kind": "data-row",
                 "prefixFn": [Function],
+                "tableFieldsOverride": undefined,
               },
               GenericTableSeparator {
                 "kind": "separator",
