@@ -47,12 +47,12 @@ describe("LineupUtils", () => {
       );
       expect(replacementPlayerList).toEqual(
         incOnOff ? [
-          "'REP. ON/OFF' Ayala, Eric",
-          "'REP. ON/OFF' Cowan, Anthony",
-          "'REP. ON/OFF' Morsell, Darryl",
-          "'REP. ON/OFF' Scott, Donta",
-          "'REP. ON/OFF' Smith, Jalen",
-          "'REP. ON/OFF' Wiggins, Aaron",
+          "'r:ON-OFF' Ayala, Eric",
+          "'r:ON-OFF' Cowan, Anthony",
+          "'r:ON-OFF' Morsell, Darryl",
+          "'r:ON-OFF' Scott, Donta",
+          "'r:ON-OFF' Smith, Jalen",
+          "'r:ON-OFF' Wiggins, Aaron",
         ]: []
       );
 
@@ -139,19 +139,19 @@ describe("LineupUtils", () => {
           total_off_fga: { value: 87 },
         }, toFixed)
         ,
-        incOnOff ? {
-          key: "'REP. ON/OFF' Ayala, Eric",
+        incOnOff ? { //(hand-chcked)
+          key: "'r:ON-OFF' Ayala, Eric",
           "off_poss": { "value": "248.043" },
           "def_poss": { "value": "247.033" },
           "off_ppp": { "value": "21.426" },
           "def_ppp": { "value": "9.013" },
           "off_adj_opp": { "value": "-2.057" },
           "def_adj_opp": { "value": "1.288" },
-          "def_2prim": { "value": "0.051" },
+          "def_2prim": { "value": "0.022" },
           "def_2primr": { "value": "-0.043" },
-          "off_orb": { "value": "0.070" },
-          "def_orb": { "value": "-0.024" },
-          "off_ftr": { "value": "0.029" },
+          "off_orb": { "value": "0.071" },
+          "def_orb": { "value": "0.024" },
+          "off_ftr": { "value": "-0.187" },
           "total_off_fga": { "value": "205.680" }
         } : {}
       ]);
@@ -172,11 +172,11 @@ describe("LineupUtils", () => {
       // Check empty lineup:
 
       const emptyReplacementOnOff = _.chain(onOffReport.players).filter((p) => {
-        return p?.replacement?.key == "'REP. ON/OFF' Wiggins, Aaron";
+        return p?.replacement?.key == "'r:ON-OFF' Wiggins, Aaron";
       }).map((p) => p?.replacement || {}).value();
 
       expect(emptyReplacementOnOff).toEqual(incOnOff ? [
-        { key: "'REP. ON/OFF' Wiggins, Aaron" }
+        { key: "'r:ON-OFF' Wiggins, Aaron" }
       ] : []);
 
     });//(end loop over incOnOff)

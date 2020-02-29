@@ -87,6 +87,7 @@ export type GenericTableRow = GenericTableDataRow | GenericTableSeparator | Gene
 export class GenericTableOps {
 
   static readonly defaultFormatter = (val: any) => "" + val;
+  static readonly intFormatter = (val: any) => "" + (val as number).toFixed(0);
   static readonly percentFormatter = (val: any) => ((val as number)*100.0).toFixed(1); //(no % it's too ugly)
   static readonly pointsFormatter = (val: any) => (val as number).toFixed(1);
   static readonly defaultCellMeta = (key: string, value: any) => "";
@@ -119,7 +120,7 @@ export class GenericTableOps {
     return new GenericTableColProps(colName, toolTip, 2, false, GenericTableOps.pointsFormatter, colorPicker, GenericTableOps.defaultRowSpanCalculator, 0);
   }
   static addIntCol(colName: string, toolTip: string, colorPicker: GenericTableColorPickerFn) {
-    return new GenericTableColProps(colName, toolTip, 2, false, GenericTableOps.defaultFormatter, colorPicker, GenericTableOps.defaultRowSpanCalculator, 0);
+    return new GenericTableColProps(colName, toolTip, 2, false, GenericTableOps.intFormatter, colorPicker, GenericTableOps.defaultRowSpanCalculator, 0);
   }
   static addTitle(
     colName: string, toolTip: string,

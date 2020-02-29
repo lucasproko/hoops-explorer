@@ -9,6 +9,8 @@ export class LineupUtils {
 
   /** Adds some logs for the more complex replacement on/off cals */
   private static readonly debugReplacementOnOff = false;
+  private static readonly debugReplacementOnOffPlayer = "PLAYER";
+  private static readonly debugReplacementOnOffMinPoss = 30;
 
   /** Builds on/off info out of lineups */
   static lineupToTeamReport(lineupReport: LineupStatsModel, incReplacement: boolean = false): TeamReportStatsModel {
@@ -41,7 +43,7 @@ export class LineupUtils {
             key: `'OFF' ${playerId}`
           },
           replacement: incReplacement ? {
-            key: `'REP. ON/OFF' ${playerId}`,
+            key: `'r:ON-OFF' ${playerId}`,
             myLineups: _.chain(lineupReport.lineups || []).filter((lineup) => {
               const playersSet = getPlayerSet(lineup);
               return playersSet.hasOwnProperty(playerId);
@@ -98,7 +100,7 @@ export class LineupUtils {
         LineupUtils.completeWeightedAvg(playerObj.off);
       }
       if (incReplacement) {
-        LineupUtils.combineReplacementOnOff(playerObj.replacement);
+        LineupUtils.combineReplacementOnOff(playerObj.replacement, _.keys(playerObj.on));
       }
       return playerObj; // ('ON' exists by construction)
     }).value();
@@ -183,7 +185,7 @@ export class LineupUtils {
     }).value();
   }
   /** Completes the mutable aggregator by dividing by the sum of its weights*/
-  private static completeWeightedAvg(mutableAcc: any) {
+  private static completeWeightedAvg(mutableAcc: any, harmonicWeighting: boolean = false) {
     const weights = LineupUtils.getSimpleWeights(mutableAcc, 1);
     _.chain(mutableAcc).toPairs().forEach((keyVal) => {
       const key = keyVal[0];
@@ -202,9 +204,17 @@ export class LineupUtils {
         } else if (_.startsWith(key, "total_") || LineupUtils.sumFieldSet.hasOwnProperty(key)) {
           //(nothing to do)
         } else if (key == "off_ftr") { // FTR are special case because you can have a FT but 0 FGA
-          mutableAcc[key].value = 1.0*(mutableAcc.total_off_fta?.value || 0.0)/weights.fga_totals.off;
+          if (harmonicWeighting) {
+            mutableAcc[key].value = 1.0*val/weights.fga_totals.off;
+          } else {
+            mutableAcc[key].value = 1.0*(mutableAcc.total_off_fta?.value || 0.0)/weights.fga_totals.off;
+          }
         } else if (key == "def_ftr") {
-          mutableAcc[key].value = 1.0*(mutableAcc.total_def_fta?.value || 0.0)/weights.fga_totals.def;
+          if (harmonicWeighting) {
+            mutableAcc[key].value = 1.0*val/weights.fga_totals.def;
+          } else {
+            mutableAcc[key].value = 1.0*(mutableAcc.total_def_fta?.value || 0.0)/weights.fga_totals.def;
+          }
         } else if (_.startsWith(key, "off_")) { // everything else if off/def FGA
           mutableAcc[key].value = 1.0*val/weights.fga_totals.off;
         } else if (_.startsWith(key, "def_")) {
@@ -239,9 +249,11 @@ export class LineupUtils {
       .size().value() == 4;
 
     if (LineupUtils.debugReplacementOnOff) {
-      console.log(`LineupUtils.isComplementLineup: ` +
-        `For [${player}][${onLineup.key}]: vs [${offLineup.key}]: [${isComplement}]`
-      );
+      if (_.includes(player, LineupUtils.debugReplacementOnOffPlayer)) {
+        console.log(`LineupUtils.isComplementLineup: ` +
+          `For [${player}][${onLineup.key}]: vs [${offLineup.key}]: [${isComplement}]`
+        );
+      }
     }
     return isComplement;
   }
@@ -251,7 +263,20 @@ export class LineupUtils {
   }
 
   /** Combines the deltas between the on/off numbers, weights, and averages */
-  private static combineReplacementOnOff(mutableReplacementObj: any) {
+  private static combineReplacementOnOff(mutableReplacementObj: any, keySource: Array<string>) {
+
+    // Calculate offensive and defensive harmonic means for possessions etc
+    const harmonicWeights = _.chain(keySource).filter((k) => {
+      return _.startsWith(k, "total_") || _.endsWith(k, "_poss");
+    }).map((k) => [k, true]).fromPairs().value();
+
+    const someDebugFields = [
+      "off_poss", "off_ppp",
+      "total_def_3p_attempts", "def_3p",
+      "total_off_orb", "off_orb",
+      "total_off_fga", "total_off_fta", "off_ftr"
+    ];
+
     // x: mutableReplacementObj.myLineups ... a list of lineups
     // x.offLineups the weighted average of the complements
     const weightedLineups = _.chain(mutableReplacementObj.myLineups)
@@ -262,10 +287,12 @@ export class LineupUtils {
         const retain = offLineups?.hasOwnProperty("off_poss")
 
         if (LineupUtils.debugReplacementOnOff && !retain) {
-          console.log(`LineupUtils.combineReplacementOnOff.prefilter: [${mutableReplacementObj.key}]: ` +
-            `Filtering empty on/off lineup: [${myLineup.key}] ` +
-            `(poss=[${myLineup?.off_poss?.value}/${myLineup?.def_poss?.value}//${offLineups?.off_poss?.value}/${offLineups?.def_poss?.value}])`
-          );
+          if (_.includes(mutableReplacementObj.key, LineupUtils.debugReplacementOnOffPlayer)) {
+            console.log(`LineupUtils.combineReplacementOnOff.prefilter: [${mutableReplacementObj.key}]: ` +
+              `Filtering empty on/off lineup: [${myLineup.key}] ` +
+              `(poss=[${myLineup?.off_poss?.value}/${myLineup?.def_poss?.value}//${offLineups?.off_poss?.value}/${offLineups?.def_poss?.value}])`
+            );
+          }
         }
         return retain;
       }).map((myLineup) => {
@@ -273,22 +300,28 @@ export class LineupUtils {
         const offLineups = myLineup.offLineups;
         LineupUtils.completeWeightedAvg(offLineups); //mutates this
 
-        // Calculate offensive and defensive harmonic means for possessions etc
-        const harmonicWeights = {
-          "off_poss": true, "def_poss": true,
-          "total_off_orb": true, "total_def_orb": true,
-          "total_off_fga": true, "total_def_fga": true
-        };
-
         if (LineupUtils.debugReplacementOnOff) {
-          const someFields = [
-            "off_poss", "total_def_fga", "off_ppp", "def_3p"
-          ];
-          console.log(`LineupUtils.combineReplacementOnOff.counts: [${mutableReplacementObj.key}]: ` +
-            `[${myLineup.key}] counts: [${JSON.stringify(_.pick(myLineup, someFields))}] vs `+
-            `[${JSON.stringify(_.pick(offLineups, someFields))}]`
-          );
+          if (_.includes(mutableReplacementObj.key, LineupUtils.debugReplacementOnOffPlayer) &&
+              (myLineup.off_poss.value > LineupUtils.debugReplacementOnOffMinPoss) &&
+              (offLineups.off_poss.value > LineupUtils.debugReplacementOnOffMinPoss)
+          ) {
+            console.log(`LineupUtils.combineReplacementOnOff.counts: [${mutableReplacementObj.key}]: ` +
+              `[${myLineup.key}] counts: [${JSON.stringify(_.pick(myLineup, someDebugFields))}] vs `+
+              `[${JSON.stringify(_.pick(offLineups, someDebugFields))}]`
+            );
+          }
         }
+
+        const calcProtoAdjEff = (mutableStats: any) => {
+          mutableStats.off_adj_ppp = { value: (mutableStats.def_adj_opp?.value) ?
+            (mutableStats.off_ppp.value || 0.0)*(1.0/mutableStats.def_adj_opp.value) : undefined
+          };
+          mutableStats.def_adj_ppp = { value: (mutableStats.off_adj_opp?.value) ?
+            (mutableStats.def_ppp.value || 0.0)*(1.0/mutableStats.off_adj_opp.value) : undefined
+          };
+        };
+        calcProtoAdjEff(myLineup);
+        calcProtoAdjEff(offLineups);
 
         _.keys(harmonicWeights).forEach((key) => {
           if ((myLineup?.[key]?.value > 0) && (offLineups?.[key]?.value > 0)) {
@@ -311,12 +344,13 @@ export class LineupUtils {
         }).value();
 
         if (LineupUtils.debugReplacementOnOff) {
-          const someFields = [
-            "off_poss", "total_def_fga", "off_ppp", "def_3p"
-          ];
-          console.log(`LineupUtils.combineReplacementOnOff.diffs: [${mutableReplacementObj.key}]: ` +
-            `[${myLineup.key}] diffs: [${JSON.stringify(_.pick(myLineup, someFields))}]`
-          );
+          if (_.includes(mutableReplacementObj.key, LineupUtils.debugReplacementOnOffPlayer) &&
+              (myLineup.off_poss.value > LineupUtils.debugReplacementOnOffMinPoss)
+          ) {
+            console.log(`LineupUtils.combineReplacementOnOff.diffs: [${mutableReplacementObj.key}]: ` +
+              `[${myLineup.key}] diffs: [${JSON.stringify(_.pick(myLineup, someDebugFields))}]`
+            );
+          }
         }
 
         return myLineup;
@@ -327,7 +361,7 @@ export class LineupUtils {
     _.chain(weightedLineups || []).transform((acc, lineup) => {
       LineupUtils.weightedAvg(acc, lineup);
     }, mutableReplacementObj).value();
-    LineupUtils.completeWeightedAvg(mutableReplacementObj);
+    LineupUtils.completeWeightedAvg(mutableReplacementObj, true);
   }
 
 };
