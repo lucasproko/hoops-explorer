@@ -81,7 +81,17 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
     onChangeState(newState);
   }, [ sortBy, filterStr, showLineupCompositions ]);
 
-  const teamReport = LineupUtils.lineupToTeamReport(lineupReport, incReplacementOnOff);
+  // (cache this below)
+  const [ teamReport, setTeamReport ] = useState({} as any);
+  const [ playersWithAdjEff, setPlayersWithAdjEff ] = useState([] as Array<any>);
+
+  useEffect(() => { //(this ensures that the filter component is up to date with the union of these fields)
+
+    const tempTeamReport = LineupUtils.lineupToTeamReport(lineupReport, incReplacementOnOff);
+    setTeamReport(tempTeamReport);
+    setPlayersWithAdjEff(withAdjEfficiency(tempTeamReport?.players || []));
+
+  }, [ lineupReport ] ); //TODO + other relevant fields
 
   // 2] Data Model
   const tableFields = { //accessors vs column metadata
@@ -152,6 +162,34 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
     };
   };
 
+  const withAdjEfficiency = (mutablePlayers: Array<any>) => {
+    return _.chain(mutablePlayers).map((player) => {
+        const adjOffDefOn = calcAdjEff(player.on);
+        const adjOffDefOff = calcAdjEff(player.off);
+        //(replacement on/off mutated in when the lineupReport changes)
+        if (player.replacement?.off_adj_ppp?.value) {
+          //these have be calc'd already, just need to incorporate average
+          player.replacement.off_adj_ppp.value *= avgOff;
+        }
+        if (player.replacement?.def_adj_ppp?.value) {
+          player.replacement.def_adj_ppp.value *= avgOff;
+        }
+        return {
+          playerId: player.playerId,
+          on: { ...player.on, ...adjOffDefOn },
+          off: { ...player.off, ...adjOffDefOff },
+          replacement: { ...player.replacement },
+          teammates: player.teammates
+        };
+      } ).value();
+  };
+
+  const playerLineupPowerSet = _.chain(playersWithAdjEff).map((player) => {
+    const onMargin = player.on.off_adj_ppp.value - player.on.def_adj_ppp.value;
+    const offMargin = player.off.off_adj_ppp.value - player.off.def_adj_ppp.value;
+    return [ player.playerId, onMargin - offMargin ];
+  }).fromPairs().value();
+
   /** Handles the various sorting combos */
   const sorter = (sortStr: string) => { // format: (asc|desc):(off_|def_|diff_)<field>:(on|off|delta)
     const sortComps = sortStr.split(":"); //asc/desc
@@ -219,33 +257,6 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
       </span>
     );
   };
-
-  const players = teamReport?.players || [];
-
-  const playersWithAdjEff = _.chain(players).map((player) => {
-      const adjOffDefOn = calcAdjEff(player.on);
-      const adjOffDefOff = calcAdjEff(player.off);
-      if (player.replacement?.off_adj_ppp?.value) {
-        //these have be calc'd already, just need to incorporate average
-        player.replacement.off_adj_ppp.value *= avgOff;
-      }
-      if (player.replacement?.def_adj_ppp?.value) {
-        player.replacement.def_adj_ppp.value *= avgOff;
-      }
-      return {
-        playerId: player.playerId,
-        on: { ...player.on, ...adjOffDefOn },
-        off: { ...player.off, ...adjOffDefOff },
-        replacement: { ...player.replacement },
-        teammates: player.teammates
-      };
-    } ).value();
-
-  const playerLineupPowerSet = _.chain(playersWithAdjEff).map((player) => {
-    const onMargin = player.on.off_adj_ppp.value - player.on.def_adj_ppp.value;
-    const offMargin = player.off.off_adj_ppp.value - player.off.def_adj_ppp.value;
-    return [ player.playerId, onMargin - offMargin ];
-  }).fromPairs().value();
 
   const tableData = _.chain(playersWithAdjEff).filter((player) => {
       const strToTest = player.on.key.substring(5);
