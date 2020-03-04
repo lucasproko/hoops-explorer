@@ -13,7 +13,9 @@ export class LineupUtils {
   private static readonly debugReplacementOnOffMinPoss = 30;
 
   /** Builds on/off info out of lineups */
-  static lineupToTeamReport(lineupReport: LineupStatsModel, incReplacement: boolean = false): TeamReportStatsModel {
+  static lineupToTeamReport(
+    lineupReport: LineupStatsModel, incReplacement: boolean = false, regressDiffs: boolean = false
+  ): TeamReportStatsModel {
     const allPlayersSet = _.chain(lineupReport.lineups || []).reduce((acc: any, lineup: any) => {
       const players = lineup?.players_array?.hits?.hits?.[0]?._source?.players || [];
       return _.mergeWith(
@@ -100,7 +102,7 @@ export class LineupUtils {
         LineupUtils.completeWeightedAvg(playerObj.off);
       }
       if (incReplacement) {
-        LineupUtils.combineReplacementOnOff(playerObj.replacement, _.keys(playerObj.on));
+        LineupUtils.combineReplacementOnOff(playerObj.replacement, _.keys(playerObj.on), regressDiffs);
       }
       return playerObj; // ('ON' exists by construction)
     }).value();
@@ -119,28 +121,42 @@ export class LineupUtils {
     }
   }
 
+  /** For diffs we'll regress the values by approx 1000 possessions */
+  private static readonly regressionWeights = {
+    poss: 1000,
+    orb: 400,
+    fga: 800
+  };
+
   /** Get the weights as a function of the key type (except for shot types) */
-  private static getSimpleWeights(obj: any, defaultVal: number) {
+  private static getSimpleWeights(obj: any, defaultVal: number, regressDiffs: boolean = false) {
+
+    const regress = regressDiffs ? LineupUtils.regressionWeights : {
+      poss: 0,
+      orb: 0,
+      fga: 0
+    };
+
     // ppp, adj_opp (opposite)
     const ppp_totals = {
-      off_ppp: obj.off_poss?.value || defaultVal,
-      def_ppp: obj.def_poss?.value || defaultVal,
-      off_to: obj.off_poss?.value || defaultVal,
-      def_to: obj.def_poss?.value || defaultVal,
-      off_adj_opp: obj.def_poss?.value || defaultVal,
-      def_adj_opp: obj.off_poss?.value || defaultVal,
+      off_ppp: regress.poss + obj.off_poss?.value || defaultVal,
+      def_ppp: regress.poss + obj.def_poss?.value || defaultVal,
+      off_to: regress.poss + obj.off_poss?.value || defaultVal,
+      def_to: regress.poss + obj.def_poss?.value || defaultVal,
+      off_adj_opp: regress.poss + obj.def_poss?.value || defaultVal,
+      def_adj_opp: regress.poss + obj.off_poss?.value || defaultVal,
     };
     // all the shot type %s (not rates, which use FGA):
     // (see totalShotTypeKey below)
     // ORBs
     const orb_totals = {
-      off_orb: (obj.total_off_orb?.value || defaultVal) + (obj.total_def_drb?.value || defaultVal),
-      def_orb: (obj.total_def_orb?.value || defaultVal) + (obj.total_off_drb?.value || defaultVal)
+      off_orb: regress.orb + (obj.total_off_orb?.value || defaultVal) + (obj.total_def_drb?.value || defaultVal),
+      def_orb: regress.orb + (obj.total_def_orb?.value || defaultVal) + (obj.total_off_drb?.value || defaultVal)
     };
     // everything else
     const fga_totals = {
-      off: obj.total_off_fga?.value || defaultVal,
-      def: obj.total_def_fga?.value || defaultVal
+      off: regress.fga + obj.total_off_fga?.value || defaultVal,
+      def: regress.fga + obj.total_def_fga?.value || defaultVal
     };
     return {
       ppp_totals: ppp_totals,
@@ -185,8 +201,11 @@ export class LineupUtils {
     }).value();
   }
   /** Completes the mutable aggregator by dividing by the sum of its weights*/
-  private static completeWeightedAvg(mutableAcc: any, harmonicWeighting: boolean = false) {
-    const weights = LineupUtils.getSimpleWeights(mutableAcc, 1);
+  private static completeWeightedAvg(
+    mutableAcc: any, harmonicWeighting: boolean = false, regressDiffs: boolean = false
+  ) {
+    const weights = LineupUtils.getSimpleWeights(mutableAcc, 1, regressDiffs);
+    const regressionWeights = regressDiffs ? LineupUtils.regressionWeights.fga/3 : 0; //(3P, 2P mid, 2P rim)
     _.chain(mutableAcc).toPairs().forEach((keyVal) => {
       const key = keyVal[0];
       // all the shot type stats:
@@ -196,7 +215,9 @@ export class LineupUtils {
         const val = keyVal[1]?.value || 0;
 
         if (totalShotTypeKey) {
-          mutableAcc[key].value = 1.0*val/(mutableAcc[totalShotTypeKey]?.value || 1);
+          // (2p == 2p rim + 2p mid)
+          const adjRegWeight = _.endsWith(key, "2p") ? regressionWeights*2.0 : regressionWeights;
+          mutableAcc[key].value = 1.0*val/(adjRegWeight + mutableAcc[totalShotTypeKey]?.value || 1);
         } else if (weights.ppp_totals.hasOwnProperty(key)) {
           mutableAcc[key].value = 1.0*val/(weights.ppp_totals as any)[key];
         } else if (weights.orb_totals.hasOwnProperty(key)) {
@@ -263,7 +284,9 @@ export class LineupUtils {
   }
 
   /** Combines the deltas between the on/off numbers, weights, and averages */
-  private static combineReplacementOnOff(mutableReplacementObj: any, keySource: Array<string>) {
+  private static combineReplacementOnOff(
+    mutableReplacementObj: any, keySource: Array<string>, regressDiffs: boolean
+  ) {
 
     // Calculate offensive and defensive harmonic means for possessions etc
     const harmonicWeights = _.chain(keySource).filter((k) => {
@@ -361,7 +384,7 @@ export class LineupUtils {
     _.chain(weightedLineups || []).transform((acc, lineup) => {
       LineupUtils.weightedAvg(acc, lineup);
     }, mutableReplacementObj).value();
-    LineupUtils.completeWeightedAvg(mutableReplacementObj, true);
+    LineupUtils.completeWeightedAvg(mutableReplacementObj, true, regressDiffs);
   }
 
 };

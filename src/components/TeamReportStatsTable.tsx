@@ -58,12 +58,24 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
   const [ tmpFilterStr, setTmpFilterStr ] = useState(filterStr);
 
   // Display options:
-  const [ showLineupCompositions, setShowLineupCompositions ] = useState(
-      _.isNil(startingState.showComps) ? ParamDefaults.defaultShowComps : startingState.showComps
-    );
 
-  //TODO
-  const incReplacementOnOff = true;
+  const [ showOnOff, setShowOnOff ] = useState(
+    _.isNil(startingState.showOnOff) ? ParamDefaults.defaultShowOnOff : startingState.showOnOff
+  );
+
+  const [ showLineupCompositions, setShowLineupCompositions ] = useState(
+    _.isNil(startingState.showComps) ? ParamDefaults.defaultShowComps : startingState.showComps
+  );
+
+  const [ incReplacementOnOff, setIncReplacementOnOff ] = useState(
+    _.isNil(startingState.incRepOnOff) ? ParamDefaults.defaultTeamReportIncRepOnOff : startingState.incRepOnOff
+  );
+
+  const [ regressDiffs, setRegressDiffs ] = useState(
+    _.isNil(startingState.regressDiffs) ? ParamDefaults.defaultTeamReportRegressDiffs : startingState.regressDiffs
+  );
+
+  //TODO: add regression
 
   const filterFragments =
     filterStr.split(",").map(fragment => _.trim(fragment)).filter(fragment => fragment ? true : false);
@@ -76,10 +88,13 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
     const newState = _.merge(startingState, {
       sortBy: sortBy,
       filter: filterStr,
-      showComps: showLineupCompositions
+      showOnOff: showOnOff,
+      showComps: showLineupCompositions,
+      incRepOnOff: incReplacementOnOff,
+      regressDiffs: regressDiffs
     });
     onChangeState(newState);
-  }, [ sortBy, filterStr, showLineupCompositions ]);
+  }, [ sortBy, filterStr, showOnOff, showLineupCompositions, incReplacementOnOff, regressDiffs ]);
 
   // (cache this below)
   const [ teamReport, setTeamReport ] = useState({} as any);
@@ -87,11 +102,11 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
 
   useEffect(() => { //(this ensures that the filter component is up to date with the union of these fields)
 
-    const tempTeamReport = LineupUtils.lineupToTeamReport(lineupReport, incReplacementOnOff);
+    const tempTeamReport = LineupUtils.lineupToTeamReport(lineupReport, incReplacementOnOff, regressDiffs);
     setTeamReport(tempTeamReport);
     setPlayersWithAdjEff(withAdjEfficiency(tempTeamReport?.players || []));
 
-  }, [ lineupReport ] ); //TODO + other relevant fields
+  }, [ lineupReport, incReplacementOnOff, regressDiffs ] );
 
   // 2] Data Model
   const tableFields = { //accessors vs column metadata
@@ -185,6 +200,9 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
   };
 
   const playerLineupPowerSet = _.chain(playersWithAdjEff).map((player) => {
+
+    //TODO: if using replacement on/off then use that
+    
     const onMargin = player.on.off_adj_ppp.value - player.on.def_adj_ppp.value;
     const offMargin = player.off.off_adj_ppp.value - player.off.def_adj_ppp.value;
     return [ player.playerId, onMargin - offMargin ];
@@ -288,13 +306,13 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
         { off_title: player.replacement?.key + repSuffix, def_title: "", ...player?.replacement }: "";
 
       return _.flatten([
-        [
+        showOnOff ? [
           GenericTableOps.buildDataRow(statsOn, offPrefixFn, offCellMetaFn),
           GenericTableOps.buildDataRow(statsOn, defPrefixFn, defCellMetaFn),
           GenericTableOps.buildDataRow(statsOff, offPrefixFn, offCellMetaFn),
           GenericTableOps.buildDataRow(statsOff, defPrefixFn, defCellMetaFn),
-        ],
-        incReplacementOnOff ? [
+        ] : [],
+        incReplacementOnOff && (player?.replacement?.key) ? [
           GenericTableOps.buildDataRow(statsReplacement, offPrefixFn, offCellMetaFn, replacementTableFields),
           GenericTableOps.buildDataRow(statsReplacement, defPrefixFn, defCellMetaFn, replacementTableFields)
         ] : [],
@@ -446,6 +464,27 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
               <FontAwesomeIcon icon={faCog} />
             </Dropdown.Toggle>
             <Dropdown.Menu>
+              <Dropdown.Item as={Button}>
+                <div onClick={() => setShowOnOff(!showOnOff)}>
+                  <span>Show on/off statistics</span>
+                  <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                  {showOnOff ? <FontAwesomeIcon icon={faCheck}/> : null}
+                </div>
+              </Dropdown.Item>
+              <Dropdown.Item as={Button}>
+                <div onClick={() => setIncReplacementOnOff(!incReplacementOnOff)}>
+                  <span>Show replacement on/off</span>
+                  <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                  {incReplacementOnOff ? <FontAwesomeIcon icon={faCheck}/> : null}
+                </div>
+              </Dropdown.Item>
+              <Dropdown.Item as={Button}>
+                <div onClick={() => setRegressDiffs(!regressDiffs)}>
+                  <span>Regress on-off statistics</span>
+                  <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                  {regressDiffs ? <FontAwesomeIcon icon={faCheck}/> : null}
+                </div>
+              </Dropdown.Item>
               <Dropdown.Item as={Button}>
                 <div onClick={() => setShowLineupCompositions(!showLineupCompositions)}>
                   <span>Show lineup compositions</span>

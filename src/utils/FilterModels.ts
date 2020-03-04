@@ -47,7 +47,10 @@ export type TeamReportFilterParams = {
   sortBy?: string,
   // Filtering:
   filter?: string,
-  showComps?: boolean
+  showOnOff?: boolean,
+  showComps?: boolean,
+  incRepOnOff?: boolean,
+  regressDiffs?: boolean
 };
 
 /** Used to give compile errors if a field is omitted, for fw compat */
@@ -68,7 +71,10 @@ export class ParamDefaults {
   // Report
   static readonly defaultTeamReportSortBy = "desc:off_poss:on";
   static readonly defaultTeamReportFilter = "";
+  static readonly defaultShowOnOff = true;
   static readonly defaultShowComps = true;
+  static readonly defaultTeamReportIncRepOnOff = false;
+  static readonly defaultTeamReportRegressDiffs = true;
   // Common
   static readonly defaultTeam = "";
   static readonly defaultYear = "2019/20";
