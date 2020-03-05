@@ -29,6 +29,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot 1`] 
           </InputGroupPrepend>
           <FormControl
             onChange={[Function]}
+            onKeyUp={[Function]}
             placeholder="eg Player1Surname,Player2FirstName,-Player3Name"
             value=""
           />
@@ -1294,7 +1295,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot 1`] 
                 onClick={[Function]}
               >
                 <span>
-                  Show replacement on/off
+                  Show replacement on-off
                 </span>
                 <span>
                       

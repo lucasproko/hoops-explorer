@@ -202,12 +202,13 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
   };
 
   const playerLineupPowerSet = _.chain(playersWithAdjEff).map((player) => {
-
-    //TODO: if using replacement on/off then use that
-
-    const onMargin = player.on.off_adj_ppp.value - player.on.def_adj_ppp.value;
-    const offMargin = player.off.off_adj_ppp.value - player.off.def_adj_ppp.value;
-    return [ player.playerId, onMargin - offMargin ];
+    if (incReplacementOnOff && player.replacement.key) {
+      return [ player.playerId, player.replacement.off_adj_ppp.value - player.replacement.def_adj_ppp.value ];
+    } else {
+      const onMargin = player.on.off_adj_ppp.value - player.on.def_adj_ppp.value;
+      const offMargin = player.off.off_adj_ppp.value - player.off.def_adj_ppp.value;
+      return [ player.playerId, onMargin - offMargin ];
+    }
   }).fromPairs().value();
 
   /** Handles the various sorting combos */
@@ -229,6 +230,7 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
       switch(sortComps[2]) {
         case "on": return [ playerSet.on ];
         case "off": return [ playerSet.off ];
+        case "rep": return [ playerSet.replacement ];
         case "delta": return [ playerSet.on, playerSet.off ];
         default: return [ 0 ];
       }
@@ -242,7 +244,6 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
       }
     };
   };
-  //TODO: add additional sorting field for replacement
 
   /** Builds lineup composition info */
   const buildLineupInfo = (playerObj: Record<string, any>) => {
@@ -273,7 +274,7 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
           </span>;
       }).value(),
       <span key="last">
-        <b>Lineup power:</b> [{lineupPower.toFixed(1)}]
+        <b>Lineup rating:</b> [{lineupPower.toFixed(1)}]
       </span>
     );
   };
@@ -334,14 +335,19 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
         return [
           ["desc","off"], ["asc","off"], ["desc","def"], ["asc","def"], ["desc","diff"], ["asc","diff"]
         ].flatMap(sort_offDef => {
-            return ["on", "off", "delta"].map(onOff => {
-              return [ ...sort_offDef, onOff ];
-            }); // eg [ [ desc, off, on ], [ desc, off, off ], [ desc, off, delta ] ]
+          const onOffCombos = _.flatMap([
+            showOnOff || showLineupCompositions ? ["on", "off", "delta"] : [],
+            incReplacementOnOff ? ["rep"] : []
+          ]);
+          return onOffCombos.map(onOff => {
+            return [ ...sort_offDef, onOff ];
+          }); // eg [ [ desc, off, on ], [ desc, off, off ], [ desc, off, delta ] ]
         }).map(combo => {
           const onOrOff = (s: string) => { switch(s) {
             case "on": return "'ON'";
             case "off": return "'OFF'";
             case "delta": return "'ON'-'OFF'";
+            case "rep": return "'REP.+-'";
           }}
           const ascOrDesc = (s: string) => { switch(s) {
             case "asc": return "Asc.";
@@ -363,14 +369,22 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
     sortOptions.map(opt => [opt.value, opt])
   );
   /** Put these options at the front */
-  const mostUsefulSubset = [
-    "desc:off_poss:on", "desc:off_poss:off",
-    "desc:diff_adj_ppp:delta",
-    "desc:diff_adj_ppp:on",
-    "desc:diff_adj_ppp:off",
-    "desc:off_adj_ppp:delta",
-    "asc:def_adj_ppp:delta",
-  ];
+  const mostUsefulSubset = _.flatMap([
+    showOnOff || showLineupCompositions ? [
+      "desc:off_poss:on", "desc:off_poss:off",
+      "desc:diff_adj_ppp:delta",
+      "desc:diff_adj_ppp:on",
+      "desc:diff_adj_ppp:off",
+      "desc:off_adj_ppp:delta",
+      "asc:def_adj_ppp:delta"
+    ] : [],
+    incReplacementOnOff ? [
+      "desc:off_poss:rep",
+      "desc:diff_adj_ppp:rep",
+      "desc:off_adj_ppp:rep",
+      "asc:def_adj_ppp:rep"
+    ] : []
+  ]);
   /** The two sub-headers for the dropdown */
   const groupedOptions = [
     {
@@ -413,6 +427,18 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
     return sortOptionsByValue[s];
   }
 
+  /** Handling filter change (/key presses to fix the select/delete on page load) */
+  const onFilterChange = (ev: any) => {
+    const toSet = ev.target.value;
+    setTmpFilterStr(toSet);
+    if (timeoutId != -1) {
+      window.clearTimeout(timeoutId);
+    }
+    setTimeoutId(window.setTimeout(() => {
+      setFilterStr(toSet);
+    }, 100));
+  };
+
   // 4] View
   return <Container>
     <LoadingOverlay
@@ -429,16 +455,8 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
               <InputGroup.Text id="filter">Filter</InputGroup.Text>
             </InputGroup.Prepend>
             <Form.Control
-              onChange={(ev: any) => {
-                const toSet = ev.target.value;
-                setTmpFilterStr(toSet);
-                if (timeoutId != -1) {
-                  window.clearTimeout(timeoutId);
-                }
-                setTimeoutId(window.setTimeout(() => {
-                  setFilterStr(toSet);
-                }, 100));
-              }}
+              onKeyUp={onFilterChange}
+              onChange={onFilterChange}
               placeholder = "eg Player1Surname,Player2FirstName,-Player3Name"
               value={tmpFilterStr}
             />
@@ -475,7 +493,7 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
               </Dropdown.Item>
               <Dropdown.Item as={Button}>
                 <div onClick={() => setIncReplacementOnOff(!incReplacementOnOff)}>
-                  <span>Show replacement on/off</span>
+                  <span>Show replacement on-off</span>
                   <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
                   {incReplacementOnOff ? <FontAwesomeIcon icon={faCheck}/> : null}
                 </div>
