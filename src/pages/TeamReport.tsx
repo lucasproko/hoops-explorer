@@ -98,6 +98,8 @@ const TeamReportPage: NextPage<{}> = () => {
   ) as GameFilterParams;
   //TODO (in the || case, pull common params from gameFilterParams)
 
+//TODO: get help link right
+
   return <Container>
     <Row>
     <Col xs={8}>
@@ -128,7 +130,7 @@ const TeamReportPage: NextPage<{}> = () => {
       </GenericCollapsibleCard>
     </Row>
     <Row>
-      <GenericCollapsibleCard title="Team Analysis">
+      <GenericCollapsibleCard title="Team Analysis" helpLink="/#">
         <TeamReportStatsTable
           lineupReport={teamReportStats}
           startingState={teamReportFilterParams}

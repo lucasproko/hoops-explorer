@@ -13,14 +13,20 @@ import Container from 'react-bootstrap/Container';
 type Props = {
   readonly title: string
   readonly summary?: string
+  readonly helpLink?: string
 }
 
-const GenericCollapsibleCard: React.FunctionComponent<Props> = ({children, title, summary}) => {
+const GenericCollapsibleCard: React.FunctionComponent<Props> = ({children, title, summary, helpLink}) => {
   const [ showTable, toggleShowTable ] = useState(true)
 
   const showSummaryIfHidden = () => {
     if (!showTable && summary) {
       return <div className="">{summary}</div>;
+    }
+  }
+  const optionalHelpLink = () => {
+    if (helpLink ) {
+      return <span className="float-right"><a href={helpLink}><small>(?)</small></a></span>;
     }
   }
 
@@ -30,6 +36,7 @@ const GenericCollapsibleCard: React.FunctionComponent<Props> = ({children, title
         <span><a href="#" onClick={() => { toggleShowTable(!showTable); return false } }>
           ({showTable ? "+" : "-"}) {title}
         </a></span>
+        {optionalHelpLink()}
       </Card.Title>
       {showSummaryIfHidden()}
       <Collapse in={showTable}>
