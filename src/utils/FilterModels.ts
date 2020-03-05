@@ -50,7 +50,7 @@ export type TeamReportFilterParams = {
   showOnOff?: boolean,
   showComps?: boolean,
   incRepOnOff?: boolean,
-  regressDiffs?: boolean
+  regressDiffs?: string //+ve to add that number of 0 samples, -ve to regress to the given sample size
 };
 
 /** Used to give compile errors if a field is omitted, for fw compat */
@@ -74,7 +74,7 @@ export class ParamDefaults {
   static readonly defaultShowOnOff = true;
   static readonly defaultShowComps = true;
   static readonly defaultTeamReportIncRepOnOff = false;
-  static readonly defaultTeamReportRegressDiffs = true;
+  static readonly defaultTeamReportRegressDiffs = "-2000";
   // Common
   static readonly defaultTeam = "";
   static readonly defaultYear = "2019/20";

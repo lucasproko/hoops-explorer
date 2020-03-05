@@ -14,7 +14,7 @@ export class LineupUtils {
 
   /** Builds on/off info out of lineups */
   static lineupToTeamReport(
-    lineupReport: LineupStatsModel, incReplacement: boolean = false, regressDiffs: boolean = false
+    lineupReport: LineupStatsModel, incReplacement: boolean = false, regressDiffs: number = 0
   ): TeamReportStatsModel {
     const allPlayersSet = _.chain(lineupReport.lineups || []).reduce((acc: any, lineup: any) => {
       const players = lineup?.players_array?.hits?.hits?.[0]?._source?.players || [];
@@ -122,46 +122,51 @@ export class LineupUtils {
   }
 
   /** For diffs we'll regress the values by approx 1000 possessions */
-  private static readonly regressionWeights = {
-    poss: 1000,
-    orb: 400,
-    fga: 800
+  private static regressionWeights = (regress: number, poss: number) => {
+    const usePoss = regress < 0 ? (_.max([0, -regress - poss]) || 0) : regress;
+    return {
+      poss: usePoss,
+      orb: 0.4*usePoss, //(eg 50% of fga are missed)
+      fga: 0.8*usePoss //(eg 20% end in TOs/FTs)
+    }
   };
 
   /** Get the weights as a function of the key type (except for shot types) */
-  private static getSimpleWeights(obj: any, defaultVal: number, regressDiffs: boolean = false) {
-
-    const regress = regressDiffs ? LineupUtils.regressionWeights : {
-      poss: 0,
-      orb: 0,
-      fga: 0
-    };
+  private static getSimpleWeights(
+    obj: any, defaultVal: number, regressDiffs: number = 0
+  ) {
+    const offRegress = LineupUtils.regressionWeights(regressDiffs, obj.off_poss?.value || defaultVal);
+    const defRegress = LineupUtils.regressionWeights(regressDiffs, obj.def_poss?.value || defaultVal);
 
     // ppp, adj_opp (opposite)
     const ppp_totals = {
-      off_ppp: regress.poss + obj.off_poss?.value || defaultVal,
-      def_ppp: regress.poss + obj.def_poss?.value || defaultVal,
-      off_to: regress.poss + obj.off_poss?.value || defaultVal,
-      def_to: regress.poss + obj.def_poss?.value || defaultVal,
-      off_adj_opp: regress.poss + obj.def_poss?.value || defaultVal,
-      def_adj_opp: regress.poss + obj.off_poss?.value || defaultVal,
+      off_ppp: offRegress.poss + obj.off_poss?.value || defaultVal,
+      def_ppp: defRegress.poss + obj.def_poss?.value || defaultVal,
+      off_to: offRegress.poss + obj.off_poss?.value || defaultVal,
+      def_to: defRegress.poss + obj.def_poss?.value || defaultVal,
+      off_adj_opp: offRegress.poss + obj.def_poss?.value || defaultVal,
+      def_adj_opp: defRegress.poss + obj.off_poss?.value || defaultVal,
     };
     // all the shot type %s (not rates, which use FGA):
     // (see totalShotTypeKey below)
     // ORBs
     const orb_totals = {
-      off_orb: regress.orb + (obj.total_off_orb?.value || defaultVal) + (obj.total_def_drb?.value || defaultVal),
-      def_orb: regress.orb + (obj.total_def_orb?.value || defaultVal) + (obj.total_off_drb?.value || defaultVal)
+      off_orb: offRegress.orb + (obj.total_off_orb?.value || defaultVal) + (obj.total_def_drb?.value || defaultVal),
+      def_orb: defRegress.orb + (obj.total_def_orb?.value || defaultVal) + (obj.total_off_drb?.value || defaultVal)
     };
     // everything else
     const fga_totals = {
-      off: regress.fga + obj.total_off_fga?.value || defaultVal,
-      def: regress.fga + obj.total_def_fga?.value || defaultVal
+      off: offRegress.fga + obj.total_off_fga?.value || defaultVal,
+      def: defRegress.fga + obj.total_def_fga?.value || defaultVal
     };
     return {
       ppp_totals: ppp_totals,
       orb_totals: orb_totals,
-      fga_totals: fga_totals
+      fga_totals: fga_totals,
+      regress: {
+        off: offRegress,
+        def: defRegress
+      }
     };
   }
 
@@ -202,10 +207,10 @@ export class LineupUtils {
   }
   /** Completes the mutable aggregator by dividing by the sum of its weights*/
   private static completeWeightedAvg(
-    mutableAcc: any, harmonicWeighting: boolean = false, regressDiffs: boolean = false
+    mutableAcc: any, harmonicWeighting: boolean = false, regressDiffs: number = 0
   ) {
     const weights = LineupUtils.getSimpleWeights(mutableAcc, 1, regressDiffs);
-    const regressionWeights = regressDiffs ? LineupUtils.regressionWeights.fga/3 : 0; //(3P, 2P mid, 2P rim)
+
     _.chain(mutableAcc).toPairs().forEach((keyVal) => {
       const key = keyVal[0];
       // all the shot type stats:
@@ -215,8 +220,11 @@ export class LineupUtils {
         const val = keyVal[1]?.value || 0;
 
         if (totalShotTypeKey) {
-          // (2p == 2p rim + 2p mid)
-          const adjRegWeight = _.endsWith(key, "2p") ? regressionWeights*2.0 : regressionWeights;
+          const offOrDefWeight = _.startsWith(key, "off_") ?
+            weights.regress.off.fga : weights.regress.def.fga;
+            //(3P, 2P mid, 2P rim == 1/3rd each, 2p == 2p rim + 2p mid so 2/3s)
+          const adjRegWeight = _.endsWith(key, "2p") ? offOrDefWeight*2.0/3 : offOrDefWeight/3;
+
           mutableAcc[key].value = 1.0*val/(adjRegWeight + mutableAcc[totalShotTypeKey]?.value || 1);
         } else if (weights.ppp_totals.hasOwnProperty(key)) {
           mutableAcc[key].value = 1.0*val/(weights.ppp_totals as any)[key];
@@ -285,7 +293,7 @@ export class LineupUtils {
 
   /** Combines the deltas between the on/off numbers, weights, and averages */
   private static combineReplacementOnOff(
-    mutableReplacementObj: any, keySource: Array<string>, regressDiffs: boolean
+    mutableReplacementObj: any, keySource: Array<string>, regressDiffs: number = 0
   ) {
 
     // Calculate offensive and defensive harmonic means for possessions etc

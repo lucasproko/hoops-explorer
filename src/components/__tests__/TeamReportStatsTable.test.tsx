@@ -9,8 +9,6 @@ import toJson from 'enzyme-to-json'
 
 describe("TeamReportStatsTable", () => {
   test("TeamReportStatsTable - should create snapshot", () => {
-    const onPlayer = "'ON' Ayala, Eric";
-    const offPlayer = "'OFF' Ayala, Eric";
     const testData = {
       lineups: sampleLineupStatsResponse.responses[0].aggregations.lineups.buckets
     };
