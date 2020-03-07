@@ -35,7 +35,10 @@ const TeamReportFilter: React.FunctionComponent<Props> = ({onStats, startingStat
   const {
     sortBy: startSortBy,
     filter: startFilter,
+    showOnOff: startShowOnOff,
     showComps: startShowComps,
+    incRepOnOff: startIncRepOnOff,
+    regressDiffs: startingRegressDiffs,
     ...startingCommonFilterParams
   } = startingState;
 
@@ -62,7 +65,10 @@ const TeamReportFilter: React.FunctionComponent<Props> = ({onStats, startingStat
       buildParamsFromState(false), {
         sortBy: startSortBy,
         filter: startFilter,
+        showOnOff: startShowOnOff,
         showComps: startShowComps,
+        incRepOnOff: startIncRepOnOff,
+        regressDiffs: startingRegressDiffs,
     }) : {
       ...commonParams
     };

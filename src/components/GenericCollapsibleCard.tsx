@@ -26,7 +26,7 @@ const GenericCollapsibleCard: React.FunctionComponent<Props> = ({children, title
   }
   const optionalHelpLink = () => {
     if (helpLink ) {
-      return <span className="float-right"><a href={helpLink}><small>(?)</small></a></span>;
+      return <span className="float-right"><a target="_blank" href={helpLink}><small>(?)</small></a></span>;
     }
   }
 
