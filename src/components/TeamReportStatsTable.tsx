@@ -58,9 +58,26 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
   const [ tmpFilterStr, setTmpFilterStr ] = useState(filterStr);
 
   // Display options:
+
+  const [ showOnOff, setShowOnOff ] = useState(
+    _.isNil(startingState.showOnOff) ? ParamDefaults.defaultShowOnOff : startingState.showOnOff
+  );
+
   const [ showLineupCompositions, setShowLineupCompositions ] = useState(
-      _.isNil(startingState.showComps) ? ParamDefaults.defaultShowComps : startingState.showComps
-    );
+    _.isNil(startingState.showComps) ? ParamDefaults.defaultShowComps : startingState.showComps
+  );
+
+  const [ incReplacementOnOff, setIncReplacementOnOff ] = useState(
+    _.isNil(startingState.incRepOnOff) ? ParamDefaults.defaultTeamReportIncRepOnOff : startingState.incRepOnOff
+  );
+
+  const [ regressDiffs, setRegressDiffs ] = useState(
+    parseInt(_.isNil(startingState.regressDiffs) ? ParamDefaults.defaultTeamReportRegressDiffs : startingState.regressDiffs)
+  );
+  //(this won't change unless the page is reloaded)
+  const [ startingRegressDiffs, setStartingRegressDiffs_UNUSED ] = useState(
+    parseInt(_.isNil(startingState.regressDiffs) ? ParamDefaults.defaultTeamReportRegressDiffs : startingState.regressDiffs)
+  );
 
   const filterFragments =
     filterStr.split(",").map(fragment => _.trim(fragment)).filter(fragment => fragment ? true : false);
@@ -73,12 +90,25 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
     const newState = _.merge(startingState, {
       sortBy: sortBy,
       filter: filterStr,
-      showComps: showLineupCompositions
+      showOnOff: showOnOff,
+      showComps: showLineupCompositions,
+      incRepOnOff: incReplacementOnOff,
+      regressDiffs: regressDiffs.toString()
     });
     onChangeState(newState);
-  }, [ sortBy, filterStr, showLineupCompositions ]);
+  }, [ sortBy, filterStr, showOnOff, showLineupCompositions, incReplacementOnOff, regressDiffs ]);
 
-  const teamReport = LineupUtils.lineupToTeamReport(lineupReport);
+  // (cache this below)
+  const [ teamReport, setTeamReport ] = useState({} as any);
+  const [ playersWithAdjEff, setPlayersWithAdjEff ] = useState([] as Array<any>);
+
+  useEffect(() => { //(this ensures that the filter component is up to date with the union of these fields)
+
+    const tempTeamReport = LineupUtils.lineupToTeamReport(lineupReport, incReplacementOnOff, regressDiffs);
+    setTeamReport(tempTeamReport);
+    setPlayersWithAdjEff(withAdjEfficiency(tempTeamReport?.players || []));
+
+  }, [ lineupReport, incReplacementOnOff, regressDiffs ] );
 
   // 2] Data Model
   const tableFields = { //accessors vs column metadata
@@ -100,6 +130,29 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
     "2p": GenericTableOps.addPctCol("2P%", "2 point field goal percentage", picker(...CbbColors.fg2P)),
     "2pmid": GenericTableOps.addPctCol("2P% mid", "2 point field goal percentage (mid range)", picker(...CbbColors.fg2P_mid)),
     "2prim": GenericTableOps.addPctCol("2P% rim", "2 point field goal percentage (layup/dunk/etc)", picker(...CbbColors.fg2P_rim)),
+    "sep4": GenericTableOps.addColSeparator(),
+    "poss": GenericTableOps.addIntCol("Poss", "Total number of possessions for selected lineups", GenericTableOps.defaultColorPicker),
+    "adj_opp": GenericTableOps.addPtsCol("SoS", "Weighted average of the offensive or defensive efficiencies of the lineups' opponents", GenericTableOps.defaultColorPicker),
+  };
+  const replacementTableFields = { //accessors vs column metadata
+    "title": GenericTableOps.addTitle("", "", rowSpanCalculator, "small"),
+    "sep0": GenericTableOps.addColSeparator(),
+    "ppp": GenericTableOps.addPtsCol("P/100", "Points per 100 possessions", picker(...CbbColors.diff10_p100_redGreen)),
+    "adj_ppp": GenericTableOps.addPtsCol("Adj P/100", "Approximate schedule-adjusted Points per 100 possessions", picker(...CbbColors.diff10_p100_redGreen)),
+    "sep1": GenericTableOps.addColSeparator(),
+    "efg": GenericTableOps.addPctCol("eFG%", "Effective field goal% (3 pointers count 1.5x as much) for selected lineups", picker(...CbbColors.diff10_redGreen)),
+    "to": GenericTableOps.addPctCol("TO%", "Turnover % for selected lineups", picker(...CbbColors.diff10_greenRed)),
+    "orb": GenericTableOps.addPctCol("ORB%", "Offensive rebounding % for selected lineups", picker(...CbbColors.diff10_redGreen)),
+    "ftr": GenericTableOps.addPctCol("FTR", "Free throw rate for selected lineups", picker(...CbbColors.diff10_redGreen)),
+    "sep2": GenericTableOps.addColSeparator(),
+    "3pr": GenericTableOps.addPctCol("3PR", "Percentage of 3 pointers taken against all field goals", picker(...CbbColors.diff10_blueOrange)),
+    "2pmidr": GenericTableOps.addPctCol("2PR mid", "Percentage of mid range 2 pointers taken against all field goals", picker(...CbbColors.diff10_blueOrange)),
+    "2primr": GenericTableOps.addPctCol("2PR rim", "Percentage of layup/dunk/etc 2 pointers taken against all field goals", picker(...CbbColors.diff10_blueOrange)),
+    "sep3": GenericTableOps.addColSeparator(),
+    "3p": GenericTableOps.addPctCol("3P%", "3 point field goal percentage", picker(...CbbColors.diff10_redGreen)),
+    "2p": GenericTableOps.addPctCol("2P%", "2 point field goal percentage", picker(...CbbColors.diff10_redGreen)),
+    "2pmid": GenericTableOps.addPctCol("2P% mid", "2 point field goal percentage (mid range)", picker(...CbbColors.diff10_redGreen)),
+    "2prim": GenericTableOps.addPctCol("2P% rim", "2 point field goal percentage (layup/dunk/etc)", picker(...CbbColors.diff10_redGreen)),
     "sep4": GenericTableOps.addColSeparator(),
     "poss": GenericTableOps.addIntCol("Poss", "Total number of possessions for selected lineups", GenericTableOps.defaultColorPicker),
     "adj_opp": GenericTableOps.addPtsCol("SoS", "Weighted average of the offensive or defensive efficiencies of the lineups' opponents", GenericTableOps.defaultColorPicker),
@@ -126,6 +179,38 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
     };
   };
 
+  const withAdjEfficiency = (mutablePlayers: Array<any>) => {
+    return _.chain(mutablePlayers).map((player) => {
+        const adjOffDefOn = calcAdjEff(player.on);
+        const adjOffDefOff = calcAdjEff(player.off);
+        //(replacement on/off mutated in when the lineupReport changes)
+        if (player.replacement?.off_adj_ppp?.value) {
+          //these have be calc'd already, just need to incorporate average
+          player.replacement.off_adj_ppp.value *= avgOff;
+        }
+        if (player.replacement?.def_adj_ppp?.value) {
+          player.replacement.def_adj_ppp.value *= avgOff;
+        }
+        return {
+          playerId: player.playerId,
+          on: { ...player.on, ...adjOffDefOn },
+          off: { ...player.off, ...adjOffDefOff },
+          replacement: { ...player.replacement },
+          teammates: player.teammates
+        };
+      } ).value();
+  };
+
+  const playerLineupPowerSet = _.chain(playersWithAdjEff).map((player) => {
+    if (incReplacementOnOff && player.replacement.key) {
+      return [ player.playerId, player.replacement.off_adj_ppp.value - player.replacement.def_adj_ppp.value ];
+    } else {
+      const onMargin = player.on.off_adj_ppp.value - player.on.def_adj_ppp.value;
+      const offMargin = player.off.off_adj_ppp.value - player.off.def_adj_ppp.value;
+      return [ player.playerId, onMargin - offMargin ];
+    }
+  }).fromPairs().value();
+
   /** Handles the various sorting combos */
   const sorter = (sortStr: string) => { // format: (asc|desc):(off_|def_|diff_)<field>:(on|off|delta)
     const sortComps = sortStr.split(":"); //asc/desc
@@ -145,6 +230,7 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
       switch(sortComps[2]) {
         case "on": return [ playerSet.on ];
         case "off": return [ playerSet.off ];
+        case "rep": return [ playerSet.replacement ];
         case "delta": return [ playerSet.on, playerSet.off ];
         default: return [ 0 ];
       }
@@ -188,28 +274,10 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
           </span>;
       }).value(),
       <span key="last">
-        <b>Lineup power:</b> [{lineupPower.toFixed(1)}]
+        <b>Lineup rating:</b> [{lineupPower.toFixed(1)}]
       </span>
     );
   };
-
-  const players = teamReport?.players || [];
-
-  const playersWithAdjEff = _.chain(players).map((player) => {
-      const adjOffDefOn = calcAdjEff(player.on);
-      const adjOffDefOff = calcAdjEff(player.off);
-      return {
-        playerId: player.playerId,
-        on: { ...player.on, ...adjOffDefOn }, off: { ...player.off, ...adjOffDefOff },
-        teammates: player.teammates
-      };
-    } ).value();
-
-  const playerLineupPowerSet = _.chain(playersWithAdjEff).map((player) => {
-    const onMargin = player.on.off_adj_ppp.value - player.on.def_adj_ppp.value;
-    const offMargin = player.off.off_adj_ppp.value - player.off.def_adj_ppp.value;
-    return [ player.playerId, onMargin - offMargin ];
-  }).fromPairs().value();
 
   const tableData = _.chain(playersWithAdjEff).filter((player) => {
       const strToTest = player.on.key.substring(5);
@@ -232,13 +300,25 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
       const offSuffix = `\nPoss: [${onPoss.toFixed(0)}]% v [${offPoss.toFixed(0)}]%`;
       const statsOn = { off_title: player.on.key + onSuffix, def_title: "", ...player.on };
       const statsOff = { off_title: player.off.key + offSuffix, def_title: "", ...player.off };
+
+      const replacementMargin = incReplacementOnOff ?
+        player.replacement?.off_adj_ppp?.value - player.replacement?.def_adj_ppp?.value : 0.0;
+      const repSuffix = `\nAdj: [${replacementMargin.toFixed(1)}]`;
+
+      const statsReplacement = incReplacementOnOff ?
+        { off_title: player.replacement?.key + repSuffix, def_title: "", ...player?.replacement }: "";
+
       return _.flatten([
-        [
+        showOnOff ? [
           GenericTableOps.buildDataRow(statsOn, offPrefixFn, offCellMetaFn),
           GenericTableOps.buildDataRow(statsOn, defPrefixFn, defCellMetaFn),
           GenericTableOps.buildDataRow(statsOff, offPrefixFn, offCellMetaFn),
           GenericTableOps.buildDataRow(statsOff, defPrefixFn, defCellMetaFn),
-        ],
+        ] : [],
+        incReplacementOnOff && (player?.replacement?.key) ? [
+          GenericTableOps.buildDataRow(statsReplacement, offPrefixFn, offCellMetaFn, replacementTableFields),
+          GenericTableOps.buildDataRow(statsReplacement, defPrefixFn, defCellMetaFn, replacementTableFields)
+        ] : [],
         showLineupCompositions ? [ GenericTableOps.buildTextRow(
           buildLineupInfo(player), "small"
         ) ] : [],
@@ -255,14 +335,19 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
         return [
           ["desc","off"], ["asc","off"], ["desc","def"], ["asc","def"], ["desc","diff"], ["asc","diff"]
         ].flatMap(sort_offDef => {
-            return ["on", "off", "delta"].map(onOff => {
-              return [ ...sort_offDef, onOff ];
-            }); // eg [ [ desc, off, on ], [ desc, off, off ], [ desc, off, delta ] ]
+          const onOffCombos = _.flatMap([
+            showOnOff || showLineupCompositions ? ["on", "off", "delta"] : [],
+            incReplacementOnOff ? ["rep"] : []
+          ]);
+          return onOffCombos.map(onOff => {
+            return [ ...sort_offDef, onOff ];
+          }); // eg [ [ desc, off, on ], [ desc, off, off ], [ desc, off, delta ] ]
         }).map(combo => {
           const onOrOff = (s: string) => { switch(s) {
             case "on": return "'ON'";
             case "off": return "'OFF'";
             case "delta": return "'ON'-'OFF'";
+            case "rep": return "'REP.+-'";
           }}
           const ascOrDesc = (s: string) => { switch(s) {
             case "asc": return "Asc.";
@@ -284,14 +369,22 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
     sortOptions.map(opt => [opt.value, opt])
   );
   /** Put these options at the front */
-  const mostUsefulSubset = [
-    "desc:off_poss:on", "desc:off_poss:off",
-    "desc:diff_adj_ppp:delta",
-    "desc:diff_adj_ppp:on",
-    "desc:diff_adj_ppp:off",
-    "desc:off_adj_ppp:delta",
-    "asc:def_adj_ppp:delta",
-  ];
+  const mostUsefulSubset = _.flatMap([
+    showOnOff || showLineupCompositions ? [
+      "desc:off_poss:on", "desc:off_poss:off",
+      "desc:diff_adj_ppp:delta",
+      "desc:diff_adj_ppp:on",
+      "desc:diff_adj_ppp:off",
+      "desc:off_adj_ppp:delta",
+      "asc:def_adj_ppp:delta"
+    ] : [],
+    incReplacementOnOff ? [
+      "desc:off_poss:rep",
+      "desc:diff_adj_ppp:rep",
+      "desc:off_adj_ppp:rep",
+      "asc:def_adj_ppp:rep"
+    ] : []
+  ]);
   /** The two sub-headers for the dropdown */
   const groupedOptions = [
     {
@@ -334,6 +427,18 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
     return sortOptionsByValue[s];
   }
 
+  /** Handling filter change (/key presses to fix the select/delete on page load) */
+  const onFilterChange = (ev: any) => {
+    const toSet = ev.target.value;
+    setTmpFilterStr(toSet);
+    if (timeoutId != -1) {
+      window.clearTimeout(timeoutId);
+    }
+    setTimeoutId(window.setTimeout(() => {
+      setFilterStr(toSet);
+    }, 100));
+  };
+
   // 4] View
   return <Container>
     <LoadingOverlay
@@ -350,16 +455,8 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
               <InputGroup.Text id="filter">Filter</InputGroup.Text>
             </InputGroup.Prepend>
             <Form.Control
-              onChange={(ev: any) => {
-                const toSet = ev.target.value;
-                setTmpFilterStr(toSet);
-                if (timeoutId != -1) {
-                  window.clearTimeout(timeoutId);
-                }
-                setTimeoutId(window.setTimeout(() => {
-                  setFilterStr(toSet);
-                }, 100));
-              }}
+              onKeyUp={onFilterChange}
+              onChange={onFilterChange}
               placeholder = "eg Player1Surname,Player2FirstName,-Player3Name"
               value={tmpFilterStr}
             />
@@ -387,6 +484,33 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
               <FontAwesomeIcon icon={faCog} />
             </Dropdown.Toggle>
             <Dropdown.Menu>
+              <Dropdown.Item as={Button}>
+                <div onClick={() => setShowOnOff(!showOnOff)}>
+                  <span>Show on/off statistics</span>
+                  <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                  {showOnOff ? <FontAwesomeIcon icon={faCheck}/> : null}
+                </div>
+              </Dropdown.Item>
+              <Dropdown.Item as={Button}>
+                <div onClick={() => setIncReplacementOnOff(!incReplacementOnOff)}>
+                  <span>Show replacement on-off</span>
+                  <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                  {incReplacementOnOff ? <FontAwesomeIcon icon={faCheck}/> : null}
+                </div>
+              </Dropdown.Item>
+              <Dropdown.Item as={Button}>
+                <div onClick={() => setRegressDiffs(
+                  regressDiffs != 0 ?
+                    0 : // switch off if on, else switch to the number the page was loaded with
+                    (startingRegressDiffs != 0 ? startingRegressDiffs : parseInt(ParamDefaults.defaultTeamReportRegressDiffs))
+                )}>
+                  <span>Regress on-off {
+                    startingRegressDiffs > 0 ? "by" : "to"
+                  } {Math.abs(startingRegressDiffs)} samples</span>
+                  <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                  {regressDiffs != 0 ? <FontAwesomeIcon icon={faCheck}/> : null}
+                </div>
+              </Dropdown.Item>
               <Dropdown.Item as={Button}>
                 <div onClick={() => setShowLineupCompositions(!showLineupCompositions)}>
                   <span>Show lineup compositions</span>

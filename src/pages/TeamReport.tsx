@@ -89,6 +89,13 @@ const TeamReportPage: NextPage<{}> = () => {
       </span>;
     }
   }
+  function maybeShowDocs() {
+    if (!_.startsWith(server, "cbb-on-off-analyzer")) {
+      return "https://hoop-explorer.blogspot.com/2020/03/understanding-team-report-onoff-page.html";
+    } else {
+      return undefined;
+    }
+  }
 
   const savedLineupFilterParams = UrlRouting.removedSavedKeys(
     HistoryManager.getLastQuery(ParamPrefixes.lineup) || ""
@@ -96,7 +103,6 @@ const TeamReportPage: NextPage<{}> = () => {
   const savedGamesFilterParams = UrlRouting.removedSavedKeys(
     HistoryManager.getLastQuery(ParamPrefixes.game) || ""
   ) as GameFilterParams;
-  //TODO (in the || case, pull common params from gameFilterParams)
 
   return <Container>
     <Row>
@@ -128,7 +134,7 @@ const TeamReportPage: NextPage<{}> = () => {
       </GenericCollapsibleCard>
     </Row>
     <Row>
-      <GenericCollapsibleCard title="Team Analysis">
+      <GenericCollapsibleCard title="Team Analysis" helpLink={maybeShowDocs()}>
         <TeamReportStatsTable
           lineupReport={teamReportStats}
           startingState={teamReportFilterParams}

@@ -514,6 +514,18 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
                 "label": "Gonzaga",
                 "value": "Gonzaga",
               },
+              Object {
+                "label": "BYU",
+                "value": "BYU",
+              },
+              Object {
+                "label": "San Diego St.",
+                "value": "San Diego St.",
+              },
+              Object {
+                "label": "Utah St.",
+                "value": "Utah St.",
+              },
             ]
           }
           styles={
@@ -1345,6 +1357,18 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
               Object {
                 "label": "Gonzaga",
                 "value": "Gonzaga",
+              },
+              Object {
+                "label": "BYU",
+                "value": "BYU",
+              },
+              Object {
+                "label": "San Diego St.",
+                "value": "San Diego St.",
+              },
+              Object {
+                "label": "Utah St.",
+                "value": "Utah St.",
               },
             ]
           }

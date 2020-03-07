@@ -246,6 +246,18 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, starting
     return sortOptionsByValue[s];
   }
 
+  /** Handling filter change (/key presses to fix the select/delete on page load) */
+  const onFilterChange = (ev: any) => {
+    const toSet = ev.target.value;
+    setTmpFilterStr(toSet);
+    if (timeoutId != -1) {
+      window.clearTimeout(timeoutId);
+    }
+    setTimeoutId(window.setTimeout(() => {
+      setFilterStr(toSet);
+    }, 100));
+  };
+
   // 4] View
   return <Container>
     <LoadingOverlay
@@ -262,16 +274,8 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, starting
               <InputGroup.Text id="filter">Filter</InputGroup.Text>
             </InputGroup.Prepend>
             <Form.Control
-              onChange={(ev: any) => {
-                const toSet = ev.target.value;
-                setTmpFilterStr(toSet);
-                if (timeoutId != -1) {
-                  window.clearTimeout(timeoutId);
-                }
-                setTimeoutId(window.setTimeout(() => {
-                  setFilterStr(toSet);
-                }, 100));
-              }}
+              onKeyUp={onFilterChange}
+              onChange={onFilterChange}
               placeholder = "eg Player1Surname,Player2FirstName,-Player3Name"
               value={tmpFilterStr}
             />
