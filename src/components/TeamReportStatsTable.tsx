@@ -203,7 +203,8 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
 
   const playerLineupPowerSet = _.chain(playersWithAdjEff).map((player) => {
     if (incReplacementOnOff && player.replacement.key) {
-      return [ player.playerId, player.replacement.off_adj_ppp.value - player.replacement.def_adj_ppp.value ];
+      return [ player.playerId,
+        (player.replacement?.off_adj_ppp?.value || 0.0) - (player.replacement?.def_adj_ppp?.value || 0.0)];
     } else {
       const onMargin = player.on.off_adj_ppp.value - player.on.def_adj_ppp.value;
       const offMargin = player.off.off_adj_ppp.value - player.off.def_adj_ppp.value;

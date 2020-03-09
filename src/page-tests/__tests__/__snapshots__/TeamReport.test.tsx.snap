@@ -80,6 +80,7 @@ exports[`TeamReportPage TeamReportPage - should create snapshot 1`] = `
     noGutters={false}
   >
     <GenericCollapsibleCard
+      helpLink="https://hoop-explorer.blogspot.com/2020/03/understanding-team-report-onoff-page.html"
       title="Team Analysis"
     >
       <TeamReportStatsTable

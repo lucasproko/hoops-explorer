@@ -29,6 +29,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot 1`] = `
           </InputGroupPrepend>
           <FormControl
             onChange={[Function]}
+            onKeyUp={[Function]}
             placeholder="eg Player1Surname,Player2FirstName,-Player3Name"
             value=""
           />
