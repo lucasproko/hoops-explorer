@@ -1295,7 +1295,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot 1`] 
                 onClick={[Function]}
               >
                 <span>
-                  Show replacement on-off
+                  Show replacement On-Off
                 </span>
                 <span>
                       
@@ -1322,11 +1322,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot 1`] 
                 onClick={[Function]}
               >
                 <span>
-                  Regress on-off 
-                  to
-                   
-                  2000
-                   samples
+                  Show lineup compositions
                 </span>
                 <span>
                       
@@ -1364,6 +1360,9 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot 1`] 
                 />
               </div>
             </DropdownItem>
+            <DropdownDivider
+              role="separator"
+            />
             <DropdownItem
               as={
                 Object {
@@ -1384,7 +1383,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot 1`] 
                 onClick={[Function]}
               >
                 <span>
-                  Show lineup compositions
+                  Regress 'r:On-Off' 
+                  to
+                   
+                  2000
+                   samples
                 </span>
                 <span>
                       

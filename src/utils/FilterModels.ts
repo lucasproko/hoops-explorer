@@ -50,7 +50,8 @@ export type TeamReportFilterParams = {
   showOnOff?: boolean,
   showComps?: boolean,
   incRepOnOff?: boolean,
-  regressDiffs?: string //+ve to add that number of 0 samples, -ve to regress to the given sample size
+  regressDiffs?: string, //+ve to add that number of 0 samples, -ve to regress to the given sample size
+  repOnOffDiagMode?: string //(tthe number of diagnostic lineups to show, basically 0 or 10)
 };
 
 /** Used to give compile errors if a field is omitted, for fw compat */

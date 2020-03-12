@@ -78,6 +78,12 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
   const [ startingRegressDiffs, setStartingRegressDiffs_UNUSED ] = useState(
     parseInt(_.isNil(startingState.regressDiffs) ? ParamDefaults.defaultTeamReportRegressDiffs : startingState.regressDiffs)
   );
+  const [ repOnOffDiagMode, setRepOnOffDiagMode ] = useState(
+    parseInt(_.isNil(startingState.repOnOffDiagMode) ? "0" : startingState.repOnOffDiagMode)
+  );
+
+  /** If the browser is doing heavier calcs then spin the display vs just be unresponsive */
+  const [ inBrowserRepOnOffPxing, setInBrowserRepOnOffPxing ] = useState(false);
 
   const filterFragments =
     filterStr.split(",").map(fragment => _.trim(fragment)).filter(fragment => fragment ? true : false);
@@ -87,16 +93,19 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
     filterFragments.filter(fragment => fragment[0] == '-').map(fragment => fragment.substring(1));
 
   useEffect(() => { //(this ensures that the filter component is up to date with the union of these fields)
-    const newState = _.merge(startingState, {
+    const newState = _.chain(startingState).merge({
       sortBy: sortBy,
       filter: filterStr,
       showOnOff: showOnOff,
       showComps: showLineupCompositions,
       incRepOnOff: incReplacementOnOff,
-      regressDiffs: regressDiffs.toString()
-    });
+      regressDiffs: regressDiffs.toString(),
+      repOnOffDiagMode: repOnOffDiagMode.toString()
+    }).omit( // remove "debuggy" fields
+      (repOnOffDiagMode == 0) ? [ 'repOnOffDiagMode' ] : []
+    ).value();
     onChangeState(newState);
-  }, [ sortBy, filterStr, showOnOff, showLineupCompositions, incReplacementOnOff, regressDiffs ]);
+  }, [ sortBy, filterStr, showOnOff, showLineupCompositions, incReplacementOnOff, regressDiffs, repOnOffDiagMode ]);
 
   // (cache this below)
   const [ teamReport, setTeamReport ] = useState({} as any);
@@ -104,11 +113,27 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
 
   useEffect(() => { //(this ensures that the filter component is up to date with the union of these fields)
 
-    const tempTeamReport = LineupUtils.lineupToTeamReport(lineupReport, incReplacementOnOff, regressDiffs);
-    setTeamReport(tempTeamReport);
-    setPlayersWithAdjEff(withAdjEfficiency(tempTeamReport?.players || []));
+    // We just set this flag to make the processing async so that we can give some indication that
+    // we're processing (vs just being unresponsive)
+    setInBrowserRepOnOffPxing(true);
 
-  }, [ lineupReport, incReplacementOnOff, regressDiffs ] );
+  }, [ lineupReport, incReplacementOnOff, regressDiffs, repOnOffDiagMode ] );
+
+  useEffect(() => {
+    if (inBrowserRepOnOffPxing) {
+      setTimeout(() => { //(ensures that the "processing" element is returned _before_ the processing starts)
+        try {
+          const tempTeamReport = LineupUtils.lineupToTeamReport(lineupReport, incReplacementOnOff, regressDiffs);
+          setTeamReport(tempTeamReport);
+          const avgOff = lineupReport.avgOff || 100.0;
+          setPlayersWithAdjEff(withAdjEfficiency(tempTeamReport?.players || [], avgOff));
+        } catch (e) {
+          console.log("Error calling LineupUtils.lineupToTeamReport", e);
+        }
+        setInBrowserRepOnOffPxing(false);
+      }, 1);
+    }
+  }, [ inBrowserRepOnOffPxing ] );
 
   // 2] Data Model
   const tableFields = { //accessors vs column metadata
@@ -166,9 +191,8 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
   const offCellMetaFn = (key: string, val: any) => "off";
   const defPrefixFn = (key: string) => "def_" + key;
   const defCellMetaFn = (key: string, val: any) => "def";
-  const avgOff = teamReport.avgOff || 100.0;
 
-  const calcAdjEff = (stats: any) => {
+  const calcAdjEff = (stats: any, avgOff: number) => {
     return {
       off_adj_ppp: { value: (stats.def_adj_opp?.value) ?
         (stats.off_ppp.value || 0.0)*(avgOff/stats.def_adj_opp.value) : undefined
@@ -179,10 +203,10 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
     };
   };
 
-  const withAdjEfficiency = (mutablePlayers: Array<any>) => {
+  const withAdjEfficiency = (mutablePlayers: Array<any>, avgOff: number) => {
     return _.chain(mutablePlayers).map((player) => {
-        const adjOffDefOn = calcAdjEff(player.on);
-        const adjOffDefOff = calcAdjEff(player.off);
+        const adjOffDefOn = calcAdjEff(player.on, avgOff);
+        const adjOffDefOff = calcAdjEff(player.off, avgOff);
         //(replacement on/off mutated in when the lineupReport changes)
         if (player.replacement?.off_adj_ppp?.value) {
           //these have be calc'd already, just need to incorporate average
@@ -413,7 +437,7 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
   }
   /** Sticks an overlay on top of the table if no query has ever been loaded */
   function needToLoadQuery() {
-    return (teamReport.players || []).length == 0;
+    return inBrowserRepOnOffPxing || (teamReport.players || []).length == 0;
   }
   function rowSpanCalculator(cellMeta: string) {
     switch(cellMeta) {
@@ -494,22 +518,9 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
               </Dropdown.Item>
               <Dropdown.Item as={Button}>
                 <div onClick={() => setIncReplacementOnOff(!incReplacementOnOff)}>
-                  <span>Show replacement on-off</span>
+                  <span>Show replacement On-Off</span>
                   <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
                   {incReplacementOnOff ? <FontAwesomeIcon icon={faCheck}/> : null}
-                </div>
-              </Dropdown.Item>
-              <Dropdown.Item as={Button}>
-                <div onClick={() => setRegressDiffs(
-                  regressDiffs != 0 ?
-                    0 : // switch off if on, else switch to the number the page was loaded with
-                    (startingRegressDiffs != 0 ? startingRegressDiffs : parseInt(ParamDefaults.defaultTeamReportRegressDiffs))
-                )}>
-                  <span>Regress on-off {
-                    startingRegressDiffs > 0 ? "by" : "to"
-                  } {Math.abs(startingRegressDiffs)} samples</span>
-                  <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                  {regressDiffs != 0 ? <FontAwesomeIcon icon={faCheck}/> : null}
                 </div>
               </Dropdown.Item>
               <Dropdown.Item as={Button}>
@@ -519,6 +530,29 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
                   {showLineupCompositions ? <FontAwesomeIcon icon={faCheck}/> : null}
                 </div>
               </Dropdown.Item>
+              <Dropdown.Divider />
+              <Dropdown.Item as={Button}>
+                <div onClick={() => setRegressDiffs(
+                  regressDiffs != 0 ?
+                    0 : // switch off if on, else switch to the number the page was loaded with
+                    (startingRegressDiffs != 0 ? startingRegressDiffs : parseInt(ParamDefaults.defaultTeamReportRegressDiffs))
+                )}>
+                  <span>Regress 'r:On-Off' {
+                    startingRegressDiffs > 0 ? "by" : "to"
+                  } {Math.abs(startingRegressDiffs != 0 ? startingRegressDiffs : parseInt(ParamDefaults.defaultTeamReportRegressDiffs))} samples</span>
+                  <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                  {regressDiffs != 0 ? <FontAwesomeIcon icon={faCheck}/> : null}
+                </div>
+              </Dropdown.Item>
+              {false ?
+              <Dropdown.Item as={Button}>
+                <div onClick={() => setRepOnOffDiagMode(repOnOffDiagMode != 0 ? 0 : 10)}>
+                  <span>'r:On-Off' diagnostic mode</span>
+                  <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                  {repOnOffDiagMode != 0 ? <FontAwesomeIcon icon={faCheck}/> : null}
+                </div>
+              </Dropdown.Item>
+              :null}
             </Dropdown.Menu>
           </Dropdown>
         </Form.Group>
