@@ -70,6 +70,7 @@ const TeamReportFilter: React.FunctionComponent<Props> = ({onStats, startingStat
         showComps: startShowComps,
         incRepOnOff: startIncRepOnOff,
         regressDiffs: startingRegressDiffs,
+        repOnOffDiagMode: startingRepOnOffDiagMode,
     }) : {
       ...commonParams
     };

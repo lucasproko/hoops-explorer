@@ -79,7 +79,7 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
     parseInt(_.isNil(startingState.regressDiffs) ? ParamDefaults.defaultTeamReportRegressDiffs : startingState.regressDiffs)
   );
   const [ repOnOffDiagMode, setRepOnOffDiagMode ] = useState(
-    parseInt(_.isNil(startingState.repOnOffDiagMode) ? "0" : startingState.repOnOffDiagMode)
+    parseInt(_.isNil(startingState.repOnOffDiagMode) ? ParamDefaults.defaultTeamReportRepOnOffDiagMode : startingState.repOnOffDiagMode)
   );
 
   /** If the browser is doing heavier calcs then spin the display vs just be unresponsive */
@@ -123,7 +123,9 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
     if (inBrowserRepOnOffPxing) {
       setTimeout(() => { //(ensures that the "processing" element is returned _before_ the processing starts)
         try {
-          const tempTeamReport = LineupUtils.lineupToTeamReport(lineupReport, incReplacementOnOff, regressDiffs);
+          const tempTeamReport = LineupUtils.lineupToTeamReport(
+            lineupReport, incReplacementOnOff, regressDiffs, repOnOffDiagMode
+          );
           setTeamReport(tempTeamReport);
           const avgOff = lineupReport.avgOff || 100.0;
           setPlayersWithAdjEff(withAdjEfficiency(tempTeamReport?.players || [], avgOff));
@@ -544,7 +546,6 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
                   {regressDiffs != 0 ? <FontAwesomeIcon icon={faCheck}/> : null}
                 </div>
               </Dropdown.Item>
-              {false ?
               <Dropdown.Item as={Button}>
                 <div onClick={() => setRepOnOffDiagMode(repOnOffDiagMode != 0 ? 0 : 10)}>
                   <span>'r:On-Off' diagnostic mode</span>
@@ -552,7 +553,6 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
                   {repOnOffDiagMode != 0 ? <FontAwesomeIcon icon={faCheck}/> : null}
                 </div>
               </Dropdown.Item>
-              :null}
             </Dropdown.Menu>
           </Dropdown>
         </Form.Group>

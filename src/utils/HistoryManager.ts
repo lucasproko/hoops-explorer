@@ -143,9 +143,25 @@ export class HistoryManager {
   /** Returns a summary string for the game filter */
   static teamReportFilterSummary(p: TeamReportFilterParams) {
     const baseQuery = `query:'${tidyQuery(p.baseQuery)}'`;
+    const showOnOff =
+      _.isNil(p.showOnOff) ? ParamDefaults.defaultShowOnOff : p.showOnOff;
     const showComps =
       _.isNil(p.showComps) ? ParamDefaults.defaultShowComps : p.showComps;
-    const showArray = showComps ? [ "comps"] : [];
+    const incRepOnOff =
+      _.isNil(p.incRepOnOff) ? ParamDefaults.defaultTeamReportIncRepOnOff : p.incRepOnOff;
+    const regressNum =
+      _.isNil(p.regressDiffs) ? ParamDefaults.defaultTeamReportRegressDiffs : p.regressDiffs;
+    const regressStr =
+      (regressNum == ParamDefaults.defaultTeamReportRegressDiffs) ? '' : (':R' + regressNum);
+    const diagMode =
+      _.isNil(p.repOnOffDiagMode) ? false : true;
+
+    const showArray = _.flatMap([
+      showOnOff ? [] : [ "!on/off" ],
+      showComps ? [ "comps" ] : [],
+      incRepOnOff ? [ "r:on-off" + regressStr ] : [],
+      diagMode ? [ "r:on-off:diag" ] : []
+    ]);
 
     const otherParams =
       `sort:${p.sortBy || ParamDefaults.defaultLineupSortBy}, ` +

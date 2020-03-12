@@ -76,6 +76,7 @@ export class ParamDefaults {
   static readonly defaultShowComps = true;
   static readonly defaultTeamReportIncRepOnOff = false;
   static readonly defaultTeamReportRegressDiffs = "-2000";
+  static readonly defaultTeamReportRepOnOffDiagMode = "0";
   // Common
   static readonly defaultTeam = "";
   static readonly defaultYear = "2019/20";

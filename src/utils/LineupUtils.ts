@@ -14,7 +14,8 @@ export class LineupUtils {
 
   /** Builds on/off info out of lineups */
   static lineupToTeamReport(
-    lineupReport: LineupStatsModel, incReplacement: boolean = false, regressDiffs: number = 0
+    lineupReport: LineupStatsModel, incReplacement: boolean = false,
+    regressDiffs: number = 0, repOnOffDiagMode: number = 0
   ): TeamReportStatsModel {
     const allPlayersSet = _.chain(lineupReport.lineups || []).reduce((acc: any, lineup: any) => {
       const players = lineup?.players_array?.hits?.hits?.[0]?._source?.players || [];
