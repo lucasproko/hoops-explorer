@@ -317,7 +317,7 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
         ;
     }).sortBy(
        [ sorter(sortBy) ]
-    ).flatMap((player) => {
+    ).flatMap((player, index) => {
       const onMargin = player.on.off_adj_ppp.value - player.on.def_adj_ppp.value;
       const offMargin = player.off.off_adj_ppp.value - player.off.def_adj_ppp.value;
       const onSuffix = `\nAdj: [${onMargin.toFixed(1)}]-[${offMargin.toFixed(1)}]=[${(onMargin - offMargin).toFixed(1)}]`;
@@ -349,7 +349,58 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
         showLineupCompositions ? [ GenericTableOps.buildTextRow(
           buildLineupInfo(player), "small"
         ) ] : [],
-        [ GenericTableOps.buildRowSeparator() ]
+        [ GenericTableOps.buildRowSeparator() ],
+        (index == 0) && (repOnOffDiagMode > 0) ? _.flatten([
+          [ GenericTableOps.buildTextRow(<span><b>Replacement 'ON-OFF' Diagnostics For [{player.playerId}]</b></span>) ],
+          _.chain(player?.replacement?.myLineups)
+            .sortBy([(lineup) => -lineup?.off_poss.value])
+            .take(repOnOffDiagMode).flatMap((lineup: any) => {
+
+              const onLineupKeyArray = lineup.key.split("_");
+
+              const lineupKeys = (key: string) => {
+                const lineupKeyArray = key.split("_");
+                const newPlayerId = _.difference(lineupKeyArray, onLineupKeyArray)?.[0] || "unknown";
+                return lineupKeyArray
+                  .filter(pid => pid != newPlayerId)
+                  .map((pid, i) => <span key={"" + i}>{pid}/<wbr/></span>)
+                  .concat(<b key={"newPlayerId"}>{newPlayerId}</b>);
+              }
+              //kv[0].replace(/_/g, " / ")
+              const lineupSummary =
+                _.chain(player?.replacement?.lineupUsage || {})
+                  .pick(lineup.offLineupKeys || [])
+                  .toPairs()
+                  .sortBy((kv => - kv[1]?.off_poss?.value))
+                  .take(repOnOffDiagMode)
+                  .map((kv, i) =>
+                    <span key={"" + i}>{lineupKeys(kv[0])} ([{kv[1].poss}]/[{kv[1].overlap}]);&nbsp;</span>
+                  ).value();
+
+              const onLineupPlayerId = _.difference(
+                onLineupKeyArray, ((lineup.offLineupKeys?.[0] || "").split("_"))
+              )?.[0] || "unknown";
+
+              const lineupKey = onLineupKeyArray.filter((pid: string) => pid != onLineupPlayerId).join(" / ");
+              const lineupDiffStats = { off_title: `Harmonic: ${lineupKey}`, def_title: "", ...lineup };
+              const lineupOnStats = { off_title: `Compare`, def_title: "", ...lineup.onLineup };
+              const lineupOffStats = { off_title: `Same-4s`, def_title: "", ...lineup.offLineups };
+              return [
+                GenericTableOps.buildDataRow(lineupDiffStats, offPrefixFn, offCellMetaFn, replacementTableFields),
+                GenericTableOps.buildDataRow(lineupDiffStats, defPrefixFn, defCellMetaFn, replacementTableFields),
+                GenericTableOps.buildDataRow(lineupOnStats, offPrefixFn, offCellMetaFn),
+                GenericTableOps.buildDataRow(lineupOnStats, defPrefixFn, defCellMetaFn),
+                GenericTableOps.buildDataRow(lineupOffStats, offPrefixFn, offCellMetaFn),
+                GenericTableOps.buildDataRow(lineupOffStats, defPrefixFn, defCellMetaFn),
+                GenericTableOps.buildTextRow(
+                  <span><b>Same-4 Lineups:</b> {lineupSummary}</span>,
+                  "small"
+                ),
+                GenericTableOps.buildRowSeparator()
+              ];
+          }).value(),
+          [ GenericTableOps.buildRowSeparator() ],
+        ]) : [],
       ]);
     }).value();
 
