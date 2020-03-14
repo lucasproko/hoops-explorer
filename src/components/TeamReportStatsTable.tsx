@@ -235,13 +235,18 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
       } ).value();
   };
 
+  const maybeGetAdjEff = (player: any) => {
+    const onMargin = (player?.on?.off_adj_ppp?.value || 0.0) - (player?.on?.def_adj_ppp?.value || 0.0);
+    const offMargin = (player.off?.off_adj_ppp?.value || 0.0) - (player?.off?.def_adj_ppp?.value || 0.0);
+    return [ onMargin, offMargin ]
+  }
+
   const playerLineupPowerSet = _.chain(playersWithAdjEff).map((player) => {
     if (incReplacementOnOff && player.replacement.key) {
       return [ player.playerId,
         (player.replacement?.off_adj_ppp?.value || 0.0) - (player.replacement?.def_adj_ppp?.value || 0.0)];
     } else {
-      const onMargin = player.on.off_adj_ppp.value - player.on.def_adj_ppp.value;
-      const offMargin = player.off.off_adj_ppp.value - player.off.def_adj_ppp.value;
+      const [ onMargin, offMargin ] = maybeGetAdjEff(player);
       return [ player.playerId, onMargin - offMargin ];
     }
   }).fromPairs().value();
@@ -326,8 +331,7 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
     }).sortBy(
        [ sorter(sortBy) ]
     ).flatMap((player, index) => {
-      const onMargin = player.on.off_adj_ppp.value - player.on.def_adj_ppp.value;
-      const offMargin = player.off.off_adj_ppp.value - player.off.def_adj_ppp.value;
+      const [ onMargin, offMargin ] = maybeGetAdjEff(player);
       const onSuffix = `\nAdj: [${onMargin.toFixed(1)}]-[${offMargin.toFixed(1)}]=[${(onMargin - offMargin).toFixed(1)}]`;
       const totalPoss = (player.on.off_poss.value + player.off.off_poss.value || 1);
       const onPoss = 100.0*player.on.off_poss.value/totalPoss;
