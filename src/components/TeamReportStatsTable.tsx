@@ -381,10 +381,26 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
                 onLineupKeyArray, ((lineup.offLineupKeys?.[0] || "").split("_"))
               )?.[0] || "unknown";
 
+              const lineupOnAdjEff: Record<string, any> = calcAdjEff(lineup.onLineup, lineupReport.avgOff || 100.0);
+              const lineupOffAdjEff: Record<string, any> = calcAdjEff(lineup.offLineups, lineupReport.avgOff || 100.0);
+              const lineupDiffAdjEff = {
+                off_adj_ppp: { value: lineupOnAdjEff.off_adj_ppp.value - lineupOffAdjEff.off_adj_ppp.value },
+                def_adj_ppp: { value: lineupOnAdjEff.def_adj_ppp.value - lineupOffAdjEff.def_adj_ppp.value }
+              };
+              const regressed = (n: number | undefined) => {
+                const num = n || 0;
+                return regressDiffs < 0 ? -regressDiffs : (num + regressDiffs);
+              }
+              const offTotalPos = regressed(player?.replacement?.off_poss?.value) || 1;
+              const defTotalPos = regressed(player?.replacement?.def_poss?.value) || 1;
+              const offContrib = lineupDiffAdjEff.off_adj_ppp.value*(lineup?.off_poss?.value || 0)/offTotalPos;
+              const defContrib = lineupDiffAdjEff.def_adj_ppp.value*(lineup?.def_poss?.value || 0)/defTotalPos;
+              const contribStr = `Adj Eff Contrib:\noff=[${offContrib.toFixed(2)}] def=[${defContrib.toFixed(2)}]`;
+
               const lineupKey = onLineupKeyArray.filter((pid: string) => pid != onLineupPlayerId).join(" / ");
-              const lineupDiffStats = { off_title: `Harmonic: ${lineupKey}`, def_title: "", ...lineup };
-              const lineupOnStats = { off_title: `Compare`, def_title: "", ...lineup.onLineup };
-              const lineupOffStats = { off_title: `Same-4s`, def_title: "", ...lineup.offLineups };
+              const lineupDiffStats = { off_title: `Harmonic: ${lineupKey}`, def_title: "", ...lineup, ...lineupDiffAdjEff };
+              const lineupOnStats = { off_title: `'ON' Lineup\n${contribStr}`, def_title: "", ...lineup.onLineup, ...lineupOnAdjEff };
+              const lineupOffStats = { off_title: `Same-4 Lineups`, def_title: "", ...lineup.offLineups, ...lineupOffAdjEff };
               return [
                 GenericTableOps.buildDataRow(lineupDiffStats, offPrefixFn, offCellMetaFn, replacementTableFields),
                 GenericTableOps.buildDataRow(lineupDiffStats, defPrefixFn, defCellMetaFn, replacementTableFields),
