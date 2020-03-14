@@ -18,7 +18,7 @@ export class HistoryManager {
   static readonly maxHistorySize = 50;
 
   /** Returns an ordered list of filter params */
-  static getHistory(): Array<[string, GameFilterParams | LineupFilterParams]> {
+  static getHistory(): Array<[string, GameFilterParams | LineupFilterParams | TeamReportFilterParams]> {
     return _.flatMap(HistoryManager.getParamStrs(), (param) => {
       if (_.startsWith(param, ParamPrefixes.game)) {
         const paramNoPrefix = param.substring(ParamPrefixes.game.length);
@@ -85,7 +85,7 @@ export class HistoryManager {
   }
 
   /** Picks the right filter params and summarizes */
-  static filterSummary(prefix: string, p: GameFilterParams | LineupFilterParams) {
+  static filterSummary(prefix: string, p: GameFilterParams | LineupFilterParams | TeamReportFilterParams) {
     if (prefix == ParamPrefixes.game) {
       return HistoryManager.gameFilterSummary(p as GameFilterParams);
     } else if (prefix == ParamPrefixes.lineup) {

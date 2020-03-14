@@ -210,7 +210,16 @@ const GenericTable: React.FunctionComponent<Props> = ({tableFields, tableData, t
         const actualKey = row.prefixFn(key);
         const tmpVal = row.dataObj[actualKey] || colProp.missingData;
         const style = getRowStyle(key, tmpVal, colProp, row);
-        const val: string | React.ReactNode = !_.isNil(tmpVal) ? colProp.formatter(tmpVal) : "";
+        const valBuilder = () => {
+          try {
+            return colProp.formatter(tmpVal);
+          } catch (e) { //handle formatting errors by making it return blank
+            return "";
+          }
+        };
+        //(the isNil handles separators)
+        const val = _.isNil(tmpVal) ? "" : valBuilder() || "";
+
         const cellMeta = row.cellMetaFn(key, val);
         const rowSpan = colProp.rowSpan(cellMeta);
         const className = colProp.className;

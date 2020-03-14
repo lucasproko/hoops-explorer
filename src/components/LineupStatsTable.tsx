@@ -141,7 +141,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, starting
     }).filter((lineup) => {
       const namesToTest = _.chain(lineup?.players_array?.hits?.hits).flatMap((pDoc) => {
         return pDoc?._source.players.map((p: any) => p.id);
-      }).value();
+      }).value().concat([ lineup.key ]);
 
       const playerFilter =
         (_.isEmpty(filterFragmentsPve) ||

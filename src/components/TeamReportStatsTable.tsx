@@ -28,8 +28,9 @@ import { faCheck } from '@fortawesome/free-solid-svg-icons'
 // Component imports
 import GenericTable, { GenericTableOps, GenericTableColProps } from "./GenericTable";
 import { LineupStatsModel } from './LineupStatsTable';
-import { TeamReportFilterParams, ParamDefaults } from '../utils/FilterModels';
+import { getCommonFilterParams, TeamReportFilterParams, ParamDefaults } from '../utils/FilterModels';
 import { LineupUtils } from '../utils/LineupUtils';
+import { UrlRouting } from '../utils/UrlRouting';
 
 // Util imports
 import { CbbColors } from "../utils/CbbColors";
@@ -402,13 +403,22 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
               const defContrib = lineupDiffAdjEff.def_adj_ppp.value*(lineup?.def_poss?.value || 0)/defTotalPos;
               const contribStr = `Adj Eff Contrib:\noff=[${offContrib.toFixed(2)}] def=[${defContrib.toFixed(2)}]`;
 
+              const nonPlayerLineup = onLineupKeyArray.filter((pid: string) => pid != onLineupPlayerId);
+              const lineupParams = {
+                ...getCommonFilterParams(startingState),
+                minPoss: "0",
+                maxTableSize: "100",
+                //sortBy: use default
+                filter: nonPlayerLineup.join(",")
+              };
+
               const offTitleWithLinks =
                 <div><b>Same-4 Lineups</b><br/>
-                  <a href="#">On/Off Analysis...</a><br/>
-                  <a href="#">Lineup Analysis...</a>
+                  <a href="#" target="_blank">On/Off Analysis...</a><br/>
+                  <a href={UrlRouting.getLineupUrl(lineupParams, {})} target="_blank">Lineup Analysis...</a>
                 </div>;
 
-              const lineupKey = onLineupKeyArray.filter((pid: string) => pid != onLineupPlayerId).join(" / ");
+              const lineupKey = nonPlayerLineup.join(" / ");
               const lineupDiffStats = { off_title: `Harmonic: ${lineupKey}`, def_title: "", ...lineup, ...lineupDiffAdjEff };
               const lineupOnStats = { off_title: `'ON' Lineup\n${contribStr}`, def_title: "", ...lineup.onLineup, ...lineupOnAdjEff };
               const lineupOffStats = { off_title: offTitleWithLinks, def_title: "", ...lineup.offLineups, ...lineupOffAdjEff };
