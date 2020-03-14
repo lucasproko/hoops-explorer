@@ -226,7 +226,10 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, starting
   function picker(offScale: (val: number) => string, defScale: (val: number) => string) {
     return (val: any, valMeta: string) => {
       const num = val.value as number;
-      return ("off" == valMeta) ? offScale(num) : defScale(num);
+      return _.isNil(num) ?
+        CbbColors.malformedDataColor : //(we'll use this color to indicate malformed data)
+        ("off" == valMeta) ? offScale(num) : defScale(num)
+        ;
     };
   }
   /** Sticks an overlay on top of the table if no query has ever been loaded */
