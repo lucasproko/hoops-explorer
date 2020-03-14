@@ -150,7 +150,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, starting
         (_.isEmpty(filterFragmentsNve) ||
           !_.some(filterFragmentsNve, (frag) => _.some(namesToTest, (name) => name.indexOf(frag) >= 0))
         );
-      return playerFilter;
+      return playerFilter && (lineup.key != ""); // (workaround for #53 pending fix)
 
     }).map((lineup) => {
       const adjOffDef = calcAdjEff(lineup);

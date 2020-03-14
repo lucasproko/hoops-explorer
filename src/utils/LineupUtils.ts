@@ -50,7 +50,7 @@ export class LineupUtils {
             lineupUsage: {},
             myLineups: _.chain(lineupReport.lineups || []).filter((lineup) => {
               const playersSet = getPlayerSet(lineup);
-              return playersSet.hasOwnProperty(playerId);
+              return playersSet.hasOwnProperty(playerId) && (lineup.key != ""); //(workaround for #53 pending fix)
             }).map((lineup) => {
               return _.merge({ offLineups: {}, offLineupKeys: [], onLineup: {} }, lineup);
                 //(copies lineup and adds empty offLineups/offLineupList/onLineup)
@@ -63,6 +63,9 @@ export class LineupUtils {
     };
 
     _.chain(lineupReport.lineups || []).transform((acc, lineup) => {
+      if (lineup.key == "") { //(workaround for #53 pending fix)
+        return;
+      }
       const playersSet = getPlayerSet(lineup);
 
       _.chain(acc.players).forEach((playerObj) => {
