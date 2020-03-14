@@ -24,7 +24,7 @@ export class GenericTableColProps {
   constructor(
     colName: string, toolTip: string,
     widthUnits: number, isTitle: boolean = false,
-    formatter: (val: any) => string = GenericTableOps.defaultFormatter,
+    formatter: (val: any) => string | React.ReactNode = GenericTableOps.defaultFormatter,
     colorPicker: GenericTableColorPickerFn = GenericTableOps.defaultColorPicker,
     rowSpan: (key: string) => number = GenericTableOps.defaultRowSpanCalculator,
     missingData: any | undefined = undefined,
@@ -44,7 +44,7 @@ export class GenericTableColProps {
   readonly toolTip: string;
   readonly widthUnits: number;
   readonly isTitle: boolean;
-  readonly formatter: (val: any) => string;
+  readonly formatter: (val: any) => string | React.ReactNode;
   readonly colorPicker:  GenericTableColorPickerFn;
   readonly rowSpan: (key: string) => number;
   readonly missingData: any | undefined;
@@ -87,9 +87,10 @@ export type GenericTableRow = GenericTableDataRow | GenericTableSeparator | Gene
 export class GenericTableOps {
 
   static readonly defaultFormatter = (val: any) => "" + val;
-  static readonly intFormatter = (val: any) => "" + (val as number).toFixed(0);
-  static readonly percentFormatter = (val: any) => ((val as number)*100.0).toFixed(1); //(no % it's too ugly)
-  static readonly pointsFormatter = (val: any) => (val as number).toFixed(1);
+  static readonly htmlFormatter = (val: React.ReactNode) => val;
+  static readonly intFormatter = (val: any) => "" + (val.value as number).toFixed(0);
+  static readonly percentFormatter = (val: any) => ((val.value as number)*100.0).toFixed(1); //(no % it's too ugly)
+  static readonly pointsFormatter = (val: any) => (val.value as number).toFixed(1);
   static readonly defaultCellMeta = (key: string, value: any) => "";
   static readonly defaultColorPicker =  (val: any, cellMeta: string) => undefined;
   static readonly defaultRowSpanCalculator = (key: string) => 1;
@@ -114,21 +115,22 @@ export class GenericTableOps {
   // Cols:
 
   static addPctCol(colName: string, toolTip: string, colorPicker: GenericTableColorPickerFn) {
-    return new GenericTableColProps(colName, toolTip, 2, false, GenericTableOps.percentFormatter, colorPicker, GenericTableOps.defaultRowSpanCalculator, 0.0);
+    return new GenericTableColProps(colName, toolTip, 2, false, GenericTableOps.percentFormatter, colorPicker, GenericTableOps.defaultRowSpanCalculator, { value: 0.0 });
   }
   static addPtsCol(colName: string, toolTip: string, colorPicker: GenericTableColorPickerFn) {
-    return new GenericTableColProps(colName, toolTip, 2, false, GenericTableOps.pointsFormatter, colorPicker, GenericTableOps.defaultRowSpanCalculator, 0);
+    return new GenericTableColProps(colName, toolTip, 2, false, GenericTableOps.pointsFormatter, colorPicker, GenericTableOps.defaultRowSpanCalculator, { value: 0 });
   }
   static addIntCol(colName: string, toolTip: string, colorPicker: GenericTableColorPickerFn) {
-    return new GenericTableColProps(colName, toolTip, 2, false, GenericTableOps.intFormatter, colorPicker, GenericTableOps.defaultRowSpanCalculator, 0);
+    return new GenericTableColProps(colName, toolTip, 2, false, GenericTableOps.intFormatter, colorPicker, GenericTableOps.defaultRowSpanCalculator, { value: 0 });
   }
   static addTitle(
     colName: string, toolTip: string,
     rowSpan: (key: string) => number = GenericTableOps.defaultRowSpanCalculator,
-    className: string = ""
+    className: string = "",
+    colFormatterOverride: (val: any) => string | React.ReactNode = GenericTableOps.defaultFormatter
   ) {
     return new GenericTableColProps(colName, toolTip, 8, true,
-      GenericTableOps.defaultFormatter, GenericTableOps.defaultColorPicker,
+      colFormatterOverride, GenericTableOps.defaultColorPicker,
       rowSpan, undefined, className
     );
   }
@@ -206,21 +208,22 @@ const GenericTable: React.FunctionComponent<Props> = ({tableFields, tableData, t
         const key: string = keyVal[0];
         const colProp: GenericTableColProps = row.tableFieldsOverride?.[key] || keyVal[1];
         const actualKey = row.prefixFn(key);
-        const tmpValObj = row.dataObj[actualKey] || {};
-        const tmpVal = ((tmpValObj instanceof Object) ? tmpValObj.value : tmpValObj) || colProp.missingData;
+        const tmpVal = row.dataObj[actualKey] || colProp.missingData;
         const style = getRowStyle(key, tmpVal, colProp, row);
-        const val = !_.isNil(tmpVal) ? colProp.formatter(tmpVal) : "";
-
+        const val: string | React.ReactNode = !_.isNil(tmpVal) ? colProp.formatter(tmpVal) : "";
         const cellMeta = row.cellMetaFn(key, val);
         const rowSpan = colProp.rowSpan(cellMeta);
         const className = colProp.className;
-
         return (rowSpan > 0) ?
             <td
               className={className}
               rowSpan={rowSpan}
               key={"" + index} style={style}
-            >{val.split('\n').map((l, index2) => <div key={"" + `${index}_${index2}`}>{l}</div>)}</td>
+            >{_.isString(val) ?
+              val.split('\n').map((l, index2) => <div key={"" + `${index}_${index2}`}>{l}</div>) :
+              //(if not string must be element)
+              val}
+            </td>
           :
             (null);
     });

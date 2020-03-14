@@ -161,6 +161,11 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
     "poss": GenericTableOps.addIntCol("Poss", "Total number of possessions for selected lineups", GenericTableOps.defaultColorPicker),
     "adj_opp": GenericTableOps.addPtsCol("SoS", "Weighted average of the offensive or defensive efficiencies of the lineups' opponents", GenericTableOps.defaultColorPicker),
   };
+  const tableFieldsWithFormattedTitle = _.chain(tableFields).toPairs().map((kv) => {
+    if (kv[0] == "title") {
+      return [ kv[0], GenericTableOps.addTitle("", "", rowSpanCalculator, "small", GenericTableOps.htmlFormatter) ];
+    } else return kv;
+  }).fromPairs().value();
   const replacementTableFields = { //accessors vs column metadata
     "title": GenericTableOps.addTitle("", "", rowSpanCalculator, "small"),
     "sep0": GenericTableOps.addColSeparator(),
@@ -195,14 +200,14 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
   const defCellMetaFn = (key: string, val: any) => "def";
 
   const calcAdjEff = (stats: any, avgOff: number) => {
-    return {
+    return _.mapValues({
       off_adj_ppp: { value: (stats.def_adj_opp?.value) ?
         (stats.off_ppp.value || 0.0)*(avgOff/stats.def_adj_opp.value) : undefined
       },
       def_adj_ppp: { value: (stats.off_adj_opp?.value) ?
         (stats.def_ppp.value || 0.0)*(avgOff/stats.off_adj_opp.value) : undefined
       }
-    };
+    }, v => _.isNil(v.value) ? undefined : v);
   };
 
   const withAdjEfficiency = (mutablePlayers: Array<any>, avgOff: number) => {
@@ -374,7 +379,7 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
                   .sortBy((kv => - kv[1]?.off_poss?.value))
                   .take(repOnOffDiagMode)
                   .map((kv, i) =>
-                    <span key={"" + i}>{lineupKeys(kv[0])} ([{kv[1].poss}]/[{kv[1].overlap}]);&nbsp;</span>
+                    <span key={"" + i}>{lineupKeys(kv[0])} (p=[{kv[1].poss}]/o=[{kv[1].overlap}]);&nbsp;</span>
                   ).value();
 
               const onLineupPlayerId = _.difference(
@@ -397,19 +402,25 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
               const defContrib = lineupDiffAdjEff.def_adj_ppp.value*(lineup?.def_poss?.value || 0)/defTotalPos;
               const contribStr = `Adj Eff Contrib:\noff=[${offContrib.toFixed(2)}] def=[${defContrib.toFixed(2)}]`;
 
+              const offTitleWithLinks =
+                <div><b>Same-4 Lineups</b><br/>
+                  <a href="#">On/Off Analysis...</a><br/>
+                  <a href="#">Lineup Analysis...</a>
+                </div>;
+
               const lineupKey = onLineupKeyArray.filter((pid: string) => pid != onLineupPlayerId).join(" / ");
               const lineupDiffStats = { off_title: `Harmonic: ${lineupKey}`, def_title: "", ...lineup, ...lineupDiffAdjEff };
               const lineupOnStats = { off_title: `'ON' Lineup\n${contribStr}`, def_title: "", ...lineup.onLineup, ...lineupOnAdjEff };
-              const lineupOffStats = { off_title: `Same-4 Lineups`, def_title: "", ...lineup.offLineups, ...lineupOffAdjEff };
+              const lineupOffStats = { off_title: offTitleWithLinks, def_title: "", ...lineup.offLineups, ...lineupOffAdjEff };
               return [
                 GenericTableOps.buildDataRow(lineupDiffStats, offPrefixFn, offCellMetaFn, replacementTableFields),
                 GenericTableOps.buildDataRow(lineupDiffStats, defPrefixFn, defCellMetaFn, replacementTableFields),
                 GenericTableOps.buildDataRow(lineupOnStats, offPrefixFn, offCellMetaFn),
                 GenericTableOps.buildDataRow(lineupOnStats, defPrefixFn, defCellMetaFn),
-                GenericTableOps.buildDataRow(lineupOffStats, offPrefixFn, offCellMetaFn),
+                GenericTableOps.buildDataRow(lineupOffStats, offPrefixFn, offCellMetaFn, tableFieldsWithFormattedTitle),
                 GenericTableOps.buildDataRow(lineupOffStats, defPrefixFn, defCellMetaFn),
                 GenericTableOps.buildTextRow(
-                  <span><b>Same-4 Lineups:</b> {lineupSummary}</span>,
+                  <span><b>Same-4 Lineup Counts:</b> {lineupSummary}</span>,
                   "small"
                 ),
                 GenericTableOps.buildRowSeparator()
@@ -500,7 +511,7 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
   // 3] Utils
   function picker(offScale: (val: number) => string, defScale: (val: number) => string) {
     return (val: any, valMeta: string) => {
-      const num = val as number;
+      const num = val.value as number;
       return ("off" == valMeta) ? offScale(num) : defScale(num);
     };
   }

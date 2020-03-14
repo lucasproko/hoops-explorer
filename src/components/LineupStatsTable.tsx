@@ -104,14 +104,14 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, starting
   const avgOff = lineupStats.avgOff || 100.0;
 
   const calcAdjEff = (stats: any) => {
-    return {
+    return _.mapValues({
       off_adj_ppp: { value: (stats.def_adj_opp?.value) ?
-        (stats.off_ppp.value || 0.0)*(avgOff/stats.def_adj_opp.value) : undefined
+        (stats.off_ppp.value || 0.0)*(avgOff/stats.def_adj_opp.value) : avgOff
       },
       def_adj_ppp: { value: (stats.off_adj_opp?.value) ?
-        (stats.def_ppp.value || 0.0)*(avgOff/stats.off_adj_opp.value) : undefined
+        (stats.def_ppp.value || 0.0)*(avgOff/stats.off_adj_opp.value) : avgOff
       }
-    };
+    }, v => _.isNil(v.value) ? undefined : v);
   };
 
   const sorter = (sortStr: string) => { // format: (asc|desc):(off_|def_|diff_)<field>
@@ -225,7 +225,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, starting
   // 3] Utils
   function picker(offScale: (val: number) => string, defScale: (val: number) => string) {
     return (val: any, valMeta: string) => {
-      const num = val as number;
+      const num = val.value as number;
       return ("off" == valMeta) ? offScale(num) : defScale(num);
     };
   }
