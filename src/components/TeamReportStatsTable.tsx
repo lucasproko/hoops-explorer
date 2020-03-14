@@ -51,6 +51,8 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
 
   // 1] State
 
+  const commonParams = getCommonFilterParams(startingState);
+
   const [ sortBy, setSortBy ] = useState(startingState.sortBy || ParamDefaults.defaultTeamReportSortBy);
   const [ filterStr, setFilterStr ] = useState(startingState.filter || ParamDefaults.defaultTeamReportFilter);
 
@@ -331,7 +333,17 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
       const onPoss = 100.0*player.on.off_poss.value/totalPoss;
       const offPoss = 100.0*player.off.off_poss.value/totalPoss;
       const offSuffix = `\nPoss: [${onPoss.toFixed(0)}]% v [${offPoss.toFixed(0)}]%`;
-      const statsOn = { off_title: player.on.key + onSuffix, def_title: "", ...player.on };
+      const onOffAnalysis = {
+        ...commonParams,
+        onQuery: `"${player.playerId}"`,
+        offQuery: `NOT "${player.playerId}"`,
+        autoOffQuery: true
+      };
+      const statsOn = {
+        off_title: <span>{player.on.key + onSuffix}<br/>
+                      <a target="_blank" href={UrlRouting.getGameUrl(onOffAnalysis, {})}>On/Off Analysis...</a>
+                    </span>,
+        def_title: "", ...player.on };
       const statsOff = { off_title: player.off.key + offSuffix, def_title: "", ...player.off };
 
       const replacementMargin = incReplacementOnOff ?
@@ -343,7 +355,7 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
 
       return _.flatten([
         showOnOff ? [
-          GenericTableOps.buildDataRow(statsOn, offPrefixFn, offCellMetaFn),
+          GenericTableOps.buildDataRow(statsOn, offPrefixFn, offCellMetaFn, tableFieldsWithFormattedTitle),
           GenericTableOps.buildDataRow(statsOn, defPrefixFn, defCellMetaFn),
           GenericTableOps.buildDataRow(statsOff, offPrefixFn, offCellMetaFn),
           GenericTableOps.buildDataRow(statsOff, defPrefixFn, defCellMetaFn),
@@ -356,7 +368,7 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
           buildLineupInfo(player), "small"
         ) ] : [],
         [ GenericTableOps.buildRowSeparator() ],
-        (index == 0) && (repOnOffDiagMode > 0) ? _.flatten([
+        incReplacementOnOff && (index == 0) && (repOnOffDiagMode > 0) ? _.flatten([
           [ GenericTableOps.buildTextRow(<span><b>Replacement 'ON-OFF' Diagnostics For [{player.playerId}]</b></span>) ],
           _.chain(player?.replacement?.myLineups)
             .sortBy([(lineup) => -lineup?.off_poss.value])
@@ -405,16 +417,27 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
 
               const nonPlayerLineup = onLineupKeyArray.filter((pid: string) => pid != onLineupPlayerId);
               const lineupParams = {
-                ...getCommonFilterParams(startingState),
+                ...commonParams,
                 minPoss: "0",
                 maxTableSize: "100",
                 //sortBy: use default
                 filter: nonPlayerLineup.join(",")
               };
+              const same4Players =
+                _.chain(lineup?.players_array?.hits?.hits?.[0]?._source?.players || [])
+                  .map((v) => v.id)
+                  .filter((pid) => pid != player.playerId).value();
+
+              const onOffParams = {
+                ...commonParams,
+                onQuery: `"${player.playerId}" AND "${same4Players.join('" AND "')}"`,
+                offQuery: `"${same4Players.join('" AND "')}" AND NOT "${player.playerId}"`,
+                autoOffQuery: false
+              };
 
               const offTitleWithLinks =
-                <div><b>Same-4 Lineups</b><br/>
-                  <a href="#" target="_blank">On/Off Analysis...</a><br/>
+                <div>Same-4 Lineups<br/>
+                  <a href={UrlRouting.getGameUrl(onOffParams, {})} target="_blank">On/Off Analysis...</a><br/>
                   <a href={UrlRouting.getLineupUrl(lineupParams, {})} target="_blank">Lineup Analysis...</a>
                 </div>;
 
