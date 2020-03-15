@@ -35,7 +35,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       (params.team && params.year && params.gender) ?
       AvailableTeams.getTeam( //(params is string|string[], so toString is needed for type safety)
           params.team.toString(), params.year.toString(), params.gender.toString()
-      ) :
+      ) || {}:
       null;
 
     const [ efficiency, lookup ] = efficiencyInfo[`${params.gender}_${params.year}`] || [ {}, {} ];
@@ -43,7 +43,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     if (team == null) {
       res.status(404).json({});
     } else {
-      const index = team.index_template + "_" + team.year.substring(0, 4);
+      const index = (team.index_template || AvailableTeams.defaultConfIndex) + "_" +
+                      (team.year || params.year).substring(0, 4);
 
       const body = [
         JSON.stringify({ index: index }),

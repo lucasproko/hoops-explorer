@@ -1,4 +1,4 @@
-export const publicKenpomEfficiency2015_6 = {
+export const publicKenpomEfficiency2014_5 = {
    "Kentucky": {
       "team_season.year": 2015,
       "conf": "Southeastern Conference",

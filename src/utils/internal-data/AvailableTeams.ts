@@ -8,6 +8,8 @@ export type AvailableTeamMeta = {
 
 export class AvailableTeams {
 
+  static readonly defaultConfIndex = "misc_conf";
+
   /** A list of all the teams with lineup data available */
   static readonly byName: Record<string, Array<AvailableTeamMeta>> = {
     // Maryland!

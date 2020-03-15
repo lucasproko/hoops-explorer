@@ -1,4 +1,4 @@
-export const publicKenpomEfficiency2015_6 = {
+export const publicKenpomEfficiency2017_8 = {
    "Villanova": {
       "team_season.year": 2018,
       "conf": "Big East Conference",
