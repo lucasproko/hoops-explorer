@@ -89,8 +89,14 @@ describe("HistoryManager", () => {
     expect(HistoryManager.teamReportFilterSummary(report2)).toBe(
       `On/Off Report: 2018/19 team3 (W) [10:370]: query:'test ""' (sort:test-sort, filter:'Test"Filter', show:[])`
     );
-    expect(HistoryManager.teamReportFilterSummary(_.merge(report2, { showComps: true }))).toBe(
-      `On/Off Report: 2018/19 team3 (W) [10:370]: query:'test ""' (sort:test-sort, filter:'Test"Filter', show:[comps])`
+    expect(HistoryManager.teamReportFilterSummary(_.merge(_.clone(report2), { showOnOff: false, showComps: true }))).toBe(
+      `On/Off Report: 2018/19 team3 (W) [10:370]: query:'test ""' (sort:test-sort, filter:'Test"Filter', show:[!on/off,comps])`
+    );
+    expect(HistoryManager.teamReportFilterSummary(_.merge(_.clone(report2), { incRepOnOff: true, regressDiffs: 0 }))).toBe(
+      `On/Off Report: 2018/19 team3 (W) [10:370]: query:'test ""' (sort:test-sort, filter:'Test"Filter', show:[r:on-off:R0])`
+    );
+    expect(HistoryManager.teamReportFilterSummary(_.merge(_.clone(report2), { incRepOnOff: true, repOnOffDiagMode: 10 }))).toBe(
+      `On/Off Report: 2018/19 team3 (W) [10:370]: query:'test ""' (sort:test-sort, filter:'Test"Filter', show:[r:on-off,r:on-off:diag])`
     );
   });
 });

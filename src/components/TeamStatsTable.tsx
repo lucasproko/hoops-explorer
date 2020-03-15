@@ -43,12 +43,14 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({teamStats}) => {
   const avgOff = teamStats.avgOff || 100.0;
 
   const calcAdfEff = (stats: any) => {
-    return {
-      off_adj_ppp: (stats.def_adj_opp?.value) ?
-        (stats.off_ppp.value || 100.0)*(avgOff/stats.def_adj_opp.value) : undefined,
-      def_adj_ppp: (stats.off_adj_opp?.value) ?
+    return _.mapValues({
+      off_adj_ppp: { value: (stats.def_adj_opp?.value) ?
+        (stats.off_ppp.value || 100.0)*(avgOff/stats.def_adj_opp.value) : undefined
+      },
+      def_adj_ppp: { value: (stats.off_adj_opp?.value) ?
         (stats.def_ppp.value || 100.0)*(avgOff/stats.off_adj_opp.value) : undefined
-    };
+      }
+    }, v => _.isNil(v.value) ? undefined : v);
   };
   const adjOn = calcAdfEff(teamStats.on);
   const adjOff = calcAdfEff(teamStats.off);
@@ -101,8 +103,11 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({teamStats}) => {
   // 3] Utils
   function picker(offScale: (val: number) => string, defScale: (val: number) => string) {
     return (val: any, valMeta: string) => {
-      const num = val as number;
-      return ("off" == valMeta) ? offScale(num) : defScale(num);
+      const num = val.value as number;
+      return _.isNil(num) ?
+        CbbColors.malformedDataColor : //(we'll use this color to indicate malformed data)
+        ("off" == valMeta) ? offScale(num) : defScale(num)
+        ;
     };
   }
   /** Sticks an overlay on top of the table if no query has ever been loaded */

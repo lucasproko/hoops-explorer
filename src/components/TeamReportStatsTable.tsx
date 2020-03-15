@@ -28,8 +28,9 @@ import { faCheck } from '@fortawesome/free-solid-svg-icons'
 // Component imports
 import GenericTable, { GenericTableOps, GenericTableColProps } from "./GenericTable";
 import { LineupStatsModel } from './LineupStatsTable';
-import { TeamReportFilterParams, ParamDefaults } from '../utils/FilterModels';
+import { getCommonFilterParams, TeamReportFilterParams, ParamDefaults } from '../utils/FilterModels';
 import { LineupUtils } from '../utils/LineupUtils';
+import { UrlRouting } from '../utils/UrlRouting';
 
 // Util imports
 import { CbbColors } from "../utils/CbbColors";
@@ -49,6 +50,8 @@ type Props = {
 const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, startingState, onChangeState}) => {
 
   // 1] State
+
+  const commonParams = getCommonFilterParams(startingState);
 
   const [ sortBy, setSortBy ] = useState(startingState.sortBy || ParamDefaults.defaultTeamReportSortBy);
   const [ filterStr, setFilterStr ] = useState(startingState.filter || ParamDefaults.defaultTeamReportFilter);
@@ -79,7 +82,7 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
     parseInt(_.isNil(startingState.regressDiffs) ? ParamDefaults.defaultTeamReportRegressDiffs : startingState.regressDiffs)
   );
   const [ repOnOffDiagMode, setRepOnOffDiagMode ] = useState(
-    parseInt(_.isNil(startingState.repOnOffDiagMode) ? "0" : startingState.repOnOffDiagMode)
+    parseInt(_.isNil(startingState.repOnOffDiagMode) ? ParamDefaults.defaultTeamReportRepOnOffDiagMode : startingState.repOnOffDiagMode)
   );
 
   /** If the browser is doing heavier calcs then spin the display vs just be unresponsive */
@@ -123,7 +126,9 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
     if (inBrowserRepOnOffPxing) {
       setTimeout(() => { //(ensures that the "processing" element is returned _before_ the processing starts)
         try {
-          const tempTeamReport = LineupUtils.lineupToTeamReport(lineupReport, incReplacementOnOff, regressDiffs);
+          const tempTeamReport = LineupUtils.lineupToTeamReport(
+            lineupReport, incReplacementOnOff, regressDiffs, repOnOffDiagMode
+          );
           setTeamReport(tempTeamReport);
           const avgOff = lineupReport.avgOff || 100.0;
           setPlayersWithAdjEff(withAdjEfficiency(tempTeamReport?.players || [], avgOff));
@@ -159,6 +164,11 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
     "poss": GenericTableOps.addIntCol("Poss", "Total number of possessions for selected lineups", GenericTableOps.defaultColorPicker),
     "adj_opp": GenericTableOps.addPtsCol("SoS", "Weighted average of the offensive or defensive efficiencies of the lineups' opponents", GenericTableOps.defaultColorPicker),
   };
+  const tableFieldsWithFormattedTitle = _.chain(tableFields).toPairs().map((kv) => {
+    if (kv[0] == "title") {
+      return [ kv[0], GenericTableOps.addTitle("", "", rowSpanCalculator, "small", GenericTableOps.htmlFormatter) ];
+    } else return kv;
+  }).fromPairs().value();
   const replacementTableFields = { //accessors vs column metadata
     "title": GenericTableOps.addTitle("", "", rowSpanCalculator, "small"),
     "sep0": GenericTableOps.addColSeparator(),
@@ -193,14 +203,14 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
   const defCellMetaFn = (key: string, val: any) => "def";
 
   const calcAdjEff = (stats: any, avgOff: number) => {
-    return {
+    return _.mapValues({
       off_adj_ppp: { value: (stats.def_adj_opp?.value) ?
         (stats.off_ppp.value || 0.0)*(avgOff/stats.def_adj_opp.value) : undefined
       },
       def_adj_ppp: { value: (stats.off_adj_opp?.value) ?
         (stats.def_ppp.value || 0.0)*(avgOff/stats.off_adj_opp.value) : undefined
       }
-    };
+    }, v => _.isNil(v.value) ? undefined : v);
   };
 
   const withAdjEfficiency = (mutablePlayers: Array<any>, avgOff: number) => {
@@ -225,13 +235,18 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
       } ).value();
   };
 
+  const maybeGetAdjEff = (player: any) => {
+    const onMargin = (player?.on?.off_adj_ppp?.value || 0.0) - (player?.on?.def_adj_ppp?.value || 0.0);
+    const offMargin = (player.off?.off_adj_ppp?.value || 0.0) - (player?.off?.def_adj_ppp?.value || 0.0);
+    return [ onMargin, offMargin ]
+  }
+
   const playerLineupPowerSet = _.chain(playersWithAdjEff).map((player) => {
     if (incReplacementOnOff && player.replacement.key) {
       return [ player.playerId,
         (player.replacement?.off_adj_ppp?.value || 0.0) - (player.replacement?.def_adj_ppp?.value || 0.0)];
     } else {
-      const onMargin = player.on.off_adj_ppp.value - player.on.def_adj_ppp.value;
-      const offMargin = player.off.off_adj_ppp.value - player.off.def_adj_ppp.value;
+      const [ onMargin, offMargin ] = maybeGetAdjEff(player);
       return [ player.playerId, onMargin - offMargin ];
     }
   }).fromPairs().value();
@@ -315,15 +330,24 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
         ;
     }).sortBy(
        [ sorter(sortBy) ]
-    ).flatMap((player) => {
-      const onMargin = player.on.off_adj_ppp.value - player.on.def_adj_ppp.value;
-      const offMargin = player.off.off_adj_ppp.value - player.off.def_adj_ppp.value;
+    ).flatMap((player, index) => {
+      const [ onMargin, offMargin ] = maybeGetAdjEff(player);
       const onSuffix = `\nAdj: [${onMargin.toFixed(1)}]-[${offMargin.toFixed(1)}]=[${(onMargin - offMargin).toFixed(1)}]`;
       const totalPoss = (player.on.off_poss.value + player.off.off_poss.value || 1);
       const onPoss = 100.0*player.on.off_poss.value/totalPoss;
       const offPoss = 100.0*player.off.off_poss.value/totalPoss;
       const offSuffix = `\nPoss: [${onPoss.toFixed(0)}]% v [${offPoss.toFixed(0)}]%`;
-      const statsOn = { off_title: player.on.key + onSuffix, def_title: "", ...player.on };
+      const onOffAnalysis = {
+        ...commonParams,
+        onQuery: `"${player.playerId}"`,
+        offQuery: `NOT "${player.playerId}"`,
+        autoOffQuery: true
+      };
+      const statsOn = {
+        off_title: <span>{player.on.key + onSuffix}<br/>
+                      <a target="_blank" href={UrlRouting.getGameUrl(onOffAnalysis, {})}>On/Off Analysis...</a>
+                    </span>,
+        def_title: "", ...player.on };
       const statsOff = { off_title: player.off.key + offSuffix, def_title: "", ...player.off };
 
       const replacementMargin = incReplacementOnOff ?
@@ -335,7 +359,7 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
 
       return _.flatten([
         showOnOff ? [
-          GenericTableOps.buildDataRow(statsOn, offPrefixFn, offCellMetaFn),
+          GenericTableOps.buildDataRow(statsOn, offPrefixFn, offCellMetaFn, tableFieldsWithFormattedTitle),
           GenericTableOps.buildDataRow(statsOn, defPrefixFn, defCellMetaFn),
           GenericTableOps.buildDataRow(statsOff, offPrefixFn, offCellMetaFn),
           GenericTableOps.buildDataRow(statsOff, defPrefixFn, defCellMetaFn),
@@ -347,7 +371,100 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
         showLineupCompositions ? [ GenericTableOps.buildTextRow(
           buildLineupInfo(player), "small"
         ) ] : [],
-        [ GenericTableOps.buildRowSeparator() ]
+        [ GenericTableOps.buildRowSeparator() ],
+        incReplacementOnOff && (index == 0) && (repOnOffDiagMode > 0) ? _.flatten([
+          [ GenericTableOps.buildTextRow(<span><b>Replacement 'ON-OFF' Diagnostics For [{player.playerId}]</b></span>) ],
+          _.chain(player?.replacement?.myLineups)
+            .sortBy([(lineup) => -lineup?.off_poss.value])
+            .take(repOnOffDiagMode).flatMap((lineup: any) => {
+
+              const onLineupKeyArray = lineup.key.split("_");
+
+              const lineupKeys = (key: string) => {
+                const lineupKeyArray = key.split("_");
+                const newPlayerId = _.difference(lineupKeyArray, onLineupKeyArray)?.[0] || "unknown";
+                return lineupKeyArray
+                  .filter(pid => pid != newPlayerId)
+                  .map((pid, i) => <span key={"" + i}>{pid}/<wbr/></span>)
+                  .concat(<b key={"newPlayerId"}>{newPlayerId}</b>);
+              }
+              //kv[0].replace(/_/g, " / ")
+              const lineupSummary =
+                _.chain(player?.replacement?.lineupUsage || {})
+                  .pick(lineup.offLineupKeys || [])
+                  .toPairs()
+                  .sortBy((kv => - kv[1]?.off_poss?.value))
+                  .take(repOnOffDiagMode)
+                  .map((kv, i) =>
+                    <span key={"" + i}>{lineupKeys(kv[0])} (p=[{kv[1].poss}]/o=[{kv[1].overlap}]);&nbsp;</span>
+                  ).value();
+
+              const onLineupPlayerId = _.difference(
+                onLineupKeyArray, ((lineup.offLineupKeys?.[0] || "").split("_"))
+              )?.[0] || "unknown";
+
+              const lineupOnAdjEff: Record<string, any> = calcAdjEff(lineup.onLineup, lineupReport.avgOff || 100.0);
+              const lineupOffAdjEff: Record<string, any> = calcAdjEff(lineup.offLineups, lineupReport.avgOff || 100.0);
+              const lineupDiffAdjEff = {
+                off_adj_ppp: { value: lineupOnAdjEff.off_adj_ppp.value - lineupOffAdjEff.off_adj_ppp.value },
+                def_adj_ppp: { value: lineupOnAdjEff.def_adj_ppp.value - lineupOffAdjEff.def_adj_ppp.value }
+              };
+              const regressed = (n: number | undefined) => {
+                const num = n || 0;
+                return regressDiffs < 0 ? -regressDiffs : (num + regressDiffs);
+              }
+              const offTotalPos = regressed(player?.replacement?.off_poss?.value) || 1;
+              const defTotalPos = regressed(player?.replacement?.def_poss?.value) || 1;
+              const offContrib = lineupDiffAdjEff.off_adj_ppp.value*(lineup?.off_poss?.value || 0)/offTotalPos;
+              const defContrib = lineupDiffAdjEff.def_adj_ppp.value*(lineup?.def_poss?.value || 0)/defTotalPos;
+              const contribStr = `Adj Eff Contrib:\noff=[${offContrib.toFixed(2)}] def=[${defContrib.toFixed(2)}]`;
+
+              const nonPlayerLineup = onLineupKeyArray.filter((pid: string) => pid != onLineupPlayerId);
+              const lineupParams = {
+                ...commonParams,
+                minPoss: "0",
+                maxTableSize: "100",
+                //sortBy: use default
+                filter: nonPlayerLineup.join(",")
+              };
+              const same4Players =
+                _.chain(lineup?.players_array?.hits?.hits?.[0]?._source?.players || [])
+                  .map((v) => v.id)
+                  .filter((pid) => pid != player.playerId).value();
+
+              const onOffParams = {
+                ...commonParams,
+                onQuery: `"${player.playerId}" AND "${same4Players.join('" AND "')}"`,
+                offQuery: `"${same4Players.join('" AND "')}" AND NOT "${player.playerId}"`,
+                autoOffQuery: false
+              };
+
+              const offTitleWithLinks =
+                <div>Same-4 Lineups<br/>
+                  <a href={UrlRouting.getGameUrl(onOffParams, {})} target="_blank">On/Off Analysis...</a><br/>
+                  <a href={UrlRouting.getLineupUrl(lineupParams, {})} target="_blank">Lineup Analysis...</a>
+                </div>;
+
+              const lineupKey = nonPlayerLineup.join(" / ");
+              const lineupDiffStats = { off_title: `Harmonic: ${lineupKey}`, def_title: "", ...lineup, ...lineupDiffAdjEff };
+              const lineupOnStats = { off_title: `'ON' Lineup\n${contribStr}`, def_title: "", ...lineup.onLineup, ...lineupOnAdjEff };
+              const lineupOffStats = { off_title: offTitleWithLinks, def_title: "", ...lineup.offLineups, ...lineupOffAdjEff };
+              return [
+                GenericTableOps.buildDataRow(lineupDiffStats, offPrefixFn, offCellMetaFn, replacementTableFields),
+                GenericTableOps.buildDataRow(lineupDiffStats, defPrefixFn, defCellMetaFn, replacementTableFields),
+                GenericTableOps.buildDataRow(lineupOnStats, offPrefixFn, offCellMetaFn),
+                GenericTableOps.buildDataRow(lineupOnStats, defPrefixFn, defCellMetaFn),
+                GenericTableOps.buildDataRow(lineupOffStats, offPrefixFn, offCellMetaFn, tableFieldsWithFormattedTitle),
+                GenericTableOps.buildDataRow(lineupOffStats, defPrefixFn, defCellMetaFn),
+                GenericTableOps.buildTextRow(
+                  <span><b>Same-4 Lineup Counts:</b> {lineupSummary}</span>,
+                  "small"
+                ),
+                GenericTableOps.buildRowSeparator()
+              ];
+          }).value(),
+          [ GenericTableOps.buildRowSeparator() ],
+        ]) : [],
       ]);
     }).value();
 
@@ -431,8 +548,11 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
   // 3] Utils
   function picker(offScale: (val: number) => string, defScale: (val: number) => string) {
     return (val: any, valMeta: string) => {
-      const num = val as number;
-      return ("off" == valMeta) ? offScale(num) : defScale(num);
+      const num = val.value as number;
+      return _.isNil(num) ?
+        CbbColors.malformedDataColor : //(we'll use this color to indicate malformed data)
+        ("off" == valMeta) ? offScale(num) : defScale(num)
+        ;
     };
   }
   /** Sticks an overlay on top of the table if no query has ever been loaded */
@@ -544,7 +664,6 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
                   {regressDiffs != 0 ? <FontAwesomeIcon icon={faCheck}/> : null}
                 </div>
               </Dropdown.Item>
-              {false ?
               <Dropdown.Item as={Button}>
                 <div onClick={() => setRepOnOffDiagMode(repOnOffDiagMode != 0 ? 0 : 10)}>
                   <span>'r:On-Off' diagnostic mode</span>
@@ -552,7 +671,6 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
                   {repOnOffDiagMode != 0 ? <FontAwesomeIcon icon={faCheck}/> : null}
                 </div>
               </Dropdown.Item>
-              :null}
             </Dropdown.Menu>
           </Dropdown>
         </Form.Group>

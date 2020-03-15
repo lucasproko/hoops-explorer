@@ -1425,6 +1425,33 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot 1`] 
                 />
               </div>
             </DropdownItem>
+            <DropdownItem
+              as={
+                Object {
+                  "$$typeof": Symbol(react.forward_ref),
+                  "defaultProps": Object {
+                    "active": false,
+                    "disabled": false,
+                    "type": "button",
+                    "variant": "primary",
+                  },
+                  "displayName": "Button",
+                  "render": [Function],
+                }
+              }
+              disabled={false}
+            >
+              <div
+                onClick={[Function]}
+              >
+                <span>
+                  'r:On-Off' diagnostic mode
+                </span>
+                <span>
+                      
+                </span>
+              </div>
+            </DropdownItem>
           </DropdownMenu>
         </Dropdown>
       </FormGroup>
@@ -1444,7 +1471,9 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot 1`] 
                 "colorPicker": [Function],
                 "formatter": [Function],
                 "isTitle": false,
-                "missingData": 0,
+                "missingData": Object {
+                  "value": 0,
+                },
                 "rowSpan": [Function],
                 "toolTip": "2 point field goal percentage",
                 "widthUnits": 2,
@@ -1455,7 +1484,9 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot 1`] 
                 "colorPicker": [Function],
                 "formatter": [Function],
                 "isTitle": false,
-                "missingData": 0,
+                "missingData": Object {
+                  "value": 0,
+                },
                 "rowSpan": [Function],
                 "toolTip": "2 point field goal percentage (mid range)",
                 "widthUnits": 2,
@@ -1466,7 +1497,9 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot 1`] 
                 "colorPicker": [Function],
                 "formatter": [Function],
                 "isTitle": false,
-                "missingData": 0,
+                "missingData": Object {
+                  "value": 0,
+                },
                 "rowSpan": [Function],
                 "toolTip": "Percentage of mid range 2 pointers taken against all field goals",
                 "widthUnits": 2,
@@ -1477,7 +1510,9 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot 1`] 
                 "colorPicker": [Function],
                 "formatter": [Function],
                 "isTitle": false,
-                "missingData": 0,
+                "missingData": Object {
+                  "value": 0,
+                },
                 "rowSpan": [Function],
                 "toolTip": "2 point field goal percentage (layup/dunk/etc)",
                 "widthUnits": 2,
@@ -1488,7 +1523,9 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot 1`] 
                 "colorPicker": [Function],
                 "formatter": [Function],
                 "isTitle": false,
-                "missingData": 0,
+                "missingData": Object {
+                  "value": 0,
+                },
                 "rowSpan": [Function],
                 "toolTip": "Percentage of layup/dunk/etc 2 pointers taken against all field goals",
                 "widthUnits": 2,
@@ -1499,7 +1536,9 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot 1`] 
                 "colorPicker": [Function],
                 "formatter": [Function],
                 "isTitle": false,
-                "missingData": 0,
+                "missingData": Object {
+                  "value": 0,
+                },
                 "rowSpan": [Function],
                 "toolTip": "3 point field goal percentage",
                 "widthUnits": 2,
@@ -1510,7 +1549,9 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot 1`] 
                 "colorPicker": [Function],
                 "formatter": [Function],
                 "isTitle": false,
-                "missingData": 0,
+                "missingData": Object {
+                  "value": 0,
+                },
                 "rowSpan": [Function],
                 "toolTip": "Percentage of 3 pointers taken against all field goals",
                 "widthUnits": 2,
@@ -1521,7 +1562,9 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot 1`] 
                 "colorPicker": [Function],
                 "formatter": [Function],
                 "isTitle": false,
-                "missingData": 0,
+                "missingData": Object {
+                  "value": 0,
+                },
                 "rowSpan": [Function],
                 "toolTip": "Weighted average of the offensive or defensive efficiencies of the lineups' opponents",
                 "widthUnits": 2,
@@ -1532,7 +1575,9 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot 1`] 
                 "colorPicker": [Function],
                 "formatter": [Function],
                 "isTitle": false,
-                "missingData": 0,
+                "missingData": Object {
+                  "value": 0,
+                },
                 "rowSpan": [Function],
                 "toolTip": "Approximate schedule-adjusted Points per 100 possessions",
                 "widthUnits": 2,
@@ -1543,7 +1588,9 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot 1`] 
                 "colorPicker": [Function],
                 "formatter": [Function],
                 "isTitle": false,
-                "missingData": 0,
+                "missingData": Object {
+                  "value": 0,
+                },
                 "rowSpan": [Function],
                 "toolTip": "Effective field goal% (3 pointers count 1.5x as much) for selected lineups",
                 "widthUnits": 2,
@@ -1554,7 +1601,9 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot 1`] 
                 "colorPicker": [Function],
                 "formatter": [Function],
                 "isTitle": false,
-                "missingData": 0,
+                "missingData": Object {
+                  "value": 0,
+                },
                 "rowSpan": [Function],
                 "toolTip": "Free throw rate for selected lineups",
                 "widthUnits": 2,
@@ -1565,7 +1614,9 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot 1`] 
                 "colorPicker": [Function],
                 "formatter": [Function],
                 "isTitle": false,
-                "missingData": 0,
+                "missingData": Object {
+                  "value": 0,
+                },
                 "rowSpan": [Function],
                 "toolTip": "Offensive rebounding % for selected lineups",
                 "widthUnits": 2,
@@ -1576,7 +1627,9 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot 1`] 
                 "colorPicker": [Function],
                 "formatter": [Function],
                 "isTitle": false,
-                "missingData": 0,
+                "missingData": Object {
+                  "value": 0,
+                },
                 "rowSpan": [Function],
                 "toolTip": "Total number of possessions for selected lineups",
                 "widthUnits": 2,
@@ -1587,7 +1640,9 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot 1`] 
                 "colorPicker": [Function],
                 "formatter": [Function],
                 "isTitle": false,
-                "missingData": 0,
+                "missingData": Object {
+                  "value": 0,
+                },
                 "rowSpan": [Function],
                 "toolTip": "Points per 100 possessions",
                 "widthUnits": 2,
@@ -1664,7 +1719,9 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot 1`] 
                 "colorPicker": [Function],
                 "formatter": [Function],
                 "isTitle": false,
-                "missingData": 0,
+                "missingData": Object {
+                  "value": 0,
+                },
                 "rowSpan": [Function],
                 "toolTip": "Turnover % for selected lineups",
                 "widthUnits": 2,

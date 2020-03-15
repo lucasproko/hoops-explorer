@@ -17,6 +17,19 @@ export type CommonFilterParams = {
   filterGarbage?: boolean //(missing iff "false")
 }
 
+/** Extracts the common params from a superset */
+export function getCommonFilterParams(p: CommonFilterParams) {
+  return {
+    year: p.year,
+    team: p.team,
+    gender: p.gender,
+    minRank: p.minRank,
+    maxRank: p.maxRank,
+    baseQuery: p.baseQuery,
+    filterGarbage: p.filterGarbage
+  };
+}
+
 /** Combined params for game filtering */
 export type GameFilterParams = {
   [P in keyof CommonFilterParams]?: CommonFilterParams[P];
@@ -76,6 +89,7 @@ export class ParamDefaults {
   static readonly defaultShowComps = true;
   static readonly defaultTeamReportIncRepOnOff = false;
   static readonly defaultTeamReportRegressDiffs = "-2000";
+  static readonly defaultTeamReportRepOnOffDiagMode = "0";
   // Common
   static readonly defaultTeam = "";
   static readonly defaultYear = "2019/20";

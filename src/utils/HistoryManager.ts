@@ -18,7 +18,7 @@ export class HistoryManager {
   static readonly maxHistorySize = 50;
 
   /** Returns an ordered list of filter params */
-  static getHistory(): Array<[string, GameFilterParams | LineupFilterParams]> {
+  static getHistory(): Array<[string, GameFilterParams | LineupFilterParams | TeamReportFilterParams]> {
     return _.flatMap(HistoryManager.getParamStrs(), (param) => {
       if (_.startsWith(param, ParamPrefixes.game)) {
         const paramNoPrefix = param.substring(ParamPrefixes.game.length);
@@ -85,7 +85,7 @@ export class HistoryManager {
   }
 
   /** Picks the right filter params and summarizes */
-  static filterSummary(prefix: string, p: GameFilterParams | LineupFilterParams) {
+  static filterSummary(prefix: string, p: GameFilterParams | LineupFilterParams | TeamReportFilterParams) {
     if (prefix == ParamPrefixes.game) {
       return HistoryManager.gameFilterSummary(p as GameFilterParams);
     } else if (prefix == ParamPrefixes.lineup) {
@@ -143,9 +143,25 @@ export class HistoryManager {
   /** Returns a summary string for the game filter */
   static teamReportFilterSummary(p: TeamReportFilterParams) {
     const baseQuery = `query:'${tidyQuery(p.baseQuery)}'`;
+    const showOnOff =
+      _.isNil(p.showOnOff) ? ParamDefaults.defaultShowOnOff : p.showOnOff;
     const showComps =
       _.isNil(p.showComps) ? ParamDefaults.defaultShowComps : p.showComps;
-    const showArray = showComps ? [ "comps"] : [];
+    const incRepOnOff =
+      _.isNil(p.incRepOnOff) ? ParamDefaults.defaultTeamReportIncRepOnOff : p.incRepOnOff;
+    const regressNum =
+      _.isNil(p.regressDiffs) ? ParamDefaults.defaultTeamReportRegressDiffs : p.regressDiffs;
+    const regressStr =
+      (regressNum == ParamDefaults.defaultTeamReportRegressDiffs) ? '' : (':R' + regressNum);
+    const diagMode =
+      _.isNil(p.repOnOffDiagMode) ? false : true;
+
+    const showArray = _.flatMap([
+      showOnOff ? [] : [ "!on/off" ],
+      showComps ? [ "comps" ] : [],
+      incRepOnOff ? [ "r:on-off" + regressStr ] : [],
+      diagMode ? [ "r:on-off:diag" ] : []
+    ]);
 
     const otherParams =
       `sort:${p.sortBy || ParamDefaults.defaultLineupSortBy}, ` +

@@ -104,14 +104,14 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, starting
   const avgOff = lineupStats.avgOff || 100.0;
 
   const calcAdjEff = (stats: any) => {
-    return {
+    return _.mapValues({
       off_adj_ppp: { value: (stats.def_adj_opp?.value) ?
-        (stats.off_ppp.value || 0.0)*(avgOff/stats.def_adj_opp.value) : undefined
+        (stats.off_ppp.value || 0.0)*(avgOff/stats.def_adj_opp.value) : avgOff
       },
       def_adj_ppp: { value: (stats.off_adj_opp?.value) ?
-        (stats.def_ppp.value || 0.0)*(avgOff/stats.off_adj_opp.value) : undefined
+        (stats.def_ppp.value || 0.0)*(avgOff/stats.off_adj_opp.value) : avgOff
       }
-    };
+    }, v => _.isNil(v.value) ? undefined : v);
   };
 
   const sorter = (sortStr: string) => { // format: (asc|desc):(off_|def_|diff_)<field>
@@ -141,7 +141,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, starting
     }).filter((lineup) => {
       const namesToTest = _.chain(lineup?.players_array?.hits?.hits).flatMap((pDoc) => {
         return pDoc?._source.players.map((p: any) => p.id);
-      }).value();
+      }).value().concat([ lineup.key ]);
 
       const playerFilter =
         (_.isEmpty(filterFragmentsPve) ||
@@ -150,7 +150,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, starting
         (_.isEmpty(filterFragmentsNve) ||
           !_.some(filterFragmentsNve, (frag) => _.some(namesToTest, (name) => name.indexOf(frag) >= 0))
         );
-      return playerFilter;
+      return playerFilter && (lineup.key != ""); // (workaround for #53 pending fix)
 
     }).map((lineup) => {
       const adjOffDef = calcAdjEff(lineup);
@@ -225,8 +225,11 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, starting
   // 3] Utils
   function picker(offScale: (val: number) => string, defScale: (val: number) => string) {
     return (val: any, valMeta: string) => {
-      const num = val as number;
-      return ("off" == valMeta) ? offScale(num) : defScale(num);
+      const num = val.value as number;
+      return _.isNil(num) ?
+        CbbColors.malformedDataColor : //(we'll use this color to indicate malformed data)
+        ("off" == valMeta) ? offScale(num) : defScale(num)
+        ;
     };
   }
   /** Sticks an overlay on top of the table if no query has ever been loaded */

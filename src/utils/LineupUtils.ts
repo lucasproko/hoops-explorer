@@ -14,7 +14,8 @@ export class LineupUtils {
 
   /** Builds on/off info out of lineups */
   static lineupToTeamReport(
-    lineupReport: LineupStatsModel, incReplacement: boolean = false, regressDiffs: number = 0
+    lineupReport: LineupStatsModel, incReplacement: boolean = false,
+    regressDiffs: number = 0, repOnOffDiagMode: number = 0
   ): TeamReportStatsModel {
     const allPlayersSet = _.chain(lineupReport.lineups || []).reduce((acc: any, lineup: any) => {
       const players = lineup?.players_array?.hits?.hits?.[0]?._source?.players || [];
@@ -46,11 +47,13 @@ export class LineupUtils {
           },
           replacement: incReplacement ? {
             key: `'r:ON-OFF' ${playerId}`,
+            lineupUsage: {},
             myLineups: _.chain(lineupReport.lineups || []).filter((lineup) => {
               const playersSet = getPlayerSet(lineup);
-              return playersSet.hasOwnProperty(playerId);
+              return playersSet.hasOwnProperty(playerId) && (lineup.key != ""); //(workaround for #53 pending fix)
             }).map((lineup) => {
-              return _.merge({ offLineups: {} }, lineup); //(copies lineup and adds empty offLineups)
+              return _.merge({ offLineups: {}, offLineupKeys: [], onLineup: {} }, lineup);
+                //(copies lineup and adds empty offLineups/offLineupList/onLineup)
             }).value()
           } : undefined
         };
@@ -60,6 +63,9 @@ export class LineupUtils {
     };
 
     _.chain(lineupReport.lineups || []).transform((acc, lineup) => {
+      if (lineup.key == "") { //(workaround for #53 pending fix)
+        return;
+      }
       const playersSet = getPlayerSet(lineup);
 
       _.chain(acc.players).forEach((playerObj) => {
@@ -82,6 +88,18 @@ export class LineupUtils {
                 LineupUtils.isComplementLineup(playerObj.playerId, onLineup, lineup);
               return isComplement;
             }).forEach((onLineup) => {
+              if (repOnOffDiagMode > 0) {
+                onLineup.offLineupKeys.push(lineup.key);
+                if (!playerObj.replacement.lineupUsage.hasOwnProperty(lineup.key)) {
+                  playerObj.replacement.lineupUsage[lineup.key] = {
+                    poss: lineup?.off_poss?.value || 0,
+                    overlap: 1
+                  }
+                } else {
+                  const tempObj = playerObj.replacement.lineupUsage[lineup.key];
+                  tempObj.overlap += 1;
+                }
+              }
               LineupUtils.weightedAvg(onLineup.offLineups, lineup);
             }).value();
           }
@@ -102,7 +120,9 @@ export class LineupUtils {
         LineupUtils.completeWeightedAvg(playerObj.off);
       }
       if (incReplacement) {
-        LineupUtils.combineReplacementOnOff(playerObj.replacement, _.keys(playerObj.on), regressDiffs);
+        LineupUtils.combineReplacementOnOff(
+          playerObj.replacement, _.keys(playerObj.on), regressDiffs, repOnOffDiagMode
+        );
       }
       return playerObj; // ('ON' exists by construction)
     }).value();
@@ -110,7 +130,10 @@ export class LineupUtils {
   }
 
   private static readonly ignoreFieldSet =  //or anything that starts with total_
-    { key: true, players_array: true, doc_count: true, points_scored: true, points_allowed: true };
+    { key: true, players_array: true, doc_count: true, points_scored: true, points_allowed: true,
+      //(replacement on/off vals:)
+      offLineups: true, offLineupKeys: true, onLineup: true
+     };
   private static readonly sumFieldSet = { off_poss: true, def_poss: true };
 
   /** Updates lineup info */
@@ -293,7 +316,8 @@ export class LineupUtils {
 
   /** Combines the deltas between the on/off numbers, weights, and averages */
   private static combineReplacementOnOff(
-    mutableReplacementObj: any, keySource: Array<string>, regressDiffs: number = 0
+    mutableReplacementObj: any, keySource: Array<string>,
+    regressDiffs: number = 0, repOnOffDiagMode: number = 0
   ) {
 
     // Calculate offensive and defensive harmonic means for possessions etc
@@ -327,6 +351,9 @@ export class LineupUtils {
         }
         return retain;
       }).map((myLineup) => {
+        if (repOnOffDiagMode > 0) {
+          myLineup.onLineup = _.clone(myLineup); //(important: this is a shallow clone)
+        }
         // Complete weighting
         const offLineups = myLineup.offLineups;
         LineupUtils.completeWeightedAvg(offLineups); //mutates this
@@ -356,9 +383,9 @@ export class LineupUtils {
 
         _.keys(harmonicWeights).forEach((key) => {
           if ((myLineup?.[key]?.value > 0) && (offLineups?.[key]?.value > 0)) {
-            myLineup[key].value = LineupUtils.calcHarmonicMean(
+            myLineup[key] = { value: LineupUtils.calcHarmonicMean(
               myLineup[key].value, offLineups[key].value
-            );
+            ) };
           } else {
             myLineup[key] = { value: 0 };
           }
@@ -387,7 +414,11 @@ export class LineupUtils {
         return myLineup;
       }).value();
 
-    delete mutableReplacementObj.myLineups;
+    if (repOnOffDiagMode == 0) {
+      delete mutableReplacementObj.myLineups;
+    } else { //(remove any lineups that don't contribute)
+      mutableReplacementObj.myLineups = weightedLineups;
+    }
 
     _.chain(weightedLineups || []).transform((acc, lineup) => {
       LineupUtils.weightedAvg(acc, lineup);

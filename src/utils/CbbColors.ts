@@ -5,6 +5,8 @@ type CbbColorTuple = [ (val: number) => string, (val: number) => string ];
 
 export class CbbColors {
 
+  static readonly malformedDataColor = "#ccCCcc";
+
   private static readonly redToGreen = chroma.scale(["red", "#ffFFff", "green"]);
   private static readonly greenToRed = chroma.scale(["green", "#ffFFff", "red"]);
   private static readonly blueToOrange = chroma.scale(["lightblue", "#ffFFff", "orange"]);
