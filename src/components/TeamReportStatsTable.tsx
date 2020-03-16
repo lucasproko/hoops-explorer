@@ -373,7 +373,7 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
         ) ] : [],
         [ GenericTableOps.buildRowSeparator() ],
         incReplacementOnOff && (index == 0) && (repOnOffDiagMode > 0) ? _.flatten([
-          [ GenericTableOps.buildTextRow(<span><b>Replacement 'ON-OFF' Diagnostics For [{player.playerId}]</b></span>) ],
+          [ GenericTableOps.buildTextRow(<span><b>Replacement 'ON-OFF' Diagnostics <a target="_blank" href="https://hoop-explorer.blogspot.com/2020/03/diagnostics-mode-for-replacement-onoff.html">(?)</a> For [{player.playerId}]</b></span>) ],
           _.chain(player?.replacement?.myLineups)
             .sortBy([(lineup) => -lineup?.off_poss.value])
             .take(repOnOffDiagMode).flatMap((lineup: any) => {
