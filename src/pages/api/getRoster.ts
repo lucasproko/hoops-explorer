@@ -34,14 +34,14 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       (params.team && params.year && params.gender) ?
       AvailableTeams.getTeam( //(params is string|string[], so toString is needed for type safety)
           params.team.toString(), params.year.toString(), params.gender.toString()
-      ) || {} :
+      ) || { index_template: null, year: null }:
       null;
 
     if (team == null) {
       res.status(404).json({});
     } else {
       const index = (team.index_template || AvailableTeams.defaultConfIndex) + "_" +
-                      (team.year || params.year).substring(0, 4);
+                      (team.year || params.year || "xxxx").substring(0, 4);
 
       const body = [
         JSON.stringify({ index: index }),
