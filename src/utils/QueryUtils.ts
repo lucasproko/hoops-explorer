@@ -36,14 +36,18 @@ export class QueryUtils {
   /** Converts a hoop-explorer lineup query into an ES query_string */
   static basicOrAdvancedQuery(query: string | undefined, fallback: string): string {
     // Firstly, let's sub-in the special case of {playerX|...}~N to take N from that set
-    const subMatch = /[{]([^}]*)[}][~]([0-9]+)/g;
-    return _.chain((query || fallback).replace(subMatch, function(match, p1, p2) {
+    const subMatch = /[{]([^}]*)[}]([~=])([0-9]+)/g;
+    return _.chain((query || fallback).replace(subMatch, function(match, p1, p2, p3) {
       const players = p1.split(';');
-      const numToInclude = parseInt(p2); //(number by construction)
+      const laxCombo = p2 == '~'; //(vs strict if ==)
+      const numToInclude = parseInt(p3); //(number by construction)
 
       return "(" +
           (_ as any).combinations(players, numToInclude).map((combo: any) => {
-            return `(${_.join(combo, " AND ")})`;
+            const andTerms = `(${_.join(combo, " AND ")})`;
+            const notTermList = laxCombo ? [] : _.difference(players, combo);
+            const notTerms = `(${_.join(notTermList, " OR ")})`;
+            return (laxCombo || _.isEmpty(notTermList)) ? andTerms : `(${andTerms} AND NOT ${notTerms})`;
           }).join(" OR ") +
         ")";
 

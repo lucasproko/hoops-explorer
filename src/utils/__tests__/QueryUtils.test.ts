@@ -30,6 +30,9 @@ describe("QueryUtils", () => {
     const query4 = ' NOT ([ test "] )';
     const query5 = '{"Cowan, Ant";Morsell;Ayala}~2'
     const query6 = '[players.id:{"Cowan, Ant";Morsell;Ayala}~2]'
+    const query6b = '[players.id:{"Cowan, Ant";Morsell;Ayala}=2]'
+    const query7 = '{Morsell;Ayala}=1'
+    const query8 = '[players.id:{Cowan;Morsell;Ayala}=1]'
 
     expect(QueryUtils.basicOrAdvancedQuery(query1, "1")).toBe(' test "');
     expect(QueryUtils.basicOrAdvancedQuery(query2, "2")).toBe("players.id:(te'st)");
@@ -40,6 +43,15 @@ describe("QueryUtils", () => {
     );
     expect(QueryUtils.basicOrAdvancedQuery(query6, "fallback")).toBe(
       `players.id:(("Cowan, Ant" AND Morsell) OR ("Cowan, Ant" AND Ayala) OR (Morsell AND Ayala))`
+    );
+    expect(QueryUtils.basicOrAdvancedQuery(query6b, "fallback")).toBe(
+      `players.id:((("Cowan, Ant" AND Morsell) AND NOT (Ayala)) OR (("Cowan, Ant" AND Ayala) AND NOT (Morsell)) OR ((Morsell AND Ayala) AND NOT ("Cowan, Ant")))`
+    );
+    expect(QueryUtils.basicOrAdvancedQuery(query7, "fallback")).toBe(
+      `players.id:((((Morsell) AND NOT (Ayala)) OR ((Ayala) AND NOT (Morsell))))`  
+    );
+    expect(QueryUtils.basicOrAdvancedQuery(query8, "fallback")).toBe(
+      `players.id:(((Cowan) AND NOT (Morsell OR Ayala)) OR ((Morsell) AND NOT (Cowan OR Ayala)) OR ((Ayala) AND NOT (Cowan OR Morsell)))`
     );
   });
 });
