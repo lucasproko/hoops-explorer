@@ -49,9 +49,6 @@ const AutoSuggestText: React.FunctionComponent<Props> = (
   const [ basicOptions, setBasicOptions ] = useState([] as Array<string>);
   const [ advOptions, setAdvOptions ] = useState([] as Array<string>);
 
-  /** Don't leave annoying auto suggest kicking around */
-  const [ timeoutId, setTimeoutId ] = useState(-1);
-
   const isDebug = (process.env.NODE_ENV !== 'production');
 
   const basicOperators = [
@@ -162,7 +159,14 @@ const AutoSuggestText: React.FunctionComponent<Props> = (
     maxOptions={18}
     spaceRemovers={[';', ')', ':', ']']}
     onChange={(eventText: string) => onChange({target: { value: eventText}})}
-    onBlur={(ev:any) => (textRef.current as any).resetHelper()}
+    onBlur={(ev:any) => {
+      const currentTextRef = textRef.current as any;
+      setTimeout(() => { //(give out of order events a chance!)
+        try {
+          currentTextRef.resetHelper();
+        } catch (e) {}
+      }, 100);
+    }}
     onKeyUp={onKeyUp}
     onKeyDown={(ev:any) => {
       // Understanding this requires understanding of internals:
