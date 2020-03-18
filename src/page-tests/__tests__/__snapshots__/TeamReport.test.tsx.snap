@@ -8,7 +8,8 @@ exports[`TeamReportPage TeamReportPage - should create snapshot 1`] = `
     noGutters={false}
   >
     <Col
-      xs={8}
+      className="text-center"
+      xs={12}
     >
       <h3>
         CBB Team On/Off Report Tool 
@@ -19,48 +20,14 @@ exports[`TeamReportPage TeamReportPage - should create snapshot 1`] = `
         </span>
       </h3>
     </Col>
-    <Col
-      xs={1}
-    >
-      <span
-        className="float-right"
-      >
-        <a
-          href="https://hoop-explorer.blogspot.com/p/blog-page.html"
-          target="_new"
-        >
-          Blog
-        </a>
-      </span>
-    </Col>
-    <Col>
-      <span
-        className="float-right"
-      >
-        <span>
-          <b>
-            Other Tools: 
-          </b>
-        </span>
-        <Link
-          href="/?"
-        >
-          <a>
-            On/Off
-          </a>
-        </Link>
-        <span>
-            
-        </span>
-        <Link
-          href="/LineupAnalyzer?"
-        >
-          <a>
-            Lineups
-          </a>
-        </Link>
-      </span>
-    </Col>
+  </ForwardRef>
+  <ForwardRef
+    noGutters={false}
+  >
+    <HeaderBar
+      common={Object {}}
+      thisPage="report-"
+    />
   </ForwardRef>
   <ForwardRef
     noGutters={false}

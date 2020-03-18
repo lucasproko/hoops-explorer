@@ -17,15 +17,7 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
           <div
             className="card-title h5"
           >
-            'On' Roster   
-            <div>
-              <a
-                href="/TeamReport?baseQuery=%28undefined%29%20AND%20%28%2A%29&"
-                onClick={[Function]}
-              >
-                (report)
-              </a>
-            </div>
+            'On' Roster
           </div>
           <table
             className="table table-sm"
@@ -787,15 +779,7 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
           <div
             className="card-title h5"
           >
-            'Off' Roster   
-            <div>
-              <a
-                href="/TeamReport?baseQuery=%28undefined%29%20AND%20%28%2A%29&"
-                onClick={[Function]}
-              >
-                (report)
-              </a>
-            </div>
+            'Off' Roster
           </div>
           <table
             className="table table-sm"
@@ -1491,15 +1475,7 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
           <div
             className="card-title h5"
           >
-            'Baseline' Roster   
-            <div>
-              <a
-                href="/TeamReport?"
-                onClick={[Function]}
-              >
-                (report)
-              </a>
-            </div>
+            'Baseline' Roster
           </div>
           <table
             className="table table-sm"

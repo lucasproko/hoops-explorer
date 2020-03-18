@@ -67,53 +67,6 @@ const RosterCompareTable: React.FunctionComponent<Props> = ({gameFilterParams, r
       (Object.keys(rosterCompareStats.baseline).length == 0);
   }
 
-  const onOffReportLink = (tableName: string) => {
-    const getQuery = () => { switch(tableName) {
-      case "on": return `(${gameFilterParams.onQuery}) AND (${gameFilterParams.baseQuery || "*"})`;
-      case "off": return `(${gameFilterParams.offQuery}) AND (${gameFilterParams.baseQuery || "*"})`;
-      default: return gameFilterParams.baseQuery;
-    }};
-    const paramObj: RequiredTeamReportFilterParams = {
-      team: gameFilterParams.team,
-      year: gameFilterParams.year,
-      gender: gameFilterParams.gender,
-      baseQuery: getQuery(),
-      minRank: gameFilterParams.minRank,
-      maxRank: gameFilterParams.maxRank,
-      filterGarbage: gameFilterParams.filterGarbage
-    };
-    const paramStr = QueryUtils.stringify(paramObj);
-    const currentJsonEpoch = dataLastUpdated[`${paramObj.gender}_${paramObj.year}`] || -1;
-    const onClick = () => {
-      // Is this query already cached?
-      try {
-        const cachedJson = ClientRequestCache.decacheResponse(
-          paramStr, ParamPrefixes.report, currentJsonEpoch, false
-        );
-        if (!cachedJson) { // If not, inject {} which is interpreted as "make a call on page load"
-          ClientRequestCache.directInsertCache(
-            paramStr, ParamPrefixes.report, "{}", currentJsonEpoch, false
-          );
-        }
-      } catch (err) { //(much ugliness breaks out on error otherwise)
-        console.log(err.message, err);
-      }
-    };
-    // (see https://github.com/zeit/next.js/issues/1490#issuecomment-343350273)
-    const url = UrlRouting.getTeamReportUrl(paramObj);
-
-    const tooltip = (
-      <Tooltip id={`tooltipFor${tableName}`}>Creates an on/off report for the possessions return by this lineup set (ie query)</Tooltip>
-    );
-    return <OverlayTrigger placement="auto" overlay={tooltip}>
-      <a href={url} onClick={(event: any) => {
-        event.preventDefault();
-        onClick();
-        Router.push(url, url);
-      }}>(report)</a>
-    </OverlayTrigger>;
-  };
-
   return <LoadingOverlay
     active={needToLoadQuery()}
     text={rosterCompareStats.error_code ?
@@ -125,7 +78,7 @@ const RosterCompareTable: React.FunctionComponent<Props> = ({gameFilterParams, r
         <Col>
           <Card className="w-100">
             <Card.Body>
-              <Card.Title>'On' Roster   {onOffReportLink("on")}</Card.Title>
+              <Card.Title>'On' Roster</Card.Title>
               <GenericTable tableCopyId="rosterOnTable" tableFields={tableFields} tableData={tableData("on")}/>
             </Card.Body>
           </Card>
@@ -133,7 +86,7 @@ const RosterCompareTable: React.FunctionComponent<Props> = ({gameFilterParams, r
         <Col>
           <Card className="w-100">
             <Card.Body>
-              <Card.Title>'Off' Roster   {onOffReportLink("off")}</Card.Title>
+              <Card.Title>'Off' Roster</Card.Title>
               <GenericTable tableCopyId="rosterOffTable" tableFields={tableFields} tableData={tableData("off")}/>
             </Card.Body>
           </Card>
@@ -141,7 +94,7 @@ const RosterCompareTable: React.FunctionComponent<Props> = ({gameFilterParams, r
         <Col>
           <Card className="w-100">
             <Card.Body>
-              <Card.Title>'Baseline' Roster   {onOffReportLink("baseline")}</Card.Title>
+              <Card.Title>'Baseline' Roster</Card.Title>
               <GenericTable tableCopyId="rosterBaseTable" tableFields={tableFields} tableData={tableData("baseline")}/>
             </Card.Body>
           </Card>

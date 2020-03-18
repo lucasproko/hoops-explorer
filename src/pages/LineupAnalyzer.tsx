@@ -24,10 +24,11 @@ import { ParamPrefixes, GameFilterParams, LineupFilterParams } from '../utils/Fi
 import { HistoryManager } from '../utils/HistoryManager';
 import LineupStatsTable, { LineupStatsModel } from '../components/LineupStatsTable';
 import GenericCollapsibleCard from '../components/GenericCollapsibleCard';
+import Footer from '../components/Footer';
+import HeaderBar from '../components/HeaderBar';
 
 // Utils:
 import { UrlRouting } from "../utils/UrlRouting";
-import Footer from '../components/Footer';
 
 const LineupAnalyzerPage: NextPage<{}> = () => {
 
@@ -61,17 +62,8 @@ const LineupAnalyzerPage: NextPage<{}> = () => {
   const [ lineupFilterParams, setLineupFilterParams ] = useState(
     UrlRouting.removedSavedKeys(allParams) as LineupFilterParams
   )
-
-  const savedGamesFilterParams = UrlRouting.removedSavedKeys(
-    HistoryManager.getLastQuery(ParamPrefixes.game) || ""
-  ) as GameFilterParams;
-  //TODO (in the || case, pull common params from lineupFilterParams)
-
   function getRootUrl(params: LineupFilterParams) {
     return UrlRouting.getLineupUrl(params, {});
-  }
-  function getGameUrl() {
-    return UrlRouting.getGameUrl(savedGamesFilterParams, {});
   }
 
   const onLineupFilterParamsChange = (params: LineupFilterParams) => {
@@ -83,28 +75,17 @@ const LineupAnalyzerPage: NextPage<{}> = () => {
 
   // View
 
-  function maybeShowBlog() {
-    if (!_.startsWith(server, "cbb-on-off-analyzer")) {
-      return <span className="float-right">
-        <a href="https://hoop-explorer.blogspot.com/p/blog-page.html" target="_new">Blog</a>
-      </span>;
-    }
-  }
-
   return <Container>
     <Row>
-    <Col xs={8}>
-      <h3>CBB Lineup Analysis Tool <span className="badge badge-pill badge-info">BETA!</span></h3>
-    </Col>
-    <Col xs={1}>
-      { maybeShowBlog() }
-    </Col>
-    <Col>
-      <span className="float-right">
-        <span><b>Other Tools: </b></span>
-        <Link href={getGameUrl()}><a>On/Off Analysis</a></Link>
-      </span>
-    </Col>
+      <Col xs={12} className="text-center">
+        <h3>CBB Lineup Analysis Tool <span className="badge badge-pill badge-info">BETA!</span></h3>
+      </Col>
+    </Row>
+    <Row>
+      <HeaderBar
+        common={lineupFilterParams}
+        thisPage={ParamPrefixes.lineup}
+        />
     </Row>
     <Row>
       <GenericCollapsibleCard
