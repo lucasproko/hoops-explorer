@@ -159,11 +159,19 @@ const AutoSuggestText: React.FunctionComponent<Props> = (
     maxOptions={18}
     spaceRemovers={[';', ')', ':', ']']}
     onChange={(eventText: string) => onChange({target: { value: eventText}})}
+    onBlur={(ev:any) => {
+      const currentTextRef = textRef.current as any;
+      setTimeout(() => { //(give out of order events a chance!)
+        try {
+          currentTextRef.resetHelper();
+        } catch (e) {}
+      }, 100);
+    }}
     onKeyUp={onKeyUp}
     onKeyDown={(ev:any) => {
+      // Understanding this requires understanding of internals:
+      //https://github.com/yury-dymov/react-autocomplete-input/blob/master/src/AutoCompleteTextField.js
       if (ev.keyCode == 9) {
-        // Understanding this requires understanding of internals:
-        //https://github.com/yury-dymov/react-autocomplete-input/blob/master/src/AutoCompleteTextField.js
         const underlyingObj = textRef.current as any;
         if (underlyingObj.state.helperVisible) {
           ev.preventDefault();

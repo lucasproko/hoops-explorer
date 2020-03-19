@@ -26,6 +26,7 @@ import RosterStatsTable from '../components/RosterStatsTable';
 import RosterCompareTable, { RosterCompareModel } from '../components/RosterCompareTable';
 import GenericCollapsibleCard from '../components/GenericCollapsibleCard';
 import Footer from '../components/Footer';
+import HeaderBar from '../components/HeaderBar';
 
 // Utils:
 import { UrlRouting } from "../utils/UrlRouting";
@@ -76,16 +77,8 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
   const [ gameFilterParams, setGameFilterParams ] = useState(
     UrlRouting.removedSavedKeys(allParams) as GameFilterParams
   )
-  const savedLineupFilterParams = UrlRouting.removedSavedKeys(
-    HistoryManager.getLastQuery(ParamPrefixes.lineup) || ""
-  ) as LineupFilterParams;
-  //TODO (in the || case, pull common params from gameFilterParams)
-
   function getRootUrl(params: GameFilterParams) {
     return UrlRouting.getGameUrl(params, {});
-  }
-  function getLineupUrl() {
-    return UrlRouting.getLineupUrl(savedLineupFilterParams, {});
   }
 
   const onGameFilterParamsChange = (params: GameFilterParams) => {
@@ -97,28 +90,17 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
 
   // View
 
-  function maybeShowBlog() {
-    if (!_.startsWith(server, "cbb-on-off-analyzer")) {
-      return <span className="float-right">
-        <a href="https://hoop-explorer.blogspot.com/p/blog-page.html" target="_new">Blog</a>
-      </span>;
-    }
-  }
-
   return <Container>
     <Row>
-      <Col xs={8}>
+      <Col xs={12} className="text-center">
         <h3>CBB On/Off Analysis Tool <span className="badge badge-pill badge-info">BETA!</span></h3>
       </Col>
-      <Col xs={1}>
-        { maybeShowBlog() }
-      </Col>
-      <Col>
-        <span className="float-right">
-          <span><b>Other Tools: </b></span>
-          <Link href={getLineupUrl()}><a>Lineup Analysis</a></Link>
-        </span>
-      </Col>
+    </Row>
+    <Row>
+      <HeaderBar
+        common={gameFilterParams}
+        thisPage={ParamPrefixes.game}
+        />
     </Row>
     <Row>
       <GenericCollapsibleCard

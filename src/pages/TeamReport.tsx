@@ -25,10 +25,11 @@ import { HistoryManager } from '../utils/HistoryManager';
 import TeamReportStatsTable from '../components/TeamReportStatsTable';
 import { LineupStatsModel } from '../components/LineupStatsTable';
 import GenericCollapsibleCard from '../components/GenericCollapsibleCard';
+import Footer from '../components/Footer';
+import HeaderBar from '../components/HeaderBar';
 
 // Utils:
 import { UrlRouting } from "../utils/UrlRouting";
-import Footer from '../components/Footer';
 
 const TeamReportPage: NextPage<{}> = () => {
 
@@ -62,15 +63,8 @@ const TeamReportPage: NextPage<{}> = () => {
   const [ teamReportFilterParams, setTeamReportFilterParams ] = useState(
     UrlRouting.removedSavedKeys(allParams) as TeamReportFilterParams
   )
-
   function getRootUrl(params: TeamReportFilterParams) {
     return UrlRouting.getTeamReportUrl(params);
-  }
-  function getGameUrl() {
-    return UrlRouting.getGameUrl(savedGamesFilterParams, {});
-  }
-  function getLineupUrl() {
-    return UrlRouting.getLineupUrl(savedLineupFilterParams, {});
   }
 
   const onTeamReportFilterParamsChange = (params: TeamReportFilterParams) => {
@@ -82,13 +76,6 @@ const TeamReportPage: NextPage<{}> = () => {
 
   // View
 
-  function maybeShowBlog() {
-    if (!_.startsWith(server, "cbb-on-off-analyzer")) {
-      return <span className="float-right">
-        <a href="https://hoop-explorer.blogspot.com/p/blog-page.html" target="_new">Blog</a>
-      </span>;
-    }
-  }
   function maybeShowDocs() {
     if (!_.startsWith(server, "cbb-on-off-analyzer")) {
       return "https://hoop-explorer.blogspot.com/2020/03/understanding-team-report-onoff-page.html";
@@ -97,29 +84,17 @@ const TeamReportPage: NextPage<{}> = () => {
     }
   }
 
-  const savedLineupFilterParams = UrlRouting.removedSavedKeys(
-    HistoryManager.getLastQuery(ParamPrefixes.lineup) || ""
-  ) as LineupFilterParams;
-  const savedGamesFilterParams = UrlRouting.removedSavedKeys(
-    HistoryManager.getLastQuery(ParamPrefixes.game) || ""
-  ) as GameFilterParams;
-
   return <Container>
     <Row>
-    <Col xs={8}>
-      <h3>CBB Team On/Off Report Tool <span className="badge badge-pill badge-info">BETA!</span></h3>
-    </Col>
-    <Col xs={1}>
-      { maybeShowBlog() }
-    </Col>
-    <Col>
-      <span className="float-right">
-        <span><b>Other Tools: </b></span>
-        <Link href={getGameUrl()}><a>On/Off</a></Link>
-        <span>&nbsp;&nbsp;</span>
-        <Link href={getLineupUrl()}><a>Lineups</a></Link>
-      </span>
-    </Col>
+      <Col xs={12} className="text-center">
+        <h3>CBB Team On/Off Report Tool <span className="badge badge-pill badge-info">BETA!</span></h3>
+      </Col>
+    </Row>
+    <Row>
+      <HeaderBar
+        common={teamReportFilterParams}
+        thisPage={ParamPrefixes.report}
+        />
     </Row>
     <Row>
       <GenericCollapsibleCard

@@ -49,6 +49,8 @@ type Props = {
 
 const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, startingState, onChangeState}) => {
 
+  const server = (typeof window === `undefined`) ? //(ensures SSR code still compiles)
+    "server" : window.location.hostname
   // 1] State
 
   const commonParams = getCommonFilterParams(startingState);
@@ -319,6 +321,13 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
     );
   };
 
+  /** Only show help for diagnstic on/off on main page */
+  function maybeShowHelp() {
+    if (!_.startsWith(server, "cbb-on-off-analyzer")) {
+      return <a href="https://hoop-explorer.blogspot.com/2020/03/diagnostics-mode-for-replacement-onoff.html" target="_new">(?)</a>;
+    }
+  }
+
   const tableData = _.chain(playersWithAdjEff).filter((player) => {
       const strToTest = player.on.key.substring(5);
       return(
@@ -373,7 +382,7 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
         ) ] : [],
         [ GenericTableOps.buildRowSeparator() ],
         incReplacementOnOff && (index == 0) && (repOnOffDiagMode > 0) ? _.flatten([
-          [ GenericTableOps.buildTextRow(<span><b>Replacement 'ON-OFF' Diagnostics <a target="_blank" href="https://hoop-explorer.blogspot.com/2020/03/diagnostics-mode-for-replacement-onoff.html">(?)</a> For [{player.playerId}]</b></span>) ],
+          [ GenericTableOps.buildTextRow(<span><b>Replacement 'ON-OFF' Diagnostics For [{player.playerId}]</b> {maybeShowHelp()}</span>) ],
           _.chain(player?.replacement?.myLineups)
             .sortBy([(lineup) => -lineup?.off_poss.value])
             .take(repOnOffDiagMode).flatMap((lineup: any) => {

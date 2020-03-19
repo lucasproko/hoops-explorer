@@ -288,8 +288,8 @@ const CommonFilter: CommonFilterI = ({
   }
 
   /** Load the designated example */
-  function onSeeExample(isReport: boolean = false) {
-    if (isReport || (tablePrefix == ParamPrefixes.report)) {
+  function onSeeExample() {
+    if (tablePrefix == ParamPrefixes.report) {
       if (gender == "Women") {
         const newUrl = `${PreloadedDataSamples.womenLineup}`;
         window.location.href = `/TeamReport?${newUrl}`;
@@ -355,49 +355,6 @@ const CommonFilter: CommonFilterI = ({
 
   // Visual components:
 
-  /** For on/off analysis, add a button that switches to a report button */
-  const getReportButton = () => {
-
-    const reportButtonTooltip = (
-      <Tooltip id="reportButtonTooltip">Shows On/Off report for the 'Baseline' query only</Tooltip>
-    );
-    const onReport = () => {
-
-      // Build a report query
-      const parentParams = buildParamsFromState(false);
-      const onOffReportParams: RequiredTeamReportFilterParams = {
-        //(not ideal but the Required ensures that none of these fields are forgotten)
-        baseQuery: parentParams.baseQuery,
-        team: parentParams.team, year: parentParams.year, gender: parentParams.gender,
-        minRank: parentParams.minRank, maxRank: parentParams.maxRank,
-        filterGarbage: parentParams.filterGarbage
-      };
-      const paramStr = QueryUtils.stringify(onOffReportParams);
-      const reportUrl = UrlRouting.getTeamReportUrl(onOffReportParams);
-
-      // Is this query already cached?
-      const cachedJson = ClientRequestCache.decacheResponse(
-        paramStr, ParamPrefixes.report, currentJsonEpoch, false
-      );
-      if (!cachedJson) { // If not, inject {} which is interpreted as "make a call on page load"
-        ClientRequestCache.directInsertCache(
-          paramStr, ParamPrefixes.report, "{}", currentJsonEpoch, false
-        );
-      }
-      Router.push(reportUrl, reportUrl);
-    };
-
-    if ((tablePrefix == ParamPrefixes.game) || (tablePrefix == ParamPrefixes.lineup)) {
-      return <span>
-        <span>&nbsp;&nbsp;</span>
-        <OverlayTrigger placement="auto" overlay={reportButtonTooltip}>
-          <Button disabled={reportIsDisabled} variant="secondary" onClick={onReport}>Report</Button>
-        </OverlayTrigger>
-      </span>;
-    }
-  };
-
-
   /** Let the user know that he might need to change */
   const MenuList = (props: any)  => {
     return (
@@ -447,21 +404,12 @@ const CommonFilter: CommonFilterI = ({
   };
   /** If no team is specified, add the option to jump to an example */
   const getExampleButtonsIfNoTeam = () => {
-    const getMaybeReportButton = () => {
-      if (tablePrefix == ParamPrefixes.game) {
-        return <span>
-          <span>&nbsp;&nbsp;</span>
-          <Button variant="warning" onClick={() => onSeeExample(true)}><b>Example Report!</b></Button>
-        </span>;
-      }
-    }
     if (team == "") {
       return <Shake
         h={20} v={5} r={5} q={5} int={25} fixed={true}
         className="float-right"
       >
         <Button variant="warning" onClick={() => onSeeExample()}><b>Example ({gender})!</b></Button>
-        {getMaybeReportButton()}
       </Shake>;
     }
   }
@@ -602,7 +550,6 @@ const CommonFilter: CommonFilterI = ({
     </Form.Group>
     <Col>
       <Button disabled={submitDisabled} variant="primary" onClick={onSubmit}>Submit</Button>
-      {getReportButton()}
       {getExampleButtonsIfNoTeam()}
     </Col>
   </Form></LoadingOverlay>;
