@@ -642,10 +642,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot 1`] = `
                       },
                     },
                   },
-                  "points_allowed": Object {
+                  "total_def_pts": Object {
                     "value": 171,
                   },
-                  "points_scored": Object {
+                  "total_off_pts": Object {
                     "value": 218,
                   },
                   "total_def_2p_attempts": Object {
@@ -863,10 +863,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot 1`] = `
                       },
                     },
                   },
-                  "points_allowed": Object {
+                  "total_def_pts": Object {
                     "value": 171,
                   },
-                  "points_scored": Object {
+                  "total_off_pts": Object {
                     "value": 218,
                   },
                   "total_def_2p_attempts": Object {
@@ -1087,10 +1087,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot 1`] = `
                       },
                     },
                   },
-                  "points_allowed": Object {
+                  "total_def_pts": Object {
                     "value": 88,
                   },
-                  "points_scored": Object {
+                  "total_off_pts": Object {
                     "value": 99,
                   },
                   "total_def_2p_attempts": Object {
@@ -1308,10 +1308,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot 1`] = `
                       },
                     },
                   },
-                  "points_allowed": Object {
+                  "total_def_pts": Object {
                     "value": 88,
                   },
-                  "points_scored": Object {
+                  "total_off_pts": Object {
                     "value": 99,
                   },
                   "total_def_2p_attempts": Object {
@@ -1532,10 +1532,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot 1`] = `
                       },
                     },
                   },
-                  "points_allowed": Object {
+                  "total_def_pts": Object {
                     "value": 78,
                   },
-                  "points_scored": Object {
+                  "total_off_pts": Object {
                     "value": 112,
                   },
                   "total_def_2p_attempts": Object {
@@ -1753,10 +1753,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot 1`] = `
                       },
                     },
                   },
-                  "points_allowed": Object {
+                  "total_def_pts": Object {
                     "value": 78,
                   },
-                  "points_scored": Object {
+                  "total_off_pts": Object {
                     "value": 112,
                   },
                   "total_def_2p_attempts": Object {

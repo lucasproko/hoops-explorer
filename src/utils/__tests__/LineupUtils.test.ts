@@ -87,7 +87,7 @@ describe("LineupUtils", () => {
               //^(note FTR has a different implementation because you can have lineups with FTs but no FGAs
               // this is not currently tested here, except by inspection on real data)
               "total_off_fga",
-              "points_scored", "doc_count", "player_array" // (these are all ignored)
+              "total_off_pts", "doc_count", "player_array" // (these are all ignored)
             ]).mapValues(toFixed).value();
           }).value();
 

@@ -130,7 +130,7 @@ export class LineupUtils {
   }
 
   private static readonly ignoreFieldSet =  //or anything that starts with total_
-    { key: true, players_array: true, doc_count: true, points_scored: true, points_allowed: true,
+    { key: true, players_array: true, doc_count: true, total_off_pts: true, total_def_pts: true,
       //(replacement on/off vals:)
       offLineups: true, offLineupKeys: true, onLineup: true
      };

@@ -86,7 +86,7 @@ export const sampleLineupStatsResponse = { //TODO: need to change this...
                     "def_2primr": {
                        "value": 0.25316455696202533
                     },
-                    "points_scored": {
+                    "total_off_pts": {
                        "value": 218
                     },
                     "total_off_orb": {
@@ -113,7 +113,7 @@ export const sampleLineupStatsResponse = { //TODO: need to change this...
                     "total_def_3p_made": {
                        "value": 19
                     },
-                    "points_allowed": {
+                    "total_def_pts": {
                        "value": 171
                     },
                     "total_def_orb": {
@@ -293,7 +293,7 @@ export const sampleLineupStatsResponse = { //TODO: need to change this...
                     "def_2primr": {
                        "value": 0.3176470588235294
                     },
-                    "points_scored": {
+                    "total_off_pts": {
                        "value": 99
                     },
                     "total_off_orb": {
@@ -320,7 +320,7 @@ export const sampleLineupStatsResponse = { //TODO: need to change this...
                     "total_def_3p_made": {
                        "value": 9
                     },
-                    "points_allowed": {
+                    "total_def_pts": {
                        "value": 88
                     },
                     "total_def_orb": {
@@ -500,7 +500,7 @@ export const sampleLineupStatsResponse = { //TODO: need to change this...
                     "def_2primr": {
                        "value": 0.3010752688172043
                     },
-                    "points_scored": {
+                    "total_off_pts": {
                        "value": 112
                     },
                     "total_off_orb": {
@@ -527,7 +527,7 @@ export const sampleLineupStatsResponse = { //TODO: need to change this...
                     "total_def_3p_made": {
                        "value": 10
                     },
-                    "points_allowed": {
+                    "total_def_pts": {
                        "value": 78
                     },
                     "total_def_orb": {
