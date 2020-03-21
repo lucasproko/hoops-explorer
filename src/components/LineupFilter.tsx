@@ -14,7 +14,6 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 // Component imports:
-import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
 import { LineupStatsModel } from '../components/LineupStatsTable';
 import CommonFilter from '../components/CommonFilter';
 import { ParamPrefixes, CommonFilterParams, LineupFilterParams } from "../utils/FilterModels";
@@ -77,8 +76,7 @@ const LineupFilter: React.FunctionComponent<Props> = ({onStats, startingState, o
     const lineupJson = (jsons.length > 0) ? jsons[0] : {};
     onStats({
       lineups: lineupJson?.aggregations?.lineups?.buckets,
-      error_code: wasError ? (lineupJson?.status || json?.status) : undefined,
-      avgOff: efficiencyAverages[`${commonParams.gender}_${commonParams.year}`]
+      error_code: wasError ? (lineupJson?.status || json?.status) : undefined
     });
   }
 

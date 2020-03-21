@@ -14,7 +14,6 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 // Component imports:
-import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
 import { TeamStatsModel } from '../components/TeamStatsTable';
 import { RosterCompareModel } from '../components/RosterCompareTable';
 import CommonFilter, { GlobalKeypressManager } from '../components/CommonFilter';
@@ -80,8 +79,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
       on: teamJson?.aggregations?.tri_filter?.buckets?.on || {},
       off: teamJson?.aggregations?.tri_filter?.buckets?.off || {},
       baseline: teamJson?.aggregations?.tri_filter?.buckets?.baseline || {},
-      error_code: wasError ? (teamJson?.status || json?.status) : undefined,
-      avgOff: efficiencyAverages[`${commonParams.gender}_${commonParams.year}`]
+      error_code: wasError ? (teamJson?.status || json?.status) : undefined
     }, {
       on: rosterCompareJson?.aggregations?.tri_filter?.buckets?.on || {},
       off: rosterCompareJson?.aggregations?.tri_filter?.buckets?.off || {},

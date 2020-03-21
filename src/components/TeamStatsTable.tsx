@@ -27,7 +27,6 @@ export type TeamStatsModel = {
   on: any,
   off: any,
   baseline: any,
-  avgOff?: number,
   error_code?: string
 }
 type Props = {
@@ -40,7 +39,6 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({teamStats}) => {
   const offCellMetaFn = (key: string, val: any) => "off";
   const defPrefixFn = (key: string) => "def_" + key;
   const defCellMetaFn = (key: string, val: any) => "def";
-  const avgOff = teamStats.avgOff || 100.0;
 
   const teamStatsOn = { off_title:  "'On' Offense", def_title: "'On' Defense", ...teamStats.on };
   const teamStatsOff = { off_title:"'Off' Offense", def_title: "'Off' Defense", ...teamStats.off };

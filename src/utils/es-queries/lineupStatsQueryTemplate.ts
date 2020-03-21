@@ -4,7 +4,9 @@ import { commonLineupAggregations } from "./commonLineupAggregations";
 import { QueryUtils } from "../QueryUtils";
 import { LineupFilterParams } from "../FilterModels";
 
-export const lineupStatsQuery = function(params: LineupFilterParams, publicEfficiency: any, lookup: any) {
+export const lineupStatsQuery = function(
+  params: LineupFilterParams, publicEfficiency: any, lookup: any, avgEfficiency: number
+) {
   return {
      "_source": {
         "includes": [],
@@ -14,7 +16,7 @@ export const lineupStatsQuery = function(params: LineupFilterParams, publicEffic
      "aggregations": {
         "lineups": {
            "aggregations": {
-             ...commonLineupAggregations(publicEfficiency, lookup),
+             ...commonLineupAggregations(publicEfficiency, lookup, avgEfficiency),
              "players_array": {
                 "top_hits": {
                   "size": 1,
