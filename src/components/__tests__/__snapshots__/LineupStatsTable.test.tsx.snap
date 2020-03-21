@@ -642,12 +642,6 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot 1`] = `
                       },
                     },
                   },
-                  "total_def_pts": Object {
-                    "value": 171,
-                  },
-                  "total_off_pts": Object {
-                    "value": 218,
-                  },
                   "total_def_2p_attempts": Object {
                     "value": 92,
                   },
@@ -684,6 +678,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot 1`] = `
                   "total_def_orb": Object {
                     "value": 19,
                   },
+                  "total_def_pts": Object {
+                    "value": 171,
+                  },
                   "total_off_2p_attempts": Object {
                     "value": 102,
                   },
@@ -719,6 +716,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot 1`] = `
                   },
                   "total_off_orb": Object {
                     "value": 39,
+                  },
+                  "total_off_pts": Object {
+                    "value": 218,
                   },
                 },
                 "kind": "data-row",
@@ -863,12 +863,6 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot 1`] = `
                       },
                     },
                   },
-                  "total_def_pts": Object {
-                    "value": 171,
-                  },
-                  "total_off_pts": Object {
-                    "value": 218,
-                  },
                   "total_def_2p_attempts": Object {
                     "value": 92,
                   },
@@ -904,6 +898,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot 1`] = `
                   },
                   "total_def_orb": Object {
                     "value": 19,
+                  },
+                  "total_def_pts": Object {
+                    "value": 171,
                   },
                   "total_off_2p_attempts": Object {
                     "value": 102,
@@ -941,6 +938,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot 1`] = `
                   "total_off_orb": Object {
                     "value": 39,
                   },
+                  "total_off_pts": Object {
+                    "value": 218,
+                  },
                 },
                 "kind": "data-row",
                 "prefixFn": [Function],
@@ -1087,12 +1087,6 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot 1`] = `
                       },
                     },
                   },
-                  "total_def_pts": Object {
-                    "value": 88,
-                  },
-                  "total_off_pts": Object {
-                    "value": 99,
-                  },
                   "total_def_2p_attempts": Object {
                     "value": 58,
                   },
@@ -1129,6 +1123,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot 1`] = `
                   "total_def_orb": Object {
                     "value": 14,
                   },
+                  "total_def_pts": Object {
+                    "value": 88,
+                  },
                   "total_off_2p_attempts": Object {
                     "value": 56,
                   },
@@ -1164,6 +1161,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot 1`] = `
                   },
                   "total_off_orb": Object {
                     "value": 18,
+                  },
+                  "total_off_pts": Object {
+                    "value": 99,
                   },
                 },
                 "kind": "data-row",
@@ -1308,12 +1308,6 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot 1`] = `
                       },
                     },
                   },
-                  "total_def_pts": Object {
-                    "value": 88,
-                  },
-                  "total_off_pts": Object {
-                    "value": 99,
-                  },
                   "total_def_2p_attempts": Object {
                     "value": 58,
                   },
@@ -1350,6 +1344,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot 1`] = `
                   "total_def_orb": Object {
                     "value": 14,
                   },
+                  "total_def_pts": Object {
+                    "value": 88,
+                  },
                   "total_off_2p_attempts": Object {
                     "value": 56,
                   },
@@ -1385,6 +1382,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot 1`] = `
                   },
                   "total_off_orb": Object {
                     "value": 18,
+                  },
+                  "total_off_pts": Object {
+                    "value": 99,
                   },
                 },
                 "kind": "data-row",
@@ -1532,12 +1532,6 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot 1`] = `
                       },
                     },
                   },
-                  "total_def_pts": Object {
-                    "value": 78,
-                  },
-                  "total_off_pts": Object {
-                    "value": 112,
-                  },
                   "total_def_2p_attempts": Object {
                     "value": 50,
                   },
@@ -1574,6 +1568,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot 1`] = `
                   "total_def_orb": Object {
                     "value": 27,
                   },
+                  "total_def_pts": Object {
+                    "value": 78,
+                  },
                   "total_off_2p_attempts": Object {
                     "value": 56,
                   },
@@ -1609,6 +1606,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot 1`] = `
                   },
                   "total_off_orb": Object {
                     "value": 21,
+                  },
+                  "total_off_pts": Object {
+                    "value": 112,
                   },
                 },
                 "kind": "data-row",
@@ -1753,12 +1753,6 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot 1`] = `
                       },
                     },
                   },
-                  "total_def_pts": Object {
-                    "value": 78,
-                  },
-                  "total_off_pts": Object {
-                    "value": 112,
-                  },
                   "total_def_2p_attempts": Object {
                     "value": 50,
                   },
@@ -1795,6 +1789,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot 1`] = `
                   "total_def_orb": Object {
                     "value": 27,
                   },
+                  "total_def_pts": Object {
+                    "value": 78,
+                  },
                   "total_off_2p_attempts": Object {
                     "value": 56,
                   },
@@ -1830,6 +1827,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot 1`] = `
                   },
                   "total_off_orb": Object {
                     "value": 21,
+                  },
+                  "total_off_pts": Object {
+                    "value": 112,
                   },
                 },
                 "kind": "data-row",

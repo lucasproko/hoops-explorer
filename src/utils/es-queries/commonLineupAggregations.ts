@@ -23,7 +23,8 @@ const calculateSos = function(offOrDef: "off" | "def") { return `
   } else {
    return null;
   }
-`; }
+  `;
+}
 
 /** srcType/dstType are
  * - (see commonShotAggs)
@@ -31,11 +32,11 @@ const calculateSos = function(offOrDef: "off" | "def") { return `
  * - "fga", "fg.attempts"; "fta", "ft.attempts"
  * - "orb"x2; "drb"x2
 */
-const commonMiscAggs(
+const commonMiscAggs = function(
   srcPrefix: string, dstPrefix: "off" | "def", srcType: string, dstType: string, totalSuffix: boolean = true
 ) {
   return {
-    `total_${dstPrefix}_${dstType}` {
+    [`total_${dstPrefix}_${dstType}`]: {
        "sum": {
           "field": `${srcPrefix}.${srcType}${totalSuffix ? ".total" : ""}`
        }
@@ -44,7 +45,7 @@ const commonMiscAggs(
 }
 
 /** shotType is 2p, 3p, 2prim, 2pmid */
-const commonShotAggs(srcPrefix: string, dstPrefix: "off" | "def", shotType: string) {
+const commonShotAggs = function(srcPrefix: string, dstPrefix: "off" | "def", shotType: string) {
   return {
     ...commonMiscAggs(srcPrefix, dstPrefix, `fg_${shotType}_attempts`, `${shotType}.attempts`),
     ...commonMiscAggs(srcPrefix, dstPrefix, `fg_${shotType}_made`, `${shotType}.made`)
@@ -52,12 +53,12 @@ const commonShotAggs(srcPrefix: string, dstPrefix: "off" | "def", shotType: stri
 }
 
 /** commonShotAggs AND basically all the other stats also :) */
-const commonAverageAggs(
+const commonAverageAggs = function(
   dstPrefix: "off" | "def", name: string, top: string, bottom: string,
   dstPrefix2: "off" | "def" | undefined = undefined, factor: number = 1.0
 ) {
   return {
-    `${dstPrefix}_${name}`: {
+    [`${dstPrefix}_${name}`]: {
        "bucket_script": {
           "buckets_path": {
              "my_var2": `total_${dstPrefix2 || dstPrefix}_${bottom}`,
@@ -70,8 +71,8 @@ const commonAverageAggs(
 }
 
 /** shotType is 2p, 3p, 2prim, 2pmid */
-const commonAverageShotAggs(dstPrefix: "off" | "def", shotType: string) {
-  return commonAverageShotAggs(dstPrefix, shotType, `${shotType}_attempts`, `${shotType}_made`);
+const commonAverageShotAggs = function(dstPrefix: "off" | "def", shotType: string) {
+  return commonAverageAggs(dstPrefix, shotType, `${shotType}_attempts`, `${shotType}_made`);
 }
 
 /////////////////////////////////////////////////////////////
@@ -79,19 +80,25 @@ const commonAverageShotAggs(dstPrefix: "off" | "def", shotType: string) {
 // Public methods
 
 /** srcPrefix is "team_stats", "opponent_stats", dstPrefix is "off", "def" */
-export const commonAggregations(srcPrefix: string, dstPrefix: "off" | "def") {
+export const commonAggregations = function(
+  srcPrefix: string, dstPrefix: "off" | "def",
+  publicEfficiency: any, lookup: any
+) {
+  const oppoDstPrefix = (dstPrefix == "off") ? "def" : "off"; //(swivels)
+  const bestPossCount = srcPrefix ==
+    "player_stats" ? srcPrefix : "opponent_stats"; //(for oppo SoS use opponent possessions if available)
   return {
     // Totals:
     ...commonMiscAggs(srcPrefix, dstPrefix, "poss", "num_possessions", false),
     ...commonMiscAggs(srcPrefix, dstPrefix, "pts", "pts", false),
-    ...commonMiscAggs(srcPrefix, dstPrefix, "to", "to"),
+    ...commonMiscAggs(srcPrefix, dstPrefix, "to", "to"), //(does want total)
     // Shots
     ...commonShotAggs(srcPrefix, dstPrefix, "2p"),
     ...commonShotAggs(srcPrefix, dstPrefix, "3p"),
     ...commonShotAggs(srcPrefix, dstPrefix, "2prim"),
     ...commonShotAggs(srcPrefix, dstPrefix, "2pmid"),
-    ...commonShotAggs(srcPrefix, dstPrefix, "fga", "fg.attempts"),
-    ...commonShotAggs(srcPrefix, dstPrefix, "fta", "ft.attempts"),
+    ...commonMiscAggs(srcPrefix, dstPrefix, "fga", "fg.attempts"),
+    ...commonMiscAggs(srcPrefix, dstPrefix, "fta", "ft.attempts"),
     // Rebounding
     ...commonMiscAggs(srcPrefix, dstPrefix, "orb", "orb"),
     ...commonMiscAggs(srcPrefix, dstPrefix, "drb", "drb"),
@@ -100,9 +107,9 @@ export const commonAggregations(srcPrefix: string, dstPrefix: "off" | "def") {
     ...commonAverageShotAggs(dstPrefix, "3p"),
     ...commonAverageShotAggs(dstPrefix, "2prim"),
     ...commonAverageShotAggs(dstPrefix, "2pmid"),
-    ...commonAverageShotAggs(dstPrefix, "ftr", "fta", "fga"),
-    ...commonAverageShotAggs(
-      dstPrefix, "orb", "orb", "drb", dstPrefix == "off" ? "def" : "off" //(swivels)
+    ...commonAverageAggs(dstPrefix, "ftr", "fta", "fga"),
+    ...commonAverageAggs(
+      dstPrefix, "orb", "orb", "drb", oppoDstPrefix
     ),
     // Per Possession stats
     ...commonAverageAggs(dstPrefix, "ppp", "pts", "poss", undefined, 100.0),
@@ -113,20 +120,20 @@ export const commonAggregations(srcPrefix: string, dstPrefix: "off" | "def") {
     ...commonAverageAggs(dstPrefix, "3pr", "3p", "fga"),
     // Finally, tricky numbers:
     // eFG:
-    `${dstPrefix}_eFG`: {
+    [`${dstPrefix}_eFG`]: {
        "bucket_script": {
           "buckets_path": {
              "my_varFG": `total_${dstPrefix}_fga`,
-             "my_var2": `total_${dstPrefix}_2p`
+             "my_var2": `total_${dstPrefix}_2p`,
              "my_var3": `total_${dstPrefix}_3p`
           },
           "script": `(params.my_varFG > 0) ? (params.my_var2 + 1.5*params.my_var3) / params.my_varFG : 0`
        }
     },
-    `${dstPrefix}_adj_opp`: { //TODO: pass avg efficiency in and calc the team's adjusted efficiency
+    [`${dstPrefix}_adj_opp`]: { //TODO: pass avg efficiency in and calc the team's adjusted efficiency
         "weighted_avg": {
            "weight": {
-              "field": "opponent_stats.num_possessions"
+              "field": `${bestPossCount}.num_possessions`
            },
            "value": {
               "script": {
@@ -147,7 +154,7 @@ export const commonAggregations(srcPrefix: string, dstPrefix: "off" | "def") {
 export const commonLineupAggregations = function(publicEfficiency: any, lookup: any) {
   return {
     // Derived
-    ...commonAggregations("team_stats", "off"),
-    ...commonAggregations("opponent_stats", "def"),
+    ...commonAggregations("team_stats", "off", publicEfficiency, lookup),
+    ...commonAggregations("opponent_stats", "def", publicEfficiency, lookup),
    };
 }
