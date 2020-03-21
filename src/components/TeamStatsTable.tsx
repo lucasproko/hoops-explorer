@@ -42,22 +42,9 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({teamStats}) => {
   const defCellMetaFn = (key: string, val: any) => "def";
   const avgOff = teamStats.avgOff || 100.0;
 
-  const calcAdfEff = (stats: any) => {
-    return _.mapValues({
-      off_adj_ppp: { value: (stats.def_adj_opp?.value) ?
-        (stats.off_ppp.value || 100.0)*(avgOff/stats.def_adj_opp.value) : undefined
-      },
-      def_adj_ppp: { value: (stats.off_adj_opp?.value) ?
-        (stats.def_ppp.value || 100.0)*(avgOff/stats.off_adj_opp.value) : undefined
-      }
-    }, v => _.isNil(v.value) ? undefined : v);
-  };
-  const adjOn = calcAdfEff(teamStats.on);
-  const adjOff = calcAdfEff(teamStats.off);
-  const adjBase = calcAdfEff(teamStats.baseline);
-  const teamStatsOn = { off_title:  "'On' Offense", def_title: "'On' Defense", ...teamStats.on, ...adjOn };
-  const teamStatsOff = { off_title:"'Off' Offense", def_title: "'Off' Defense", ...teamStats.off, ...adjOff };
-  const teamStatsBaseline = { off_title: "'Baseline' Offense", def_title: "'Baseline' Defense", ...teamStats.baseline, ...adjBase };
+  const teamStatsOn = { off_title:  "'On' Offense", def_title: "'On' Defense", ...teamStats.on };
+  const teamStatsOff = { off_title:"'Off' Offense", def_title: "'Off' Defense", ...teamStats.off };
+  const teamStatsBaseline = { off_title: "'Baseline' Offense", def_title: "'Baseline' Defense", ...teamStats.baseline };
 
   const tableData = _.flatMap([
     (teamStats.on?.doc_count) ? [
