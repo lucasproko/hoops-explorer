@@ -38,7 +38,6 @@ import { CbbColors } from "../utils/CbbColors";
 /** Convert from LineupStatsModel into this */
 export type TeamReportStatsModel = {
   players?: Array<any>,
-  avgOff?: number,
   error_code?: string
 }
 type Props = {
@@ -132,8 +131,7 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
             lineupReport, incReplacementOnOff, regressDiffs, repOnOffDiagMode
           );
           setTeamReport(tempTeamReport);
-          const avgOff = lineupReport.avgOff || 100.0;
-          setPlayersWithAdjEff(withAdjEfficiency(tempTeamReport?.players || [], avgOff));
+          setPlayersWithAdjEff(tempTeamReport?.players || []);
         } catch (e) {
           console.log("Error calling LineupUtils.lineupToTeamReport", e);
         }
@@ -204,51 +202,18 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
   const defPrefixFn = (key: string) => "def_" + key;
   const defCellMetaFn = (key: string, val: any) => "def";
 
-  const calcAdjEff = (stats: any, avgOff: number) => {
-    return _.mapValues({
-      off_adj_ppp: { value: (stats.def_adj_opp?.value) ?
-        (stats.off_ppp.value || 0.0)*(avgOff/stats.def_adj_opp.value) : undefined
-      },
-      def_adj_ppp: { value: (stats.off_adj_opp?.value) ?
-        (stats.def_ppp.value || 0.0)*(avgOff/stats.off_adj_opp.value) : undefined
-      }
-    }, v => _.isNil(v.value) ? undefined : v);
-  };
-
-  const withAdjEfficiency = (mutablePlayers: Array<any>, avgOff: number) => {
-    return _.chain(mutablePlayers).map((player) => {
-        const adjOffDefOn = calcAdjEff(player.on, avgOff);
-        const adjOffDefOff = calcAdjEff(player.off, avgOff);
-        //(replacement on/off mutated in when the lineupReport changes)
-        if (player.replacement?.off_adj_ppp?.value) {
-          //these have be calc'd already, just need to incorporate average
-          player.replacement.off_adj_ppp.value *= avgOff;
-        }
-        if (player.replacement?.def_adj_ppp?.value) {
-          player.replacement.def_adj_ppp.value *= avgOff;
-        }
-        return {
-          playerId: player.playerId,
-          on: { ...player.on, ...adjOffDefOn },
-          off: { ...player.off, ...adjOffDefOff },
-          replacement: { ...player.replacement },
-          teammates: player.teammates
-        };
-      } ).value();
-  };
-
-  const maybeGetAdjEff = (player: any) => {
+  const getAdjEffMargins = (player: any) => {
     const onMargin = (player?.on?.off_adj_ppp?.value || 0.0) - (player?.on?.def_adj_ppp?.value || 0.0);
     const offMargin = (player.off?.off_adj_ppp?.value || 0.0) - (player?.off?.def_adj_ppp?.value || 0.0);
     return [ onMargin, offMargin ]
   }
 
   const playerLineupPowerSet = _.chain(playersWithAdjEff).map((player) => {
-    if (incReplacementOnOff && player.replacement.key) {
+    if (incReplacementOnOff && player.replacement?.key) {
       return [ player.playerId,
         (player.replacement?.off_adj_ppp?.value || 0.0) - (player.replacement?.def_adj_ppp?.value || 0.0)];
     } else {
-      const [ onMargin, offMargin ] = maybeGetAdjEff(player);
+      const [ onMargin, offMargin ] = getAdjEffMargins(player);
       return [ player.playerId, onMargin - offMargin ];
     }
   }).fromPairs().value();
@@ -340,7 +305,7 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
     }).sortBy(
        [ sorter(sortBy) ]
     ).flatMap((player, index) => {
-      const [ onMargin, offMargin ] = maybeGetAdjEff(player);
+      const [ onMargin, offMargin ] = getAdjEffMargins(player);
       const onSuffix = `\nAdj: [${onMargin.toFixed(1)}]-[${offMargin.toFixed(1)}]=[${(onMargin - offMargin).toFixed(1)}]`;
       const totalPoss = (player.on.off_poss.value + player.off.off_poss.value || 1);
       const onPoss = 100.0*player.on.off_poss.value/totalPoss;
@@ -412,11 +377,9 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
                 onLineupKeyArray, ((lineup.offLineupKeys?.[0] || "").split("_"))
               )?.[0] || "unknown";
 
-              const lineupOnAdjEff: Record<string, any> = calcAdjEff(lineup.onLineup, lineupReport.avgOff || 100.0);
-              const lineupOffAdjEff: Record<string, any> = calcAdjEff(lineup.offLineups, lineupReport.avgOff || 100.0);
               const lineupDiffAdjEff = {
-                off_adj_ppp: { value: lineupOnAdjEff.off_adj_ppp.value - lineupOffAdjEff.off_adj_ppp.value },
-                def_adj_ppp: { value: lineupOnAdjEff.def_adj_ppp.value - lineupOffAdjEff.def_adj_ppp.value }
+                off_adj_ppp: { value: lineup.onLineup.off_adj_ppp.value - lineup.offLineups.off_adj_ppp.value },
+                def_adj_ppp: { value: lineup.onLineup.def_adj_ppp.value - lineup.offLineups.def_adj_ppp.value }
               };
               const regressed = (n: number | undefined) => {
                 const num = n || 0;
@@ -456,8 +419,8 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
 
               const lineupKey = nonPlayerLineup.join(" / ");
               const lineupDiffStats = { off_title: `Harmonic: ${lineupKey}`, def_title: "", ...lineup, ...lineupDiffAdjEff };
-              const lineupOnStats = { off_title: `'ON' Lineup\n${contribStr}`, def_title: "", ...lineup.onLineup, ...lineupOnAdjEff };
-              const lineupOffStats = { off_title: offTitleWithLinks, def_title: "", ...lineup.offLineups, ...lineupOffAdjEff };
+              const lineupOnStats = { off_title: `'ON' Lineup\n${contribStr}`, def_title: "", ...lineup.onLineup };
+              const lineupOffStats = { off_title: offTitleWithLinks, def_title: "", ...lineup.offLineups };
               return [
                 GenericTableOps.buildDataRow(lineupDiffStats, offPrefixFn, offCellMetaFn, replacementTableFields),
                 GenericTableOps.buildDataRow(lineupDiffStats, defPrefixFn, defCellMetaFn, replacementTableFields),

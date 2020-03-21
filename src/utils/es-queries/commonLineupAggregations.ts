@@ -4,7 +4,7 @@
 // Util methods
 
 /** Painless script used below to calculate average offensive and defensive SoS */
-const calculateSos = function(offOrDef: "off" | "def") { return `
+const calculateAdjEff = function(offOrDef: "off" | "def") { return `
   def hca = 0.0;
   if (doc["location_type.keyword"].value == "Home") {
     hca = params.${offOrDef}_hca;
@@ -18,10 +18,9 @@ const calculateSos = function(offOrDef: "off" | "def") { return `
      kp_name = kp_name.pbp_kp_team;
   }
   def oppo = params.kp[kp_name];
+  def adj_sos = params.adjEff;
   if (oppo != null) {
-   return oppo['stats.adj_${offOrDef}.value'] - hca;
-  } else {
-   return null;
+     adj_sos = oppo['stats.adj_${offOrDef}.value'] - hca;
   }
   `;
 }
@@ -91,6 +90,11 @@ export const commonAggregations = function(
       srcPrefix : //(else off==opponent_stats / def==team_stats)
         (srcPrefix == "opponent_stats" ? "team_stats" : "opponent_stats");
 
+  // (if true, calcs adj_eff based on weighted lineup sets ... if false
+  //  just uses average of SoS over entire dataset - means it's hard to compare sets
+  //  of lineups against on/off, which feels wrong, even though appears slightly more accurate)
+  const properAdjEffCalc = true;
+
   return {
     // Totals:
     ...commonMiscAggs(srcPrefix, dstPrefix, "num_possessions", "poss", false),
@@ -157,9 +161,10 @@ export const commonAggregations = function(
            },
            "value": {
               "script": {
-                 "source": calculateSos(dstPrefix),
+                 "source": `${calculateAdjEff(dstPrefix)}\nreturn adj_sos;`,
                  "lang": "painless",
                  "params": {
+                    "avgEff": avgEff,
                     "pbp_to_kp": lookup,
                     "kp": publicEfficiency,
                     "off_hca": 1.5, //(this should be derived from year/gender at some point?)
@@ -169,17 +174,41 @@ export const commonAggregations = function(
            }
         }
      },
-     [`${dstPrefix}_adj_ppp`]: {
+     [`${dstPrefix}_adj_ppp`]: properAdjEffCalc ? {
+         "weighted_avg": {
+            "weight": {
+               "field": `${srcPrefix}.num_possessions`
+            },
+            "value": {
+               "script": { // calcs adj_sos
+                  "source": `${calculateAdjEff(oppoDstPrefix)}
+                     def bottom = adj_sos*doc["${srcPrefix}.num_possessions"].value;
+                     return (bottom > 0) ?
+                        100.0*doc["${srcPrefix}.pts"].value*params.avgEff/bottom : params.avgEff;
+                  `,
+                  "lang": "painless",
+                  "params": {
+                     "avgEff": avgEff,
+                     "pbp_to_kp": lookup,
+                     "kp": publicEfficiency,
+                     "off_hca": 1.5, //(this should be derived from year/gender at some point?)
+                     "def_hca": -1.5
+                  }
+               }
+            }
+         }
+      } : {
        "bucket_script": {
           "buckets_path": {
             "var_adj_opp": `${oppoDstPrefix}_adj_opp`,
             "var_ppp": `${dstPrefix}_ppp`
           },
+          "gap_policy": "insert_zeros",
           "script": {
             "lang": "painless",
             "source": `
               (params.var_adj_opp > 0) ?
-                params.var_ppp*params.avgEff/params.var_adj_opp : 0.0
+                params.var_ppp*params.avgEff/params.var_adj_opp : params.avgEff
             `,
             "params": {
               "avgEff": avgEff

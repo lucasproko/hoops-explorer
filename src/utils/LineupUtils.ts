@@ -58,7 +58,6 @@ export class LineupUtils {
           } : undefined
         };
       }),
-      avgOff: lineupReport.avgOff,
       error_code: lineupReport.error_code
     };
 
@@ -130,7 +129,7 @@ export class LineupUtils {
   }
 
   private static readonly ignoreFieldSet =  //or anything that starts with total_
-    { key: true, players_array: true, doc_count: true, total_off_pts: true, total_def_pts: true,
+    { key: true, players_array: true, doc_count: true,
       //(replacement on/off vals:)
       offLineups: true, offLineupKeys: true, onLineup: true
      };
@@ -169,6 +168,8 @@ export class LineupUtils {
       def_to: defRegress.poss + obj.def_poss?.value || defaultVal,
       off_adj_opp: offRegress.poss + obj.def_poss?.value || defaultVal,
       def_adj_opp: defRegress.poss + obj.off_poss?.value || defaultVal,
+      off_adj_ppp: offRegress.poss + obj.off_poss?.value || defaultVal,
+      def_adj_ppp: defRegress.poss + obj.def_poss?.value || defaultVal
     };
     // all the shot type %s (not rates, which use FGA):
     // (see totalShotTypeKey below)
@@ -369,17 +370,6 @@ export class LineupUtils {
             );
           }
         }
-
-        const calcProtoAdjEff = (mutableStats: any) => {
-          mutableStats.off_adj_ppp = { value: (mutableStats.def_adj_opp?.value) ?
-            (mutableStats.off_ppp.value || 0.0)*(1.0/mutableStats.def_adj_opp.value) : undefined
-          };
-          mutableStats.def_adj_ppp = { value: (mutableStats.off_adj_opp?.value) ?
-            (mutableStats.def_ppp.value || 0.0)*(1.0/mutableStats.off_adj_opp.value) : undefined
-          };
-        };
-        calcProtoAdjEff(myLineup);
-        calcProtoAdjEff(offLineups);
 
         _.keys(harmonicWeights).forEach((key) => {
           if ((myLineup?.[key]?.value > 0) && (offLineups?.[key]?.value > 0)) {
