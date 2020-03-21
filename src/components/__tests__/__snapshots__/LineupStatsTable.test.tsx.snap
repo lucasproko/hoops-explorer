@@ -531,9 +531,6 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot 1`] = `
                   "def_adj_opp": Object {
                     "value": 95.56989795918368,
                   },
-                  "def_adj_ppp": Object {
-                    "value": 87.04948075748321,
-                  },
                   "def_efg": Object {
                     "value": 0.43354430379746833,
                   },
@@ -578,9 +575,6 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot 1`] = `
                   },
                   "off_adj_opp": Object {
                     "value": 103.93650793650794,
-                  },
-                  "off_adj_ppp": Object {
-                    "value": 116.38025379436998,
                   },
                   "off_efg": Object {
                     "value": 0.47305389221556887,
@@ -752,9 +746,6 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot 1`] = `
                   "def_adj_opp": Object {
                     "value": 95.56989795918368,
                   },
-                  "def_adj_ppp": Object {
-                    "value": 87.04948075748321,
-                  },
                   "def_efg": Object {
                     "value": 0.43354430379746833,
                   },
@@ -799,9 +790,6 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot 1`] = `
                   },
                   "off_adj_opp": Object {
                     "value": 103.93650793650794,
-                  },
-                  "off_adj_ppp": Object {
-                    "value": 116.38025379436998,
                   },
                   "off_efg": Object {
                     "value": 0.47305389221556887,
@@ -976,9 +964,6 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot 1`] = `
                   "def_adj_opp": Object {
                     "value": 93.37927927927929,
                   },
-                  "def_adj_ppp": Object {
-                    "value": 72.6036664851575,
-                  },
                   "def_efg": Object {
                     "value": 0.4176470588235294,
                   },
@@ -1023,9 +1008,6 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot 1`] = `
                   },
                   "off_adj_opp": Object {
                     "value": 106.32105263157895,
-                  },
-                  "off_adj_ppp": Object {
-                    "value": 95.51282669728221,
                   },
                   "off_efg": Object {
                     "value": 0.3735632183908046,
@@ -1197,9 +1179,6 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot 1`] = `
                   "def_adj_opp": Object {
                     "value": 93.37927927927929,
                   },
-                  "def_adj_ppp": Object {
-                    "value": 72.6036664851575,
-                  },
                   "def_efg": Object {
                     "value": 0.4176470588235294,
                   },
@@ -1244,9 +1223,6 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot 1`] = `
                   },
                   "off_adj_opp": Object {
                     "value": 106.32105263157895,
-                  },
-                  "off_adj_ppp": Object {
-                    "value": 95.51282669728221,
                   },
                   "off_efg": Object {
                     "value": 0.3735632183908046,
@@ -1421,9 +1397,6 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot 1`] = `
                   "def_adj_opp": Object {
                     "value": 93.46372549019607,
                   },
-                  "def_adj_ppp": Object {
-                    "value": 76.79584120982987,
-                  },
                   "def_efg": Object {
                     "value": 0.34408602150537637,
                   },
@@ -1468,9 +1441,6 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot 1`] = `
                   },
                   "off_adj_opp": Object {
                     "value": 104.70927835051546,
-                  },
-                  "off_adj_ppp": Object {
-                    "value": 117.48292826198693,
                   },
                   "off_efg": Object {
                     "value": 0.5052083333333334,
@@ -1642,9 +1612,6 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot 1`] = `
                   "def_adj_opp": Object {
                     "value": 93.46372549019607,
                   },
-                  "def_adj_ppp": Object {
-                    "value": 76.79584120982987,
-                  },
                   "def_efg": Object {
                     "value": 0.34408602150537637,
                   },
@@ -1689,9 +1656,6 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot 1`] = `
                   },
                   "off_adj_opp": Object {
                     "value": 104.70927835051546,
-                  },
-                  "off_adj_ppp": Object {
-                    "value": 117.48292826198693,
                   },
                   "off_efg": Object {
                     "value": 0.5052083333333334,
