@@ -289,31 +289,38 @@ const CommonFilter: CommonFilterI = ({
 
   /** Load the designated example */
   function onSeeExample() {
-    if (tablePrefix == ParamPrefixes.report) {
-      if (gender == "Women") {
-        const newUrl = `${PreloadedDataSamples.womenLineup}`;
-        window.location.href = `/TeamReport?${newUrl}`;
-      } else { //(default is men)
-        const newUrl = `${PreloadedDataSamples.menLineup}`;
-        window.location.href = `/TeamReport?${newUrl}`;
+    const [ pathPrefix, paramStr ] = (() => {
+      if (tablePrefix == ParamPrefixes.report) {
+        if (gender == "Women") {
+          const newUrl = `${PreloadedDataSamples.womenLineup}`;
+          return [ "TeamReport", newUrl ];
+        } else { //(default is men)
+          const newUrl = `${PreloadedDataSamples.menLineup}`;
+          return [ "TeamReport", newUrl ];
+        }
+      } else if (tablePrefix == ParamPrefixes.game) {
+        if (gender == "Women") {
+          const newUrl = `${PreloadedDataSamples.womenOnOff}`;
+          return [ "", newUrl ];
+        } else { //(default is men)
+          const newUrl = `${PreloadedDataSamples.menOnOff}`;
+          return [ "", newUrl ];
+        }
+      } else if (tablePrefix == ParamPrefixes.lineup) {
+        if (gender == "Women") {
+          const newUrl = `${PreloadedDataSamples.womenLineup}`;
+          return [ "LineupAnalyzer", newUrl ];
+        } else { //(default is men)
+          const newUrl = `${PreloadedDataSamples.menLineup}`;
+          return [ "LineupAnalyzer", newUrl ];
+        }
       }
-    } else if (tablePrefix == ParamPrefixes.game) {
-      if (gender == "Women") {
-        const newUrl = `${PreloadedDataSamples.womenOnOff}`;
-        window.location.href = `/?${newUrl}`;
-      } else { //(default is men)
-        const newUrl = `${PreloadedDataSamples.menOnOff}`;
-        window.location.href = `/?${newUrl}`;
-      }
-    } else if (tablePrefix == ParamPrefixes.lineup) {
-      if (gender == "Women") {
-        const newUrl = `${PreloadedDataSamples.womenLineup}`;
-        window.location.href = `/LineupAnalyzer?${newUrl}`;
-      } else { //(default is men)
-        const newUrl = `${PreloadedDataSamples.menLineup}`;
-        window.location.href = `/LineupAnalyzer?${newUrl}`;
-      }
-    }
+      return ["", ""];
+    })();
+    ClientRequestCache.directInsertCache(
+      paramStr, tablePrefix, "{}", currentJsonEpoch, isDebug
+    );
+    window.location.href = `/${pathPrefix}?${paramStr}`;
   }
 
   /** For use in selects */
