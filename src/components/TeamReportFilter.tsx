@@ -82,8 +82,7 @@ const TeamReportFilter: React.FunctionComponent<Props> = ({onStats, startingStat
     const lineupJson = (jsons.length > 0) ? jsons[0] : {};
     onStats({
       lineups: lineupJson?.aggregations?.lineups?.buckets,
-      error_code: wasError ? (lineupJson?.status || json?.status) : undefined,
-      avgOff: efficiencyAverages[`${commonParams.gender}_${commonParams.year}`]
+      error_code: wasError ? (lineupJson?.status || json?.status) : undefined
     });
   }
 

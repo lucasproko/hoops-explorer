@@ -4,7 +4,9 @@ import { commonLineupAggregations } from "./commonLineupAggregations";
 import { GameFilterParams } from "../FilterModels";
 
 
-export const teamStatsQuery = function(params: GameFilterParams, publicEfficiency: any, lookup: any) {
+export const teamStatsQuery = function(
+  params: GameFilterParams, publicEfficiency: any, lookup: any, avgEfficiency: number
+) {
   return {
      "_source": {
         "includes": [],
@@ -13,7 +15,7 @@ export const teamStatsQuery = function(params: GameFilterParams, publicEfficienc
      "size": 0,
      "aggregations": {
         "tri_filter": {
-           "aggregations": commonLineupAggregations(publicEfficiency, lookup),
+           "aggregations": commonLineupAggregations(publicEfficiency, lookup, avgEfficiency),
            "filters": commonOnOffBaseQuery(params)
         }
      },

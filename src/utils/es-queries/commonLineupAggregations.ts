@@ -1,5 +1,10 @@
+
+/////////////////////////////////////////////////////////////
+
+// Util methods
+
 /** Painless script used below to calculate average offensive and defensive SoS */
-const calculateSos = function(offOrDef: string) { return `
+const calculateAdjEff = function(offOrDef: "off" | "def") { return `
   def hca = 0.0;
   if (doc["location_type.keyword"].value == "Home") {
     hca = params.${offOrDef}_hca;
@@ -13,478 +18,211 @@ const calculateSos = function(offOrDef: string) { return `
      kp_name = kp_name.pbp_kp_team;
   }
   def oppo = params.kp[kp_name];
+  def adj_sos = params.adjEff;
   if (oppo != null) {
-   return oppo['stats.adj_${offOrDef}.value'] - hca;
-  } else {
-   return null;
+     adj_sos = oppo['stats.adj_${offOrDef}.value'] - hca;
   }
-`; }
+  `;
+}
 
-export const commonLineupAggregations = function(publicEfficiency: any, lookup: any) {
+/** srcType/dstType are
+ * - (see commonShotAggs)
+ * - "poss"/"num_possessions", "to", "pts" (total: false)
+ * - "fga", "fg.attempts"; "fta", "ft.attempts"
+ * - "orb"x2; "drb"x2
+*/
+const commonMiscAggs = function(
+  srcPrefix: string, dstPrefix: "off" | "def", srcType: string, dstType: string, totalSuffix: boolean = true
+) {
   return {
-    // Direct totals
-    "points_scored": {
+    [`total_${dstPrefix}_${dstType}`]: {
        "sum": {
-          "field": "team_stats.pts"
+          "field": `${srcPrefix}.${srcType}${totalSuffix ? ".total" : ""}`
+       }
+    }
+  };
+}
+
+/** shotType is 2p, 3p, 2prim, 2pmid */
+const commonShotAggs = function(
+  srcPrefix: string, dstPrefix: "off" | "def", shotType: string, altShotType: string | undefined = undefined
+) {
+  return {
+    ...commonMiscAggs(srcPrefix, dstPrefix, `fg_${altShotType || shotType}.attempts`, `${shotType}_attempts`),
+    ...commonMiscAggs(srcPrefix, dstPrefix, `fg_${altShotType || shotType}.made`, `${shotType}_made`)
+  };
+}
+
+/** commonShotAggs AND basically all the other stats also :) */
+const commonAverageAggs = function(
+  dstPrefix: "off" | "def", name: string, top: string, bottom: string, factor: number = 1.0
+) {
+  return {
+    [`${dstPrefix}_${name}`]: {
+       "bucket_script": {
+          "buckets_path": {
+             "my_var2": `total_${dstPrefix}_${bottom}`,
+             "my_var1": `total_${dstPrefix}_${top}`
+          },
+          "script": `(params.my_var1 > 0) ? ${factor}*params.my_var1 / params.my_var2 : 0`
        }
     },
-    "points_allowed": {
-       "sum": {
-          "field": "opponent_stats.pts"
-       }
-    },
-    "off_poss": {
-       "sum": {
-          "field": "team_stats.num_possessions"
-       }
-    },
-    "def_poss": {
-       "sum": {
-          "field": "opponent_stats.num_possessions"
-       }
-    },
-    // "Indirect" Totals:
-    "total_off_2p_attempts": {
-       "sum": {
-          "field": "team_stats.fg_2p.attempts.total"
-       }
-    },
-    "total_def_2p_attempts": {
-       "sum": {
-          "field": "opponent_stats.fg_2p.attempts.total"
-       }
-    },
-    "total_off_2p_made": {
-       "sum": {
-          "field": "team_stats.fg_2p.made.total"
-       }
-    },
-    "total_def_2p_made": {
-       "sum": {
-          "field": "opponent_stats.fg_2p.made.total"
-       }
-    },
-    "total_off_3p_attempts": {
-       "sum": {
-          "field": "team_stats.fg_3p.attempts.total"
-       }
-    },
-    "total_def_3p_attempts": {
-       "sum": {
-          "field": "opponent_stats.fg_3p.attempts.total"
-       }
-    },
-    "total_off_3p_made": {
-       "sum": {
-          "field": "team_stats.fg_3p.made.total"
-       }
-    },
-    "total_def_3p_made": {
-       "sum": {
-          "field": "opponent_stats.fg_3p.made.total"
-       }
-    },
-    "total_off_2prim_attempts": {
-       "sum": {
-          "field": "team_stats.fg_rim.attempts.total"
-       }
-    },
-    "total_def_2prim_attempts": {
-       "sum": {
-          "field": "opponent_stats.fg_rim.attempts.total"
-       }
-    },
-    "total_off_2prim_made": {
-       "sum": {
-          "field": "team_stats.fg_rim.made.total"
-       }
-    },
-    "total_def_2prim_made": {
-       "sum": {
-          "field": "opponent_stats.fg_rim.made.total"
-       }
-    },
-    "total_off_2pmid_attempts": {
-       "sum": {
-          "field": "team_stats.fg_mid.attempts.total"
-       }
-    },
-    "total_def_2pmid_attempts": {
-       "sum": {
-          "field": "opponent_stats.fg_mid.attempts.total"
-       }
-    },
-    "total_off_2pmid_made": {
-       "sum": {
-          "field": "team_stats.fg_mid.made.total"
-       }
-    },
-    "total_def_2pmid_made": {
-       "sum": {
-          "field": "opponent_stats.fg_mid.made.total"
-       }
-    },
-    "total_off_fga": {
-       "sum": {
-          "field": "team_stats.fg.attempts.total"
-       }
-    },
-    "total_def_fga": {
-       "sum": {
-          "field": "opponent_stats.fg.attempts.total"
-       }
-    },
-    "total_off_fta": {
-       "sum": {
-          "field": "team_stats.ft.attempts.total"
-       }
-    },
-    "total_def_fta": {
-       "sum": {
-          "field": "opponent_stats.ft.attempts.total"
-       }
-    },
+  };
+}
+
+/** shotType is 2p, 3p, 2prim, 2pmid */
+const commonAverageShotAggs = function(dstPrefix: "off" | "def", shotType: string) {
+  return commonAverageAggs(dstPrefix, shotType, `${shotType}_made`, `${shotType}_attempts`);
+}
+
+/////////////////////////////////////////////////////////////
+
+// Public methods
+
+/** srcPrefix is "team_stats", "opponent_stats", dstPrefix is "off", "def" */
+export const commonAggregations = function(
+  srcPrefix: string, dstPrefix: "off" | "def",
+  publicEfficiency: any, lookup: any, avgEff: number
+) {
+  const oppoDstPrefix = (dstPrefix == "off") ? "def" : "off"; //(swivels)
+  const bestPossCount =
+    srcPrefix == "player_stats" ?
+      srcPrefix : //(else off==opponent_stats / def==team_stats)
+        (srcPrefix == "opponent_stats" ? "team_stats" : "opponent_stats");
+
+  // (if true, calcs adj_eff based on weighted lineup sets ... if false
+  //  just uses average of SoS over entire dataset - means it's hard to compare sets
+  //  of lineups against on/off, which feels wrong, even though appears slightly more accurate)
+  const properAdjEffCalc = true;
+
+  return {
+    // Totals:
+    ...commonMiscAggs(srcPrefix, dstPrefix, "num_possessions", "poss", false),
+    ...commonMiscAggs(srcPrefix, dstPrefix, "pts", "pts", false),
+    ...commonMiscAggs(srcPrefix, dstPrefix, "to", "to"), //(does want total)
+    // Shots
+    ...commonShotAggs(srcPrefix, dstPrefix, "2p"),
+    ...commonShotAggs(srcPrefix, dstPrefix, "3p"),
+    ...commonShotAggs(srcPrefix, dstPrefix, "2prim", "rim"),
+    ...commonShotAggs(srcPrefix, dstPrefix, "2pmid", "mid"),
+    ...commonMiscAggs(srcPrefix, dstPrefix, "fg.attempts", "fga"),
+    ...commonMiscAggs(srcPrefix, dstPrefix, "ft.attempts", "fta"),
     // Rebounding
-    "total_off_orb": {
-      "sum": {
-         "field": "team_stats.orb.total"
-      }
-    },
-    "total_off_drb": {
-      "sum": {
-         "field": "team_stats.drb.total"
-      }
-    },
-    "total_def_orb": {
-      "sum": {
-         "field": "opponent_stats.orb.total"
-      }
-    },
-    "total_def_drb": {
-      "sum": {
-         "field": "opponent_stats.drb.total"
-      }
-    },
+    ...commonMiscAggs(srcPrefix, dstPrefix, "orb", "orb"),
+    ...commonMiscAggs(srcPrefix, dstPrefix, "drb", "drb"),
     // X/Y type expressions
-    "off_2p": {
-       "bucket_script": {
-          "buckets_path": {
-             "my_var2": "total_off_2p_attempts",
-             "my_var1": "total_off_2p_made"
-          },
-          "script": "(params.my_var1 > 0) ? params.my_var1 / params.my_var2 : 0"
-       }
-    },
-    "def_2p": {
-       "bucket_script": {
-          "buckets_path": {
-             "my_var2": "total_def_2p_attempts",
-             "my_var1": "total_def_2p_made"
-          },
-          "script": "(params.my_var1 > 0) ? params.my_var1 / params.my_var2 : 0"
-       }
-    },
-    "off_3p": {
-       "bucket_script": {
-          "buckets_path": {
-             "my_var2": "total_off_3p_attempts",
-             "my_var1": "total_off_3p_made"
-          },
-          "script": "(params.my_var1 > 0) ? params.my_var1 / params.my_var2 : 0"
-       }
-    },
-    "def_3p": {
-       "bucket_script": {
-          "buckets_path": {
-             "my_var2": "total_def_3p_attempts",
-             "my_var1": "total_def_3p_made"
-          },
-          "script": "(params.my_var1 > 0) ? params.my_var1 / params.my_var2 : 0"
-       }
-    },
-    "off_2prim": {
-       "bucket_script": {
-          "buckets_path": {
-             "my_var2": "total_off_2prim_attempts",
-             "my_var1": "total_off_2prim_made"
-          },
-          "script": "(params.my_var1 > 0) ? params.my_var1 / params.my_var2 : 0"
-       }
-    },
-    "def_2prim": {
-       "bucket_script": {
-          "buckets_path": {
-             "my_var2": "total_def_2prim_attempts",
-             "my_var1": "total_def_2prim_made"
-          },
-          "script": "(params.my_var1 > 0) ? params.my_var1 / params.my_var2 : 0"
-       }
-    },
-    "off_2pmid": {
-       "bucket_script": {
-          "buckets_path": {
-             "my_var2": "total_off_2pmid_attempts",
-             "my_var1": "total_off_2pmid_made"
-          },
-          "script": "(params.my_var1 > 0) ? params.my_var1 / params.my_var2 : 0"
-       }
-    },
-    "def_2pmid": {
-       "bucket_script": {
-          "buckets_path": {
-             "my_var2": "total_def_2pmid_attempts",
-             "my_var1": "total_def_2pmid_made"
-          },
-          "script": "(params.my_var1 > 0) ? params.my_var1 / params.my_var2 : 0"
-       }
-    },
-    "off_ftr": {
-       "bucket_script": {
-          "buckets_path": {
-             "my_var2": "total_off_fga",
-             "my_var1": "total_off_fta"
-          },
-          "script": "(params.my_var1 > 0) ? params.my_var1 / params.my_var2 : 0"
-       }
-    },
-    "def_ftr": {
-       "bucket_script": {
-          "buckets_path": {
-             "my_var2": "total_def_fga",
-             "my_var1": "total_def_fta"
-          },
-          "script": "(params.my_var1 > 0) ? params.my_var1 / params.my_var2 : 0"
-       }
-    },
-    // Rebounding:
-    "off_orb": {
-      "bucket_script": {
-         "buckets_path": {
-            "my_var2": "total_def_drb",
-            "my_var1": "total_off_orb"
-         },
-         "script": "(params.my_var1 > 0) ? params.my_var1 / (params.my_var1 + params.my_var2) : 0"
-      }
-    },
-    "def_orb": {
-      "bucket_script": {
-         "buckets_path": {
-            "my_var2": "total_off_drb",
-            "my_var1": "total_def_orb"
-         },
-         "script": "(params.my_var1 > 0) ? params.my_var1 / (params.my_var1 + params.my_var2) : 0"
-      }
-    },
-    // Weighted averages (should migrate over time to total_*):
+    ...commonAverageShotAggs(dstPrefix, "2p"),
+    ...commonAverageShotAggs(dstPrefix, "3p"),
+    ...commonAverageShotAggs(dstPrefix, "2prim"),
+    ...commonAverageShotAggs(dstPrefix, "2pmid"),
+    ...commonAverageAggs(dstPrefix, "ftr", "fta", "fga"),
     // Per Possession stats
-    "off_ppp": {
-       "weighted_avg": {
-          "weight": {
-             "field": "team_stats.num_possessions"
+    ...commonAverageAggs(dstPrefix, "ppp", "pts", "poss", 100.0),
+    ...commonAverageAggs(dstPrefix, "to", "to", "poss"),
+    // Shot type stats
+    ...commonAverageAggs(dstPrefix, "2primr", "2prim_attempts", "fga"),
+    ...commonAverageAggs(dstPrefix, "2pmidr", "2pmid_attempts", "fga"),
+    ...commonAverageAggs(dstPrefix, "3pr", "3p_attempts", "fga"),
+    // Dumb rename:
+    [`${dstPrefix}_poss`]: { //TODO fix this, there's a mess of total prefixes
+      "bucket_script": {
+        "buckets_path": {
+          "var": `total_${dstPrefix}_poss`
+        },
+        "script": "params.var"
+      }
+    },
+    // Finally, tricky numbers:
+    // ORB:
+    [`${dstPrefix}_orb`]: {
+      "bucket_script": {
+        "buckets_path": {
+          "var_orb": `total_${dstPrefix}_orb`,
+          "var_drb": `total_${oppoDstPrefix}_drb`
+        },
+        "script": "(params.var_orb > 0) ? 1.0*params.var_orb/(params.var_orb + params.var_drb) : 0.0"
+      }
+    },
+    // eFG:
+    [`${dstPrefix}_efg`]: {
+       "bucket_script": {
+          "buckets_path": {
+             "my_varFG": `total_${dstPrefix}_fga`,
+             "my_var2": `total_${dstPrefix}_2p_made`,
+             "my_var3": `total_${dstPrefix}_3p_made`
           },
-          "value": {
-             "script": {
-                "source": "if (doc[\"team_stats.num_possessions\"].value > 0) {\n return 100.0*doc[\"team_stats.pts\"].value/doc[\"team_stats.num_possessions\"].value;\n} else {\n return 0.0;\n}\n",
-                "lang": "painless",
-                "params": {}
-             }
-          }
+          "script": `(params.my_varFG > 0) ? (1.0*params.my_var2 + 1.5*params.my_var3) / params.my_varFG : 0`
        }
     },
-    "def_ppp": {
-       "weighted_avg": {
-          "weight": {
-             "field": "opponent_stats.num_possessions"
-          },
-          "value": {
-             "script": {
-                "source": "if (doc[\"opponent_stats.num_possessions\"].value > 0) {\n return 100.0*doc[\"opponent_stats.pts\"].value/doc[\"opponent_stats.num_possessions\"].value;\n} else {\n return 0.0;\n}\n",
-                "lang": "painless",
-                "params": {}
-             }
-          }
-       }
-    },
-    "off_adj_opp": {
+    [`${dstPrefix}_adj_opp`]: {
         "weighted_avg": {
            "weight": {
-              "field": "opponent_stats.num_possessions"
+              "field": `${bestPossCount}.num_possessions`
            },
            "value": {
               "script": {
-                 "source": calculateSos("off"),
+                 "source": `${calculateAdjEff(dstPrefix)}\nreturn adj_sos;`,
                  "lang": "painless",
                  "params": {
+                    "avgEff": avgEff,
                     "pbp_to_kp": lookup,
                     "kp": publicEfficiency,
-                    "off_hca": 1.5 //(this should be derived from year/gender at some point?)
+                    "off_hca": 1.5, //(this should be derived from year/gender at some point?)
+                    "def_hca": -1.5
                  }
               }
            }
         }
      },
-     "def_adj_opp": {
-        "weighted_avg": {
-           "weight": {
-              "field": "team_stats.num_possessions"
-           },
-           "value": {
-              "script": {
-                "source": calculateSos("def"),
-                 "lang": "painless",
-                 "params": {
-                   "pbp_to_kp": lookup,
-                   "kp": publicEfficiency,
-                   "def_hca": -1.5
-                 }
-              }
-           }
-        }
-     },
-     "off_to": {
-        "weighted_avg": {
-           "weight": {
-              "field": "team_stats.num_possessions"
-           },
-           "value": {
-              "script": {
-                 "source": "if (doc[\"team_stats.num_possessions\"].value > 0) {\n return 1.0*doc[\"team_stats.to.total\"].value/doc[\"team_stats.num_possessions\"].value;\n} else {\n return 0.0;\n}",
-                 "lang": "painless",
-                 "params": {}
-              }
-           }
-        }
-     },
-     "def_to": {
-        "weighted_avg": {
-           "weight": {
-              "field": "opponent_stats.num_possessions"
-           },
-           "value": {
-              "script": {
-                 "source": "if (doc[\"opponent_stats.num_possessions\"].value > 0) {\n return 1.0*doc[\"opponent_stats.to.total\"].value/doc[\"opponent_stats.num_possessions\"].value;\n} else {\n return 0.0;\n}",
-                 "lang": "painless",
-                 "params": {}
-              }
-           }
-        }
-     },
-     // Shot type stats
-     // RIM
-     "off_2primr": {
-        "weighted_avg": {
-           "weight": {
-              "field": "team_stats.fg.attempts.total"
-           },
-           "value": {
-              "script": {
-                 "source": "def attempts = doc['team_stats.fg.attempts.total'].value;\n\nif (attempts > 0) {\n return (1.0*doc['team_stats.fg_rim.attempts.total'].value)/attempts;\n} else {\n return 0;\n}",
-                 "lang": "painless",
-                 "params": {}
-              }
-           }
-        }
-     },
-     "def_2primr": {
-        "weighted_avg": {
-           "weight": {
-              "field": "opponent_stats.fg.attempts.total"
-           },
-           "value": {
-              "script": {
-                 "source": "def attempts = doc['opponent_stats.fg.attempts.total'].value;\n\nif (attempts > 0) {\n return (1.0*doc['opponent_stats.fg_rim.attempts.total'].value)/attempts;\n} else {\n return 0;\n}",
-                 "lang": "painless",
-                 "params": {}
-              }
-           }
-        }
-     },
-     // Mid
-     "off_2pmidr": {
-        "weighted_avg": {
-           "weight": {
-              "field": "team_stats.fg.attempts.total"
-           },
-           "value": {
-              "script": {
-                 "source": "def attempts = doc['team_stats.fg.attempts.total'].value;\n\nif (attempts > 0) {\n return (1.0*doc['team_stats.fg_mid.attempts.total'].value)/attempts;\n} else {\n return 0;\n}",
-                 "lang": "painless",
-                 "params": {}
-              }
-           }
-        }
-     },
-     "def_2pmidr": {
-        "weighted_avg": {
-           "weight": {
-              "field": "opponent_stats.fg.attempts.total"
-           },
-           "value": {
-              "script": {
-                 "source": "def attempts = doc['opponent_stats.fg.attempts.total'].value;\n\nif (attempts > 0) {\n return (1.0*doc['opponent_stats.fg_mid.attempts.total'].value)/attempts;\n} else {\n return 0;\n}",
-                 "lang": "painless",
-                 "params": {}
-              }
-           }
-        }
-     },
-     // 3P
-     "off_3pr": {
-        "weighted_avg": {
-           "weight": {
-              "field": "team_stats.fg.attempts.total"
-           },
-           "value": {
-              "script": {
-                 "source": "def attempts = doc['team_stats.fg.attempts.total'].value;\n\nif (attempts > 0) {\n return (1.0*doc['team_stats.fg_3p.attempts.total'].value)/attempts;\n} else {\n return 0;\n}",
-                 "lang": "painless",
-                 "params": {}
-              }
-           }
-        }
-     },
-     "def_3pr": {
-        "weighted_avg": {
-           "weight": {
-              "field": "opponent_stats.fg.attempts.total"
-           },
-           "value": {
-              "script": {
-                 "source": "def attempts = doc['opponent_stats.fg.attempts.total'].value;\n\nif (attempts > 0) {\n return (1.0*doc['opponent_stats.fg_3p.attempts.total'].value)/attempts;\n} else {\n return 0;\n}",
-                 "lang": "painless",
-                 "params": {}
-              }
-           }
-        }
-     },
-     // eFG
-     "off_efg": {
-        "weighted_avg": {
-           "weight": {
-              "field": "team_stats.fg.attempts.total"
-           },
-           "value": {
-              "script": {
-                 "source": "def attempts = doc['team_stats.fg.attempts.total'].value;\n\nif (attempts > 0) {\n return (doc['team_stats.fg_2p.made.total'].value + 1.5*doc['team_stats.fg_3p.made.total'].value)/attempts;\n} else {\n return 0;\n}",
-                 "lang": "painless",
-                 "params": {}
-              }
-           }
-        }
-     },
-     "def_efg": {
-        "weighted_avg": {
-           "weight": {
-              "field": "opponent_stats.fg.attempts.total"
-           },
-           "value": {
-              "script": {
-                 "source": "def attempts = doc['opponent_stats.fg.attempts.total'].value;\n\nif (attempts > 0) {\n return (doc['opponent_stats.fg_2p.made.total'].value + 1.5*doc['opponent_stats.fg_3p.made.total'].value)/attempts;\n} else {\n return 0;\n}",
-                 "lang": "painless",
-                 "params": {}
-              }
-           }
+     [`${dstPrefix}_adj_ppp`]: properAdjEffCalc ? {
+         "weighted_avg": {
+            "weight": {
+               "field": `${srcPrefix}.num_possessions`
+            },
+            "value": {
+               "script": { // calcs adj_sos
+                  "source": `${calculateAdjEff(oppoDstPrefix)}
+                     def bottom = adj_sos*doc["${srcPrefix}.num_possessions"].value;
+                     return (bottom > 0) ?
+                        100.0*doc["${srcPrefix}.pts"].value*params.avgEff/bottom : params.avgEff;
+                  `,
+                  "lang": "painless",
+                  "params": {
+                     "avgEff": avgEff,
+                     "pbp_to_kp": lookup,
+                     "kp": publicEfficiency,
+                     "off_hca": 1.5, //(this should be derived from year/gender at some point?)
+                     "def_hca": -1.5
+                  }
+               }
+            }
+         }
+      } : {
+       "bucket_script": {
+          "buckets_path": {
+            "var_adj_opp": `${oppoDstPrefix}_adj_opp`,
+            "var_ppp": `${dstPrefix}_ppp`
+          },
+          "gap_policy": "insert_zeros",
+          "script": {
+            "lang": "painless",
+            "source": `
+              (params.var_adj_opp > 0) ?
+                params.var_ppp*params.avgEff/params.var_adj_opp : params.avgEff
+            `,
+            "params": {
+              "avgEff": avgEff
+            }
+          }
         }
      }
   };
+}
+
+export const commonLineupAggregations = function(publicEfficiency: any, lookup: any, avgEff: number) {
+  return {
+    // Derived
+    ...commonAggregations("team_stats", "off", publicEfficiency, lookup, avgEff),
+    ...commonAggregations("opponent_stats", "def", publicEfficiency, lookup, avgEff)
+   };
 }

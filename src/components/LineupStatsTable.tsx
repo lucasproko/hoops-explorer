@@ -29,7 +29,6 @@ import { CbbColors } from "../utils/CbbColors"
 
 export type LineupStatsModel = {
   lineups?: Array<any>,
-  avgOff?: number,
   error_code?: string
 }
 type Props = {
@@ -101,18 +100,6 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, starting
   const offCellMetaFn = (key: string, val: any) => "off";
   const defPrefixFn = (key: string) => "def_" + key;
   const defCellMetaFn = (key: string, val: any) => "def";
-  const avgOff = lineupStats.avgOff || 100.0;
-
-  const calcAdjEff = (stats: any) => {
-    return _.mapValues({
-      off_adj_ppp: { value: (stats.def_adj_opp?.value) ?
-        (stats.off_ppp.value || 0.0)*(avgOff/stats.def_adj_opp.value) : avgOff
-      },
-      def_adj_ppp: { value: (stats.off_adj_opp?.value) ?
-        (stats.def_ppp.value || 0.0)*(avgOff/stats.off_adj_opp.value) : avgOff
-      }
-    }, v => _.isNil(v.value) ? undefined : v);
-  };
 
   const sorter = (sortStr: string) => { // format: (asc|desc):(off_|def_|diff_)<field>
     const sortComps = sortStr.split(":"); //asc/desc
@@ -152,10 +139,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, starting
         );
       return playerFilter && (lineup.key != ""); // (workaround for #53 pending fix)
 
-    }).map((lineup) => {
-      const adjOffDef = calcAdjEff(lineup);
-      return { ...lineup, ...adjOffDef };
-    } ).sortBy(
+    }).sortBy(
        [ sorter(sortBy) ]
     ).take(
       parseInt(maxTableSize)

@@ -7,6 +7,7 @@ import fetch from 'isomorphic-unfetch';
 import { lineupStatsQuery } from "../../utils/es-queries/lineupStatsQueryTemplate";
 import { AvailableTeams } from '../../utils/internal-data/AvailableTeams';
 import { efficiencyInfo } from '../../utils/internal-data/efficiencyInfo';
+import { efficiencyAverages } from '../../utils/public-data/efficiencyAverages';
 import { ServerRequestCache } from '../../utils/ServerRequestCache';
 import { dataLastUpdated } from '../../utils/internal-data/dataLastUpdated';
 import { ParamPrefixes, ParamDefaults, LineupFilterParams } from '../../utils/FilterModels';
@@ -39,6 +40,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       null;
 
     const [ efficiency, lookup ] = efficiencyInfo[`${params.gender}_${params.year}`] || [ {}, {} ];
+    const avgEfficiency = efficiencyAverages[`${params.gender}_${params.year}`] || efficiencyAverages.fallback;
 
     if (team == null) {
       res.status(404).json({});
@@ -48,7 +50,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
       const body = [
         JSON.stringify({ index: index }),
-        JSON.stringify(lineupStatsQuery(params, efficiency, lookup))
+        JSON.stringify(lineupStatsQuery(params, efficiency, lookup, avgEfficiency))
       ].join('\n') + "\n";
 
       try {

@@ -75,7 +75,7 @@ export const sampleTeamStatsResponse =
           "def_2primr" : {
             "value" : 0.2549609140108238
           },
-          "points_scored" : {
+          "total_off_pts" : {
             "value" : 2084.0
           },
           "off_orb" : {
@@ -93,7 +93,7 @@ export const sampleTeamStatsResponse =
           "def_3pr" : {
             "value" : 0.40228502705953095
           },
-          "points_allowed" : {
+          "total_def_pts" : {
             "value" : 1837.0
           },
           "def_3p" : {
@@ -204,7 +204,7 @@ export const sampleTeamStatsResponse =
           "def_2primr" : {
             "value" : 0.28076923076923077
           },
-          "points_scored" : {
+          "total_off_pts" : {
             "value" : 644.0
           },
           "off_orb" : {
@@ -222,7 +222,7 @@ export const sampleTeamStatsResponse =
           "def_3pr" : {
             "value" : 0.36923076923076925
           },
-          "points_allowed" : {
+          "total_def_pts" : {
             "value" : 546.0
           },
           "def_3p" : {
@@ -333,7 +333,7 @@ export const sampleTeamStatsResponse =
           "def_2primr" : {
             "value" : 0.2432195975503062
           },
-          "points_scored" : {
+          "total_off_pts" : {
             "value" : 1440.0
           },
           "off_orb" : {
@@ -351,7 +351,7 @@ export const sampleTeamStatsResponse =
           "def_3pr" : {
             "value" : 0.41732283464566927
           },
-          "points_allowed" : {
+          "total_def_pts" : {
             "value" : 1291.0
           },
           "def_3p" : {

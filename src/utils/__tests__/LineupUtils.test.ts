@@ -87,7 +87,7 @@ describe("LineupUtils", () => {
               //^(note FTR has a different implementation because you can have lineups with FTs but no FGAs
               // this is not currently tested here, except by inspection on real data)
               "total_off_fga",
-              "points_scored", "doc_count", "player_array" // (these are all ignored)
+              "total_off_pts", "doc_count", "player_array" // (these are all ignored)
             ]).mapValues(toFixed).value();
           }).value();
 
@@ -145,6 +145,7 @@ describe("LineupUtils", () => {
               off_ftr: { value: (167.0/totalOffFga)*0.49700598802395207 + (96.0/totalOffFga)*0.19791666666666666 },
 
               total_off_fga: { value: totalOffFga },
+              total_off_pts: { value: 330.0 }
             }, toFixed)
             ,
             _.mapValues({
@@ -162,6 +163,7 @@ describe("LineupUtils", () => {
               off_ftr: { value: 0.5517241379310345 },
 
               total_off_fga: { value: 87 },
+              total_off_pts: { value: 99.0 }
             }, toFixed)
             ,
             incOnOff ? { //(hand-chcked)
@@ -177,7 +179,8 @@ describe("LineupUtils", () => {
               "off_orb": { "value": regressed(regressDiffs, "0.071", "0.055", "0.041") },
               "def_orb": { "value": regressed(regressDiffs, "0.024", "0.019", "0.014") },
               "off_ftr": { "value": regressed(regressDiffs, "-0.187", "-0.135", "-0.095") },
-              "total_off_fga": { "value": "205.680" }
+              "total_off_fga": { "value": "205.680" },
+              "total_off_pts": { "value": "241.264" }
             } : {}
           ]);
           // Check roster
