@@ -16,6 +16,7 @@ import Col from 'react-bootstrap/Col';
 // Component imports:
 import { TeamStatsModel } from '../components/TeamStatsTable';
 import { RosterCompareModel } from '../components/RosterCompareTable';
+import { RosterStatsModel } from '../components/RosterStatsTable';
 import CommonFilter, { GlobalKeypressManager } from '../components/CommonFilter';
 import { ParamPrefixes, CommonFilterParams, GameFilterParams, ParamDefaults } from "../utils/FilterModels";
 import AutoSuggestText from './AutoSuggestText';
@@ -24,7 +25,7 @@ import AutoSuggestText from './AutoSuggestText';
 import fetch from 'isomorphic-unfetch';
 
 type Props = {
-  onStats: (teamStats: TeamStatsModel, rosterCompareStats: RosterCompareModel) => void;
+  onStats: (teamStats: TeamStatsModel, rosterCompareStats: RosterCompareModel, rosterStats: RosterStatsModel) => void;
   startingState: GameFilterParams;
   onChangeState: (newParams: GameFilterParams) => void;
 }
@@ -80,6 +81,11 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
       off: teamJson?.aggregations?.tri_filter?.buckets?.off || {},
       baseline: teamJson?.aggregations?.tri_filter?.buckets?.baseline || {},
       error_code: wasError ? (teamJson?.status || json?.status) : undefined
+    }, {
+      on: rosterCompareJson?.aggregations?.tri_filter?.buckets?.on || {},
+      off: rosterCompareJson?.aggregations?.tri_filter?.buckets?.off || {},
+      baseline: rosterCompareJson?.aggregations?.tri_filter?.buckets?.baseline || {},
+      error_code: wasError ? (rosterCompareJson?.status || json?.status) : undefined
     }, {
       on: rosterCompareJson?.aggregations?.tri_filter?.buckets?.on || {},
       off: rosterCompareJson?.aggregations?.tri_filter?.buckets?.off || {},

@@ -6,6 +6,7 @@ import fetch from 'isomorphic-unfetch';
 // Application imports
 import { teamStatsQuery } from "../../utils/es-queries/teamStatsQueryTemplate";
 import { rosterCompareQuery } from "../../utils/es-queries/rosterCompareQueryTemplate";
+import { playerStatsQuery } from "../../utils/es-queries/playerStatsQueryTemplate";
 import { AvailableTeams } from '../../utils/internal-data/AvailableTeams';
 import { efficiencyInfo } from '../../utils/internal-data/efficiencyInfo';
 import { efficiencyAverages } from '../../utils/public-data/efficiencyAverages';
@@ -53,7 +54,9 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         JSON.stringify({ index: index }),
         JSON.stringify(teamStatsQuery(params, efficiency, lookup, avgEfficiency)),
         JSON.stringify({ index: index }),
-        JSON.stringify(rosterCompareQuery(params, efficiency, lookup))
+        JSON.stringify(rosterCompareQuery(params, efficiency, lookup)),
+        JSON.stringify({ index: `player_events_${(gender || "men").toLowerCase()}_${index}` }),
+        JSON.stringify(playerStatsQuery(params, efficiency, lookup, avgEfficiency)),
       ].join('\n') + "\n";
 
       // Debug logs:
@@ -71,7 +74,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
         // Debug logs:
         //console.log(JSON.stringify(esFetchJson, null, 3));
-        //console.log(JSON.stringify(esFetchJson?.responses?.[0], null, 3));
+        //console.log(JSON.stringify(esFetchJson?.responses?.[2], null, 3));
         //console.log(esFetch.status);
 
         const jsonToUse = esFetch.ok ?
