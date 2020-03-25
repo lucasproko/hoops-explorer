@@ -15,6 +15,9 @@ export class ServerRequestCache {
   private static readonly maxSizeMb: number = 150;
   private static readonly logPeriodMs = 10*1000; //(Every 10s)
 
+  /** Always cache miss if in debug AND disable server cache (this flag) requested */
+  static readonly debugDisableServerCache = true;
+
   // Some debug vars
   private static cacheLastLogged = new Date();
   private static cacheMissesSinceLastLog = 0;
@@ -57,7 +60,9 @@ export class ServerRequestCache {
     key: string, prefix: string, epochKey: number | undefined, isDebug: boolean = false
   ): Record<string, any> | null {
 
-    if (0 == ServerRequestCache.maxSizeMb) {
+    if (isDebug && ServerRequestCache.debugDisableServerCache) {
+      return null;
+    } else if (0 == ServerRequestCache.maxSizeMb) {
       return null;
     } else {
       const cacheStr = ServerRequestCache.cache.get(ServerRequestCache.cacheKey(key, prefix));
@@ -107,7 +112,7 @@ export class ServerRequestCache {
       valueStr, { outputEncoding: "StorageBinaryString" }
     );
     ServerRequestCache.cache.set(
-      ServerRequestCache.cacheKey(key, prefix), 
+      ServerRequestCache.cacheKey(key, prefix),
       (epochKey || "0") + ":" + compressedVal
     );
   }

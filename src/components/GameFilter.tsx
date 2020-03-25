@@ -76,6 +76,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
     const jsons = json?.responses || [];
     const teamJson = (jsons.length > 0) ? jsons[0] : {};
     const rosterCompareJson = (jsons.length > 1) ? jsons[1] : {};
+    const rosterStatsJson = (jsons.length > 2) ? jsons[2] : {};
     onStats({
       on: teamJson?.aggregations?.tri_filter?.buckets?.on || {},
       off: teamJson?.aggregations?.tri_filter?.buckets?.off || {},
@@ -87,10 +88,10 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
       baseline: rosterCompareJson?.aggregations?.tri_filter?.buckets?.baseline || {},
       error_code: wasError ? (rosterCompareJson?.status || json?.status) : undefined
     }, {
-      on: rosterCompareJson?.aggregations?.tri_filter?.buckets?.on || {},
-      off: rosterCompareJson?.aggregations?.tri_filter?.buckets?.off || {},
-      baseline: rosterCompareJson?.aggregations?.tri_filter?.buckets?.baseline || {},
-      error_code: wasError ? (rosterCompareJson?.status || json?.status) : undefined
+      on: rosterStatsJson?.aggregations?.tri_filter?.buckets?.on?.player?.buckets || [],
+      off: rosterStatsJson?.aggregations?.tri_filter?.buckets?.off?.player?.buckets || [],
+      baseline: rosterStatsJson?.aggregations?.tri_filter?.buckets?.baseline?.player?.buckets || [],
+      error_code: wasError ? (rosterStatsJson?.status || json?.status) : undefined
     });
   }
 

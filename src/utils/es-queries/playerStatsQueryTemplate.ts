@@ -19,7 +19,7 @@ export const playerStatsQuery = function(
            "aggregations": {
              "player": {
                 "terms": {
-                   "field": "players.id.keyword",
+                   "field": "player.id.keyword",
                    "size": 100
                 },
                 "aggregations": commonPlayerAggregations(publicEfficiency, lookup, avgEfficiency)

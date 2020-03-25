@@ -5,6 +5,17 @@ type CbbColorTuple = [ (val: number) => string, (val: number) => string ];
 
 export class CbbColors {
 
+  /** Utility to pick a color scale based on whether the stat is offensive or defensive */
+  static picker(offScale: (val: number) => string, defScale: (val: number) => string) {
+    return (val: any, valMeta: string) => {
+      const num = val.value as number;
+      return ((num == null) || (num == undefined)) ?
+        CbbColors.malformedDataColor : //(we'll use this color to indicate malformed data)
+        ("off" == valMeta) ? offScale(num) : defScale(num)
+        ;
+    };
+  }
+
   static readonly malformedDataColor = "#ccCCcc";
 
   private static readonly redToGreen = chroma.scale(["red", "#ffFFff", "green"]);

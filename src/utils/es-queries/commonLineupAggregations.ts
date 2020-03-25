@@ -100,6 +100,10 @@ export const commonAggregations = function(
     ...commonMiscAggs(srcPrefix, dstPrefix, "num_possessions", "poss", false),
     ...commonMiscAggs(srcPrefix, dstPrefix, "pts", "pts", false),
     ...commonMiscAggs(srcPrefix, dstPrefix, "to", "to"), //(does want total)
+    ...commonMiscAggs(srcPrefix, dstPrefix, "stl", "stl"), //(does want total)
+    ...commonMiscAggs(srcPrefix, dstPrefix, "blk", "blk"), //(does want total)
+    ...commonMiscAggs(srcPrefix, dstPrefix, "assist", "assist"), //(does want total)
+    ...commonMiscAggs(srcPrefix, dstPrefix, "foul", "foul"), //(does want total)
     // Shots
     ...commonShotAggs(srcPrefix, dstPrefix, "2p"),
     ...commonShotAggs(srcPrefix, dstPrefix, "3p"),
