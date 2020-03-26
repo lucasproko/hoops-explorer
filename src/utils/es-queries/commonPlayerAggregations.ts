@@ -9,7 +9,7 @@ export const commonPlayerAggregations = function(publicEfficiency: any, lookup: 
     ...(_.chain(
         commonAggregations("team_stats", "off", publicEfficiency, lookup, avgEff)
       ).pick(
-        [ "total_off_poss", "total_off_to", "total_off_fga",
+        [ "total_off_poss", "total_off_to", "total_off_fgm",
           "total_off_orb", "total_off_drb"
         ]
       ).mergeWith({
@@ -67,14 +67,14 @@ export const commonPlayerAggregations = function(publicEfficiency: any, lookup: 
             "script": "params.team_poss"
           }
         },
-        "off_assist": { //assists ... player_assists / (team_fga - player_fga)
+        "off_assist": { //assists ... player_assists / (team_fgm - fgm)
           "bucket_script": {
             "buckets_path": {
               "ast": "total_off_assist",
-              "team_fga": "team_total_off_fga",
-              "fga": "total_off_fga"
+              "team_fgm": "team_total_off_fgm",
+              "fgm": "total_off_fgm"
             },
-            "script": "(params.team_fga - params.fga) > 0 ? 1.0*params.ast/(params.team_fga - params.fga) : 0.0"
+            "script": "(params.team_fgm - params.fgm) > 0 ? 1.0*params.ast/(params.team_fgm - params.fgm) : 0.0"
           }
         },
         "off_to": { // player_to/player_off_poss

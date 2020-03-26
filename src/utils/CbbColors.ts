@@ -42,7 +42,6 @@ export class CbbColors {
   public static readonly off_OR = (val: number) => CbbColors.redToGreen.domain(CbbColors.orDomain)(val).toString();
   public static readonly def_OR = (val: number) => CbbColors.greenToRed.domain(CbbColors.orDomain)(val).toString();
   public static readonly oReb: CbbColorTuple = [ CbbColors.off_OR, CbbColors.def_OR ];
-  // OR
   // ftr
   private static readonly ftrDomain = [ 0.20, 0.30, 0.40 ];
   public static readonly off_FTR = (val: number) => CbbColors.redToGreen.domain(CbbColors.ftrDomain)(val).toString();
@@ -72,6 +71,7 @@ export class CbbColors {
   private static readonly fgrDomain = [ 0.15, 0.33, 0.5 ];
   public static readonly fgr_offDef = (val: number) => CbbColors.blueToOrange.domain(CbbColors.fgrDomain)(val).toString();
   public static readonly fgr: CbbColorTuple = [ CbbColors.fgr_offDef, CbbColors.fgr_offDef ];
+
   // Around 0, % (red/green):
   private static readonly diff10DomainRedGreen = [ -0.10, 0, 0.10 ];
   public static readonly off_diff10_redGreen = (val: number) => CbbColors.redToGreen.domain(CbbColors.diff10DomainRedGreen)(val).toString();
@@ -87,4 +87,33 @@ export class CbbColors {
   private static readonly diff10DomainBlueOrange = [ -0.10, 0, 0.10 ];
   public static readonly diff10_blueOrange_offDef = (val: number) => CbbColors.blueToOrange.domain(CbbColors.diff10DomainRedGreen)(val).toString();
   public static readonly diff10_blueOrange: CbbColorTuple = [ CbbColors.diff10_blueOrange_offDef, CbbColors.diff10_blueOrange_offDef ];
+
+  // Personal numbers:
+  // Assist rate:
+  private static readonly astDomain = [ 0.0, 0.15, 0.35 ];
+  public static readonly ast_offDef = (val: number) => CbbColors.blueToOrange.domain(CbbColors.astDomain)(val).toString();
+  public static readonly ast: CbbColorTuple = [ CbbColors.ast_offDef, CbbColors.ast_offDef ];
+  // Usage rate:
+  private static readonly usgDomain = [ 0.10, 0.20, 0.30 ];
+  public static readonly usg_offDef = (val: number) => CbbColors.blueToOrange.domain(CbbColors.usgDomain)(val).toString();
+  public static readonly usg: CbbColorTuple = [ CbbColors.usg_offDef, CbbColors.usg_offDef ];
+  // Personal rebounding
+  private static readonly p_orDomain = [ 0.0, 0.06, 0.12 ];
+  private static readonly p_drDomain = [ 0.0, 0.15, 0.30 ];
+  public static readonly p_off_OR = (val: number) => CbbColors.blueToOrange.domain(CbbColors.p_orDomain)(val).toString();
+  public static readonly p_def_OR = (val: number) => CbbColors.redToGreen.domain(CbbColors.p_drDomain)(val).toString();
+  public static readonly p_oReb: CbbColorTuple = [ CbbColors.p_off_OR, CbbColors.p_def_OR ];
+  // Personal FTR / FC/50
+  public static readonly p_def_FTR = (val: number) => "#ffFFff";
+  public static readonly p_ftr: CbbColorTuple = [ CbbColors.off_FTR, CbbColors.p_def_FTR ];
+  // Personal TO / STL
+  private static readonly stlDomain = [0.0, 0.02, 0.05 ];
+  public static readonly p_def_TO = (val: number) => CbbColors.blueToOrange.domain(CbbColors.stlDomain)(val).toString();
+  public static readonly p_tOver: CbbColorTuple = [ CbbColors.off_TO, CbbColors.p_def_TO ];
+
+  // Personal Rim / Blk
+  private static readonly blkDomain = [-0.10, 0.0, 0.10 ];
+  public static readonly p_def_2P_rim = (val: number) => CbbColors.blueToOrange.domain(CbbColors.blkDomain)(val).toString();
+  public static readonly p_fg2P_rim: CbbColorTuple = [ CbbColors.off_2P_rim, CbbColors.p_def_2P_rim ];
+
 }

@@ -110,6 +110,7 @@ export const commonAggregations = function(
     ...commonShotAggs(srcPrefix, dstPrefix, "2prim", "rim"),
     ...commonShotAggs(srcPrefix, dstPrefix, "2pmid", "mid"),
     ...commonMiscAggs(srcPrefix, dstPrefix, "fg.attempts", "fga"),
+    ...commonMiscAggs(srcPrefix, dstPrefix, "fg.made", "fgm"),
     ...commonMiscAggs(srcPrefix, dstPrefix, "ft.attempts", "fta"),
     // Rebounding
     ...commonMiscAggs(srcPrefix, dstPrefix, "orb", "orb"),

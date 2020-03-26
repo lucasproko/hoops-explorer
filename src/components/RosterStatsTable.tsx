@@ -50,13 +50,13 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, tea
     "title": GenericTableOps.addTitle("", "", rowSpanCalculator, "small"),
     "sep0": GenericTableOps.addColSeparator(),
     "rtg": GenericTableOps.addPtsCol("Rtg", "Offensive/Defensive rating for selected lineups", CbbColors.picker(...CbbColors.pp100)),
-    "usage": GenericTableOps.addPctCol("Usg", "% of team possessions used for selected lineups", CbbColors.picker(...CbbColors.fgr)), //TODO needs to be steeper
+    "usage": GenericTableOps.addPctCol("Usg", "% of team possessions used for selected lineups", CbbColors.picker(...CbbColors.usg)), //TODO needs to be steeper
     "sep1": GenericTableOps.addColSeparator(),
     "efg": GenericTableOps.addPctCol("eFG%", "Effective field goal% (3 pointers count 1.5x as much) for player in selected lineups", CbbColors.picker(...CbbColors.eFG)),
-    "assist": GenericTableOps.addPctCol("AST%", "Assist % for player in selected lineups", CbbColors.picker(...CbbColors.tOver)),
-    "to": GenericTableOps.addPctCol("TO%", "Turnover % for player in for selected lineups", CbbColors.picker(...CbbColors.tOver)),
-    "orb": GenericTableOps.addPctCol("RB%", "Offensive/Defensive rebounding % for player in selected lineups", CbbColors.picker(...CbbColors.oReb)),
-    "ftr": GenericTableOps.addPctCol("FTR", "Free throw rate for player in selected lineups", CbbColors.picker(...CbbColors.ftr)),
+    "assist": GenericTableOps.addPctCol("AST%", "Assist % for player in selected lineups", CbbColors.picker(...CbbColors.ast)),
+    "to": GenericTableOps.addPctCol("TO%", "Turnover % for player in for selected lineups", CbbColors.picker(...CbbColors.p_tOver)),
+    "orb": GenericTableOps.addPctCol("RB%", "Offensive/Defensive rebounding % for player in selected lineups", CbbColors.picker(...CbbColors.p_oReb)),
+    "ftr": GenericTableOps.addPctCol("FTR", "Free throw rate for player in selected lineups", CbbColors.picker(...CbbColors.p_ftr)),
     "sep2": GenericTableOps.addColSeparator(),
     "3pr": GenericTableOps.addPctCol("3PR", "Percentage of 3 pointers taken against all field goals", CbbColors.picker(...CbbColors.fgr)),
     "2pmidr": GenericTableOps.addPctCol("2PR mid", "Percentage of mid range 2 pointers taken against all field goals", CbbColors.picker(...CbbColors.fgr)),
@@ -65,7 +65,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, tea
     "3p": GenericTableOps.addPctCol("3P%", "3 point field goal percentage", CbbColors.picker(...CbbColors.fg3P)),
     "2p": GenericTableOps.addPctCol("2P%", "2 point field goal percentage", CbbColors.picker(...CbbColors.fg2P)),
     "2pmid": GenericTableOps.addPctCol("2P% mid", "2 point field goal percentage (mid range)", CbbColors.picker(...CbbColors.fg2P_mid)),
-    "2prim": GenericTableOps.addPctCol("2P% rim", "2 point field goal percentage (layup/dunk/etc)", CbbColors.picker(...CbbColors.fg2P_rim)),
+    "2prim": GenericTableOps.addPctCol("2P% rim", "2 point field goal percentage (layup/dunk/etc)", CbbColors.picker(...CbbColors.p_fg2P_rim)),
     "sep4": GenericTableOps.addColSeparator(),
     "team_poss": GenericTableOps.addIntCol("Poss", "Number of possessions in selected lineups that player was on the floor", GenericTableOps.defaultColorPicker),
   };
@@ -125,7 +125,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, tea
 
   /** Sticks an overlay on top of the table if no query has ever been loaded */
   function needToLoadQuery() {
-    return rosterStats.baseline === undefined;
+    return (rosterStats?.baseline?.length || 0) == 0;
   }
   /** Table formatter */
   function rowSpanCalculator(cellMeta: string) {
