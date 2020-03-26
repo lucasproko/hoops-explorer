@@ -74,7 +74,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
         // Debug logs:
         //console.log(JSON.stringify(esFetchJson, null, 3));
-        //console.log(JSON.stringify(esFetchJson?.responses?.[2]?.aggregations?.tri_filter?.buckets?.on?.player?.buckets, null, 3));
+        //console.log(JSON.stringify(esFetchJson?.responses?.[2]?.aggregations?.tri_filter?.buckets?.baseline?.player?.buckets, null, 3));
         //console.log(esFetch.status);
 
         const jsonToUse = esFetch.ok ?
