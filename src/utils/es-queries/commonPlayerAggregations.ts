@@ -9,8 +9,12 @@ export const commonPlayerAggregations = function(publicEfficiency: any, lookup: 
     ...(_.chain(
         commonAggregations("team_stats", "off", publicEfficiency, lookup, avgEff)
       ).pick(
-        [ "total_off_poss", "total_off_to", "total_off_fgm",
-          "total_off_orb", "total_off_drb"
+        [ "total_off_poss", "total_off_to",
+          "total_off_fgm", "total_off_fga", "total_off_3p_made",
+          "total_off_ftm", "total_off_fta",
+          "total_off_orb", "total_off_drb",
+          "total_off_assist",
+          "total_off_pts"
         ]
       ).mergeWith({
         //(nothing yet, see list above)

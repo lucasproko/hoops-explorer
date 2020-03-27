@@ -4,7 +4,7 @@ import _ from "lodash";
 import { TeamReportStatsModel } from "../components/TeamReportStatsTable";
 import { LineupStatsModel } from "../components/LineupStatsTable";
 
-/** Wraps the local storage based cache of recent requests */
+/** Handles combining the statistics of different lineups */
 export class LineupUtils {
 
   /** Adds some logs for the more complex replacement on/off cals */

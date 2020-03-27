@@ -103,6 +103,7 @@ export class CbbColors {
   public static readonly p_off_OR = (val: number) => CbbColors.blueToOrange.domain(CbbColors.p_orDomain)(val).toString();
   public static readonly p_def_OR = (val: number) => CbbColors.redToGreen.domain(CbbColors.p_drDomain)(val).toString();
   public static readonly p_oReb: CbbColorTuple = [ CbbColors.p_off_OR, CbbColors.p_def_OR ];
+  public static readonly p_dReb: CbbColorTuple = [ CbbColors.p_def_OR, CbbColors.p_def_OR ];
   // Personal FTR / FC/50
   public static readonly p_def_FTR = (val: number) => "#ffFFff";
   public static readonly p_ftr: CbbColorTuple = [ CbbColors.off_FTR, CbbColors.p_def_FTR ];
