@@ -35,10 +35,22 @@ describe("HistoryManager", () => {
   });
   test("HistoryManager - gameFilterSummary", () => {
     const game1: GameFilterParams = {
-      team: "test"
+      team: "test",
+      sortBy: "desc:off_team_poss:baseline",
     };
     expect(HistoryManager.gameFilterSummary(game1)).toBe(
       `On/Off: 2019/20 test (M): on:'', auto-off, base:''`
+    );
+    const game1b: GameFilterParams = {
+      team: "test",
+      filter: "test-fil",
+      sortBy: "test-sort",
+      showDiag: true,
+      showExpanded: true,
+      showBase: true
+    };
+    expect(HistoryManager.gameFilterSummary(game1b)).toBe(
+      `On/Off: 2019/20 test (M): on:'', auto-off, base:'', players:[sortBy:test-sort,filter:test-fil,show-base,show-defs,show-diags]`
     );
     const game2: GameFilterParams = {
       team: "test",

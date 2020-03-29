@@ -35,6 +35,11 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
   // Data model
 
   const {
+    //(these fields are for the individual view)
+    filter: startFilter, sortBy: startSortBy,
+    showBase: startShowBase, showExpanded: startShowExpanded,
+    showDiag: startShowDiag,
+    //these fields affect the query
     autoOffQuery: startAutoOffQuery,
     onQuery: startOnQuery, offQuery: startOffQuery,
     ...startingCommonFilterParams
@@ -63,12 +68,19 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
 
   /** Builds a game filter from the various state elements */
   function buildParamsFromState(includeFilterParams: Boolean): GameFilterParams {
-    return {
-      ...commonParams,
-      autoOffQuery: autoOffQuery,
-      onQuery: onQuery,
-      offQuery: offQuery,
-    };
+    return includeFilterParams ?
+      _.merge(
+        buildParamsFromState(false), {
+          // Individual stats:
+          filter: startFilter, sortBy: startSortBy,
+          showBase: startShowBase, showExpanded: startShowExpanded,
+          showDiag: startShowDiag
+      }) : {
+        ...commonParams,
+        autoOffQuery: autoOffQuery,
+        onQuery: onQuery,
+        offQuery: offQuery
+      };
   }
 
   /** Handles the response from ES to a stats calc request */

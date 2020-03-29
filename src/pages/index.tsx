@@ -129,6 +129,7 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
           gameFilterParams={gameFilterParams}
           teamStats={teamStats}
           rosterStats={rosterStats}
+          onChangeState={onGameFilterParamsChange}
         />
       </GenericCollapsibleCard>
     </Row>

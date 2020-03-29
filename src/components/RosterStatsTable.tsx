@@ -1,5 +1,5 @@
 // React imports:
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 // Next imports:
 import { NextPage } from 'next';
@@ -31,7 +31,7 @@ import RosterStatsDiagView from "./RosterStatsDiagView";
 
 // Util imports
 import { CbbColors } from "../utils/CbbColors";
-import { GameFilterParams } from "../utils/FilterModels";
+import { getCommonFilterParams, ParamDefaults, GameFilterParams } from "../utils/FilterModels";
 import { ORtgDiagnostics, StatsUtils } from "../utils/StatsUtils";
 import { TeamStatsModel } from '../components/TeamStatsTable';
 
@@ -44,21 +44,30 @@ export type RosterStatsModel = {
 type Props = {
   gameFilterParams: GameFilterParams,
   teamStats: TeamStatsModel,
-  rosterStats: RosterStatsModel
+  rosterStats: RosterStatsModel,
+  onChangeState: (newParams: GameFilterParams) => void;
 }
 
-const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, teamStats, rosterStats}) => {
+const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, teamStats, rosterStats, onChangeState}) => {
 
   // 1] State (some of these are phase 2+ and aren't plumbed in yet)
 
+  const commonParams = getCommonFilterParams(gameFilterParams);
+
   /** Splits out offensive and defensive metrics into separate rows */
-  const [ expandedView, setExpandedView ] = useState(false);
+  const [ expandedView, setExpandedView ] = useState(_.isNil(gameFilterParams.showExpanded) ?
+    ParamDefaults.defaultPlayerShowExpanded : gameFilterParams.showExpanded
+  );
 
   /** Show baseline even if on/off are present */
-  const [ alwaysShowBaseline, setAlwaysShowBaseline ] = useState(false);
+  const [ alwaysShowBaseline, setAlwaysShowBaseline ] = useState(_.isNil(gameFilterParams.showBase) ?
+    ParamDefaults.defaultPlayerShowBase : gameFilterParams.showBase
+  );
 
   /** Show a diagnostics mode explaining the off/def ratings */
-  const [ showDiagMode, setShowDiagMode ] = useState(false);
+  const [ showDiagMode, setShowDiagMode ] = useState(_.isNil(gameFilterParams.showDiag) ?
+    ParamDefaults.defaultPlayerDiagMode : gameFilterParams.showDiag
+  );
 
   /** Incorporates SoS into rating calcs "Adj [Eq] Rtg" */
   const [ adjORtgForSos, setAdjORtgForSos ] = useState(false);
@@ -67,7 +76,9 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, tea
   const [ showEquivORtgAtUsage, setShowEquivORtgAtUsage ] = useState("" as string);
 
   /** Which players to filter */
-  const [ filterStr, setFilterStr ] = useState("");
+  const [ filterStr, setFilterStr ] = useState(_.isNil(gameFilterParams.filter) ?
+    ParamDefaults.defaultPlayerFilter : gameFilterParams.filter
+  );
 
   // (slight delay when typing into the filter to make it more responsive)
   const [ timeoutId, setTimeoutId ] = useState(-1);
@@ -81,7 +92,26 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, tea
     filterFragments.filter(fragment => fragment[0] == '-').map(fragment => fragment.substring(1));
 
   // Sort field
-  const [ sortBy, setSortBy ] = useState("desc:off_team_poss:baseline");
+  const [ sortBy, setSortBy ] = useState(_.isNil(gameFilterParams.sortBy) ?
+    ParamDefaults.defaultPlayerSortBy : gameFilterParams.sortBy
+  );
+
+  useEffect(() => { //(this ensures that the filter component is up to date with the union of these fields)
+    const newState = _.chain(gameFilterParams).merge({
+      sortBy: sortBy,
+      filter: filterStr,
+      showBase: alwaysShowBaseline,
+      showExpanded: expandedView,
+      showDiag: showDiagMode
+    }).omit(_.flatten([ // omit all defaults
+      (sortBy == ParamDefaults.defaultPlayerSortBy) ? [ 'sortBy' ] : [],
+      (filterStr == ParamDefaults.defaultPlayerFilter) ? [ 'filter' ] : [],
+      (alwaysShowBaseline == ParamDefaults.defaultPlayerShowBase) ? [ 'showBase' ] : [],
+      (expandedView == ParamDefaults.defaultPlayerShowExpanded) ? [ 'showExpanded' ] : [],
+      (showDiagMode == ParamDefaults.defaultPlayerDiagMode) ? [ 'showDiag' ] : [],
+    ])).value();
+    onChangeState(newState);
+  }, [ sortBy, filterStr, showDiagMode, alwaysShowBaseline, expandedView ]);
 
   // 2] Data Model
 

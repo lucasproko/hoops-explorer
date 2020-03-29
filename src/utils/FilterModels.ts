@@ -37,6 +37,12 @@ export type GameFilterParams = {
   onQuery?: string,
   offQuery?: string,
   autoOffQuery?: boolean
+  // Filtering of individual view:
+  filter?: string,
+  sortBy?: string,
+  showBase?: boolean,
+  showExpanded?: boolean,
+  showDiag?: boolean
 };
 
 /** Params for lineup filtering */
@@ -77,6 +83,11 @@ export type RequiredTeamReportFilterParams = {
 export class ParamDefaults {
   // Game
   static readonly defaultAutoOffQuery = true;
+  static readonly defaultPlayerFilter = "";
+  static readonly defaultPlayerSortBy = "desc:off_team_poss:baseline";
+  static readonly defaultPlayerDiagMode = false;
+  static readonly defaultPlayerShowBase = false;
+  static readonly defaultPlayerShowExpanded = false;
   // Lineup
   static readonly defaultLineupMinPos = "5";
   static readonly defaultLineupMaxTableSize = "50";
