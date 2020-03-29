@@ -86,9 +86,7 @@ export const commonAggregations = function(
 ) {
   const oppoDstPrefix = (dstPrefix == "off") ? "def" : "off"; //(swivels)
   const bestPossCount =
-    srcPrefix == "player_stats" ?
-      srcPrefix : //(else off==opponent_stats / def==team_stats)
-        (srcPrefix == "opponent_stats" ? "team_stats" : "opponent_stats");
+    (srcPrefix == "opponent_stats" ? "team_stats" : "opponent_stats");
 
   // (if true, calcs adj_eff based on weighted lineup sets ... if false
   //  just uses average of SoS over entire dataset - means it's hard to compare sets

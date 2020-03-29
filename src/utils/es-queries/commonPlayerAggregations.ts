@@ -39,7 +39,7 @@ export const commonPlayerAggregations = function(publicEfficiency: any, lookup: 
     ...(_.chain(
         commonAggregations("player_stats", "off", publicEfficiency, lookup, avgEff)
       ).omit(
-        [ "off_poss", "off_ppp", "off_to", "off_orb", "off_adj_opp", "off_adj_ppp" ]
+        [ "off_poss", "off_ppp", "off_to", "off_orb", "off_adj_ppp" ]
       ).mergeWith({
 
         // Offensive fields
@@ -162,11 +162,11 @@ export const commonPlayerAggregations = function(publicEfficiency: any, lookup: 
       }).value()
     ),
     // Plus a few defensive ones
-    // ...(_.chain(
-    //     commonAggregations("player_stats", "def", publicEfficiency, lookup, avgEff)
-    //   ).pick(
-    //     [ ] //(just defensive SoS, when I want it)
-    //   ).value()
-    // )
+    ...(_.chain(
+        commonAggregations("player_stats", "def", publicEfficiency, lookup, avgEff)
+      ).pick(
+        [ "def_adj_opp" ] 
+      ).value()
+    )
   };
 }
