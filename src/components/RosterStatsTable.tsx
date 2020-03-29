@@ -80,11 +80,14 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, tea
   const filterFragmentsNve =
     filterFragments.filter(fragment => fragment[0] == '-').map(fragment => fragment.substring(1));
 
+  // Sort field
+  const [ sortBy, setSortBy ] = useState("desc:off_team_poss:baseline");
+
   // 2] Data Model
 
   //TODO: fix the wording for all these
 
-  const tableFields = _.omit({ //accessors vs column metadata
+  const allTableFields = { //accessors vs column metadata
     "title": GenericTableOps.addTitle("", "", rowSpanCalculator, "small"),
     "sep0": GenericTableOps.addColSeparator(),
     "rtg": GenericTableOps.addPtsCol("Rtg", "Offensive/Defensive rating for selected lineups", CbbColors.picker(...CbbColors.pp100)),
@@ -111,11 +114,36 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, tea
     "sep4": GenericTableOps.addColSeparator(),
     "team_poss": GenericTableOps.addIntCol("Poss", "Number of possessions in selected lineups that player was on the floor", GenericTableOps.defaultColorPicker),
     "adj_opp": GenericTableOps.addPtsCol("SoS", "Weighted average of the offensive or defensive efficiencies of the lineups' opponents", GenericTableOps.defaultColorPicker),
-  }, expandedView ? [ "drb" ] : [ "adj_opp" ] );
+  };
+
+  const tableFields = _.omit(allTableFields,  expandedView ? [ "drb" ] : [ "adj_opp" ] );
 
   // 3] Utils
 
   // 3.1] Table building
+
+  /** Handles the various sorting combos */
+  const sorter = (sortStr: string) => { // format: (asc|desc):(off_|def_|diff_)<field>:(on|off|delta)
+    const sortComps = sortStr.split(":"); //asc/desc
+    const dir = (sortComps[0] == "desc") ? -1 : 1;
+    const fieldComps = _.split(sortComps[1], "_", 1); //off/def/diff
+    const fieldName = sortComps[1].substring(fieldComps[0].length + 1); //+1 for _
+    const field = (player: any) => {
+      return player?.[sortComps[1]]?.value || 0; //(off or def)
+    };
+    const onOrOff = (playerSet: any) => {
+      switch(sortComps[2]) {
+        case "on": return [ playerSet.on ];
+        case "off": return [ playerSet.off ];
+        case "baseline": return [ playerSet.baseline ];
+        default: return [ 0 ];
+      }
+    };
+    return (playerSet: any) => {
+      const playerFields = onOrOff(playerSet || {}).map(player => field(player) || 0);
+      return dir*playerFields[0];
+    };
+  };
 
   const offPrefixFn = (key: string) => "off_" + key;
   const offCellMetaFn = (key: string, val: any) => "off";
@@ -123,7 +151,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, tea
   const defCellMetaFn = (key: string, val: any) => "def";
 
   const onOffBasePicker = (str: string, arr: Array<any>) => {
-    return _.find(arr, (p) => _.startsWith(p.title, str));
+    return _.find(arr, (p) => _.startsWith(p.off_title, str));
   }
 
   /** Show baseline unless both on and off are present */
@@ -131,17 +159,28 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, tea
     (rosterStats?.on?.length && rosterStats?.off?.length);
 
   const allPlayers = _.chain([
-    _.map(rosterStats.on  || [], (p) => _.merge(p, {title: `'ON' ${p.key}`})),
-    _.map(rosterStats.off  || [], (p) => _.merge(p, {title: `'OFF' ${p.key}`})),
-    _.map(rosterStats.baseline || [], (p) => _.merge(p, {title: `'Baseline' ${p.key}`})),
+    _.map(rosterStats.on  || [], (p) => _.merge(p, {off_title: `'ON' ${p.key}`})),
+    _.map(rosterStats.off  || [], (p) => _.merge(p, {off_title: `'OFF' ${p.key}`})),
+    _.map(rosterStats.baseline || [], (p) => _.merge(p, {off_title: `'Baseline' ${p.key}`})),
   ]).flatten().groupBy("key").toPairs().map((key_onOffBase) => {
 
-    return {
+    const player = { // Now grouped by player, re-create the on/off/baseline set
       key: key_onOffBase[0],
       on: onOffBasePicker("'ON' ", key_onOffBase[1]),
       off: onOffBasePicker("'OFF' ", key_onOffBase[1]),
       baseline: onOffBasePicker("'Baseline' ", key_onOffBase[1])
     };
+
+    // Inject ORtg and DRB (ie mutate player idempotently)
+    [ player.on, player.off, player.baseline ].forEach((stat) => {
+      if (stat) {
+        stat.off_drb = stat.def_orb;
+        const [ oRtg, oRtgDiag ] = StatsUtils.buildORtg(stat, showDiagMode);
+        stat.off_rtg = oRtg;
+        stat.diag_off_rtg = oRtgDiag;
+      }
+    });
+    return player;
   }).value();
 
   const tableData = _.chain(allPlayers).filter((player) => {
@@ -154,36 +193,27 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, tea
         (_.find(filterFragmentsNve, (fragment) => strToTest.indexOf(fragment) >= 0) ? false : true))
       ;
   }).sortBy(
-    [ (p) => { return p.on?.off_pos?.value ||  p.baseline?.off_pos?.value || 0 } ] //TODO: other things
-  ).flatMap((player) => {
-    if (!expandedView) { //(ensure DRB is present)
-      [ player.on, player.off, player.baseline ].forEach((stat) => {
-        if (!_.isNil(stat?.def_orb)) {
-          stat.off_drb = stat.def_orb;
-        }
-      });
-    }
-    const [ onORtg, onORtgDiag ] = StatsUtils.buildORtg(player.on, showDiagMode);
-    const [ offORtg, offORtgDiag ] = StatsUtils.buildORtg(player.off, showDiagMode);
-    const [ baseORtg, baseORtgDiag ] = StatsUtils.buildORtg(player.baseline, showDiagMode);
-    const onStats = { off_title: player.on?.title, off_rtg: onORtg, ...player.on };
-    const offStats = { off_title: player.off?.title, off_rtg: offORtg, ...player.off };
-    const baseStats = { off_title: player.baseline?.title, off_rtg: baseORtg, ...player.baseline };
+    [ sorter(sortBy) , (p) => { p.baseline?.off_team_poss?.value || 0 } ]
+  ).flatMap((p) => {
+
     return _.flatten([
-      _.isNil(onStats.off_title) ? [ ] : _.flatten([
-        [ GenericTableOps.buildDataRow(onStats, offPrefixFn, offCellMetaFn) ],
-        expandedView ? [ GenericTableOps.buildDataRow(onStats, defPrefixFn, defCellMetaFn) ] : [],
-        onORtgDiag ? [ GenericTableOps.buildTextRow(<RosterStatsDiagView ortgDiags={onORtgDiag}/>, "small") ] : []
+      _.isNil(p.on?.off_title) ? [ ] : _.flatten([
+        [ GenericTableOps.buildDataRow(p.on, offPrefixFn, offCellMetaFn) ],
+        expandedView ? [ GenericTableOps.buildDataRow(p.on, defPrefixFn, defCellMetaFn) ] : [],
+        p.on?.diag_off_rtg ?
+          [ GenericTableOps.buildTextRow(<RosterStatsDiagView ortgDiags={p.on?.diag_off_rtg}/>, "small") ] : []
       ]),
-      _.isNil(offStats.off_title) ? [ ] : _.flatten([
-        [ GenericTableOps.buildDataRow(offStats, offPrefixFn, offCellMetaFn) ],
-        expandedView ? [ GenericTableOps.buildDataRow(offStats, defPrefixFn, defCellMetaFn) ] : [],
-        offORtgDiag ? [ GenericTableOps.buildTextRow(<RosterStatsDiagView ortgDiags={offORtgDiag}/>, "small") ] : []
+      _.isNil(p.off?.off_title) ? [ ] : _.flatten([
+        [ GenericTableOps.buildDataRow(p.off, offPrefixFn, offCellMetaFn) ],
+        expandedView ? [ GenericTableOps.buildDataRow(p.off, defPrefixFn, defCellMetaFn) ] : [],
+        p.off?.diag_off_rtg ?
+          [ GenericTableOps.buildTextRow(<RosterStatsDiagView ortgDiags={p.off?.diag_off_rtg}/>, "small") ] : []
       ]),
-      (skipBaseline || _.isNil(baseStats.off_title)) ? [ ] : _.flatten([
-        [ GenericTableOps.buildDataRow(baseStats, offPrefixFn, offCellMetaFn) ],
-        expandedView ? [ GenericTableOps.buildDataRow(baseStats, defPrefixFn, defCellMetaFn) ] : [],
-        baseORtgDiag ? [ GenericTableOps.buildTextRow(<RosterStatsDiagView ortgDiags={baseORtgDiag}/>, "small") ] : []
+      (skipBaseline || _.isNil(p.baseline?.off_title)) ? [ ] : _.flatten([
+        [ GenericTableOps.buildDataRow(p.baseline, offPrefixFn, offCellMetaFn) ],
+        expandedView ? [ GenericTableOps.buildDataRow(p.baseline, defPrefixFn, defCellMetaFn) ] : [],
+        p.baseline?.diag_off_rtg ?
+          [ GenericTableOps.buildTextRow(<RosterStatsDiagView ortgDiags={p.baseline?.diag_off_rtg}/>, "small") ] : []
       ]),
       [ GenericTableOps.buildRowSeparator() ]
     ]);
@@ -214,7 +244,79 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, tea
     }, 100));
   };
 
+  /** For use in selects */
+  function stringToOption(s: string) {
+    return sortOptionsByValue[s];
+  }
+
+  // 3.1] Sorting utils
+
+  const sortOptions: Array<any> = _.flatten(
+    _.toPairs(allTableFields)
+      .filter(keycol => keycol[1].colName && keycol[1].colName != "")
+      .map(keycol => {
+        return [
+          //TODO: inject some defensive fields in here
+          ["desc","off"], ["asc","off"],
+        ].flatMap(sort_offDef => {
+          const onOffCombos = _.flatMap([
+            ["baseline", "on", "off"]
+          ]);
+          return onOffCombos.map(onOff => {
+            return [ ...sort_offDef, onOff ];
+          }); // eg [ [ desc, off, on ], [ desc, off, off ], [ desc, off, delta ] ]
+        }).map(combo => {
+          const onOrOff = (s: string) => { switch(s) {
+            case "on": return "'On'";
+            case "off": return "'Off'";
+            case "baseline": return "Base";
+          }}
+          const ascOrDesc = (s: string) => { switch(s) {
+            case "asc": return "Asc.";
+            case "desc": return "Desc.";
+          }}
+          const offOrDef = (s: string) => { switch(s) {
+            case "off": return "Offensive";
+            case "def": return "Defensive";
+          }}
+          return {
+            label: `${onOrOff(combo[2])} ${keycol[1].colName} (${ascOrDesc(combo[0])} / ${offOrDef(combo[1])})`,
+            value: `${combo[0]}:${combo[1]}_${keycol[0]}:${combo[2]}`
+          };
+        });
+      })
+  );
+  const sortOptionsByValue = _.fromPairs(
+    sortOptions.map(opt => [opt.value, opt])
+  );
+  /** Put these options at the front */
+  const mostUsefulSubset = _.flatMap([
+    [
+      "desc:off_team_poss:baseline", "desc:off_team_poss:on", "desc:off_team_poss:off",
+      "desc:off_rtg:baseline", "desc:off_rtg:on", "desc:off_rtg:off",
+      "desc:off_usage:baseline", "desc:off_usage:on", "desc:off_usage:off",
+    ]
+  ]);
+  /** The two sub-headers for the dropdown */
+  const groupedOptions = [
+    {
+      label: "Most useful",
+      options: _.chain(sortOptionsByValue).pick(mostUsefulSubset).values().value()
+    },
+    {
+      label: "Other",
+      options: _.chain(sortOptionsByValue).omit(mostUsefulSubset).values().value()
+    }
+  ];
+
   // 4] View
+
+  /** The sub-header builder */
+  const formatGroupLabel = (data: any) => (
+    <div>
+      <span>{data.label}</span>
+    </div>
+  );
 
   return <Container>
     <LoadingOverlay
@@ -239,6 +341,20 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, tea
           </InputGroup>
         </Form.Group>
         <Form.Group as={Col} sm="5">
+          <InputGroup>
+            <InputGroup.Prepend>
+              <InputGroup.Text id="sortBy">Sort By</InputGroup.Text>
+            </InputGroup.Prepend>
+            <Select
+              className="w-75"
+              value={ stringToOption(sortBy) }
+              options={ groupedOptions }
+              onChange={(option) => { if ((option as any)?.value)
+                setSortBy((option as any)?.value);
+              }}
+              formatGroupLabel={formatGroupLabel}
+            />
+          </InputGroup>
         </Form.Group>
         <Form.Group as={Col} sm="1">
           <Dropdown alignRight>
