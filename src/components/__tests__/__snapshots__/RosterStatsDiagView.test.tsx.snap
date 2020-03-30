@@ -1,0 +1,146 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 1`] = `
+<span>
+  ORtg = Points_Produced/Adjusted_Possessions [
+  <b>
+    508.9
+  </b>
+  ] / [
+  <b>
+    450.3
+  </b>
+  ]  (
+  <a
+    href="#"
+    onClick={[Function]}
+  >
+    more
+     about points
+  </a>
+  )  (
+  <a
+    href="#"
+    onClick={[Function]}
+  >
+    more
+     about possessions
+  </a>
+  )
+  <ul>
+    <li>
+      Points_Produced: [
+      <b>
+        508.9
+      </b>
+      ] = PProd_From_ORB [
+      <b>
+        9.5
+      </b>
+      ] + [
+      <b>
+        499.4
+      </b>
+      ] (PProd_From_FG [
+      <b>
+        301.5
+      </b>
+      ] + FTM [
+      <b>
+        166
+      </b>
+      ] + PProd_From_AST [
+      <b>
+        81.1
+      </b>
+      ], less Team_ORB_Contrib% [
+      <b>
+        9.0
+        %
+      </b>
+      ]==[
+      <b>
+        49.2
+      </b>
+      ])
+    </li>
+    <ul>
+      <li>
+        <em>
+          Compare raw stats: orb=[
+          <b>
+            17
+          </b>
+          ], pts=[
+          <b>
+            497
+          </b>
+          ] (fg_pts=[
+          <b>
+            331
+          </b>
+          ] + ftm=[
+          <b>
+            166
+          </b>
+          ]), assists=[
+          <b>
+            144
+          </b>
+          ]
+        </em>
+      </li>
+    </ul>
+    <li>
+      Adjusted_Possessions: [
+      <b>
+        450.3
+      </b>
+      ] = Scoring_Possessions [
+      <b>
+        236.5
+      </b>
+      ] + Missed_FG_Possessions [
+      <b>
+        141.2
+      </b>
+      ] + Missed_FT_Possessions [
+      <b>
+        3.7
+      </b>
+      ] + TO [
+      <b>
+        69
+      </b>
+      ]
+    </li>
+    <ul>
+      <li>
+        <em>
+          Compare raw stats: poss=[
+          <b>
+            444.6
+          </b>
+          ] (fga=[
+          <b>
+            351
+          </b>
+          ] + 0.475*fta=[
+          <b>
+            97.8
+          </b>
+          ] + to=[
+          <b>
+            69
+          </b>
+          ] - orb=[
+          <b>
+            73.2
+          </b>
+          ])
+        </em>
+      </li>
+    </ul>
+  </ul>
+</span>
+`;

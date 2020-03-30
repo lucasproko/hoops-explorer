@@ -1,0 +1,1674 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RosterStatsTable RosterStatsTable - should create snapshot 1`] = `
+<Container
+  fluid={false}
+>
+  <LoadingOverlay
+    active={false}
+    text="Press 'Submit' to view results"
+  >
+    <FormRow>
+      <FormGroup
+        as={
+          Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "displayName": "Col",
+            "render": [Function],
+          }
+        }
+        sm="6"
+      >
+        <InputGroup>
+          <InputGroupPrepend>
+            <InputGroupText
+              id="filter"
+            >
+              Filter
+            </InputGroupText>
+          </InputGroupPrepend>
+          <FormControl
+            onChange={[Function]}
+            onKeyUp={[Function]}
+            placeholder="eg Player1Surname,Player2FirstName,-Player3Name"
+            value=""
+          />
+        </InputGroup>
+      </FormGroup>
+      <FormGroup
+        as={
+          Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "displayName": "Col",
+            "render": [Function],
+          }
+        }
+        sm="5"
+      >
+        <InputGroup>
+          <InputGroupPrepend>
+            <InputGroupText
+              id="sortBy"
+            >
+              Sort By
+            </InputGroupText>
+          </InputGroupPrepend>
+          <StateManager
+            className="w-75"
+            defaultInputValue=""
+            defaultMenuIsOpen={false}
+            defaultValue={null}
+            formatGroupLabel={[Function]}
+            onChange={[Function]}
+            options={
+              Array [
+                Object {
+                  "label": "Most useful",
+                  "options": Array [
+                    Object {
+                      "label": "Base Poss (Desc. / Offensive)",
+                      "value": "desc:off_team_poss:baseline",
+                    },
+                    Object {
+                      "label": "'On' Poss (Desc. / Offensive)",
+                      "value": "desc:off_team_poss:on",
+                    },
+                    Object {
+                      "label": "'Off' Poss (Desc. / Offensive)",
+                      "value": "desc:off_team_poss:off",
+                    },
+                    Object {
+                      "label": "Base Rtg (Desc. / Offensive)",
+                      "value": "desc:off_rtg:baseline",
+                    },
+                    Object {
+                      "label": "'On' Rtg (Desc. / Offensive)",
+                      "value": "desc:off_rtg:on",
+                    },
+                    Object {
+                      "label": "'Off' Rtg (Desc. / Offensive)",
+                      "value": "desc:off_rtg:off",
+                    },
+                    Object {
+                      "label": "Base Usg (Desc. / Offensive)",
+                      "value": "desc:off_usage:baseline",
+                    },
+                    Object {
+                      "label": "'On' Usg (Desc. / Offensive)",
+                      "value": "desc:off_usage:on",
+                    },
+                    Object {
+                      "label": "'Off' Usg (Desc. / Offensive)",
+                      "value": "desc:off_usage:off",
+                    },
+                  ],
+                },
+                Object {
+                  "label": "Other",
+                  "options": Array [
+                    Object {
+                      "label": "Base Rtg (Asc. / Offensive)",
+                      "value": "asc:off_rtg:baseline",
+                    },
+                    Object {
+                      "label": "'On' Rtg (Asc. / Offensive)",
+                      "value": "asc:off_rtg:on",
+                    },
+                    Object {
+                      "label": "'Off' Rtg (Asc. / Offensive)",
+                      "value": "asc:off_rtg:off",
+                    },
+                    Object {
+                      "label": "Base Usg (Asc. / Offensive)",
+                      "value": "asc:off_usage:baseline",
+                    },
+                    Object {
+                      "label": "'On' Usg (Asc. / Offensive)",
+                      "value": "asc:off_usage:on",
+                    },
+                    Object {
+                      "label": "'Off' Usg (Asc. / Offensive)",
+                      "value": "asc:off_usage:off",
+                    },
+                    Object {
+                      "label": "Base eFG% (Desc. / Offensive)",
+                      "value": "desc:off_efg:baseline",
+                    },
+                    Object {
+                      "label": "'On' eFG% (Desc. / Offensive)",
+                      "value": "desc:off_efg:on",
+                    },
+                    Object {
+                      "label": "'Off' eFG% (Desc. / Offensive)",
+                      "value": "desc:off_efg:off",
+                    },
+                    Object {
+                      "label": "Base eFG% (Asc. / Offensive)",
+                      "value": "asc:off_efg:baseline",
+                    },
+                    Object {
+                      "label": "'On' eFG% (Asc. / Offensive)",
+                      "value": "asc:off_efg:on",
+                    },
+                    Object {
+                      "label": "'Off' eFG% (Asc. / Offensive)",
+                      "value": "asc:off_efg:off",
+                    },
+                    Object {
+                      "label": "Base A% (Desc. / Offensive)",
+                      "value": "desc:off_assist:baseline",
+                    },
+                    Object {
+                      "label": "'On' A% (Desc. / Offensive)",
+                      "value": "desc:off_assist:on",
+                    },
+                    Object {
+                      "label": "'Off' A% (Desc. / Offensive)",
+                      "value": "desc:off_assist:off",
+                    },
+                    Object {
+                      "label": "Base A% (Asc. / Offensive)",
+                      "value": "asc:off_assist:baseline",
+                    },
+                    Object {
+                      "label": "'On' A% (Asc. / Offensive)",
+                      "value": "asc:off_assist:on",
+                    },
+                    Object {
+                      "label": "'Off' A% (Asc. / Offensive)",
+                      "value": "asc:off_assist:off",
+                    },
+                    Object {
+                      "label": "Base TO% (Desc. / Offensive)",
+                      "value": "desc:off_to:baseline",
+                    },
+                    Object {
+                      "label": "'On' TO% (Desc. / Offensive)",
+                      "value": "desc:off_to:on",
+                    },
+                    Object {
+                      "label": "'Off' TO% (Desc. / Offensive)",
+                      "value": "desc:off_to:off",
+                    },
+                    Object {
+                      "label": "Base TO% (Asc. / Offensive)",
+                      "value": "asc:off_to:baseline",
+                    },
+                    Object {
+                      "label": "'On' TO% (Asc. / Offensive)",
+                      "value": "asc:off_to:on",
+                    },
+                    Object {
+                      "label": "'Off' TO% (Asc. / Offensive)",
+                      "value": "asc:off_to:off",
+                    },
+                    Object {
+                      "label": "Base OR% (Desc. / Offensive)",
+                      "value": "desc:off_orb:baseline",
+                    },
+                    Object {
+                      "label": "'On' OR% (Desc. / Offensive)",
+                      "value": "desc:off_orb:on",
+                    },
+                    Object {
+                      "label": "'Off' OR% (Desc. / Offensive)",
+                      "value": "desc:off_orb:off",
+                    },
+                    Object {
+                      "label": "Base OR% (Asc. / Offensive)",
+                      "value": "asc:off_orb:baseline",
+                    },
+                    Object {
+                      "label": "'On' OR% (Asc. / Offensive)",
+                      "value": "asc:off_orb:on",
+                    },
+                    Object {
+                      "label": "'Off' OR% (Asc. / Offensive)",
+                      "value": "asc:off_orb:off",
+                    },
+                    Object {
+                      "label": "Base DR% (Desc. / Offensive)",
+                      "value": "desc:off_drb:baseline",
+                    },
+                    Object {
+                      "label": "'On' DR% (Desc. / Offensive)",
+                      "value": "desc:off_drb:on",
+                    },
+                    Object {
+                      "label": "'Off' DR% (Desc. / Offensive)",
+                      "value": "desc:off_drb:off",
+                    },
+                    Object {
+                      "label": "Base DR% (Asc. / Offensive)",
+                      "value": "asc:off_drb:baseline",
+                    },
+                    Object {
+                      "label": "'On' DR% (Asc. / Offensive)",
+                      "value": "asc:off_drb:on",
+                    },
+                    Object {
+                      "label": "'Off' DR% (Asc. / Offensive)",
+                      "value": "asc:off_drb:off",
+                    },
+                    Object {
+                      "label": "Base FTR (Desc. / Offensive)",
+                      "value": "desc:off_ftr:baseline",
+                    },
+                    Object {
+                      "label": "'On' FTR (Desc. / Offensive)",
+                      "value": "desc:off_ftr:on",
+                    },
+                    Object {
+                      "label": "'Off' FTR (Desc. / Offensive)",
+                      "value": "desc:off_ftr:off",
+                    },
+                    Object {
+                      "label": "Base FTR (Asc. / Offensive)",
+                      "value": "asc:off_ftr:baseline",
+                    },
+                    Object {
+                      "label": "'On' FTR (Asc. / Offensive)",
+                      "value": "asc:off_ftr:on",
+                    },
+                    Object {
+                      "label": "'Off' FTR (Asc. / Offensive)",
+                      "value": "asc:off_ftr:off",
+                    },
+                    Object {
+                      "label": "Base 3PR (Desc. / Offensive)",
+                      "value": "desc:off_3pr:baseline",
+                    },
+                    Object {
+                      "label": "'On' 3PR (Desc. / Offensive)",
+                      "value": "desc:off_3pr:on",
+                    },
+                    Object {
+                      "label": "'Off' 3PR (Desc. / Offensive)",
+                      "value": "desc:off_3pr:off",
+                    },
+                    Object {
+                      "label": "Base 3PR (Asc. / Offensive)",
+                      "value": "asc:off_3pr:baseline",
+                    },
+                    Object {
+                      "label": "'On' 3PR (Asc. / Offensive)",
+                      "value": "asc:off_3pr:on",
+                    },
+                    Object {
+                      "label": "'Off' 3PR (Asc. / Offensive)",
+                      "value": "asc:off_3pr:off",
+                    },
+                    Object {
+                      "label": "Base 2PR mid (Desc. / Offensive)",
+                      "value": "desc:off_2pmidr:baseline",
+                    },
+                    Object {
+                      "label": "'On' 2PR mid (Desc. / Offensive)",
+                      "value": "desc:off_2pmidr:on",
+                    },
+                    Object {
+                      "label": "'Off' 2PR mid (Desc. / Offensive)",
+                      "value": "desc:off_2pmidr:off",
+                    },
+                    Object {
+                      "label": "Base 2PR mid (Asc. / Offensive)",
+                      "value": "asc:off_2pmidr:baseline",
+                    },
+                    Object {
+                      "label": "'On' 2PR mid (Asc. / Offensive)",
+                      "value": "asc:off_2pmidr:on",
+                    },
+                    Object {
+                      "label": "'Off' 2PR mid (Asc. / Offensive)",
+                      "value": "asc:off_2pmidr:off",
+                    },
+                    Object {
+                      "label": "Base 2PR rim (Desc. / Offensive)",
+                      "value": "desc:off_2primr:baseline",
+                    },
+                    Object {
+                      "label": "'On' 2PR rim (Desc. / Offensive)",
+                      "value": "desc:off_2primr:on",
+                    },
+                    Object {
+                      "label": "'Off' 2PR rim (Desc. / Offensive)",
+                      "value": "desc:off_2primr:off",
+                    },
+                    Object {
+                      "label": "Base 2PR rim (Asc. / Offensive)",
+                      "value": "asc:off_2primr:baseline",
+                    },
+                    Object {
+                      "label": "'On' 2PR rim (Asc. / Offensive)",
+                      "value": "asc:off_2primr:on",
+                    },
+                    Object {
+                      "label": "'Off' 2PR rim (Asc. / Offensive)",
+                      "value": "asc:off_2primr:off",
+                    },
+                    Object {
+                      "label": "Base 3P% (Desc. / Offensive)",
+                      "value": "desc:off_3p:baseline",
+                    },
+                    Object {
+                      "label": "'On' 3P% (Desc. / Offensive)",
+                      "value": "desc:off_3p:on",
+                    },
+                    Object {
+                      "label": "'Off' 3P% (Desc. / Offensive)",
+                      "value": "desc:off_3p:off",
+                    },
+                    Object {
+                      "label": "Base 3P% (Asc. / Offensive)",
+                      "value": "asc:off_3p:baseline",
+                    },
+                    Object {
+                      "label": "'On' 3P% (Asc. / Offensive)",
+                      "value": "asc:off_3p:on",
+                    },
+                    Object {
+                      "label": "'Off' 3P% (Asc. / Offensive)",
+                      "value": "asc:off_3p:off",
+                    },
+                    Object {
+                      "label": "Base 2P% (Desc. / Offensive)",
+                      "value": "desc:off_2p:baseline",
+                    },
+                    Object {
+                      "label": "'On' 2P% (Desc. / Offensive)",
+                      "value": "desc:off_2p:on",
+                    },
+                    Object {
+                      "label": "'Off' 2P% (Desc. / Offensive)",
+                      "value": "desc:off_2p:off",
+                    },
+                    Object {
+                      "label": "Base 2P% (Asc. / Offensive)",
+                      "value": "asc:off_2p:baseline",
+                    },
+                    Object {
+                      "label": "'On' 2P% (Asc. / Offensive)",
+                      "value": "asc:off_2p:on",
+                    },
+                    Object {
+                      "label": "'Off' 2P% (Asc. / Offensive)",
+                      "value": "asc:off_2p:off",
+                    },
+                    Object {
+                      "label": "Base 2P% mid (Desc. / Offensive)",
+                      "value": "desc:off_2pmid:baseline",
+                    },
+                    Object {
+                      "label": "'On' 2P% mid (Desc. / Offensive)",
+                      "value": "desc:off_2pmid:on",
+                    },
+                    Object {
+                      "label": "'Off' 2P% mid (Desc. / Offensive)",
+                      "value": "desc:off_2pmid:off",
+                    },
+                    Object {
+                      "label": "Base 2P% mid (Asc. / Offensive)",
+                      "value": "asc:off_2pmid:baseline",
+                    },
+                    Object {
+                      "label": "'On' 2P% mid (Asc. / Offensive)",
+                      "value": "asc:off_2pmid:on",
+                    },
+                    Object {
+                      "label": "'Off' 2P% mid (Asc. / Offensive)",
+                      "value": "asc:off_2pmid:off",
+                    },
+                    Object {
+                      "label": "Base 2P% rim (Desc. / Offensive)",
+                      "value": "desc:off_2prim:baseline",
+                    },
+                    Object {
+                      "label": "'On' 2P% rim (Desc. / Offensive)",
+                      "value": "desc:off_2prim:on",
+                    },
+                    Object {
+                      "label": "'Off' 2P% rim (Desc. / Offensive)",
+                      "value": "desc:off_2prim:off",
+                    },
+                    Object {
+                      "label": "Base 2P% rim (Asc. / Offensive)",
+                      "value": "asc:off_2prim:baseline",
+                    },
+                    Object {
+                      "label": "'On' 2P% rim (Asc. / Offensive)",
+                      "value": "asc:off_2prim:on",
+                    },
+                    Object {
+                      "label": "'Off' 2P% rim (Asc. / Offensive)",
+                      "value": "asc:off_2prim:off",
+                    },
+                    Object {
+                      "label": "Base Poss (Asc. / Offensive)",
+                      "value": "asc:off_team_poss:baseline",
+                    },
+                    Object {
+                      "label": "'On' Poss (Asc. / Offensive)",
+                      "value": "asc:off_team_poss:on",
+                    },
+                    Object {
+                      "label": "'Off' Poss (Asc. / Offensive)",
+                      "value": "asc:off_team_poss:off",
+                    },
+                    Object {
+                      "label": "Base SoS (Desc. / Offensive)",
+                      "value": "desc:off_adj_opp:baseline",
+                    },
+                    Object {
+                      "label": "'On' SoS (Desc. / Offensive)",
+                      "value": "desc:off_adj_opp:on",
+                    },
+                    Object {
+                      "label": "'Off' SoS (Desc. / Offensive)",
+                      "value": "desc:off_adj_opp:off",
+                    },
+                    Object {
+                      "label": "Base SoS (Asc. / Offensive)",
+                      "value": "asc:off_adj_opp:baseline",
+                    },
+                    Object {
+                      "label": "'On' SoS (Asc. / Offensive)",
+                      "value": "asc:off_adj_opp:on",
+                    },
+                    Object {
+                      "label": "'Off' SoS (Asc. / Offensive)",
+                      "value": "asc:off_adj_opp:off",
+                    },
+                  ],
+                },
+              ]
+            }
+            value={
+              Object {
+                "label": "Base Poss (Desc. / Offensive)",
+                "value": "desc:off_team_poss:baseline",
+              }
+            }
+          />
+        </InputGroup>
+      </FormGroup>
+      <FormGroup
+        as={
+          Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "displayName": "Col",
+            "render": [Function],
+          }
+        }
+        sm="1"
+      >
+        <Dropdown
+          alignRight={true}
+          navbar={false}
+        >
+          <Bootstrap(DropdownToggle)
+            id="dropdown-basic"
+            variant="outline-secondary"
+          >
+            <FontAwesomeIcon
+              border={false}
+              className=""
+              fixedWidth={false}
+              flip={null}
+              icon={
+                Object {
+                  "icon": Array [
+                    512,
+                    512,
+                    Array [],
+                    "f013",
+                    "M487.4 315.7l-42.6-24.6c4.3-23.2 4.3-47 0-70.2l42.6-24.6c4.9-2.8 7.1-8.6 5.5-14-11.1-35.6-30-67.8-54.7-94.6-3.8-4.1-10-5.1-14.8-2.3L380.8 110c-17.9-15.4-38.5-27.3-60.8-35.1V25.8c0-5.6-3.9-10.5-9.4-11.7-36.7-8.2-74.3-7.8-109.2 0-5.5 1.2-9.4 6.1-9.4 11.7V75c-22.2 7.9-42.8 19.8-60.8 35.1L88.7 85.5c-4.9-2.8-11-1.9-14.8 2.3-24.7 26.7-43.6 58.9-54.7 94.6-1.7 5.4.6 11.2 5.5 14L67.3 221c-4.3 23.2-4.3 47 0 70.2l-42.6 24.6c-4.9 2.8-7.1 8.6-5.5 14 11.1 35.6 30 67.8 54.7 94.6 3.8 4.1 10 5.1 14.8 2.3l42.6-24.6c17.9 15.4 38.5 27.3 60.8 35.1v49.2c0 5.6 3.9 10.5 9.4 11.7 36.7 8.2 74.3 7.8 109.2 0 5.5-1.2 9.4-6.1 9.4-11.7v-49.2c22.2-7.9 42.8-19.8 60.8-35.1l42.6 24.6c4.9 2.8 11 1.9 14.8-2.3 24.7-26.7 43.6-58.9 54.7-94.6 1.5-5.5-.7-11.3-5.6-14.1zM256 336c-44.1 0-80-35.9-80-80s35.9-80 80-80 80 35.9 80 80-35.9 80-80 80z",
+                  ],
+                  "iconName": "cog",
+                  "prefix": "fas",
+                }
+              }
+              inverse={false}
+              listItem={false}
+              mask={null}
+              pull={null}
+              pulse={false}
+              rotation={null}
+              size={null}
+              spin={false}
+              swapOpacity={false}
+              symbol={false}
+              title=""
+              transform={null}
+            />
+          </Bootstrap(DropdownToggle)>
+          <DropdownMenu
+            alignRight={false}
+            flip={true}
+          >
+            <DropdownItem
+              as={
+                Object {
+                  "$$typeof": Symbol(react.forward_ref),
+                  "defaultProps": Object {
+                    "active": false,
+                    "disabled": false,
+                    "type": "button",
+                    "variant": "primary",
+                  },
+                  "displayName": "Button",
+                  "render": [Function],
+                }
+              }
+              disabled={false}
+            >
+              <div
+                onClick={[Function]}
+              >
+                <span>
+                  Show expanded statistics
+                </span>
+                <span>
+                      
+                </span>
+              </div>
+            </DropdownItem>
+            <DropdownItem
+              as={
+                Object {
+                  "$$typeof": Symbol(react.forward_ref),
+                  "defaultProps": Object {
+                    "active": false,
+                    "disabled": false,
+                    "type": "button",
+                    "variant": "primary",
+                  },
+                  "displayName": "Button",
+                  "render": [Function],
+                }
+              }
+              disabled={false}
+            >
+              <div
+                onClick={[Function]}
+              >
+                <span>
+                  Always show baseline statistics
+                </span>
+                <span>
+                      
+                </span>
+              </div>
+            </DropdownItem>
+            <DropdownDivider
+              role="separator"
+            />
+            <DropdownItem
+              as={
+                Object {
+                  "$$typeof": Symbol(react.forward_ref),
+                  "defaultProps": Object {
+                    "active": false,
+                    "disabled": false,
+                    "type": "button",
+                    "variant": "primary",
+                  },
+                  "displayName": "Button",
+                  "render": [Function],
+                }
+              }
+              disabled={false}
+            >
+              <div
+                onClick={[Function]}
+              >
+                <span>
+                  Show Off/Def Rating diagnostics
+                </span>
+                <span>
+                      
+                </span>
+              </div>
+            </DropdownItem>
+          </DropdownMenu>
+        </Dropdown>
+      </FormGroup>
+    </FormRow>
+    <ForwardRef
+      noGutters={false}
+    >
+      <Col>
+        <GenericTable
+          tableCopyId="rosterStatsTable"
+          tableData={
+            Array [
+              GenericTableDataRow {
+                "cellMetaFn": [Function],
+                "dataObj": Object {
+                  "def_2prim": Object {
+                    "value": 0.0072254335260115606,
+                  },
+                  "def_adj_opp": Object {
+                    "value": 96.6003105590062,
+                  },
+                  "def_ftr": Object {
+                    "value": 0.025543478260869563,
+                  },
+                  "def_orb": Object {
+                    "value": 0.08611111111111111,
+                  },
+                  "def_team_poss": Object {
+                    "value": 1288,
+                  },
+                  "def_to": Object {
+                    "value": 0.020186335403726708,
+                  },
+                  "diag_off_rtg": undefined,
+                  "doc_count": 341,
+                  "key": "Cowan, Anthony",
+                  "off_2p": Object {
+                    "value": 0.4796747967479675,
+                  },
+                  "off_2pmid": Object {
+                    "value": 0.4264705882352941,
+                  },
+                  "off_2pmidr": Object {
+                    "value": 0.27755102040816326,
+                  },
+                  "off_2prim": Object {
+                    "value": 0.5454545454545454,
+                  },
+                  "off_2primr": Object {
+                    "value": 0.22448979591836735,
+                  },
+                  "off_3p": Object {
+                    "value": 0.319672131147541,
+                  },
+                  "off_3pr": Object {
+                    "value": 0.49795918367346936,
+                  },
+                  "off_adj_opp": Object {
+                    "value": 107.92523291925467,
+                  },
+                  "off_assist": Object {
+                    "value": 0.2620320855614973,
+                  },
+                  "off_drb": Object {
+                    "value": 0.08611111111111111,
+                  },
+                  "off_efg": Object {
+                    "value": 0.47959183673469385,
+                  },
+                  "off_ftr": Object {
+                    "value": 0.6653061224489796,
+                  },
+                  "off_orb": Object {
+                    "value": 0.011283497884344146,
+                  },
+                  "off_poss": Object {
+                    "value": 321.68809523809523,
+                  },
+                  "off_rtg": Object {
+                    "value": 112.89975161303268,
+                  },
+                  "off_team_poss": Object {
+                    "value": 1307,
+                  },
+                  "off_title": "'ON' Cowan, Anthony",
+                  "off_to": Object {
+                    "value": 0.17097306619100133,
+                  },
+                  "off_usage": Object {
+                    "value": 0.24612708128392902,
+                  },
+                  "oppo_total_def_2p_attempts": Object {
+                    "value": 692,
+                  },
+                  "oppo_total_def_drb": Object {
+                    "value": 479,
+                  },
+                  "oppo_total_def_orb": Object {
+                    "value": 195,
+                  },
+                  "oppo_total_def_poss": Object {
+                    "value": 1288,
+                  },
+                  "team_total_off_3p_made": Object {
+                    "value": 159,
+                  },
+                  "team_total_off_assist": Object {
+                    "value": 255,
+                  },
+                  "team_total_off_drb": Object {
+                    "value": 525,
+                  },
+                  "team_total_off_fga": Object {
+                    "value": 1119,
+                  },
+                  "team_total_off_fgm": Object {
+                    "value": 472,
+                  },
+                  "team_total_off_fta": Object {
+                    "value": 456,
+                  },
+                  "team_total_off_ftm": Object {
+                    "value": 342,
+                  },
+                  "team_total_off_orb": Object {
+                    "value": 230,
+                  },
+                  "team_total_off_poss": Object {
+                    "value": 1307,
+                  },
+                  "team_total_off_pts": Object {
+                    "value": 1445,
+                  },
+                  "team_total_off_to": Object {
+                    "value": 210,
+                  },
+                  "total_off_2p_attempts": Object {
+                    "value": 123,
+                  },
+                  "total_off_2p_made": Object {
+                    "value": 59,
+                  },
+                  "total_off_2pmid_attempts": Object {
+                    "value": 68,
+                  },
+                  "total_off_2pmid_made": Object {
+                    "value": 29,
+                  },
+                  "total_off_2prim_attempts": Object {
+                    "value": 55,
+                  },
+                  "total_off_2prim_made": Object {
+                    "value": 30,
+                  },
+                  "total_off_3p_attempts": Object {
+                    "value": 122,
+                  },
+                  "total_off_3p_made": Object {
+                    "value": 39,
+                  },
+                  "total_off_assist": Object {
+                    "value": 98,
+                  },
+                  "total_off_blk": Object {
+                    "value": 5,
+                  },
+                  "total_off_drb": Object {
+                    "value": 62,
+                  },
+                  "total_off_fga": Object {
+                    "value": 245,
+                  },
+                  "total_off_fgm": Object {
+                    "value": 98,
+                  },
+                  "total_off_foul": Object {
+                    "value": 47,
+                  },
+                  "total_off_fta": Object {
+                    "value": 163,
+                  },
+                  "total_off_ftm": Object {
+                    "value": 131,
+                  },
+                  "total_off_orb": Object {
+                    "value": 8,
+                  },
+                  "total_off_poss": Object {
+                    "value": 0,
+                  },
+                  "total_off_pts": Object {
+                    "value": 0,
+                  },
+                  "total_off_stl": Object {
+                    "value": 26,
+                  },
+                  "total_off_to": Object {
+                    "value": 55,
+                  },
+                },
+                "kind": "data-row",
+                "prefixFn": [Function],
+                "tableFieldsOverride": undefined,
+              },
+              GenericTableDataRow {
+                "cellMetaFn": [Function],
+                "dataObj": Object {
+                  "def_2prim": Object {
+                    "value": 0,
+                  },
+                  "def_adj_opp": Object {
+                    "value": 96.31485355648536,
+                  },
+                  "def_ftr": Object {
+                    "value": 0.021966527196652718,
+                  },
+                  "def_orb": Object {
+                    "value": 0.12213740458015267,
+                  },
+                  "def_team_poss": Object {
+                    "value": 478,
+                  },
+                  "def_to": Object {
+                    "value": 0.008368200836820083,
+                  },
+                  "diag_off_rtg": undefined,
+                  "doc_count": 129,
+                  "key": "Cowan, Anthony",
+                  "off_2p": Object {
+                    "value": 0.42105263157894735,
+                  },
+                  "off_2pmid": Object {
+                    "value": 0.4358974358974359,
+                  },
+                  "off_2pmidr": Object {
+                    "value": 0.36792452830188677,
+                  },
+                  "off_2prim": Object {
+                    "value": 0.3888888888888889,
+                  },
+                  "off_2primr": Object {
+                    "value": 0.16981132075471697,
+                  },
+                  "off_3p": Object {
+                    "value": 0.32653061224489793,
+                  },
+                  "off_3pr": Object {
+                    "value": 0.46226415094339623,
+                  },
+                  "off_adj_opp": Object {
+                    "value": 108.49037656903766,
+                  },
+                  "off_assist": Object {
+                    "value": 0.3770491803278688,
+                  },
+                  "off_drb": Object {
+                    "value": 0.12213740458015267,
+                  },
+                  "off_efg": Object {
+                    "value": 0.4528301886792453,
+                  },
+                  "off_ftr": Object {
+                    "value": 0.4056603773584906,
+                  },
+                  "off_orb": Object {
+                    "value": 0.03435114503816794,
+                  },
+                  "off_poss": Object {
+                    "value": 122.94642857142857,
+                  },
+                  "off_rtg": Object {
+                    "value": 112.67901018514969,
+                  },
+                  "off_team_poss": Object {
+                    "value": 471,
+                  },
+                  "off_title": "'OFF' Cowan, Anthony",
+                  "off_to": Object {
+                    "value": 0.11387073347857662,
+                  },
+                  "off_usage": Object {
+                    "value": 0.26103275705186535,
+                  },
+                  "oppo_total_def_2p_attempts": Object {
+                    "value": 283,
+                  },
+                  "oppo_total_def_drb": Object {
+                    "value": 186,
+                  },
+                  "oppo_total_def_orb": Object {
+                    "value": 71,
+                  },
+                  "oppo_total_def_poss": Object {
+                    "value": 478,
+                  },
+                  "team_total_off_3p_made": Object {
+                    "value": 51,
+                  },
+                  "team_total_off_assist": Object {
+                    "value": 99,
+                  },
+                  "team_total_off_drb": Object {
+                    "value": 191,
+                  },
+                  "team_total_off_fga": Object {
+                    "value": 410,
+                  },
+                  "team_total_off_fgm": Object {
+                    "value": 162,
+                  },
+                  "team_total_off_fta": Object {
+                    "value": 110,
+                  },
+                  "team_total_off_ftm": Object {
+                    "value": 84,
+                  },
+                  "team_total_off_orb": Object {
+                    "value": 76,
+                  },
+                  "team_total_off_poss": Object {
+                    "value": 471,
+                  },
+                  "team_total_off_pts": Object {
+                    "value": 459,
+                  },
+                  "team_total_off_to": Object {
+                    "value": 88,
+                  },
+                  "total_off_2p_attempts": Object {
+                    "value": 57,
+                  },
+                  "total_off_2p_made": Object {
+                    "value": 24,
+                  },
+                  "total_off_2pmid_attempts": Object {
+                    "value": 39,
+                  },
+                  "total_off_2pmid_made": Object {
+                    "value": 17,
+                  },
+                  "total_off_2prim_attempts": Object {
+                    "value": 18,
+                  },
+                  "total_off_2prim_made": Object {
+                    "value": 7,
+                  },
+                  "total_off_3p_attempts": Object {
+                    "value": 49,
+                  },
+                  "total_off_3p_made": Object {
+                    "value": 16,
+                  },
+                  "total_off_assist": Object {
+                    "value": 46,
+                  },
+                  "total_off_blk": Object {
+                    "value": 0,
+                  },
+                  "total_off_drb": Object {
+                    "value": 32,
+                  },
+                  "total_off_fga": Object {
+                    "value": 106,
+                  },
+                  "total_off_fgm": Object {
+                    "value": 40,
+                  },
+                  "total_off_foul": Object {
+                    "value": 15,
+                  },
+                  "total_off_fta": Object {
+                    "value": 43,
+                  },
+                  "total_off_ftm": Object {
+                    "value": 35,
+                  },
+                  "total_off_orb": Object {
+                    "value": 9,
+                  },
+                  "total_off_poss": Object {
+                    "value": 0,
+                  },
+                  "total_off_pts": Object {
+                    "value": 0,
+                  },
+                  "total_off_stl": Object {
+                    "value": 4,
+                  },
+                  "total_off_to": Object {
+                    "value": 14,
+                  },
+                },
+                "kind": "data-row",
+                "prefixFn": [Function],
+                "tableFieldsOverride": undefined,
+              },
+              GenericTableSeparator {
+                "kind": "separator",
+              },
+              GenericTableDataRow {
+                "cellMetaFn": [Function],
+                "dataObj": Object {
+                  "def_2prim": Object {
+                    "value": 0.016581632653061226,
+                  },
+                  "def_adj_opp": Object {
+                    "value": 96.80587833219413,
+                  },
+                  "def_ftr": Object {
+                    "value": 0.02248803827751196,
+                  },
+                  "def_orb": Object {
+                    "value": 0.13658536585365855,
+                  },
+                  "def_team_poss": Object {
+                    "value": 1463,
+                  },
+                  "def_to": Object {
+                    "value": 0.0177717019822283,
+                  },
+                  "diag_off_rtg": undefined,
+                  "doc_count": 404,
+                  "key": "Wiggins, Aaron",
+                  "off_2p": Object {
+                    "value": 0.4461538461538462,
+                  },
+                  "off_2pmid": Object {
+                    "value": 0.2891566265060241,
+                  },
+                  "off_2pmidr": Object {
+                    "value": 0.2832764505119454,
+                  },
+                  "off_2prim": Object {
+                    "value": 0.723404255319149,
+                  },
+                  "off_2primr": Object {
+                    "value": 0.16040955631399317,
+                  },
+                  "off_3p": Object {
+                    "value": 0.3128834355828221,
+                  },
+                  "off_3pr": Object {
+                    "value": 0.5563139931740614,
+                  },
+                  "off_adj_opp": Object {
+                    "value": 107.77293233082706,
+                  },
+                  "off_assist": Object {
+                    "value": 0.0988235294117647,
+                  },
+                  "off_drb": Object {
+                    "value": 0.13658536585365855,
+                  },
+                  "off_efg": Object {
+                    "value": 0.4590443686006826,
+                  },
+                  "off_ftr": Object {
+                    "value": 0.20136518771331058,
+                  },
+                  "off_orb": Object {
+                    "value": 0.044416243654822336,
+                  },
+                  "off_poss": Object {
+                    "value": 304.78809523809525,
+                  },
+                  "off_rtg": Object {
+                    "value": 98.48922807683817,
+                  },
+                  "off_team_poss": Object {
+                    "value": 1469,
+                  },
+                  "off_title": "'ON' Wiggins, Aaron",
+                  "off_to": Object {
+                    "value": 0.16076743404863644,
+                  },
+                  "off_usage": Object {
+                    "value": 0.20747998314369998,
+                  },
+                  "oppo_total_def_2p_attempts": Object {
+                    "value": 784,
+                  },
+                  "oppo_total_def_drb": Object {
+                    "value": 534,
+                  },
+                  "oppo_total_def_orb": Object {
+                    "value": 214,
+                  },
+                  "oppo_total_def_poss": Object {
+                    "value": 1463,
+                  },
+                  "team_total_off_3p_made": Object {
+                    "value": 174,
+                  },
+                  "team_total_off_assist": Object {
+                    "value": 283,
+                  },
+                  "team_total_off_drb": Object {
+                    "value": 606,
+                  },
+                  "team_total_off_fga": Object {
+                    "value": 1253,
+                  },
+                  "team_total_off_fgm": Object {
+                    "value": 534,
+                  },
+                  "team_total_off_fta": Object {
+                    "value": 508,
+                  },
+                  "team_total_off_ftm": Object {
+                    "value": 379,
+                  },
+                  "team_total_off_orb": Object {
+                    "value": 254,
+                  },
+                  "team_total_off_poss": Object {
+                    "value": 1469,
+                  },
+                  "team_total_off_pts": Object {
+                    "value": 1621,
+                  },
+                  "team_total_off_to": Object {
+                    "value": 243,
+                  },
+                  "total_off_2p_attempts": Object {
+                    "value": 130,
+                  },
+                  "total_off_2p_made": Object {
+                    "value": 58,
+                  },
+                  "total_off_2pmid_attempts": Object {
+                    "value": 83,
+                  },
+                  "total_off_2pmid_made": Object {
+                    "value": 24,
+                  },
+                  "total_off_2prim_attempts": Object {
+                    "value": 47,
+                  },
+                  "total_off_2prim_made": Object {
+                    "value": 34,
+                  },
+                  "total_off_3p_attempts": Object {
+                    "value": 163,
+                  },
+                  "total_off_3p_made": Object {
+                    "value": 51,
+                  },
+                  "total_off_assist": Object {
+                    "value": 42,
+                  },
+                  "total_off_blk": Object {
+                    "value": 13,
+                  },
+                  "total_off_drb": Object {
+                    "value": 112,
+                  },
+                  "total_off_fga": Object {
+                    "value": 293,
+                  },
+                  "total_off_fgm": Object {
+                    "value": 109,
+                  },
+                  "total_off_foul": Object {
+                    "value": 47,
+                  },
+                  "total_off_fta": Object {
+                    "value": 59,
+                  },
+                  "total_off_ftm": Object {
+                    "value": 43,
+                  },
+                  "total_off_orb": Object {
+                    "value": 35,
+                  },
+                  "total_off_poss": Object {
+                    "value": 0,
+                  },
+                  "total_off_pts": Object {
+                    "value": 0,
+                  },
+                  "total_off_stl": Object {
+                    "value": 26,
+                  },
+                  "total_off_to": Object {
+                    "value": 49,
+                  },
+                },
+                "kind": "data-row",
+                "prefixFn": [Function],
+                "tableFieldsOverride": undefined,
+              },
+              GenericTableSeparator {
+                "kind": "separator",
+              },
+              GenericTableDataRow {
+                "cellMetaFn": [Function],
+                "dataObj": Object {
+                  "def_2prim": Object {
+                    "value": 0,
+                  },
+                  "def_adj_opp": Object {
+                    "value": 93,
+                  },
+                  "def_ftr": Object {
+                    "value": 0,
+                  },
+                  "def_orb": Object {
+                    "value": 0,
+                  },
+                  "def_team_poss": Object {
+                    "value": 10,
+                  },
+                  "def_to": Object {
+                    "value": 0.1,
+                  },
+                  "diag_off_rtg": undefined,
+                  "doc_count": 3,
+                  "key": "Mona, Reese",
+                  "off_2p": Object {
+                    "value": 0,
+                  },
+                  "off_2pmid": Object {
+                    "value": 0,
+                  },
+                  "off_2pmidr": Object {
+                    "value": 0,
+                  },
+                  "off_2prim": Object {
+                    "value": 0,
+                  },
+                  "off_2primr": Object {
+                    "value": 0,
+                  },
+                  "off_3p": Object {
+                    "value": 0,
+                  },
+                  "off_3pr": Object {
+                    "value": 0,
+                  },
+                  "off_adj_opp": Object {
+                    "value": 115.3,
+                  },
+                  "off_assist": Object {
+                    "value": 0,
+                  },
+                  "off_drb": Object {
+                    "value": 0,
+                  },
+                  "off_efg": Object {
+                    "value": 0,
+                  },
+                  "off_ftr": Object {
+                    "value": null,
+                  },
+                  "off_orb": Object {
+                    "value": 0.14285714285714285,
+                  },
+                  "off_poss": Object {
+                    "value": 1.475,
+                  },
+                  "off_rtg": Object {
+                    "value": 4.895992356131935,
+                  },
+                  "off_team_poss": Object {
+                    "value": 9,
+                  },
+                  "off_title": "'OFF' Mona, Reese",
+                  "off_to": Object {
+                    "value": 0.6779661016949152,
+                  },
+                  "off_usage": Object {
+                    "value": 0.1638888888888889,
+                  },
+                  "oppo_total_def_2p_attempts": Object {
+                    "value": 7,
+                  },
+                  "oppo_total_def_drb": Object {
+                    "value": 6,
+                  },
+                  "oppo_total_def_orb": Object {
+                    "value": 3,
+                  },
+                  "oppo_total_def_poss": Object {
+                    "value": 10,
+                  },
+                  "team_total_off_3p_made": Object {
+                    "value": 0,
+                  },
+                  "team_total_off_assist": Object {
+                    "value": 1,
+                  },
+                  "team_total_off_drb": Object {
+                    "value": 2,
+                  },
+                  "team_total_off_fga": Object {
+                    "value": 7,
+                  },
+                  "team_total_off_fgm": Object {
+                    "value": 1,
+                  },
+                  "team_total_off_fta": Object {
+                    "value": 1,
+                  },
+                  "team_total_off_ftm": Object {
+                    "value": 0,
+                  },
+                  "team_total_off_orb": Object {
+                    "value": 1,
+                  },
+                  "team_total_off_poss": Object {
+                    "value": 9,
+                  },
+                  "team_total_off_pts": Object {
+                    "value": 2,
+                  },
+                  "team_total_off_to": Object {
+                    "value": 3,
+                  },
+                  "total_off_2p_attempts": Object {
+                    "value": 0,
+                  },
+                  "total_off_2p_made": Object {
+                    "value": 0,
+                  },
+                  "total_off_2pmid_attempts": Object {
+                    "value": 0,
+                  },
+                  "total_off_2pmid_made": Object {
+                    "value": 0,
+                  },
+                  "total_off_2prim_attempts": Object {
+                    "value": 0,
+                  },
+                  "total_off_2prim_made": Object {
+                    "value": 0,
+                  },
+                  "total_off_3p_attempts": Object {
+                    "value": 0,
+                  },
+                  "total_off_3p_made": Object {
+                    "value": 0,
+                  },
+                  "total_off_assist": Object {
+                    "value": 0,
+                  },
+                  "total_off_blk": Object {
+                    "value": 0,
+                  },
+                  "total_off_drb": Object {
+                    "value": 0,
+                  },
+                  "total_off_fga": Object {
+                    "value": 0,
+                  },
+                  "total_off_fgm": Object {
+                    "value": 0,
+                  },
+                  "total_off_foul": Object {
+                    "value": 0,
+                  },
+                  "total_off_fta": Object {
+                    "value": 1,
+                  },
+                  "total_off_ftm": Object {
+                    "value": 0,
+                  },
+                  "total_off_orb": Object {
+                    "value": 1,
+                  },
+                  "total_off_poss": Object {
+                    "value": 0,
+                  },
+                  "total_off_pts": Object {
+                    "value": 0,
+                  },
+                  "total_off_stl": Object {
+                    "value": 1,
+                  },
+                  "total_off_to": Object {
+                    "value": 1,
+                  },
+                },
+                "kind": "data-row",
+                "prefixFn": [Function],
+                "tableFieldsOverride": undefined,
+              },
+              GenericTableSeparator {
+                "kind": "separator",
+              },
+            ]
+          }
+          tableFields={
+            Object {
+              "2p": GenericTableColProps {
+                "className": "",
+                "colName": "2P%",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "2 point field goal percentage",
+                "widthUnits": 2,
+              },
+              "2pmid": GenericTableColProps {
+                "className": "",
+                "colName": "2P% mid",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "2 point field goal percentage (mid range)",
+                "widthUnits": 2,
+              },
+              "2pmidr": GenericTableColProps {
+                "className": "",
+                "colName": "2PR mid",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "Percentage of mid range 2 pointers taken against all field goals",
+                "widthUnits": 2,
+              },
+              "2prim": GenericTableColProps {
+                "className": "",
+                "colName": "2P% rim",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "2 point field goal percentage (layup/dunk/etc)",
+                "widthUnits": 2,
+              },
+              "2primr": GenericTableColProps {
+                "className": "",
+                "colName": "2PR rim",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "Percentage of layup/dunk/etc 2 pointers taken against all field goals",
+                "widthUnits": 2,
+              },
+              "3p": GenericTableColProps {
+                "className": "",
+                "colName": "3P%",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "3 point field goal percentage",
+                "widthUnits": 2,
+              },
+              "3pr": GenericTableColProps {
+                "className": "",
+                "colName": "3PR",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "Percentage of 3 pointers taken against all field goals",
+                "widthUnits": 2,
+              },
+              "assist": GenericTableColProps {
+                "className": "",
+                "colName": "A%",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "Assist % for player in selected lineups",
+                "widthUnits": 2,
+              },
+              "drb": GenericTableColProps {
+                "className": "",
+                "colName": "DR%",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "Defensive rebounding % for player in selected lineups",
+                "widthUnits": 2,
+              },
+              "efg": GenericTableColProps {
+                "className": "",
+                "colName": "eFG%",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "Effective field goal% (3 pointers count 1.5x as much) for player in selected lineups",
+                "widthUnits": 2,
+              },
+              "ftr": GenericTableColProps {
+                "className": "",
+                "colName": "FTR",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "Free throw rate for player in selected lineups",
+                "widthUnits": 2,
+              },
+              "orb": GenericTableColProps {
+                "className": "",
+                "colName": "OR%",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "Offensive rebounding % for player in selected lineups",
+                "widthUnits": 2,
+              },
+              "rtg": GenericTableColProps {
+                "className": "",
+                "colName": "Rtg",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "Offensive/Defensive rating for selected lineups",
+                "widthUnits": 2,
+              },
+              "sep0": GenericTableColProps {
+                "className": "",
+                "colName": "",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "",
+                "widthUnits": 1,
+              },
+              "sep1": GenericTableColProps {
+                "className": "",
+                "colName": "",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "",
+                "widthUnits": 1,
+              },
+              "sep2": GenericTableColProps {
+                "className": "",
+                "colName": "",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "",
+                "widthUnits": 1,
+              },
+              "sep3": GenericTableColProps {
+                "className": "",
+                "colName": "",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "",
+                "widthUnits": 1,
+              },
+              "sep4": GenericTableColProps {
+                "className": "",
+                "colName": "",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "",
+                "widthUnits": 1,
+              },
+              "team_poss": GenericTableColProps {
+                "className": "",
+                "colName": "Poss",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "Number of possessions in selected lineups that player was on the floor",
+                "widthUnits": 2,
+              },
+              "title": GenericTableColProps {
+                "className": "small",
+                "colName": "",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": true,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "",
+                "widthUnits": 8,
+              },
+              "to": GenericTableColProps {
+                "className": "",
+                "colName": "TO%",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "Turnover % for player in for selected lineups",
+                "widthUnits": 2,
+              },
+              "usage": GenericTableColProps {
+                "className": "",
+                "colName": "Usg",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "% of team possessions used for selected lineups",
+                "widthUnits": 2,
+              },
+            }
+          }
+        />
+      </Col>
+    </ForwardRef>
+  </LoadingOverlay>
+</Container>
+`;
