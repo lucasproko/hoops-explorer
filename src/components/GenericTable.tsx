@@ -115,13 +115,13 @@ export class GenericTableOps {
   // Cols:
 
   static addPctCol(colName: string, toolTip: string, colorPicker: GenericTableColorPickerFn) {
-    return new GenericTableColProps(colName, toolTip, 2, false, GenericTableOps.percentFormatter, colorPicker, GenericTableOps.defaultRowSpanCalculator, { value: 0.0 });
+    return new GenericTableColProps(colName, toolTip, 2, false, GenericTableOps.percentFormatter, colorPicker, GenericTableOps.defaultRowSpanCalculator, undefined);
   }
   static addPtsCol(colName: string, toolTip: string, colorPicker: GenericTableColorPickerFn) {
-    return new GenericTableColProps(colName, toolTip, 2, false, GenericTableOps.pointsFormatter, colorPicker, GenericTableOps.defaultRowSpanCalculator, { value: 0 });
+    return new GenericTableColProps(colName, toolTip, 2, false, GenericTableOps.pointsFormatter, colorPicker, GenericTableOps.defaultRowSpanCalculator, undefined);
   }
   static addIntCol(colName: string, toolTip: string, colorPicker: GenericTableColorPickerFn) {
-    return new GenericTableColProps(colName, toolTip, 2, false, GenericTableOps.intFormatter, colorPicker, GenericTableOps.defaultRowSpanCalculator, { value: 0 });
+    return new GenericTableColProps(colName, toolTip, 2, false, GenericTableOps.intFormatter, colorPicker, GenericTableOps.defaultRowSpanCalculator, undefined);
   }
   static addTitle(
     colName: string, toolTip: string,

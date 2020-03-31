@@ -223,10 +223,14 @@ const CommonFilter: CommonFilterI = ({
   /** If the params match the last request, disable submit */
   function shouldSubmitBeDisabled() {
     const newParams = buildParamsFromState(false);
+
     const paramsUnchanged = Object.keys(newParams).every(
-      (key: string) => (newParams as any)[key] == (currState as any)[key]
+      (key: string) => (key == "filterGarbage") || (newParams as any)[key] == (currState as any)[key]
     );
-    return (atLeastOneQueryMade && paramsUnchanged) || (team == "");
+    const garbageSpecialCase =
+      (newParams?.filterGarbage || false) == (currState?.filterGarbage || false);
+
+    return (atLeastOneQueryMade && paramsUnchanged && garbageSpecialCase) || (team == "");
   }
 
   /** Whether any of the queries returned an error - we'll treat them all as errors if so */

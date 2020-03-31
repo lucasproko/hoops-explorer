@@ -16,6 +16,7 @@ import Col from 'react-bootstrap/Col';
 // Component imports:
 import { TeamStatsModel } from '../components/TeamStatsTable';
 import { RosterCompareModel } from '../components/RosterCompareTable';
+import { RosterStatsModel } from '../components/RosterStatsTable';
 import CommonFilter, { GlobalKeypressManager } from '../components/CommonFilter';
 import { ParamPrefixes, CommonFilterParams, GameFilterParams, ParamDefaults } from "../utils/FilterModels";
 import AutoSuggestText from './AutoSuggestText';
@@ -24,7 +25,7 @@ import AutoSuggestText from './AutoSuggestText';
 import fetch from 'isomorphic-unfetch';
 
 type Props = {
-  onStats: (teamStats: TeamStatsModel, rosterCompareStats: RosterCompareModel) => void;
+  onStats: (teamStats: TeamStatsModel, rosterCompareStats: RosterCompareModel, rosterStats: RosterStatsModel) => void;
   startingState: GameFilterParams;
   onChangeState: (newParams: GameFilterParams) => void;
 }
@@ -34,6 +35,11 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
   // Data model
 
   const {
+    //(these fields are for the individual view)
+    filter: startFilter, sortBy: startSortBy,
+    showBase: startShowBase, showExpanded: startShowExpanded,
+    showDiag: startShowDiag,
+    //these fields affect the query
     autoOffQuery: startAutoOffQuery,
     onQuery: startOnQuery, offQuery: startOffQuery,
     ...startingCommonFilterParams
@@ -62,12 +68,19 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
 
   /** Builds a game filter from the various state elements */
   function buildParamsFromState(includeFilterParams: Boolean): GameFilterParams {
-    return {
-      ...commonParams,
-      autoOffQuery: autoOffQuery,
-      onQuery: onQuery,
-      offQuery: offQuery,
-    };
+    return includeFilterParams ?
+      _.merge(
+        buildParamsFromState(false), {
+          // Individual stats:
+          filter: startFilter, sortBy: startSortBy,
+          showBase: startShowBase, showExpanded: startShowExpanded,
+          showDiag: startShowDiag
+      }) : {
+        ...commonParams,
+        autoOffQuery: autoOffQuery,
+        onQuery: onQuery,
+        offQuery: offQuery
+      };
   }
 
   /** Handles the response from ES to a stats calc request */
@@ -75,6 +88,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
     const jsons = json?.responses || [];
     const teamJson = (jsons.length > 0) ? jsons[0] : {};
     const rosterCompareJson = (jsons.length > 1) ? jsons[1] : {};
+    const rosterStatsJson = (jsons.length > 2) ? jsons[2] : {};
     onStats({
       on: teamJson?.aggregations?.tri_filter?.buckets?.on || {},
       off: teamJson?.aggregations?.tri_filter?.buckets?.off || {},
@@ -85,6 +99,11 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
       off: rosterCompareJson?.aggregations?.tri_filter?.buckets?.off || {},
       baseline: rosterCompareJson?.aggregations?.tri_filter?.buckets?.baseline || {},
       error_code: wasError ? (rosterCompareJson?.status || json?.status) : undefined
+    }, {
+      on: rosterStatsJson?.aggregations?.tri_filter?.buckets?.on?.player?.buckets || [],
+      off: rosterStatsJson?.aggregations?.tri_filter?.buckets?.off?.player?.buckets || [],
+      baseline: rosterStatsJson?.aggregations?.tri_filter?.buckets?.baseline?.player?.buckets || [],
+      error_code: wasError ? (rosterStatsJson?.status || json?.status) : undefined
     });
   }
 

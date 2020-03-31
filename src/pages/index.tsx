@@ -22,7 +22,7 @@ import Col from 'react-bootstrap/Col';
 import GameFilter from '../components/GameFilter';
 import { ParamPrefixes, GameFilterParams, LineupFilterParams } from '../utils/FilterModels';
 import TeamStatsTable, { TeamStatsModel } from '../components/TeamStatsTable';
-import RosterStatsTable from '../components/RosterStatsTable';
+import RosterStatsTable, { RosterStatsModel } from '../components/RosterStatsTable';
 import RosterCompareTable, { RosterCompareModel } from '../components/RosterCompareTable';
 import GenericCollapsibleCard from '../components/GenericCollapsibleCard';
 import Footer from '../components/Footer';
@@ -49,11 +49,15 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
 
   const [ gaInited, setGaInited ] = useState(false);
   const [ teamStats, setTeamStats ] = useState({on: {}, off: {}, baseline: {}} as TeamStatsModel);
+  const [ rosterStats, setRosterStats ] = useState({on: {}, off: {}, baseline: {}} as RosterStatsModel);
   const [ rosterCompareStats, setRosterCompareStats ] = useState({on: {}, off: {}, baseline: {}} as RosterCompareModel);
 
-  const injectStats = (teamStats: TeamStatsModel, rosterCompareStats: RosterCompareModel) => {
+  const injectStats = (
+    teamStats: TeamStatsModel, rosterCompareStats: RosterCompareModel, rosterStats: RosterStatsModel
+  ) => {
     setTeamStats(teamStats);
     setRosterCompareStats(rosterCompareStats);
+    setRosterStats(rosterStats);
   }
 
   // Game and Lineup filters
@@ -120,13 +124,18 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
       </GenericCollapsibleCard>
     </Row>
     <Row>
-      <GenericCollapsibleCard title="Lineup Comparison">
-        <RosterCompareTable gameFilterParams={gameFilterParams} rosterCompareStats={rosterCompareStats}/>
+      <GenericCollapsibleCard title="Individual Analysis">
+        <RosterStatsTable
+          gameFilterParams={gameFilterParams}
+          teamStats={teamStats}
+          rosterStats={rosterStats}
+          onChangeState={onGameFilterParamsChange}
+        />
       </GenericCollapsibleCard>
     </Row>
     <Row>
-      <GenericCollapsibleCard title="Individual Analysis">
-        <RosterStatsTable/>
+      <GenericCollapsibleCard title="Lineup Comparison">
+        <RosterCompareTable gameFilterParams={gameFilterParams} rosterCompareStats={rosterCompareStats}/>
       </GenericCollapsibleCard>
     </Row>
     <Footer year={gameFilterParams.year} gender={gameFilterParams.gender} server={server}/>

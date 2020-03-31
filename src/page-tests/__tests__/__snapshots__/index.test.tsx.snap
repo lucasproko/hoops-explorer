@@ -64,11 +64,19 @@ exports[`OnOffAnalyzerPage OnOffAnalyzerPage - should create snapshot 1`] = `
     noGutters={false}
   >
     <GenericCollapsibleCard
-      title="Lineup Comparison"
+      title="Individual Analysis"
     >
-      <RosterCompareTable
+      <RosterStatsTable
         gameFilterParams={Object {}}
-        rosterCompareStats={
+        onChangeState={[Function]}
+        rosterStats={
+          Object {
+            "baseline": Object {},
+            "off": Object {},
+            "on": Object {},
+          }
+        }
+        teamStats={
           Object {
             "baseline": Object {},
             "off": Object {},
@@ -82,9 +90,18 @@ exports[`OnOffAnalyzerPage OnOffAnalyzerPage - should create snapshot 1`] = `
     noGutters={false}
   >
     <GenericCollapsibleCard
-      title="Individual Analysis"
+      title="Lineup Comparison"
     >
-      <RosterStatsTable />
+      <RosterCompareTable
+        gameFilterParams={Object {}}
+        rosterCompareStats={
+          Object {
+            "baseline": Object {},
+            "off": Object {},
+            "on": Object {},
+          }
+        }
+      />
     </GenericCollapsibleCard>
   </ForwardRef>
   <Footer

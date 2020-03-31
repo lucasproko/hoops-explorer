@@ -86,9 +86,7 @@ export const commonAggregations = function(
 ) {
   const oppoDstPrefix = (dstPrefix == "off") ? "def" : "off"; //(swivels)
   const bestPossCount =
-    srcPrefix == "player_stats" ?
-      srcPrefix : //(else off==opponent_stats / def==team_stats)
-        (srcPrefix == "opponent_stats" ? "team_stats" : "opponent_stats");
+    (srcPrefix == "opponent_stats" ? "team_stats" : "opponent_stats");
 
   // (if true, calcs adj_eff based on weighted lineup sets ... if false
   //  just uses average of SoS over entire dataset - means it's hard to compare sets
@@ -100,13 +98,19 @@ export const commonAggregations = function(
     ...commonMiscAggs(srcPrefix, dstPrefix, "num_possessions", "poss", false),
     ...commonMiscAggs(srcPrefix, dstPrefix, "pts", "pts", false),
     ...commonMiscAggs(srcPrefix, dstPrefix, "to", "to"), //(does want total)
+    ...commonMiscAggs(srcPrefix, dstPrefix, "stl", "stl"), //(does want total)
+    ...commonMiscAggs(srcPrefix, dstPrefix, "blk", "blk"), //(does want total)
+    ...commonMiscAggs(srcPrefix, dstPrefix, "assist", "assist"), //(does want total)
+    ...commonMiscAggs(srcPrefix, dstPrefix, "foul", "foul"), //(does want total)
     // Shots
     ...commonShotAggs(srcPrefix, dstPrefix, "2p"),
     ...commonShotAggs(srcPrefix, dstPrefix, "3p"),
     ...commonShotAggs(srcPrefix, dstPrefix, "2prim", "rim"),
     ...commonShotAggs(srcPrefix, dstPrefix, "2pmid", "mid"),
     ...commonMiscAggs(srcPrefix, dstPrefix, "fg.attempts", "fga"),
+    ...commonMiscAggs(srcPrefix, dstPrefix, "fg.made", "fgm"),
     ...commonMiscAggs(srcPrefix, dstPrefix, "ft.attempts", "fta"),
+    ...commonMiscAggs(srcPrefix, dstPrefix, "ft.made", "ftm"),
     // Rebounding
     ...commonMiscAggs(srcPrefix, dstPrefix, "orb", "orb"),
     ...commonMiscAggs(srcPrefix, dstPrefix, "drb", "drb"),

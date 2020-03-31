@@ -126,7 +126,29 @@ export class HistoryManager {
     const base = `base:'${tidyQuery(p.baseQuery)}'`;
     const on = `on:'${tidyQuery(p.onQuery)}'`;
     const off = isAutoOff ? `auto-off` : `off:'${tidyQuery(p.offQuery)}'`;
-    return `On/Off: ${HistoryManager.commonFilterSummary(p)}: ${on}, ${off}, ${base}`;
+
+    const sortBy =
+      _.isNil(p.sortBy) ? ParamDefaults.defaultPlayerSortBy : p.sortBy;
+    const filter =
+      _.isNil(p.filter) ? ParamDefaults.defaultPlayerFilter : p.filter;
+    const showBase =
+      _.isNil(p.showBase) ? ParamDefaults.defaultPlayerShowBase : p.showBase;
+    const showExpanded =
+      _.isNil(p.showExpanded) ? ParamDefaults.defaultPlayerShowExpanded : p.showExpanded;
+    const showDiag =
+      _.isNil(p.showDiag) ? ParamDefaults.defaultPlayerDiagMode : p.showDiag;
+
+    const showArray = _.flatMap([
+      (sortBy != ParamDefaults.defaultPlayerSortBy) ? [ `sort:${sortBy}` ] : [],
+      (filter != "") ? [ `filter:${filter}` ] : [],
+      showBase ? [ "show-base" ] : [],
+      showExpanded ? [ "show-def" ] : [],
+      showDiag ? [ "show-diags" ] : [],
+    ]);
+    const playerParams = (showArray.length > 0) ?
+      `, players:[${_.join(showArray, ",")}]` : "";
+
+    return `On/Off: ${HistoryManager.commonFilterSummary(p)}: ${on}, ${off}, ${base}${playerParams}`;
   }
 
   /** Returns a summary string for the game filter */
