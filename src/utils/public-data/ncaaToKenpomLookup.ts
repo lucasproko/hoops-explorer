@@ -4,6 +4,9 @@ export const ncaaToKenpomLookup = {
    "A&M-Corpus Christi": {
       "pbp_kp_team": "Texas A&M Corpus Chris"
    },
+   "Albany (NY)": {
+      "pbp_kp_team": "Albany"
+   },
    "Alcorn": {
       "pbp_kp_team": "Alcorn St."
    },
@@ -119,7 +122,7 @@ export const ncaaToKenpomLookup = {
       "pbp_kp_team": "North Carolina Central"
    },
    "NC State": {
-      "pbp_kp_team": "North Carolina St."
+      "pbp_kp_team": "N.C. State"
    },
    "North Ala.": {
       "pbp_kp_team": "North Alabama"

@@ -18,7 +18,7 @@ const calculateAdjEff = function(offOrDef: "off" | "def") { return `
      kp_name = kp_name.pbp_kp_team;
   }
   def oppo = params.kp[kp_name];
-  def adj_sos = params.adjEff;
+  def adj_sos = null;
   if (oppo != null) {
      adj_sos = oppo['stats.adj_${offOrDef}.value'] - hca;
   }
@@ -186,9 +186,13 @@ export const commonAggregations = function(
             "value": {
                "script": { // calcs adj_sos
                   "source": `${calculateAdjEff(oppoDstPrefix)}
-                     def bottom = adj_sos*doc["${srcPrefix}.num_possessions"].value;
-                     return (bottom > 0) ?
-                        100.0*doc["${srcPrefix}.pts"].value*params.avgEff/bottom : params.avgEff;
+                    if (null != adj_sos) {
+                       def bottom = adj_sos*doc["${srcPrefix}.num_possessions"].value;
+                       return (bottom > 0) ?
+                         100.0*doc["${srcPrefix}.pts"].value*params.avgEff/bottom : params.avgEff;
+                    } else {
+                      return null;
+                    }
                   `,
                   "lang": "painless",
                   "params": {

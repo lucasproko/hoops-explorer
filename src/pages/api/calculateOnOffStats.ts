@@ -62,7 +62,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         JSON.stringify(playerStatsQuery(params, efficiency, lookup, avgEfficiency)),
       ].join('\n') + "\n";
       // Debug logs:
-      //console.log(JSON.stringify(playerStatsQuery(params, efficiency, lookup, avgEfficiency).aggregations.tri_filter.aggregations, null, 3));
+      //console.log(JSON.stringify(playerStatsQuery(params, {}, {}, avgEfficiency), null, 3));
+      //console.log(JSON.stringify(playerStatsQuery(params, {}, {}, avgEfficiency).aggregations.tri_filter.aggregations, null, 3));
       //console.log(JSON.stringify(teamStatsQuery(params, efficiency, lookup).query, null, 3));
 
       try {
@@ -76,7 +77,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
         // Debug logs:
         //console.log(JSON.stringify(esFetchJson, null, 3));
-        //console.log(JSON.stringify(esFetchJson?.responses?.[2], null, 3));
+        //console.log(JSON.stringify(esFetchJson?.responses?.[0], null, 3));
         //console.log(JSON.stringify(esFetchJson?.responses?.[2]?.aggregations?.tri_filter?.buckets?.baseline?.player?.buckets, null, 3));
         //console.log(esFetch.status);
 
