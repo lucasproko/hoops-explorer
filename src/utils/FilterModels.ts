@@ -84,7 +84,7 @@ export class ParamDefaults {
   // Game
   static readonly defaultAutoOffQuery = true;
   static readonly defaultPlayerFilter = "";
-  static readonly defaultPlayerSortBy = "desc:off_team_poss:baseline";
+  static readonly defaultPlayerSortBy = "desc:off_team_poss_pct:baseline";
   static readonly defaultPlayerDiagMode = false;
   static readonly defaultPlayerShowBase = false;
   static readonly defaultPlayerShowExpanded = false;

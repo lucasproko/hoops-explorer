@@ -66,16 +66,16 @@ exports[`RosterStatsTable RosterStatsTable - should create snapshot 1`] = `
                   "label": "Most useful",
                   "options": Array [
                     Object {
-                      "label": "Base Poss (Desc. / Offensive)",
-                      "value": "desc:off_team_poss:baseline",
+                      "label": "Base Poss% (Desc. / Offensive)",
+                      "value": "desc:off_team_poss_pct:baseline",
                     },
                     Object {
-                      "label": "'On' Poss (Desc. / Offensive)",
-                      "value": "desc:off_team_poss:on",
+                      "label": "'On' Poss% (Desc. / Offensive)",
+                      "value": "desc:off_team_poss_pct:on",
                     },
                     Object {
-                      "label": "'Off' Poss (Desc. / Offensive)",
-                      "value": "desc:off_team_poss:off",
+                      "label": "'Off' Poss% (Desc. / Offensive)",
+                      "value": "desc:off_team_poss_pct:off",
                     },
                     Object {
                       "label": "Base Rtg (Desc. / Offensive)",
@@ -443,16 +443,16 @@ exports[`RosterStatsTable RosterStatsTable - should create snapshot 1`] = `
                       "value": "asc:off_2prim:off",
                     },
                     Object {
-                      "label": "Base Poss (Asc. / Offensive)",
-                      "value": "asc:off_team_poss:baseline",
+                      "label": "Base Poss% (Asc. / Offensive)",
+                      "value": "asc:off_team_poss_pct:baseline",
                     },
                     Object {
-                      "label": "'On' Poss (Asc. / Offensive)",
-                      "value": "asc:off_team_poss:on",
+                      "label": "'On' Poss% (Asc. / Offensive)",
+                      "value": "asc:off_team_poss_pct:on",
                     },
                     Object {
-                      "label": "'Off' Poss (Asc. / Offensive)",
-                      "value": "asc:off_team_poss:off",
+                      "label": "'Off' Poss% (Asc. / Offensive)",
+                      "value": "asc:off_team_poss_pct:off",
                     },
                     Object {
                       "label": "Base SoS (Desc. / Offensive)",
@@ -484,8 +484,8 @@ exports[`RosterStatsTable RosterStatsTable - should create snapshot 1`] = `
             }
             value={
               Object {
-                "label": "Base Poss (Desc. / Offensive)",
-                "value": "desc:off_team_poss:baseline",
+                "label": "Base Poss% (Desc. / Offensive)",
+                "value": "desc:off_team_poss_pct:baseline",
               }
             }
           />
@@ -659,6 +659,9 @@ exports[`RosterStatsTable RosterStatsTable - should create snapshot 1`] = `
                   "def_team_poss": Object {
                     "value": 1288,
                   },
+                  "def_team_poss_pct": Object {
+                    "value": 1288,
+                  },
                   "def_to": Object {
                     "value": 0.020186335403726708,
                   },
@@ -713,7 +716,10 @@ exports[`RosterStatsTable RosterStatsTable - should create snapshot 1`] = `
                   "off_team_poss": Object {
                     "value": 1307,
                   },
-                  "off_title": "'ON' Cowan, Anthony",
+                  "off_team_poss_pct": Object {
+                    "value": 1307,
+                  },
+                  "off_title": "'On' Cowan, Anthony",
                   "off_to": Object {
                     "value": 0.17097306619100133,
                   },
@@ -851,6 +857,9 @@ exports[`RosterStatsTable RosterStatsTable - should create snapshot 1`] = `
                   "def_team_poss": Object {
                     "value": 478,
                   },
+                  "def_team_poss_pct": Object {
+                    "value": 478,
+                  },
                   "def_to": Object {
                     "value": 0.008368200836820083,
                   },
@@ -905,7 +914,10 @@ exports[`RosterStatsTable RosterStatsTable - should create snapshot 1`] = `
                   "off_team_poss": Object {
                     "value": 471,
                   },
-                  "off_title": "'OFF' Cowan, Anthony",
+                  "off_team_poss_pct": Object {
+                    "value": 471,
+                  },
+                  "off_title": "'Off' Cowan, Anthony",
                   "off_to": Object {
                     "value": 0.11387073347857662,
                   },
@@ -1046,6 +1058,9 @@ exports[`RosterStatsTable RosterStatsTable - should create snapshot 1`] = `
                   "def_team_poss": Object {
                     "value": 1463,
                   },
+                  "def_team_poss_pct": Object {
+                    "value": 1463,
+                  },
                   "def_to": Object {
                     "value": 0.0177717019822283,
                   },
@@ -1100,7 +1115,10 @@ exports[`RosterStatsTable RosterStatsTable - should create snapshot 1`] = `
                   "off_team_poss": Object {
                     "value": 1469,
                   },
-                  "off_title": "'ON' Wiggins, Aaron",
+                  "off_team_poss_pct": Object {
+                    "value": 1469,
+                  },
+                  "off_title": "'On' Wiggins, Aaron",
                   "off_to": Object {
                     "value": 0.16076743404863644,
                   },
@@ -1241,6 +1259,9 @@ exports[`RosterStatsTable RosterStatsTable - should create snapshot 1`] = `
                   "def_team_poss": Object {
                     "value": 10,
                   },
+                  "def_team_poss_pct": Object {
+                    "value": 10,
+                  },
                   "def_to": Object {
                     "value": 0.1,
                   },
@@ -1295,7 +1316,10 @@ exports[`RosterStatsTable RosterStatsTable - should create snapshot 1`] = `
                   "off_team_poss": Object {
                     "value": 9,
                   },
-                  "off_title": "'OFF' Mona, Reese",
+                  "off_team_poss_pct": Object {
+                    "value": 9,
+                  },
+                  "off_title": "'Off' Mona, Reese",
                   "off_to": Object {
                     "value": 0.6779661016949152,
                   },
@@ -1518,7 +1542,7 @@ exports[`RosterStatsTable RosterStatsTable - should create snapshot 1`] = `
                 "isTitle": false,
                 "missingData": undefined,
                 "rowSpan": [Function],
-                "toolTip": "Defensive rebounding % for player in selected lineups",
+                "toolTip": "Defensive rebounding % in selected lineups",
                 "widthUnits": 2,
               },
               "efg": GenericTableColProps {
@@ -1529,7 +1553,7 @@ exports[`RosterStatsTable RosterStatsTable - should create snapshot 1`] = `
                 "isTitle": false,
                 "missingData": undefined,
                 "rowSpan": [Function],
-                "toolTip": "Effective field goal% (3 pointers count 1.5x as much) for player in selected lineups",
+                "toolTip": "Effective field goal% (3 pointers count 1.5x as much) in selected lineups",
                 "widthUnits": 2,
               },
               "ftr": GenericTableColProps {
@@ -1540,7 +1564,7 @@ exports[`RosterStatsTable RosterStatsTable - should create snapshot 1`] = `
                 "isTitle": false,
                 "missingData": undefined,
                 "rowSpan": [Function],
-                "toolTip": "Free throw rate for player in selected lineups",
+                "toolTip": "Free throw rate in selected lineups",
                 "widthUnits": 2,
               },
               "orb": GenericTableColProps {
@@ -1551,7 +1575,7 @@ exports[`RosterStatsTable RosterStatsTable - should create snapshot 1`] = `
                 "isTitle": false,
                 "missingData": undefined,
                 "rowSpan": [Function],
-                "toolTip": "Offensive rebounding % for player in selected lineups",
+                "toolTip": "Offensive rebounding % in selected lineups",
                 "widthUnits": 2,
               },
               "rtg": GenericTableColProps {
@@ -1562,7 +1586,7 @@ exports[`RosterStatsTable RosterStatsTable - should create snapshot 1`] = `
                 "isTitle": false,
                 "missingData": undefined,
                 "rowSpan": [Function],
-                "toolTip": "Offensive/Defensive rating for selected lineups",
+                "toolTip": "Offensive/Defensive rating in selected lineups",
                 "widthUnits": 2,
               },
               "sep0": GenericTableColProps {
@@ -1620,15 +1644,15 @@ exports[`RosterStatsTable RosterStatsTable - should create snapshot 1`] = `
                 "toolTip": "",
                 "widthUnits": 1,
               },
-              "team_poss": GenericTableColProps {
+              "team_poss_pct": GenericTableColProps {
                 "className": "",
-                "colName": "Poss",
+                "colName": "Poss%",
                 "colorPicker": [Function],
                 "formatter": [Function],
                 "isTitle": false,
                 "missingData": undefined,
                 "rowSpan": [Function],
-                "toolTip": "Number of possessions in selected lineups that player was on the floor",
+                "toolTip": "% of possessions in selected lineups that player was on the floor",
                 "widthUnits": 2,
               },
               "title": GenericTableColProps {
@@ -1650,7 +1674,7 @@ exports[`RosterStatsTable RosterStatsTable - should create snapshot 1`] = `
                 "isTitle": false,
                 "missingData": undefined,
                 "rowSpan": [Function],
-                "toolTip": "Turnover % for player in for selected lineups",
+                "toolTip": "Turnover % in selected lineups",
                 "widthUnits": 2,
               },
               "usage": GenericTableColProps {
@@ -1661,7 +1685,7 @@ exports[`RosterStatsTable RosterStatsTable - should create snapshot 1`] = `
                 "isTitle": false,
                 "missingData": undefined,
                 "rowSpan": [Function],
-                "toolTip": "% of team possessions used for selected lineups",
+                "toolTip": "% of team possessions used in selected lineups",
                 "widthUnits": 2,
               },
             }

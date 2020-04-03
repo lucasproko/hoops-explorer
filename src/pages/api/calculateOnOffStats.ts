@@ -62,9 +62,9 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         JSON.stringify(playerStatsQuery(params, efficiency, lookup, avgEfficiency)),
       ].join('\n') + "\n";
       // Debug logs:
-      //console.log(JSON.stringify(playerStatsQuery(params, {}, {}, avgEfficiency), null, 3));
+      //console.log(JSON.stringify(teamStatsQuery(params, {}, {}, avgEfficiency), null, 3));
       //console.log(JSON.stringify(playerStatsQuery(params, {}, {}, avgEfficiency).aggregations.tri_filter.aggregations, null, 3));
-      //console.log(JSON.stringify(teamStatsQuery(params, efficiency, lookup).query, null, 3));
+      //console.log(JSON.stringify(teamStatsQuery(params, {}, {}).query, null, 3));
 
       try {
         const esFetch = await fetch(`${process.env.CLUSTER_ID}/_msearch`, {

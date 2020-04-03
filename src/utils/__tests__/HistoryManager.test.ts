@@ -36,7 +36,7 @@ describe("HistoryManager", () => {
   test("HistoryManager - gameFilterSummary", () => {
     const game1: GameFilterParams = {
       team: "test",
-      sortBy: "desc:off_team_poss:baseline",
+      sortBy: "desc:off_team_poss_pct:baseline",
     };
     expect(HistoryManager.gameFilterSummary(game1)).toBe(
       `On/Off: 2019/20 test (M): on:'', auto-off, base:''`

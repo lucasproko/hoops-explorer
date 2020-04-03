@@ -120,18 +120,24 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, tea
   const allTableFields = { //accessors vs column metadata
     "title": GenericTableOps.addTitle("", "", rowSpanCalculator, "small"),
     "sep0": GenericTableOps.addColSeparator(),
-    "rtg": GenericTableOps.addPtsCol("Rtg", "Offensive/Defensive rating for selected lineups", CbbColors.picker(...CbbColors.pp100)),
-    "usage": GenericTableOps.addPctCol("Usg", "% of team possessions used for selected lineups", CbbColors.picker(...CbbColors.usg)), //TODO needs to be steeper
+    "rtg": GenericTableOps.addPtsCol("Rtg", "Offensive/Defensive rating in selected lineups", CbbColors.picker(...CbbColors.pp100)),
+    "usage": GenericTableOps.addPctCol("Usg", "% of team possessions used in selected lineups", CbbColors.picker(...CbbColors.usg)), //TODO needs to be steeper
     "sep1": GenericTableOps.addColSeparator(),
-    "efg": GenericTableOps.addPctCol("eFG%", "Effective field goal% (3 pointers count 1.5x as much) for player in selected lineups", CbbColors.picker(...CbbColors.eFG)),
+    "efg": GenericTableOps.addPctCol("eFG%", "Effective field goal% (3 pointers count 1.5x as much) in selected lineups", CbbColors.picker(...CbbColors.eFG)),
     "assist": GenericTableOps.addPctCol("A%", "Assist % for player in selected lineups", CbbColors.picker(...CbbColors.ast)),
-    "to": GenericTableOps.addPctCol("TO%", "Turnover % for player in for selected lineups", CbbColors.picker(...CbbColors.p_tOver)),
+    "to": GenericTableOps.addPctCol(
+        expandedView ? "TO% Stl%" : "TO%",
+        expandedView ? "Turnover % / Steal % in selected lineups" : "Turnover % in selected lineups",
+        CbbColors.picker(...CbbColors.p_tOver)),
     "orb": expandedView ?
-      GenericTableOps.addPctCol("RB%", "Offensive/Defensive rebounding % for player in selected lineups", CbbColors.picker(...CbbColors.p_oReb)) :
-      GenericTableOps.addPctCol("OR%", "Offensive rebounding % for player in selected lineups", CbbColors.picker(...CbbColors.p_oReb))
+      GenericTableOps.addPctCol("RB%", "Offensive/Defensive rebounding % in selected lineups", CbbColors.picker(...CbbColors.p_oReb)) :
+      GenericTableOps.addPctCol("OR%", "Offensive rebounding % in selected lineups", CbbColors.picker(...CbbColors.p_oReb))
       ,
-    "drb": GenericTableOps.addPctCol("DR%", "Defensive rebounding % for player in selected lineups", CbbColors.picker(...CbbColors.p_dReb)),
-    "ftr": GenericTableOps.addPctCol("FTR", "Free throw rate for player in selected lineups", CbbColors.picker(...CbbColors.p_ftr)),
+    "drb": GenericTableOps.addPctCol("DR%", "Defensive rebounding % in selected lineups", CbbColors.picker(...CbbColors.p_dReb)),
+    "ftr": GenericTableOps.addPctCol(
+      expandedView ? "FTR F/50" : "FTR",
+      expandedView ? "Free throw rate (off) and Fouls called/50 possessions (def) in selected lineups" : "Free throw rate in selected lineups",
+      CbbColors.picker(...CbbColors.p_ftr)),
     "sep2": GenericTableOps.addColSeparator(),
     "3pr": GenericTableOps.addPctCol("3PR", "Percentage of 3 pointers taken against all field goals", CbbColors.picker(...CbbColors.fgr)),
     "2pmidr": GenericTableOps.addPctCol("2PR mid", "Percentage of mid range 2 pointers taken against all field goals", CbbColors.picker(...CbbColors.fgr)),
@@ -140,10 +146,13 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, tea
     "3p": GenericTableOps.addPctCol("3P%", "3 point field goal percentage", CbbColors.picker(...CbbColors.fg3P)),
     "2p": GenericTableOps.addPctCol("2P%", "2 point field goal percentage", CbbColors.picker(...CbbColors.fg2P)),
     "2pmid": GenericTableOps.addPctCol("2P% mid", "2 point field goal percentage (mid range)", CbbColors.picker(...CbbColors.fg2P_mid)),
-    "2prim": GenericTableOps.addPctCol("2P% rim", "2 point field goal percentage (layup/dunk/etc)", CbbColors.picker(...CbbColors.p_fg2P_rim)),
+    "2prim": GenericTableOps.addPctCol(
+        expandedView ? "Rim% Blk%" : "2P% rim",
+        expandedView ? "2 point field goal percentage (off) and Block% (def)" : "2 point field goal percentage (layup/dunk/etc)",
+        CbbColors.picker(...CbbColors.p_fg2P_rim)),
     "sep4": GenericTableOps.addColSeparator(),
-    "team_poss": GenericTableOps.addIntCol("Poss", "Number of possessions in selected lineups that player was on the floor", GenericTableOps.defaultColorPicker),
-    "adj_opp": GenericTableOps.addPtsCol("SoS", "Weighted average of the offensive or defensive efficiencies of the lineups' opponents", GenericTableOps.defaultColorPicker),
+    "team_poss_pct": GenericTableOps.addPctCol("Poss%", "% of possessions in selected lineups that player was on the floor", GenericTableOps.defaultColorPicker),
+    "adj_opp": GenericTableOps.addPtsCol("SoS", "Weighted average of the offensive or defensive efficiencies of the player's opponents", GenericTableOps.defaultColorPicker),
   };
 
   const tableFields = _.omit(allTableFields,  expandedView ? [ "drb" ] : [ "adj_opp" ] );
@@ -189,21 +198,28 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, tea
     (rosterStats?.on?.length && rosterStats?.off?.length);
 
   const allPlayers = _.chain([
-    _.map(rosterStats.on  || [], (p) => _.merge(p, {off_title: `'ON' ${p.key}`})),
-    _.map(rosterStats.off  || [], (p) => _.merge(p, {off_title: `'OFF' ${p.key}`})),
+    _.map(rosterStats.on  || [], (p) => _.merge(p, {off_title: `'On' ${p.key}`})),
+    _.map(rosterStats.off  || [], (p) => _.merge(p, {off_title: `'Off' ${p.key}`})),
     _.map(rosterStats.baseline || [], (p) => _.merge(p, {off_title: `'Baseline' ${p.key}`})),
   ]).flatten().groupBy("key").toPairs().map((key_onOffBase) => {
 
     const player = { // Now grouped by player, re-create the on/off/baseline set
       key: key_onOffBase[0],
-      on: onOffBasePicker("'ON' ", key_onOffBase[1]),
-      off: onOffBasePicker("'OFF' ", key_onOffBase[1]),
+      on: onOffBasePicker("'On' ", key_onOffBase[1]),
+      off: onOffBasePicker("'Off' ", key_onOffBase[1]),
       baseline: onOffBasePicker("'Baseline' ", key_onOffBase[1])
     };
 
-    // Inject ORtg and DRB (ie mutate player idempotently)
-    [ player.on, player.off, player.baseline ].forEach((stat) => {
+    // Inject ORtg and DRB and Poss% (ie mutate player idempotently)
+    [ "on", "off", "baseline" ].forEach((key) => {
+      const stat = (player as any)[key];
+      const teamStat = (teamStats as any)[key] || {};
       if (stat) {
+        stat.off_team_poss_pct = { value: (stat.off_team_poss.value || 0)
+          / (teamStat.off_poss?.value || 1) };
+        stat.def_team_poss_pct = { value: (stat.def_team_poss.value || 0)
+          / (teamStat.def_poss?.value || 1) };
+
         stat.off_drb = stat.def_orb;
         const [ oRtg, oRtgDiag ] = StatsUtils.buildORtg(stat, showDiagMode);
         stat.off_rtg = oRtg;
@@ -322,7 +338,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, tea
   /** Put these options at the front */
   const mostUsefulSubset = _.flatMap([
     [
-      "desc:off_team_poss:baseline", "desc:off_team_poss:on", "desc:off_team_poss:off",
+      "desc:off_team_poss_pct:baseline", "desc:off_team_poss_pct:on", "desc:off_team_poss_pct:off",
       "desc:off_rtg:baseline", "desc:off_rtg:on", "desc:off_rtg:off",
       "desc:off_usage:baseline", "desc:off_usage:on", "desc:off_usage:off",
     ]
