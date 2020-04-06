@@ -137,6 +137,8 @@ export class HistoryManager {
       _.isNil(p.showExpanded) ? ParamDefaults.defaultPlayerShowExpanded : p.showExpanded;
     const showDiag =
       _.isNil(p.showDiag) ? ParamDefaults.defaultPlayerDiagMode : p.showDiag;
+    const possAsPct =
+      _.isNil(p.possAsPct) ? ParamDefaults.defaultPlayerPossAsPct : p.possAsPct;
 
     const showArray = _.flatMap([
       (sortBy != ParamDefaults.defaultPlayerSortBy) ? [ `sort:${sortBy}` ] : [],
@@ -144,6 +146,7 @@ export class HistoryManager {
       showBase ? [ "show-base" ] : [],
       showExpanded ? [ "show-def" ] : [],
       showDiag ? [ "show-diags" ] : [],
+      possAsPct ? [ ] : [ "poss-#" ],
     ]);
     const playerParams = (showArray.length > 0) ?
       `, players:[${_.join(showArray, ",")}]` : "";

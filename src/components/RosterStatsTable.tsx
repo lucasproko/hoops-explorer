@@ -69,6 +69,11 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, tea
     ParamDefaults.defaultPlayerDiagMode : gameFilterParams.showDiag
   );
 
+  /** Show a diagnostics mode explaining the off/def ratings */
+  const [ possAsPct, setPossAsPct ] = useState(_.isNil(gameFilterParams.possAsPct) ?
+    ParamDefaults.defaultPlayerPossAsPct : gameFilterParams.possAsPct
+  );
+
   /** Incorporates SoS into rating calcs "Adj [Eq] Rtg" */
   const [ adjORtgForSos, setAdjORtgForSos ] = useState(false);
 
@@ -102,20 +107,20 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, tea
       filter: filterStr,
       showBase: alwaysShowBaseline,
       showExpanded: expandedView,
-      showDiag: showDiagMode
+      showDiag: showDiagMode,
+      possAsPct: possAsPct
     }).omit(_.flatten([ // omit all defaults
       (sortBy == ParamDefaults.defaultPlayerSortBy) ? [ 'sortBy' ] : [],
       (filterStr == ParamDefaults.defaultPlayerFilter) ? [ 'filter' ] : [],
       (alwaysShowBaseline == ParamDefaults.defaultPlayerShowBase) ? [ 'showBase' ] : [],
       (expandedView == ParamDefaults.defaultPlayerShowExpanded) ? [ 'showExpanded' ] : [],
       (showDiagMode == ParamDefaults.defaultPlayerDiagMode) ? [ 'showDiag' ] : [],
+      (possAsPct == ParamDefaults.defaultPlayerPossAsPct) ? [ 'possAsPct' ] : [],
     ])).value();
     onChangeState(newState);
-  }, [ sortBy, filterStr, showDiagMode, alwaysShowBaseline, expandedView ]);
+  }, [ sortBy, filterStr, showDiagMode, alwaysShowBaseline, expandedView, possAsPct ]);
 
   // 2] Data Model
-
-  //TODO: fix the wording for all these
 
   const allTableFields = { //accessors vs column metadata
     "title": GenericTableOps.addTitle("", "", rowSpanCalculator, "small"),
@@ -151,11 +156,17 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, tea
         expandedView ? "2 point field goal percentage (off) and Block% (def)" : "2 point field goal percentage (layup/dunk/etc)",
         CbbColors.picker(...CbbColors.p_fg2P_rim)),
     "sep4": GenericTableOps.addColSeparator(),
-    "team_poss_pct": GenericTableOps.addPctCol("Poss%", "% of possessions in selected lineups that player was on the floor", GenericTableOps.defaultColorPicker),
+    "team_poss": GenericTableOps.addIntCol("Poss", "Total number of team possessions for selected lineups", GenericTableOps.defaultColorPicker),
+    "team_poss_pct": GenericTableOps.addPctCol("Poss%", "% of team possessions in selected lineups that player was on the floor", GenericTableOps.defaultColorPicker),
     "adj_opp": GenericTableOps.addPtsCol("SoS", "Weighted average of the offensive or defensive efficiencies of the player's opponents", GenericTableOps.defaultColorPicker),
   };
 
-  const tableFields = _.omit(allTableFields,  expandedView ? [ "drb" ] : [ "adj_opp" ] );
+  const tableFields = _.omit(allTableFields,
+    [
+      expandedView ?  "drb"  : "adj_opp",
+      possAsPct ? "team_poss" : "team_poss_pct",
+    ]
+  );
 
   // 3] Utils
 
@@ -420,6 +431,14 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, tea
                   <span>Always show baseline statistics</span>
                   <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
                   {alwaysShowBaseline ? <FontAwesomeIcon icon={faCheck}/> : null}
+                </div>
+              </Dropdown.Item>
+              <Dropdown.Item as={Button}>
+                <div onClick={() => setPossAsPct(!possAsPct)}>
+                  <span>{possAsPct ?
+                    "Show possessions as count" : "Show possessions as % of team"
+                  }</span>
+                  <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
                 </div>
               </Dropdown.Item>
               <Dropdown.Divider />

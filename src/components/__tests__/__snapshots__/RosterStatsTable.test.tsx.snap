@@ -443,6 +443,30 @@ exports[`RosterStatsTable RosterStatsTable - should create snapshot 1`] = `
                       "value": "asc:off_2prim:off",
                     },
                     Object {
+                      "label": "Base Poss (Desc. / Offensive)",
+                      "value": "desc:off_team_poss:baseline",
+                    },
+                    Object {
+                      "label": "'On' Poss (Desc. / Offensive)",
+                      "value": "desc:off_team_poss:on",
+                    },
+                    Object {
+                      "label": "'Off' Poss (Desc. / Offensive)",
+                      "value": "desc:off_team_poss:off",
+                    },
+                    Object {
+                      "label": "Base Poss (Asc. / Offensive)",
+                      "value": "asc:off_team_poss:baseline",
+                    },
+                    Object {
+                      "label": "'On' Poss (Asc. / Offensive)",
+                      "value": "asc:off_team_poss:on",
+                    },
+                    Object {
+                      "label": "'Off' Poss (Asc. / Offensive)",
+                      "value": "asc:off_team_poss:off",
+                    },
+                    Object {
                       "label": "Base Poss% (Asc. / Offensive)",
                       "value": "asc:off_team_poss_pct:baseline",
                     },
@@ -593,6 +617,33 @@ exports[`RosterStatsTable RosterStatsTable - should create snapshot 1`] = `
               >
                 <span>
                   Always show baseline statistics
+                </span>
+                <span>
+                      
+                </span>
+              </div>
+            </DropdownItem>
+            <DropdownItem
+              as={
+                Object {
+                  "$$typeof": Symbol(react.forward_ref),
+                  "defaultProps": Object {
+                    "active": false,
+                    "disabled": false,
+                    "type": "button",
+                    "variant": "primary",
+                  },
+                  "displayName": "Button",
+                  "render": [Function],
+                }
+              }
+              disabled={false}
+            >
+              <div
+                onClick={[Function]}
+              >
+                <span>
+                  Show possessions as count
                 </span>
                 <span>
                       
@@ -1652,7 +1703,7 @@ exports[`RosterStatsTable RosterStatsTable - should create snapshot 1`] = `
                 "isTitle": false,
                 "missingData": undefined,
                 "rowSpan": [Function],
-                "toolTip": "% of possessions in selected lineups that player was on the floor",
+                "toolTip": "% of team possessions in selected lineups that player was on the floor",
                 "widthUnits": 2,
               },
               "title": GenericTableColProps {

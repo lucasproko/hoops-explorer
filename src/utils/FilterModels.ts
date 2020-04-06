@@ -43,6 +43,7 @@ export type GameFilterParams = {
   showBase?: boolean,
   showExpanded?: boolean,
   showDiag?: boolean
+  possAsPct?: boolean
 };
 
 /** Params for lineup filtering */
@@ -88,6 +89,7 @@ export class ParamDefaults {
   static readonly defaultPlayerDiagMode = false;
   static readonly defaultPlayerShowBase = false;
   static readonly defaultPlayerShowExpanded = false;
+  static readonly defaultPlayerPossAsPct = true;
   // Lineup
   static readonly defaultLineupMinPos = "5";
   static readonly defaultLineupMaxTableSize = "50";

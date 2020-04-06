@@ -47,10 +47,11 @@ describe("HistoryManager", () => {
       sortBy: "test-sort",
       showDiag: true,
       showExpanded: true,
-      showBase: true
+      showBase: true,
+      possAsPct: false
     };
     expect(HistoryManager.gameFilterSummary(game1b)).toBe(
-      `On/Off: 2019/20 test (M): on:'', auto-off, base:'', players:[sort:test-sort,filter:test-fil,show-base,show-def,show-diags]`
+      `On/Off: 2019/20 test (M): on:'', auto-off, base:'', players:[sort:test-sort,filter:test-fil,show-base,show-def,show-diags,poss-#]`
     );
     const game2: GameFilterParams = {
       team: "test",
