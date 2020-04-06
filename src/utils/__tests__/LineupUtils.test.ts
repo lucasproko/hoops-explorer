@@ -33,42 +33,42 @@ describe("LineupUtils", () => {
           // Check list of expected players
           expect(playerList).toEqual(
             [
-              "'OFF' Ayala, Eric", //1,2
-              "'OFF' Cowan, Anthony", //1,2,3
-              "'OFF' Morsell, Darryl", //1,3
-              "'OFF' Scott, Donta", //2,3
-              "'OFF' Smith, Jalen", //1,2
-              "'OFF' Wiggins, Aaron", //1,2,3
-              "'ON' Ayala, Eric",
-              "'ON' Cowan, Anthony",
-              "'ON' Morsell, Darryl",
-              "'ON' Scott, Donta",
-              "'ON' Smith, Jalen",
-              "'ON' Wiggins, Aaron",
+              "'Off' Ayala, Eric", //1,2
+              "'Off' Cowan, Anthony", //1,2,3
+              "'Off' Morsell, Darryl", //1,3
+              "'Off' Scott, Donta", //2,3
+              "'Off' Smith, Jalen", //1,2
+              "'Off' Wiggins, Aaron", //1,2,3
+              "'On' Ayala, Eric",
+              "'On' Cowan, Anthony",
+              "'On' Morsell, Darryl",
+              "'On' Scott, Donta",
+              "'On' Smith, Jalen",
+              "'On' Wiggins, Aaron",
             ]
           );
           expect(replacementPlayerList).toEqual(
             incOnOff ? [
-              "'r:ON-OFF' Ayala, Eric",
-              "'r:ON-OFF' Cowan, Anthony",
-              "'r:ON-OFF' Morsell, Darryl",
-              "'r:ON-OFF' Scott, Donta",
-              "'r:ON-OFF' Smith, Jalen",
-              "'r:ON-OFF' Wiggins, Aaron",
+              "'r:On-Off' Ayala, Eric",
+              "'r:On-Off' Cowan, Anthony",
+              "'r:On-Off' Morsell, Darryl",
+              "'r:On-Off' Scott, Donta",
+              "'r:On-Off' Smith, Jalen",
+              "'r:On-Off' Wiggins, Aaron",
             ]: []
           );
 
           // Check Wiggins "OFF" values are zero'd
 
           const onOnlyOffVals = _.chain(onOffReport.players).filter((p) => {
-            return p.off.key == "'OFF' Wiggins, Aaron";
+            return p.off.key == "'Off' Wiggins, Aaron";
           }).map((p) => p.off).flatMap((off) => {
             return _.chain(off).toPairs().filter((kv) => {
               return !_.isObject(kv[1]) || ((kv[1] as any).value != 0)
             }).value();
           }).fromPairs().value();
 
-          expect(onOnlyOffVals).toEqual({ key: "'OFF' Wiggins, Aaron" }); //(all vals are 0)
+          expect(onOnlyOffVals).toEqual({ key: "'Off' Wiggins, Aaron" }); //(all vals are 0)
 
           // Spot check some values
 
@@ -77,7 +77,7 @@ describe("LineupUtils", () => {
           };
 
           const someOnOffVals = _.chain(onOffReport.players).filter((p) => {
-            return p.on.key == "'ON' Ayala, Eric";
+            return p.on.key == "'On' Ayala, Eric";
           }).flatMap((p) => [ p.on, p.off, p.replacement ]).map((onOrOff) => {
             return _.chain(onOrOff || {}).pick([
               "key", "off_poss", "def_poss",
@@ -94,7 +94,7 @@ describe("LineupUtils", () => {
           // Check build diagnostics when required
           if ((diagMode > 0) && (incOnOff)) {
             const same4Lineups = _.chain(onOffReport.players).filter((p) => {
-              return p.on.key == "'ON' Ayala, Eric";
+              return p.on.key == "'On' Ayala, Eric";
             }).flatMap((p) => p.replacement.myLineups.map((l: any) => l.key)).value();
             expect(same4Lineups).toEqual(
               ["AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith", "AaWiggins_AnCowan_DoScott_ErAyala_JaSmith"]
@@ -125,7 +125,7 @@ describe("LineupUtils", () => {
           const defDrbAllowed = 68 + 36;
           expect(someOnOffVals).toEqual([
             _.mapValues({
-              key: "'ON' Ayala, Eric",
+              key: "'On' Ayala, Eric",
               off_poss: { value: totalOffPoss }, def_poss: { value: totalDefPoss },
               off_ppp: { value: 196.0/(totalOffPoss)*111.22448979591837 + 102.0/(totalOffPoss)*109.80392156862744 },
               def_ppp: { value: 189.0/(totalDefPoss)*90.47619047619048 + 97.0/(totalDefPoss)*80.41237113402062 },
@@ -149,7 +149,7 @@ describe("LineupUtils", () => {
             }, toFixed)
             ,
             _.mapValues({
-              key: "'OFF' Ayala, Eric",
+              key: "'Off' Ayala, Eric",
               off_poss: { value: 111 }, def_poss: { value: 114 },
               off_ppp: { value: 89.1891891891892 },
               def_ppp: { value: 77.19298245614036 },
@@ -167,7 +167,7 @@ describe("LineupUtils", () => {
             }, toFixed)
             ,
             incOnOff ? { //(hand-chcked)
-              key: "'r:ON-OFF' Ayala, Eric",
+              key: "'r:On-Off' Ayala, Eric",
               "off_poss": { "value": "248.043" },
               "def_poss": { "value": "247.033" },
               "off_ppp": { "value": regressed(regressDiffs, "21.426", "15.270", "10.629") },
@@ -186,7 +186,7 @@ describe("LineupUtils", () => {
           // Check roster
 
           const lineupComp = _.chain(onOffReport.players).filter((p) => {
-            return p.on.key == "'ON' Ayala, Eric";
+            return p.on.key == "'On' Ayala, Eric";
           }).map((p) => _.pick(p.teammates, [ 'Cowan, Anthony' ])).value();
 
           expect(lineupComp).toEqual([
@@ -199,12 +199,12 @@ describe("LineupUtils", () => {
           // Check empty lineup:
 
           const emptyReplacementOnOff = _.chain(onOffReport.players).filter((p) => {
-            return p?.replacement?.key == "'r:ON-OFF' Wiggins, Aaron";
+            return p?.replacement?.key == "'r:On-Off' Wiggins, Aaron";
           }).map((p) => p?.replacement || {}).value();
 
           expect(emptyReplacementOnOff).toEqual(incOnOff ? [
             {
-              key: "'r:ON-OFF' Wiggins, Aaron",
+              key: "'r:On-Off' Wiggins, Aaron",
               lineupUsage: {},
               myLineups: diagMode > 0 ? [] : undefined
             }

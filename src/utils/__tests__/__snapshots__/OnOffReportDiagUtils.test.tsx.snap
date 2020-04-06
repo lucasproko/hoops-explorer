@@ -1,0 +1,4556 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create roster comparison HTML (replacement on/off: false) 1`] = `
+<span>
+  <span>
+    <b>
+      Cowan, Anthony
+    </b>
+     ([
+    100.0
+    ]% - [
+    0.0
+    ]%); 
+  </span>
+  <span>
+    <b>
+      Smith, Jalen
+    </b>
+     ([
+    100.0
+    ]% - [
+    0.0
+    ]%); 
+  </span>
+  <span>
+    <b>
+      Morsell, Darryl
+    </b>
+     ([
+    75.4
+    ]% - [
+    0.0
+    ]%); 
+  </span>
+  <span>
+    <b>
+      Ayala, Eric
+    </b>
+     ([
+    72.2
+    ]% - [
+    0.0
+    ]%); 
+  </span>
+  <span>
+    <b>
+      Scott, Donta
+    </b>
+     ([
+    52.4
+    ]% - [
+    0.0
+    ]%); 
+  </span>
+  <span>
+    <b>
+      Lineup rating:
+    </b>
+     [
+    60.0
+    ]
+  </span>
+</span>
+`;
+
+exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create roster comparison HTML (replacement on/off: true) 1`] = `
+<span>
+  <span>
+    <b>
+      Cowan, Anthony
+    </b>
+     ([
+    100.0
+    ]% - [
+    0.0
+    ]%); 
+  </span>
+  <span>
+    <b>
+      Smith, Jalen
+    </b>
+     ([
+    100.0
+    ]% - [
+    0.0
+    ]%); 
+  </span>
+  <span>
+    <b>
+      Morsell, Darryl
+    </b>
+     ([
+    75.4
+    ]% - [
+    0.0
+    ]%); 
+  </span>
+  <span>
+    <b>
+      Ayala, Eric
+    </b>
+     ([
+    72.2
+    ]% - [
+    0.0
+    ]%); 
+  </span>
+  <span>
+    <b>
+      Scott, Donta
+    </b>
+     ([
+    52.4
+    ]% - [
+    0.0
+    ]%); 
+  </span>
+  <span>
+    <b>
+      Lineup rating:
+    </b>
+     [
+    -0.3
+    ]
+  </span>
+</span>
+`;
+
+exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table containing replacement on/off diagnostics 1`] = `
+<table
+  className="table table-sm"
+  id="teamReportStatsTable"
+>
+  <thead>
+    <tr>
+      <th
+        style={
+          Object {
+            "fontWeight": "bold",
+            "textAlign": "right",
+            "width": "18.6%",
+          }
+        }
+      >
+        
+        <div>
+          <button
+            className="float-left btn btn-outline-secondary btn-sm"
+            disabled={false}
+            id="teamReportStatsTable_copy"
+            type="button"
+          >
+            <svg
+              aria-hidden="true"
+              className="svg-inline--fa fa-clipboard fa-w-12 "
+              data-icon="clipboard"
+              data-prefix="fas"
+              focusable="false"
+              role="img"
+              style={Object {}}
+              viewBox="0 0 384 512"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M384 112v352c0 26.51-21.49 48-48 48H48c-26.51 0-48-21.49-48-48V112c0-26.51 21.49-48 48-48h80c0-35.29 28.71-64 64-64s64 28.71 64 64h80c26.51 0 48 21.49 48 48zM192 40c-13.255 0-24 10.745-24 24s10.745 24 24 24 24-10.745 24-24-10.745-24-24-24m96 114v-20a6 6 0 0 0-6-6H102a6 6 0 0 0-6 6v20a6 6 0 0 0 6 6h180a6 6 0 0 0 6-6z"
+                fill="currentColor"
+                style={Object {}}
+              />
+            </svg>
+          </button>
+        </div>
+      </th>
+      <th
+        style={
+          Object {
+            "fontWeight": "bold",
+            "textAlign": "center",
+            "width": "2.3%",
+          }
+        }
+      >
+        
+      </th>
+      <div>
+        <th
+          style={
+            Object {
+              "fontWeight": "bold",
+              "textAlign": "center",
+              "width": "4.7%",
+            }
+          }
+        >
+          P/100
+        </th>
+      </div>
+      <div>
+        <th
+          style={
+            Object {
+              "fontWeight": "bold",
+              "textAlign": "center",
+              "width": "4.7%",
+            }
+          }
+        >
+          Adj P/100
+        </th>
+      </div>
+      <th
+        style={
+          Object {
+            "fontWeight": "bold",
+            "textAlign": "center",
+            "width": "2.3%",
+          }
+        }
+      >
+        
+      </th>
+      <div>
+        <th
+          style={
+            Object {
+              "fontWeight": "bold",
+              "textAlign": "center",
+              "width": "4.7%",
+            }
+          }
+        >
+          eFG%
+        </th>
+      </div>
+      <div>
+        <th
+          style={
+            Object {
+              "fontWeight": "bold",
+              "textAlign": "center",
+              "width": "4.7%",
+            }
+          }
+        >
+          TO%
+        </th>
+      </div>
+      <div>
+        <th
+          style={
+            Object {
+              "fontWeight": "bold",
+              "textAlign": "center",
+              "width": "4.7%",
+            }
+          }
+        >
+          ORB%
+        </th>
+      </div>
+      <div>
+        <th
+          style={
+            Object {
+              "fontWeight": "bold",
+              "textAlign": "center",
+              "width": "4.7%",
+            }
+          }
+        >
+          FTR
+        </th>
+      </div>
+      <th
+        style={
+          Object {
+            "fontWeight": "bold",
+            "textAlign": "center",
+            "width": "2.3%",
+          }
+        }
+      >
+        
+      </th>
+      <div>
+        <th
+          style={
+            Object {
+              "fontWeight": "bold",
+              "textAlign": "center",
+              "width": "4.7%",
+            }
+          }
+        >
+          3PR
+        </th>
+      </div>
+      <div>
+        <th
+          style={
+            Object {
+              "fontWeight": "bold",
+              "textAlign": "center",
+              "width": "4.7%",
+            }
+          }
+        >
+          2PR mid
+        </th>
+      </div>
+      <div>
+        <th
+          style={
+            Object {
+              "fontWeight": "bold",
+              "textAlign": "center",
+              "width": "4.7%",
+            }
+          }
+        >
+          2PR rim
+        </th>
+      </div>
+      <th
+        style={
+          Object {
+            "fontWeight": "bold",
+            "textAlign": "center",
+            "width": "2.3%",
+          }
+        }
+      >
+        
+      </th>
+      <div>
+        <th
+          style={
+            Object {
+              "fontWeight": "bold",
+              "textAlign": "center",
+              "width": "4.7%",
+            }
+          }
+        >
+          3P%
+        </th>
+      </div>
+      <div>
+        <th
+          style={
+            Object {
+              "fontWeight": "bold",
+              "textAlign": "center",
+              "width": "4.7%",
+            }
+          }
+        >
+          2P%
+        </th>
+      </div>
+      <div>
+        <th
+          style={
+            Object {
+              "fontWeight": "bold",
+              "textAlign": "center",
+              "width": "4.7%",
+            }
+          }
+        >
+          2P% mid
+        </th>
+      </div>
+      <div>
+        <th
+          style={
+            Object {
+              "fontWeight": "bold",
+              "textAlign": "center",
+              "width": "4.7%",
+            }
+          }
+        >
+          2P% rim
+        </th>
+      </div>
+      <th
+        style={
+          Object {
+            "fontWeight": "bold",
+            "textAlign": "center",
+            "width": "2.3%",
+          }
+        }
+      >
+        
+      </th>
+      <div>
+        <th
+          style={
+            Object {
+              "fontWeight": "bold",
+              "textAlign": "center",
+              "width": "4.7%",
+            }
+          }
+        >
+          Poss
+        </th>
+      </div>
+      <div>
+        <th
+          style={
+            Object {
+              "fontWeight": "bold",
+              "textAlign": "center",
+              "width": "4.7%",
+            }
+          }
+        >
+          SoS
+        </th>
+      </div>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td
+        className=""
+        colSpan={21}
+      >
+        <span>
+          <b>
+            Replacement 'On-Off' Diagnostics For [
+            Morsell, Darryl
+            ]
+          </b>
+           
+          <a
+            href="https://hoop-explorer.blogspot.com/2020/03/diagnostics-mode-for-replacement-onoff.html"
+            target="_new"
+          >
+            (?)
+          </a>
+        </span>
+      </td>
+    </tr>
+    <tr>
+      <td
+        className="small"
+        rowSpan={2}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "bold",
+            "textAlign": "right",
+            "width": "18.6%",
+          }
+        }
+      >
+        <div>
+          Harmonic: AaWiggins / AnCowan / ErAyala / JaSmith
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "2.3%",
+          }
+        }
+      >
+        <div>
+          
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#dbeddb",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          1.4
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#cce6cc",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          2.0
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "2.3%",
+          }
+        }
+      >
+        <div>
+          
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#ffadad",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          -3.2
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#5eaf5e",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          -6.3
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#fff5f5",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          -0.4
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#008000",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          29.9
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "2.3%",
+          }
+        }
+      >
+        <div>
+          
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#e8f4f8",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          -2.7
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#fffcf7",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          0.3
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#ffe9c1",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          2.4
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "2.3%",
+          }
+        }
+      >
+        <div>
+          
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#ff0505",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          -9.8
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#8bc58b",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          4.6
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#ff0000",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          -12.7
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#008000",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          17.4
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "2.3%",
+          }
+        }
+      >
+        <div>
+          
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          134
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          -0.8
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "2.3%",
+          }
+        }
+      >
+        <div>
+          
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#ff0000",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          10.1
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#ff0000",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          10.0
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "2.3%",
+          }
+        }
+      >
+        <div>
+          
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#ff1b1b",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          8.9
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#ff4343",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          -7.4
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#008000",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          -21.1
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#ffeded",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          0.7
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "2.3%",
+          }
+        }
+      >
+        <div>
+          
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#daeef4",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          -4.5
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#ffac13",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          9.3
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#d8ecf3",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          -4.8
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "2.3%",
+          }
+        }
+      >
+        <div>
+          
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#ff7272",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          5.5
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#ff0d0d",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          9.5
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#ff0000",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          19.1
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#ff4040",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          7.5
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "2.3%",
+          }
+        }
+      >
+        <div>
+          
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          128
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          2.1
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td
+        className="small"
+        rowSpan={2}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "bold",
+            "textAlign": "right",
+            "width": "18.6%",
+          }
+        }
+      >
+        <div>
+          'On' Lineup
+        </div>
+        <div>
+          Adj Eff Contrib:
+        </div>
+        <div>
+          off=[0.79] def=[3.85]
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "2.3%",
+          }
+        }
+      >
+        <div>
+          
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#70b870",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          111.2
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#309830",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          116.2
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "2.3%",
+          }
+        }
+      >
+        <div>
+          
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#ffbaba",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          47.3
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#b6dbb6",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          14.3
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#008000",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          36.4
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#008000",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          49.7
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "2.3%",
+          }
+        }
+      >
+        <div>
+          
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#ffe0a6",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          38.9
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#e1f1f6",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          26.3
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#fff6e5",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          34.7
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "2.3%",
+          }
+        }
+      >
+        <div>
+          
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#ff3e3e",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          27.7
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#e6f3e6",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          51.0
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#ff0000",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          27.3
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#1a8d1a",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          69.0
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "2.3%",
+          }
+        }
+      >
+        <div>
+          
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          196
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          103.9
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "2.3%",
+          }
+        }
+      >
+        <div>
+          
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#86c386",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          90.5
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#46a346",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          85.5
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "2.3%",
+          }
+        }
+      >
+        <div>
+          
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#56ab56",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          43.4
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#ffb6b6",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          14.3
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#008000",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          17.4
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#f9fcf9",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          29.7
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "2.3%",
+          }
+        }
+      >
+        <div>
+          
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#ffd17b",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          41.8
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#ffffff",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          32.9
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#dceef4",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          25.3
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "2.3%",
+          }
+        }
+      >
+        <div>
+          
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#66b366",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          28.8
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#59ac59",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          43.5
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#45a245",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          32.7
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#bfdfbf",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          57.5
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "2.3%",
+          }
+        }
+      >
+        <div>
+          
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          189
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          95.6
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td
+        className="small"
+        rowSpan={2}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "bold",
+            "textAlign": "right",
+            "width": "18.6%",
+          }
+        }
+      >
+        <div>
+          Same-4 Lineups
+          <br />
+          <a
+            href="/?autoOffQuery=false&offQuery=%22Wiggins%2C%20Aaron%22%20AND%20%22Cowan%2C%20Anthony%22%20AND%20%22Ayala%2C%20Eric%22%20AND%20%22Smith%2C%20Jalen%22%20AND%20NOT%20%22Morsell%2C%20Darryl%22&onQuery=%22Morsell%2C%20Darryl%22%20AND%20%22Wiggins%2C%20Aaron%22%20AND%20%22Cowan%2C%20Anthony%22%20AND%20%22Ayala%2C%20Eric%22%20AND%20%22Smith%2C%20Jalen%22&"
+            target="_blank"
+          >
+            On/Off Analysis...
+          </a>
+          <br />
+          <a
+            href="/LineupAnalyzer?filter=AaWiggins%2CAnCowan%2CErAyala%2CJaSmith&maxTableSize=100&minPoss=0&"
+            target="_blank"
+          >
+            Lineup Analysis...
+          </a>
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "2.3%",
+          }
+        }
+      >
+        <div>
+          
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#82c182",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          109.8
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#4aa54a",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          114.2
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "2.3%",
+          }
+        }
+      >
+        <div>
+          
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#f2f8f2",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          50.5
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#ff3c3c",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          20.6
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#008000",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          36.8
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#ff0000",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          19.8
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "2.3%",
+          }
+        }
+      >
+        <div>
+          
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#ffd17d",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          41.7
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#dff0f5",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          26.0
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#fcfdfe",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          32.3
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "2.3%",
+          }
+        }
+      >
+        <div>
+          
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#5bad5b",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          37.5
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#ffa4a4",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          46.4
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#ffffff",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          40.0
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#ff2929",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          51.6
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "2.3%",
+          }
+        }
+      >
+        <div>
+          
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          102
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          104.7
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "2.3%",
+          }
+        }
+      >
+        <div>
+          
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#058305",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          80.4
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#008000",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          75.5
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "2.3%",
+          }
+        }
+      >
+        <div>
+          
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#008000",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          34.4
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#0f870f",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          21.6
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#ff0000",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          38.6
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#e6f3e6",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          29.0
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "2.3%",
+          }
+        }
+      >
+        <div>
+          
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#ffb938",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          46.2
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#d4ebf2",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          23.7
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#f2f9fb",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          30.1
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "2.3%",
+          }
+        }
+      >
+        <div>
+          
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#008000",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          23.3
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#008000",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          34.0
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#008000",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          13.6
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#008000",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          50.0
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "2.3%",
+          }
+        }
+      >
+        <div>
+          
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          97
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          93.5
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td
+        className="small"
+        colSpan={21}
+      >
+        <span>
+          <b>
+            Same-4 Lineup Counts:
+          </b>
+           
+          <span>
+            <span>
+              AaWiggins
+              /
+              <wbr />
+            </span>
+            <span>
+              AnCowan
+              /
+              <wbr />
+            </span>
+            <span>
+              ErAyala
+              /
+              <wbr />
+            </span>
+            <span>
+              JaSmith
+              /
+              <wbr />
+            </span>
+            <b>
+              DoScott
+            </b>
+             (p=[
+            102
+            ]/o=[
+            2
+            ]); 
+          </span>
+        </span>
+      </td>
+    </tr>
+    <tr
+      className="divider"
+    >
+      <td
+        colSpan={21}
+      />
+    </tr>
+    <tr>
+      <td
+        className="small"
+        rowSpan={2}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "bold",
+            "textAlign": "right",
+            "width": "18.6%",
+          }
+        }
+      >
+        <div>
+          Harmonic: AaWiggins / AnCowan / DoScott / JaSmith
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "2.3%",
+          }
+        }
+      >
+        <div>
+          
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#ff0000",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          -20.6
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#ff0000",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          -18.0
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "2.3%",
+          }
+        }
+      >
+        <div>
+          
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#ff0000",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          -13.2
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#bddebd",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          -2.6
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#ff4444",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          -7.3
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#008000",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          35.4
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "2.3%",
+          }
+        }
+      >
+        <div>
+          
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#cee7f0",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          -6.0
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#ffd280",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          5.0
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#fff6e4",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          1.0
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "2.3%",
+          }
+        }
+      >
+        <div>
+          
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#ff0000",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          -14.9
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#ff4949",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          -7.1
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#ff0000",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          -25.2
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#008000",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          10.5
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "2.3%",
+          }
+        }
+      >
+        <div>
+          
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          106
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          1.6
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "2.3%",
+          }
+        }
+      >
+        <div>
+          
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#add6ad",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          -3.2
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#ffffff",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          0.0
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "2.3%",
+          }
+        }
+      >
+        <div>
+          
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#ff4343",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          7.4
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#72b972",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          5.5
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#008000",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          -14.0
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#ebf5eb",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          -0.8
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "2.3%",
+          }
+        }
+      >
+        <div>
+          
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#add8e6",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          -14.5
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#ffa500",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          12.8
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#fff0d5",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          1.7
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "2.3%",
+          }
+        }
+      >
+        <div>
+          
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#ff0000",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          10.1
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#ff9b9b",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          3.9
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#ff0000",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          12.2
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#ffd0d0",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          1.9
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "2.3%",
+          }
+        }
+      >
+        <div>
+          
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          105
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          -0.1
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td
+        className="small"
+        rowSpan={2}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "bold",
+            "textAlign": "right",
+            "width": "18.6%",
+          }
+        }
+      >
+        <div>
+          'On' Lineup
+        </div>
+        <div>
+          Adj Eff Contrib:
+        </div>
+        <div>
+          off=[-5.62] def=[0.00]
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "2.3%",
+          }
+        }
+      >
+        <div>
+          
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#ff7575",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          89.2
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#ffcfcf",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          96.2
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "2.3%",
+          }
+        }
+      >
+        <div>
+          
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#ff0000",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          37.4
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#ffa9a9",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          18.0
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#b8dcb8",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          29.5
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#008000",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          55.2
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "2.3%",
+          }
+        }
+      >
+        <div>
+          
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#fff1d8",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          35.6
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#f6fbfc",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          31.0
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#fffdfa",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          33.3
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "2.3%",
+          }
+        }
+      >
+        <div>
+          
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#ff0000",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          22.6
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#ff0000",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          39.3
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#ff0000",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          14.8
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#cae5ca",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          62.1
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "2.3%",
+          }
+        }
+      >
+        <div>
+          
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          111
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          106.3
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "2.3%",
+          }
+        }
+      >
+        <div>
+          
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#008000",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          77.2
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#008000",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          75.5
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "2.3%",
+          }
+        }
+      >
+        <div>
+          
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#2d962d",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          41.8
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#008000",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          27.2
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#baddba",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          24.6
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#d2e9d2",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          28.2
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "2.3%",
+          }
+        }
+      >
+        <div>
+          
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#f9fcfd",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          31.8
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#ffedcb",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          36.5
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#f9fcfd",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          31.8
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "2.3%",
+          }
+        }
+      >
+        <div>
+          
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#fff3f3",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          33.3
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#008000",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          37.9
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#008000",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          25.8
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#2f982f",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          51.9
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "2.3%",
+          }
+        }
+      >
+        <div>
+          
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          114
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          93.4
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td
+        className="small"
+        rowSpan={2}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "bold",
+            "textAlign": "right",
+            "width": "18.6%",
+          }
+        }
+      >
+        <div>
+          Same-4 Lineups
+          <br />
+          <a
+            href="/?autoOffQuery=false&offQuery=%22Wiggins%2C%20Aaron%22%20AND%20%22Cowan%2C%20Anthony%22%20AND%20%22Scott%2C%20Donta%22%20AND%20%22Smith%2C%20Jalen%22%20AND%20NOT%20%22Morsell%2C%20Darryl%22&onQuery=%22Morsell%2C%20Darryl%22%20AND%20%22Wiggins%2C%20Aaron%22%20AND%20%22Cowan%2C%20Anthony%22%20AND%20%22Scott%2C%20Donta%22%20AND%20%22Smith%2C%20Jalen%22&"
+            target="_blank"
+          >
+            On/Off Analysis...
+          </a>
+          <br />
+          <a
+            href="/LineupAnalyzer?filter=AaWiggins%2CAnCowan%2CDoScott%2CJaSmith&maxTableSize=100&minPoss=0&"
+            target="_blank"
+          >
+            Lineup Analysis...
+          </a>
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "2.3%",
+          }
+        }
+      >
+        <div>
+          
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#82c182",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          109.8
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#4aa54a",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          114.2
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "2.3%",
+          }
+        }
+      >
+        <div>
+          
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#f2f8f2",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          50.5
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#ff3c3c",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          20.6
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#008000",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          36.8
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#ff0000",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          19.8
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "2.3%",
+          }
+        }
+      >
+        <div>
+          
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#ffd17d",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          41.7
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#dff0f5",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          26.0
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#fcfdfe",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          32.3
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "2.3%",
+          }
+        }
+      >
+        <div>
+          
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#5bad5b",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          37.5
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#ffa4a4",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          46.4
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#ffffff",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          40.0
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#ff2929",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          51.6
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "2.3%",
+          }
+        }
+      >
+        <div>
+          
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          102
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          104.7
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "2.3%",
+          }
+        }
+      >
+        <div>
+          
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#058305",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          80.4
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#008000",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          75.5
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "2.3%",
+          }
+        }
+      >
+        <div>
+          
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#008000",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          34.4
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#0f870f",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          21.6
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#ff0000",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          38.6
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#e6f3e6",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          29.0
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "2.3%",
+          }
+        }
+      >
+        <div>
+          
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#ffb938",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          46.2
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#d4ebf2",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          23.7
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#f2f9fb",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          30.1
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "2.3%",
+          }
+        }
+      >
+        <div>
+          
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#008000",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          23.3
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#008000",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          34.0
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#008000",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          13.6
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#008000",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          50.0
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "2.3%",
+          }
+        }
+      >
+        <div>
+          
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          97
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          93.5
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td
+        className="small"
+        colSpan={21}
+      >
+        <span>
+          <b>
+            Same-4 Lineup Counts:
+          </b>
+           
+          <span>
+            <span>
+              AaWiggins
+              /
+              <wbr />
+            </span>
+            <span>
+              AnCowan
+              /
+              <wbr />
+            </span>
+            <span>
+              DoScott
+              /
+              <wbr />
+            </span>
+            <span>
+              JaSmith
+              /
+              <wbr />
+            </span>
+            <b>
+              ErAyala
+            </b>
+             (p=[
+            102
+            ]/o=[
+            2
+            ]); 
+          </span>
+        </span>
+      </td>
+    </tr>
+    <tr
+      className="divider"
+    >
+      <td
+        colSpan={21}
+      />
+    </tr>
+    <tr
+      className="divider"
+    >
+      <td
+        colSpan={21}
+      />
+    </tr>
+  </tbody>
+</table>
+`;

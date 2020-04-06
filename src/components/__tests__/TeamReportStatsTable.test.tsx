@@ -18,6 +18,7 @@ describe("TeamReportStatsTable", () => {
         lineupReport={testData}
         startingState={{}}
         onChangeState={dummyChangeStateCallback}
+        testMode = {true}
       />
     );
     expect(toJson(wrapper)).toMatchSnapshot();

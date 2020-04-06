@@ -34,6 +34,8 @@ import { UrlRouting } from '../utils/UrlRouting';
 
 // Util imports
 import { CbbColors } from "../utils/CbbColors";
+import { OnOffReportDiagUtils } from "../utils/OnOffReportDiagUtils";
+import { CommonTableDefs } from "../utils/CommonTableDefs";
 
 /** Convert from LineupStatsModel into this */
 export type TeamReportStatsModel = {
@@ -44,9 +46,10 @@ type Props = {
   lineupReport: LineupStatsModel,
   startingState: TeamReportFilterParams;
   onChangeState: (newParams: TeamReportFilterParams) => void;
+  testMode?: boolean; //(if set, the initial processing occurs synchronously)
 }
 
-const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, startingState, onChangeState}) => {
+const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, startingState, onChangeState, testMode}) => {
 
   const server = (typeof window === `undefined`) ? //(ensures SSR code still compiles)
     "server" : window.location.hostname
@@ -123,100 +126,42 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
 
   }, [ lineupReport, incReplacementOnOff, regressDiffs, repOnOffDiagMode ] );
 
-  useEffect(() => {
+  /** logic to perform whenever the data changes (or the metadata in such a way re-processing is required)*/
+  const onDataChangeProcessing = () => {
+    try {
+      const tempTeamReport = LineupUtils.lineupToTeamReport(
+        lineupReport, incReplacementOnOff, regressDiffs, repOnOffDiagMode
+      );
+      setTeamReport(tempTeamReport);
+      setPlayersWithAdjEff(tempTeamReport?.players || []);
+    } catch (e) {
+      console.log("Error calling LineupUtils.lineupToTeamReport", e);
+    }
+  };
+
+  React.useEffect(() => {
     if (inBrowserRepOnOffPxing) {
       setTimeout(() => { //(ensures that the "processing" element is returned _before_ the processing starts)
-        try {
-          const tempTeamReport = LineupUtils.lineupToTeamReport(
-            lineupReport, incReplacementOnOff, regressDiffs, repOnOffDiagMode
-          );
-          setTeamReport(tempTeamReport);
-          setPlayersWithAdjEff(tempTeamReport?.players || []);
-        } catch (e) {
-          console.log("Error calling LineupUtils.lineupToTeamReport", e);
-        }
+        onDataChangeProcessing();
         setInBrowserRepOnOffPxing(false);
       }, 1);
     }
   }, [ inBrowserRepOnOffPxing ] );
 
+  // Called fron unit test so we build the snapshot based on the actual data
+  if (testMode) {
+    onDataChangeProcessing();
+  }
+
   // 2] Data Model
-  const tableFields = { //accessors vs column metadata
-    "title": GenericTableOps.addTitle("", "", rowSpanCalculator, "small"),
-    "sep0": GenericTableOps.addColSeparator(),
-    "ppp": GenericTableOps.addPtsCol("P/100", "Points per 100 possessions", picker(...CbbColors.pp100)),
-    "adj_ppp": GenericTableOps.addPtsCol("Adj P/100", "Approximate schedule-adjusted Points per 100 possessions", picker(...CbbColors.pp100)),
-    "sep1": GenericTableOps.addColSeparator(),
-    "efg": GenericTableOps.addPctCol("eFG%", "Effective field goal% (3 pointers count 1.5x as much) for selected lineups", picker(...CbbColors.eFG)),
-    "to": GenericTableOps.addPctCol("TO%", "Turnover % for selected lineups", picker(...CbbColors.tOver)),
-    "orb": GenericTableOps.addPctCol("ORB%", "Offensive rebounding % for selected lineups", picker(...CbbColors.oReb)),
-    "ftr": GenericTableOps.addPctCol("FTR", "Free throw rate for selected lineups", picker(...CbbColors.ftr)),
-    "sep2": GenericTableOps.addColSeparator(),
-    "3pr": GenericTableOps.addPctCol("3PR", "Percentage of 3 pointers taken against all field goals", picker(...CbbColors.fgr)),
-    "2pmidr": GenericTableOps.addPctCol("2PR mid", "Percentage of mid range 2 pointers taken against all field goals", picker(...CbbColors.fgr)),
-    "2primr": GenericTableOps.addPctCol("2PR rim", "Percentage of layup/dunk/etc 2 pointers taken against all field goals", picker(...CbbColors.fgr)),
-    "sep3": GenericTableOps.addColSeparator(),
-    "3p": GenericTableOps.addPctCol("3P%", "3 point field goal percentage", picker(...CbbColors.fg3P)),
-    "2p": GenericTableOps.addPctCol("2P%", "2 point field goal percentage", picker(...CbbColors.fg2P)),
-    "2pmid": GenericTableOps.addPctCol("2P% mid", "2 point field goal percentage (mid range)", picker(...CbbColors.fg2P_mid)),
-    "2prim": GenericTableOps.addPctCol("2P% rim", "2 point field goal percentage (layup/dunk/etc)", picker(...CbbColors.fg2P_rim)),
-    "sep4": GenericTableOps.addColSeparator(),
-    "poss": GenericTableOps.addIntCol("Poss", "Total number of possessions for selected lineups", GenericTableOps.defaultColorPicker),
-    "adj_opp": GenericTableOps.addPtsCol("SoS", "Weighted average of the offensive or defensive efficiencies of the lineups' opponents", GenericTableOps.defaultColorPicker),
-  };
-  const tableFieldsWithFormattedTitle = _.chain(tableFields).toPairs().map((kv) => {
-    if (kv[0] == "title") {
-      return [ kv[0], GenericTableOps.addTitle("", "", rowSpanCalculator, "small", GenericTableOps.htmlFormatter) ];
-    } else return kv;
-  }).fromPairs().value();
-  const replacementTableFields = { //accessors vs column metadata
-    "title": GenericTableOps.addTitle("", "", rowSpanCalculator, "small"),
-    "sep0": GenericTableOps.addColSeparator(),
-    "ppp": GenericTableOps.addPtsCol("P/100", "Points per 100 possessions", picker(...CbbColors.diff10_p100_redGreen)),
-    "adj_ppp": GenericTableOps.addPtsCol("Adj P/100", "Approximate schedule-adjusted Points per 100 possessions", picker(...CbbColors.diff10_p100_redGreen)),
-    "sep1": GenericTableOps.addColSeparator(),
-    "efg": GenericTableOps.addPctCol("eFG%", "Effective field goal% (3 pointers count 1.5x as much) for selected lineups", picker(...CbbColors.diff10_redGreen)),
-    "to": GenericTableOps.addPctCol("TO%", "Turnover % for selected lineups", picker(...CbbColors.diff10_greenRed)),
-    "orb": GenericTableOps.addPctCol("ORB%", "Offensive rebounding % for selected lineups", picker(...CbbColors.diff10_redGreen)),
-    "ftr": GenericTableOps.addPctCol("FTR", "Free throw rate for selected lineups", picker(...CbbColors.diff10_redGreen)),
-    "sep2": GenericTableOps.addColSeparator(),
-    "3pr": GenericTableOps.addPctCol("3PR", "Percentage of 3 pointers taken against all field goals", picker(...CbbColors.diff10_blueOrange)),
-    "2pmidr": GenericTableOps.addPctCol("2PR mid", "Percentage of mid range 2 pointers taken against all field goals", picker(...CbbColors.diff10_blueOrange)),
-    "2primr": GenericTableOps.addPctCol("2PR rim", "Percentage of layup/dunk/etc 2 pointers taken against all field goals", picker(...CbbColors.diff10_blueOrange)),
-    "sep3": GenericTableOps.addColSeparator(),
-    "3p": GenericTableOps.addPctCol("3P%", "3 point field goal percentage", picker(...CbbColors.diff10_redGreen)),
-    "2p": GenericTableOps.addPctCol("2P%", "2 point field goal percentage", picker(...CbbColors.diff10_redGreen)),
-    "2pmid": GenericTableOps.addPctCol("2P% mid", "2 point field goal percentage (mid range)", picker(...CbbColors.diff10_redGreen)),
-    "2prim": GenericTableOps.addPctCol("2P% rim", "2 point field goal percentage (layup/dunk/etc)", picker(...CbbColors.diff10_redGreen)),
-    "sep4": GenericTableOps.addColSeparator(),
-    "poss": GenericTableOps.addIntCol("Poss", "Total number of possessions for selected lineups", GenericTableOps.defaultColorPicker),
-    "adj_opp": GenericTableOps.addPtsCol("SoS", "Weighted average of the offensive or defensive efficiencies of the lineups' opponents", GenericTableOps.defaultColorPicker),
-  };
 
   // 3] Utils
 
   // 3.1] Table building
 
-  const offPrefixFn = (key: string) => "off_" + key;
-  const offCellMetaFn = (key: string, val: any) => "off";
-  const defPrefixFn = (key: string) => "def_" + key;
-  const defCellMetaFn = (key: string, val: any) => "def";
-
-  const getAdjEffMargins = (player: any) => {
-    const onMargin = (player?.on?.off_adj_ppp?.value || 0.0) - (player?.on?.def_adj_ppp?.value || 0.0);
-    const offMargin = (player.off?.off_adj_ppp?.value || 0.0) - (player?.off?.def_adj_ppp?.value || 0.0);
-    return [ onMargin, offMargin ]
-  }
-
-  const playerLineupPowerSet = _.chain(playersWithAdjEff).map((player) => {
-    if (incReplacementOnOff && player.replacement?.key) {
-      return [ player.playerId,
-        (player.replacement?.off_adj_ppp?.value || 0.0) - (player.replacement?.def_adj_ppp?.value || 0.0)];
-    } else {
-      const [ onMargin, offMargin ] = getAdjEffMargins(player);
-      return [ player.playerId, onMargin - offMargin ];
-    }
-  }).fromPairs().value();
+  const playerLineupPowerSet = OnOffReportDiagUtils.buildPlayerSummary(
+    playersWithAdjEff, incReplacementOnOff
+  );
 
   /** Handles the various sorting combos */
   const sorter = (sortStr: string) => { // format: (asc|desc):(off_|def_|diff_)<field>:(on|off|delta)
@@ -252,46 +197,8 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
     };
   };
 
-  /** Builds lineup composition info */
-  const buildLineupInfo = (playerObj: Record<string, any>) => {
-    const totalOnPoss = _.max([playerObj.on.off_poss.value + playerObj.on.def_poss.value, 1]);
-    const totalOffPoss = _.max([playerObj.off.off_poss.value + playerObj.off.def_poss.value, 1]);
-    const playerPcts = _.chain(playerObj.teammates).toPairs()
-      .filter((keyVal) => {
-        return keyVal[0] != playerObj.playerId;
-      }).map((keyVal) => {
-        const possObj = keyVal[1];
-        const onPoss = possObj.on.off_poss + possObj.on.def_poss;
-        const offPoss = possObj.off.off_poss + possObj.off.def_poss;
-        return {
-          name: keyVal[0],
-          onPct: 100.0*onPoss/totalOnPoss,
-          offPct: 100.0*offPoss/totalOffPoss
-        };
-      }).value();
-
-    const lineupPower = _.sumBy(playerPcts, (pctObj) => {
-        return 0.01*
-          (pctObj.onPct - pctObj.offPct)*(playerLineupPowerSet[pctObj.name] || 0);
-    });
-
-    return _.concat(_.chain(playerPcts).orderBy(["onPct"], ["desc"]).map((pctObj, index) => {
-        return <span key={"" + index}>
-            <b>{pctObj.name}</b> ([{pctObj.onPct.toFixed(1)}]% - [{pctObj.offPct.toFixed(1)}]%);&nbsp;
-          </span>;
-      }).value(),
-      <span key="last">
-        <b>Lineup rating:</b> [{lineupPower.toFixed(1)}]
-      </span>
-    );
-  };
-
   /** Only show help for diagnstic on/off on main page */
-  function maybeShowHelp() {
-    if (!_.startsWith(server, "cbb-on-off-analyzer")) {
-      return <a href="https://hoop-explorer.blogspot.com/2020/03/diagnostics-mode-for-replacement-onoff.html" target="_new">(?)</a>;
-    }
-  }
+  const showHelp = !_.startsWith(server, "cbb-on-off-analyzer");
 
   const tableData = _.chain(playersWithAdjEff).filter((player) => {
       const strToTest = player.on.key.substring(5);
@@ -305,7 +212,7 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
     }).sortBy(
        [ sorter(sortBy) ]
     ).flatMap((player, index) => {
-      const [ onMargin, offMargin ] = getAdjEffMargins(player);
+      const [ onMargin, offMargin ] = OnOffReportDiagUtils.getAdjEffMargins(player);
       const onSuffix = `\nAdj: [${onMargin.toFixed(1)}]-[${offMargin.toFixed(1)}]=[${(onMargin - offMargin).toFixed(1)}]`;
       const totalPoss = (player.on.off_poss.value + player.off.off_poss.value || 1);
       const onPoss = 100.0*player.on.off_poss.value/totalPoss;
@@ -333,117 +240,31 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
 
       return _.flatten([
         showOnOff ? [
-          GenericTableOps.buildDataRow(statsOn, offPrefixFn, offCellMetaFn, tableFieldsWithFormattedTitle),
-          GenericTableOps.buildDataRow(statsOn, defPrefixFn, defCellMetaFn),
-          GenericTableOps.buildDataRow(statsOff, offPrefixFn, offCellMetaFn),
-          GenericTableOps.buildDataRow(statsOff, defPrefixFn, defCellMetaFn),
+          GenericTableOps.buildDataRow(statsOn, CommonTableDefs.offPrefixFn, CommonTableDefs.offCellMetaFn, CommonTableDefs.onOffReportWithFormattedTitle),
+          GenericTableOps.buildDataRow(statsOn, CommonTableDefs.defPrefixFn, CommonTableDefs.defCellMetaFn),
+          GenericTableOps.buildDataRow(statsOff, CommonTableDefs.offPrefixFn, CommonTableDefs.offCellMetaFn),
+          GenericTableOps.buildDataRow(statsOff, CommonTableDefs.defPrefixFn, CommonTableDefs.defCellMetaFn),
         ] : [],
         incReplacementOnOff && (player?.replacement?.key) ? [
-          GenericTableOps.buildDataRow(statsReplacement, offPrefixFn, offCellMetaFn, replacementTableFields),
-          GenericTableOps.buildDataRow(statsReplacement, defPrefixFn, defCellMetaFn, replacementTableFields)
+          GenericTableOps.buildDataRow(statsReplacement, CommonTableDefs.offPrefixFn, CommonTableDefs.offCellMetaFn, CommonTableDefs.onOffReportReplacement),
+          GenericTableOps.buildDataRow(statsReplacement, CommonTableDefs.defPrefixFn, CommonTableDefs.defCellMetaFn, CommonTableDefs.onOffReportReplacement)
         ] : [],
         showLineupCompositions ? [ GenericTableOps.buildTextRow(
-          buildLineupInfo(player), "small"
+          OnOffReportDiagUtils.buildLineupInfo(player, playerLineupPowerSet), "small"
         ) ] : [],
         [ GenericTableOps.buildRowSeparator() ],
-        incReplacementOnOff && (index == 0) && (repOnOffDiagMode > 0) ? _.flatten([
-          [ GenericTableOps.buildTextRow(<span><b>Replacement 'ON-OFF' Diagnostics For [{player.playerId}]</b> {maybeShowHelp()}</span>) ],
-          _.chain(player?.replacement?.myLineups)
-            .sortBy([(lineup) => -lineup?.off_poss.value])
-            .take(repOnOffDiagMode).flatMap((lineup: any) => {
-
-              const onLineupKeyArray = lineup.key.split("_");
-
-              const lineupKeys = (key: string) => {
-                const lineupKeyArray = key.split("_");
-                const newPlayerId = _.difference(lineupKeyArray, onLineupKeyArray)?.[0] || "unknown";
-                return lineupKeyArray
-                  .filter(pid => pid != newPlayerId)
-                  .map((pid, i) => <span key={"" + i}>{pid}/<wbr/></span>)
-                  .concat(<b key={"newPlayerId"}>{newPlayerId}</b>);
-              }
-              //kv[0].replace(/_/g, " / ")
-              const lineupSummary =
-                _.chain(player?.replacement?.lineupUsage || {})
-                  .pick(lineup.offLineupKeys || [])
-                  .toPairs()
-                  .sortBy((kv => - kv[1]?.off_poss?.value))
-                  .take(repOnOffDiagMode)
-                  .map((kv, i) =>
-                    <span key={"" + i}>{lineupKeys(kv[0])} (p=[{kv[1].poss}]/o=[{kv[1].overlap}]);&nbsp;</span>
-                  ).value();
-
-              const onLineupPlayerId = _.difference(
-                onLineupKeyArray, ((lineup.offLineupKeys?.[0] || "").split("_"))
-              )?.[0] || "unknown";
-
-              const lineupDiffAdjEff = {
-                off_adj_ppp: { value: lineup.onLineup.off_adj_ppp.value - lineup.offLineups.off_adj_ppp.value },
-                def_adj_ppp: { value: lineup.onLineup.def_adj_ppp.value - lineup.offLineups.def_adj_ppp.value }
-              };
-              const regressed = (n: number | undefined) => {
-                const num = n || 0;
-                return regressDiffs < 0 ? -regressDiffs : (num + regressDiffs);
-              }
-              const offTotalPos = regressed(player?.replacement?.off_poss?.value) || 1;
-              const defTotalPos = regressed(player?.replacement?.def_poss?.value) || 1;
-              const offContrib = lineupDiffAdjEff.off_adj_ppp.value*(lineup?.off_poss?.value || 0)/offTotalPos;
-              const defContrib = lineupDiffAdjEff.def_adj_ppp.value*(lineup?.def_poss?.value || 0)/defTotalPos;
-              const contribStr = `Adj Eff Contrib:\noff=[${offContrib.toFixed(2)}] def=[${defContrib.toFixed(2)}]`;
-
-              const nonPlayerLineup = onLineupKeyArray.filter((pid: string) => pid != onLineupPlayerId);
-              const lineupParams = {
-                ...commonParams,
-                minPoss: "0",
-                maxTableSize: "100",
-                //sortBy: use default
-                filter: nonPlayerLineup.join(",")
-              };
-              const same4Players =
-                _.chain(lineup?.players_array?.hits?.hits?.[0]?._source?.players || [])
-                  .map((v) => v.id)
-                  .filter((pid) => pid != player.playerId).value();
-
-              const onOffParams = {
-                ...commonParams,
-                onQuery: `"${player.playerId}" AND "${same4Players.join('" AND "')}"`,
-                offQuery: `"${same4Players.join('" AND "')}" AND NOT "${player.playerId}"`,
-                autoOffQuery: false
-              };
-
-              const offTitleWithLinks =
-                <div>Same-4 Lineups<br/>
-                  <a href={UrlRouting.getGameUrl(onOffParams, {})} target="_blank">On/Off Analysis...</a><br/>
-                  <a href={UrlRouting.getLineupUrl(lineupParams, {})} target="_blank">Lineup Analysis...</a>
-                </div>;
-
-              const lineupKey = nonPlayerLineup.join(" / ");
-              const lineupDiffStats = { off_title: `Harmonic: ${lineupKey}`, def_title: "", ...lineup, ...lineupDiffAdjEff };
-              const lineupOnStats = { off_title: `'ON' Lineup\n${contribStr}`, def_title: "", ...lineup.onLineup };
-              const lineupOffStats = { off_title: offTitleWithLinks, def_title: "", ...lineup.offLineups };
-              return [
-                GenericTableOps.buildDataRow(lineupDiffStats, offPrefixFn, offCellMetaFn, replacementTableFields),
-                GenericTableOps.buildDataRow(lineupDiffStats, defPrefixFn, defCellMetaFn, replacementTableFields),
-                GenericTableOps.buildDataRow(lineupOnStats, offPrefixFn, offCellMetaFn),
-                GenericTableOps.buildDataRow(lineupOnStats, defPrefixFn, defCellMetaFn),
-                GenericTableOps.buildDataRow(lineupOffStats, offPrefixFn, offCellMetaFn, tableFieldsWithFormattedTitle),
-                GenericTableOps.buildDataRow(lineupOffStats, defPrefixFn, defCellMetaFn),
-                GenericTableOps.buildTextRow(
-                  <span><b>Same-4 Lineup Counts:</b> {lineupSummary}</span>,
-                  "small"
-                ),
-                GenericTableOps.buildRowSeparator()
-              ];
-          }).value(),
-          [ GenericTableOps.buildRowSeparator() ],
-        ]) : [],
+        incReplacementOnOff && (index == 0) && (repOnOffDiagMode > 0) ?
+          OnOffReportDiagUtils.getRepOnOffDiags(player, commonParams,
+            repOnOffDiagMode, regressDiffs,
+            showHelp
+          ) : [],
       ]);
     }).value();
 
   // 3.2] Sorting utils
 
   const sortOptions: Array<any> = _.flatten(
-    _.toPairs(tableFields)
+    _.toPairs(CommonTableDefs.onOffReport)
       .filter(keycol => keycol[1].colName && keycol[1].colName != "")
       .map(keycol => {
         return [
@@ -458,10 +279,10 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
           }); // eg [ [ desc, off, on ], [ desc, off, off ], [ desc, off, delta ] ]
         }).map(combo => {
           const onOrOff = (s: string) => { switch(s) {
-            case "on": return "'ON'";
-            case "off": return "'OFF'";
-            case "delta": return "'ON'-'OFF'";
-            case "rep": return "'REP.+-'";
+            case "on": return "'On'";
+            case "off": return "'Off'";
+            case "delta": return "'On-Off'";
+            case "rep": return "'r:On-Off'";
           }}
           const ascOrDesc = (s: string) => { switch(s) {
             case "asc": return "Asc.";
@@ -518,25 +339,10 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
   );
 
   // 3] Utils
-  function picker(offScale: (val: number) => string, defScale: (val: number) => string) {
-    return (val: any, valMeta: string) => {
-      const num = val.value as number;
-      return _.isNil(num) ?
-        CbbColors.malformedDataColor : //(we'll use this color to indicate malformed data)
-        ("off" == valMeta) ? offScale(num) : defScale(num)
-        ;
-    };
-  }
+
   /** Sticks an overlay on top of the table if no query has ever been loaded */
   function needToLoadQuery() {
     return inBrowserRepOnOffPxing || (teamReport.players || []).length == 0;
-  }
-  function rowSpanCalculator(cellMeta: string) {
-    switch(cellMeta) {
-      case "off": return 2;
-      case "def": return 0;
-      default: return 1;
-    }
   }
 
   /** For use in selects */
@@ -649,7 +455,11 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
       </Form.Row>
       <Row>
         <Col>
-          <GenericTable tableCopyId="teamReportStatsTable" tableFields={tableFields} tableData={tableData}/>
+          <GenericTable
+            tableCopyId="teamReportStatsTable"
+            tableFields={CommonTableDefs.onOffReport}
+            tableData={tableData}
+          />
         </Col>
       </Row>
     </LoadingOverlay>

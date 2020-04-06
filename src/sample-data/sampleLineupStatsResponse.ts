@@ -228,6 +228,12 @@ export const sampleLineupStatsResponse = { //TODO: need to change this...
                     },
                     "def_orb": {
                        "value": 0.1743119266055046
+                    },
+                    "off_adj_ppp": {
+                       "value": 116.22448979591837
+                    },
+                    "def_adj_ppp": {
+                       "value": 85.47619047619048
                     }
                  },
                  {
@@ -435,6 +441,12 @@ export const sampleLineupStatsResponse = { //TODO: need to change this...
                     },
                     "def_orb": {
                        "value": 0.24561403508771928
+                    },
+                    "off_adj_ppp": {
+                       "value": 96.22448979591837
+                    },
+                    "def_adj_ppp": {
+                       "value": 75.47619047619048
                     }
                  },
                  {
@@ -642,6 +654,12 @@ export const sampleLineupStatsResponse = { //TODO: need to change this...
                     },
                     "def_orb": {
                        "value": 0.38571428571428573
+                    },
+                    "off_adj_ppp": {
+                       "value": 114.22448979591837
+                    },
+                    "def_adj_ppp": {
+                       "value": 75.47619047619048
                     }
                  }
               ]

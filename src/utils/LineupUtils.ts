@@ -40,13 +40,13 @@ export class LineupUtils {
               } ]
             ).fromPairs().value(),
           on: {
-            key: `'ON' ${playerId}`
+            key: `'On' ${playerId}`
           },
           off: {
-            key: `'OFF' ${playerId}`
+            key: `'Off' ${playerId}`
           },
           replacement: incReplacement ? {
-            key: `'r:ON-OFF' ${playerId}`,
+            key: `'r:On-Off' ${playerId}`,
             lineupUsage: {},
             myLineups: _.chain(lineupReport.lineups || []).filter((lineup) => {
               const playersSet = getPlayerSet(lineup);
