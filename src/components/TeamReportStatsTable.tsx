@@ -78,6 +78,10 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
     _.isNil(startingState.incRepOnOff) ? ParamDefaults.defaultTeamReportIncRepOnOff : startingState.incRepOnOff
   );
 
+  const [ incRapm, setIncRapm ] = useState(
+    true // TODO
+  );
+
   const [ regressDiffs, setRegressDiffs ] = useState(
     parseInt(_.isNil(startingState.regressDiffs) ? ParamDefaults.defaultTeamReportRegressDiffs : startingState.regressDiffs)
   );
@@ -87,6 +91,10 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
   );
   const [ repOnOffDiagMode, setRepOnOffDiagMode ] = useState(
     parseInt(_.isNil(startingState.repOnOffDiagMode) ? ParamDefaults.defaultTeamReportRepOnOffDiagMode : startingState.repOnOffDiagMode)
+  );
+
+  const [ rapmDiagMode, setRapmDiagMode ] = useState(
+    true // TODO
   );
 
   /** If the browser is doing heavier calcs then spin the display vs just be unresponsive */
@@ -117,6 +125,8 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
   // (cache this below)
   const [ teamReport, setTeamReport ] = useState({} as any);
   const [ playersWithAdjEff, setPlayersWithAdjEff ] = useState([] as Array<any>);
+
+  const [ rapmInfo, setRapmInfo ] = useState({} as any);
 
   useEffect(() => { //(this ensures that the filter component is up to date with the union of these fields)
 
