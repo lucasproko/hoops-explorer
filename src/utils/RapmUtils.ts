@@ -6,7 +6,7 @@ import _ from "lodash";
 // @ts-ignore
 import { SVD } from 'svd-js'
 // @ts-ignore
-import { sum, apply, transpose, matrix, zeros } from 'mathjs'
+import { multiply, add, inv, sum, apply, transpose, matrix, zeros, identity } from 'mathjs'
 
 /** Useful intermediate results */
 export type RapmPlayerContext = {
@@ -77,10 +77,12 @@ export class RapmUtils {
         const possCount = (lineup as any)[`${prefix}_poss`]?.value || 0;
         const inPlayers = lineup?.players_array?.hits?.hits?.[0]?._source?.players || [];
         const lineupRow = inMatrix.valueOf()[index];
+        const lineupPossCount = ((ctx as any)[`${prefix}LineupPoss`] || 1);
+        const possCountWeight = Math.sqrt(possCount/lineupPossCount);
         inPlayers.forEach((player: any) => {
           const playerIndex = ctx.playerToCol[player.id];
           if (playerIndex >= 0) {
-            lineupRow[playerIndex] = Math.sqrt(possCount/((ctx as any)[`${prefix}LineupPoss`] || 1));
+            lineupRow[playerIndex] = possCountWeight;
           } //(else this player is filtered out so ignore)
         });
       });
@@ -89,6 +91,95 @@ export class RapmUtils {
     populateMatrix(defWeights, "def");
 
     return [ offWeights, defWeights ];
+  }
+
+  static calcPlayerOutputs(
+    lineups: Array<any>,
+    field: string, offset: number,
+    ctx: RapmPlayerContext,
+  ) {
+    const calculateVector = (prefix: "off" | "def") => {
+      return lineups.map((lineup: any) => {
+        const possCount = (lineup as any)[`${prefix}_poss`]?.value || 0;
+        const lineupPossCount = ((ctx as any)[`${prefix}LineupPoss`] || 1);
+        const possCountWeight = Math.sqrt(possCount/lineupPossCount);
+        const val = (lineup as any)[`${prefix}_${field}`]?.value || 0;
+        return (val - offset)*possCountWeight;
+      });
+    };
+    return [
+      calculateVector("off"), calculateVector("def")
+    ];
+  }
+
+  static slowRegression(
+    playerWeightMatrix: any,
+    ridgeLambda: number,
+    ctx: RapmPlayerContext
+  ) {
+    // Note ridgeLambdas from similar work of 2K is without col normalization
+    // So instead of each row of XtX having "length" Nstint^2 it has "length"
+    // 1, so we should reduce the lambda by the same amount (assuming each stint is 5 possessions on average)
+    const factor = (ctx.numLineups*ctx.numLineups)/25;
+
+    const playerWeightMatrixT = transpose(playerWeightMatrix)
+    const bottom = add(
+      multiply(playerWeightMatrixT, playerWeightMatrix),
+      multiply(ridgeLambda/factor, identity(ctx.numPlayers))
+    );
+    const bottomInv = inv(bottom);
+    return multiply(
+      bottomInv, playerWeightMatrixT
+    );
+  }
+
+  static calcSlowPseudoInverse(
+    playerWeightMatrix: any,
+    ridgeLambda: number,
+    ctx: RapmPlayerContext
+  ) {
+    // Note ridgeLambdas from similar work of 2K is without col normalization
+    // So instead of each row of XtX having "length" Nstint^2 it has "length"
+    // 1, so we should reduce the lambda by the same amount (assuming each stint is 5 possessions on average)
+    const factor = (ctx.numLineups*ctx.numLineups)/25;
+
+    const playerWeightMatrixT = transpose(playerWeightMatrix)
+    const bottom = add(
+      multiply(playerWeightMatrixT, playerWeightMatrix),
+      multiply(ridgeLambda/factor, identity(ctx.numPlayers))
+    );
+    const bottomInv = inv(bottom).valueOf();
+    return _.range(0, ctx.numPlayers).map((i) => Math.sqrt(bottomInv[i][i]));
+  }
+
+  static calculatePredictedOut(
+    playerWeightMatrix: any,
+    regressedPlayers: Array<any>,
+    ctx: RapmPlayerContext
+  ) {
+    return transpose(
+      multiply(playerWeightMatrix, transpose(matrix(regressedPlayers)))
+    ).valueOf();
+  }
+
+  static calculateResidualError(
+    playerOuts: Array<any>,
+    regressedOuts: Array<any>,
+    ctx: RapmPlayerContext
+  ) {
+    return _.reduce(
+      _.zip(playerOuts, regressedOuts),
+      (sum, ab: Array<number>) => sum + (ab[0] - ab[1])**2,
+      0
+    );
+  }
+
+  static calculateRapm(
+    regressionMatrix: any,
+    playerOutputs: Array<number>
+  ) {
+    const out = transpose(matrix(playerOutputs));
+    return transpose(multiply(regressionMatrix, out)).valueOf();
   }
 
   /** Looks for multi-collinearity conditions between players
