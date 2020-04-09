@@ -8,13 +8,36 @@ import { sampleLineupStatsResponse } from "../../sample-data/sampleLineupStatsRe
 import { LineupStatsModel } from './LineupStatsTable';
 
 describe("LineupUtils", () => {
-  test("LineupUtils - lineupToTeamReport", () => {
+  const lineupReport: LineupStatsModel = {
+    lineups: sampleLineupStatsResponse.responses[0].aggregations.lineups.buckets,
+    avgOff: 100.0,
+    error_code: "test"
+  };
+  const toFixed = (obj: any) => {
+    return obj.hasOwnProperty("value") ? { value: obj.value.toFixed(3) } : obj
+  };
 
-    const lineupReport: LineupStatsModel = {
-      lineups: sampleLineupStatsResponse.responses[0].aggregations.lineups.buckets,
-      avgOff: 100.0,
-      error_code: "test"
-    };
+  test("LineupUtils - calculateAggregatedLineupStats", () => {
+    lineupReport.lineups[1].rapmRemove = true; //ignore the 2nd element
+    const res = LineupUtils.calculateAggregatedLineupStats(lineupReport.lineups);
+    expect(_.chain(res).pick([
+      "off_poss", "def_poss", "off_adj_ppp", "def_adj_ppp"
+    ]).mapValues(toFixed).value()).toEqual({
+         "def_adj_ppp": {
+           "value": "82.085",
+         },
+         "def_poss": {
+           "value": "286.000",
+         },
+         "off_adj_ppp": {
+           "value": "115.540",
+         },
+         "off_poss": {
+           "value": "298.000",
+         }
+    });
+  });
+  test("LineupUtils - lineupToTeamReport", () => {
 
     [ 0, 10 ].forEach((diagMode) => {
       [ 0, 100 -100, -500 ].forEach((regressDiffs) => {
@@ -71,10 +94,6 @@ describe("LineupUtils", () => {
           expect(onOnlyOffVals).toEqual({ key: "'Off' Wiggins, Aaron" }); //(all vals are 0)
 
           // Spot check some values
-
-          const toFixed = (obj: any) => {
-            return obj.hasOwnProperty("value") ? { value: obj.value.toFixed(3) } : obj
-          };
 
           const someOnOffVals = _.chain(onOffReport.players).filter((p) => {
             return p.on.key == "'On' Ayala, Eric";

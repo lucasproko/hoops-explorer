@@ -146,19 +146,20 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
 /**/
 console.log("---------RAPM");
 try {
-  const context = RapmUtils.calcPlayerContext(
-    tempTeamReport.players || [], lineupReport.lineups || []
+  const context = RapmUtils.buildPlayerContext(
+    tempTeamReport.players || [], lineupReport.lineups || [], 0.10
   );
   const [ offWeights, defWeights ] = RapmUtils.calcPlayerWeights(
-    lineupReport.lineups || [], context
+    context.filteredLineups, context
   );
   const diags = RapmUtils.calcCollinearityDiag(offWeights, context);
-  console.log(JSON.stringify(diags, null, 3));
+  console.log(JSON.stringify(_.omit(diags, ["filteredLineups"]), null, 3) +
+    `\n(from [${lineupReport?.lineups?.length}] to [${context.filteredLineups.length}])`);
 
   console.log("====================================");
 
   const [ offAdjPoss, defAdjPoss ] = RapmUtils.calcPlayerOutputs(
-    lineupReport.lineups || [], "adj_ppp", 102.4, context //TODO USE AVG EFF
+    context.filteredLineups || [], "adj_ppp", 102.4, context //TODO USE AVG EFF
   );
   /**/
   console.log("OFF: " + offAdjPoss.map(p => p.toFixed(2)));

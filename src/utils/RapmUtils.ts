@@ -2,6 +2,9 @@
 // Lodash:
 import _ from "lodash";
 
+// Other app utils
+import { LineupUtils } from "./LineupUtils";
+
 // Math utils
 // @ts-ignore
 import { SVD } from 'svd-js'
@@ -14,9 +17,12 @@ export type RapmPlayerContext = {
   playerToCol: Record<string, number>;
   /** The player name in each column */
   colToPlayer: Array<string>;
+  /** A shallow copy of the lineups, minus ones with removed player or no off/def possessions */
+  filteredLineups: Array<any>,
+  /** An aggregated view of filteredLineups */
+  teamInfo: Record<string, any>,
 
-  // Counts:
-
+  // Handy counts:
   numPlayers: number;
   numLineups: number;
   offLineupPoss: number;
@@ -32,33 +38,90 @@ export type RapmDiagnostics = {
 /** Wrapper for some math to calculate RAPM and its various artefacts */
 export class RapmUtils {
 
-  /** Pre-calculate some context for later RAPM calcs */
-  static calcPlayerContext(players: Array<any>, lineups: Array<any>): RapmPlayerContext {
-    const [ offLineupPoss, defLineupPoss, lineupCount ] = _.chain(lineups).map((lineup) => {
-      return [ lineup?.off_poss?.value || 0, lineup?.def_poss?.value|| 0 ];
-    }).reduce((acc, offDef) => {
-      return [
-        acc[0] + offDef[0],
-        acc[1] + offDef[1],
-        acc[2] + 1 //(for now we'll include all lineups, if they are 0, so be it)
-      ];
-    }, [0, 0, 0]).value();
+  // 1] INITIALIZATION LOGIC
 
-    const sortedPlayers = _.chain(players).sortBy([(player) => {
-      return (player.on?.off_poss || 0) + (player.off?.off_poss || 0)
-    }]).value();
+  /**
+  * Builds a context object with functionality required by further processing
+  * removalPct - the min% (eg 10%) of possessions a player must have
+  */
+  static buildPlayerContext(
+    players: Array<any>,
+    lineups: Array<any>,
+    removalPct: number
+  ): RapmPlayerContext {
+    // The static threshold for removing players
+    // (who do more harm than good)
+    // (2x to approximate checking both offense and defense)
+    const totalLineups = players?.[0]?.on?.off_poss?.value || 0;
+    const removalThreshold = 2*removalPct*totalLineups;
+    // Filter out players with too few possessions
+    var checkForPlayersToRemove = true; //(always do the full processing loop once)
+    var currFilteredLineupSet = [];
+    const removedPlayersSet: Record<string, number> = {};
+    const playerPossessionCountTracker: Record<string, number> = {};
+    while (checkForPlayersToRemove) {
+      _.chain(players).filter((p: any) => !p.rapmRemove).forEach((p: any) => {
+        const playerId = p.playerId as string || "";
+        if (_.isNil(playerPossessionCountTracker[playerId])) {
+          //(first time through, fill in the player possession tracker)
+          playerPossessionCountTracker[playerId] =
+            (p.on?.off_poss?.value || 0) + (p.on?.def_poss?.value || 0);
+        }
+        if (playerPossessionCountTracker[playerId] < removalThreshold) {
+          p.rapmRemove = true; //(temp flag for peformance in this loop)
+          removedPlayersSet[playerId] = playerPossessionCountTracker[playerId];
+          checkForPlayersToRemove = true;
+        }
+      }).value();
+      if (checkForPlayersToRemove) { //(always go through this first time)
+        checkForPlayersToRemove = false; //(won't need to rerun unless we remove any new lineups)
+
+        // Now need to go through lineups, remove them
+        currFilteredLineupSet = _.chain(lineups).filter((l: any) => !l.rapmRemove).flatMap((l: any) => {
+          // THIS FLATMAP HAS SIDE-EFFECTS
+
+          const lineupPlayers = l?.players_array?.hits?.hits?.[0]?._source?.players || [];
+          const shouldRemoveLineup =
+            _.find(lineupPlayers, (p: any) => !_.isNil(removedPlayersSet[p.id as string])) //contains removed players
+            ||
+            (!l.off_poss?.value || !l.def_poss?.value); // only take lineup combos with both off and def combos
+
+          if (shouldRemoveLineup) {
+            l.rapmRemove = true; //(temp flag for peformance in this loop)
+            const lineupPossCount = (l.off_poss?.value || 0) + (l.def_poss?.value || 0);
+            // Loop over all the players, remove the lineup possessions from their counter
+            _.chain(lineupPlayers).forEach((lp: any) => {
+              playerPossessionCountTracker[lp.id as string] =
+                (playerPossessionCountTracker[lp.id as string] || 0) - lineupPossCount;
+            }).value();
+            checkForPlayersToRemove = true;
+          }
+          return l.rapmRemove ? [] : [ l ];
+        }).value();
+      }
+    }
+    // Calculate the aggregated team stats
+    const teamInfo = LineupUtils.calculateAggregatedLineupStats(lineups);
+
+    const sortedPlayers = _.chain(playerPossessionCountTracker).toPairs().filter((kv) => {
+      return !removedPlayersSet.hasOwnProperty(kv[0]);
+    }).sortBy(kv => -kv[1]).map((kv) => kv[0]).value();
 
     return {
-      playerToCol: _.chain(sortedPlayers).map((player, index) => {
-        return [ player.playerId, index ]
+      playerToCol: _.chain(sortedPlayers).map((playerId, index) => {
+        return [ playerId, index ]
       }).fromPairs().value()
       ,
-      colToPlayer: sortedPlayers.map((player) => player.playerId)
+      colToPlayer: sortedPlayers
       ,
-      numPlayers: players.length, //TODO or are we filtering players?
-      numLineups: lineupCount,
-      offLineupPoss: offLineupPoss,
-      defLineupPoss: defLineupPoss
+      filteredLineups: currFilteredLineupSet
+      ,
+      teamInfo: teamInfo
+      ,
+      numPlayers: sortedPlayers.length,
+      numLineups: currFilteredLineupSet.length,
+      offLineupPoss: teamInfo.off_poss?.value || 0,
+      defLineupPoss: teamInfo.def_poss?.value || 0
     };
   }
 
@@ -112,6 +175,8 @@ export class RapmUtils {
     ];
   }
 
+  // 2] PROCESSING
+
   static slowRegression(
     playerWeightMatrix: any,
     ridgeLambda: number,
@@ -132,6 +197,16 @@ export class RapmUtils {
       bottomInv, playerWeightMatrixT
     );
   }
+
+  static calculateRapm(
+    regressionMatrix: any,
+    playerOutputs: Array<number>
+  ) {
+    const out = transpose(matrix(playerOutputs));
+    return transpose(multiply(regressionMatrix, out)).valueOf();
+  }
+
+  // 3] ERROR VALIDATION
 
   static calcSlowPseudoInverse(
     playerWeightMatrix: any,
@@ -174,13 +249,9 @@ export class RapmUtils {
     );
   }
 
-  static calculateRapm(
-    regressionMatrix: any,
-    playerOutputs: Array<number>
-  ) {
-    const out = transpose(matrix(playerOutputs));
-    return transpose(multiply(regressionMatrix, out)).valueOf();
-  }
+  // 4] DIAGNOSTIC PROCESSING
+
+  //TODO: Pearsson correlation matrix between players
 
   /** Looks for multi-collinearity conditions between players
       The cond index ("lineup combo") is 0-10 == safe, 10-30 == OKish, 30 - 100 problem
