@@ -93,9 +93,7 @@ describe("RapmUtils", () => {
     const context = RapmUtils.buildPlayerContext(
       onOffReport.players || [], lineupReport.lineups || [], 0.0
     );
-    const results = RapmUtils.calcPlayerWeights(
-      context.filteredLineups || [], context
-    );
+    const results = RapmUtils.calcPlayerWeights(context);
 
     const tidyResults = (resMatrix: any) => {
       return resMatrix.map((val: number) => val.toFixed(3)).valueOf();
@@ -165,9 +163,7 @@ describe("RapmUtils", () => {
     const context = RapmUtils.buildPlayerContext(
       onOffReport.players || [], lineupReportFake.lineups || [], 0.1
     );
-    const weights = RapmUtils.calcPlayerWeights(
-      context.filteredLineups, context
-    );
+    const weights = RapmUtils.calcPlayerWeights(context);
     const results = RapmUtils.calcCollinearityDiag(weights[0], context);
 
     // Just check it doesn't crash and looks sane

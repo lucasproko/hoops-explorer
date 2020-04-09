@@ -127,7 +127,6 @@ export class RapmUtils {
 
   /** Calculates the weights and returns 2 matrices, one for off */
   static calcPlayerWeights(
-    lineups: Array<any>,
     ctx: RapmPlayerContext
   ) {
     // Build a matrix of the right size:
@@ -136,7 +135,7 @@ export class RapmUtils {
 
     // Fill it in with the players
     const populateMatrix = (inMatrix: any, prefix: "off" | "def") => {
-      lineups.forEach((lineup, index) => {
+      ctx.filteredLineups.forEach((lineup, index) => {
         const possCount = (lineup as any)[`${prefix}_poss`]?.value || 0;
         const inPlayers = lineup?.players_array?.hits?.hits?.[0]?._source?.players || [];
         const lineupRow = inMatrix.valueOf()[index];

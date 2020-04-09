@@ -149,9 +149,7 @@ try {
   const context = RapmUtils.buildPlayerContext(
     tempTeamReport.players || [], lineupReport.lineups || [], 0.10
   );
-  const [ offWeights, defWeights ] = RapmUtils.calcPlayerWeights(
-    context.filteredLineups, context
-  );
+  const [ offWeights, defWeights ] = RapmUtils.calcPlayerWeights(context);
   const diags = RapmUtils.calcCollinearityDiag(offWeights, context);
   console.log(JSON.stringify(_.omit(diags, ["filteredLineups"]), null, 3) +
     `\n(from [${lineupReport?.lineups?.length}] to [${context.filteredLineups.length}])`);
