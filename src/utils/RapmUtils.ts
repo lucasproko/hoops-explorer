@@ -9,10 +9,15 @@ import { LineupUtils } from "./LineupUtils";
 // @ts-ignore
 import { SVD } from 'svd-js'
 // @ts-ignore
-import { multiply, add, inv, sum, apply, transpose, matrix, zeros, identity } from 'mathjs'
+import { add, apply, diag, identity, inv, matrix, mean, multiply, row, sum, transpose, variance, zeros } from 'mathjs';
 
 /** Useful intermediate results */
 export type RapmPlayerContext = {
+  /** If true, then adds an additional row with the desired final result */
+  unbiasWeight: number;
+
+  /** Players that have been removed */
+  removedPlayers: Record<string, number>;
   /** The column corresponding to the player */
   playerToCol: Record<string, number>;
   /** The player name in each column */
@@ -21,7 +26,8 @@ export type RapmPlayerContext = {
   filteredLineups: Array<any>,
   /** An aggregated view of filteredLineups */
   teamInfo: Record<string, any>,
-
+  /** The D1 average efficiency */
+  avgEfficiency: number,
   // Handy counts:
   numPlayers: number;
   numLineups: number;
@@ -30,10 +36,16 @@ export type RapmPlayerContext = {
 };
 
 /** Holds the multi-collinearity info */
-export type RapmDiagnostics = {
+export type RapmPreProcDiagnostics = {
   lineupCombos: Array<number>;
   playerCombos: Record<string, Array<number>>
 };
+
+export type RapmProcessingInputs = {
+  regressionMatrix: any,
+  ridgeLambda: number,
+  //TODO: errors
+}
 
 /** Wrapper for some math to calculate RAPM and its various artefacts */
 export class RapmUtils {
@@ -43,11 +55,15 @@ export class RapmUtils {
   /**
   * Builds a context object with functionality required by further processing
   * removalPct - the min% (eg 10%) of possessions a player must have
+  * unbiasWeight - if >0 adds an extra row with the desired combined results (eg 2)
   */
   static buildPlayerContext(
     players: Array<any>,
     lineups: Array<any>,
-    removalPct: number
+    avgEfficiency: number
+    ,
+    removalPct: number,
+    unbiasWeight: number,
   ): RapmPlayerContext {
     // The static threshold for removing players
     // (who do more harm than good)
@@ -108,6 +124,10 @@ export class RapmUtils {
     }).sortBy(kv => -kv[1]).map((kv) => kv[0]).value();
 
     return {
+      unbiasWeight: unbiasWeight
+      ,
+      removedPlayers: removedPlayersSet
+      ,
       playerToCol: _.chain(sortedPlayers).map((playerId, index) => {
         return [ playerId, index ]
       }).fromPairs().value()
@@ -116,7 +136,8 @@ export class RapmUtils {
       ,
       filteredLineups: currFilteredLineupSet
       ,
-      teamInfo: teamInfo
+      teamInfo: teamInfo,
+      avgEfficiency: avgEfficiency
       ,
       numPlayers: sortedPlayers.length,
       numLineups: currFilteredLineupSet.length,
@@ -127,11 +148,13 @@ export class RapmUtils {
 
   /** Calculates the weights and returns 2 matrices, one for off */
   static calcPlayerWeights(
-    ctx: RapmPlayerContext
+    ctx: RapmPlayerContext,
   ) {
+    const extra = ctx.unbiasWeight > 0;
+
     // Build a matrix of the right size:
-    const offWeights = zeros(ctx.numLineups, ctx.numPlayers);
-    const defWeights = zeros(ctx.numLineups, ctx.numPlayers);
+    const offWeights = zeros(ctx.numLineups + (extra ? 1 : 0), ctx.numPlayers);
+    const defWeights = zeros(ctx.numLineups + (extra ? 1 : 0), ctx.numPlayers);
 
     // Fill it in with the players
     const populateMatrix = (inMatrix: any, prefix: "off" | "def") => {
@@ -152,16 +175,29 @@ export class RapmUtils {
     populateMatrix(offWeights, "off");
     populateMatrix(defWeights, "def");
 
+    // Add the possession %s for each players
+    if (ctx.unbiasWeight > 0) {
+      const addExtraRow = (inMatrix: any) => {
+        const inMatrixT = transpose(inMatrix);
+        const bottomRow = inMatrix.valueOf()[ctx.numLineups];
+        inMatrixT.valueOf().forEach((row: number[], i: number) => {
+          bottomRow[i] =
+            _.sum(row.map((v: number) => ctx.unbiasWeight*v*v));
+        });
+      };
+      addExtraRow(offWeights);
+      addExtraRow(defWeights);
+    }
     return [ offWeights, defWeights ];
   }
 
-  static calcPlayerOutputs(
-    lineups: Array<any>,
+  /** Calculate the output vectors (as 1-d arrays) against which we'll fit the vectors */
+  private static calcLineupOutputs(
     field: string, offset: number,
     ctx: RapmPlayerContext,
   ) {
     const calculateVector = (prefix: "off" | "def") => {
-      return lineups.map((lineup: any) => {
+      return ctx.filteredLineups.map((lineup: any) => {
         const possCount = (lineup as any)[`${prefix}_poss`]?.value || 0;
         const lineupPossCount = ((ctx as any)[`${prefix}LineupPoss`] || 1);
         const possCountWeight = Math.sqrt(possCount/lineupPossCount);
@@ -169,27 +205,31 @@ export class RapmUtils {
         return (val - offset)*possCountWeight;
       });
     };
+    const extra = ctx.unbiasWeight > 0;
+
     return [
-      calculateVector("off"), calculateVector("def")
+      calculateVector("off").concat(
+        extra ? [ ctx.unbiasWeight*(ctx.teamInfo.off_adj_ppp.value  - ctx.avgEfficiency) ] : []
+      ),
+      calculateVector("def").concat(
+        extra ? [ ctx.unbiasWeight*(ctx.teamInfo.def_adj_ppp.value  - ctx.avgEfficiency) ] : []
+      )
     ];
   }
 
   // 2] PROCESSING
 
-  static slowRegression(
+  /** Calculates a regression matrix using Tikhonov regression */
+  private static slowRegression(
     playerWeightMatrix: any,
     ridgeLambda: number,
     ctx: RapmPlayerContext
   ) {
-    // Note ridgeLambdas from similar work of 2K is without col normalization
-    // So instead of each row of XtX having "length" Nstint^2 it has "length"
-    // 1, so we should reduce the lambda by the same amount (assuming each stint is 5 possessions on average)
-    const factor = (ctx.numLineups*ctx.numLineups)/25;
-
+    //https://en.wikipedia.org/wiki/Tikhonov_regularization
     const playerWeightMatrixT = transpose(playerWeightMatrix)
     const bottom = add(
       multiply(playerWeightMatrixT, playerWeightMatrix),
-      multiply(ridgeLambda/factor, identity(ctx.numPlayers))
+      multiply(ridgeLambda, identity(ctx.numPlayers))
     );
     const bottomInv = inv(bottom);
     return multiply(
@@ -197,6 +237,7 @@ export class RapmUtils {
     );
   }
 
+  /** Applies the regression matrix to the outputs */
   static calculateRapm(
     regressionMatrix: any,
     playerOutputs: Array<number>
@@ -205,22 +246,168 @@ export class RapmUtils {
     return transpose(multiply(regressionMatrix, out)).valueOf();
   }
 
-  // 3] ERROR VALIDATION
+  //TODO: inject the various RAPMs info into the players array
 
-  static calcSlowPseudoInverse(
+  // 3] ERROR VALIDATION
+/*
+  export type RapmProcessingInputs = {
+    regressionMatrix: any,
+    ridgeLambda: number,
+    //TODO: errors
+  }
+*/
+
+  /**
+  * Select a good ridge regression factor to use
+  */
+  static pickRidgeRegression(
+    offWeights: any, defWeights: any,
+    ctx: RapmPlayerContext
+  ) {
+    const debugMode = true;
+
+    const weights = {
+      off: offWeights,
+      def: defWeights
+    };
+
+    // SVD
+    // See https://en.wikipedia.org/wiki/Tikhonov_regularization#Determination_of_the_Tikhonov_factor
+    const svd = {
+      off: SVD(weights.off.valueOf()), // u, v, q==D
+      def: SVD(weights.def.valueOf())
+    };
+
+    // Get an approximate idea of the scale of the lambdas:
+    const avgEigenVal = 0.5*mean(svd.off.q) + 0.5*mean(svd.def.q);
+    const actualEff = {
+      off: ctx.teamInfo.off_adj_ppp.value - ctx.avgEfficiency,
+      def: ctx.teamInfo.def_adj_ppp.value - ctx.avgEfficiency
+    };
+
+    // Build player usage vectors:
+    const pctByPlayer = (() => {
+      const buildUsageVector = (onOrOff: "off" | "def") => {
+        if (ctx.unbiasWeight > 0) {
+          return weights[onOrOff].valueOf()[ctx.numLineups].map((v: number) => v/ctx.unbiasWeight);
+        } else {
+          const weightT = transpose(weights[onOrOff]);
+          return weightT.valueOf().map((row: number[]) => {
+            return _.sum(row.map((v: number) => v*v));
+          });
+        }
+      };
+      return {
+        off: buildUsageVector("off") as number[],
+        def: buildUsageVector("def") as number[]
+      };
+    })();
+
+    if (debugMode) console.log(`(Off) Player Poss = [${pctByPlayer.off.map((p: number) => p.toFixed(2))}]`);
+
+    const [ offAdjPoss, defAdjPoss ] = RapmUtils.calcLineupOutputs(
+      "adj_ppp", ctx.avgEfficiency, ctx
+    );
+    const adjPoss = {
+      off: offAdjPoss,
+      def: defAdjPoss
+    };
+
+    const lambdaRange = [ 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.25, 2.5, 2.75, 3 ];
+    const testResults = ([ "off", "def" ] as Array<"off" | "def">).map((offOrDef: "off" | "def") =>
+      _.transform(lambdaRange, (acc, lambda) => {
+        if (!acc.foundLambda) {
+          const ridgeLambda = lambda*avgEigenVal; //(scale lambda according to the scale of the weight matrix)
+
+          if (debugMode) console.log(`********* [${offOrDef}] RAPM WITH LAMBDA ` + ridgeLambda.toFixed(3) + " / " + lambda);
+
+          const solver = RapmUtils.slowRegression(weights[offOrDef], ridgeLambda, ctx);
+          const results: number[] = RapmUtils.calculateRapm(solver, adjPoss[offOrDef]);
+          const combinedAdjEff = _.sum(_.zip(pctByPlayer[offOrDef], results).map((zip: Array<number|undefined>) => {
+            return (zip[0] || 0)*(zip[1] || 0);
+          }));
+          const adjEffErr = Math.abs(combinedAdjEff - actualEff[offOrDef]);
+
+          const [ meanDiff, maxDiff ] = (() => {
+            if (lambda > lambdaRange[0]) { //ie 2nd+ time onwards, so we can check diffs
+              const diffs = _.zip(
+                results, acc.lastAttempt.results as number[]
+              ).map((zip: Array<number|undefined>) => {
+                return Math.abs((zip[1] || 0) - (zip[0] || 0));
+              });
+              const tempMaxDiff = _.reduce(diffs, (a, b) => a > b ? a : b) || 0;
+              const tempMeanDiff = mean(diffs);
+
+              if (debugMode) console.log(`Diffs: u=[${tempMeanDiff.toFixed(2)}] max=[${tempMaxDiff.toFixed(2)}]`);
+
+              return [ tempMeanDiff, tempMaxDiff ];
+            } else { return [ -1, -1 ]; }
+          })();
+
+          if (debugMode) console.log(ctx.colToPlayer);
+          if (debugMode) console.log("rapm: " + results.map((p: number) => p.toFixed(3)));
+          if (debugMode) console.log(
+            `combinedRapm = [${combinedAdjEff.toFixed(1)}] vs actualEff = [${actualEff[offOrDef].toFixed(1)}] ... Err = [${adjEffErr.toFixed(1)}] `
+          );
+
+          const residuals = RapmUtils.calculatePredictedOut(weights[offOrDef], results, ctx);
+          const errSq = RapmUtils.calculateResidualError(adjPoss[offOrDef], residuals, ctx);
+          const dofInv = 1.0/(ctx.numLineups - ctx.numPlayers); //(degrees of freedom)
+
+          //if (debugMode) console.log(`RSS = [${offErrSq.toFixed(1)}] + [${defErrSq.toFixed(1)}]`);
+          if (debugMode) console.log(`MSS = [${(errSq*dofInv).toFixed(1)}]`);
+
+          const paramErrs = RapmUtils.calcSlowPseudoInverse(weights[offOrDef], ridgeLambda, ctx);
+
+          // https://arxiv.org/pdf/1509.09169.pdf
+          const sdRapm = paramErrs.map((p: number) => Math.sqrt(Math.sqrt(p)*errSq*dofInv));
+          if (debugMode) console.log("sdRapm: " + sdRapm.map((p: number) => p.toFixed(3)));
+
+          // Completion criteria:
+          if (adjEffErr >= 1.05) {
+            if (debugMode) console.log(`-!!!!!!!!!!- DONE PICK PREVIOUS [${acc.lastAttempt.ridgeLambda.toFixed(2)}]`);
+            acc.foundLambda = true;
+          } else if ((meanDiff >= 0) && (meanDiff < 0.105)) {
+            if (debugMode) console.log(`!!!!!!!!!!!! DONE PICK THIS [${ridgeLambda.toFixed(2)}]`);
+            acc.foundLambda = true;
+          }
+          //TODO:
+
+          acc.lastAttempt = {
+            results: results,
+            ridgeLambda: ridgeLambda
+          };
+
+          // Add diags:
+          acc.prevAttempts.push({
+          });
+
+        }//(else short circuit processing)
+      }, {
+        ridgeLambda: 0.5*avgEigenVal, //(fallback)
+        prevAttempts: [] as Array<Record<string, any>>,
+        lastAttempt: {} as Record<string, any>, //TODO: diags
+        foundLambda: false
+      })
+    );
+
+    // Show a graph of the average diff across lambdas:
+
+    return [
+//      offRapm, defRapm, rapmProcInputs
+    ]
+  }
+
+  private static calcSlowPseudoInverse(
     playerWeightMatrix: any,
     ridgeLambda: number,
     ctx: RapmPlayerContext
   ) {
-    // Note ridgeLambdas from similar work of 2K is without col normalization
-    // So instead of each row of XtX having "length" Nstint^2 it has "length"
-    // 1, so we should reduce the lambda by the same amount (assuming each stint is 5 possessions on average)
-    const factor = (ctx.numLineups*ctx.numLineups)/25;
-
+    //https://en.wikipedia.org/wiki/Tikhonov_regularization
     const playerWeightMatrixT = transpose(playerWeightMatrix)
     const bottom = add(
       multiply(playerWeightMatrixT, playerWeightMatrix),
-      multiply(ridgeLambda/factor, identity(ctx.numPlayers))
+      multiply(ridgeLambda, identity(ctx.numPlayers))
     );
     const bottomInv = inv(bottom).valueOf();
     return _.range(0, ctx.numPlayers).map((i) => Math.sqrt(bottomInv[i][i]));
@@ -261,7 +448,7 @@ export class RapmUtils {
   static calcCollinearityDiag(
     weightMatrix: any,
     ctx: RapmPlayerContext
-  ): RapmDiagnostics {
+  ): RapmPreProcDiagnostics {
     const debugMode = false;
 
     if (debugMode) {

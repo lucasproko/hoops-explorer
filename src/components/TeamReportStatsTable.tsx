@@ -32,6 +32,7 @@ import { getCommonFilterParams, TeamReportFilterParams, ParamDefaults } from '..
 import { LineupUtils } from '../utils/LineupUtils';
 import { RapmUtils } from '../utils/RapmUtils';
 import { UrlRouting } from '../utils/UrlRouting';
+import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
 
 // Util imports
 import { CbbColors } from "../utils/CbbColors";
@@ -57,6 +58,9 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
   // 1] State
 
   const commonParams = getCommonFilterParams(startingState);
+
+  const avgEfficiency =
+    efficiencyAverages[`${commonParams.gender}_${commonParams.year}`] || efficiencyAverages.fallback;
 
   const [ sortBy, setSortBy ] = useState(startingState.sortBy || ParamDefaults.defaultTeamReportSortBy);
   const [ filterStr, setFilterStr ] = useState(startingState.filter || ParamDefaults.defaultTeamReportFilter);
@@ -147,59 +151,29 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
 console.log("---------RAPM");
 try {
   const context = RapmUtils.buildPlayerContext(
-    tempTeamReport.players || [], lineupReport.lineups || [], 0.10
+    tempTeamReport.players || [], lineupReport.lineups || [],
+    avgEfficiency,
+    0.10, // Cut-off at 10% of possessions
+    2.0, //unbiasing factor
   );
+
+  console.log(`From [${lineupReport?.lineups?.length}] to [${
+    JSON.stringify(_.omit(context, ["filteredLineups", "teamInfo"]), null, 3)
+  }]`);
+
   const [ offWeights, defWeights ] = RapmUtils.calcPlayerWeights(context);
-  const diags = RapmUtils.calcCollinearityDiag(offWeights, context);
-  console.log(JSON.stringify(_.omit(diags, ["filteredLineups"]), null, 3) +
-    `\n(from [${lineupReport?.lineups?.length}] to [${context.filteredLineups.length}])`);
+
+  // const diags = RapmUtils.calcCollinearityDiag(offWeights, context);
+  // console.log(JSON.stringify(_.omit(diags), null, 3));
 
   console.log("====================================");
 
-  const [ offAdjPoss, defAdjPoss ] = RapmUtils.calcPlayerOutputs(
-    context.filteredLineups || [], "adj_ppp", 102.4, context //TODO USE AVG EFF
-  );
-  /**/
-  console.log("OFF: " + offAdjPoss.map(p => p.toFixed(2)));
-  console.log("DEF: " + defAdjPoss.map(p => p.toFixed(2)));
-
-  // Loop over following ridge regresssions, pick best st:
-  // sq(diff_vs_adj_eff) + sq(average param var, off+def/2)
-  // (or do some variance in rotation?)
-  // Have some diag at the bottom with info
-
-  [ 0, 50, 250, 500, 1000, 2000 ].forEach((ridgeLambda) => {
-//  [ 500 ].forEach((ridgeLambda) => { //(seems like we have a winner, but need detailed diags to enable this to be reconstructed in the future)
-    console.log("==================================== " + ridgeLambda);
-    console.log(context.colToPlayer);
-    try {
-      const offSolver = RapmUtils.slowRegression(offWeights, ridgeLambda, context);
-      const defSolver = RapmUtils.slowRegression(defWeights, ridgeLambda, context);
-      const offResults = RapmUtils.calculateRapm(offSolver, offAdjPoss);
-      const defResults = RapmUtils.calculateRapm(defSolver, defAdjPoss);
-
-      console.log("eOff: " + offResults.map((p: number) => p.toFixed(3)));
-      console.log("eDef: " + defResults.map((p: number) => p.toFixed(3)));
-
-      const offResiduals = RapmUtils.calculatePredictedOut(offWeights, offResults, context);
-      const defResiduals = RapmUtils.calculatePredictedOut(offWeights, defResults, context);
-      const offErrSd = Math.sqrt(RapmUtils.calculateResidualError(offAdjPoss, offResiduals, context)/(context.numLineups - context.numPlayers));
-      const defErrSd = Math.sqrt(RapmUtils.calculateResidualError(defAdjPoss, defResiduals, context)/(context.numLineups - context.numPlayers));
-      console.log(`ERR = [${offErrSd.toFixed(1)}] + [${defErrSd.toFixed(1)}]`);
-      const offParamErrs = RapmUtils.calcSlowPseudoInverse(offWeights, ridgeLambda, context);
-      const defParamErrs = RapmUtils.calcSlowPseudoInverse(defWeights, ridgeLambda, context);
-      console.log("errO: " + offParamErrs.map((p: number) => (offErrSd*p).toFixed(3)));
-      console.log("errD: " + defParamErrs.map((p: number) => (p*defErrSd).toFixed(3)));
-    } catch (err) {
-      console.log("ERROR CALLING (R)APM: " + err.message);
-    }
-  });
+  RapmUtils.pickRidgeRegression(offWeights, defWeights, context)
 
 } catch (err) {
-  console.log("ERROR CALLING (R)APM DIAGS: " + err.message);
+  console.log("ERROR CALLING (R)APM DIAGS: " + err.message, err);
 }
 console.log("---------");
-
 
       setTeamReport(tempTeamReport);
       setPlayersWithAdjEff(tempTeamReport?.players || []);

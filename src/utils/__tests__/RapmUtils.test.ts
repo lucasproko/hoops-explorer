@@ -1,7 +1,7 @@
 
 import _ from 'lodash';
 
-import { RapmUtils, RapmPlayerContext, RapmDiagnostics } from "../RapmUtils";
+import { RapmUtils, RapmPlayerContext, RapmPreProcDiagnostics } from "../RapmUtils";
 // @ts-ignore
 import { apply, transpose, matrix, zeros } from 'mathjs'
 
@@ -110,6 +110,28 @@ describe("RapmUtils", () => {
       [ "0.492", "0.492", "0.492", "0.000", "0.492", "0.492" ],
     ]);
   });
+
+  test("RapmUtils - calcPlayerWeights", () => {
+    const onOffReport = LineupUtils.lineupToTeamReport(lineupReport);
+    const context = RapmUtils.buildPlayerContext(
+      onOffReport.players || [], lineupReport.lineups || [], 0.0
+    );
+    const results = RapmUtils.calcLineupOutputs(
+      "adj_ppp", 100.0, context
+    );
+    const tidyResults = (resMatrix: Array<Array<number>>) => {
+      return resMatrix.map((arr) => {
+        return arr.map((val) => val.toFixed(2));
+      });
+    };
+    expect(tidyResults(results)).toEqual([
+      [ "11.23", "-1.97", "7.10" ],
+      [ "-9.98", "-13.09", "-12.08" ]
+    ]);
+  });
+
+
+
   test("RapmUtils - calcCollinearityDiag", () => {
 
     // Test matrix
@@ -132,7 +154,7 @@ describe("RapmUtils", () => {
 
     const results = RapmUtils.calcCollinearityDiag(test, dummyContext);
 
-    const tidyResults = (t: RapmDiagnostics) => {
+    const tidyResults = (t: RapmPreProcDiagnostics) => {
       return {
         lineupCombos: t.lineupCombos.map((val) => val.toFixed(4)),
         playerCombos: _.chain(t.playerCombos).mapValues((playerRow) => {
