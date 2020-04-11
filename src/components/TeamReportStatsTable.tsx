@@ -150,25 +150,29 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
 /**/
 console.log("---------RAPM");
 try {
-  const context = RapmUtils.buildPlayerContext(
+  const rapmContext = RapmUtils.buildPlayerContext(
     tempTeamReport.players || [], lineupReport.lineups || [],
-    avgEfficiency,
-    0.10, // Cut-off at 10% of possessions
-    2.0, //unbiasing factor
+    avgEfficiency
   );
 
   console.log(`From [${lineupReport?.lineups?.length}] to [${
-    JSON.stringify(_.omit(context, ["filteredLineups", "teamInfo"]), null, 3)
+    JSON.stringify(_.omit(rapmContext, ["filteredLineups", "teamInfo"]), null, 3)
   }]`);
 
-  const [ offWeights, defWeights ] = RapmUtils.calcPlayerWeights(context);
+  const [ offRapmWeights, defRapmWeights ] = RapmUtils.calcPlayerWeights(rapmContext);
 
   // const diags = RapmUtils.calcCollinearityDiag(offWeights, context);
   // console.log(JSON.stringify(_.omit(diags), null, 3));
 
   console.log("====================================");
 
-  RapmUtils.pickRidgeRegression(offWeights, defWeights, context)
+  const [ offRapmInputs, defRapmInputs ] = RapmUtils.pickRidgeRegression(
+    offRapmWeights, defRapmWeights, rapmContext
+  );
+
+  RapmUtils.injectRapmIntoPlayers(
+    tempTeamReport.players || [], offRapmInputs, defRapmInputs, rapmContext
+  )
 
 } catch (err) {
   console.log("ERROR CALLING (R)APM DIAGS: " + err.message, err);
@@ -279,7 +283,13 @@ console.log("---------");
       const repSuffix = `\nAdj: [${replacementMargin.toFixed(1)}]`;
 
       const statsReplacement = incReplacementOnOff ?
-        { off_title: player.replacement?.key + repSuffix, def_title: "", ...player?.replacement }: "";
+        { off_title: player.replacement?.key + repSuffix, def_title: "", ...player?.replacement }: {};
+
+      const rapmMargin = incRapm ?
+        player.rapm?.off_adj_ppp?.value - player.rapm?.def_adj_ppp?.value : 0.0;
+      const rapmSuffix = `\nAdj: [${rapmMargin.toFixed(1)}]`;
+      const statsRapm  = incRapm ?
+        { off_title: player.rapm?.key + rapmSuffix, def_title: "", ...player?.rapm } : {};
 
       return _.flatten([
         showOnOff ? [
@@ -291,6 +301,10 @@ console.log("---------");
         incReplacementOnOff && (player?.replacement?.key) ? [
           GenericTableOps.buildDataRow(statsReplacement, CommonTableDefs.offPrefixFn, CommonTableDefs.offCellMetaFn, CommonTableDefs.onOffReportReplacement),
           GenericTableOps.buildDataRow(statsReplacement, CommonTableDefs.defPrefixFn, CommonTableDefs.defCellMetaFn, CommonTableDefs.onOffReportReplacement)
+        ] : [],
+        incRapm && (player?.rapm?.key) ? [
+          GenericTableOps.buildDataRow(statsRapm, CommonTableDefs.offPrefixFn, CommonTableDefs.offCellMetaFn, CommonTableDefs.onOffReportReplacement),
+          GenericTableOps.buildDataRow(statsRapm, CommonTableDefs.defPrefixFn, CommonTableDefs.defCellMetaFn, CommonTableDefs.onOffReportReplacement)
         ] : [],
         showLineupCompositions ? [ GenericTableOps.buildTextRow(
           OnOffReportDiagUtils.buildLineupInfo(player, playerLineupPowerSet), "small"

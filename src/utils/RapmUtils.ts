@@ -4,6 +4,7 @@ import _ from "lodash";
 
 // Other app utils
 import { LineupUtils } from "./LineupUtils";
+import { CommonTableDefs } from "./CommonTableDefs";
 
 // Math utils
 // @ts-ignore
@@ -42,10 +43,10 @@ export type RapmPreProcDiagnostics = {
 };
 
 export type RapmProcessingInputs = {
-  regressionMatrix: any,
+  solnMatrix: any | null,
   ridgeLambda: number,
-  //TODO: errors
-}
+  prevAttempts: Array<any> //TODO make this list of diag objects typed
+};
 
 /** Wrapper for some math to calculate RAPM and its various artefacts */
 export class RapmUtils {
@@ -62,8 +63,8 @@ export class RapmUtils {
     lineups: Array<any>,
     avgEfficiency: number
     ,
-    removalPct: number,
-    unbiasWeight: number,
+    removalPct: number = 0.10,
+    unbiasWeight: number = 2.0,
   ): RapmPlayerContext {
     // The static threshold for removing players
     // (who do more harm than good)
@@ -246,30 +247,75 @@ export class RapmUtils {
     return transpose(multiply(regressionMatrix, out)).valueOf();
   }
 
-  //TODO: inject the various RAPMs info into the players array
+  /** Injects the RAPM predicted diffs into player.rapm */
+  static injectRapmIntoPlayers(
+    players: Array<Record<string, any>>,
+    offRapmInput: RapmProcessingInputs, defRapmInput: RapmProcessingInputs,
+    ctx: RapmPlayerContext
+  ) {
+    if (offRapmInput.solnMatrix && defRapmInput.solnMatrix) {
+      const rapmInput = {
+        off: offRapmInput,
+        def: defRapmInput
+      };
+      // Get a map (per field) of arrays (per player) of the RAPM results
+      const fieldToPlayerRapmArray = _.chain(CommonTableDefs.onOffReportReplacement).pick(
+        [ "adj_ppp" ] //TODO: temp while I get it working
+      ).omit(
+        [ "title", "sep0", "ppp", "sep1", "sep2", "sep3", "sep4", "poss", "adj_opp" ]
+      ).keys().flatMap((partialField: string) => {
+        const [ offVal, defVal ] = RapmUtils.calcLineupOutputs(
+          partialField, ctx.avgEfficiency, ctx
+        );
+        const vals = {
+          off: offVal, def: defVal
+        }
 
-  // 3] ERROR VALIDATION
-/*
-  export type RapmProcessingInputs = {
-    regressionMatrix: any,
-    ridgeLambda: number,
-    //TODO: errors
+        const onOffField = _.chain(["off", "def"]).map((offOrDef: "off" | "def") => {
+          const field = `${offOrDef}_${partialField}`;
+          const results: number[] = RapmUtils.calculateRapm(
+            rapmInput[offOrDef].solnMatrix, vals[offOrDef]
+          );
+          return [ field, results ];
+        }).value(); //(ie [ ON, OFF ] where ON/OFF = [ (on|off)_field, [ results ] ] )
+
+        return onOffField;
+
+      }).fromPairs().value(); //ie returns [ ON1, OFF1, ON2, OFF2, ... ] where ON/OFF as above
+
+      players.forEach((p) => {
+        const index = ctx.playerToCol[p.playerId];
+        p.rapm = _.chain(fieldToPlayerRapmArray).toPairs().map((kv) => {
+          return [ kv[0] , { value: kv[1][index] } ];
+        }).fromPairs().merge({
+          key: `RAPM ${p.playerId}`
+        }).value();
+      });
+    } //(else do nothing)
   }
-*/
 
   /**
   * Select a good ridge regression factor to use
+  * TODO: not sure how to test this!
   */
   static pickRidgeRegression(
     offWeights: any, defWeights: any,
     ctx: RapmPlayerContext
   ) {
-    const debugMode = true;
+    const debugMode = false;
 
     const weights = {
       off: offWeights,
       def: defWeights
     };
+
+    // TODO: look into one of the "proper" unbiased estimators:
+    // - http://www.utgjiu.ro/math/sma/v04/p08.pdf (coulnd't figure out how to turn this into algo?)
+    // - https://www.researchgate.net/publication/264911183_An_almost_unbiased_ridge_estimator
+
+    // TODO: use SVD to build a single expensive matrix that can then be minimally modified
+    // for each lambda (u,d,v) = svd; ridgeInv = v*f(d)*uT where (d) = diag(dii*dii/(lambda  + dii*dii))
+    // Thttps://en.wikipedia.org/wiki/Tikhonov_regularization#Relation_to_singular-value_decomposition_and_Wiener_filter
 
     // SVD
     // See https://en.wikipedia.org/wiki/Tikhonov_regularization#Determination_of_the_Tikhonov_factor
@@ -364,39 +410,49 @@ export class RapmUtils {
           if (debugMode) console.log("sdRapm: " + sdRapm.map((p: number) => p.toFixed(3)));
 
           // Completion criteria:
+          acc.output.ridgeLambda = ridgeLambda;
+          acc.output.solnMatrix = solver;
           if (adjEffErr >= 1.05) {
             if (debugMode) console.log(`-!!!!!!!!!!- DONE PICK PREVIOUS [${acc.lastAttempt.ridgeLambda.toFixed(2)}]`);
             acc.foundLambda = true;
+            // Roll back to previous
+            acc.output.solnMatrix = acc.lastAttempt.solnMatrix;
+            acc.output.ridgeLambda = acc.lastAttempt.ridgeLambda;
           } else if ((meanDiff >= 0) && (meanDiff < 0.105)) {
             if (debugMode) console.log(`!!!!!!!!!!!! DONE PICK THIS [${ridgeLambda.toFixed(2)}]`);
             acc.foundLambda = true;
+          } else {
+            acc.lastAttempt = {
+              results: results, // so we can build diffs
+              ridgeLambda: ridgeLambda, // may need this value
+              solnMatrix: solver
+            };
           }
-          //TODO:
-
-          acc.lastAttempt = {
-            results: results,
-            ridgeLambda: ridgeLambda
-          };
-
-          // Add diags:
-          acc.prevAttempts.push({
+          // Add diags for any step on which we've done processing
+          acc.output.prevAttempts.push({
+              //TODO: diags
           });
 
-        }//(else short circuit processing)
+        }//(else short circuit processing, we're done)
       }, {
-        ridgeLambda: 0.5*avgEigenVal, //(fallback)
-        prevAttempts: [] as Array<Record<string, any>>,
-        lastAttempt: {} as Record<string, any>, //TODO: diags
+        // The return vals we care about
+        output: {
+          ridgeLambda: -1,
+          solnMatrix: null,
+          prevAttempts: [] as Array<Record<string, any>>
+        } as RapmProcessingInputs,
+
+        // These are throwaway
+        lastAttempt: {} as Record<string, any>,
         foundLambda: false
       })
     );
-
-    // Show a graph of the average diff across lambdas:
-
     return [
-//      offRapm, defRapm, rapmProcInputs
-    ]
+      testResults[0].output, testResults[1].output
+    ];
   }
+
+  // 3] ERROR VALIDATION
 
   private static calcSlowPseudoInverse(
     playerWeightMatrix: any,
