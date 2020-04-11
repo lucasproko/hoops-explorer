@@ -194,26 +194,31 @@ export class RapmUtils {
 
   /** Calculate the output vectors (as 1-d arrays) against which we'll fit the vectors */
   private static calcLineupOutputs(
-    field: string, offset: number,
+    field: string,
+    offOffset: number, defOffset: number,
     ctx: RapmPlayerContext,
   ) {
+    const offsets = {
+      off: offOffset,
+      def: defOffset
+    }
     const calculateVector = (prefix: "off" | "def") => {
       return ctx.filteredLineups.map((lineup: any) => {
         const possCount = (lineup as any)[`${prefix}_poss`]?.value || 0;
         const lineupPossCount = ((ctx as any)[`${prefix}LineupPoss`] || 1);
         const possCountWeight = Math.sqrt(possCount/lineupPossCount);
         const val = (lineup as any)[`${prefix}_${field}`]?.value || 0;
-        return (val - offset)*possCountWeight;
+        return (val - offsets[prefix])*possCountWeight;
       });
     };
     const extra = ctx.unbiasWeight > 0;
 
     return [
       calculateVector("off").concat(
-        extra ? [ ctx.unbiasWeight*(ctx.teamInfo.off_adj_ppp.value  - ctx.avgEfficiency) ] : []
+        extra ? [ ctx.unbiasWeight*((ctx.teamInfo[`off_${field}`]?.value || 0)  - offOffset) ] : []
       ),
       calculateVector("def").concat(
-        extra ? [ ctx.unbiasWeight*(ctx.teamInfo.def_adj_ppp.value  - ctx.avgEfficiency) ] : []
+        extra ? [ ctx.unbiasWeight*((ctx.teamInfo[`def_${field}`]?.value || 0)  - defOffset) ] : []
       )
     ];
   }
@@ -259,18 +264,22 @@ export class RapmUtils {
         def: defRapmInput
       };
       // Get a map (per field) of arrays (per player) of the RAPM results
-      const fieldToPlayerRapmArray = _.chain(CommonTableDefs.onOffReportReplacement).pick(
-        [ "adj_ppp" ] //TODO: temp while I get it working
-      ).omit(
+      const fieldToPlayerRapmArray = _.chain(CommonTableDefs.onOffReportReplacement).omit(
         [ "title", "sep0", "ppp", "sep1", "sep2", "sep3", "sep4", "poss", "adj_opp" ]
       ).keys().flatMap((partialField: string) => {
+        const [ offOffset, defOffset ] = ({
+          "ppp": [ ctx.avgEfficiency, ctx.avgEfficiency ],
+          "adj_ppp": [ ctx.avgEfficiency, ctx.avgEfficiency ],
+        } as Record<string, any>)[partialField] || [
+          ctx.teamInfo[`off_${partialField}`]?.value || 0,
+          ctx.teamInfo[`def_${partialField}`]?.value || 0
+        ];
         const [ offVal, defVal ] = RapmUtils.calcLineupOutputs(
-          partialField, ctx.avgEfficiency, ctx
+          partialField, offOffset, defOffset, ctx
         );
         const vals = {
           off: offVal, def: defVal
         }
-
         const onOffField = _.chain(["off", "def"]).map((offOrDef: "off" | "def") => {
           const field = `${offOrDef}_${partialField}`;
           const results: number[] = RapmUtils.calculateRapm(
@@ -288,7 +297,8 @@ export class RapmUtils {
         p.rapm = _.chain(fieldToPlayerRapmArray).toPairs().map((kv) => {
           return [ kv[0] , { value: kv[1][index] } ];
         }).fromPairs().merge({
-          key: `RAPM ${p.playerId}`
+          key: `RAPM ${p.playerId}`,
+          off_poss: ctx.teamInfo.off_poss, def_poss: ctx.teamInfo.def_poss
         }).value();
       });
     } //(else do nothing)
@@ -352,7 +362,7 @@ export class RapmUtils {
     if (debugMode) console.log(`(Off) Player Poss = [${pctByPlayer.off.map((p: number) => p.toFixed(2))}]`);
 
     const [ offAdjPoss, defAdjPoss ] = RapmUtils.calcLineupOutputs(
-      "adj_ppp", ctx.avgEfficiency, ctx
+      "adj_ppp", ctx.avgEfficiency, ctx.avgEfficiency, ctx
     );
     const adjPoss = {
       off: offAdjPoss,

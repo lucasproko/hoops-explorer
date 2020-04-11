@@ -147,38 +147,35 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
       const tempTeamReport = LineupUtils.lineupToTeamReport(
         lineupReport, incReplacementOnOff, regressDiffs, repOnOffDiagMode
       );
-/**/
-console.log("---------RAPM");
-try {
-  const rapmContext = RapmUtils.buildPlayerContext(
-    tempTeamReport.players || [], lineupReport.lineups || [],
-    avgEfficiency
-  );
+      // TODO: RAPM
+      if (incRapm) {
+        try {
+          const rapmContext = RapmUtils.buildPlayerContext(
+            tempTeamReport.players || [], lineupReport.lineups || [],
+            avgEfficiency
+          );
 
-  console.log(`From [${lineupReport?.lineups?.length}] to [${
-    JSON.stringify(_.omit(rapmContext, ["filteredLineups", "teamInfo"]), null, 3)
-  }]`);
+          // console.log(`From [${lineupReport?.lineups?.length}] to [${
+          //   JSON.stringify(_.omit(rapmContext, ["filteredLineups", "teamInfo"]), null, 3)
+          // }]`);
 
-  const [ offRapmWeights, defRapmWeights ] = RapmUtils.calcPlayerWeights(rapmContext);
+          const [ offRapmWeights, defRapmWeights ] = RapmUtils.calcPlayerWeights(rapmContext);
 
-  // const diags = RapmUtils.calcCollinearityDiag(offWeights, context);
-  // console.log(JSON.stringify(_.omit(diags), null, 3));
+          // const diags = RapmUtils.calcCollinearityDiag(offWeights, context);
+          // console.log(JSON.stringify(_.omit(diags), null, 3));
 
-  console.log("====================================");
+          const [ offRapmInputs, defRapmInputs ] = RapmUtils.pickRidgeRegression(
+            offRapmWeights, defRapmWeights, rapmContext
+          );
 
-  const [ offRapmInputs, defRapmInputs ] = RapmUtils.pickRidgeRegression(
-    offRapmWeights, defRapmWeights, rapmContext
-  );
+          RapmUtils.injectRapmIntoPlayers(
+            tempTeamReport.players || [], offRapmInputs, defRapmInputs, rapmContext
+          )
 
-  RapmUtils.injectRapmIntoPlayers(
-    tempTeamReport.players || [], offRapmInputs, defRapmInputs, rapmContext
-  )
-
-} catch (err) {
-  console.log("ERROR CALLING (R)APM DIAGS: " + err.message, err);
-}
-console.log("---------");
-
+        } catch (err) {
+          console.log("ERROR CALLING (R)APM DIAGS: " + err.message, err);
+        }
+      }
       setTeamReport(tempTeamReport);
       setPlayersWithAdjEff(tempTeamReport?.players || []);
     } catch (e) {
