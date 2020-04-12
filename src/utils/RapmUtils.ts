@@ -48,12 +48,6 @@ export type RapmProcessingInputs = {
   prevAttempts: Array<any> //TODO make this list of diag objects typed
 };
 
-//TODO: bug to fix:
-// Intialize RAPM only => Donta Scott has 0.3/-1.9
-// Add replacement on/off ... goes to 0/-1.9
-// Remove ... stays
-// So must be corrupting the state 2nd time
-
 /** Wrapper for some math to calculate RAPM and its various artefacts */
 export class RapmUtils {
 
@@ -299,7 +293,7 @@ export class RapmUtils {
 
       }).fromPairs().value(); //ie returns [ ON1, OFF1, ON2, OFF2, ... ] where ON/OFF as above
 
-      players.forEach((p) => {
+      players.filter((p) => !ctx.removedPlayers.hasOwnProperty(p.playerId)).forEach((p) => {
         const index = ctx.playerToCol[p.playerId];
         p.rapm = _.chain(fieldToPlayerRapmArray).toPairs().map((kv) => {
           return [ kv[0] , { value: kv[1][index] } ];

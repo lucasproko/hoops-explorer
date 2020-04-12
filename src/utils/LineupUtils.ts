@@ -30,6 +30,7 @@ export class LineupUtils {
     regressDiffs: number = 0, repOnOffDiagMode: number = 0
   ): TeamReportStatsModel {
     const allPlayersSet = _.chain(lineupReport.lineups || []).reduce((acc: any, lineup: any) => {
+      delete lineup.rapmRemove; //(ugly hack/coupling with RAPM utils to ensure no state is preserved)
       const players = lineup?.players_array?.hits?.hits?.[0]?._source?.players || [];
       return _.mergeWith(
         acc, _.chain(players).map((v) => [ v.id, v.code ]).fromPairs().value()
