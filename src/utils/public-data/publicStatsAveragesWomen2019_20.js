@@ -1,5 +1,5 @@
 
-export const publicStatsAveragesWomen2019_20 =   {
+const publicStatsAveragesWomen2019_20 =   {
           "off_2p" : {
             "value" : 0.4583550207689089
           },

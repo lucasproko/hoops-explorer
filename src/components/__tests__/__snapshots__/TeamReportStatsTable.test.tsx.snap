@@ -1295,7 +1295,44 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot 1`] 
                 onClick={[Function]}
               >
                 <span>
-                  Show replacement On-Off
+                  Show replacement On-Off 
+                  <span
+                    className="badge badge-pill badge-info"
+                  >
+                    alpha!
+                  </span>
+                </span>
+                <span>
+                      
+                </span>
+              </div>
+            </DropdownItem>
+            <DropdownItem
+              as={
+                Object {
+                  "$$typeof": Symbol(react.forward_ref),
+                  "defaultProps": Object {
+                    "active": false,
+                    "disabled": false,
+                    "type": "button",
+                    "variant": "primary",
+                  },
+                  "displayName": "Button",
+                  "render": [Function],
+                }
+              }
+              disabled={false}
+            >
+              <div
+                onClick={[Function]}
+              >
+                <span>
+                  Show RAPM 
+                  <span
+                    className="badge badge-pill badge-info"
+                  >
+                    experimental!
+                  </span>
                 </span>
                 <span>
                       
