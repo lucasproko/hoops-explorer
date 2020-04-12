@@ -174,6 +174,8 @@ export class HistoryManager {
       _.isNil(p.showComps) ? ParamDefaults.defaultShowComps : p.showComps;
     const incRepOnOff =
       _.isNil(p.incRepOnOff) ? ParamDefaults.defaultTeamReportIncRepOnOff : p.incRepOnOff;
+    const incRapm =
+      _.isNil(p.incRapm) ? ParamDefaults.defaultTeamReportIncRapm : p.incRapm;
     const regressNum =
       _.isNil(p.regressDiffs) ? ParamDefaults.defaultTeamReportRegressDiffs : p.regressDiffs;
     const regressStr =
@@ -185,6 +187,7 @@ export class HistoryManager {
       showOnOff ? [] : [ "!on/off" ],
       showComps ? [ "comps" ] : [],
       incRepOnOff ? [ "r:on-off" + regressStr ] : [],
+      incRapm ? [ "rapm" ] : [],
       diagMode ? [ "r:on-off:diag" ] : []
     ]);
 

@@ -12,12 +12,25 @@ export class LineupUtils {
   private static readonly debugReplacementOnOffPlayer = "PLAYER";
   private static readonly debugReplacementOnOffMinPoss = 30;
 
+  /** Combines all lineups into a single team stat, ignoring discarded fields */
+  static calculateAggregatedLineupStats(
+    lineups: Array<any>
+  ) {
+    const teamInfo = _.chain(lineups || []).filter((l: any) => !l.rapmRemove).transform((acc, lineup) => {
+      LineupUtils.weightedAvg(acc, lineup);
+
+    }, {} as Record<string, any>).value();
+    LineupUtils.completeWeightedAvg(teamInfo);
+    return teamInfo;
+  }
+
   /** Builds on/off info out of lineups */
   static lineupToTeamReport(
     lineupReport: LineupStatsModel, incReplacement: boolean = false,
     regressDiffs: number = 0, repOnOffDiagMode: number = 0
   ): TeamReportStatsModel {
     const allPlayersSet = _.chain(lineupReport.lineups || []).reduce((acc: any, lineup: any) => {
+      delete lineup.rapmRemove; //(ugly hack/coupling with RAPM utils to ensure no state is preserved)
       const players = lineup?.players_array?.hits?.hits?.[0]?._source?.players || [];
       return _.mergeWith(
         acc, _.chain(players).map((v) => [ v.id, v.code ]).fromPairs().value()

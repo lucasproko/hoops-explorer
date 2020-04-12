@@ -72,6 +72,7 @@ export type TeamReportFilterParams = {
   incRepOnOff?: boolean,
   regressDiffs?: string, //+ve to add that number of 0 samples, -ve to regress to the given sample size
   repOnOffDiagMode?: string //(tthe number of diagnostic lineups to show, basically 0 or 10)
+  incRapm?: boolean
 };
 
 /** Used to give compile errors if a field is omitted, for fw compat */
@@ -101,6 +102,7 @@ export class ParamDefaults {
   static readonly defaultShowOnOff = true;
   static readonly defaultShowComps = true;
   static readonly defaultTeamReportIncRepOnOff = false;
+  static readonly defaultTeamReportIncRapm = false;
   static readonly defaultTeamReportRegressDiffs = "-2000";
   static readonly defaultTeamReportRepOnOffDiagMode = "0";
   // Common

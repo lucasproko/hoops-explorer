@@ -42,6 +42,7 @@
     "lodash.combinations": "^18.9.19",
     "lru-cache": "^5.1.1",
     "lzutf8": "^0.5.5",
+    "mathjs": "^6.6.2",
     "next": "^9.1.1",
     "query-string": "^6.8.3",
     "react": "^16.10.2",
@@ -52,7 +53,8 @@
     "react-loading-overlay": "^1.0.1",
     "react-select": "^3.0.8",
     "reshake": "^1.2.1",
-    "styled-components": "^4.4.1"
+    "styled-components": "^4.4.1",
+    "svd-js": "^1.0.6"
   },
   "devDependencies": {
     "@babel/plugin-proposal-optional-chaining": "^7.6.0",

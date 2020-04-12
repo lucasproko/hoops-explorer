@@ -30,7 +30,10 @@ import GenericTable, { GenericTableOps, GenericTableColProps } from "./GenericTa
 import { LineupStatsModel } from './LineupStatsTable';
 import { getCommonFilterParams, TeamReportFilterParams, ParamDefaults } from '../utils/FilterModels';
 import { LineupUtils } from '../utils/LineupUtils';
+import { RapmUtils } from '../utils/RapmUtils';
 import { UrlRouting } from '../utils/UrlRouting';
+import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
+import { averageStatsInfo } from '../utils/internal-data/averageStatsInfo';
 
 // Util imports
 import { CbbColors } from "../utils/CbbColors";
@@ -57,6 +60,10 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
 
   const commonParams = getCommonFilterParams(startingState);
 
+  const genderYearLookup = `${commonParams.gender}_${commonParams.year}`;
+  const avgEfficiency = efficiencyAverages[genderYearLookup] || efficiencyAverages.fallback;
+  const statsAverages = averageStatsInfo[genderYearLookup] || {};
+
   const [ sortBy, setSortBy ] = useState(startingState.sortBy || ParamDefaults.defaultTeamReportSortBy);
   const [ filterStr, setFilterStr ] = useState(startingState.filter || ParamDefaults.defaultTeamReportFilter);
 
@@ -78,6 +85,10 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
     _.isNil(startingState.incRepOnOff) ? ParamDefaults.defaultTeamReportIncRepOnOff : startingState.incRepOnOff
   );
 
+  const [ incRapm, setIncRapm ] = useState(
+    _.isNil(startingState.incRapm) ? ParamDefaults.defaultTeamReportIncRapm : startingState.incRapm
+  );
+
   const [ regressDiffs, setRegressDiffs ] = useState(
     parseInt(_.isNil(startingState.regressDiffs) ? ParamDefaults.defaultTeamReportRegressDiffs : startingState.regressDiffs)
   );
@@ -87,6 +98,10 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
   );
   const [ repOnOffDiagMode, setRepOnOffDiagMode ] = useState(
     parseInt(_.isNil(startingState.repOnOffDiagMode) ? ParamDefaults.defaultTeamReportRepOnOffDiagMode : startingState.repOnOffDiagMode)
+  );
+
+  const [ rapmDiagMode, setRapmDiagMode ] = useState(
+    false // TODO
   );
 
   /** If the browser is doing heavier calcs then spin the display vs just be unresponsive */
@@ -106,17 +121,20 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
       showOnOff: showOnOff,
       showComps: showLineupCompositions,
       incRepOnOff: incReplacementOnOff,
+      incRapm: incRapm,
       regressDiffs: regressDiffs.toString(),
       repOnOffDiagMode: repOnOffDiagMode.toString()
     }).omit( // remove "debuggy" fields
       (repOnOffDiagMode == 0) ? [ 'repOnOffDiagMode' ] : []
     ).value();
     onChangeState(newState);
-  }, [ sortBy, filterStr, showOnOff, showLineupCompositions, incReplacementOnOff, regressDiffs, repOnOffDiagMode ]);
+  }, [ sortBy, filterStr, showOnOff, showLineupCompositions, incReplacementOnOff, incRapm, regressDiffs, repOnOffDiagMode ]);
 
   // (cache this below)
   const [ teamReport, setTeamReport ] = useState({} as any);
   const [ playersWithAdjEff, setPlayersWithAdjEff ] = useState([] as Array<any>);
+
+  const [ rapmInfo, setRapmInfo ] = useState({} as any);
 
   useEffect(() => { //(this ensures that the filter component is up to date with the union of these fields)
 
@@ -124,7 +142,7 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
     // we're processing (vs just being unresponsive)
     setInBrowserRepOnOffPxing(true);
 
-  }, [ lineupReport, incReplacementOnOff, regressDiffs, repOnOffDiagMode ] );
+  }, [ lineupReport, incReplacementOnOff, incRapm, regressDiffs, repOnOffDiagMode ] );
 
   /** logic to perform whenever the data changes (or the metadata in such a way re-processing is required)*/
   const onDataChangeProcessing = () => {
@@ -132,6 +150,23 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
       const tempTeamReport = LineupUtils.lineupToTeamReport(
         lineupReport, incReplacementOnOff, regressDiffs, repOnOffDiagMode
       );
+      if (incRapm) {
+        try {
+          const rapmContext = RapmUtils.buildPlayerContext(
+            tempTeamReport.players || [], lineupReport.lineups || [],
+            avgEfficiency
+          );
+          const [ offRapmWeights, defRapmWeights ] = RapmUtils.calcPlayerWeights(rapmContext);
+          const [ offRapmInputs, defRapmInputs ] = RapmUtils.pickRidgeRegression(
+            offRapmWeights, defRapmWeights, rapmContext
+          );
+          RapmUtils.injectRapmIntoPlayers(
+            tempTeamReport.players || [], offRapmInputs, defRapmInputs, statsAverages, rapmContext
+          )
+        } catch (err) {
+          console.log("ERROR CALLING (R)APM DIAGS: " + err.message, err);
+        }
+      }
       setTeamReport(tempTeamReport);
       setPlayersWithAdjEff(tempTeamReport?.players || []);
     } catch (e) {
@@ -183,12 +218,13 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
         case "on": return [ playerSet.on ];
         case "off": return [ playerSet.off ];
         case "rep": return [ playerSet.replacement ];
+        case "rapm": return [ playerSet.rapm ];
         case "delta": return [ playerSet.on, playerSet.off ];
         default: return [ 0 ];
       }
     };
     return (playerSet: any) => {
-      const playerFields = onOrOff(playerSet || {}).map(player => field(player) || 0);
+      const playerFields = onOrOff(playerSet || {}).map(player => field(player || {}) || 0);
       if (playerFields.length > 1) {
         return dir*(playerFields[0] - playerFields[1]); //(delta case above)
       } else {
@@ -236,7 +272,13 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
       const repSuffix = `\nAdj: [${replacementMargin.toFixed(1)}]`;
 
       const statsReplacement = incReplacementOnOff ?
-        { off_title: player.replacement?.key + repSuffix, def_title: "", ...player?.replacement }: "";
+        { off_title: player.replacement?.key + repSuffix, def_title: "", ...player?.replacement }: {};
+
+      const rapmMargin = incRapm ?
+        player.rapm?.off_adj_ppp?.value - player.rapm?.def_adj_ppp?.value : 0.0;
+      const rapmSuffix = `\nAdj: [${rapmMargin.toFixed(1)}]`;
+      const statsRapm  = incRapm ?
+        { off_title: player.rapm?.key + rapmSuffix, def_title: "", ...player?.rapm } : {};
 
       return _.flatten([
         showOnOff ? [
@@ -248,6 +290,10 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
         incReplacementOnOff && (player?.replacement?.key) ? [
           GenericTableOps.buildDataRow(statsReplacement, CommonTableDefs.offPrefixFn, CommonTableDefs.offCellMetaFn, CommonTableDefs.onOffReportReplacement),
           GenericTableOps.buildDataRow(statsReplacement, CommonTableDefs.defPrefixFn, CommonTableDefs.defCellMetaFn, CommonTableDefs.onOffReportReplacement)
+        ] : [],
+        incRapm && (player?.rapm?.key) ? [
+          GenericTableOps.buildDataRow(statsRapm, CommonTableDefs.offPrefixFn, CommonTableDefs.offCellMetaFn, CommonTableDefs.onOffReportReplacement),
+          GenericTableOps.buildDataRow(statsRapm, CommonTableDefs.defPrefixFn, CommonTableDefs.defCellMetaFn, CommonTableDefs.onOffReportReplacement)
         ] : [],
         showLineupCompositions ? [ GenericTableOps.buildTextRow(
           OnOffReportDiagUtils.buildLineupInfo(player, playerLineupPowerSet), "small"
@@ -272,7 +318,8 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
         ].flatMap(sort_offDef => {
           const onOffCombos = _.flatMap([
             showOnOff || showLineupCompositions ? ["on", "off", "delta"] : [],
-            incReplacementOnOff ? ["rep"] : []
+            incReplacementOnOff ? ["rep"] : [],
+            incRapm ? ["rapm"] : []
           ]);
           return onOffCombos.map(onOff => {
             return [ ...sort_offDef, onOff ];
@@ -283,6 +330,7 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
             case "off": return "'Off'";
             case "delta": return "'On-Off'";
             case "rep": return "'r:On-Off'";
+            case "rapm": return "RAPM";
           }}
           const ascOrDesc = (s: string) => { switch(s) {
             case "asc": return "Asc.";
@@ -318,6 +366,12 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
       "desc:diff_adj_ppp:rep",
       "desc:off_adj_ppp:rep",
       "asc:def_adj_ppp:rep"
+    ] : [],
+    incRapm ? [
+      "desc:off_poss:rapm",
+      "desc:diff_adj_ppp:rapm",
+      "desc:off_adj_ppp:rapm",
+      "asc:def_adj_ppp:rapm"
     ] : []
   ]);
   /** The two sub-headers for the dropdown */
@@ -416,9 +470,16 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
               </Dropdown.Item>
               <Dropdown.Item as={Button}>
                 <div onClick={() => setIncReplacementOnOff(!incReplacementOnOff)}>
-                  <span>Show replacement On-Off</span>
+                  <span>Show replacement On-Off <span className="badge badge-pill badge-info">alpha!</span></span>
                   <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
                   {incReplacementOnOff ? <FontAwesomeIcon icon={faCheck}/> : null}
+                </div>
+              </Dropdown.Item>
+              <Dropdown.Item as={Button}>
+                <div onClick={() => setIncRapm(!incRapm)}>
+                  <span>Show RAPM <span className="badge badge-pill badge-info">experimental!</span></span>
+                  <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                  {incRapm ? <FontAwesomeIcon icon={faCheck}/> : null}
                 </div>
               </Dropdown.Item>
               <Dropdown.Item as={Button}>
