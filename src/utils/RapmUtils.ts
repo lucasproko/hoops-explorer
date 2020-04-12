@@ -193,7 +193,7 @@ export class RapmUtils {
   }
 
   /** Calculate the output vectors (as 1-d arrays) against which we'll fit the vectors */
-  private static calcLineupOutputs(
+  static calcLineupOutputs(
     field: string,
     offOffset: number, defOffset: number,
     ctx: RapmPlayerContext,
@@ -314,11 +314,21 @@ export class RapmUtils {
     ctx: RapmPlayerContext
   ) {
     const debugMode = false;
+    const generateTestCases = false;
 
     const weights = {
       off: offWeights,
       def: defWeights
     };
+    // For creating tests
+    if (generateTestCases) { //(double-safety: if guard AND commented out!)
+      // console.log(JSON.stringify(offWeights.valueOf()).replace(/([.][0-9]{4})[0-9]*/g, "$1"));
+      // console.log(JSON.stringify(defWeights.valueOf()).replace(/([.][0-9]{4})[0-9]*/g, "$1"));
+      // console.log(JSON.stringify(_.omit(ctx, [ "filteredLineups", "teamInfo"])));
+      // console.log(JSON.stringify(ctx.filteredLineups.map((l) => {
+      //   return _.pick(l, "off_adj_ppp", "def_adj_ppp", "off_to", "def_to", "off_poss", "def_poss")
+      // })).replace(/([.][0-9]{4})[0-9]*/g, "$1"));
+    }
 
     // TODO: look into one of the "proper" unbiased estimators:
     // - http://www.utgjiu.ro/math/sma/v04/p08.pdf (coulnd't figure out how to turn this into algo?)
@@ -373,6 +383,7 @@ export class RapmUtils {
     const lambdaRange = [ 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.25, 2.5, 2.75, 3 ];
     const testResults = ([ "off", "def" ] as Array<"off" | "def">).map((offOrDef: "off" | "def") =>
       _.transform(lambdaRange, (acc, lambda) => {
+        const notFirstStep = lambda > lambdaRange[0];
         if (!acc.foundLambda) {
           const ridgeLambda = lambda*avgEigenVal; //(scale lambda according to the scale of the weight matrix)
 
@@ -386,7 +397,7 @@ export class RapmUtils {
           const adjEffErr = Math.abs(combinedAdjEff - actualEff[offOrDef]);
 
           const [ meanDiff, maxDiff ] = (() => {
-            if (lambda > lambdaRange[0]) { //ie 2nd+ time onwards, so we can check diffs
+            if (notFirstStep) { //ie 2nd+ time onwards, so we can check diffs
               const diffs = _.zip(
                 results, acc.lastAttempt.results as number[]
               ).map((zip: Array<number|undefined>) => {
@@ -423,7 +434,7 @@ export class RapmUtils {
           // Completion criteria:
           acc.output.ridgeLambda = ridgeLambda;
           acc.output.solnMatrix = solver;
-          if (adjEffErr >= 1.05) {
+          if ((adjEffErr >= 1.05) && notFirstStep) {
             if (debugMode) console.log(`-!!!!!!!!!!- DONE PICK PREVIOUS [${acc.lastAttempt.ridgeLambda.toFixed(2)}]`);
             acc.foundLambda = true;
             // Roll back to previous
