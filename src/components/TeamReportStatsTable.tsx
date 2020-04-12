@@ -33,6 +33,7 @@ import { LineupUtils } from '../utils/LineupUtils';
 import { RapmUtils } from '../utils/RapmUtils';
 import { UrlRouting } from '../utils/UrlRouting';
 import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
+import { averageStatsInfo } from '../utils/internal-data/averageStatsInfo';
 
 // Util imports
 import { CbbColors } from "../utils/CbbColors";
@@ -59,8 +60,9 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
 
   const commonParams = getCommonFilterParams(startingState);
 
-  const avgEfficiency =
-    efficiencyAverages[`${commonParams.gender}_${commonParams.year}`] || efficiencyAverages.fallback;
+  const genderYearLookup = `${commonParams.gender}_${commonParams.year}`;
+  const avgEfficiency = efficiencyAverages[genderYearLookup] || efficiencyAverages.fallback;
+  const statsAverages = averageStatsInfo[genderYearLookup] || {};
 
   const [ sortBy, setSortBy ] = useState(startingState.sortBy || ParamDefaults.defaultTeamReportSortBy);
   const [ filterStr, setFilterStr ] = useState(startingState.filter || ParamDefaults.defaultTeamReportFilter);
@@ -169,7 +171,7 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
           );
 
           RapmUtils.injectRapmIntoPlayers(
-            tempTeamReport.players || [], offRapmInputs, defRapmInputs, rapmContext
+            tempTeamReport.players || [], offRapmInputs, defRapmInputs, statsAverages, rapmContext
           )
 
         } catch (err) {

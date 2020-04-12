@@ -48,6 +48,12 @@ export type RapmProcessingInputs = {
   prevAttempts: Array<any> //TODO make this list of diag objects typed
 };
 
+//TODO: bug to fix:
+// Intialize RAPM only => Donta Scott has 0.3/-1.9
+// Add replacement on/off ... goes to 0/-1.9
+// Remove ... stays
+// So must be corrupting the state 2nd time
+
 /** Wrapper for some math to calculate RAPM and its various artefacts */
 export class RapmUtils {
 
@@ -256,6 +262,7 @@ export class RapmUtils {
   static injectRapmIntoPlayers(
     players: Array<Record<string, any>>,
     offRapmInput: RapmProcessingInputs, defRapmInput: RapmProcessingInputs,
+    statsAverages: Record<string, any>,
     ctx: RapmPlayerContext
   ) {
     if (offRapmInput.solnMatrix && defRapmInput.solnMatrix) {
@@ -271,8 +278,8 @@ export class RapmUtils {
           "ppp": [ ctx.avgEfficiency, ctx.avgEfficiency ],
           "adj_ppp": [ ctx.avgEfficiency, ctx.avgEfficiency ],
         } as Record<string, any>)[partialField] || [
-          ctx.teamInfo[`off_${partialField}`]?.value || 0,
-          ctx.teamInfo[`def_${partialField}`]?.value || 0
+          statsAverages[`off_${partialField}`]?.value || ctx.teamInfo[`off_${partialField}`]?.value || 0,
+          statsAverages[`def_${partialField}`]?.value || ctx.teamInfo[`def_${partialField}`]?.value || 0
         ];
         const [ offVal, defVal ] = RapmUtils.calcLineupOutputs(
           partialField, offOffset, defOffset, ctx
