@@ -2,7 +2,7 @@
 
 import _ from 'lodash';
 
-import { QueryUtils } from "../QueryUtils";
+import { CommonFilterType, QueryUtils } from "../QueryUtils";
 import { CommonFilterParams } from "../FilterModels";
 
 describe("QueryUtils", () => {
@@ -48,10 +48,34 @@ describe("QueryUtils", () => {
       `players.id:((("Cowan, Ant" AND Morsell) AND NOT (Ayala)) OR (("Cowan, Ant" AND Ayala) AND NOT (Morsell)) OR ((Morsell AND Ayala) AND NOT ("Cowan, Ant")))`
     );
     expect(QueryUtils.basicOrAdvancedQuery(query7, "fallback")).toBe(
-      `players.id:((((Morsell) AND NOT (Ayala)) OR ((Ayala) AND NOT (Morsell))))`  
+      `players.id:((((Morsell) AND NOT (Ayala)) OR ((Ayala) AND NOT (Morsell))))`
     );
     expect(QueryUtils.basicOrAdvancedQuery(query8, "fallback")).toBe(
       `players.id:(((Cowan) AND NOT (Morsell OR Ayala)) OR ((Morsell) AND NOT (Cowan OR Ayala)) OR ((Ayala) AND NOT (Cowan OR Morsell)))`
     );
+  });
+  test("QueryUtils - filterWith/filterWithout/filterHas/toggleFilteer", () => {
+    [
+      [ "Conf", "Non-Conf" ] as CommonFilterType[],
+      [ "Home", "Away", "Not-Home"] as CommonFilterType[],
+      [ "Nov-Dec", "Jan-Apr", "Last-30d"] as CommonFilterType[],
+    ].forEach((testSet) => {
+      testSet.forEach((test) => {
+        // Basic testing:
+        expect(QueryUtils.toggleFilter([test], test)).toEqual([]);
+        expect(QueryUtils.toggleFilter([], test)).toEqual([test]);
+        // Check other options from same set are unset by toggle
+        expect(QueryUtils.toggleFilter(_.filter(testSet, (nT) => nT != test), test)).toEqual([test]);
+        testSet.forEach((nonTest) => {
+          if (nonTest != test) {
+            expect(QueryUtils.toggleFilter([nonTest], test)).toEqual([test]);
+          }
+        });
+      });
+    });
+    // Just check works with multiple
+    expect(QueryUtils.toggleFilter(["Home", "Nov-Dec"], "Non-Conf")).toEqual(["Home","Non-Conf","Nov-Dec"]);
+    expect(QueryUtils.toggleFilter(["Conf", "Home", "Nov-Dec"], "Non-Conf")).toEqual(["Home","Non-Conf","Nov-Dec"]);
+    expect(QueryUtils.toggleFilter(["Conf", "Home", "Nov-Dec"], "Conf")).toEqual(["Home","Nov-Dec"]);
   });
 });

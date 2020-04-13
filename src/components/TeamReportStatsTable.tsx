@@ -28,6 +28,7 @@ import { faCheck } from '@fortawesome/free-solid-svg-icons'
 // Component imports
 import GenericTable, { GenericTableOps, GenericTableColProps } from "./GenericTable";
 import { LineupStatsModel } from './LineupStatsTable';
+import GenericTogglingMenuItem from "./GenericTogglingMenuItem";
 import { getCommonFilterParams, TeamReportFilterParams, ParamDefaults } from '../utils/FilterModels';
 import { LineupUtils } from '../utils/LineupUtils';
 import { RapmUtils } from '../utils/RapmUtils';
@@ -185,7 +186,9 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
 
   // Called fron unit test so we build the snapshot based on the actual data
   if (testMode) {
-    onDataChangeProcessing();
+    if (playersWithAdjEff.length == 0) { //(ensure that unit tests don't re-render to infinity)
+      onDataChangeProcessing();
+    }
   }
 
   // 2] Data Model
@@ -461,55 +464,45 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
               <FontAwesomeIcon icon={faCog} />
             </Dropdown.Toggle>
             <Dropdown.Menu>
-              <Dropdown.Item as={Button}>
-                <div onClick={() => setShowOnOff(!showOnOff)}>
-                  <span>Show on/off statistics</span>
-                  <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                  {showOnOff ? <FontAwesomeIcon icon={faCheck}/> : null}
-                </div>
-              </Dropdown.Item>
-              <Dropdown.Item as={Button}>
-                <div onClick={() => setIncReplacementOnOff(!incReplacementOnOff)}>
-                  <span>Show replacement On-Off <span className="badge badge-pill badge-info">alpha!</span></span>
-                  <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                  {incReplacementOnOff ? <FontAwesomeIcon icon={faCheck}/> : null}
-                </div>
-              </Dropdown.Item>
-              <Dropdown.Item as={Button}>
-                <div onClick={() => setIncRapm(!incRapm)}>
-                  <span>Show RAPM <span className="badge badge-pill badge-info">experimental!</span></span>
-                  <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                  {incRapm ? <FontAwesomeIcon icon={faCheck}/> : null}
-                </div>
-              </Dropdown.Item>
-              <Dropdown.Item as={Button}>
-                <div onClick={() => setShowLineupCompositions(!showLineupCompositions)}>
-                  <span>Show lineup compositions</span>
-                  <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                  {showLineupCompositions ? <FontAwesomeIcon icon={faCheck}/> : null}
-                </div>
-              </Dropdown.Item>
+              <GenericTogglingMenuItem
+                text="Show on/off statistics"
+                truthVal={showOnOff}
+                onSelect={() => setShowOnOff(!showOnOff)}
+              />
+              <GenericTogglingMenuItem
+                text={<span>Show replacement On-Off <span className="badge badge-pill badge-info">alpha!</span></span>}
+                truthVal={incReplacementOnOff}
+                onSelect={() => setIncReplacementOnOff(!incReplacementOnOff)}
+              />
+              <GenericTogglingMenuItem
+                text={<span>Show RAPM <span className="badge badge-pill badge-info">experimental!</span></span>}
+                truthVal={incRapm}
+                onSelect={() => setIncRapm(!incRapm)}
+              />
+              <GenericTogglingMenuItem
+                text="Show lineup compositions"
+                truthVal={showLineupCompositions}
+                onSelect={() => setShowLineupCompositions(!showLineupCompositions)}
+              />
               <Dropdown.Divider />
-              <Dropdown.Item as={Button}>
-                <div onClick={() => setRegressDiffs(
+              <GenericTogglingMenuItem
+                text={`Regress 'r:On-Off' ${
+                  startingRegressDiffs > 0 ? "by" : "to"
+                } ${
+                  Math.abs(startingRegressDiffs != 0 ? startingRegressDiffs : parseInt(ParamDefaults.defaultTeamReportRegressDiffs))
+                } samples`}
+                truthVal={regressDiffs != 0}
+                onSelect={() => setRegressDiffs(
                   regressDiffs != 0 ?
                     0 : // switch off if on, else switch to the number the page was loaded with
                     (startingRegressDiffs != 0 ? startingRegressDiffs : parseInt(ParamDefaults.defaultTeamReportRegressDiffs))
-                )}>
-                  <span>Regress 'r:On-Off' {
-                    startingRegressDiffs > 0 ? "by" : "to"
-                  } {Math.abs(startingRegressDiffs != 0 ? startingRegressDiffs : parseInt(ParamDefaults.defaultTeamReportRegressDiffs))} samples</span>
-                  <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                  {regressDiffs != 0 ? <FontAwesomeIcon icon={faCheck}/> : null}
-                </div>
-              </Dropdown.Item>
-              <Dropdown.Item as={Button}>
-                <div onClick={() => setRepOnOffDiagMode(repOnOffDiagMode != 0 ? 0 : 10)}>
-                  <span>'r:On-Off' diagnostic mode</span>
-                  <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                  {repOnOffDiagMode != 0 ? <FontAwesomeIcon icon={faCheck}/> : null}
-                </div>
-              </Dropdown.Item>
+                )}
+              />
+              <GenericTogglingMenuItem
+                text="'r:On-Off' diagnostic mode"
+                truthVal={repOnOffDiagMode != 0}
+                onSelect={() => setRepOnOffDiagMode(repOnOffDiagMode != 0 ? 0 : 10)}
+              />
             </Dropdown.Menu>
           </Dropdown>
         </Form.Group>

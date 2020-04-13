@@ -18,16 +18,18 @@ import Alert from 'react-bootstrap/Alert';
 import InputGroup from 'react-bootstrap/InputGroup';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Popover from 'react-bootstrap/Popover';
+import Dropdown from 'react-bootstrap/Dropdown';
 import Tooltip from 'react-bootstrap/Tooltip';
 
 // Additional components:
 import Select, { components} from "react-select"
-import { QueryUtils } from "../utils/QueryUtils";
 // @ts-ignore
 import LoadingOverlay from 'react-loading-overlay';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faFilter } from '@fortawesome/free-solid-svg-icons'
 import { faHistory } from '@fortawesome/free-solid-svg-icons'
 import { faLink } from '@fortawesome/free-solid-svg-icons'
+import { faCheck } from '@fortawesome/free-solid-svg-icons'
 import ClipboardJS from 'clipboard';
 // @ts-ignore
 import { Shake } from 'reshake'
@@ -35,15 +37,19 @@ import { Shake } from 'reshake'
 // Component imports:
 import { TeamStatsModel } from '../components/TeamStatsTable';
 import { RosterCompareModel } from '../components/RosterCompareTable';
+import HistorySelector, { historySelectContainerWidth } from '../components/HistorySelector';
+import AutoSuggestText, { notFromAutoSuggest } from './AutoSuggestText';
+import GenericTogglingMenuItem from "./GenericTogglingMenuItem";
+
+// Utils:
 import { dataLastUpdated } from '../utils/internal-data/dataLastUpdated';
 import { PreloadedDataSamples, preloadedData } from '../utils/internal-data/preloadedData';
 import { AvailableTeams } from '../utils/internal-data/AvailableTeams';
 import { ClientRequestCache } from '../utils/ClientRequestCache';
-import HistorySelector, { historySelectContainerWidth } from '../components/HistorySelector';
 import { ParamPrefixes, ParamDefaults, CommonFilterParams, RequiredTeamReportFilterParams } from '../utils/FilterModels';
 import { HistoryManager } from '../utils/HistoryManager';
 import { UrlRouting } from '../utils/UrlRouting';
-import AutoSuggestText, { notFromAutoSuggest } from './AutoSuggestText';
+import { CommonFilterType, QueryUtils } from '../utils/QueryUtils';
 
 // Library imports:
 import fetch from 'isomorphic-unfetch';
@@ -98,6 +104,12 @@ const CommonFilter: CommonFilterI = ({
 
   const [ garbageTimeFiltered, setGarbageTimeFiltered ] = useState(
     _.isNil(startingState.filterGarbage) ? ParamDefaults.defaultFilterGarbage : startingState.filterGarbage
+  );
+
+  const [ filters, setFilters ] = useState(
+    _.isNil(startingState.filters) ?
+      ParamDefaults.defaultFilters :
+      startingState.filters.split(",").map((s: string) => s.trim() as CommonFilterType)
   );
 
   // Automatically update child state when any current param is changed:
@@ -436,6 +448,14 @@ const CommonFilter: CommonFilterI = ({
     <Tooltip id="garbageFilterTooltip">Filters out lineups in garbage time - see the "Garbage time" article under "Blog contents" for more details</Tooltip>
   );
 
+  const filterMenuItem = (item: CommonFilterType, text: String) => {
+    return <GenericTogglingMenuItem
+      text={text}
+      truthVal={QueryUtils.filterHas(filters, item)}
+      onSelect={() => setFilters(QueryUtils.toggleFilter(filters, item))}
+    />;
+  };
+
   return <LoadingOverlay
     active={queryIsLoading}
     spinner
@@ -541,23 +561,55 @@ const CommonFilter: CommonFilterI = ({
           />
         </InputGroup>
       </Col>
-        <Col sm="2">
-          <InputGroup>
-            <InputGroup.Prepend>
-              <InputGroup.Text id="filterOppoWorst">Worst</InputGroup.Text>
-            </InputGroup.Prepend>
-            <Form.Control
-              onChange={(ev: any) => {
-                if (ev.target.value.match("^[0-9]*$") != null) {
-                  setMaxRankFilter(ev.target.value);
-                }
-              }}
-              placeholder = "eg 400"
-              value={maxRankFilter}
-            />
-            </InputGroup>
+      <Col sm="2">
+        <InputGroup>
+          <InputGroup.Prepend>
+            <InputGroup.Text id="filterOppoWorst">Worst</InputGroup.Text>
+          </InputGroup.Prepend>
+          <Form.Control
+            onChange={(ev: any) => {
+              if (ev.target.value.match("^[0-9]*$") != null) {
+                setMaxRankFilter(ev.target.value);
+              }
+            }}
+            placeholder = "eg 400"
+            value={maxRankFilter}
+          />
+          </InputGroup>
+      </Col>
+      <Form.Label column sm="2"><span className="text-muted small">(out of ~360 teams)</span></Form.Label>
+      <Form.Group as={Col}>
+        <Row>
+        <Col xs={3} sm={3} md={3} lg={2}>
+          <Dropdown alignRight>
+            <Dropdown.Toggle variant="outline-secondary" id="dropdown-basic">
+              <FontAwesomeIcon icon={faFilter} />
+            </Dropdown.Toggle>
+            <Dropdown.Menu>
+              {filterMenuItem("Conf", "Conference games only")}
+              {filterMenuItem("Non-Conf", "Non-Conference games only")}
+              <Dropdown.Divider />
+              {filterMenuItem("Home", "Home games only")}
+              {filterMenuItem("Away", "Away games only")}
+              {filterMenuItem("Not-Home", "Away/Neutral games only")}
+              <Dropdown.Divider />
+              {filterMenuItem("Nov-Dec", "Nov/Dec only")}
+              {filterMenuItem("Jan-Apr", "Jan-Apr only")}
+              {filterMenuItem("Last-30d", "Last 30 days only")}
+              <Dropdown.Divider />
+              <Dropdown.Item as={Button}>
+                <div onClick={() => {setFilters([])}}>
+                  <span>Clear all filters</span>
+                </div>
+              </Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
         </Col>
-      <Form.Label column sm="2">(out of ~360 teams)</Form.Label>
+        <Col>
+          <Form.Label column><span className="text-muted small">&nbsp;&nbsp;&nbsp;{_.join(filters, "; ")}</span></Form.Label>
+        </Col>
+        </Row>
+      </Form.Group>
     </Form.Group>
     <Col>
       <Button disabled={submitDisabled} variant="primary" onClick={onSubmit}>Submit</Button>

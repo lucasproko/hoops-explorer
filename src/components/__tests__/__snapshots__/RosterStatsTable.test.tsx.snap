@@ -569,117 +569,33 @@ exports[`RosterStatsTable RosterStatsTable - should create snapshot 1`] = `
             alignRight={false}
             flip={true}
           >
-            <DropdownItem
-              as={
-                Object {
-                  "$$typeof": Symbol(react.forward_ref),
-                  "defaultProps": Object {
-                    "active": false,
-                    "disabled": false,
-                    "type": "button",
-                    "variant": "primary",
-                  },
-                  "displayName": "Button",
-                  "render": [Function],
-                }
-              }
-              disabled={false}
-            >
-              <div
-                onClick={[Function]}
-              >
-                <span>
-                  Show expanded statistics
-                </span>
-                <span>
-                      
-                </span>
-              </div>
-            </DropdownItem>
-            <DropdownItem
-              as={
-                Object {
-                  "$$typeof": Symbol(react.forward_ref),
-                  "defaultProps": Object {
-                    "active": false,
-                    "disabled": false,
-                    "type": "button",
-                    "variant": "primary",
-                  },
-                  "displayName": "Button",
-                  "render": [Function],
-                }
-              }
-              disabled={false}
-            >
-              <div
-                onClick={[Function]}
-              >
-                <span>
-                  Always show baseline statistics
-                </span>
-                <span>
-                      
-                </span>
-              </div>
-            </DropdownItem>
-            <DropdownItem
-              as={
-                Object {
-                  "$$typeof": Symbol(react.forward_ref),
-                  "defaultProps": Object {
-                    "active": false,
-                    "disabled": false,
-                    "type": "button",
-                    "variant": "primary",
-                  },
-                  "displayName": "Button",
-                  "render": [Function],
-                }
-              }
-              disabled={false}
-            >
-              <div
-                onClick={[Function]}
-              >
+            <GenericTogglingMenuItem
+              onSelect={[Function]}
+              text="Show expanded statistics"
+              truthVal={false}
+            />
+            <GenericTogglingMenuItem
+              onSelect={[Function]}
+              text="Always show baseline statistics"
+              truthVal={false}
+            />
+            <GenericTogglingMenuItem
+              onSelect={[Function]}
+              text={
                 <span>
                   Show possessions as count
                 </span>
-                <span>
-                      
-                </span>
-              </div>
-            </DropdownItem>
+              }
+              truthVal={false}
+            />
             <DropdownDivider
               role="separator"
             />
-            <DropdownItem
-              as={
-                Object {
-                  "$$typeof": Symbol(react.forward_ref),
-                  "defaultProps": Object {
-                    "active": false,
-                    "disabled": false,
-                    "type": "button",
-                    "variant": "primary",
-                  },
-                  "displayName": "Button",
-                  "render": [Function],
-                }
-              }
-              disabled={false}
-            >
-              <div
-                onClick={[Function]}
-              >
-                <span>
-                  Show Off/Def Rating diagnostics
-                </span>
-                <span>
-                      
-                </span>
-              </div>
-            </DropdownItem>
+            <GenericTogglingMenuItem
+              onSelect={[Function]}
+              text="Show Off/Def Rating diagnostics"
+              truthVal={false}
+            />
           </DropdownMenu>
         </Dropdown>
       </FormGroup>

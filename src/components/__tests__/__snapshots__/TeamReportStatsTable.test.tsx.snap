@@ -1217,83 +1217,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot 1`] 
             alignRight={false}
             flip={true}
           >
-            <DropdownItem
-              as={
-                Object {
-                  "$$typeof": Symbol(react.forward_ref),
-                  "defaultProps": Object {
-                    "active": false,
-                    "disabled": false,
-                    "type": "button",
-                    "variant": "primary",
-                  },
-                  "displayName": "Button",
-                  "render": [Function],
-                }
-              }
-              disabled={false}
-            >
-              <div
-                onClick={[Function]}
-              >
-                <span>
-                  Show on/off statistics
-                </span>
-                <span>
-                      
-                </span>
-                <FontAwesomeIcon
-                  border={false}
-                  className=""
-                  fixedWidth={false}
-                  flip={null}
-                  icon={
-                    Object {
-                      "icon": Array [
-                        512,
-                        512,
-                        Array [],
-                        "f00c",
-                        "M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z",
-                      ],
-                      "iconName": "check",
-                      "prefix": "fas",
-                    }
-                  }
-                  inverse={false}
-                  listItem={false}
-                  mask={null}
-                  pull={null}
-                  pulse={false}
-                  rotation={null}
-                  size={null}
-                  spin={false}
-                  swapOpacity={false}
-                  symbol={false}
-                  title=""
-                  transform={null}
-                />
-              </div>
-            </DropdownItem>
-            <DropdownItem
-              as={
-                Object {
-                  "$$typeof": Symbol(react.forward_ref),
-                  "defaultProps": Object {
-                    "active": false,
-                    "disabled": false,
-                    "type": "button",
-                    "variant": "primary",
-                  },
-                  "displayName": "Button",
-                  "render": [Function],
-                }
-              }
-              disabled={false}
-            >
-              <div
-                onClick={[Function]}
-              >
+            <GenericTogglingMenuItem
+              onSelect={[Function]}
+              text="Show on/off statistics"
+              truthVal={true}
+            />
+            <GenericTogglingMenuItem
+              onSelect={[Function]}
+              text={
                 <span>
                   Show replacement On-Off 
                   <span
@@ -1302,30 +1233,12 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot 1`] 
                     alpha!
                   </span>
                 </span>
-                <span>
-                      
-                </span>
-              </div>
-            </DropdownItem>
-            <DropdownItem
-              as={
-                Object {
-                  "$$typeof": Symbol(react.forward_ref),
-                  "defaultProps": Object {
-                    "active": false,
-                    "disabled": false,
-                    "type": "button",
-                    "variant": "primary",
-                  },
-                  "displayName": "Button",
-                  "render": [Function],
-                }
               }
-              disabled={false}
-            >
-              <div
-                onClick={[Function]}
-              >
+              truthVal={false}
+            />
+            <GenericTogglingMenuItem
+              onSelect={[Function]}
+              text={
                 <span>
                   Show RAPM 
                   <span
@@ -1334,161 +1247,27 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot 1`] 
                     experimental!
                   </span>
                 </span>
-                <span>
-                      
-                </span>
-              </div>
-            </DropdownItem>
-            <DropdownItem
-              as={
-                Object {
-                  "$$typeof": Symbol(react.forward_ref),
-                  "defaultProps": Object {
-                    "active": false,
-                    "disabled": false,
-                    "type": "button",
-                    "variant": "primary",
-                  },
-                  "displayName": "Button",
-                  "render": [Function],
-                }
               }
-              disabled={false}
-            >
-              <div
-                onClick={[Function]}
-              >
-                <span>
-                  Show lineup compositions
-                </span>
-                <span>
-                      
-                </span>
-                <FontAwesomeIcon
-                  border={false}
-                  className=""
-                  fixedWidth={false}
-                  flip={null}
-                  icon={
-                    Object {
-                      "icon": Array [
-                        512,
-                        512,
-                        Array [],
-                        "f00c",
-                        "M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z",
-                      ],
-                      "iconName": "check",
-                      "prefix": "fas",
-                    }
-                  }
-                  inverse={false}
-                  listItem={false}
-                  mask={null}
-                  pull={null}
-                  pulse={false}
-                  rotation={null}
-                  size={null}
-                  spin={false}
-                  swapOpacity={false}
-                  symbol={false}
-                  title=""
-                  transform={null}
-                />
-              </div>
-            </DropdownItem>
+              truthVal={false}
+            />
+            <GenericTogglingMenuItem
+              onSelect={[Function]}
+              text="Show lineup compositions"
+              truthVal={true}
+            />
             <DropdownDivider
               role="separator"
             />
-            <DropdownItem
-              as={
-                Object {
-                  "$$typeof": Symbol(react.forward_ref),
-                  "defaultProps": Object {
-                    "active": false,
-                    "disabled": false,
-                    "type": "button",
-                    "variant": "primary",
-                  },
-                  "displayName": "Button",
-                  "render": [Function],
-                }
-              }
-              disabled={false}
-            >
-              <div
-                onClick={[Function]}
-              >
-                <span>
-                  Regress 'r:On-Off' 
-                  to
-                   
-                  2000
-                   samples
-                </span>
-                <span>
-                      
-                </span>
-                <FontAwesomeIcon
-                  border={false}
-                  className=""
-                  fixedWidth={false}
-                  flip={null}
-                  icon={
-                    Object {
-                      "icon": Array [
-                        512,
-                        512,
-                        Array [],
-                        "f00c",
-                        "M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z",
-                      ],
-                      "iconName": "check",
-                      "prefix": "fas",
-                    }
-                  }
-                  inverse={false}
-                  listItem={false}
-                  mask={null}
-                  pull={null}
-                  pulse={false}
-                  rotation={null}
-                  size={null}
-                  spin={false}
-                  swapOpacity={false}
-                  symbol={false}
-                  title=""
-                  transform={null}
-                />
-              </div>
-            </DropdownItem>
-            <DropdownItem
-              as={
-                Object {
-                  "$$typeof": Symbol(react.forward_ref),
-                  "defaultProps": Object {
-                    "active": false,
-                    "disabled": false,
-                    "type": "button",
-                    "variant": "primary",
-                  },
-                  "displayName": "Button",
-                  "render": [Function],
-                }
-              }
-              disabled={false}
-            >
-              <div
-                onClick={[Function]}
-              >
-                <span>
-                  'r:On-Off' diagnostic mode
-                </span>
-                <span>
-                      
-                </span>
-              </div>
-            </DropdownItem>
+            <GenericTogglingMenuItem
+              onSelect={[Function]}
+              text="Regress 'r:On-Off' to 2000 samples"
+              truthVal={true}
+            />
+            <GenericTogglingMenuItem
+              onSelect={[Function]}
+              text="'r:On-Off' diagnostic mode"
+              truthVal={false}
+            />
           </DropdownMenu>
         </Dropdown>
       </FormGroup>

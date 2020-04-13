@@ -14,7 +14,8 @@ export type CommonFilterParams = {
   minRank?: string,
   maxRank?: string,
   baseQuery?: string,
-  filterGarbage?: boolean //(missing iff "false")
+  filterGarbage?: boolean, //(missing iff "false")
+  filters?: string //(missing iff empty)
 }
 
 /** Extracts the common params from a superset */
@@ -26,7 +27,8 @@ export function getCommonFilterParams(p: CommonFilterParams) {
     minRank: p.minRank,
     maxRank: p.maxRank,
     baseQuery: p.baseQuery,
-    filterGarbage: p.filterGarbage
+    filterGarbage: p.filterGarbage,
+    filters: p.filters
   };
 }
 
@@ -112,4 +114,5 @@ export class ParamDefaults {
   static readonly defaultMinRank = "0";
   static readonly defaultMaxRank = "400";
   static readonly defaultFilterGarbage = false;
+  static readonly defaultFilters = "";
 }

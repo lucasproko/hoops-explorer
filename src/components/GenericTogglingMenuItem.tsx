@@ -1,0 +1,36 @@
+// React imports:
+import React, { useState } from 'react';
+
+// Next imports:
+import { NextPage } from 'next';
+
+// Lodash
+import _ from "lodash";
+
+// Bootstrap imports:
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Dropdown from 'react-bootstrap/Dropdown';
+import Button from 'react-bootstrap/Button';
+
+// Other imports
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCheck } from '@fortawesome/free-solid-svg-icons'
+
+type Props = {
+  readonly text: string | React.ReactNode,
+  readonly truthVal: boolean,
+  readonly onSelect: () => void
+};
+
+const GenericTogglingMenuItem: React.FunctionComponent<Props> = ({text, truthVal, onSelect}) => {
+
+  return <Dropdown.Item as={Button}>
+      <div onClick={() => onSelect()}>
+        {_.isString(text) ? <span>{text}</span> : text}
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        {truthVal ? <FontAwesomeIcon icon={faCheck}/> : null}
+      </div>
+    </Dropdown.Item>;
+};
+
+export default GenericTogglingMenuItem;
