@@ -30,6 +30,7 @@ import { faFilter } from '@fortawesome/free-solid-svg-icons'
 import { faHistory } from '@fortawesome/free-solid-svg-icons'
 import { faLink } from '@fortawesome/free-solid-svg-icons'
 import { faCheck } from '@fortawesome/free-solid-svg-icons'
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 import ClipboardJS from 'clipboard';
 // @ts-ignore
 import { Shake } from 'reshake'
@@ -425,6 +426,34 @@ const CommonFilter: CommonFilterI = ({
         </Button>
       </OverlayTrigger>;
   };
+  const getClearQueryButton = () => {
+    const onClick = () => {
+      const getUrl = () => {
+        if (tablePrefix == ParamPrefixes.game) {
+          return UrlRouting.getGameUrl({}, {});
+        } else if (tablePrefix == ParamPrefixes.lineup) {
+          return UrlRouting.getLineupUrl({}, {});
+        } else if (tablePrefix == ParamPrefixes.report) {
+          return UrlRouting.getTeamReportUrl({});
+        } else {
+          return undefined;
+        }
+      };
+      const newUrl = getUrl();
+      if (newUrl) {
+        window.location.href = newUrl;
+      }
+    };
+    const tooltip = (
+      <Tooltip id="copyLinkTooltip">Clears and empties the page</Tooltip>
+    );
+    return  <OverlayTrigger placement="auto" overlay={tooltip}>
+        <Button onClick={() => onClick()} className="float-right" id={`clearQuery_${tablePrefix}`} variant="outline-secondary" size="sm">
+          <FontAwesomeIcon icon={faTrashAlt} />
+        </Button>
+      </OverlayTrigger>;
+  }
+
   /** If no team is specified, add the option to jump to an example */
   const getExampleButtonsIfNoTeam = () => {
     if (team == "") {
@@ -434,6 +463,8 @@ const CommonFilter: CommonFilterI = ({
       >
         <Button variant="warning" onClick={() => onSeeExample()}><b>Example ({gender})!</b></Button>
       </Shake>;
+    } else { // If there is no query then show clear query
+      return getClearQueryButton();
     }
   }
 
@@ -493,7 +524,7 @@ const CommonFilter: CommonFilterI = ({
         <Select
           isDisabled={majorParamsDisabled}
           components = { maybeMenuList() }
-          isClearable={true}
+          isClearable={false}
           styles={{ menu: base => ({ ...base, zIndex: 1000 }) }}
           value={ getCurrentTeamOrPlaceholder() }
           options={teamList.map(
