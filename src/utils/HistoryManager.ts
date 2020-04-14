@@ -116,7 +116,15 @@ export class HistoryManager {
         return "";
       }
     }
-    return `${p.year || ParamDefaults.defaultYear} ${p.team || ParamDefaults.defaultTeam} (${gender[0]})${getSosFilter()}${getGarbageFilter()}`;
+    const getQueryFilters = () => {
+      if (p.queryFilters) {
+        return ` [+${p.queryFilters}]`;
+      } else {
+        return "";
+      }
+    }
+    return `${p.year || ParamDefaults.defaultYear} ${p.team || ParamDefaults.defaultTeam} (${gender[0]})` +
+      `${getSosFilter()}${getGarbageFilter()}${getQueryFilters()}`;
   }
 
   /** Returns a summary string for the game filter */

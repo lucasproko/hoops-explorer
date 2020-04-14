@@ -45,7 +45,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
       const body = [
         JSON.stringify({ index: index }),
-        JSON.stringify(rosterCompareQuery(params, {}, {}))
+        JSON.stringify(rosterCompareQuery(params, currentJsonEpoch, {}, {}))
+          //(leaving efficiency blank means that the opponent filter is ignored)
       ].join('\n') + "\n";
 
       try {

@@ -55,16 +55,17 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
       const body = [
         JSON.stringify({ index: index }),
-        JSON.stringify(teamStatsQuery(params, efficiency, lookup, avgEfficiency)),
+        JSON.stringify(teamStatsQuery(params, currentJsonEpoch, efficiency, lookup, avgEfficiency)),
         JSON.stringify({ index: index }),
-        JSON.stringify(rosterCompareQuery(params, efficiency, lookup)),
+        JSON.stringify(rosterCompareQuery(params, currentJsonEpoch, efficiency, lookup)),
         JSON.stringify({ index: `player_events_${genderPrefix}${index}` }),
-        JSON.stringify(playerStatsQuery(params, efficiency, lookup, avgEfficiency)),
+        JSON.stringify(playerStatsQuery(params, currentJsonEpoch, efficiency, lookup, avgEfficiency)),
       ].join('\n') + "\n";
       // Debug logs:
-      //console.log(JSON.stringify(teamStatsQuery(params, {}, {}, avgEfficiency), null, 3));
-      //console.log(JSON.stringify(playerStatsQuery(params, {}, {}, avgEfficiency).aggregations.tri_filter.aggregations, null, 3));
-      //console.log(JSON.stringify(teamStatsQuery(params, {}, {}).query, null, 3));
+      //console.log(JSON.stringify(teamStatsQuery(params, currentJsonEpoch, efficiency, lookup, avgEfficiency), null, 3));
+      //console.log(JSON.stringify(teamStatsQuery(params, currentJsonEpoch, {}, {}, avgEfficiency), null, 3));
+      //console.log(JSON.stringify(playerStatsQuery(params, currentJsonEpoch, {}, {}, avgEfficiency).aggregations.tri_filter.aggregations, null, 3));
+      //console.log(JSON.stringify(teamStatsQuery(params, currentJsonEpoch, {}, {}).query, null, 3));
 
       try {
         const esFetch = await fetch(`${process.env.CLUSTER_ID}/_msearch`, {

@@ -6,10 +6,11 @@ describe("teamStatsQuery", () => {
   test("teamStatsQuery", () => {
 
     const test = teamStatsQuery({
+      team: "TestTeam", year: "2019",
       minRank: "10", maxRank: "100",
       baseQuery: "base",
       onQuery: "on", offQuery: "off"
-    }, { "team": { "stats": 0 } }, {
+    }, 0, { "team": { "stats": 0 } }, {
       "name1": "name1b"
     }, 100.0);
 

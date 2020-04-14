@@ -9,7 +9,7 @@ import { CommonFilterParams } from "./FilterModels";
 
 /** All the different supported filters */
 export type CommonFilterType =
-  "Conf" | "Non-Conf" | "Home" | "Away" | "Not-Home" | "Last-30d" | "Nov-Dec" | "Jan-Apr";
+  "Conf" | "Home" | "Away" | "Not-Home" | "Last-30d" | "Nov-Dec" | "Jan-Apr";
 
 export class QueryUtils {
 
@@ -33,6 +33,9 @@ export class QueryUtils {
     }
     if (!obj.filterGarbage) { //default==false => remove altogether
       delete obj.filterGarbage;
+    }
+    if (obj.queryFilters == "") { //default==[] => remove altogether
+      delete obj.queryFilters;
     }
     return queryString.stringify(obj);
   }
@@ -75,8 +78,6 @@ export class QueryUtils {
   private static filterWith(curr: CommonFilterType[], toAdd: CommonFilterType[]): CommonFilterType[] {
     const toRemove = (_.flatMap(toAdd, (add) => {
       switch(add) {
-        case "Conf": return [ "Non-Conf" ];
-        case "Non-Conf": return [ "Conf" ];
         case "Home": return [ "Away", "Not-Home" ];
         case "Away": return [ "Home", "Not-Home" ];
         case "Not-Home": return [ "Home", "Away" ];
@@ -98,6 +99,11 @@ export class QueryUtils {
     return _.filter(curr, (filter) => !toRemoveSet.hasOwnProperty(filter as string));
   }
 
+  /** Switches between string and array formulation */
+  static parseFilter(queryFilters: string): CommonFilterType[] {
+    return queryFilters.split(",").map((s: string) => s.trim() as CommonFilterType)
+  }
+
   /** Checks if a filter item is enabled */
   static filterHas(curr: CommonFilterType[], item: CommonFilterType) {
     return Boolean(_.find(curr, (f) => f == item));
@@ -109,4 +115,9 @@ export class QueryUtils {
       QueryUtils.filterWithout(curr, [ item ]) : QueryUtils.filterWith(curr, [ item ]);
   }
 
+  /** Lookups into the public efficiency records to get a team's conference */
+  static getConference(team: string, efficiency: Record<string, any>, lookup: Record<string, any>) {
+    const efficiencyName = lookup[team]?.pbp_kp_team || team;
+    return efficiency[efficiencyName]?.conf || "";
+  }
 }

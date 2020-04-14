@@ -876,11 +876,6 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
                   text="Conference games only"
                   truthVal={false}
                 />
-                <GenericTogglingMenuItem
-                  onSelect={[Function]}
-                  text="Non-Conference games only"
-                  truthVal={false}
-                />
                 <DropdownDivider
                   role="separator"
                 />
@@ -940,7 +935,7 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
                     onClick={[Function]}
                   >
                     <span>
-                      Clear all filters
+                      Clear all query filters
                     </span>
                   </div>
                 </DropdownItem>
@@ -1877,11 +1872,6 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
                   text="Conference games only"
                   truthVal={false}
                 />
-                <GenericTogglingMenuItem
-                  onSelect={[Function]}
-                  text="Non-Conference games only"
-                  truthVal={false}
-                />
                 <DropdownDivider
                   role="separator"
                 />
@@ -1941,7 +1931,7 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
                     onClick={[Function]}
                   >
                     <span>
-                      Clear all filters
+                      Clear all query filters
                     </span>
                   </div>
                 </DropdownItem>

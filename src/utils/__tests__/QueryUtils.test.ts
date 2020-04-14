@@ -10,17 +10,25 @@ describe("QueryUtils", () => {
     //(just test lineupQuery/baseQuery handling)
     expect(QueryUtils.stringify({lineupQuery: "a", otherField: true} as CommonFilterParams)).toEqual(
       "baseQuery=a&otherField=true"
-    )
+    );
     expect(QueryUtils.parse("lineupQuery=a&otherField=true&numField=1")).toEqual(
       {baseQuery: "a", otherField: true, numField: "1"}
-    )
+    );
     // Check garbageFilter handling
     expect(QueryUtils.stringify({lineupQuery: "a", filterGarbage: true} as CommonFilterParams)).toEqual(
       "baseQuery=a&filterGarbage=true"
-    )
+    );
     expect(QueryUtils.stringify({lineupQuery: "a", filterGarbage: false} as CommonFilterParams)).toEqual(
       "baseQuery=a"
-    )
+    );
+    // Check queryFilter handling
+    expect(QueryUtils.stringify({lineupQuery: "a", queryFilters: "Conf,Nov-Dec"} as CommonFilterParams)).toEqual(
+      "baseQuery=a&queryFilters=Conf%2CNov-Dec"
+    );
+    expect(QueryUtils.stringify({lineupQuery: "a", queryFilters: ""} as CommonFilterParams)).toEqual(
+      "baseQuery=a"
+    );
+
   });
   test("QueryUtils - basicOrAdvancedQuery", () => {
 
@@ -54,9 +62,14 @@ describe("QueryUtils", () => {
       `players.id:(((Cowan) AND NOT (Morsell OR Ayala)) OR ((Morsell) AND NOT (Cowan OR Ayala)) OR ((Ayala) AND NOT (Cowan OR Morsell)))`
     );
   });
-  test("QueryUtils - filterWith/filterWithout/filterHas/toggleFilteer", () => {
+  test("QueryUtils - parseFilter", () => {
+    expect(QueryUtils.parseFilter("Conf ,Home, Nov-Dec")).toEqual([
+      "Conf", "Home", "Nov-Dec"
+    ]);
+  });
+  test("QueryUtils - filterWith/filterWithout/filterHas/toggleFilter", () => {
     [
-      [ "Conf", "Non-Conf" ] as CommonFilterType[],
+      [ "Conf" ] as CommonFilterType[],
       [ "Home", "Away", "Not-Home"] as CommonFilterType[],
       [ "Nov-Dec", "Jan-Apr", "Last-30d"] as CommonFilterType[],
     ].forEach((testSet) => {
@@ -74,8 +87,37 @@ describe("QueryUtils", () => {
       });
     });
     // Just check works with multiple
-    expect(QueryUtils.toggleFilter(["Home", "Nov-Dec"], "Non-Conf")).toEqual(["Home","Non-Conf","Nov-Dec"]);
-    expect(QueryUtils.toggleFilter(["Conf", "Home", "Nov-Dec"], "Non-Conf")).toEqual(["Home","Non-Conf","Nov-Dec"]);
-    expect(QueryUtils.toggleFilter(["Conf", "Home", "Nov-Dec"], "Conf")).toEqual(["Home","Nov-Dec"]);
+    expect(QueryUtils.toggleFilter(["Conf", "Nov-Dec"], "Away")).toEqual(["Away","Conf","Nov-Dec"]);
+    expect(QueryUtils.toggleFilter(["Conf", "Home", "Nov-Dec"], "Away")).toEqual(["Away","Conf","Nov-Dec"]);
+    expect(QueryUtils.toggleFilter(["Conf", "Home", "Nov-Dec"], "Home")).toEqual(["Conf","Nov-Dec"]);
+  });
+  test("QueryUtils - getConference", () => {
+    const lookup = {
+      "A&M-Corpus Christi": {
+         "pbp_kp_team": "Texas A&M Corpus Chris"
+      }
+    }
+    const efficiency = {
+      "Texas A&M Corpus Chris": {
+         "team_season.year": 2015,
+         "conf": "Southland Conference",
+         "stats.adj_off.rank": 241,
+         "stats.adj_off.value": 100.8,
+         "stats.adj_def.rank": 198,
+         "stats.adj_def.value": 105.9,
+         "stats.adj_margin.rank": 227,
+         "stats.adj_margin.value": -5.1000000000000085,
+         "stats.adj_tempo.rank": 267,
+         "stats.adj_tempo.value": 62.7,
+         "ncaa_seed": "",
+         "is_high_major": 0,
+         "good_md_comp": 0
+      }
+    }
+    expect(QueryUtils.getConference("A&M-Corpus Christi", efficiency, lookup)).toEqual("Southland Conference");
+    //(no lookup needed)
+    expect(QueryUtils.getConference("Texas A&M Corpus Chris", efficiency, lookup)).toEqual("Southland Conference");
+    //(miss)
+    expect(QueryUtils.getConference("Pretend Team", efficiency, lookup)).toEqual("");
   });
 });

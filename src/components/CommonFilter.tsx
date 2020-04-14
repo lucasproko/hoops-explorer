@@ -107,23 +107,24 @@ const CommonFilter: CommonFilterI = ({
     _.isNil(startingState.filterGarbage) ? ParamDefaults.defaultFilterGarbage : startingState.filterGarbage
   );
 
-  const [ filters, setFilters ] = useState(
-    _.isNil(startingState.filters) ?
-      ParamDefaults.defaultFilters :
-      startingState.filters.split(",").map((s: string) => s.trim() as CommonFilterType)
+  const [ queryFilters, setQueryFilters ] = useState(
+    QueryUtils.parseFilter(
+      _.isNil(startingState.queryFilters) ? ParamDefaults.defaultQueryFilters : startingState.queryFilters
+    )
   );
 
   // Automatically update child state when any current param is changed:
+  // (Note this doesn't trigger a change to the URL unless submit is pressed)
   useEffect(() => {
     onChangeCommonState({
       team: team, year: year, gender: gender, minRank: minRankFilter, maxRank: maxRankFilter,
-      baseQuery: baseQuery, filterGarbage: garbageTimeFiltered
-    })
-  }, [ team, year, gender, minRankFilter, maxRankFilter, baseQuery, garbageTimeFiltered ]);
+      baseQuery: baseQuery, filterGarbage: garbageTimeFiltered,
+      queryFilters: _.join(queryFilters || [], ",")
+    });
+  }, [ team, year, gender, minRankFilter, maxRankFilter, baseQuery, garbageTimeFiltered, queryFilters ]);
 
   const [ submitDisabled, setSubmitDisabled ] = useState(false); // (always start as true on page load)
   const [ reportIsDisabled, setReportIsDisabled ] = useState(false); //(same as above)
-
 
   const isDebug = (process.env.NODE_ENV !== 'production');
 
@@ -237,13 +238,20 @@ const CommonFilter: CommonFilterI = ({
   function shouldSubmitBeDisabled() {
     const newParams = buildParamsFromState(false);
 
-    const paramsUnchanged = Object.keys(newParams).every(
-      (key: string) => (key == "filterGarbage") || (newParams as any)[key] == (currState as any)[key]
+    const paramsUnchanged = Object.keys(newParams).filter((key) => {
+      return (key != "filterGarbage") && (key != "queryFilters");
+    }).every(
+      (key: string) => (newParams as any)[key] == (currState as any)[key]
     );
     const garbageSpecialCase =
       (newParams?.filterGarbage || false) == (currState?.filterGarbage || false);
+    const queryFiltersSpecialCase =
+      (newParams?.queryFilters || "") == (currState?.queryFilters || "");
 
-    return (atLeastOneQueryMade && paramsUnchanged && garbageSpecialCase) || (team == "");
+    return (
+      atLeastOneQueryMade && paramsUnchanged &&
+        garbageSpecialCase && queryFiltersSpecialCase
+    ) || (team == "");
   }
 
   /** Whether any of the queries returned an error - we'll treat them all as errors if so */
@@ -482,8 +490,8 @@ const CommonFilter: CommonFilterI = ({
   const filterMenuItem = (item: CommonFilterType, text: String) => {
     return <GenericTogglingMenuItem
       text={text}
-      truthVal={QueryUtils.filterHas(filters, item)}
-      onSelect={() => setFilters(QueryUtils.toggleFilter(filters, item))}
+      truthVal={QueryUtils.filterHas(queryFilters, item)}
+      onSelect={() => setQueryFilters(QueryUtils.toggleFilter(queryFilters, item))}
     />;
   };
 
@@ -618,7 +626,6 @@ const CommonFilter: CommonFilterI = ({
             </Dropdown.Toggle>
             <Dropdown.Menu>
               {filterMenuItem("Conf", "Conference games only")}
-              {filterMenuItem("Non-Conf", "Non-Conference games only")}
               <Dropdown.Divider />
               {filterMenuItem("Home", "Home games only")}
               {filterMenuItem("Away", "Away games only")}
@@ -629,15 +636,15 @@ const CommonFilter: CommonFilterI = ({
               {filterMenuItem("Last-30d", "Last 30 days only")}
               <Dropdown.Divider />
               <Dropdown.Item as={Button}>
-                <div onClick={() => {setFilters([])}}>
-                  <span>Clear all filters</span>
+                <div onClick={() => {setQueryFilters([])}}>
+                  <span>Clear all query filters</span>
                 </div>
               </Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
         </Col>
         <Col>
-          <Form.Label column><span className="text-muted small">&nbsp;&nbsp;&nbsp;{_.join(filters, "; ")}</span></Form.Label>
+          <Form.Label column><span className="text-muted small">&nbsp;&nbsp;&nbsp;{_.join(queryFilters, "; ")}</span></Form.Label>
         </Col>
         </Row>
       </Form.Group>
