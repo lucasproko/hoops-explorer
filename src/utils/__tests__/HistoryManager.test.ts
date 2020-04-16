@@ -59,10 +59,10 @@ describe("HistoryManager", () => {
       minRank: "1", maxRank: "150",
       onQuery: "testOn", baseQuery: "testBase",
       offQuery: "testOff", autoOffQuery: false,
-      filterGarbage: true
+      filterGarbage: true, queryFilters: "Conf"
     };
     expect(HistoryManager.filterSummary("game-", game2)).toBe(
-      `On/Off: 2019/20 test (M) [1:150] [!garbage]: on:'testOn', off:'testOff', base:'testBase'`
+      `On/Off: 2019/20 test (M) [1:150] [!garbage] [+Conf]: on:'testOn', off:'testOff', base:'testBase'`
     );
   });
   test("HistoryManager - lineupFilterSummary", () => {

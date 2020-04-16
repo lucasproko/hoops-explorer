@@ -2,7 +2,10 @@ import { commonTeamQuery } from "./commonTeamQuery";
 import { commonOnOffBaseQuery } from "./commonOnOffBaseQuery";
 import { GameFilterParams } from "../FilterModels";
 
-export const rosterCompareQuery = function(params: GameFilterParams, publicEfficiency: any, lookup: any) {
+export const rosterCompareQuery = function(
+  params: GameFilterParams,
+  lastDate: number, publicEfficiency: any, lookup: any
+) {
   return {
      "_source": {
         "includes": [],
@@ -47,6 +50,6 @@ export const rosterCompareQuery = function(params: GameFilterParams, publicEffic
            }
         }
      },
-     "query": commonTeamQuery(params, publicEfficiency, lookup)
+     "query": commonTeamQuery(params, lastDate, publicEfficiency, lookup)
   };
 }

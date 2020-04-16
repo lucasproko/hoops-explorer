@@ -18,16 +18,19 @@ import Alert from 'react-bootstrap/Alert';
 import InputGroup from 'react-bootstrap/InputGroup';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Popover from 'react-bootstrap/Popover';
+import Dropdown from 'react-bootstrap/Dropdown';
 import Tooltip from 'react-bootstrap/Tooltip';
 
 // Additional components:
 import Select, { components} from "react-select"
-import { QueryUtils } from "../utils/QueryUtils";
 // @ts-ignore
 import LoadingOverlay from 'react-loading-overlay';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faFilter } from '@fortawesome/free-solid-svg-icons'
 import { faHistory } from '@fortawesome/free-solid-svg-icons'
 import { faLink } from '@fortawesome/free-solid-svg-icons'
+import { faCheck } from '@fortawesome/free-solid-svg-icons'
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 import ClipboardJS from 'clipboard';
 // @ts-ignore
 import { Shake } from 'reshake'
@@ -35,15 +38,19 @@ import { Shake } from 'reshake'
 // Component imports:
 import { TeamStatsModel } from '../components/TeamStatsTable';
 import { RosterCompareModel } from '../components/RosterCompareTable';
+import HistorySelector, { historySelectContainerWidth } from '../components/HistorySelector';
+import AutoSuggestText, { notFromAutoSuggest } from './AutoSuggestText';
+import GenericTogglingMenuItem from "./GenericTogglingMenuItem";
+
+// Utils:
 import { dataLastUpdated } from '../utils/internal-data/dataLastUpdated';
 import { PreloadedDataSamples, preloadedData } from '../utils/internal-data/preloadedData';
 import { AvailableTeams } from '../utils/internal-data/AvailableTeams';
 import { ClientRequestCache } from '../utils/ClientRequestCache';
-import HistorySelector, { historySelectContainerWidth } from '../components/HistorySelector';
 import { ParamPrefixes, ParamDefaults, CommonFilterParams, RequiredTeamReportFilterParams } from '../utils/FilterModels';
 import { HistoryManager } from '../utils/HistoryManager';
 import { UrlRouting } from '../utils/UrlRouting';
-import AutoSuggestText, { notFromAutoSuggest } from './AutoSuggestText';
+import { CommonFilterType, QueryUtils } from '../utils/QueryUtils';
 
 // Library imports:
 import fetch from 'isomorphic-unfetch';
@@ -100,17 +107,24 @@ const CommonFilter: CommonFilterI = ({
     _.isNil(startingState.filterGarbage) ? ParamDefaults.defaultFilterGarbage : startingState.filterGarbage
   );
 
+  const [ queryFilters, setQueryFilters ] = useState(
+    QueryUtils.parseFilter(
+      _.isNil(startingState.queryFilters) ? ParamDefaults.defaultQueryFilters : startingState.queryFilters
+    )
+  );
+
   // Automatically update child state when any current param is changed:
+  // (Note this doesn't trigger a change to the URL unless submit is pressed)
   useEffect(() => {
     onChangeCommonState({
       team: team, year: year, gender: gender, minRank: minRankFilter, maxRank: maxRankFilter,
-      baseQuery: baseQuery, filterGarbage: garbageTimeFiltered
-    })
-  }, [ team, year, gender, minRankFilter, maxRankFilter, baseQuery, garbageTimeFiltered ]);
+      baseQuery: baseQuery, filterGarbage: garbageTimeFiltered,
+      queryFilters: _.join(queryFilters || [], ",")
+    });
+  }, [ team, year, gender, minRankFilter, maxRankFilter, baseQuery, garbageTimeFiltered, queryFilters ]);
 
   const [ submitDisabled, setSubmitDisabled ] = useState(false); // (always start as true on page load)
   const [ reportIsDisabled, setReportIsDisabled ] = useState(false); //(same as above)
-
 
   const isDebug = (process.env.NODE_ENV !== 'production');
 
@@ -224,13 +238,20 @@ const CommonFilter: CommonFilterI = ({
   function shouldSubmitBeDisabled() {
     const newParams = buildParamsFromState(false);
 
-    const paramsUnchanged = Object.keys(newParams).every(
-      (key: string) => (key == "filterGarbage") || (newParams as any)[key] == (currState as any)[key]
+    const paramsUnchanged = Object.keys(newParams).filter((key) => {
+      return (key != "filterGarbage") && (key != "queryFilters");
+    }).every(
+      (key: string) => (newParams as any)[key] == (currState as any)[key]
     );
     const garbageSpecialCase =
       (newParams?.filterGarbage || false) == (currState?.filterGarbage || false);
+    const queryFiltersSpecialCase =
+      (newParams?.queryFilters || "") == (currState?.queryFilters || "");
 
-    return (atLeastOneQueryMade && paramsUnchanged && garbageSpecialCase) || (team == "");
+    return (
+      atLeastOneQueryMade && paramsUnchanged &&
+        garbageSpecialCase && queryFiltersSpecialCase
+    ) || (team == "");
   }
 
   /** Whether any of the queries returned an error - we'll treat them all as errors if so */
@@ -413,6 +434,34 @@ const CommonFilter: CommonFilterI = ({
         </Button>
       </OverlayTrigger>;
   };
+  const getClearQueryButton = () => {
+    const onClick = () => {
+      const getUrl = () => {
+        if (tablePrefix == ParamPrefixes.game) {
+          return UrlRouting.getGameUrl({}, {});
+        } else if (tablePrefix == ParamPrefixes.lineup) {
+          return UrlRouting.getLineupUrl({}, {});
+        } else if (tablePrefix == ParamPrefixes.report) {
+          return UrlRouting.getTeamReportUrl({});
+        } else {
+          return undefined;
+        }
+      };
+      const newUrl = getUrl();
+      if (newUrl) {
+        window.location.href = newUrl;
+      }
+    };
+    const tooltip = (
+      <Tooltip id="copyLinkTooltip">Clears and empties the page</Tooltip>
+    );
+    return  <OverlayTrigger placement="auto" overlay={tooltip}>
+        <Button onClick={() => onClick()} className="float-right" id={`clearQuery_${tablePrefix}`} variant="outline-secondary" size="sm">
+          <FontAwesomeIcon icon={faTrashAlt} />
+        </Button>
+      </OverlayTrigger>;
+  }
+
   /** If no team is specified, add the option to jump to an example */
   const getExampleButtonsIfNoTeam = () => {
     if (team == "") {
@@ -422,6 +471,8 @@ const CommonFilter: CommonFilterI = ({
       >
         <Button variant="warning" onClick={() => onSeeExample()}><b>Example ({gender})!</b></Button>
       </Shake>;
+    } else { // If there is no query then show clear query
+      return getClearQueryButton();
     }
   }
 
@@ -435,6 +486,14 @@ const CommonFilter: CommonFilterI = ({
   const garbageFilterTooltip = (
     <Tooltip id="garbageFilterTooltip">Filters out lineups in garbage time - see the "Garbage time" article under "Blog contents" for more details</Tooltip>
   );
+
+  const filterMenuItem = (item: CommonFilterType, text: String) => {
+    return <GenericTogglingMenuItem
+      text={text}
+      truthVal={QueryUtils.filterHas(queryFilters, item)}
+      onSelect={() => setQueryFilters(QueryUtils.toggleFilter(queryFilters, item))}
+    />;
+  };
 
   return <LoadingOverlay
     active={queryIsLoading}
@@ -473,7 +532,7 @@ const CommonFilter: CommonFilterI = ({
         <Select
           isDisabled={majorParamsDisabled}
           components = { maybeMenuList() }
-          isClearable={true}
+          isClearable={false}
           styles={{ menu: base => ({ ...base, zIndex: 1000 }) }}
           value={ getCurrentTeamOrPlaceholder() }
           options={teamList.map(
@@ -496,32 +555,45 @@ const CommonFilter: CommonFilterI = ({
     <Form.Group as={Row}>
       <Form.Label column sm="2">Baseline Query {maybeShowBlogHelp()}</Form.Label>
       <Col sm="8">
-        <AutoSuggestText
-          readOnly={false}
-          placeholder="eg 'Player1 AND NOT (WalkOn1 OR WalkOn2)'"
-          initValue={baseQuery}
-          year={year}
-          gender={gender}
-          team={team}
-          onChange={(ev: any) => setBaseQuery(ev.target.value)}
-          onKeyUp={(ev: any) => setBaseQuery(ev.target.value)}
-          onKeyDown={submitListenerFactory(true)}
-        />
-      </Col>
-      <Col sm="2">
-        <OverlayTrigger placement="auto" overlay={garbageFilterTooltip}>
-          <div>
-            <Form.Check type="switch"
-              id="excludeGarbage"
-              checked={garbageTimeFiltered}
-              onChange={() => {
-                setGarbageTimeFiltered(!garbageTimeFiltered);
-              }}
-              label="Filter Garbage"
+        <InputGroup>
+          <div className="flex-fill">
+            <AutoSuggestText
+              readOnly={false}
+              placeholder="eg 'Player1 AND NOT (WalkOn1 OR WalkOn2)'"
+              initValue={baseQuery}
+              year={year}
+              gender={gender}
+              team={team}
+              onChange={(ev: any) => setBaseQuery(ev.target.value)}
+              onKeyUp={(ev: any) => setBaseQuery(ev.target.value)}
+              onKeyDown={submitListenerFactory(true)}
             />
-          </div>
-        </OverlayTrigger>
+            </div>
+          <Dropdown as={InputGroup.Append} variant="outline-secondary" alignRight>
+            <Dropdown.Toggle variant="outline-secondary" id="dropdown-basic">
+              <FontAwesomeIcon icon={faFilter} />
+            </Dropdown.Toggle>
+            <Dropdown.Menu>
+              {filterMenuItem("Conf", "Conference games only")}
+              <Dropdown.Divider />
+              {filterMenuItem("Home", "Home games only")}
+              {filterMenuItem("Away", "Away games only")}
+              {filterMenuItem("Not-Home", "Away/Neutral games only")}
+              <Dropdown.Divider />
+              {filterMenuItem("Nov-Dec", "Nov/Dec only")}
+              {filterMenuItem("Jan-Apr", "Jan-Apr only")}
+              {filterMenuItem("Last-30d", "Last 30 days only")}
+              <Dropdown.Divider />
+              <Dropdown.Item as={Button}>
+                <div onClick={() => {setQueryFilters([])}}>
+                  <span>Clear all query filters</span>
+                </div>
+              </Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
+        </InputGroup>
       </Col>
+      <Form.Label column className="ml-0 pl-0"><span className="text-muted small">{_.join(queryFilters, "; ")}</span></Form.Label>
     </Form.Group>
     <Form.Group as={Row} controlId="oppositionFilter">
       <Form.Label column sm="2">Opponent Strength</Form.Label>
@@ -541,23 +613,37 @@ const CommonFilter: CommonFilterI = ({
           />
         </InputGroup>
       </Col>
-        <Col sm="2">
-          <InputGroup>
-            <InputGroup.Prepend>
-              <InputGroup.Text id="filterOppoWorst">Worst</InputGroup.Text>
-            </InputGroup.Prepend>
-            <Form.Control
-              onChange={(ev: any) => {
-                if (ev.target.value.match("^[0-9]*$") != null) {
-                  setMaxRankFilter(ev.target.value);
-                }
+      <Col sm="2">
+        <InputGroup>
+          <InputGroup.Prepend>
+            <InputGroup.Text id="filterOppoWorst">Worst</InputGroup.Text>
+          </InputGroup.Prepend>
+          <Form.Control
+            onChange={(ev: any) => {
+              if (ev.target.value.match("^[0-9]*$") != null) {
+                setMaxRankFilter(ev.target.value);
+              }
+            }}
+            placeholder = "eg 400"
+            value={maxRankFilter}
+          />
+          </InputGroup>
+      </Col>
+      <Form.Label column sm="2"><span className="text-muted">(out of ~360 teams)</span></Form.Label>
+      <Col sm="2" className="mt-1 pt-1">
+        <OverlayTrigger placement="auto" overlay={garbageFilterTooltip}>
+          <div>
+            <Form.Check type="switch"
+              id="excludeGarbage"
+              checked={garbageTimeFiltered}
+              onChange={() => {
+                setGarbageTimeFiltered(!garbageTimeFiltered);
               }}
-              placeholder = "eg 400"
-              value={maxRankFilter}
+              label="Filter Garbage"
             />
-            </InputGroup>
-        </Col>
-      <Form.Label column sm="2">(out of ~360 teams)</Form.Label>
+          </div>
+        </OverlayTrigger>
+      </Col>
     </Form.Group>
     <Col>
       <Button disabled={submitDisabled} variant="primary" onClick={onSubmit}>Submit</Button>

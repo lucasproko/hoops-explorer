@@ -5,7 +5,8 @@ import { GameFilterParams } from "../FilterModels";
 
 
 export const teamStatsQuery = function(
-  params: GameFilterParams, publicEfficiency: any, lookup: any, avgEfficiency: number
+  params: GameFilterParams,
+  lastDate: number, publicEfficiency: any, lookup: any, avgEfficiency: number
 ) {
   return {
      "_source": {
@@ -19,6 +20,6 @@ export const teamStatsQuery = function(
            "filters": commonOnOffBaseQuery(params)
         }
      },
-     "query": commonTeamQuery(params, publicEfficiency, lookup)
+     "query": commonTeamQuery(params, lastDate, publicEfficiency, lookup)
   };
 }

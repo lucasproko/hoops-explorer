@@ -28,6 +28,7 @@ import { faCheck } from '@fortawesome/free-solid-svg-icons';
 // Component imports
 import GenericTable, { GenericTableOps, GenericTableColProps } from "./GenericTable";
 import RosterStatsDiagView from "./RosterStatsDiagView";
+import GenericTogglingMenuItem from "./GenericTogglingMenuItem";
 
 // Util imports
 import { CbbColors } from "../utils/CbbColors";
@@ -419,36 +420,29 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, tea
               <FontAwesomeIcon icon={faCog} />
             </Dropdown.Toggle>
             <Dropdown.Menu>
-              <Dropdown.Item as={Button}>
-                <div onClick={() => setExpandedView(!expandedView)}>
-                  <span>Show expanded statistics</span>
-                  <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                  {expandedView ? <FontAwesomeIcon icon={faCheck}/> : null}
-                </div>
-              </Dropdown.Item>
-              <Dropdown.Item as={Button}>
-                <div onClick={() => setAlwaysShowBaseline(!alwaysShowBaseline)}>
-                  <span>Always show baseline statistics</span>
-                  <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                  {alwaysShowBaseline ? <FontAwesomeIcon icon={faCheck}/> : null}
-                </div>
-              </Dropdown.Item>
-              <Dropdown.Item as={Button}>
-                <div onClick={() => setPossAsPct(!possAsPct)}>
-                  <span>{possAsPct ?
-                    "Show possessions as count" : "Show possessions as % of team"
-                  }</span>
-                  <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                </div>
-              </Dropdown.Item>
+              <GenericTogglingMenuItem
+                text="Show expanded statistics"
+                truthVal={expandedView}
+                onSelect={() => setExpandedView(!expandedView)}
+              />
+              <GenericTogglingMenuItem
+                text="Always show baseline statistics"
+                truthVal={alwaysShowBaseline}
+                onSelect={() => setAlwaysShowBaseline(!alwaysShowBaseline)}
+              />
+              <GenericTogglingMenuItem
+                text={<span>{possAsPct ?
+                  "Show possessions as count" : "Show possessions as % of team"
+                }</span>}
+                truthVal={false}
+                onSelect={() => setPossAsPct(!possAsPct)}
+              />
               <Dropdown.Divider />
-              <Dropdown.Item as={Button}>
-                <div onClick={() => setShowDiagMode(!showDiagMode)}>
-                  <span>Show Off/Def Rating diagnostics</span>
-                  <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                  {showDiagMode ? <FontAwesomeIcon icon={faCheck}/> : null}
-                </div>
-              </Dropdown.Item>
+              <GenericTogglingMenuItem
+                text="Show Off/Def Rating diagnostics"
+                truthVal={showDiagMode}
+                onSelect={() => setShowDiagMode(!showDiagMode)}
+              />
             </Dropdown.Menu>
           </Dropdown>
         </Form.Group>

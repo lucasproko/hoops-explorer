@@ -5,7 +5,8 @@ import { QueryUtils } from "../QueryUtils";
 import { LineupFilterParams } from "../FilterModels";
 
 export const lineupStatsQuery = function(
-  params: LineupFilterParams, publicEfficiency: any, lookup: any, avgEfficiency: number
+  params: LineupFilterParams,
+  lastDate: number, publicEfficiency: any, lookup: any, avgEfficiency: number
 ) {
   return {
      "_source": {
@@ -45,7 +46,7 @@ export const lineupStatsQuery = function(
           "must_not": [],
           "should": [],
           "must": [
-             commonTeamQuery(params, publicEfficiency, lookup),
+             commonTeamQuery(params, lastDate, publicEfficiency, lookup),
              {
                "query_string": {
                   "query": `${QueryUtils.basicOrAdvancedQuery(params.baseQuery, '*')}`

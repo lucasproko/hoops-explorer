@@ -7,6 +7,10 @@ import queryString from "query-string";
 
 import { CommonFilterParams } from "./FilterModels";
 
+/** All the different supported filters */
+export type CommonFilterType =
+  "Conf" | "Home" | "Away" | "Not-Home" | "Last-30d" | "Nov-Dec" | "Jan-Apr";
+
 export class QueryUtils {
 
   private static readonly legacyQueryField = "lineupQuery";
@@ -29,6 +33,9 @@ export class QueryUtils {
     }
     if (!obj.filterGarbage) { //default==false => remove altogether
       delete obj.filterGarbage;
+    }
+    if (obj.queryFilters == "") { //default==[] => remove altogether
+      delete obj.queryFilters;
     }
     return queryString.stringify(obj);
   }
@@ -65,5 +72,52 @@ export class QueryUtils {
         }
       }
     }).value();
+  }
+
+  /** Handles a set of new filters (which can cause existing filters to be removed) */
+  private static filterWith(curr: CommonFilterType[], toAdd: CommonFilterType[]): CommonFilterType[] {
+    const toRemove = (_.flatMap(toAdd, (add) => {
+      switch(add) {
+        case "Home": return [ "Away", "Not-Home" ];
+        case "Away": return [ "Home", "Not-Home" ];
+        case "Not-Home": return [ "Home", "Away" ];
+        case "Last-30d": return [ "Nov-Dec", "Jan-Apr" ];
+        case "Nov-Dec":
+          return [ "Last-30d", "Jan-Apr" ];
+        case "Jan-Apr":
+          return [ "Last-30d", "Nov-Dec" ];
+        default: return [];
+      }
+      return [];
+    }) as CommonFilterType[]).concat(toAdd); //(we'll add them back again, but this ensures uniqueness)
+    return _.sortBy(QueryUtils.filterWithout(curr, toRemove).concat(toAdd));
+  }
+
+  /** Returns the composite filter without the specified filter elements */
+  private static filterWithout(curr: CommonFilterType[], toRemove: CommonFilterType[]): CommonFilterType[] {
+    const toRemoveSet = _.chain(toRemove).map((filter) => [filter, true]).fromPairs().value();
+    return _.filter(curr, (filter) => !toRemoveSet.hasOwnProperty(filter as string));
+  }
+
+  /** Switches between string and array formulation */
+  static parseFilter(queryFilters: string): CommonFilterType[] {
+    return queryFilters.split(",").filter((s: string) => s != "").map((s: string) => s.trim() as CommonFilterType)
+  }
+
+  /** Checks if a filter item is enabled */
+  static filterHas(curr: CommonFilterType[], item: CommonFilterType) {
+    return Boolean(_.find(curr, (f) => f == item));
+  }
+
+  /** Toggles a filter item */
+  static toggleFilter(curr: CommonFilterType[], item: CommonFilterType) {
+    return QueryUtils.filterHas(curr, item) ?
+      QueryUtils.filterWithout(curr, [ item ]) : QueryUtils.filterWith(curr, [ item ]);
+  }
+
+  /** Lookups into the public efficiency records to get a team's conference */
+  static getConference(team: string, efficiency: Record<string, any>, lookup: Record<string, any>) {
+    const efficiencyName = lookup[team]?.pbp_kp_team || team;
+    return efficiency[efficiencyName]?.conf || "";
   }
 }

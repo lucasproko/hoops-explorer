@@ -50,7 +50,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
       const body = [
         JSON.stringify({ index: index }),
-        JSON.stringify(lineupStatsQuery(params, efficiency, lookup, avgEfficiency))
+        JSON.stringify(lineupStatsQuery(params, currentJsonEpoch, efficiency, lookup, avgEfficiency))
       ].join('\n') + "\n";
 
       try {
