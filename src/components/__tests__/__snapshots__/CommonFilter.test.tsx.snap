@@ -700,48 +700,155 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
       <Col
         sm="8"
       >
-        <AutoSuggestText
-          gender="Men"
-          initValue=""
-          onChange={[Function]}
-          onKeyDown={[Function]}
-          onKeyUp={[Function]}
-          placeholder="eg 'Player1 AND NOT (WalkOn1 OR WalkOn2)'"
-          readOnly={false}
-          team=""
-          year="2019/20"
-        />
-      </Col>
-      <Col
-        sm="2"
-      >
-        <OverlayTrigger
-          overlay={
-            <ForwardRef
-              id="garbageFilterTooltip"
-              placement="right"
-            >
-              Filters out lineups in garbage time - see the "Garbage time" article under "Blog contents" for more details
-            </ForwardRef>
-          }
-          placement="auto"
-        >
-          <div>
-            <FormCheck
-              checked={false}
-              disabled={false}
-              id="excludeGarbage"
-              inline={false}
-              isInvalid={false}
-              isValid={false}
-              label="Filter Garbage"
+        <InputGroup>
+          <div
+            className="flex-fill"
+          >
+            <AutoSuggestText
+              gender="Men"
+              initValue=""
               onChange={[Function]}
-              title=""
-              type="switch"
+              onKeyDown={[Function]}
+              onKeyUp={[Function]}
+              placeholder="eg 'Player1 AND NOT (WalkOn1 OR WalkOn2)'"
+              readOnly={false}
+              team=""
+              year="2019/20"
             />
           </div>
-        </OverlayTrigger>
+          <Dropdown
+            as={
+              Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "defaultProps": undefined,
+                "displayName": "InputGroupAppend",
+                "render": [Function],
+              }
+            }
+            navbar={false}
+            variant="outline-secondary"
+          >
+            <Bootstrap(DropdownToggle)
+              id="dropdown-basic"
+              variant="outline-secondary"
+            >
+              <FontAwesomeIcon
+                border={false}
+                className=""
+                fixedWidth={false}
+                flip={null}
+                icon={
+                  Object {
+                    "icon": Array [
+                      512,
+                      512,
+                      Array [],
+                      "f0b0",
+                      "M487.976 0H24.028C2.71 0-8.047 25.866 7.058 40.971L192 225.941V432c0 7.831 3.821 15.17 10.237 19.662l80 55.98C298.02 518.69 320 507.493 320 487.98V225.941l184.947-184.97C520.021 25.896 509.338 0 487.976 0z",
+                    ],
+                    "iconName": "filter",
+                    "prefix": "fas",
+                  }
+                }
+                inverse={false}
+                listItem={false}
+                mask={null}
+                pull={null}
+                pulse={false}
+                rotation={null}
+                size={null}
+                spin={false}
+                swapOpacity={false}
+                symbol={false}
+                title=""
+                transform={null}
+              />
+            </Bootstrap(DropdownToggle)>
+            <DropdownMenu
+              alignRight={false}
+              flip={true}
+            >
+              <GenericTogglingMenuItem
+                onSelect={[Function]}
+                text="Conference games only"
+                truthVal={false}
+              />
+              <DropdownDivider
+                role="separator"
+              />
+              <GenericTogglingMenuItem
+                onSelect={[Function]}
+                text="Home games only"
+                truthVal={false}
+              />
+              <GenericTogglingMenuItem
+                onSelect={[Function]}
+                text="Away games only"
+                truthVal={false}
+              />
+              <GenericTogglingMenuItem
+                onSelect={[Function]}
+                text="Away/Neutral games only"
+                truthVal={false}
+              />
+              <DropdownDivider
+                role="separator"
+              />
+              <GenericTogglingMenuItem
+                onSelect={[Function]}
+                text="Nov/Dec only"
+                truthVal={false}
+              />
+              <GenericTogglingMenuItem
+                onSelect={[Function]}
+                text="Jan-Apr only"
+                truthVal={false}
+              />
+              <GenericTogglingMenuItem
+                onSelect={[Function]}
+                text="Last 30 days only"
+                truthVal={false}
+              />
+              <DropdownDivider
+                role="separator"
+              />
+              <DropdownItem
+                as={
+                  Object {
+                    "$$typeof": Symbol(react.forward_ref),
+                    "defaultProps": Object {
+                      "active": false,
+                      "disabled": false,
+                      "type": "button",
+                      "variant": "primary",
+                    },
+                    "displayName": "Button",
+                    "render": [Function],
+                  }
+                }
+                disabled={false}
+              >
+                <div
+                  onClick={[Function]}
+                >
+                  <span>
+                    Clear all query filters
+                  </span>
+                </div>
+              </DropdownItem>
+            </DropdownMenu>
+          </Dropdown>
+        </InputGroup>
       </Col>
+      <FormLabel
+        className="ml-0 pl-0"
+        column={true}
+        srOnly={false}
+      >
+        <span
+          className="text-muted small"
+        />
+      </FormLabel>
     </FormGroup>
     <FormGroup
       as={
@@ -804,158 +911,42 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
         srOnly={false}
       >
         <span
-          className="text-muted small"
+          className="text-muted"
         >
           (out of ~360 teams)
         </span>
       </FormLabel>
-      <FormGroup
-        as={
-          Object {
-            "$$typeof": Symbol(react.forward_ref),
-            "displayName": "Col",
-            "render": [Function],
-          }
-        }
+      <Col
+        className="mt-1 pt-1"
+        sm="2"
       >
-        <ForwardRef
-          noGutters={false}
+        <OverlayTrigger
+          overlay={
+            <ForwardRef
+              id="garbageFilterTooltip"
+              placement="right"
+            >
+              Filters out lineups in garbage time - see the "Garbage time" article under "Blog contents" for more details
+            </ForwardRef>
+          }
+          placement="auto"
         >
-          <Col
-            lg={2}
-            md={3}
-            sm={3}
-            xs={3}
-          >
-            <Dropdown
-              alignRight={true}
-              navbar={false}
-            >
-              <Bootstrap(DropdownToggle)
-                id="dropdown-basic"
-                variant="outline-secondary"
-              >
-                <FontAwesomeIcon
-                  border={false}
-                  className=""
-                  fixedWidth={false}
-                  flip={null}
-                  icon={
-                    Object {
-                      "icon": Array [
-                        512,
-                        512,
-                        Array [],
-                        "f0b0",
-                        "M487.976 0H24.028C2.71 0-8.047 25.866 7.058 40.971L192 225.941V432c0 7.831 3.821 15.17 10.237 19.662l80 55.98C298.02 518.69 320 507.493 320 487.98V225.941l184.947-184.97C520.021 25.896 509.338 0 487.976 0z",
-                      ],
-                      "iconName": "filter",
-                      "prefix": "fas",
-                    }
-                  }
-                  inverse={false}
-                  listItem={false}
-                  mask={null}
-                  pull={null}
-                  pulse={false}
-                  rotation={null}
-                  size={null}
-                  spin={false}
-                  swapOpacity={false}
-                  symbol={false}
-                  title=""
-                  transform={null}
-                />
-              </Bootstrap(DropdownToggle)>
-              <DropdownMenu
-                alignRight={false}
-                flip={true}
-              >
-                <GenericTogglingMenuItem
-                  onSelect={[Function]}
-                  text="Conference games only"
-                  truthVal={false}
-                />
-                <DropdownDivider
-                  role="separator"
-                />
-                <GenericTogglingMenuItem
-                  onSelect={[Function]}
-                  text="Home games only"
-                  truthVal={false}
-                />
-                <GenericTogglingMenuItem
-                  onSelect={[Function]}
-                  text="Away games only"
-                  truthVal={false}
-                />
-                <GenericTogglingMenuItem
-                  onSelect={[Function]}
-                  text="Away/Neutral games only"
-                  truthVal={false}
-                />
-                <DropdownDivider
-                  role="separator"
-                />
-                <GenericTogglingMenuItem
-                  onSelect={[Function]}
-                  text="Nov/Dec only"
-                  truthVal={false}
-                />
-                <GenericTogglingMenuItem
-                  onSelect={[Function]}
-                  text="Jan-Apr only"
-                  truthVal={false}
-                />
-                <GenericTogglingMenuItem
-                  onSelect={[Function]}
-                  text="Last 30 days only"
-                  truthVal={false}
-                />
-                <DropdownDivider
-                  role="separator"
-                />
-                <DropdownItem
-                  as={
-                    Object {
-                      "$$typeof": Symbol(react.forward_ref),
-                      "defaultProps": Object {
-                        "active": false,
-                        "disabled": false,
-                        "type": "button",
-                        "variant": "primary",
-                      },
-                      "displayName": "Button",
-                      "render": [Function],
-                    }
-                  }
-                  disabled={false}
-                >
-                  <div
-                    onClick={[Function]}
-                  >
-                    <span>
-                      Clear all query filters
-                    </span>
-                  </div>
-                </DropdownItem>
-              </DropdownMenu>
-            </Dropdown>
-          </Col>
-          <Col>
-            <FormLabel
-              column={true}
-              srOnly={false}
-            >
-              <span
-                className="text-muted small"
-              >
-                   
-              </span>
-            </FormLabel>
-          </Col>
-        </ForwardRef>
-      </FormGroup>
+          <div>
+            <FormCheck
+              checked={false}
+              disabled={false}
+              id="excludeGarbage"
+              inline={false}
+              isInvalid={false}
+              isValid={false}
+              label="Filter Garbage"
+              onChange={[Function]}
+              title=""
+              type="switch"
+            />
+          </div>
+        </OverlayTrigger>
+      </Col>
     </FormGroup>
     <Col>
       <Button
@@ -1696,48 +1687,155 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
       <Col
         sm="8"
       >
-        <AutoSuggestText
-          gender="Men"
-          initValue=""
-          onChange={[Function]}
-          onKeyDown={[Function]}
-          onKeyUp={[Function]}
-          placeholder="eg 'Player1 AND NOT (WalkOn1 OR WalkOn2)'"
-          readOnly={false}
-          team="Maryland"
-          year="2018/9"
-        />
-      </Col>
-      <Col
-        sm="2"
-      >
-        <OverlayTrigger
-          overlay={
-            <ForwardRef
-              id="garbageFilterTooltip"
-              placement="right"
-            >
-              Filters out lineups in garbage time - see the "Garbage time" article under "Blog contents" for more details
-            </ForwardRef>
-          }
-          placement="auto"
-        >
-          <div>
-            <FormCheck
-              checked={false}
-              disabled={false}
-              id="excludeGarbage"
-              inline={false}
-              isInvalid={false}
-              isValid={false}
-              label="Filter Garbage"
+        <InputGroup>
+          <div
+            className="flex-fill"
+          >
+            <AutoSuggestText
+              gender="Men"
+              initValue=""
               onChange={[Function]}
-              title=""
-              type="switch"
+              onKeyDown={[Function]}
+              onKeyUp={[Function]}
+              placeholder="eg 'Player1 AND NOT (WalkOn1 OR WalkOn2)'"
+              readOnly={false}
+              team="Maryland"
+              year="2018/9"
             />
           </div>
-        </OverlayTrigger>
+          <Dropdown
+            as={
+              Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "defaultProps": undefined,
+                "displayName": "InputGroupAppend",
+                "render": [Function],
+              }
+            }
+            navbar={false}
+            variant="outline-secondary"
+          >
+            <Bootstrap(DropdownToggle)
+              id="dropdown-basic"
+              variant="outline-secondary"
+            >
+              <FontAwesomeIcon
+                border={false}
+                className=""
+                fixedWidth={false}
+                flip={null}
+                icon={
+                  Object {
+                    "icon": Array [
+                      512,
+                      512,
+                      Array [],
+                      "f0b0",
+                      "M487.976 0H24.028C2.71 0-8.047 25.866 7.058 40.971L192 225.941V432c0 7.831 3.821 15.17 10.237 19.662l80 55.98C298.02 518.69 320 507.493 320 487.98V225.941l184.947-184.97C520.021 25.896 509.338 0 487.976 0z",
+                    ],
+                    "iconName": "filter",
+                    "prefix": "fas",
+                  }
+                }
+                inverse={false}
+                listItem={false}
+                mask={null}
+                pull={null}
+                pulse={false}
+                rotation={null}
+                size={null}
+                spin={false}
+                swapOpacity={false}
+                symbol={false}
+                title=""
+                transform={null}
+              />
+            </Bootstrap(DropdownToggle)>
+            <DropdownMenu
+              alignRight={false}
+              flip={true}
+            >
+              <GenericTogglingMenuItem
+                onSelect={[Function]}
+                text="Conference games only"
+                truthVal={false}
+              />
+              <DropdownDivider
+                role="separator"
+              />
+              <GenericTogglingMenuItem
+                onSelect={[Function]}
+                text="Home games only"
+                truthVal={false}
+              />
+              <GenericTogglingMenuItem
+                onSelect={[Function]}
+                text="Away games only"
+                truthVal={false}
+              />
+              <GenericTogglingMenuItem
+                onSelect={[Function]}
+                text="Away/Neutral games only"
+                truthVal={false}
+              />
+              <DropdownDivider
+                role="separator"
+              />
+              <GenericTogglingMenuItem
+                onSelect={[Function]}
+                text="Nov/Dec only"
+                truthVal={false}
+              />
+              <GenericTogglingMenuItem
+                onSelect={[Function]}
+                text="Jan-Apr only"
+                truthVal={false}
+              />
+              <GenericTogglingMenuItem
+                onSelect={[Function]}
+                text="Last 30 days only"
+                truthVal={false}
+              />
+              <DropdownDivider
+                role="separator"
+              />
+              <DropdownItem
+                as={
+                  Object {
+                    "$$typeof": Symbol(react.forward_ref),
+                    "defaultProps": Object {
+                      "active": false,
+                      "disabled": false,
+                      "type": "button",
+                      "variant": "primary",
+                    },
+                    "displayName": "Button",
+                    "render": [Function],
+                  }
+                }
+                disabled={false}
+              >
+                <div
+                  onClick={[Function]}
+                >
+                  <span>
+                    Clear all query filters
+                  </span>
+                </div>
+              </DropdownItem>
+            </DropdownMenu>
+          </Dropdown>
+        </InputGroup>
       </Col>
+      <FormLabel
+        className="ml-0 pl-0"
+        column={true}
+        srOnly={false}
+      >
+        <span
+          className="text-muted small"
+        />
+      </FormLabel>
     </FormGroup>
     <FormGroup
       as={
@@ -1800,158 +1898,42 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
         srOnly={false}
       >
         <span
-          className="text-muted small"
+          className="text-muted"
         >
           (out of ~360 teams)
         </span>
       </FormLabel>
-      <FormGroup
-        as={
-          Object {
-            "$$typeof": Symbol(react.forward_ref),
-            "displayName": "Col",
-            "render": [Function],
-          }
-        }
+      <Col
+        className="mt-1 pt-1"
+        sm="2"
       >
-        <ForwardRef
-          noGutters={false}
+        <OverlayTrigger
+          overlay={
+            <ForwardRef
+              id="garbageFilterTooltip"
+              placement="right"
+            >
+              Filters out lineups in garbage time - see the "Garbage time" article under "Blog contents" for more details
+            </ForwardRef>
+          }
+          placement="auto"
         >
-          <Col
-            lg={2}
-            md={3}
-            sm={3}
-            xs={3}
-          >
-            <Dropdown
-              alignRight={true}
-              navbar={false}
-            >
-              <Bootstrap(DropdownToggle)
-                id="dropdown-basic"
-                variant="outline-secondary"
-              >
-                <FontAwesomeIcon
-                  border={false}
-                  className=""
-                  fixedWidth={false}
-                  flip={null}
-                  icon={
-                    Object {
-                      "icon": Array [
-                        512,
-                        512,
-                        Array [],
-                        "f0b0",
-                        "M487.976 0H24.028C2.71 0-8.047 25.866 7.058 40.971L192 225.941V432c0 7.831 3.821 15.17 10.237 19.662l80 55.98C298.02 518.69 320 507.493 320 487.98V225.941l184.947-184.97C520.021 25.896 509.338 0 487.976 0z",
-                      ],
-                      "iconName": "filter",
-                      "prefix": "fas",
-                    }
-                  }
-                  inverse={false}
-                  listItem={false}
-                  mask={null}
-                  pull={null}
-                  pulse={false}
-                  rotation={null}
-                  size={null}
-                  spin={false}
-                  swapOpacity={false}
-                  symbol={false}
-                  title=""
-                  transform={null}
-                />
-              </Bootstrap(DropdownToggle)>
-              <DropdownMenu
-                alignRight={false}
-                flip={true}
-              >
-                <GenericTogglingMenuItem
-                  onSelect={[Function]}
-                  text="Conference games only"
-                  truthVal={false}
-                />
-                <DropdownDivider
-                  role="separator"
-                />
-                <GenericTogglingMenuItem
-                  onSelect={[Function]}
-                  text="Home games only"
-                  truthVal={false}
-                />
-                <GenericTogglingMenuItem
-                  onSelect={[Function]}
-                  text="Away games only"
-                  truthVal={false}
-                />
-                <GenericTogglingMenuItem
-                  onSelect={[Function]}
-                  text="Away/Neutral games only"
-                  truthVal={false}
-                />
-                <DropdownDivider
-                  role="separator"
-                />
-                <GenericTogglingMenuItem
-                  onSelect={[Function]}
-                  text="Nov/Dec only"
-                  truthVal={false}
-                />
-                <GenericTogglingMenuItem
-                  onSelect={[Function]}
-                  text="Jan-Apr only"
-                  truthVal={false}
-                />
-                <GenericTogglingMenuItem
-                  onSelect={[Function]}
-                  text="Last 30 days only"
-                  truthVal={false}
-                />
-                <DropdownDivider
-                  role="separator"
-                />
-                <DropdownItem
-                  as={
-                    Object {
-                      "$$typeof": Symbol(react.forward_ref),
-                      "defaultProps": Object {
-                        "active": false,
-                        "disabled": false,
-                        "type": "button",
-                        "variant": "primary",
-                      },
-                      "displayName": "Button",
-                      "render": [Function],
-                    }
-                  }
-                  disabled={false}
-                >
-                  <div
-                    onClick={[Function]}
-                  >
-                    <span>
-                      Clear all query filters
-                    </span>
-                  </div>
-                </DropdownItem>
-              </DropdownMenu>
-            </Dropdown>
-          </Col>
-          <Col>
-            <FormLabel
-              column={true}
-              srOnly={false}
-            >
-              <span
-                className="text-muted small"
-              >
-                   
-              </span>
-            </FormLabel>
-          </Col>
-        </ForwardRef>
-      </FormGroup>
+          <div>
+            <FormCheck
+              checked={false}
+              disabled={false}
+              id="excludeGarbage"
+              inline={false}
+              isInvalid={false}
+              isValid={false}
+              label="Filter Garbage"
+              onChange={[Function]}
+              title=""
+              type="switch"
+            />
+          </div>
+        </OverlayTrigger>
+      </Col>
     </FormGroup>
     <Col>
       <Button

@@ -555,32 +555,45 @@ const CommonFilter: CommonFilterI = ({
     <Form.Group as={Row}>
       <Form.Label column sm="2">Baseline Query {maybeShowBlogHelp()}</Form.Label>
       <Col sm="8">
-        <AutoSuggestText
-          readOnly={false}
-          placeholder="eg 'Player1 AND NOT (WalkOn1 OR WalkOn2)'"
-          initValue={baseQuery}
-          year={year}
-          gender={gender}
-          team={team}
-          onChange={(ev: any) => setBaseQuery(ev.target.value)}
-          onKeyUp={(ev: any) => setBaseQuery(ev.target.value)}
-          onKeyDown={submitListenerFactory(true)}
-        />
-      </Col>
-      <Col sm="2">
-        <OverlayTrigger placement="auto" overlay={garbageFilterTooltip}>
-          <div>
-            <Form.Check type="switch"
-              id="excludeGarbage"
-              checked={garbageTimeFiltered}
-              onChange={() => {
-                setGarbageTimeFiltered(!garbageTimeFiltered);
-              }}
-              label="Filter Garbage"
+        <InputGroup>
+          <div className="flex-fill">
+            <AutoSuggestText
+              readOnly={false}
+              placeholder="eg 'Player1 AND NOT (WalkOn1 OR WalkOn2)'"
+              initValue={baseQuery}
+              year={year}
+              gender={gender}
+              team={team}
+              onChange={(ev: any) => setBaseQuery(ev.target.value)}
+              onKeyUp={(ev: any) => setBaseQuery(ev.target.value)}
+              onKeyDown={submitListenerFactory(true)}
             />
-          </div>
-        </OverlayTrigger>
+            </div>
+          <Dropdown as={InputGroup.Append} variant="outline-secondary">
+            <Dropdown.Toggle variant="outline-secondary" id="dropdown-basic">
+              <FontAwesomeIcon icon={faFilter} />
+            </Dropdown.Toggle>
+            <Dropdown.Menu>
+              {filterMenuItem("Conf", "Conference games only")}
+              <Dropdown.Divider />
+              {filterMenuItem("Home", "Home games only")}
+              {filterMenuItem("Away", "Away games only")}
+              {filterMenuItem("Not-Home", "Away/Neutral games only")}
+              <Dropdown.Divider />
+              {filterMenuItem("Nov-Dec", "Nov/Dec only")}
+              {filterMenuItem("Jan-Apr", "Jan-Apr only")}
+              {filterMenuItem("Last-30d", "Last 30 days only")}
+              <Dropdown.Divider />
+              <Dropdown.Item as={Button}>
+                <div onClick={() => {setQueryFilters([])}}>
+                  <span>Clear all query filters</span>
+                </div>
+              </Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
+        </InputGroup>
       </Col>
+      <Form.Label column className="ml-0 pl-0"><span className="text-muted small">{_.join(queryFilters, "; ")}</span></Form.Label>
     </Form.Group>
     <Form.Group as={Row} controlId="oppositionFilter">
       <Form.Label column sm="2">Opponent Strength</Form.Label>
@@ -616,38 +629,21 @@ const CommonFilter: CommonFilterI = ({
           />
           </InputGroup>
       </Col>
-      <Form.Label column sm="2"><span className="text-muted small">(out of ~360 teams)</span></Form.Label>
-      <Form.Group as={Col}>
-        <Row>
-        <Col xs={3} sm={3} md={3} lg={2}>
-          <Dropdown alignRight>
-            <Dropdown.Toggle variant="outline-secondary" id="dropdown-basic">
-              <FontAwesomeIcon icon={faFilter} />
-            </Dropdown.Toggle>
-            <Dropdown.Menu>
-              {filterMenuItem("Conf", "Conference games only")}
-              <Dropdown.Divider />
-              {filterMenuItem("Home", "Home games only")}
-              {filterMenuItem("Away", "Away games only")}
-              {filterMenuItem("Not-Home", "Away/Neutral games only")}
-              <Dropdown.Divider />
-              {filterMenuItem("Nov-Dec", "Nov/Dec only")}
-              {filterMenuItem("Jan-Apr", "Jan-Apr only")}
-              {filterMenuItem("Last-30d", "Last 30 days only")}
-              <Dropdown.Divider />
-              <Dropdown.Item as={Button}>
-                <div onClick={() => {setQueryFilters([])}}>
-                  <span>Clear all query filters</span>
-                </div>
-              </Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
-        </Col>
-        <Col>
-          <Form.Label column><span className="text-muted small">&nbsp;&nbsp;&nbsp;{_.join(queryFilters, "; ")}</span></Form.Label>
-        </Col>
-        </Row>
-      </Form.Group>
+      <Form.Label column sm="2"><span className="text-muted">(out of ~360 teams)</span></Form.Label>
+      <Col sm="2" className="mt-1 pt-1">
+        <OverlayTrigger placement="auto" overlay={garbageFilterTooltip}>
+          <div>
+            <Form.Check type="switch"
+              id="excludeGarbage"
+              checked={garbageTimeFiltered}
+              onChange={() => {
+                setGarbageTimeFiltered(!garbageTimeFiltered);
+              }}
+              label="Filter Garbage"
+            />
+          </div>
+        </OverlayTrigger>
+      </Col>
     </Form.Group>
     <Col>
       <Button disabled={submitDisabled} variant="primary" onClick={onSubmit}>Submit</Button>
