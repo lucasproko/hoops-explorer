@@ -569,7 +569,7 @@ const CommonFilter: CommonFilterI = ({
               onKeyDown={submitListenerFactory(true)}
             />
             </div>
-          <Dropdown as={InputGroup.Append} variant="outline-secondary">
+          <Dropdown as={InputGroup.Append} variant="outline-secondary" alignRight>
             <Dropdown.Toggle variant="outline-secondary" id="dropdown-basic">
               <FontAwesomeIcon icon={faFilter} />
             </Dropdown.Toggle>
