@@ -48,6 +48,15 @@ export type RapmProcessingInputs = {
   prevAttempts: Array<any> //TODO make this list of diag objects typed
 };
 
+export type RapmInfo = {
+  ctx: RapmPlayerContext,
+  preProcDiags?: RapmPreProcDiagnostics,
+  offWeights: any,
+  defWeights: any,
+  offInputs: RapmProcessingInputs,
+  defInputs: RapmProcessingInputs
+};
+
 /** Wrapper for some math to calculate RAPM and its various artefacts */
 export class RapmUtils {
 
