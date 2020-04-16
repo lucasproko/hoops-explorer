@@ -101,7 +101,7 @@ export class QueryUtils {
 
   /** Switches between string and array formulation */
   static parseFilter(queryFilters: string): CommonFilterType[] {
-    return queryFilters.split(",").map((s: string) => s.trim() as CommonFilterType)
+    return queryFilters.split(",").filter((s: string) => s != "").map((s: string) => s.trim() as CommonFilterType)
   }
 
   /** Checks if a filter item is enabled */
