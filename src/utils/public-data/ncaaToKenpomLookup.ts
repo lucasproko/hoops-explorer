@@ -1,6 +1,8 @@
 
-/** The NCAA name to KenPom name mappings */
-export const ncaaToKenpomLookup = {
+import _ from "lodash";
+
+/** The NCAA name to KenPom name mappings, built in 2020, can have per year changes */
+export const ncaaToKenpomLookup_2019_20 = {
    "A&M-Corpus Christi": {
       "pbp_kp_team": "Texas A&M Corpus Chris"
    },
@@ -9,6 +11,12 @@ export const ncaaToKenpomLookup = {
    },
    "Alcorn": {
       "pbp_kp_team": "Alcorn St."
+   },
+   "Ark.-Pine Bluff": {
+     "pbp_kp_team": "Arkansas Pine Bluff"
+   },
+   "Army West Point": {
+      "pbp_kp_team": "Army"
    },
    "Auburn": {
       "pbp_kp_team": "Auburn"
@@ -35,7 +43,7 @@ export const ncaaToKenpomLookup = {
       "pbp_kp_team": "Charleston Southern"
    },
    "Col. of Charleston": {
-      "pbp_kp_team": "College of Charleston"
+      "pbp_kp_team": "Charleston"
    },
    "CSU Bakersfield": {
       "pbp_kp_team": "Cal St. Bakersfield"
@@ -92,7 +100,7 @@ export const ncaaToKenpomLookup = {
       "pbp_kp_team": "Lamar"
    },
    "LIU": {
-      "pbp_kp_team": "LIU Brooklyn"
+      "pbp_kp_team": "LIU"
    },
    "LMU (CA)": {
       "pbp_kp_team": "Loyola Marymount"
@@ -148,8 +156,8 @@ export const ncaaToKenpomLookup = {
    "Prairie View": {
       "pbp_kp_team": "Prairie View A&M"
    },
-   "Purdue Fort Wayne": {
-      "pbp_kp_team": "IPFW"
+   "Purdue Fort Wayne": { //(this one changed recently)
+      "pbp_kp_team": "Purdue Fort Wayne"
    },
    "Saint Francis (PA)": {
       "pbp_kp_team": "St. Francis PA"
@@ -230,3 +238,31 @@ export const ncaaToKenpomLookup = {
       "pbp_kp_team": "Western Michigan"
    }
 };
+
+export const ncaaToKenpomLookup_2018_19 = _.merge(ncaaToKenpomLookup_2019_20, {
+  "NC State": {
+     "pbp_kp_team": "North Carolina St."
+  },
+  "LIU": {
+     "pbp_kp_team": "LIU Brooklyn"
+  }
+});
+
+export const ncaaToKenpomLookup_2017_18 = _.merge(ncaaToKenpomLookup_2018_19, {
+  "Col. of Charleston": {
+     "pbp_kp_team": "College of Charleston"
+  },
+  "Purdue Fort Wayne": {
+     "pbp_kp_team": "Fort Wayne"
+  },
+});
+
+export const ncaaToKenpomLookup_2016_17 = ncaaToKenpomLookup_2017_18;
+
+export const ncaaToKenpomLookup_2015_16 = _.merge(ncaaToKenpomLookup_2016_17, {
+  "Purdue Fort Wayne": {
+     "pbp_kp_team": "IPFW"
+  },
+});
+
+export const ncaaToKenpomLookup_2014_15 = ncaaToKenpomLookup_2015_16;
