@@ -41,6 +41,7 @@ const TeamReportFilter: React.FunctionComponent<Props> = ({onStats, startingStat
     incRapm: startIncRapm,
     regressDiffs: startingRegressDiffs,
     repOnOffDiagMode: startingRepOnOffDiagMode,
+    rapmDiagMode: startingRapmDiagMode,
     ...startingCommonFilterParams
   } = startingState;
 
@@ -73,6 +74,7 @@ const TeamReportFilter: React.FunctionComponent<Props> = ({onStats, startingStat
         incRapm: startIncRapm,
         regressDiffs: startingRegressDiffs,
         repOnOffDiagMode: startingRepOnOffDiagMode,
+        rapmDiagMode: startingRapmDiagMode
     }) : {
       ...commonParams
     };

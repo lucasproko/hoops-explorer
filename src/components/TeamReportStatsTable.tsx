@@ -103,7 +103,7 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
   );
 
   const [ rapmDiagMode, setRapmDiagMode ] = useState(
-    true // TODO
+    _.isNil(startingState.rapmDiagMode) ? ParamDefaults.defaultTeamReportRapmDiagMode : startingState.rapmDiagMode
   );
 
   /** If the browser is doing heavier calcs then spin the display vs just be unresponsive */
@@ -125,12 +125,16 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
       incRepOnOff: incReplacementOnOff,
       incRapm: incRapm,
       regressDiffs: regressDiffs.toString(),
-      repOnOffDiagMode: repOnOffDiagMode.toString()
+      repOnOffDiagMode: repOnOffDiagMode.toString(),
+      rapmDiagMode: rapmDiagMode
     }).omit( // remove "debuggy" fields
-      (repOnOffDiagMode == 0) ? [ 'repOnOffDiagMode' ] : []
+      _.flatten([
+        (repOnOffDiagMode == 0) ? [ 'repOnOffDiagMode' ] : [],
+        (rapmDiagMode == "") ? [ 'rapmDiagMode' ] : [],
+      ])
     ).value();
     onChangeState(newState);
-  }, [ sortBy, filterStr, showOnOff, showLineupCompositions, incReplacementOnOff, incRapm, regressDiffs, repOnOffDiagMode ]);
+  }, [ sortBy, filterStr, showOnOff, showLineupCompositions, incReplacementOnOff, incRapm, regressDiffs, repOnOffDiagMode, rapmDiagMode ]);
 
   // (cache this below)
   const [ teamReport, setTeamReport ] = useState({} as any);
@@ -144,7 +148,7 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
     // we're processing (vs just being unresponsive)
     setInBrowserRepOnOffPxing(true);
 
-  }, [ lineupReport, incReplacementOnOff, incRapm, regressDiffs, repOnOffDiagMode ] );
+  }, [ lineupReport, incReplacementOnOff, incRapm, regressDiffs, repOnOffDiagMode, rapmDiagMode ] );
 
   /** logic to perform whenever the data changes (or the metadata in such a way re-processing is required)*/
   const onDataChangeProcessing = () => {
@@ -167,7 +171,7 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
           )
           setRapmInfo({
             ctx: rapmContext,
-            preProcDiags: rapmDiagMode ?
+            preProcDiags: (rapmDiagMode != "") ?
               RapmUtils.calcCollinearityDiag(offRapmWeights, rapmContext) : undefined,
             offWeights: offRapmWeights,
             defWeights: defRapmWeights,
@@ -308,7 +312,7 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
           GenericTableOps.buildDataRow(statsRapm, CommonTableDefs.offPrefixFn, CommonTableDefs.offCellMetaFn, CommonTableDefs.onOffReportReplacement),
           GenericTableOps.buildDataRow(statsRapm, CommonTableDefs.defPrefixFn, CommonTableDefs.defCellMetaFn, CommonTableDefs.onOffReportReplacement)
         ] : [],
-        incRapm && rapmDiagMode && rapmInfo && (player?.rapm?.key) ? [
+        incRapm && (rapmDiagMode != "") && rapmInfo && (player?.rapm?.key) ? [
           GenericTableOps.buildTextRow(
             <RapmPlayerDiagView
               rapmInfo={rapmInfo}
@@ -520,6 +524,11 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
                 text="'r:On-Off' diagnostic mode"
                 truthVal={repOnOffDiagMode != 0}
                 onSelect={() => setRepOnOffDiagMode(repOnOffDiagMode != 0 ? 0 : 10)}
+              />
+              <GenericTogglingMenuItem
+                text="'RAPM diagnostic mode"
+                truthVal={rapmDiagMode != ""}
+                onSelect={() => setRapmDiagMode(rapmDiagMode != "" ? "" : "base")}
               />
             </Dropdown.Menu>
           </Dropdown>
