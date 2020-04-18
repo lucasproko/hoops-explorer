@@ -14,6 +14,13 @@ import { ParamPrefixes, ParamDefaults, LineupFilterParams } from '../../utils/Fi
 
 const isDebug = (process.env.NODE_ENV !== 'production');
 
+/** Run node with "USE_TEST_INDICES" to hit the test indices */
+const useTestIndices = isDebug && (process.env.USE_TEST_INDICES === 'true');
+
+if (isDebug) {
+  console.log(`Use test indices = [${useTestIndices}]`);
+}
+
 // Additional imports
 import { QueryUtils } from "../../utils/QueryUtils";
 
@@ -46,7 +53,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       res.status(404).json({});
     } else {
       const index = (team.index_template || AvailableTeams.defaultConfIndex) + "_" +
-                      (team.year || params.year || "xxxx").substring(0, 4);
+                      (team.year || params.year || "xxxx").substring(0, 4) + (useTestIndices ? "_ltest" : "");
 
       const body = [
         JSON.stringify({ index: index }),
