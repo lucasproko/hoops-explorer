@@ -301,10 +301,12 @@ const CommonFilter: CommonFilterI = ({
             console.log(`CACHE_KEY=[${tablePrefix}${newParamsStr}]`);
             console.log(`CACHE_VAL=[${JSON.stringify(json)}]`);
           }
-          if (!isResponseError(json)) { //(never cache errors)
+          if (response.ok && !isResponseError(json)) { //(never cache errors)
             ClientRequestCache.cacheResponse(
               newParamsStr, tablePrefix, json, currentJsonEpoch, isDebug
             );
+          } else if (isDebug) {
+            console.log(`Response error: status=[${response.status}] keys=[${Object.keys(response || {})}]`)            
           }
           handleResponse(json);
         })

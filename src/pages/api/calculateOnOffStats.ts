@@ -100,6 +100,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         }
         res.status(esFetch.status).json(esFetchJson);
       } catch (e) {
+        console.log(`Error parsing response [${e.message}]`);
         res.status(500).json({});
       }
     }

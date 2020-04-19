@@ -62,12 +62,12 @@ const HeaderBar: React.FunctionComponent<Props> = ({thisPage, common}) => {
   }
   function getBaseLineupUrl() {
     return UrlRouting.getLineupUrl(
-      getCommonFilterParams(common)  as LineupFilterParams, {}
+      getCommonFilterParams(common) as LineupFilterParams, {}
     );
   }
   function getBaseReportUrl() {
     return UrlRouting.getTeamReportUrl(
-      getCommonFilterParams(common)  as TeamReportFilterParams
+      getCommonFilterParams(common) as TeamReportFilterParams
     );
   }
 
@@ -103,7 +103,8 @@ const HeaderBar: React.FunctionComponent<Props> = ({thisPage, common}) => {
     <Tooltip id="lastReportTooltip">Go back to the most recently submitted On/Off Report page</Tooltip>
   );
 
-  return <Container>
+  //(only render client-side - was running into cache issues of the Link href)
+  return (typeof window !== `undefined`) ? <Container>
       <Row className="border-top">
         {(thisPage != ParamPrefixes.game) ?
             <Col className="text-center small">
@@ -149,7 +150,7 @@ const HeaderBar: React.FunctionComponent<Props> = ({thisPage, common}) => {
         }
         {maybeShowBlog()}
       </Row>
-    </Container>;
+    </Container> : null;
 }
 
 export default HeaderBar;
