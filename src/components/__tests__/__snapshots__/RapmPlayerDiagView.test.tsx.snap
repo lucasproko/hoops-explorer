@@ -1,0 +1,90 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RapmPlayerDiagView RapmPlayerDiagView - should create snapshot 1`] = `
+<span>
+  <b>
+    RAPM diagnostics for [
+    Wiggins, Aaron
+    ]:
+  </b>
+   adj_off=[
+  <b>
+    2.78
+  </b>
+  ], adj_def=[
+  <b>
+    -5.91
+  </b>
+  ]
+  <ul>
+    <li>
+      RAPM contribution: off=[
+      <b>
+        2.98
+      </b>
+      ], def=[
+      <b>
+        -5.00
+      </b>
+      ], total=[
+      <b>
+        7.99
+      </b>
+      ]
+    </li>
+    <li>
+      Priors contribution: off=[
+      <b>
+        -0.20
+      </b>
+      ], def=[
+      <b>
+        -0.90
+      </b>
+      ], total=[
+      <b>
+        0.70
+      </b>
+      ]
+    </li>
+    <ul>
+      <li>
+        Weighted down from the raw priors: off=[
+        <b>
+          1.59
+        </b>
+        ] def=[
+        <b>
+          -3.25
+        </b>
+        ]
+      </li>
+      <li>
+        Calculated using players' % on floor, [
+        <b>
+          82
+          %
+        </b>
+        ] of [
+        <b>
+          101
+        </b>
+        ] poss, and team's adj_off=[
+        <b>
+          10.0
+        </b>
+        ], adj_def=[
+        <b>
+          -20.0
+        </b>
+        ]
+      </li>
+    </ul>
+  </ul>
+  (
+  <b>
+    More to come...
+  </b>
+  )
+</span>
+`;

@@ -10,7 +10,7 @@ import { CommonTableDefs } from "./CommonTableDefs";
 // @ts-ignore
 import { SVD } from 'svd-js'
 // @ts-ignore
-import { add, apply, diag, identity, inv, matrix, mean, multiply, row, sum, transpose, variance, zeros } from 'mathjs';
+import { add, apply, diag, identity, inv, matrix, mean, multiply, resize, row, sum, transpose, variance, zeros } from 'mathjs';
 
 /** Useful intermediate results */
 export type RapmPlayerContext = {
@@ -46,6 +46,16 @@ export type RapmProcessingInputs = {
   solnMatrix: any | null,
   ridgeLambda: number,
   prevAttempts: Array<any> //TODO make this list of diag objects typed
+};
+
+export type RapmInfo = {
+  ctx: RapmPlayerContext,
+  preProcDiags?: RapmPreProcDiagnostics,
+  noUnbiasWeightsDiags?: [ number[], number[] ],
+  offWeights: any,
+  defWeights: any,
+  offInputs: RapmProcessingInputs,
+  defInputs: RapmProcessingInputs
 };
 
 /** Wrapper for some math to calculate RAPM and its various artefacts */
@@ -475,6 +485,48 @@ export class RapmUtils {
   }
 
   // 3] ERROR VALIDATION
+
+  /** When using unbiased weights method, calc RAPM without that for diag purposes */
+  static recalcNoUnbiasWeightingRapmForDiag(
+    offWeights: any, defWeights: any,
+    offRapmInput: RapmProcessingInputs, defRapmInput: RapmProcessingInputs,
+    ctx: RapmPlayerContext
+
+  ): [ number[], number[] ] {
+    // (see pickRidgeRegression for context)
+    
+    const ctxNoWeights = _.merge(_.clone(ctx), {
+      unbiasWeight: 0
+    });
+    const [ offAdjPoss, defAdjPoss ] = RapmUtils.calcLineupOutputs(
+      "adj_ppp", ctxNoWeights.avgEfficiency, ctxNoWeights.avgEfficiency, ctxNoWeights
+    );
+    const adjPoss = {
+      off: offAdjPoss,
+      def: defAdjPoss
+    };
+    const weights = {
+      off: offWeights,
+      def: defWeights
+    };
+    const lambda = {
+      off: offRapmInput.ridgeLambda,
+      def: defRapmInput.ridgeLambda,
+    };
+    const [ offTestResults, defTestResults ] = ([ "off", "def" ] as Array<"off" | "def">).map((offOrDef: "off" | "def") => {
+      const ridgeLambda = lambda[offOrDef];
+
+      const solver = RapmUtils.slowRegression(
+        resize(weights[offOrDef], [ctx.numLineups, ctx.numPlayers]), ridgeLambda, ctxNoWeights
+      );
+      const results: number[] = RapmUtils.calculateRapm(solver, adjPoss[offOrDef]);
+
+      return results;
+    });
+    return [offTestResults, defTestResults];
+  }
+
+
 
   private static calcSlowPseudoInverse(
     playerWeightMatrix: any,

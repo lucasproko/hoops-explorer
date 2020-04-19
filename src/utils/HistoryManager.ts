@@ -188,15 +188,18 @@ export class HistoryManager {
       _.isNil(p.regressDiffs) ? ParamDefaults.defaultTeamReportRegressDiffs : p.regressDiffs;
     const regressStr =
       (regressNum == ParamDefaults.defaultTeamReportRegressDiffs) ? '' : (':R' + regressNum);
-    const diagMode =
+    const repOnOffDiagMode =
       _.isNil(p.repOnOffDiagMode) ? false : true;
+    const rapmDiagMode =
+      _.isNil(p.rapmDiagMode) ? false : (p.rapmDiagMode != "");
 
     const showArray = _.flatMap([
       showOnOff ? [] : [ "!on/off" ],
       showComps ? [ "comps" ] : [],
       incRepOnOff ? [ "r:on-off" + regressStr ] : [],
       incRapm ? [ "rapm" ] : [],
-      diagMode ? [ "r:on-off:diag" ] : []
+      repOnOffDiagMode ? [ "r:on-off:diag" ] : [],
+      rapmDiagMode ? [ "rapm:diag" ] : [],
     ]);
 
     const otherParams =

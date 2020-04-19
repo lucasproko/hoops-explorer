@@ -1268,6 +1268,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot 1`] 
               text="'r:On-Off' diagnostic mode"
               truthVal={false}
             />
+            <GenericTogglingMenuItem
+              onSelect={[Function]}
+              text="'RAPM diagnostic mode"
+              truthVal={false}
+            />
           </DropdownMenu>
         </Dropdown>
       </FormGroup>

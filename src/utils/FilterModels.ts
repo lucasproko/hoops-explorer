@@ -73,8 +73,9 @@ export type TeamReportFilterParams = {
   showComps?: boolean,
   incRepOnOff?: boolean,
   regressDiffs?: string, //+ve to add that number of 0 samples, -ve to regress to the given sample size
-  repOnOffDiagMode?: string //(tthe number of diagnostic lineups to show, basically 0 or 10)
-  incRapm?: boolean
+  repOnOffDiagMode?: string //(the number of diagnostic lineups to show, basically 0 or 10)
+  incRapm?: boolean,
+  rapmDiagMode?: string //"" if disabled, "team" if enabled with nobody expanded, "playerId[;playerId]+" if expanded for players
 };
 
 /** Used to give compile errors if a field is omitted, for fw compat */
@@ -107,6 +108,7 @@ export class ParamDefaults {
   static readonly defaultTeamReportIncRapm = false;
   static readonly defaultTeamReportRegressDiffs = "-2000";
   static readonly defaultTeamReportRepOnOffDiagMode = "0";
+  static readonly defaultTeamReportRapmDiagMode = "";
   // Common
   static readonly defaultTeam = "";
   static readonly defaultYear = "2019/20";
