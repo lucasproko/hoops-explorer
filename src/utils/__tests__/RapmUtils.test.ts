@@ -223,6 +223,31 @@ describe("RapmUtils", () => {
     ]);
   });
 
+  test("RapmUtils - recalcNoUnbiasWeightingRapmForDiag", () => {
+
+    const [ offResults, defResults ] = RapmUtils.pickRidgeRegression(
+      semiRealRapmResults.testOffWeights, semiRealRapmResults.testDefWeights, semiRealRapmResults.testContext);
+
+    const results = RapmUtils.recalcNoUnbiasWeightingRapmForDiag(
+      semiRealRapmResults.testOffWeights, semiRealRapmResults.testDefWeights,
+      offResults, defResults, semiRealRapmResults.testContext
+    );
+
+    expect(results.map((row: number[]) => row.map((n: number) => n.toFixed(2)))).toEqual([
+      [
+        '2.53', '2.75',
+        '2.98', '2.32',
+        '2.60', '0.28',
+        '0.27', '-0.19'
+      ],[
+        '-5.50', '-1.73',
+        '-5.00', '-1.48',
+        '-0.53', '-3.04',
+        '0.31',  '-2.64'
+      ]
+    ]);
+  });
+
   test("RapmUtils - calcCollinearityDiag", () => {
 
     // Test matrix

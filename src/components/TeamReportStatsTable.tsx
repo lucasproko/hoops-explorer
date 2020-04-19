@@ -172,7 +172,14 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
           setRapmInfo({
             ctx: rapmContext,
             preProcDiags: (rapmDiagMode != "") ?
-              RapmUtils.calcCollinearityDiag(offRapmWeights, rapmContext) : undefined,
+              RapmUtils.calcCollinearityDiag(offRapmWeights, rapmContext) : undefined
+            ,
+            noUnbiasWeightsDiags: (rapmDiagMode != "") && (rapmContext.unbiasWeight > 0) ?
+              RapmUtils.recalcNoUnbiasWeightingRapmForDiag(
+                offRapmWeights, defRapmWeights,
+                offRapmInputs, defRapmInputs, rapmContext
+              ) : undefined
+            ,
             offWeights: offRapmWeights,
             defWeights: defRapmWeights,
             offInputs: offRapmInputs,

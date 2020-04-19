@@ -29,6 +29,10 @@ describe("RapmPlayerDiagView", () => {
       preProcDiags: RapmUtils.calcCollinearityDiag(
         semiRealRapmResults.testOffWeights, semiRealRapmResults.testContext
       ),
+      noUnbiasWeightsDiags: RapmUtils.recalcNoUnbiasWeightingRapmForDiag(
+        semiRealRapmResults.testOffWeights, semiRealRapmResults.testDefWeights,
+        offResults, defResults, semiRealRapmResults.testContext
+      ),
       offWeights: semiRealRapmResults.testOffWeights,
       defWeights: semiRealRapmResults.testDefWeights,
       offInputs: offResults,

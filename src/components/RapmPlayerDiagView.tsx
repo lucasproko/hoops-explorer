@@ -36,13 +36,16 @@ const RapmPlayerDiagView: React.FunctionComponent<Props> = (({rapmInfo, player})
         const off = (offPriorWeight*(ctx.unbiasWeight*teamOffAdj));
         const def = (defPriorWeight*(ctx.unbiasWeight*teamDefAdj));
 
+        const [ offUnbiasRapm, defUnbiasRapm ] = rapmInfo?.noUnbiasWeightsDiags?.map((vec) => vec[col]) || [0, 0];
+        const offPrior = rapmOff - offUnbiasRapm;
+        const defPrior = rapmDef - defUnbiasRapm;
+
         return [
-          off, def,
+          offPrior, defPrior,
           <ul>
-            <li>Currently calculated using players' % on floor, [<b>{offPossPctStr}%</b>] of [<b>{totalOffPoss}</b>] poss,
+            <li>Weighted down from the raw priors: off=[<b>{off.toFixed(2)}</b>] def=[<b>{def.toFixed(2)}</b>]</li>
+            <li>Calculated using players' % on floor, [<b>{offPossPctStr}%</b>] of [<b>{totalOffPoss}</b>] poss,
              and team's adj_off=[<b>{teamOffAdj.toFixed(1)}</b>], adj_def=[<b>{teamDefAdj.toFixed(1)}</b>]</li>
-            <li><em>(Not exactly a prior - it's an additional strong observation that the weighted sum of the
-             players' contributions is equal to the team's adjusted efficiency)</em></li>
           </ul>
         ];
 
@@ -59,9 +62,9 @@ const RapmPlayerDiagView: React.FunctionComponent<Props> = (({rapmInfo, player})
     return <span>
         <b>RAPM diagnostics for [{player.playerId}]:</b> adj_off=[<b>{rapmOff.toFixed(2)}</b>], adj_def=[<b>{rapmDef.toFixed(2)}</b>]
         <ul>
-          <li>Priors: off=[<b>{priorOff.toFixed(2)}</b>], def=[<b>{priorDef.toFixed(2)}</b>], total=[<b>{totalPrior.toFixed(2)}</b>]</li>
+          <li>RAPM contribution: off=[<b>{rawRapmOff.toFixed(2)}</b>], def=[<b>{rawRapmDef.toFixed(2)}</b>], total=[<b>{totalRawRapm.toFixed(2)}</b>]</li>
+          <li>Priors contribution: off=[<b>{priorOff.toFixed(2)}</b>], def=[<b>{priorDef.toFixed(2)}</b>], total=[<b>{totalPrior.toFixed(2)}</b>]</li>
             {priorDiagListEl}
-          <li>raw RAPM: off=[<b>{rawRapmOff.toFixed(2)}</b>], def=[<b>{rawRapmDef.toFixed(2)}</b>], total=[<b>{totalRawRapm.toFixed(2)}</b>]</li>
         </ul>
         (<b>More to come...</b>)
       </span>;
