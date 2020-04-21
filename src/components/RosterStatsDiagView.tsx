@@ -16,53 +16,11 @@ const RosterStatsDiagView: React.FunctionComponent<Props> = ({ortgDiags, drtgDia
 
   const [ showMoreORtgPts, setShowMoreORtgPts ] = useState(false);
   const [ showMoreORtgPoss, setShowMoreORtgPoss ] = useState(false);
-  const [ showMoreDRtg, setShowMoreDRtg ] = useState(true);
+  const [ showMoreDRtg, setShowMoreDRtg ] = useState(false);
 
   const o = ortgDiags;
   const d = drtgDiags;
   return <span>
-    DRtg = Team_DRtg [<b>{d.teamRtg.toFixed(1)}</b>] + Player_Delta [<b>{d.playerDelta.toFixed(1)}</b>]
-    &nbsp;(<a href="#" onClick={(event) => { event.preventDefault(); setShowMoreDRtg(!showMoreDRtg) }}>{showMoreDRtg ? "less" : "more"} about DRtg</a>)
-    <ul>
-      <li>Team_DRtg: [<b>{d.teamRtg.toFixed(1)}</b>] = 100 * Opponent_Pts [<b>{d.oppoPts.toFixed(0)}</b>] / Opponent_Poss [<b>{d.oppoPoss.toFixed(0)}</b>] <em>(only counting while player was on floor)</em></li>
-      <li>Player_Delta: [<b>{(d.playerDelta).toFixed(1)}</b>] = (Player_DRtg [<b>{d.playerRtg.toFixed(1)}</b>] - Team_DRtg [<b>{d.teamRtg.toFixed(1)}</b>]) / Team_Size [<b>5</b>]</li>
-      <ul>
-        <li>Player_DRtg:  [<b>{d.playerRtg.toFixed(1)}</b>] = 100 * Pts_Per_Score [<b>{d.oppoPtsPerScore.toFixed(1)}</b>] * Score_Conceded_By_Player% [<b>{(100*d.scPossConceded).toFixed(1)}%</b>]</li>
-      </ul>
-      {showMoreDRtg ?
-      <span><li><u>DRtg details</u></li>
-      <ul>
-        <li>Pts_Per_Score: [<b>{d.oppoPtsPerScore.toFixed(1)}</b>] = Opponent_PTS [<b>{d.oppoPts.toFixed(0)}</b>] / Scoring_Plays [<b>{d.oppoScPoss.toFixed(1)}</b>]</li>
-        <ul>
-          <li>Scoring_Plays: [<b>{d.oppoScPoss.toFixed(1)}</b>] = Opponent_FGM [<b>{d.oppoFgm.toFixed(0)}</b>] + Opponent_FTs_Hit_1+ [<b>{d.oppoFtHitOnePlus.toFixed(1)}</b>]</li>
-          <ul>
-            <li>Opponent_FTs_Hit_1+: [<b>{d.oppoFtHitOnePlus.toFixed(1)}</b>] = (1 - Opponent_FTs_Missed_Both% [<b>{(100*(1 - d.oppoProbFtHitOnePlus)).toFixed(1)}%</b>]) * (0.475*Opponent_FTA) [<b>{d.oppoFtPoss.toFixed(1)}</b>]</li>
-            <ul>
-              <li>Opponent_FTs_Missed_Both%: [<b>{(100*(1 - d.oppoProbFtHitOnePlus)).toFixed(1)}%</b>] = (1 - Opponent_FT% [<b>{(100*d.oppoFtPct).toFixed(1)}%</b>])^2</li>
-              <li><em>(0.475*FTA is a standard equation for estimating the number of trips to the FT line)</em></li>
-            </ul>
-          </ul>
-        </ul>
-        <li>Score_Conceded_By_Player%: [<b>{(100*d.scPossConceded).toFixed(1)}%</b>] = 1 - Stops_Credit_Player% [<b>{(100*d.stopsIndPct).toFixed(1)}%</b>] - Stops_Credit_Team% [<b>{(100*d.stopsTeamPct).toFixed(1)}%</b>]</li>
-        <ul>
-          <li>Stops_Credit_Player%: [<b>{(100*d.stopsIndPct).toFixed(1)}%</b>] = (NoShot_Credit [] + Rebound_Credit [] + MissFT_Credit []) / (20% * Opponent_Poss) [<b>{(0.2*d.oppoPoss).toFixed(1)}</b>]</li>
-          <ul>
-            <li>NoShot_Credit: [] = Steals [<b>{d.stl.toFixed(0)}</b>] + (Block [<b>{d.blk.toFixed(0)}</b>] * Opponent_Miss_Credit [<b>{d.teamMissWeight.toFixed(1)}</b>])</li>
-            <ul>
-              <li>TODO</li>
-            </ul>
-            <li>Rebound_Credit: [] = </li>
-            <li>MissFT_Credit: [] = </li>
-          </ul>
-          <li>Stops_Credit_Team%: [<b>{(100*d.stopsTeamPct).toFixed(1)}%</b>] = ((Opponent_FGMiss [<b>{d.oppoFgMiss.toFixed(0)}</b>] * Opponent_Miss_Credit [<b>{d.teamMissWeight.toFixed(1)}</b>]) + Opponent_NonSteal_TOV [<b>{d.oppoNonStlTov.toFixed(0)}</b>]) / Opponent_Poss [<b>{(d.oppoPoss).toFixed(0)}</b>]</li>
-          <ul>
-            <li>Opponent_FGMiss: [<b>{d.oppoFgMiss.toFixed(0)}</b>] = Opponent_FGA [<b>{d.oppoFga}</b>] - Opponent_FGM [<b>{d.oppoFgm}</b>] - Team_BLK [<b>{d.teamBlk}</b>]</li>
-            <li>Opponent_NonSteal_TOV: [<b>{d.oppoNonStlTov.toFixed(0)}</b>] = Opponent_TOV [<b>{d.oppoTov}</b>] - Team_STL [<b>{d.teamStl}</b>]</li>
-          </ul>
-        </ul>
-      </ul></span> : null
-      }
-    </ul>
     ORtg = Points_Produced [<b>{o.ptsProd.toFixed(1)}</b>] / Adjusted_Possessions [<b>{o.adjPoss.toFixed(1)}</b>]
     &nbsp;(<a href="#" onClick={(event) => { event.preventDefault(); setShowMoreORtgPts(!showMoreORtgPts) }}>{showMoreORtgPts ? "less" : "more"} about points</a>)
     &nbsp;(<a href="#" onClick={(event) => { event.preventDefault(); setShowMoreORtgPoss(!showMoreORtgPoss) }}>{showMoreORtgPoss ? "less" : "more"} about possessions</a>)
@@ -159,6 +117,60 @@ const RosterStatsDiagView: React.FunctionComponent<Props> = ({ortgDiags, drtgDia
           <li><em>(FT possession calcs above, under Team_Scoring_Plays)</em></li>
         </ul>
       </ul></span> : null }
+    </ul>
+    DRtg = Team_DRtg [<b>{d.teamRtg.toFixed(1)}</b>] + Player_Delta [<b>{d.playerDelta.toFixed(1)}</b>]
+    &nbsp;(<a href="#" onClick={(event) => { event.preventDefault(); setShowMoreDRtg(!showMoreDRtg) }}>{showMoreDRtg ? "less" : "more"} about DRtg</a>)
+    <ul>
+      <li>Team_DRtg: [<b>{d.teamRtg.toFixed(1)}</b>] = 100 * Opponent_Pts [<b>{d.oppoPts.toFixed(0)}</b>] / Opponent_Poss [<b>{d.oppoPoss.toFixed(0)}</b>] <em>(only counting while player was on floor)</em></li>
+      <li>Player_Delta: [<b>{(d.playerDelta).toFixed(1)}</b>] = (Player_DRtg [<b>{d.playerRtg.toFixed(1)}</b>] - Team_DRtg [<b>{d.teamRtg.toFixed(1)}</b>]) / Team_Size [<b>5</b>]</li>
+      <ul>
+        <li>Player_DRtg:  [<b>{d.playerRtg.toFixed(1)}</b>] = 100 * Pts_Per_Score [<b>{d.oppoPtsPerScore.toFixed(1)}</b>] * Score_Conceded_By_Player% [<b>{(100*d.scPossConceded).toFixed(1)}%</b>]</li>
+      </ul>
+      {showMoreDRtg ?
+      <span><li><u>DRtg details</u></li>
+      <ul>
+        <li>Pts_Per_Score: [<b>{d.oppoPtsPerScore.toFixed(1)}</b>] = Opponent_PTS [<b>{d.oppoPts.toFixed(0)}</b>] / Scoring_Plays [<b>{d.oppoScPoss.toFixed(1)}</b>]</li>
+        <ul>
+          <li>Scoring_Plays: [<b>{d.oppoScPoss.toFixed(1)}</b>] = Opponent_FGM [<b>{d.oppoFgm.toFixed(0)}</b>] + Opponent_FTs_Hit_1+ [<b>{d.oppoFtHitOnePlus.toFixed(1)}</b>]</li>
+          <ul>
+            <li>Opponent_FTs_Hit_1+: [<b>{d.oppoFtHitOnePlus.toFixed(1)}</b>] = (1 - Opponent_FTs_Missed_Both% [<b>{(100*(1 - d.oppoProbFtHitOnePlus)).toFixed(1)}%</b>]) * (0.475*Opponent_FTA) [<b>{d.oppoFtPoss.toFixed(1)}</b>]</li>
+            <ul>
+              <li>Opponent_FTs_Missed_Both%: [<b>{(100*(1 - d.oppoProbFtHitOnePlus)).toFixed(1)}%</b>] = (1 - Opponent_FT% [<b>{(100*d.oppoFtPct).toFixed(1)}%</b>])^2</li>
+              <li><em>(0.475*FTA is a standard equation for estimating the number of trips to the FT line)</em></li>
+            </ul>
+          </ul>
+        </ul>
+        <li>Score_Conceded_By_Player%: [<b>{(100*d.scPossConceded).toFixed(1)}%</b>] = 1 - Stops_Credit_Player% [<b>{(100*d.stopsIndPct).toFixed(1)}%</b>] - Stops_Credit_Team% [<b>{(100*d.stopsTeamPct).toFixed(1)}%</b>]</li>
+        <ul>
+          <li><em>(We split stops into those that can be at least partially assigned to a player, and those where the best you can do is give 1/5th credit)</em></li>
+          <li>Stops_Credit_Player%: [<b>{(100*d.stopsIndPct).toFixed(1)}%</b>] = (NoShot_Credit [<b>{d.noShotCredit.toFixed(1)}</b>] + Rebound_Credit [<b>{d.reboundCredit.toFixed(1)}</b>] + MissFT_Credit [<b>{d.missFtCredit.toFixed(1)}</b>]) / (20% * Opponent_Poss) [<b>{(0.2*d.oppoPoss).toFixed(1)}</b>]</li>
+          <ul>
+            <li>NoShot_Credit: [<b>{d.noShotCredit.toFixed(1)}</b>] = Steals [<b>{d.stl.toFixed(0)}</b>] + (Block [<b>{d.blk.toFixed(0)}</b>] * Opponent_Miss_Credit [<b>{(100*d.teamMissWeight).toFixed(1)}%</b>])</li>
+            <ul>
+              <li>Opponent_Miss_Credit: [<b>{(100*d.teamMissWeight).toFixed(1)}%</b>] = Miss_vs_Rebound_Credit% [<b>{(100*d.teamDvsRebCredit).toFixed(1)}%</b>] * Team_Rebound_Miss% [<b>{(107 - 107*d.opponentOrbPct).toFixed(1)}%</b>]</li>
+              <li>Miss_vs_Rebound_Credit%: [<b>{(100*d.teamDvsRebCredit).toFixed(1)}%</b>] = Credit_To_Shot_Defense% [<b>{(100*d.teamOrbCreditToDefender).toFixed(1)}%</b>] / (Credit_To_Shot_Defense% [<b>{(100*d.teamOrbCreditToDefender).toFixed(1)}%</b>] + Credit_To_Rebounder% [<b>{(100*d.teamOrbCreditToRebounder).toFixed(1)}%</b>]) </li>
+              <ul>
+                <li><em>(The theory here is that after a missed shot and a defensive rebound, we assign credit to the shot defender based on the relative difficulty of preventing the score vs rebounding the miss)</em></li>
+                <li>Credit_To_Shot_Defense%: [<b>{(100*d.teamOrbCreditToDefender).toFixed(1)}%</b>] = Opponent_FG% [<b>{(100*d.opponentFgPct).toFixed(1)}%</b>] * Team_Defensive_Rebound% [<b>{(100 - 100*d.opponentOrbPct).toFixed(1)}%</b>]</li>
+                <li>Credit_To_Rebounder%: [<b>{(100*d.teamOrbCreditToRebounder).toFixed(1)}%</b>] = Opponent_FGmiss% [<b>{(100 - 100*d.opponentFgPct).toFixed(1)}%</b>] * Opponent_ORB% [<b>{(100*d.opponentOrbPct).toFixed(1)}%</b>]</li>
+              </ul>
+              <li>Team_Rebound_Miss%: [<b>{(107 - 107*d.opponentOrbPct).toFixed(1)}%</b>] = Miss_Rebound_Weight [<b>107%</b>] * Team_Defensive_Rebound% [<b>{(100 - 100*d.opponentOrbPct).toFixed(1)}%</b>]</li>
+            </ul>
+            <li>Rebound_Credit: [<b>{d.reboundCredit.toFixed(1)}</b>] = Rebounds [<b>{d.drb.toFixed(0)}</b>] * (1 - Miss_vs_Rebound_Credit% [<b>{(100*d.teamDvsRebCredit).toFixed(1)}%</b>])</li>
+            <li>MissFT_Credit: [<b>{d.missFtCredit.toFixed(1)}</b>] = PF% [<b>{(100*d.pfPct).toFixed(1)}%</b>] * (0.475*Opponent_FTA) [<b>{d.oppoFtPoss.toFixed(1)}</b>] * Opponent_FTs_Missed_Both% [<b>{(100*(1 - d.oppoProbFtHitOnePlus)).toFixed(1)}%</b>]</li>
+            <ul>
+              <li><em>(0.475*FTA is a standard equation for estimating the number of trips to the FT line)</em></li>
+            </ul>
+          </ul>
+          <li>Stops_Credit_Team%: [<b>{(100*d.stopsTeamPct).toFixed(1)}%</b>] = ((Opponent_FGMiss [<b>{d.oppoFgMiss.toFixed(0)}</b>] * Opponent_Miss_Credit [<b>{(100*d.teamMissWeight).toFixed(1)}%</b>]) + Opponent_NonSteal_TOV [<b>{d.oppoNonStlTov.toFixed(0)}</b>]) / Opponent_Poss [<b>{(d.oppoPoss).toFixed(0)}</b>]</li>
+          <ul>
+            <li><em>(Opponent_Miss_Credit is described under Stops_Credit_Player%, above)</em></li>
+            <li>Opponent_FGMiss: [<b>{d.oppoFgMiss.toFixed(0)}</b>] = Opponent_FGA [<b>{d.oppoFga}</b>] - Opponent_FGM [<b>{d.oppoFgm}</b>] - Team_BLK [<b>{d.teamBlk}</b>]</li>
+            <li>Opponent_NonSteal_TOV: [<b>{d.oppoNonStlTov.toFixed(0)}</b>] = Opponent_TOV [<b>{d.oppoTov}</b>] - Team_STL [<b>{d.teamStl}</b>]</li>
+          </ul>
+        </ul>
+      </ul></span> : null
+      }
     </ul>
   </span>;
 };
