@@ -234,8 +234,11 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, tea
 
         stat.off_drb = stat.def_orb;
         const [ oRtg, oRtgDiag ] = StatsUtils.buildORtg(stat, showDiagMode);
+        const [ dRtg, dRtgDiag ] = StatsUtils.buildDRtg(stat, showDiagMode);
         stat.off_rtg = oRtg;
+        stat.def_rtg = dRtg;
         stat.diag_off_rtg = oRtgDiag;
+        stat.diag_def_rtg = dRtgDiag;
       }
     });
     return player;
@@ -259,19 +262,19 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, tea
         [ GenericTableOps.buildDataRow(p.on, offPrefixFn, offCellMetaFn) ],
         expandedView ? [ GenericTableOps.buildDataRow(p.on, defPrefixFn, defCellMetaFn) ] : [],
         p.on?.diag_off_rtg ?
-          [ GenericTableOps.buildTextRow(<RosterStatsDiagView ortgDiags={p.on?.diag_off_rtg}/>, "small") ] : []
+          [ GenericTableOps.buildTextRow(<RosterStatsDiagView ortgDiags={p.on?.diag_off_rtg} drtgDiags={p.on?.diag_def_rtg}/>, "small") ] : []
       ]),
       _.isNil(p.off?.off_title) ? [ ] : _.flatten([
         [ GenericTableOps.buildDataRow(p.off, offPrefixFn, offCellMetaFn) ],
         expandedView ? [ GenericTableOps.buildDataRow(p.off, defPrefixFn, defCellMetaFn) ] : [],
         p.off?.diag_off_rtg ?
-          [ GenericTableOps.buildTextRow(<RosterStatsDiagView ortgDiags={p.off?.diag_off_rtg}/>, "small") ] : []
+          [ GenericTableOps.buildTextRow(<RosterStatsDiagView ortgDiags={p.off?.diag_off_rtg} drtgDiags={p.off?.diag_def_rtg}/>, "small") ] : []
       ]),
       (skipBaseline || _.isNil(p.baseline?.off_title)) ? [ ] : _.flatten([
         [ GenericTableOps.buildDataRow(p.baseline, offPrefixFn, offCellMetaFn) ],
         expandedView ? [ GenericTableOps.buildDataRow(p.baseline, defPrefixFn, defCellMetaFn) ] : [],
         p.baseline?.diag_off_rtg ?
-          [ GenericTableOps.buildTextRow(<RosterStatsDiagView ortgDiags={p.baseline?.diag_off_rtg}/>, "small") ] : []
+          [ GenericTableOps.buildTextRow(<RosterStatsDiagView ortgDiags={p.baseline?.diag_off_rtg} drtgDiags={p.baseline?.diag_def_rtg}/>, "small") ] : []
       ]),
       [ GenericTableOps.buildRowSeparator() ]
     ]);

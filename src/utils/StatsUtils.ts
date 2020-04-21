@@ -66,12 +66,148 @@ export type ORtgDiagnostics = {
   scoringPoss: number,
   fgxPoss: number,
   ftxPoss: number
-}
+};
 
-
+/** All the info needed to explain the DRtg calculation, see "buildDRtgDiag" */
+export type DRtgDiagnostics = {
+  // Basic player numbers
+  stl: number,
+  blk: number,
+  drb: number,
+  // Advanced player numbers
+  playerRtg: number,
+  playerDelta: number,
+  scPossConceded: number,
+  stopsIndPct: number,
+  stopsTeamPct: number,
+  // Basic team numbers
+  teamBlk: number,
+  oppoPts: number,
+  oppoPoss: number,
+  oppoFga: number,
+  oppoFgm: number,
+  oppoFtm: number,
+  oppoFta: number,
+  oppoFtPoss: number,
+  oppoTov: number,
+  teamStl: number,
+  // Advanced team numbers
+  oppoFgMiss: number,
+  oppoNonStlTov: number,
+  teamMissWeight: number,
+  oppoFtPct: number,
+  oppoFtHitOnePlus: number,
+  oppoProbFtHitOnePlus: number,
+  oppoScPoss: number,
+  oppoPtsPerScore: number,
+  teamRtg: number,
+};
 
 /** General cbb complex stats calcs */
 export class StatsUtils {
+
+  /** From https://www.basketball-reference.com/about/ratings.html */
+  static buildDRtg(statSet: Record<string, any>, calcDiags: boolean): [ any, DRtgDiagnostics | undefined ] {
+    if (!statSet) return [ { value: 0.0 }, undefined ];
+
+    // Player:
+    const STL = statSet?.total_off_stl?.value || 0;
+    const BLK = statSet?.total_off_blk?.value || 0;
+    const DRB = statSet?.total_off_drb?.value || 0;
+    const PF = statSet?.total_off_foul?.value || 0;
+    // Team:
+    const Team_DRB = statSet?.team_total_off_drb?.value || 0;
+    const Team_BLK = statSet?.team_total_off_blk?.value || 0;
+    const Team_STL = statSet?.team_total_off_stl?.value || 0;
+    const Team_PF = statSet?.team_total_off_foul?.value || 0;
+    // Opponent:
+    const Opponent_FGA = statSet?.oppo_total_def_fga?.value || 0;
+    const Opponent_FGM = statSet?.oppo_total_def_fgm?.value || 0;
+    const Opponent_ORB = statSet?.oppo_total_def_orb?.value || 0;
+    const Opponent_TOV = statSet?.oppo_total_def_orb?.value || 0;
+    const Opponent_FTA = statSet?.oppo_total_def_fta?.value || 0;
+    const Opponent_FTM = statSet?.oppo_total_def_ftm?.value || 0;
+    const Opponent_Possessions = statSet?.oppo_total_def_poss?.value || 0;
+    const Opponent_PTS = statSet?.oppo_total_def_pts?.value || 0;
+
+    // The overall credit for a miss and a defensive rebound gets split between the ...
+    // ... team for forcing the miss and the individual for getting the rebound
+    // (as per usual based on their relative difficulty)
+    const DFGpct = Opponent_FGA > 0 ? Opponent_FGM / Opponent_FGA : 0;
+    const Total_RBs = (Opponent_ORB + Team_DRB);
+    const Team_DORpct = Total_RBs > 0 ? Opponent_ORB/Total_RBs : 0;
+    const FMwt = ((Team_DORpct < 1) || (DFGpct < 1)) ?
+      (DFGpct*(1 - Team_DORpct)) / (DFGpct*(1 - Team_DORpct) + (1 - DFGpct)*Team_DORpct) : 0;
+
+    // Block/Miss weighting - team has to rebound (bonus 7%), and the credit is the chance opponent would have scored
+    const TeamMissWeight = FMwt*(1 - 1.07*Team_DORpct);
+    // Credit to the individual for stops
+    const PFpct = Team_PF > 0 ? PF/Team_PF : 0;
+    const Opponent_MissAllFTs = Opponent_FTA > 0 ? (1 - Opponent_FTM/Opponent_FTA)**2 : 0;
+    const Stops_Ind = STL + BLK*TeamMissWeight + DRB*(1 - FMwt) + PFpct*(0.475*Opponent_FTA)*Opponent_MissAllFTs;
+
+    // Credit to the team for stops (divided by 5 for shots/turnovers, in proportion of fouls for FTMs)
+    const Opponent_FGMiss = Opponent_FGA - Opponent_FGM - Team_BLK;
+    const Opponent_NonStlTOV  = Opponent_TOV - Team_STL;
+    const Stops_Team = 0.2*(Opponent_FGMiss*TeamMissWeight + Opponent_NonStlTOV);
+
+    const Stops = Stops_Ind + Stops_Team;
+
+    const StopPct = Opponent_Possessions > 0 ? Stops/(0.2*Opponent_Possessions) : 0;
+
+    const Opponent_HitFTs = 1 - Opponent_MissAllFTs;
+    const Team_DRtg = Opponent_Possessions > 0 ? 100*(Opponent_PTS/Opponent_Possessions) : 0;
+
+    const ScPoss = Opponent_FGM + Opponent_HitFTs*0.475*Opponent_FTA;
+    const D_Pts_Per_ScPoss = ScPoss > 0 ? Opponent_PTS/ScPoss : 0;
+
+    const Player_DRtg = 100*D_Pts_Per_ScPoss*(1 - StopPct);
+    const Player_Delta = 0.2*(Player_DRtg - Team_DRtg);
+
+    const DRtg = Team_DRtg + Player_Delta;
+
+    // Try to incorporate FT fault:
+    // Sum per lineup Approx_SF_Poss = PFpct*(Opponent_FTA*0.475)
+    //(maybe discard intentional FT spots)
+    // Approx_SF_FTM =PFpct*Opponent_FTM
+    // then subtract from Opponent_PTS, Opponents_FTM, Opponents_FTA
+    // remove Stop_Ind
+    // and then add an extra term 100/Team_Poss*(SF_FTM/SF_Poss)
+
+    return [Opponent_Possessions > 0 ? { value: DRtg } : undefined, (calcDiags ? {
+      // Basic player numbers
+      stl: STL,
+      blk: BLK,
+      drb: DRB,
+      // Advanced player numbers
+      playerRtg: Player_DRtg,
+      playerDelta: Player_Delta,
+      scPossConceded: 1 - StopPct,
+      stopsIndPct: Opponent_Possessions > 0 ? Stops_Ind/(0.2*Opponent_Possessions) : 0,
+      stopsTeamPct: Opponent_Possessions > 0 ? Stops_Team/(0.2*Opponent_Possessions) : 0,
+      // Basic team numbers
+      teamBlk: Team_BLK,
+      oppoPts: Opponent_PTS,
+      oppoPoss: Opponent_Possessions,
+      oppoFga: Opponent_FGA,
+      oppoFgm: Opponent_FGM,
+      oppoFtm: Opponent_FTM,
+      oppoFta: Opponent_FTA,
+      oppoFtPoss: 0.475*Opponent_FTA,
+      oppoTov: Opponent_TOV,
+      teamStl: Team_STL,
+      // Advanced team numbers
+      oppoFgMiss: Opponent_FGMiss,
+      oppoNonStlTov: Opponent_NonStlTOV,
+      teamMissWeight: TeamMissWeight,
+      oppoFtPct: Opponent_FTA > 0 ? Opponent_FTM/Opponent_FTA : 0,
+      oppoFtHitOnePlus: Opponent_HitFTs*0.475*Opponent_FTA,
+      oppoProbFtHitOnePlus: Opponent_HitFTs,
+      oppoScPoss: ScPoss,
+      oppoPtsPerScore: D_Pts_Per_ScPoss,
+      teamRtg: Team_DRtg,
+    } : undefined) ];
+  }
 
   /** From https://www.basketball-reference.com/about/ratings.html */
   static buildORtg(statSet: Record<string, any>, calcDiags: boolean): [ any, ORtgDiagnostics | undefined ] {

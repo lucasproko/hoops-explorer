@@ -5,111 +5,156 @@ import React, { useState } from 'react';
 import { NextPage } from 'next';
 
 // Utils
-import { ORtgDiagnostics } from "../utils/StatsUtils";
+import { ORtgDiagnostics, DRtgDiagnostics } from "../utils/StatsUtils";
 
 
 type Props = {
-  ortgDiags: ORtgDiagnostics
+  ortgDiags: ORtgDiagnostics,
+  drtgDiags: DRtgDiagnostics,
 };
-const RosterStatsDiagView: React.FunctionComponent<Props> = ({ortgDiags}) => {
+const RosterStatsDiagView: React.FunctionComponent<Props> = ({ortgDiags, drtgDiags}) => {
 
   const [ showMoreORtgPts, setShowMoreORtgPts ] = useState(false);
   const [ showMoreORtgPoss, setShowMoreORtgPoss ] = useState(false);
+  const [ showMoreDRtg, setShowMoreDRtg ] = useState(true);
 
-  const d = ortgDiags;
+  const o = ortgDiags;
+  const d = drtgDiags;
   return <span>
-    ORtg = Points_Produced/Adjusted_Possessions [<b>{d.ptsProd.toFixed(1)}</b>] / [<b>{d.adjPoss.toFixed(1)}</b>]
+    DRtg = Team_DRtg [<b>{d.teamRtg.toFixed(1)}</b>] + Player_Delta [<b>{d.playerDelta.toFixed(1)}</b>]
+    &nbsp;(<a href="#" onClick={(event) => { event.preventDefault(); setShowMoreDRtg(!showMoreDRtg) }}>{showMoreDRtg ? "less" : "more"} about DRtg</a>)
+    <ul>
+      <li>Team_DRtg: [<b>{d.teamRtg.toFixed(1)}</b>] = 100 * Opponent_Pts [<b>{d.oppoPts.toFixed(0)}</b>] / Opponent_Poss [<b>{d.oppoPoss.toFixed(0)}</b>] <em>(only counting while player was on floor)</em></li>
+      <li>Player_Delta: [<b>{(d.playerDelta).toFixed(1)}</b>] = (Player_DRtg [<b>{d.playerRtg.toFixed(1)}</b>] - Team_DRtg [<b>{d.teamRtg.toFixed(1)}</b>]) / Team_Size [<b>5</b>]</li>
+      <ul>
+        <li>Player_DRtg:  [<b>{d.playerRtg.toFixed(1)}</b>] = 100 * Pts_Per_Score [<b>{d.oppoPtsPerScore.toFixed(1)}</b>] * Score_Conceded_By_Player% [<b>{(100*d.scPossConceded).toFixed(1)}%</b>]</li>
+      </ul>
+      {showMoreDRtg ?
+      <span><li><u>DRtg details</u></li>
+      <ul>
+        <li>Pts_Per_Score: [<b>{d.oppoPtsPerScore.toFixed(1)}</b>] = Opponent_PTS [<b>{d.oppoPts.toFixed(0)}</b>] / Scoring_Plays [<b>{d.oppoScPoss.toFixed(1)}</b>]</li>
+        <ul>
+          <li>Scoring_Plays: [<b>{d.oppoScPoss.toFixed(1)}</b>] = Opponent_FGM [<b>{d.oppoFgm.toFixed(0)}</b>] + Opponent_FTs_Hit_1+ [<b>{d.oppoFtHitOnePlus.toFixed(1)}</b>]</li>
+          <ul>
+            <li>Opponent_FTs_Hit_1+: [<b>{d.oppoFtHitOnePlus.toFixed(1)}</b>] = (1 - Opponent_FTs_Missed_Both% [<b>{(100*(1 - d.oppoProbFtHitOnePlus)).toFixed(1)}%</b>]) * (0.475*Opponent_FTA) [<b>{d.oppoFtPoss.toFixed(1)}</b>]</li>
+            <ul>
+              <li>Opponent_FTs_Missed_Both%: [<b>{(100*(1 - d.oppoProbFtHitOnePlus)).toFixed(1)}%</b>] = (1 - Opponent_FT% [<b>{(100*d.oppoFtPct).toFixed(1)}%</b>])^2</li>
+              <li><em>(0.475*FTA is a standard equation for estimating the number of trips to the FT line)</em></li>
+            </ul>
+          </ul>
+        </ul>
+        <li>Score_Conceded_By_Player%: [<b>{(100*d.scPossConceded).toFixed(1)}%</b>] = 1 - Stops_Credit_Player% [<b>{(100*d.stopsIndPct).toFixed(1)}%</b>] - Stops_Credit_Team% [<b>{(100*d.stopsTeamPct).toFixed(1)}%</b>]</li>
+        <ul>
+          <li>Stops_Credit_Player%: [<b>{(100*d.stopsIndPct).toFixed(1)}%</b>] = (NoShot_Credit [] + Rebound_Credit [] + MissFT_Credit []) / (20% * Opponent_Poss) [<b>{(0.2*d.oppoPoss).toFixed(1)}</b>]</li>
+          <ul>
+            <li>NoShot_Credit: [] = Steals [<b>{d.stl.toFixed(0)}</b>] + (Block [<b>{d.blk.toFixed(0)}</b>] * Opponent_Miss_Credit [<b>{d.teamMissWeight.toFixed(1)}</b>])</li>
+            <ul>
+              <li>TODO</li>
+            </ul>
+            <li>Rebound_Credit: [] = </li>
+            <li>MissFT_Credit: [] = </li>
+          </ul>
+          <li>Stops_Credit_Team%: [<b>{(100*d.stopsTeamPct).toFixed(1)}%</b>] = ((Opponent_FGMiss [<b>{d.oppoFgMiss.toFixed(0)}</b>] * Opponent_Miss_Credit [<b>{d.teamMissWeight.toFixed(1)}</b>]) + Opponent_NonSteal_TOV [<b>{d.oppoNonStlTov.toFixed(0)}</b>]) / Opponent_Poss [<b>{(d.oppoPoss).toFixed(0)}</b>]</li>
+          <ul>
+            <li>Opponent_FGMiss: [<b>{d.oppoFgMiss.toFixed(0)}</b>] = Opponent_FGA [<b>{d.oppoFga}</b>] - Opponent_FGM [<b>{d.oppoFgm}</b>] - Team_BLK [<b>{d.teamBlk}</b>]</li>
+            <li>Opponent_NonSteal_TOV: [<b>{d.oppoNonStlTov.toFixed(0)}</b>] = Opponent_TOV [<b>{d.oppoTov}</b>] - Team_STL [<b>{d.teamStl}</b>]</li>
+          </ul>
+        </ul>
+      </ul></span> : null
+      }
+    </ul>
+    ORtg = Points_Produced [<b>{o.ptsProd.toFixed(1)}</b>] / Adjusted_Possessions [<b>{o.adjPoss.toFixed(1)}</b>]
     &nbsp;(<a href="#" onClick={(event) => { event.preventDefault(); setShowMoreORtgPts(!showMoreORtgPts) }}>{showMoreORtgPts ? "less" : "more"} about points</a>)
     &nbsp;(<a href="#" onClick={(event) => { event.preventDefault(); setShowMoreORtgPoss(!showMoreORtgPoss) }}>{showMoreORtgPoss ? "less" : "more"} about possessions</a>)
     <ul>
-      <li>Points_Produced: [<b>{d.ptsProd.toFixed(1)}</b>] = PProd_From_ORB [<b>{d.ppOrb.toFixed(1)}</b>] +
-      [<b>{((d.ppFg + d.ppAssist + d.rawFtm)*(1 - d.teamOrbContribPct)).toFixed(1)}</b>]
-      (PProd_From_FG [<b>{d.ppFg.toFixed(1)}</b>] + FTM [<b>{d.rawFtm}</b>] + PProd_From_AST [<b>{d.ppAssist.toFixed(1)}</b>],
-      less Team_ORB_Contrib% [<b>{(100*d.teamOrbContribPct).toFixed(1)}%</b>]==[<b>{((d.ppFg + d.ppAssist + d.rawFtm)*d.teamOrbContribPct).toFixed(1)}</b>])
+      <li>Points_Produced: [<b>{o.ptsProd.toFixed(1)}</b>] = PProd_From_ORB [<b>{o.ppOrb.toFixed(1)}</b>] +
+      [<b>{((o.ppFg + o.ppAssist + o.rawFtm)*(1 - o.teamOrbContribPct)).toFixed(1)}</b>]
+      (PProd_From_FG [<b>{o.ppFg.toFixed(1)}</b>] + FTM [<b>{o.rawFtm}</b>] + PProd_From_AST [<b>{o.ppAssist.toFixed(1)}</b>],
+      less Team_ORB_Contrib% [<b>{(100*o.teamOrbContribPct).toFixed(1)}%</b>]==[<b>{((o.ppFg + o.ppAssist + o.rawFtm)*o.teamOrbContribPct).toFixed(1)}</b>])
       </li>
       <ul>
-        <li><em>Compare raw stats: orb=[<b>{d.rawOrb}</b>], pts=[<b>{d.rawPts}</b>] (fg_pts=[<b>{d.ptsFgm}</b>] + ftm=[<b>{d.rawFtm}</b>]), assists=[<b>{d.rawAssist}</b>]</em></li>
+        <li><em>Compare raw stats: orb=[<b>{o.rawOrb}</b>], pts=[<b>{o.rawPts}</b>] (fg_pts=[<b>{o.ptsFgm}</b>] + ftm=[<b>{o.rawFtm}</b>]), assists=[<b>{o.rawAssist}</b>]</em></li>
       </ul>
       {showMoreORtgPts ?
       <span><li><u>Points section</u></li>
       <ul>
-        <li>PProd_From_FG: [<b>{d.ppFg.toFixed(1)}</b>] = Raw_FG_Pts [<b>{d.ptsFgm}</b>], less Team_Assist_Contrib% [<b>{(100*d.ppFgTeamAstPct).toFixed(1)}%</b>]===[<b>{(d.ptsFgm-d.ppFg).toFixed(1)}</b>]</li>
+        <li>PProd_From_FG: [<b>{o.ppFg.toFixed(1)}</b>] = Raw_FG_Pts [<b>{o.ptsFgm}</b>], less Team_Assist_Contrib% [<b>{(100*o.ppFgTeamAstPct).toFixed(1)}%</b>]===[<b>{(o.ptsFgm-o.ppFg).toFixed(1)}</b>]</li>
         <ul>
           <li><em>(Team_Assist_Contrib%: In the same way that Player gets rewarded for assisting their team, they get slightly less rewarded when they scored off an assist):</em></li>
-          <li>Team_Assist_Contrib% [<b>{(100*d.ppFgTeamAstPct).toFixed(1)}%</b>] = Weighting ([<b>0.5</b>] * Player_eFG [<b>{(100*d.eFG).toFixed(1)}%</b>]) * Team_Assist_Rate [<b>{(100*d.teamAssistRate).toFixed(1)}%</b>]</li>
+          <li>Team_Assist_Contrib% [<b>{(100*o.ppFgTeamAstPct).toFixed(1)}%</b>] = Weighting ([<b>0.5</b>] * Player_eFG [<b>{(100*o.eFG).toFixed(1)}%</b>]) * Team_Assist_Rate [<b>{(100*o.teamAssistRate).toFixed(1)}%</b>]</li>
           <ul>
             <li><em>(The theory behind the weighting is that easier shots are harder to assist, so the higher the eFG the more credit to the assist.)</em></li>
-            <li>Team_Assist_Rate: [<b>{(100*d.teamAssistRate).toFixed(1)}%</b>] = (Weighting [<b>1.14</b>] * (Others_AST [<b>{d.othersAssist}</b>] / Team_FGM [<b>{d.teamFgm}</b>])</li>
+            <li>Team_Assist_Rate: [<b>{(100*o.teamAssistRate).toFixed(1)}%</b>] = (Weighting [<b>1.14</b>] * (Others_AST [<b>{o.othersAssist}</b>] / Team_FGM [<b>{o.teamFgm}</b>])</li>
           </ul>
         </ul>
-        <li>PProd_From_AST: [<b>{d.ppAssist.toFixed(1)}</b>] = Weighting ([<b>0.5</b>] * Team_Not_Player_eFG [<b>{(100*d.otherEfg).toFixed(1)}%</b>]) * Team_Not_Player_Pts_Per_Made_Shot [<b>{d.otherPtsPerFgm.toFixed(1)}</b>] * Player_Assists [<b>{d.rawAssist.toFixed(1)}</b>]</li>
-        <li>PProd_From_ORB: [<b>{d.ppOrb.toFixed(1)}</b>] = Team_ORB_Weight [<b>{(100*d.teamOrbWeight).toFixed(1)}%</b>] * ORB [<b>{d.rawOrb.toFixed(1)}</b>] * % Plays_Team_Scored [<b>{(100*d.teamScoredPlayPct).toFixed(1)}%</b>] * Pts_Per_Scoring_Possession [<b>{d.teamPtsPerScore.toFixed(1)}</b>] </li>
+        <li>PProd_From_AST: [<b>{o.ppAssist.toFixed(1)}</b>] = Weighting ([<b>0.5</b>] * Team_Not_Player_eFG [<b>{(100*o.otherEfg).toFixed(1)}%</b>]) * Team_Not_Player_Pts_Per_Made_Shot [<b>{o.otherPtsPerFgm.toFixed(1)}</b>] * Player_Assists [<b>{o.rawAssist.toFixed(1)}</b>]</li>
+        <li>PProd_From_ORB: [<b>{o.ppOrb.toFixed(1)}</b>] = Team_ORB_Weight [<b>{(100*o.teamOrbWeight).toFixed(1)}%</b>] * ORB [<b>{o.rawOrb.toFixed(1)}</b>] * % Plays_Team_Scored [<b>{(100*o.teamScoredPlayPct).toFixed(1)}%</b>] * Pts_Per_Scoring_Possession [<b>{o.teamPtsPerScore.toFixed(1)}</b>] </li>
         <ul>
           <li><em>(Team_ORB_Weight is described under Team_ORB_Contrib%, below)</em></li>
           <li><em>(% Plays_Team_Scored is described in the possessions section, below)</em></li>
-          <li>Pts_Per_Scoring_Possession: [<b>{d.teamPtsPerScore.toFixed(1)}</b>] = Team_Pts [<b>{d.teamPts}</b>] / Team_Scoring_Plays [<b>{d.teamScoringPoss.toFixed(1)}</b>]</li>
+          <li>Pts_Per_Scoring_Possession: [<b>{o.teamPtsPerScore.toFixed(1)}</b>] = Team_Pts [<b>{o.teamPts}</b>] / Team_Scoring_Plays [<b>{o.teamScoringPoss.toFixed(1)}</b>]</li>
           <ul>
             <li><em>(Team_Scoring_Plays described under possessions section, below)</em></li>
           </ul>
         </ul>
         <li><em>(Team_ORB_Contrib%: In the same way a Player gets rewarded for an ORB, they get slightly less reward for a score that comes off someone else's rebound):</em></li>
-        <li>Team_ORB_Contrib%: [<b>{(100*d.teamOrbContribPct).toFixed(1)}</b>%] = Team_ORB_Weight [<b>{(100*d.teamOrbWeight).toFixed(1)}%</b>] * % Team_Scoring_Plays_From_Rebound [<b>{(100*d.teamScoreFromReboundPct).toFixed(1)}%</b>]</li>
+        <li>Team_ORB_Contrib%: [<b>{(100*o.teamOrbContribPct).toFixed(1)}</b>%] = Team_ORB_Weight [<b>{(100*o.teamOrbWeight).toFixed(1)}%</b>] * % Team_Scoring_Plays_From_Rebound [<b>{(100*o.teamScoreFromReboundPct).toFixed(1)}%</b>]</li>
         <ul>
-          <li>% Team_Scoring_Plays_From_Rebound: [<b>{(100*d.teamScoreFromReboundPct).toFixed(1)}%</b>] = (Team_ORB [<b>{d.teamOrb}</b>] * % Plays_Team_Scored [<b>{(100*d.teamScoredPlayPct).toFixed(1)}%</b>]) / Scoring_Plays [<b>{d.teamScoringPoss.toFixed(1)}</b>] </li>
+          <li>% Team_Scoring_Plays_From_Rebound: [<b>{(100*o.teamScoreFromReboundPct).toFixed(1)}%</b>] = (Team_ORB [<b>{o.teamOrb}</b>] * % Plays_Team_Scored [<b>{(100*o.teamScoredPlayPct).toFixed(1)}%</b>]) / Scoring_Plays [<b>{o.teamScoringPoss.toFixed(1)}</b>] </li>
           <ul>
             <li><em>(% Plays_Team_Scored is described in the possessions section, below)</em></li>
           </ul>
-          <li>Team_ORB_Weight: [<b>{(100*d.teamOrbWeight).toFixed(1)}%</b>] = % Credit_To_Rebounder [<b>{(100*d.teamOrbCreditToRebounder).toFixed(1)}%</b>] / (
-          % Credit_To_Rebounder [<b>{(100*d.teamOrbCreditToRebounder).toFixed(1)}%</b>] + % Credit_To_Scorer [<b>{(100*d.teamOrbCreditToScorer).toFixed(1)}%</b>])</li>
+          <li>Team_ORB_Weight: [<b>{(100*o.teamOrbWeight).toFixed(1)}%</b>] = % Credit_To_Rebounder [<b>{(100*o.teamOrbCreditToRebounder).toFixed(1)}%</b>] / (
+          % Credit_To_Rebounder [<b>{(100*o.teamOrbCreditToRebounder).toFixed(1)}%</b>] + % Credit_To_Scorer [<b>{(100*o.teamOrbCreditToScorer).toFixed(1)}%</b>])</li>
           <ul>
             <li><em>(The theory here is that we assign credit to the rebounder based on the relative difficulty of rebounding vs scoring)</em></li>
-            <li>% Credit_To_Rebounder [<b>{(100*d.teamOrbCreditToRebounder).toFixed(1)}%</b>] = Team_No_ORB% [<b>{(100*(1 - d.teamOrbPct)).toFixed(1)}%</b>] * Team_Score% [<b>{(100*d.teamScoredPlayPct).toFixed(1)}%</b>]</li>
-            <li>% Credit_To_Scorer = [<b>{(100*d.teamOrbCreditToScorer).toFixed(1)}%</b>] = Team_ORB% [<b>{(100*d.teamOrbPct).toFixed(1)}%</b>] * Team_No_Score% [<b>{(100*(1 - d.teamScoredPlayPct)).toFixed(1)}%</b>]</li>
+            <li>% Credit_To_Rebounder [<b>{(100*o.teamOrbCreditToRebounder).toFixed(1)}%</b>] = Team_No_ORB% [<b>{(100*(1 - o.teamOrbPct)).toFixed(1)}%</b>] * Team_Score% [<b>{(100*o.teamScoredPlayPct).toFixed(1)}%</b>]</li>
+            <li>% Credit_To_Scorer = [<b>{(100*o.teamOrbCreditToScorer).toFixed(1)}%</b>] = Team_ORB% [<b>{(100*o.teamOrbPct).toFixed(1)}%</b>] * Team_No_Score% [<b>{(100*(1 - o.teamScoredPlayPct)).toFixed(1)}%</b>]</li>
           </ul>
         </ul>
       </ul></span> : null }
-      <li>Adjusted_Possessions: [<b>{d.adjPoss.toFixed(1)}</b>] = Scoring_Possessions [<b>{d.scoringPoss.toFixed(1)}</b>] + Missed_FG_Possessions [<b>{d.fgxPoss.toFixed(1)}</b>] + Missed_FT_Possessions [<b>{d.ftxPoss.toFixed(1)}</b>] + TO [<b>{d.rawTo}</b>]</li>
+      <li>Adjusted_Possessions: [<b>{o.adjPoss.toFixed(1)}</b>] = Scoring_Possessions [<b>{o.scoringPoss.toFixed(1)}</b>] + Missed_FG_Possessions [<b>{o.fgxPoss.toFixed(1)}</b>] + Missed_FT_Possessions [<b>{o.ftxPoss.toFixed(1)}</b>] + TO [<b>{o.rawTo}</b>]</li>
       <ul>
-        <li><em>Compare raw stats: poss=[<b>{d.offPoss.toFixed(1)}</b>] (fga=[<b>{d.rawFga}</b>] + 0.475*fta=[<b>{d.ftPoss.toFixed(1)}</b>] + to=[<b>{d.rawTo}</b>] - orb=[<b>{d.offPlaysLessPoss.toFixed(1)}</b>])</em></li>
+        <li><em>Compare raw stats: poss=[<b>{o.offPoss.toFixed(1)}</b>] (fga=[<b>{o.rawFga}</b>] + 0.475*fta=[<b>{o.ftPoss.toFixed(1)}</b>] + to=[<b>{o.rawTo}</b>] - orb=[<b>{o.offPlaysLessPoss.toFixed(1)}</b>])</em></li>
       </ul>
       {showMoreORtgPoss ?
       <span><li><u>Possessions section</u></li>
       <ul>
-        <li>Scoring_Possessions: [<b>{d.scoringPoss.toFixed(1)}</b>] = ORB_Part [<b>{d.orbPart.toFixed(1)}</b>] + (FG_Part [<b>{d.fgPart.toFixed(1)}</b>] + FT_Part [<b>{d.ftPart.toFixed(1)}</b>] + AST_Part [<b>{d.astPart.toFixed(1)}</b>],
-        less Team_ORB_Contrib% [<b>{(100*d.teamOrbContribPct).toFixed(1)}%</b>]==[<b>{((d.fgPart + d.ftPart + d.astPart)*d.teamOrbContribPct).toFixed(1)}</b>])</li>
+        <li>Scoring_Possessions: [<b>{o.scoringPoss.toFixed(1)}</b>] = ORB_Part [<b>{o.orbPart.toFixed(1)}</b>] + (FG_Part [<b>{o.fgPart.toFixed(1)}</b>] + FT_Part [<b>{o.ftPart.toFixed(1)}</b>] + AST_Part [<b>{o.astPart.toFixed(1)}</b>],
+        less Team_ORB_Contrib% [<b>{(100*o.teamOrbContribPct).toFixed(1)}%</b>]==[<b>{((o.fgPart + o.ftPart + o.astPart)*o.teamOrbContribPct).toFixed(1)}</b>])</li>
         <ul>
-          <li>ORB_Part: [<b>{d.orbPart.toFixed(1)}</b>] = Team_ORB_Weight [<b>{(100*d.teamOrbWeight).toFixed(1)}%</b>]
-          * Scoring_Plays_From_Rebound [<b>{(d.rawOrb*d.teamScoredPlayPct).toFixed(1)}</b>] (ORB [<b>{d.rawOrb}</b>] * % Plays_Team_Scored [<b>{(100*d.teamScoredPlayPct).toFixed(1)}%</b>]) </li>
+          <li>ORB_Part: [<b>{o.orbPart.toFixed(1)}</b>] = Team_ORB_Weight [<b>{(100*o.teamOrbWeight).toFixed(1)}%</b>]
+          * Scoring_Plays_From_Rebound [<b>{(o.rawOrb*o.teamScoredPlayPct).toFixed(1)}</b>] (ORB [<b>{o.rawOrb}</b>] * % Plays_Team_Scored [<b>{(100*o.teamScoredPlayPct).toFixed(1)}%</b>]) </li>
           <ul>
-            <li>% Plays_Team_Scored: [<b>{(100*d.teamScoredPlayPct).toFixed(1)}%</b>] = Team_Scoring_Plays [<b>{d.teamScoringPoss.toFixed(1)}</b>] / Team_Total_Plays [<b>{d.teamPlays.toFixed(1)}</b>]</li>
-            <li>Team_Scoring_Plays: [<b>{d.teamScoringPoss.toFixed(1)}</b>] = Team_FGM [<b>{d.teamFgm}</b>] + Team_FTs_Hit_1+ [<b>{d.teamFtHitOnePlus.toFixed(1)}</b>]</li>
+            <li>% Plays_Team_Scored: [<b>{(100*o.teamScoredPlayPct).toFixed(1)}%</b>] = Team_Scoring_Plays [<b>{o.teamScoringPoss.toFixed(1)}</b>] / Team_Total_Plays [<b>{o.teamPlays.toFixed(1)}</b>]</li>
+            <li>Team_Scoring_Plays: [<b>{o.teamScoringPoss.toFixed(1)}</b>] = Team_FGM [<b>{o.teamFgm}</b>] + Team_FTs_Hit_1+ [<b>{o.teamFtHitOnePlus.toFixed(1)}</b>]</li>
             <ul>
-              <li>Team_FTs_Hit_1+: [<b>{d.teamFtHitOnePlus.toFixed(1)}</b>] = (1 - Team_FTs_Missed_Both% [<b>{(100*(1 - d.teamProbFtHitOnePlus)).toFixed(1)}%</b>]) * (0.475*Team_FTA) [<b>{(0.475*d.teamFta).toFixed(1)}</b>]</li>
+              <li>Team_FTs_Hit_1+: [<b>{o.teamFtHitOnePlus.toFixed(1)}</b>] = (1 - Team_FTs_Missed_Both% [<b>{(100*(1 - o.teamProbFtHitOnePlus)).toFixed(1)}%</b>]) * (0.475*Team_FTA) [<b>{(0.475*o.teamFta).toFixed(1)}</b>]</li>
               <ul>
-                <li>Team_FTs_Missed_Both%: [<b>{(100*(1 - d.teamProbFtHitOnePlus)).toFixed(1)}%</b>] = (1 - Team_FT% [<b>{(100*d.teamFtPct).toFixed(1)}%</b>])^2</li>
+                <li>Team_FTs_Missed_Both%: [<b>{(100*(1 - o.teamProbFtHitOnePlus)).toFixed(1)}%</b>] = (1 - Team_FT% [<b>{(100*o.teamFtPct).toFixed(1)}%</b>])^2</li>
                 <li><em>(0.475*FTA is a standard equation for estimating the number of trips to the FT line)</em></li>
               </ul>
             </ul>
-            <li>Team_Total_Plays: [<b>{d.teamPlays.toFixed(1)}</b>] = Team_FGA [<b>{d.teamFga}</b>] + (0.475*Team_FTA) [<b>{(0.475*d.teamFta).toFixed(1)}</b>] + Team_TOV [<b>{d.teamTo}</b>]</li>
+            <li>Team_Total_Plays: [<b>{o.teamPlays.toFixed(1)}</b>] = Team_FGA [<b>{o.teamFga}</b>] + (0.475*Team_FTA) [<b>{(0.475*o.teamFta).toFixed(1)}</b>] + Team_TOV [<b>{o.teamTo}</b>]</li>
             <li><em>(Team_ORB_Weight is described in the points section, above. The cost of the play is reduced like the reward of the score)</em></li>
           </ul>
-          <li>FG_Part: [<b>{d.fgPart.toFixed(1)}</b>] = FGM [<b>{d.rawFgm}</b>], less Team_Assist_Contrib% [<b>{(100*d.ppFgTeamAstPct).toFixed(1)}%</b>]===[<b>{(d.rawFgm*d.ppFgTeamAstPct).toFixed(1)}</b>]</li>
+          <li>FG_Part: [<b>{o.fgPart.toFixed(1)}</b>] = FGM [<b>{o.rawFgm}</b>], less Team_Assist_Contrib% [<b>{(100*o.ppFgTeamAstPct).toFixed(1)}%</b>]===[<b>{(o.rawFgm*o.ppFgTeamAstPct).toFixed(1)}</b>]</li>
           <ul>
             <li><em>(Team_Assist_Contrib% is described in the points section, above. Since it reduces the reward of a score, it also reduces the cost of the play)</em></li>
           </ul>
-          <li>FT_Part: [<b>{d.ftPart.toFixed(1)}</b>] = (1 - Missed_Both_FTs% [<b>{(100*d.missedBothFTs).toFixed(1)}%</b>]) * 0.475*FTA [<b>{d.ftPoss.toFixed(1)}</b>]</li>
+          <li>FT_Part: [<b>{o.ftPart.toFixed(1)}</b>] = (1 - Missed_Both_FTs% [<b>{(100*o.missedBothFTs).toFixed(1)}%</b>]) * 0.475*FTA [<b>{o.ftPoss.toFixed(1)}</b>]</li>
           <ul>
-            <li>Missed_Both_FTs%: [<b>{(100*d.missedBothFTs).toFixed(1)}%</b>] = (1 - FT% [<b>{(100*d.ftPct).toFixed(1)}%</b>])^2</li>
+            <li>Missed_Both_FTs%: [<b>{(100*o.missedBothFTs).toFixed(1)}%</b>] = (1 - FT% [<b>{(100*o.ftPct).toFixed(1)}%</b>])^2</li>
           </ul>
-          <li>AST_Part: [<b>{d.astPart.toFixed(1)}</b>] = Weighting ([<b>0.5</b>] * Team_Not_Player_eFG [<b>{(100*d.otherEfg).toFixed(1)}%</b>]) * AST [<b>{d.rawAssist}</b>]</li>
+          <li>AST_Part: [<b>{o.astPart.toFixed(1)}</b>] = Weighting ([<b>0.5</b>] * Team_Not_Player_eFG [<b>{(100*o.otherEfg).toFixed(1)}%</b>]) * AST [<b>{o.rawAssist}</b>]</li>
           <li><em>(Team_ORB_Contrib% is described in the points section, above. Since it reduces the reward of a score, it also reduces the cost of the play)</em></li>
         </ul>
-        <li>Missed_FG_Possessions: [<b>{d.fgxPoss.toFixed(1)}</b>] = Missed_FG [<b>{d.rawFgx.toFixed(1)}</b>], less Team_Rebound_Weight [<b>{(107*d.teamOrbPct).toFixed(1)}%</b>]==[<b>{(1.07*d.teamOrbPct*d.rawFgx).toFixed(1)}</b>]</li>
+        <li>Missed_FG_Possessions: [<b>{o.fgxPoss.toFixed(1)}</b>] = Missed_FG [<b>{o.rawFgx.toFixed(1)}</b>], less Team_Rebound_Weight [<b>{(107*o.teamOrbPct).toFixed(1)}%</b>]==[<b>{(1.07*o.teamOrbPct*o.rawFgx).toFixed(1)}</b>]</li>
         <ul>
           <li><em>(Team_Rebound_Weight: each missed shot doesn't count a full possession, because it may be rebounded)</em></li>
-          <li>Team_Rebound_Weight: [<b>{(107*d.teamOrbPct).toFixed(1)}%</b>] = Weight [<b>1.07</b>] * Team_ORB% [<b>{(100*d.teamOrbPct).toFixed(1)}%</b>]</li>
+          <li>Team_Rebound_Weight: [<b>{(107*o.teamOrbPct).toFixed(1)}%</b>] = Weight [<b>1.07</b>] * Team_ORB% [<b>{(100*o.teamOrbPct).toFixed(1)}%</b>]</li>
         </ul>
-        <li>Missed_FT_Possessions: [<b>{d.ftxPoss.toFixed(1)}</b>] = Missed_Both_FTs% [<b>{(100*d.missedBothFTs).toFixed(1)}%</b>] * 0.475*FTA [<b>{d.ftPoss.toFixed(1)}</b>]</li>
+        <li>Missed_FT_Possessions: [<b>{o.ftxPoss.toFixed(1)}</b>] = Missed_Both_FTs% [<b>{(100*o.missedBothFTs).toFixed(1)}%</b>] * 0.475*FTA [<b>{o.ftPoss.toFixed(1)}</b>]</li>
         <ul>
           <li><em>(FT possession calcs above, under Team_Scoring_Plays)</em></li>
         </ul>
