@@ -66,8 +66,8 @@ const RosterStatsDiagView: React.FunctionComponent<Props> = ({ortgDiags, drtgDia
           % Credit_To_Rebounder [<b>{(100*o.teamOrbCreditToRebounder).toFixed(1)}%</b>] + % Credit_To_Scorer [<b>{(100*o.teamOrbCreditToScorer).toFixed(1)}%</b>])</li>
           <ul>
             <li><em>(The theory here is that we assign credit to the rebounder based on the relative difficulty of rebounding vs scoring)</em></li>
-            <li>% Credit_To_Rebounder [<b>{(100*o.teamOrbCreditToRebounder).toFixed(1)}%</b>] = Team_No_ORB% [<b>{(100*(1 - o.teamOrbPct)).toFixed(1)}%</b>] * Team_Score% [<b>{(100*o.teamScoredPlayPct).toFixed(1)}%</b>]</li>
-            <li>% Credit_To_Scorer = [<b>{(100*o.teamOrbCreditToScorer).toFixed(1)}%</b>] = Team_ORB% [<b>{(100*o.teamOrbPct).toFixed(1)}%</b>] * Team_No_Score% [<b>{(100*(1 - o.teamScoredPlayPct)).toFixed(1)}%</b>]</li>
+            <li>% Credit_To_Rebounder: [<b>{(100*o.teamOrbCreditToRebounder).toFixed(1)}%</b>] = Team_No_ORB% [<b>{(100*(1 - o.teamOrbPct)).toFixed(1)}%</b>] * Team_Score% [<b>{(100*o.teamScoredPlayPct).toFixed(1)}%</b>]</li>
+            <li>% Credit_To_Scorer: [<b>{(100*o.teamOrbCreditToScorer).toFixed(1)}%</b>] = Team_ORB% [<b>{(100*o.teamOrbPct).toFixed(1)}%</b>] * Team_No_Score% [<b>{(100*(1 - o.teamScoredPlayPct)).toFixed(1)}%</b>]</li>
           </ul>
         </ul>
       </ul></span> : null }
@@ -129,6 +129,9 @@ const RosterStatsDiagView: React.FunctionComponent<Props> = ({ortgDiags, drtgDia
       {showMoreDRtg ?
       <span><li><u>DRtg details</u></li>
       <ul>
+        <li><em>(Note: you can also view this as DRtg [<b>{(d.teamRtg + d.playerDelta).toFixed(1)}</b>] = ([<b>20%</b>] * Player_DRtg [<b>{d.playerRtg.toFixed(1)}</b>]) + ([<b>80%</b>] * Team_DRtg [<b>{d.teamRtg.toFixed(1)}</b>]);
+        ie a weighted average of a player's defense when actively involved,
+        vs when passively involved, eg guarding off ball (where the best you can do is use the Team_DRtg). This assumes every player is "targeted" 1/5th of the time.</em></li>
         <li>Pts_Per_Score: [<b>{d.oppoPtsPerScore.toFixed(1)}</b>] = Opponent_PTS [<b>{d.oppoPts.toFixed(0)}</b>] / Scoring_Plays [<b>{d.oppoScPoss.toFixed(1)}</b>]</li>
         <ul>
           <li>Scoring_Plays: [<b>{d.oppoScPoss.toFixed(1)}</b>] = Opponent_FGM [<b>{d.oppoFgm.toFixed(0)}</b>] + Opponent_FTs_Hit_1+ [<b>{d.oppoFtHitOnePlus.toFixed(1)}</b>]</li>
@@ -142,19 +145,19 @@ const RosterStatsDiagView: React.FunctionComponent<Props> = ({ortgDiags, drtgDia
         </ul>
         <li>Score_Conceded_By_Player%: [<b>{(100*d.scPossConceded).toFixed(1)}%</b>] = 1 - Stops_Credit_Player% [<b>{(100*d.stopsIndPct).toFixed(1)}%</b>] - Stops_Credit_Team% [<b>{(100*d.stopsTeamPct).toFixed(1)}%</b>]</li>
         <ul>
-          <li><em>(We split stops into those that can be at least partially assigned to a player, and those where the best you can do is give 1/5th credit)</em></li>
+          <li><em>(We split stops into those that can be at least partially assigned to a player, and those where the best you can do is use the team stats)</em></li>
           <li>Stops_Credit_Player%: [<b>{(100*d.stopsIndPct).toFixed(1)}%</b>] = (NoShot_Credit [<b>{d.noShotCredit.toFixed(1)}</b>] + Rebound_Credit [<b>{d.reboundCredit.toFixed(1)}</b>] + MissFT_Credit [<b>{d.missFtCredit.toFixed(1)}</b>]) / (20% * Opponent_Poss) [<b>{(0.2*d.oppoPoss).toFixed(1)}</b>]</li>
           <ul>
-            <li>NoShot_Credit: [<b>{d.noShotCredit.toFixed(1)}</b>] = Steals [<b>{d.stl.toFixed(0)}</b>] + (Block [<b>{d.blk.toFixed(0)}</b>] * Opponent_Miss_Credit [<b>{(100*d.teamMissWeight).toFixed(1)}%</b>])</li>
+            <li>NoShot_Credit: [<b>{d.noShotCredit.toFixed(1)}</b>] = Steals [<b>{d.stl.toFixed(0)}</b>] + (Block [<b>{d.blk.toFixed(0)}</b>] * Opponent_Miss_Credit% [<b>{(100*d.teamMissWeight).toFixed(1)}%</b>])</li>
             <ul>
-              <li>Opponent_Miss_Credit: [<b>{(100*d.teamMissWeight).toFixed(1)}%</b>] = Miss_vs_Rebound_Credit% [<b>{(100*d.teamDvsRebCredit).toFixed(1)}%</b>] * Team_Rebound_Miss% [<b>{(107 - 107*d.opponentOrbPct).toFixed(1)}%</b>]</li>
-              <li>Miss_vs_Rebound_Credit%: [<b>{(100*d.teamDvsRebCredit).toFixed(1)}%</b>] = Credit_To_Shot_Defense% [<b>{(100*d.teamOrbCreditToDefender).toFixed(1)}%</b>] / (Credit_To_Shot_Defense% [<b>{(100*d.teamOrbCreditToDefender).toFixed(1)}%</b>] + Credit_To_Rebounder% [<b>{(100*d.teamOrbCreditToRebounder).toFixed(1)}%</b>]) </li>
+              <li>Opponent_Miss_Credit%: [<b>{(100*d.teamMissWeight).toFixed(1)}%</b>] = Miss_vs_Rebound_Credit% [<b>{(100*d.teamDvsRebCredit).toFixed(1)}%</b>] * Team_Rebound_Miss% [<b>{(107 - 107*d.opponentOrbPct).toFixed(1)}%</b>]</li>
+              <li>Miss_vs_Rebound_Credit%: [<b>{(100*d.teamDvsRebCredit).toFixed(1)}%</b>] = % Credit_To_Shot_Defense [<b>{(100*d.teamOrbCreditToDefender).toFixed(1)}%</b>] / (% Credit_To_Shot_Defense [<b>{(100*d.teamOrbCreditToDefender).toFixed(1)}%</b>] + % Credit_To_Rebounder [<b>{(100*d.teamOrbCreditToRebounder).toFixed(1)}%</b>]) </li>
               <ul>
                 <li><em>(The theory here is that after a missed shot and a defensive rebound, we assign credit to the shot defender based on the relative difficulty of preventing the score vs rebounding the miss)</em></li>
-                <li>Credit_To_Shot_Defense%: [<b>{(100*d.teamOrbCreditToDefender).toFixed(1)}%</b>] = Opponent_FG% [<b>{(100*d.opponentFgPct).toFixed(1)}%</b>] * Team_Defensive_Rebound% [<b>{(100 - 100*d.opponentOrbPct).toFixed(1)}%</b>]</li>
-                <li>Credit_To_Rebounder%: [<b>{(100*d.teamOrbCreditToRebounder).toFixed(1)}%</b>] = Opponent_FGmiss% [<b>{(100 - 100*d.opponentFgPct).toFixed(1)}%</b>] * Opponent_ORB% [<b>{(100*d.opponentOrbPct).toFixed(1)}%</b>]</li>
+                <li>% Credit_To_Shot_Defense: [<b>{(100*d.teamOrbCreditToDefender).toFixed(1)}%</b>] = Opponent_FG% [<b>{(100*d.opponentFgPct).toFixed(1)}%</b>] * Team_DRB% [<b>{(100 - 100*d.opponentOrbPct).toFixed(1)}%</b>]</li>
+                <li>% Credit_To_Rebounder: [<b>{(100*d.teamOrbCreditToRebounder).toFixed(1)}%</b>] = Opponent_FGmiss% [<b>{(100 - 100*d.opponentFgPct).toFixed(1)}%</b>] * Opponent_ORB% [<b>{(100*d.opponentOrbPct).toFixed(1)}%</b>]</li>
               </ul>
-              <li>Team_Rebound_Miss%: [<b>{(107 - 107*d.opponentOrbPct).toFixed(1)}%</b>] = Miss_Rebound_Weight [<b>107%</b>] * Team_Defensive_Rebound% [<b>{(100 - 100*d.opponentOrbPct).toFixed(1)}%</b>]</li>
+              <li>Team_Rebound_Miss%: [<b>{(107 - 107*d.opponentOrbPct).toFixed(1)}%</b>] = Miss_Rebound_Weight [<b>107%</b>] * Team_DRB% [<b>{(100 - 100*d.opponentOrbPct).toFixed(1)}%</b>]</li>
             </ul>
             <li>Rebound_Credit: [<b>{d.reboundCredit.toFixed(1)}</b>] = Rebounds [<b>{d.drb.toFixed(0)}</b>] * (1 - Miss_vs_Rebound_Credit% [<b>{(100*d.teamDvsRebCredit).toFixed(1)}%</b>])</li>
             <li>MissFT_Credit: [<b>{d.missFtCredit.toFixed(1)}</b>] = PF% [<b>{(100*d.pfPct).toFixed(1)}%</b>] * (0.475*Opponent_FTA) [<b>{d.oppoFtPoss.toFixed(1)}</b>] * Opponent_FTs_Missed_Both% [<b>{(100*(1 - d.oppoProbFtHitOnePlus)).toFixed(1)}%</b>]</li>
@@ -162,9 +165,9 @@ const RosterStatsDiagView: React.FunctionComponent<Props> = ({ortgDiags, drtgDia
               <li><em>(0.475*FTA is a standard equation for estimating the number of trips to the FT line)</em></li>
             </ul>
           </ul>
-          <li>Stops_Credit_Team%: [<b>{(100*d.stopsTeamPct).toFixed(1)}%</b>] = ((Opponent_FGMiss [<b>{d.oppoFgMiss.toFixed(0)}</b>] * Opponent_Miss_Credit [<b>{(100*d.teamMissWeight).toFixed(1)}%</b>]) + Opponent_NonSteal_TOV [<b>{d.oppoNonStlTov.toFixed(0)}</b>]) / Opponent_Poss [<b>{(d.oppoPoss).toFixed(0)}</b>]</li>
+          <li>Stops_Credit_Team%: [<b>{(100*d.stopsTeamPct).toFixed(1)}%</b>] = ((Opponent_FGMiss [<b>{d.oppoFgMiss.toFixed(0)}</b>] * Opponent_Miss_Credit% [<b>{(100*d.teamMissWeight).toFixed(1)}%</b>]) + Opponent_NonSteal_TOV [<b>{d.oppoNonStlTov.toFixed(0)}</b>]) / Opponent_Poss [<b>{(d.oppoPoss).toFixed(0)}</b>]</li>
           <ul>
-            <li><em>(Opponent_Miss_Credit is described under Stops_Credit_Player%, above)</em></li>
+            <li><em>(Opponent_Miss_Credit% is described under Stops_Credit_Player%, above)</em></li>
             <li>Opponent_FGMiss: [<b>{d.oppoFgMiss.toFixed(0)}</b>] = Opponent_FGA [<b>{d.oppoFga}</b>] - Opponent_FGM [<b>{d.oppoFgm}</b>] - Team_BLK [<b>{d.teamBlk}</b>]</li>
             <li>Opponent_NonSteal_TOV: [<b>{d.oppoNonStlTov.toFixed(0)}</b>] = Opponent_TOV [<b>{d.oppoTov}</b>] - Team_STL [<b>{d.teamStl}</b>]</li>
           </ul>

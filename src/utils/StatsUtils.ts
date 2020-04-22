@@ -296,7 +296,7 @@ export class StatsUtils {
     const Opponent_FGA = statSet?.oppo_total_def_fga?.value || 0;
     const Opponent_FGM = statSet?.oppo_total_def_fgm?.value || 0;
     const Opponent_ORB = statSet?.oppo_total_def_orb?.value || 0;
-    const Opponent_TOV = statSet?.oppo_total_def_orb?.value || 0;
+    const Opponent_TOV = statSet?.oppo_total_def_to?.value || 0;
     const Opponent_FTA = statSet?.oppo_total_def_fta?.value || 0;
     const Opponent_FTM = statSet?.oppo_total_def_ftm?.value || 0;
     const Opponent_Possessions = statSet?.oppo_total_def_poss?.value || 0;
