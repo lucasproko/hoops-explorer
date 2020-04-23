@@ -31,7 +31,12 @@ const Footer: React.FunctionComponent<Props> = ({server, gender, year}) => {
     (maybeYear: string, maybeGender: string) => [ maybeYear || "", maybeGender || "" ],
     (yearGender: string) => dataLastUpdated[`${yearGender[1]}_${yearGender[0]}`],
     (lastUpdate: string | undefined) => lastUpdate ?
-      new Date(parseInt(lastUpdate)*1000).toString() : "unknown"
+      new Date(parseInt(lastUpdate)*1000).toString() : "unknown",
+      // Some browsers (cough firefox cough), show the timezone in full format which is annoyingly long
+      // so turn the timezone into initials in that case
+      (lastUpdate: string) => lastUpdate.replace(/[(]([A-Z][a-z][^)]*)+[)]/, (match: string, ...args: any[]) => {
+        return `(${args[0].split(" ").map((w: string) => w?.[0] || "").join("")})`;
+      })
   ]);
 
   const onMouseOver = (encoded: string) => (event: any) => {

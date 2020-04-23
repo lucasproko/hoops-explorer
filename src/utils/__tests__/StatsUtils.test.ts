@@ -21,8 +21,6 @@ describe("LineupUtils", () => {
     const [ dRtg, dRtgDiags ] = StatsUtils.buildDRtg(
       samplePlayerStatsResponse.aggregations.tri_filter.buckets.baseline.player.buckets[0], true
     );
-/**/
-console.log(JSON.stringify(dRtgDiags, null, 3));
     expect(dRtg).toEqual({value:110.2860531155855});
     expect(dRtgDiags).toEqual(sampleDrtgDiagnostics);
   });
