@@ -623,6 +623,9 @@ exports[`RosterStatsTable RosterStatsTable - should create snapshot 1`] = `
                   "def_orb": Object {
                     "value": 0.08611111111111111,
                   },
+                  "def_rtg": Object {
+                    "value": 137.60064854186737,
+                  },
                   "def_team_poss": Object {
                     "value": 1288,
                   },
@@ -632,6 +635,7 @@ exports[`RosterStatsTable RosterStatsTable - should create snapshot 1`] = `
                   "def_to": Object {
                     "value": 0.020186335403726708,
                   },
+                  "diag_def_rtg": undefined,
                   "diag_off_rtg": undefined,
                   "doc_count": 341,
                   "key": "Cowan, Anthony",
@@ -699,17 +703,38 @@ exports[`RosterStatsTable RosterStatsTable - should create snapshot 1`] = `
                   "oppo_total_def_drb": Object {
                     "value": 479,
                   },
+                  "oppo_total_def_fga": Object {
+                    "value": 1429,
+                  },
+                  "oppo_total_def_fgm": Object {
+                    "value": 534,
+                  },
+                  "oppo_total_def_fta": Object {
+                    "value": 626,
+                  },
+                  "oppo_total_def_ftm": Object {
+                    "value": 426,
+                  },
                   "oppo_total_def_orb": Object {
                     "value": 195,
                   },
                   "oppo_total_def_poss": Object {
                     "value": 1288,
                   },
+                  "oppo_total_def_pts": Object {
+                    "value": 1804,
+                  },
+                  "oppo_total_def_to": Object {
+                    "value": 59,
+                  },
                   "team_total_off_3p_made": Object {
                     "value": 159,
                   },
                   "team_total_off_assist": Object {
                     "value": 255,
+                  },
+                  "team_total_off_blk": Object {
+                    "value": 60,
                   },
                   "team_total_off_drb": Object {
                     "value": 525,
@@ -719,6 +744,9 @@ exports[`RosterStatsTable RosterStatsTable - should create snapshot 1`] = `
                   },
                   "team_total_off_fgm": Object {
                     "value": 472,
+                  },
+                  "team_total_off_foul": Object {
+                    "value": 310,
                   },
                   "team_total_off_fta": Object {
                     "value": 456,
@@ -734,6 +762,9 @@ exports[`RosterStatsTable RosterStatsTable - should create snapshot 1`] = `
                   },
                   "team_total_off_pts": Object {
                     "value": 1445,
+                  },
+                  "team_total_off_stl": Object {
+                    "value": 150,
                   },
                   "team_total_off_to": Object {
                     "value": 210,
@@ -821,6 +852,9 @@ exports[`RosterStatsTable RosterStatsTable - should create snapshot 1`] = `
                   "def_orb": Object {
                     "value": 0.12213740458015267,
                   },
+                  "def_rtg": Object {
+                    "value": 312.75632077764516,
+                  },
                   "def_team_poss": Object {
                     "value": 478,
                   },
@@ -830,6 +864,7 @@ exports[`RosterStatsTable RosterStatsTable - should create snapshot 1`] = `
                   "def_to": Object {
                     "value": 0.008368200836820083,
                   },
+                  "diag_def_rtg": undefined,
                   "diag_off_rtg": undefined,
                   "doc_count": 129,
                   "key": "Cowan, Anthony",
@@ -897,17 +932,38 @@ exports[`RosterStatsTable RosterStatsTable - should create snapshot 1`] = `
                   "oppo_total_def_drb": Object {
                     "value": 186,
                   },
+                  "oppo_total_def_fga": Object {
+                    "value": 1429,
+                  },
+                  "oppo_total_def_fgm": Object {
+                    "value": 534,
+                  },
+                  "oppo_total_def_fta": Object {
+                    "value": 626,
+                  },
+                  "oppo_total_def_ftm": Object {
+                    "value": 426,
+                  },
                   "oppo_total_def_orb": Object {
                     "value": 71,
                   },
                   "oppo_total_def_poss": Object {
                     "value": 478,
                   },
+                  "oppo_total_def_pts": Object {
+                    "value": 1804,
+                  },
+                  "oppo_total_def_to": Object {
+                    "value": 59,
+                  },
                   "team_total_off_3p_made": Object {
                     "value": 51,
                   },
                   "team_total_off_assist": Object {
                     "value": 99,
+                  },
+                  "team_total_off_blk": Object {
+                    "value": 60,
                   },
                   "team_total_off_drb": Object {
                     "value": 191,
@@ -917,6 +973,9 @@ exports[`RosterStatsTable RosterStatsTable - should create snapshot 1`] = `
                   },
                   "team_total_off_fgm": Object {
                     "value": 162,
+                  },
+                  "team_total_off_foul": Object {
+                    "value": 310,
                   },
                   "team_total_off_fta": Object {
                     "value": 110,
@@ -932,6 +991,9 @@ exports[`RosterStatsTable RosterStatsTable - should create snapshot 1`] = `
                   },
                   "team_total_off_pts": Object {
                     "value": 459,
+                  },
+                  "team_total_off_stl": Object {
+                    "value": 150,
                   },
                   "team_total_off_to": Object {
                     "value": 88,
@@ -1022,6 +1084,9 @@ exports[`RosterStatsTable RosterStatsTable - should create snapshot 1`] = `
                   "def_orb": Object {
                     "value": 0.13658536585365855,
                   },
+                  "def_rtg": Object {
+                    "value": 122.8244135284989,
+                  },
                   "def_team_poss": Object {
                     "value": 1463,
                   },
@@ -1031,6 +1096,7 @@ exports[`RosterStatsTable RosterStatsTable - should create snapshot 1`] = `
                   "def_to": Object {
                     "value": 0.0177717019822283,
                   },
+                  "diag_def_rtg": undefined,
                   "diag_off_rtg": undefined,
                   "doc_count": 404,
                   "key": "Wiggins, Aaron",
@@ -1098,17 +1164,38 @@ exports[`RosterStatsTable RosterStatsTable - should create snapshot 1`] = `
                   "oppo_total_def_drb": Object {
                     "value": 534,
                   },
+                  "oppo_total_def_fga": Object {
+                    "value": 1429,
+                  },
+                  "oppo_total_def_fgm": Object {
+                    "value": 534,
+                  },
+                  "oppo_total_def_fta": Object {
+                    "value": 626,
+                  },
+                  "oppo_total_def_ftm": Object {
+                    "value": 426,
+                  },
                   "oppo_total_def_orb": Object {
                     "value": 214,
                   },
                   "oppo_total_def_poss": Object {
                     "value": 1463,
                   },
+                  "oppo_total_def_pts": Object {
+                    "value": 1804,
+                  },
+                  "oppo_total_def_to": Object {
+                    "value": 59,
+                  },
                   "team_total_off_3p_made": Object {
                     "value": 174,
                   },
                   "team_total_off_assist": Object {
                     "value": 283,
+                  },
+                  "team_total_off_blk": Object {
+                    "value": 60,
                   },
                   "team_total_off_drb": Object {
                     "value": 606,
@@ -1118,6 +1205,9 @@ exports[`RosterStatsTable RosterStatsTable - should create snapshot 1`] = `
                   },
                   "team_total_off_fgm": Object {
                     "value": 534,
+                  },
+                  "team_total_off_foul": Object {
+                    "value": 310,
                   },
                   "team_total_off_fta": Object {
                     "value": 508,
@@ -1133,6 +1223,9 @@ exports[`RosterStatsTable RosterStatsTable - should create snapshot 1`] = `
                   },
                   "team_total_off_pts": Object {
                     "value": 1621,
+                  },
+                  "team_total_off_stl": Object {
+                    "value": 150,
                   },
                   "team_total_off_to": Object {
                     "value": 243,
@@ -1223,6 +1316,9 @@ exports[`RosterStatsTable RosterStatsTable - should create snapshot 1`] = `
                   "def_orb": Object {
                     "value": 0,
                   },
+                  "def_rtg": Object {
+                    "value": 14481.245413587676,
+                  },
                   "def_team_poss": Object {
                     "value": 10,
                   },
@@ -1232,6 +1328,7 @@ exports[`RosterStatsTable RosterStatsTable - should create snapshot 1`] = `
                   "def_to": Object {
                     "value": 0.1,
                   },
+                  "diag_def_rtg": undefined,
                   "diag_off_rtg": undefined,
                   "doc_count": 3,
                   "key": "Mona, Reese",
@@ -1299,17 +1396,38 @@ exports[`RosterStatsTable RosterStatsTable - should create snapshot 1`] = `
                   "oppo_total_def_drb": Object {
                     "value": 6,
                   },
+                  "oppo_total_def_fga": Object {
+                    "value": 1429,
+                  },
+                  "oppo_total_def_fgm": Object {
+                    "value": 534,
+                  },
+                  "oppo_total_def_fta": Object {
+                    "value": 626,
+                  },
+                  "oppo_total_def_ftm": Object {
+                    "value": 426,
+                  },
                   "oppo_total_def_orb": Object {
                     "value": 3,
                   },
                   "oppo_total_def_poss": Object {
                     "value": 10,
                   },
+                  "oppo_total_def_pts": Object {
+                    "value": 1804,
+                  },
+                  "oppo_total_def_to": Object {
+                    "value": 59,
+                  },
                   "team_total_off_3p_made": Object {
                     "value": 0,
                   },
                   "team_total_off_assist": Object {
                     "value": 1,
+                  },
+                  "team_total_off_blk": Object {
+                    "value": 60,
                   },
                   "team_total_off_drb": Object {
                     "value": 2,
@@ -1319,6 +1437,9 @@ exports[`RosterStatsTable RosterStatsTable - should create snapshot 1`] = `
                   },
                   "team_total_off_fgm": Object {
                     "value": 1,
+                  },
+                  "team_total_off_foul": Object {
+                    "value": 310,
                   },
                   "team_total_off_fta": Object {
                     "value": 1,
@@ -1334,6 +1455,9 @@ exports[`RosterStatsTable RosterStatsTable - should create snapshot 1`] = `
                   },
                   "team_total_off_pts": Object {
                     "value": 2,
+                  },
+                  "team_total_off_stl": Object {
+                    "value": 150,
                   },
                   "team_total_off_to": Object {
                     "value": 3,

@@ -14,7 +14,10 @@ export const commonPlayerAggregations = function(publicEfficiency: any, lookup: 
           "total_off_ftm", "total_off_fta",
           "total_off_orb", "total_off_drb",
           "total_off_assist",
-          "total_off_pts"
+          "total_off_pts",
+          // For DRtg:
+          "total_off_stl", "total_off_blk",
+          "total_off_foul",
         ]
       ).mergeWith({
         //(nothing yet, see list above)
@@ -26,7 +29,11 @@ export const commonPlayerAggregations = function(publicEfficiency: any, lookup: 
         commonAggregations("opponent_stats", "def", publicEfficiency, lookup, avgEff)
       ).pick(
         [ "total_def_poss", "total_def_2p_attempts",
-          "total_def_drb", "total_def_orb"
+          "total_def_drb", "total_def_orb",
+          // For DRtg:
+          "total_def_fgm", "total_def_fga", "total_def_ftm", "total_def_fta",
+          "total_def_to",
+          "total_def_pts"
         ]
       ).mergeWith({
         //(nothing yet, see list above)
@@ -165,7 +172,7 @@ export const commonPlayerAggregations = function(publicEfficiency: any, lookup: 
     ...(_.chain(
         commonAggregations("player_stats", "def", publicEfficiency, lookup, avgEff)
       ).pick(
-        [ "def_adj_opp" ] 
+        [ "def_adj_opp" ]
       ).value()
     )
   };

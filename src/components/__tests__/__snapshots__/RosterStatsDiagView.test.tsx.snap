@@ -2,11 +2,11 @@
 
 exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 1`] = `
 <span>
-  ORtg = Points_Produced/Adjusted_Possessions [
+  ORtg = Points_Produced [
   <b>
     508.9
   </b>
-  ] / [
+  ] / Adjusted_Possessions [
   <b>
     450.3
   </b>
@@ -139,6 +139,80 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 1`] = 
           </b>
           ])
         </em>
+      </li>
+    </ul>
+  </ul>
+  DRtg = Team_DRtg [
+  <b>
+    102.2
+  </b>
+  ] + Player_Delta [
+  <b>
+    8.1
+  </b>
+  ]  (
+  <a
+    href="#"
+    onClick={[Function]}
+  >
+    more
+     about DRtg
+  </a>
+  )
+  <ul>
+    <li>
+      Team_DRtg: [
+      <b>
+        102.2
+      </b>
+      ] = 100 * Opponent_Pts [
+      <b>
+        1804
+      </b>
+      ] / Opponent_Poss [
+      <b>
+        1766
+      </b>
+      ] 
+      <em>
+        (only counting while player was on floor)
+      </em>
+    </li>
+    <li>
+      Player_Delta: [
+      <b>
+        8.1
+      </b>
+      ] = (Player_DRtg [
+      <b>
+        142.8
+      </b>
+      ] - Team_DRtg [
+      <b>
+        102.2
+      </b>
+      ]) / Team_Size [
+      <b>
+        5
+      </b>
+      ]
+    </li>
+    <ul>
+      <li>
+        Player_DRtg:  [
+        <b>
+          142.8
+        </b>
+        ] = 100 * Pts_Per_Score [
+        <b>
+          2.3
+        </b>
+        ] * Score_Conceded_By_Player% [
+        <b>
+          63.4
+          %
+        </b>
+        ]
       </li>
     </ul>
   </ul>

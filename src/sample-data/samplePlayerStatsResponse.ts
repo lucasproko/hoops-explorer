@@ -201,6 +201,34 @@ export const samplePlayerStatsResponse =
                         },
                         "def_2prim": {
                            "value": 0.005128205128205128
+                        },
+                        // Fields added for DRtg, just copied for all players
+                        "oppo_total_def_fga": {
+                           "value": 1429
+                        },
+                        "oppo_total_def_fgm": {
+                           "value": 534
+                        },
+                        "oppo_total_def_fta": {
+                           "value": 626
+                        },
+                        "oppo_total_def_ftm": {
+                           "value": 426
+                        },
+                        "oppo_total_def_pts": {
+                           "value": 1804
+                        },
+                        "oppo_total_def_to": {
+                           "value": 59
+                        },
+                        "team_total_off_blk": {
+                          "value": 60
+                        },
+                        "team_total_off_foul": {
+                          "value": 310
+                        },
+                        "team_total_off_stl": {
+                          "value": 150
                         }
                      },
                      {
@@ -379,6 +407,34 @@ export const samplePlayerStatsResponse =
                         },
                         "def_2prim": {
                            "value": 0.016581632653061226
+                        },
+                        // Fields added for DRtg, just copied for all players
+                        "oppo_total_def_fga": {
+                           "value": 1429
+                        },
+                        "oppo_total_def_fgm": {
+                           "value": 534
+                        },
+                        "oppo_total_def_fta": {
+                           "value": 626
+                        },
+                        "oppo_total_def_ftm": {
+                           "value": 426
+                        },
+                        "oppo_total_def_pts": {
+                           "value": 1804
+                        },
+                        "oppo_total_def_to": {
+                           "value": 59
+                        },
+                        "team_total_off_blk": {
+                          "value": 60
+                        },
+                        "team_total_off_foul": {
+                          "value": 310
+                        },
+                        "team_total_off_stl": {
+                          "value": 150
                         }
                      }
                   ]
@@ -566,6 +622,34 @@ export const samplePlayerStatsResponse =
                         },
                         "def_2prim": {
                            "value": 0
+                        },
+                        // Fields added for DRtg, just copied for all players
+                        "oppo_total_def_fga": {
+                           "value": 1429
+                        },
+                        "oppo_total_def_fgm": {
+                           "value": 534
+                        },
+                        "oppo_total_def_fta": {
+                           "value": 626
+                        },
+                        "oppo_total_def_ftm": {
+                           "value": 426
+                        },
+                        "oppo_total_def_pts": {
+                           "value": 1804
+                        },
+                        "oppo_total_def_to": {
+                           "value": 59
+                        },
+                        "team_total_off_blk": {
+                          "value": 60
+                        },
+                        "team_total_off_foul": {
+                          "value": 310
+                        },
+                        "team_total_off_stl": {
+                          "value": 150
                         }
                      },
                      {
@@ -744,6 +828,34 @@ export const samplePlayerStatsResponse =
                         },
                         "def_2prim": {
                            "value": 0
+                        },
+                        // Fields added for DRtg, just copied for all players
+                        "oppo_total_def_fga": {
+                           "value": 1429
+                        },
+                        "oppo_total_def_fgm": {
+                           "value": 534
+                        },
+                        "oppo_total_def_fta": {
+                           "value": 626
+                        },
+                        "oppo_total_def_ftm": {
+                           "value": 426
+                        },
+                        "oppo_total_def_pts": {
+                           "value": 1804
+                        },
+                        "oppo_total_def_to": {
+                           "value": 59
+                        },
+                        "team_total_off_blk": {
+                          "value": 60
+                        },
+                        "team_total_off_foul": {
+                          "value": 310
+                        },
+                        "team_total_off_stl": {
+                          "value": 150
                         }
                      }
                   ]
@@ -931,6 +1043,34 @@ export const samplePlayerStatsResponse =
                         },
                         "def_2prim": {
                            "value": 0.016581632653061226
+                        },
+                        // Fields added for DRtg, just copied for all players
+                        "oppo_total_def_fga": {
+                           "value": 1429
+                        },
+                        "oppo_total_def_fgm": {
+                           "value": 534
+                        },
+                        "oppo_total_def_fta": {
+                           "value": 626
+                        },
+                        "oppo_total_def_ftm": {
+                           "value": 426
+                        },
+                        "oppo_total_def_pts": {
+                           "value": 1804
+                        },
+                        "oppo_total_def_to": {
+                           "value": 59
+                        },
+                        "team_total_off_blk": {
+                          "value": 60
+                        },
+                        "team_total_off_foul": {
+                          "value": 310
+                        },
+                        "team_total_off_stl": {
+                          "value": 150
                         }
                      },
                      {
@@ -1109,6 +1249,34 @@ export const samplePlayerStatsResponse =
                         },
                         "def_2prim": {
                            "value": 0.0072254335260115606
+                        },
+                        // Fields added for DRtg, just copied for all players
+                        "oppo_total_def_fga": {
+                           "value": 1429
+                        },
+                        "oppo_total_def_fgm": {
+                           "value": 534
+                        },
+                        "oppo_total_def_fta": {
+                           "value": 626
+                        },
+                        "oppo_total_def_ftm": {
+                           "value": 426
+                        },
+                        "oppo_total_def_pts": {
+                           "value": 1804
+                        },
+                        "oppo_total_def_to": {
+                           "value": 59
+                        },
+                        "team_total_off_blk": {
+                          "value": 60
+                        },
+                        "team_total_off_foul": {
+                          "value": 310
+                        },
+                        "team_total_off_stl": {
+                          "value": 150
                         }
                      }
                   ]

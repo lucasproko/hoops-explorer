@@ -47,6 +47,11 @@ export const samplePlayerQueryRequest =           {
                               "field": "team_stats.fg.made.total"
                            }
                         },
+                        "team_total_off_foul": {
+                          "sum": {
+                            "field": "team_stats.foul.total",
+                          },
+                        },
                         "team_total_off_fga": {
                            "sum": {
                               "field": "team_stats.fg.attempts.total"
@@ -82,10 +87,20 @@ export const samplePlayerQueryRequest =           {
                               "field": "team_stats.assist.total"
                            }
                         },
+                        "team_total_off_blk": {
+                          "sum": {
+                            "field": "team_stats.blk.total",
+                           },
+                         },
                         "team_total_off_pts": {
                            "sum": {
                               "field": "team_stats.pts"
                            }
+                        },
+                       "team_total_off_stl": {
+                         "sum": {
+                           "field": "team_stats.stl.total",
+                          },
                         },
                         "oppo_total_def_poss": {
                            "sum": {
@@ -102,6 +117,26 @@ export const samplePlayerQueryRequest =           {
                               "field": "opponent_stats.drb.total"
                            }
                         },
+                       "oppo_total_def_fga": {
+                         "sum": {
+                           "field": "opponent_stats.fg.attempts.total",
+                         },
+                       },
+                       "oppo_total_def_fgm": {
+                         "sum": {
+                           "field": "opponent_stats.fg.made.total",
+                         },
+                       },
+                       "oppo_total_def_fta": {
+                         "sum": {
+                           "field": "opponent_stats.ft.attempts.total",
+                         },
+                       },
+                       "oppo_total_def_ftm": {
+                         "sum": {
+                           "field": "opponent_stats.ft.made.total",
+                         },
+                       },
                         "oppo_total_def_orb": {
                            "sum": {
                               "field": "opponent_stats.orb.total"
@@ -112,7 +147,17 @@ export const samplePlayerQueryRequest =           {
                               "field": "player_stats.num_possessions"
                            }
                         },
-                        "total_off_pts": {
+                       "oppo_total_def_pts": {
+                         "sum": {
+                           "field": "opponent_stats.pts",
+                         },
+                       },
+                       "oppo_total_def_to": {
+                         "sum": {
+                           "field": "opponent_stats.to.total",
+                         },
+                       },
+                       "total_off_pts": {
                            "sum": {
                               "field": "player_stats.pts"
                            }
