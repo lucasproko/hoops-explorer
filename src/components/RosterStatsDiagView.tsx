@@ -121,7 +121,7 @@ const RosterStatsDiagView: React.FunctionComponent<Props> = ({ortgDiags, drtgDia
           <li><em>(FT possession calcs above, under Team_Scoring_Plays)</em></li>
         </ul>
       </ul></span> : null }
-      <li><b>Adjusted ORtg</b>: [<b>{o.adjORtg.toFixed(1)}</b>] = Usage_Bonus [<b>{o.usageBonus.toFixed(1)}</b>] + ORtg [<b>{o.oRtg.toFixed(1)}</b>] * (Avg_Efficiency [<b>{o.avgEff.toFixed(1)}</b>] / Def_SOS [<b>{o.defSos.toFixed(1)}</b>])
+      <li><b>Adjusted ORtg</b>: [<b>{o.adjORtg.toFixed(1)}</b>] = (ORtg [<b>{o.oRtg.toFixed(1)}</b>] + Usage_Bonus [<b>{o.usageBonus.toFixed(1)}</b>]) * (Avg_Efficiency [<b>{o.avgEff.toFixed(1)}</b>] / Def_SOS [<b>{o.defSos.toFixed(1)}</b>])
       </li>
     </ul>
     DRtg = Team_DRtg [<b>{d.teamRtg.toFixed(1)}</b>] + Player_Delta [<b>{d.playerDelta.toFixed(1)}</b>]
