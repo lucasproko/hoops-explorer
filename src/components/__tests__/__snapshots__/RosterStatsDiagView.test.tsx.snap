@@ -141,6 +141,40 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 1`] = 
         </em>
       </li>
     </ul>
+    <li>
+      <b>
+        Adjusted+ ORtg
+      </b>
+      : [
+      <b>
+        124.6
+      </b>
+      ] = (Regressed_ORtg [
+      <b>
+        114.0
+      </b>
+      ] + Usage_Bonus [
+      <b>
+        6.3
+      </b>
+      ]) * (Avg_Efficiency [
+      <b>
+        100.0
+      </b>
+      ] / Def_SOS [
+      <b>
+        96.5
+      </b>
+      ])  (
+      <a
+        href="#"
+        onClick={[Function]}
+      >
+        more
+         about Adjusted+ ORtg
+      </a>
+      )
+    </li>
   </ul>
   DRtg = Team_DRtg [
   <b>
@@ -215,6 +249,28 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 1`] = 
         ]
       </li>
     </ul>
+    <li>
+      <b>
+        Adjusted DRtg
+      </b>
+      : [
+      <b>
+        102.0
+      </b>
+      ] = DRtg [
+      <b>
+        110.3
+      </b>
+      ] * (Avg_Efficiency [
+      <b>
+        100.0
+      </b>
+      ] / Off_SOS [
+      <b>
+        108.1
+      </b>
+      ])
+    </li>
   </ul>
 </span>
 `;

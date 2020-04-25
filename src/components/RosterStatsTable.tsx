@@ -45,12 +45,11 @@ export type RosterStatsModel = {
 }
 type Props = {
   gameFilterParams: GameFilterParams,
-  teamStats: TeamStatsModel,
   rosterStats: RosterStatsModel,
   onChangeState: (newParams: GameFilterParams) => void;
 }
 
-const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, teamStats, rosterStats, onChangeState}) => {
+const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, rosterStats, onChangeState}) => {
 
   // 1] State (some of these are phase 2+ and aren't plumbed in yet)
 
@@ -229,12 +228,11 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, tea
     // Inject ORtg and DRB and Poss% (ie mutate player idempotently)
     [ "on", "off", "baseline" ].forEach((key) => {
       const stat = (player as any)[key];
-      const teamStat = (teamStats as any)[key] || {};
       if (stat) {
-        stat.off_team_poss_pct = { value: _.min([(stat.off_team_poss.value || 0)
-          / (teamStat.off_poss?.value || 1), 1 ]) };
-        stat.def_team_poss_pct = { value: _.min([(stat.def_team_poss.value || 0)
-          / (teamStat.def_poss?.value || 1), 1 ]) };
+        stat.off_team_poss_pct = { value: (stat.off_team_poss.value || 0)
+          / (stat?.baseline?.off_team_poss_pct?.value || 1) };
+        stat.def_team_poss_pct = { value: (stat.def_team_poss.value || 0)
+          /  (stat?.baseline?.def_team_poss_pct?.value || 1) };
 
         stat.off_drb = stat.def_orb;
         const [ oRtg, adjORtg, oRtgDiag ] = StatsUtils.buildORtg(stat, avgEfficiency, showDiagMode);

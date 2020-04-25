@@ -11,17 +11,19 @@ import { LineupStatsModel } from './RosterStatsTable';
 
 describe("LineupUtils", () => {
   test("StatsUtils - buildORtg", () => {
-    const [ oRtg, oRtgDiags ] = StatsUtils.buildORtg(
-      samplePlayerStatsResponse.aggregations.tri_filter.buckets.baseline.player.buckets[0], true
+    const [ oRtg, adjORtg, oRtgDiags ] = StatsUtils.buildORtg(
+      samplePlayerStatsResponse.aggregations.tri_filter.buckets.baseline.player.buckets[0], 100, true
     );
     expect(oRtg).toEqual({value:112.99672660419142});
+    expect(adjORtg).toEqual({value:124.58254313564575});
     expect(oRtgDiags).toEqual(sampleOrtgDiagnostics);
   });
   test("StatsUtils - buildDRtg", () => {
-    const [ dRtg, dRtgDiags ] = StatsUtils.buildDRtg(
-      samplePlayerStatsResponse.aggregations.tri_filter.buckets.baseline.player.buckets[0], true
+    const [ dRtg, adjDRtg, dRtgDiags ] = StatsUtils.buildDRtg(
+      samplePlayerStatsResponse.aggregations.tri_filter.buckets.baseline.player.buckets[0], 100, true
     );
     expect(dRtg).toEqual({value:110.2860531155855});
+    expect(adjDRtg).toEqual({value:102.04282992219363});
     expect(dRtgDiags).toEqual(sampleDrtgDiagnostics);
   });
 });

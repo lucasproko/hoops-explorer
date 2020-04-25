@@ -131,6 +131,30 @@ exports[`RosterStatsTable RosterStatsTable - should create snapshot 1`] = `
                       "value": "asc:off_usage:off",
                     },
                     Object {
+                      "label": "Base Adj+ Rtg (Desc. / Offensive)",
+                      "value": "desc:off_adj_rtg:baseline",
+                    },
+                    Object {
+                      "label": "'On' Adj+ Rtg (Desc. / Offensive)",
+                      "value": "desc:off_adj_rtg:on",
+                    },
+                    Object {
+                      "label": "'Off' Adj+ Rtg (Desc. / Offensive)",
+                      "value": "desc:off_adj_rtg:off",
+                    },
+                    Object {
+                      "label": "Base Adj+ Rtg (Asc. / Offensive)",
+                      "value": "asc:off_adj_rtg:baseline",
+                    },
+                    Object {
+                      "label": "'On' Adj+ Rtg (Asc. / Offensive)",
+                      "value": "asc:off_adj_rtg:on",
+                    },
+                    Object {
+                      "label": "'Off' Adj+ Rtg (Asc. / Offensive)",
+                      "value": "asc:off_adj_rtg:off",
+                    },
+                    Object {
                       "label": "Base eFG% (Desc. / Offensive)",
                       "value": "desc:off_efg:baseline",
                     },
@@ -617,6 +641,9 @@ exports[`RosterStatsTable RosterStatsTable - should create snapshot 1`] = `
                   "def_adj_opp": Object {
                     "value": 96.6003105590062,
                   },
+                  "def_adj_rtg": Object {
+                    "value": 127.49627202084861,
+                  },
                   "def_ftr": Object {
                     "value": 0.025543478260869563,
                   },
@@ -662,6 +689,9 @@ exports[`RosterStatsTable RosterStatsTable - should create snapshot 1`] = `
                   },
                   "off_adj_opp": Object {
                     "value": 107.92523291925467,
+                  },
+                  "off_adj_rtg": Object {
+                    "value": 123.77764957388831,
                   },
                   "off_assist": Object {
                     "value": 0.2620320855614973,
@@ -846,6 +876,9 @@ exports[`RosterStatsTable RosterStatsTable - should create snapshot 1`] = `
                   "def_adj_opp": Object {
                     "value": 96.31485355648536,
                   },
+                  "def_adj_rtg": Object {
+                    "value": 288.28024260624,
+                  },
                   "def_ftr": Object {
                     "value": 0.021966527196652718,
                   },
@@ -891,6 +924,9 @@ exports[`RosterStatsTable RosterStatsTable - should create snapshot 1`] = `
                   },
                   "off_adj_opp": Object {
                     "value": 108.49037656903766,
+                  },
+                  "off_adj_rtg": Object {
+                    "value": 126.16012579861855,
                   },
                   "off_assist": Object {
                     "value": 0.3770491803278688,
@@ -1078,6 +1114,9 @@ exports[`RosterStatsTable RosterStatsTable - should create snapshot 1`] = `
                   "def_adj_opp": Object {
                     "value": 96.80587833219413,
                   },
+                  "def_adj_rtg": Object {
+                    "value": 113.96591970929101,
+                  },
                   "def_ftr": Object {
                     "value": 0.02248803827751196,
                   },
@@ -1123,6 +1162,9 @@ exports[`RosterStatsTable RosterStatsTable - should create snapshot 1`] = `
                   },
                   "off_adj_opp": Object {
                     "value": 107.77293233082706,
+                  },
+                  "off_adj_rtg": Object {
+                    "value": 102.6879897320898,
                   },
                   "off_assist": Object {
                     "value": 0.0988235294117647,
@@ -1310,6 +1352,9 @@ exports[`RosterStatsTable RosterStatsTable - should create snapshot 1`] = `
                   "def_adj_opp": Object {
                     "value": 93,
                   },
+                  "def_adj_rtg": Object {
+                    "value": 12559.623082036147,
+                  },
                   "def_ftr": Object {
                     "value": 0,
                   },
@@ -1355,6 +1400,9 @@ exports[`RosterStatsTable RosterStatsTable - should create snapshot 1`] = `
                   },
                   "off_adj_opp": Object {
                     "value": 115.3,
+                  },
+                  "off_adj_rtg": Object {
+                    "value": 4.427140156200828,
                   },
                   "off_assist": Object {
                     "value": 0,
@@ -1614,6 +1662,17 @@ exports[`RosterStatsTable RosterStatsTable - should create snapshot 1`] = `
                 "toolTip": "Percentage of 3 pointers taken against all field goals",
                 "widthUnits": 2,
               },
+              "adj_rtg": GenericTableColProps {
+                "className": "",
+                "colName": "Adj+ Rtg",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "Offensive/Defensive rating in selected lineups adjusted for SoS and (for ORtg) the player's usage",
+                "widthUnits": 2,
+              },
               "assist": GenericTableColProps {
                 "className": "",
                 "colName": "A%",
@@ -1689,7 +1748,7 @@ exports[`RosterStatsTable RosterStatsTable - should create snapshot 1`] = `
                 "missingData": undefined,
                 "rowSpan": [Function],
                 "toolTip": "",
-                "widthUnits": 1,
+                "widthUnits": 0.5,
               },
               "sep1": GenericTableColProps {
                 "className": "",
@@ -1700,7 +1759,7 @@ exports[`RosterStatsTable RosterStatsTable - should create snapshot 1`] = `
                 "missingData": undefined,
                 "rowSpan": [Function],
                 "toolTip": "",
-                "widthUnits": 1,
+                "widthUnits": 0.5,
               },
               "sep2": GenericTableColProps {
                 "className": "",
@@ -1711,7 +1770,7 @@ exports[`RosterStatsTable RosterStatsTable - should create snapshot 1`] = `
                 "missingData": undefined,
                 "rowSpan": [Function],
                 "toolTip": "",
-                "widthUnits": 1,
+                "widthUnits": 0.5,
               },
               "sep3": GenericTableColProps {
                 "className": "",
@@ -1722,7 +1781,7 @@ exports[`RosterStatsTable RosterStatsTable - should create snapshot 1`] = `
                 "missingData": undefined,
                 "rowSpan": [Function],
                 "toolTip": "",
-                "widthUnits": 1,
+                "widthUnits": 0.5,
               },
               "sep4": GenericTableColProps {
                 "className": "",
@@ -1733,7 +1792,7 @@ exports[`RosterStatsTable RosterStatsTable - should create snapshot 1`] = `
                 "missingData": undefined,
                 "rowSpan": [Function],
                 "toolTip": "",
-                "widthUnits": 1,
+                "widthUnits": 0.5,
               },
               "team_poss_pct": GenericTableColProps {
                 "className": "",
