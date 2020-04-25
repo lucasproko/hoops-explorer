@@ -65,7 +65,13 @@ export type ORtgDiagnostics = {
   adjPoss: number,
   scoringPoss: number,
   fgxPoss: number,
-  ftxPoss: number
+  ftxPoss: number,
+  // Adjusted calcs:
+  oRtg: number,
+  defSos: number,
+  avgEff: number,
+  usageBonus: number,
+  adjORtg: number
 };
 
 /** All the info needed to explain the DRtg calculation, see "buildDRtgDiag" */
@@ -110,14 +116,21 @@ export type DRtgDiagnostics = {
   oppoScPoss: number,
   oppoPtsPerScore: number,
   teamRtg: number,
+  // Adjusted calcs:
+  dRtg: number,
+  offSos: number,
+  avgEff: number,
+  adjDRtg: number
 };
 
 /** General cbb complex stats calcs */
 export class StatsUtils {
 
   /** From https://www.basketball-reference.com/about/ratings.html */
-  static buildORtg(statSet: Record<string, any>, calcDiags: boolean): [ any, ORtgDiagnostics | undefined ] {
-    if (!statSet) return [ { value: 0.0 }, undefined ];
+  static buildORtg(
+    statSet: Record<string, any>, avgEfficiency: number, calcDiags: boolean
+  ): [ { value: number } | undefined, { value: number } | undefined, ORtgDiagnostics | undefined ] {
+    if (!statSet) return [ undefined, undefined, undefined ];
 
     // The formulate references (MP / (Team_MP / 5)) a fair bit
     // All our team numbers are when the player is on the floor, so we set to 1
@@ -209,7 +222,26 @@ export class StatsUtils {
 
     const PProd = (PProd_FG_Part + PProd_AST_Part + FTM) * (1 - Team_ORB_Contrib) + PProd_ORB_Part;
 
-    return [TotPoss > 0 ? { value: 100 * (PProd / TotPoss) } : undefined, (calcDiags ? {
+    const ORtg = TotPoss > 0 ? 100 * (PProd / TotPoss) : 0;
+
+    // Adjusted efficiency
+    // Adapted from: https://www.bigtengeeks.com/new-stat-porpagatu/
+
+    const usage = 100*(statSet.off_usage?.value || 0);
+    const Def_SOS = (statSet?.def_adj_opp?.value || avgEfficiency);
+    const o_adj = avgEfficiency / Def_SOS;
+    const uFactor = usage * -.144 + 13.023;
+    const altZscore = uFactor > 0 ? (ORtg - avgEfficiency) / uFactor : 0;
+    const xORtg = avgEfficiency + altZscore * 10.143;
+    const Adj_ORtg = usage > 20 ?
+       (xORtg + ((usage - 20) * 1.25)) * o_adj :  (xORtg +((usage - 20) * 1.5)) * o_adj;
+
+    const Usage_Bonus = Adj_ORtg - ORtg*o_adj;
+
+    return [
+      TotPoss > 0 ? { value: ORtg } : undefined,
+      TotPoss > 0 ? { value: Adj_ORtg } : undefined,
+      (calcDiags ? {
       // Basic player numbers:
       rawFga: FGA,
       rawFgx: FGA - FGM,
@@ -273,14 +305,22 @@ export class StatsUtils {
       adjPoss: TotPoss,
       scoringPoss: ScPoss,
       fgxPoss: FGxPoss,
-      ftxPoss: FTxPoss
+      ftxPoss: FTxPoss,
+      // Adjusted calcs:
+      oRtg: ORtg,
+      defSos: Def_SOS,
+      avgEff: avgEfficiency,
+      usageBonus: Usage_Bonus,
+      adjORtg: Adj_ORtg
 
     } : undefined) as (ORtgDiagnostics | undefined) ];
   }
 
   /** From https://www.basketball-reference.com/about/ratings.html */
-  static buildDRtg(statSet: Record<string, any>, calcDiags: boolean): [ any, DRtgDiagnostics | undefined ] {
-    if (!statSet) return [ { value: 0.0 }, undefined ];
+  static buildDRtg(
+    statSet: Record<string, any>, avgEfficiency: number, calcDiags: boolean
+  ): [ { value: number } | undefined, { value: number } | undefined, DRtgDiagnostics | undefined ] {
+    if (!statSet) return [ undefined, undefined, undefined ];
 
     // Player:
     const STL = statSet?.total_off_stl?.value || 0;
@@ -344,6 +384,8 @@ export class StatsUtils {
     const Player_Delta = 0.2*(Player_DRtg - Team_DRtg);
 
     const DRtg = Team_DRtg + Player_Delta;
+    const Off_SOS = (statSet?.off_adj_opp?.value || avgEfficiency);
+    const Adj_DRtg = Off_SOS > 0 ? DRtg*(avgEfficiency / Off_SOS) : 0;
 
     // Try to incorporate FT fault:
     // Sum per lineup Approx_SF_Poss = PFpct*(Opponent_FTA*0.475)
@@ -353,7 +395,10 @@ export class StatsUtils {
     // remove Stop_Ind
     // and then add an extra term 100/Team_Poss*(SF_FTM/SF_Poss)
 
-    return [Opponent_Possessions > 0 ? { value: DRtg } : undefined, (calcDiags ? {
+    return [
+      Opponent_Possessions > 0 ? { value: DRtg } : undefined,
+      Opponent_Possessions > 0 ? { value: Adj_DRtg } : undefined,
+      (calcDiags ? {
       // Basic player numbers
       stl: STL,
       blk: BLK,
@@ -394,6 +439,11 @@ export class StatsUtils {
       oppoScPoss: ScPoss,
       oppoPtsPerScore: D_Pts_Per_ScPoss,
       teamRtg: Team_DRtg,
+      // Adjusted calcs:
+      dRtg: DRtg,
+      offSos: Off_SOS,
+      avgEff: avgEfficiency,
+      adjDRtg: Adj_DRtg
     } : undefined) ];
   }
 

@@ -16,7 +16,11 @@ const RosterStatsDiagView: React.FunctionComponent<Props> = ({ortgDiags, drtgDia
 
   const [ showMoreORtgPts, setShowMoreORtgPts ] = useState(false);
   const [ showMoreORtgPoss, setShowMoreORtgPoss ] = useState(false);
+  const [ showMoreORtgAdj, setShowMoreORtgAdj ] = useState(false);
   const [ showMoreDRtg, setShowMoreDRtg ] = useState(false);
+
+//      &nbsp;(<a href="#" onClick={(event) => { event.preventDefault(); setShowMoreORtgAdj(!showMoreORtgAdj) }}>{showMoreORtgAdj ? "less" : "more"} about adjusted rating</a>)
+
 
   const o = ortgDiags;
   const d = drtgDiags;
@@ -117,6 +121,8 @@ const RosterStatsDiagView: React.FunctionComponent<Props> = ({ortgDiags, drtgDia
           <li><em>(FT possession calcs above, under Team_Scoring_Plays)</em></li>
         </ul>
       </ul></span> : null }
+      <li><b>Adjusted ORtg</b>: [<b>{o.adjORtg.toFixed(1)}</b>] = Usage_Bonus [<b>{o.usageBonus.toFixed(1)}</b>] + ORtg [<b>{o.oRtg.toFixed(1)}</b>] * (Avg_Efficiency [<b>{o.avgEff.toFixed(1)}</b>] / Def_SOS [<b>{o.defSos.toFixed(1)}</b>])
+      </li>
     </ul>
     DRtg = Team_DRtg [<b>{d.teamRtg.toFixed(1)}</b>] + Player_Delta [<b>{d.playerDelta.toFixed(1)}</b>]
     &nbsp;(<a href="#" onClick={(event) => { event.preventDefault(); setShowMoreDRtg(!showMoreDRtg) }}>{showMoreDRtg ? "less" : "more"} about DRtg</a>)
@@ -126,6 +132,7 @@ const RosterStatsDiagView: React.FunctionComponent<Props> = ({ortgDiags, drtgDia
       <ul>
         <li>Player_DRtg:  [<b>{d.playerRtg.toFixed(1)}</b>] = 100 * Pts_Per_Score [<b>{d.oppoPtsPerScore.toFixed(1)}</b>] * Score_Conceded_By_Player% [<b>{(100*d.scPossConceded).toFixed(1)}%</b>]</li>
       </ul>
+      <li><b>Adjusted DRtg</b>: [<b>{d.adjDRtg.toFixed(1)}</b>] = DRtg [<b>{d.dRtg.toFixed(1)}</b>] * (Avg_Efficiency [<b>{d.avgEff.toFixed(1)}</b>] / Off_SOS [<b>{d.offSos.toFixed(1)}</b>])</li>
       {showMoreDRtg ?
       <span><li><u>DRtg details</u></li>
       <ul>
