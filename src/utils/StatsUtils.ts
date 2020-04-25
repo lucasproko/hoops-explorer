@@ -70,7 +70,12 @@ export type ORtgDiagnostics = {
   oRtg: number,
   defSos: number,
   avgEff: number,
-  usageBonus: number,
+  SD_at_Usage: number,
+  SDs_Above_Mean: number,
+  SD_at_Usage_20: number,
+  Regressed_ORtg: number,
+  Usage: number,
+  Usage_Bonus: number,
   adjORtg: number
 };
 
@@ -230,13 +235,12 @@ export class StatsUtils {
     const usage = 100*(statSet.off_usage?.value || 0);
     const Def_SOS = (statSet?.def_adj_opp?.value || avgEfficiency);
     const o_adj = avgEfficiency / Def_SOS;
-    const uFactor = usage * -.144 + 13.023;
-    const altZscore = uFactor > 0 ? (ORtg - avgEfficiency) / uFactor : 0;
-    const xORtg = avgEfficiency + altZscore * 10.143;
-    const Adj_ORtg = usage > 20 ?
-       (xORtg + ((usage - 20) * 1.25)) * o_adj :  (xORtg +((usage - 20) * 1.5)) * o_adj;
-
-    const Usage_Bonus = Adj_ORtg - ORtg*o_adj;
+    const SD_at_Usage = usage * -.144 + 13.023;
+    const SDs_Above_Mean = SD_at_Usage > 0 ? (ORtg - avgEfficiency) / SD_at_Usage : 0;
+    const SD_at_Usage_20 = 10.143;
+    const Regressed_ORtg = avgEfficiency + SDs_Above_Mean * SD_at_Usage_20;
+    const Usage_Bonus = usage > 20 ? ((usage - 20) * 1.25) :  ((usage - 20) * 1.5);
+    const Adj_ORtg = (Regressed_ORtg + Usage_Bonus)*o_adj;
 
     return [
       TotPoss > 0 ? { value: ORtg } : undefined,
@@ -310,7 +314,12 @@ export class StatsUtils {
       oRtg: ORtg,
       defSos: Def_SOS,
       avgEff: avgEfficiency,
-      usageBonus: Usage_Bonus,
+      SD_at_Usage: SD_at_Usage,
+      SDs_Above_Mean: SDs_Above_Mean,
+      SD_at_Usage_20: SD_at_Usage_20,
+      Regressed_ORtg: Regressed_ORtg,
+      Usage: usage,
+      Usage_Bonus: Usage_Bonus,
       adjORtg: Adj_ORtg
 
     } : undefined) as (ORtgDiagnostics | undefined) ];

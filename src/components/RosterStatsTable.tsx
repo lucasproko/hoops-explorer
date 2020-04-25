@@ -131,7 +131,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, tea
     "sep0": GenericTableOps.addColSeparator(0.5),
     "rtg": GenericTableOps.addPtsCol("Rtg", "Offensive/Defensive rating in selected lineups", CbbColors.picker(...CbbColors.pp100)),
     "usage": GenericTableOps.addPctCol("Usg", "% of team possessions used in selected lineups", CbbColors.picker(...CbbColors.usg)), //TODO needs to be steeper
-    "adj_rtg": GenericTableOps.addPtsCol("Adj Rtg", "Offensive/Defensive rating in selected lineups adjusted for SoS and (for ORtg) the player's usage", CbbColors.picker(...CbbColors.pp100)),
+    "adj_rtg": GenericTableOps.addPtsCol("Adj+ Rtg", "Offensive/Defensive rating in selected lineups adjusted for SoS and (for ORtg) the player's usage", CbbColors.picker(...CbbColors.pp100)),
     "sep1": GenericTableOps.addColSeparator(0.5),
     "efg": GenericTableOps.addPctCol("eFG%", "Effective field goal% (3 pointers count 1.5x as much) in selected lineups", CbbColors.picker(...CbbColors.eFG)),
     "assist": GenericTableOps.addPctCol("A%", "Assist % for player in selected lineups", CbbColors.picker(...CbbColors.ast)),

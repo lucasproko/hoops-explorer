@@ -19,9 +19,6 @@ const RosterStatsDiagView: React.FunctionComponent<Props> = ({ortgDiags, drtgDia
   const [ showMoreORtgAdj, setShowMoreORtgAdj ] = useState(false);
   const [ showMoreDRtg, setShowMoreDRtg ] = useState(false);
 
-//      &nbsp;(<a href="#" onClick={(event) => { event.preventDefault(); setShowMoreORtgAdj(!showMoreORtgAdj) }}>{showMoreORtgAdj ? "less" : "more"} about adjusted rating</a>)
-
-
   const o = ortgDiags;
   const d = drtgDiags;
   return <span>
@@ -121,8 +118,29 @@ const RosterStatsDiagView: React.FunctionComponent<Props> = ({ortgDiags, drtgDia
           <li><em>(FT possession calcs above, under Team_Scoring_Plays)</em></li>
         </ul>
       </ul></span> : null }
-      <li><b>Adjusted ORtg</b>: [<b>{o.adjORtg.toFixed(1)}</b>] = (ORtg [<b>{o.oRtg.toFixed(1)}</b>] + Usage_Bonus [<b>{o.usageBonus.toFixed(1)}</b>]) * (Avg_Efficiency [<b>{o.avgEff.toFixed(1)}</b>] / Def_SOS [<b>{o.defSos.toFixed(1)}</b>])
+      <li><b>Adjusted+ ORtg</b>: [<b>{o.adjORtg.toFixed(1)}</b>] = (Regressed_ORtg [<b>{o.Regressed_ORtg.toFixed(1)}</b>] + Usage_Bonus [<b>{o.Usage_Bonus.toFixed(1)}</b>]) * (Avg_Efficiency [<b>{o.avgEff.toFixed(1)}</b>] / Def_SOS [<b>{o.defSos.toFixed(1)}</b>])
+      &nbsp;(<a href="#" onClick={(event) => { event.preventDefault(); setShowMoreORtgAdj(!showMoreORtgAdj) }}>{showMoreORtgAdj ? "less" : "more"} about Adjusted+ ORtg</a>)
       </li>
+      { showMoreORtgAdj ? <span><li><u>Adjusted+ ORtg details</u> (<a target="_blank" href="https://www.bigtengeeks.com/new-stat-porpagatu/">?</a>)</li><ul>
+        <li>Regressed_ORtg: [<b>{o.Regressed_ORtg.toFixed(1)}</b>] = Avg_Efficiency [<b>{o.avgEff.toFixed(1)}</b>] + ORtg_SDs_Above_Mean [<b>{o.SDs_Above_Mean.toFixed(1)}</b>] * ORtg_SD_At_20%_Usage [<b>{o.SD_at_Usage_20.toFixed(1)}</b>]</li>
+        <ul>
+          <li>ORtg_SDs_Above_Mean: [<b>{o.SDs_Above_Mean.toFixed(1)}</b>] = (ORtg [<b>{o.oRtg.toFixed(1)}</b>] - Avg_Efficiency [<b>{o.avgEff.toFixed(1)}</b>]) / SD_At_Actual_Usage [<b>{o.SD_at_Usage.toFixed(1)}</b>]</li>
+          <ul>
+            <li>SD_At_Actual_Usage: [<b>{o.SD_at_Usage.toFixed(1)}</b>] = [<b>13.023</b>] - (Usage [<b>{o.Usage.toFixed(1)}</b>] * [<b>0.144</b>])</li>
+          </ul>
+          <li>ORtg_SD_At_20%_Usage [<b>{o.SD_at_Usage_20.toFixed(1)}</b>] = [<b>10.143</b>]</li>
+          <li><em>(Various constants empirically derived)</em></li>
+        </ul>
+        <li>Usage_Bonus: [<b>{o.Usage_Bonus.toFixed(1)}</b>] = {o.Usage > 20 ?
+        <span>((Usage [<b>{o.Usage.toFixed(1)}%</b>] - [<b>20%</b>]) * [<b>1.25</b>])</span> : <span>((Usage [<b>{o.Usage.toFixed(1)}%</b>] - [<b>20%</b>]) * [<b>1.5</b>])</span>
+        }</li>
+        <ul>
+          <li><em>
+          (Factor would have been [<b>{o.Usage > 20 ? <span>1.5</span> : <span>1.25</span>}</b>] at Usage {o.Usage > 20 ? <span>&lt;</span> : <span>&gt;</span>} [<b>20%</b>]),
+          ie there is an additional penalty on low usage players
+          </em></li>
+        </ul>
+      </ul></span> : null}
     </ul>
     DRtg = Team_DRtg [<b>{d.teamRtg.toFixed(1)}</b>] + Player_Delta [<b>{d.playerDelta.toFixed(1)}</b>]
     &nbsp;(<a href="#" onClick={(event) => { event.preventDefault(); setShowMoreDRtg(!showMoreDRtg) }}>{showMoreDRtg ? "less" : "more"} about DRtg</a>)
