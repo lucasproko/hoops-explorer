@@ -228,11 +228,12 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, ros
     // Inject ORtg and DRB and Poss% (ie mutate player idempotently)
     [ "on", "off", "baseline" ].forEach((key) => {
       const stat = (player as any)[key];
+      const baseline = player.baseline;
       if (stat) {
         stat.off_team_poss_pct = { value: (stat.off_team_poss.value || 0)
-          / (stat?.baseline?.off_team_poss_pct?.value || 1) };
+          / (baseline?.off_team_poss?.value || 1) };
         stat.def_team_poss_pct = { value: (stat.def_team_poss.value || 0)
-          /  (stat?.baseline?.def_team_poss_pct?.value || 1) };
+          /  (baseline?.def_team_poss?.value || 1) };
 
         stat.off_drb = stat.def_orb;
         const [ oRtg, adjORtg, oRtgDiag ] = StatsUtils.buildORtg(stat, avgEfficiency, showDiagMode);
