@@ -636,6 +636,244 @@ exports[`RosterStatsTable RosterStatsTable - should create snapshot 1`] = `
                 "cellMetaFn": [Function],
                 "dataObj": Object {
                   "def_2prim": Object {
+                    "value": 0.016581632653061226,
+                  },
+                  "def_adj_opp": Object {
+                    "value": 96.80587833219413,
+                  },
+                  "def_adj_rtg": Object {
+                    "value": 113.96591970929101,
+                  },
+                  "def_ftr": Object {
+                    "value": 0.02248803827751196,
+                  },
+                  "def_orb": Object {
+                    "value": 0.13658536585365855,
+                  },
+                  "def_rtg": Object {
+                    "value": 122.8244135284989,
+                  },
+                  "def_team_poss": Object {
+                    "value": 1463,
+                  },
+                  "def_team_poss_pct": Object {
+                    "value": 1,
+                  },
+                  "def_to": Object {
+                    "value": 0.0177717019822283,
+                  },
+                  "diag_def_rtg": undefined,
+                  "diag_off_rtg": undefined,
+                  "doc_count": 404,
+                  "key": "Wiggins, Aaron",
+                  "off_2p": Object {
+                    "value": 0.4461538461538462,
+                  },
+                  "off_2pmid": Object {
+                    "value": 0.2891566265060241,
+                  },
+                  "off_2pmidr": Object {
+                    "value": 0.2832764505119454,
+                  },
+                  "off_2prim": Object {
+                    "value": 0.723404255319149,
+                  },
+                  "off_2primr": Object {
+                    "value": 0.16040955631399317,
+                  },
+                  "off_3p": Object {
+                    "value": 0.3128834355828221,
+                  },
+                  "off_3pr": Object {
+                    "value": 0.5563139931740614,
+                  },
+                  "off_adj_opp": Object {
+                    "value": 107.77293233082706,
+                  },
+                  "off_adj_rtg": Object {
+                    "value": 102.6879897320898,
+                  },
+                  "off_assist": Object {
+                    "value": 0.0988235294117647,
+                  },
+                  "off_drb": Object {
+                    "value": 0.13658536585365855,
+                  },
+                  "off_efg": Object {
+                    "value": 0.4590443686006826,
+                  },
+                  "off_ftr": Object {
+                    "value": 0.20136518771331058,
+                  },
+                  "off_orb": Object {
+                    "value": 0.044416243654822336,
+                  },
+                  "off_poss": Object {
+                    "value": 304.78809523809525,
+                  },
+                  "off_rtg": Object {
+                    "value": 98.48922807683817,
+                  },
+                  "off_team_poss": Object {
+                    "value": 1469,
+                  },
+                  "off_team_poss_pct": Object {
+                    "value": 1,
+                  },
+                  "off_title": "'On' Wiggins, Aaron",
+                  "off_to": Object {
+                    "value": 0.16076743404863644,
+                  },
+                  "off_usage": Object {
+                    "value": 0.20747998314369998,
+                  },
+                  "oppo_total_def_2p_attempts": Object {
+                    "value": 784,
+                  },
+                  "oppo_total_def_drb": Object {
+                    "value": 534,
+                  },
+                  "oppo_total_def_fga": Object {
+                    "value": 1429,
+                  },
+                  "oppo_total_def_fgm": Object {
+                    "value": 534,
+                  },
+                  "oppo_total_def_fta": Object {
+                    "value": 626,
+                  },
+                  "oppo_total_def_ftm": Object {
+                    "value": 426,
+                  },
+                  "oppo_total_def_orb": Object {
+                    "value": 214,
+                  },
+                  "oppo_total_def_poss": Object {
+                    "value": 1463,
+                  },
+                  "oppo_total_def_pts": Object {
+                    "value": 1804,
+                  },
+                  "oppo_total_def_to": Object {
+                    "value": 59,
+                  },
+                  "team_total_off_3p_made": Object {
+                    "value": 174,
+                  },
+                  "team_total_off_assist": Object {
+                    "value": 283,
+                  },
+                  "team_total_off_blk": Object {
+                    "value": 60,
+                  },
+                  "team_total_off_drb": Object {
+                    "value": 606,
+                  },
+                  "team_total_off_fga": Object {
+                    "value": 1253,
+                  },
+                  "team_total_off_fgm": Object {
+                    "value": 534,
+                  },
+                  "team_total_off_foul": Object {
+                    "value": 310,
+                  },
+                  "team_total_off_fta": Object {
+                    "value": 508,
+                  },
+                  "team_total_off_ftm": Object {
+                    "value": 379,
+                  },
+                  "team_total_off_orb": Object {
+                    "value": 254,
+                  },
+                  "team_total_off_poss": Object {
+                    "value": 1469,
+                  },
+                  "team_total_off_pts": Object {
+                    "value": 1621,
+                  },
+                  "team_total_off_stl": Object {
+                    "value": 150,
+                  },
+                  "team_total_off_to": Object {
+                    "value": 243,
+                  },
+                  "total_off_2p_attempts": Object {
+                    "value": 130,
+                  },
+                  "total_off_2p_made": Object {
+                    "value": 58,
+                  },
+                  "total_off_2pmid_attempts": Object {
+                    "value": 83,
+                  },
+                  "total_off_2pmid_made": Object {
+                    "value": 24,
+                  },
+                  "total_off_2prim_attempts": Object {
+                    "value": 47,
+                  },
+                  "total_off_2prim_made": Object {
+                    "value": 34,
+                  },
+                  "total_off_3p_attempts": Object {
+                    "value": 163,
+                  },
+                  "total_off_3p_made": Object {
+                    "value": 51,
+                  },
+                  "total_off_assist": Object {
+                    "value": 42,
+                  },
+                  "total_off_blk": Object {
+                    "value": 13,
+                  },
+                  "total_off_drb": Object {
+                    "value": 112,
+                  },
+                  "total_off_fga": Object {
+                    "value": 293,
+                  },
+                  "total_off_fgm": Object {
+                    "value": 109,
+                  },
+                  "total_off_foul": Object {
+                    "value": 47,
+                  },
+                  "total_off_fta": Object {
+                    "value": 59,
+                  },
+                  "total_off_ftm": Object {
+                    "value": 43,
+                  },
+                  "total_off_orb": Object {
+                    "value": 35,
+                  },
+                  "total_off_poss": Object {
+                    "value": 0,
+                  },
+                  "total_off_pts": Object {
+                    "value": 0,
+                  },
+                  "total_off_stl": Object {
+                    "value": 26,
+                  },
+                  "total_off_to": Object {
+                    "value": 49,
+                  },
+                },
+                "kind": "data-row",
+                "prefixFn": [Function],
+                "tableFieldsOverride": undefined,
+              },
+              GenericTableSeparator {
+                "kind": "separator",
+              },
+              GenericTableDataRow {
+                "cellMetaFn": [Function],
+                "dataObj": Object {
+                  "def_2prim": Object {
                     "value": 0.0072254335260115606,
                   },
                   "def_adj_opp": Object {
@@ -657,7 +895,7 @@ exports[`RosterStatsTable RosterStatsTable - should create snapshot 1`] = `
                     "value": 1288,
                   },
                   "def_team_poss_pct": Object {
-                    "value": 1288,
+                    "value": 1,
                   },
                   "def_to": Object {
                     "value": 0.020186335403726708,
@@ -718,7 +956,7 @@ exports[`RosterStatsTable RosterStatsTable - should create snapshot 1`] = `
                     "value": 1307,
                   },
                   "off_team_poss_pct": Object {
-                    "value": 1307,
+                    "value": 1,
                   },
                   "off_title": "'On' Cowan, Anthony",
                   "off_to": Object {
@@ -892,7 +1130,7 @@ exports[`RosterStatsTable RosterStatsTable - should create snapshot 1`] = `
                     "value": 478,
                   },
                   "def_team_poss_pct": Object {
-                    "value": 478,
+                    "value": 1,
                   },
                   "def_to": Object {
                     "value": 0.008368200836820083,
@@ -953,7 +1191,7 @@ exports[`RosterStatsTable RosterStatsTable - should create snapshot 1`] = `
                     "value": 471,
                   },
                   "off_team_poss_pct": Object {
-                    "value": 471,
+                    "value": 1,
                   },
                   "off_title": "'Off' Cowan, Anthony",
                   "off_to": Object {
@@ -1109,244 +1347,6 @@ exports[`RosterStatsTable RosterStatsTable - should create snapshot 1`] = `
                 "cellMetaFn": [Function],
                 "dataObj": Object {
                   "def_2prim": Object {
-                    "value": 0.016581632653061226,
-                  },
-                  "def_adj_opp": Object {
-                    "value": 96.80587833219413,
-                  },
-                  "def_adj_rtg": Object {
-                    "value": 113.96591970929101,
-                  },
-                  "def_ftr": Object {
-                    "value": 0.02248803827751196,
-                  },
-                  "def_orb": Object {
-                    "value": 0.13658536585365855,
-                  },
-                  "def_rtg": Object {
-                    "value": 122.8244135284989,
-                  },
-                  "def_team_poss": Object {
-                    "value": 1463,
-                  },
-                  "def_team_poss_pct": Object {
-                    "value": 1463,
-                  },
-                  "def_to": Object {
-                    "value": 0.0177717019822283,
-                  },
-                  "diag_def_rtg": undefined,
-                  "diag_off_rtg": undefined,
-                  "doc_count": 404,
-                  "key": "Wiggins, Aaron",
-                  "off_2p": Object {
-                    "value": 0.4461538461538462,
-                  },
-                  "off_2pmid": Object {
-                    "value": 0.2891566265060241,
-                  },
-                  "off_2pmidr": Object {
-                    "value": 0.2832764505119454,
-                  },
-                  "off_2prim": Object {
-                    "value": 0.723404255319149,
-                  },
-                  "off_2primr": Object {
-                    "value": 0.16040955631399317,
-                  },
-                  "off_3p": Object {
-                    "value": 0.3128834355828221,
-                  },
-                  "off_3pr": Object {
-                    "value": 0.5563139931740614,
-                  },
-                  "off_adj_opp": Object {
-                    "value": 107.77293233082706,
-                  },
-                  "off_adj_rtg": Object {
-                    "value": 102.6879897320898,
-                  },
-                  "off_assist": Object {
-                    "value": 0.0988235294117647,
-                  },
-                  "off_drb": Object {
-                    "value": 0.13658536585365855,
-                  },
-                  "off_efg": Object {
-                    "value": 0.4590443686006826,
-                  },
-                  "off_ftr": Object {
-                    "value": 0.20136518771331058,
-                  },
-                  "off_orb": Object {
-                    "value": 0.044416243654822336,
-                  },
-                  "off_poss": Object {
-                    "value": 304.78809523809525,
-                  },
-                  "off_rtg": Object {
-                    "value": 98.48922807683817,
-                  },
-                  "off_team_poss": Object {
-                    "value": 1469,
-                  },
-                  "off_team_poss_pct": Object {
-                    "value": 1469,
-                  },
-                  "off_title": "'On' Wiggins, Aaron",
-                  "off_to": Object {
-                    "value": 0.16076743404863644,
-                  },
-                  "off_usage": Object {
-                    "value": 0.20747998314369998,
-                  },
-                  "oppo_total_def_2p_attempts": Object {
-                    "value": 784,
-                  },
-                  "oppo_total_def_drb": Object {
-                    "value": 534,
-                  },
-                  "oppo_total_def_fga": Object {
-                    "value": 1429,
-                  },
-                  "oppo_total_def_fgm": Object {
-                    "value": 534,
-                  },
-                  "oppo_total_def_fta": Object {
-                    "value": 626,
-                  },
-                  "oppo_total_def_ftm": Object {
-                    "value": 426,
-                  },
-                  "oppo_total_def_orb": Object {
-                    "value": 214,
-                  },
-                  "oppo_total_def_poss": Object {
-                    "value": 1463,
-                  },
-                  "oppo_total_def_pts": Object {
-                    "value": 1804,
-                  },
-                  "oppo_total_def_to": Object {
-                    "value": 59,
-                  },
-                  "team_total_off_3p_made": Object {
-                    "value": 174,
-                  },
-                  "team_total_off_assist": Object {
-                    "value": 283,
-                  },
-                  "team_total_off_blk": Object {
-                    "value": 60,
-                  },
-                  "team_total_off_drb": Object {
-                    "value": 606,
-                  },
-                  "team_total_off_fga": Object {
-                    "value": 1253,
-                  },
-                  "team_total_off_fgm": Object {
-                    "value": 534,
-                  },
-                  "team_total_off_foul": Object {
-                    "value": 310,
-                  },
-                  "team_total_off_fta": Object {
-                    "value": 508,
-                  },
-                  "team_total_off_ftm": Object {
-                    "value": 379,
-                  },
-                  "team_total_off_orb": Object {
-                    "value": 254,
-                  },
-                  "team_total_off_poss": Object {
-                    "value": 1469,
-                  },
-                  "team_total_off_pts": Object {
-                    "value": 1621,
-                  },
-                  "team_total_off_stl": Object {
-                    "value": 150,
-                  },
-                  "team_total_off_to": Object {
-                    "value": 243,
-                  },
-                  "total_off_2p_attempts": Object {
-                    "value": 130,
-                  },
-                  "total_off_2p_made": Object {
-                    "value": 58,
-                  },
-                  "total_off_2pmid_attempts": Object {
-                    "value": 83,
-                  },
-                  "total_off_2pmid_made": Object {
-                    "value": 24,
-                  },
-                  "total_off_2prim_attempts": Object {
-                    "value": 47,
-                  },
-                  "total_off_2prim_made": Object {
-                    "value": 34,
-                  },
-                  "total_off_3p_attempts": Object {
-                    "value": 163,
-                  },
-                  "total_off_3p_made": Object {
-                    "value": 51,
-                  },
-                  "total_off_assist": Object {
-                    "value": 42,
-                  },
-                  "total_off_blk": Object {
-                    "value": 13,
-                  },
-                  "total_off_drb": Object {
-                    "value": 112,
-                  },
-                  "total_off_fga": Object {
-                    "value": 293,
-                  },
-                  "total_off_fgm": Object {
-                    "value": 109,
-                  },
-                  "total_off_foul": Object {
-                    "value": 47,
-                  },
-                  "total_off_fta": Object {
-                    "value": 59,
-                  },
-                  "total_off_ftm": Object {
-                    "value": 43,
-                  },
-                  "total_off_orb": Object {
-                    "value": 35,
-                  },
-                  "total_off_poss": Object {
-                    "value": 0,
-                  },
-                  "total_off_pts": Object {
-                    "value": 0,
-                  },
-                  "total_off_stl": Object {
-                    "value": 26,
-                  },
-                  "total_off_to": Object {
-                    "value": 49,
-                  },
-                },
-                "kind": "data-row",
-                "prefixFn": [Function],
-                "tableFieldsOverride": undefined,
-              },
-              GenericTableSeparator {
-                "kind": "separator",
-              },
-              GenericTableDataRow {
-                "cellMetaFn": [Function],
-                "dataObj": Object {
-                  "def_2prim": Object {
                     "value": 0,
                   },
                   "def_adj_opp": Object {
@@ -1368,7 +1368,7 @@ exports[`RosterStatsTable RosterStatsTable - should create snapshot 1`] = `
                     "value": 10,
                   },
                   "def_team_poss_pct": Object {
-                    "value": 10,
+                    "value": 1,
                   },
                   "def_to": Object {
                     "value": 0.1,
@@ -1429,7 +1429,7 @@ exports[`RosterStatsTable RosterStatsTable - should create snapshot 1`] = `
                     "value": 9,
                   },
                   "off_team_poss_pct": Object {
-                    "value": 9,
+                    "value": 1,
                   },
                   "off_title": "'Off' Mona, Reese",
                   "off_to": Object {

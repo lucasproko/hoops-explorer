@@ -17,6 +17,7 @@ describe("RosterStatsTable", () => {
     const wrapper = shallow(
     <RosterStatsTable
       gameFilterParams={{}}
+      teamStats={{on: {}, off: {}, baseline: {}}}
       rosterStats={testData}
       onChangeState={(newParams: GameFilterParams) => {}}
     />

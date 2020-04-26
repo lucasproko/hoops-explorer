@@ -76,6 +76,13 @@ exports[`OnOffAnalyzerPage OnOffAnalyzerPage - should create snapshot 1`] = `
             "on": Object {},
           }
         }
+        teamStats={
+          Object {
+            "baseline": Object {},
+            "off": Object {},
+            "on": Object {},
+          }
+        }
       />
     </GenericCollapsibleCard>
   </ForwardRef>
