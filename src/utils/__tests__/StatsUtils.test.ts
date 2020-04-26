@@ -9,7 +9,7 @@ import { sampleOrtgDiagnostics } from "../../sample-data/sampleOrtgDiagnostics";
 import { sampleDrtgDiagnostics } from "../../sample-data/sampleDrtgDiagnostics";
 import { LineupStatsModel } from './RosterStatsTable';
 
-describe("LineupUtils", () => {
+describe("StatsUtils", () => {
   test("StatsUtils - buildORtg", () => {
     const [ oRtg, adjORtg, oRtgDiags ] = StatsUtils.buildORtg(
       samplePlayerStatsResponse.aggregations.tri_filter.buckets.baseline.player.buckets[0], 100, true

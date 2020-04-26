@@ -1,4 +1,4 @@
-export const publicKenpomEfficiency2019_20 = {
+const publicKenpomEfficiency2019_20 = {
    "Kansas": {
       "team_season.year": 2020,
       "conf": "Big 12 Conference",

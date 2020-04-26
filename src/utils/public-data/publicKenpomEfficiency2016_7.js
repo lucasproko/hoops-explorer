@@ -1,4 +1,4 @@
-export const publicKenpomEfficiency2016_7 = {
+const publicKenpomEfficiency2016_7 = {
    "Gonzaga": {
       "team_season.year": 2017,
       "conf": "West Coast Conference",

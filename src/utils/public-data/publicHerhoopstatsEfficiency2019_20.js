@@ -1,4 +1,4 @@
-export const publicHerhoopstatsEfficiency2019_20 = {
+const publicHerhoopstatsEfficiency2019_20 = {
    "Oregon": {
       "hhs_off_rating": 126.7,
       "stats.adj_off.value": 124.48675213675213,
