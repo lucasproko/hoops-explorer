@@ -30,6 +30,7 @@ import GenericTable, { GenericTableOps, GenericTableColProps } from "./GenericTa
 import { LineupStatsModel } from './LineupStatsTable';
 import GenericTogglingMenuItem from "./GenericTogglingMenuItem";
 import RapmPlayerDiagView from "./RapmPlayerDiagView";
+import RepOnOffDiagView from "./RepOnOffDiagView";
 
 // Util imports
 import { getCommonFilterParams, TeamReportFilterParams, ParamDefaults } from '../utils/FilterModels';
@@ -304,6 +305,11 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
       const statsRapm  = incRapm ?
         { off_title: player.rapm?.key + rapmSuffix, def_title: "", ...player?.rapm } : {};
 
+      const repOnOffDiagsEnabled = incReplacementOnOff && (repOnOffDiagMode > 0);
+      const repOnOffDiagInfo = repOnOffDiagsEnabled ? OnOffReportDiagUtils.getRepOnOffDiagInfo(
+        player, regressDiffs
+      ) : undefined;
+
       return _.flatten([
         showOnOff ? [
           GenericTableOps.buildDataRow(statsOn, CommonTableDefs.offPrefixFn, CommonTableDefs.offCellMetaFn, CommonTableDefs.onOffReportWithFormattedTitle),
@@ -314,6 +320,15 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
         incReplacementOnOff && (player?.replacement?.key) ? [
           GenericTableOps.buildDataRow(statsReplacement, CommonTableDefs.offPrefixFn, CommonTableDefs.offCellMetaFn, CommonTableDefs.onOffReportReplacement),
           GenericTableOps.buildDataRow(statsReplacement, CommonTableDefs.defPrefixFn, CommonTableDefs.defCellMetaFn, CommonTableDefs.onOffReportReplacement)
+        ] : [],
+        repOnOffDiagsEnabled && (player?.replacement?.key) ? [
+          GenericTableOps.buildTextRow(
+            <RepOnOffDiagView
+              diagInfo={repOnOffDiagInfo || []}
+              player={player}
+              expandedMode={false}
+            />, "small"
+          )
         ] : [],
         incRapm && (player?.rapm?.key) ? [
           GenericTableOps.buildDataRow(statsRapm, CommonTableDefs.offPrefixFn, CommonTableDefs.offCellMetaFn, CommonTableDefs.onOffReportReplacement),
@@ -331,10 +346,9 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
           OnOffReportDiagUtils.buildLineupInfo(player, playerLineupPowerSet), "small"
         ) ] : [],
         [ GenericTableOps.buildRowSeparator() ],
-        incReplacementOnOff && (index == 0) && (repOnOffDiagMode > 0) ?
-          OnOffReportDiagUtils.getRepOnOffDiags(player, commonParams,
-            repOnOffDiagMode, regressDiffs,
-            showHelp
+         repOnOffDiagsEnabled && (index == 0) ?
+          OnOffReportDiagUtils.getRepOnOffDiags(player, repOnOffDiagInfo || [],
+            commonParams, repOnOffDiagMode, showHelp
           ) : [],
       ]);
     }).value();
