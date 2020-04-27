@@ -1,5 +1,5 @@
 
-const publicStatsAveragesWomen2018_9 =   {
+export const publicStatsAveragesWomen2018_9: Record<string, any> =   {
           "off_2p" : {
             "value" : 0.46449724349904864
           },

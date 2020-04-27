@@ -1,4 +1,4 @@
-const publicKenpomEfficiency2017_8 = {
+export const publicKenpomEfficiency2017_8: Record<string, any> = {
    "Villanova": {
       "team_season.year": 2018,
       "conf": "Big East Conference",

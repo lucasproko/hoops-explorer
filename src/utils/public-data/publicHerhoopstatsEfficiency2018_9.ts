@@ -1,4 +1,4 @@
-const publicHerhoopstatsEfficiency2018_9 = {
+export const publicHerhoopstatsEfficiency2018_9: Record<string, any> = {
    "Baylor": {
       "hhs_off_rating": 120.9,
       "stats.adj_off.value": 118.71282051282049,

@@ -1,4 +1,4 @@
-const publicHerhoopstatsEfficiency2019_20 = {
+export const publicHerhoopstatsEfficiency2019_20: Record<string, any> = {
    "Oregon": {
       "hhs_off_rating": 126.7,
       "stats.adj_off.value": 124.48675213675213,
