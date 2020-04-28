@@ -1,4 +1,4 @@
-export const publicKenpomEfficiency2015_6 = {
+export const publicKenpomEfficiency2015_6: Record<string, any> = {
    "Tulsa": {
       "team_season.year": 2016,
       "conf": "American Athletic Conference",

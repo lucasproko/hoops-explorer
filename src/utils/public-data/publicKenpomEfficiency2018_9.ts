@@ -1,4 +1,4 @@
-export const publicKenpomEfficiency2018_9 = {
+export const publicKenpomEfficiency2018_9: Record<string, any> = {
    "Milwaukee": {
       "stats.adj_tempo.rank": 259,
       "stats.adj_off.value": 98.6,
