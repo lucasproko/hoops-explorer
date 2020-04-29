@@ -18,10 +18,13 @@ type Props = {
   diagInfo: Array<any>,
   player: Record<string, any>,
   expandedMode: boolean,
-  showHelp: boolean
+  showHelp: boolean,
+  keyLineupThreshold?: number //(for testing, leave blank in prod)
 };
 
-const RepOnOffDiagView: React.FunctionComponent<Props> = ({diagInfo, player, expandedMode, showHelp}) => {
+const RepOnOffDiagView: React.FunctionComponent<Props> = ({diagInfo, player, expandedMode, showHelp, keyLineupThreshold}) => {
+
+  const threshold = _.isNil(keyLineupThreshold) ? 1 : keyLineupThreshold;
 
   const doSame4Analysis = (offOrDef: "off" | "def", dir: 1 | -1) => {
     const field = "adjEff";
@@ -34,44 +37,57 @@ const RepOnOffDiagView: React.FunctionComponent<Props> = ({diagInfo, player, exp
     const sumContrib = _.sum(contribs)
     const meanContrib: any = contribs.length ? mean(contribs) : 0;
     const stdevContrib: any = contribs.length ? std(contribs) : 0;
-    return [
-      _.chain(lineups).filter( // has to be > 1x stdev
-        (lineupPlusDiag) => Math.abs(contrib(lineupPlusDiag, field) - meanContrib) > 1*stdevContrib
+    const keyLineups =  _.chain(lineups).filter( // has to be > 1x stdev (unless threshold disabled)
+        (lineupPlusDiag) => !threshold || (Math.abs(contrib(lineupPlusDiag, field) - meanContrib) > threshold*stdevContrib)
       ).filter( // only care about 1 direction
-        (lineupPlusDiag) => (dir == -1) == (contrib(lineupPlusDiag, field) > meanContrib)
+        (lineupPlusDiag) => (dir == -1) == (contrib(lineupPlusDiag, field) >= meanContrib)
       ).sortBy(
         [ (lineupPlusDiag) => dir*contrib(lineupPlusDiag, field) ]
-      ).take(5).map((lineupPlusDiag, i) => {
+      ).take(5).value();
+
+    const keyPeers = _.chain(keyLineups).flatMap((v) => _.toPairs(v.peers)).transform((acc, kv) => {
+        const peerId = kv[0] as string;
+        const peerInfo = kv[1] as Record<string, any>;
+        if (!acc.hasOwnProperty(peerId)) {
+          acc[peerId] = peerInfo.poss as number;
+        } else {
+          acc[peerId] += peerInfo.poss as number;
+        }
+      }, {} as Record<string, number>).toPairs().sortBy([(kv) => -kv[1]]).take(5).value();
+
+    return [
+      keyLineups.map((lineupPlusDiag, i) => {
         return <li key={"" + i}>
           <a href="#">{lineupPlusDiag.keyArray.join(" / ")}</a>:
           &nbsp;contrib=[<b>{contrib(lineupPlusDiag, field).toFixed(2)}</b>]
           &nbsp;(poss=[<b>{contrib(lineupPlusDiag, "totalPoss").toFixed(1)}</b>], [<b>{(100*contrib(lineupPlusDiag, "possWeight")).toFixed(1)}%</b>])
         </li>
-      }).value(),
+      }),
+      keyPeers.map((peerKv, i) => {
+        const append = (keyPeers.length - 1 == i) ? "" : ", ";
+        return <span key={"peer" + i}><a href="#">{peerKv[0]}</a> (poss=[<b>{peerKv[1].toFixed(0)}</b>]){append}</span>
+      }),
       sumContrib, meanContrib, stdevContrib, contribs.length
     ];
   };
-  const peerInfo = OnOffReportDiagUtils.buildPeerStatsForPlayer(player, diagInfo);
-  const doPeerAnalysis = (offOrDef: "off" | "def") => {
-    return _.keys(peerInfo).join(" , "); //TODO
-  };
-
 
   const buildInfo = (offOrDef: "off" | "def") => {
 
     const infoHtml = _.flatMap([ -1, 1 ], (dir: 1 | -1, index) => {
       const [
-        keyLineupHtml, keySum, keyMean, keyStdev, keyLength
+        keyLineupHtml, keyPeerHtml, keySum, keyMean, keyStdev, keyLength
       ] = doSame4Analysis(offOrDef, dir);
 
       const goodOrBad = (dir > 0) == (offOrDef == "off") ? "Bad" : "Good";
 
       return [
-        <li key={offOrDef + index}>[<b>{keyLength}</b>] {goodOrBad} "Same-4"s, total contrib=[<b>{keySum.toFixed(1)}</b>] (mean=[<b>{keyMean.toFixed(1)}</b>], std=[<b>{keyStdev.toFixed(1)}</b>]). Key lineups:</li>,
+        <li key={offOrDef + index}>[<b>{keyLength}</b>] {goodOrBad} "Same-4"s, total contrib=[<b>{keySum.toFixed(1)}</b>] (mean=[<b>{keyMean.toFixed(1)}</b>], std=[<b>{keyStdev.toFixed(1)}</b>]).
+        {keyLineupHtml.length > 0 ? " Key lineups:" : " All lineups similar."}</li>,
         <ul key={"ul" + offOrDef + index}>
-          {keyLineupHtml}
-        </ul>,
-        <li key={"peer" + offOrDef + index}>TODO {doPeerAnalysis(offOrDef)}</li>
+          {keyLineupHtml.length > 0 ? keyLineupHtml.concat(
+            [<li key={"ul" + offOrDef + "peers"}>Key sub-ins: {keyPeerHtml}</li>]
+          ) : null}
+        </ul>
       ]
     });
 
@@ -83,9 +99,9 @@ const RepOnOffDiagView: React.FunctionComponent<Props> = ({diagInfo, player, exp
   return <span>
     {OnOffReportDiagUtils.getTitle(player, showHelp)}
     <ul>
-      <li>Offensive analysis:</li>
+      <li>Offensive analysis ([<b>{player?.replacement?.off_adj_ppp?.value.toFixed(1)}</b>] pts/100):</li>
       {buildInfo("off")}
-      <li>Defensive analysis:</li>
+      <li>Defensive analysis ([<b>{player?.replacement?.def_adj_ppp?.value.toFixed(1)}</b>] pts/100):</li>
       {buildInfo("def")}
     </ul>
     {expandedMode ?

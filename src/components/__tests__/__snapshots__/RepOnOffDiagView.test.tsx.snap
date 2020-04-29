@@ -1,0 +1,338 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RepOnOffDiagView RepOnOffDiagView - should create snapshot (expanded mode=[false], threshold=[undefined]) 1`] = `
+<span>
+  <span>
+    <b>
+      Replacement 'On-Off' 
+      
+      Diagnostics For [
+      Wiggins, Aaron
+      ]
+    </b>
+     
+    <a
+      href="https://hoop-explorer.blogspot.com/2020/03/diagnostics-mode-for-replacement-onoff.html"
+      target="_new"
+    >
+      (?)
+    </a>
+  </span>
+  <ul>
+    <li>
+      Offensive analysis ([
+      <b />
+      ] pts/100):
+    </li>
+    <ul>
+      <li>
+        [
+        <b>
+          1
+        </b>
+        ] 
+        Good
+         "Same-4"s, total contrib=[
+        <b>
+          0.8
+        </b>
+        ] (mean=[
+        <b>
+          0.8
+        </b>
+        ], std=[
+        <b>
+          0.0
+        </b>
+        ]).
+         All lineups similar.
+      </li>
+      <ul />
+      <li>
+        [
+        <b>
+          1
+        </b>
+        ] 
+        Bad
+         "Same-4"s, total contrib=[
+        <b>
+          -5.6
+        </b>
+        ] (mean=[
+        <b>
+          -5.6
+        </b>
+        ], std=[
+        <b>
+          0.0
+        </b>
+        ]).
+         All lineups similar.
+      </li>
+      <ul />
+    </ul>
+    <li>
+      Defensive analysis ([
+      <b />
+      ] pts/100):
+    </li>
+    <ul>
+      <li>
+        [
+        <b>
+          1
+        </b>
+        ] 
+        Bad
+         "Same-4"s, total contrib=[
+        <b>
+          3.8
+        </b>
+        ] (mean=[
+        <b>
+          3.8
+        </b>
+        ], std=[
+        <b>
+          0.0
+        </b>
+        ]).
+         All lineups similar.
+      </li>
+      <ul />
+      <li>
+        [
+        <b>
+          0
+        </b>
+        ] 
+        Good
+         "Same-4"s, total contrib=[
+        <b>
+          0.0
+        </b>
+        ] (mean=[
+        <b>
+          0.0
+        </b>
+        ], std=[
+        <b>
+          0.0
+        </b>
+        ]).
+         All lineups similar.
+      </li>
+      <ul />
+    </ul>
+  </ul>
+</span>
+`;
+
+exports[`RepOnOffDiagView RepOnOffDiagView - should create snapshot (expanded mode=[true], threshold=[0]) 1`] = `
+<span>
+  <span>
+    <b>
+      Replacement 'On-Off' 
+      
+      Diagnostics For [
+      Wiggins, Aaron
+      ]
+    </b>
+     
+    <a
+      href="https://hoop-explorer.blogspot.com/2020/03/diagnostics-mode-for-replacement-onoff.html"
+      target="_new"
+    >
+      (?)
+    </a>
+  </span>
+  <ul>
+    <li>
+      Offensive analysis ([
+      <b />
+      ] pts/100):
+    </li>
+    <ul>
+      <li>
+        [
+        <b>
+          1
+        </b>
+        ] 
+        Good
+         "Same-4"s, total contrib=[
+        <b>
+          0.8
+        </b>
+        ] (mean=[
+        <b>
+          0.8
+        </b>
+        ], std=[
+        <b>
+          0.0
+        </b>
+        ]).
+         Key lineups:
+      </li>
+      <ul>
+        <li>
+          <a
+            href="#"
+          >
+            AaWiggins / AnCowan / ErAyala / JaSmith
+          </a>
+          :  contrib=[
+          <b>
+            0.79
+          </b>
+          ]  (poss=[
+          <b>
+            134.2
+          </b>
+          ], [
+          <b>
+            39.4
+            %
+          </b>
+          ])
+        </li>
+        <li>
+          Key sub-ins: 
+          <span>
+            <a
+              href="#"
+            >
+              DoScott
+            </a>
+             (poss=[
+            <b>
+              102
+            </b>
+            ])
+            
+          </span>
+        </li>
+      </ul>
+      <li>
+        [
+        <b>
+          1
+        </b>
+        ] 
+        Bad
+         "Same-4"s, total contrib=[
+        <b>
+          -5.6
+        </b>
+        ] (mean=[
+        <b>
+          -5.6
+        </b>
+        ], std=[
+        <b>
+          0.0
+        </b>
+        ]).
+         All lineups similar.
+      </li>
+      <ul />
+    </ul>
+    <li>
+      Defensive analysis ([
+      <b />
+      ] pts/100):
+    </li>
+    <ul>
+      <li>
+        [
+        <b>
+          1
+        </b>
+        ] 
+        Bad
+         "Same-4"s, total contrib=[
+        <b>
+          3.8
+        </b>
+        ] (mean=[
+        <b>
+          3.8
+        </b>
+        ], std=[
+        <b>
+          0.0
+        </b>
+        ]).
+         Key lineups:
+      </li>
+      <ul>
+        <li>
+          <a
+            href="#"
+          >
+            AaWiggins / AnCowan / ErAyala / JaSmith
+          </a>
+          :  contrib=[
+          <b>
+            3.85
+          </b>
+          ]  (poss=[
+          <b>
+            128.2
+          </b>
+          ], [
+          <b>
+            38.5
+            %
+          </b>
+          ])
+        </li>
+        <li>
+          Key sub-ins: 
+          <span>
+            <a
+              href="#"
+            >
+              DoScott
+            </a>
+             (poss=[
+            <b>
+              102
+            </b>
+            ])
+            
+          </span>
+        </li>
+      </ul>
+      <li>
+        [
+        <b>
+          0
+        </b>
+        ] 
+        Good
+         "Same-4"s, total contrib=[
+        <b>
+          0.0
+        </b>
+        ] (mean=[
+        <b>
+          0.0
+        </b>
+        ], std=[
+        <b>
+          0.0
+        </b>
+        ]).
+         All lineups similar.
+      </li>
+      <ul />
+    </ul>
+  </ul>
+  <span>
+    For a more detailed analysis click here to view just this player.
+  </span>
+</span>
+`;

@@ -35,34 +35,6 @@ describe("OnOffReportDiagUtils", () => {
       expect(tree).toMatchSnapshot();
     });
   });
-  test("OnOffReportDiagUtils - buildPeerStatsForPlayer/getRepOnOffDiagInfo", () => {
-    const lineupReport = {
-      lineups: sampleLineupStatsResponse.responses[0].aggregations.lineups.buckets,
-      avgOff: 100.0,
-      error_code: "test"
-    } as LineupStatsModel;
-    const tempTeamReport = LineupUtils.lineupToTeamReport(
-      lineupReport, true, 100, 10
-    );
-    const playersWithAdjEff = tempTeamReport.players || [];
-    const playerLineupPowerSet = OnOffReportDiagUtils.buildPlayerSummary(playersWithAdjEff, true);
-    const diagInfo = OnOffReportDiagUtils.getRepOnOffDiagInfo(playersWithAdjEff[2], 100);
-    const peers = OnOffReportDiagUtils.buildPeerStatsForPlayer(playersWithAdjEff[1], diagInfo);
-    expect(peers).toEqual(
-      {
-     "DoScott": {
-       "def_adj_ppp": 0.7399626517273576,
-       "off_adj_ppp": 1.1198479391756704,
-       "poss": 102,
-     },
-     "ErAyala": {
-       "def_adj_ppp": 0.7399626517273576,
-       "off_adj_ppp": 1.1198479391756704,
-       "poss": 102,
-     },
-   }
-    );
-  });
   test("OnOffReportDiagUtils - should create table containing replacement on/off diagnostics", () => {
     const lineupReport = {
       lineups: sampleLineupStatsResponse.responses[0].aggregations.lineups.buckets,

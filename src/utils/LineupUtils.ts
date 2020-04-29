@@ -7,6 +7,14 @@ import { LineupStatsModel } from "../components/LineupStatsTable";
 /** Handles combining the statistics of different lineups */
 export class LineupUtils {
 
+  // Analysis of performance in this code:
+  // 600ms-800s: lineupToTeamReport ... hotspots are ...
+  // 1) map r/w access in weightedAvg (move to having lists of the fields with whatever context is required)
+  // 2) regex in getShotTypeField (remove, see ), or at least switch to using strings)
+  // 3) isComplementLineup (build/access map)
+  // 4) the merge in mutableState constructor (add lineup as a separate field)
+  // 5) combineReplacementOnOff (completeWeightedAvg, weightedAvg) (revisit once 1-4 are done)
+
   /** Adds some logs for the more complex replacement on/off cals */
   private static readonly debugReplacementOnOff = false;
   private static readonly debugReplacementOnOffPlayer = "PLAYER";
@@ -109,8 +117,6 @@ export class LineupUtils {
                   playerObj.replacement.lineupUsage[lineup.key] = {
                     poss: lineup?.off_poss?.value || 0,
                     keyArray: lineup.key.split("_"),
-                    off_adj_ppp: lineup?.off_adj_ppp?.value || 0,
-                    def_adj_ppp: lineup?.def_adj_ppp?.value || 0,
                     overlap: 1
                   }
                 } else {
