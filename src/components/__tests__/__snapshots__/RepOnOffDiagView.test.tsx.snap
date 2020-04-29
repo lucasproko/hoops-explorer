@@ -125,6 +125,15 @@ exports[`RepOnOffDiagView RepOnOffDiagView - should create snapshot (expanded mo
       </li>
       <ul />
     </ul>
+    <li>
+      <a
+        href="#"
+        onClick={[Function]}
+      >
+        To view more detailed analysis for just this player click here
+      </a>
+      .
+    </li>
   </ul>
 </span>
 `;
@@ -330,9 +339,15 @@ exports[`RepOnOffDiagView RepOnOffDiagView - should create snapshot (expanded mo
       </li>
       <ul />
     </ul>
+    <li>
+      <a
+        href="#"
+        onClick={[Function]}
+      >
+        To clear the detailed analysis and player filter click here
+      </a>
+      .
+    </li>
   </ul>
-  <span>
-    For a more detailed analysis click here to view just this player.
-  </span>
 </span>
 `;

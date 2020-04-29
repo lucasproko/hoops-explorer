@@ -31,6 +31,7 @@ describe("RepOnOffDiagView", () => {
         diagInfo={diagInfo || []}
         player={playersWithAdjEff?.[0]}
         expandedMode={expandedMode}
+        onExpand={(playerId: string) => false}
         showHelp={true}
         keyLineupThreshold={threshold}
       />);

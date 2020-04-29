@@ -328,7 +328,8 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
             <RepOnOffDiagView
               diagInfo={repOnOffDiagInfo || []}
               player={player}
-              expandedMode={false}
+              expandedMode={tableDataInputs.length == 1}
+              onExpand = {(playerId: string) => { setFilterStr(playerId); setTmpFilterStr(playerId) }}
               showHelp={showHelp}
             />, "small"
           )
@@ -547,7 +548,7 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
               <GenericTogglingMenuItem
                 text="'r:On-Off' diagnostic mode"
                 truthVal={repOnOffDiagMode != 0}
-                onSelect={() => setRepOnOffDiagMode(repOnOffDiagMode != 0 ? 0 : 10)}
+                onSelect={() => setRepOnOffDiagMode(repOnOffDiagMode != 0 ? 0 : ParamDefaults.defaultTeamReportRepOnOffDiagModeIfEnabled)}
               />
               <GenericTogglingMenuItem
                 text="'RAPM diagnostic mode"

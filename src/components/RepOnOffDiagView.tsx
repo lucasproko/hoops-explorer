@@ -18,11 +18,12 @@ type Props = {
   diagInfo: Array<any>,
   player: Record<string, any>,
   expandedMode: boolean,
+  onExpand: (playerId: string) => void,
   showHelp: boolean,
   keyLineupThreshold?: number //(for testing, leave blank in prod)
 };
 
-const RepOnOffDiagView: React.FunctionComponent<Props> = ({diagInfo, player, expandedMode, showHelp, keyLineupThreshold}) => {
+const RepOnOffDiagView: React.FunctionComponent<Props> = ({diagInfo, player, expandedMode, onExpand, showHelp, keyLineupThreshold}) => {
 
   const threshold = _.isNil(keyLineupThreshold) ? 1 : keyLineupThreshold;
 
@@ -103,11 +104,12 @@ const RepOnOffDiagView: React.FunctionComponent<Props> = ({diagInfo, player, exp
       {buildInfo("off")}
       <li>Defensive analysis ([<b>{player?.replacement?.def_adj_ppp?.value.toFixed(1)}</b>] pts/100):</li>
       {buildInfo("def")}
+      {!expandedMode ?
+        <li><a href="#" onClick={(event) => { event.preventDefault(); onExpand(player.playerCode) }}>To view more detailed analysis for just this player click here</a>.</li>
+        :
+        <li><a href="#" onClick={(event) => { event.preventDefault(); onExpand("") }}>To clear the detailed analysis and player filter click here</a>.</li>
+      }
     </ul>
-    {expandedMode ?
-      <span>For a more detailed analysis click here to view just this player.</span>
-      : null
-    }
   </span>;
 }
 
