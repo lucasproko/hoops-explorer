@@ -430,7 +430,9 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
       >
         <span>
           <b>
-            Replacement 'On-Off' Diagnostics For [
+            Replacement 'On-Off' 
+            Advanced 
+            Diagnostics For [
             Morsell, Darryl
             ]
           </b>
@@ -458,7 +460,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
         }
       >
         <div>
-          Harmonic: AaWiggins / AnCowan / ErAyala / JaSmith
+          Same-4: AaWiggins / AnCowan / ErAyala / JaSmith
         </div>
       </td>
       <td
@@ -1784,7 +1786,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
         }
       >
         <div>
-          Same-4 Lineups
+          Off Same-4 Lineups
           <br />
           <a
             href="/?autoOffQuery=false&offQuery=%22Wiggins%2C%20Aaron%22%20AND%20%22Cowan%2C%20Anthony%22%20AND%20%22Ayala%2C%20Eric%22%20AND%20%22Smith%2C%20Jalen%22%20AND%20NOT%20%22Morsell%2C%20Darryl%22&onQuery=%22Morsell%2C%20Darryl%22%20AND%20%22Wiggins%2C%20Aaron%22%20AND%20%22Cowan%2C%20Anthony%22%20AND%20%22Ayala%2C%20Eric%22%20AND%20%22Smith%2C%20Jalen%22&"
@@ -2508,7 +2510,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
         }
       >
         <div>
-          Harmonic: AaWiggins / AnCowan / DoScott / JaSmith
+          Same-4: AaWiggins / AnCowan / DoScott / JaSmith
         </div>
       </td>
       <td
@@ -3834,7 +3836,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
         }
       >
         <div>
-          Same-4 Lineups
+          Off Same-4 Lineups
           <br />
           <a
             href="/?autoOffQuery=false&offQuery=%22Wiggins%2C%20Aaron%22%20AND%20%22Cowan%2C%20Anthony%22%20AND%20%22Scott%2C%20Donta%22%20AND%20%22Smith%2C%20Jalen%22%20AND%20NOT%20%22Morsell%2C%20Darryl%22&onQuery=%22Morsell%2C%20Darryl%22%20AND%20%22Wiggins%2C%20Aaron%22%20AND%20%22Cowan%2C%20Anthony%22%20AND%20%22Scott%2C%20Donta%22%20AND%20%22Smith%2C%20Jalen%22&"

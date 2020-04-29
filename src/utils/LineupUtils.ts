@@ -44,9 +44,12 @@ export class LineupUtils {
     };
 
     const mutableState: TeamReportStatsModel = {
-      players: _.keys(allPlayersSet).map((playerId) => {
+      players: _.toPairs(allPlayersSet).map((playerIdCode) => {
+        const playerId = playerIdCode[0];
+        const playerCode = playerIdCode[1];
         return {
           playerId: playerId,
+          playerCode: playerCode,
           teammates: _.chain(allPlayersSet).keys().map(
               (player) => [ player, {
                 on: { off_poss: 0, def_poss: 0 }, off: { off_poss : 0, def_poss: 0 }
@@ -105,6 +108,9 @@ export class LineupUtils {
                 if (!playerObj.replacement.lineupUsage.hasOwnProperty(lineup.key)) {
                   playerObj.replacement.lineupUsage[lineup.key] = {
                     poss: lineup?.off_poss?.value || 0,
+                    keyArray: lineup.key.split("_"),
+                    off_adj_ppp: lineup?.off_adj_ppp?.value || 0,
+                    def_adj_ppp: lineup?.def_adj_ppp?.value || 0,
                     overlap: 1
                   }
                 } else {

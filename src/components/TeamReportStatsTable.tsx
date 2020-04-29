@@ -261,8 +261,8 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
   /** Only show help for diagnstic on/off on main page */
   const showHelp = !_.startsWith(server, "cbb-on-off-analyzer");
 
-  const tableData = _.chain(playersWithAdjEff).filter((player) => {
-      const strToTest = player.on.key.substring(5);
+  const tableDataInputs = _.chain(playersWithAdjEff).filter((player) => {
+      const strToTest = player.playerId + " " + player.playerCode;
       return(
         (filterFragmentsPve.length == 0) ||
           (_.find(filterFragmentsPve, (fragment) => strToTest.indexOf(fragment) >= 0) ? true : false))
@@ -272,7 +272,9 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
         ;
     }).sortBy(
        [ sorter(sortBy) ]
-    ).flatMap((player, index) => {
+    ).value();
+
+    const tableData = _.chain(tableDataInputs).flatMap((player, index) => {
       const [ onMargin, offMargin ] = OnOffReportDiagUtils.getAdjEffMargins(player);
       const onSuffix = `\nAdj: [${onMargin.toFixed(1)}]-[${offMargin.toFixed(1)}]=[${(onMargin - offMargin).toFixed(1)}]`;
       const totalPoss = (player.on.off_poss.value + player.off.off_poss.value || 1);
@@ -327,6 +329,7 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
               diagInfo={repOnOffDiagInfo || []}
               player={player}
               expandedMode={false}
+              showHelp={showHelp}
             />, "small"
           )
         ] : [],
@@ -346,7 +349,7 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
           OnOffReportDiagUtils.buildLineupInfo(player, playerLineupPowerSet), "small"
         ) ] : [],
         [ GenericTableOps.buildRowSeparator() ],
-         repOnOffDiagsEnabled && (index == 0) ?
+         repOnOffDiagsEnabled && (tableDataInputs.length == 1) ?
           OnOffReportDiagUtils.getRepOnOffDiags(player, repOnOffDiagInfo || [],
             commonParams, repOnOffDiagMode, showHelp
           ) : [],
