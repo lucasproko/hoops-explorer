@@ -428,22 +428,96 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
         className=""
         colSpan={21}
       >
-        <span>
-          <b>
-            Replacement 'On-Off' 
-            Advanced 
-            Diagnostics For [
-            Morsell, Darryl
-            ]
-          </b>
-           
-          <a
-            href="https://hoop-explorer.blogspot.com/2020/03/diagnostics-mode-for-replacement-onoff.html"
-            target="_new"
+        <div
+          className="container"
+        >
+          <div
+            className="row"
           >
-            (?)
-          </a>
-        </span>
+            <span>
+              <b>
+                Replacement 'On-Off' 
+                Advanced 
+                Diagnostics For [
+                Morsell, Darryl
+                ]
+              </b>
+               
+              <a
+                href="https://hoop-explorer.blogspot.com/2020/03/diagnostics-mode-for-replacement-onoff.html"
+                target="_new"
+              >
+                (?)
+              </a>
+            </span>
+          </div>
+          <div
+            className="small row"
+          >
+            <div
+              className="col"
+            >
+              Sort by:
+              <span>
+                <span>
+                   
+                </span>
+                <b>
+                  <a
+                    href="#"
+                    onClick={[Function]}
+                  >
+                    Most common
+                  </a>
+                </b>
+              </span>
+              <span>
+                <span>
+                    |  
+                </span>
+                <a
+                  href="#"
+                  onClick={[Function]}
+                >
+                  Best Off
+                </a>
+              </span>
+              <span>
+                <span>
+                    |  
+                </span>
+                <a
+                  href="#"
+                  onClick={[Function]}
+                >
+                  Worst Off
+                </a>
+              </span>
+              <span>
+                <span>
+                    |  
+                </span>
+                <a
+                  href="#"
+                  onClick={[Function]}
+                >
+                  Best Def
+                </a>
+              </span>
+              <span>
+                <span>
+                    |  
+                </span>
+                <a
+                  href="#"
+                  onClick={[Function]}
+                >
+                  Worst Def
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
       </td>
     </tr>
     <tr>

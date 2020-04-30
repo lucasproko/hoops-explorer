@@ -52,7 +52,9 @@ describe("OnOffReportDiagUtils", () => {
         tableCopyId="teamReportStatsTable"
         tableFields={CommonTableDefs.onOffReport}
         tableData={OnOffReportDiagUtils.getRepOnOffDiags( //[2] == Morsell, actually has some same-4s
-          playersWithAdjEff[2], diagInfo, {}, 10, true
+          playersWithAdjEff[2], diagInfo, {},
+          [ 10, "lineup.off_poss.value", -1 ], (a: string, b: number) => false,
+          true
         )}
       />
     );
