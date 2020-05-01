@@ -361,7 +361,7 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
         [ GenericTableOps.buildRowSeparator() ],
          repOnOffDiagsEnabled && (tableDataInputs.length == 1) ?
           OnOffReportDiagUtils.getRepOnOffDiags(
-            player, repOnOffDiagInfo || [], commonParams,
+            player, teamReport?.playerMap || {}, repOnOffDiagInfo || [], commonParams,
             [ repOnOffDiagModeNumLineups, repOnOffDiagModeLineupSortField, repOnOffDiagModeLineupSortDir ],
             (field: string, dir: number) => {
               if ((field == ParamDefaults.defaultTeamReportRepOnOffDiagModeIfEnabled[2]) &&

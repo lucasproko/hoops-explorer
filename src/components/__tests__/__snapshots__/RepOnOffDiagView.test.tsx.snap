@@ -213,18 +213,14 @@ exports[`RepOnOffDiagView RepOnOffDiagView - should create snapshot (expanded mo
         <li>
           Key sub-ins: 
           <span>
-            <a
-              href="#"
-            >
-              <div>
-                <a
-                  href="/TeamReport?baseQuery=%28%7B%22Wiggins%2C%20Aaron%22%3B%22DoScott%22%7D%3D1%29%20AND%20%28test%29&filter=AaWiggins&incRepOnOff=true&repOnOffDiagMode=20&"
-                  target="_blank"
-                >
-                  DoScott
-                </a>
-              </div>
-            </a>
+            <div>
+              <a
+                href="/TeamReport?baseQuery=%28%7B%22Wiggins%2C%20Aaron%22%3B%22DoScott%22%7D%3D1%29%20AND%20%28test%29&filter=AaWiggins&incRepOnOff=true&repOnOffDiagMode=20&"
+                target="_blank"
+              >
+                DoScott
+              </a>
+            </div>
              (poss=[
             <b>
               102
@@ -314,18 +310,14 @@ exports[`RepOnOffDiagView RepOnOffDiagView - should create snapshot (expanded mo
         <li>
           Key sub-ins: 
           <span>
-            <a
-              href="#"
-            >
-              <div>
-                <a
-                  href="/TeamReport?baseQuery=%28%7B%22Wiggins%2C%20Aaron%22%3B%22DoScott%22%7D%3D1%29%20AND%20%28test%29&filter=AaWiggins&incRepOnOff=true&repOnOffDiagMode=20&"
-                  target="_blank"
-                >
-                  DoScott
-                </a>
-              </div>
-            </a>
+            <div>
+              <a
+                href="/TeamReport?baseQuery=%28%7B%22Wiggins%2C%20Aaron%22%3B%22DoScott%22%7D%3D1%29%20AND%20%28test%29&filter=AaWiggins&incRepOnOff=true&repOnOffDiagMode=20&"
+                target="_blank"
+              >
+                DoScott
+              </a>
+            </div>
              (poss=[
             <b>
               102

@@ -31,7 +31,7 @@ const RepOnOffDiagView: React.FunctionComponent<Props> = ({diagInfo, player, pla
 
   const threshold = _.isNil(keyLineupThreshold) ? 1 : keyLineupThreshold;
 
-  /** We're going to generate some links based no this */
+  // Build player comparison links with peers:
   const baseMaybeAdvQuery = QueryUtils.extractAdvancedQuery(commonParams.baseQuery || "");
   const compareLinkFromPeer = (peerCode: string) => {
     return OnOffReportDiagUtils.buildPlayerComparisonLink(
@@ -80,7 +80,7 @@ const RepOnOffDiagView: React.FunctionComponent<Props> = ({diagInfo, player, pla
       }),
       keyPeers.map((peerKv, i) => {
         const append = (keyPeers.length - 1 == i) ? "" : ", ";
-        return <span key={"peer" + i}><a href="#">{compareLinkFromPeer(peerKv[0])}</a> (poss=[<b>{peerKv[1].toFixed(0)}</b>]){append}</span>
+        return <span key={"peer" + i}>{compareLinkFromPeer(peerKv[0])} (poss=[<b>{peerKv[1].toFixed(0)}</b>]){append}</span>
       }),
       sumContrib, meanContrib, stdevContrib, contribs.length
     ];
