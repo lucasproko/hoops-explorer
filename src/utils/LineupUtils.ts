@@ -37,13 +37,6 @@ export class LineupUtils {
     lineupReport: LineupStatsModel, incReplacement: boolean = false,
     regressDiffs: number = 0, repOnOffDiagMode: number = 0
   ): TeamReportStatsModel {
-    const allPlayersSet = _.chain(lineupReport.lineups || []).reduce((acc: any, lineup: any) => {
-      delete lineup.rapmRemove; //(ugly hack/coupling with RAPM utils to ensure no state is preserved)
-      const players = lineup?.players_array?.hits?.hits?.[0]?._source?.players || [];
-      return _.mergeWith(
-        acc, _.chain(players).map((v) => [ v.id, v.code ]).fromPairs().value()
-      );
-    }, {}).value();
 
     const getPlayerSet = (lineup: any) => {
       return _.chain(
@@ -51,7 +44,14 @@ export class LineupUtils {
       ).map((v) => [ v.id, v.code ]).fromPairs().value();
     };
 
+    const allPlayersSet = _.chain(lineupReport.lineups || []).reduce((acc: any, lineup: any) => {
+      delete lineup.rapmRemove; //(ugly hack/coupling with RAPM utils to ensure no state is preserved)
+      const players = lineup?.players_array?.hits?.hits?.[0]?._source?.players || [];
+      return _.mergeWith(acc, getPlayerSet(lineup));
+    }, {}).value();
+
     const mutableState: TeamReportStatsModel = {
+      playerMap: _.invert(allPlayersSet), //(code -> id)
       players: _.toPairs(allPlayersSet).map((playerIdCode) => {
         const playerId = playerIdCode[0];
         const playerCode = playerIdCode[1];

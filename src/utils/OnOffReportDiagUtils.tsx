@@ -9,14 +9,17 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
+import Tooltip from 'react-bootstrap/Tooltip';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 
 // Component imports
 import GenericTable, { GenericTableOps, GenericTableColProps } from "../components/GenericTable";
 
 // Utils
+import { QueryUtils } from './QueryUtils';
 import { UrlRouting } from './UrlRouting';
 import { CommonTableDefs } from "./CommonTableDefs";
-import { CommonFilterParams } from "./FilterModels";
+import { CommonFilterParams, TeamReportFilterParams, ParamDefaults } from "./FilterModels";
 
 /** Encapsulates some of the logic used to build the diag visualiations in TeamReportStatsTable */
 export class OnOffReportDiagUtils {
@@ -27,7 +30,7 @@ export class OnOffReportDiagUtils {
   static readonly getAdjEffMargins = (player: Record<string, any>) => {
     const onMargin = (player?.on?.off_adj_ppp?.value || 0.0) - (player?.on?.def_adj_ppp?.value || 0.0);
     const offMargin = (player.off?.off_adj_ppp?.value || 0.0) - (player?.off?.def_adj_ppp?.value || 0.0);
-    return [ onMargin, offMargin ]
+    return [ onMargin, offMargin ];
   }
 
   /** Builds an array of players vs their margin differences (using replacement on/off if available)*/
@@ -85,6 +88,11 @@ export class OnOffReportDiagUtils {
           showHelp ? <a href="https://hoop-explorer.blogspot.com/2020/03/diagnostics-mode-for-replacement-onoff.html" target="_new">(?)</a> : null
         }
       </span>;
+  }
+
+  /** Builds a query for on/off analysis of a same-4 */
+  static getSame4Query(same4Players: string[]) {
+    return `{${same4Players.map((s: string) => `"${s}"`).join(";")}}=4`;
   }
 
   /** Builds some of the diag info that is required by both diag views */
@@ -172,6 +180,49 @@ export class OnOffReportDiagUtils {
     });
   }
 
+  private static readonly same4sTooltip =
+    <Tooltip id="same4sTooltip">Open a tab with the stats for all the lineups in the same-4 set</Tooltip>;
+
+  private static readonly onOffSame4Tooltip =
+    <Tooltip id="onOffSame4Tooltip">Open a tab with the on/off analysis for the player, same-4 sets only</Tooltip>;
+
+  private static readonly playerCompareTooltip =
+    <Tooltip id="onOffSame4Tooltip">Open a tab with a detailed "same-4" comparison of the two players</Tooltip>;
+
+  /** A common UI element for showing the link to view on/off analysis of a same-4 */
+  static buildOnOffAnalysisLink(playerId: string, same4Players: string[], commonParams: CommonFilterParams, title?: string) {
+    const onOffParams = {
+      ...commonParams,
+      onQuery: `"${playerId}" AND ${OnOffReportDiagUtils.getSame4Query(same4Players)}`,
+      offQuery: `NOT "${playerId}" AND ${OnOffReportDiagUtils.getSame4Query(same4Players)}`,
+      autoOffQuery: false
+    };
+
+    return <OverlayTrigger placement="auto" overlay={OnOffReportDiagUtils.onOffSame4Tooltip}>
+      <a href={UrlRouting.getGameUrl(onOffParams, {})} target="_blank">{title || "On/Off Analysis..."}</a>
+    </OverlayTrigger>;
+  }
+
+  /** A common UI element for showing the link to view same-4 between a player and his peer */
+  static buildPlayerComparisonLink(
+    playerId: string, playerCode: string, peerId: string, peerCode: string, baseQuery: [string, string | undefined], commonParams: CommonFilterParams
+  ) {
+    //TODO: don't add link if it's for a baseQuery we've already been injected into!
+    
+    const teamReportParms = {
+      filter: playerCode,
+      incRepOnOff: true,
+      repOnOffDiagMode: ParamDefaults.defaultTeamReportRepOnOffDiagModeIfEnabled[0],
+      ...commonParams,
+      baseQuery: QueryUtils.injectIntoQuery(
+        `{"${playerId}";"${peerId}"}=1`, baseQuery
+      )
+    };
+    return <OverlayTrigger placement="auto" overlay={OnOffReportDiagUtils.playerCompareTooltip}>
+      <a href={UrlRouting.getTeamReportUrl(teamReportParms)} target="_blank">{peerCode}</a>
+    </OverlayTrigger>;
+  }
+
   /** Takes various pre-computer rep on-off diag info and builds a table of advanced diag info */
   static getRepOnOffDiags(
     player: Record<string, any>,
@@ -236,17 +287,13 @@ export class OnOffReportDiagUtils {
               .map((v) => v.id)
               .filter((pid) => pid != player.playerId).value();
 
-          const onOffParams = {
-            ...commonParams,
-            onQuery: `"${player.playerId}" AND "${same4Players.join('" AND "')}"`,
-            offQuery: `"${same4Players.join('" AND "')}" AND NOT "${player.playerId}"`,
-            autoOffQuery: false
-          };
-
           const offTitleWithLinks =
             <div>Off Same-4 Lineups<br/>
-              <a href={UrlRouting.getGameUrl(onOffParams, {})} target="_blank">On/Off Analysis...</a><br/>
-              <a href={UrlRouting.getLineupUrl(lineupParams, {})} target="_blank">Lineup Analysis...</a>
+              {OnOffReportDiagUtils.buildOnOffAnalysisLink(player.playerId, same4Players, commonParams)}
+              <br/>
+              <OverlayTrigger placement="auto" overlay={OnOffReportDiagUtils.same4sTooltip}>
+                <a href={UrlRouting.getLineupUrl(lineupParams, {})} target="_blank">Lineup Analysis...</a>
+              </OverlayTrigger>
             </div>;
 
           const lineupKey = nonPlayerLineup.join(" / ");

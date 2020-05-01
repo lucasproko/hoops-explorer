@@ -187,12 +187,15 @@ exports[`RepOnOffDiagView RepOnOffDiagView - should create snapshot (expanded mo
       </li>
       <ul>
         <li>
-          <a
-            href="#"
-          >
-            AaWiggins / AnCowan / ErAyala / JaSmith
-          </a>
-          :  contrib=[
+          <div>
+            <a
+              href="/?autoOffQuery=false&baseQuery=test&offQuery=NOT%20%22Wiggins%2C%20Aaron%22%20AND%20%7B%22Wiggins%2C%20Aaron%22%3B%22AnCowan%22%3B%22ErAyala%22%3B%22JaSmith%22%7D%3D4&onQuery=%22Wiggins%2C%20Aaron%22%20AND%20%7B%22Wiggins%2C%20Aaron%22%3B%22AnCowan%22%3B%22ErAyala%22%3B%22JaSmith%22%7D%3D4&"
+              target="_blank"
+            >
+              AaWiggins / AnCowan / ErAyala / JaSmith
+            </a>
+          </div>
+           contrib=[
           <b>
             0.79
           </b>
@@ -213,7 +216,14 @@ exports[`RepOnOffDiagView RepOnOffDiagView - should create snapshot (expanded mo
             <a
               href="#"
             >
-              DoScott
+              <div>
+                <a
+                  href="/TeamReport?baseQuery=%28%7B%22Wiggins%2C%20Aaron%22%3B%22DoScott%22%7D%3D1%29%20AND%20%28test%29&filter=AaWiggins&incRepOnOff=true&repOnOffDiagMode=20&"
+                  target="_blank"
+                >
+                  DoScott
+                </a>
+              </div>
             </a>
              (poss=[
             <b>
@@ -278,12 +288,15 @@ exports[`RepOnOffDiagView RepOnOffDiagView - should create snapshot (expanded mo
       </li>
       <ul>
         <li>
-          <a
-            href="#"
-          >
-            AaWiggins / AnCowan / ErAyala / JaSmith
-          </a>
-          :  contrib=[
+          <div>
+            <a
+              href="/?autoOffQuery=false&baseQuery=test&offQuery=NOT%20%22Wiggins%2C%20Aaron%22%20AND%20%7B%22Wiggins%2C%20Aaron%22%3B%22AnCowan%22%3B%22ErAyala%22%3B%22JaSmith%22%7D%3D4&onQuery=%22Wiggins%2C%20Aaron%22%20AND%20%7B%22Wiggins%2C%20Aaron%22%3B%22AnCowan%22%3B%22ErAyala%22%3B%22JaSmith%22%7D%3D4&"
+              target="_blank"
+            >
+              AaWiggins / AnCowan / ErAyala / JaSmith
+            </a>
+          </div>
+           contrib=[
           <b>
             3.85
           </b>
@@ -304,7 +317,14 @@ exports[`RepOnOffDiagView RepOnOffDiagView - should create snapshot (expanded mo
             <a
               href="#"
             >
-              DoScott
+              <div>
+                <a
+                  href="/TeamReport?baseQuery=%28%7B%22Wiggins%2C%20Aaron%22%3B%22DoScott%22%7D%3D1%29%20AND%20%28test%29&filter=AaWiggins&incRepOnOff=true&repOnOffDiagMode=20&"
+                  target="_blank"
+                >
+                  DoScott
+                </a>
+              </div>
             </a>
              (poss=[
             <b>

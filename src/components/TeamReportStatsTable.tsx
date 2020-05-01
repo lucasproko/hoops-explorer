@@ -46,6 +46,7 @@ import { CommonTableDefs } from "../utils/CommonTableDefs";
 /** Convert from LineupStatsModel into this */
 export type TeamReportStatsModel = {
   players?: Array<any>,
+  playerMap?: Record<string, string>,
   error_code?: string
 }
 type Props = {
@@ -334,6 +335,8 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
             <RepOnOffDiagView
               diagInfo={repOnOffDiagInfo || []}
               player={player}
+              playerMap={teamReport?.playerMap || {}}
+              commonParams={commonParams}
               expandedMode={tableDataInputs.length == 1}
               onExpand = {(playerId: string) => { setFilterStr(playerId); setTmpFilterStr(playerId) }}
               showHelp={showHelp}

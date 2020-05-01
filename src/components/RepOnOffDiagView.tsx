@@ -13,19 +13,31 @@ import { mean, std } from "mathjs";
 
 // Utils
 import { OnOffReportDiagUtils } from "../utils/OnOffReportDiagUtils";
+import { CommonFilterParams } from "../utils/FilterModels";
+import { QueryUtils } from "../utils/QueryUtils";
 
 type Props = {
   diagInfo: Array<any>,
   player: Record<string, any>,
+  playerMap: Record<string, string>, //(code -> id)
+  commonParams: CommonFilterParams,
   expandedMode: boolean,
   onExpand: (playerId: string) => void,
   showHelp: boolean,
   keyLineupThreshold?: number //(for testing, leave blank in prod)
 };
 
-const RepOnOffDiagView: React.FunctionComponent<Props> = ({diagInfo, player, expandedMode, onExpand, showHelp, keyLineupThreshold}) => {
+const RepOnOffDiagView: React.FunctionComponent<Props> = ({diagInfo, player, playerMap, commonParams, expandedMode, onExpand, showHelp, keyLineupThreshold}) => {
 
   const threshold = _.isNil(keyLineupThreshold) ? 1 : keyLineupThreshold;
+
+  /** We're going to generate some links based no this */
+  const baseMaybeAdvQuery = QueryUtils.extractAdvancedQuery(commonParams.baseQuery || "");
+  const compareLinkFromPeer = (peerCode: string) => {
+    return OnOffReportDiagUtils.buildPlayerComparisonLink(
+      player.playerId, player.playerCode, playerMap[peerCode] || peerCode, peerCode, baseMaybeAdvQuery, commonParams
+    );
+  };
 
   const doSame4Analysis = (offOrDef: "off" | "def", dir: 1 | -1) => {
     const field = "adjEff";
@@ -58,15 +70,17 @@ const RepOnOffDiagView: React.FunctionComponent<Props> = ({diagInfo, player, exp
 
     return [
       keyLineups.map((lineupPlusDiag, i) => {
+        const title = lineupPlusDiag.keyArray.join(" / ");
+        const same4Ids = lineupPlusDiag.keyArray.map((code: string) => playerMap[code] || code);
         return <li key={"" + i}>
-          <a href="#">{lineupPlusDiag.keyArray.join(" / ")}</a>:
+          {OnOffReportDiagUtils.buildOnOffAnalysisLink(player.playerId, same4Ids, commonParams, title)}
           &nbsp;contrib=[<b>{contrib(lineupPlusDiag, field).toFixed(2)}</b>]
           &nbsp;(poss=[<b>{contrib(lineupPlusDiag, "totalPoss").toFixed(1)}</b>], [<b>{(100*contrib(lineupPlusDiag, "possWeight")).toFixed(1)}%</b>])
         </li>
       }),
       keyPeers.map((peerKv, i) => {
         const append = (keyPeers.length - 1 == i) ? "" : ", ";
-        return <span key={"peer" + i}><a href="#">{peerKv[0]}</a> (poss=[<b>{peerKv[1].toFixed(0)}</b>]){append}</span>
+        return <span key={"peer" + i}><a href="#">{compareLinkFromPeer(peerKv[0])}</a> (poss=[<b>{peerKv[1].toFixed(0)}</b>]){append}</span>
       }),
       sumContrib, meanContrib, stdevContrib, contribs.length
     ];

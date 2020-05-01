@@ -30,7 +30,23 @@ describe("QueryUtils", () => {
     );
 
   });
-  test("QueryUtils - basicOrAdvancedQuery", () => {
+  test("QueryUtils - extractAdvancedQuery", () => {
+    const query1 = "test1";
+    const query2 = "[test2]";
+    const query3 = "NOT ([test3])";
+    expect(QueryUtils.extractAdvancedQuery(query1)).toEqual([query1, undefined]);
+    expect(QueryUtils.extractAdvancedQuery(query2)).toEqual([query2, "test2"]);
+    expect(QueryUtils.extractAdvancedQuery(query3)).toEqual([query3, "NOT (test3)"]);
+  });
+  test("QueryUtils - injectIntoQuery", () => {
+    const query1 = "";
+    const query2 = "test2";
+    const query3 = "test3";
+    expect(QueryUtils.injectIntoQuery("1", [query1, undefined])).toBe("1");
+    expect(QueryUtils.injectIntoQuery("2", [query2, undefined])).toBe("(2) AND (test2)");
+    expect(QueryUtils.injectIntoQuery("3", ["ignore3", query3])).toBe("[players.id:(3) AND (test3)]");
+  });
+  test("QueryUtils - basicOrAdvancedQuery/extractAdvancedQuery", () => {
 
     const query1 = ' [ test "]';
     const query2 = "te'st";

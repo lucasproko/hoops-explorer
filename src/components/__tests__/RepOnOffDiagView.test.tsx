@@ -30,7 +30,9 @@ describe("RepOnOffDiagView", () => {
       const component = renderer.create(<RepOnOffDiagView
         diagInfo={diagInfo || []}
         player={playersWithAdjEff?.[0]}
+        playerMap={{"AaWiggins": "Wiggins, Aaron"}}
         expandedMode={expandedMode}
+        commonParams={{baseQuery: "test"}}
         onExpand={(playerId: string) => false}
         showHelp={true}
         keyLineupThreshold={threshold}

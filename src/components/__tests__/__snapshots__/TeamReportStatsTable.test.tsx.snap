@@ -15170,6 +15170,18 @@ Adj: [NaN]",
                 "className": "small",
                 "kind": "text-row",
                 "text": <RepOnOffDiagView
+                  commonParams={
+                    Object {
+                      "baseQuery": undefined,
+                      "filterGarbage": undefined,
+                      "gender": undefined,
+                      "maxRank": undefined,
+                      "minRank": undefined,
+                      "queryFilters": undefined,
+                      "team": undefined,
+                      "year": undefined,
+                    }
+                  }
                   diagInfo={Array []}
                   expandedMode={false}
                   onExpand={[Function]}
@@ -15588,6 +15600,16 @@ Adj: [NaN]",
                       },
                     }
                   }
+                  playerMap={
+                    Object {
+                      "AaWiggins": "Wiggins, Aaron",
+                      "AnCowan": "Cowan, Anthony",
+                      "DaMorsell": "Morsell, Darryl",
+                      "DoScott": "Scott, Donta",
+                      "ErAyala": "Ayala, Eric",
+                      "JaSmith": "Smith, Jalen",
+                    }
+                  }
                   showHelp={true}
                 />,
               },
@@ -17124,6 +17146,18 @@ Adj: [NaN]",
                 "className": "small",
                 "kind": "text-row",
                 "text": <RepOnOffDiagView
+                  commonParams={
+                    Object {
+                      "baseQuery": undefined,
+                      "filterGarbage": undefined,
+                      "gender": undefined,
+                      "maxRank": undefined,
+                      "minRank": undefined,
+                      "queryFilters": undefined,
+                      "team": undefined,
+                      "year": undefined,
+                    }
+                  }
                   diagInfo={Array []}
                   expandedMode={false}
                   onExpand={[Function]}
@@ -17542,6 +17576,16 @@ Adj: [NaN]",
                       },
                     }
                   }
+                  playerMap={
+                    Object {
+                      "AaWiggins": "Wiggins, Aaron",
+                      "AnCowan": "Cowan, Anthony",
+                      "DaMorsell": "Morsell, Darryl",
+                      "DoScott": "Scott, Donta",
+                      "ErAyala": "Ayala, Eric",
+                      "JaSmith": "Smith, Jalen",
+                    }
+                  }
                   showHelp={true}
                 />,
               },
@@ -19078,6 +19122,18 @@ Adj: [NaN]",
                 "className": "small",
                 "kind": "text-row",
                 "text": <RepOnOffDiagView
+                  commonParams={
+                    Object {
+                      "baseQuery": undefined,
+                      "filterGarbage": undefined,
+                      "gender": undefined,
+                      "maxRank": undefined,
+                      "minRank": undefined,
+                      "queryFilters": undefined,
+                      "team": undefined,
+                      "year": undefined,
+                    }
+                  }
                   diagInfo={Array []}
                   expandedMode={false}
                   onExpand={[Function]}
@@ -19494,6 +19550,16 @@ Adj: [NaN]",
                           },
                         },
                       },
+                    }
+                  }
+                  playerMap={
+                    Object {
+                      "AaWiggins": "Wiggins, Aaron",
+                      "AnCowan": "Cowan, Anthony",
+                      "DaMorsell": "Morsell, Darryl",
+                      "DoScott": "Scott, Donta",
+                      "ErAyala": "Ayala, Eric",
+                      "JaSmith": "Smith, Jalen",
                     }
                   }
                   showHelp={true}
@@ -24486,6 +24552,18 @@ Adj: [-1.5]",
                 "className": "small",
                 "kind": "text-row",
                 "text": <RepOnOffDiagView
+                  commonParams={
+                    Object {
+                      "baseQuery": undefined,
+                      "filterGarbage": undefined,
+                      "gender": undefined,
+                      "maxRank": undefined,
+                      "minRank": undefined,
+                      "queryFilters": undefined,
+                      "team": undefined,
+                      "year": undefined,
+                    }
+                  }
                   diagInfo={
                     Array [
                       Object {
@@ -28262,6 +28340,16 @@ Adj: [-1.5]",
                           },
                         },
                       },
+                    }
+                  }
+                  playerMap={
+                    Object {
+                      "AaWiggins": "Wiggins, Aaron",
+                      "AnCowan": "Cowan, Anthony",
+                      "DaMorsell": "Morsell, Darryl",
+                      "DoScott": "Scott, Donta",
+                      "ErAyala": "Ayala, Eric",
+                      "JaSmith": "Smith, Jalen",
                     }
                   }
                   showHelp={true}
@@ -33254,6 +33342,18 @@ Adj: [1.7]",
                 "className": "small",
                 "kind": "text-row",
                 "text": <RepOnOffDiagView
+                  commonParams={
+                    Object {
+                      "baseQuery": undefined,
+                      "filterGarbage": undefined,
+                      "gender": undefined,
+                      "maxRank": undefined,
+                      "minRank": undefined,
+                      "queryFilters": undefined,
+                      "team": undefined,
+                      "year": undefined,
+                    }
+                  }
                   diagInfo={
                     Array [
                       Object {
@@ -37030,6 +37130,16 @@ Adj: [1.7]",
                           },
                         },
                       },
+                    }
+                  }
+                  playerMap={
+                    Object {
+                      "AaWiggins": "Wiggins, Aaron",
+                      "AnCowan": "Cowan, Anthony",
+                      "DaMorsell": "Morsell, Darryl",
+                      "DoScott": "Scott, Donta",
+                      "ErAyala": "Ayala, Eric",
+                      "JaSmith": "Smith, Jalen",
                     }
                   }
                   showHelp={true}
@@ -42022,6 +42132,18 @@ Adj: [-0.2]",
                 "className": "small",
                 "kind": "text-row",
                 "text": <RepOnOffDiagView
+                  commonParams={
+                    Object {
+                      "baseQuery": undefined,
+                      "filterGarbage": undefined,
+                      "gender": undefined,
+                      "maxRank": undefined,
+                      "minRank": undefined,
+                      "queryFilters": undefined,
+                      "team": undefined,
+                      "year": undefined,
+                    }
+                  }
                   diagInfo={
                     Array [
                       Object {
@@ -45800,6 +45922,16 @@ Adj: [-0.2]",
                       },
                     }
                   }
+                  playerMap={
+                    Object {
+                      "AaWiggins": "Wiggins, Aaron",
+                      "AnCowan": "Cowan, Anthony",
+                      "DaMorsell": "Morsell, Darryl",
+                      "DoScott": "Scott, Donta",
+                      "ErAyala": "Ayala, Eric",
+                      "JaSmith": "Smith, Jalen",
+                    }
+                  }
                   showHelp={true}
                 />,
               },
@@ -49225,6 +49357,18 @@ Adj: [NaN]",
                 "className": "small",
                 "kind": "text-row",
                 "text": <RepOnOffDiagView
+                  commonParams={
+                    Object {
+                      "baseQuery": undefined,
+                      "filterGarbage": undefined,
+                      "gender": undefined,
+                      "maxRank": undefined,
+                      "minRank": undefined,
+                      "queryFilters": undefined,
+                      "team": undefined,
+                      "year": undefined,
+                    }
+                  }
                   diagInfo={Array []}
                   expandedMode={true}
                   onExpand={[Function]}
@@ -49641,6 +49785,16 @@ Adj: [NaN]",
                           },
                         },
                       },
+                    }
+                  }
+                  playerMap={
+                    Object {
+                      "AaWiggins": "Wiggins, Aaron",
+                      "AnCowan": "Cowan, Anthony",
+                      "DaMorsell": "Morsell, Darryl",
+                      "DoScott": "Scott, Donta",
+                      "ErAyala": "Ayala, Eric",
+                      "JaSmith": "Smith, Jalen",
                     }
                   }
                   showHelp={true}

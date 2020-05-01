@@ -1862,19 +1862,23 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
         <div>
           Off Same-4 Lineups
           <br />
-          <a
-            href="/?autoOffQuery=false&offQuery=%22Wiggins%2C%20Aaron%22%20AND%20%22Cowan%2C%20Anthony%22%20AND%20%22Ayala%2C%20Eric%22%20AND%20%22Smith%2C%20Jalen%22%20AND%20NOT%20%22Morsell%2C%20Darryl%22&onQuery=%22Morsell%2C%20Darryl%22%20AND%20%22Wiggins%2C%20Aaron%22%20AND%20%22Cowan%2C%20Anthony%22%20AND%20%22Ayala%2C%20Eric%22%20AND%20%22Smith%2C%20Jalen%22&"
-            target="_blank"
-          >
-            On/Off Analysis...
-          </a>
+          <div>
+            <a
+              href="/?autoOffQuery=false&offQuery=NOT%20%22Morsell%2C%20Darryl%22%20AND%20%7B%22Wiggins%2C%20Aaron%22%3B%22Cowan%2C%20Anthony%22%3B%22Ayala%2C%20Eric%22%3B%22Smith%2C%20Jalen%22%7D%3D4&onQuery=%22Morsell%2C%20Darryl%22%20AND%20%7B%22Wiggins%2C%20Aaron%22%3B%22Cowan%2C%20Anthony%22%3B%22Ayala%2C%20Eric%22%3B%22Smith%2C%20Jalen%22%7D%3D4&"
+              target="_blank"
+            >
+              On/Off Analysis...
+            </a>
+          </div>
           <br />
-          <a
-            href="/LineupAnalyzer?filter=AaWiggins%2CAnCowan%2CErAyala%2CJaSmith&maxTableSize=100&minPoss=0&"
-            target="_blank"
-          >
-            Lineup Analysis...
-          </a>
+          <div>
+            <a
+              href="/LineupAnalyzer?filter=AaWiggins%2CAnCowan%2CErAyala%2CJaSmith&maxTableSize=100&minPoss=0&"
+              target="_blank"
+            >
+              Lineup Analysis...
+            </a>
+          </div>
         </div>
       </td>
       <td
@@ -3912,19 +3916,23 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
         <div>
           Off Same-4 Lineups
           <br />
-          <a
-            href="/?autoOffQuery=false&offQuery=%22Wiggins%2C%20Aaron%22%20AND%20%22Cowan%2C%20Anthony%22%20AND%20%22Scott%2C%20Donta%22%20AND%20%22Smith%2C%20Jalen%22%20AND%20NOT%20%22Morsell%2C%20Darryl%22&onQuery=%22Morsell%2C%20Darryl%22%20AND%20%22Wiggins%2C%20Aaron%22%20AND%20%22Cowan%2C%20Anthony%22%20AND%20%22Scott%2C%20Donta%22%20AND%20%22Smith%2C%20Jalen%22&"
-            target="_blank"
-          >
-            On/Off Analysis...
-          </a>
+          <div>
+            <a
+              href="/?autoOffQuery=false&offQuery=NOT%20%22Morsell%2C%20Darryl%22%20AND%20%7B%22Wiggins%2C%20Aaron%22%3B%22Cowan%2C%20Anthony%22%3B%22Scott%2C%20Donta%22%3B%22Smith%2C%20Jalen%22%7D%3D4&onQuery=%22Morsell%2C%20Darryl%22%20AND%20%7B%22Wiggins%2C%20Aaron%22%3B%22Cowan%2C%20Anthony%22%3B%22Scott%2C%20Donta%22%3B%22Smith%2C%20Jalen%22%7D%3D4&"
+              target="_blank"
+            >
+              On/Off Analysis...
+            </a>
+          </div>
           <br />
-          <a
-            href="/LineupAnalyzer?filter=AaWiggins%2CAnCowan%2CDoScott%2CJaSmith&maxTableSize=100&minPoss=0&"
-            target="_blank"
-          >
-            Lineup Analysis...
-          </a>
+          <div>
+            <a
+              href="/LineupAnalyzer?filter=AaWiggins%2CAnCowan%2CDoScott%2CJaSmith&maxTableSize=100&minPoss=0&"
+              target="_blank"
+            >
+              Lineup Analysis...
+            </a>
+          </div>
         </div>
       </td>
       <td
