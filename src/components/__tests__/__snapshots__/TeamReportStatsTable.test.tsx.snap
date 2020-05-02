@@ -1741,12 +1741,24 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (all
                     'On' Wiggins, Aaron
 Adj: [30.1]-[0.0]=[30.1]
                     <br />
-                    <a
-                      href="/?autoOffQuery=true&offQuery=NOT%20%22Wiggins%2C%20Aaron%22&onQuery=%22Wiggins%2C%20Aaron%22&"
-                      target="_blank"
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="playerOnOffTooltip"
+                          placement="right"
+                        >
+                          Open a tab with the on/off analysis for this player
+                        </ForwardRef>
+                      }
+                      placement="auto"
                     >
-                      On/Off Analysis...
-                    </a>
+                      <a
+                        href="/?autoOffQuery=true&offQuery=NOT%20%22Wiggins%2C%20Aaron%22&onQuery=%22Wiggins%2C%20Aaron%22&"
+                        target="_blank"
+                      >
+                        On/Off Analysis...
+                      </a>
+                    </OverlayTrigger>
                   </span>,
                   "off_to": Object {
                     "value": 0.1687041564792176,
@@ -2162,12 +2174,24 @@ Adj: [30.1]-[0.0]=[30.1]
                     'On' Wiggins, Aaron
 Adj: [30.1]-[0.0]=[30.1]
                     <br />
-                    <a
-                      href="/?autoOffQuery=true&offQuery=NOT%20%22Wiggins%2C%20Aaron%22&onQuery=%22Wiggins%2C%20Aaron%22&"
-                      target="_blank"
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="playerOnOffTooltip"
+                          placement="right"
+                        >
+                          Open a tab with the on/off analysis for this player
+                        </ForwardRef>
+                      }
+                      placement="auto"
                     >
-                      On/Off Analysis...
-                    </a>
+                      <a
+                        href="/?autoOffQuery=true&offQuery=NOT%20%22Wiggins%2C%20Aaron%22&onQuery=%22Wiggins%2C%20Aaron%22&"
+                        target="_blank"
+                      >
+                        On/Off Analysis...
+                      </a>
+                    </OverlayTrigger>
                   </span>,
                   "off_to": Object {
                     "value": 0.1687041564792176,
@@ -3268,12 +3292,24 @@ Adj: [NaN]",
                     'On' Cowan, Anthony
 Adj: [30.1]-[0.0]=[30.1]
                     <br />
-                    <a
-                      href="/?autoOffQuery=true&offQuery=NOT%20%22Cowan%2C%20Anthony%22&onQuery=%22Cowan%2C%20Anthony%22&"
-                      target="_blank"
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="playerOnOffTooltip"
+                          placement="right"
+                        >
+                          Open a tab with the on/off analysis for this player
+                        </ForwardRef>
+                      }
+                      placement="auto"
                     >
-                      On/Off Analysis...
-                    </a>
+                      <a
+                        href="/?autoOffQuery=true&offQuery=NOT%20%22Cowan%2C%20Anthony%22&onQuery=%22Cowan%2C%20Anthony%22&"
+                        target="_blank"
+                      >
+                        On/Off Analysis...
+                      </a>
+                    </OverlayTrigger>
                   </span>,
                   "off_to": Object {
                     "value": 0.1687041564792176,
@@ -3689,12 +3725,24 @@ Adj: [30.1]-[0.0]=[30.1]
                     'On' Cowan, Anthony
 Adj: [30.1]-[0.0]=[30.1]
                     <br />
-                    <a
-                      href="/?autoOffQuery=true&offQuery=NOT%20%22Cowan%2C%20Anthony%22&onQuery=%22Cowan%2C%20Anthony%22&"
-                      target="_blank"
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="playerOnOffTooltip"
+                          placement="right"
+                        >
+                          Open a tab with the on/off analysis for this player
+                        </ForwardRef>
+                      }
+                      placement="auto"
                     >
-                      On/Off Analysis...
-                    </a>
+                      <a
+                        href="/?autoOffQuery=true&offQuery=NOT%20%22Cowan%2C%20Anthony%22&onQuery=%22Cowan%2C%20Anthony%22&"
+                        target="_blank"
+                      >
+                        On/Off Analysis...
+                      </a>
+                    </OverlayTrigger>
                   </span>,
                   "off_to": Object {
                     "value": 0.1687041564792176,
@@ -4795,12 +4843,24 @@ Adj: [NaN]",
                     'On' Smith, Jalen
 Adj: [30.1]-[0.0]=[30.1]
                     <br />
-                    <a
-                      href="/?autoOffQuery=true&offQuery=NOT%20%22Smith%2C%20Jalen%22&onQuery=%22Smith%2C%20Jalen%22&"
-                      target="_blank"
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="playerOnOffTooltip"
+                          placement="right"
+                        >
+                          Open a tab with the on/off analysis for this player
+                        </ForwardRef>
+                      }
+                      placement="auto"
                     >
-                      On/Off Analysis...
-                    </a>
+                      <a
+                        href="/?autoOffQuery=true&offQuery=NOT%20%22Smith%2C%20Jalen%22&onQuery=%22Smith%2C%20Jalen%22&"
+                        target="_blank"
+                      >
+                        On/Off Analysis...
+                      </a>
+                    </OverlayTrigger>
                   </span>,
                   "off_to": Object {
                     "value": 0.1687041564792176,
@@ -5216,12 +5276,24 @@ Adj: [30.1]-[0.0]=[30.1]
                     'On' Smith, Jalen
 Adj: [30.1]-[0.0]=[30.1]
                     <br />
-                    <a
-                      href="/?autoOffQuery=true&offQuery=NOT%20%22Smith%2C%20Jalen%22&onQuery=%22Smith%2C%20Jalen%22&"
-                      target="_blank"
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="playerOnOffTooltip"
+                          placement="right"
+                        >
+                          Open a tab with the on/off analysis for this player
+                        </ForwardRef>
+                      }
+                      placement="auto"
                     >
-                      On/Off Analysis...
-                    </a>
+                      <a
+                        href="/?autoOffQuery=true&offQuery=NOT%20%22Smith%2C%20Jalen%22&onQuery=%22Smith%2C%20Jalen%22&"
+                        target="_blank"
+                      >
+                        On/Off Analysis...
+                      </a>
+                    </OverlayTrigger>
                   </span>,
                   "off_to": Object {
                     "value": 0.1687041564792176,
@@ -6322,12 +6394,24 @@ Adj: [NaN]",
                     'On' Morsell, Darryl
 Adj: [27.3]-[38.7]=[-11.5]
                     <br />
-                    <a
-                      href="/?autoOffQuery=true&offQuery=NOT%20%22Morsell%2C%20Darryl%22&onQuery=%22Morsell%2C%20Darryl%22&"
-                      target="_blank"
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="playerOnOffTooltip"
+                          placement="right"
+                        >
+                          Open a tab with the on/off analysis for this player
+                        </ForwardRef>
+                      }
+                      placement="auto"
                     >
-                      On/Off Analysis...
-                    </a>
+                      <a
+                        href="/?autoOffQuery=true&offQuery=NOT%20%22Morsell%2C%20Darryl%22&onQuery=%22Morsell%2C%20Darryl%22&"
+                        target="_blank"
+                      >
+                        On/Off Analysis...
+                      </a>
+                    </OverlayTrigger>
                   </span>,
                   "off_to": Object {
                     "value": 0.1563517915309446,
@@ -6743,12 +6827,24 @@ Adj: [27.3]-[38.7]=[-11.5]
                     'On' Morsell, Darryl
 Adj: [27.3]-[38.7]=[-11.5]
                     <br />
-                    <a
-                      href="/?autoOffQuery=true&offQuery=NOT%20%22Morsell%2C%20Darryl%22&onQuery=%22Morsell%2C%20Darryl%22&"
-                      target="_blank"
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="playerOnOffTooltip"
+                          placement="right"
+                        >
+                          Open a tab with the on/off analysis for this player
+                        </ForwardRef>
+                      }
+                      placement="auto"
                     >
-                      On/Off Analysis...
-                    </a>
+                      <a
+                        href="/?autoOffQuery=true&offQuery=NOT%20%22Morsell%2C%20Darryl%22&onQuery=%22Morsell%2C%20Darryl%22&"
+                        target="_blank"
+                      >
+                        On/Off Analysis...
+                      </a>
+                    </OverlayTrigger>
                   </span>,
                   "off_to": Object {
                     "value": 0.1563517915309446,
@@ -8185,12 +8281,24 @@ Adj: [-1.5]",
                     'On' Ayala, Eric
 Adj: [33.5]-[20.7]=[12.7]
                     <br />
-                    <a
-                      href="/?autoOffQuery=true&offQuery=NOT%20%22Ayala%2C%20Eric%22&onQuery=%22Ayala%2C%20Eric%22&"
-                      target="_blank"
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="playerOnOffTooltip"
+                          placement="right"
+                        >
+                          Open a tab with the on/off analysis for this player
+                        </ForwardRef>
+                      }
+                      placement="auto"
                     >
-                      On/Off Analysis...
-                    </a>
+                      <a
+                        href="/?autoOffQuery=true&offQuery=NOT%20%22Ayala%2C%20Eric%22&onQuery=%22Ayala%2C%20Eric%22&"
+                        target="_blank"
+                      >
+                        On/Off Analysis...
+                      </a>
+                    </OverlayTrigger>
                   </span>,
                   "off_to": Object {
                     "value": 0.1644295302013423,
@@ -8606,12 +8714,24 @@ Adj: [33.5]-[20.7]=[12.7]
                     'On' Ayala, Eric
 Adj: [33.5]-[20.7]=[12.7]
                     <br />
-                    <a
-                      href="/?autoOffQuery=true&offQuery=NOT%20%22Ayala%2C%20Eric%22&onQuery=%22Ayala%2C%20Eric%22&"
-                      target="_blank"
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="playerOnOffTooltip"
+                          placement="right"
+                        >
+                          Open a tab with the on/off analysis for this player
+                        </ForwardRef>
+                      }
+                      placement="auto"
                     >
-                      On/Off Analysis...
-                    </a>
+                      <a
+                        href="/?autoOffQuery=true&offQuery=NOT%20%22Ayala%2C%20Eric%22&onQuery=%22Ayala%2C%20Eric%22&"
+                        target="_blank"
+                      >
+                        On/Off Analysis...
+                      </a>
+                    </OverlayTrigger>
                   </span>,
                   "off_to": Object {
                     "value": 0.1644295302013423,
@@ -10048,12 +10168,24 @@ Adj: [1.7]",
                     'On' Scott, Donta
 Adj: [29.4]-[30.7]=[-1.4]
                     <br />
-                    <a
-                      href="/?autoOffQuery=true&offQuery=NOT%20%22Scott%2C%20Donta%22&onQuery=%22Scott%2C%20Donta%22&"
-                      target="_blank"
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="playerOnOffTooltip"
+                          placement="right"
+                        >
+                          Open a tab with the on/off analysis for this player
+                        </ForwardRef>
+                      }
+                      placement="auto"
                     >
-                      On/Off Analysis...
-                    </a>
+                      <a
+                        href="/?autoOffQuery=true&offQuery=NOT%20%22Scott%2C%20Donta%22&onQuery=%22Scott%2C%20Donta%22&"
+                        target="_blank"
+                      >
+                        On/Off Analysis...
+                      </a>
+                    </OverlayTrigger>
                   </span>,
                   "off_to": Object {
                     "value": 0.19248826291079812,
@@ -10469,12 +10601,24 @@ Adj: [29.4]-[30.7]=[-1.4]
                     'On' Scott, Donta
 Adj: [29.4]-[30.7]=[-1.4]
                     <br />
-                    <a
-                      href="/?autoOffQuery=true&offQuery=NOT%20%22Scott%2C%20Donta%22&onQuery=%22Scott%2C%20Donta%22&"
-                      target="_blank"
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="playerOnOffTooltip"
+                          placement="right"
+                        >
+                          Open a tab with the on/off analysis for this player
+                        </ForwardRef>
+                      }
+                      placement="auto"
                     >
-                      On/Off Analysis...
-                    </a>
+                      <a
+                        href="/?autoOffQuery=true&offQuery=NOT%20%22Scott%2C%20Donta%22&onQuery=%22Scott%2C%20Donta%22&"
+                        target="_blank"
+                      >
+                        On/Off Analysis...
+                      </a>
+                    </OverlayTrigger>
                   </span>,
                   "off_to": Object {
                     "value": 0.19248826291079812,
@@ -13800,12 +13944,24 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (rep
                     'On' Wiggins, Aaron
 Adj: [30.1]-[0.0]=[30.1]
                     <br />
-                    <a
-                      href="/?autoOffQuery=true&offQuery=NOT%20%22Wiggins%2C%20Aaron%22&onQuery=%22Wiggins%2C%20Aaron%22&"
-                      target="_blank"
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="playerOnOffTooltip"
+                          placement="right"
+                        >
+                          Open a tab with the on/off analysis for this player
+                        </ForwardRef>
+                      }
+                      placement="auto"
                     >
-                      On/Off Analysis...
-                    </a>
+                      <a
+                        href="/?autoOffQuery=true&offQuery=NOT%20%22Wiggins%2C%20Aaron%22&onQuery=%22Wiggins%2C%20Aaron%22&"
+                        target="_blank"
+                      >
+                        On/Off Analysis...
+                      </a>
+                    </OverlayTrigger>
                   </span>,
                   "off_to": Object {
                     "value": 0.1687041564792176,
@@ -14221,12 +14377,24 @@ Adj: [30.1]-[0.0]=[30.1]
                     'On' Wiggins, Aaron
 Adj: [30.1]-[0.0]=[30.1]
                     <br />
-                    <a
-                      href="/?autoOffQuery=true&offQuery=NOT%20%22Wiggins%2C%20Aaron%22&onQuery=%22Wiggins%2C%20Aaron%22&"
-                      target="_blank"
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="playerOnOffTooltip"
+                          placement="right"
+                        >
+                          Open a tab with the on/off analysis for this player
+                        </ForwardRef>
+                      }
+                      placement="auto"
                     >
-                      On/Off Analysis...
-                    </a>
+                      <a
+                        href="/?autoOffQuery=true&offQuery=NOT%20%22Wiggins%2C%20Aaron%22&onQuery=%22Wiggins%2C%20Aaron%22&"
+                        target="_blank"
+                      >
+                        On/Off Analysis...
+                      </a>
+                    </OverlayTrigger>
                   </span>,
                   "off_to": Object {
                     "value": 0.1687041564792176,
@@ -15776,12 +15944,24 @@ Adj: [NaN]",
                     'On' Cowan, Anthony
 Adj: [30.1]-[0.0]=[30.1]
                     <br />
-                    <a
-                      href="/?autoOffQuery=true&offQuery=NOT%20%22Cowan%2C%20Anthony%22&onQuery=%22Cowan%2C%20Anthony%22&"
-                      target="_blank"
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="playerOnOffTooltip"
+                          placement="right"
+                        >
+                          Open a tab with the on/off analysis for this player
+                        </ForwardRef>
+                      }
+                      placement="auto"
                     >
-                      On/Off Analysis...
-                    </a>
+                      <a
+                        href="/?autoOffQuery=true&offQuery=NOT%20%22Cowan%2C%20Anthony%22&onQuery=%22Cowan%2C%20Anthony%22&"
+                        target="_blank"
+                      >
+                        On/Off Analysis...
+                      </a>
+                    </OverlayTrigger>
                   </span>,
                   "off_to": Object {
                     "value": 0.1687041564792176,
@@ -16197,12 +16377,24 @@ Adj: [30.1]-[0.0]=[30.1]
                     'On' Cowan, Anthony
 Adj: [30.1]-[0.0]=[30.1]
                     <br />
-                    <a
-                      href="/?autoOffQuery=true&offQuery=NOT%20%22Cowan%2C%20Anthony%22&onQuery=%22Cowan%2C%20Anthony%22&"
-                      target="_blank"
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="playerOnOffTooltip"
+                          placement="right"
+                        >
+                          Open a tab with the on/off analysis for this player
+                        </ForwardRef>
+                      }
+                      placement="auto"
                     >
-                      On/Off Analysis...
-                    </a>
+                      <a
+                        href="/?autoOffQuery=true&offQuery=NOT%20%22Cowan%2C%20Anthony%22&onQuery=%22Cowan%2C%20Anthony%22&"
+                        target="_blank"
+                      >
+                        On/Off Analysis...
+                      </a>
+                    </OverlayTrigger>
                   </span>,
                   "off_to": Object {
                     "value": 0.1687041564792176,
@@ -17752,12 +17944,24 @@ Adj: [NaN]",
                     'On' Smith, Jalen
 Adj: [30.1]-[0.0]=[30.1]
                     <br />
-                    <a
-                      href="/?autoOffQuery=true&offQuery=NOT%20%22Smith%2C%20Jalen%22&onQuery=%22Smith%2C%20Jalen%22&"
-                      target="_blank"
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="playerOnOffTooltip"
+                          placement="right"
+                        >
+                          Open a tab with the on/off analysis for this player
+                        </ForwardRef>
+                      }
+                      placement="auto"
                     >
-                      On/Off Analysis...
-                    </a>
+                      <a
+                        href="/?autoOffQuery=true&offQuery=NOT%20%22Smith%2C%20Jalen%22&onQuery=%22Smith%2C%20Jalen%22&"
+                        target="_blank"
+                      >
+                        On/Off Analysis...
+                      </a>
+                    </OverlayTrigger>
                   </span>,
                   "off_to": Object {
                     "value": 0.1687041564792176,
@@ -18173,12 +18377,24 @@ Adj: [30.1]-[0.0]=[30.1]
                     'On' Smith, Jalen
 Adj: [30.1]-[0.0]=[30.1]
                     <br />
-                    <a
-                      href="/?autoOffQuery=true&offQuery=NOT%20%22Smith%2C%20Jalen%22&onQuery=%22Smith%2C%20Jalen%22&"
-                      target="_blank"
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="playerOnOffTooltip"
+                          placement="right"
+                        >
+                          Open a tab with the on/off analysis for this player
+                        </ForwardRef>
+                      }
+                      placement="auto"
                     >
-                      On/Off Analysis...
-                    </a>
+                      <a
+                        href="/?autoOffQuery=true&offQuery=NOT%20%22Smith%2C%20Jalen%22&onQuery=%22Smith%2C%20Jalen%22&"
+                        target="_blank"
+                      >
+                        On/Off Analysis...
+                      </a>
+                    </OverlayTrigger>
                   </span>,
                   "off_to": Object {
                     "value": 0.1687041564792176,
@@ -19728,12 +19944,24 @@ Adj: [NaN]",
                     'On' Morsell, Darryl
 Adj: [27.3]-[38.7]=[-11.5]
                     <br />
-                    <a
-                      href="/?autoOffQuery=true&offQuery=NOT%20%22Morsell%2C%20Darryl%22&onQuery=%22Morsell%2C%20Darryl%22&"
-                      target="_blank"
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="playerOnOffTooltip"
+                          placement="right"
+                        >
+                          Open a tab with the on/off analysis for this player
+                        </ForwardRef>
+                      }
+                      placement="auto"
                     >
-                      On/Off Analysis...
-                    </a>
+                      <a
+                        href="/?autoOffQuery=true&offQuery=NOT%20%22Morsell%2C%20Darryl%22&onQuery=%22Morsell%2C%20Darryl%22&"
+                        target="_blank"
+                      >
+                        On/Off Analysis...
+                      </a>
+                    </OverlayTrigger>
                   </span>,
                   "off_to": Object {
                     "value": 0.1563517915309446,
@@ -20149,12 +20377,24 @@ Adj: [27.3]-[38.7]=[-11.5]
                     'On' Morsell, Darryl
 Adj: [27.3]-[38.7]=[-11.5]
                     <br />
-                    <a
-                      href="/?autoOffQuery=true&offQuery=NOT%20%22Morsell%2C%20Darryl%22&onQuery=%22Morsell%2C%20Darryl%22&"
-                      target="_blank"
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="playerOnOffTooltip"
+                          placement="right"
+                        >
+                          Open a tab with the on/off analysis for this player
+                        </ForwardRef>
+                      }
+                      placement="auto"
                     >
-                      On/Off Analysis...
-                    </a>
+                      <a
+                        href="/?autoOffQuery=true&offQuery=NOT%20%22Morsell%2C%20Darryl%22&onQuery=%22Morsell%2C%20Darryl%22&"
+                        target="_blank"
+                      >
+                        On/Off Analysis...
+                      </a>
+                    </OverlayTrigger>
                   </span>,
                   "off_to": Object {
                     "value": 0.1563517915309446,
@@ -28518,12 +28758,24 @@ Adj: [-1.5]",
                     'On' Ayala, Eric
 Adj: [33.5]-[20.7]=[12.7]
                     <br />
-                    <a
-                      href="/?autoOffQuery=true&offQuery=NOT%20%22Ayala%2C%20Eric%22&onQuery=%22Ayala%2C%20Eric%22&"
-                      target="_blank"
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="playerOnOffTooltip"
+                          placement="right"
+                        >
+                          Open a tab with the on/off analysis for this player
+                        </ForwardRef>
+                      }
+                      placement="auto"
                     >
-                      On/Off Analysis...
-                    </a>
+                      <a
+                        href="/?autoOffQuery=true&offQuery=NOT%20%22Ayala%2C%20Eric%22&onQuery=%22Ayala%2C%20Eric%22&"
+                        target="_blank"
+                      >
+                        On/Off Analysis...
+                      </a>
+                    </OverlayTrigger>
                   </span>,
                   "off_to": Object {
                     "value": 0.1644295302013423,
@@ -28939,12 +29191,24 @@ Adj: [33.5]-[20.7]=[12.7]
                     'On' Ayala, Eric
 Adj: [33.5]-[20.7]=[12.7]
                     <br />
-                    <a
-                      href="/?autoOffQuery=true&offQuery=NOT%20%22Ayala%2C%20Eric%22&onQuery=%22Ayala%2C%20Eric%22&"
-                      target="_blank"
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="playerOnOffTooltip"
+                          placement="right"
+                        >
+                          Open a tab with the on/off analysis for this player
+                        </ForwardRef>
+                      }
+                      placement="auto"
                     >
-                      On/Off Analysis...
-                    </a>
+                      <a
+                        href="/?autoOffQuery=true&offQuery=NOT%20%22Ayala%2C%20Eric%22&onQuery=%22Ayala%2C%20Eric%22&"
+                        target="_blank"
+                      >
+                        On/Off Analysis...
+                      </a>
+                    </OverlayTrigger>
                   </span>,
                   "off_to": Object {
                     "value": 0.1644295302013423,
@@ -37308,12 +37572,24 @@ Adj: [1.7]",
                     'On' Scott, Donta
 Adj: [29.4]-[30.7]=[-1.4]
                     <br />
-                    <a
-                      href="/?autoOffQuery=true&offQuery=NOT%20%22Scott%2C%20Donta%22&onQuery=%22Scott%2C%20Donta%22&"
-                      target="_blank"
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="playerOnOffTooltip"
+                          placement="right"
+                        >
+                          Open a tab with the on/off analysis for this player
+                        </ForwardRef>
+                      }
+                      placement="auto"
                     >
-                      On/Off Analysis...
-                    </a>
+                      <a
+                        href="/?autoOffQuery=true&offQuery=NOT%20%22Scott%2C%20Donta%22&onQuery=%22Scott%2C%20Donta%22&"
+                        target="_blank"
+                      >
+                        On/Off Analysis...
+                      </a>
+                    </OverlayTrigger>
                   </span>,
                   "off_to": Object {
                     "value": 0.19248826291079812,
@@ -37729,12 +38005,24 @@ Adj: [29.4]-[30.7]=[-1.4]
                     'On' Scott, Donta
 Adj: [29.4]-[30.7]=[-1.4]
                     <br />
-                    <a
-                      href="/?autoOffQuery=true&offQuery=NOT%20%22Scott%2C%20Donta%22&onQuery=%22Scott%2C%20Donta%22&"
-                      target="_blank"
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="playerOnOffTooltip"
+                          placement="right"
+                        >
+                          Open a tab with the on/off analysis for this player
+                        </ForwardRef>
+                      }
+                      placement="auto"
                     >
-                      On/Off Analysis...
-                    </a>
+                      <a
+                        href="/?autoOffQuery=true&offQuery=NOT%20%22Scott%2C%20Donta%22&onQuery=%22Scott%2C%20Donta%22&"
+                        target="_blank"
+                      >
+                        On/Off Analysis...
+                      </a>
+                    </OverlayTrigger>
                   </span>,
                   "off_to": Object {
                     "value": 0.19248826291079812,
@@ -47987,12 +48275,24 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (rep
                     'On' Wiggins, Aaron
 Adj: [30.1]-[0.0]=[30.1]
                     <br />
-                    <a
-                      href="/?autoOffQuery=true&offQuery=NOT%20%22Wiggins%2C%20Aaron%22&onQuery=%22Wiggins%2C%20Aaron%22&"
-                      target="_blank"
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="playerOnOffTooltip"
+                          placement="right"
+                        >
+                          Open a tab with the on/off analysis for this player
+                        </ForwardRef>
+                      }
+                      placement="auto"
                     >
-                      On/Off Analysis...
-                    </a>
+                      <a
+                        href="/?autoOffQuery=true&offQuery=NOT%20%22Wiggins%2C%20Aaron%22&onQuery=%22Wiggins%2C%20Aaron%22&"
+                        target="_blank"
+                      >
+                        On/Off Analysis...
+                      </a>
+                    </OverlayTrigger>
                   </span>,
                   "off_to": Object {
                     "value": 0.1687041564792176,
@@ -48408,12 +48708,24 @@ Adj: [30.1]-[0.0]=[30.1]
                     'On' Wiggins, Aaron
 Adj: [30.1]-[0.0]=[30.1]
                     <br />
-                    <a
-                      href="/?autoOffQuery=true&offQuery=NOT%20%22Wiggins%2C%20Aaron%22&onQuery=%22Wiggins%2C%20Aaron%22&"
-                      target="_blank"
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="playerOnOffTooltip"
+                          placement="right"
+                        >
+                          Open a tab with the on/off analysis for this player
+                        </ForwardRef>
+                      }
+                      placement="auto"
                     >
-                      On/Off Analysis...
-                    </a>
+                      <a
+                        href="/?autoOffQuery=true&offQuery=NOT%20%22Wiggins%2C%20Aaron%22&onQuery=%22Wiggins%2C%20Aaron%22&"
+                        target="_blank"
+                      >
+                        On/Off Analysis...
+                      </a>
+                    </OverlayTrigger>
                   </span>,
                   "off_to": Object {
                     "value": 0.1687041564792176,
@@ -51588,12 +51900,24 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot 1`] 
                     'On' Wiggins, Aaron
 Adj: [30.1]-[0.0]=[30.1]
                     <br />
-                    <a
-                      href="/?autoOffQuery=true&offQuery=NOT%20%22Wiggins%2C%20Aaron%22&onQuery=%22Wiggins%2C%20Aaron%22&"
-                      target="_blank"
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="playerOnOffTooltip"
+                          placement="right"
+                        >
+                          Open a tab with the on/off analysis for this player
+                        </ForwardRef>
+                      }
+                      placement="auto"
                     >
-                      On/Off Analysis...
-                    </a>
+                      <a
+                        href="/?autoOffQuery=true&offQuery=NOT%20%22Wiggins%2C%20Aaron%22&onQuery=%22Wiggins%2C%20Aaron%22&"
+                        target="_blank"
+                      >
+                        On/Off Analysis...
+                      </a>
+                    </OverlayTrigger>
                   </span>,
                   "off_to": Object {
                     "value": 0.1687041564792176,
@@ -52009,12 +52333,24 @@ Adj: [30.1]-[0.0]=[30.1]
                     'On' Wiggins, Aaron
 Adj: [30.1]-[0.0]=[30.1]
                     <br />
-                    <a
-                      href="/?autoOffQuery=true&offQuery=NOT%20%22Wiggins%2C%20Aaron%22&onQuery=%22Wiggins%2C%20Aaron%22&"
-                      target="_blank"
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="playerOnOffTooltip"
+                          placement="right"
+                        >
+                          Open a tab with the on/off analysis for this player
+                        </ForwardRef>
+                      }
+                      placement="auto"
                     >
-                      On/Off Analysis...
-                    </a>
+                      <a
+                        href="/?autoOffQuery=true&offQuery=NOT%20%22Wiggins%2C%20Aaron%22&onQuery=%22Wiggins%2C%20Aaron%22&"
+                        target="_blank"
+                      >
+                        On/Off Analysis...
+                      </a>
+                    </OverlayTrigger>
                   </span>,
                   "off_to": Object {
                     "value": 0.1687041564792176,
@@ -52625,12 +52961,24 @@ Poss: [100]% v [0]%",
                     'On' Cowan, Anthony
 Adj: [30.1]-[0.0]=[30.1]
                     <br />
-                    <a
-                      href="/?autoOffQuery=true&offQuery=NOT%20%22Cowan%2C%20Anthony%22&onQuery=%22Cowan%2C%20Anthony%22&"
-                      target="_blank"
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="playerOnOffTooltip"
+                          placement="right"
+                        >
+                          Open a tab with the on/off analysis for this player
+                        </ForwardRef>
+                      }
+                      placement="auto"
                     >
-                      On/Off Analysis...
-                    </a>
+                      <a
+                        href="/?autoOffQuery=true&offQuery=NOT%20%22Cowan%2C%20Anthony%22&onQuery=%22Cowan%2C%20Anthony%22&"
+                        target="_blank"
+                      >
+                        On/Off Analysis...
+                      </a>
+                    </OverlayTrigger>
                   </span>,
                   "off_to": Object {
                     "value": 0.1687041564792176,
@@ -53046,12 +53394,24 @@ Adj: [30.1]-[0.0]=[30.1]
                     'On' Cowan, Anthony
 Adj: [30.1]-[0.0]=[30.1]
                     <br />
-                    <a
-                      href="/?autoOffQuery=true&offQuery=NOT%20%22Cowan%2C%20Anthony%22&onQuery=%22Cowan%2C%20Anthony%22&"
-                      target="_blank"
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="playerOnOffTooltip"
+                          placement="right"
+                        >
+                          Open a tab with the on/off analysis for this player
+                        </ForwardRef>
+                      }
+                      placement="auto"
                     >
-                      On/Off Analysis...
-                    </a>
+                      <a
+                        href="/?autoOffQuery=true&offQuery=NOT%20%22Cowan%2C%20Anthony%22&onQuery=%22Cowan%2C%20Anthony%22&"
+                        target="_blank"
+                      >
+                        On/Off Analysis...
+                      </a>
+                    </OverlayTrigger>
                   </span>,
                   "off_to": Object {
                     "value": 0.1687041564792176,
@@ -53662,12 +54022,24 @@ Poss: [100]% v [0]%",
                     'On' Smith, Jalen
 Adj: [30.1]-[0.0]=[30.1]
                     <br />
-                    <a
-                      href="/?autoOffQuery=true&offQuery=NOT%20%22Smith%2C%20Jalen%22&onQuery=%22Smith%2C%20Jalen%22&"
-                      target="_blank"
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="playerOnOffTooltip"
+                          placement="right"
+                        >
+                          Open a tab with the on/off analysis for this player
+                        </ForwardRef>
+                      }
+                      placement="auto"
                     >
-                      On/Off Analysis...
-                    </a>
+                      <a
+                        href="/?autoOffQuery=true&offQuery=NOT%20%22Smith%2C%20Jalen%22&onQuery=%22Smith%2C%20Jalen%22&"
+                        target="_blank"
+                      >
+                        On/Off Analysis...
+                      </a>
+                    </OverlayTrigger>
                   </span>,
                   "off_to": Object {
                     "value": 0.1687041564792176,
@@ -54083,12 +54455,24 @@ Adj: [30.1]-[0.0]=[30.1]
                     'On' Smith, Jalen
 Adj: [30.1]-[0.0]=[30.1]
                     <br />
-                    <a
-                      href="/?autoOffQuery=true&offQuery=NOT%20%22Smith%2C%20Jalen%22&onQuery=%22Smith%2C%20Jalen%22&"
-                      target="_blank"
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="playerOnOffTooltip"
+                          placement="right"
+                        >
+                          Open a tab with the on/off analysis for this player
+                        </ForwardRef>
+                      }
+                      placement="auto"
                     >
-                      On/Off Analysis...
-                    </a>
+                      <a
+                        href="/?autoOffQuery=true&offQuery=NOT%20%22Smith%2C%20Jalen%22&onQuery=%22Smith%2C%20Jalen%22&"
+                        target="_blank"
+                      >
+                        On/Off Analysis...
+                      </a>
+                    </OverlayTrigger>
                   </span>,
                   "off_to": Object {
                     "value": 0.1687041564792176,
@@ -54699,12 +55083,24 @@ Poss: [100]% v [0]%",
                     'On' Morsell, Darryl
 Adj: [27.3]-[38.7]=[-11.5]
                     <br />
-                    <a
-                      href="/?autoOffQuery=true&offQuery=NOT%20%22Morsell%2C%20Darryl%22&onQuery=%22Morsell%2C%20Darryl%22&"
-                      target="_blank"
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="playerOnOffTooltip"
+                          placement="right"
+                        >
+                          Open a tab with the on/off analysis for this player
+                        </ForwardRef>
+                      }
+                      placement="auto"
                     >
-                      On/Off Analysis...
-                    </a>
+                      <a
+                        href="/?autoOffQuery=true&offQuery=NOT%20%22Morsell%2C%20Darryl%22&onQuery=%22Morsell%2C%20Darryl%22&"
+                        target="_blank"
+                      >
+                        On/Off Analysis...
+                      </a>
+                    </OverlayTrigger>
                   </span>,
                   "off_to": Object {
                     "value": 0.1563517915309446,
@@ -55120,12 +55516,24 @@ Adj: [27.3]-[38.7]=[-11.5]
                     'On' Morsell, Darryl
 Adj: [27.3]-[38.7]=[-11.5]
                     <br />
-                    <a
-                      href="/?autoOffQuery=true&offQuery=NOT%20%22Morsell%2C%20Darryl%22&onQuery=%22Morsell%2C%20Darryl%22&"
-                      target="_blank"
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="playerOnOffTooltip"
+                          placement="right"
+                        >
+                          Open a tab with the on/off analysis for this player
+                        </ForwardRef>
+                      }
+                      placement="auto"
                     >
-                      On/Off Analysis...
-                    </a>
+                      <a
+                        href="/?autoOffQuery=true&offQuery=NOT%20%22Morsell%2C%20Darryl%22&onQuery=%22Morsell%2C%20Darryl%22&"
+                        target="_blank"
+                      >
+                        On/Off Analysis...
+                      </a>
+                    </OverlayTrigger>
                   </span>,
                   "off_to": Object {
                     "value": 0.1563517915309446,
@@ -55736,12 +56144,24 @@ Poss: [75]% v [25]%",
                     'On' Ayala, Eric
 Adj: [33.5]-[20.7]=[12.7]
                     <br />
-                    <a
-                      href="/?autoOffQuery=true&offQuery=NOT%20%22Ayala%2C%20Eric%22&onQuery=%22Ayala%2C%20Eric%22&"
-                      target="_blank"
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="playerOnOffTooltip"
+                          placement="right"
+                        >
+                          Open a tab with the on/off analysis for this player
+                        </ForwardRef>
+                      }
+                      placement="auto"
                     >
-                      On/Off Analysis...
-                    </a>
+                      <a
+                        href="/?autoOffQuery=true&offQuery=NOT%20%22Ayala%2C%20Eric%22&onQuery=%22Ayala%2C%20Eric%22&"
+                        target="_blank"
+                      >
+                        On/Off Analysis...
+                      </a>
+                    </OverlayTrigger>
                   </span>,
                   "off_to": Object {
                     "value": 0.1644295302013423,
@@ -56157,12 +56577,24 @@ Adj: [33.5]-[20.7]=[12.7]
                     'On' Ayala, Eric
 Adj: [33.5]-[20.7]=[12.7]
                     <br />
-                    <a
-                      href="/?autoOffQuery=true&offQuery=NOT%20%22Ayala%2C%20Eric%22&onQuery=%22Ayala%2C%20Eric%22&"
-                      target="_blank"
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="playerOnOffTooltip"
+                          placement="right"
+                        >
+                          Open a tab with the on/off analysis for this player
+                        </ForwardRef>
+                      }
+                      placement="auto"
                     >
-                      On/Off Analysis...
-                    </a>
+                      <a
+                        href="/?autoOffQuery=true&offQuery=NOT%20%22Ayala%2C%20Eric%22&onQuery=%22Ayala%2C%20Eric%22&"
+                        target="_blank"
+                      >
+                        On/Off Analysis...
+                      </a>
+                    </OverlayTrigger>
                   </span>,
                   "off_to": Object {
                     "value": 0.1644295302013423,
@@ -56773,12 +57205,24 @@ Poss: [73]% v [27]%",
                     'On' Scott, Donta
 Adj: [29.4]-[30.7]=[-1.4]
                     <br />
-                    <a
-                      href="/?autoOffQuery=true&offQuery=NOT%20%22Scott%2C%20Donta%22&onQuery=%22Scott%2C%20Donta%22&"
-                      target="_blank"
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="playerOnOffTooltip"
+                          placement="right"
+                        >
+                          Open a tab with the on/off analysis for this player
+                        </ForwardRef>
+                      }
+                      placement="auto"
                     >
-                      On/Off Analysis...
-                    </a>
+                      <a
+                        href="/?autoOffQuery=true&offQuery=NOT%20%22Scott%2C%20Donta%22&onQuery=%22Scott%2C%20Donta%22&"
+                        target="_blank"
+                      >
+                        On/Off Analysis...
+                      </a>
+                    </OverlayTrigger>
                   </span>,
                   "off_to": Object {
                     "value": 0.19248826291079812,
@@ -57194,12 +57638,24 @@ Adj: [29.4]-[30.7]=[-1.4]
                     'On' Scott, Donta
 Adj: [29.4]-[30.7]=[-1.4]
                     <br />
-                    <a
-                      href="/?autoOffQuery=true&offQuery=NOT%20%22Scott%2C%20Donta%22&onQuery=%22Scott%2C%20Donta%22&"
-                      target="_blank"
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="playerOnOffTooltip"
+                          placement="right"
+                        >
+                          Open a tab with the on/off analysis for this player
+                        </ForwardRef>
+                      }
+                      placement="auto"
                     >
-                      On/Off Analysis...
-                    </a>
+                      <a
+                        href="/?autoOffQuery=true&offQuery=NOT%20%22Scott%2C%20Donta%22&onQuery=%22Scott%2C%20Donta%22&"
+                        target="_blank"
+                      >
+                        On/Off Analysis...
+                      </a>
+                    </OverlayTrigger>
                   </span>,
                   "off_to": Object {
                     "value": 0.19248826291079812,

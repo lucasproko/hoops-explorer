@@ -16,6 +16,8 @@ import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Button from 'react-bootstrap/Button';
+import Tooltip from 'react-bootstrap/Tooltip';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 
 // Additional components:
 // @ts-ignore
@@ -281,6 +283,9 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
        [ sorter(sortBy) ]
     ).value();
 
+    const playerOnOffTooltip =
+      <Tooltip id="playerOnOffTooltip">Open a tab with the on/off analysis for this player</Tooltip>;
+
     const tableData = _.chain(tableDataInputs).flatMap((player, index) => {
       const [ onMargin, offMargin ] = OnOffReportDiagUtils.getAdjEffMargins(player);
       const onSuffix = `\nAdj: [${onMargin.toFixed(1)}]-[${offMargin.toFixed(1)}]=[${(onMargin - offMargin).toFixed(1)}]`;
@@ -296,7 +301,9 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
       };
       const statsOn = {
         off_title: <span>{player.on.key + onSuffix}<br/>
-                      <a target="_blank" href={UrlRouting.getGameUrl(onOffAnalysis, {})}>On/Off Analysis...</a>
+                      <OverlayTrigger placement="auto" overlay={playerOnOffTooltip}>
+                        <a target="_blank" href={UrlRouting.getGameUrl(onOffAnalysis, {})}>On/Off Analysis...</a>
+                      </OverlayTrigger>
                     </span>,
         def_title: "", ...player.on };
       const statsOff = { off_title: player.off.key + offSuffix, def_title: "", ...player.off };

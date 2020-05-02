@@ -187,7 +187,7 @@ export class OnOffReportDiagUtils {
     <Tooltip id="onOffSame4Tooltip">Open a tab with the on/off analysis for the player, same-4 sets only</Tooltip>;
 
   private static readonly playerCompareTooltip =
-    <Tooltip id="onOffSame4Tooltip">Open a tab with a detailed "same-4" comparison of the two players</Tooltip>;
+    <Tooltip id="playerCompareTooltip">Open a tab with a detailed "same-4" comparison of the two players</Tooltip>;
 
   /** A common UI element for showing the link to view on/off analysis of a same-4 */
   static buildOnOffAnalysisLink(playerId: string, same4Players: string[], commonParams: CommonFilterParams, title?: string) {
