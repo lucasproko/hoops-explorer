@@ -40,6 +40,25 @@ export class QueryUtils {
     return queryString.stringify(obj);
   }
 
+
+  /** Returns the advanced query, with NOT support, or undefined if not an advanced query */
+  static extractAdvancedQuery(maybeAdvQuery: string): [ string, string | undefined] {
+    const advancedMatch = /^\s*\[(.*)\]\s*$/.exec(maybeAdvQuery);
+    if (advancedMatch) {
+       //(just return the raw query, trust that it's well formed)
+      return [maybeAdvQuery, advancedMatch[1]];
+    } else {
+      const advancedMatchNot = /^\s*NOT\s*\(\s*\[(.*)\]\s*\)\s*$/.exec(maybeAdvQuery);
+      if (advancedMatchNot) {
+        // (if there's a NOT outside the query, lift it into the query)
+        return [maybeAdvQuery, `NOT (${advancedMatchNot[1]})` ];
+      } else {
+        // (return basic query)
+        return [maybeAdvQuery, undefined];
+      }
+    }
+  }
+
   /** Converts a hoop-explorer lineup query into an ES query_string */
   static basicOrAdvancedQuery(query: string | undefined, fallback: string): string {
     // Firstly, let's sub-in the special case of {playerX|...}~N to take N from that set
@@ -59,17 +78,11 @@ export class QueryUtils {
         ")";
 
     })).thru((subQuery) => {
-      const advancedMatch = /^\s*\[(.*)\]\s*$/.exec(subQuery);
-      if (advancedMatch) {
-        return advancedMatch[1]; //(just return the raw query, trust that it's well formed)
+      const [ basicMatch, maybeAdvQuery ] = QueryUtils.extractAdvancedQuery(subQuery);
+      if (maybeAdvQuery) { //(advanced query must already have field ids etc)
+        return maybeAdvQuery;
       } else {
-        // (if there's a NOT outside the query, lift it into the query)
-        const advancedMatchNot = /^\s*NOT\s*\(\s*\[(.*)\]\s*\)\s*$/.exec(subQuery);
-        if (advancedMatchNot) {
-          return `NOT (${advancedMatchNot[1]})`
-        } else {
-          return `players.id:(${subQuery})`;
-        }
+        return `players.id:(${basicMatch})`;
       }
     }).value();
   }
@@ -119,5 +132,17 @@ export class QueryUtils {
   static getConference(team: string, efficiency: Record<string, any>, lookup: Record<string, any>) {
     const efficiencyName = lookup[team]?.pbp_kp_team || team;
     return efficiency[efficiencyName]?.conf || "";
+  }
+
+  /** Injects a new AND clause into the query */
+  static injectIntoQuery(newQueryEl: string, currQuery: [ string, string | undefined ]) {
+    // Different cases
+    if (currQuery[0] == "") {
+      return newQueryEl;
+    } else if (currQuery[1]) { // Complicated advanced query
+      return `[players.id:(${newQueryEl}) AND (${currQuery[1]})]`;
+    } else {
+      return `(${newQueryEl}) AND (${currQuery[0]})`;
+    }
   }
 }

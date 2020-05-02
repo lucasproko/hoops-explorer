@@ -7,6 +7,14 @@ import { LineupStatsModel } from "../components/LineupStatsTable";
 /** Handles combining the statistics of different lineups */
 export class LineupUtils {
 
+  // Analysis of performance in this code:
+  // 600ms-800s: lineupToTeamReport ... hotspots are ...
+  // 1) map r/w access in weightedAvg (move to having lists of the fields with whatever context is required)
+  // 2) regex in getShotTypeField (remove, see ), or at least switch to using strings)
+  // 3) isComplementLineup (build/access map)
+  // 4) the merge in mutableState constructor (add lineup as a separate field)
+  // 5) combineReplacementOnOff (completeWeightedAvg, weightedAvg) (revisit once 1-4 are done)
+
   /** Adds some logs for the more complex replacement on/off cals */
   private static readonly debugReplacementOnOff = false;
   private static readonly debugReplacementOnOffPlayer = "PLAYER";
@@ -29,13 +37,6 @@ export class LineupUtils {
     lineupReport: LineupStatsModel, incReplacement: boolean = false,
     regressDiffs: number = 0, repOnOffDiagMode: number = 0
   ): TeamReportStatsModel {
-    const allPlayersSet = _.chain(lineupReport.lineups || []).reduce((acc: any, lineup: any) => {
-      delete lineup.rapmRemove; //(ugly hack/coupling with RAPM utils to ensure no state is preserved)
-      const players = lineup?.players_array?.hits?.hits?.[0]?._source?.players || [];
-      return _.mergeWith(
-        acc, _.chain(players).map((v) => [ v.id, v.code ]).fromPairs().value()
-      );
-    }, {}).value();
 
     const getPlayerSet = (lineup: any) => {
       return _.chain(
@@ -43,10 +44,20 @@ export class LineupUtils {
       ).map((v) => [ v.id, v.code ]).fromPairs().value();
     };
 
+    const allPlayersSet = _.chain(lineupReport.lineups || []).reduce((acc: any, lineup: any) => {
+      delete lineup.rapmRemove; //(ugly hack/coupling with RAPM utils to ensure no state is preserved)
+      const players = lineup?.players_array?.hits?.hits?.[0]?._source?.players || [];
+      return _.mergeWith(acc, getPlayerSet(lineup));
+    }, {}).value();
+
     const mutableState: TeamReportStatsModel = {
-      players: _.keys(allPlayersSet).map((playerId) => {
+      playerMap: _.invert(allPlayersSet), //(code -> id)
+      players: _.toPairs(allPlayersSet).map((playerIdCode) => {
+        const playerId = playerIdCode[0];
+        const playerCode = playerIdCode[1];
         return {
           playerId: playerId,
+          playerCode: playerCode,
           teammates: _.chain(allPlayersSet).keys().map(
               (player) => [ player, {
                 on: { off_poss: 0, def_poss: 0 }, off: { off_poss : 0, def_poss: 0 }
@@ -105,6 +116,7 @@ export class LineupUtils {
                 if (!playerObj.replacement.lineupUsage.hasOwnProperty(lineup.key)) {
                   playerObj.replacement.lineupUsage[lineup.key] = {
                     poss: lineup?.off_poss?.value || 0,
+                    keyArray: lineup.key.split("_"),
                     overlap: 1
                   }
                 } else {

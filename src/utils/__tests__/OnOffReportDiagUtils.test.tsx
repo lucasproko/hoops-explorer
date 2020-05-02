@@ -24,7 +24,7 @@ describe("OnOffReportDiagUtils", () => {
         lineupReport, incRepOnOff
       );
       const playersWithAdjEff = tempTeamReport.players || [];
-      const playerLineupPowerSet = OnOffReportDiagUtils.buildPlayerSummary(playersWithAdjEff, incRepOnOff)
+      const playerLineupPowerSet = OnOffReportDiagUtils.buildPlayerSummary(playersWithAdjEff, incRepOnOff);
 
       const component = renderer.create(
         <span>{
@@ -45,18 +45,50 @@ describe("OnOffReportDiagUtils", () => {
       lineupReport, true, 100, 10
     );
     const playersWithAdjEff = tempTeamReport.players || [];
-    const playerLineupPowerSet = OnOffReportDiagUtils.buildPlayerSummary(playersWithAdjEff, true)
+    const playerLineupPowerSet = OnOffReportDiagUtils.buildPlayerSummary(playersWithAdjEff, true);
+    const diagInfo = OnOffReportDiagUtils.getRepOnOffDiagInfo(playersWithAdjEff[2], 100);
     const component = renderer.create(
       <GenericTable
         tableCopyId="teamReportStatsTable"
         tableFields={CommonTableDefs.onOffReport}
         tableData={OnOffReportDiagUtils.getRepOnOffDiags( //[2] == Morsell, actually has some same-4s
-          playersWithAdjEff[2], {}, 10, 100, true
+          playersWithAdjEff[2], {"DoScott": "Scott, Donta"}, diagInfo, {},
+          [ 10, "lineup.off_poss.value", -1 ], (a: string, b: number) => false,
+          true
         )}
       />
     );
     const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
 
+  });
+  test("OnOffReportDiagUtils - buildOnOffAnalysisLink", () => {
+    const component = renderer.create(
+      <span>
+        {OnOffReportDiagUtils.buildOnOffAnalysisLink("player, test1", ["PlOne1", "PlTwo1"], {baseQuery: "test1"})}
+        {OnOffReportDiagUtils.buildOnOffAnalysisLink("player, test2", ["PlOne2", "PlTwo2"], {baseQuery: "test2"}, "test-title")}
+      </span>
+    );
+    const tree = component.toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+  test("OnOffReportDiagUtils - buildPlayerComparisonLink", () => {
+    const component = renderer.create(
+      <span>
+        {OnOffReportDiagUtils.buildPlayerComparisonLink(
+          "player, test1", "TePlayer", "peer, test1", "TePeer", ["testQuery1", undefined], {baseQuery: "test1"}
+        )}
+        {OnOffReportDiagUtils.buildPlayerComparisonLink(
+          "player, test2", "TePlayer", "peer, test2", "TePeer", ["[testQuery2]","testQuery2"], {baseQuery: "test2"}
+        )}
+        {OnOffReportDiagUtils.buildPlayerComparisonLink(
+          "player, test3", "TePlayer", "peer, test3", "TePeer", ["[testQuery2]","testQuery2"], {
+            baseQuery: `{"player, test3";"peer, test3"}=1 AND TEST`
+          }
+        )}
+      </span>
+    );
+    const tree = component.toJSON();
+    expect(tree).toMatchSnapshot();
   });
 });

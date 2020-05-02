@@ -73,7 +73,7 @@ export type TeamReportFilterParams = {
   showComps?: boolean,
   incRepOnOff?: boolean,
   regressDiffs?: string, //+ve to add that number of 0 samples, -ve to regress to the given sample size
-  repOnOffDiagMode?: string //(the number of diagnostic lineups to show, basically 0 or 10)
+  repOnOffDiagMode?: string //(the number of diagnostic lineups to show, basically 0 or 20:sort order:sort field)
   incRapm?: boolean,
   rapmDiagMode?: string //"" if disabled, "team" if enabled with nobody expanded, "playerId[;playerId]+" if expanded for players
 };
@@ -108,6 +108,7 @@ export class ParamDefaults {
   static readonly defaultTeamReportIncRapm = false;
   static readonly defaultTeamReportRegressDiffs = "-2000";
   static readonly defaultTeamReportRepOnOffDiagMode = "0";
+  static readonly defaultTeamReportRepOnOffDiagModeIfEnabled = [ "20", "-1", "lineup.off_poss.value" ];
   static readonly defaultTeamReportRapmDiagMode = "";
   // Common
   static readonly defaultTeam = "";

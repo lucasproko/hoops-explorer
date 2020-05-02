@@ -1,5 +1,50 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`OnOffReportDiagUtils OnOffReportDiagUtils - buildOnOffAnalysisLink 1`] = `
+<span>
+  <div>
+    <a
+      href="/?autoOffQuery=false&baseQuery=test1&offQuery=NOT%20%22player%2C%20test1%22%20AND%20%7B%22PlOne1%22%3B%22PlTwo1%22%7D%3D4&onQuery=%22player%2C%20test1%22%20AND%20%7B%22PlOne1%22%3B%22PlTwo1%22%7D%3D4&"
+      target="_blank"
+    >
+      On/Off Analysis...
+    </a>
+  </div>
+  <div>
+    <a
+      href="/?autoOffQuery=false&baseQuery=test2&offQuery=NOT%20%22player%2C%20test2%22%20AND%20%7B%22PlOne2%22%3B%22PlTwo2%22%7D%3D4&onQuery=%22player%2C%20test2%22%20AND%20%7B%22PlOne2%22%3B%22PlTwo2%22%7D%3D4&"
+      target="_blank"
+    >
+      test-title
+    </a>
+  </div>
+</span>
+`;
+
+exports[`OnOffReportDiagUtils OnOffReportDiagUtils - buildPlayerComparisonLink 1`] = `
+<span>
+  <div>
+    <a
+      href="/TeamReport?baseQuery=%28%7B%22player%2C%20test1%22%3B%22peer%2C%20test1%22%7D%3D1%29%20AND%20%28testQuery1%29&filter=TePlayer&incRepOnOff=true&repOnOffDiagMode=20&"
+      target="_blank"
+    >
+      TePeer
+    </a>
+  </div>
+  <div>
+    <a
+      href="/TeamReport?baseQuery=%5Bplayers.id%3A%28%7B%22player%2C%20test2%22%3B%22peer%2C%20test2%22%7D%3D1%29%20AND%20%28testQuery2%29%5D&filter=TePlayer&incRepOnOff=true&repOnOffDiagMode=20&"
+      target="_blank"
+    >
+      TePeer
+    </a>
+  </div>
+  <b>
+    TePeer
+  </b>
+</span>
+`;
+
 exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create roster comparison HTML (replacement on/off: false) 1`] = `
 <span>
   <span>
@@ -428,20 +473,96 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
         className=""
         colSpan={21}
       >
-        <span>
-          <b>
-            Replacement 'On-Off' Diagnostics For [
-            Morsell, Darryl
-            ]
-          </b>
-           
-          <a
-            href="https://hoop-explorer.blogspot.com/2020/03/diagnostics-mode-for-replacement-onoff.html"
-            target="_new"
+        <div
+          className="container"
+        >
+          <div
+            className="row"
           >
-            (?)
-          </a>
-        </span>
+            <span>
+              <b>
+                Replacement 'On-Off' 
+                Advanced 
+                Diagnostics For [
+                Morsell, Darryl
+                ]
+              </b>
+               
+              <a
+                href="https://hoop-explorer.blogspot.com/2020/03/diagnostics-mode-for-replacement-onoff.html"
+                target="_new"
+              >
+                (?)
+              </a>
+            </span>
+          </div>
+          <div
+            className="small row"
+          >
+            <div
+              className="col"
+            >
+              Sort by:
+              <span>
+                <span>
+                   
+                </span>
+                <b>
+                  <a
+                    href="#"
+                    onClick={[Function]}
+                  >
+                    Most common
+                  </a>
+                </b>
+              </span>
+              <span>
+                <span>
+                    |  
+                </span>
+                <a
+                  href="#"
+                  onClick={[Function]}
+                >
+                  Best Off
+                </a>
+              </span>
+              <span>
+                <span>
+                    |  
+                </span>
+                <a
+                  href="#"
+                  onClick={[Function]}
+                >
+                  Worst Off
+                </a>
+              </span>
+              <span>
+                <span>
+                    |  
+                </span>
+                <a
+                  href="#"
+                  onClick={[Function]}
+                >
+                  Best Def
+                </a>
+              </span>
+              <span>
+                <span>
+                    |  
+                </span>
+                <a
+                  href="#"
+                  onClick={[Function]}
+                >
+                  Worst Def
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
       </td>
     </tr>
     <tr>
@@ -458,7 +579,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
         }
       >
         <div>
-          Harmonic: AaWiggins / AnCowan / ErAyala / JaSmith
+          Same-4: AaWiggins / AnCowan / ErAyala / JaSmith
         </div>
       </td>
       <td
@@ -1784,21 +1905,25 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
         }
       >
         <div>
-          Same-4 Lineups
+          Off Same-4 Lineups
           <br />
-          <a
-            href="/?autoOffQuery=false&offQuery=%22Wiggins%2C%20Aaron%22%20AND%20%22Cowan%2C%20Anthony%22%20AND%20%22Ayala%2C%20Eric%22%20AND%20%22Smith%2C%20Jalen%22%20AND%20NOT%20%22Morsell%2C%20Darryl%22&onQuery=%22Morsell%2C%20Darryl%22%20AND%20%22Wiggins%2C%20Aaron%22%20AND%20%22Cowan%2C%20Anthony%22%20AND%20%22Ayala%2C%20Eric%22%20AND%20%22Smith%2C%20Jalen%22&"
-            target="_blank"
-          >
-            On/Off Analysis...
-          </a>
+          <div>
+            <a
+              href="/?autoOffQuery=false&offQuery=NOT%20%22Morsell%2C%20Darryl%22%20AND%20%7B%22Wiggins%2C%20Aaron%22%3B%22Cowan%2C%20Anthony%22%3B%22Ayala%2C%20Eric%22%3B%22Smith%2C%20Jalen%22%7D%3D4&onQuery=%22Morsell%2C%20Darryl%22%20AND%20%7B%22Wiggins%2C%20Aaron%22%3B%22Cowan%2C%20Anthony%22%3B%22Ayala%2C%20Eric%22%3B%22Smith%2C%20Jalen%22%7D%3D4&"
+              target="_blank"
+            >
+              On/Off Analysis...
+            </a>
+          </div>
           <br />
-          <a
-            href="/LineupAnalyzer?filter=AaWiggins%2CAnCowan%2CErAyala%2CJaSmith&maxTableSize=100&minPoss=0&"
-            target="_blank"
-          >
-            Lineup Analysis...
-          </a>
+          <div>
+            <a
+              href="/LineupAnalyzer?filter=AaWiggins%2CAnCowan%2CErAyala%2CJaSmith&maxTableSize=100&minPoss=0&"
+              target="_blank"
+            >
+              Lineup Analysis...
+            </a>
+          </div>
         </div>
       </td>
       <td
@@ -2475,9 +2600,16 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
               /
               <wbr />
             </span>
-            <b>
-              DoScott
-            </b>
+            <span>
+              <div>
+                <a
+                  href="/TeamReport?baseQuery=%7B%22Morsell%2C%20Darryl%22%3B%22Scott%2C%20Donta%22%7D%3D1&filter=DaMorsell&incRepOnOff=true&repOnOffDiagMode=20&"
+                  target="_blank"
+                >
+                  DoScott
+                </a>
+              </div>
+            </span>
              (p=[
             102
             ]/o=[
@@ -2508,7 +2640,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
         }
       >
         <div>
-          Harmonic: AaWiggins / AnCowan / DoScott / JaSmith
+          Same-4: AaWiggins / AnCowan / DoScott / JaSmith
         </div>
       </td>
       <td
@@ -3834,21 +3966,25 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
         }
       >
         <div>
-          Same-4 Lineups
+          Off Same-4 Lineups
           <br />
-          <a
-            href="/?autoOffQuery=false&offQuery=%22Wiggins%2C%20Aaron%22%20AND%20%22Cowan%2C%20Anthony%22%20AND%20%22Scott%2C%20Donta%22%20AND%20%22Smith%2C%20Jalen%22%20AND%20NOT%20%22Morsell%2C%20Darryl%22&onQuery=%22Morsell%2C%20Darryl%22%20AND%20%22Wiggins%2C%20Aaron%22%20AND%20%22Cowan%2C%20Anthony%22%20AND%20%22Scott%2C%20Donta%22%20AND%20%22Smith%2C%20Jalen%22&"
-            target="_blank"
-          >
-            On/Off Analysis...
-          </a>
+          <div>
+            <a
+              href="/?autoOffQuery=false&offQuery=NOT%20%22Morsell%2C%20Darryl%22%20AND%20%7B%22Wiggins%2C%20Aaron%22%3B%22Cowan%2C%20Anthony%22%3B%22Scott%2C%20Donta%22%3B%22Smith%2C%20Jalen%22%7D%3D4&onQuery=%22Morsell%2C%20Darryl%22%20AND%20%7B%22Wiggins%2C%20Aaron%22%3B%22Cowan%2C%20Anthony%22%3B%22Scott%2C%20Donta%22%3B%22Smith%2C%20Jalen%22%7D%3D4&"
+              target="_blank"
+            >
+              On/Off Analysis...
+            </a>
+          </div>
           <br />
-          <a
-            href="/LineupAnalyzer?filter=AaWiggins%2CAnCowan%2CDoScott%2CJaSmith&maxTableSize=100&minPoss=0&"
-            target="_blank"
-          >
-            Lineup Analysis...
-          </a>
+          <div>
+            <a
+              href="/LineupAnalyzer?filter=AaWiggins%2CAnCowan%2CDoScott%2CJaSmith&maxTableSize=100&minPoss=0&"
+              target="_blank"
+            >
+              Lineup Analysis...
+            </a>
+          </div>
         </div>
       </td>
       <td
@@ -4525,9 +4661,16 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
               /
               <wbr />
             </span>
-            <b>
-              ErAyala
-            </b>
+            <span>
+              <div>
+                <a
+                  href="/TeamReport?baseQuery=%7B%22Morsell%2C%20Darryl%22%3B%22ErAyala%22%7D%3D1&filter=DaMorsell&incRepOnOff=true&repOnOffDiagMode=20&"
+                  target="_blank"
+                >
+                  ErAyala
+                </a>
+              </div>
+            </span>
              (p=[
             102
             ]/o=[

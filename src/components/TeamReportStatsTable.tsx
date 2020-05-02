@@ -16,6 +16,8 @@ import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Button from 'react-bootstrap/Button';
+import Tooltip from 'react-bootstrap/Tooltip';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 
 // Additional components:
 // @ts-ignore
@@ -30,6 +32,7 @@ import GenericTable, { GenericTableOps, GenericTableColProps } from "./GenericTa
 import { LineupStatsModel } from './LineupStatsTable';
 import GenericTogglingMenuItem from "./GenericTogglingMenuItem";
 import RapmPlayerDiagView from "./RapmPlayerDiagView";
+import RepOnOffDiagView from "./RepOnOffDiagView";
 
 // Util imports
 import { getCommonFilterParams, TeamReportFilterParams, ParamDefaults } from '../utils/FilterModels';
@@ -45,6 +48,7 @@ import { CommonTableDefs } from "../utils/CommonTableDefs";
 /** Convert from LineupStatsModel into this */
 export type TeamReportStatsModel = {
   players?: Array<any>,
+  playerMap?: Record<string, string>,
   error_code?: string
 }
 type Props = {
@@ -98,9 +102,15 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
   const [ startingRegressDiffs, setStartingRegressDiffs_UNUSED ] = useState(
     parseInt(_.isNil(startingState.regressDiffs) ? ParamDefaults.defaultTeamReportRegressDiffs : startingState.regressDiffs)
   );
-  const [ repOnOffDiagMode, setRepOnOffDiagMode ] = useState(
-    parseInt(_.isNil(startingState.repOnOffDiagMode) ? ParamDefaults.defaultTeamReportRepOnOffDiagMode : startingState.repOnOffDiagMode)
+
+  const [ repOnOffDiagMode, setRepOnOffDiagMode ] = useState(_.isNil(startingState.repOnOffDiagMode) ?
+    ParamDefaults.defaultTeamReportRepOnOffDiagMode : startingState.repOnOffDiagMode
   );
+  // Calculate some derived fields from this aggregate field: (length:sort_order:sort_field)
+  const repOnOffDiagModeInfo = repOnOffDiagMode.split(":");
+  const repOnOffDiagModeNumLineups = parseInt(repOnOffDiagModeInfo[0]);
+  const repOnOffDiagModeLineupSortDir = parseInt(repOnOffDiagModeInfo?.[1] || ParamDefaults.defaultTeamReportRepOnOffDiagModeIfEnabled[1]);
+  const repOnOffDiagModeLineupSortField = repOnOffDiagModeInfo?.[2] || ParamDefaults.defaultTeamReportRepOnOffDiagModeIfEnabled[2];
 
   const [ rapmDiagMode, setRapmDiagMode ] = useState(
     _.isNil(startingState.rapmDiagMode) ? ParamDefaults.defaultTeamReportRapmDiagMode : startingState.rapmDiagMode
@@ -125,11 +135,11 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
       incRepOnOff: incReplacementOnOff,
       incRapm: incRapm,
       regressDiffs: regressDiffs.toString(),
-      repOnOffDiagMode: repOnOffDiagMode.toString(),
+      repOnOffDiagMode: repOnOffDiagMode,
       rapmDiagMode: rapmDiagMode
     }).omit( // remove "debuggy" fields
       _.flatten([
-        (repOnOffDiagMode == 0) ? [ 'repOnOffDiagMode' ] : [],
+        (repOnOffDiagMode == "0") ? [ 'repOnOffDiagMode' ] : [],
         (rapmDiagMode == "") ? [ 'rapmDiagMode' ] : [],
       ])
     ).value();
@@ -154,7 +164,7 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
   const onDataChangeProcessing = () => {
     try {
       const tempTeamReport = LineupUtils.lineupToTeamReport(
-        lineupReport, incReplacementOnOff, regressDiffs, repOnOffDiagMode
+        lineupReport, incReplacementOnOff, regressDiffs, repOnOffDiagModeNumLineups
       );
       if (incRapm) {
         try {
@@ -260,8 +270,8 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
   /** Only show help for diagnstic on/off on main page */
   const showHelp = !_.startsWith(server, "cbb-on-off-analyzer");
 
-  const tableData = _.chain(playersWithAdjEff).filter((player) => {
-      const strToTest = player.on.key.substring(5);
+  const tableDataInputs = _.chain(playersWithAdjEff).filter((player) => {
+      const strToTest = player.playerId + " " + player.playerCode;
       return(
         (filterFragmentsPve.length == 0) ||
           (_.find(filterFragmentsPve, (fragment) => strToTest.indexOf(fragment) >= 0) ? true : false))
@@ -271,7 +281,12 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
         ;
     }).sortBy(
        [ sorter(sortBy) ]
-    ).flatMap((player, index) => {
+    ).value();
+
+    const playerOnOffTooltip =
+      <Tooltip id="playerOnOffTooltip">Open a tab with the on/off analysis for this player</Tooltip>;
+
+    const tableData = _.chain(tableDataInputs).flatMap((player, index) => {
       const [ onMargin, offMargin ] = OnOffReportDiagUtils.getAdjEffMargins(player);
       const onSuffix = `\nAdj: [${onMargin.toFixed(1)}]-[${offMargin.toFixed(1)}]=[${(onMargin - offMargin).toFixed(1)}]`;
       const totalPoss = (player.on.off_poss.value + player.off.off_poss.value || 1);
@@ -286,7 +301,9 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
       };
       const statsOn = {
         off_title: <span>{player.on.key + onSuffix}<br/>
-                      <a target="_blank" href={UrlRouting.getGameUrl(onOffAnalysis, {})}>On/Off Analysis...</a>
+                      <OverlayTrigger placement="auto" overlay={playerOnOffTooltip}>
+                        <a target="_blank" href={UrlRouting.getGameUrl(onOffAnalysis, {})}>On/Off Analysis...</a>
+                      </OverlayTrigger>
                     </span>,
         def_title: "", ...player.on };
       const statsOff = { off_title: player.off.key + offSuffix, def_title: "", ...player.off };
@@ -304,6 +321,11 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
       const statsRapm  = incRapm ?
         { off_title: player.rapm?.key + rapmSuffix, def_title: "", ...player?.rapm } : {};
 
+      const repOnOffDiagsEnabled = incReplacementOnOff && (repOnOffDiagModeNumLineups > 0);
+      const repOnOffDiagInfo = repOnOffDiagsEnabled ? OnOffReportDiagUtils.getRepOnOffDiagInfo(
+        player, regressDiffs
+      ) : undefined;
+
       return _.flatten([
         showOnOff ? [
           GenericTableOps.buildDataRow(statsOn, CommonTableDefs.offPrefixFn, CommonTableDefs.offCellMetaFn, CommonTableDefs.onOffReportWithFormattedTitle),
@@ -314,6 +336,19 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
         incReplacementOnOff && (player?.replacement?.key) ? [
           GenericTableOps.buildDataRow(statsReplacement, CommonTableDefs.offPrefixFn, CommonTableDefs.offCellMetaFn, CommonTableDefs.onOffReportReplacement),
           GenericTableOps.buildDataRow(statsReplacement, CommonTableDefs.defPrefixFn, CommonTableDefs.defCellMetaFn, CommonTableDefs.onOffReportReplacement)
+        ] : [],
+        repOnOffDiagsEnabled && (player?.replacement?.key) ? [
+          GenericTableOps.buildTextRow(
+            <RepOnOffDiagView
+              diagInfo={repOnOffDiagInfo || []}
+              player={player}
+              playerMap={teamReport?.playerMap || {}}
+              commonParams={commonParams}
+              expandedMode={tableDataInputs.length == 1}
+              onExpand = {(playerId: string) => { setFilterStr(playerId); setTmpFilterStr(playerId) }}
+              showHelp={showHelp}
+            />, "small"
+          )
         ] : [],
         incRapm && (player?.rapm?.key) ? [
           GenericTableOps.buildDataRow(statsRapm, CommonTableDefs.offPrefixFn, CommonTableDefs.offCellMetaFn, CommonTableDefs.onOffReportReplacement),
@@ -331,9 +366,22 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
           OnOffReportDiagUtils.buildLineupInfo(player, playerLineupPowerSet), "small"
         ) ] : [],
         [ GenericTableOps.buildRowSeparator() ],
-        incReplacementOnOff && (index == 0) && (repOnOffDiagMode > 0) ?
-          OnOffReportDiagUtils.getRepOnOffDiags(player, commonParams,
-            repOnOffDiagMode, regressDiffs,
+         repOnOffDiagsEnabled && (tableDataInputs.length == 1) ?
+          OnOffReportDiagUtils.getRepOnOffDiags(
+            player, teamReport?.playerMap || {}, repOnOffDiagInfo || [], commonParams,
+            [ repOnOffDiagModeNumLineups, repOnOffDiagModeLineupSortField, repOnOffDiagModeLineupSortDir ],
+            (field: string, dir: number) => {
+              if ((field == ParamDefaults.defaultTeamReportRepOnOffDiagModeIfEnabled[2]) &&
+                (dir.toString() == ParamDefaults.defaultTeamReportRepOnOffDiagModeIfEnabled[1]))
+              {
+                //(if defaults then don't pollute the URL!)
+                setRepOnOffDiagMode(repOnOffDiagModeNumLineups.toString());
+              } else {
+                setRepOnOffDiagMode(
+                  [repOnOffDiagModeNumLineups, dir, field].join(":")
+                );
+              }
+            },
             showHelp
           ) : [],
       ]);
@@ -529,8 +577,11 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
               />
               <GenericTogglingMenuItem
                 text="'r:On-Off' diagnostic mode"
-                truthVal={repOnOffDiagMode != 0}
-                onSelect={() => setRepOnOffDiagMode(repOnOffDiagMode != 0 ? 0 : 10)}
+                truthVal={repOnOffDiagMode != "0"}
+                onSelect={() => setRepOnOffDiagMode(
+                  repOnOffDiagMode != "0" ? //(only set the lineup size if the other are the defaults)
+                    "0" : ParamDefaults.defaultTeamReportRepOnOffDiagModeIfEnabled[0]
+                )}
               />
               <GenericTogglingMenuItem
                 text="'RAPM diagnostic mode"
