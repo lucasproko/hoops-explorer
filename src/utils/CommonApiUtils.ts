@@ -124,6 +124,7 @@ export class CommonApiUtils {
         );
 
         try {
+          const startTimeMs = new Date().getTime();
           const [ esFetchOk, esFetchStatus, esFetchJson ] = await makeRequest(body);
 
           // Debug logs:
@@ -140,6 +141,10 @@ export class CommonApiUtils {
              ServerRequestCache.cacheResponse(
                urlQuery, queryPrefix, esFetchJson, currentJsonEpoch, isDebug
              );
+          }
+          const totalTimeMs = new Date().getTime() - startTimeMs;
+          if (pxIsDebug || (totalTimeMs > 1000)) {
+            console.log(`Took [${totalTimeMs}]ms to request [${queryPrefix}][${urlQuery}]`);
           }
           onResponse(esFetchStatus, esFetchJson, resHandle);
 

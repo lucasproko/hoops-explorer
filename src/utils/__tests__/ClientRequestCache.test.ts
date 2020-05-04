@@ -5,12 +5,25 @@ import { ClientRequestCache } from "../ClientRequestCache";
 import { PreloadedDataSamples } from "../internal-data/preloadedData";
 
 describe("ClientRequestCache", () => {
+  // Handy util to cope with client caching now being async:
+  const waitForCondition = async (condition: () => Boolean, attempts: number = 10, sleepTimeMs: number = 50) => {
+    const sleep = (milliseconds: number) => {
+      return new Promise(resolve => setTimeout(resolve, milliseconds))
+    }
+    for (let i = 0; i < attempts; i++) {
+      const exitLoop = condition();
+      if (exitLoop) break;
+      await sleep(sleepTimeMs);
+    }
+  };
 
-  test("ClientRequestCache - decacheResponse / cacheResponse / peekForResponse", () => {
+  test("ClientRequestCache - decacheResponse / cacheResponse / peekForResponse", async () => {
 
     const obj1 = { testKey: "testVal" };
     const expObj1 = { testKey: "testVal", cacheEpoch: 1 };
     ClientRequestCache.cacheResponse("test-cache-key", "test-prefix-", obj1, 1, false);
+    await waitForCondition(() => ClientRequestCache.peekForResponse("test-cache-key", "test-prefix-"));
+
     expect(ClientRequestCache.peekForResponse("test-cache-key", "test-prefix-")).toBe(true);
     expect(ClientRequestCache.peekForResponse("wrong-cache-key", "test-prefix-")).toBe(false);
     expect(ClientRequestCache.peekForResponse("test-cache-key", "wrong-prefix-")).toBe(false);
@@ -45,7 +58,7 @@ describe("ClientRequestCache", () => {
     expect(ClientRequestCache.peekForResponse("test-empty-key", "report-")).toBe(false);
     expect(ClientRequestCache.peekForResponse("test-empty-key", "lineup-")).toBe(true);
   });
-  test("ClientRequestCache - special handling for report- vs lineup-", () => {
+  test("ClientRequestCache - special handling for report- vs lineup-", async () => {
     const obj1 = { testKey: "testVal1" };
     const obj2 = { testKey: "testVal2" };
     const obj3 = { testKey: "testVal3" };
@@ -54,18 +67,25 @@ describe("ClientRequestCache", () => {
     const expObj3 = { testKey: "testVal3", cacheEpoch: 2 };
     ClientRequestCache.cacheResponse("test-cache-key1", "lineup-", obj1, 1, false);
     ClientRequestCache.cacheResponse("test-cache-key2", "report-", obj2, 1, false);
+    await waitForCondition(() => ClientRequestCache.peekForResponse("test-cache-key1", "lineup-"));
 
     expect(ClientRequestCache.decacheResponse("test-cache-key1", "lineup-", 1, false)).toEqual(expObj1);
     expect(ClientRequestCache.decacheResponse("test-cache-key1", "report-", 1, false)).toEqual(expObj1);
     expect(ClientRequestCache.decacheResponse("test-cache-key2", "lineup-", 1, false)).toEqual(expObj2);
     expect(ClientRequestCache.decacheResponse("test-cache-key2", "report-", 1, false)).toEqual(expObj2);
 
-    // Peek _doesn't_ work:
+    // Peek _doesn't_ work for "report-"
+    expect(ClientRequestCache.peekForResponse("test-cache-key1", "lineup-")).toBe(true);
+    expect(ClientRequestCache.peekForResponse("test-cache-key2", "lineup-")).toBe(true);
     expect(ClientRequestCache.peekForResponse("test-cache-key1", "report-")).toBe(false);
     expect(ClientRequestCache.peekForResponse("test-cache-key2", "report-")).toBe(false);
 
     //(will overwrite obj1)
     ClientRequestCache.cacheResponse("test-cache-key1", "report-", obj3, 2, false);
+    await waitForCondition(() =>
+      ClientRequestCache.decacheResponse("test-cache-key1", "lineup-", 2, false) != null
+    );
+
     expect(ClientRequestCache.decacheResponse("test-cache-key1", "lineup-", 2, false)).toEqual(expObj3);
     expect(ClientRequestCache.decacheResponse("test-cache-key1", "report-", 2, false)).toEqual(expObj3);
   });
