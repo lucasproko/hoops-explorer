@@ -166,6 +166,24 @@ export const sampleLineupQueryRequest =         {
                         "script": "(params.my_var1 > 0) ? 100*params.my_var1 / params.my_var2 : 0"
                      }
                   },
+                  "off_assist": {
+                   "bucket_script": {
+                     "buckets_path": {
+                       "ast": "total_off_assist",
+                       "fgm": "total_off_fgm",
+                     },
+                     "script": "params.fgm > 0 ? 1.0*params.ast/params.fgm : 0.0",
+                   },
+                  },
+                  "def_assist": {
+                   "bucket_script": {
+                     "buckets_path": {
+                       "ast": "total_def_assist",
+                       "fgm": "total_def_fgm",
+                     },
+                     "script": "params.fgm > 0 ? 1.0*params.ast/params.fgm : 0.0",
+                   },
+                  },
                   "off_to": {
                      "bucket_script": {
                         "buckets_path": {

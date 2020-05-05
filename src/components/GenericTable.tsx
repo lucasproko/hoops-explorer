@@ -134,7 +134,7 @@ export class GenericTableOps {
       rowSpan, undefined, className
     );
   }
-  static addColSeparator(width: number = 1) {
+  static addColSeparator(width: number = 0.5) {
     return new GenericTableColProps("", "", width);
   }
 }

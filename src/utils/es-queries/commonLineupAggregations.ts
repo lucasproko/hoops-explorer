@@ -137,6 +137,16 @@ export const commonAggregations = function(
       }
     },
     // Finally, tricky numbers:
+    // Assist:
+    [`${dstPrefix}_assist`]: { //assists ... team_assists / fgm
+      "bucket_script": {
+        "buckets_path": {
+          "ast": `total_${dstPrefix}_assist`,
+          "fgm": `total_${dstPrefix}_fgm`
+        },
+        "script": "params.fgm > 0 ? 1.0*params.ast/params.fgm : 0.0"
+      }
+    },
     // ORB:
     [`${dstPrefix}_orb`]: {
       "bucket_script": {

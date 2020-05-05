@@ -199,6 +199,30 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot 1`] = `
                       "value": "asc:diff_efg",
                     },
                     Object {
+                      "label": "A% (Desc. / Offensive)",
+                      "value": "desc:off_assist",
+                    },
+                    Object {
+                      "label": "A% (Asc. / Offensive)",
+                      "value": "asc:off_assist",
+                    },
+                    Object {
+                      "label": "A% (Desc. / Defensive)",
+                      "value": "desc:def_assist",
+                    },
+                    Object {
+                      "label": "A% (Asc. / Defensive)",
+                      "value": "asc:def_assist",
+                    },
+                    Object {
+                      "label": "A% (Desc. / Off-Def)",
+                      "value": "desc:diff_assist",
+                    },
+                    Object {
+                      "label": "A% (Asc. / Off-Def)",
+                      "value": "asc:diff_assist",
+                    },
+                    Object {
                       "label": "TO% (Desc. / Offensive)",
                       "value": "desc:off_to",
                     },
@@ -534,6 +558,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot 1`] = `
                   "def_adj_ppp": Object {
                     "value": 85.47619047619048,
                   },
+                  "def_assist": Object {
+                    "value": 0.48,
+                  },
                   "def_efg": Object {
                     "value": 0.43354430379746833,
                   },
@@ -581,6 +608,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot 1`] = `
                   },
                   "off_adj_ppp": Object {
                     "value": 116.22448979591837,
+                  },
+                  "off_assist": Object {
+                    "value": 0.52,
                   },
                   "off_efg": Object {
                     "value": 0.47305389221556887,
@@ -755,6 +785,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot 1`] = `
                   "def_adj_ppp": Object {
                     "value": 85.47619047619048,
                   },
+                  "def_assist": Object {
+                    "value": 0.48,
+                  },
                   "def_efg": Object {
                     "value": 0.43354430379746833,
                   },
@@ -802,6 +835,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot 1`] = `
                   },
                   "off_adj_ppp": Object {
                     "value": 116.22448979591837,
+                  },
+                  "off_assist": Object {
+                    "value": 0.52,
                   },
                   "off_efg": Object {
                     "value": 0.47305389221556887,
@@ -979,6 +1015,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot 1`] = `
                   "def_adj_ppp": Object {
                     "value": 75.47619047619048,
                   },
+                  "def_assist": Object {
+                    "value": 0.47,
+                  },
                   "def_efg": Object {
                     "value": 0.4176470588235294,
                   },
@@ -1026,6 +1065,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot 1`] = `
                   },
                   "off_adj_ppp": Object {
                     "value": 96.22448979591837,
+                  },
+                  "off_assist": Object {
+                    "value": 0.53,
                   },
                   "off_efg": Object {
                     "value": 0.3735632183908046,
@@ -1200,6 +1242,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot 1`] = `
                   "def_adj_ppp": Object {
                     "value": 75.47619047619048,
                   },
+                  "def_assist": Object {
+                    "value": 0.47,
+                  },
                   "def_efg": Object {
                     "value": 0.4176470588235294,
                   },
@@ -1247,6 +1292,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot 1`] = `
                   },
                   "off_adj_ppp": Object {
                     "value": 96.22448979591837,
+                  },
+                  "off_assist": Object {
+                    "value": 0.53,
                   },
                   "off_efg": Object {
                     "value": 0.3735632183908046,
@@ -1424,6 +1472,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot 1`] = `
                   "def_adj_ppp": Object {
                     "value": 75.47619047619048,
                   },
+                  "def_assist": Object {
+                    "value": 0.48,
+                  },
                   "def_efg": Object {
                     "value": 0.34408602150537637,
                   },
@@ -1471,6 +1522,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot 1`] = `
                   },
                   "off_adj_ppp": Object {
                     "value": 114.22448979591837,
+                  },
+                  "off_assist": Object {
+                    "value": 0.52,
                   },
                   "off_efg": Object {
                     "value": 0.5052083333333334,
@@ -1645,6 +1699,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot 1`] = `
                   "def_adj_ppp": Object {
                     "value": 75.47619047619048,
                   },
+                  "def_assist": Object {
+                    "value": 0.48,
+                  },
                   "def_efg": Object {
                     "value": 0.34408602150537637,
                   },
@@ -1692,6 +1749,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot 1`] = `
                   },
                   "off_adj_ppp": Object {
                     "value": 114.22448979591837,
+                  },
+                  "off_assist": Object {
+                    "value": 0.52,
                   },
                   "off_efg": Object {
                     "value": 0.5052083333333334,
@@ -1942,6 +2002,17 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot 1`] = `
                 "toolTip": "Approximate schedule-adjusted Points per 100 possessions",
                 "widthUnits": 2,
               },
+              "assist": GenericTableColProps {
+                "className": "",
+                "colName": "A%",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "Assist % for selected lineups",
+                "widthUnits": 2,
+              },
               "efg": GenericTableColProps {
                 "className": "",
                 "colName": "eFG%",
@@ -2006,7 +2077,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot 1`] = `
                 "missingData": undefined,
                 "rowSpan": [Function],
                 "toolTip": "",
-                "widthUnits": 1,
+                "widthUnits": 0.5,
               },
               "sep1": GenericTableColProps {
                 "className": "",
@@ -2017,7 +2088,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot 1`] = `
                 "missingData": undefined,
                 "rowSpan": [Function],
                 "toolTip": "",
-                "widthUnits": 1,
+                "widthUnits": 0.5,
               },
               "sep2": GenericTableColProps {
                 "className": "",
@@ -2028,7 +2099,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot 1`] = `
                 "missingData": undefined,
                 "rowSpan": [Function],
                 "toolTip": "",
-                "widthUnits": 1,
+                "widthUnits": 0.5,
               },
               "sep3": GenericTableColProps {
                 "className": "",
@@ -2039,7 +2110,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot 1`] = `
                 "missingData": undefined,
                 "rowSpan": [Function],
                 "toolTip": "",
-                "widthUnits": 1,
+                "widthUnits": 0.5,
               },
               "sep4": GenericTableColProps {
                 "className": "",
@@ -2050,7 +2121,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot 1`] = `
                 "missingData": undefined,
                 "rowSpan": [Function],
                 "toolTip": "",
-                "widthUnits": 1,
+                "widthUnits": 0.5,
               },
               "title": GenericTableColProps {
                 "className": "small",
