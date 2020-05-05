@@ -16,7 +16,7 @@ export class ServerRequestCache {
   private static readonly logPeriodMs = 10*1000; //(Every 10s)
 
   /** Always cache miss if in debug AND disable server cache (this flag) requested */
-  static readonly debugDisableServerCache = true;
+  static readonly debugDisableServerCache = false;
 
   // Some debug vars
   private static cacheLastLogged = new Date();
@@ -108,12 +108,24 @@ export class ServerRequestCache {
     key: string, prefix: string, value: Record<string, any>, epochKey: number | undefined, isDebug: boolean = false
   ) {
     const valueStr = JSON.stringify(value);
-    const compressedVal = LZUTF8.compress(
-      valueStr, { outputEncoding: "StorageBinaryString" }
-    );
-    ServerRequestCache.cache.set(
-      ServerRequestCache.cacheKey(key, prefix),
-      (epochKey || "0") + ":" + compressedVal
+
+    const startTimeMs = new Date().getTime();
+    LZUTF8.compressAsync(
+      valueStr, { outputEncoding: "StorageBinaryString" },
+      (compressedVal, error) => {
+        if (error == undefined) {
+          const totalTimeMs = new Date().getTime() - startTimeMs;
+          if (isDebug || (totalTimeMs > 1000)) {
+            console.log(`Took [${totalTimeMs}]ms to compress [${prefix}][${key}]: [${compressedVal.length}] bytes`);
+          }
+          ServerRequestCache.cache.set(
+            ServerRequestCache.cacheKey(key, prefix),
+            (epochKey || "0") + ":" + compressedVal
+          );
+        } else {
+          console.log(`Error compressing [${prefix}][${key}]: [${error.message}]`);
+        }
+      }
     );
   }
 }

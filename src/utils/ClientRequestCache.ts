@@ -5,7 +5,7 @@ import _ from "lodash";
 import ls from 'local-storage';
 
 // @ts-ignore
-import LZUTF8 from 'lzutf8';
+import LZUTF8, { runningInWebWorker, webWorkersAvailable  } from 'lzutf8';
 // @ts-ignore
 import { Base64 } from 'js-base64';
 
@@ -17,7 +17,7 @@ import { ParamPrefixes } from "../utils/FilterModels";
 export class ClientRequestCache {
 
   /** Always cache miss if in debug AND disable client cache (this flag) requested */
-  static readonly debugDisableClientCache = false;
+  static readonly debugDisableClientCache = true;
 
   /** If true, then shows either cached or new version of this - for building preloadedData */
   static readonly debugShowB64Encoded = false;
@@ -143,13 +143,25 @@ export class ClientRequestCache {
     key: string, prefix: string, value: Record<string, any>, epochKey: number | undefined, isDebug: boolean = false
   ) {
     const valueStr = JSON.stringify(value);
-    const compressedVal = LZUTF8.compress(
-      valueStr, { outputEncoding: "StorageBinaryString" }
+    const startTimeMs = new Date().getTime();
+    LZUTF8.WebWorker.scriptURI = "/lzutf8.min.js"; //(allow web worker logic)
+    LZUTF8.compressAsync(
+      valueStr, { outputEncoding: "StorageBinaryString" },
+      (compressedVal, error) => {
+        if (error == undefined) {
+          const totalTimeMs = new Date().getTime() - startTimeMs;
+          if (isDebug && ClientRequestCache.debugShowB64Encoded) {
+            console.log(`Compressed: [${Base64.encode(compressedVal)}]`);
+          }
+          if (isDebug || (totalTimeMs > 1000)) {
+            console.log(`Took [${totalTimeMs}]ms to compress [${prefix}][${key}]: [${compressedVal.length}] bytes`);
+          }
+          ClientRequestCache.directInsertCache(key, prefix, compressedVal, epochKey, isDebug);
+        } else {
+          console.log(`Error compressing [${prefix}][${key}]: [${error.message}]`);
+        }
+      }
     );
-    if (isDebug && ClientRequestCache.debugShowB64Encoded) {
-      console.log(`Compressed: [${Base64.encode(compressedVal)}]`);
-    }
-    return ClientRequestCache.directInsertCache(key, prefix, compressedVal, epochKey, isDebug);
   }
 
   /** Allows a compressed string or "{}" to be injected */

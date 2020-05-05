@@ -175,33 +175,6 @@ const CommonFilter: CommonFilterI = ({
     if (pageJustLoaded) {
       setPageJustLoaded(false); //(ensures this code only gets called once)
 
-      const epochRefreshed = ClientRequestCache.refreshEpoch(gender, year, currentJsonEpoch, isDebug);
-
-      // Check for pre-loads:
-      Object.entries(preloadedData[genderYear] || {}).map(function(keyVal) {
-        // Ignore anything that isn't for my year or gender
-        const key = keyVal[0];
-        const valAsJson = keyVal[1];
-        if (!epochRefreshed && ClientRequestCache.peekForResponse(key, "")) {
-          if (isDebug) {
-            console.log(`Already pre-loaded [${key}]`);
-          }
-        } else {
-          const isB64encoded = _.startsWith(valAsJson, ClientRequestCache.base64Prefix);
-          if (isDebug) {
-            console.log(`Pre-loading [${key}] B64=[${isB64encoded}]`);
-          }
-          if (isB64encoded) {
-            ClientRequestCache.directInsertCache(
-              key, "", valAsJson, currentJsonEpoch, isDebug //(no prefix since the key already has it)
-            )
-          } else {
-            ClientRequestCache.cacheResponse(
-              key, "", valAsJson, currentJsonEpoch, isDebug //(no prefix since the key already has it)
-            );
-          }
-        }
-      });
       // Check if object is in cache and handle response if so
       const newParamsStr = QueryUtils.stringify(buildParamsFromState(false));
       if (isDebug) {
@@ -294,19 +267,22 @@ const CommonFilter: CommonFilterI = ({
     if (cachedJson && !_.isEmpty(cachedJson)) { //(ignore placeholders here)
       handleResponse(cachedJson);
     } else {
+      const startTimeMs = new Date().getTime();
       childSubmitRequest(newParamsStr, function(response: fetch.IsomorphicResponse) {
         response.json().then(function(json: any) {
           // Cache result locally:
           if (isDebug) {
             console.log(`CACHE_KEY=[${tablePrefix}${newParamsStr}]`);
             console.log(`CACHE_VAL=[${JSON.stringify(json)}]`);
+            const totalTimeMs = new Date().getTime() - startTimeMs;
+            console.log(`TOOK=[${totalTimeMs}]ms`);
           }
           if (response.ok && !isResponseError(json)) { //(never cache errors)
             ClientRequestCache.cacheResponse(
               newParamsStr, tablePrefix, json, currentJsonEpoch, isDebug
             );
           } else if (isDebug) {
-            console.log(`Response error: status=[${response.status}] keys=[${Object.keys(response || {})}]`)            
+            console.log(`Response error: status=[${response.status}] keys=[${Object.keys(response || {})}]`)
           }
           handleResponse(json);
         })
