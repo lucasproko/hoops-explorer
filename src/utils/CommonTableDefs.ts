@@ -35,6 +35,13 @@ export class CommonTableDefs {
       default: return 1;
     }
   }
+  private static singleLineRowSpanCalculator(cellMeta: string) {
+    switch(cellMeta) {
+      case "off": return 1;
+      case "def": return 0;
+      default: return 1;
+    }
+  }
 
   //TODO: add others, find generic descriptions etc
 
@@ -68,7 +75,10 @@ export class CommonTableDefs {
   // ON/OFF - INDIVIDUAL
 
   static onOffIndividualTable = (expandedView: boolean) => { return { //accessors vs column metadata
-    "title": GenericTableOps.addTitle("", "", CommonTableDefs.rowSpanCalculator, "small"),
+    "title": expandedView ?
+      GenericTableOps.addTitle("", "", CommonTableDefs.rowSpanCalculator, "small") :
+      GenericTableOps.addTitle("", "", CommonTableDefs.singleLineRowSpanCalculator, "small")
+    ,
     "sep0": GenericTableOps.addColSeparator(),
     "rtg": GenericTableOps.addPtsCol("Rtg", "Offensive/Defensive rating in selected lineups", CbbColors.picker(...CbbColors.pp100)),
     "usage": GenericTableOps.addPctCol("Usg", "% of team possessions used in selected lineups", CbbColors.picker(...CbbColors.usg)), //TODO needs to be steeper
