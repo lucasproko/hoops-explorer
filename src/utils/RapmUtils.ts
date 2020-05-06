@@ -39,7 +39,8 @@ export type RapmPlayerContext = {
 /** Holds the multi-collinearity info */
 export type RapmPreProcDiagnostics = {
   lineupCombos: Array<number>;
-  playerCombos: Record<string, Array<number>>
+  playerCombos: Record<string, Array<number>>,
+  correlMatrix: any
 };
 
 export type RapmProcessingInputs = {
@@ -494,7 +495,7 @@ export class RapmUtils {
 
   ): [ number[], number[] ] {
     // (see pickRidgeRegression for context)
-    
+
     const ctxNoWeights = _.merge(_.clone(ctx), {
       unbiasWeight: 0
     });
@@ -567,7 +568,34 @@ export class RapmUtils {
 
   // 4] DIAGNOSTIC PROCESSING
 
-  //TODO: Pearsson correlation matrix between players
+  /** Pearson correlation matrix between players */
+  private static calcPlayerCorrelations(
+    weightMatrix: any,
+    ctx: RapmPlayerContext
+  ): any {
+    const weightMatrixT = transpose(weightMatrix).valueOf();
+    const weightMeans = weightMatrixT.map((row: number[]) => _.sum(row)/row.length);
+    const squares = weightMatrixT.map((row: number[], index: number) => {
+      const mean = weightMeans[index] || 0;
+      return Math.sqrt(_.reduce(row, (acc, v) => acc + (v - mean)*(v - mean), 0));
+    });
+    const correlMatrix = identity(ctx.numPlayers);
+    const correlMatrixBacking = correlMatrix.valueOf();
+    for (let i = 0; i < ctx.numPlayers; i++) {
+      for (let j = 0; j < i; j++) {
+        const veci: number[] = weightMatrixT[i] || [];
+        const vecj: number[] = weightMatrixT[j] || [];
+        const meani = weightMeans[i] || 0;
+        const meanj = weightMeans[j] || 0;
+        const sqi = squares[i] || 1;
+        const sqj = squares[j] || 1;
+        correlMatrixBacking[j][i] = _.reduce(veci, (acc: number, vi: number, index: number) => {
+          return acc + (vi - meani)*(vecj[index] - meanj);
+        }, 0)/(sqi*sqj);
+      }
+    }
+    return correlMatrix;
+  }
 
   /** Looks for multi-collinearity conditions between players
       The cond index ("lineup combo") is 0-10 == safe, 10-30 == OKish, 30 - 100 problem
@@ -661,7 +689,8 @@ export class RapmUtils {
         return [player, condIndicesSortedIndex.map((lineupComboIndex) => {
           return vdpRaw[lineupComboIndex][playerIndex];
         })]
-      }).fromPairs().value()
+      }).fromPairs().value(),
+      correlMatrix: RapmUtils.calcPlayerCorrelations(weightMatrix, ctx)
     };
   }
 

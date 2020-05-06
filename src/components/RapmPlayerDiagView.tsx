@@ -66,7 +66,7 @@ const RapmPlayerDiagView: React.FunctionComponent<Props> = (({rapmInfo, player})
           <li>Priors contribution: off=[<b>{priorOff.toFixed(2)}</b>], def=[<b>{priorDef.toFixed(2)}</b>], total=[<b>{totalPrior.toFixed(2)}</b>]</li>
             {priorDiagListEl}
         </ul>
-        (<b>More to come...</b>)
+        (<b>More to come...</b> ... scroll to <a href="#global-rapm-diags">global</a>)
       </span>;
     }
     catch (err) { //Temp issue during reprocessing

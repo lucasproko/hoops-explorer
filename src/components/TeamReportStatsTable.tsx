@@ -31,6 +31,7 @@ import { faCheck } from '@fortawesome/free-solid-svg-icons'
 import GenericTable, { GenericTableOps, GenericTableColProps } from "./GenericTable";
 import { LineupStatsModel } from './LineupStatsTable';
 import GenericTogglingMenuItem from "./GenericTogglingMenuItem";
+import RapmGlobalDiagView from "./RapmGlobalDiagView";
 import RapmPlayerDiagView from "./RapmPlayerDiagView";
 import RepOnOffDiagView from "./RepOnOffDiagView";
 
@@ -385,7 +386,14 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
             showHelp
           ) : [],
       ]);
-    }).value();
+    }).value().concat( // (add global RAPM info)
+      incRapm && (rapmDiagMode != "") && rapmInfo ? [ GenericTableOps.buildTextRow(
+        <RapmGlobalDiagView
+          rapmInfo={rapmInfo}
+          players={[]}
+        />, "small"
+      ) ] : []
+    );
 
   // 3.2] Sorting utils
 
