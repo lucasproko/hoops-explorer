@@ -18,6 +18,9 @@ export const publicStatsAveragesWomen2018_9: Record<string, any> =   {
           "off_ppp" : {
             "value" : 98.68265348740081
           },
+          "off_assist" : {
+            "value" : 0.5603964517885164
+          },
           "off_to" : {
             "value" : 0.21380342475288877
           },
@@ -56,6 +59,9 @@ export const publicStatsAveragesWomen2018_9: Record<string, any> =   {
           },
           "def_ppp" : {
             "value" : 91.2000975122761
+          },
+          "def_assist" : {
+            "value" : 0.5489374282633648
           },
           "def_to" : {
             "value" : 0.22216546904565665

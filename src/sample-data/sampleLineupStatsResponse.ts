@@ -74,6 +74,12 @@ export const sampleLineupStatsResponse = { //TODO: need to change this...
                     "total_off_2prim_made": {
                        "value": 40
                     },
+                    "off_assist" : {
+                      "value" : 0.52
+                    },
+                    "def_assist" : {
+                      "value" : 0.48
+                    },
                     "def_to": {
                        "value": 0.14285714285714285
                     },
@@ -287,6 +293,12 @@ export const sampleLineupStatsResponse = { //TODO: need to change this...
                     "total_off_2prim_made": {
                        "value": 18
                     },
+                    "off_assist" : {
+                      "value" : 0.53
+                    },
+                    "def_assist" : {
+                      "value" : 0.47
+                    },
                     "def_to": {
                        "value": 0.2719298245614035
                     },
@@ -499,6 +511,12 @@ export const sampleLineupStatsResponse = { //TODO: need to change this...
                     },
                     "total_off_2prim_made": {
                        "value": 16
+                    },
+                    "off_assist" : {
+                      "value" : 0.52
+                    },
+                    "def_assist" : {
+                      "value" : 0.48
                     },
                     "def_to": {
                        "value": 0.21649484536082475

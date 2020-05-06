@@ -120,6 +120,12 @@ export const sampleTeamStatsResponse =
           "off_efg" : {
             "value" : 0.5213358070500927
           },
+          "off_assist" : {
+            "value" : 0.51
+          },
+          "def_assist" : {
+            "value" : 0.49
+          },
           "off_to" : {
             "value" : 0.18693574083908657
           },
@@ -185,6 +191,12 @@ export const sampleTeamStatsResponse =
           },
           "total_off_2prim_made" : {
             "value" : 106.0
+          },
+          "off_assist" : {
+            "value" : 0.52
+          },
+          "def_assist" : {
+            "value" : 0.48
           },
           "def_to" : {
             "value" : 0.18120805369127516
@@ -314,6 +326,12 @@ export const sampleTeamStatsResponse =
           },
           "total_off_2prim_made" : {
             "value" : 219.0
+          },
+          "off_assist" : {
+            "value" : 0.53
+          },
+          "def_assist" : {
+            "value" : 0.47
           },
           "def_to" : {
             "value" : 0.12637362637362637

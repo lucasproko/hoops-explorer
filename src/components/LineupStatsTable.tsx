@@ -26,6 +26,7 @@ import { LineupFilterParams, ParamDefaults } from '../utils/FilterModels';
 
 // Util imports
 import { CbbColors } from "../utils/CbbColors"
+import { CommonTableDefs } from "../utils/CommonTableDefs"
 
 export type LineupStatsModel = {
   lineups?: Array<any>,
@@ -68,29 +69,6 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, starting
   }, [ minPoss, maxTableSize, sortBy, filterStr ]);
 
   // 2] Data Model
-  const tableFields = { //accessors vs column metadata
-    "title": GenericTableOps.addTitle("", "", rowSpanCalculator, "small"),
-    "sep0": GenericTableOps.addColSeparator(),
-    "ppp": GenericTableOps.addPtsCol("P/100", "Points per 100 possessions", picker(...CbbColors.pp100)),
-    "adj_ppp": GenericTableOps.addPtsCol("Adj P/100", "Approximate schedule-adjusted Points per 100 possessions", picker(...CbbColors.pp100)),
-    "sep1": GenericTableOps.addColSeparator(),
-    "efg": GenericTableOps.addPctCol("eFG%", "Effective field goal% (3 pointers count 1.5x as much) for selected lineups", picker(...CbbColors.eFG)),
-    "to": GenericTableOps.addPctCol("TO%", "Turnover % for selected lineups", picker(...CbbColors.tOver)),
-    "orb": GenericTableOps.addPctCol("ORB%", "Offensive rebounding % for selected lineups", picker(...CbbColors.oReb)),
-    "ftr": GenericTableOps.addPctCol("FTR", "Free throw rate for selected lineups", picker(...CbbColors.ftr)),
-    "sep2": GenericTableOps.addColSeparator(),
-    "3pr": GenericTableOps.addPctCol("3PR", "Percentage of 3 pointers taken against all field goals", picker(...CbbColors.fgr)),
-    "2pmidr": GenericTableOps.addPctCol("2PR mid", "Percentage of mid range 2 pointers taken against all field goals", picker(...CbbColors.fgr)),
-    "2primr": GenericTableOps.addPctCol("2PR rim", "Percentage of layup/dunk/etc 2 pointers taken against all field goals", picker(...CbbColors.fgr)),
-    "sep3": GenericTableOps.addColSeparator(),
-    "3p": GenericTableOps.addPctCol("3P%", "3 point field goal percentage", picker(...CbbColors.fg3P)),
-    "2p": GenericTableOps.addPctCol("2P%", "2 point field goal percentage", picker(...CbbColors.fg2P)),
-    "2pmid": GenericTableOps.addPctCol("2P% mid", "2 point field goal percentage (mid range)", picker(...CbbColors.fg2P_mid)),
-    "2prim": GenericTableOps.addPctCol("2P% rim", "2 point field goal percentage (layup/dunk/etc)", picker(...CbbColors.fg2P_rim)),
-    "sep4": GenericTableOps.addColSeparator(),
-    "poss": GenericTableOps.addIntCol("Poss", "Total number of possessions for selected lineups", GenericTableOps.defaultColorPicker),
-    "adj_opp": GenericTableOps.addPtsCol("SoS", "Weighted average of the offensive or defensive efficiencies of the lineups' opponents", GenericTableOps.defaultColorPicker),
-  };
 
   // 3] Utils
 
@@ -156,7 +134,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, starting
   // 3.2] Sorting utils
 
   const sortOptions: Array<any> = _.flatten(
-    _.toPairs(tableFields)
+    _.toPairs(CommonTableDefs.lineupTable)
       .filter(keycol => keycol[1].colName && keycol[1].colName != "")
       .map(keycol => {
         return [
@@ -321,7 +299,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, starting
       </Form.Row>
       <Row>
         <Col>
-          <GenericTable tableCopyId="lineupStatsTable" tableFields={tableFields} tableData={tableData}/>
+          <GenericTable tableCopyId="lineupStatsTable" tableFields={CommonTableDefs.lineupTable} tableData={tableData}/>
         </Col>
       </Row>
     </LoadingOverlay>
