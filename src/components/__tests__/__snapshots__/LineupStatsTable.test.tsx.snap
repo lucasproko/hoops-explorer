@@ -199,30 +199,6 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot 1`] = `
                       "value": "asc:diff_efg",
                     },
                     Object {
-                      "label": "A% (Desc. / Offensive)",
-                      "value": "desc:off_assist",
-                    },
-                    Object {
-                      "label": "A% (Asc. / Offensive)",
-                      "value": "asc:off_assist",
-                    },
-                    Object {
-                      "label": "A% (Desc. / Defensive)",
-                      "value": "desc:def_assist",
-                    },
-                    Object {
-                      "label": "A% (Asc. / Defensive)",
-                      "value": "asc:def_assist",
-                    },
-                    Object {
-                      "label": "A% (Desc. / Off-Def)",
-                      "value": "desc:diff_assist",
-                    },
-                    Object {
-                      "label": "A% (Asc. / Off-Def)",
-                      "value": "asc:diff_assist",
-                    },
-                    Object {
                       "label": "TO% (Desc. / Offensive)",
                       "value": "desc:off_to",
                     },
@@ -293,6 +269,30 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot 1`] = `
                     Object {
                       "label": "FTR (Asc. / Off-Def)",
                       "value": "asc:diff_ftr",
+                    },
+                    Object {
+                      "label": "A% (Desc. / Offensive)",
+                      "value": "desc:off_assist",
+                    },
+                    Object {
+                      "label": "A% (Asc. / Offensive)",
+                      "value": "asc:off_assist",
+                    },
+                    Object {
+                      "label": "A% (Desc. / Defensive)",
+                      "value": "desc:def_assist",
+                    },
+                    Object {
+                      "label": "A% (Asc. / Defensive)",
+                      "value": "asc:def_assist",
+                    },
+                    Object {
+                      "label": "A% (Desc. / Off-Def)",
+                      "value": "desc:diff_assist",
+                    },
+                    Object {
+                      "label": "A% (Asc. / Off-Def)",
+                      "value": "asc:diff_assist",
                     },
                     Object {
                       "label": "3PR (Desc. / Offensive)",
@@ -2090,7 +2090,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot 1`] = `
                 "toolTip": "",
                 "widthUnits": 0.5,
               },
-              "sep2": GenericTableColProps {
+              "sep2a": GenericTableColProps {
                 "className": "",
                 "colName": "",
                 "colorPicker": [Function],
@@ -2100,6 +2100,17 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot 1`] = `
                 "rowSpan": [Function],
                 "toolTip": "",
                 "widthUnits": 0.5,
+              },
+              "sep2b": GenericTableColProps {
+                "className": "",
+                "colName": "",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "",
+                "widthUnits": 0.05,
               },
               "sep3": GenericTableColProps {
                 "className": "",

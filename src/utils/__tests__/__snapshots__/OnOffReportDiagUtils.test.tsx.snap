@@ -286,19 +286,6 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
             }
           }
         >
-          A%
-        </th>
-      </div>
-      <div>
-        <th
-          style={
-            Object {
-              "fontWeight": "bold",
-              "textAlign": "center",
-              "width": "4.7%",
-            }
-          }
-        >
           TO%
         </th>
       </div>
@@ -334,6 +321,30 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
             "fontWeight": "bold",
             "textAlign": "center",
             "width": "1.2%",
+          }
+        }
+      >
+        
+      </th>
+      <div>
+        <th
+          style={
+            Object {
+              "fontWeight": "bold",
+              "textAlign": "center",
+              "width": "4.7%",
+            }
+          }
+        >
+          A%
+        </th>
+      </div>
+      <th
+        style={
+          Object {
+            "fontWeight": "bold",
+            "textAlign": "center",
+            "width": "0.1%",
           }
         }
       >
@@ -484,7 +495,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
     <tr>
       <td
         className=""
-        colSpan={22}
+        colSpan={23}
       >
         <div
           className="container"
@@ -680,22 +691,6 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
         rowSpan={1}
         style={
           Object {
-            "backgroundColor": "#ffffff",
-            "fontWeight": "normal",
-            "textAlign": "center",
-            "width": "4.7%",
-          }
-        }
-      >
-        <div>
-          0.0
-        </div>
-      </td>
-      <td
-        className=""
-        rowSpan={1}
-        style={
-          Object {
             "backgroundColor": "#5eaf5e",
             "fontWeight": "normal",
             "textAlign": "center",
@@ -748,6 +743,38 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
             "fontWeight": "normal",
             "textAlign": "center",
             "width": "1.2%",
+          }
+        }
+      >
+        <div>
+          
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#ffffff",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          0.0
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "0.1%",
           }
         }
       >
@@ -1018,22 +1045,6 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
         rowSpan={1}
         style={
           Object {
-            "backgroundColor": "#ffffff",
-            "fontWeight": "normal",
-            "textAlign": "center",
-            "width": "4.7%",
-          }
-        }
-      >
-        <div>
-          0.0
-        </div>
-      </td>
-      <td
-        className=""
-        rowSpan={1}
-        style={
-          Object {
             "backgroundColor": "#ff4343",
             "fontWeight": "normal",
             "textAlign": "center",
@@ -1086,6 +1097,38 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
             "fontWeight": "normal",
             "textAlign": "center",
             "width": "1.2%",
+          }
+        }
+      >
+        <div>
+          
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#ffffff",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          0.0
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "0.1%",
           }
         }
       >
@@ -1378,22 +1421,6 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
         rowSpan={1}
         style={
           Object {
-            "backgroundColor": "#fff3dd",
-            "fontWeight": "normal",
-            "textAlign": "center",
-            "width": "4.7%",
-          }
-        }
-      >
-        <div>
-          52.0
-        </div>
-      </td>
-      <td
-        className=""
-        rowSpan={1}
-        style={
-          Object {
             "backgroundColor": "#b6dbb6",
             "fontWeight": "normal",
             "textAlign": "center",
@@ -1446,6 +1473,38 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
             "fontWeight": "normal",
             "textAlign": "center",
             "width": "1.2%",
+          }
+        }
+      >
+        <div>
+          
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#fff3dd",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          52.0
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "0.1%",
           }
         }
       >
@@ -1716,22 +1775,6 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
         rowSpan={1}
         style={
           Object {
-            "backgroundColor": "#f4fafc",
-            "fontWeight": "normal",
-            "textAlign": "center",
-            "width": "4.7%",
-          }
-        }
-      >
-        <div>
-          48.0
-        </div>
-      </td>
-      <td
-        className=""
-        rowSpan={1}
-        style={
-          Object {
             "backgroundColor": "#ffb6b6",
             "fontWeight": "normal",
             "textAlign": "center",
@@ -1784,6 +1827,38 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
             "fontWeight": "normal",
             "textAlign": "center",
             "width": "1.2%",
+          }
+        }
+      >
+        <div>
+          
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#f4fafc",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          48.0
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "0.1%",
           }
         }
       >
@@ -2088,22 +2163,6 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
         rowSpan={1}
         style={
           Object {
-            "backgroundColor": "#fff3dd",
-            "fontWeight": "normal",
-            "textAlign": "center",
-            "width": "4.7%",
-          }
-        }
-      >
-        <div>
-          52.0
-        </div>
-      </td>
-      <td
-        className=""
-        rowSpan={1}
-        style={
-          Object {
             "backgroundColor": "#ff3c3c",
             "fontWeight": "normal",
             "textAlign": "center",
@@ -2156,6 +2215,38 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
             "fontWeight": "normal",
             "textAlign": "center",
             "width": "1.2%",
+          }
+        }
+      >
+        <div>
+          
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#fff3dd",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          52.0
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "0.1%",
           }
         }
       >
@@ -2426,22 +2517,6 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
         rowSpan={1}
         style={
           Object {
-            "backgroundColor": "#f4fafc",
-            "fontWeight": "normal",
-            "textAlign": "center",
-            "width": "4.7%",
-          }
-        }
-      >
-        <div>
-          48.0
-        </div>
-      </td>
-      <td
-        className=""
-        rowSpan={1}
-        style={
-          Object {
             "backgroundColor": "#0f870f",
             "fontWeight": "normal",
             "textAlign": "center",
@@ -2494,6 +2569,38 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
             "fontWeight": "normal",
             "textAlign": "center",
             "width": "1.2%",
+          }
+        }
+      >
+        <div>
+          
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#f4fafc",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          48.0
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "0.1%",
           }
         }
       >
@@ -2681,7 +2788,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
     <tr>
       <td
         className="small"
-        colSpan={22}
+        colSpan={23}
       >
         <span>
           <b>
@@ -2732,7 +2839,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
       className="divider"
     >
       <td
-        colSpan={22}
+        colSpan={23}
       />
     </tr>
     <tr>
@@ -2837,22 +2944,6 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
         rowSpan={1}
         style={
           Object {
-            "backgroundColor": "#fff6e5",
-            "fontWeight": "normal",
-            "textAlign": "center",
-            "width": "4.7%",
-          }
-        }
-      >
-        <div>
-          1.0
-        </div>
-      </td>
-      <td
-        className=""
-        rowSpan={1}
-        style={
-          Object {
             "backgroundColor": "#bddebd",
             "fontWeight": "normal",
             "textAlign": "center",
@@ -2905,6 +2996,38 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
             "fontWeight": "normal",
             "textAlign": "center",
             "width": "1.2%",
+          }
+        }
+      >
+        <div>
+          
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#fff6e5",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          1.0
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "0.1%",
           }
         }
       >
@@ -3175,22 +3298,6 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
         rowSpan={1}
         style={
           Object {
-            "backgroundColor": "#f7fbfd",
-            "fontWeight": "normal",
-            "textAlign": "center",
-            "width": "4.7%",
-          }
-        }
-      >
-        <div>
-          -1.0
-        </div>
-      </td>
-      <td
-        className=""
-        rowSpan={1}
-        style={
-          Object {
             "backgroundColor": "#72b972",
             "fontWeight": "normal",
             "textAlign": "center",
@@ -3243,6 +3350,38 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
             "fontWeight": "normal",
             "textAlign": "center",
             "width": "1.2%",
+          }
+        }
+      >
+        <div>
+          
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#f7fbfd",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          -1.0
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "0.1%",
           }
         }
       >
@@ -3535,22 +3674,6 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
         rowSpan={1}
         style={
           Object {
-            "backgroundColor": "#ffedcc",
-            "fontWeight": "normal",
-            "textAlign": "center",
-            "width": "4.7%",
-          }
-        }
-      >
-        <div>
-          53.0
-        </div>
-      </td>
-      <td
-        className=""
-        rowSpan={1}
-        style={
-          Object {
             "backgroundColor": "#ffa9a9",
             "fontWeight": "normal",
             "textAlign": "center",
@@ -3603,6 +3726,38 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
             "fontWeight": "normal",
             "textAlign": "center",
             "width": "1.2%",
+          }
+        }
+      >
+        <div>
+          
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#ffedcc",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          53.0
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "0.1%",
           }
         }
       >
@@ -3873,22 +4028,6 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
         rowSpan={1}
         style={
           Object {
-            "backgroundColor": "#eff7fa",
-            "fontWeight": "normal",
-            "textAlign": "center",
-            "width": "4.7%",
-          }
-        }
-      >
-        <div>
-          47.0
-        </div>
-      </td>
-      <td
-        className=""
-        rowSpan={1}
-        style={
-          Object {
             "backgroundColor": "#008000",
             "fontWeight": "normal",
             "textAlign": "center",
@@ -3941,6 +4080,38 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
             "fontWeight": "normal",
             "textAlign": "center",
             "width": "1.2%",
+          }
+        }
+      >
+        <div>
+          
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#eff7fa",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          47.0
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "0.1%",
           }
         }
       >
@@ -4245,22 +4416,6 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
         rowSpan={1}
         style={
           Object {
-            "backgroundColor": "#fff3dd",
-            "fontWeight": "normal",
-            "textAlign": "center",
-            "width": "4.7%",
-          }
-        }
-      >
-        <div>
-          52.0
-        </div>
-      </td>
-      <td
-        className=""
-        rowSpan={1}
-        style={
-          Object {
             "backgroundColor": "#ff3c3c",
             "fontWeight": "normal",
             "textAlign": "center",
@@ -4313,6 +4468,38 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
             "fontWeight": "normal",
             "textAlign": "center",
             "width": "1.2%",
+          }
+        }
+      >
+        <div>
+          
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#fff3dd",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          52.0
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "0.1%",
           }
         }
       >
@@ -4583,22 +4770,6 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
         rowSpan={1}
         style={
           Object {
-            "backgroundColor": "#f4fafc",
-            "fontWeight": "normal",
-            "textAlign": "center",
-            "width": "4.7%",
-          }
-        }
-      >
-        <div>
-          48.0
-        </div>
-      </td>
-      <td
-        className=""
-        rowSpan={1}
-        style={
-          Object {
             "backgroundColor": "#0f870f",
             "fontWeight": "normal",
             "textAlign": "center",
@@ -4651,6 +4822,38 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
             "fontWeight": "normal",
             "textAlign": "center",
             "width": "1.2%",
+          }
+        }
+      >
+        <div>
+          
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": "#f4fafc",
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "4.7%",
+          }
+        }
+      >
+        <div>
+          48.0
+        </div>
+      </td>
+      <td
+        className=""
+        rowSpan={1}
+        style={
+          Object {
+            "backgroundColor": undefined,
+            "fontWeight": "normal",
+            "textAlign": "center",
+            "width": "0.1%",
           }
         }
       >
@@ -4838,7 +5041,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
     <tr>
       <td
         className="small"
-        colSpan={22}
+        colSpan={23}
       >
         <span>
           <b>
@@ -4889,14 +5092,14 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
       className="divider"
     >
       <td
-        colSpan={22}
+        colSpan={23}
       />
     </tr>
     <tr
       className="divider"
     >
       <td
-        colSpan={22}
+        colSpan={23}
       />
     </tr>
   </tbody>

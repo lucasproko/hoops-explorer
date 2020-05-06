@@ -371,102 +371,6 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (all
                       "value": "asc:diff_efg:rep",
                     },
                     Object {
-                      "label": "'On' A% (Desc. / Offensive)",
-                      "value": "desc:off_assist:on",
-                    },
-                    Object {
-                      "label": "'Off' A% (Desc. / Offensive)",
-                      "value": "desc:off_assist:off",
-                    },
-                    Object {
-                      "label": "'On-Off' A% (Desc. / Offensive)",
-                      "value": "desc:off_assist:delta",
-                    },
-                    Object {
-                      "label": "'r:On-Off' A% (Desc. / Offensive)",
-                      "value": "desc:off_assist:rep",
-                    },
-                    Object {
-                      "label": "'On' A% (Asc. / Offensive)",
-                      "value": "asc:off_assist:on",
-                    },
-                    Object {
-                      "label": "'Off' A% (Asc. / Offensive)",
-                      "value": "asc:off_assist:off",
-                    },
-                    Object {
-                      "label": "'On-Off' A% (Asc. / Offensive)",
-                      "value": "asc:off_assist:delta",
-                    },
-                    Object {
-                      "label": "'r:On-Off' A% (Asc. / Offensive)",
-                      "value": "asc:off_assist:rep",
-                    },
-                    Object {
-                      "label": "'On' A% (Desc. / Defensive)",
-                      "value": "desc:def_assist:on",
-                    },
-                    Object {
-                      "label": "'Off' A% (Desc. / Defensive)",
-                      "value": "desc:def_assist:off",
-                    },
-                    Object {
-                      "label": "'On-Off' A% (Desc. / Defensive)",
-                      "value": "desc:def_assist:delta",
-                    },
-                    Object {
-                      "label": "'r:On-Off' A% (Desc. / Defensive)",
-                      "value": "desc:def_assist:rep",
-                    },
-                    Object {
-                      "label": "'On' A% (Asc. / Defensive)",
-                      "value": "asc:def_assist:on",
-                    },
-                    Object {
-                      "label": "'Off' A% (Asc. / Defensive)",
-                      "value": "asc:def_assist:off",
-                    },
-                    Object {
-                      "label": "'On-Off' A% (Asc. / Defensive)",
-                      "value": "asc:def_assist:delta",
-                    },
-                    Object {
-                      "label": "'r:On-Off' A% (Asc. / Defensive)",
-                      "value": "asc:def_assist:rep",
-                    },
-                    Object {
-                      "label": "'On' A% (Desc. / Off-Def)",
-                      "value": "desc:diff_assist:on",
-                    },
-                    Object {
-                      "label": "'Off' A% (Desc. / Off-Def)",
-                      "value": "desc:diff_assist:off",
-                    },
-                    Object {
-                      "label": "'On-Off' A% (Desc. / Off-Def)",
-                      "value": "desc:diff_assist:delta",
-                    },
-                    Object {
-                      "label": "'r:On-Off' A% (Desc. / Off-Def)",
-                      "value": "desc:diff_assist:rep",
-                    },
-                    Object {
-                      "label": "'On' A% (Asc. / Off-Def)",
-                      "value": "asc:diff_assist:on",
-                    },
-                    Object {
-                      "label": "'Off' A% (Asc. / Off-Def)",
-                      "value": "asc:diff_assist:off",
-                    },
-                    Object {
-                      "label": "'On-Off' A% (Asc. / Off-Def)",
-                      "value": "asc:diff_assist:delta",
-                    },
-                    Object {
-                      "label": "'r:On-Off' A% (Asc. / Off-Def)",
-                      "value": "asc:diff_assist:rep",
-                    },
-                    Object {
                       "label": "'On' TO% (Desc. / Offensive)",
                       "value": "desc:off_to:on",
                     },
@@ -753,6 +657,102 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (all
                     Object {
                       "label": "'r:On-Off' FTR (Asc. / Off-Def)",
                       "value": "asc:diff_ftr:rep",
+                    },
+                    Object {
+                      "label": "'On' A% (Desc. / Offensive)",
+                      "value": "desc:off_assist:on",
+                    },
+                    Object {
+                      "label": "'Off' A% (Desc. / Offensive)",
+                      "value": "desc:off_assist:off",
+                    },
+                    Object {
+                      "label": "'On-Off' A% (Desc. / Offensive)",
+                      "value": "desc:off_assist:delta",
+                    },
+                    Object {
+                      "label": "'r:On-Off' A% (Desc. / Offensive)",
+                      "value": "desc:off_assist:rep",
+                    },
+                    Object {
+                      "label": "'On' A% (Asc. / Offensive)",
+                      "value": "asc:off_assist:on",
+                    },
+                    Object {
+                      "label": "'Off' A% (Asc. / Offensive)",
+                      "value": "asc:off_assist:off",
+                    },
+                    Object {
+                      "label": "'On-Off' A% (Asc. / Offensive)",
+                      "value": "asc:off_assist:delta",
+                    },
+                    Object {
+                      "label": "'r:On-Off' A% (Asc. / Offensive)",
+                      "value": "asc:off_assist:rep",
+                    },
+                    Object {
+                      "label": "'On' A% (Desc. / Defensive)",
+                      "value": "desc:def_assist:on",
+                    },
+                    Object {
+                      "label": "'Off' A% (Desc. / Defensive)",
+                      "value": "desc:def_assist:off",
+                    },
+                    Object {
+                      "label": "'On-Off' A% (Desc. / Defensive)",
+                      "value": "desc:def_assist:delta",
+                    },
+                    Object {
+                      "label": "'r:On-Off' A% (Desc. / Defensive)",
+                      "value": "desc:def_assist:rep",
+                    },
+                    Object {
+                      "label": "'On' A% (Asc. / Defensive)",
+                      "value": "asc:def_assist:on",
+                    },
+                    Object {
+                      "label": "'Off' A% (Asc. / Defensive)",
+                      "value": "asc:def_assist:off",
+                    },
+                    Object {
+                      "label": "'On-Off' A% (Asc. / Defensive)",
+                      "value": "asc:def_assist:delta",
+                    },
+                    Object {
+                      "label": "'r:On-Off' A% (Asc. / Defensive)",
+                      "value": "asc:def_assist:rep",
+                    },
+                    Object {
+                      "label": "'On' A% (Desc. / Off-Def)",
+                      "value": "desc:diff_assist:on",
+                    },
+                    Object {
+                      "label": "'Off' A% (Desc. / Off-Def)",
+                      "value": "desc:diff_assist:off",
+                    },
+                    Object {
+                      "label": "'On-Off' A% (Desc. / Off-Def)",
+                      "value": "desc:diff_assist:delta",
+                    },
+                    Object {
+                      "label": "'r:On-Off' A% (Desc. / Off-Def)",
+                      "value": "desc:diff_assist:rep",
+                    },
+                    Object {
+                      "label": "'On' A% (Asc. / Off-Def)",
+                      "value": "asc:diff_assist:on",
+                    },
+                    Object {
+                      "label": "'Off' A% (Asc. / Off-Def)",
+                      "value": "asc:diff_assist:off",
+                    },
+                    Object {
+                      "label": "'On-Off' A% (Asc. / Off-Def)",
+                      "value": "asc:diff_assist:delta",
+                    },
+                    Object {
+                      "label": "'r:On-Off' A% (Asc. / Off-Def)",
+                      "value": "asc:diff_assist:rep",
                     },
                     Object {
                       "label": "'On' 3PR (Desc. / Offensive)",
@@ -2134,7 +2134,7 @@ Adj: [30.1]-[0.0]=[30.1]
                     "toolTip": "",
                     "widthUnits": 0.5,
                   },
-                  "sep2": GenericTableColProps {
+                  "sep2a": GenericTableColProps {
                     "className": "",
                     "colName": "",
                     "colorPicker": [Function],
@@ -2144,6 +2144,17 @@ Adj: [30.1]-[0.0]=[30.1]
                     "rowSpan": [Function],
                     "toolTip": "",
                     "widthUnits": 0.5,
+                  },
+                  "sep2b": GenericTableColProps {
+                    "className": "",
+                    "colName": "",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "",
+                    "widthUnits": 0.05,
                   },
                   "sep3": GenericTableColProps {
                     "className": "",
@@ -2969,7 +2980,18 @@ Adj: [NaN]",
                     "toolTip": "",
                     "widthUnits": 0.5,
                   },
-                  "sep2": GenericTableColProps {
+                  "sep2-1": GenericTableColProps {
+                    "className": "",
+                    "colName": "",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "",
+                    "widthUnits": 0.5,
+                  },
+                  "sep2-2": GenericTableColProps {
                     "className": "",
                     "colName": "",
                     "colorPicker": [Function],
@@ -3225,7 +3247,18 @@ Adj: [NaN]",
                     "toolTip": "",
                     "widthUnits": 0.5,
                   },
-                  "sep2": GenericTableColProps {
+                  "sep2-1": GenericTableColProps {
+                    "className": "",
+                    "colName": "",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "",
+                    "widthUnits": 0.5,
+                  },
+                  "sep2-2": GenericTableColProps {
                     "className": "",
                     "colName": "",
                     "colorPicker": [Function],
@@ -3742,7 +3775,7 @@ Adj: [30.1]-[0.0]=[30.1]
                     "toolTip": "",
                     "widthUnits": 0.5,
                   },
-                  "sep2": GenericTableColProps {
+                  "sep2a": GenericTableColProps {
                     "className": "",
                     "colName": "",
                     "colorPicker": [Function],
@@ -3752,6 +3785,17 @@ Adj: [30.1]-[0.0]=[30.1]
                     "rowSpan": [Function],
                     "toolTip": "",
                     "widthUnits": 0.5,
+                  },
+                  "sep2b": GenericTableColProps {
+                    "className": "",
+                    "colName": "",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "",
+                    "widthUnits": 0.05,
                   },
                   "sep3": GenericTableColProps {
                     "className": "",
@@ -4577,7 +4621,18 @@ Adj: [NaN]",
                     "toolTip": "",
                     "widthUnits": 0.5,
                   },
-                  "sep2": GenericTableColProps {
+                  "sep2-1": GenericTableColProps {
+                    "className": "",
+                    "colName": "",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "",
+                    "widthUnits": 0.5,
+                  },
+                  "sep2-2": GenericTableColProps {
                     "className": "",
                     "colName": "",
                     "colorPicker": [Function],
@@ -4833,7 +4888,18 @@ Adj: [NaN]",
                     "toolTip": "",
                     "widthUnits": 0.5,
                   },
-                  "sep2": GenericTableColProps {
+                  "sep2-1": GenericTableColProps {
+                    "className": "",
+                    "colName": "",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "",
+                    "widthUnits": 0.5,
+                  },
+                  "sep2-2": GenericTableColProps {
                     "className": "",
                     "colName": "",
                     "colorPicker": [Function],
@@ -5350,7 +5416,7 @@ Adj: [30.1]-[0.0]=[30.1]
                     "toolTip": "",
                     "widthUnits": 0.5,
                   },
-                  "sep2": GenericTableColProps {
+                  "sep2a": GenericTableColProps {
                     "className": "",
                     "colName": "",
                     "colorPicker": [Function],
@@ -5360,6 +5426,17 @@ Adj: [30.1]-[0.0]=[30.1]
                     "rowSpan": [Function],
                     "toolTip": "",
                     "widthUnits": 0.5,
+                  },
+                  "sep2b": GenericTableColProps {
+                    "className": "",
+                    "colName": "",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "",
+                    "widthUnits": 0.05,
                   },
                   "sep3": GenericTableColProps {
                     "className": "",
@@ -6185,7 +6262,18 @@ Adj: [NaN]",
                     "toolTip": "",
                     "widthUnits": 0.5,
                   },
-                  "sep2": GenericTableColProps {
+                  "sep2-1": GenericTableColProps {
+                    "className": "",
+                    "colName": "",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "",
+                    "widthUnits": 0.5,
+                  },
+                  "sep2-2": GenericTableColProps {
                     "className": "",
                     "colName": "",
                     "colorPicker": [Function],
@@ -6441,7 +6529,18 @@ Adj: [NaN]",
                     "toolTip": "",
                     "widthUnits": 0.5,
                   },
-                  "sep2": GenericTableColProps {
+                  "sep2-1": GenericTableColProps {
+                    "className": "",
+                    "colName": "",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "",
+                    "widthUnits": 0.5,
+                  },
+                  "sep2-2": GenericTableColProps {
                     "className": "",
                     "colName": "",
                     "colorPicker": [Function],
@@ -6958,7 +7057,7 @@ Adj: [27.3]-[38.7]=[-11.5]
                     "toolTip": "",
                     "widthUnits": 0.5,
                   },
-                  "sep2": GenericTableColProps {
+                  "sep2a": GenericTableColProps {
                     "className": "",
                     "colName": "",
                     "colorPicker": [Function],
@@ -6968,6 +7067,17 @@ Adj: [27.3]-[38.7]=[-11.5]
                     "rowSpan": [Function],
                     "toolTip": "",
                     "widthUnits": 0.5,
+                  },
+                  "sep2b": GenericTableColProps {
+                    "className": "",
+                    "colName": "",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "",
+                    "widthUnits": 0.05,
                   },
                   "sep3": GenericTableColProps {
                     "className": "",
@@ -7967,7 +8077,18 @@ Adj: [-1.5]",
                     "toolTip": "",
                     "widthUnits": 0.5,
                   },
-                  "sep2": GenericTableColProps {
+                  "sep2-1": GenericTableColProps {
+                    "className": "",
+                    "colName": "",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "",
+                    "widthUnits": 0.5,
+                  },
+                  "sep2-2": GenericTableColProps {
                     "className": "",
                     "colName": "",
                     "colorPicker": [Function],
@@ -8397,7 +8518,18 @@ Adj: [-1.5]",
                     "toolTip": "",
                     "widthUnits": 0.5,
                   },
-                  "sep2": GenericTableColProps {
+                  "sep2-1": GenericTableColProps {
+                    "className": "",
+                    "colName": "",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "",
+                    "widthUnits": 0.5,
+                  },
+                  "sep2-2": GenericTableColProps {
                     "className": "",
                     "colName": "",
                     "colorPicker": [Function],
@@ -8914,7 +9046,7 @@ Adj: [33.5]-[20.7]=[12.7]
                     "toolTip": "",
                     "widthUnits": 0.5,
                   },
-                  "sep2": GenericTableColProps {
+                  "sep2a": GenericTableColProps {
                     "className": "",
                     "colName": "",
                     "colorPicker": [Function],
@@ -8924,6 +9056,17 @@ Adj: [33.5]-[20.7]=[12.7]
                     "rowSpan": [Function],
                     "toolTip": "",
                     "widthUnits": 0.5,
+                  },
+                  "sep2b": GenericTableColProps {
+                    "className": "",
+                    "colName": "",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "",
+                    "widthUnits": 0.05,
                   },
                   "sep3": GenericTableColProps {
                     "className": "",
@@ -9923,7 +10066,18 @@ Adj: [1.7]",
                     "toolTip": "",
                     "widthUnits": 0.5,
                   },
-                  "sep2": GenericTableColProps {
+                  "sep2-1": GenericTableColProps {
+                    "className": "",
+                    "colName": "",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "",
+                    "widthUnits": 0.5,
+                  },
+                  "sep2-2": GenericTableColProps {
                     "className": "",
                     "colName": "",
                     "colorPicker": [Function],
@@ -10353,7 +10507,18 @@ Adj: [1.7]",
                     "toolTip": "",
                     "widthUnits": 0.5,
                   },
-                  "sep2": GenericTableColProps {
+                  "sep2-1": GenericTableColProps {
+                    "className": "",
+                    "colName": "",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "",
+                    "widthUnits": 0.5,
+                  },
+                  "sep2-2": GenericTableColProps {
                     "className": "",
                     "colName": "",
                     "colorPicker": [Function],
@@ -10870,7 +11035,7 @@ Adj: [29.4]-[30.7]=[-1.4]
                     "toolTip": "",
                     "widthUnits": 0.5,
                   },
-                  "sep2": GenericTableColProps {
+                  "sep2a": GenericTableColProps {
                     "className": "",
                     "colName": "",
                     "colorPicker": [Function],
@@ -10880,6 +11045,17 @@ Adj: [29.4]-[30.7]=[-1.4]
                     "rowSpan": [Function],
                     "toolTip": "",
                     "widthUnits": 0.5,
+                  },
+                  "sep2b": GenericTableColProps {
+                    "className": "",
+                    "colName": "",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "",
+                    "widthUnits": 0.05,
                   },
                   "sep3": GenericTableColProps {
                     "className": "",
@@ -11879,7 +12055,18 @@ Adj: [-0.2]",
                     "toolTip": "",
                     "widthUnits": 0.5,
                   },
-                  "sep2": GenericTableColProps {
+                  "sep2-1": GenericTableColProps {
+                    "className": "",
+                    "colName": "",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "",
+                    "widthUnits": 0.5,
+                  },
+                  "sep2-2": GenericTableColProps {
                     "className": "",
                     "colName": "",
                     "colorPicker": [Function],
@@ -12309,7 +12496,18 @@ Adj: [-0.2]",
                     "toolTip": "",
                     "widthUnits": 0.5,
                   },
-                  "sep2": GenericTableColProps {
+                  "sep2-1": GenericTableColProps {
+                    "className": "",
+                    "colName": "",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "",
+                    "widthUnits": 0.5,
+                  },
+                  "sep2-2": GenericTableColProps {
                     "className": "",
                     "colName": "",
                     "colorPicker": [Function],
@@ -12624,7 +12822,7 @@ Adj: [-0.2]",
                 "toolTip": "",
                 "widthUnits": 0.5,
               },
-              "sep2": GenericTableColProps {
+              "sep2a": GenericTableColProps {
                 "className": "",
                 "colName": "",
                 "colorPicker": [Function],
@@ -12634,6 +12832,17 @@ Adj: [-0.2]",
                 "rowSpan": [Function],
                 "toolTip": "",
                 "widthUnits": 0.5,
+              },
+              "sep2b": GenericTableColProps {
+                "className": "",
+                "colName": "",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "",
+                "widthUnits": 0.05,
               },
               "sep3": GenericTableColProps {
                 "className": "",
@@ -13059,102 +13268,6 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (rep
                       "value": "asc:diff_efg:rep",
                     },
                     Object {
-                      "label": "'On' A% (Desc. / Offensive)",
-                      "value": "desc:off_assist:on",
-                    },
-                    Object {
-                      "label": "'Off' A% (Desc. / Offensive)",
-                      "value": "desc:off_assist:off",
-                    },
-                    Object {
-                      "label": "'On-Off' A% (Desc. / Offensive)",
-                      "value": "desc:off_assist:delta",
-                    },
-                    Object {
-                      "label": "'r:On-Off' A% (Desc. / Offensive)",
-                      "value": "desc:off_assist:rep",
-                    },
-                    Object {
-                      "label": "'On' A% (Asc. / Offensive)",
-                      "value": "asc:off_assist:on",
-                    },
-                    Object {
-                      "label": "'Off' A% (Asc. / Offensive)",
-                      "value": "asc:off_assist:off",
-                    },
-                    Object {
-                      "label": "'On-Off' A% (Asc. / Offensive)",
-                      "value": "asc:off_assist:delta",
-                    },
-                    Object {
-                      "label": "'r:On-Off' A% (Asc. / Offensive)",
-                      "value": "asc:off_assist:rep",
-                    },
-                    Object {
-                      "label": "'On' A% (Desc. / Defensive)",
-                      "value": "desc:def_assist:on",
-                    },
-                    Object {
-                      "label": "'Off' A% (Desc. / Defensive)",
-                      "value": "desc:def_assist:off",
-                    },
-                    Object {
-                      "label": "'On-Off' A% (Desc. / Defensive)",
-                      "value": "desc:def_assist:delta",
-                    },
-                    Object {
-                      "label": "'r:On-Off' A% (Desc. / Defensive)",
-                      "value": "desc:def_assist:rep",
-                    },
-                    Object {
-                      "label": "'On' A% (Asc. / Defensive)",
-                      "value": "asc:def_assist:on",
-                    },
-                    Object {
-                      "label": "'Off' A% (Asc. / Defensive)",
-                      "value": "asc:def_assist:off",
-                    },
-                    Object {
-                      "label": "'On-Off' A% (Asc. / Defensive)",
-                      "value": "asc:def_assist:delta",
-                    },
-                    Object {
-                      "label": "'r:On-Off' A% (Asc. / Defensive)",
-                      "value": "asc:def_assist:rep",
-                    },
-                    Object {
-                      "label": "'On' A% (Desc. / Off-Def)",
-                      "value": "desc:diff_assist:on",
-                    },
-                    Object {
-                      "label": "'Off' A% (Desc. / Off-Def)",
-                      "value": "desc:diff_assist:off",
-                    },
-                    Object {
-                      "label": "'On-Off' A% (Desc. / Off-Def)",
-                      "value": "desc:diff_assist:delta",
-                    },
-                    Object {
-                      "label": "'r:On-Off' A% (Desc. / Off-Def)",
-                      "value": "desc:diff_assist:rep",
-                    },
-                    Object {
-                      "label": "'On' A% (Asc. / Off-Def)",
-                      "value": "asc:diff_assist:on",
-                    },
-                    Object {
-                      "label": "'Off' A% (Asc. / Off-Def)",
-                      "value": "asc:diff_assist:off",
-                    },
-                    Object {
-                      "label": "'On-Off' A% (Asc. / Off-Def)",
-                      "value": "asc:diff_assist:delta",
-                    },
-                    Object {
-                      "label": "'r:On-Off' A% (Asc. / Off-Def)",
-                      "value": "asc:diff_assist:rep",
-                    },
-                    Object {
                       "label": "'On' TO% (Desc. / Offensive)",
                       "value": "desc:off_to:on",
                     },
@@ -13441,6 +13554,102 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (rep
                     Object {
                       "label": "'r:On-Off' FTR (Asc. / Off-Def)",
                       "value": "asc:diff_ftr:rep",
+                    },
+                    Object {
+                      "label": "'On' A% (Desc. / Offensive)",
+                      "value": "desc:off_assist:on",
+                    },
+                    Object {
+                      "label": "'Off' A% (Desc. / Offensive)",
+                      "value": "desc:off_assist:off",
+                    },
+                    Object {
+                      "label": "'On-Off' A% (Desc. / Offensive)",
+                      "value": "desc:off_assist:delta",
+                    },
+                    Object {
+                      "label": "'r:On-Off' A% (Desc. / Offensive)",
+                      "value": "desc:off_assist:rep",
+                    },
+                    Object {
+                      "label": "'On' A% (Asc. / Offensive)",
+                      "value": "asc:off_assist:on",
+                    },
+                    Object {
+                      "label": "'Off' A% (Asc. / Offensive)",
+                      "value": "asc:off_assist:off",
+                    },
+                    Object {
+                      "label": "'On-Off' A% (Asc. / Offensive)",
+                      "value": "asc:off_assist:delta",
+                    },
+                    Object {
+                      "label": "'r:On-Off' A% (Asc. / Offensive)",
+                      "value": "asc:off_assist:rep",
+                    },
+                    Object {
+                      "label": "'On' A% (Desc. / Defensive)",
+                      "value": "desc:def_assist:on",
+                    },
+                    Object {
+                      "label": "'Off' A% (Desc. / Defensive)",
+                      "value": "desc:def_assist:off",
+                    },
+                    Object {
+                      "label": "'On-Off' A% (Desc. / Defensive)",
+                      "value": "desc:def_assist:delta",
+                    },
+                    Object {
+                      "label": "'r:On-Off' A% (Desc. / Defensive)",
+                      "value": "desc:def_assist:rep",
+                    },
+                    Object {
+                      "label": "'On' A% (Asc. / Defensive)",
+                      "value": "asc:def_assist:on",
+                    },
+                    Object {
+                      "label": "'Off' A% (Asc. / Defensive)",
+                      "value": "asc:def_assist:off",
+                    },
+                    Object {
+                      "label": "'On-Off' A% (Asc. / Defensive)",
+                      "value": "asc:def_assist:delta",
+                    },
+                    Object {
+                      "label": "'r:On-Off' A% (Asc. / Defensive)",
+                      "value": "asc:def_assist:rep",
+                    },
+                    Object {
+                      "label": "'On' A% (Desc. / Off-Def)",
+                      "value": "desc:diff_assist:on",
+                    },
+                    Object {
+                      "label": "'Off' A% (Desc. / Off-Def)",
+                      "value": "desc:diff_assist:off",
+                    },
+                    Object {
+                      "label": "'On-Off' A% (Desc. / Off-Def)",
+                      "value": "desc:diff_assist:delta",
+                    },
+                    Object {
+                      "label": "'r:On-Off' A% (Desc. / Off-Def)",
+                      "value": "desc:diff_assist:rep",
+                    },
+                    Object {
+                      "label": "'On' A% (Asc. / Off-Def)",
+                      "value": "asc:diff_assist:on",
+                    },
+                    Object {
+                      "label": "'Off' A% (Asc. / Off-Def)",
+                      "value": "asc:diff_assist:off",
+                    },
+                    Object {
+                      "label": "'On-Off' A% (Asc. / Off-Def)",
+                      "value": "asc:diff_assist:delta",
+                    },
+                    Object {
+                      "label": "'r:On-Off' A% (Asc. / Off-Def)",
+                      "value": "asc:diff_assist:rep",
                     },
                     Object {
                       "label": "'On' 3PR (Desc. / Offensive)",
@@ -14822,7 +15031,7 @@ Adj: [30.1]-[0.0]=[30.1]
                     "toolTip": "",
                     "widthUnits": 0.5,
                   },
-                  "sep2": GenericTableColProps {
+                  "sep2a": GenericTableColProps {
                     "className": "",
                     "colName": "",
                     "colorPicker": [Function],
@@ -14832,6 +15041,17 @@ Adj: [30.1]-[0.0]=[30.1]
                     "rowSpan": [Function],
                     "toolTip": "",
                     "widthUnits": 0.5,
+                  },
+                  "sep2b": GenericTableColProps {
+                    "className": "",
+                    "colName": "",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "",
+                    "widthUnits": 0.05,
                   },
                   "sep3": GenericTableColProps {
                     "className": "",
@@ -15658,7 +15878,18 @@ Adj: [NaN]",
                     "toolTip": "",
                     "widthUnits": 0.5,
                   },
-                  "sep2": GenericTableColProps {
+                  "sep2-1": GenericTableColProps {
+                    "className": "",
+                    "colName": "",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "",
+                    "widthUnits": 0.5,
+                  },
+                  "sep2-2": GenericTableColProps {
                     "className": "",
                     "colName": "",
                     "colorPicker": [Function],
@@ -15915,7 +16146,18 @@ Adj: [NaN]",
                     "toolTip": "",
                     "widthUnits": 0.5,
                   },
-                  "sep2": GenericTableColProps {
+                  "sep2-1": GenericTableColProps {
+                    "className": "",
+                    "colName": "",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "",
+                    "widthUnits": 0.5,
+                  },
+                  "sep2-2": GenericTableColProps {
                     "className": "",
                     "colName": "",
                     "colorPicker": [Function],
@@ -16891,7 +17133,7 @@ Adj: [30.1]-[0.0]=[30.1]
                     "toolTip": "",
                     "widthUnits": 0.5,
                   },
-                  "sep2": GenericTableColProps {
+                  "sep2a": GenericTableColProps {
                     "className": "",
                     "colName": "",
                     "colorPicker": [Function],
@@ -16901,6 +17143,17 @@ Adj: [30.1]-[0.0]=[30.1]
                     "rowSpan": [Function],
                     "toolTip": "",
                     "widthUnits": 0.5,
+                  },
+                  "sep2b": GenericTableColProps {
+                    "className": "",
+                    "colName": "",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "",
+                    "widthUnits": 0.05,
                   },
                   "sep3": GenericTableColProps {
                     "className": "",
@@ -17727,7 +17980,18 @@ Adj: [NaN]",
                     "toolTip": "",
                     "widthUnits": 0.5,
                   },
-                  "sep2": GenericTableColProps {
+                  "sep2-1": GenericTableColProps {
+                    "className": "",
+                    "colName": "",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "",
+                    "widthUnits": 0.5,
+                  },
+                  "sep2-2": GenericTableColProps {
                     "className": "",
                     "colName": "",
                     "colorPicker": [Function],
@@ -17984,7 +18248,18 @@ Adj: [NaN]",
                     "toolTip": "",
                     "widthUnits": 0.5,
                   },
-                  "sep2": GenericTableColProps {
+                  "sep2-1": GenericTableColProps {
+                    "className": "",
+                    "colName": "",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "",
+                    "widthUnits": 0.5,
+                  },
+                  "sep2-2": GenericTableColProps {
                     "className": "",
                     "colName": "",
                     "colorPicker": [Function],
@@ -18960,7 +19235,7 @@ Adj: [30.1]-[0.0]=[30.1]
                     "toolTip": "",
                     "widthUnits": 0.5,
                   },
-                  "sep2": GenericTableColProps {
+                  "sep2a": GenericTableColProps {
                     "className": "",
                     "colName": "",
                     "colorPicker": [Function],
@@ -18970,6 +19245,17 @@ Adj: [30.1]-[0.0]=[30.1]
                     "rowSpan": [Function],
                     "toolTip": "",
                     "widthUnits": 0.5,
+                  },
+                  "sep2b": GenericTableColProps {
+                    "className": "",
+                    "colName": "",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "",
+                    "widthUnits": 0.05,
                   },
                   "sep3": GenericTableColProps {
                     "className": "",
@@ -19796,7 +20082,18 @@ Adj: [NaN]",
                     "toolTip": "",
                     "widthUnits": 0.5,
                   },
-                  "sep2": GenericTableColProps {
+                  "sep2-1": GenericTableColProps {
+                    "className": "",
+                    "colName": "",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "",
+                    "widthUnits": 0.5,
+                  },
+                  "sep2-2": GenericTableColProps {
                     "className": "",
                     "colName": "",
                     "colorPicker": [Function],
@@ -20053,7 +20350,18 @@ Adj: [NaN]",
                     "toolTip": "",
                     "widthUnits": 0.5,
                   },
-                  "sep2": GenericTableColProps {
+                  "sep2-1": GenericTableColProps {
+                    "className": "",
+                    "colName": "",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "",
+                    "widthUnits": 0.5,
+                  },
+                  "sep2-2": GenericTableColProps {
                     "className": "",
                     "colName": "",
                     "colorPicker": [Function],
@@ -21029,7 +21337,7 @@ Adj: [27.3]-[38.7]=[-11.5]
                     "toolTip": "",
                     "widthUnits": 0.5,
                   },
-                  "sep2": GenericTableColProps {
+                  "sep2a": GenericTableColProps {
                     "className": "",
                     "colName": "",
                     "colorPicker": [Function],
@@ -21039,6 +21347,17 @@ Adj: [27.3]-[38.7]=[-11.5]
                     "rowSpan": [Function],
                     "toolTip": "",
                     "widthUnits": 0.5,
+                  },
+                  "sep2b": GenericTableColProps {
+                    "className": "",
+                    "colName": "",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "",
+                    "widthUnits": 0.05,
                   },
                   "sep3": GenericTableColProps {
                     "className": "",
@@ -23646,7 +23965,18 @@ Adj: [-1.5]",
                     "toolTip": "",
                     "widthUnits": 0.5,
                   },
-                  "sep2": GenericTableColProps {
+                  "sep2-1": GenericTableColProps {
+                    "className": "",
+                    "colName": "",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "",
+                    "widthUnits": 0.5,
+                  },
+                  "sep2-2": GenericTableColProps {
                     "className": "",
                     "colName": "",
                     "colorPicker": [Function],
@@ -25684,7 +26014,18 @@ Adj: [-1.5]",
                     "toolTip": "",
                     "widthUnits": 0.5,
                   },
-                  "sep2": GenericTableColProps {
+                  "sep2-1": GenericTableColProps {
+                    "className": "",
+                    "colName": "",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "",
+                    "widthUnits": 0.5,
+                  },
+                  "sep2-2": GenericTableColProps {
                     "className": "",
                     "colName": "",
                     "colorPicker": [Function],
@@ -30122,7 +30463,7 @@ Adj: [33.5]-[20.7]=[12.7]
                     "toolTip": "",
                     "widthUnits": 0.5,
                   },
-                  "sep2": GenericTableColProps {
+                  "sep2a": GenericTableColProps {
                     "className": "",
                     "colName": "",
                     "colorPicker": [Function],
@@ -30132,6 +30473,17 @@ Adj: [33.5]-[20.7]=[12.7]
                     "rowSpan": [Function],
                     "toolTip": "",
                     "widthUnits": 0.5,
+                  },
+                  "sep2b": GenericTableColProps {
+                    "className": "",
+                    "colName": "",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "",
+                    "widthUnits": 0.05,
                   },
                   "sep3": GenericTableColProps {
                     "className": "",
@@ -32739,7 +33091,18 @@ Adj: [1.7]",
                     "toolTip": "",
                     "widthUnits": 0.5,
                   },
-                  "sep2": GenericTableColProps {
+                  "sep2-1": GenericTableColProps {
+                    "className": "",
+                    "colName": "",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "",
+                    "widthUnits": 0.5,
+                  },
+                  "sep2-2": GenericTableColProps {
                     "className": "",
                     "colName": "",
                     "colorPicker": [Function],
@@ -34777,7 +35140,18 @@ Adj: [1.7]",
                     "toolTip": "",
                     "widthUnits": 0.5,
                   },
-                  "sep2": GenericTableColProps {
+                  "sep2-1": GenericTableColProps {
+                    "className": "",
+                    "colName": "",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "",
+                    "widthUnits": 0.5,
+                  },
+                  "sep2-2": GenericTableColProps {
                     "className": "",
                     "colName": "",
                     "colorPicker": [Function],
@@ -39215,7 +39589,7 @@ Adj: [29.4]-[30.7]=[-1.4]
                     "toolTip": "",
                     "widthUnits": 0.5,
                   },
-                  "sep2": GenericTableColProps {
+                  "sep2a": GenericTableColProps {
                     "className": "",
                     "colName": "",
                     "colorPicker": [Function],
@@ -39225,6 +39599,17 @@ Adj: [29.4]-[30.7]=[-1.4]
                     "rowSpan": [Function],
                     "toolTip": "",
                     "widthUnits": 0.5,
+                  },
+                  "sep2b": GenericTableColProps {
+                    "className": "",
+                    "colName": "",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "",
+                    "widthUnits": 0.05,
                   },
                   "sep3": GenericTableColProps {
                     "className": "",
@@ -41832,7 +42217,18 @@ Adj: [-0.2]",
                     "toolTip": "",
                     "widthUnits": 0.5,
                   },
-                  "sep2": GenericTableColProps {
+                  "sep2-1": GenericTableColProps {
+                    "className": "",
+                    "colName": "",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "",
+                    "widthUnits": 0.5,
+                  },
+                  "sep2-2": GenericTableColProps {
                     "className": "",
                     "colName": "",
                     "colorPicker": [Function],
@@ -43870,7 +44266,18 @@ Adj: [-0.2]",
                     "toolTip": "",
                     "widthUnits": 0.5,
                   },
-                  "sep2": GenericTableColProps {
+                  "sep2-1": GenericTableColProps {
+                    "className": "",
+                    "colName": "",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "",
+                    "widthUnits": 0.5,
+                  },
+                  "sep2-2": GenericTableColProps {
                     "className": "",
                     "colName": "",
                     "colorPicker": [Function],
@@ -48106,7 +48513,7 @@ Adj: [-0.2]",
                 "toolTip": "",
                 "widthUnits": 0.5,
               },
-              "sep2": GenericTableColProps {
+              "sep2a": GenericTableColProps {
                 "className": "",
                 "colName": "",
                 "colorPicker": [Function],
@@ -48116,6 +48523,17 @@ Adj: [-0.2]",
                 "rowSpan": [Function],
                 "toolTip": "",
                 "widthUnits": 0.5,
+              },
+              "sep2b": GenericTableColProps {
+                "className": "",
+                "colName": "",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "",
+                "widthUnits": 0.05,
               },
               "sep3": GenericTableColProps {
                 "className": "",
@@ -48541,102 +48959,6 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (rep
                       "value": "asc:diff_efg:rep",
                     },
                     Object {
-                      "label": "'On' A% (Desc. / Offensive)",
-                      "value": "desc:off_assist:on",
-                    },
-                    Object {
-                      "label": "'Off' A% (Desc. / Offensive)",
-                      "value": "desc:off_assist:off",
-                    },
-                    Object {
-                      "label": "'On-Off' A% (Desc. / Offensive)",
-                      "value": "desc:off_assist:delta",
-                    },
-                    Object {
-                      "label": "'r:On-Off' A% (Desc. / Offensive)",
-                      "value": "desc:off_assist:rep",
-                    },
-                    Object {
-                      "label": "'On' A% (Asc. / Offensive)",
-                      "value": "asc:off_assist:on",
-                    },
-                    Object {
-                      "label": "'Off' A% (Asc. / Offensive)",
-                      "value": "asc:off_assist:off",
-                    },
-                    Object {
-                      "label": "'On-Off' A% (Asc. / Offensive)",
-                      "value": "asc:off_assist:delta",
-                    },
-                    Object {
-                      "label": "'r:On-Off' A% (Asc. / Offensive)",
-                      "value": "asc:off_assist:rep",
-                    },
-                    Object {
-                      "label": "'On' A% (Desc. / Defensive)",
-                      "value": "desc:def_assist:on",
-                    },
-                    Object {
-                      "label": "'Off' A% (Desc. / Defensive)",
-                      "value": "desc:def_assist:off",
-                    },
-                    Object {
-                      "label": "'On-Off' A% (Desc. / Defensive)",
-                      "value": "desc:def_assist:delta",
-                    },
-                    Object {
-                      "label": "'r:On-Off' A% (Desc. / Defensive)",
-                      "value": "desc:def_assist:rep",
-                    },
-                    Object {
-                      "label": "'On' A% (Asc. / Defensive)",
-                      "value": "asc:def_assist:on",
-                    },
-                    Object {
-                      "label": "'Off' A% (Asc. / Defensive)",
-                      "value": "asc:def_assist:off",
-                    },
-                    Object {
-                      "label": "'On-Off' A% (Asc. / Defensive)",
-                      "value": "asc:def_assist:delta",
-                    },
-                    Object {
-                      "label": "'r:On-Off' A% (Asc. / Defensive)",
-                      "value": "asc:def_assist:rep",
-                    },
-                    Object {
-                      "label": "'On' A% (Desc. / Off-Def)",
-                      "value": "desc:diff_assist:on",
-                    },
-                    Object {
-                      "label": "'Off' A% (Desc. / Off-Def)",
-                      "value": "desc:diff_assist:off",
-                    },
-                    Object {
-                      "label": "'On-Off' A% (Desc. / Off-Def)",
-                      "value": "desc:diff_assist:delta",
-                    },
-                    Object {
-                      "label": "'r:On-Off' A% (Desc. / Off-Def)",
-                      "value": "desc:diff_assist:rep",
-                    },
-                    Object {
-                      "label": "'On' A% (Asc. / Off-Def)",
-                      "value": "asc:diff_assist:on",
-                    },
-                    Object {
-                      "label": "'Off' A% (Asc. / Off-Def)",
-                      "value": "asc:diff_assist:off",
-                    },
-                    Object {
-                      "label": "'On-Off' A% (Asc. / Off-Def)",
-                      "value": "asc:diff_assist:delta",
-                    },
-                    Object {
-                      "label": "'r:On-Off' A% (Asc. / Off-Def)",
-                      "value": "asc:diff_assist:rep",
-                    },
-                    Object {
                       "label": "'On' TO% (Desc. / Offensive)",
                       "value": "desc:off_to:on",
                     },
@@ -48923,6 +49245,102 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (rep
                     Object {
                       "label": "'r:On-Off' FTR (Asc. / Off-Def)",
                       "value": "asc:diff_ftr:rep",
+                    },
+                    Object {
+                      "label": "'On' A% (Desc. / Offensive)",
+                      "value": "desc:off_assist:on",
+                    },
+                    Object {
+                      "label": "'Off' A% (Desc. / Offensive)",
+                      "value": "desc:off_assist:off",
+                    },
+                    Object {
+                      "label": "'On-Off' A% (Desc. / Offensive)",
+                      "value": "desc:off_assist:delta",
+                    },
+                    Object {
+                      "label": "'r:On-Off' A% (Desc. / Offensive)",
+                      "value": "desc:off_assist:rep",
+                    },
+                    Object {
+                      "label": "'On' A% (Asc. / Offensive)",
+                      "value": "asc:off_assist:on",
+                    },
+                    Object {
+                      "label": "'Off' A% (Asc. / Offensive)",
+                      "value": "asc:off_assist:off",
+                    },
+                    Object {
+                      "label": "'On-Off' A% (Asc. / Offensive)",
+                      "value": "asc:off_assist:delta",
+                    },
+                    Object {
+                      "label": "'r:On-Off' A% (Asc. / Offensive)",
+                      "value": "asc:off_assist:rep",
+                    },
+                    Object {
+                      "label": "'On' A% (Desc. / Defensive)",
+                      "value": "desc:def_assist:on",
+                    },
+                    Object {
+                      "label": "'Off' A% (Desc. / Defensive)",
+                      "value": "desc:def_assist:off",
+                    },
+                    Object {
+                      "label": "'On-Off' A% (Desc. / Defensive)",
+                      "value": "desc:def_assist:delta",
+                    },
+                    Object {
+                      "label": "'r:On-Off' A% (Desc. / Defensive)",
+                      "value": "desc:def_assist:rep",
+                    },
+                    Object {
+                      "label": "'On' A% (Asc. / Defensive)",
+                      "value": "asc:def_assist:on",
+                    },
+                    Object {
+                      "label": "'Off' A% (Asc. / Defensive)",
+                      "value": "asc:def_assist:off",
+                    },
+                    Object {
+                      "label": "'On-Off' A% (Asc. / Defensive)",
+                      "value": "asc:def_assist:delta",
+                    },
+                    Object {
+                      "label": "'r:On-Off' A% (Asc. / Defensive)",
+                      "value": "asc:def_assist:rep",
+                    },
+                    Object {
+                      "label": "'On' A% (Desc. / Off-Def)",
+                      "value": "desc:diff_assist:on",
+                    },
+                    Object {
+                      "label": "'Off' A% (Desc. / Off-Def)",
+                      "value": "desc:diff_assist:off",
+                    },
+                    Object {
+                      "label": "'On-Off' A% (Desc. / Off-Def)",
+                      "value": "desc:diff_assist:delta",
+                    },
+                    Object {
+                      "label": "'r:On-Off' A% (Desc. / Off-Def)",
+                      "value": "desc:diff_assist:rep",
+                    },
+                    Object {
+                      "label": "'On' A% (Asc. / Off-Def)",
+                      "value": "asc:diff_assist:on",
+                    },
+                    Object {
+                      "label": "'Off' A% (Asc. / Off-Def)",
+                      "value": "asc:diff_assist:off",
+                    },
+                    Object {
+                      "label": "'On-Off' A% (Asc. / Off-Def)",
+                      "value": "asc:diff_assist:delta",
+                    },
+                    Object {
+                      "label": "'r:On-Off' A% (Asc. / Off-Def)",
+                      "value": "asc:diff_assist:rep",
                     },
                     Object {
                       "label": "'On' 3PR (Desc. / Offensive)",
@@ -50304,7 +50722,7 @@ Adj: [30.1]-[0.0]=[30.1]
                     "toolTip": "",
                     "widthUnits": 0.5,
                   },
-                  "sep2": GenericTableColProps {
+                  "sep2a": GenericTableColProps {
                     "className": "",
                     "colName": "",
                     "colorPicker": [Function],
@@ -50314,6 +50732,17 @@ Adj: [30.1]-[0.0]=[30.1]
                     "rowSpan": [Function],
                     "toolTip": "",
                     "widthUnits": 0.5,
+                  },
+                  "sep2b": GenericTableColProps {
+                    "className": "",
+                    "colName": "",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "",
+                    "widthUnits": 0.05,
                   },
                   "sep3": GenericTableColProps {
                     "className": "",
@@ -51140,7 +51569,18 @@ Adj: [NaN]",
                     "toolTip": "",
                     "widthUnits": 0.5,
                   },
-                  "sep2": GenericTableColProps {
+                  "sep2-1": GenericTableColProps {
+                    "className": "",
+                    "colName": "",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "",
+                    "widthUnits": 0.5,
+                  },
+                  "sep2-2": GenericTableColProps {
                     "className": "",
                     "colName": "",
                     "colorPicker": [Function],
@@ -51397,7 +51837,18 @@ Adj: [NaN]",
                     "toolTip": "",
                     "widthUnits": 0.5,
                   },
-                  "sep2": GenericTableColProps {
+                  "sep2-1": GenericTableColProps {
+                    "className": "",
+                    "colName": "",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "",
+                    "widthUnits": 0.5,
+                  },
+                  "sep2-2": GenericTableColProps {
                     "className": "",
                     "colName": "",
                     "colorPicker": [Function],
@@ -52267,7 +52718,7 @@ Adj: [NaN]",
                 "toolTip": "",
                 "widthUnits": 0.5,
               },
-              "sep2": GenericTableColProps {
+              "sep2a": GenericTableColProps {
                 "className": "",
                 "colName": "",
                 "colorPicker": [Function],
@@ -52277,6 +52728,17 @@ Adj: [NaN]",
                 "rowSpan": [Function],
                 "toolTip": "",
                 "widthUnits": 0.5,
+              },
+              "sep2b": GenericTableColProps {
+                "className": "",
+                "colName": "",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "",
+                "widthUnits": 0.05,
               },
               "sep3": GenericTableColProps {
                 "className": "",
@@ -52626,78 +53088,6 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot 1`] 
                       "value": "asc:diff_efg:delta",
                     },
                     Object {
-                      "label": "'On' A% (Desc. / Offensive)",
-                      "value": "desc:off_assist:on",
-                    },
-                    Object {
-                      "label": "'Off' A% (Desc. / Offensive)",
-                      "value": "desc:off_assist:off",
-                    },
-                    Object {
-                      "label": "'On-Off' A% (Desc. / Offensive)",
-                      "value": "desc:off_assist:delta",
-                    },
-                    Object {
-                      "label": "'On' A% (Asc. / Offensive)",
-                      "value": "asc:off_assist:on",
-                    },
-                    Object {
-                      "label": "'Off' A% (Asc. / Offensive)",
-                      "value": "asc:off_assist:off",
-                    },
-                    Object {
-                      "label": "'On-Off' A% (Asc. / Offensive)",
-                      "value": "asc:off_assist:delta",
-                    },
-                    Object {
-                      "label": "'On' A% (Desc. / Defensive)",
-                      "value": "desc:def_assist:on",
-                    },
-                    Object {
-                      "label": "'Off' A% (Desc. / Defensive)",
-                      "value": "desc:def_assist:off",
-                    },
-                    Object {
-                      "label": "'On-Off' A% (Desc. / Defensive)",
-                      "value": "desc:def_assist:delta",
-                    },
-                    Object {
-                      "label": "'On' A% (Asc. / Defensive)",
-                      "value": "asc:def_assist:on",
-                    },
-                    Object {
-                      "label": "'Off' A% (Asc. / Defensive)",
-                      "value": "asc:def_assist:off",
-                    },
-                    Object {
-                      "label": "'On-Off' A% (Asc. / Defensive)",
-                      "value": "asc:def_assist:delta",
-                    },
-                    Object {
-                      "label": "'On' A% (Desc. / Off-Def)",
-                      "value": "desc:diff_assist:on",
-                    },
-                    Object {
-                      "label": "'Off' A% (Desc. / Off-Def)",
-                      "value": "desc:diff_assist:off",
-                    },
-                    Object {
-                      "label": "'On-Off' A% (Desc. / Off-Def)",
-                      "value": "desc:diff_assist:delta",
-                    },
-                    Object {
-                      "label": "'On' A% (Asc. / Off-Def)",
-                      "value": "asc:diff_assist:on",
-                    },
-                    Object {
-                      "label": "'Off' A% (Asc. / Off-Def)",
-                      "value": "asc:diff_assist:off",
-                    },
-                    Object {
-                      "label": "'On-Off' A% (Asc. / Off-Def)",
-                      "value": "asc:diff_assist:delta",
-                    },
-                    Object {
                       "label": "'On' TO% (Desc. / Offensive)",
                       "value": "desc:off_to:on",
                     },
@@ -52912,6 +53302,78 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot 1`] 
                     Object {
                       "label": "'On-Off' FTR (Asc. / Off-Def)",
                       "value": "asc:diff_ftr:delta",
+                    },
+                    Object {
+                      "label": "'On' A% (Desc. / Offensive)",
+                      "value": "desc:off_assist:on",
+                    },
+                    Object {
+                      "label": "'Off' A% (Desc. / Offensive)",
+                      "value": "desc:off_assist:off",
+                    },
+                    Object {
+                      "label": "'On-Off' A% (Desc. / Offensive)",
+                      "value": "desc:off_assist:delta",
+                    },
+                    Object {
+                      "label": "'On' A% (Asc. / Offensive)",
+                      "value": "asc:off_assist:on",
+                    },
+                    Object {
+                      "label": "'Off' A% (Asc. / Offensive)",
+                      "value": "asc:off_assist:off",
+                    },
+                    Object {
+                      "label": "'On-Off' A% (Asc. / Offensive)",
+                      "value": "asc:off_assist:delta",
+                    },
+                    Object {
+                      "label": "'On' A% (Desc. / Defensive)",
+                      "value": "desc:def_assist:on",
+                    },
+                    Object {
+                      "label": "'Off' A% (Desc. / Defensive)",
+                      "value": "desc:def_assist:off",
+                    },
+                    Object {
+                      "label": "'On-Off' A% (Desc. / Defensive)",
+                      "value": "desc:def_assist:delta",
+                    },
+                    Object {
+                      "label": "'On' A% (Asc. / Defensive)",
+                      "value": "asc:def_assist:on",
+                    },
+                    Object {
+                      "label": "'Off' A% (Asc. / Defensive)",
+                      "value": "asc:def_assist:off",
+                    },
+                    Object {
+                      "label": "'On-Off' A% (Asc. / Defensive)",
+                      "value": "asc:def_assist:delta",
+                    },
+                    Object {
+                      "label": "'On' A% (Desc. / Off-Def)",
+                      "value": "desc:diff_assist:on",
+                    },
+                    Object {
+                      "label": "'Off' A% (Desc. / Off-Def)",
+                      "value": "desc:diff_assist:off",
+                    },
+                    Object {
+                      "label": "'On-Off' A% (Desc. / Off-Def)",
+                      "value": "desc:diff_assist:delta",
+                    },
+                    Object {
+                      "label": "'On' A% (Asc. / Off-Def)",
+                      "value": "asc:diff_assist:on",
+                    },
+                    Object {
+                      "label": "'Off' A% (Asc. / Off-Def)",
+                      "value": "asc:diff_assist:off",
+                    },
+                    Object {
+                      "label": "'On-Off' A% (Asc. / Off-Def)",
+                      "value": "asc:diff_assist:delta",
                     },
                     Object {
                       "label": "'On' 3PR (Desc. / Offensive)",
@@ -54081,7 +54543,7 @@ Adj: [30.1]-[0.0]=[30.1]
                     "toolTip": "",
                     "widthUnits": 0.5,
                   },
-                  "sep2": GenericTableColProps {
+                  "sep2a": GenericTableColProps {
                     "className": "",
                     "colName": "",
                     "colorPicker": [Function],
@@ -54091,6 +54553,17 @@ Adj: [30.1]-[0.0]=[30.1]
                     "rowSpan": [Function],
                     "toolTip": "",
                     "widthUnits": 0.5,
+                  },
+                  "sep2b": GenericTableColProps {
+                    "className": "",
+                    "colName": "",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "",
+                    "widthUnits": 0.05,
                   },
                   "sep3": GenericTableColProps {
                     "className": "",
@@ -55177,7 +55650,7 @@ Adj: [30.1]-[0.0]=[30.1]
                     "toolTip": "",
                     "widthUnits": 0.5,
                   },
-                  "sep2": GenericTableColProps {
+                  "sep2a": GenericTableColProps {
                     "className": "",
                     "colName": "",
                     "colorPicker": [Function],
@@ -55187,6 +55660,17 @@ Adj: [30.1]-[0.0]=[30.1]
                     "rowSpan": [Function],
                     "toolTip": "",
                     "widthUnits": 0.5,
+                  },
+                  "sep2b": GenericTableColProps {
+                    "className": "",
+                    "colName": "",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "",
+                    "widthUnits": 0.05,
                   },
                   "sep3": GenericTableColProps {
                     "className": "",
@@ -56273,7 +56757,7 @@ Adj: [30.1]-[0.0]=[30.1]
                     "toolTip": "",
                     "widthUnits": 0.5,
                   },
-                  "sep2": GenericTableColProps {
+                  "sep2a": GenericTableColProps {
                     "className": "",
                     "colName": "",
                     "colorPicker": [Function],
@@ -56283,6 +56767,17 @@ Adj: [30.1]-[0.0]=[30.1]
                     "rowSpan": [Function],
                     "toolTip": "",
                     "widthUnits": 0.5,
+                  },
+                  "sep2b": GenericTableColProps {
+                    "className": "",
+                    "colName": "",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "",
+                    "widthUnits": 0.05,
                   },
                   "sep3": GenericTableColProps {
                     "className": "",
@@ -57369,7 +57864,7 @@ Adj: [27.3]-[38.7]=[-11.5]
                     "toolTip": "",
                     "widthUnits": 0.5,
                   },
-                  "sep2": GenericTableColProps {
+                  "sep2a": GenericTableColProps {
                     "className": "",
                     "colName": "",
                     "colorPicker": [Function],
@@ -57379,6 +57874,17 @@ Adj: [27.3]-[38.7]=[-11.5]
                     "rowSpan": [Function],
                     "toolTip": "",
                     "widthUnits": 0.5,
+                  },
+                  "sep2b": GenericTableColProps {
+                    "className": "",
+                    "colName": "",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "",
+                    "widthUnits": 0.05,
                   },
                   "sep3": GenericTableColProps {
                     "className": "",
@@ -58465,7 +58971,7 @@ Adj: [33.5]-[20.7]=[12.7]
                     "toolTip": "",
                     "widthUnits": 0.5,
                   },
-                  "sep2": GenericTableColProps {
+                  "sep2a": GenericTableColProps {
                     "className": "",
                     "colName": "",
                     "colorPicker": [Function],
@@ -58475,6 +58981,17 @@ Adj: [33.5]-[20.7]=[12.7]
                     "rowSpan": [Function],
                     "toolTip": "",
                     "widthUnits": 0.5,
+                  },
+                  "sep2b": GenericTableColProps {
+                    "className": "",
+                    "colName": "",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "",
+                    "widthUnits": 0.05,
                   },
                   "sep3": GenericTableColProps {
                     "className": "",
@@ -59561,7 +60078,7 @@ Adj: [29.4]-[30.7]=[-1.4]
                     "toolTip": "",
                     "widthUnits": 0.5,
                   },
-                  "sep2": GenericTableColProps {
+                  "sep2a": GenericTableColProps {
                     "className": "",
                     "colName": "",
                     "colorPicker": [Function],
@@ -59571,6 +60088,17 @@ Adj: [29.4]-[30.7]=[-1.4]
                     "rowSpan": [Function],
                     "toolTip": "",
                     "widthUnits": 0.5,
+                  },
+                  "sep2b": GenericTableColProps {
+                    "className": "",
+                    "colName": "",
+                    "colorPicker": [Function],
+                    "formatter": [Function],
+                    "isTitle": false,
+                    "missingData": undefined,
+                    "rowSpan": [Function],
+                    "toolTip": "",
+                    "widthUnits": 0.05,
                   },
                   "sep3": GenericTableColProps {
                     "className": "",
@@ -60455,7 +60983,7 @@ Poss: [52]% v [48]%",
                 "toolTip": "",
                 "widthUnits": 0.5,
               },
-              "sep2": GenericTableColProps {
+              "sep2a": GenericTableColProps {
                 "className": "",
                 "colName": "",
                 "colorPicker": [Function],
@@ -60465,6 +60993,17 @@ Poss: [52]% v [48]%",
                 "rowSpan": [Function],
                 "toolTip": "",
                 "widthUnits": 0.5,
+              },
+              "sep2b": GenericTableColProps {
+                "className": "",
+                "colName": "",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "",
+                "widthUnits": 0.05,
               },
               "sep3": GenericTableColProps {
                 "className": "",

@@ -125,19 +125,6 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  A%
-                </th>
-              </div>
-              <div>
-                <th
-                  style={
-                    Object {
-                      "fontWeight": "bold",
-                      "textAlign": "center",
-                      "width": "4.7%",
-                    }
-                  }
-                >
                   TO%
                 </th>
               </div>
@@ -173,6 +160,30 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                     "fontWeight": "bold",
                     "textAlign": "center",
                     "width": "1.2%",
+                  }
+                }
+              >
+                
+              </th>
+              <div>
+                <th
+                  style={
+                    Object {
+                      "fontWeight": "bold",
+                      "textAlign": "center",
+                      "width": "4.7%",
+                    }
+                  }
+                >
+                  A%
+                </th>
+              </div>
+              <th
+                style={
+                  Object {
+                    "fontWeight": "bold",
+                    "textAlign": "center",
+                    "width": "0.1%",
                   }
                 }
               >
@@ -422,22 +433,6 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 rowSpan={1}
                 style={
                   Object {
-                    "backgroundColor": "#ffedcc",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                <div>
-                  53.0
-                </div>
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
                     "backgroundColor": "#ffa9a9",
                     "fontWeight": "normal",
                     "textAlign": "center",
@@ -490,6 +485,38 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                     "fontWeight": "normal",
                     "textAlign": "center",
                     "width": "1.2%",
+                  }
+                }
+              >
+                <div>
+                  
+                </div>
+              </td>
+              <td
+                className=""
+                rowSpan={1}
+                style={
+                  Object {
+                    "backgroundColor": "#ffedcc",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "4.7%",
+                  }
+                }
+              >
+                <div>
+                  53.0
+                </div>
+              </td>
+              <td
+                className=""
+                rowSpan={1}
+                style={
+                  Object {
+                    "backgroundColor": undefined,
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "0.1%",
                   }
                 }
               >
@@ -776,22 +803,6 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 rowSpan={1}
                 style={
                   Object {
-                    "backgroundColor": "#eff7fa",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                <div>
-                  47.0
-                </div>
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
                     "backgroundColor": "#ff7070",
                     "fontWeight": "normal",
                     "textAlign": "center",
@@ -844,6 +855,38 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                     "fontWeight": "normal",
                     "textAlign": "center",
                     "width": "1.2%",
+                  }
+                }
+              >
+                <div>
+                  
+                </div>
+              </td>
+              <td
+                className=""
+                rowSpan={1}
+                style={
+                  Object {
+                    "backgroundColor": "#eff7fa",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "4.7%",
+                  }
+                }
+              >
+                <div>
+                  47.0
+                </div>
+              </td>
+              <td
+                className=""
+                rowSpan={1}
+                style={
+                  Object {
+                    "backgroundColor": undefined,
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "0.1%",
                   }
                 }
               >
@@ -1032,7 +1075,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
               className="divider"
             >
               <td
-                colSpan={22}
+                colSpan={23}
               />
             </tr>
             <tr>
@@ -1137,22 +1180,6 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 rowSpan={1}
                 style={
                   Object {
-                    "backgroundColor": "#fff3dd",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                <div>
-                  52.0
-                </div>
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
                     "backgroundColor": "#ff4e4e",
                     "fontWeight": "normal",
                     "textAlign": "center",
@@ -1205,6 +1232,38 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                     "fontWeight": "normal",
                     "textAlign": "center",
                     "width": "1.2%",
+                  }
+                }
+              >
+                <div>
+                  
+                </div>
+              </td>
+              <td
+                className=""
+                rowSpan={1}
+                style={
+                  Object {
+                    "backgroundColor": "#fff3dd",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "4.7%",
+                  }
+                }
+              >
+                <div>
+                  52.0
+                </div>
+              </td>
+              <td
+                className=""
+                rowSpan={1}
+                style={
+                  Object {
+                    "backgroundColor": undefined,
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "0.1%",
                   }
                 }
               >
@@ -1491,22 +1550,6 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 rowSpan={1}
                 style={
                   Object {
-                    "backgroundColor": "#f4fafc",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                <div>
-                  48.0
-                </div>
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
                     "backgroundColor": "#a5d2a5",
                     "fontWeight": "normal",
                     "textAlign": "center",
@@ -1559,6 +1602,38 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                     "fontWeight": "normal",
                     "textAlign": "center",
                     "width": "1.2%",
+                  }
+                }
+              >
+                <div>
+                  
+                </div>
+              </td>
+              <td
+                className=""
+                rowSpan={1}
+                style={
+                  Object {
+                    "backgroundColor": "#f4fafc",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "4.7%",
+                  }
+                }
+              >
+                <div>
+                  48.0
+                </div>
+              </td>
+              <td
+                className=""
+                rowSpan={1}
+                style={
+                  Object {
+                    "backgroundColor": undefined,
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "0.1%",
                   }
                 }
               >
@@ -1747,7 +1822,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
               className="divider"
             >
               <td
-                colSpan={22}
+                colSpan={23}
               />
             </tr>
             <tr>
@@ -1852,22 +1927,6 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 rowSpan={1}
                 style={
                   Object {
-                    "backgroundColor": "#fff9ee",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                <div>
-                  51.0
-                </div>
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
                     "backgroundColor": "#ff8d8d",
                     "fontWeight": "normal",
                     "textAlign": "center",
@@ -1920,6 +1979,38 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                     "fontWeight": "normal",
                     "textAlign": "center",
                     "width": "1.2%",
+                  }
+                }
+              >
+                <div>
+                  
+                </div>
+              </td>
+              <td
+                className=""
+                rowSpan={1}
+                style={
+                  Object {
+                    "backgroundColor": "#fff9ee",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "4.7%",
+                  }
+                }
+              >
+                <div>
+                  51.0
+                </div>
+              </td>
+              <td
+                className=""
+                rowSpan={1}
+                style={
+                  Object {
+                    "backgroundColor": undefined,
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "0.1%",
                   }
                 }
               >
@@ -2206,22 +2297,6 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 rowSpan={1}
                 style={
                   Object {
-                    "backgroundColor": "#fafcfd",
-                    "fontWeight": "normal",
-                    "textAlign": "center",
-                    "width": "4.7%",
-                  }
-                }
-              >
-                <div>
-                  49.0
-                </div>
-              </td>
-              <td
-                className=""
-                rowSpan={1}
-                style={
-                  Object {
                     "backgroundColor": "#ffbaba",
                     "fontWeight": "normal",
                     "textAlign": "center",
@@ -2274,6 +2349,38 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                     "fontWeight": "normal",
                     "textAlign": "center",
                     "width": "1.2%",
+                  }
+                }
+              >
+                <div>
+                  
+                </div>
+              </td>
+              <td
+                className=""
+                rowSpan={1}
+                style={
+                  Object {
+                    "backgroundColor": "#fafcfd",
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "4.7%",
+                  }
+                }
+              >
+                <div>
+                  49.0
+                </div>
+              </td>
+              <td
+                className=""
+                rowSpan={1}
+                style={
+                  Object {
+                    "backgroundColor": undefined,
+                    "fontWeight": "normal",
+                    "textAlign": "center",
+                    "width": "0.1%",
                   }
                 }
               >
@@ -2462,7 +2569,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
               className="divider"
             >
               <td
-                colSpan={22}
+                colSpan={23}
               />
             </tr>
           </tbody>
