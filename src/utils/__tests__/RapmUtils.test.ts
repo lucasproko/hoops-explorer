@@ -22,7 +22,7 @@ export const semiRealRapmResults = {
 
   reducedFilteredLineups: reducedFilteredLineups,
 
-  testContext: {"unbiasWeight":2,"removedPlayers":{"Mitchell, Makhel":210,"Tomaic, Joshua":149,"Marial, Chol":208,"Mona, Reese":42,"Hart, Hakim":237,"Mitchell, Makhi":264},"playerToCol":{"Smith, Jalen":0,"Cowan, Anthony":1,"Wiggins, Aaron":2,"Morsell, Darryl":3,"Ayala, Eric":4,"Scott, Donta":5,"Lindo Jr., Ricky":6,"Smith Jr., Serrel":7},"colToPlayer":["Smith, Jalen","Cowan, Anthony","Wiggins, Aaron","Morsell, Darryl","Ayala, Eric","Scott, Donta","Lindo Jr., Ricky","Smith Jr., Serrel"],"avgEfficiency":102.4,"numPlayers":8,"numLineups":31,"offLineupPoss":1351,"defLineupPoss":1349
+  testContext: {"unbiasWeight":2,"removalPct":0.1,"removedPlayers":{"Mitchell, Makhel":210,"Tomaic, Joshua":149,"Marial, Chol":208,"Mona, Reese":42,"Hart, Hakim":237,"Mitchell, Makhi":264},"playerToCol":{"Smith, Jalen":0,"Cowan, Anthony":1,"Wiggins, Aaron":2,"Morsell, Darryl":3,"Ayala, Eric":4,"Scott, Donta":5,"Lindo Jr., Ricky":6,"Smith Jr., Serrel":7},"colToPlayer":["Smith, Jalen","Cowan, Anthony","Wiggins, Aaron","Morsell, Darryl","Ayala, Eric","Scott, Donta","Lindo Jr., Ricky","Smith Jr., Serrel"],"avgEfficiency":102.4,"numPlayers":8,"numLineups":31,"offLineupPoss":1351,"defLineupPoss":1349
   ,
   // Extra fields:
   filteredLineups: reducedFilteredLineups,
@@ -64,6 +64,7 @@ describe("RapmUtils", () => {
     const onOffReport = LineupUtils.lineupToTeamReport(lineupReportWithExtra);
     const expectedContext_all = {
        avgEfficiency: 100.0,
+       removalPct: 0.0,
        removedPlayers: {},
        playerToCol: {
          "Ayala, Eric": 4,
@@ -93,9 +94,10 @@ describe("RapmUtils", () => {
     };
     const expectedContext_removed = {
        avgEfficiency: 100.0,
+       removalPct: 0.20,
        removedPlayers: {
-         "Data, Dummy": 100,
-         "Player, Other": 200
+         "Data, Dummy": 0.17889087656529518,
+         "Player, Other": 0.35778175313059035
        },
        playerToCol: _.omit(expectedContext_all.playerToCol, [
          "Data, Dummy", "Player, Other"
@@ -259,6 +261,7 @@ describe("RapmUtils", () => {
 
     const dummyContext = {
       avgEfficiency: 100.0,
+      removalPct: 0.0,
       removedPlayers: {},
       playerToCol: { "PlayerB": 1, "PlayerC": 2, "PlayerA": 0 },
       colToPlayer: [ "PlayerA", "PlayerB", "PlayerC" ],
