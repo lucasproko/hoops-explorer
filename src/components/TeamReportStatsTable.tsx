@@ -61,8 +61,11 @@ type Props = {
 
 const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, startingState, onChangeState, testMode}) => {
 
+  const topRef = React.createRef<HTMLDivElement>();
+
   const server = (typeof window === `undefined`) ? //(ensures SSR code still compiles)
     "server" : window.location.hostname
+
   // 1] State
 
   const commonParams = getCommonFilterParams(startingState);
@@ -116,6 +119,7 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
   const [ rapmDiagMode, setRapmDiagMode ] = useState(
     _.isNil(startingState.rapmDiagMode) ? ParamDefaults.defaultTeamReportRapmDiagMode : startingState.rapmDiagMode
   );
+  const globalRapmDiagRef = React.createRef<HTMLDivElement>();
 
   /** If the browser is doing heavier calcs then spin the display vs just be unresponsive */
   const [ inBrowserRepOnOffPxing, setInBrowserRepOnOffPxing ] = useState(false);
@@ -360,6 +364,7 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
             <RapmPlayerDiagView
               rapmInfo={rapmInfo}
               player={player}
+              globalRef={globalRapmDiagRef}
             />, "small"
           )
         ] : [],
@@ -386,14 +391,7 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
             showHelp
           ) : [],
       ]);
-    }).value().concat( // (add global RAPM info)
-      incRapm && (rapmDiagMode != "") && rapmInfo ? [ GenericTableOps.buildTextRow(
-        <RapmGlobalDiagView
-          rapmInfo={rapmInfo}
-          players={[]}
-        />, "small"
-      ) ] : []
-    );
+    }).value();
 
   // 3.2] Sorting utils
 
@@ -505,7 +503,7 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
   };
 
   // 4] View
-  return <Container>
+  return <Container><div ref={topRef}>
     <LoadingOverlay
       active={needToLoadQuery()}
       text={teamReport.error_code ?
@@ -609,8 +607,22 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
           />
         </Col>
       </Row>
+      {
+      incRapm && (rapmDiagMode != "") && rapmInfo ?
+      <Row>
+        <Col className="small">
+          <div ref={globalRapmDiagRef}>
+            <RapmGlobalDiagView
+              topRef={topRef}
+              rapmInfo={rapmInfo}
+              players={[]}
+            />
+          </div>
+        </Col>
+      </Row> : null
+      }
     </LoadingOverlay>
-  </Container>;
+  </div></Container>;
 };
 
 export default TeamReportStatsTable;

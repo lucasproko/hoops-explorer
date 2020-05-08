@@ -1,42 +1,172 @@
 // React imports:
 import React, { useState } from 'react';
 
+import _ from "lodash";
+
 // Next imports:
 import { NextPage } from 'next';
 
+// Bootstrap imports:
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+
+// Component imports
+import GenericTable, { GenericTableOps, GenericTableColProps } from "./GenericTable";
+
 // Utils
 import { RapmInfo, RapmPlayerContext, RapmPreProcDiagnostics, RapmProcessingInputs, RapmUtils } from "../utils/RapmUtils";
+import { CbbColors } from "../utils/CbbColors";
 
 type Props = {
   rapmInfo: RapmInfo
-  players: Array<Record<string, any>>
+  players: Array<Record<string, any>>,
+  topRef: React.RefObject<HTMLDivElement>,
 };
 
-const RapmGlobalDiagView: React.FunctionComponent<Props> = (({rapmInfo, players}) => {
+const RapmGlobalDiagView: React.FunctionComponent<Props> = (({rapmInfo, players, topRef}) => {
   if (rapmInfo.preProcDiags) try {
     const ctx = rapmInfo.ctx;
+    const gotoTop = () => {
+      if (topRef.current) {
+        topRef.current.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+        });
+      }
+    };
 
-    const correlMatrix = rapmInfo.preProcDiags.correlMatrix;
-    const tmpMatrixView = correlMatrix.valueOf().map((row: number[]) => row.map((n) => n.toFixed(2)).toString());
+    // Player correlation matrix
 
-    //TODO: correlation between players
-    //TODO: filtered out players
-    //TODO: QA: collinearity
-    //TODO: QA: choice of ridge regression
+    // Table defs:
+    const playerInitials = (player: string) => {
+      const tmp = player.replace(/[^A-Z]/g, "")
+      return tmp[tmp.length - 1] + tmp[0];
+    };
+    const correlTableFields = {
+      "title": GenericTableOps.addTitle("", ""),
+      "sep0": GenericTableOps.addColSeparator(),
+      ...(
+        _.fromPairs(ctx.colToPlayer.map((p: string) => {
+          const initials = playerInitials(p);
+          const description = `Correlations for "${p}"`;
+          return [ initials,
+            GenericTableOps.addPctCol(initials, description, CbbColors.varPicker(CbbColors.rapmCorrel))
+          ];
+        }))
+      )
+    };
+    // Table data:
+    const tmpCorrelMatrix = rapmInfo.preProcDiags.correlMatrix.valueOf();
+    const correlTableData = ctx.colToPlayer.map((p: string, i: number) => {
+      return GenericTableOps.buildDataRow({
+        title: p,
+        ...(
+          _.fromPairs(tmpCorrelMatrix[i].map((n: number, j: number) => i != j ? [
+            playerInitials(ctx.colToPlayer[j]), { value: n }
+          ]: [ "", 0 ]).filter((kv: [string, number]) => kv[1] != 0))
+        )
+      }, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta);
+    });
 
-    return <section id="global-rapm-diags">
+    // Player removal
+
+    const playerThreshold = ctx.removalPct;
+    const playerRemovalTidy = (playerList: Array<[string, number]>) => {
+      return _.sortBy(
+        playerList, [ (playerPoss: [string, number]) => -playerPoss[1] ]
+      ).map((playerPoss: [string, number]) =>
+        `"${playerPoss[0]}" [${(100*playerPoss[1]).toFixed(1)}%]`
+      );
+    };
+    const tmpRemovedPlayersPhase1 = playerRemovalTidy(
+      _.toPairs(ctx.removedPlayers).filter((playerPoss: [string, number]) =>
+        playerPoss[1] <= ctx.removalPct
+    ));
+    const tmpRemovedPlayersPhase2 = playerRemovalTidy(
+      _.toPairs(ctx.removedPlayers).filter((playerPoss: [string, number]) =>
+        playerPoss[1] > ctx.removalPct
+    ));
+
+    // Collinearity analysis
+
+    // Some helper methods:
+    const lineupCombos = rapmInfo.preProcDiags.lineupCombos;
+    const collinCol = (index: number) => `LC${index + 1}`;
+    const collinColDef = (index: number) => `Linear combination of lineups ${index + 1}`;
+
+    // Table defs
+    const collinTableFields_Base = {
+      "title": GenericTableOps.addTitle("", ""),
+      "sep0": GenericTableOps.addColSeparator(),
+    };
+    const collinTableFields_CondIndices = _.merge(_.clone(collinTableFields_Base),
+      _.fromPairs(lineupCombos.map((n: number, index: number) =>
+        [ collinCol(index),
+          GenericTableOps.addPtsCol(collinCol(index), collinColDef(index), CbbColors.varPicker(CbbColors.rapmCollinLineup, 0.01))
+        ]
+      ))
+    );
+    const collinTableFields = _.merge(_.clone(collinTableFields_Base),
+      _.fromPairs(lineupCombos.map((n: number, index: number) =>
+        [ collinCol(index),
+          GenericTableOps.addPctCol(collinCol(index), collinColDef(index), CbbColors.varPicker(CbbColors.rapmCollinPlayer, n*0.01))
+        ]
+      ))
+    );
+    // Table vals:
+    const buildCollinRow = (row: number[], title: string | undefined = undefined) => {
+      return GenericTableOps.buildDataRow(_.fromPairs(row.map((n: number, index: number) =>
+          [ collinCol(index), { value: n } ] as [ string, any ]
+        ).concat(title ? [ [ "title", title ] ] : [])),
+        GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta,
+        title ? undefined : collinTableFields_CondIndices
+      )
+    };
+    const collinTableData = [ buildCollinRow(lineupCombos) ].concat(
+      _.toPairs(rapmInfo.preProcDiags.playerCombos).map((pRow: [ string, number[] ]) => {
+        return buildCollinRow(pRow[1], pRow[0]);
+      })
+    );
+
+    return <section>
       <h4>Global RAPM Diagnostics View</h4>
+
       <h5>Player correlation table</h5>
-      <span>{tmpMatrixView.map((n: any) => <span><span>{n}</span><br/></span>)}</span>
-      <h5>Filtered out player diagnostics</h5>
-      <li>TBD</li>
+      <span>TODO some docs</span><br/>
+      <Container>
+        <Col xs={8}>
+          <GenericTable tableCopyId="correlDiags" tableFields={correlTableFields} tableData={correlTableData}/>
+        </Col>
+      </Container>
+
+      <h5>Filtered-out player diagnostics</h5>
+      <li>Players starting with too few possessions (threshold [{(playerThreshold*100).toFixed(1)}%]):</li>
+      <ul>
+        <li>{tmpRemovedPlayersPhase1.join(";")}</li>
+      </ul>
+      {tmpRemovedPlayersPhase2.length > 0 ? <span>
+        <li>Players who have too few possessions after filtering others:</li>
+        <ul>
+          <li>{tmpRemovedPlayersPhase2.join("; ")}</li>
+        </ul>
+      </span> : null }
+
       <h5>Lineup collinearity diagnostics</h5>
-      <li>TBD</li>
+      <span>TODO some docs</span><br/>
+      <Container>
+        <Col xs={8}>
+          <GenericTable tableCopyId="collinDiags" tableFields={collinTableFields} tableData={collinTableData}/>
+        </Col>
+      </Container>
+      (<a href="#" onClick={(event) => { event.preventDefault(); gotoTop() }}>Scroll back to the top</a>)
     </section>;
 
   }
   catch (err) { //Temp issue during reprocessing
-      return <span>Recalculating diags, pending {err.message}</span>;
+    console.log(err.message, err);
+    return <span>Recalculating diags, pending [{err.message}]</span>;
   } else {
     return <span>(Internal Logic Error: No Diags)</span>; //(only theoretically reachable)
   }

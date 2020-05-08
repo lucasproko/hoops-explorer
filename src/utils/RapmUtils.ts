@@ -16,6 +16,8 @@ import { add, apply, diag, identity, inv, matrix, mean, multiply, resize, row, s
 export type RapmPlayerContext = {
   /** If true, then adds an additional row with the desired final result */
   unbiasWeight: number;
+  /** The threshold of %s at which a player should be removed */
+  removalPct: number;
 
   /** Players that have been removed */
   removedPlayers: Record<string, number>;
@@ -81,7 +83,7 @@ export class RapmUtils {
     // (who do more harm than good)
     // (2x to approximate checking both offense and defense)
     const totalLineups = players?.[0]?.on?.off_poss?.value || 0;
-    const removalThreshold = 2*removalPct*totalLineups;
+    const removalThreshold = 2*removalPct*totalLineups || 1;
     // Filter out players with too few possessions
     var checkForPlayersToRemove = true; //(always do the full processing loop once)
     var currFilteredLineupSet = [];
@@ -97,7 +99,7 @@ export class RapmUtils {
         }
         if (playerPossessionCountTracker[playerId] < removalThreshold) {
           p.rapmRemove = true; //(temp flag for peformance in this loop)
-          removedPlayersSet[playerId] = playerPossessionCountTracker[playerId];
+          removedPlayersSet[playerId] = playerPossessionCountTracker[playerId]/totalLineups;
           checkForPlayersToRemove = true;
         }
       }).value();
@@ -138,7 +140,8 @@ export class RapmUtils {
     return {
       unbiasWeight: unbiasWeight
       ,
-      removedPlayers: removedPlayersSet
+      removedPlayers: removedPlayersSet,
+      removalPct: removalPct
       ,
       playerToCol: _.chain(sortedPlayers).map((playerId, index) => {
         return [ playerId, index ]
@@ -592,6 +595,7 @@ export class RapmUtils {
         correlMatrixBacking[j][i] = _.reduce(veci, (acc: number, vi: number, index: number) => {
           return acc + (vi - meani)*(vecj[index] - meanj);
         }, 0)/(sqi*sqj);
+        correlMatrixBacking[i][j] = correlMatrixBacking[j][i];
       }
     }
     return correlMatrix;

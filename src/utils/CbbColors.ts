@@ -15,6 +15,15 @@ export class CbbColors {
         ;
     };
   }
+  static varPicker(scaleFn: (val: number) => string, scale: number = 1) {
+    return (val: any, valMeta: string) => {
+      const num = val.value as number;
+      return ((num == null) || (num == undefined)) ?
+        CbbColors.malformedDataColor : //(we'll use this color to indicate malformed data)
+        scaleFn(num*scale)
+        ;
+    };
+  }
 
   static readonly malformedDataColor = "#ccCCcc";
 
@@ -23,12 +32,12 @@ export class CbbColors {
   private static readonly blueToOrange = chroma.scale(["lightblue", "#ffFFff", "orange"]);
 
   // Pts/100
-  private static readonly pp100Domain = [80, 100, 120 ];
+  private static readonly pp100Domain = [ 80, 100, 120 ];
   public static readonly off_pp100 = (val: number) => CbbColors.redToGreen.domain(CbbColors.pp100Domain)(val).toString();
   public static readonly def_pp100 = (val: number) => CbbColors.greenToRed.domain(CbbColors.pp100Domain)(val).toString();
   public static readonly pp100: CbbColorTuple = [ CbbColors.off_pp100, CbbColors.def_pp100 ];
   // eFG
-  private static readonly eFGDomain = [0.4, 0.5, 0.6 ];
+  private static readonly eFGDomain = [ 0.4, 0.5, 0.6 ];
   public static readonly off_eFG = (val: number) => CbbColors.redToGreen.domain(CbbColors.eFGDomain)(val).toString();
   public static readonly def_eFG = (val: number) => CbbColors.greenToRed.domain(CbbColors.eFGDomain)(val).toString();
   public static readonly eFG: CbbColorTuple = [ CbbColors.off_eFG, CbbColors.def_eFG ];
@@ -37,7 +46,7 @@ export class CbbColors {
   public static readonly ast_offDef = (val: number) => CbbColors.blueToOrange.domain(CbbColors.astDomain)(val).toString();
   public static readonly ast: CbbColorTuple = [ CbbColors.ast_offDef, CbbColors.ast_offDef ];
   // TO
-  private static readonly toDomain = [0.1, 0.16, 0.22 ];
+  private static readonly toDomain = [ 0.1, 0.16, 0.22 ];
   public static readonly off_TO = (val: number) => CbbColors.greenToRed.domain(CbbColors.toDomain)(val).toString();
   public static readonly def_TO = (val: number) => CbbColors.redToGreen.domain(CbbColors.toDomain)(val).toString();
   public static readonly tOver: CbbColorTuple = [ CbbColors.off_TO, CbbColors.def_TO ];
@@ -57,12 +66,12 @@ export class CbbColors {
   public static readonly def_3P = (val: number) => CbbColors.greenToRed.domain(CbbColors.fg3PDomain)(val).toString();
   public static readonly fg3P: CbbColorTuple = [ CbbColors.off_3P, CbbColors.def_3P ];
   // 2P%
-  private static readonly fg2PDomain = [0.4, 0.5, 0.6 ];
+  private static readonly fg2PDomain = [ 0.4, 0.5, 0.6 ];
   public static readonly off_2P = (val: number) => CbbColors.redToGreen.domain(CbbColors.fg2PDomain)(val).toString();
   public static readonly def_2P = (val: number) => CbbColors.greenToRed.domain(CbbColors.fg2PDomain)(val).toString();
   public static readonly fg2P: CbbColorTuple = [ CbbColors.off_2P, CbbColors.def_2P ];
   // 2P% mid
-  private static readonly fg2PMidDomain = [0.3, 0.4, 0.5 ];
+  private static readonly fg2PMidDomain = [ 0.3, 0.4, 0.5 ];
   public static readonly off_2P_mid = (val: number) => CbbColors.redToGreen.domain(CbbColors.fg2PMidDomain)(val).toString();
   public static readonly def_2P_mid = (val: number) => CbbColors.greenToRed.domain(CbbColors.fg2PMidDomain)(val).toString();
   public static readonly fg2P_mid: CbbColorTuple = [ CbbColors.off_2P_mid, CbbColors.def_2P_mid ];
@@ -112,13 +121,23 @@ export class CbbColors {
   public static readonly p_def_FTR = (val: number) => "#ffFFff";
   public static readonly p_ftr: CbbColorTuple = [ CbbColors.off_FTR, CbbColors.p_def_FTR ];
   // Personal TO / STL
-  private static readonly stlDomain = [0.0, 0.02, 0.05 ];
+  private static readonly stlDomain = [ 0.0, 0.02, 0.05 ];
   public static readonly p_def_TO = (val: number) => CbbColors.blueToOrange.domain(CbbColors.stlDomain)(val).toString();
   public static readonly p_tOver: CbbColorTuple = [ CbbColors.off_TO, CbbColors.p_def_TO ];
 
   // Personal Rim / Blk
-  private static readonly blkDomain = [-0.10, 0.0, 0.10 ];
+  private static readonly blkDomain = [ -0.10, 0.0, 0.10 ];
   public static readonly p_def_2P_rim = (val: number) => CbbColors.blueToOrange.domain(CbbColors.blkDomain)(val).toString();
   public static readonly p_fg2P_rim: CbbColorTuple = [ CbbColors.off_2P_rim, CbbColors.p_def_2P_rim ];
+
+  // RAPM diags:
+  // Correlation matrix
+  private static readonly rapmCorrelDomain = [ 0, 0.5, 1.0 ];
+  public static readonly rapmCorrel = (val: number) => CbbColors.blueToOrange.domain(CbbColors.rapmCorrelDomain)(val).toString();
+  // Collinearity
+  private static readonly rapmCollinLineupDomain = [ 0.01, 0.25, 1.0 ];
+  private static readonly rapmCollinPlayerDomain = [ -1.0, 0.0, 1.0 ];
+  public static readonly rapmCollinLineup = (val: number) => CbbColors.greenToRed.domain(CbbColors.rapmCollinLineupDomain)(val).toString();
+  public static readonly rapmCollinPlayer = (val: number) => CbbColors.blueToOrange.domain(CbbColors.rapmCollinPlayerDomain)(val).toString();
 
 }

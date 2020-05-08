@@ -9,15 +9,25 @@ import { RapmInfo, RapmPlayerContext, RapmPreProcDiagnostics, RapmProcessingInpu
 
 type Props = {
   rapmInfo: RapmInfo,
-  player: Record<string, any>
+  player: Record<string, any>,
+  globalRef: React.RefObject<HTMLDivElement>
 };
 
-const RapmPlayerDiagView: React.FunctionComponent<Props> = (({rapmInfo, player}) => {
+const RapmPlayerDiagView: React.FunctionComponent<Props> = (({rapmInfo, player, globalRef}) => {
   try {
     const ctx = rapmInfo.ctx;
     const offWeights = rapmInfo.offWeights.valueOf();
     const offInputs = rapmInfo.offInputs;
     const defInputs = rapmInfo.defInputs;
+
+    const gotoGlobalDiags = () => {
+      if (globalRef.current) {
+        globalRef.current.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+        });
+      }
+    };
 
     const rapmOff = (player.rapm?.off_adj_ppp?.value || 0);
     const rapmDef = (player.rapm?.def_adj_ppp?.value || 0);
@@ -66,11 +76,12 @@ const RapmPlayerDiagView: React.FunctionComponent<Props> = (({rapmInfo, player})
           <li>Priors contribution: off=[<b>{priorOff.toFixed(2)}</b>], def=[<b>{priorDef.toFixed(2)}</b>], total=[<b>{totalPrior.toFixed(2)}</b>]</li>
             {priorDiagListEl}
         </ul>
-        (<b>More to come...</b> ... scroll to <a href="#global-rapm-diags">global</a>)
+        (<b>More player diagnostics to come...</b>)<br/>(<a href="#" onClick={(event) => { event.preventDefault(); gotoGlobalDiags() }}>Scroll to global RAPM diagnostics</a>)
       </span>;
     }
     catch (err) { //Temp issue during reprocessing
-        return <span>Recalculating diags, pending {err.message}</span>;
+      console.log(err.message, err);
+      return <span>Recalculating diags, pending {err.message}</span>;
     }
 });
 
