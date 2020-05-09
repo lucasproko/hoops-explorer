@@ -281,11 +281,17 @@ describe("RapmUtils", () => {
         lineupCombos: t.lineupCombos.map((val) => val.toFixed(4)),
         playerCombos: _.chain(t.playerCombos).mapValues((playerRow) => {
           return playerRow.map((val) => val.toFixed(4));
-        }).value()
+        }).value(),
+        correlMatrix: t.correlMatrix.valueOf().map((row: number[]) => {
+          return row.map((n: number) => n.toFixed(4));
+        })
       }
     };
 
     // (Results from https://www.mathworks.com/help/matlab/ref/double.svd.html using test)
+    // Correlmatrix via:
+    // A = [ 1, 0, 1 ;  -1, -2, 0 ; 0, 1, -1 ;  0.5, 0.5, 0.5 ]
+    // corr(A, A)
 
     expect(tidyResults(results)).toEqual({
       lineupCombos: [ "9.4618", "1.4154", "1.0000" ],
@@ -293,7 +299,12 @@ describe("RapmUtils", () => {
         "PlayerA": [ "0.9852", "0.0103", "0.0045" ],
         "PlayerB": [ "0.9401", "0.0081", "0.0519" ],
         "PlayerC": [ "0.9524", "0.0476", "0.0000" ],
-      }
+      },
+      correlMatrix: [
+        ["1.0000", "0.6865", "0.5429"],
+        ["0.6865", "1.0000", "-0.2041"],
+        ["0.5429", "-0.2041", "1.0000"],
+      ]
     });
 
   });
