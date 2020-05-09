@@ -1499,31 +1499,33 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
   <h5>
     Filtered-out player diagnostics
   </h5>
-  <span>
-    <li>
-      Players starting with too few possessions (threshold [
-      <b>
-        10.0
-        %
-      </b>
-      ]):
-    </li>
-    <ul>
+  <ul>
+    <span>
       <li>
-        "Mona, Reese" [4.2%];"Marial, Chol" [2.1%]
+        Players with too few possessions (threshold [
+        <b>
+          10.0
+          %
+        </b>
+        ]):
       </li>
-    </ul>
-  </span>
-  <span>
-    <li>
-      Players who have too few possessions after filtering out other players:
-    </li>
-    <ul>
+      <ul>
+        <li>
+          "Mona, Reese" [4.2%];"Marial, Chol" [2.1%]
+        </li>
+      </ul>
+    </span>
+    <span>
       <li>
-        "Mitchell, Makhi" [26.4%]-&gt;[2.6%]; "Hart, Hakim" [23.7%]-&gt;[2.4%]; "Mitchell, Makhel" [21.0%]-&gt;[1.0%]; "Tomaic, Joshua" [14.9%]-&gt;[2.0%]
+        Players who have too few possessions after filtering out other players:
       </li>
-    </ul>
-  </span>
+      <ul>
+        <li>
+          "Mitchell, Makhi" [26.4%]-&gt;[2.6%]; "Hart, Hakim" [23.7%]-&gt;[2.4%]; "Mitchell, Makhel" [21.0%]-&gt;[1.0%]; "Tomaic, Joshua" [14.9%]-&gt;[2.0%]
+        </li>
+      </ul>
+    </span>
+  </ul>
   <h5>
     Lineup collinearity diagnostics
   </h5>

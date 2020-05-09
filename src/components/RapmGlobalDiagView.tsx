@@ -152,8 +152,9 @@ const RapmGlobalDiagView: React.FunctionComponent<Props> = (({rapmInfo, players,
       </Container>
 
       <h5>Filtered-out player diagnostics</h5>
+      <ul>
       {tmpRemovedPlayersPhase1.length > 0 ? <span>
-        <li>Players starting with too few possessions (threshold [<b>{(playerThreshold*100).toFixed(1)}%</b>]):</li>
+        <li>Players with too few possessions (threshold [<b>{(playerThreshold*100).toFixed(1)}%</b>]):</li>
         <ul>
           <li>{tmpRemovedPlayersPhase1.join(";")}</li>
         </ul>
@@ -164,6 +165,7 @@ const RapmGlobalDiagView: React.FunctionComponent<Props> = (({rapmInfo, players,
           <li>{tmpRemovedPlayersPhase2.join("; ")}</li>
         </ul>
       </span> : null }
+      </ul>
 
       <h5>Lineup collinearity diagnostics</h5>
       <span><em>
