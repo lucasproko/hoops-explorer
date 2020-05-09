@@ -116,15 +116,16 @@ const RapmGlobalDiagView: React.FunctionComponent<Props> = (({rapmInfo, players,
       ))
     );
     // Table vals:
-    const buildCollinRow = (row: number[], title: string | undefined = undefined) => {
+    const condIndicesTitle = `"RAPM Impact"`;
+    const buildCollinRow = (row: number[], title: string) => {
       return GenericTableOps.buildDataRow(_.fromPairs(row.map((n: number, index: number) =>
           [ collinCol(index), { value: n } ] as [ string, any ]
         ).concat(title ? [ [ "title", title ] ] : [])),
         GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta,
-        title ? undefined : collinTableFields_CondIndices
+        title != condIndicesTitle ? undefined : collinTableFields_CondIndices
       )
     };
-    const collinTableData = [ buildCollinRow(lineupCombos) ].concat(
+    const collinTableData = [ buildCollinRow(lineupCombos, condIndicesTitle) ].concat(
       _.toPairs(rapmInfo.preProcDiags.playerCombos).map((pRow: [ string, number[] ]) => {
         return buildCollinRow(pRow[1], pRow[0]);
       })
@@ -134,7 +135,15 @@ const RapmGlobalDiagView: React.FunctionComponent<Props> = (({rapmInfo, players,
       <h4>Global RAPM Diagnostics View</h4>
 
       <h5>Player correlation table</h5>
-      <span>TODO some docs</span><br/>
+      <span><em>
+        <ul>
+          <li>Shows the <a target="_blank" href="https://en.wikipedia.org/wiki/Pearson_correlation_coefficient">Pearson Correlation Coefficient</a>
+          &nbsp;between any two players. This can be thought of as "how similar would the changes be to the two players' RAPMs from a random change in the lineup stats?"</li>
+          <ul>
+            <li>(eg 100%: the changes would be proportional to each other; 0%: the changes would be unrelated to each other)</li>
+          </ul>
+        </ul>
+      </em></span>
       <Container>
         <Col xs={8}>
           <GenericTable tableCopyId="correlDiags" tableFields={correlTableFields} tableData={correlTableData}/>
@@ -142,7 +151,7 @@ const RapmGlobalDiagView: React.FunctionComponent<Props> = (({rapmInfo, players,
       </Container>
 
       <h5>Filtered-out player diagnostics</h5>
-      <li>Players starting with too few possessions (threshold [{(playerThreshold*100).toFixed(1)}%]):</li>
+      <li>Players starting with too few possessions (threshold [<b>{(playerThreshold*100).toFixed(1)}%</b>]):</li>
       <ul>
         <li>{tmpRemovedPlayersPhase1.join(";")}</li>
       </ul>
@@ -154,12 +163,28 @@ const RapmGlobalDiagView: React.FunctionComponent<Props> = (({rapmInfo, players,
       </span> : null }
 
       <h5>Lineup collinearity diagnostics</h5>
-      <span>TODO some docs</span><br/>
+      <span><em>
+        <ul>
+        <li>In the context of RAPM, "lineup collinearity" means that players are in such a similar combination of lineups that
+        it is hard for the math to distinguish correctly between their contributions. The more "collinear" the lineups are,
+        the more sensitive the raw RAPM is to small changes in lineup stats, and therefore the more aggressive the regression toward the "prior estimates" needs to be.</li>
+
+        <li>In the table below, each "LC" is a combination of lineups, and the first row a measure of its impact on the raw RAPM.
+        For each "LC" we show a % for each player indicating how much they are affected by the collinearity of that combination.</li>
+        </ul>
+      </em></span>
       <Container>
         <Col xs={8}>
           <GenericTable tableCopyId="collinDiags" tableFields={collinTableFields} tableData={collinTableData}/>
         </Col>
       </Container>
+      <span><em>
+        <ul>
+        <li>A good rule of thumb is that an "impact" of <b>15-30</b> is slightly worrying, from <b>30-100+</b> increasingly problematic.
+        For a problematic "LC", a player score of <b>50%</b> onwards indicates an increasing unreliability of their raw RAPM share with other affected players.</li>
+        <li>(For a purely mathematical explanation see bullet 6 of <a target="_blank" href="https://en.wikipedia.org/wiki/Multicollinearity#Detection_of_multicollinearity">this section of the wiki article.</a>)</li>
+        </ul>
+      </em></span>
       (<a href="#" onClick={(event) => { event.preventDefault(); gotoTop() }}>Scroll back to the top</a>)
     </section>;
 
