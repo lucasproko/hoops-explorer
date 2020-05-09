@@ -1,0 +1,3209 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
+<section>
+  <h4>
+    Global RAPM Diagnostics View
+  </h4>
+  <h5>
+    Player correlation table
+  </h5>
+  <span>
+    <em>
+      <ul>
+        <li>
+          Shows the 
+          <a
+            href="https://en.wikipedia.org/wiki/Pearson_correlation_coefficient"
+            target="_blank"
+          >
+            Pearson Correlation Coefficient
+          </a>
+           between any two players. This can be thought of as "how similar would the changes be to the two players' RAPMs from a random change in the lineup stats?"
+        </li>
+        <ul>
+          <li>
+            (eg 100%: the changes would be proportional to each other; 0%: the changes would be unrelated to each other)
+          </li>
+        </ul>
+      </ul>
+    </em>
+  </span>
+  <div
+    className="container"
+  >
+    <div
+      className="col-8"
+    >
+      <table
+        className="table table-sm"
+        id="correlDiags"
+      >
+        <thead>
+          <tr>
+            <th
+              style={
+                Object {
+                  "fontWeight": "bold",
+                  "textAlign": "right",
+                  "width": "32.7%",
+                }
+              }
+            >
+              
+              <div>
+                <button
+                  className="float-left btn btn-outline-secondary btn-sm"
+                  disabled={false}
+                  id="correlDiags_copy"
+                  type="button"
+                >
+                  <svg
+                    aria-hidden="true"
+                    className="svg-inline--fa fa-clipboard fa-w-12 "
+                    data-icon="clipboard"
+                    data-prefix="fas"
+                    focusable="false"
+                    role="img"
+                    style={Object {}}
+                    viewBox="0 0 384 512"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M384 112v352c0 26.51-21.49 48-48 48H48c-26.51 0-48-21.49-48-48V112c0-26.51 21.49-48 48-48h80c0-35.29 28.71-64 64-64s64 28.71 64 64h80c26.51 0 48 21.49 48 48zM192 40c-13.255 0-24 10.745-24 24s10.745 24 24 24 24-10.745 24-24-10.745-24-24-24m96 114v-20a6 6 0 0 0-6-6H102a6 6 0 0 0-6 6v20a6 6 0 0 0 6 6h180a6 6 0 0 0 6-6z"
+                      fill="currentColor"
+                      style={Object {}}
+                    />
+                  </svg>
+                </button>
+              </div>
+            </th>
+            <th
+              style={
+                Object {
+                  "fontWeight": "bold",
+                  "textAlign": "center",
+                  "width": "2.0%",
+                }
+              }
+            >
+              
+            </th>
+            <div>
+              <th
+                style={
+                  Object {
+                    "fontWeight": "bold",
+                    "textAlign": "center",
+                    "width": "8.2%",
+                  }
+                }
+              >
+                JS
+              </th>
+            </div>
+            <div>
+              <th
+                style={
+                  Object {
+                    "fontWeight": "bold",
+                    "textAlign": "center",
+                    "width": "8.2%",
+                  }
+                }
+              >
+                AC
+              </th>
+            </div>
+            <div>
+              <th
+                style={
+                  Object {
+                    "fontWeight": "bold",
+                    "textAlign": "center",
+                    "width": "8.2%",
+                  }
+                }
+              >
+                AW
+              </th>
+            </div>
+            <div>
+              <th
+                style={
+                  Object {
+                    "fontWeight": "bold",
+                    "textAlign": "center",
+                    "width": "8.2%",
+                  }
+                }
+              >
+                DM
+              </th>
+            </div>
+            <div>
+              <th
+                style={
+                  Object {
+                    "fontWeight": "bold",
+                    "textAlign": "center",
+                    "width": "8.2%",
+                  }
+                }
+              >
+                EA
+              </th>
+            </div>
+            <div>
+              <th
+                style={
+                  Object {
+                    "fontWeight": "bold",
+                    "textAlign": "center",
+                    "width": "8.2%",
+                  }
+                }
+              >
+                DS
+              </th>
+            </div>
+            <div>
+              <th
+                style={
+                  Object {
+                    "fontWeight": "bold",
+                    "textAlign": "center",
+                    "width": "8.2%",
+                  }
+                }
+              >
+                RL
+              </th>
+            </div>
+            <div>
+              <th
+                style={
+                  Object {
+                    "fontWeight": "bold",
+                    "textAlign": "center",
+                    "width": "8.2%",
+                  }
+                }
+              >
+                SS
+              </th>
+            </div>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": undefined,
+                  "fontWeight": "bold",
+                  "textAlign": "right",
+                  "width": "32.7%",
+                }
+              }
+            >
+              <div>
+                Smith, Jalen
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": undefined,
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "2.0%",
+                }
+              }
+            >
+              <div>
+                
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": undefined,
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#ffa706",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                98.8
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#ffaa0f",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                97.0
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#ffad17",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                95.5
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#ffad18",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                95.3
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#ffb834",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                89.7
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#fff3dc",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                56.9
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#ffffff",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                49.8
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": undefined,
+                  "fontWeight": "bold",
+                  "textAlign": "right",
+                  "width": "32.7%",
+                }
+              }
+            >
+              <div>
+                Cowan, Anthony
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": undefined,
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "2.0%",
+                }
+              }
+            >
+              <div>
+                
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#ffa706",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                98.8
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": undefined,
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#ffac13",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                96.3
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#ffaf1b",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                94.7
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#ffb01e",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                94.1
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#ffb836",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                89.4
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#fff2d9",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                57.4
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#fafdfe",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                47.1
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": undefined,
+                  "fontWeight": "bold",
+                  "textAlign": "right",
+                  "width": "32.7%",
+                }
+              }
+            >
+              <div>
+                Wiggins, Aaron
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": undefined,
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "2.0%",
+                }
+              }
+            >
+              <div>
+                
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#ffaa0f",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                97.0
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#ffac13",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                96.3
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": undefined,
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#ffb42a",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                91.8
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#ffb42a",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                91.8
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#ffbf4b",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                85.4
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#fff1d7",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                57.8
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#fafdfd",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                46.9
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": undefined,
+                  "fontWeight": "bold",
+                  "textAlign": "right",
+                  "width": "32.7%",
+                }
+              }
+            >
+              <div>
+                Morsell, Darryl
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": undefined,
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "2.0%",
+                }
+              }
+            >
+              <div>
+                
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#ffad17",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                95.5
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#ffaf1b",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                94.7
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#ffb42a",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                91.8
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": undefined,
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#ffb630",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                90.7
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#ffc252",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                84.0
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#ffffff",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                49.9
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#f1f8fb",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                41.5
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": undefined,
+                  "fontWeight": "bold",
+                  "textAlign": "right",
+                  "width": "32.7%",
+                }
+              }
+            >
+              <div>
+                Ayala, Eric
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": undefined,
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "2.0%",
+                }
+              }
+            >
+              <div>
+                
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#ffad18",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                95.3
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#ffb01e",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                94.1
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#ffb42a",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                91.8
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#ffb630",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                90.7
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": undefined,
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#ffc355",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                83.3
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#fffbf3",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                52.4
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#edf6f9",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                38.9
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": undefined,
+                  "fontWeight": "bold",
+                  "textAlign": "right",
+                  "width": "32.7%",
+                }
+              }
+            >
+              <div>
+                Scott, Donta
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": undefined,
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "2.0%",
+                }
+              }
+            >
+              <div>
+                
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#ffb834",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                89.7
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#ffb836",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                89.4
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#ffbf4b",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                85.4
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#ffc252",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                84.0
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#ffc355",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                83.3
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": undefined,
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#edf6f9",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                38.9
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#f1f8fb",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                41.5
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": undefined,
+                  "fontWeight": "bold",
+                  "textAlign": "right",
+                  "width": "32.7%",
+                }
+              }
+            >
+              <div>
+                Lindo Jr., Ricky
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": undefined,
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "2.0%",
+                }
+              }
+            >
+              <div>
+                
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#fff3dc",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                56.9
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#fff2d9",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                57.4
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#fff1d7",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                57.8
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#ffffff",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                49.9
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#fffbf3",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                52.4
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#edf6f9",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                38.9
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": undefined,
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#d4ebf2",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                24.0
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": undefined,
+                  "fontWeight": "bold",
+                  "textAlign": "right",
+                  "width": "32.7%",
+                }
+              }
+            >
+              <div>
+                Smith Jr., Serrel
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": undefined,
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "2.0%",
+                }
+              }
+            >
+              <div>
+                
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#ffffff",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                49.8
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#fafdfe",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                47.1
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#fafdfd",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                46.9
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#f1f8fb",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                41.5
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#edf6f9",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                38.9
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#f1f8fb",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                41.5
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#d4ebf2",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                24.0
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": undefined,
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <h5>
+    Filtered-out player diagnostics
+  </h5>
+  <li>
+    Players starting with too few possessions (threshold [
+    <b>
+      10.0
+      %
+    </b>
+    ]):
+  </li>
+  <ul>
+    <li>
+      
+    </li>
+  </ul>
+  <span>
+    <li>
+      Players who have too few possessions after filtering others:
+    </li>
+    <ul>
+      <li>
+        "Mitchell, Makhi" [26400.0%]; "Hart, Hakim" [23700.0%]; "Mitchell, Makhel" [21000.0%]; "Marial, Chol" [20800.0%]; "Tomaic, Joshua" [14900.0%]; "Mona, Reese" [4200.0%]
+      </li>
+    </ul>
+  </span>
+  <h5>
+    Lineup collinearity diagnostics
+  </h5>
+  <span>
+    <em>
+      <ul>
+        <li>
+          In the context of RAPM, "lineup collinearity" means that players are in such a similar combination of lineups that it is hard for the math to distinguish correctly between their contributions. The more "collinear" the lineups are, the more sensitive the raw RAPM is to small changes in lineup stats, and therefore the more aggressive the regression toward the "prior estimates" needs to be.
+        </li>
+        <li>
+          In the table below, each "LC" is a combination of lineups, and the first row a measure of its impact on the raw RAPM. For each "LC" we show a % for each player indicating how much they are affected by the collinearity of that combination.
+        </li>
+      </ul>
+    </em>
+  </span>
+  <div
+    className="container"
+  >
+    <div
+      className="col-8"
+    >
+      <table
+        className="table table-sm"
+        id="collinDiags"
+      >
+        <thead>
+          <tr>
+            <th
+              style={
+                Object {
+                  "fontWeight": "bold",
+                  "textAlign": "right",
+                  "width": "32.7%",
+                }
+              }
+            >
+              
+              <div>
+                <button
+                  className="float-left btn btn-outline-secondary btn-sm"
+                  disabled={false}
+                  id="collinDiags_copy"
+                  type="button"
+                >
+                  <svg
+                    aria-hidden="true"
+                    className="svg-inline--fa fa-clipboard fa-w-12 "
+                    data-icon="clipboard"
+                    data-prefix="fas"
+                    focusable="false"
+                    role="img"
+                    style={Object {}}
+                    viewBox="0 0 384 512"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M384 112v352c0 26.51-21.49 48-48 48H48c-26.51 0-48-21.49-48-48V112c0-26.51 21.49-48 48-48h80c0-35.29 28.71-64 64-64s64 28.71 64 64h80c26.51 0 48 21.49 48 48zM192 40c-13.255 0-24 10.745-24 24s10.745 24 24 24 24-10.745 24-24-10.745-24-24-24m96 114v-20a6 6 0 0 0-6-6H102a6 6 0 0 0-6 6v20a6 6 0 0 0 6 6h180a6 6 0 0 0 6-6z"
+                      fill="currentColor"
+                      style={Object {}}
+                    />
+                  </svg>
+                </button>
+              </div>
+            </th>
+            <th
+              style={
+                Object {
+                  "fontWeight": "bold",
+                  "textAlign": "center",
+                  "width": "2.0%",
+                }
+              }
+            >
+              
+            </th>
+            <div>
+              <th
+                style={
+                  Object {
+                    "fontWeight": "bold",
+                    "textAlign": "center",
+                    "width": "8.2%",
+                  }
+                }
+              >
+                LC1
+              </th>
+            </div>
+            <div>
+              <th
+                style={
+                  Object {
+                    "fontWeight": "bold",
+                    "textAlign": "center",
+                    "width": "8.2%",
+                  }
+                }
+              >
+                LC2
+              </th>
+            </div>
+            <div>
+              <th
+                style={
+                  Object {
+                    "fontWeight": "bold",
+                    "textAlign": "center",
+                    "width": "8.2%",
+                  }
+                }
+              >
+                LC3
+              </th>
+            </div>
+            <div>
+              <th
+                style={
+                  Object {
+                    "fontWeight": "bold",
+                    "textAlign": "center",
+                    "width": "8.2%",
+                  }
+                }
+              >
+                LC4
+              </th>
+            </div>
+            <div>
+              <th
+                style={
+                  Object {
+                    "fontWeight": "bold",
+                    "textAlign": "center",
+                    "width": "8.2%",
+                  }
+                }
+              >
+                LC5
+              </th>
+            </div>
+            <div>
+              <th
+                style={
+                  Object {
+                    "fontWeight": "bold",
+                    "textAlign": "center",
+                    "width": "8.2%",
+                  }
+                }
+              >
+                LC6
+              </th>
+            </div>
+            <div>
+              <th
+                style={
+                  Object {
+                    "fontWeight": "bold",
+                    "textAlign": "center",
+                    "width": "8.2%",
+                  }
+                }
+              >
+                LC7
+              </th>
+            </div>
+            <div>
+              <th
+                style={
+                  Object {
+                    "fontWeight": "bold",
+                    "textAlign": "center",
+                    "width": "8.2%",
+                  }
+                }
+              >
+                LC8
+              </th>
+            </div>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": undefined,
+                  "fontWeight": "bold",
+                  "textAlign": "right",
+                  "width": "32.7%",
+                }
+              }
+            >
+              <div>
+                "RAPM Impact"
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": undefined,
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "2.0%",
+                }
+              }
+            >
+              <div>
+                
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#fff7f7",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                27.2
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#a5d2a5",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                16.5
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#8dc68d",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                14.3
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#78bc78",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                12.3
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#5aad5a",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                9.5
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#56ab56",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                9.1
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#4aa54a",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                8.0
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#008000",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                1.0
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": undefined,
+                  "fontWeight": "bold",
+                  "textAlign": "right",
+                  "width": "32.7%",
+                }
+              }
+            >
+              <div>
+                Smith, Jalen
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": undefined,
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "2.0%",
+                }
+              }
+            >
+              <div>
+                
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#ffe7bb",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                98.3
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#ffffff",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                0.1
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#ffffff",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                0.8
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#ffffff",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                0.7
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#ffffff",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                0.0
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#ffffff",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                0.0
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#ffffff",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                0.0
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#ffffff",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                0.0
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": undefined,
+                  "fontWeight": "bold",
+                  "textAlign": "right",
+                  "width": "32.7%",
+                }
+              }
+            >
+              <div>
+                Cowan, Anthony
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": undefined,
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "2.0%",
+                }
+              }
+            >
+              <div>
+                
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#fff8ec",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                26.7
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#fff6e4",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                63.8
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#fffefc",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                7.9
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#ffffff",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                1.0
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#ffffff",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                0.1
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#ffffff",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                0.4
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#ffffff",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                0.0
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#ffffff",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                0.1
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": undefined,
+                  "fontWeight": "bold",
+                  "textAlign": "right",
+                  "width": "32.7%",
+                }
+              }
+            >
+              <div>
+                Wiggins, Aaron
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": undefined,
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "2.0%",
+                }
+              }
+            >
+              <div>
+                
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#fffbf3",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                17.6
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#fffdf9",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                14.5
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#fffffe",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                2.0
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#fffaf2",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                42.5
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#ffffff",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                0.7
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#fffdfa",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                20.9
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#ffffff",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                1.6
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#ffffff",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                0.1
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": undefined,
+                  "fontWeight": "bold",
+                  "textAlign": "right",
+                  "width": "32.7%",
+                }
+              }
+            >
+              <div>
+                Morsell, Darryl
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": undefined,
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "2.0%",
+                }
+              }
+            >
+              <div>
+                
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#fffaf0",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                21.9
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#fffcf7",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                17.9
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#ffffff",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                0.0
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#ffffff",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                0.3
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#fffcf7",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                33.2
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#fffdf9",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                25.3
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#ffffff",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                1.3
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#ffffff",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                0.1
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": undefined,
+                  "fontWeight": "bold",
+                  "textAlign": "right",
+                  "width": "32.7%",
+                }
+              }
+            >
+              <div>
+                Ayala, Eric
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": undefined,
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "2.0%",
+                }
+              }
+            >
+              <div>
+                
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#fff8ea",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                30.1
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#fffefd",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                5.8
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#fffffe",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                2.4
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#ffffff",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                0.1
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#fffbf4",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                46.0
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#fffefd",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                10.2
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#fffffe",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                5.2
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#ffffff",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                0.1
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": undefined,
+                  "fontWeight": "bold",
+                  "textAlign": "right",
+                  "width": "32.7%",
+                }
+              }
+            >
+              <div>
+                Scott, Donta
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": undefined,
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "2.0%",
+                }
+              }
+            >
+              <div>
+                
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#fffbf5",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                14.6
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#fffbf4",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                26.6
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#fffffe",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                2.0
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#ffffff",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                0.3
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#ffffff",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                1.6
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#ffffff",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                0.0
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#fffbf4",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                54.8
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#ffffff",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                0.1
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": undefined,
+                  "fontWeight": "bold",
+                  "textAlign": "right",
+                  "width": "32.7%",
+                }
+              }
+            >
+              <div>
+                Lindo Jr., Ricky
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": undefined,
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "2.0%",
+                }
+              }
+            >
+              <div>
+                
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#fffefd",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                2.3
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#fffbf3",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                28.0
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#fffbf4",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                30.8
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#fffcf6",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                30.1
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#ffffff",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                0.0
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#fffefd",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                6.5
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#ffffff",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                2.3
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#ffffff",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                0.0
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": undefined,
+                  "fontWeight": "bold",
+                  "textAlign": "right",
+                  "width": "32.7%",
+                }
+              }
+            >
+              <div>
+                Smith Jr., Serrel
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": undefined,
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "2.0%",
+                }
+              }
+            >
+              <div>
+                
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#fff9ed",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                25.9
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#ffffff",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                0.2
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#fff8eb",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                53.8
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#fffdfa",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                17.2
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#ffffff",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                0.3
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#fffffe",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                2.6
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#ffffff",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                0.0
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#ffffff",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                0.0
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <span>
+    <em>
+      <ul>
+        <li>
+          A good rule of thumb is that an "impact" of 
+          <b>
+            15-30
+          </b>
+           is slightly worrying, from 
+          <b>
+            30-100+
+          </b>
+           increasingly problematic. For a problematic "LC", a player score of 
+          <b>
+            50%
+          </b>
+           onwards indicates an increasing unreliability of their raw RAPM share with other affected players.
+        </li>
+        <li>
+          (For a purely mathematical explanation see bullet 6 of 
+          <a
+            href="https://en.wikipedia.org/wiki/Multicollinearity#Detection_of_multicollinearity"
+            target="_blank"
+          >
+            this section of the wiki article.
+          </a>
+          )
+        </li>
+      </ul>
+    </em>
+  </span>
+  (
+  <a
+    href="#"
+    onClick={[Function]}
+  >
+    Scroll back to the top
+  </a>
+  )
+</section>
+`;
