@@ -16,9 +16,11 @@ import { add, apply, diag, identity, inv, matrix, mean, multiply, resize, row, s
 export type RapmPlayerContext = {
   /** If true, then adds an additional row with the desired final result */
   unbiasWeight: number;
+  /** The threshold of %s at which a player should be removed */
+  removalPct: number;
 
   /** Players that have been removed */
-  removedPlayers: Record<string, number>;
+  removedPlayers: Record<string, [number, number]>;
   /** The column corresponding to the player */
   playerToCol: Record<string, number>;
   /** The player name in each column */
@@ -39,7 +41,8 @@ export type RapmPlayerContext = {
 /** Holds the multi-collinearity info */
 export type RapmPreProcDiagnostics = {
   lineupCombos: Array<number>;
-  playerCombos: Record<string, Array<number>>
+  playerCombos: Record<string, Array<number>>,
+  correlMatrix: any
 };
 
 export type RapmProcessingInputs = {
@@ -73,18 +76,20 @@ export class RapmUtils {
     lineups: Array<any>,
     avgEfficiency: number
     ,
-    removalPct: number = 0.10,
+    removalPct: number = 0.06,
     unbiasWeight: number = 2.0,
   ): RapmPlayerContext {
     // The static threshold for removing players
     // (who do more harm than good)
     // (2x to approximate checking both offense and defense)
-    const totalLineups = players?.[0]?.on?.off_poss?.value || 0;
-    const removalThreshold = 2*removalPct*totalLineups;
+    const totalLineups =
+      (players?.[0]?.on?.off_poss?.value || 0) + (players?.[0]?.off?.off_poss?.value || 0) +
+      (players?.[0]?.on?.def_poss?.value || 0) + (players?.[0]?.off?.def_poss?.value || 0);
+    const removalThreshold = removalPct*totalLineups || 1;
     // Filter out players with too few possessions
     var checkForPlayersToRemove = true; //(always do the full processing loop once)
     var currFilteredLineupSet = [];
-    const removedPlayersSet: Record<string, number> = {};
+    const removedPlayersSet: Record<string, [number, number]> = {};
     const playerPossessionCountTracker: Record<string, number> = {};
     while (checkForPlayersToRemove) {
       _.chain(players).filter((p: any) => !p.rapmRemove).forEach((p: any) => {
@@ -96,7 +101,9 @@ export class RapmUtils {
         }
         if (playerPossessionCountTracker[playerId] < removalThreshold) {
           p.rapmRemove = true; //(temp flag for peformance in this loop)
-          removedPlayersSet[playerId] = playerPossessionCountTracker[playerId];
+          const origPoss = (p.on?.off_poss?.value || 0) + (p.on?.def_poss?.value || 0);
+          removedPlayersSet[playerId] =
+            [ origPoss/totalLineups, playerPossessionCountTracker[playerId]/totalLineups ];
           checkForPlayersToRemove = true;
         }
       }).value();
@@ -137,7 +144,8 @@ export class RapmUtils {
     return {
       unbiasWeight: unbiasWeight
       ,
-      removedPlayers: removedPlayersSet
+      removedPlayers: removedPlayersSet,
+      removalPct: removalPct
       ,
       playerToCol: _.chain(sortedPlayers).map((playerId, index) => {
         return [ playerId, index ]
@@ -494,7 +502,7 @@ export class RapmUtils {
 
   ): [ number[], number[] ] {
     // (see pickRidgeRegression for context)
-    
+
     const ctxNoWeights = _.merge(_.clone(ctx), {
       unbiasWeight: 0
     });
@@ -567,7 +575,35 @@ export class RapmUtils {
 
   // 4] DIAGNOSTIC PROCESSING
 
-  //TODO: Pearsson correlation matrix between players
+  /** Pearson correlation matrix between players */
+  private static calcPlayerCorrelations(
+    weightMatrix: any,
+    ctx: RapmPlayerContext
+  ): any {
+    const weightMatrixT = transpose(weightMatrix).valueOf();
+    const weightMeans = weightMatrixT.map((row: number[]) => _.sum(row)/row.length);
+    const squares = weightMatrixT.map((row: number[], index: number) => {
+      const mean = weightMeans[index] || 0;
+      return Math.sqrt(_.reduce(row, (acc, v) => acc + (v - mean)*(v - mean), 0));
+    });
+    const correlMatrix = identity(ctx.numPlayers);
+    const correlMatrixBacking = correlMatrix.valueOf();
+    for (let i = 0; i < ctx.numPlayers; i++) {
+      for (let j = 0; j < i; j++) {
+        const veci: number[] = weightMatrixT[i] || [];
+        const vecj: number[] = weightMatrixT[j] || [];
+        const meani = weightMeans[i] || 0;
+        const meanj = weightMeans[j] || 0;
+        const sqi = squares[i] || 1;
+        const sqj = squares[j] || 1;
+        correlMatrixBacking[j][i] = _.reduce(veci, (acc: number, vi: number, index: number) => {
+          return acc + (vi - meani)*(vecj[index] - meanj);
+        }, 0)/(sqi*sqj);
+        correlMatrixBacking[i][j] = correlMatrixBacking[j][i];
+      }
+    }
+    return correlMatrix;
+  }
 
   /** Looks for multi-collinearity conditions between players
       The cond index ("lineup combo") is 0-10 == safe, 10-30 == OKish, 30 - 100 problem
@@ -661,7 +697,8 @@ export class RapmUtils {
         return [player, condIndicesSortedIndex.map((lineupComboIndex) => {
           return vdpRaw[lineupComboIndex][playerIndex];
         })]
-      }).fromPairs().value()
+      }).fromPairs().value(),
+      correlMatrix: RapmUtils.calcPlayerCorrelations(weightMatrix, ctx)
     };
   }
 

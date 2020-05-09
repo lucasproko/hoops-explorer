@@ -22,7 +22,9 @@ export const semiRealRapmResults = {
 
   reducedFilteredLineups: reducedFilteredLineups,
 
-  testContext: {"unbiasWeight":2,"removedPlayers":{"Mitchell, Makhel":210,"Tomaic, Joshua":149,"Marial, Chol":208,"Mona, Reese":42,"Hart, Hakim":237,"Mitchell, Makhi":264},"playerToCol":{"Smith, Jalen":0,"Cowan, Anthony":1,"Wiggins, Aaron":2,"Morsell, Darryl":3,"Ayala, Eric":4,"Scott, Donta":5,"Lindo Jr., Ricky":6,"Smith Jr., Serrel":7},"colToPlayer":["Smith, Jalen","Cowan, Anthony","Wiggins, Aaron","Morsell, Darryl","Ayala, Eric","Scott, Donta","Lindo Jr., Ricky","Smith Jr., Serrel"],"avgEfficiency":102.4,"numPlayers":8,"numLineups":31,"offLineupPoss":1351,"defLineupPoss":1349
+  testContext: {"unbiasWeight":2,"removalPct":0.1,
+  "removedPlayers":{"Mitchell, Makhel":[0.210, 0.01],"Tomaic, Joshua":[0.149, 0.02],"Marial, Chol":[0.0208,0.0208],"Mona, Reese":[0.042,0.042],"Hart, Hakim":[0.237,0.0237],"Mitchell, Makhi":[0.264, 0.0264]} as Record<string, [number, number]>,
+  "playerToCol":{"Smith, Jalen":0,"Cowan, Anthony":1,"Wiggins, Aaron":2,"Morsell, Darryl":3,"Ayala, Eric":4,"Scott, Donta":5,"Lindo Jr., Ricky":6,"Smith Jr., Serrel":7},"colToPlayer":["Smith, Jalen","Cowan, Anthony","Wiggins, Aaron","Morsell, Darryl","Ayala, Eric","Scott, Donta","Lindo Jr., Ricky","Smith Jr., Serrel"],"avgEfficiency":102.4,"numPlayers":8,"numLineups":31,"offLineupPoss":1351,"defLineupPoss":1349
   ,
   // Extra fields:
   filteredLineups: reducedFilteredLineups,
@@ -64,6 +66,7 @@ describe("RapmUtils", () => {
     const onOffReport = LineupUtils.lineupToTeamReport(lineupReportWithExtra);
     const expectedContext_all = {
        avgEfficiency: 100.0,
+       removalPct: 0.0,
        removedPlayers: {},
        playerToCol: {
          "Ayala, Eric": 4,
@@ -93,9 +96,10 @@ describe("RapmUtils", () => {
     };
     const expectedContext_removed = {
        avgEfficiency: 100.0,
+       removalPct: 0.20,
        removedPlayers: {
-         "Data, Dummy": 100,
-         "Player, Other": 200
+         "Data, Dummy": [ 0.09017132551848513, 0.09017132551848513],
+         "Player, Other": [ 0.27051397655545534, 0.18034265103697025 ]
        },
        playerToCol: _.omit(expectedContext_all.playerToCol, [
          "Data, Dummy", "Player, Other"
@@ -259,6 +263,7 @@ describe("RapmUtils", () => {
 
     const dummyContext = {
       avgEfficiency: 100.0,
+      removalPct: 0.0,
       removedPlayers: {},
       playerToCol: { "PlayerB": 1, "PlayerC": 2, "PlayerA": 0 },
       colToPlayer: [ "PlayerA", "PlayerB", "PlayerC" ],
@@ -278,11 +283,17 @@ describe("RapmUtils", () => {
         lineupCombos: t.lineupCombos.map((val) => val.toFixed(4)),
         playerCombos: _.chain(t.playerCombos).mapValues((playerRow) => {
           return playerRow.map((val) => val.toFixed(4));
-        }).value()
+        }).value(),
+        correlMatrix: t.correlMatrix.valueOf().map((row: number[]) => {
+          return row.map((n: number) => n.toFixed(4));
+        })
       }
     };
 
     // (Results from https://www.mathworks.com/help/matlab/ref/double.svd.html using test)
+    // Correlmatrix via:
+    // A = [ 1, 0, 1 ;  -1, -2, 0 ; 0, 1, -1 ;  0.5, 0.5, 0.5 ]
+    // corr(A, A)
 
     expect(tidyResults(results)).toEqual({
       lineupCombos: [ "9.4618", "1.4154", "1.0000" ],
@@ -290,7 +301,12 @@ describe("RapmUtils", () => {
         "PlayerA": [ "0.9852", "0.0103", "0.0045" ],
         "PlayerB": [ "0.9401", "0.0081", "0.0519" ],
         "PlayerC": [ "0.9524", "0.0476", "0.0000" ],
-      }
+      },
+      correlMatrix: [
+        ["1.0000", "0.6865", "0.5429"],
+        ["0.6865", "1.0000", "-0.2041"],
+        ["0.5429", "-0.2041", "1.0000"],
+      ]
     });
 
   });

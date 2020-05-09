@@ -83,8 +83,17 @@ exports[`RapmPlayerDiagView RapmPlayerDiagView - should create snapshot 1`] = `
   </ul>
   (
   <b>
-    More to come...
+    More player diagnostics to come...
   </b>
+  )
+  <br />
+  (
+  <a
+    href="#"
+    onClick={[Function]}
+  >
+    Scroll to global RAPM diagnostics
+  </a>
   )
 </span>
 `;
