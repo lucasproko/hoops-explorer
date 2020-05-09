@@ -73,21 +73,22 @@ const RapmGlobalDiagView: React.FunctionComponent<Props> = (({rapmInfo, players,
     // Player removal
 
     const playerThreshold = ctx.removalPct;
-    const playerRemovalTidy = (playerList: Array<[string, number]>) => {
+    const playerRemovalTidy = (playerList: Array<[string, [number, number]]>, phase: "p1" | "p2") => {
       return _.sortBy(
-        playerList, [ (playerPoss: [string, number]) => -playerPoss[1] ]
-      ).map((playerPoss: [string, number]) =>
-        `"${playerPoss[0]}" [${(100*playerPoss[1]).toFixed(1)}%]`
-      );
+        playerList, [ (playerPoss: [string, [number, number]]) => -playerPoss[1][0] ]
+      ).map((playerPoss: [string, [number, number]]) => {
+        const extra = (phase == "p1") ? "" : `->[${(100*playerPoss[1][1]).toFixed(1)}%]`
+        return `"${playerPoss[0]}" [${(100*playerPoss[1][0]).toFixed(1)}%]${extra}`;
+      });
     };
     const tmpRemovedPlayersPhase1 = playerRemovalTidy(
-      _.toPairs(ctx.removedPlayers).filter((playerPoss: [string, number]) =>
-        playerPoss[1] <= ctx.removalPct
-    ));
+      _.toPairs(ctx.removedPlayers).filter((playerPoss: [string, [number, number]]) =>
+        playerPoss[1][0] <= ctx.removalPct
+    ), "p1");
     const tmpRemovedPlayersPhase2 = playerRemovalTidy(
-      _.toPairs(ctx.removedPlayers).filter((playerPoss: [string, number]) =>
-        playerPoss[1] > ctx.removalPct
-    ));
+      _.toPairs(ctx.removedPlayers).filter((playerPoss: [string, [number, number]]) =>
+        playerPoss[1][0] > ctx.removalPct
+    ), "p2");
 
     // Collinearity analysis
 
@@ -151,12 +152,14 @@ const RapmGlobalDiagView: React.FunctionComponent<Props> = (({rapmInfo, players,
       </Container>
 
       <h5>Filtered-out player diagnostics</h5>
-      <li>Players starting with too few possessions (threshold [<b>{(playerThreshold*100).toFixed(1)}%</b>]):</li>
-      <ul>
-        <li>{tmpRemovedPlayersPhase1.join(";")}</li>
-      </ul>
+      {tmpRemovedPlayersPhase1.length > 0 ? <span>
+        <li>Players starting with too few possessions (threshold [<b>{(playerThreshold*100).toFixed(1)}%</b>]):</li>
+        <ul>
+          <li>{tmpRemovedPlayersPhase1.join(";")}</li>
+        </ul>
+      </span> : <span><li>No players filtered out based on possession % (threshold [<b>{(playerThreshold*100).toFixed(1)}%</b>])</li></span>}
       {tmpRemovedPlayersPhase2.length > 0 ? <span>
-        <li>Players who have too few possessions after filtering others:</li>
+        <li>Players who have too few possessions after filtering out other players:</li>
         <ul>
           <li>{tmpRemovedPlayersPhase2.join("; ")}</li>
         </ul>
@@ -190,7 +193,6 @@ const RapmGlobalDiagView: React.FunctionComponent<Props> = (({rapmInfo, players,
 
   }
   catch (err) { //Temp issue during reprocessing
-    console.log(err.message, err);
     return <span>Recalculating diags, pending [{err.message}]</span>;
   } else {
     return <span>(Internal Logic Error: No Diags)</span>; //(only theoretically reachable)

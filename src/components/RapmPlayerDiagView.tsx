@@ -80,7 +80,6 @@ const RapmPlayerDiagView: React.FunctionComponent<Props> = (({rapmInfo, player, 
       </span>;
     }
     catch (err) { //Temp issue during reprocessing
-      console.log(err.message, err);
       return <span>Recalculating diags, pending {err.message}</span>;
     }
 });

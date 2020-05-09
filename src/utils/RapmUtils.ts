@@ -20,7 +20,7 @@ export type RapmPlayerContext = {
   removalPct: number;
 
   /** Players that have been removed */
-  removedPlayers: Record<string, number>;
+  removedPlayers: Record<string, [number, number]>;
   /** The column corresponding to the player */
   playerToCol: Record<string, number>;
   /** The player name in each column */
@@ -76,18 +76,20 @@ export class RapmUtils {
     lineups: Array<any>,
     avgEfficiency: number
     ,
-    removalPct: number = 0.10,
+    removalPct: number = 0.06,
     unbiasWeight: number = 2.0,
   ): RapmPlayerContext {
     // The static threshold for removing players
     // (who do more harm than good)
     // (2x to approximate checking both offense and defense)
-    const totalLineups = players?.[0]?.on?.off_poss?.value || 0;
-    const removalThreshold = 2*removalPct*totalLineups || 1;
+    const totalLineups =
+      (players?.[0]?.on?.off_poss?.value || 0) + (players?.[0]?.off?.off_poss?.value || 0) +
+      (players?.[0]?.on?.def_poss?.value || 0) + (players?.[0]?.off?.def_poss?.value || 0);
+    const removalThreshold = removalPct*totalLineups || 1;
     // Filter out players with too few possessions
     var checkForPlayersToRemove = true; //(always do the full processing loop once)
     var currFilteredLineupSet = [];
-    const removedPlayersSet: Record<string, number> = {};
+    const removedPlayersSet: Record<string, [number, number]> = {};
     const playerPossessionCountTracker: Record<string, number> = {};
     while (checkForPlayersToRemove) {
       _.chain(players).filter((p: any) => !p.rapmRemove).forEach((p: any) => {
@@ -99,7 +101,9 @@ export class RapmUtils {
         }
         if (playerPossessionCountTracker[playerId] < removalThreshold) {
           p.rapmRemove = true; //(temp flag for peformance in this loop)
-          removedPlayersSet[playerId] = playerPossessionCountTracker[playerId]/totalLineups;
+          const origPoss = (p.on?.off_poss?.value || 0) + (p.on?.def_poss?.value || 0);
+          removedPlayersSet[playerId] =
+            [ origPoss/totalLineups, playerPossessionCountTracker[playerId]/totalLineups ];
           checkForPlayersToRemove = true;
         }
       }).value();

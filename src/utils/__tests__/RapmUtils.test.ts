@@ -22,7 +22,9 @@ export const semiRealRapmResults = {
 
   reducedFilteredLineups: reducedFilteredLineups,
 
-  testContext: {"unbiasWeight":2,"removalPct":0.1,"removedPlayers":{"Mitchell, Makhel":210,"Tomaic, Joshua":149,"Marial, Chol":208,"Mona, Reese":42,"Hart, Hakim":237,"Mitchell, Makhi":264},"playerToCol":{"Smith, Jalen":0,"Cowan, Anthony":1,"Wiggins, Aaron":2,"Morsell, Darryl":3,"Ayala, Eric":4,"Scott, Donta":5,"Lindo Jr., Ricky":6,"Smith Jr., Serrel":7},"colToPlayer":["Smith, Jalen","Cowan, Anthony","Wiggins, Aaron","Morsell, Darryl","Ayala, Eric","Scott, Donta","Lindo Jr., Ricky","Smith Jr., Serrel"],"avgEfficiency":102.4,"numPlayers":8,"numLineups":31,"offLineupPoss":1351,"defLineupPoss":1349
+  testContext: {"unbiasWeight":2,"removalPct":0.1,
+  "removedPlayers":{"Mitchell, Makhel":[0.210, 0.01],"Tomaic, Joshua":[0.149, 0.02],"Marial, Chol":[0.0208,0.0208],"Mona, Reese":[0.042,0.042],"Hart, Hakim":[0.237,0.0237],"Mitchell, Makhi":[0.264, 0.0264]} as Record<string, [number, number]>,
+  "playerToCol":{"Smith, Jalen":0,"Cowan, Anthony":1,"Wiggins, Aaron":2,"Morsell, Darryl":3,"Ayala, Eric":4,"Scott, Donta":5,"Lindo Jr., Ricky":6,"Smith Jr., Serrel":7},"colToPlayer":["Smith, Jalen","Cowan, Anthony","Wiggins, Aaron","Morsell, Darryl","Ayala, Eric","Scott, Donta","Lindo Jr., Ricky","Smith Jr., Serrel"],"avgEfficiency":102.4,"numPlayers":8,"numLineups":31,"offLineupPoss":1351,"defLineupPoss":1349
   ,
   // Extra fields:
   filteredLineups: reducedFilteredLineups,
@@ -96,8 +98,8 @@ describe("RapmUtils", () => {
        avgEfficiency: 100.0,
        removalPct: 0.20,
        removedPlayers: {
-         "Data, Dummy": 0.17889087656529518,
-         "Player, Other": 0.35778175313059035
+         "Data, Dummy": [ 0.09017132551848513, 0.09017132551848513],
+         "Player, Other": [ 0.27051397655545534, 0.18034265103697025 ]
        },
        playerToCol: _.omit(expectedContext_all.playerToCol, [
          "Data, Dummy", "Player, Other"
