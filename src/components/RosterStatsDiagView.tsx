@@ -23,8 +23,9 @@ const RosterStatsDiagView: React.FunctionComponent<Props> = ({ortgDiags, drtgDia
   const d = drtgDiags;
   return <span>
     ORtg = Points_Produced [<b>{o.ptsProd.toFixed(1)}</b>] / Adjusted_Possessions [<b>{o.adjPoss.toFixed(1)}</b>]
-    &nbsp;(<a href="#" onClick={(event) => { event.preventDefault(); setShowMoreORtgPts(!showMoreORtgPts) }}>{showMoreORtgPts ? "less" : "more"} about points</a>)
-    &nbsp;(<a href="#" onClick={(event) => { event.preventDefault(); setShowMoreORtgPoss(!showMoreORtgPoss) }}>{showMoreORtgPoss ? "less" : "more"} about possessions</a>)
+    (<a href="#" onClick={(event) => { event.preventDefault(); setShowMoreORtgPts(!showMoreORtgPts) }}>{showMoreORtgPts ? "less" : "more"} about points</a>)
+    (<a href="#" onClick={(event) => { event.preventDefault(); setShowMoreORtgPoss(!showMoreORtgPoss) }}>{showMoreORtgPoss ? "less" : "more"} about possessions</a>)
+    (<a href="#" onClick={(event) => { event.preventDefault(); setShowMoreORtgAdj(!showMoreORtgAdj) }}>{showMoreORtgAdj ? "less" : "more"} about Adj+ ORtg</a>)
     <ul>
       <li>Points_Produced: [<b>{o.ptsProd.toFixed(1)}</b>] = PProd_From_ORB [<b>{o.ppOrb.toFixed(1)}</b>] +
       [<b>{((o.ppFg + o.ppAssist + o.rawFtm)*(1 - o.teamOrbContribPct)).toFixed(1)}</b>]
@@ -118,10 +119,10 @@ const RosterStatsDiagView: React.FunctionComponent<Props> = ({ortgDiags, drtgDia
           <li><em>(FT possession calcs above, under Team_Scoring_Plays)</em></li>
         </ul>
       </ul></span> : null }
-      <li><b>Adjusted+ ORtg</b>: [<b>{o.adjORtg.toFixed(1)}</b>] = (Regressed_ORtg [<b>{o.Regressed_ORtg.toFixed(1)}</b>] + Usage_Bonus [<b>{o.Usage_Bonus.toFixed(1)}</b>]) * (Avg_Efficiency [<b>{o.avgEff.toFixed(1)}</b>] / Def_SOS [<b>{o.defSos.toFixed(1)}</b>])
-      &nbsp;(<a href="#" onClick={(event) => { event.preventDefault(); setShowMoreORtgAdj(!showMoreORtgAdj) }}>{showMoreORtgAdj ? "less" : "more"} about Adjusted+ ORtg</a>)
+      <li><b>Adjusted+ ORtg</b>: [<b>{o.adjORtgPlus.toFixed(1)}</b>] = <em>Normalize</em> [<b>{o.adjORtg.toFixed(1)}</b>] (Regressed_ORtg [<b>{o.Regressed_ORtg.toFixed(1)}</b>] + Usage_Bonus [<b>{o.Usage_Bonus.toFixed(1)}</b>]) * (Avg_Efficiency [<b>{o.avgEff.toFixed(1)}</b>] / Def_SOS [<b>{o.defSos.toFixed(1)}</b>])
       </li>
       { showMoreORtgAdj ? <span><li><u>Adjusted+ ORtg details</u> (<a target="_blank" href="https://www.bigtengeeks.com/new-stat-porpagatu/">?</a>)</li><ul>
+        <li>Normalization: Rtg+ [<b>{o.adjORtgPlus.toFixed(1)}</b>] = 20% * (Rtg [<b>{o.adjORtg.toFixed(1)}</b>] - Avg_Efficiency [<b>{o.avgEff.toFixed(1)}</b>])</li>
         <li>Regressed_ORtg: [<b>{o.Regressed_ORtg.toFixed(1)}</b>] = Avg_Efficiency [<b>{o.avgEff.toFixed(1)}</b>] + ORtg_SDs_Above_Mean [<b>{o.SDs_Above_Mean.toFixed(1)}</b>] * ORtg_SD_At_20%_Usage [<b>{o.SD_at_Usage_20.toFixed(1)}</b>]</li>
         <ul>
           <li>ORtg_SDs_Above_Mean: [<b>{o.SDs_Above_Mean.toFixed(1)}</b>] = (ORtg [<b>{o.oRtg.toFixed(1)}</b>] - Avg_Efficiency [<b>{o.avgEff.toFixed(1)}</b>]) / SD_At_Actual_Usage [<b>{o.SD_at_Usage.toFixed(1)}</b>]</li>
@@ -150,7 +151,7 @@ const RosterStatsDiagView: React.FunctionComponent<Props> = ({ortgDiags, drtgDia
       <ul>
         <li>Player_DRtg:  [<b>{d.playerRtg.toFixed(1)}</b>] = 100 * Pts_Per_Score [<b>{d.oppoPtsPerScore.toFixed(1)}</b>] * Score_Conceded_By_Player% [<b>{(100*d.scPossConceded).toFixed(1)}%</b>]</li>
       </ul>
-      <li><b>Adjusted DRtg</b>: [<b>{d.adjDRtg.toFixed(1)}</b>] = DRtg [<b>{d.dRtg.toFixed(1)}</b>] * (Avg_Efficiency [<b>{d.avgEff.toFixed(1)}</b>] / Off_SOS [<b>{d.offSos.toFixed(1)}</b>])</li>
+      <li><b>Adjusted+ DRtg</b>: [<b>{d.adjDRtgPlus.toFixed(1)}</b>] = <em>Normalize</em> [<b>{d.adjDRtg.toFixed(1)}</b>] (DRtg [<b>{d.dRtg.toFixed(1)}</b>] * (Avg_Efficiency [<b>{d.avgEff.toFixed(1)}</b>] / Off_SOS [<b>{d.offSos.toFixed(1)}</b>]))</li>
       {showMoreDRtg ?
       <span><li><u>DRtg details</u></li>
       <ul>
@@ -197,6 +198,7 @@ const RosterStatsDiagView: React.FunctionComponent<Props> = ({ortgDiags, drtgDia
             <li>Opponent_NonSteal_TOV: [<b>{d.oppoNonStlTov.toFixed(0)}</b>] = Opponent_TOV [<b>{d.oppoTov}</b>] - Team_STL [<b>{d.teamStl}</b>]</li>
           </ul>
         </ul>
+        <li>Adj+ Rtg Normalization: Rtg+ [<b>{d.adjDRtgPlus.toFixed(1)}</b>] = 20% * (Rtg [<b>{d.adjDRtg.toFixed(1)}</b>] - Avg_Efficiency [<b>{o.avgEff.toFixed(1)}</b>])</li>
       </ul></span> : null
       }
     </ul>

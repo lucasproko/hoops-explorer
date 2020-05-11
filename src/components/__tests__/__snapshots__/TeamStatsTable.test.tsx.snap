@@ -1074,9 +1074,29 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
             <tr
               className="divider"
             >
-              <td
-                colSpan={23}
-              />
+              <td />
+              <td />
+              <td />
+              <td />
+              <td />
+              <td />
+              <td />
+              <td />
+              <td />
+              <td />
+              <td />
+              <td />
+              <td />
+              <td />
+              <td />
+              <td />
+              <td />
+              <td />
+              <td />
+              <td />
+              <td />
+              <td />
+              <td />
             </tr>
             <tr>
               <td
@@ -1821,9 +1841,29 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
             <tr
               className="divider"
             >
-              <td
-                colSpan={23}
-              />
+              <td />
+              <td />
+              <td />
+              <td />
+              <td />
+              <td />
+              <td />
+              <td />
+              <td />
+              <td />
+              <td />
+              <td />
+              <td />
+              <td />
+              <td />
+              <td />
+              <td />
+              <td />
+              <td />
+              <td />
+              <td />
+              <td />
+              <td />
             </tr>
             <tr>
               <td
@@ -2568,9 +2608,29 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
             <tr
               className="divider"
             >
-              <td
-                colSpan={23}
-              />
+              <td />
+              <td />
+              <td />
+              <td />
+              <td />
+              <td />
+              <td />
+              <td />
+              <td />
+              <td />
+              <td />
+              <td />
+              <td />
+              <td />
+              <td />
+              <td />
+              <td />
+              <td />
+              <td />
+              <td />
+              <td />
+              <td />
+              <td />
             </tr>
           </tbody>
         </table>

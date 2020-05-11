@@ -31,23 +31,27 @@ export class OnOffReportDiagUtils {
     const onMargin = (player?.on?.off_adj_ppp?.value || 0.0) - (player?.on?.def_adj_ppp?.value || 0.0);
     const offMargin = (player.off?.off_adj_ppp?.value || 0.0) - (player?.off?.def_adj_ppp?.value || 0.0);
     return [ onMargin, offMargin ];
-  }
+  };
 
-  /** Builds an array of players vs their margin differences (using replacement on/off if available)*/
-  static readonly buildPlayerSummary = (playersWithAdjEff: Array<Record<string, any>>, incReplacementOnOff: boolean) => {
-    return _.chain(playersWithAdjEff).map((player) => {
-      if (incReplacementOnOff && player.replacement?.key) {
+  /** Builds an array of players vs their margin differences (using RAPM or replacement on/off if available)*/
+  static readonly buildPlayerSummary = (playersWithAdjEff: Array<Record<string, any>>, incRapm: boolean, incReplacementOnOff: boolean) => {
+    const powerType = incRapm ? "RAPM " : (incReplacementOnOff ? "'r:On-Off' " : "'On-Off' ");
+    return [ _.chain(playersWithAdjEff).map((player) => {
+      if (incRapm && player.rapm?.key) {
+        return [ player.playerId,
+          (player.rapm?.off_adj_ppp?.value || 0.0) - (player.rapm?.def_adj_ppp?.value || 0.0)];
+      } else if (incReplacementOnOff && player.replacement?.key) {
         return [ player.playerId,
           (player.replacement?.off_adj_ppp?.value || 0.0) - (player.replacement?.def_adj_ppp?.value || 0.0)];
       } else {
         const [ onMargin, offMargin ] = OnOffReportDiagUtils.getAdjEffMargins(player);
-        return [ player.playerId, onMargin - offMargin ];
+        return [ player.playerId, 0.2*(onMargin - offMargin) ];
       }
-    }).fromPairs().value();
-  }
+    }).fromPairs().value(), powerType ] as [ Record<string, number>, string ];
+  };
 
   /** Builds lineup composition info */
-  static readonly buildLineupInfo = (playerObj: Record<string, any>, playerLineupPowerSet: Record<string, any>) => {
+  static readonly buildLineupInfo = (playerObj: Record<string, any>, playerLineupPowerSet: Record<string, any>, powerType: string) => {
     const totalOnPoss = _.max([playerObj.on.off_poss.value + playerObj.on.def_poss.value, 1]);
     const totalOffPoss = _.max([playerObj.off.off_poss.value + playerObj.off.def_poss.value, 1]);
     const playerPcts = _.chain(playerObj.teammates).toPairs()
@@ -75,7 +79,7 @@ export class OnOffReportDiagUtils {
           </span>;
       }).value(),
       <span key="last">
-        <b>Lineup rating:</b> [{lineupPower.toFixed(1)}]
+        <b>{powerType} Lineup rating:</b> [{lineupPower.toFixed(1)}]
       </span>
     );
   };

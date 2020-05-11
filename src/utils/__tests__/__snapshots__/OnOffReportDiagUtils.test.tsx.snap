@@ -2838,9 +2838,29 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
     <tr
       className="divider"
     >
-      <td
-        colSpan={23}
-      />
+      <td />
+      <td />
+      <td />
+      <td />
+      <td />
+      <td />
+      <td />
+      <td />
+      <td />
+      <td />
+      <td />
+      <td />
+      <td />
+      <td />
+      <td />
+      <td />
+      <td />
+      <td />
+      <td />
+      <td />
+      <td />
+      <td />
+      <td />
     </tr>
     <tr>
       <td
@@ -5091,16 +5111,56 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
     <tr
       className="divider"
     >
-      <td
-        colSpan={23}
-      />
+      <td />
+      <td />
+      <td />
+      <td />
+      <td />
+      <td />
+      <td />
+      <td />
+      <td />
+      <td />
+      <td />
+      <td />
+      <td />
+      <td />
+      <td />
+      <td />
+      <td />
+      <td />
+      <td />
+      <td />
+      <td />
+      <td />
+      <td />
     </tr>
     <tr
       className="divider"
     >
-      <td
-        colSpan={23}
-      />
+      <td />
+      <td />
+      <td />
+      <td />
+      <td />
+      <td />
+      <td />
+      <td />
+      <td />
+      <td />
+      <td />
+      <td />
+      <td />
+      <td />
+      <td />
+      <td />
+      <td />
+      <td />
+      <td />
+      <td />
+      <td />
+      <td />
+      <td />
     </tr>
   </tbody>
 </table>

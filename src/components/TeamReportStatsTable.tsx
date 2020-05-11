@@ -233,8 +233,8 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
 
   // 3.1] Table building
 
-  const playerLineupPowerSet = OnOffReportDiagUtils.buildPlayerSummary(
-    playersWithAdjEff, incReplacementOnOff
+  const [ playerLineupPowerSet, powerType ] = OnOffReportDiagUtils.buildPlayerSummary(
+    playersWithAdjEff, incRapm, incReplacementOnOff
   );
 
   /** Handles the various sorting combos */
@@ -369,7 +369,7 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
           )
         ] : [],
         showLineupCompositions ? [ GenericTableOps.buildTextRow(
-          OnOffReportDiagUtils.buildLineupInfo(player, playerLineupPowerSet), "small"
+          OnOffReportDiagUtils.buildLineupInfo(player, playerLineupPowerSet, powerType), "small"
         ) ] : [],
         [ GenericTableOps.buildRowSeparator() ],
          repOnOffDiagsEnabled && (tableDataInputs.length == 1) ?

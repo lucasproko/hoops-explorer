@@ -15,7 +15,7 @@ describe("StatsUtils", () => {
       samplePlayerStatsResponse.aggregations.tri_filter.buckets.baseline.player.buckets[0], 100, true
     );
     expect(oRtg).toEqual({value:112.99672660419142});
-    expect(adjORtg).toEqual({value:124.58254313564575});
+    expect(adjORtg).toEqual({value:4.916508627129151});
     expect(oRtgDiags).toEqual(sampleOrtgDiagnostics);
   });
   test("StatsUtils - buildDRtg", () => {
@@ -23,7 +23,7 @@ describe("StatsUtils", () => {
       samplePlayerStatsResponse.aggregations.tri_filter.buckets.baseline.player.buckets[0], 100, true
     );
     expect(dRtg).toEqual({value:110.2860531155855});
-    expect(adjDRtg).toEqual({value:102.04282992219363});
+    expect(adjDRtg).toEqual({value:0.4085659844387266});
     expect(dRtgDiags).toEqual(sampleDrtgDiagnostics);
   });
 });

@@ -36,6 +36,7 @@ export const sampleDrtgDiagnostics = {
   "oppoPtsPerScore": 2.2521888114496065,
   "teamRtg": 102.15175537938845,
   "adjDRtg": 102.04282992219363,
+  "adjDRtgPlus": 0.4085659844387266,
   "avgEff": 100,
   "dRtg": 110.2860531155855,
   "offSos": 108.0781993204983

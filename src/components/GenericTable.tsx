@@ -243,8 +243,8 @@ const GenericTable: React.FunctionComponent<Props> = ({tableFields, tableData, t
         return <tr key={"" + index}>{ renderTableRow(row) }</tr>;
       } else if (row instanceof GenericTableTextRow) {
         return <tr key={"" + index}><td colSpan={totalTableCols} className={row.className}>{row.text}</td></tr>;
-      } else { //(separator)
-        return <tr className="divider" key={"" + index}><td colSpan={totalTableCols}></td></tr>;
+      } else { //(separator, don't merge the cols because we don't have cell boundaries and that messes up spreadsheet)
+        return <tr className="divider" key={"" + index}>{_.range(totalTableCols).map((i, j) => <td key={"" + j}></td>)}</tr>;
       }
     });
   }

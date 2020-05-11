@@ -57,6 +57,7 @@ export const sampleOrtgDiagnostics = {
     "Usage": 25.007566018533396,
     "Usage_Bonus": 6.259457523166745,
     "adjORtg": 124.58254313564575,
+    "adjORtgPlus": 4.916508627129151,
     "avgEff": 100,
     "defSos": 96.52304643261608,
     "oRtg": 112.99672660419142,

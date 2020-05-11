@@ -642,7 +642,7 @@ exports[`RosterStatsTable RosterStatsTable - should create snapshot 1`] = `
                     "value": 96.80587833219413,
                   },
                   "def_adj_rtg": Object {
-                    "value": 113.96591970929101,
+                    "value": 2.793183941858203,
                   },
                   "def_ftr": Object {
                     "value": 0.02248803827751196,
@@ -691,7 +691,7 @@ exports[`RosterStatsTable RosterStatsTable - should create snapshot 1`] = `
                     "value": 107.77293233082706,
                   },
                   "off_adj_rtg": Object {
-                    "value": 102.6879897320898,
+                    "value": 0.5375979464179608,
                   },
                   "off_assist": Object {
                     "value": 0.0988235294117647,
@@ -880,7 +880,7 @@ exports[`RosterStatsTable RosterStatsTable - should create snapshot 1`] = `
                     "value": 96.6003105590062,
                   },
                   "def_adj_rtg": Object {
-                    "value": 127.49627202084861,
+                    "value": 5.499254404169722,
                   },
                   "def_ftr": Object {
                     "value": 0.025543478260869563,
@@ -929,7 +929,7 @@ exports[`RosterStatsTable RosterStatsTable - should create snapshot 1`] = `
                     "value": 107.92523291925467,
                   },
                   "off_adj_rtg": Object {
-                    "value": 123.77764957388831,
+                    "value": 4.755529914777663,
                   },
                   "off_assist": Object {
                     "value": 0.2620320855614973,
@@ -1115,7 +1115,7 @@ exports[`RosterStatsTable RosterStatsTable - should create snapshot 1`] = `
                     "value": 96.31485355648536,
                   },
                   "def_adj_rtg": Object {
-                    "value": 288.28024260624,
+                    "value": 37.656048521248,
                   },
                   "def_ftr": Object {
                     "value": 0.021966527196652718,
@@ -1164,7 +1164,7 @@ exports[`RosterStatsTable RosterStatsTable - should create snapshot 1`] = `
                     "value": 108.49037656903766,
                   },
                   "off_adj_rtg": Object {
-                    "value": 126.16012579861855,
+                    "value": 5.232025159723711,
                   },
                   "off_assist": Object {
                     "value": 0.3770491803278688,
@@ -1353,7 +1353,7 @@ exports[`RosterStatsTable RosterStatsTable - should create snapshot 1`] = `
                     "value": 93,
                   },
                   "def_adj_rtg": Object {
-                    "value": 12559.623082036147,
+                    "value": 2491.9246164072297,
                   },
                   "def_ftr": Object {
                     "value": 0,
@@ -1402,7 +1402,7 @@ exports[`RosterStatsTable RosterStatsTable - should create snapshot 1`] = `
                     "value": 115.3,
                   },
                   "off_adj_rtg": Object {
-                    "value": 4.427140156200828,
+                    "value": -19.114571968759833,
                   },
                   "off_assist": Object {
                     "value": 0,
@@ -1670,7 +1670,7 @@ exports[`RosterStatsTable RosterStatsTable - should create snapshot 1`] = `
                 "isTitle": false,
                 "missingData": undefined,
                 "rowSpan": [Function],
-                "toolTip": "Offensive/Defensive rating in selected lineups adjusted for SoS and (for ORtg) the player's usage",
+                "toolTip": "Offensive/Defensive rating vs average in selected lineups adjusted for SoS and (for ORtg) the player's usage",
                 "widthUnits": 2,
               },
               "assist": GenericTableColProps {

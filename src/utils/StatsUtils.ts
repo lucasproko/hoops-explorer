@@ -76,7 +76,8 @@ export type ORtgDiagnostics = {
   Regressed_ORtg: number,
   Usage: number,
   Usage_Bonus: number,
-  adjORtg: number
+  adjORtg: number,
+  adjORtgPlus: number,
 };
 
 /** All the info needed to explain the DRtg calculation, see "buildDRtgDiag" */
@@ -125,7 +126,8 @@ export type DRtgDiagnostics = {
   dRtg: number,
   offSos: number,
   avgEff: number,
-  adjDRtg: number
+  adjDRtg: number,
+  adjDRtgPlus: number,
 };
 
 /** General cbb complex stats calcs */
@@ -241,10 +243,11 @@ export class StatsUtils {
     const Regressed_ORtg = avgEfficiency + SDs_Above_Mean * SD_at_Usage_20;
     const Usage_Bonus = usage > 20 ? ((usage - 20) * 1.25) :  ((usage - 20) * 1.5);
     const Adj_ORtg = (Regressed_ORtg + Usage_Bonus)*o_adj;
+    const Adj_ORtgPlus = 0.2*(Adj_ORtg - avgEfficiency);
 
     return [
       TotPoss > 0 ? { value: ORtg } : undefined,
-      TotPoss > 0 ? { value: Adj_ORtg } : undefined,
+      TotPoss > 0 ? { value: Adj_ORtgPlus } : undefined,
       (calcDiags ? {
       // Basic player numbers:
       rawFga: FGA,
@@ -320,8 +323,8 @@ export class StatsUtils {
       Regressed_ORtg: Regressed_ORtg,
       Usage: usage,
       Usage_Bonus: Usage_Bonus,
-      adjORtg: Adj_ORtg
-
+      adjORtg: Adj_ORtg,
+      adjORtgPlus: Adj_ORtgPlus
     } : undefined) as (ORtgDiagnostics | undefined) ];
   }
 
@@ -395,6 +398,7 @@ export class StatsUtils {
     const DRtg = Team_DRtg + Player_Delta;
     const Off_SOS = (statSet?.off_adj_opp?.value || avgEfficiency);
     const Adj_DRtg = Off_SOS > 0 ? DRtg*(avgEfficiency / Off_SOS) : 0;
+    const Adj_DRtgPlus =  0.2*(Adj_DRtg - avgEfficiency);
 
     // Try to incorporate FT fault:
     // Sum per lineup Approx_SF_Poss = PFpct*(Opponent_FTA*0.475)
@@ -406,7 +410,7 @@ export class StatsUtils {
 
     return [
       Opponent_Possessions > 0 ? { value: DRtg } : undefined,
-      Opponent_Possessions > 0 ? { value: Adj_DRtg } : undefined,
+      Opponent_Possessions > 0 ? { value: Adj_DRtgPlus } : undefined,
       (calcDiags ? {
       // Basic player numbers
       stl: STL,
@@ -452,7 +456,8 @@ export class StatsUtils {
       dRtg: DRtg,
       offSos: Off_SOS,
       avgEff: avgEfficiency,
-      adjDRtg: Adj_DRtg
+      adjDRtg: Adj_DRtg,
+      adjDRtgPlus: Adj_DRtgPlus
     } : undefined) ];
   }
 
