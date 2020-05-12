@@ -176,7 +176,7 @@ describe("RapmUtils", () => {
 
   test("RapmUtils - pickRidgeRegression", () => {
     const [ offResults, defResults ] = RapmUtils.pickRidgeRegression(
-      semiRealRapmResults.testOffWeights, semiRealRapmResults.testDefWeights, semiRealRapmResults.testContext
+      semiRealRapmResults.testOffWeights, semiRealRapmResults.testDefWeights, semiRealRapmResults.testContext, false
     );
 
     // Hand checked results, just checking nothing's broken with changes!
@@ -193,7 +193,8 @@ describe("RapmUtils", () => {
 
   test("RapmUtils - injectRapmIntoPlayers", () => {
     const [ offResults, defResults ] = RapmUtils.pickRidgeRegression(
-      semiRealRapmResults.testOffWeights, semiRealRapmResults.testDefWeights, semiRealRapmResults.testContext);
+      semiRealRapmResults.testOffWeights, semiRealRapmResults.testDefWeights, semiRealRapmResults.testContext, false
+    );
     const onOffReport = LineupUtils.lineupToTeamReport(lineupReport);
 
     // Check that removed players are handled
@@ -230,7 +231,8 @@ describe("RapmUtils", () => {
   test("RapmUtils - recalcNoUnbiasWeightingRapmForDiag", () => {
 
     const [ offResults, defResults ] = RapmUtils.pickRidgeRegression(
-      semiRealRapmResults.testOffWeights, semiRealRapmResults.testDefWeights, semiRealRapmResults.testContext);
+      semiRealRapmResults.testOffWeights, semiRealRapmResults.testDefWeights, semiRealRapmResults.testContext, false
+    );
 
     const results = RapmUtils.recalcNoUnbiasWeightingRapmForDiag(
       semiRealRapmResults.testOffWeights, semiRealRapmResults.testDefWeights,

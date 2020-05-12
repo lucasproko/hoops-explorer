@@ -14,6 +14,7 @@ import Col from 'react-bootstrap/Col';
 
 // Component imports
 import GenericTable, { GenericTableOps, GenericTableColProps } from "./GenericTable";
+// @ts-ignore
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, Legend, ReferenceLine, Label } from 'recharts';
 
 // Utils
@@ -239,7 +240,7 @@ const RapmGlobalDiagView: React.FunctionComponent<Props> = (({rapmInfo, players,
             </ReferenceLine>
             <Tooltip
               wrapperStyle={{ opacity: "0.8", zIndex: "1000" }}
-              formatter={(value, name, props) => value.toFixed(3)}
+              formatter={(value: number, name: string, props: any) => value.toFixed(3)}
               allowEscapeViewBox={{x: true, y: true}}
               itemSorter={(item: any) => -item.value}
             />
@@ -259,7 +260,7 @@ const RapmGlobalDiagView: React.FunctionComponent<Props> = (({rapmInfo, players,
             </ReferenceLine>
             <Tooltip
               wrapperStyle={{ opacity: "0.8", zIndex: "1000" }}
-              formatter={(value, name, props) => value.toFixed(3)}
+              formatter={(value: number, name: string, props: any) => value.toFixed(3)}
               allowEscapeViewBox={{x: true, y: true}}
               itemSorter={(item: any) => item.value}
             />

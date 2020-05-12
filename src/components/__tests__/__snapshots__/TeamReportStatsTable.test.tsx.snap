@@ -3372,7 +3372,8 @@ Adj: [NaN]",
                     </span>,
                     <span>
                       <b>
-                        Lineup rating:
+                        'r:On-Off' 
+                         Lineup rating:
                       </b>
                        [
                       -0.0
@@ -5013,7 +5014,8 @@ Adj: [NaN]",
                     </span>,
                     <span>
                       <b>
-                        Lineup rating:
+                        'r:On-Off' 
+                         Lineup rating:
                       </b>
                        [
                       -0.0
@@ -6654,7 +6656,8 @@ Adj: [NaN]",
                     </span>,
                     <span>
                       <b>
-                        Lineup rating:
+                        'r:On-Off' 
+                         Lineup rating:
                       </b>
                        [
                       -0.0
@@ -8643,7 +8646,8 @@ Adj: [-1.5]",
                     </span>,
                     <span>
                       <b>
-                        Lineup rating:
+                        'r:On-Off' 
+                         Lineup rating:
                       </b>
                        [
                       -0.5
@@ -10632,7 +10636,8 @@ Adj: [1.7]",
                     </span>,
                     <span>
                       <b>
-                        Lineup rating:
+                        'r:On-Off' 
+                         Lineup rating:
                       </b>
                        [
                       0.6
@@ -12621,7 +12626,8 @@ Adj: [-0.2]",
                     </span>,
                     <span>
                       <b>
-                        Lineup rating:
+                        'r:On-Off' 
+                         Lineup rating:
                       </b>
                        [
                       -0.2
@@ -16732,7 +16738,8 @@ Adj: [NaN]",
                     </span>,
                     <span>
                       <b>
-                        Lineup rating:
+                        'r:On-Off' 
+                         Lineup rating:
                       </b>
                        [
                       -0.0
@@ -18834,7 +18841,8 @@ Adj: [NaN]",
                     </span>,
                     <span>
                       <b>
-                        Lineup rating:
+                        'r:On-Off' 
+                         Lineup rating:
                       </b>
                        [
                       -0.0
@@ -20936,7 +20944,8 @@ Adj: [NaN]",
                     </span>,
                     <span>
                       <b>
-                        Lineup rating:
+                        'r:On-Off' 
+                         Lineup rating:
                       </b>
                        [
                       -0.0
@@ -30062,7 +30071,8 @@ Adj: [-1.5]",
                     </span>,
                     <span>
                       <b>
-                        Lineup rating:
+                        'r:On-Off' 
+                         Lineup rating:
                       </b>
                        [
                       -0.5
@@ -39188,7 +39198,8 @@ Adj: [1.7]",
                     </span>,
                     <span>
                       <b>
-                        Lineup rating:
+                        'r:On-Off' 
+                         Lineup rating:
                       </b>
                        [
                       0.6
@@ -48314,7 +48325,8 @@ Adj: [-0.2]",
                     </span>,
                     <span>
                       <b>
-                        Lineup rating:
+                        'r:On-Off' 
+                         Lineup rating:
                       </b>
                        [
                       -0.2
@@ -52425,7 +52437,8 @@ Adj: [NaN]",
                     </span>,
                     <span>
                       <b>
-                        Lineup rating:
+                        'r:On-Off' 
+                         Lineup rating:
                       </b>
                        [
                       -0.0
@@ -55253,10 +55266,11 @@ Poss: [100]% v [0]%",
                     </span>,
                     <span>
                       <b>
-                        Lineup rating:
+                        'On-Off' 
+                         Lineup rating:
                       </b>
                        [
-                      60.0
+                      12.0
                       ]
                     </span>,
                   ],
@@ -56360,10 +56374,11 @@ Poss: [100]% v [0]%",
                     </span>,
                     <span>
                       <b>
-                        Lineup rating:
+                        'On-Off' 
+                         Lineup rating:
                       </b>
                        [
-                      60.0
+                      12.0
                       ]
                     </span>,
                   ],
@@ -57467,10 +57482,11 @@ Poss: [100]% v [0]%",
                     </span>,
                     <span>
                       <b>
-                        Lineup rating:
+                        'On-Off' 
+                         Lineup rating:
                       </b>
                        [
-                      60.0
+                      12.0
                       ]
                     </span>,
                   ],
@@ -58574,10 +58590,11 @@ Poss: [75]% v [25]%",
                     </span>,
                     <span>
                       <b>
-                        Lineup rating:
+                        'On-Off' 
+                         Lineup rating:
                       </b>
                        [
-                      -3.8
+                      -0.8
                       ]
                     </span>,
                   ],
@@ -59681,10 +59698,11 @@ Poss: [73]% v [27]%",
                     </span>,
                     <span>
                       <b>
-                        Lineup rating:
+                        'On-Off' 
+                         Lineup rating:
                       </b>
                        [
-                      4.8
+                      1.0
                       ]
                     </span>,
                   ],
@@ -60788,10 +60806,11 @@ Poss: [52]% v [48]%",
                     </span>,
                     <span>
                       <b>
-                        Lineup rating:
+                        'On-Off' 
+                         Lineup rating:
                       </b>
                        [
-                      -1.4
+                      -0.3
                       ]
                     </span>,
                   ],

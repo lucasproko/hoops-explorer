@@ -3201,6 +3201,4830 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
       </ul>
     </em>
   </span>
+  <h5>
+    Regression diagnostics
+  </h5>
+  <span>
+    <em>
+      <ul>
+        <li>
+          TODO
+        </li>
+      </ul>
+    </em>
+  </span>
+  <div
+    className="container"
+  >
+    <div
+      className="row"
+    >
+      <div
+        className="col"
+      >
+        <div
+          className="recharts-wrapper"
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          onMouseMove={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          style={
+            Object {
+              "cursor": "default",
+              "height": 400,
+              "position": "relative",
+              "width": 450,
+            }
+          }
+        >
+          <svg
+            className="recharts-surface"
+            height={400}
+            version="1.1"
+            viewBox="0 0 450 400"
+            width={450}
+          >
+            <defs>
+              <clipPath
+                id="recharts9-clip"
+              >
+                <rect
+                  height={360}
+                  width={390}
+                  x={60}
+                  y={5}
+                />
+              </clipPath>
+            </defs>
+            <g
+              className="recharts-layer recharts-line"
+            >
+              <path
+                className="recharts-curve recharts-line-curve"
+                clipPath={null}
+                d="M60,184.97251776221026C73,182.08508271863008,86,179.19764767504986,99,177.33798375252036C112,175.47831982999085,125,174.6935175299694,138,173.8145342270332C151,172.935550924097,164,172.49424801759127,177,172.0640839349031C190,171.63391985221492,203,171.42145131722395,216,171.23354973090406C229,171.04564814458416,242,170.93667441698372,255,170.93667441698372C268,170.93667441698372,281,170.94881957998624,294,170.9731099059913C307,170.99740023199635,320,171.11858748077955,333,171.22867021134803C346,171.3387529419165,359,171.48121945114644,372,171.63360628940217C385,171.7859931276579,398,171.96081703909692,411,172.14299124088242C424,172.32516544266792,437,172.52590847139157,450,172.72665150011522"
+                fill="none"
+                height={360}
+                stroke="#a6cee3"
+                strokeWidth={1}
+                width={390}
+              />
+              <g
+                className="recharts-layer recharts-line-dots"
+                clipPath={null}
+              >
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={60}
+                  cy={184.97251776221026}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#a6cee3"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={99}
+                  cy={177.33798375252036}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#a6cee3"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={138}
+                  cy={173.8145342270332}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#a6cee3"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={177}
+                  cy={172.0640839349031}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#a6cee3"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={216}
+                  cy={171.23354973090406}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#a6cee3"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={255}
+                  cy={170.93667441698372}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#a6cee3"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={294}
+                  cy={170.9731099059913}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#a6cee3"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={333}
+                  cy={171.22867021134803}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#a6cee3"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={372}
+                  cy={171.63360628940217}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#a6cee3"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={411}
+                  cy={172.14299124088242}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#a6cee3"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={450}
+                  cy={172.72665150011522}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#a6cee3"
+                  strokeWidth={1}
+                  width={390}
+                />
+              </g>
+            </g>
+            <g
+              className="recharts-layer recharts-line"
+            >
+              <path
+                className="recharts-curve recharts-line-curve"
+                clipPath={null}
+                d="M60,151.68680634068124C73,153.37505154426947,86,155.0632967478577,99,156.3019423516054C112,157.5405879553531,125,158.29820603679454,138,159.11867996316747C151,159.9391538895404,164,160.58177077812448,177,161.22478590984292C190,161.86780104156136,203,162.4270167593857,216,162.9767707534781C229,163.52652474757048,242,164.02997302166904,255,164.5233098743973C268,165.0166467271256,281,165.4812515048602,294,165.93679186984772C307,166.39233223483524,320,166.82838161292975,333,167.25655206432234C346,167.68472251571492,359,168.09870275344795,372,168.5058145782032C385,168.91292640295845,398,169.3091049960419,411,169.69922301285382C424,170.08934102966575,437,170.46793185437028,450,170.8465226790748"
+                fill="none"
+                height={360}
+                stroke="#1f78b4"
+                strokeWidth={1}
+                width={390}
+              />
+              <g
+                className="recharts-layer recharts-line-dots"
+                clipPath={null}
+              >
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={60}
+                  cy={151.68680634068124}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#1f78b4"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={99}
+                  cy={156.3019423516054}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#1f78b4"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={138}
+                  cy={159.11867996316747}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#1f78b4"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={177}
+                  cy={161.22478590984292}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#1f78b4"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={216}
+                  cy={162.9767707534781}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#1f78b4"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={255}
+                  cy={164.5233098743973}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#1f78b4"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={294}
+                  cy={165.93679186984772}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#1f78b4"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={333}
+                  cy={167.25655206432234}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#1f78b4"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={372}
+                  cy={168.5058145782032}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#1f78b4"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={411}
+                  cy={169.69922301285382}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#1f78b4"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={450}
+                  cy={170.8465226790748}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#1f78b4"
+                  strokeWidth={1}
+                  width={390}
+                />
+              </g>
+            </g>
+            <g
+              className="recharts-layer recharts-line"
+            >
+              <path
+                className="recharts-curve recharts-line-curve"
+                clipPath={null}
+                d="M60,117.44393586621786C73,123.26806483877478,86,129.0921938113317,99,133.3543701915656C112,137.61654657179952,125,140.29460990206417,138,143.01699414762138C151,145.73937839317858,164,147.74367843988352,177,149.6886756649088C190,151.63367288993408,203,153.19354729326142,216,154.68697749777303C229,156.18040770228464,242,157.44337759293612,255,158.6492568919784C268,159.8551361910207,281,160.91194385244353,294,161.9222532920268C307,162.93256273161006,320,163.84063162875913,333,164.71111352947793C346,165.58159543019673,359,166.3786633329048,372,167.14514469633968C385,167.91162605977456,398,168.62340123453697,411,169.31000171008725C424,169.99660218563753,437,170.63067486763939,450,171.26474754964127"
+                fill="none"
+                height={360}
+                stroke="#b2df8a"
+                strokeWidth={1}
+                width={390}
+              />
+              <g
+                className="recharts-layer recharts-line-dots"
+                clipPath={null}
+              >
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={60}
+                  cy={117.44393586621786}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#b2df8a"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={99}
+                  cy={133.3543701915656}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#b2df8a"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={138}
+                  cy={143.01699414762138}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#b2df8a"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={177}
+                  cy={149.6886756649088}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#b2df8a"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={216}
+                  cy={154.68697749777303}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#b2df8a"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={255}
+                  cy={158.6492568919784}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#b2df8a"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={294}
+                  cy={161.9222532920268}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#b2df8a"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={333}
+                  cy={164.71111352947793}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#b2df8a"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={372}
+                  cy={167.14514469633968}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#b2df8a"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={411}
+                  cy={169.31000171008725}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#b2df8a"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={450}
+                  cy={171.26474754964127}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#b2df8a"
+                  strokeWidth={1}
+                  width={390}
+                />
+              </g>
+            </g>
+            <g
+              className="recharts-layer recharts-line"
+            >
+              <path
+                className="recharts-curve recharts-line-curve"
+                clipPath={null}
+                d="M60,169.3304824850354C73,170.76177673680354,86,172.19307098857172,99,173.35875540536293C112,174.52443982215414,125,175.43765190142122,138,176.3245889857827C151,177.21152607014417,164,177.9590226003484,177,178.68037791153176C190,179.40173322271514,203,180.03836558508894,216,180.652720852883C229,181.26707612067705,242,181.8259631353011,255,182.3665095182961C268,182.90705590129113,281,183.4090697228791,294,183.89599915085304C307,184.38292857882698,320,184.84177375953814,333,185.2880860861398C346,185.73439841274146,359,186.15941420747,372,186.57387311046304C385,186.98833201345607,398,187.38609633356177,411,187.77483950409797C424,188.16358267463417,437,188.5349574041572,450,188.90633213368025"
+                fill="none"
+                height={360}
+                stroke="#33a02c"
+                strokeWidth={1}
+                width={390}
+              />
+              <g
+                className="recharts-layer recharts-line-dots"
+                clipPath={null}
+              >
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={60}
+                  cy={169.3304824850354}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#33a02c"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={99}
+                  cy={173.35875540536293}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#33a02c"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={138}
+                  cy={176.3245889857827}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#33a02c"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={177}
+                  cy={178.68037791153176}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#33a02c"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={216}
+                  cy={180.652720852883}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#33a02c"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={255}
+                  cy={182.3665095182961}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#33a02c"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={294}
+                  cy={183.89599915085304}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#33a02c"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={333}
+                  cy={185.2880860861398}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#33a02c"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={372}
+                  cy={186.57387311046304}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#33a02c"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={411}
+                  cy={187.77483950409797}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#33a02c"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={450}
+                  cy={188.90633213368025}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#33a02c"
+                  strokeWidth={1}
+                  width={390}
+                />
+              </g>
+            </g>
+            <g
+              className="recharts-layer recharts-line"
+            >
+              <path
+                className="recharts-curve recharts-line-curve"
+                clipPath={null}
+                d="M60,143.03359298133662C73,146.88228442768704,86,150.73097587403745,99,153.66736311452064C112,156.60375035500383,125,158.64412164869307,138,160.65191642423576C151,162.65971119977846,164,164.21719701098834,177,165.71413176777685C190,167.21106652456535,203,168.45005779557323,216,169.63352496496685C229,170.81699213436048,242,171.83888304655147,255,172.81493478413864C268,173.7909865217258,281,174.65893883641232,294,175.48983539048993C307,176.32073194456754,320,177.0755347231977,333,177.80031410860434C346,178.52509349401097,359,179.19408724068603,372,179.8385117029297C385,180.48293616517338,398,181.08507687827398,411,181.6668608820665C424,182.248644885859,437,182.78893030577183,450,183.3292157256847"
+                fill="none"
+                height={360}
+                stroke="#fb9a99"
+                strokeWidth={1}
+                width={390}
+              />
+              <g
+                className="recharts-layer recharts-line-dots"
+                clipPath={null}
+              >
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={60}
+                  cy={143.03359298133662}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#fb9a99"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={99}
+                  cy={153.66736311452064}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#fb9a99"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={138}
+                  cy={160.65191642423576}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#fb9a99"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={177}
+                  cy={165.71413176777685}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#fb9a99"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={216}
+                  cy={169.63352496496685}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#fb9a99"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={255}
+                  cy={172.81493478413864}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#fb9a99"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={294}
+                  cy={175.48983539048993}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#fb9a99"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={333}
+                  cy={177.80031410860434}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#fb9a99"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={372}
+                  cy={179.8385117029297}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#fb9a99"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={411}
+                  cy={181.6668608820665}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#fb9a99"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={450}
+                  cy={183.3292157256847}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#fb9a99"
+                  strokeWidth={1}
+                  width={390}
+                />
+              </g>
+            </g>
+            <g
+              className="recharts-layer recharts-line"
+            >
+              <path
+                className="recharts-curve recharts-line-curve"
+                clipPath={null}
+                d="M60,317.7658229701232C73,308.91689618476505,86,300.06796939940693,99,293.54794576956704C112,287.02792213972714,125,282.7965840508286,138,278.645681191084C151,274.49477833133943,164,271.4948304529992,177,268.64252861109946C190,265.7902267691997,203,263.5940074705151,216,261.53187013968545C229,259.4697328088558,242,257.8151741157197,255,256.26970462612144C268,254.7242351365232,281,253.44836734768066,294,252.25905320209588C307,251.0697390565111,320,250.06748932123253,333,249.13381975261274C346,248.20015018399295,359,247.40124379698202,372,246.65703579037722C385,245.91282778377243,398,245.2686850147718,411,244.66857171298392C424,244.06845841119605,437,243.56240719542305,450,243.05635597965002"
+                fill="none"
+                height={360}
+                stroke="#e31a1c"
+                strokeWidth={1}
+                width={390}
+              />
+              <g
+                className="recharts-layer recharts-line-dots"
+                clipPath={null}
+              >
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={60}
+                  cy={317.7658229701232}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#e31a1c"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={99}
+                  cy={293.54794576956704}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#e31a1c"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={138}
+                  cy={278.645681191084}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#e31a1c"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={177}
+                  cy={268.64252861109946}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#e31a1c"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={216}
+                  cy={261.53187013968545}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#e31a1c"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={255}
+                  cy={256.26970462612144}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#e31a1c"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={294}
+                  cy={252.25905320209588}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#e31a1c"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={333}
+                  cy={249.13381975261274}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#e31a1c"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={372}
+                  cy={246.65703579037722}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#e31a1c"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={411}
+                  cy={244.66857171298392}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#e31a1c"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={450}
+                  cy={243.05635597965002}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#e31a1c"
+                  strokeWidth={1}
+                  width={390}
+                />
+              </g>
+            </g>
+            <g
+              className="recharts-layer recharts-line"
+            >
+              <path
+                className="recharts-curve recharts-line-curve"
+                clipPath={null}
+                d="M60,277.48133714448625C73,274.87002137135903,86,272.2587055982318,99,270.528346698085C112,268.79798779793816,125,267.9970245175231,138,267.0991837436054C151,266.20134296968774,164,265.6709412990557,177,265.1413020545791C190,264.61166281010253,203,264.2585434827872,216,263.92134827674573C229,263.58415307070425,242,263.3432481555437,255,263.11813081833003C268,262.8930134811164,281,262.72533404362633,294,262.57064425346397C307,262.4159544633016,320,262.2978682225877,333,262.1899920773558C346,262.0821159321239,359,261.9987770878028,372,261.92338738207246C385,261.8479976763421,398,261.7897235760138,411,261.7376538429736C424,261.6855841099334,437,261.64827654688247,450,261.6109689838315"
+                fill="none"
+                height={360}
+                stroke="#fdbf6f"
+                strokeWidth={1}
+                width={390}
+              />
+              <g
+                className="recharts-layer recharts-line-dots"
+                clipPath={null}
+              >
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={60}
+                  cy={277.48133714448625}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#fdbf6f"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={99}
+                  cy={270.528346698085}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#fdbf6f"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={138}
+                  cy={267.0991837436054}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#fdbf6f"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={177}
+                  cy={265.1413020545791}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#fdbf6f"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={216}
+                  cy={263.92134827674573}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#fdbf6f"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={255}
+                  cy={263.11813081833003}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#fdbf6f"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={294}
+                  cy={262.57064425346397}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#fdbf6f"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={333}
+                  cy={262.1899920773558}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#fdbf6f"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={372}
+                  cy={261.92338738207246}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#fdbf6f"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={411}
+                  cy={261.7376538429736}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#fdbf6f"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={450}
+                  cy={261.6109689838315}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#fdbf6f"
+                  strokeWidth={1}
+                  width={390}
+                />
+              </g>
+            </g>
+            <g
+              className="recharts-layer recharts-line"
+            >
+              <path
+                className="recharts-curve recharts-line-curve"
+                clipPath={null}
+                d="M60,311.97950889360925C73,306.92754453180686,86,301.8755801700045,99,298.29824536418397C112,294.7209105583634,125,292.6454753631667,138,290.5155000586859C151,288.3855247542051,164,286.9283324371526,177,285.518393537299C190,284.1084546374454,203,283.0542662718877,216,282.0558666595641C229,281.05746704724055,242,280.2687811353909,255,279.5279958633575C268,278.7872105913241,281,278.17992473800314,294,277.6111550273638C307,277.04238531672445,320,276.5636006973895,333,276.1153775995213C346,275.6671545016531,359,275.2823266505234,372,274.92181644015466C385,274.56130622978594,398,274.2470561340041,411,273.952316337309C424,273.65757654061395,437,273.40547710029904,450,273.1533776599842"
+                fill="none"
+                height={360}
+                stroke="#ff7f00"
+                strokeWidth={1}
+                width={390}
+              />
+              <g
+                className="recharts-layer recharts-line-dots"
+                clipPath={null}
+              >
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={60}
+                  cy={311.97950889360925}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#ff7f00"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={99}
+                  cy={298.29824536418397}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#ff7f00"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={138}
+                  cy={290.5155000586859}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#ff7f00"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={177}
+                  cy={285.518393537299}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#ff7f00"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={216}
+                  cy={282.0558666595641}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#ff7f00"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={255}
+                  cy={279.5279958633575}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#ff7f00"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={294}
+                  cy={277.6111550273638}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#ff7f00"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={333}
+                  cy={276.1153775995213}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#ff7f00"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={372}
+                  cy={274.92181644015466}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#ff7f00"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={411}
+                  cy={273.952316337309}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#ff7f00"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={450}
+                  cy={273.1533776599842}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#ff7f00"
+                  strokeWidth={1}
+                  width={390}
+                />
+              </g>
+            </g>
+            <g
+              className="recharts-cartesian-grid"
+            >
+              <g
+                className="recharts-cartesian-grid-horizontal"
+              >
+                <line
+                  fill="none"
+                  height={360}
+                  stroke="#ccc"
+                  strokeDasharray="5 5"
+                  width={390}
+                  x={60}
+                  x1={60}
+                  x2={450}
+                  y={5}
+                  y1={365}
+                  y2={365}
+                />
+                <line
+                  fill="none"
+                  height={360}
+                  stroke="#ccc"
+                  strokeDasharray="5 5"
+                  width={390}
+                  x={60}
+                  x1={60}
+                  x2={450}
+                  y={5}
+                  y1={275}
+                  y2={275}
+                />
+                <line
+                  fill="none"
+                  height={360}
+                  stroke="#ccc"
+                  strokeDasharray="5 5"
+                  width={390}
+                  x={60}
+                  x1={60}
+                  x2={450}
+                  y={5}
+                  y1={185}
+                  y2={185}
+                />
+                <line
+                  fill="none"
+                  height={360}
+                  stroke="#ccc"
+                  strokeDasharray="5 5"
+                  width={390}
+                  x={60}
+                  x1={60}
+                  x2={450}
+                  y={5}
+                  y1={95}
+                  y2={95}
+                />
+                <line
+                  fill="none"
+                  height={360}
+                  stroke="#ccc"
+                  strokeDasharray="5 5"
+                  width={390}
+                  x={60}
+                  x1={60}
+                  x2={450}
+                  y={5}
+                  y1={5}
+                  y2={5}
+                />
+              </g>
+              <g
+                className="recharts-cartesian-grid-vertical"
+              >
+                <line
+                  fill="none"
+                  height={360}
+                  stroke="#ccc"
+                  strokeDasharray="5 5"
+                  width={390}
+                  x={60}
+                  x1={60}
+                  x2={60}
+                  y={5}
+                  y1={5}
+                  y2={365}
+                />
+                <line
+                  fill="none"
+                  height={360}
+                  stroke="#ccc"
+                  strokeDasharray="5 5"
+                  width={390}
+                  x={60}
+                  x1={99}
+                  x2={99}
+                  y={5}
+                  y1={5}
+                  y2={365}
+                />
+                <line
+                  fill="none"
+                  height={360}
+                  stroke="#ccc"
+                  strokeDasharray="5 5"
+                  width={390}
+                  x={60}
+                  x1={138}
+                  x2={138}
+                  y={5}
+                  y1={5}
+                  y2={365}
+                />
+                <line
+                  fill="none"
+                  height={360}
+                  stroke="#ccc"
+                  strokeDasharray="5 5"
+                  width={390}
+                  x={60}
+                  x1={177}
+                  x2={177}
+                  y={5}
+                  y1={5}
+                  y2={365}
+                />
+                <line
+                  fill="none"
+                  height={360}
+                  stroke="#ccc"
+                  strokeDasharray="5 5"
+                  width={390}
+                  x={60}
+                  x1={216}
+                  x2={216}
+                  y={5}
+                  y1={5}
+                  y2={365}
+                />
+                <line
+                  fill="none"
+                  height={360}
+                  stroke="#ccc"
+                  strokeDasharray="5 5"
+                  width={390}
+                  x={60}
+                  x1={255}
+                  x2={255}
+                  y={5}
+                  y1={5}
+                  y2={365}
+                />
+                <line
+                  fill="none"
+                  height={360}
+                  stroke="#ccc"
+                  strokeDasharray="5 5"
+                  width={390}
+                  x={60}
+                  x1={294}
+                  x2={294}
+                  y={5}
+                  y1={5}
+                  y2={365}
+                />
+                <line
+                  fill="none"
+                  height={360}
+                  stroke="#ccc"
+                  strokeDasharray="5 5"
+                  width={390}
+                  x={60}
+                  x1={333}
+                  x2={333}
+                  y={5}
+                  y1={5}
+                  y2={365}
+                />
+                <line
+                  fill="none"
+                  height={360}
+                  stroke="#ccc"
+                  strokeDasharray="5 5"
+                  width={390}
+                  x={60}
+                  x1={372}
+                  x2={372}
+                  y={5}
+                  y1={5}
+                  y2={365}
+                />
+                <line
+                  fill="none"
+                  height={360}
+                  stroke="#ccc"
+                  strokeDasharray="5 5"
+                  width={390}
+                  x={60}
+                  x1={411}
+                  x2={411}
+                  y={5}
+                  y1={5}
+                  y2={365}
+                />
+                <line
+                  fill="none"
+                  height={360}
+                  stroke="#ccc"
+                  strokeDasharray="5 5"
+                  width={390}
+                  x={60}
+                  x1={450}
+                  x2={450}
+                  y={5}
+                  y1={5}
+                  y2={365}
+                />
+              </g>
+            </g>
+            <g
+              className="recharts-layer recharts-cartesian-axis recharts-xAxis xAxis"
+            >
+              <line
+                className="recharts-cartesian-axis-line"
+                fill="none"
+                height={30}
+                stroke="#666"
+                width={390}
+                x={60}
+                x1={60}
+                x2={450}
+                y={365}
+                y1={365}
+                y2={365}
+              />
+              <g
+                className="recharts-cartesian-axis-ticks"
+              >
+                <g
+                  className="recharts-layer recharts-cartesian-axis-tick"
+                >
+                  <line
+                    className="recharts-cartesian-axis-tick-line"
+                    fill="none"
+                    height={30}
+                    stroke="#666"
+                    width={390}
+                    x={60}
+                    x1={60}
+                    x2={60}
+                    y={365}
+                    y1={371}
+                    y2={365}
+                  />
+                  <text
+                    className="recharts-text recharts-cartesian-axis-tick-value"
+                    fill="#666"
+                    height={30}
+                    stroke="none"
+                    textAnchor="middle"
+                    width={390}
+                    x={60}
+                    y={373}
+                  >
+                    <tspan
+                      dy="0.71em"
+                      x={60}
+                    >
+                      0.439
+                    </tspan>
+                  </text>
+                </g>
+                <g
+                  className="recharts-layer recharts-cartesian-axis-tick"
+                >
+                  <line
+                    className="recharts-cartesian-axis-tick-line"
+                    fill="none"
+                    height={30}
+                    stroke="#666"
+                    width={390}
+                    x={60}
+                    x1={99}
+                    x2={99}
+                    y={365}
+                    y1={371}
+                    y2={365}
+                  />
+                  <text
+                    className="recharts-text recharts-cartesian-axis-tick-value"
+                    fill="#666"
+                    height={30}
+                    stroke="none"
+                    textAnchor="middle"
+                    width={390}
+                    x={99}
+                    y={373}
+                  >
+                    <tspan
+                      dy="0.71em"
+                      x={99}
+                    >
+                      0.658
+                    </tspan>
+                  </text>
+                </g>
+                <g
+                  className="recharts-layer recharts-cartesian-axis-tick"
+                >
+                  <line
+                    className="recharts-cartesian-axis-tick-line"
+                    fill="none"
+                    height={30}
+                    stroke="#666"
+                    width={390}
+                    x={60}
+                    x1={138}
+                    x2={138}
+                    y={365}
+                    y1={371}
+                    y2={365}
+                  />
+                  <text
+                    className="recharts-text recharts-cartesian-axis-tick-value"
+                    fill="#666"
+                    height={30}
+                    stroke="none"
+                    textAnchor="middle"
+                    width={390}
+                    x={138}
+                    y={373}
+                  >
+                    <tspan
+                      dy="0.71em"
+                      x={138}
+                    >
+                      0.878
+                    </tspan>
+                  </text>
+                </g>
+                <g
+                  className="recharts-layer recharts-cartesian-axis-tick"
+                >
+                  <line
+                    className="recharts-cartesian-axis-tick-line"
+                    fill="none"
+                    height={30}
+                    stroke="#666"
+                    width={390}
+                    x={60}
+                    x1={177}
+                    x2={177}
+                    y={365}
+                    y1={371}
+                    y2={365}
+                  />
+                  <text
+                    className="recharts-text recharts-cartesian-axis-tick-value"
+                    fill="#666"
+                    height={30}
+                    stroke="none"
+                    textAnchor="middle"
+                    width={390}
+                    x={177}
+                    y={373}
+                  >
+                    <tspan
+                      dy="0.71em"
+                      x={177}
+                    >
+                      1.097
+                    </tspan>
+                  </text>
+                </g>
+                <g
+                  className="recharts-layer recharts-cartesian-axis-tick"
+                >
+                  <line
+                    className="recharts-cartesian-axis-tick-line"
+                    fill="none"
+                    height={30}
+                    stroke="#666"
+                    width={390}
+                    x={60}
+                    x1={216}
+                    x2={216}
+                    y={365}
+                    y1={371}
+                    y2={365}
+                  />
+                  <text
+                    className="recharts-text recharts-cartesian-axis-tick-value"
+                    fill="#666"
+                    height={30}
+                    stroke="none"
+                    textAnchor="middle"
+                    width={390}
+                    x={216}
+                    y={373}
+                  >
+                    <tspan
+                      dy="0.71em"
+                      x={216}
+                    >
+                      1.317
+                    </tspan>
+                  </text>
+                </g>
+                <g
+                  className="recharts-layer recharts-cartesian-axis-tick"
+                >
+                  <line
+                    className="recharts-cartesian-axis-tick-line"
+                    fill="none"
+                    height={30}
+                    stroke="#666"
+                    width={390}
+                    x={60}
+                    x1={255}
+                    x2={255}
+                    y={365}
+                    y1={371}
+                    y2={365}
+                  />
+                  <text
+                    className="recharts-text recharts-cartesian-axis-tick-value"
+                    fill="#666"
+                    height={30}
+                    stroke="none"
+                    textAnchor="middle"
+                    width={390}
+                    x={255}
+                    y={373}
+                  >
+                    <tspan
+                      dy="0.71em"
+                      x={255}
+                    >
+                      1.536
+                    </tspan>
+                  </text>
+                </g>
+                <g
+                  className="recharts-layer recharts-cartesian-axis-tick"
+                >
+                  <line
+                    className="recharts-cartesian-axis-tick-line"
+                    fill="none"
+                    height={30}
+                    stroke="#666"
+                    width={390}
+                    x={60}
+                    x1={294}
+                    x2={294}
+                    y={365}
+                    y1={371}
+                    y2={365}
+                  />
+                  <text
+                    className="recharts-text recharts-cartesian-axis-tick-value"
+                    fill="#666"
+                    height={30}
+                    stroke="none"
+                    textAnchor="middle"
+                    width={390}
+                    x={294}
+                    y={373}
+                  >
+                    <tspan
+                      dy="0.71em"
+                      x={294}
+                    >
+                      1.756
+                    </tspan>
+                  </text>
+                </g>
+                <g
+                  className="recharts-layer recharts-cartesian-axis-tick"
+                >
+                  <line
+                    className="recharts-cartesian-axis-tick-line"
+                    fill="none"
+                    height={30}
+                    stroke="#666"
+                    width={390}
+                    x={60}
+                    x1={333}
+                    x2={333}
+                    y={365}
+                    y1={371}
+                    y2={365}
+                  />
+                  <text
+                    className="recharts-text recharts-cartesian-axis-tick-value"
+                    fill="#666"
+                    height={30}
+                    stroke="none"
+                    textAnchor="middle"
+                    width={390}
+                    x={333}
+                    y={373}
+                  >
+                    <tspan
+                      dy="0.71em"
+                      x={333}
+                    >
+                      1.975
+                    </tspan>
+                  </text>
+                </g>
+                <g
+                  className="recharts-layer recharts-cartesian-axis-tick"
+                >
+                  <line
+                    className="recharts-cartesian-axis-tick-line"
+                    fill="none"
+                    height={30}
+                    stroke="#666"
+                    width={390}
+                    x={60}
+                    x1={372}
+                    x2={372}
+                    y={365}
+                    y1={371}
+                    y2={365}
+                  />
+                  <text
+                    className="recharts-text recharts-cartesian-axis-tick-value"
+                    fill="#666"
+                    height={30}
+                    stroke="none"
+                    textAnchor="middle"
+                    width={390}
+                    x={372}
+                    y={373}
+                  >
+                    <tspan
+                      dy="0.71em"
+                      x={372}
+                    >
+                      2.195
+                    </tspan>
+                  </text>
+                </g>
+                <g
+                  className="recharts-layer recharts-cartesian-axis-tick"
+                >
+                  <line
+                    className="recharts-cartesian-axis-tick-line"
+                    fill="none"
+                    height={30}
+                    stroke="#666"
+                    width={390}
+                    x={60}
+                    x1={411}
+                    x2={411}
+                    y={365}
+                    y1={371}
+                    y2={365}
+                  />
+                  <text
+                    className="recharts-text recharts-cartesian-axis-tick-value"
+                    fill="#666"
+                    height={30}
+                    stroke="none"
+                    textAnchor="middle"
+                    width={390}
+                    x={411}
+                    y={373}
+                  >
+                    <tspan
+                      dy="0.71em"
+                      x={411}
+                    >
+                      2.414
+                    </tspan>
+                  </text>
+                </g>
+                <g
+                  className="recharts-layer recharts-cartesian-axis-tick"
+                >
+                  <line
+                    className="recharts-cartesian-axis-tick-line"
+                    fill="none"
+                    height={30}
+                    stroke="#666"
+                    width={390}
+                    x={60}
+                    x1={450}
+                    x2={450}
+                    y={365}
+                    y1={371}
+                    y2={365}
+                  />
+                  <text
+                    className="recharts-text recharts-cartesian-axis-tick-value"
+                    fill="#666"
+                    height={30}
+                    stroke="none"
+                    textAnchor="middle"
+                    width={390}
+                    x={450}
+                    y={373}
+                  >
+                    <tspan
+                      dy="0.71em"
+                      x={450}
+                    >
+                      2.634
+                    </tspan>
+                  </text>
+                </g>
+              </g>
+            </g>
+            <g
+              className="recharts-layer recharts-cartesian-axis recharts-yAxis yAxis"
+            >
+              <line
+                className="recharts-cartesian-axis-line"
+                fill="none"
+                height={360}
+                stroke="#666"
+                width={60}
+                x={0}
+                x1={60}
+                x2={60}
+                y={5}
+                y1={5}
+                y2={365}
+              />
+              <g
+                className="recharts-cartesian-axis-ticks"
+              >
+                <g
+                  className="recharts-layer recharts-cartesian-axis-tick"
+                >
+                  <line
+                    className="recharts-cartesian-axis-tick-line"
+                    fill="none"
+                    height={360}
+                    stroke="#666"
+                    width={60}
+                    x={0}
+                    x1={54}
+                    x2={60}
+                    y={5}
+                    y1={365}
+                    y2={365}
+                  />
+                  <text
+                    className="recharts-text recharts-cartesian-axis-tick-value"
+                    fill="#666"
+                    height={360}
+                    stroke="none"
+                    textAnchor="end"
+                    width={60}
+                    x={52}
+                    y={365}
+                  >
+                    <tspan
+                      dy="0.355em"
+                      x={52}
+                    >
+                      -2
+                    </tspan>
+                  </text>
+                </g>
+                <g
+                  className="recharts-layer recharts-cartesian-axis-tick"
+                >
+                  <line
+                    className="recharts-cartesian-axis-tick-line"
+                    fill="none"
+                    height={360}
+                    stroke="#666"
+                    width={60}
+                    x={0}
+                    x1={54}
+                    x2={60}
+                    y={5}
+                    y1={275}
+                    y2={275}
+                  />
+                  <text
+                    className="recharts-text recharts-cartesian-axis-tick-value"
+                    fill="#666"
+                    height={360}
+                    stroke="none"
+                    textAnchor="end"
+                    width={60}
+                    x={52}
+                    y={275}
+                  >
+                    <tspan
+                      dy="0.355em"
+                      x={52}
+                    >
+                      0
+                    </tspan>
+                  </text>
+                </g>
+                <g
+                  className="recharts-layer recharts-cartesian-axis-tick"
+                >
+                  <line
+                    className="recharts-cartesian-axis-tick-line"
+                    fill="none"
+                    height={360}
+                    stroke="#666"
+                    width={60}
+                    x={0}
+                    x1={54}
+                    x2={60}
+                    y={5}
+                    y1={185}
+                    y2={185}
+                  />
+                  <text
+                    className="recharts-text recharts-cartesian-axis-tick-value"
+                    fill="#666"
+                    height={360}
+                    stroke="none"
+                    textAnchor="end"
+                    width={60}
+                    x={52}
+                    y={185}
+                  >
+                    <tspan
+                      dy="0.355em"
+                      x={52}
+                    >
+                      2
+                    </tspan>
+                  </text>
+                </g>
+                <g
+                  className="recharts-layer recharts-cartesian-axis-tick"
+                >
+                  <line
+                    className="recharts-cartesian-axis-tick-line"
+                    fill="none"
+                    height={360}
+                    stroke="#666"
+                    width={60}
+                    x={0}
+                    x1={54}
+                    x2={60}
+                    y={5}
+                    y1={95}
+                    y2={95}
+                  />
+                  <text
+                    className="recharts-text recharts-cartesian-axis-tick-value"
+                    fill="#666"
+                    height={360}
+                    stroke="none"
+                    textAnchor="end"
+                    width={60}
+                    x={52}
+                    y={95}
+                  >
+                    <tspan
+                      dy="0.355em"
+                      x={52}
+                    >
+                      4
+                    </tspan>
+                  </text>
+                </g>
+                <g
+                  className="recharts-layer recharts-cartesian-axis-tick"
+                >
+                  <line
+                    className="recharts-cartesian-axis-tick-line"
+                    fill="none"
+                    height={360}
+                    stroke="#666"
+                    width={60}
+                    x={0}
+                    x1={54}
+                    x2={60}
+                    y={5}
+                    y1={5}
+                    y2={5}
+                  />
+                  <text
+                    className="recharts-text recharts-cartesian-axis-tick-value"
+                    fill="#666"
+                    height={360}
+                    stroke="none"
+                    textAnchor="end"
+                    width={60}
+                    x={52}
+                    y={5}
+                  >
+                    <tspan
+                      dy="0.355em"
+                      x={52}
+                    >
+                      6
+                    </tspan>
+                  </text>
+                </g>
+              </g>
+              <text
+                className="recharts-text recharts-label"
+                style={
+                  Object {
+                    "textAnchor": "middle",
+                  }
+                }
+                textAnchor="start"
+                transform="rotate(-90, 5, 185)"
+                x={5}
+                y={185}
+              >
+                <tspan
+                  dy="0.355em"
+                  x={5}
+                >
+                  Offensive RAPM
+                </tspan>
+              </text>
+            </g>
+            <g
+              className="recharts-layer recharts-reference-line"
+            >
+              <line
+                className="recharts-reference-line-line"
+                fill="none"
+                fillOpacity={1}
+                stroke="green"
+                strokeWidth={1}
+                x="1.097"
+                x1={177}
+                x2={177}
+                y1={365}
+                y2={5}
+              />
+              <text
+                className="recharts-text recharts-label"
+                textAnchor="middle"
+                x={177}
+                y={10}
+              >
+                <tspan
+                  dy="0.71em"
+                  x={177}
+                >
+                  Selected regression 'lambda' [1.097]
+                </tspan>
+              </text>
+            </g>
+          </svg>
+          <div
+            className="recharts-legend-wrapper"
+            style={
+              Object {
+                "bottom": 5,
+                "height": "auto",
+                "left": 0,
+                "position": "absolute",
+                "width": 450,
+              }
+            }
+          >
+            <ul
+              className="recharts-default-legend"
+              style={
+                Object {
+                  "margin": 0,
+                  "padding": 0,
+                  "textAlign": "center",
+                }
+              }
+            >
+              <li
+                className="recharts-legend-item legend-item-0"
+                style={
+                  Object {
+                    "display": "inline-block",
+                    "marginRight": 10,
+                  }
+                }
+              >
+                <svg
+                  className="recharts-surface"
+                  height={14}
+                  style={
+                    Object {
+                      "display": "inline-block",
+                      "marginRight": 4,
+                      "verticalAlign": "middle",
+                    }
+                  }
+                  version="1.1"
+                  viewBox="0 0 32 32"
+                  width={14}
+                >
+                  <path
+                    className="recharts-legend-icon"
+                    d="M0,16h10.666666666666666
+            A5.333333333333333,5.333333333333333,0,1,1,21.333333333333332,16
+            H32M21.333333333333332,16
+            A5.333333333333333,5.333333333333333,0,1,1,10.666666666666666,16"
+                    fill="none"
+                    stroke="#a6cee3"
+                    strokeWidth={4}
+                  />
+                </svg>
+                <span
+                  className="recharts-legend-item-text"
+                >
+                  Smith, Jalen
+                </span>
+              </li>
+              <li
+                className="recharts-legend-item legend-item-1"
+                style={
+                  Object {
+                    "display": "inline-block",
+                    "marginRight": 10,
+                  }
+                }
+              >
+                <svg
+                  className="recharts-surface"
+                  height={14}
+                  style={
+                    Object {
+                      "display": "inline-block",
+                      "marginRight": 4,
+                      "verticalAlign": "middle",
+                    }
+                  }
+                  version="1.1"
+                  viewBox="0 0 32 32"
+                  width={14}
+                >
+                  <path
+                    className="recharts-legend-icon"
+                    d="M0,16h10.666666666666666
+            A5.333333333333333,5.333333333333333,0,1,1,21.333333333333332,16
+            H32M21.333333333333332,16
+            A5.333333333333333,5.333333333333333,0,1,1,10.666666666666666,16"
+                    fill="none"
+                    stroke="#1f78b4"
+                    strokeWidth={4}
+                  />
+                </svg>
+                <span
+                  className="recharts-legend-item-text"
+                >
+                  Cowan, Anthony
+                </span>
+              </li>
+              <li
+                className="recharts-legend-item legend-item-2"
+                style={
+                  Object {
+                    "display": "inline-block",
+                    "marginRight": 10,
+                  }
+                }
+              >
+                <svg
+                  className="recharts-surface"
+                  height={14}
+                  style={
+                    Object {
+                      "display": "inline-block",
+                      "marginRight": 4,
+                      "verticalAlign": "middle",
+                    }
+                  }
+                  version="1.1"
+                  viewBox="0 0 32 32"
+                  width={14}
+                >
+                  <path
+                    className="recharts-legend-icon"
+                    d="M0,16h10.666666666666666
+            A5.333333333333333,5.333333333333333,0,1,1,21.333333333333332,16
+            H32M21.333333333333332,16
+            A5.333333333333333,5.333333333333333,0,1,1,10.666666666666666,16"
+                    fill="none"
+                    stroke="#b2df8a"
+                    strokeWidth={4}
+                  />
+                </svg>
+                <span
+                  className="recharts-legend-item-text"
+                >
+                  Wiggins, Aaron
+                </span>
+              </li>
+              <li
+                className="recharts-legend-item legend-item-3"
+                style={
+                  Object {
+                    "display": "inline-block",
+                    "marginRight": 10,
+                  }
+                }
+              >
+                <svg
+                  className="recharts-surface"
+                  height={14}
+                  style={
+                    Object {
+                      "display": "inline-block",
+                      "marginRight": 4,
+                      "verticalAlign": "middle",
+                    }
+                  }
+                  version="1.1"
+                  viewBox="0 0 32 32"
+                  width={14}
+                >
+                  <path
+                    className="recharts-legend-icon"
+                    d="M0,16h10.666666666666666
+            A5.333333333333333,5.333333333333333,0,1,1,21.333333333333332,16
+            H32M21.333333333333332,16
+            A5.333333333333333,5.333333333333333,0,1,1,10.666666666666666,16"
+                    fill="none"
+                    stroke="#33a02c"
+                    strokeWidth={4}
+                  />
+                </svg>
+                <span
+                  className="recharts-legend-item-text"
+                >
+                  Morsell, Darryl
+                </span>
+              </li>
+              <li
+                className="recharts-legend-item legend-item-4"
+                style={
+                  Object {
+                    "display": "inline-block",
+                    "marginRight": 10,
+                  }
+                }
+              >
+                <svg
+                  className="recharts-surface"
+                  height={14}
+                  style={
+                    Object {
+                      "display": "inline-block",
+                      "marginRight": 4,
+                      "verticalAlign": "middle",
+                    }
+                  }
+                  version="1.1"
+                  viewBox="0 0 32 32"
+                  width={14}
+                >
+                  <path
+                    className="recharts-legend-icon"
+                    d="M0,16h10.666666666666666
+            A5.333333333333333,5.333333333333333,0,1,1,21.333333333333332,16
+            H32M21.333333333333332,16
+            A5.333333333333333,5.333333333333333,0,1,1,10.666666666666666,16"
+                    fill="none"
+                    stroke="#fb9a99"
+                    strokeWidth={4}
+                  />
+                </svg>
+                <span
+                  className="recharts-legend-item-text"
+                >
+                  Ayala, Eric
+                </span>
+              </li>
+              <li
+                className="recharts-legend-item legend-item-5"
+                style={
+                  Object {
+                    "display": "inline-block",
+                    "marginRight": 10,
+                  }
+                }
+              >
+                <svg
+                  className="recharts-surface"
+                  height={14}
+                  style={
+                    Object {
+                      "display": "inline-block",
+                      "marginRight": 4,
+                      "verticalAlign": "middle",
+                    }
+                  }
+                  version="1.1"
+                  viewBox="0 0 32 32"
+                  width={14}
+                >
+                  <path
+                    className="recharts-legend-icon"
+                    d="M0,16h10.666666666666666
+            A5.333333333333333,5.333333333333333,0,1,1,21.333333333333332,16
+            H32M21.333333333333332,16
+            A5.333333333333333,5.333333333333333,0,1,1,10.666666666666666,16"
+                    fill="none"
+                    stroke="#e31a1c"
+                    strokeWidth={4}
+                  />
+                </svg>
+                <span
+                  className="recharts-legend-item-text"
+                >
+                  Scott, Donta
+                </span>
+              </li>
+              <li
+                className="recharts-legend-item legend-item-6"
+                style={
+                  Object {
+                    "display": "inline-block",
+                    "marginRight": 10,
+                  }
+                }
+              >
+                <svg
+                  className="recharts-surface"
+                  height={14}
+                  style={
+                    Object {
+                      "display": "inline-block",
+                      "marginRight": 4,
+                      "verticalAlign": "middle",
+                    }
+                  }
+                  version="1.1"
+                  viewBox="0 0 32 32"
+                  width={14}
+                >
+                  <path
+                    className="recharts-legend-icon"
+                    d="M0,16h10.666666666666666
+            A5.333333333333333,5.333333333333333,0,1,1,21.333333333333332,16
+            H32M21.333333333333332,16
+            A5.333333333333333,5.333333333333333,0,1,1,10.666666666666666,16"
+                    fill="none"
+                    stroke="#fdbf6f"
+                    strokeWidth={4}
+                  />
+                </svg>
+                <span
+                  className="recharts-legend-item-text"
+                >
+                  Lindo Jr., Ricky
+                </span>
+              </li>
+              <li
+                className="recharts-legend-item legend-item-7"
+                style={
+                  Object {
+                    "display": "inline-block",
+                    "marginRight": 10,
+                  }
+                }
+              >
+                <svg
+                  className="recharts-surface"
+                  height={14}
+                  style={
+                    Object {
+                      "display": "inline-block",
+                      "marginRight": 4,
+                      "verticalAlign": "middle",
+                    }
+                  }
+                  version="1.1"
+                  viewBox="0 0 32 32"
+                  width={14}
+                >
+                  <path
+                    className="recharts-legend-icon"
+                    d="M0,16h10.666666666666666
+            A5.333333333333333,5.333333333333333,0,1,1,21.333333333333332,16
+            H32M21.333333333333332,16
+            A5.333333333333333,5.333333333333333,0,1,1,10.666666666666666,16"
+                    fill="none"
+                    stroke="#ff7f00"
+                    strokeWidth={4}
+                  />
+                </svg>
+                <span
+                  className="recharts-legend-item-text"
+                >
+                  Smith Jr., Serrel
+                </span>
+              </li>
+            </ul>
+          </div>
+          <div
+            className="recharts-tooltip-wrapper"
+            style={
+              Object {
+                "MozTransform": "translate(undefinedpx, undefinedpx)",
+                "OTransform": "translate(undefinedpx, undefinedpx)",
+                "WebkitTransform": "translate(undefinedpx, undefinedpx)",
+                "msTransform": "translate(undefinedpx, undefinedpx)",
+                "opacity": "0.8",
+                "pointerEvents": "none",
+                "position": "absolute",
+                "top": 0,
+                "transform": "translate(undefinedpx, undefinedpx)",
+                "visibility": "hidden",
+                "zIndex": "1000",
+              }
+            }
+          >
+            <div
+              className="recharts-default-tooltip"
+              style={
+                Object {
+                  "backgroundColor": "#fff",
+                  "border": "1px solid #ccc",
+                  "margin": 0,
+                  "padding": 10,
+                  "whiteSpace": "nowrap",
+                }
+              }
+            >
+              <p
+                className="recharts-tooltip-label"
+                style={
+                  Object {
+                    "margin": 0,
+                  }
+                }
+              >
+                
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="col"
+      >
+        <div
+          className="recharts-wrapper"
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          onMouseMove={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          style={
+            Object {
+              "cursor": "default",
+              "height": 400,
+              "position": "relative",
+              "width": 450,
+            }
+          }
+        >
+          <svg
+            className="recharts-surface"
+            height={400}
+            version="1.1"
+            viewBox="0 0 450 400"
+            width={450}
+          >
+            <defs>
+              <clipPath
+                id="recharts26-clip"
+              >
+                <rect
+                  height={360}
+                  width={390}
+                  x={60}
+                  y={5}
+                />
+              </clipPath>
+            </defs>
+            <g
+              className="recharts-layer recharts-line"
+            >
+              <path
+                className="recharts-curve recharts-line-curve"
+                clipPath={null}
+                d="M60,302.57838718580376C73,291.9562687627316,86,281.33415033965946,99,273.85275195870446C112,266.37135357774946,125,262.1848170497026,138,257.68999690007377C151,253.19517675044497,164,250.01978905057027,177,246.88383106093164C190,243.74787307129301,203,241.26830864568348,216,238.87424896224198C229,236.48018927880048,242,234.45980291464917,255,232.51947296028257C268,230.57914300591597,281,228.872307712618,294,227.23226923604227C307,225.59223075946653,320,224.10849338260888,333,222.67924210082813C346,221.24999081904738,359,219.93109756790741,372,218.65676154535782C385,217.38242552280823,398,216.1894106360734,411,215.03322596553053C424,213.87704129498766,437,212.79834740854415,450,211.7196535221006"
+                fill="none"
+                height={360}
+                stroke="#a6cee3"
+                strokeWidth={1}
+                width={390}
+              />
+              <g
+                className="recharts-layer recharts-line-dots"
+                clipPath={null}
+              >
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={60}
+                  cy={302.57838718580376}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#a6cee3"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={99}
+                  cy={273.85275195870446}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#a6cee3"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={138}
+                  cy={257.68999690007377}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#a6cee3"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={177}
+                  cy={246.88383106093164}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#a6cee3"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={216}
+                  cy={238.87424896224198}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#a6cee3"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={255}
+                  cy={232.51947296028257}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#a6cee3"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={294}
+                  cy={227.23226923604227}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#a6cee3"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={333}
+                  cy={222.67924210082813}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#a6cee3"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={372}
+                  cy={218.65676154535782}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#a6cee3"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={411}
+                  cy={215.03322596553053}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#a6cee3"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={450}
+                  cy={211.7196535221006}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#a6cee3"
+                  strokeWidth={1}
+                  width={390}
+                />
+              </g>
+            </g>
+            <g
+              className="recharts-layer recharts-line"
+            >
+              <path
+                className="recharts-curve recharts-line-curve"
+                clipPath={null}
+                d="M60,127.95576429218704C73,136.22321352383872,86,144.4906627554904,99,149.91744643075788C112,155.34423010602535,125,157.79013571357007,138,160.5164663437918C151,163.24279697401352,164,164.77066960188708,177,166.27543021208828C190,167.78019082228948,203,168.6947991128722,216,169.54503000499895C229,170.3952608971257,242,170.91587933036493,255,171.37681556484867C268,171.8377517993324,281,172.09817408017162,294,172.31064741190136C307,172.5231207436311,320,172.65165555522705,333,172.65165555522705C346,172.65165555522705,359,172.62943687856395,372,172.58499952523775C385,172.54056217191155,398,172.38282837064787,411,172.22934723279215C424,172.07586609493643,437,171.86998939651988,450,171.66411269810334"
+                fill="none"
+                height={360}
+                stroke="#1f78b4"
+                strokeWidth={1}
+                width={390}
+              />
+              <g
+                className="recharts-layer recharts-line-dots"
+                clipPath={null}
+              >
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={60}
+                  cy={127.95576429218704}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#1f78b4"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={99}
+                  cy={149.91744643075788}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#1f78b4"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={138}
+                  cy={160.5164663437918}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#1f78b4"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={177}
+                  cy={166.27543021208828}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#1f78b4"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={216}
+                  cy={169.54503000499895}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#1f78b4"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={255}
+                  cy={171.37681556484867}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#1f78b4"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={294}
+                  cy={172.31064741190136}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#1f78b4"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={333}
+                  cy={172.65165555522705}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#1f78b4"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={372}
+                  cy={172.58499952523775}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#1f78b4"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={411}
+                  cy={172.22934723279215}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#1f78b4"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={450}
+                  cy={171.66411269810334}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#1f78b4"
+                  strokeWidth={1}
+                  width={390}
+                />
+              </g>
+            </g>
+            <g
+              className="recharts-layer recharts-line"
+            >
+              <path
+                className="recharts-curve recharts-line-curve"
+                clipPath={null}
+                d="M60,270.81682326669994C73,262.0266112845613,86,253.23639930242265,99,246.69654325961093C112,240.1566872167992,125,235.86896373497837,138,231.57768700982962C151,227.28641028468087,164,224.06406335779172,177,220.9488829087184C190,217.83370245964505,203,215.3056789541738,216,212.88660431538952C229,210.46752967660524,242,208.40498451548947,255,206.43443507601273C268,204.463885636536,281,202.7262621290557,294,201.06330767852901C307,199.40035322800233,320,197.89833396608933,333,196.45670837285257C346,195.01508277961582,359,193.6896961697053,372,192.41355411910854C385,191.1374120685118,398,189.9483158093773,411,188.7998560692721C424,187.6513963291669,437,186.58709600382204,450,185.52279567847722"
+                fill="none"
+                height={360}
+                stroke="#b2df8a"
+                strokeWidth={1}
+                width={390}
+              />
+              <g
+                className="recharts-layer recharts-line-dots"
+                clipPath={null}
+              >
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={60}
+                  cy={270.81682326669994}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#b2df8a"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={99}
+                  cy={246.69654325961093}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#b2df8a"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={138}
+                  cy={231.57768700982962}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#b2df8a"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={177}
+                  cy={220.9488829087184}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#b2df8a"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={216}
+                  cy={212.88660431538952}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#b2df8a"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={255}
+                  cy={206.43443507601273}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#b2df8a"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={294}
+                  cy={201.06330767852901}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#b2df8a"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={333}
+                  cy={196.45670837285257}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#b2df8a"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={372}
+                  cy={192.41355411910854}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#b2df8a"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={411}
+                  cy={188.7998560692721}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#b2df8a"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={450}
+                  cy={185.52279567847722}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#b2df8a"
+                  strokeWidth={1}
+                  width={390}
+                />
+              </g>
+            </g>
+            <g
+              className="recharts-layer recharts-line"
+            >
+              <path
+                className="recharts-curve recharts-line-curve"
+                clipPath={null}
+                d="M60,107.00316785009372C73,111.81809890366574,86,116.63302995723777,99,119.99042594278396C112,123.34782192833015,125,125.24425370919674,138,127.14754376337086C151,129.05083381754497,164,130.26376612732867,177,131.41016626782869C190,132.5565664083287,203,133.3243735287221,216,134.02594460637098C229,134.72751568401986,242,135.2007145794746,255,135.619592733722C268,136.03847088796937,281,136.3101113325291,294,136.5392135318552C307,136.76831573118133,320,136.91165544838887,333,136.99420592967877C346,137.07675641096867,359,137.11803165161362,372,137.11803165161362C385,137.11803165161362,398,137.06924141252964,411,136.99969588869052C424,136.93015036485141,437,136.81545443671516,450,136.70075850857893"
+                fill="none"
+                height={360}
+                stroke="#33a02c"
+                strokeWidth={1}
+                width={390}
+              />
+              <g
+                className="recharts-layer recharts-line-dots"
+                clipPath={null}
+              >
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={60}
+                  cy={107.00316785009372}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#33a02c"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={99}
+                  cy={119.99042594278396}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#33a02c"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={138}
+                  cy={127.14754376337086}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#33a02c"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={177}
+                  cy={131.41016626782869}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#33a02c"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={216}
+                  cy={134.02594460637098}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#33a02c"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={255}
+                  cy={135.619592733722}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#33a02c"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={294}
+                  cy={136.5392135318552}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#33a02c"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={333}
+                  cy={136.99420592967877}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#33a02c"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={372}
+                  cy={137.11803165161362}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#33a02c"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={411}
+                  cy={136.99969588869052}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#33a02c"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={450}
+                  cy={136.70075850857893}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#33a02c"
+                  strokeWidth={1}
+                  width={390}
+                />
+              </g>
+            </g>
+            <g
+              className="recharts-layer recharts-line"
+            >
+              <path
+                className="recharts-curve recharts-line-curve"
+                clipPath={null}
+                d="M60,64.64932714785165C73,73.11943033028136,86,81.58953351271107,99,87.60204407690931C112,93.61455464110755,125,97.16312854691316,138,100.7243905330411C151,104.28565251916905,164,106.68401427627951,177,108.96961599367698C190,111.25521771107445,203,112.90320851138824,216,114.43800083742589C229,115.97279316346354,242,117.12237632721138,255,118.17836994990284C268,119.2343635725943,281,120.04116439308962,294,120.77396257357462C307,121.50676075405963,320,122.06996466459366,333,122.57515903281292C346,123.08035340103218,359,123.46553930969424,372,123.80512878289021C385,124.14471825608618,398,124.39674240455422,411,124.6126958719887C424,124.8286493394232,437,124.96474946346014,450,125.1008495874971"
+                fill="none"
+                height={360}
+                stroke="#fb9a99"
+                strokeWidth={1}
+                width={390}
+              />
+              <g
+                className="recharts-layer recharts-line-dots"
+                clipPath={null}
+              >
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={60}
+                  cy={64.64932714785165}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#fb9a99"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={99}
+                  cy={87.60204407690931}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#fb9a99"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={138}
+                  cy={100.7243905330411}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#fb9a99"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={177}
+                  cy={108.96961599367698}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#fb9a99"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={216}
+                  cy={114.43800083742589}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#fb9a99"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={255}
+                  cy={118.17836994990284}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#fb9a99"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={294}
+                  cy={120.77396257357462}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#fb9a99"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={333}
+                  cy={122.57515903281292}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#fb9a99"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={372}
+                  cy={123.80512878289021}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#fb9a99"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={411}
+                  cy={124.6126958719887}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#fb9a99"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={450}
+                  cy={125.1008495874971}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#fb9a99"
+                  strokeWidth={1}
+                  width={390}
+                />
+              </g>
+            </g>
+            <g
+              className="recharts-layer recharts-line"
+            >
+              <path
+                className="recharts-curve recharts-line-curve"
+                clipPath={null}
+                d="M60,171.02160512829923C73,166.86572237601942,86,162.70983962373964,99,159.432200614823C112,156.15456160590634,125,153.7074294339045,138,151.35577107479935C151,149.0041127156942,164,147.12109012641363,177,145.32225046019198C190,143.52341079397033,203,142.00815639023327,216,140.56273307746952C229,139.11730976470577,242,137.85534812000182,255,136.64971058360942C268,135.44407304721702,281,134.36383309485385,294,133.32890785911516C307,132.29398262337648,320,131.34869629390928,333,130.4401591691773C346,129.5316220444453,359,128.6895740107374,372,127.87768511072322C385,127.06579621070904,398,126.30477378269622,411,125.56882576909217C424,124.83287775548813,437,124.14743739229353,450,123.46199702909892"
+                fill="none"
+                height={360}
+                stroke="#e31a1c"
+                strokeWidth={1}
+                width={390}
+              />
+              <g
+                className="recharts-layer recharts-line-dots"
+                clipPath={null}
+              >
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={60}
+                  cy={171.02160512829923}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#e31a1c"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={99}
+                  cy={159.432200614823}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#e31a1c"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={138}
+                  cy={151.35577107479935}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#e31a1c"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={177}
+                  cy={145.32225046019198}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#e31a1c"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={216}
+                  cy={140.56273307746952}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#e31a1c"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={255}
+                  cy={136.64971058360942}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#e31a1c"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={294}
+                  cy={133.32890785911516}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#e31a1c"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={333}
+                  cy={130.4401591691773}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#e31a1c"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={372}
+                  cy={127.87768511072322}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#e31a1c"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={411}
+                  cy={125.56882576909217}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#e31a1c"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={450}
+                  cy={123.46199702909892}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#e31a1c"
+                  strokeWidth={1}
+                  width={390}
+                />
+              </g>
+            </g>
+            <g
+              className="recharts-layer recharts-line"
+            >
+              <path
+                className="recharts-curve recharts-line-curve"
+                clipPath={null}
+                d="M60,5.960732567329252C73,9.675996414223308,86,13.391260261117363,99,15.870222028043617C112,18.34918379496987,125,19.52546995683266,138,20.834503168886773C151,22.143536380940887,164,22.937234903993712,177,23.724421300368313C190,24.511607696742914,203,25.04785843872291,216,25.55762154713438C229,26.067384655545855,242,26.43785634691732,255,26.782999950837144C268,27.128143554756967,281,27.388682715688997,294,27.62848317065333C307,27.86828362561766,320,28.05322078990549,333,28.221802680623135C346,28.39038457134078,359,28.521586192691622,372,28.639974514959196C385,28.75836283722677,398,28.850284868552748,411,28.932132614228586C424,29.013980359904423,437,29.072520674459316,450,29.13106098901421"
+                fill="none"
+                height={360}
+                stroke="#fdbf6f"
+                strokeWidth={1}
+                width={390}
+              />
+              <g
+                className="recharts-layer recharts-line-dots"
+                clipPath={null}
+              >
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={60}
+                  cy={5.960732567329252}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#fdbf6f"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={99}
+                  cy={15.870222028043617}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#fdbf6f"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={138}
+                  cy={20.834503168886773}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#fdbf6f"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={177}
+                  cy={23.724421300368313}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#fdbf6f"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={216}
+                  cy={25.55762154713438}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#fdbf6f"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={255}
+                  cy={26.782999950837144}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#fdbf6f"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={294}
+                  cy={27.62848317065333}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#fdbf6f"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={333}
+                  cy={28.221802680623135}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#fdbf6f"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={372}
+                  cy={28.639974514959196}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#fdbf6f"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={411}
+                  cy={28.932132614228586}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#fdbf6f"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={450}
+                  cy={29.13106098901421}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#fdbf6f"
+                  strokeWidth={1}
+                  width={390}
+                />
+              </g>
+            </g>
+            <g
+              className="recharts-layer recharts-line"
+            >
+              <path
+                className="recharts-curve recharts-line-curve"
+                clipPath={null}
+                d="M60,137.456386274771C73,127.00178892712151,86,116.54719157947203,99,109.04377947717592C112,101.5403673748798,125,97.02691175050018,138,92.43591366099433C151,87.84491557148849,164,84.61756386561169,177,81.49779094014085C190,78.37801801467,203,75.98753426888914,216,73.7172761081693C229,71.44701794744947,242,69.61036587043996,255,67.87624197582187C268,66.14211808120378,281,64.68603430410775,294,63.3125327404607C307,61.93903117681366,320,60.75421282086235,333,59.6352325939396C346,58.51625236701685,359,57.531091427263775,372,56.598651378924174C385,55.666211330584574,398,54.83209358161899,411,54.04059230390202C424,53.24909102618504,437,52.54936736940368,450,51.849643712622324"
+                fill="none"
+                height={360}
+                stroke="#ff7f00"
+                strokeWidth={1}
+                width={390}
+              />
+              <g
+                className="recharts-layer recharts-line-dots"
+                clipPath={null}
+              >
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={60}
+                  cy={137.456386274771}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#ff7f00"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={99}
+                  cy={109.04377947717592}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#ff7f00"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={138}
+                  cy={92.43591366099433}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#ff7f00"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={177}
+                  cy={81.49779094014085}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#ff7f00"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={216}
+                  cy={73.7172761081693}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#ff7f00"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={255}
+                  cy={67.87624197582187}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#ff7f00"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={294}
+                  cy={63.3125327404607}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#ff7f00"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={333}
+                  cy={59.6352325939396}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#ff7f00"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={372}
+                  cy={56.598651378924174}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#ff7f00"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={411}
+                  cy={54.04059230390202}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#ff7f00"
+                  strokeWidth={1}
+                  width={390}
+                />
+                <circle
+                  className="recharts-dot recharts-line-dot"
+                  cx={450}
+                  cy={51.849643712622324}
+                  fill="#fff"
+                  height={360}
+                  r={3}
+                  stroke="#ff7f00"
+                  strokeWidth={1}
+                  width={390}
+                />
+              </g>
+            </g>
+            <g
+              className="recharts-cartesian-grid"
+            >
+              <g
+                className="recharts-cartesian-grid-horizontal"
+              >
+                <line
+                  fill="none"
+                  height={360}
+                  stroke="#ccc"
+                  strokeDasharray="5 5"
+                  width={390}
+                  x={60}
+                  x1={60}
+                  x2={450}
+                  y={5}
+                  y1={365}
+                  y2={365}
+                />
+                <line
+                  fill="none"
+                  height={360}
+                  stroke="#ccc"
+                  strokeDasharray="5 5"
+                  width={390}
+                  x={60}
+                  x1={60}
+                  x2={450}
+                  y={5}
+                  y1={275}
+                  y2={275}
+                />
+                <line
+                  fill="none"
+                  height={360}
+                  stroke="#ccc"
+                  strokeDasharray="5 5"
+                  width={390}
+                  x={60}
+                  x1={60}
+                  x2={450}
+                  y={5}
+                  y1={185}
+                  y2={185}
+                />
+                <line
+                  fill="none"
+                  height={360}
+                  stroke="#ccc"
+                  strokeDasharray="5 5"
+                  width={390}
+                  x={60}
+                  x1={60}
+                  x2={450}
+                  y={5}
+                  y1={95}
+                  y2={95}
+                />
+                <line
+                  fill="none"
+                  height={360}
+                  stroke="#ccc"
+                  strokeDasharray="5 5"
+                  width={390}
+                  x={60}
+                  x1={60}
+                  x2={450}
+                  y={5}
+                  y1={5}
+                  y2={5}
+                />
+              </g>
+              <g
+                className="recharts-cartesian-grid-vertical"
+              >
+                <line
+                  fill="none"
+                  height={360}
+                  stroke="#ccc"
+                  strokeDasharray="5 5"
+                  width={390}
+                  x={60}
+                  x1={60}
+                  x2={60}
+                  y={5}
+                  y1={5}
+                  y2={365}
+                />
+                <line
+                  fill="none"
+                  height={360}
+                  stroke="#ccc"
+                  strokeDasharray="5 5"
+                  width={390}
+                  x={60}
+                  x1={99}
+                  x2={99}
+                  y={5}
+                  y1={5}
+                  y2={365}
+                />
+                <line
+                  fill="none"
+                  height={360}
+                  stroke="#ccc"
+                  strokeDasharray="5 5"
+                  width={390}
+                  x={60}
+                  x1={138}
+                  x2={138}
+                  y={5}
+                  y1={5}
+                  y2={365}
+                />
+                <line
+                  fill="none"
+                  height={360}
+                  stroke="#ccc"
+                  strokeDasharray="5 5"
+                  width={390}
+                  x={60}
+                  x1={177}
+                  x2={177}
+                  y={5}
+                  y1={5}
+                  y2={365}
+                />
+                <line
+                  fill="none"
+                  height={360}
+                  stroke="#ccc"
+                  strokeDasharray="5 5"
+                  width={390}
+                  x={60}
+                  x1={216}
+                  x2={216}
+                  y={5}
+                  y1={5}
+                  y2={365}
+                />
+                <line
+                  fill="none"
+                  height={360}
+                  stroke="#ccc"
+                  strokeDasharray="5 5"
+                  width={390}
+                  x={60}
+                  x1={255}
+                  x2={255}
+                  y={5}
+                  y1={5}
+                  y2={365}
+                />
+                <line
+                  fill="none"
+                  height={360}
+                  stroke="#ccc"
+                  strokeDasharray="5 5"
+                  width={390}
+                  x={60}
+                  x1={294}
+                  x2={294}
+                  y={5}
+                  y1={5}
+                  y2={365}
+                />
+                <line
+                  fill="none"
+                  height={360}
+                  stroke="#ccc"
+                  strokeDasharray="5 5"
+                  width={390}
+                  x={60}
+                  x1={333}
+                  x2={333}
+                  y={5}
+                  y1={5}
+                  y2={365}
+                />
+                <line
+                  fill="none"
+                  height={360}
+                  stroke="#ccc"
+                  strokeDasharray="5 5"
+                  width={390}
+                  x={60}
+                  x1={372}
+                  x2={372}
+                  y={5}
+                  y1={5}
+                  y2={365}
+                />
+                <line
+                  fill="none"
+                  height={360}
+                  stroke="#ccc"
+                  strokeDasharray="5 5"
+                  width={390}
+                  x={60}
+                  x1={411}
+                  x2={411}
+                  y={5}
+                  y1={5}
+                  y2={365}
+                />
+                <line
+                  fill="none"
+                  height={360}
+                  stroke="#ccc"
+                  strokeDasharray="5 5"
+                  width={390}
+                  x={60}
+                  x1={450}
+                  x2={450}
+                  y={5}
+                  y1={5}
+                  y2={365}
+                />
+              </g>
+            </g>
+            <g
+              className="recharts-layer recharts-cartesian-axis recharts-xAxis xAxis"
+            >
+              <line
+                className="recharts-cartesian-axis-line"
+                fill="none"
+                height={30}
+                stroke="#666"
+                width={390}
+                x={60}
+                x1={60}
+                x2={450}
+                y={365}
+                y1={365}
+                y2={365}
+              />
+              <g
+                className="recharts-cartesian-axis-ticks"
+              >
+                <g
+                  className="recharts-layer recharts-cartesian-axis-tick"
+                >
+                  <line
+                    className="recharts-cartesian-axis-tick-line"
+                    fill="none"
+                    height={30}
+                    stroke="#666"
+                    width={390}
+                    x={60}
+                    x1={60}
+                    x2={60}
+                    y={365}
+                    y1={371}
+                    y2={365}
+                  />
+                  <text
+                    className="recharts-text recharts-cartesian-axis-tick-value"
+                    fill="#666"
+                    height={30}
+                    stroke="none"
+                    textAnchor="middle"
+                    width={390}
+                    x={60}
+                    y={373}
+                  >
+                    <tspan
+                      dy="0.71em"
+                      x={60}
+                    >
+                      0.439
+                    </tspan>
+                  </text>
+                </g>
+                <g
+                  className="recharts-layer recharts-cartesian-axis-tick"
+                >
+                  <line
+                    className="recharts-cartesian-axis-tick-line"
+                    fill="none"
+                    height={30}
+                    stroke="#666"
+                    width={390}
+                    x={60}
+                    x1={99}
+                    x2={99}
+                    y={365}
+                    y1={371}
+                    y2={365}
+                  />
+                  <text
+                    className="recharts-text recharts-cartesian-axis-tick-value"
+                    fill="#666"
+                    height={30}
+                    stroke="none"
+                    textAnchor="middle"
+                    width={390}
+                    x={99}
+                    y={373}
+                  >
+                    <tspan
+                      dy="0.71em"
+                      x={99}
+                    >
+                      0.658
+                    </tspan>
+                  </text>
+                </g>
+                <g
+                  className="recharts-layer recharts-cartesian-axis-tick"
+                >
+                  <line
+                    className="recharts-cartesian-axis-tick-line"
+                    fill="none"
+                    height={30}
+                    stroke="#666"
+                    width={390}
+                    x={60}
+                    x1={138}
+                    x2={138}
+                    y={365}
+                    y1={371}
+                    y2={365}
+                  />
+                  <text
+                    className="recharts-text recharts-cartesian-axis-tick-value"
+                    fill="#666"
+                    height={30}
+                    stroke="none"
+                    textAnchor="middle"
+                    width={390}
+                    x={138}
+                    y={373}
+                  >
+                    <tspan
+                      dy="0.71em"
+                      x={138}
+                    >
+                      0.878
+                    </tspan>
+                  </text>
+                </g>
+                <g
+                  className="recharts-layer recharts-cartesian-axis-tick"
+                >
+                  <line
+                    className="recharts-cartesian-axis-tick-line"
+                    fill="none"
+                    height={30}
+                    stroke="#666"
+                    width={390}
+                    x={60}
+                    x1={177}
+                    x2={177}
+                    y={365}
+                    y1={371}
+                    y2={365}
+                  />
+                  <text
+                    className="recharts-text recharts-cartesian-axis-tick-value"
+                    fill="#666"
+                    height={30}
+                    stroke="none"
+                    textAnchor="middle"
+                    width={390}
+                    x={177}
+                    y={373}
+                  >
+                    <tspan
+                      dy="0.71em"
+                      x={177}
+                    >
+                      1.097
+                    </tspan>
+                  </text>
+                </g>
+                <g
+                  className="recharts-layer recharts-cartesian-axis-tick"
+                >
+                  <line
+                    className="recharts-cartesian-axis-tick-line"
+                    fill="none"
+                    height={30}
+                    stroke="#666"
+                    width={390}
+                    x={60}
+                    x1={216}
+                    x2={216}
+                    y={365}
+                    y1={371}
+                    y2={365}
+                  />
+                  <text
+                    className="recharts-text recharts-cartesian-axis-tick-value"
+                    fill="#666"
+                    height={30}
+                    stroke="none"
+                    textAnchor="middle"
+                    width={390}
+                    x={216}
+                    y={373}
+                  >
+                    <tspan
+                      dy="0.71em"
+                      x={216}
+                    >
+                      1.317
+                    </tspan>
+                  </text>
+                </g>
+                <g
+                  className="recharts-layer recharts-cartesian-axis-tick"
+                >
+                  <line
+                    className="recharts-cartesian-axis-tick-line"
+                    fill="none"
+                    height={30}
+                    stroke="#666"
+                    width={390}
+                    x={60}
+                    x1={255}
+                    x2={255}
+                    y={365}
+                    y1={371}
+                    y2={365}
+                  />
+                  <text
+                    className="recharts-text recharts-cartesian-axis-tick-value"
+                    fill="#666"
+                    height={30}
+                    stroke="none"
+                    textAnchor="middle"
+                    width={390}
+                    x={255}
+                    y={373}
+                  >
+                    <tspan
+                      dy="0.71em"
+                      x={255}
+                    >
+                      1.536
+                    </tspan>
+                  </text>
+                </g>
+                <g
+                  className="recharts-layer recharts-cartesian-axis-tick"
+                >
+                  <line
+                    className="recharts-cartesian-axis-tick-line"
+                    fill="none"
+                    height={30}
+                    stroke="#666"
+                    width={390}
+                    x={60}
+                    x1={294}
+                    x2={294}
+                    y={365}
+                    y1={371}
+                    y2={365}
+                  />
+                  <text
+                    className="recharts-text recharts-cartesian-axis-tick-value"
+                    fill="#666"
+                    height={30}
+                    stroke="none"
+                    textAnchor="middle"
+                    width={390}
+                    x={294}
+                    y={373}
+                  >
+                    <tspan
+                      dy="0.71em"
+                      x={294}
+                    >
+                      1.756
+                    </tspan>
+                  </text>
+                </g>
+                <g
+                  className="recharts-layer recharts-cartesian-axis-tick"
+                >
+                  <line
+                    className="recharts-cartesian-axis-tick-line"
+                    fill="none"
+                    height={30}
+                    stroke="#666"
+                    width={390}
+                    x={60}
+                    x1={333}
+                    x2={333}
+                    y={365}
+                    y1={371}
+                    y2={365}
+                  />
+                  <text
+                    className="recharts-text recharts-cartesian-axis-tick-value"
+                    fill="#666"
+                    height={30}
+                    stroke="none"
+                    textAnchor="middle"
+                    width={390}
+                    x={333}
+                    y={373}
+                  >
+                    <tspan
+                      dy="0.71em"
+                      x={333}
+                    >
+                      1.975
+                    </tspan>
+                  </text>
+                </g>
+                <g
+                  className="recharts-layer recharts-cartesian-axis-tick"
+                >
+                  <line
+                    className="recharts-cartesian-axis-tick-line"
+                    fill="none"
+                    height={30}
+                    stroke="#666"
+                    width={390}
+                    x={60}
+                    x1={372}
+                    x2={372}
+                    y={365}
+                    y1={371}
+                    y2={365}
+                  />
+                  <text
+                    className="recharts-text recharts-cartesian-axis-tick-value"
+                    fill="#666"
+                    height={30}
+                    stroke="none"
+                    textAnchor="middle"
+                    width={390}
+                    x={372}
+                    y={373}
+                  >
+                    <tspan
+                      dy="0.71em"
+                      x={372}
+                    >
+                      2.195
+                    </tspan>
+                  </text>
+                </g>
+                <g
+                  className="recharts-layer recharts-cartesian-axis-tick"
+                >
+                  <line
+                    className="recharts-cartesian-axis-tick-line"
+                    fill="none"
+                    height={30}
+                    stroke="#666"
+                    width={390}
+                    x={60}
+                    x1={411}
+                    x2={411}
+                    y={365}
+                    y1={371}
+                    y2={365}
+                  />
+                  <text
+                    className="recharts-text recharts-cartesian-axis-tick-value"
+                    fill="#666"
+                    height={30}
+                    stroke="none"
+                    textAnchor="middle"
+                    width={390}
+                    x={411}
+                    y={373}
+                  >
+                    <tspan
+                      dy="0.71em"
+                      x={411}
+                    >
+                      2.414
+                    </tspan>
+                  </text>
+                </g>
+                <g
+                  className="recharts-layer recharts-cartesian-axis-tick"
+                >
+                  <line
+                    className="recharts-cartesian-axis-tick-line"
+                    fill="none"
+                    height={30}
+                    stroke="#666"
+                    width={390}
+                    x={60}
+                    x1={450}
+                    x2={450}
+                    y={365}
+                    y1={371}
+                    y2={365}
+                  />
+                  <text
+                    className="recharts-text recharts-cartesian-axis-tick-value"
+                    fill="#666"
+                    height={30}
+                    stroke="none"
+                    textAnchor="middle"
+                    width={390}
+                    x={450}
+                    y={373}
+                  >
+                    <tspan
+                      dy="0.71em"
+                      x={450}
+                    >
+                      2.634
+                    </tspan>
+                  </text>
+                </g>
+              </g>
+            </g>
+            <g
+              className="recharts-layer recharts-cartesian-axis recharts-yAxis yAxis"
+            >
+              <line
+                className="recharts-cartesian-axis-line"
+                fill="none"
+                height={360}
+                stroke="#666"
+                width={60}
+                x={0}
+                x1={60}
+                x2={60}
+                y={5}
+                y1={5}
+                y2={365}
+              />
+              <g
+                className="recharts-cartesian-axis-ticks"
+              >
+                <g
+                  className="recharts-layer recharts-cartesian-axis-tick"
+                >
+                  <line
+                    className="recharts-cartesian-axis-tick-line"
+                    fill="none"
+                    height={360}
+                    stroke="#666"
+                    width={60}
+                    x={0}
+                    x1={54}
+                    x2={60}
+                    y={5}
+                    y1={365}
+                    y2={365}
+                  />
+                  <text
+                    className="recharts-text recharts-cartesian-axis-tick-value"
+                    fill="#666"
+                    height={360}
+                    stroke="none"
+                    textAnchor="end"
+                    width={60}
+                    x={52}
+                    y={365}
+                  >
+                    <tspan
+                      dy="0.355em"
+                      x={52}
+                    >
+                      -8
+                    </tspan>
+                  </text>
+                </g>
+                <g
+                  className="recharts-layer recharts-cartesian-axis-tick"
+                >
+                  <line
+                    className="recharts-cartesian-axis-tick-line"
+                    fill="none"
+                    height={360}
+                    stroke="#666"
+                    width={60}
+                    x={0}
+                    x1={54}
+                    x2={60}
+                    y={5}
+                    y1={275}
+                    y2={275}
+                  />
+                  <text
+                    className="recharts-text recharts-cartesian-axis-tick-value"
+                    fill="#666"
+                    height={360}
+                    stroke="none"
+                    textAnchor="end"
+                    width={60}
+                    x={52}
+                    y={275}
+                  >
+                    <tspan
+                      dy="0.355em"
+                      x={52}
+                    >
+                      -6
+                    </tspan>
+                  </text>
+                </g>
+                <g
+                  className="recharts-layer recharts-cartesian-axis-tick"
+                >
+                  <line
+                    className="recharts-cartesian-axis-tick-line"
+                    fill="none"
+                    height={360}
+                    stroke="#666"
+                    width={60}
+                    x={0}
+                    x1={54}
+                    x2={60}
+                    y={5}
+                    y1={185}
+                    y2={185}
+                  />
+                  <text
+                    className="recharts-text recharts-cartesian-axis-tick-value"
+                    fill="#666"
+                    height={360}
+                    stroke="none"
+                    textAnchor="end"
+                    width={60}
+                    x={52}
+                    y={185}
+                  >
+                    <tspan
+                      dy="0.355em"
+                      x={52}
+                    >
+                      -4
+                    </tspan>
+                  </text>
+                </g>
+                <g
+                  className="recharts-layer recharts-cartesian-axis-tick"
+                >
+                  <line
+                    className="recharts-cartesian-axis-tick-line"
+                    fill="none"
+                    height={360}
+                    stroke="#666"
+                    width={60}
+                    x={0}
+                    x1={54}
+                    x2={60}
+                    y={5}
+                    y1={95}
+                    y2={95}
+                  />
+                  <text
+                    className="recharts-text recharts-cartesian-axis-tick-value"
+                    fill="#666"
+                    height={360}
+                    stroke="none"
+                    textAnchor="end"
+                    width={60}
+                    x={52}
+                    y={95}
+                  >
+                    <tspan
+                      dy="0.355em"
+                      x={52}
+                    >
+                      -2
+                    </tspan>
+                  </text>
+                </g>
+                <g
+                  className="recharts-layer recharts-cartesian-axis-tick"
+                >
+                  <line
+                    className="recharts-cartesian-axis-tick-line"
+                    fill="none"
+                    height={360}
+                    stroke="#666"
+                    width={60}
+                    x={0}
+                    x1={54}
+                    x2={60}
+                    y={5}
+                    y1={5}
+                    y2={5}
+                  />
+                  <text
+                    className="recharts-text recharts-cartesian-axis-tick-value"
+                    fill="#666"
+                    height={360}
+                    stroke="none"
+                    textAnchor="end"
+                    width={60}
+                    x={52}
+                    y={5}
+                  >
+                    <tspan
+                      dy="0.355em"
+                      x={52}
+                    >
+                      0
+                    </tspan>
+                  </text>
+                </g>
+              </g>
+              <text
+                className="recharts-text recharts-label"
+                style={
+                  Object {
+                    "textAnchor": "middle",
+                  }
+                }
+                textAnchor="start"
+                transform="rotate(-90, 5, 185)"
+                x={5}
+                y={185}
+              >
+                <tspan
+                  dy="0.355em"
+                  x={5}
+                >
+                  Defensive RAPM
+                </tspan>
+              </text>
+            </g>
+            <g
+              className="recharts-layer recharts-reference-line"
+            >
+              <line
+                className="recharts-reference-line-line"
+                fill="none"
+                fillOpacity={1}
+                stroke="green"
+                strokeWidth={1}
+                x="0.439"
+                x1={60}
+                x2={60}
+                y1={365}
+                y2={5}
+              />
+              <text
+                className="recharts-text recharts-label"
+                textAnchor="middle"
+                x={60}
+                y={10}
+              >
+                <tspan
+                  dy="0.71em"
+                  x={60}
+                >
+                  Selected regression 'lambda' [0.439]
+                </tspan>
+              </text>
+            </g>
+          </svg>
+          <div
+            className="recharts-legend-wrapper"
+            style={
+              Object {
+                "bottom": 5,
+                "height": "auto",
+                "left": 0,
+                "position": "absolute",
+                "width": 450,
+              }
+            }
+          >
+            <ul
+              className="recharts-default-legend"
+              style={
+                Object {
+                  "margin": 0,
+                  "padding": 0,
+                  "textAlign": "center",
+                }
+              }
+            >
+              <li
+                className="recharts-legend-item legend-item-0"
+                style={
+                  Object {
+                    "display": "inline-block",
+                    "marginRight": 10,
+                  }
+                }
+              >
+                <svg
+                  className="recharts-surface"
+                  height={14}
+                  style={
+                    Object {
+                      "display": "inline-block",
+                      "marginRight": 4,
+                      "verticalAlign": "middle",
+                    }
+                  }
+                  version="1.1"
+                  viewBox="0 0 32 32"
+                  width={14}
+                >
+                  <path
+                    className="recharts-legend-icon"
+                    d="M0,16h10.666666666666666
+            A5.333333333333333,5.333333333333333,0,1,1,21.333333333333332,16
+            H32M21.333333333333332,16
+            A5.333333333333333,5.333333333333333,0,1,1,10.666666666666666,16"
+                    fill="none"
+                    stroke="#a6cee3"
+                    strokeWidth={4}
+                  />
+                </svg>
+                <span
+                  className="recharts-legend-item-text"
+                >
+                  Smith, Jalen
+                </span>
+              </li>
+              <li
+                className="recharts-legend-item legend-item-1"
+                style={
+                  Object {
+                    "display": "inline-block",
+                    "marginRight": 10,
+                  }
+                }
+              >
+                <svg
+                  className="recharts-surface"
+                  height={14}
+                  style={
+                    Object {
+                      "display": "inline-block",
+                      "marginRight": 4,
+                      "verticalAlign": "middle",
+                    }
+                  }
+                  version="1.1"
+                  viewBox="0 0 32 32"
+                  width={14}
+                >
+                  <path
+                    className="recharts-legend-icon"
+                    d="M0,16h10.666666666666666
+            A5.333333333333333,5.333333333333333,0,1,1,21.333333333333332,16
+            H32M21.333333333333332,16
+            A5.333333333333333,5.333333333333333,0,1,1,10.666666666666666,16"
+                    fill="none"
+                    stroke="#1f78b4"
+                    strokeWidth={4}
+                  />
+                </svg>
+                <span
+                  className="recharts-legend-item-text"
+                >
+                  Cowan, Anthony
+                </span>
+              </li>
+              <li
+                className="recharts-legend-item legend-item-2"
+                style={
+                  Object {
+                    "display": "inline-block",
+                    "marginRight": 10,
+                  }
+                }
+              >
+                <svg
+                  className="recharts-surface"
+                  height={14}
+                  style={
+                    Object {
+                      "display": "inline-block",
+                      "marginRight": 4,
+                      "verticalAlign": "middle",
+                    }
+                  }
+                  version="1.1"
+                  viewBox="0 0 32 32"
+                  width={14}
+                >
+                  <path
+                    className="recharts-legend-icon"
+                    d="M0,16h10.666666666666666
+            A5.333333333333333,5.333333333333333,0,1,1,21.333333333333332,16
+            H32M21.333333333333332,16
+            A5.333333333333333,5.333333333333333,0,1,1,10.666666666666666,16"
+                    fill="none"
+                    stroke="#b2df8a"
+                    strokeWidth={4}
+                  />
+                </svg>
+                <span
+                  className="recharts-legend-item-text"
+                >
+                  Wiggins, Aaron
+                </span>
+              </li>
+              <li
+                className="recharts-legend-item legend-item-3"
+                style={
+                  Object {
+                    "display": "inline-block",
+                    "marginRight": 10,
+                  }
+                }
+              >
+                <svg
+                  className="recharts-surface"
+                  height={14}
+                  style={
+                    Object {
+                      "display": "inline-block",
+                      "marginRight": 4,
+                      "verticalAlign": "middle",
+                    }
+                  }
+                  version="1.1"
+                  viewBox="0 0 32 32"
+                  width={14}
+                >
+                  <path
+                    className="recharts-legend-icon"
+                    d="M0,16h10.666666666666666
+            A5.333333333333333,5.333333333333333,0,1,1,21.333333333333332,16
+            H32M21.333333333333332,16
+            A5.333333333333333,5.333333333333333,0,1,1,10.666666666666666,16"
+                    fill="none"
+                    stroke="#33a02c"
+                    strokeWidth={4}
+                  />
+                </svg>
+                <span
+                  className="recharts-legend-item-text"
+                >
+                  Morsell, Darryl
+                </span>
+              </li>
+              <li
+                className="recharts-legend-item legend-item-4"
+                style={
+                  Object {
+                    "display": "inline-block",
+                    "marginRight": 10,
+                  }
+                }
+              >
+                <svg
+                  className="recharts-surface"
+                  height={14}
+                  style={
+                    Object {
+                      "display": "inline-block",
+                      "marginRight": 4,
+                      "verticalAlign": "middle",
+                    }
+                  }
+                  version="1.1"
+                  viewBox="0 0 32 32"
+                  width={14}
+                >
+                  <path
+                    className="recharts-legend-icon"
+                    d="M0,16h10.666666666666666
+            A5.333333333333333,5.333333333333333,0,1,1,21.333333333333332,16
+            H32M21.333333333333332,16
+            A5.333333333333333,5.333333333333333,0,1,1,10.666666666666666,16"
+                    fill="none"
+                    stroke="#fb9a99"
+                    strokeWidth={4}
+                  />
+                </svg>
+                <span
+                  className="recharts-legend-item-text"
+                >
+                  Ayala, Eric
+                </span>
+              </li>
+              <li
+                className="recharts-legend-item legend-item-5"
+                style={
+                  Object {
+                    "display": "inline-block",
+                    "marginRight": 10,
+                  }
+                }
+              >
+                <svg
+                  className="recharts-surface"
+                  height={14}
+                  style={
+                    Object {
+                      "display": "inline-block",
+                      "marginRight": 4,
+                      "verticalAlign": "middle",
+                    }
+                  }
+                  version="1.1"
+                  viewBox="0 0 32 32"
+                  width={14}
+                >
+                  <path
+                    className="recharts-legend-icon"
+                    d="M0,16h10.666666666666666
+            A5.333333333333333,5.333333333333333,0,1,1,21.333333333333332,16
+            H32M21.333333333333332,16
+            A5.333333333333333,5.333333333333333,0,1,1,10.666666666666666,16"
+                    fill="none"
+                    stroke="#e31a1c"
+                    strokeWidth={4}
+                  />
+                </svg>
+                <span
+                  className="recharts-legend-item-text"
+                >
+                  Scott, Donta
+                </span>
+              </li>
+              <li
+                className="recharts-legend-item legend-item-6"
+                style={
+                  Object {
+                    "display": "inline-block",
+                    "marginRight": 10,
+                  }
+                }
+              >
+                <svg
+                  className="recharts-surface"
+                  height={14}
+                  style={
+                    Object {
+                      "display": "inline-block",
+                      "marginRight": 4,
+                      "verticalAlign": "middle",
+                    }
+                  }
+                  version="1.1"
+                  viewBox="0 0 32 32"
+                  width={14}
+                >
+                  <path
+                    className="recharts-legend-icon"
+                    d="M0,16h10.666666666666666
+            A5.333333333333333,5.333333333333333,0,1,1,21.333333333333332,16
+            H32M21.333333333333332,16
+            A5.333333333333333,5.333333333333333,0,1,1,10.666666666666666,16"
+                    fill="none"
+                    stroke="#fdbf6f"
+                    strokeWidth={4}
+                  />
+                </svg>
+                <span
+                  className="recharts-legend-item-text"
+                >
+                  Lindo Jr., Ricky
+                </span>
+              </li>
+              <li
+                className="recharts-legend-item legend-item-7"
+                style={
+                  Object {
+                    "display": "inline-block",
+                    "marginRight": 10,
+                  }
+                }
+              >
+                <svg
+                  className="recharts-surface"
+                  height={14}
+                  style={
+                    Object {
+                      "display": "inline-block",
+                      "marginRight": 4,
+                      "verticalAlign": "middle",
+                    }
+                  }
+                  version="1.1"
+                  viewBox="0 0 32 32"
+                  width={14}
+                >
+                  <path
+                    className="recharts-legend-icon"
+                    d="M0,16h10.666666666666666
+            A5.333333333333333,5.333333333333333,0,1,1,21.333333333333332,16
+            H32M21.333333333333332,16
+            A5.333333333333333,5.333333333333333,0,1,1,10.666666666666666,16"
+                    fill="none"
+                    stroke="#ff7f00"
+                    strokeWidth={4}
+                  />
+                </svg>
+                <span
+                  className="recharts-legend-item-text"
+                >
+                  Smith Jr., Serrel
+                </span>
+              </li>
+            </ul>
+          </div>
+          <div
+            className="recharts-tooltip-wrapper"
+            style={
+              Object {
+                "MozTransform": "translate(undefinedpx, undefinedpx)",
+                "OTransform": "translate(undefinedpx, undefinedpx)",
+                "WebkitTransform": "translate(undefinedpx, undefinedpx)",
+                "msTransform": "translate(undefinedpx, undefinedpx)",
+                "opacity": "0.8",
+                "pointerEvents": "none",
+                "position": "absolute",
+                "top": 0,
+                "transform": "translate(undefinedpx, undefinedpx)",
+                "visibility": "hidden",
+                "zIndex": "1000",
+              }
+            }
+          >
+            <div
+              className="recharts-default-tooltip"
+              style={
+                Object {
+                  "backgroundColor": "#fff",
+                  "border": "1px solid #ccc",
+                  "margin": 0,
+                  "padding": 10,
+                  "whiteSpace": "nowrap",
+                }
+              }
+            >
+              <p
+                className="recharts-tooltip-label"
+                style={
+                  Object {
+                    "margin": 0,
+                  }
+                }
+              >
+                
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   (
   <a
     href="#"
