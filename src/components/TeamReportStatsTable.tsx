@@ -179,7 +179,7 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
           );
           const [ offRapmWeights, defRapmWeights ] = RapmUtils.calcPlayerWeights(rapmContext);
           const [ offRapmInputs, defRapmInputs ] = RapmUtils.pickRidgeRegression(
-            offRapmWeights, defRapmWeights, rapmContext
+            offRapmWeights, defRapmWeights, rapmContext, (rapmDiagMode != "")
           );
           RapmUtils.injectRapmIntoPlayers(
             tempTeamReport.players || [], offRapmInputs, defRapmInputs, statsAverages, rapmContext

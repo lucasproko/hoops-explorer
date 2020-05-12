@@ -325,11 +325,12 @@ export class RapmUtils {
 
   /**
   * Select a good ridge regression factor to use
-  * TODO: not sure how to test this!
+  * If diagMode is enabled then add info about each possible regression value
   */
   static pickRidgeRegression(
     offWeights: any, defWeights: any,
-    ctx: RapmPlayerContext
+    ctx: RapmPlayerContext,
+    diagMode: boolean
   ) {
     const debugMode = false;
     const generateTestCases = false;
@@ -402,7 +403,7 @@ export class RapmUtils {
     const testResults = ([ "off", "def" ] as Array<"off" | "def">).map((offOrDef: "off" | "def") =>
       _.transform(lambdaRange, (acc, lambda) => {
         const notFirstStep = lambda > lambdaRange[0];
-        if (!acc.foundLambda) {
+        if (!acc.foundLambda || diagMode) {
           const ridgeLambda = lambda*avgEigenVal; //(scale lambda according to the scale of the weight matrix)
 
           if (debugMode) console.log(`********* [${offOrDef}] RAPM WITH LAMBDA ` + ridgeLambda.toFixed(3) + " / " + lambda);
@@ -413,22 +414,6 @@ export class RapmUtils {
             return (zip[0] || 0)*(zip[1] || 0);
           }));
           const adjEffErr = Math.abs(combinedAdjEff - actualEff[offOrDef]);
-
-          const [ meanDiff, maxDiff ] = (() => {
-            if (notFirstStep) { //ie 2nd+ time onwards, so we can check diffs
-              const diffs = _.zip(
-                results, acc.lastAttempt.results as number[]
-              ).map((zip: Array<number|undefined>) => {
-                return Math.abs((zip[1] || 0) - (zip[0] || 0));
-              });
-              const tempMaxDiff = _.reduce(diffs, (a, b) => a > b ? a : b) || 0;
-              const tempMeanDiff = mean(diffs);
-
-              if (debugMode) console.log(`Diffs: u=[${tempMeanDiff.toFixed(2)}] max=[${tempMaxDiff.toFixed(2)}]`);
-
-              return [ tempMeanDiff, tempMaxDiff ];
-            } else { return [ -1, -1 ]; }
-          })();
 
           if (debugMode) console.log(ctx.colToPlayer);
           if (debugMode) console.log("rapm: " + results.map((p: number) => p.toFixed(3)));
@@ -450,27 +435,48 @@ export class RapmUtils {
           if (debugMode) console.log("sdRapm: " + sdRapm.map((p: number) => p.toFixed(3)));
 
           // Completion criteria:
-          acc.output.ridgeLambda = ridgeLambda;
-          acc.output.solnMatrix = solver;
-          if ((adjEffErr >= 1.05) && notFirstStep) {
-            if (debugMode) console.log(`-!!!!!!!!!!- DONE PICK PREVIOUS [${acc.lastAttempt.ridgeLambda.toFixed(2)}]`);
-            acc.foundLambda = true;
-            // Roll back to previous
-            acc.output.solnMatrix = acc.lastAttempt.solnMatrix;
-            acc.output.ridgeLambda = acc.lastAttempt.ridgeLambda;
-          } else if ((meanDiff >= 0) && (meanDiff < 0.105)) {
-            if (debugMode) console.log(`!!!!!!!!!!!! DONE PICK THIS [${ridgeLambda.toFixed(2)}]`);
-            acc.foundLambda = true;
-          } else {
-            acc.lastAttempt = {
-              results: results, // so we can build diffs
-              ridgeLambda: ridgeLambda, // may need this value
-              solnMatrix: solver
-            };
+          if (!acc.foundLambda) {
+
+            const [ meanDiff, maxDiff ] = (() => {
+              if (notFirstStep) { //ie 2nd+ time onwards, so we can check diffs
+                const diffs = _.zip(
+                  results, acc.lastAttempt.results as number[]
+                ).map((zip: Array<number|undefined>) => {
+                  return Math.abs((zip[1] || 0) - (zip[0] || 0));
+                });
+                const tempMaxDiff = _.reduce(diffs, (a, b) => a > b ? a : b) || 0;
+                const tempMeanDiff = mean(diffs);
+
+                if (debugMode) console.log(`Diffs: u=[${tempMeanDiff.toFixed(2)}] max=[${tempMaxDiff.toFixed(2)}]`);
+
+                return [ tempMeanDiff, tempMaxDiff ];
+              } else { return [ -1, -1 ]; }
+            })();
+
+            //(^ since we'll keep going in diag mode, ensure we don't change the actual processing flow)
+            acc.output.ridgeLambda = ridgeLambda;
+            acc.output.solnMatrix = solver;
+            if ((adjEffErr >= 1.05) && notFirstStep) {
+              if (debugMode) console.log(`-!!!!!!!!!!- DONE PICK PREVIOUS [${acc.lastAttempt.ridgeLambda.toFixed(2)}]`);
+              acc.foundLambda = true;
+              // Roll back to previous
+              acc.output.solnMatrix = acc.lastAttempt.solnMatrix;
+              acc.output.ridgeLambda = acc.lastAttempt.ridgeLambda;
+            } else if ((meanDiff >= 0) && (meanDiff < 0.105)) {
+              if (debugMode) console.log(`!!!!!!!!!!!! DONE PICK THIS [${ridgeLambda.toFixed(2)}]`);
+              acc.foundLambda = true;
+            } else {
+              acc.lastAttempt = {
+                results: results, // so we can build diffs
+                ridgeLambda: ridgeLambda, // may need this value
+                solnMatrix: solver
+              };
+            }
           }
           // Add diags for any step on which we've done processing
           acc.output.prevAttempts.push({
-              //TODO: diags
+            ridgeLambda: ridgeLambda,
+            results: results
           });
 
         }//(else short circuit processing, we're done)
