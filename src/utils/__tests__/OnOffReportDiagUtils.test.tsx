@@ -11,28 +11,30 @@ import { shallow } from 'enzyme'
 import toJson from 'enzyme-to-json'
 
 describe("OnOffReportDiagUtils", () => {
-  [ true, false ].forEach((incRepOnOff) => {
-    test(`OnOffReportDiagUtils - should create roster comparison HTML (replacement on/off: ${incRepOnOff})`, () => {
+  [ true, false ].forEach((incRapm) => {
+    [ true, false ].forEach((incRepOnOff) => {
+      test(`OnOffReportDiagUtils - should create roster comparison HTML (rapm: ${incRapm} replacement on/off: ${incRepOnOff})`, () => {
 
-      // Setup the data
-      const lineupReport = {
-        lineups: sampleLineupStatsResponse.responses[0].aggregations.lineups.buckets,
-        avgOff: 100.0,
-        error_code: "test"
-      } as LineupStatsModel;
-      const tempTeamReport = LineupUtils.lineupToTeamReport(
-        lineupReport, incRepOnOff
-      );
-      const playersWithAdjEff = tempTeamReport.players || [];
-      const playerLineupPowerSet = OnOffReportDiagUtils.buildPlayerSummary(playersWithAdjEff, incRepOnOff);
+        // Setup the data
+        const lineupReport = {
+          lineups: sampleLineupStatsResponse.responses[0].aggregations.lineups.buckets,
+          avgOff: 100.0,
+          error_code: "test"
+        } as LineupStatsModel;
+        const tempTeamReport = LineupUtils.lineupToTeamReport(
+          lineupReport, incRepOnOff
+        );
+        const playersWithAdjEff = tempTeamReport.players || [];
+        const playerLineupPowerSet = OnOffReportDiagUtils.buildPlayerSummary(playersWithAdjEff, incRapm, incRepOnOff);
 
-      const component = renderer.create(
-        <span>{
-          OnOffReportDiagUtils.buildLineupInfo(playersWithAdjEff[0], playerLineupPowerSet)
-        }</span>
-      );
-      const tree = component.toJSON();
-      expect(tree).toMatchSnapshot();
+        const component = renderer.create(
+          <span>{
+            OnOffReportDiagUtils.buildLineupInfo(playersWithAdjEff[0], playerLineupPowerSet, "RAPM")
+          }</span>
+        );
+        const tree = component.toJSON();
+        expect(tree).toMatchSnapshot();
+      });
     });
   });
   test("OnOffReportDiagUtils - should create table containing replacement on/off diagnostics", () => {
@@ -45,7 +47,7 @@ describe("OnOffReportDiagUtils", () => {
       lineupReport, true, 100, 10
     );
     const playersWithAdjEff = tempTeamReport.players || [];
-    const playerLineupPowerSet = OnOffReportDiagUtils.buildPlayerSummary(playersWithAdjEff, true);
+    const playerLineupPowerSet = OnOffReportDiagUtils.buildPlayerSummary(playersWithAdjEff, false, true);
     const diagInfo = OnOffReportDiagUtils.getRepOnOffDiagInfo(playersWithAdjEff[2], 100);
     const component = renderer.create(
       <GenericTable

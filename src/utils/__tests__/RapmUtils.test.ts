@@ -181,12 +181,16 @@ describe("RapmUtils", () => {
 
     // Hand checked results, just checking nothing's broken with changes!
 
-    expect(offResults.prevAttempts).toEqual( // 4 iterations
-      [ {}, {}, {}, {} ]
+    expect(offResults.prevAttempts.map((o: any) => {
+      return { l: o?.ridgeLambda?.toFixed(2), ex: o?.results?.[0]?.toFixed(2) }
+    })).toEqual( // 4 iterations
+      [ { l: "0.44", ex: "2.00" }, { l: "0.66", ex: "2.17" }, { l: "0.88", ex: "2.25" }, { l: "1.10", ex: "2.29" } ]
     );
     expect(offResults.ridgeLambda.toFixed(3)).toEqual("1.097");
-    expect(defResults.prevAttempts).toEqual( // 2 iterations
-      [ {}, {} ]
+    expect(defResults.prevAttempts.map((o: any) => {
+      return { l: o?.ridgeLambda?.toFixed(2), ex: o?.results?.[0]?.toFixed(2) }
+    })).toEqual( // 4 iterations
+      [ { l: "0.44", ex: "-6.61" }, { l: "0.66", ex: "-5.97" } ]
     );
     expect(defResults.ridgeLambda.toFixed(3)).toEqual("0.439");
   });

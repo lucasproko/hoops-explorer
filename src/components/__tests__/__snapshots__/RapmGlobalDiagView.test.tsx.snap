@@ -3208,7 +3208,10 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
     <em>
       <ul>
         <li>
-          TODO
+          As the regression factor increases you can see the total RAPM (raw + prior) settles down to a value dominated by the prior. The aim is to pick a regression factor where the raw RAPM has "settled down" but still dominates in the prior in the overall calculation.
+        </li>
+        <li>
+          More information about raw vs prior (at the selected "lambda") is given in the player diagnostics above.
         </li>
       </ul>
     </em>
