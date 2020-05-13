@@ -15,10 +15,12 @@ describe("RapmPlayerDiagView", () => {
     avgEff: 100.0,
     error_code: "test"
   };
+  const globalRapmDiagRef = React.createRef<HTMLDivElement>();
 
   test("RapmPlayerDiagView - should create snapshot", () => {
     const [ offResults, defResults ] = RapmUtils.pickRidgeRegression(
-      semiRealRapmResults.testOffWeights, semiRealRapmResults.testDefWeights, semiRealRapmResults.testContext);
+      semiRealRapmResults.testOffWeights, semiRealRapmResults.testDefWeights, semiRealRapmResults.testContext, true
+    );
     const onOffReport = LineupUtils.lineupToTeamReport(lineupReport);
 
     RapmUtils.injectRapmIntoPlayers(
@@ -40,6 +42,7 @@ describe("RapmPlayerDiagView", () => {
     };
 
     const component = renderer.create(<RapmPlayerDiagView
+      globalRef={globalRapmDiagRef}
       rapmInfo={rapmInfo}
       player={onOffReport.players?.[0] || {}}
     />);

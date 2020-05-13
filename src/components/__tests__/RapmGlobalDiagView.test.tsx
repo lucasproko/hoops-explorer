@@ -18,7 +18,8 @@ describe("RapmGlobalDiagView", () => {
 
   test("RapmGlobalDiagView - should create snapshot", () => {
     const [ offResults, defResults ] = RapmUtils.pickRidgeRegression(
-      semiRealRapmResults.testOffWeights, semiRealRapmResults.testDefWeights, semiRealRapmResults.testContext);
+      semiRealRapmResults.testOffWeights, semiRealRapmResults.testDefWeights, semiRealRapmResults.testContext, true
+    );
     const onOffReport = LineupUtils.lineupToTeamReport(lineupReport);
 
     RapmUtils.injectRapmIntoPlayers(

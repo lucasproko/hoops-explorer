@@ -45,7 +45,7 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - buildPlayerComparisonLink 1
 </span>
 `;
 
-exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create roster comparison HTML (replacement on/off: false) 1`] = `
+exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create roster comparison HTML (rapm: false replacement on/off: false) 1`] = `
 <span>
   <span>
     <b>
@@ -99,16 +99,17 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create roster compar
   </span>
   <span>
     <b>
-      Lineup rating:
+      RAPM
+       Lineup rating:
     </b>
      [
-    60.0
+    0.0
     ]
   </span>
 </span>
 `;
 
-exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create roster comparison HTML (replacement on/off: true) 1`] = `
+exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create roster comparison HTML (rapm: false replacement on/off: true) 1`] = `
 <span>
   <span>
     <b>
@@ -162,10 +163,139 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create roster compar
   </span>
   <span>
     <b>
-      Lineup rating:
+      RAPM
+       Lineup rating:
     </b>
      [
-    -0.3
+    0.0
+    ]
+  </span>
+</span>
+`;
+
+exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create roster comparison HTML (rapm: true replacement on/off: false) 1`] = `
+<span>
+  <span>
+    <b>
+      Cowan, Anthony
+    </b>
+     ([
+    100.0
+    ]% - [
+    0.0
+    ]%); 
+  </span>
+  <span>
+    <b>
+      Smith, Jalen
+    </b>
+     ([
+    100.0
+    ]% - [
+    0.0
+    ]%); 
+  </span>
+  <span>
+    <b>
+      Morsell, Darryl
+    </b>
+     ([
+    75.4
+    ]% - [
+    0.0
+    ]%); 
+  </span>
+  <span>
+    <b>
+      Ayala, Eric
+    </b>
+     ([
+    72.2
+    ]% - [
+    0.0
+    ]%); 
+  </span>
+  <span>
+    <b>
+      Scott, Donta
+    </b>
+     ([
+    52.4
+    ]% - [
+    0.0
+    ]%); 
+  </span>
+  <span>
+    <b>
+      RAPM
+       Lineup rating:
+    </b>
+     [
+    0.0
+    ]
+  </span>
+</span>
+`;
+
+exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create roster comparison HTML (rapm: true replacement on/off: true) 1`] = `
+<span>
+  <span>
+    <b>
+      Cowan, Anthony
+    </b>
+     ([
+    100.0
+    ]% - [
+    0.0
+    ]%); 
+  </span>
+  <span>
+    <b>
+      Smith, Jalen
+    </b>
+     ([
+    100.0
+    ]% - [
+    0.0
+    ]%); 
+  </span>
+  <span>
+    <b>
+      Morsell, Darryl
+    </b>
+     ([
+    75.4
+    ]% - [
+    0.0
+    ]%); 
+  </span>
+  <span>
+    <b>
+      Ayala, Eric
+    </b>
+     ([
+    72.2
+    ]% - [
+    0.0
+    ]%); 
+  </span>
+  <span>
+    <b>
+      Scott, Donta
+    </b>
+     ([
+    52.4
+    ]% - [
+    0.0
+    ]%); 
+  </span>
+  <span>
+    <b>
+      RAPM
+       Lineup rating:
+    </b>
+     [
+    0.0
     ]
   </span>
 </span>

@@ -1,6 +1,8 @@
 // React imports:
 import React, { useState } from 'react';
 
+import _ from "lodash";
+
 // Next imports:
 import { NextPage } from 'next';
 
@@ -38,13 +40,14 @@ const RapmPlayerDiagView: React.FunctionComponent<Props> = (({rapmInfo, player, 
         const teamDefAdj = ((ctx.teamInfo.def_adj_ppp?.value || ctx.avgEfficiency) - ctx.avgEfficiency);
 
         const col = ctx.playerToCol[player.playerId];
-        const offPossPctStr = (100.0*(offWeights[ctx.numLineups][col]/ctx.unbiasWeight)).toFixed(0);
+        const offPossPcts = offWeights[ctx.numLineups]; //(use as approx for def also)
+        const offPossPctStr = (100.0*(offPossPcts[col]/ctx.unbiasWeight)).toFixed(0);
 
-        const offPriorWeight = offInputs.solnMatrix ? offInputs.solnMatrix.valueOf()[col][ctx.numLineups] : 0.0;
-        const defPriorWeight = offInputs.solnMatrix ? defInputs.solnMatrix.valueOf()[col][ctx.numLineups] : 0.0;
-
-        const off = (offPriorWeight*(ctx.unbiasWeight*teamOffAdj));
-        const def = (defPriorWeight*(ctx.unbiasWeight*teamDefAdj));
+        const [ sigmaRapmOff, sigmaRapmDef ] = rapmInfo?.noUnbiasWeightsDiags?.map((vec) =>
+          _.reduce(vec, (acc, n: number, i: number) => acc + n*offPossPcts[i]/ctx.unbiasWeight) || 0
+        ) || [0, 0];
+        const offPriorTotalDiff = teamOffAdj - sigmaRapmOff;
+        const defPriorTotalDiff = teamDefAdj - sigmaRapmDef;
 
         const [ offUnbiasRapm, defUnbiasRapm ] = rapmInfo?.noUnbiasWeightsDiags?.map((vec) => vec[col]) || [0, 0];
         const offPrior = rapmOff - offUnbiasRapm;
@@ -53,9 +56,14 @@ const RapmPlayerDiagView: React.FunctionComponent<Props> = (({rapmInfo, player, 
         return [
           offPrior, defPrior,
           <ul>
-            <li>Weighted down from the raw priors: off=[<b>{off.toFixed(2)}</b>] def=[<b>{def.toFixed(2)}</b>]</li>
-            <li>Calculated using players' % on floor, [<b>{offPossPctStr}%</b>] of [<b>{totalOffPoss}</b>] poss,
-             and team's adj_off=[<b>{teamOffAdj.toFixed(1)}</b>], adj_def=[<b>{teamDefAdj.toFixed(1)}</b>]</li>
+            <li>We calculate the total team priors (off=[<b>{offPriorTotalDiff.toFixed(2)}</b>] def=[<b>{defPriorTotalDiff.toFixed(2)}</b>]) from
+            the reduction in the team adjusted efficiency due to the regression factor, eg compare <em>observed</em> (off=[<b>{teamOffAdj.toFixed(2)}</b>] def=[<b>{teamDefAdj.toFixed(2)}</b>])
+            vs <em>derived from RAPM</em> (off=[<b>{sigmaRapmOff.toFixed(2)}</b>] def=[<b>{sigmaRapmDef.toFixed(2)}</b>]).
+            </li>
+            <li>Then we calculate a player's contribution to the team prior - currently this is mostly based on their % on floor, [<b>{offPossPctStr}%</b>] (of [<b>{totalOffPoss}</b>] poss);
+            eg for the offense approximately [<b>{offPossPctStr}%</b>] * (1/5) * [<b>{offPriorTotalDiff.toFixed(2)}</b>] = [<b>{(0.2*offPossPcts[col]*offPriorTotalDiff/ctx.unbiasWeight).toFixed(2)}</b>],
+            plus some smaller lineup adjustments.
+            </li>
           </ul>
         ];
 

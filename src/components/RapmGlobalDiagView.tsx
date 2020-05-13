@@ -14,6 +14,8 @@ import Col from 'react-bootstrap/Col';
 
 // Component imports
 import GenericTable, { GenericTableOps, GenericTableColProps } from "./GenericTable";
+// @ts-ignore
+import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, Legend, ReferenceLine, Label } from 'recharts';
 
 // Utils
 import { RapmInfo, RapmPlayerContext, RapmPreProcDiagnostics, RapmProcessingInputs, RapmUtils } from "../utils/RapmUtils";
@@ -24,6 +26,9 @@ type Props = {
   players: Array<Record<string, any>>,
   topRef: React.RefObject<HTMLDivElement>,
 };
+
+/** From https://colorbrewer2.org/#type=qualitative&scheme=Paired&n=12 */
+const categoricalPalette = ['#a6cee3','#1f78b4','#b2df8a','#33a02c','#fb9a99','#e31a1c','#fdbf6f','#ff7f00','#cab2d6','#6a3d9a','#ffff99','#b15928'];
 
 const RapmGlobalDiagView: React.FunctionComponent<Props> = (({rapmInfo, players, topRef}) => {
   if (rapmInfo.preProcDiags) try {
@@ -132,6 +137,30 @@ const RapmGlobalDiagView: React.FunctionComponent<Props> = (({rapmInfo, players,
       })
     );
 
+    // Regression Analysis
+
+    const buildData = (attempt: any) => {
+      return {
+        lambda: attempt.ridgeLambda.toFixed(3),
+        ...(
+          _.fromPairs(ctx.colToPlayer.map((p: string, i: number) => {
+            return [ p, attempt.results[i] ];
+          }))
+        )
+      };
+    };
+    const offLineData = rapmInfo.offInputs.prevAttempts.map(buildData);
+    const defLineData = rapmInfo.defInputs.prevAttempts.map(buildData);
+
+    const lines = ctx.colToPlayer.map((p: string, i: number) => {
+      return <Line
+        type="monotone"
+        isAnimationActive={false}
+        dataKey={p}
+        key={"" + i}
+        stroke={categoricalPalette[i % categoricalPalette.length]}/>;
+    });
+
     return <section>
       <h4>Global RAPM Diagnostics View</h4>
 
@@ -190,6 +219,60 @@ const RapmGlobalDiagView: React.FunctionComponent<Props> = (({rapmInfo, players,
         <li>(For a purely mathematical explanation see bullet 6 of <a target="_blank" href="https://en.wikipedia.org/wiki/Multicollinearity#Detection_of_multicollinearity">this section of the wiki article.</a>)</li>
         </ul>
       </em></span>
+      <h5>Regression diagnostics</h5>
+      <span><em>
+        <ul>
+          <li>As the regression factor increases you can see the total RAPM (raw + prior) settles down to a value dominated by the prior.
+          The aim is to pick a regression factor where the raw RAPM has "settled down" but still dominates in the prior in the overall calculation.
+          </li>
+          <li>More information about raw vs prior (at the selected "lambda") is given in the player diagnostics above.</li>
+        </ul>
+      </em></span>
+      <Container>
+      <Row>
+        <Col>
+          <LineChart width={450} height={400} data={offLineData} margin={{ top: 5, right: 0, bottom: 5, left: 0 }}>
+            {lines}
+            <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
+            <XAxis dataKey="lambda" />
+            <YAxis>
+              <Label angle={-90} value='Offensive RAPM' position='insideLeft' style={{textAnchor: 'middle'}} />
+            </YAxis>
+            <ReferenceLine x={rapmInfo.offInputs.ridgeLambda.toFixed(3)} stroke="green">
+            <Label value={`Selected regression 'lambda' [${rapmInfo.offInputs.ridgeLambda.toFixed(3)}]`} position="insideTop"/>
+            </ReferenceLine>
+            <Tooltip
+              wrapperStyle={{ opacity: "0.8", zIndex: "1000" }}
+              formatter={(value: number, name: string, props: any) => value.toFixed(3)}
+              allowEscapeViewBox={{x: true, y: true}}
+              itemSorter={(item: any) => -item.value}
+            />
+            <Legend />
+          </LineChart>
+        </Col>
+        <Col>
+          <LineChart width={450} height={400} data={defLineData} margin={{ top: 5, right: 0, bottom: 5, left: 0 }}>
+            {lines}
+            <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
+            <XAxis dataKey="lambda" />
+            <YAxis>
+              <Label angle={-90} value='Defensive RAPM' position='insideLeft' style={{textAnchor: 'middle'}} />
+            </YAxis>
+            <ReferenceLine x={rapmInfo.defInputs.ridgeLambda.toFixed(3)} stroke="green">
+              <Label value={`Selected regression 'lambda' [${rapmInfo.defInputs.ridgeLambda.toFixed(3)}]`} position="insideTop"/>
+            </ReferenceLine>
+            <Tooltip
+              wrapperStyle={{ opacity: "0.8", zIndex: "1000" }}
+              formatter={(value: number, name: string, props: any) => value.toFixed(3)}
+              allowEscapeViewBox={{x: true, y: true}}
+              itemSorter={(item: any) => item.value}
+            />
+            <Legend />
+          </LineChart>
+        </Col>
+      </Row>
+      </Container>
+
       (<a href="#" onClick={(event) => { event.preventDefault(); gotoTop() }}>Scroll back to the top</a>)
     </section>;
 
