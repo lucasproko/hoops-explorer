@@ -399,9 +399,9 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
     _.toPairs(CommonTableDefs.onOffReport)
       .filter(keycol => keycol[1].colName && keycol[1].colName != "")
       .map(keycol => {
-        return [
+        return _.flatMap([
           ["desc","off"], ["asc","off"], ["desc","def"], ["asc","def"], ["desc","diff"], ["asc","diff"]
-        ].flatMap(sort_offDef => {
+        ], sort_offDef => {
           const onOffCombos = _.flatMap([
             showOnOff || showLineupCompositions ? ["on", "off", "delta"] : [],
             incReplacementOnOff ? ["rep"] : [],
