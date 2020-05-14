@@ -285,10 +285,10 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, tea
     _.toPairs(allTableFields)
       .filter(keycol => keycol[1].colName && keycol[1].colName != "")
       .map(keycol => {
-        return [
+        return _.flatMap([
           //TODO: inject some defensive fields in here
           ["desc","off"], ["asc","off"],
-        ].flatMap(sort_offDef => {
+        ], sort_offDef => {
           const onOffCombos = _.flatMap([
             ["baseline", "on", "off"]
           ]);
