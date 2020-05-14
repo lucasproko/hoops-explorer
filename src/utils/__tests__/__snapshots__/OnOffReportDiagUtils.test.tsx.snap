@@ -48,54 +48,84 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - buildPlayerComparisonLink 1
 exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create roster comparison HTML (rapm: false replacement on/off: false) 1`] = `
 <span>
   <span>
-    <b>
+    <span>
       Cowan, Anthony
-    </b>
-     ([
-    100.0
-    ]% - [
-    0.0
-    ]%); 
+    </span>
+     
+    <span
+      className="text-muted"
+    >
+      ([
+      100.0
+      ]% - [
+      0.0
+      ]%)
+    </span>
+    ; 
   </span>
   <span>
-    <b>
+    <span>
       Smith, Jalen
-    </b>
-     ([
-    100.0
-    ]% - [
-    0.0
-    ]%); 
+    </span>
+     
+    <span
+      className="text-muted"
+    >
+      ([
+      100.0
+      ]% - [
+      0.0
+      ]%)
+    </span>
+    ; 
   </span>
   <span>
-    <b>
+    <span>
       Morsell, Darryl
-    </b>
-     ([
-    75.4
-    ]% - [
-    0.0
-    ]%); 
+    </span>
+     
+    <span
+      className="text-muted"
+    >
+      ([
+      75.4
+      ]% - [
+      0.0
+      ]%)
+    </span>
+    ; 
   </span>
   <span>
-    <b>
+    <span>
       Ayala, Eric
-    </b>
-     ([
-    72.2
-    ]% - [
-    0.0
-    ]%); 
+    </span>
+     
+    <span
+      className="text-muted"
+    >
+      ([
+      72.2
+      ]% - [
+      0.0
+      ]%)
+    </span>
+    ; 
   </span>
   <span>
-    <b>
+    <span>
       Scott, Donta
-    </b>
-     ([
-    52.4
-    ]% - [
-    0.0
-    ]%); 
+    </span>
+     
+    <span
+      className="text-muted"
+    >
+      ([
+      52.4
+      ]% - [
+      0.0
+      ]%)
+    </span>
+    ; 
   </span>
   <span>
     <b>
@@ -112,54 +142,84 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create roster compar
 exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create roster comparison HTML (rapm: false replacement on/off: true) 1`] = `
 <span>
   <span>
-    <b>
+    <span>
       Cowan, Anthony
-    </b>
-     ([
-    100.0
-    ]% - [
-    0.0
-    ]%); 
+    </span>
+     
+    <span
+      className="text-muted"
+    >
+      ([
+      100.0
+      ]% - [
+      0.0
+      ]%)
+    </span>
+    ; 
   </span>
   <span>
-    <b>
+    <span>
       Smith, Jalen
-    </b>
-     ([
-    100.0
-    ]% - [
-    0.0
-    ]%); 
+    </span>
+     
+    <span
+      className="text-muted"
+    >
+      ([
+      100.0
+      ]% - [
+      0.0
+      ]%)
+    </span>
+    ; 
   </span>
   <span>
-    <b>
+    <span>
       Morsell, Darryl
-    </b>
-     ([
-    75.4
-    ]% - [
-    0.0
-    ]%); 
+    </span>
+     
+    <span
+      className="text-muted"
+    >
+      ([
+      75.4
+      ]% - [
+      0.0
+      ]%)
+    </span>
+    ; 
   </span>
   <span>
-    <b>
+    <span>
       Ayala, Eric
-    </b>
-     ([
-    72.2
-    ]% - [
-    0.0
-    ]%); 
+    </span>
+     
+    <span
+      className="text-muted"
+    >
+      ([
+      72.2
+      ]% - [
+      0.0
+      ]%)
+    </span>
+    ; 
   </span>
   <span>
-    <b>
+    <span>
       Scott, Donta
-    </b>
-     ([
-    52.4
-    ]% - [
-    0.0
-    ]%); 
+    </span>
+     
+    <span
+      className="text-muted"
+    >
+      ([
+      52.4
+      ]% - [
+      0.0
+      ]%)
+    </span>
+    ; 
   </span>
   <span>
     <b>
@@ -176,54 +236,84 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create roster compar
 exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create roster comparison HTML (rapm: true replacement on/off: false) 1`] = `
 <span>
   <span>
-    <b>
+    <span>
       Cowan, Anthony
-    </b>
-     ([
-    100.0
-    ]% - [
-    0.0
-    ]%); 
+    </span>
+     
+    <span
+      className="text-muted"
+    >
+      ([
+      100.0
+      ]% - [
+      0.0
+      ]%)
+    </span>
+    ; 
   </span>
   <span>
-    <b>
+    <span>
       Smith, Jalen
-    </b>
-     ([
-    100.0
-    ]% - [
-    0.0
-    ]%); 
+    </span>
+     
+    <span
+      className="text-muted"
+    >
+      ([
+      100.0
+      ]% - [
+      0.0
+      ]%)
+    </span>
+    ; 
   </span>
   <span>
-    <b>
+    <span>
       Morsell, Darryl
-    </b>
-     ([
-    75.4
-    ]% - [
-    0.0
-    ]%); 
+    </span>
+     
+    <span
+      className="text-muted"
+    >
+      ([
+      75.4
+      ]% - [
+      0.0
+      ]%)
+    </span>
+    ; 
   </span>
   <span>
-    <b>
+    <span>
       Ayala, Eric
-    </b>
-     ([
-    72.2
-    ]% - [
-    0.0
-    ]%); 
+    </span>
+     
+    <span
+      className="text-muted"
+    >
+      ([
+      72.2
+      ]% - [
+      0.0
+      ]%)
+    </span>
+    ; 
   </span>
   <span>
-    <b>
+    <span>
       Scott, Donta
-    </b>
-     ([
-    52.4
-    ]% - [
-    0.0
-    ]%); 
+    </span>
+     
+    <span
+      className="text-muted"
+    >
+      ([
+      52.4
+      ]% - [
+      0.0
+      ]%)
+    </span>
+    ; 
   </span>
   <span>
     <b>
@@ -240,54 +330,84 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create roster compar
 exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create roster comparison HTML (rapm: true replacement on/off: true) 1`] = `
 <span>
   <span>
-    <b>
+    <span>
       Cowan, Anthony
-    </b>
-     ([
-    100.0
-    ]% - [
-    0.0
-    ]%); 
+    </span>
+     
+    <span
+      className="text-muted"
+    >
+      ([
+      100.0
+      ]% - [
+      0.0
+      ]%)
+    </span>
+    ; 
   </span>
   <span>
-    <b>
+    <span>
       Smith, Jalen
-    </b>
-     ([
-    100.0
-    ]% - [
-    0.0
-    ]%); 
+    </span>
+     
+    <span
+      className="text-muted"
+    >
+      ([
+      100.0
+      ]% - [
+      0.0
+      ]%)
+    </span>
+    ; 
   </span>
   <span>
-    <b>
+    <span>
       Morsell, Darryl
-    </b>
-     ([
-    75.4
-    ]% - [
-    0.0
-    ]%); 
+    </span>
+     
+    <span
+      className="text-muted"
+    >
+      ([
+      75.4
+      ]% - [
+      0.0
+      ]%)
+    </span>
+    ; 
   </span>
   <span>
-    <b>
+    <span>
       Ayala, Eric
-    </b>
-     ([
-    72.2
-    ]% - [
-    0.0
-    ]%); 
+    </span>
+     
+    <span
+      className="text-muted"
+    >
+      ([
+      72.2
+      ]% - [
+      0.0
+      ]%)
+    </span>
+    ; 
   </span>
   <span>
-    <b>
+    <span>
       Scott, Donta
-    </b>
-     ([
-    52.4
-    ]% - [
-    0.0
-    ]%); 
+    </span>
+     
+    <span
+      className="text-muted"
+    >
+      ([
+      52.4
+      ]% - [
+      0.0
+      ]%)
+    </span>
+    ; 
   </span>
   <span>
     <b>
@@ -726,15 +846,18 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
         style={
           Object {
             "backgroundColor": undefined,
-            "fontWeight": "bold",
+            "fontWeight": "normal",
             "textAlign": "right",
             "width": "18.8%",
           }
         }
       >
-        <div>
-          Same-4: AaWiggins / AnCowan / ErAyala / JaSmith
-        </div>
+        <span>
+          Same-4: 
+          <b>
+            AaWiggins / AnCowan / ErAyala / JaSmith
+          </b>
+        </span>
       </td>
       <td
         className=""
@@ -1450,21 +1573,31 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
         style={
           Object {
             "backgroundColor": undefined,
-            "fontWeight": "bold",
+            "fontWeight": "normal",
             "textAlign": "right",
             "width": "18.8%",
           }
         }
       >
-        <div>
-          'On' Lineup
-        </div>
-        <div>
-          Adj Eff Contrib:
-        </div>
-        <div>
-          off=[0.79] def=[3.85]
-        </div>
+        <span>
+          <b>
+            'On' Lineup
+          </b>
+          <br />
+          <span>
+            Adj Eff Contrib:
+            <br />
+            off=[
+            <b>
+              0.79
+            </b>
+            ] def=[
+            <b>
+              3.85
+            </b>
+            ]
+          </span>
+        </span>
       </td>
       <td
         className=""
@@ -2180,14 +2313,16 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
         style={
           Object {
             "backgroundColor": undefined,
-            "fontWeight": "bold",
+            "fontWeight": "normal",
             "textAlign": "right",
             "width": "18.8%",
           }
         }
       >
         <div>
-          Off Same-4 Lineups
+          <b>
+            'Off' Same-4 Lineups
+          </b>
           <br />
           <div>
             <a
@@ -2956,11 +3091,17 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
                 </a>
               </div>
             </span>
-             (p=[
-            102
-            ]/o=[
-            2
-            ]); 
+             
+            <span
+              className="text-muted"
+            >
+              (p=[
+              102
+              ]/o=[
+              2
+              ])
+            </span>
+            ; 
           </span>
         </span>
       </td>
@@ -2999,15 +3140,18 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
         style={
           Object {
             "backgroundColor": undefined,
-            "fontWeight": "bold",
+            "fontWeight": "normal",
             "textAlign": "right",
             "width": "18.8%",
           }
         }
       >
-        <div>
-          Same-4: AaWiggins / AnCowan / DoScott / JaSmith
-        </div>
+        <span>
+          Same-4: 
+          <b>
+            AaWiggins / AnCowan / DoScott / JaSmith
+          </b>
+        </span>
       </td>
       <td
         className=""
@@ -3723,21 +3867,31 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
         style={
           Object {
             "backgroundColor": undefined,
-            "fontWeight": "bold",
+            "fontWeight": "normal",
             "textAlign": "right",
             "width": "18.8%",
           }
         }
       >
-        <div>
-          'On' Lineup
-        </div>
-        <div>
-          Adj Eff Contrib:
-        </div>
-        <div>
-          off=[-5.62] def=[0.00]
-        </div>
+        <span>
+          <b>
+            'On' Lineup
+          </b>
+          <br />
+          <span>
+            Adj Eff Contrib:
+            <br />
+            off=[
+            <b>
+              -5.62
+            </b>
+            ] def=[
+            <b>
+              0.00
+            </b>
+            ]
+          </span>
+        </span>
       </td>
       <td
         className=""
@@ -4453,14 +4607,16 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
         style={
           Object {
             "backgroundColor": undefined,
-            "fontWeight": "bold",
+            "fontWeight": "normal",
             "textAlign": "right",
             "width": "18.8%",
           }
         }
       >
         <div>
-          Off Same-4 Lineups
+          <b>
+            'Off' Same-4 Lineups
+          </b>
           <br />
           <div>
             <a
@@ -5229,11 +5385,17 @@ exports[`OnOffReportDiagUtils OnOffReportDiagUtils - should create table contain
                 </a>
               </div>
             </span>
-             (p=[
-            102
-            ]/o=[
-            2
-            ]); 
+             
+            <span
+              className="text-muted"
+            >
+              (p=[
+              102
+              ]/o=[
+              2
+              ])
+            </span>
+            ; 
           </span>
         </span>
       </td>

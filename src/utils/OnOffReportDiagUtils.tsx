@@ -72,10 +72,9 @@ export class OnOffReportDiagUtils {
         return 0.01*
           (pctObj.onPct - pctObj.offPct)*(playerLineupPowerSet[pctObj.name] || 0);
     });
-
     return _.concat(_.chain(playerPcts).orderBy(["onPct"], ["desc"]).map((pctObj, index) => {
         return <span key={"" + index}>
-            <b>{pctObj.name}</b> ([{pctObj.onPct.toFixed(1)}]% - [{pctObj.offPct.toFixed(1)}]%);&nbsp;
+            <span>{pctObj.name}</span> <span className="text-muted">([{pctObj.onPct.toFixed(1)}]% - [{pctObj.offPct.toFixed(1)}]%)</span>;&nbsp;
           </span>;
       }).value(),
       <span key="last">
@@ -185,10 +184,10 @@ export class OnOffReportDiagUtils {
   }
 
   private static readonly same4sTooltip =
-    <Tooltip id="same4sTooltip">Open a tab with the stats for all the lineups in the same-4 set</Tooltip>;
+    <Tooltip id="same4sTooltip">Open a tab with the stats for all the lineups in the "same-4" set</Tooltip>;
 
   private static readonly onOffSame4Tooltip =
-    <Tooltip id="onOffSame4Tooltip">Open a tab with the on/off analysis for the player, same-4 sets only</Tooltip>;
+    <Tooltip id="onOffSame4Tooltip">Open a tab with the on/off analysis for the player, "same-4" sets only</Tooltip>;
 
   private static readonly playerCompareTooltip =
     <Tooltip id="playerCompareTooltip">Open a tab with a detailed "same-4" comparison of the two players</Tooltip>;
@@ -286,14 +285,14 @@ export class OnOffReportDiagUtils {
               .sortBy([ kv => - kv[1].poss ])
               .take(sizeSortFieldOrder[0])
               .map((kv, i) =>
-                <span key={"" + i}>{lineupKeys(kv[1].keyArray, kv[0])} (p=[{kv[1].poss}]/o=[{kv[1].overlap}]);&nbsp;</span>
+                <span key={"" + i}>{lineupKeys(kv[1].keyArray, kv[0])} <span className="text-muted">(p=[{kv[1].poss}]/o=[{kv[1].overlap}])</span>;&nbsp;</span>
               ).value();
 
           const onLineupPlayerId = lineupPlusDiag.keyArray;
 
           const offContrib = lineupPlusDiag.contrib.off.adjEff;
           const defContrib = lineupPlusDiag.contrib.def.adjEff;
-          const contribStr = `Adj Eff Contrib:\noff=[${offContrib.toFixed(2)}] def=[${defContrib.toFixed(2)}]`;
+          const contribStr = <span>Adj Eff Contrib:<br/>off=[<b>{offContrib.toFixed(2)}</b>] def=[<b>{defContrib.toFixed(2)}</b>]</span>;
 
           const nonPlayerLineup = onLineupKeyArray.filter((pid: string) => pid != onLineupPlayerId);
           const lineupParams = {
@@ -309,7 +308,7 @@ export class OnOffReportDiagUtils {
               .filter((pid) => pid != player.playerId).value();
 
           const offTitleWithLinks =
-            <div>Off Same-4 Lineups<br/>
+            <div><b>'Off' Same-4 Lineups</b><br/>
               {OnOffReportDiagUtils.buildOnOffAnalysisLink(player.playerId, same4Players, commonParams)}
               <br/>
               <OverlayTrigger placement="auto" overlay={OnOffReportDiagUtils.same4sTooltip}>
@@ -318,13 +317,21 @@ export class OnOffReportDiagUtils {
             </div>;
 
           const lineupKey = nonPlayerLineup.join(" / ");
-          const lineupDiffStats = { off_title: `Same-4: ${lineupKey}`, def_title: "", ...lineupPlusDiag.lineup, ...lineupPlusDiag.diffAdjEff };
-          const lineupOnStats = { off_title: `'On' Lineup\n${contribStr}`, def_title: "", ...lineupPlusDiag.lineup.onLineup };
+          const lineupDiffStats = {
+            off_title: <span>Same-4: <b>{lineupKey}</b></span>,
+            def_title: "",
+            ...lineupPlusDiag.lineup, ...lineupPlusDiag.diffAdjEff
+          };
+          const lineupOnStats = {
+            off_title: <span><b>'On' Lineup</b><br/>{contribStr}</span>,
+            def_title: "",
+            ...lineupPlusDiag.lineup.onLineup
+          };
           const lineupOffStats = { off_title: offTitleWithLinks, def_title: "", ...lineupPlusDiag.lineup.offLineups };
           return [
             GenericTableOps.buildDataRow(lineupDiffStats, CommonTableDefs.offPrefixFn, CommonTableDefs.offCellMetaFn, CommonTableDefs.onOffReportReplacement),
             GenericTableOps.buildDataRow(lineupDiffStats, CommonTableDefs.defPrefixFn, CommonTableDefs.defCellMetaFn, CommonTableDefs.onOffReportReplacement),
-            GenericTableOps.buildDataRow(lineupOnStats, CommonTableDefs.offPrefixFn, CommonTableDefs.offCellMetaFn),
+            GenericTableOps.buildDataRow(lineupOnStats, CommonTableDefs.offPrefixFn, CommonTableDefs.offCellMetaFn, CommonTableDefs.onOffReportWithFormattedTitle),
             GenericTableOps.buildDataRow(lineupOnStats, CommonTableDefs.defPrefixFn, CommonTableDefs.defCellMetaFn),
             GenericTableOps.buildDataRow(lineupOffStats, CommonTableDefs.offPrefixFn, CommonTableDefs.offCellMetaFn, CommonTableDefs.onOffReportWithFormattedTitle),
             GenericTableOps.buildDataRow(lineupOffStats, CommonTableDefs.defPrefixFn, CommonTableDefs.defCellMetaFn),

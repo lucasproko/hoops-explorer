@@ -103,7 +103,7 @@ export class ParamDefaults {
   static readonly defaultTeamReportSortBy = "desc:off_poss:on";
   static readonly defaultTeamReportFilter = "";
   static readonly defaultShowOnOff = true;
-  static readonly defaultShowComps = true;
+  static readonly defaultShowComps = false;
   static readonly defaultTeamReportIncRepOnOff = false;
   static readonly defaultTeamReportIncRapm = false;
   static readonly defaultTeamReportRegressDiffs = "-2000";

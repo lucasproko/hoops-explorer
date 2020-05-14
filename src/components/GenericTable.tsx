@@ -271,7 +271,7 @@ const GenericTable: React.FunctionComponent<Props> = ({tableFields, tableData, t
     return {
       textAlign: colProps.isTitle ? ("right" as "right") : ("center" as "center"),
       width: (100.0*colProps.widthUnits/totalWidthUnits).toFixed(1) + "%",
-      fontWeight: colProps.isTitle ? ("bold" as "bold") : ("normal" as "normal"),
+      fontWeight: colProps.isTitle && _.isString(val) ? ("bold" as "bold") : ("normal" as "normal"),
       backgroundColor: backgroundColorFn()
     };
   }

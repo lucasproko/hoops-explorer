@@ -186,7 +186,7 @@ export class CommonTableDefs {
 
   /** Same as onOffReport except the colorscales are centered around 0 */
   static readonly onOffReportReplacement = {
-    "title": GenericTableOps.addTitle("", "", CommonTableDefs.rowSpanCalculator, "small"),
+    "title": GenericTableOps.addTitle("", "", CommonTableDefs.rowSpanCalculator, "small", GenericTableOps.htmlFormatter),
     "sep0": GenericTableOps.addColSeparator(),
     "ppp": GenericTableOps.addPtsCol("P/100", "Points per 100 possessions", CommonTableDefs.picker(...CbbColors.diff10_p100_redGreen)),
     "adj_ppp": GenericTableOps.addPtsCol("Adj P/100", "Approximate schedule-adjusted Points per 100 possessions", CommonTableDefs.picker(...CbbColors.diff10_p100_redGreen)),

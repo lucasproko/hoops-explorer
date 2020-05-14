@@ -87,7 +87,7 @@ describe("HistoryManager", () => {
     const report1: TeamReportFilterParams = {
     };
     expect(HistoryManager.teamReportFilterSummary(report1)).toBe(
-      `On/Off Report: 2019/20  (M): query:'' (sort:desc:off_poss, filter:'', show:[comps])`
+      `On/Off Report: 2019/20  (M): query:'' (sort:desc:off_poss, filter:'', show:[])`
     );
     const report2: TeamReportFilterParams = {
       team: "team3",
