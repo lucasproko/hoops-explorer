@@ -720,13 +720,24 @@ exports[`RosterStatsTable RosterStatsTable - should create snapshot 1`] = `
                   "off_team_poss_pct": Object {
                     "value": 1,
                   },
-                  "off_title": "'On' Wiggins, Aaron",
+                  "off_title": <span>
+                    <b>
+                      Wiggins, Aaron
+                    </b>
+                    <br />
+                    '
+                    <b>
+                      A
+                    </b>
+                    ' lineups
+                  </span>,
                   "off_to": Object {
                     "value": 0.16076743404863644,
                   },
                   "off_usage": Object {
                     "value": 0.20747998314369998,
                   },
+                  "onOffKey": "On",
                   "oppo_total_def_2p_attempts": Object {
                     "value": 784,
                   },
@@ -958,13 +969,24 @@ exports[`RosterStatsTable RosterStatsTable - should create snapshot 1`] = `
                   "off_team_poss_pct": Object {
                     "value": 1,
                   },
-                  "off_title": "'On' Cowan, Anthony",
+                  "off_title": <span>
+                    <b>
+                      Cowan, Anthony
+                    </b>
+                    <br />
+                    '
+                    <b>
+                      A
+                    </b>
+                    ' lineups
+                  </span>,
                   "off_to": Object {
                     "value": 0.17097306619100133,
                   },
                   "off_usage": Object {
                     "value": 0.24612708128392902,
                   },
+                  "onOffKey": "On",
                   "oppo_total_def_2p_attempts": Object {
                     "value": 692,
                   },
@@ -1193,13 +1215,24 @@ exports[`RosterStatsTable RosterStatsTable - should create snapshot 1`] = `
                   "off_team_poss_pct": Object {
                     "value": 1,
                   },
-                  "off_title": "'Off' Cowan, Anthony",
+                  "off_title": <span>
+                    <b>
+                      Cowan, Anthony
+                    </b>
+                    <br />
+                    '
+                    <b>
+                      B
+                    </b>
+                    ' lineups
+                  </span>,
                   "off_to": Object {
                     "value": 0.11387073347857662,
                   },
                   "off_usage": Object {
                     "value": 0.26103275705186535,
                   },
+                  "onOffKey": "Off",
                   "oppo_total_def_2p_attempts": Object {
                     "value": 283,
                   },
@@ -1431,13 +1464,24 @@ exports[`RosterStatsTable RosterStatsTable - should create snapshot 1`] = `
                   "off_team_poss_pct": Object {
                     "value": 1,
                   },
-                  "off_title": "'Off' Mona, Reese",
+                  "off_title": <span>
+                    <b>
+                      Mona, Reese
+                    </b>
+                    <br />
+                    '
+                    <b>
+                      B
+                    </b>
+                    ' lineups
+                  </span>,
                   "off_to": Object {
                     "value": 0.6779661016949152,
                   },
                   "off_usage": Object {
                     "value": 0.1638888888888889,
                   },
+                  "onOffKey": "Off",
                   "oppo_total_def_2p_attempts": Object {
                     "value": 7,
                   },

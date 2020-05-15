@@ -254,7 +254,7 @@ const GenericTable: React.FunctionComponent<Props> = ({tableFields, tableData, t
     return {
       textAlign: colProps.isTitle ? ("right" as "right") : ("center" as "center"),
       width: (100.0*colProps.widthUnits/totalWidthUnits).toFixed(1) + "%",
-      fontWeight: ("bold" as "bold")
+      fontWeight: ("bold" as "bold"),
     };
   }
   function getRowStyle(
@@ -272,7 +272,8 @@ const GenericTable: React.FunctionComponent<Props> = ({tableFields, tableData, t
       textAlign: colProps.isTitle ? ("right" as "right") : ("center" as "center"),
       width: (100.0*colProps.widthUnits/totalWidthUnits).toFixed(1) + "%",
       fontWeight: colProps.isTitle && _.isString(val) ? ("bold" as "bold") : ("normal" as "normal"),
-      backgroundColor: backgroundColorFn()
+      backgroundColor: backgroundColorFn(),
+      verticalAlign: "middle"
     };
   }
 

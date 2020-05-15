@@ -205,6 +205,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": undefined,
                   "fontWeight": "bold",
                   "textAlign": "right",
+                  "verticalAlign": "middle",
                   "width": "32.7%",
                 }
               }
@@ -221,6 +222,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": undefined,
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "2.0%",
                 }
               }
@@ -237,6 +239,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": undefined,
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -253,6 +256,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#ffa706",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -269,6 +273,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#ffaa0f",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -285,6 +290,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#ffad17",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -301,6 +307,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#ffad18",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -317,6 +324,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#ffb834",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -333,6 +341,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#fff3dc",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -349,6 +358,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#ffffff",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -367,6 +377,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": undefined,
                   "fontWeight": "bold",
                   "textAlign": "right",
+                  "verticalAlign": "middle",
                   "width": "32.7%",
                 }
               }
@@ -383,6 +394,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": undefined,
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "2.0%",
                 }
               }
@@ -399,6 +411,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#ffa706",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -415,6 +428,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": undefined,
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -431,6 +445,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#ffac13",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -447,6 +462,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#ffaf1b",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -463,6 +479,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#ffb01e",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -479,6 +496,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#ffb836",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -495,6 +513,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#fff2d9",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -511,6 +530,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#fafdfe",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -529,6 +549,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": undefined,
                   "fontWeight": "bold",
                   "textAlign": "right",
+                  "verticalAlign": "middle",
                   "width": "32.7%",
                 }
               }
@@ -545,6 +566,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": undefined,
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "2.0%",
                 }
               }
@@ -561,6 +583,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#ffaa0f",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -577,6 +600,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#ffac13",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -593,6 +617,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": undefined,
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -609,6 +634,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#ffb42a",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -625,6 +651,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#ffb42a",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -641,6 +668,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#ffbf4b",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -657,6 +685,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#fff1d7",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -673,6 +702,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#fafdfd",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -691,6 +721,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": undefined,
                   "fontWeight": "bold",
                   "textAlign": "right",
+                  "verticalAlign": "middle",
                   "width": "32.7%",
                 }
               }
@@ -707,6 +738,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": undefined,
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "2.0%",
                 }
               }
@@ -723,6 +755,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#ffad17",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -739,6 +772,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#ffaf1b",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -755,6 +789,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#ffb42a",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -771,6 +806,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": undefined,
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -787,6 +823,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#ffb630",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -803,6 +840,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#ffc252",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -819,6 +857,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#ffffff",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -835,6 +874,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#f1f8fb",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -853,6 +893,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": undefined,
                   "fontWeight": "bold",
                   "textAlign": "right",
+                  "verticalAlign": "middle",
                   "width": "32.7%",
                 }
               }
@@ -869,6 +910,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": undefined,
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "2.0%",
                 }
               }
@@ -885,6 +927,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#ffad18",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -901,6 +944,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#ffb01e",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -917,6 +961,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#ffb42a",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -933,6 +978,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#ffb630",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -949,6 +995,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": undefined,
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -965,6 +1012,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#ffc355",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -981,6 +1029,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#fffbf3",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -997,6 +1046,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#edf6f9",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -1015,6 +1065,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": undefined,
                   "fontWeight": "bold",
                   "textAlign": "right",
+                  "verticalAlign": "middle",
                   "width": "32.7%",
                 }
               }
@@ -1031,6 +1082,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": undefined,
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "2.0%",
                 }
               }
@@ -1047,6 +1099,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#ffb834",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -1063,6 +1116,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#ffb836",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -1079,6 +1133,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#ffbf4b",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -1095,6 +1150,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#ffc252",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -1111,6 +1167,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#ffc355",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -1127,6 +1184,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": undefined,
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -1143,6 +1201,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#edf6f9",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -1159,6 +1218,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#f1f8fb",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -1177,6 +1237,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": undefined,
                   "fontWeight": "bold",
                   "textAlign": "right",
+                  "verticalAlign": "middle",
                   "width": "32.7%",
                 }
               }
@@ -1193,6 +1254,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": undefined,
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "2.0%",
                 }
               }
@@ -1209,6 +1271,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#fff3dc",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -1225,6 +1288,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#fff2d9",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -1241,6 +1305,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#fff1d7",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -1257,6 +1322,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#ffffff",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -1273,6 +1339,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#fffbf3",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -1289,6 +1356,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#edf6f9",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -1305,6 +1373,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": undefined,
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -1321,6 +1390,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#d4ebf2",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -1339,6 +1409,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": undefined,
                   "fontWeight": "bold",
                   "textAlign": "right",
+                  "verticalAlign": "middle",
                   "width": "32.7%",
                 }
               }
@@ -1355,6 +1426,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": undefined,
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "2.0%",
                 }
               }
@@ -1371,6 +1443,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#ffffff",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -1387,6 +1460,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#fafdfe",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -1403,6 +1477,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#fafdfd",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -1419,6 +1494,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#f1f8fb",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -1435,6 +1511,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#edf6f9",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -1451,6 +1528,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#f1f8fb",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -1467,6 +1545,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#d4ebf2",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -1483,6 +1562,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": undefined,
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -1717,6 +1797,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": undefined,
                   "fontWeight": "bold",
                   "textAlign": "right",
+                  "verticalAlign": "middle",
                   "width": "32.7%",
                 }
               }
@@ -1733,6 +1814,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": undefined,
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "2.0%",
                 }
               }
@@ -1749,6 +1831,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#fff7f7",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -1765,6 +1848,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#a5d2a5",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -1781,6 +1865,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#8dc68d",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -1797,6 +1882,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#78bc78",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -1813,6 +1899,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#5aad5a",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -1829,6 +1916,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#56ab56",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -1845,6 +1933,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#4aa54a",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -1861,6 +1950,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#008000",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -1879,6 +1969,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": undefined,
                   "fontWeight": "bold",
                   "textAlign": "right",
+                  "verticalAlign": "middle",
                   "width": "32.7%",
                 }
               }
@@ -1895,6 +1986,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": undefined,
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "2.0%",
                 }
               }
@@ -1911,6 +2003,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#ffe7bb",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -1927,6 +2020,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#ffffff",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -1943,6 +2037,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#ffffff",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -1959,6 +2054,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#ffffff",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -1975,6 +2071,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#ffffff",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -1991,6 +2088,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#ffffff",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -2007,6 +2105,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#ffffff",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -2023,6 +2122,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#ffffff",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -2041,6 +2141,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": undefined,
                   "fontWeight": "bold",
                   "textAlign": "right",
+                  "verticalAlign": "middle",
                   "width": "32.7%",
                 }
               }
@@ -2057,6 +2158,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": undefined,
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "2.0%",
                 }
               }
@@ -2073,6 +2175,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#fff8ec",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -2089,6 +2192,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#fff6e4",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -2105,6 +2209,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#fffefc",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -2121,6 +2226,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#ffffff",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -2137,6 +2243,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#ffffff",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -2153,6 +2260,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#ffffff",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -2169,6 +2277,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#ffffff",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -2185,6 +2294,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#ffffff",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -2203,6 +2313,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": undefined,
                   "fontWeight": "bold",
                   "textAlign": "right",
+                  "verticalAlign": "middle",
                   "width": "32.7%",
                 }
               }
@@ -2219,6 +2330,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": undefined,
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "2.0%",
                 }
               }
@@ -2235,6 +2347,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#fffbf3",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -2251,6 +2364,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#fffdf9",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -2267,6 +2381,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#fffffe",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -2283,6 +2398,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#fffaf2",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -2299,6 +2415,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#ffffff",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -2315,6 +2432,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#fffdfa",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -2331,6 +2449,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#ffffff",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -2347,6 +2466,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#ffffff",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -2365,6 +2485,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": undefined,
                   "fontWeight": "bold",
                   "textAlign": "right",
+                  "verticalAlign": "middle",
                   "width": "32.7%",
                 }
               }
@@ -2381,6 +2502,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": undefined,
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "2.0%",
                 }
               }
@@ -2397,6 +2519,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#fffaf0",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -2413,6 +2536,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#fffcf7",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -2429,6 +2553,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#ffffff",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -2445,6 +2570,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#ffffff",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -2461,6 +2587,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#fffcf7",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -2477,6 +2604,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#fffdf9",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -2493,6 +2621,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#ffffff",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -2509,6 +2638,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#ffffff",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -2527,6 +2657,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": undefined,
                   "fontWeight": "bold",
                   "textAlign": "right",
+                  "verticalAlign": "middle",
                   "width": "32.7%",
                 }
               }
@@ -2543,6 +2674,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": undefined,
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "2.0%",
                 }
               }
@@ -2559,6 +2691,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#fff8ea",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -2575,6 +2708,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#fffefd",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -2591,6 +2725,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#fffffe",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -2607,6 +2742,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#ffffff",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -2623,6 +2759,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#fffbf4",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -2639,6 +2776,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#fffefd",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -2655,6 +2793,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#fffffe",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -2671,6 +2810,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#ffffff",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -2689,6 +2829,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": undefined,
                   "fontWeight": "bold",
                   "textAlign": "right",
+                  "verticalAlign": "middle",
                   "width": "32.7%",
                 }
               }
@@ -2705,6 +2846,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": undefined,
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "2.0%",
                 }
               }
@@ -2721,6 +2863,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#fffbf5",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -2737,6 +2880,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#fffbf4",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -2753,6 +2897,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#fffffe",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -2769,6 +2914,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#ffffff",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -2785,6 +2931,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#ffffff",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -2801,6 +2948,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#ffffff",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -2817,6 +2965,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#fffbf4",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -2833,6 +2982,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#ffffff",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -2851,6 +3001,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": undefined,
                   "fontWeight": "bold",
                   "textAlign": "right",
+                  "verticalAlign": "middle",
                   "width": "32.7%",
                 }
               }
@@ -2867,6 +3018,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": undefined,
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "2.0%",
                 }
               }
@@ -2883,6 +3035,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#fffefd",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -2899,6 +3052,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#fffbf3",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -2915,6 +3069,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#fffbf4",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -2931,6 +3086,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#fffcf6",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -2947,6 +3103,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#ffffff",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -2963,6 +3120,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#fffefd",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -2979,6 +3137,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#ffffff",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -2995,6 +3154,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#ffffff",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -3013,6 +3173,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": undefined,
                   "fontWeight": "bold",
                   "textAlign": "right",
+                  "verticalAlign": "middle",
                   "width": "32.7%",
                 }
               }
@@ -3029,6 +3190,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": undefined,
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "2.0%",
                 }
               }
@@ -3045,6 +3207,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#fff9ed",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -3061,6 +3224,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#ffffff",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -3077,6 +3241,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#fff8eb",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -3093,6 +3258,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#fffdfa",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -3109,6 +3275,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#ffffff",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -3125,6 +3292,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#fffffe",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -3141,6 +3309,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#ffffff",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }
@@ -3157,6 +3326,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                   "backgroundColor": "#ffffff",
                   "fontWeight": "normal",
                   "textAlign": "center",
+                  "verticalAlign": "middle",
                   "width": "8.2%",
                 }
               }

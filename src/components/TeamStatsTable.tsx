@@ -28,6 +28,7 @@ export type TeamStatsModel = {
   on: any,
   off: any,
   baseline: any,
+  onOffMode: boolean,
   error_code?: string
 }
 type Props = {
@@ -41,9 +42,20 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({teamStats}) => {
   const defPrefixFn = (key: string) => "def_" + key;
   const defCellMetaFn = (key: string, val: any) => "def";
 
-  const teamStatsOn = { off_title:  "'On' Offense", def_title: "'On' Defense", ...teamStats.on };
-  const teamStatsOff = { off_title:"'Off' Offense", def_title: "'Off' Defense", ...teamStats.off };
-  const teamStatsBaseline = { off_title: "'Baseline' Offense", def_title: "'Baseline' Defense", ...teamStats.baseline };
+  const maybeOn = teamStats.onOffMode ? "On ('A')" : "'A'"
+  const maybeOff = teamStats.onOffMode ? "Off ('B')" : "'B'"
+
+  const teamStatsOn = {
+    off_title: `${maybeOn} Offense`,
+    def_title: `${maybeOn} Defense`,
+    ...teamStats.on
+  };
+  const teamStatsOff = {
+    off_title: `${maybeOff} Offense`,
+    def_title: `${maybeOff} Defense`,
+    ...teamStats.off
+  };
+  const teamStatsBaseline = { off_title: "Baseline Offense", def_title: "Baseline Defense", ...teamStats.baseline };
 
   const tableData = _.flatMap([
     (teamStats.on?.doc_count) ? [

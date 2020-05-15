@@ -77,8 +77,8 @@ export class CommonTableDefs {
 
   static onOffIndividualTable = (expandedView: boolean) => { return { //accessors vs column metadata
     "title": expandedView ?
-      GenericTableOps.addTitle("", "", CommonTableDefs.rowSpanCalculator, "small") :
-      GenericTableOps.addTitle("", "", CommonTableDefs.singleLineRowSpanCalculator, "small")
+      GenericTableOps.addTitle("", "", CommonTableDefs.rowSpanCalculator, "small", GenericTableOps.htmlFormatter) :
+      GenericTableOps.addTitle("", "", CommonTableDefs.singleLineRowSpanCalculator, "small", GenericTableOps.htmlFormatter)
     ,
     "sep0": GenericTableOps.addColSeparator(),
     "rtg": GenericTableOps.addPtsCol("Rtg", "Offensive/Defensive rating in selected lineups", CbbColors.picker(...CbbColors.pp100)),

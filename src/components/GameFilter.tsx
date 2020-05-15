@@ -92,16 +92,19 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
     onStats({
       on: teamJson?.aggregations?.tri_filter?.buckets?.on || {},
       off: teamJson?.aggregations?.tri_filter?.buckets?.off || {},
+      onOffMode: autoOffQuery,
       baseline: teamJson?.aggregations?.tri_filter?.buckets?.baseline || {},
       error_code: wasError ? (teamJson?.status || json?.status) : undefined
     }, {
       on: rosterCompareJson?.aggregations?.tri_filter?.buckets?.on || {},
       off: rosterCompareJson?.aggregations?.tri_filter?.buckets?.off || {},
+      onOffMode: autoOffQuery,
       baseline: rosterCompareJson?.aggregations?.tri_filter?.buckets?.baseline || {},
       error_code: wasError ? (rosterCompareJson?.status || json?.status) : undefined
     }, {
       on: rosterStatsJson?.aggregations?.tri_filter?.buckets?.on?.player?.buckets || [],
       off: rosterStatsJson?.aggregations?.tri_filter?.buckets?.off?.player?.buckets || [],
+      onOffMode: autoOffQuery,
       baseline: rosterStatsJson?.aggregations?.tri_filter?.buckets?.baseline?.player?.buckets || [],
       error_code: wasError ? (rosterStatsJson?.status || json?.status) : undefined
     });
@@ -138,6 +141,9 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
     }
   };
 
+  const maybeOn = autoOffQuery ? "On ('A')" : "'A'";
+  const maybeOff = autoOffQuery ? "Off ('B')" : "'B'";
+
   // Visual components:
 
   return <CommonFilter //(generic type inferred)
@@ -150,7 +156,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
       childSubmitRequest={onSubmit}
     ><GlobalKeypressManager.Consumer>{ globalKeypressHandler => <div>
       <Form.Group as={Row}>
-        <Form.Label column sm="2">On Query</Form.Label>
+        <Form.Label column sm="2">{maybeOn} Query</Form.Label>
         <Col sm="8">
           <AutoSuggestText
             readOnly={false}
@@ -166,7 +172,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
         </Col>
       </Form.Group>
       <Form.Group as={Row}>
-        <Form.Label column sm="2">Off Query</Form.Label>
+        <Form.Label column sm="2">{maybeOff} Query</Form.Label>
         <Col sm="8">
           { (typeof window !== `undefined`) ?
             <AutoSuggestText
