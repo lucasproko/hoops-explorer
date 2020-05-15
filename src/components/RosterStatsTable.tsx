@@ -179,14 +179,16 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, tea
 
   const baselineIsOnlyLine = !(rosterStats?.on?.length || rosterStats?.off?.length);
 
+  // (Always just use A/B here because it's too confusing to say
+  // "On <Player name>" meaning ""<Player Name> when <Other other player> is on")
   const allPlayers = _.chain([
     _.map(rosterStats.on  || [], (p) => _.merge(p, {
       onOffKey: 'On',
-      off_title: <span><b>{p.key}</b><br/>'<b>A</b>' lineups</span>
+      off_title: <span><b>{p.key}</b><br/><b>A</b> lineups</span>
     })),
     _.map(rosterStats.off  || [], (p) => _.merge(p, {
       onOffKey: 'Off',
-      off_title: <span><b>{p.key}</b><br/>'<b>B</b>' lineups</span>
+      off_title: <span><b>{p.key}</b><br/><b>B</b> lineups</span>
     })),
     _.map(rosterStats.baseline || [], (p) => _.merge(p, {
       onOffKey: 'Baseline',
