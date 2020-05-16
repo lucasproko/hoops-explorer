@@ -184,17 +184,23 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, tea
   const allPlayers = _.chain([
     _.map(rosterStats.on  || [], (p) => _.merge(p, {
       onOffKey: 'On',
-      off_title: <span><b>{p.key}</b><br/><b>A</b> lineups</span>
+      off_title: <span><b>{p.key}</b><br/>
+        <span className="d-block d-md-none"><b>A</b> set</span>
+        <span className="d-none d-md-block d-lg-block d-xl-block"><b>A</b> lineups</span>
+      </span>
     })),
     _.map(rosterStats.off  || [], (p) => _.merge(p, {
       onOffKey: 'Off',
-      off_title: <span><b>{p.key}</b><br/><b>B</b> lineups</span>
+      off_title: <span><b>{p.key}</b><br/>
+        <span className="d-block d-md-none"><b>B</b> set</span>
+        <span className="d-none d-md-block d-lg-block d-xl-block"><b>B</b> lineups</span>
+      </span>
     })),
     _.map(rosterStats.baseline || [], (p) => _.merge(p, {
       onOffKey: 'Baseline',
       off_title: baselineIsOnlyLine ? //v (in this case it's the only line)
         <span><b>{p.key}</b></span> :
-        <span><b>{p.key}</b><br/>'<b>Baseline</b>' lineups</span>
+        <span><b>{p.key}</b><br/>Baseline</span>
         //^ (if this is set we only show it together with on/off)
 
     })),

@@ -85,7 +85,7 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
     return UrlRouting.getGameUrl(params, {});
   }
 
-//TODO: this happens twice (maybe only on submit?)
+//TODO: this gets called twice (maybe only on submit?)
   const onGameFilterParamsChange = (params: GameFilterParams) => {
     const href = getRootUrl(params);
     const as = href;

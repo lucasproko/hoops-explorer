@@ -229,7 +229,7 @@ const GenericTable: React.FunctionComponent<Props> = ({tableFields, tableData, t
               rowSpan={rowSpan}
               key={"" + index} style={style}
             >{_.isString(val) ?
-              val.split('\n').map((l, index2) => <div key={"" + `${index}_${index2}`}>{l}</div>) :
+              val.split('\n').map((l, index2) => <div key={"s" + `${index}_${index2}`}>{l}</div>) :
               //(if not string must be element)
               val}
             </td>
