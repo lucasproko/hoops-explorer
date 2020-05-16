@@ -725,10 +725,22 @@ exports[`RosterStatsTable RosterStatsTable - should create snapshot 1`] = `
                       Wiggins, Aaron
                     </b>
                     <br />
-                    <b>
-                      A
-                    </b>
-                     lineups
+                    <span
+                      className="d-block d-md-none"
+                    >
+                      <b>
+                        A
+                      </b>
+                       set
+                    </span>
+                    <span
+                      className="d-none d-md-block d-lg-block d-xl-block"
+                    >
+                      <b>
+                        A
+                      </b>
+                       lineups
+                    </span>
                   </span>,
                   "off_to": Object {
                     "value": 0.16076743404863644,
@@ -973,10 +985,22 @@ exports[`RosterStatsTable RosterStatsTable - should create snapshot 1`] = `
                       Cowan, Anthony
                     </b>
                     <br />
-                    <b>
-                      A
-                    </b>
-                     lineups
+                    <span
+                      className="d-block d-md-none"
+                    >
+                      <b>
+                        A
+                      </b>
+                       set
+                    </span>
+                    <span
+                      className="d-none d-md-block d-lg-block d-xl-block"
+                    >
+                      <b>
+                        A
+                      </b>
+                       lineups
+                    </span>
                   </span>,
                   "off_to": Object {
                     "value": 0.17097306619100133,
@@ -1218,10 +1242,22 @@ exports[`RosterStatsTable RosterStatsTable - should create snapshot 1`] = `
                       Cowan, Anthony
                     </b>
                     <br />
-                    <b>
-                      B
-                    </b>
-                     lineups
+                    <span
+                      className="d-block d-md-none"
+                    >
+                      <b>
+                        B
+                      </b>
+                       set
+                    </span>
+                    <span
+                      className="d-none d-md-block d-lg-block d-xl-block"
+                    >
+                      <b>
+                        B
+                      </b>
+                       lineups
+                    </span>
                   </span>,
                   "off_to": Object {
                     "value": 0.11387073347857662,
@@ -1466,10 +1502,22 @@ exports[`RosterStatsTable RosterStatsTable - should create snapshot 1`] = `
                       Mona, Reese
                     </b>
                     <br />
-                    <b>
-                      B
-                    </b>
-                     lineups
+                    <span
+                      className="d-block d-md-none"
+                    >
+                      <b>
+                        B
+                      </b>
+                       set
+                    </span>
+                    <span
+                      className="d-none d-md-block d-lg-block d-xl-block"
+                    >
+                      <b>
+                        B
+                      </b>
+                       lineups
+                    </span>
                   </span>,
                   "off_to": Object {
                     "value": 0.6779661016949152,
