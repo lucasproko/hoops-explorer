@@ -17,7 +17,7 @@ exports[`HistorySelector HistorySelector - should create snapshot 1`] = `
     options={
       Array [
         Object {
-          "label": "On/Off Report: 2018/9  (W): query:'' (sort:desc:off_poss, filter:'', show:[comps])",
+          "label": "On/Off Report: 2018/9  (W): query:'' (sort:desc:off_poss, filter:'', show:[])",
           "value": "[\\"report-\\",{\\"gender\\":\\"Women\\",\\"year\\":\\"2018/9\\"}]",
         },
         Object {

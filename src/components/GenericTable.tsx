@@ -229,7 +229,7 @@ const GenericTable: React.FunctionComponent<Props> = ({tableFields, tableData, t
               rowSpan={rowSpan}
               key={"" + index} style={style}
             >{_.isString(val) ?
-              val.split('\n').map((l, index2) => <div key={"" + `${index}_${index2}`}>{l}</div>) :
+              val.split('\n').map((l, index2) => <div key={"s" + `${index}_${index2}`}>{l}</div>) :
               //(if not string must be element)
               val}
             </td>
@@ -254,7 +254,7 @@ const GenericTable: React.FunctionComponent<Props> = ({tableFields, tableData, t
     return {
       textAlign: colProps.isTitle ? ("right" as "right") : ("center" as "center"),
       width: (100.0*colProps.widthUnits/totalWidthUnits).toFixed(1) + "%",
-      fontWeight: ("bold" as "bold")
+      fontWeight: ("bold" as "bold"),
     };
   }
   function getRowStyle(
@@ -271,8 +271,9 @@ const GenericTable: React.FunctionComponent<Props> = ({tableFields, tableData, t
     return {
       textAlign: colProps.isTitle ? ("right" as "right") : ("center" as "center"),
       width: (100.0*colProps.widthUnits/totalWidthUnits).toFixed(1) + "%",
-      fontWeight: colProps.isTitle ? ("bold" as "bold") : ("normal" as "normal"),
-      backgroundColor: backgroundColorFn()
+      fontWeight: colProps.isTitle && _.isString(val) ? ("bold" as "bold") : ("normal" as "normal"),
+      backgroundColor: backgroundColorFn(),
+      verticalAlign: "middle"
     };
   }
 

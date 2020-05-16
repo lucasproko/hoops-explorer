@@ -33,6 +33,7 @@ import { dataLastUpdated } from '../utils/internal-data/dataLastUpdated';
 export type RosterCompareModel = {
   on: any,
   off: any,
+  onOffMode: boolean,
   baseline: any,
   error_code?: string
 }
@@ -67,6 +68,9 @@ const RosterCompareTable: React.FunctionComponent<Props> = ({gameFilterParams, r
       (Object.keys(rosterCompareStats.baseline).length == 0);
   }
 
+  const maybeOn = rosterCompareStats.onOffMode ? "On ('A')" : "'A'"
+  const maybeOff = rosterCompareStats.onOffMode ? "Off ('B')" : "'B'"
+
   return <LoadingOverlay
     active={needToLoadQuery()}
     text={rosterCompareStats.error_code ?
@@ -75,10 +79,18 @@ const RosterCompareTable: React.FunctionComponent<Props> = ({gameFilterParams, r
     }
   >
     <Row>
+      <Col>
+        <Card className="w-100">
+          <Card.Body>
+            <Card.Title>Baseline Roster</Card.Title>
+            <GenericTable tableCopyId="rosterBaseTable" tableFields={tableFields} tableData={tableData("baseline")}/>
+          </Card.Body>
+        </Card>
+      </Col>
         <Col>
           <Card className="w-100">
             <Card.Body>
-              <Card.Title>'On' Roster</Card.Title>
+              <Card.Title>{maybeOn} Roster</Card.Title>
               <GenericTable tableCopyId="rosterOnTable" tableFields={tableFields} tableData={tableData("on")}/>
             </Card.Body>
           </Card>
@@ -86,16 +98,8 @@ const RosterCompareTable: React.FunctionComponent<Props> = ({gameFilterParams, r
         <Col>
           <Card className="w-100">
             <Card.Body>
-              <Card.Title>'Off' Roster</Card.Title>
+              <Card.Title>{maybeOff} Roster</Card.Title>
               <GenericTable tableCopyId="rosterOffTable" tableFields={tableFields} tableData={tableData("off")}/>
-            </Card.Body>
-          </Card>
-        </Col>
-        <Col>
-          <Card className="w-100">
-            <Card.Body>
-              <Card.Title>'Baseline' Roster</Card.Title>
-              <GenericTable tableCopyId="rosterBaseTable" tableFields={tableFields} tableData={tableData("baseline")}/>
             </Card.Body>
           </Card>
         </Col>

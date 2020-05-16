@@ -41,6 +41,7 @@ import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
 export type RosterStatsModel = {
   on?: Array<any>,
   off?: Array<any>,
+  onOffMode?: boolean,
   baseline?: Array<any>,
   error_code?: string
 }
@@ -168,25 +169,48 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, tea
   const defPrefixFn = (key: string) => "def_" + key;
   const defCellMetaFn = (key: string, val: any) => "def";
 
-  const onOffBasePicker = (str: string, arr: Array<any>) => {
-    return _.find(arr, (p) => _.startsWith(p.off_title, str));
+  const onOffBasePicker = (str: "On" | "Off" | "Baseline", arr: Array<any>) => {
+    return _.find(arr, (p) => _.startsWith(p.onOffKey, str));
   }
 
   /** Show baseline unless both on and off are present */
   const skipBaseline = !alwaysShowBaseline &&
     (rosterStats?.on?.length && rosterStats?.off?.length);
 
+  const baselineIsOnlyLine = !(rosterStats?.on?.length || rosterStats?.off?.length);
+
+  // (Always just use A/B here because it's too confusing to say
+  // "On <Player name>" meaning ""<Player Name> when <Other other player> is on")
   const allPlayers = _.chain([
-    _.map(rosterStats.on  || [], (p) => _.merge(p, {off_title: `'On' ${p.key}`})),
-    _.map(rosterStats.off  || [], (p) => _.merge(p, {off_title: `'Off' ${p.key}`})),
-    _.map(rosterStats.baseline || [], (p) => _.merge(p, {off_title: `'Baseline' ${p.key}`})),
+    _.map(rosterStats.on  || [], (p) => _.merge(p, {
+      onOffKey: 'On',
+      off_title: <span><b>{p.key}</b><br/>
+        <span className="d-block d-md-none"><b>A</b> set</span>
+        <span className="d-none d-md-block d-lg-block d-xl-block"><b>A</b> lineups</span>
+      </span>
+    })),
+    _.map(rosterStats.off  || [], (p) => _.merge(p, {
+      onOffKey: 'Off',
+      off_title: <span><b>{p.key}</b><br/>
+        <span className="d-block d-md-none"><b>B</b> set</span>
+        <span className="d-none d-md-block d-lg-block d-xl-block"><b>B</b> lineups</span>
+      </span>
+    })),
+    _.map(rosterStats.baseline || [], (p) => _.merge(p, {
+      onOffKey: 'Baseline',
+      off_title: baselineIsOnlyLine ? //v (in this case it's the only line)
+        <span><b>{p.key}</b></span> :
+        <span><b>{p.key}</b><br/>Baseline</span>
+        //^ (if this is set we only show it together with on/off)
+
+    })),
   ]).flatten().groupBy("key").toPairs().map((key_onOffBase) => {
 
     const player = { // Now grouped by player, re-create the on/off/baseline set
       key: key_onOffBase[0],
-      on: onOffBasePicker("'On' ", key_onOffBase[1]),
-      off: onOffBasePicker("'Off' ", key_onOffBase[1]),
-      baseline: onOffBasePicker("'Baseline' ", key_onOffBase[1])
+      on: onOffBasePicker("On", key_onOffBase[1]),
+      off: onOffBasePicker("Off", key_onOffBase[1]),
+      baseline: onOffBasePicker("Baseline", key_onOffBase[1])
     };
 
     // Inject ORtg and DRB and Poss% (ie mutate player idempotently)

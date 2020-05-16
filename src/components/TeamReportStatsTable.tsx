@@ -293,11 +293,13 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
 
     const tableData = _.chain(tableDataInputs).flatMap((player, index) => {
       const [ onMargin, offMargin ] = OnOffReportDiagUtils.getAdjEffMargins(player);
-      const onSuffix = `\nAdj: [${onMargin.toFixed(1)}]-[${offMargin.toFixed(1)}]=[${(onMargin - offMargin).toFixed(1)}]`;
+      const onSuffix =
+        <span>Adj: [<b>{onMargin.toFixed(1)}</b>]-[<b>{offMargin.toFixed(1)}</b>]=[<b>{(onMargin - offMargin).toFixed(1)}</b>]</span>;
       const totalPoss = (player.on.off_poss.value + player.off.off_poss.value || 1);
       const onPoss = 100.0*player.on.off_poss.value/totalPoss;
       const offPoss = 100.0*player.off.off_poss.value/totalPoss;
-      const offSuffix = `\nPoss: [${onPoss.toFixed(0)}]% v [${offPoss.toFixed(0)}]%`;
+      const offSuffix =
+        <span>Poss: [<b>{onPoss.toFixed(0)}</b>]% v [<b>{offPoss.toFixed(0)}</b>]%</span>;
       const onOffAnalysis = {
         ...commonParams,
         onQuery: `"${player.playerId}"`,
@@ -305,26 +307,34 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
         autoOffQuery: true
       };
       const statsOn = {
-        off_title: <span>{player.on.key + onSuffix}<br/>
-                      <OverlayTrigger placement="auto" overlay={playerOnOffTooltip}>
-                        <a target="_blank" href={UrlRouting.getGameUrl(onOffAnalysis, {})}>On/Off Analysis...</a>
-                      </OverlayTrigger>
-                    </span>,
-        def_title: "", ...player.on };
-      const statsOff = { off_title: player.off.key + offSuffix, def_title: "", ...player.off };
+        off_title: <span><b>{player.on.key}</b><br/>{onSuffix}</span>,
+        def_title: "", ...player.on
+      };
+      const statsOff = {
+        off_title: <span><b>{player.off.key}</b><br/>{offSuffix}<br/>
+        <OverlayTrigger placement="auto" overlay={playerOnOffTooltip}>
+          <a target="_blank" href={UrlRouting.getGameUrl(onOffAnalysis, {})}>On/Off Analysis...</a>
+        </OverlayTrigger>
+      </span>,
+        def_title: "", ...player.off
+      };
 
       const replacementMargin = incReplacementOnOff ?
         player.replacement?.off_adj_ppp?.value - player.replacement?.def_adj_ppp?.value : 0.0;
-      const repSuffix = `\nAdj: [${replacementMargin.toFixed(1)}]`;
+      const repSuffix = <span>Adj: [<b>{replacementMargin.toFixed(1)}</b>]</span>;
 
-      const statsReplacement = incReplacementOnOff ?
-        { off_title: player.replacement?.key + repSuffix, def_title: "", ...player?.replacement }: {};
+      const statsReplacement = incReplacementOnOff ? {
+        off_title: <span><b>{player.replacement?.key}</b><br/>{repSuffix}</span>,
+        def_title: "", ...player?.replacement
+      }: {};
 
       const rapmMargin = incRapm ?
         player.rapm?.off_adj_ppp?.value - player.rapm?.def_adj_ppp?.value : 0.0;
-      const rapmSuffix = `\nAdj: [${rapmMargin.toFixed(1)}]`;
-      const statsRapm  = incRapm ?
-        { off_title: player.rapm?.key + rapmSuffix, def_title: "", ...player?.rapm } : {};
+      const rapmSuffix = <span>Adj: [<b>{rapmMargin.toFixed(1)}</b>]</span>;
+      const statsRapm  = incRapm ? {
+        off_title: <span><b>{player.rapm?.key}</b><br/>{rapmSuffix}</span>,
+        def_title: "", ...player?.rapm
+      } : {};
 
       const repOnOffDiagsEnabled = incReplacementOnOff && (repOnOffDiagModeNumLineups > 0);
       const repOnOffDiagInfo = repOnOffDiagsEnabled ? OnOffReportDiagUtils.getRepOnOffDiagInfo(
@@ -335,7 +345,7 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
         showOnOff ? [
           GenericTableOps.buildDataRow(statsOn, CommonTableDefs.offPrefixFn, CommonTableDefs.offCellMetaFn, CommonTableDefs.onOffReportWithFormattedTitle),
           GenericTableOps.buildDataRow(statsOn, CommonTableDefs.defPrefixFn, CommonTableDefs.defCellMetaFn),
-          GenericTableOps.buildDataRow(statsOff, CommonTableDefs.offPrefixFn, CommonTableDefs.offCellMetaFn),
+          GenericTableOps.buildDataRow(statsOff, CommonTableDefs.offPrefixFn, CommonTableDefs.offCellMetaFn, CommonTableDefs.onOffReportWithFormattedTitle),
           GenericTableOps.buildDataRow(statsOff, CommonTableDefs.defPrefixFn, CommonTableDefs.defCellMetaFn),
         ] : [],
         incReplacementOnOff && (player?.replacement?.key) ? [
@@ -562,12 +572,12 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
                 truthVal={incRapm}
                 onSelect={() => setIncRapm(!incRapm)}
               />
+              <Dropdown.Divider />
               <GenericTogglingMenuItem
                 text="Show lineup compositions"
                 truthVal={showLineupCompositions}
                 onSelect={() => setShowLineupCompositions(!showLineupCompositions)}
               />
-              <Dropdown.Divider />
               <GenericTogglingMenuItem
                 text={`Regress 'r:On-Off' ${
                   startingRegressDiffs > 0 ? "by" : "to"
