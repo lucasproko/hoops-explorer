@@ -69,12 +69,11 @@ const LineupAnalyzerPage: NextPage<{}> = () => {
   const onLineupFilterParamsChange = (params: LineupFilterParams) => {
     const href = getRootUrl(params);
     const as = href;
-    //TODO: this doesn't work if it's the same page
+    //TODO: this doesn't work if it's the same page (#91)
     // (plus adding the _current_ query to the history is a bit counter-intuitive)
     // (for intra-page, need to add to HistoryBounce page which will redirect back to force reload)
     // (need to figure out how to detect inter-page)
-    // (for now just comment out, tracked by #91)
-    // Router.push(href, as, { shallow: true });
+    Router.push(href, as, { shallow: true });
     setLineupFilterParams(params); // (to ensure the new params are included in links)
   }
 
