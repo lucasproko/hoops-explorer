@@ -74,8 +74,8 @@ const TeamReportPage: NextPage<{}> = () => {
     // (plus adding the _current_ query to the history is a bit counter-intuitive)
     // (for intra-page, need to add to HistoryBounce page which will redirect back to force reload)
     // (need to figure out how to detect inter-page)
-    // (need to figure out how to detect inter-page)
-    Router.push(href, as, { shallow: true });
+    // (for now use use "replace" vs "push" to avoid stupidly long browser histories)
+    Router.replace(href, as, { shallow: true });
     setTeamReportFilterParams(params); // (to ensure the new params are included in links)
   }
 
