@@ -1,0 +1,74 @@
+<div class="article-content entry-content" itemprop="articleBody">This post is a quick guide to what to type in the various "Query" textboxes.<br>
+<h3>
+Basic Queries</h3>
+The default query mode is "basic" - this means you can enter player's first or last names, or their full official name in quotes (look at the "Lineup Comparison" element to see what those official names are). For example:<br>
+<br>
+<ul>
+<li><b>Cowan</b> <i>- using the last names by default makes most sense</i></li>
+<li><b>Jalen</b> <i>- eg Maryland 2019/20 has two "Smith"s but only one "Jalen" so I can use this</i></li>
+<li><b>"Smith, Jalen"</b><i> - I'd have to use this if there were also two Jalens</i></li>
+</ul>
+<div>
+The effect of leaving a text box blank depends on which text box it is:</div>
+<div>
+<ul>
+<li>If it is the sole text box in a filter (lineup/on-off report), or the baseline query for on-off, then it defaults to "match all"</li>
+<li>Otherwise (ie "On" or "Off" query), it defaults to "match none" - ie exclude the specific lineup set from the results</li>
+</ul>
+</div>
+You can combine different names with the following operators: AND, NOT, OR, ()s. For example:<br>
+<div>
+<ul>
+<li><b>Cowan AND NOT Smith</b> <i>- only lineups with Cowan and no player with the name Smith</i></li>
+<li><b>NOT (Jalen AND (Scott OR Lindo))</b> <i>- etc!</i></li>
+</ul>
+In the On/Off Analysis page, the "On" and "Off" queries are both combined with the baseline as <b>"($on) AND ($baseline)"</b> and&nbsp;<b>"($off) AND ($baseline)"</b>, as you'd expect.<br>
+<br>
+There is one "advanced" feature useable in both basic and advanced: using <b>{name1;name2;...}~N</b> (name1 can be any of the three formats above), will search for "any combo but at least N" of the names inside the {}. Examples:<br>
+<br>
+<ul>
+<li><b>{Cowan;Morsell;Ayala;Wiggins;Serrel;Hart}~4</b> - Any 4 of the 6 players in the list (ie Maryland's 4-guard lineup)</li>
+<li><b>Cowan AND {Morsell;Ayala;Wiggins;Serrel}~2 AND {Scott;Lindo}~1 AND Jalen</b> - a composite query using the {} feature</li>
+</ul>
+Also replacing the "~" with "=" is a strict "any combo", ie will specifically exclude the listed players <i>not </i>in the combo. For example, <b>"{Morsell;Ayala}=1" </b>will be either but not both of Morsell and Ayala.<br><b></b><br>
+<h3>
+Advanced Queries</h3>
+</div>
+<div>
+Under the hood, the query format is the Elasticsearch "query_string", which is documented <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html" target="_blank">here [elastic.co]</a>.</div>
+<div>
+<br></div>
+<div>
+Hoop-explorer gives you access to the raw format by framing the query in []. To be able to take advantage of this, you need to know all the fields you can query:</div>
+<div>
+<ul>
+<li><b>players.id</b>: will match either the first name, last name, or "official" full name of the player (this is the only field that is used in basic queries)</li>
+<li><b>players_in.id</b> / <b>players_out.id</b>: will match on players being substituted in/out of a lineup, same format as <b>players.id</b>. Let me know if you find a use for this!</li>
+<li><b>date</b>: the date on which the game was played. See below for examples on how to query against this field (or <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html#_ranges" target="_blank">this section of the Elasticsearch docs [elastic.co]</a>)</li>
+<li><b>location_type</b>: one of <b>Home</b>, <b>Away</b>, or <b>Neutral</b></li>
+<li><b>start_min</b> / <b>end_min</b>: The minute (floating point, eg 1.5 would be 90s) at which the substitutions that created/ended this lineup occurred, with 0.0 being the start of the game, 40.0 being the end of the regulation.</li>
+<li><b>opponent.team</b>: The name of the opponent - in the NCAA PbP format, see <a href="https://stats.ncaa.org/" target="_blank">stats.ncaa.org</a>&nbsp;- or <a href="https://www.ncaa.com/rankings/basketball-men/d1/ncaa-mens-basketball-net-rankings" target="_blank">the NET rankings [ncaa.com]</a> is probably a handy list.</li>
+<li><b>score_info.start_diff</b> / <b>score_info.end_diff</b>: The score difference (positive meaning the selected team is ahead) at the start of the lineup set vs the end</li>
+</ul>
+</div>
+<div>
+<i>(Warning: adding search terms without <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html#_field_names" target="_blank">specifying a field [elastic.co]</a>&nbsp;will probably not do what you want because of internal fields that may contain those terms.)</i></div>
+<div>
+<br></div>
+<div>
+Some common examples:</div>
+<div>
+<ul>
+<li><b>[players.id:(<b>NOT (Jalen AND (Scott OR Lindo))</b>)]</b><i>&nbsp;- equivalent to using the basic query</i></li>
+<li><b>[opponent.team:Iowa AND location_type:Away]</b><i> - the one away game against Iowa (not recommended if you are a Maryland fan!)</i></li>
+<li><b>[end_min:&lt;=20]</b> vs <b>[end_min:&gt;20]</b> <i>-&nbsp;Two queries to give you first half vs second half splits (eg put one in the "On" and one in the "Off")</i></li>
+<li><b>[date:{* TO 2020-01-01}]</b> vs <b>[date:[2020-01-01 TO *]]</b><i> - Games that took place in 2019 vs 2020</i></li>
+<li><b>[players.id:{Morsell;Ayala;Wiggins;Serrel}~2] </b>-<i> the "advanced" version of the "combo" query feature described above</i></li>
+</ul>
+Things you can't currently do from within the query boxes:</div>
+<div>
+<ul>
+<li>Filter on conference, or opponent efficiency (apart from where the UI supports it, of course) or any other opponent metric</li>
+</ul>
+<i>Note that it is possible to construct expensive queries using the documented query syntax (particularly with regexes and wildcards - this site is a multi-user database backed by limited hardware, so please do be mindful of this!)</i></div>
+</div>
