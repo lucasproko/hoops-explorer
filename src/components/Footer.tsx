@@ -47,8 +47,10 @@ const Footer: React.FunctionComponent<Props> = ({server, gender, year}) => {
     }
   }
 
-  // (Display no footer on the non-public site:)
-  if (!_.startsWith(server, "cbb-on-off-analyzer")) return <Container><Row>
+  const publicSite = !_.startsWith(server, "cbb-on-off-analyzer");
+
+  // (only display twitter on public site, for analytics purposes)
+  return <Container><Row>
       <Col>
         <i><small>Selected year's data last updated: [{lastUpdated(year, gender)}]</small></i>
       </Col>
@@ -63,11 +65,11 @@ const Footer: React.FunctionComponent<Props> = ({server, gender, year}) => {
     <Row>
       <Col>
         <i><small>It's a beta, so let me know if you see anything weird:&nbsp;
-        <a href={twitterAddress} target="_new"
+        {publicSite ? <span><a href={twitterAddress} target="_new"
           onMouseOver={onMouseOver(twitterAddress)}
         >
         twitter
-        </a>&nbsp;/&nbsp;
+        </a>&nbsp;/&nbsp;</span> : null}
         <a href={emailAddress} target="_new"
           onMouseOver={onMouseOver(emailAddress)}
         >
@@ -82,8 +84,6 @@ const Footer: React.FunctionComponent<Props> = ({server, gender, year}) => {
         </span>
       </Col>
     </Row></Container>;
-  else
-    return <Container></Container>;
 }
 
 export default Footer;

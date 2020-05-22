@@ -456,8 +456,11 @@ const CommonFilter: CommonFilterI = ({
 
   /** Shows the blog help when accessed via hoop-explorer, consistency with top-level maybeShowBlog */
   function maybeShowBlogHelp() {
-    if (!_.startsWith(server, "cbb-on-off-analyzer")) {
+    const publicSite = !_.startsWith(server, "cbb-on-off-analyzer")
+    if (publicSite) {
       return <a href="https://hoop-explorer.blogspot.com/2020/01/basic-and-advanced-queries-in-hoop.html" target="_blank">(?)</a>;
+    } else {
+      return <a href="/query_docs.html" target="_blank">(?)</a>;
     }
   }
 

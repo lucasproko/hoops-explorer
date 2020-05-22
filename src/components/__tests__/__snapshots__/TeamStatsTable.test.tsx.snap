@@ -346,7 +346,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 }
               >
                 <div>
-                  'A' Offense
+                  On ('A') Offense
                 </div>
               </td>
               <td
@@ -739,7 +739,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 }
               >
                 <div>
-                  'A' Defense
+                  On ('A') Defense
                 </div>
               </td>
               <td
@@ -1159,7 +1159,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 }
               >
                 <div>
-                  'B' Offense
+                  Off ('B') Offense
                 </div>
               </td>
               <td
@@ -1552,7 +1552,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 }
               >
                 <div>
-                  'B' Defense
+                  Off ('B') Defense
                 </div>
               </td>
               <td
