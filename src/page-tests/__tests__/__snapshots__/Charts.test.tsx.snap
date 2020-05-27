@@ -1,0 +1,196 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ChartsPage ChartsPage - should create snapshot 1`] = `
+<Container
+  fluid={false}
+>
+  <ForwardRef
+    noGutters={false}
+  >
+    <Col
+      className="text-center"
+      xs={12}
+    >
+      <h3>
+        CBB Analysis Tool - Interesting Charts 
+        <span
+          className="badge badge-pill badge-info"
+        >
+          BETA!
+        </span>
+      </h3>
+    </Col>
+  </ForwardRef>
+  <ForwardRef
+    noGutters={false}
+  >
+    <HeaderBar
+      common={Object {}}
+      thisPage="charts"
+    />
+  </ForwardRef>
+  <ForwardRef
+    className="border-top"
+    noGutters={false}
+  >
+    <Nav
+      fill={false}
+      justify={false}
+    >
+      <NavDropdown
+        id="chartSelection"
+        title="More Charts"
+      >
+        <DropdownItem
+          as={
+            Object {
+              "$$typeof": Symbol(react.forward_ref),
+              "displayName": "SafeAnchor",
+              "render": [Function],
+            }
+          }
+          disabled={false}
+          eventKey="high_major_positions"
+          href="#high_major_positions"
+          onSelect={[Function]}
+        >
+          Position Analysis, High Majors, 2010+
+        </DropdownItem>
+        <DropdownItem
+          as={
+            Object {
+              "$$typeof": Symbol(react.forward_ref),
+              "displayName": "SafeAnchor",
+              "render": [Function],
+            }
+          }
+          disabled={false}
+          eventKey="all_conf_positions"
+          href="#all_conf_positions"
+          onSelect={[Function]}
+        >
+          Position Analysis, D1, 2014+
+        </DropdownItem>
+      </NavDropdown>
+    </Nav>
+  </ForwardRef>
+  <ForwardRef
+    noGutters={false}
+  >
+    <TabContainer
+      activeKey="high_major_positions"
+    >
+      <ForwardRef
+        noGutters={false}
+      >
+        <Bootstrap(TabContent)>
+          <TabPane
+            eventKey="high_major_positions"
+          >
+            <div>
+              <Alert
+                className="small"
+                closeLabel="Close alert"
+                show={true}
+                transition={
+                  Object {
+                    "$$typeof": Symbol(react.forward_ref),
+                    "defaultProps": Object {
+                      "appear": false,
+                      "in": false,
+                      "mountOnEnter": false,
+                      "timeout": 300,
+                      "unmountOnExit": false,
+                    },
+                    "displayName": "Fade",
+                    "render": [Function],
+                  }
+                }
+                variant="info"
+              >
+                <em>
+                  A 2-d visualization of the different positions in high major conferences, 2010-2020.
+                  <span>
+                    A description of the fields and methodology used is 
+                    <a
+                      href="https://hoop-explorer.blogspot.com/2020/05/classifying-college-basketball.html"
+                      target="_blank"
+                    >
+                      here
+                    </a>
+                  </span>
+                  . The data came from 
+                  <a
+                    href="http://adamcwisports.blogspot.com/p/data.html"
+                  >
+                    barttorvik.com
+                  </a>
+                  , much appreciated! The graph below is interactive - you can scroll in or out, move around, or highlight specific teams. Note - it can be a bit slow!
+                </em>
+              </Alert>
+              <iframe
+                frameBorder="0"
+                height="630px"
+                src="/high_major_positions.html"
+                width="1024px"
+              />
+            </div>
+          </TabPane>
+          <TabPane
+            eventKey="all_conf_positions"
+          >
+            <div>
+              <Alert
+                className="small"
+                closeLabel="Close alert"
+                show={true}
+                transition={
+                  Object {
+                    "$$typeof": Symbol(react.forward_ref),
+                    "defaultProps": Object {
+                      "appear": false,
+                      "in": false,
+                      "mountOnEnter": false,
+                      "timeout": 300,
+                      "unmountOnExit": false,
+                    },
+                    "displayName": "Fade",
+                    "render": [Function],
+                  }
+                }
+                variant="info"
+              >
+                <em>
+                  A 2-d visualization of the different positions in D1 college basketball, 2014-2020.
+                  <span>
+                    A description of the fields and methodology used is 
+                    <a
+                      href="https://hoop-explorer.blogspot.com/2020/05/classifying-college-basketball.html"
+                      target="_blank"
+                    >
+                      here
+                    </a>
+                  </span>
+                  . The data came from 
+                  <a
+                    href="http://adamcwisports.blogspot.com/p/data.html"
+                  >
+                    barttorvik.com
+                  </a>
+                  , much appreciated! The graph below is interactive - you can scroll in or out, move around, or highlight specific teams. Note - it can be very slow!
+                </em>
+              </Alert>
+              <iframe
+                frameBorder="0"
+                height="630px"
+                src="/all_conf_positions.html"
+                width="1024px"
+              />
+            </div>
+          </TabPane>
+        </Bootstrap(TabContent)>
+      </ForwardRef>
+    </TabContainer>
+  </ForwardRef>
+</Container>
+`;
