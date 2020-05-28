@@ -102,6 +102,9 @@ const HeaderBar: React.FunctionComponent<Props> = ({thisPage, common}) => {
   const lastReportTooltip = (
     <Tooltip id="lastReportTooltip">Go back to the most recently submitted On/Off Report page</Tooltip>
   );
+  const chartTooltip = (
+    <Tooltip id="lastReportTooltip">View a gallery of interesting basketball analytics charts</Tooltip>
+  );
 
   //(only render client-side - was running into cache issues of the Link href)
   return (typeof window !== `undefined`) ? <Container>
@@ -145,6 +148,13 @@ const HeaderBar: React.FunctionComponent<Props> = ({thisPage, common}) => {
             <Col className="text-center small">
               <OverlayTrigger placement="auto" overlay={lastReportTooltip}>
                 <span><Link href={getLastReportUrl()}><a>Report: Last</a></Link></span>
+              </OverlayTrigger>
+            </Col> : null
+        }
+        {(thisPage != "charts") ?
+            <Col className="text-center small">
+              <OverlayTrigger placement="auto" overlay={chartTooltip}>
+                <span><Link href={"/Charts"}><a>Charts</a></Link></span>
               </OverlayTrigger>
             </Col> : null
         }
