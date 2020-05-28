@@ -71,13 +71,18 @@ const ChartsPage: NextPage<{}> = () => {
 
   // Links that we'll only show in blog mode
   const maybeShowBlogArticle = (chart: string) => {
+
+    const isPublicSite = !_.startsWith(server, "cbb-on-off-analyzer");
+
     const chartToUrl: Record<string, string> = {
       "high_major_positions": "https://hoop-explorer.blogspot.com/2020/05/classifying-college-basketball.html",
       "all_conf_positions": "https://hoop-explorer.blogspot.com/2020/05/classifying-college-basketball.html"
     };
-    return <span>
-      A description of the fields and methodology used is <a target="_blank" href={chartToUrl[chart]}>here</a>
-    </span>;
+    if (isPublicSite) {
+      return <span>
+        &nbsp;A description of the fields and methodology used is <a target="_blank" href={chartToUrl[chart]}>here</a>.
+      </span>;
+    }
   }
 
   return <Container>
@@ -113,8 +118,8 @@ const ChartsPage: NextPage<{}> = () => {
                   <Alert variant="info" className="small">
                     <em>
                       A 2-d visualization of the different positions in high major conferences, 2010-2020.
-                      {maybeShowBlogArticle(tabKey)}.
-                      The data came from <a href="http://adamcwisports.blogspot.com/p/data.html">barttorvik.com</a>, much appreciated!
+                      {maybeShowBlogArticle(tabKey)}
+                      &nbsp;The data came from <a target="_blank" href="http://adamcwisports.blogspot.com/p/data.html">barttorvik.com</a>, much appreciated!
                       The graph below is interactive - you can scroll in or out, move around, or highlight specific teams. Note - it can be a bit slow!
                     </em>
                   </Alert>
@@ -126,8 +131,8 @@ const ChartsPage: NextPage<{}> = () => {
                 <Alert variant="info" className="small">
                   <em>
                     A 2-d visualization of the different positions in D1 college basketball, 2014-2020.
-                    {maybeShowBlogArticle(tabKey)}.
-                    The data came from <a href="http://adamcwisports.blogspot.com/p/data.html">barttorvik.com</a>, much appreciated!
+                    {maybeShowBlogArticle(tabKey)}
+                    &nbsp;The data came from <a href="http://adamcwisports.blogspot.com/p/data.html">barttorvik.com</a>, much appreciated!
                     The graph below is interactive - you can scroll in or out, move around, or highlight specific teams. Note - it can be very slow!
                   </em>
                 </Alert>

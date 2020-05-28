@@ -111,17 +111,19 @@ exports[`ChartsPage ChartsPage - should create snapshot 1`] = `
                 <em>
                   A 2-d visualization of the different positions in high major conferences, 2010-2020.
                   <span>
-                    A description of the fields and methodology used is 
+                     A description of the fields and methodology used is 
                     <a
                       href="https://hoop-explorer.blogspot.com/2020/05/classifying-college-basketball.html"
                       target="_blank"
                     >
                       here
                     </a>
+                    .
                   </span>
-                  . The data came from 
+                   The data came from 
                   <a
                     href="http://adamcwisports.blogspot.com/p/data.html"
+                    target="_blank"
                   >
                     barttorvik.com
                   </a>
@@ -163,15 +165,16 @@ exports[`ChartsPage ChartsPage - should create snapshot 1`] = `
                 <em>
                   A 2-d visualization of the different positions in D1 college basketball, 2014-2020.
                   <span>
-                    A description of the fields and methodology used is 
+                     A description of the fields and methodology used is 
                     <a
                       href="https://hoop-explorer.blogspot.com/2020/05/classifying-college-basketball.html"
                       target="_blank"
                     >
                       here
                     </a>
+                    .
                   </span>
-                  . The data came from 
+                   The data came from 
                   <a
                     href="http://adamcwisports.blogspot.com/p/data.html"
                   >
