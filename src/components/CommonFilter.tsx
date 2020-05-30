@@ -224,7 +224,7 @@ const CommonFilter: CommonFilterI = ({
     return (
       atLeastOneQueryMade && paramsUnchanged &&
         garbageSpecialCase && queryFiltersSpecialCase
-    ) || (team == "");
+    ) || (team == "") || (year == AvailableTeams.extraTeamName);
   }
 
   /** Whether any of the queries returned an error - we'll treat them all as errors if so */
@@ -369,7 +369,7 @@ const CommonFilter: CommonFilterI = ({
   const MenuList = (props: any)  => {
     return (
       <components.MenuList {...props}>
-        <p className="text-secondary text-center">(Teams filtered by gender/year)</p>
+        <p className="text-secondary text-center">(Let me know if there's a team/season you want to see!)</p>
         {props.children}
       </components.MenuList>
     );
@@ -501,7 +501,7 @@ const CommonFilter: CommonFilterI = ({
           value={ stringToOption(year) }
           options={Array.from(new Set(AvailableTeams.getTeams(team, null, gender).map(
             (r) => r.year
-          ))).map(
+          ))).concat([AvailableTeams.extraTeamName]).map(
             (year) => stringToOption(year)
           )}
           isSearchable={false}
@@ -520,7 +520,14 @@ const CommonFilter: CommonFilterI = ({
             (r) => stringToOption(r.team)
           )}
           onChange={(option) => {
-            setTeam((option as any)?.value || "")
+            const selection = (option as any)?.value || "";
+            if (year == AvailableTeams.extraTeamName) {
+              const teamYear = selection.split(/ (?=[^ ]+$)/);
+              setTeam(teamYear[0]);
+              setYear(teamYear[1]);
+            } else {
+              setTeam(selection);
+            }
           }}
         />
       </Col>

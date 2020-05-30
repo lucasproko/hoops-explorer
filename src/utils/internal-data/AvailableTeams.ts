@@ -10,12 +10,12 @@ export class AvailableTeams {
 
   static readonly defaultConfIndex = "misc_conf";
 
+  static readonly extraTeamName = "Extra";
+
   /** A list of all the teams with lineup data available */
   static readonly byName: Record<string, Array<AvailableTeamMeta>> = {
     // Maryland!
     "Maryland": [
-      //(remove this for know, the indexed lineup data is broken)
-//      { team: "Maryland", year: "2015/6", gender: "Men", index_template: "maryland" },
       { team: "Maryland", year: "2018/9", gender: "Men", index_template: "bigten" },
       { team: "Maryland", year: "2019/20", gender: "Men", index_template: "bigten" },
 
@@ -681,6 +681,16 @@ export class AvailableTeams {
     ],
   }
 
+  /** These are extra teams I've added for specific years */
+  static readonly extraTeams = [
+    { team: "Maryland", year: "2014/5", gender: "Men", index_template: "misc_conf" },
+    { team: "Maryland", year: "2015/6", gender: "Men", index_template: "misc_conf" },
+    { team: "Maryland", year: "2016/7", gender: "Men", index_template: "misc_conf" },
+    { team: "Maryland", year: "2017/8", gender: "Men", index_template: "misc_conf" },
+  ].map((t: AvailableTeamMeta) => {
+    return { ...t, team: t.team + ` ${t.year}`};
+  });
+
   ////////////////////////////////////////////////////////
 
   // UTILS
@@ -696,14 +706,21 @@ export class AvailableTeams {
   static getTeams(
     team: string | null, year: string | null, gender: string | null
   ): Array<AvailableTeamMeta> {
-    const list = team ?
-      (AvailableTeams.byName[team] || ([] as Array<AvailableTeamMeta>)) :
-      AvailableTeams.flatten(Object.values(AvailableTeams.byName));
 
-    return list.filter(function(record) {
-      return (!team || (team == record.team)) &&
-        (!year || (year == record.year)) && (!gender || (gender == record.gender));
-    });
+    // Special cases
+    if ((year == AvailableTeams.extraTeamName) && (gender == "Men")) {
+      return AvailableTeams.extraTeams;
+    } else {
+
+      const list = team ?
+        (AvailableTeams.byName[team] || ([] as Array<AvailableTeamMeta>)) :
+        AvailableTeams.flatten(Object.values(AvailableTeams.byName));
+
+      return list.filter(function(record) {
+        return (!team || (team == record.team)) &&
+          (!year || (year == record.year)) && (!gender || (gender == record.gender));
+      });
+    }
   }
   static getTeam(
     team: string, year: string, gender: string

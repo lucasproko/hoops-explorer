@@ -74,6 +74,10 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
                 "label": "2019/20",
                 "value": "2019/20",
               },
+              Object {
+                "label": "Extra",
+                "value": "Extra",
+              },
             ]
           }
           value={
@@ -1060,6 +1064,10 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
               Object {
                 "label": "2019/20",
                 "value": "2019/20",
+              },
+              Object {
+                "label": "Extra",
+                "value": "Extra",
               },
             ]
           }
