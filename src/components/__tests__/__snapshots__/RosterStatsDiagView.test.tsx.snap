@@ -87,7 +87,27 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 1`] = 
           <b>
             331
           </b>
-          ] + ftm=[
+           = 
+          <b>
+            3
+          </b>
+          *
+          <b>
+            55
+          </b>
+           + 
+          <b>
+            2
+          </b>
+          *(
+          <b>
+            46
+          </b>
+           + 
+          <b>
+            37
+          </b>
+          )] + ftm=[
           <b>
             166
           </b>
@@ -133,7 +153,19 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 1`] = 
           <b>
             351
           </b>
-          ] + 0.475*fta=[
+           = 
+          <b>
+            171
+          </b>
+           + (
+          <b>
+            107
+          </b>
+           + 
+          <b>
+            73
+          </b>
+          )] + 0.475*fta=[
           <b>
             97.8
           </b>

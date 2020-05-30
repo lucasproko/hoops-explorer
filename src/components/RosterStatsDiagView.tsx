@@ -33,7 +33,7 @@ const RosterStatsDiagView: React.FunctionComponent<Props> = ({ortgDiags, drtgDia
       less Team_ORB_Contrib% [<b>{(100*o.teamOrbContribPct).toFixed(1)}%</b>]==[<b>{((o.ppFg + o.ppAssist + o.rawFtm)*o.teamOrbContribPct).toFixed(1)}</b>])
       </li>
       <ul>
-        <li><em>Compare raw stats: orb=[<b>{o.rawOrb}</b>], pts=[<b>{o.rawPts}</b>] (fg_pts=[<b>{o.ptsFgm}</b>] + ftm=[<b>{o.rawFtm}</b>]), assists=[<b>{o.rawAssist}</b>]</em></li>
+        <li><em>Compare raw stats: orb=[<b>{o.rawOrb}</b>], pts=[<b>{o.rawPts}</b>] (fg_pts=[<b>{o.ptsFgm}</b> = <b>3</b>*<b>{o.raw3Fgm}</b> + <b>2</b>*(<b>{o.raw2midFgm}</b> + <b>{o.raw2rimFgm}</b>)] + ftm=[<b>{o.rawFtm}</b>]), assists=[<b>{o.rawAssist}</b>]</em></li>
       </ul>
       {showMoreORtgPts ?
       <span><li><u>Points section</u></li>
@@ -75,7 +75,7 @@ const RosterStatsDiagView: React.FunctionComponent<Props> = ({ortgDiags, drtgDia
       </ul></span> : null }
       <li>Adjusted_Possessions: [<b>{o.adjPoss.toFixed(1)}</b>] = Scoring_Possessions [<b>{o.scoringPoss.toFixed(1)}</b>] + Missed_FG_Possessions [<b>{o.fgxPoss.toFixed(1)}</b>] + Missed_FT_Possessions [<b>{o.ftxPoss.toFixed(1)}</b>] + TO [<b>{o.rawTo}</b>]</li>
       <ul>
-        <li><em>Compare raw stats: poss=[<b>{o.offPoss.toFixed(1)}</b>] (fga=[<b>{o.rawFga}</b>] + 0.475*fta=[<b>{o.ftPoss.toFixed(1)}</b>] + to=[<b>{o.rawTo}</b>] - orb=[<b>{o.offPlaysLessPoss.toFixed(1)}</b>])</em></li>
+        <li><em>Compare raw stats: poss=[<b>{o.offPoss.toFixed(1)}</b>] (fga=[<b>{o.rawFga}</b> = <b>{o.raw3Fga}</b> + (<b>{o.raw2midFga}</b> + <b>{o.raw2rimFga}</b>)] + 0.475*fta=[<b>{o.ftPoss.toFixed(1)}</b>] + to=[<b>{o.rawTo}</b>] - orb=[<b>{o.offPlaysLessPoss.toFixed(1)}</b>])</em></li>
       </ul>
       {showMoreORtgPoss ?
       <span><li><u>Possessions section</u></li>

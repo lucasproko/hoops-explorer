@@ -11,6 +11,13 @@ export type ORtgDiagnostics = {
   rawPts: number,
   rawOrb: number,
   rawTo: number,
+  // Shooting breakdowns, just for display:
+  raw3Fga: number,
+  raw2midFga: number,
+  raw2rimFga: number,
+  raw3Fgm: number,
+  raw2midFgm: number,
+  raw2rimFgm: number,
   // Basic team numbers:
   teamOrb: number,
   teamPts: number,
@@ -259,6 +266,13 @@ export class StatsUtils {
       rawPts: PTS_FROM_FG + FTM,
       rawOrb: ORB,
       rawTo: TOV,
+      // Shooting breakdowns, just for display:
+      raw3Fga: statSet?.total_off_3p_attempts?.value || 0,
+      raw2midFga: statSet?.total_off_2pmid_attempts?.value || 0,
+      raw2rimFga: statSet?.total_off_2prim_attempts?.value || 0,
+      raw3Fgm: statSet?.total_off_3p_made?.value || 0,
+      raw2midFgm: statSet?.total_off_2pmid_made?.value || 0,
+      raw2rimFgm: statSet?.total_off_2prim_made?.value || 0,
       // Basic team numbers:
       teamOrb: Team_ORB,
       teamPts: Team_PTS,
