@@ -54,7 +54,6 @@ const ChartsPage: NextPage<{}> = () => {
 
   // Changes made to Vega charts:
   // url="/high_major_positions.html"
-  // url="/all_conf_positions.html"
   //    - {"continuousWidth": 680, "continuousHeight": 510}
   //    -   <div id="vis" style="margin-left: 50px"></div>
 
@@ -75,8 +74,7 @@ const ChartsPage: NextPage<{}> = () => {
     const isPublicSite = !_.startsWith(server, "cbb-on-off-analyzer");
 
     const chartToUrl: Record<string, string> = {
-      "high_major_positions": "https://hoop-explorer.blogspot.com/2020/05/classifying-college-basketball.html",
-      "all_conf_positions": "https://hoop-explorer.blogspot.com/2020/05/classifying-college-basketball.html"
+      "high_major_positions": "https://hoop-explorer.blogspot.com/2020/05/classifying-college-basketball.html"
     };
     if (isPublicSite) {
       return <span>
@@ -99,12 +97,9 @@ const ChartsPage: NextPage<{}> = () => {
     </Row>
     <Row className="border-top">
      <Nav>
-       <NavDropdown title="More Charts" id="chartSelection">
+       <NavDropdown title="View Charts" id="chartSelection">
           <NavDropdown.Item href="#high_major_positions" onSelect={() => setTabKey("high_major_positions")} eventKey="high_major_positions">
-            Position Analysis, High Majors, 2010+
-          </NavDropdown.Item>
-          <NavDropdown.Item href="#all_conf_positions"  onSelect={() => setTabKey("all_conf_positions")} eventKey="all_conf_positions">
-            Position Analysis, D1, 2014+
+            Position Analysis 2010+
           </NavDropdown.Item>
        </NavDropdown>
      </Nav>
@@ -117,26 +112,28 @@ const ChartsPage: NextPage<{}> = () => {
                 <div>
                   <Alert variant="info" className="small">
                     <em>
-                      A 2-d visualization of the different positions in high major conferences, 2010-2020.
+                      A 2-d visualization of the different positions (P6 2010-2020, all D1 2015-2020).
                       {maybeShowBlogArticle(tabKey)}
-                      &nbsp;The data came from <a target="_blank" href="http://adamcwisports.blogspot.com/p/data.html">barttorvik.com</a>, much appreciated!
-                      The graph below is interactive - you can scroll in or out, move around, or highlight specific teams. Note - it can be a bit slow!
+                      &nbsp;The data came from <a target="_blank" href="http://adamcwisports.blogspot.com/p/data.html">barttorvik.com</a>, much appreciated!<br/>
+                      The graph below is interactive - you can scroll in or out, move around, highlight specific teams, etc. Note - it can be a bit slow!<br/>
                     </em>
                   </Alert>
-                  <iframe frameBorder="0" src="/high_major_positions.html" width="1024px" height="630px"/>
-                </div>
-              </Tab.Pane>
-              <Tab.Pane eventKey="all_conf_positions">
-                <div>
-                <Alert variant="info" className="small">
-                  <em>
-                    A 2-d visualization of the different positions in D1 college basketball, 2014-2020.
-                    {maybeShowBlogArticle(tabKey)}
-                    &nbsp;The data came from <a href="http://adamcwisports.blogspot.com/p/data.html">barttorvik.com</a>, much appreciated!
-                    The graph below is interactive - you can scroll in or out, move around, or highlight specific teams. Note - it can be very slow!
-                  </em>
-                </Alert>
-                  <iframe frameBorder="0" src="/all_conf_positions.html" width="1024px" height="630px"/>
+                  <iframe frameBorder="0" src="/high_major_positions.html" width="1024px" height="700px"/>
+                  <Alert variant="info" className="small">
+                    <em>
+                      The x- and y- axis are linear combination of the input features that are hard to interpret in basketball terms. But basically:
+                      <li>Left-to-right is "guard-like" to "forward-like":</li>
+                      <ul>
+                        <li>leftwards: 3P%, Assist rate, 3P rate, steal rate</li>
+                        <li>rightwards: DRB%, ORB%, dunk rate, mid-2P rate, block rate, foul rate</li>
+                      </ul>
+                      <li>Top-to-bottom is a mishmash of position-specific bonuses/penalties: combined because we only have 2-d to play with!</li>
+                      <ul>
+                        <li>upwards: AST/TOV, Assist rate, TO rate, steal rate; dunk/rim rate, mid-2P rate, block rate</li>
+                        <li>downwards: 3P rate, rim shooting ability, assists/FG; DRB%, ORB%</li>
+                      </ul>
+                    </em>
+                  </Alert>
                 </div>
               </Tab.Pane>
             </Tab.Content>
