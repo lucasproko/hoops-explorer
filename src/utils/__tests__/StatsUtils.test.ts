@@ -26,4 +26,30 @@ describe("StatsUtils", () => {
     expect(adjDRtg).toEqual({value:0.4085659844387266});
     expect(dRtgDiags).toEqual(sampleDrtgDiagnostics);
   });
+  test("StatsUtils - buildPositionConfidences", () => {
+
+    const tidyArr = (vv: number[]) => vv.map((v: number) => v.toFixed(2))
+    const tidyObj = (vo: Record<string, number>) => _.mapValues(vo, (v: number) => v.toFixed(2))
+
+    // Some hand-checked results:
+
+    const [ realConfidences, realDiags ] = StatsUtils.buildPositionConfidences(
+      samplePlayerStatsResponse.aggregations.tri_filter.buckets.baseline.player.buckets[0]
+    );
+    expect(tidyArr(realConfidences)).toEqual(["0.98", "0.02", "0.00", "0.00", "0.00", ]);
+    expect(tidyArr(realDiags.scores)).toEqual(["2.75","-1.33","-6.64","-13.02","-5.72"]);
+    expect(tidyObj(realDiags.calculated)).toEqual({
+      "assist_per_fga": "0.41",
+      "ast_tov": "2.09",
+      "ft_relative_inv": "0.59", // 47% eFG / (166/206)
+      "mid_relative": "0.91",
+      "rim_relative": "1.07",
+      "three_relative": "1.02"
+    });
+
+    const [ realConfidences2, realDiags2 ] = StatsUtils.buildPositionConfidences(
+      samplePlayerStatsResponse.aggregations.tri_filter.buckets.baseline.player.buckets[1]
+    );
+    expect(tidyArr(realConfidences2)).toEqual(["0.71", "0.19", "0.01", "0.00", "0.09", ]);
+  });
 });

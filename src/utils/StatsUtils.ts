@@ -1,4 +1,7 @@
 
+// Utils:
+import _ from 'lodash'
+
 /** All the info needed to explain the ORtg calculation, see "buildORtgDiag" */
 export type ORtgDiagnostics = {
   // Basic player numbers:
@@ -136,6 +139,9 @@ export type DRtgDiagnostics = {
   adjDRtg: number,
   adjDRtgPlus: number,
 };
+
+/** (just to make copy/pasting between colab and this code easier)*/
+const array = (v: number[]) => { return v; }
 
 /** General cbb complex stats calcs */
 export class StatsUtils {
@@ -475,4 +481,116 @@ export class StatsUtils {
     } : undefined) ];
   }
 
+  /** The LDA intercepts */
+  static readonly positionFeatureInit = [-2.82375823, -2.41283573, -3.74982844, -8.98755013, -3.23442276];
+
+  /** triples in the form [ fieldname, scale, weights-from-ML ] */
+  static readonly positionFeatureWeights = [
+    ['calc_ast_tov', 1.0,
+      array([ 0.08281269,  0.09093907, -0.37973552, -0.67240486,  0.5964297 ])
+    ],
+    ['calc_three_relative', 1.0,
+      array([ 0.00753295,  0.00814222,  0.00794373,  0.01847985, -0.04255395])
+    ],
+    ['calc_mid_relative', 1.0,
+      array([ 0.00281905,  0.00377201,  0.00400989,  0.01991123, -0.02632626])
+    ],
+    ['calc_rim_relative', 1.0,
+      array([-0.00995088,  0.00740773,  0.01560057,  0.03010704, -0.03693076])
+    ],
+    ['def_ftr', 100.0, //(this is FC/50, which isn't _quite_ FC/40m but close enough given these low numbers)
+      array([-0.08827297, -0.20674559, -0.01827295,  0.22834328,  0.3239175 ])
+    ],
+    ['off_assist', 100.0,
+      array([ 0.15829941,  0.02598234, -0.06537337, -0.05021328, -0.12142258])
+    ],
+    ['off_to', 100.0,
+      array([-0.00680258,  0.0051497 , -0.02123889, -0.03861639,  0.04709196])
+    ],
+    ['off_drb', 100.0,
+      array([-0.23799504, -0.07938086,  0.10442655,  0.21672752,  0.15512722])
+    ],
+    ['off_orb', 100.0,
+      array([-0.26888945, -0.21892123,  0.07832771,  0.26210603,  0.42330573])
+    ],
+    ['off_ftr', 100.0,
+      array([ 0.00270944,  0.00083536,  0.00011253, -0.01560428,  0.00500472])
+    ],
+    ['off_2primr', 100.0,
+      array([ 0.01545738,  0.01531782, -0.00856427, -0.03075521, -0.01459524])
+    ],
+    ['off_2pmidr', 100.0,
+      array([-0.0010662 , -0.00969839, -0.01555429, -0.04862983,  0.06485701])
+    ],
+    ['off_3pr', 100.0,
+      array([ 0.02713631,  0.0218532 , -0.00223302,  0.00081636, -0.06555841])
+    ],
+    ['def_blk', 100.0,
+      array([-0.29122875, -0.22875385, -0.09758256,  0.20918001,  0.69598967])
+    ],
+    ['def_stl', 100.0,
+      array([ 0.8133556 ,  0.54765371, -0.02580977, -0.68504559, -1.39476509])
+    ],
+    ['calc_assist_per_fga', 1.0,
+      array([ 0.01429017, -0.00313073,  0.0082461 ,  0.01833772, -0.0319402 ])
+    ],
+    ['calc_ft_relative_inv', 1.0,
+      array([-0.01016761, -0.0056131 , -0.00079665, -0.00547513,  0.02533069])
+    ]
+  ] as Array<[string, number, number[]]>;
+
+  /** Returns a vector of 5 elements representing the confidence that the player
+      can play that position (0=PG, 1=SG, 4=SF, 4=PF, 5=C)
+  */
+  static buildPositionConfidences(player: Record<string, any>): [ number[], any ] {
+
+    const calculated = {
+      ast_tov: player.total_off_assist.value / (player.total_off_to.value || 1),
+      three_relative: 1.5*player.off_3p.value / (player.off_efg.value || 1),
+      mid_relative: player.off_2pmid.value / (player.off_efg.value || 1),
+      rim_relative: player.off_2prim.value / (player.off_efg.value || 1),
+      assist_per_fga: player.total_off_assist.value / (player.total_off_fga.value || 1),
+      ft_relative_inv:  //=eFG/FT%, (where FT% = FTM/FTA)
+        (player.off_efg.value * player.total_off_fta.value) / (player.total_off_ftm.value || 1)
+    } as Record<string, number>;
+
+    const scores = _.transform(StatsUtils.positionFeatureWeights,
+      (acc, pos_scale_weights: [string, number, number[]]) => {
+        const pos = pos_scale_weights[0];
+        const scale = pos_scale_weights[1];
+        const weights = pos_scale_weights[2];
+        const fieldVal = _.startsWith(pos, "calc_") ? (calculated[pos] || 0) : (player[pos]?.value || 0);
+        weights.forEach((weight, index) => acc[index] += fieldVal*scale*weight);
+      }, _.clone(StatsUtils.positionFeatureInit)
+    );
+
+    const maxScore = _.max(scores) || 0;
+    const confs = scores.map((s: number) => Math.exp(s - maxScore));
+    const maxConf = _.sum(confs) || 0;
+
+    return [
+      { pos_pg: confs[0], pos_sg: confs[1], pos_sf: confs[2], pos_pf: confs[3], pos_c: confs[4] },
+      confs.map((s: number) => s/maxConf),
+      {
+        scores: scores,
+        calculated: calculated
+      }
+    ];
+  }
+
+  static readonly idToPosition = {
+    "PG": "Pure PG",
+    "pG": "Scoring PG",
+    "CG": "Combo Guard",
+    "WG": "Wing Guard",
+    "WF": "Wing Forward",
+    "S4": "Stretch PF",
+    "FC": "PF/Center",
+    "C": "Center"
+  };
+
+  /** Tag the player with a position string given the confidences */
+  static buildPosition(confs: number[], player: Record<string, any>) {
+
+  }
 }
