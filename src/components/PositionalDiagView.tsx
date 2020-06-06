@@ -38,10 +38,11 @@ type Props = {
 };
 const PositionalDiagView: React.FunctionComponent<Props> = ({player}) => {
 
-  const [ positionInfo, positionDiags ] = StatsUtils.buildPositionConfidences(player)
+  const [ positionInfo, positionDiags ] = StatsUtils.buildPositionConfidences(player);
+  const [ positionId, positionIdDiag ] = StatsUtils.buildPosition(positionInfo, player);
 
   const simpleDiagTableData = [ GenericTableOps.buildDataRow({
-    title: "TBD",
+    title: StatsUtils.idToPosition[positionId] || "Unknown",
     ...(_.mapValues(positionInfo, (p: number) => { return { value: p }; }))
   }, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta) ];
 
@@ -54,6 +55,9 @@ const PositionalDiagView: React.FunctionComponent<Props> = ({player}) => {
           <GenericTable tableCopyId="simpleDiagTable" tableFields={simpleDiagTable} tableData={simpleDiagTableData}/>
         </Col>
       </Container>
+      <ul>
+        <li>Rule used to categorize player: <em>{positionIdDiag}</em></li>
+      </ul>
       <br/>
       { JSON.stringify(tidyObj(positionDiags.scores)) }<br/>
     </span>;
