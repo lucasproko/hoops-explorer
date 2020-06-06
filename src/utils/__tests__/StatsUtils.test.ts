@@ -36,20 +36,113 @@ describe("StatsUtils", () => {
     const [ realConfidences, realDiags ] = StatsUtils.buildPositionConfidences(
       samplePlayerStatsResponse.aggregations.tri_filter.buckets.baseline.player.buckets[0]
     );
-    expect(tidyArr(realConfidences)).toEqual(["0.98", "0.02", "0.00", "0.00", "0.00", ]);
-    expect(tidyArr(realDiags.scores)).toEqual(["2.75","-1.33","-6.64","-13.02","-5.72"]);
+    expect(_.values(tidyObj(realConfidences))).toEqual(["0.95", "0.05", "0.00", "0.00", "0.00", ]);
+    expect(_.values(tidyObj(realDiags.scores))).toEqual(["4.10","1.19","-4.38","-8.11","-17.04"]);
     expect(tidyObj(realDiags.calculated)).toEqual({
-      "assist_per_fga": "0.41",
-      "ast_tov": "2.09",
-      "ft_relative_inv": "0.59", // 47% eFG / (166/206)
-      "mid_relative": "0.91",
-      "rim_relative": "1.07",
-      "three_relative": "1.02"
+      "calc_assist_per_fga": "0.41",
+      "calc_ast_tov": "2.09",
+      "calc_ft_relative_inv": "0.59", // 47% eFG / (166/206)
+      "calc_mid_relative": "0.91",
+      "calc_rim_relative": "1.07",
+      "calc_three_relative": "1.02"
     });
+    expect(_.keys(realConfidences)).toEqual(["pos_pg", "pos_sg", "pos_sf", "pos_pf", "pos_c"])
+    expect(_.keys(realDiags.scores)).toEqual(["pos_pg", "pos_sg", "pos_sf", "pos_pf", "pos_c"])
 
     const [ realConfidences2, realDiags2 ] = StatsUtils.buildPositionConfidences(
       samplePlayerStatsResponse.aggregations.tri_filter.buckets.baseline.player.buckets[1]
     );
-    expect(tidyArr(realConfidences2)).toEqual(["0.71", "0.19", "0.01", "0.00", "0.09", ]);
+    expect(_.values(tidyObj(realConfidences2))).toEqual(["0.21", "0.71", "0.07", "0.01", "0.00", ]);
+  });
+  test("StatsUtils - buildPosition", () => {
+    const testCases = [
+      // Point guards:
+      {
+        confs: [0.9, 0.1, 0, 0, 0], extra: { off_assist: 0.10, off_3pr: 0.20, off_poss: 1000, off_usage: 0.20 },
+        pos: "PG", fallbackPos: "G?", diag: `(P[PG] >= 85%)`
+      },
+      {
+        confs: [0.9, 0.1, 0, 0, 0], extra: { off_assist: 0.05, off_3pr: 0.20, off_poss: 1000, off_usage: 0.20 },
+        pos: "WG", fallbackPos: "G?", diag: `(PG:)(P[PG] >= 85%) BUT (AST%[5.0] < 9%)`
+      },
+
+      {
+        confs: [0.6, 0.4, 0, 0, 0], extra: { off_assist: 0.10, off_3pr: 0.20, off_poss: 1000, off_usage: 0.20 },
+        pos: "pG", fallbackPos: "G?", diag: `(P[PG] >= 50%)`
+      },
+      {
+        confs: [0.6, 0.4, 0, 0, 0], extra: { off_assist: 0.05, off_3pr: 0.20, off_poss: 1000, off_usage: 0.20 },
+        pos: "WG", fallbackPos: "G?", diag: `(pG:)(P[PG] >= 50%) BUT (AST%[5.0] < 9%)`
+      },
+      // Combo guards
+      {
+        confs: [0.4, 0.3, 0.2, 0.1, 0], extra: { off_assist: 0.10, off_3pr: 0.20, off_poss: 1000, off_usage: 0.20 },
+        pos: "CG", fallbackPos: "G?", diag: `(Max[P] == PG)`
+      },
+      {
+        confs: [0.4, 0.3, 0.2, 0.1, 0], extra: { off_assist: 0.05, off_3pr: 0.20, off_poss: 1000, off_usage: 0.20 },
+        pos: "WG", fallbackPos: "G?", diag: `(CG:)(Max[P] == PG) BUT (AST%[5.0] < 9%)`
+      },
+      {
+        confs: [0.2, 0.6, 0.1, 0.0, 0.1], extra: { off_assist: 0.10, off_3pr: 0.20, off_poss: 1000, off_usage: 0.20 },
+        pos: "CG", fallbackPos: "G?", diag: `(Max[P] == SG) AND (P[PG] >= P[SF] + P[PF] + P[C])`
+      },
+      {
+        confs: [0.2, 0.6, 0.1, 0.0, 0.1], extra: { off_assist: 0.05, off_3pr: 0.20, off_poss: 1000, off_usage: 0.20 },
+        pos: "WG", fallbackPos: "G?", diag: `(CG:)(Max[P] == SG) AND (P[PG] >= P[SF] + P[PF] + P[C]) BUT (AST%[5.0] < 9%)`
+      },
+      // Wing guards
+      {
+        confs: [0.1, 0.6, 0.1, 0.1, 0.1], extra: { off_assist: 0.10, off_3pr: 0.20, off_poss: 1000, off_usage: 0.20 },
+        pos: "WG", fallbackPos: "G?", diag: `(Max[P] == SG) AND (P[PG] < P[SF] + P[PF] + P[C])`
+      },
+      {
+        confs: [0.2, 0.2, 0.3, 0.2, 0.1], extra: { off_assist: 0.10, off_3pr: 0.20, off_poss: 1000, off_usage: 0.20 },
+        pos: "WG", fallbackPos: "G?", diag: `(Max[P] == SF) AND (P[PG] + P[SG] >= P[PF] + P[C])`
+      },
+      // Wing forwards:
+      {
+        confs: [0.2, 0.1, 0.3, 0.2, 0.2], extra: { off_assist: 0.10, off_3pr: 0.20, off_poss: 1000, off_usage: 0.20 },
+        pos: "WF", fallbackPos: "F?", diag: `(Max[P] == SF) AND (P[PG] + P[SG] < P[PF] + P[C])`
+      },
+      // Stretch-PF
+      {
+        confs: [0.0, 0.1, 0.1, 0.6, 0.2], extra: { off_assist: 0.10, off_3pr: 0.25, off_poss: 1000, off_usage: 0.20 },
+        pos: "S4", fallbackPos: "F?", diag: `(Max[P] == PF) AND (P[PG] + P[SG] + P[SF] >= P[C])`
+      },
+      {
+        confs: [0.0, 0.1, 0.1, 0.6, 0.2], extra: { off_assist: 0.10, off_3pr: 0.15, off_poss: 1000, off_usage: 0.20 },
+        pos: "FC", fallbackPos: "F?", diag: `(S4:)(Max[P] == PF) AND (P[PG] + P[SG] + P[SF] >= P[C]) BUT 3PR%[15.0] < 20%`
+      },
+      // PF/C
+      {
+        confs: [0.0, 0.0, 0.1, 0.9, 0.0], extra: { off_assist: 0.10, off_3pr: 0.25, off_poss: 1000, off_usage: 0.20 },
+        pos: "FC", fallbackPos: "F?", diag: `(P[PF] >= 85%)`
+      },
+      {
+        confs: [0.0, 0.0, 0.05, 0.8, 0.15], extra: { off_assist: 0.10, off_3pr: 0.25, off_poss: 1000, off_usage: 0.20 },
+        pos: "FC", fallbackPos: "F?", diag: `(Max[P] == C) OR ((Max[P] == PF) AND (P[PG] + P[SG] + P[SF] < P[C]))`
+      },
+      {
+        confs: [0.0, 0.0, 0.0, 0.2, 0.8], extra: { off_assist: 0.10, off_3pr: 0.25, off_poss: 1000, off_usage: 0.20 },
+        pos: "FC", fallbackPos: "F?", diag: `(Max[P] == C) OR ((Max[P] == PF) AND (P[PG] + P[SG] + P[SF] < P[C]))`
+      },
+      // C
+      {
+        confs: [0.0, 0.0, 0.0, 0.1, 0.9], extra: { off_assist: 0.10, off_3pr: 0.25, off_poss: 1000, off_usage: 0.20 },
+        pos: "C", fallbackPos: "F?", diag: `(P[C] >= 85%)`
+      }
+    ];
+    const posList = [ "pos_pg", "pos_sg", "pos_sf", "pos_pf", "pos_c" ];
+    testCases.forEach((caseObj: any) => {
+      const confObj = _.fromPairs(_.zip(posList, caseObj.confs).map(kv => [kv[0], kv[1]]));
+      const player = _.mapValues(caseObj.extra, (v: any) => { return { value: v}; });
+      expect(StatsUtils.buildPosition(confObj, player)).toEqual([ caseObj.pos, caseObj.diag ]);
+
+      const playerTooFewPos = _.chain(player).clone().merge({off_poss: { value: 100 } }).value();
+      expect(StatsUtils.buildPosition(confObj, playerTooFewPos)).toEqual([ caseObj.fallbackPos,
+        `Too few used possessions [20.0]=[100]*[20.0]%. Would have matched [${caseObj.pos}] from rule [${caseObj.diag}]`
+      ]);
+    });
   });
 });

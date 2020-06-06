@@ -143,6 +143,10 @@ export type DRtgDiagnostics = {
 /** (just to make copy/pasting between colab and this code easier)*/
 const array = (v: number[]) => { return v; }
 
+/** List of the fields used in the positional confidence vectors */
+const tradPosList = [ "pos_pg", "pos_sg", "pos_sf", "pos_pf", "pos_c" ];
+
+
 /** General cbb complex stats calcs */
 export class StatsUtils {
 
@@ -489,16 +493,16 @@ export class StatsUtils {
     ['calc_ast_tov', 1.0,
       array([ 0.08281269,  0.09093907, -0.37973552, -0.67240486,  0.5964297 ])
     ],
-    ['calc_three_relative', 1.0,
+    ['calc_three_relative', 100.0,
       array([ 0.00753295,  0.00814222,  0.00794373,  0.01847985, -0.04255395])
     ],
-    ['calc_mid_relative', 1.0,
+    ['calc_mid_relative', 100.0,
       array([ 0.00281905,  0.00377201,  0.00400989,  0.01991123, -0.02632626])
     ],
-    ['calc_rim_relative', 1.0,
+    ['calc_rim_relative', 100.0,
       array([-0.00995088,  0.00740773,  0.01560057,  0.03010704, -0.03693076])
     ],
-    ['def_ftr', 100.0, //(this is FC/50, which isn't _quite_ FC/40m but close enough given these low numbers)
+    ['def_ftr', 100.0, //(this is FC/(50*100), which isn't _quite_ FC/40m but close enough given these low numbers)
       array([-0.08827297, -0.20674559, -0.01827295,  0.22834328,  0.3239175 ])
     ],
     ['off_assist', 100.0,
@@ -525,16 +529,16 @@ export class StatsUtils {
     ['off_3pr', 100.0,
       array([ 0.02713631,  0.0218532 , -0.00223302,  0.00081636, -0.06555841])
     ],
-    ['def_blk', 100.0,
+    ['def_2prim', 100.0, //(used as the field for blocks)
       array([-0.29122875, -0.22875385, -0.09758256,  0.20918001,  0.69598967])
     ],
-    ['def_stl', 100.0,
+    ['def_to', 100.0, //(used as the field for steals)
       array([ 0.8133556 ,  0.54765371, -0.02580977, -0.68504559, -1.39476509])
     ],
-    ['calc_assist_per_fga', 1.0,
+    ['calc_assist_per_fga', 100.0, //(expressed as %)
       array([ 0.01429017, -0.00313073,  0.0082461 ,  0.01833772, -0.0319402 ])
     ],
-    ['calc_ft_relative_inv', 1.0,
+    ['calc_ft_relative_inv', 100.0,
       array([-0.01016761, -0.0056131 , -0.00079665, -0.00547513,  0.02533069])
     ]
   ] as Array<[string, number, number[]]>;
@@ -542,15 +546,15 @@ export class StatsUtils {
   /** Returns a vector of 5 elements representing the confidence that the player
       can play that position (0=PG, 1=SG, 4=SF, 4=PF, 5=C)
   */
-  static buildPositionConfidences(player: Record<string, any>): [ number[], any ] {
+  static buildPositionConfidences(player: Record<string, any>): [ Record<string, number>, any ] {
 
     const calculated = {
-      ast_tov: player.total_off_assist.value / (player.total_off_to.value || 1),
-      three_relative: 1.5*player.off_3p.value / (player.off_efg.value || 1),
-      mid_relative: player.off_2pmid.value / (player.off_efg.value || 1),
-      rim_relative: player.off_2prim.value / (player.off_efg.value || 1),
-      assist_per_fga: player.total_off_assist.value / (player.total_off_fga.value || 1),
-      ft_relative_inv:  //=eFG/FT%, (where FT% = FTM/FTA)
+      calc_ast_tov: player.total_off_assist.value / (player.total_off_to.value || 1),
+      calc_three_relative: 1.5*player.off_3p.value / (player.off_efg.value || 1),
+      calc_mid_relative: player.off_2pmid.value / (player.off_efg.value || 1),
+      calc_rim_relative: player.off_2prim.value / (player.off_efg.value || 1),
+      calc_assist_per_fga: player.total_off_assist.value / (player.total_off_fga.value || 1),
+      calc_ft_relative_inv:  //=eFG/FT%, (where FT% = FTM/FTA)
         (player.off_efg.value * player.total_off_fta.value) / (player.total_off_ftm.value || 1)
     } as Record<string, number>;
 
@@ -560,19 +564,26 @@ export class StatsUtils {
         const scale = pos_scale_weights[1];
         const weights = pos_scale_weights[2];
         const fieldVal = _.startsWith(pos, "calc_") ? (calculated[pos] || 0) : (player[pos]?.value || 0);
+
         weights.forEach((weight, index) => acc[index] += fieldVal*scale*weight);
+
+        // (used for debugging - shouldn't be needed moving forward)
+        //console.log(`${player.key}: ${pos} ${scale} ${weights}  - ${fieldVal} ... ${acc}`);
+
       }, _.clone(StatsUtils.positionFeatureInit)
     );
 
+    const addPos = (v: number[], scale: number) => {
+      return _.chain(v).map((s: number, i: number) => [ tradPosList[i], s*scale ]).fromPairs().value();
+    }
     const maxScore = _.max(scores) || 0;
     const confs = scores.map((s: number) => Math.exp(s - maxScore));
-    const maxConf = _.sum(confs) || 0;
+    const maxConfInv = 1.0/(_.sum(confs) || 1);
 
     return [
-      { pos_pg: confs[0], pos_sg: confs[1], pos_sf: confs[2], pos_pf: confs[3], pos_c: confs[4] },
-      confs.map((s: number) => s/maxConf),
+      addPos(confs, maxConfInv),
       {
-        scores: scores,
+        scores: addPos(scores, 1.0),
         calculated: calculated
       }
     ];
@@ -586,11 +597,71 @@ export class StatsUtils {
     "WF": "Wing Forward",
     "S4": "Stretch PF",
     "FC": "PF/Center",
-    "C": "Center"
+    "C": "Center",
+    "G?": "Unknown - probably guard",
+    "F?": "Unknown - probably forward"
   };
 
   /** Tag the player with a position string given the confidences */
-  static buildPosition(confs: number[], player: Record<string, any>) {
+  static buildPosition(confs: Record<string, number>, player: Record<string, any>): [string, string] {
+    // Get the class with the highest prio
+    const maxPos = _.maxBy(tradPosList, (pos: string) => confs[pos] || 0) || 0;
 
+    const assistRate = player?.off_assist?.value || 0;
+    const minAstRate = 0.09; // (less than this and you can't be a PG!)
+    const threeRate = player?.off_3pr?.value || 0;
+    const minThreeRate = 0.20;
+
+    const fwdConfSum = confs["pos_sf"] + confs["pos_pf"] + confs["pos_c"];
+
+    // Just do the rules as a big bunch of if statements
+    const getPosition = () => {
+      if (confs["pos_pg"] > 0.85) {
+        return (assistRate >= minAstRate) ?
+          [ "PG", `(P[PG] >= 85%)`, "G?" ] :
+          [ "WG", `(PG:)(P[PG] >= 85%) BUT (AST%[${(assistRate*100).toFixed(1)}] < 9%)`, "G?" ];
+      } else if (confs["pos_pg"] > 0.5) {
+        return (assistRate >= minAstRate) ?
+          [ "pG", `(P[PG] >= 50%)`, "G?" ] :
+          [ "WG", `(pG:)(P[PG] >= 50%) BUT (AST%[${(assistRate*100).toFixed(1)}] < 9%)`, "G?" ];
+      } else if (maxPos == tradPosList[0]) {
+        return (assistRate >= minAstRate) ?
+          [ "CG", `(Max[P] == PG)`, "G?" ] :
+          [ "WG", `(CG:)(Max[P] == PG) BUT (AST%[${(assistRate*100).toFixed(1)}] < 9%)`, "G?" ];
+      } else if ((maxPos == tradPosList[1]) && (confs["pos_pg"] >= fwdConfSum)) {
+        return (assistRate >= minAstRate) ?
+        [ "CG", `(Max[P] == SG) AND (P[PG] >= P[SF] + P[PF] + P[C])`, "G?" ] :
+        [ "WG", `(CG:)(Max[P] == SG) AND (P[PG] >= P[SF] + P[PF] + P[C]) BUT (AST%[${(assistRate*100).toFixed(1)}] < 9%)`, "G?" ];
+      } else if ((maxPos == tradPosList[1]) && (confs["pos_pg"] < fwdConfSum)) {
+        return [ "WG", `(Max[P] == SG) AND (P[PG] < P[SF] + P[PF] + P[C])`, "G?" ];
+      } else if ((maxPos == tradPosList[2]) && (confs["pos_pg"] + confs["pos_sg"] >= confs["pos_pf"] + confs["pos_c"])) {
+        return [ "WG", `(Max[P] == SF) AND (P[PG] + P[SG] >= P[PF] + P[C])`, "G?" ];
+      } else if (maxPos == tradPosList[2]) {
+        return [ "WF", `(Max[P] == SF) AND (P[PG] + P[SG] < P[PF] + P[C])`, "F?" ];
+      } else if (confs["pos_pf"] >= 0.85) {
+        return [ "FC", `(P[PF] >= 85%)`, "F?" ];
+      } else if ((maxPos == tradPosList[3]) && (confs["pos_pg"] + confs["pos_sg"] + confs["pos_sf"] >= confs["pos_c"])) {
+        return (threeRate >= minThreeRate) ?
+          [ "S4", `(Max[P] == PF) AND (P[PG] + P[SG] + P[SF] >= P[C])`, "F?" ] :
+          [ "FC", `(S4:)(Max[P] == PF) AND (P[PG] + P[SG] + P[SF] >= P[C]) BUT 3PR%[${(threeRate*100).toFixed(1)}] < 20%`, "F?" ];
+      } else if (confs["pos_c"] >= 0.85) {
+        return [ "C", `(P[C] >= 85%)`, "F?" ];
+      }
+      //(else fallback)
+      return [ "FC", `(Max[P] == C) OR ((Max[P] == PF) AND (P[PG] + P[SG] + P[SF] < P[C]))`, "F?" ];
+    };
+    const [ pos, diag, fallbackPos ] = getPosition();
+
+    const usage = (player?.off_usage?.value || 0);
+    const poss = (player?.off_poss?.value || 0);
+    const effectivePoss = poss*usage;
+
+    if (effectivePoss < 50.0) { // Too few possessions to make an accurate determination
+      return [ fallbackPos,
+        `Too few used possessions [${effectivePoss.toFixed(1)}]=[${poss.toFixed(0)}]*[${(usage*100).toFixed(1)}]%. ` +
+        `Would have matched [${pos}] from rule [${diag}]` ];
+    } else {
+      return [ pos, diag ];
+    }
   }
 }

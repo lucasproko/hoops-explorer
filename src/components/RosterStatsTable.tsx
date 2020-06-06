@@ -28,6 +28,7 @@ import { faCheck } from '@fortawesome/free-solid-svg-icons';
 // Component imports
 import GenericTable, { GenericTableOps, GenericTableColProps } from "./GenericTable";
 import RosterStatsDiagView from "./RosterStatsDiagView";
+import PositionalDiagView from "./PositionalDiagView";
 import GenericTogglingMenuItem from "./GenericTogglingMenuItem";
 
 // Util imports
@@ -74,6 +75,8 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, tea
   const [ showDiagMode, setShowDiagMode ] = useState(_.isNil(gameFilterParams.showDiag) ?
     ParamDefaults.defaultPlayerDiagMode : gameFilterParams.showDiag
   );
+
+  const [ showPositionDiags, setShowPositionDiags ] = useState(true); //TODO add to URL etc etc
 
   /** Show a diagnostics mode explaining the off/def ratings */
   const [ possAsPct, setPossAsPct ] = useState(_.isNil(gameFilterParams.possAsPct) ?
@@ -255,19 +258,25 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, tea
         [ GenericTableOps.buildDataRow(p.on, offPrefixFn, offCellMetaFn) ],
         expandedView ? [ GenericTableOps.buildDataRow(p.on, defPrefixFn, defCellMetaFn) ] : [],
         p.on?.diag_off_rtg ?
-          [ GenericTableOps.buildTextRow(<RosterStatsDiagView ortgDiags={p.on?.diag_off_rtg} drtgDiags={p.on?.diag_def_rtg}/>, "small") ] : []
+          [ GenericTableOps.buildTextRow(<RosterStatsDiagView ortgDiags={p.on?.diag_off_rtg} drtgDiags={p.on?.diag_def_rtg}/>, "small") ] : [],
+        showPositionDiags ?
+          [ GenericTableOps.buildTextRow(<PositionalDiagView player={p.on}/>, "small") ] : [],
       ]),
       _.isNil(p.off?.off_title) ? [ ] : _.flatten([
         [ GenericTableOps.buildDataRow(p.off, offPrefixFn, offCellMetaFn) ],
         expandedView ? [ GenericTableOps.buildDataRow(p.off, defPrefixFn, defCellMetaFn) ] : [],
         p.off?.diag_off_rtg ?
-          [ GenericTableOps.buildTextRow(<RosterStatsDiagView ortgDiags={p.off?.diag_off_rtg} drtgDiags={p.off?.diag_def_rtg}/>, "small") ] : []
+          [ GenericTableOps.buildTextRow(<RosterStatsDiagView ortgDiags={p.off?.diag_off_rtg} drtgDiags={p.off?.diag_def_rtg}/>, "small") ] : [],
+        showPositionDiags ?
+          [ GenericTableOps.buildTextRow(<PositionalDiagView player={p.off}/>, "small") ] : [],
       ]),
       (skipBaseline || _.isNil(p.baseline?.off_title)) ? [ ] : _.flatten([
         [ GenericTableOps.buildDataRow(p.baseline, offPrefixFn, offCellMetaFn) ],
         expandedView ? [ GenericTableOps.buildDataRow(p.baseline, defPrefixFn, defCellMetaFn) ] : [],
         p.baseline?.diag_off_rtg ?
-          [ GenericTableOps.buildTextRow(<RosterStatsDiagView ortgDiags={p.baseline?.diag_off_rtg} drtgDiags={p.baseline?.diag_def_rtg}/>, "small") ] : []
+          [ GenericTableOps.buildTextRow(<RosterStatsDiagView ortgDiags={p.baseline?.diag_off_rtg} drtgDiags={p.baseline?.diag_def_rtg}/>, "small") ] : [],
+        showPositionDiags ?
+          [ GenericTableOps.buildTextRow(<PositionalDiagView player={p.baseline}/>, "small") ] : [],
       ]),
       [ GenericTableOps.buildRowSeparator() ]
     ]);
@@ -438,6 +447,11 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, tea
                 text="Show Off/Def Rating diagnostics"
                 truthVal={showDiagMode}
                 onSelect={() => setShowDiagMode(!showDiagMode)}
+              />
+              <GenericTogglingMenuItem
+                text="Show Positional diagnostics"
+                truthVal={showPositionDiags}
+                onSelect={() => setShowPositionDiags(!showPositionDiags)}
               />
             </Dropdown.Menu>
           </Dropdown>
