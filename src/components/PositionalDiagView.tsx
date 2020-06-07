@@ -105,14 +105,18 @@ const complexDiagSubtitles = {
 const contribKeys = [ "contrib_pg", "contrib_sg", "contrib_sf", "contrib_pf", "contrib_c" ];
 
 type Props = {
-  player: Record<string, any>
+  player: Record<string, any>,
+  showHelp: boolean,
+  showDetailsOverride?: boolean
 };
-const PositionalDiagView: React.FunctionComponent<Props> = ({player}) => {
+const PositionalDiagView: React.FunctionComponent<Props> = ({player, showHelp, showDetailsOverride}) => {
+
+  const topRef = React.createRef<HTMLDivElement>();
 
   const [ positionInfo, positionDiags ] = StatsUtils.buildPositionConfidences(player);
   const [ positionId, positionIdDiag ] = StatsUtils.buildPosition(positionInfo, player);
 
-  const [ showComplexDiag, setShowComplexDiag ] = useState(true);
+  const [ showComplexDiag, setShowComplexDiag ] = useState(_.isNil(showDetailsOverride) ? true : showDetailsOverride);
 
   const simpleDiagTableData = [ GenericTableOps.buildDataRow({
     title: StatsUtils.idToPosition[positionId] || "Unknown",
@@ -165,26 +169,50 @@ const PositionalDiagView: React.FunctionComponent<Props> = ({player}) => {
       ] : [ dataRow ];
     }).value()) : [];
 
-  //TODO: remove this once the tables are up
-  const tidyObj = (vo: Record<string, number>) => _.mapValues(vo, (v: number) => v.toFixed(2))
-
-  return <span>
+  return <span ref={topRef}>
+      <span>
+        <b>Positional diagnostics for [{player.key}]</b> {
+          showHelp ? <a href="https://hoop-explorer.blogspot.com/2020/05/classifying-college-basketball.html" target="_new">(?)</a> : null
+        }
+      </span>
+      <ul>
+        <li>The following table shows the confidence that the player could fit into one of the
+        traditional positional categories. That "signature" is then used to assign a "positional role".
+        {showHelp ? <span> See the linked help for more info about the algorithm.</span> : null}
+        </li>
+        <li>Rule used to categorize player: <i><b>{positionIdDiag}</b></i></li>
+      </ul>
       <Container>
         <Col xs={8}>
-          <GenericTable tableCopyId="simpleDiagTable" tableFields={simpleDiagTable} tableData={simpleDiagTableData}/>
+          <GenericTable tableFields={simpleDiagTable} tableData={simpleDiagTableData}/>
         </Col>
       </Container>
-      <ul>
-        <li>Rule used to categorize player: <em>{positionIdDiag}</em></li>
-      </ul>
       (<a href="#" onClick={(event) => { event.preventDefault(); setShowComplexDiag(!showComplexDiag) }}>
         {showComplexDiag ? "Hide": "Show"} detailed positional breakdown
       </a>)
-      {showComplexDiag ? <Container>
-        <Col xs={8}>
-          <GenericTable tableCopyId="complexDiagTable" tableFields={complexDiagTable} tableData={complexDiagTableData}/>
-        </Col>
-      </Container> : null}
+      {showComplexDiag ? <span>
+        <ul>
+          <li>This table breaks down how a player scores against each of the traditional positions
+          based on the different statistics used to train the algorithm.
+          </li>
+        </ul>
+        <Container>
+          <Col xs={8}>
+            <GenericTable tableCopyId="complexDiagTable" tableFields={complexDiagTable} tableData={complexDiagTableData}/>
+          </Col>
+        </Container>
+        (<a href="#" onClick={(event) => {
+          event.preventDefault();
+          if (topRef.current) {
+            topRef.current.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start',
+            });
+          }
+        }}>
+          Scroll back to start of positional diagnostics
+        </a>)
+      </span> : null}
     </span>;
 };
 export default PositionalDiagView;

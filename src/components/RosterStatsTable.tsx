@@ -55,6 +55,12 @@ type Props = {
 
 const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, teamStats, rosterStats, onChangeState}) => {
 
+  const server = (typeof window === `undefined`) ? //(ensures SSR code still compiles)
+    "server" : window.location.hostname
+
+  /** Only show help for diagnstic on/off on main page */
+  const showHelp = !_.startsWith(server, "cbb-on-off-analyzer");
+
   // 1] State (some of these are phase 2+ and aren't plumbed in yet)
 
   const commonParams = getCommonFilterParams(gameFilterParams);
@@ -85,7 +91,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, tea
   const [ possAsPct, setPossAsPct ] = useState(_.isNil(gameFilterParams.possAsPct) ?
     ParamDefaults.defaultPlayerPossAsPct : gameFilterParams.possAsPct
   );
-  
+
   /** Incorporates SoS into rating calcs "Adj [Eq] Rtg" */
   const [ adjORtgForSos, setAdjORtgForSos ] = useState(false);
 
@@ -265,7 +271,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, tea
         p.on?.diag_off_rtg ?
           [ GenericTableOps.buildTextRow(<RosterStatsDiagView ortgDiags={p.on?.diag_off_rtg} drtgDiags={p.on?.diag_def_rtg}/>, "small") ] : [],
         showPositionDiags ?
-          [ GenericTableOps.buildTextRow(<PositionalDiagView player={p.on}/>, "small") ] : [],
+          [ GenericTableOps.buildTextRow(<PositionalDiagView player={p.on} showHelp={showHelp}/>, "small") ] : [],
       ]),
       _.isNil(p.off?.off_title) ? [ ] : _.flatten([
         [ GenericTableOps.buildDataRow(p.off, offPrefixFn, offCellMetaFn) ],
@@ -273,7 +279,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, tea
         p.off?.diag_off_rtg ?
           [ GenericTableOps.buildTextRow(<RosterStatsDiagView ortgDiags={p.off?.diag_off_rtg} drtgDiags={p.off?.diag_def_rtg}/>, "small") ] : [],
         showPositionDiags ?
-          [ GenericTableOps.buildTextRow(<PositionalDiagView player={p.off}/>, "small") ] : [],
+          [ GenericTableOps.buildTextRow(<PositionalDiagView player={p.off} showHelp={showHelp}/>, "small") ] : [],
       ]),
       (skipBaseline || _.isNil(p.baseline?.off_title)) ? [ ] : _.flatten([
         [ GenericTableOps.buildDataRow(p.baseline, offPrefixFn, offCellMetaFn) ],
@@ -281,7 +287,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, tea
         p.baseline?.diag_off_rtg ?
           [ GenericTableOps.buildTextRow(<RosterStatsDiagView ortgDiags={p.baseline?.diag_off_rtg} drtgDiags={p.baseline?.diag_def_rtg}/>, "small") ] : [],
         showPositionDiags ?
-          [ GenericTableOps.buildTextRow(<PositionalDiagView player={p.baseline}/>, "small") ] : [],
+          [ GenericTableOps.buildTextRow(<PositionalDiagView player={p.baseline} showHelp={showHelp}/>, "small") ] : [],
       ]),
       [ GenericTableOps.buildRowSeparator() ]
     ]);

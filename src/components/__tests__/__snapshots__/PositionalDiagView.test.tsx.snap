@@ -1,0 +1,1562 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PositionalDiagView PositionalDiagView - should create snapshot (basic details, !help) 1`] = `
+<span>
+  <span>
+    <b>
+      Positional diagnostics for [
+      Cowan, Anthony
+      ]
+    </b>
+     
+  </span>
+  <ul>
+    <li>
+      The following table shows the confidence that the player could fit into one of the traditional positional categories. That "signature" is then used to assign a "positional role".
+    </li>
+    <li>
+      Rule used to categorize player: 
+      <i>
+        <b>
+          (P[PG] &gt;= 85%)
+        </b>
+      </i>
+    </li>
+  </ul>
+  <Container
+    fluid={false}
+  >
+    <Col
+      xs={8}
+    >
+      <GenericTable
+        tableData={
+          Array [
+            GenericTableDataRow {
+              "cellMetaFn": [Function],
+              "dataObj": Object {
+                "pos_c": Object {
+                  "value": 6.240264948172465e-10,
+                },
+                "pos_pf": Object {
+                  "value": 0.000004718217541315014,
+                },
+                "pos_pg": Object {
+                  "value": 0.948515301744713,
+                },
+                "pos_sf": Object {
+                  "value": 0.0001964375248842393,
+                },
+                "pos_sg": Object {
+                  "value": 0.051283541888835105,
+                },
+                "title": "Pure PG",
+              },
+              "kind": "data-row",
+              "prefixFn": [Function],
+              "tableFieldsOverride": undefined,
+            },
+          ]
+        }
+        tableFields={
+          Object {
+            "pos_c": GenericTableColProps {
+              "className": "",
+              "colName": "C%",
+              "colorPicker": [Function],
+              "formatter": [Function],
+              "isTitle": false,
+              "missingData": undefined,
+              "rowSpan": [Function],
+              "toolTip": "% Fit of the player vs signature stats associated with players traditionally called [Center]",
+              "widthUnits": 2,
+            },
+            "pos_pf": GenericTableColProps {
+              "className": "",
+              "colName": "PF%",
+              "colorPicker": [Function],
+              "formatter": [Function],
+              "isTitle": false,
+              "missingData": undefined,
+              "rowSpan": [Function],
+              "toolTip": "% Fit of the player vs signature stats associated with players traditionally called [Power Forward]",
+              "widthUnits": 2,
+            },
+            "pos_pg": GenericTableColProps {
+              "className": "",
+              "colName": "PG%",
+              "colorPicker": [Function],
+              "formatter": [Function],
+              "isTitle": false,
+              "missingData": undefined,
+              "rowSpan": [Function],
+              "toolTip": "% Fit of the player vs signature stats associated with players traditionally called [Point Guard]",
+              "widthUnits": 2,
+            },
+            "pos_sf": GenericTableColProps {
+              "className": "",
+              "colName": "SF%",
+              "colorPicker": [Function],
+              "formatter": [Function],
+              "isTitle": false,
+              "missingData": undefined,
+              "rowSpan": [Function],
+              "toolTip": "% Fit of the player vs signature stats associated with players traditionally called [Small Forward]",
+              "widthUnits": 2,
+            },
+            "pos_sg": GenericTableColProps {
+              "className": "",
+              "colName": "SG%",
+              "colorPicker": [Function],
+              "formatter": [Function],
+              "isTitle": false,
+              "missingData": undefined,
+              "rowSpan": [Function],
+              "toolTip": "% Fit of the player vs signature stats associated with players traditionally called [Shooting Guard]",
+              "widthUnits": 2,
+            },
+            "sep0": GenericTableColProps {
+              "className": "",
+              "colName": "",
+              "colorPicker": [Function],
+              "formatter": [Function],
+              "isTitle": false,
+              "missingData": undefined,
+              "rowSpan": [Function],
+              "toolTip": "",
+              "widthUnits": 0.5,
+            },
+            "title": GenericTableColProps {
+              "className": "",
+              "colName": "",
+              "colorPicker": [Function],
+              "formatter": [Function],
+              "isTitle": true,
+              "missingData": undefined,
+              "rowSpan": [Function],
+              "toolTip": "The positional class associated with this player's statistical signature",
+              "widthUnits": 8,
+            },
+          }
+        }
+      />
+    </Col>
+  </Container>
+  (
+  <a
+    href="#"
+    onClick={[Function]}
+  >
+    Show
+     detailed positional breakdown
+  </a>
+  )
+</span>
+`;
+
+exports[`PositionalDiagView PositionalDiagView - should create snapshot (details, help) 1`] = `
+<span>
+  <span>
+    <b>
+      Positional diagnostics for [
+      Wiggins, Aaron
+      ]
+    </b>
+     
+    <a
+      href="https://hoop-explorer.blogspot.com/2020/05/classifying-college-basketball.html"
+      target="_new"
+    >
+      (?)
+    </a>
+  </span>
+  <ul>
+    <li>
+      The following table shows the confidence that the player could fit into one of the traditional positional categories. That "signature" is then used to assign a "positional role".
+      <span>
+         See the linked help for more info about the algorithm.
+      </span>
+    </li>
+    <li>
+      Rule used to categorize player: 
+      <i>
+        <b>
+          (Max[P] == SG) AND (P[PG] &gt;= P[SF] + P[PF] + P[C])
+        </b>
+      </i>
+    </li>
+  </ul>
+  <Container
+    fluid={false}
+  >
+    <Col
+      xs={8}
+    >
+      <GenericTable
+        tableData={
+          Array [
+            GenericTableDataRow {
+              "cellMetaFn": [Function],
+              "dataObj": Object {
+                "pos_c": Object {
+                  "value": 2.860539327602177e-7,
+                },
+                "pos_pf": Object {
+                  "value": 0.008583821348534111,
+                },
+                "pos_pg": Object {
+                  "value": 0.2117152052070425,
+                },
+                "pos_sf": Object {
+                  "value": 0.07259697433209066,
+                },
+                "pos_sg": Object {
+                  "value": 0.7071037130584001,
+                },
+                "title": "Combo Guard",
+              },
+              "kind": "data-row",
+              "prefixFn": [Function],
+              "tableFieldsOverride": undefined,
+            },
+          ]
+        }
+        tableFields={
+          Object {
+            "pos_c": GenericTableColProps {
+              "className": "",
+              "colName": "C%",
+              "colorPicker": [Function],
+              "formatter": [Function],
+              "isTitle": false,
+              "missingData": undefined,
+              "rowSpan": [Function],
+              "toolTip": "% Fit of the player vs signature stats associated with players traditionally called [Center]",
+              "widthUnits": 2,
+            },
+            "pos_pf": GenericTableColProps {
+              "className": "",
+              "colName": "PF%",
+              "colorPicker": [Function],
+              "formatter": [Function],
+              "isTitle": false,
+              "missingData": undefined,
+              "rowSpan": [Function],
+              "toolTip": "% Fit of the player vs signature stats associated with players traditionally called [Power Forward]",
+              "widthUnits": 2,
+            },
+            "pos_pg": GenericTableColProps {
+              "className": "",
+              "colName": "PG%",
+              "colorPicker": [Function],
+              "formatter": [Function],
+              "isTitle": false,
+              "missingData": undefined,
+              "rowSpan": [Function],
+              "toolTip": "% Fit of the player vs signature stats associated with players traditionally called [Point Guard]",
+              "widthUnits": 2,
+            },
+            "pos_sf": GenericTableColProps {
+              "className": "",
+              "colName": "SF%",
+              "colorPicker": [Function],
+              "formatter": [Function],
+              "isTitle": false,
+              "missingData": undefined,
+              "rowSpan": [Function],
+              "toolTip": "% Fit of the player vs signature stats associated with players traditionally called [Small Forward]",
+              "widthUnits": 2,
+            },
+            "pos_sg": GenericTableColProps {
+              "className": "",
+              "colName": "SG%",
+              "colorPicker": [Function],
+              "formatter": [Function],
+              "isTitle": false,
+              "missingData": undefined,
+              "rowSpan": [Function],
+              "toolTip": "% Fit of the player vs signature stats associated with players traditionally called [Shooting Guard]",
+              "widthUnits": 2,
+            },
+            "sep0": GenericTableColProps {
+              "className": "",
+              "colName": "",
+              "colorPicker": [Function],
+              "formatter": [Function],
+              "isTitle": false,
+              "missingData": undefined,
+              "rowSpan": [Function],
+              "toolTip": "",
+              "widthUnits": 0.5,
+            },
+            "title": GenericTableColProps {
+              "className": "",
+              "colName": "",
+              "colorPicker": [Function],
+              "formatter": [Function],
+              "isTitle": true,
+              "missingData": undefined,
+              "rowSpan": [Function],
+              "toolTip": "The positional class associated with this player's statistical signature",
+              "widthUnits": 8,
+            },
+          }
+        }
+      />
+    </Col>
+  </Container>
+  (
+  <a
+    href="#"
+    onClick={[Function]}
+  >
+    Hide
+     detailed positional breakdown
+  </a>
+  )
+  <span>
+    <ul>
+      <li>
+        This table breaks down how a player scores against each of the traditional positions based on the different statistics used to train the algorithm.
+      </li>
+    </ul>
+    <Container
+      fluid={false}
+    >
+      <Col
+        xs={8}
+      >
+        <GenericTable
+          tableCopyId="complexDiagTable"
+          tableData={
+            Array [
+              GenericTableDataRow {
+                "cellMetaFn": [Function],
+                "dataObj": Object {
+                  "feature": "Total Score",
+                  "pos_c": Object {
+                    "value": -0.14516627912414032,
+                  },
+                  "pos_pf": Object {
+                    "value": -0.0420741853061077,
+                  },
+                  "pos_pg": Object {
+                    "value": -0.010020557237015684,
+                  },
+                  "pos_sf": Object {
+                    "value": -0.020723744784802857,
+                  },
+                  "pos_sg": Object {
+                    "value": 0.00203879626128261,
+                  },
+                },
+                "kind": "data-row",
+                "prefixFn": [Function],
+                "tableFieldsOverride": undefined,
+              },
+              GenericTableTextRow {
+                "className": "small",
+                "kind": "text-row",
+                "text": <span>
+                  <em>
+                    Ball-Handling
+                  </em>
+                </span>,
+              },
+              GenericTableDataRow {
+                "cellMetaFn": [Function],
+                "dataObj": Object {
+                  "contrib_c": Object {
+                    "value": 0.017993861855428415,
+                  },
+                  "contrib_pf": Object {
+                    "value": -0.03679960543367233,
+                  },
+                  "contrib_pg": Object {
+                    "value": 0.00691202558279862,
+                  },
+                  "contrib_sf": Object {
+                    "value": -0.051617559869774406,
+                  },
+                  "contrib_sg": Object {
+                    "value": 0.010261371009774053,
+                  },
+                  "feature": <OverlayTrigger
+                    overlay={
+                      <ForwardRef
+                        id="calc_ast_tovTooltip"
+                        placement="right"
+                      >
+                        Assist to Turnover ratio in selected lineups
+                      </ForwardRef>
+                    }
+                    placement="auto"
+                  >
+                    <b>
+                      A/TOV
+                    </b>
+                  </OverlayTrigger>,
+                  "player": Object {
+                    "value": 0.008571428571428572,
+                  },
+                  "pos_c": Object {
+                    "value": 0.5964297,
+                  },
+                  "pos_pf": Object {
+                    "value": -0.67240486,
+                  },
+                  "pos_pg": Object {
+                    "value": 0.08281269,
+                  },
+                  "pos_sf": Object {
+                    "value": -0.37973552,
+                  },
+                  "pos_sg": Object {
+                    "value": 0.09093907,
+                  },
+                },
+                "kind": "data-row",
+                "prefixFn": [Function],
+                "tableFieldsOverride": undefined,
+              },
+              GenericTableDataRow {
+                "cellMetaFn": [Function],
+                "dataObj": Object {
+                  "contrib_c": Object {
+                    "value": -0.04223492496091544,
+                  },
+                  "contrib_pf": Object {
+                    "value": -0.03168385808689023,
+                  },
+                  "contrib_pg": Object {
+                    "value": 0.15233331427951713,
+                  },
+                  "contrib_sf": Object {
+                    "value": -0.10245290360067807,
+                  },
+                  "contrib_sg": Object {
+                    "value": 0.03380183622924033,
+                  },
+                  "feature": <OverlayTrigger
+                    overlay={
+                      <ForwardRef
+                        id="off_assistTooltip"
+                        placement="right"
+                      >
+                        Assist % for player in selected lineups
+                      </ForwardRef>
+                    }
+                    placement="auto"
+                  >
+                    <b>
+                      A%
+                    </b>
+                  </OverlayTrigger>,
+                  "player": Object {
+                    "value": 0.0988235294117647,
+                  },
+                  "pos_c": Object {
+                    "value": -0.12142258,
+                  },
+                  "pos_pf": Object {
+                    "value": -0.05021328,
+                  },
+                  "pos_pg": Object {
+                    "value": 0.15829941,
+                  },
+                  "pos_sf": Object {
+                    "value": -0.06537337,
+                  },
+                  "pos_sg": Object {
+                    "value": 0.02598234,
+                  },
+                },
+                "kind": "data-row",
+                "prefixFn": [Function],
+                "tableFieldsOverride": undefined,
+              },
+              GenericTableDataRow {
+                "cellMetaFn": [Function],
+                "dataObj": Object {
+                  "contrib_c": Object {
+                    "value": 0.026647517533843396,
+                  },
+                  "contrib_pf": Object {
+                    "value": -0.03963956319487794,
+                  },
+                  "contrib_pg": Object {
+                    "value": -0.010649444941996322,
+                  },
+                  "contrib_sf": Object {
+                    "value": -0.05414931077874611,
+                  },
+                  "contrib_sg": Object {
+                    "value": 0.010898875237855803,
+                  },
+                  "feature": <OverlayTrigger
+                    overlay={
+                      <ForwardRef
+                        id="off_toTooltip"
+                        placement="right"
+                      >
+                        Turnover % in selected lineups
+                      </ForwardRef>
+                    }
+                    placement="auto"
+                  >
+                    <b>
+                      TO%
+                    </b>
+                  </OverlayTrigger>,
+                  "player": Object {
+                    "value": 0.16076743404863644,
+                  },
+                  "pos_c": Object {
+                    "value": 0.04709196,
+                  },
+                  "pos_pf": Object {
+                    "value": -0.03861639,
+                  },
+                  "pos_pg": Object {
+                    "value": -0.00680258,
+                  },
+                  "pos_sf": Object {
+                    "value": -0.02123889,
+                  },
+                  "pos_sg": Object {
+                    "value": 0.0051497,
+                  },
+                },
+                "kind": "data-row",
+                "prefixFn": [Function],
+                "tableFieldsOverride": undefined,
+              },
+              GenericTableDataRow {
+                "cellMetaFn": [Function],
+                "dataObj": Object {
+                  "contrib_c": Object {
+                    "value": -0.016115033448116056,
+                  },
+                  "contrib_pf": Object {
+                    "value": 0.016783638442221253,
+                  },
+                  "contrib_pg": Object {
+                    "value": 0.019946848991563935,
+                  },
+                  "contrib_sf": Object {
+                    "value": 0.018745339249080523,
+                  },
+                  "contrib_sg": Object {
+                    "value": -0.005907843146371329,
+                  },
+                  "feature": <OverlayTrigger
+                    overlay={
+                      <ForwardRef
+                        id="calc_assist_per_fgaTooltip"
+                        placement="right"
+                      >
+                        The ratio of Assists to FG attempts, expressed as a %
+                      </ForwardRef>
+                    }
+                    placement="auto"
+                  >
+                    <b>
+                      A/FG%
+                    </b>
+                  </OverlayTrigger>,
+                  "player": Object {
+                    "value": 0.14334470989761092,
+                  },
+                  "pos_c": Object {
+                    "value": -0.0319402,
+                  },
+                  "pos_pf": Object {
+                    "value": 0.01833772,
+                  },
+                  "pos_pg": Object {
+                    "value": 0.01429017,
+                  },
+                  "pos_sf": Object {
+                    "value": 0.0082461,
+                  },
+                  "pos_sg": Object {
+                    "value": -0.00313073,
+                  },
+                },
+                "kind": "data-row",
+                "prefixFn": [Function],
+                "tableFieldsOverride": undefined,
+              },
+              GenericTableTextRow {
+                "className": "small",
+                "kind": "text-row",
+                "text": <span>
+                  <em>
+                    Shot Selection
+                  </em>
+                </span>,
+              },
+              GenericTableDataRow {
+                "cellMetaFn": [Function],
+                "dataObj": Object {
+                  "contrib_c": Object {
+                    "value": -0.12836904374477995,
+                  },
+                  "contrib_pf": Object {
+                    "value": 0.0028997516825672175,
+                  },
+                  "contrib_pg": Object {
+                    "value": 0.1470029365750779,
+                  },
+                  "contrib_sf": Object {
+                    "value": -0.0197004267655158,
+                  },
+                  "contrib_sg": Object {
+                    "value": 0.16004300449129966,
+                  },
+                  "feature": <OverlayTrigger
+                    overlay={
+                      <ForwardRef
+                        id="off_3prTooltip"
+                        placement="right"
+                      >
+                        Percentage of 3 pointers taken against all field goals
+                      </ForwardRef>
+                    }
+                    placement="auto"
+                  >
+                    <b>
+                      3PR
+                    </b>
+                  </OverlayTrigger>,
+                  "player": Object {
+                    "value": 0.5563139931740614,
+                  },
+                  "pos_c": Object {
+                    "value": -0.06555841,
+                  },
+                  "pos_pf": Object {
+                    "value": 0.00081636,
+                  },
+                  "pos_pg": Object {
+                    "value": 0.02713631,
+                  },
+                  "pos_sf": Object {
+                    "value": -0.00223302,
+                  },
+                  "pos_sg": Object {
+                    "value": 0.0218532,
+                  },
+                },
+                "kind": "data-row",
+                "prefixFn": [Function],
+                "tableFieldsOverride": undefined,
+              },
+              GenericTableDataRow {
+                "cellMetaFn": [Function],
+                "dataObj": Object {
+                  "contrib_c": Object {
+                    "value": 0.0646664924542532,
+                  },
+                  "contrib_pf": Object {
+                    "value": -0.08795738950827506,
+                  },
+                  "contrib_pg": Object {
+                    "value": -0.0029410633869443683,
+                  },
+                  "contrib_sf": Object {
+                    "value": -0.06987530253774282,
+                  },
+                  "contrib_sg": Object {
+                    "value": -0.03616694183498591,
+                  },
+                  "feature": <OverlayTrigger
+                    overlay={
+                      <ForwardRef
+                        id="off_2pmidrTooltip"
+                        placement="right"
+                      >
+                        Percentage of mid range 2 pointers taken against all field goals
+                      </ForwardRef>
+                    }
+                    placement="auto"
+                  >
+                    <b>
+                      2PR mid
+                    </b>
+                  </OverlayTrigger>,
+                  "player": Object {
+                    "value": 0.2832764505119454,
+                  },
+                  "pos_c": Object {
+                    "value": 0.06485701,
+                  },
+                  "pos_pf": Object {
+                    "value": -0.04862983,
+                  },
+                  "pos_pg": Object {
+                    "value": -0.0010662,
+                  },
+                  "pos_sf": Object {
+                    "value": -0.01555429,
+                  },
+                  "pos_sg": Object {
+                    "value": -0.00969839,
+                  },
+                },
+                "kind": "data-row",
+                "prefixFn": [Function],
+                "tableFieldsOverride": undefined,
+              },
+              GenericTableDataRow {
+                "cellMetaFn": [Function],
+                "dataObj": Object {
+                  "contrib_c": Object {
+                    "value": -0.008240496672810755,
+                  },
+                  "contrib_pf": Object {
+                    "value": -0.031499817846396876,
+                  },
+                  "contrib_pg": Object {
+                    "value": 0.024144674541452797,
+                  },
+                  "contrib_sf": Object {
+                    "value": -0.021786307318795942,
+                  },
+                  "contrib_sg": Object {
+                    "value": 0.03234661733011634,
+                  },
+                  "feature": <OverlayTrigger
+                    overlay={
+                      <ForwardRef
+                        id="off_2primrTooltip"
+                        placement="right"
+                      >
+                        Percentage of layup/dunk/etc 2 pointers taken against all field goals
+                      </ForwardRef>
+                    }
+                    placement="auto"
+                  >
+                    <b>
+                      2PR rim
+                    </b>
+                  </OverlayTrigger>,
+                  "player": Object {
+                    "value": 0.16040955631399317,
+                  },
+                  "pos_c": Object {
+                    "value": -0.01459524,
+                  },
+                  "pos_pf": Object {
+                    "value": -0.03075521,
+                  },
+                  "pos_pg": Object {
+                    "value": 0.01545738,
+                  },
+                  "pos_sf": Object {
+                    "value": -0.00856427,
+                  },
+                  "pos_sg": Object {
+                    "value": 0.01531782,
+                  },
+                },
+                "kind": "data-row",
+                "prefixFn": [Function],
+                "tableFieldsOverride": undefined,
+              },
+              GenericTableDataRow {
+                "cellMetaFn": [Function],
+                "dataObj": Object {
+                  "contrib_c": Object {
+                    "value": 0.0035471216759748844,
+                  },
+                  "contrib_pf": Object {
+                    "value": -0.020062600900013054,
+                  },
+                  "contrib_pg": Object {
+                    "value": 0.005312747356383671,
+                  },
+                  "contrib_sf": Object {
+                    "value": 0.00035934842651805634,
+                  },
+                  "contrib_sg": Object {
+                    "value": 0.0022144186909884896,
+                  },
+                  "feature": <OverlayTrigger
+                    overlay={
+                      <ForwardRef
+                        id="off_ftrTooltip"
+                        placement="right"
+                      >
+                        Free throw rate in selected lineups
+                      </ForwardRef>
+                    }
+                    placement="auto"
+                  >
+                    <b>
+                      FTR
+                    </b>
+                  </OverlayTrigger>,
+                  "player": Object {
+                    "value": 0.20136518771331058,
+                  },
+                  "pos_c": Object {
+                    "value": 0.00500472,
+                  },
+                  "pos_pf": Object {
+                    "value": -0.01560428,
+                  },
+                  "pos_pg": Object {
+                    "value": 0.00270944,
+                  },
+                  "pos_sf": Object {
+                    "value": 0.00011253,
+                  },
+                  "pos_sg": Object {
+                    "value": 0.00083536,
+                  },
+                },
+                "kind": "data-row",
+                "prefixFn": [Function],
+                "tableFieldsOverride": undefined,
+              },
+              GenericTableTextRow {
+                "className": "small",
+                "kind": "text-row",
+                "text": <span>
+                  <em>
+                    Shot-Making
+                  </em>
+                </span>,
+              },
+              GenericTableDataRow {
+                "cellMetaFn": [Function],
+                "dataObj": Object {
+                  "contrib_c": Object {
+                    "value": 0.056156127321300944,
+                  },
+                  "contrib_pf": Object {
+                    "value": -0.02201870452065462,
+                  },
+                  "contrib_pg": Object {
+                    "value": -0.062360894222699616,
+                  },
+                  "contrib_sf": Object {
+                    "value": -0.007957356544934681,
+                  },
+                  "contrib_sg": Object {
+                    "value": -0.04654174590832631,
+                  },
+                  "feature": <OverlayTrigger
+                    overlay={
+                      <ForwardRef
+                        id="calc_ft_relative_invTooltip"
+                        placement="right"
+                      >
+                        A very approximate measure of how tough the shots a player takes relative to their overall shooting ability (eFG/FT%) - the lower the number the tougher the shots the player takes.
+                      </ForwardRef>
+                    }
+                    placement="auto"
+                  >
+                    <b>
+                      FGD%
+                    </b>
+                  </OverlayTrigger>,
+                  "player": Object {
+                    "value": 0.6298515755218668,
+                  },
+                  "pos_c": Object {
+                    "value": 0.02533069,
+                  },
+                  "pos_pf": Object {
+                    "value": -0.00547513,
+                  },
+                  "pos_pg": Object {
+                    "value": -0.01016761,
+                  },
+                  "pos_sf": Object {
+                    "value": -0.00079665,
+                  },
+                  "pos_sg": Object {
+                    "value": -0.0056131,
+                  },
+                },
+                "kind": "data-row",
+                "prefixFn": [Function],
+                "tableFieldsOverride": undefined,
+              },
+              GenericTableDataRow {
+                "cellMetaFn": [Function],
+                "dataObj": Object {
+                  "contrib_c": Object {
+                    "value": -0.1531337633579183,
+                  },
+                  "contrib_pf": Object {
+                    "value": 0.12063594110067723,
+                  },
+                  "contrib_pg": Object {
+                    "value": 0.07499623928169635,
+                  },
+                  "contrib_sf": Object {
+                    "value": 0.1287972761851643,
+                  },
+                  "contrib_sg": Object {
+                    "value": 0.10958816899896993,
+                  },
+                  "feature": <OverlayTrigger
+                    overlay={
+                      <ForwardRef
+                        id="calc_three_relativeTooltip"
+                        placement="right"
+                      >
+                        A measure of how good a player is at shooting 3s relative to their overall scoring efficiency (1.5*3P%/eFG)
+                      </ForwardRef>
+                    }
+                    placement="auto"
+                  >
+                    <b>
+                      3PQ%
+                    </b>
+                  </OverlayTrigger>,
+                  "player": Object {
+                    "value": 1.0223960590234225,
+                  },
+                  "pos_c": Object {
+                    "value": -0.04255395,
+                  },
+                  "pos_pf": Object {
+                    "value": 0.01847985,
+                  },
+                  "pos_pg": Object {
+                    "value": 0.00753295,
+                  },
+                  "pos_sf": Object {
+                    "value": 0.00794373,
+                  },
+                  "pos_sg": Object {
+                    "value": 0.00814222,
+                  },
+                },
+                "kind": "data-row",
+                "prefixFn": [Function],
+                "tableFieldsOverride": undefined,
+              },
+              GenericTableDataRow {
+                "cellMetaFn": [Function],
+                "dataObj": Object {
+                  "contrib_c": Object {
+                    "value": -0.058368638273739344,
+                  },
+                  "contrib_pf": Object {
+                    "value": 0.08008214227766312,
+                  },
+                  "contrib_pg": Object {
+                    "value": 0.01729165247734427,
+                  },
+                  "contrib_sf": Object {
+                    "value": 0.040056590613443896,
+                  },
+                  "contrib_sg": Object {
+                    "value": 0.031279009510188416,
+                  },
+                  "feature": <OverlayTrigger
+                    overlay={
+                      <ForwardRef
+                        id="calc_mid_relativeTooltip"
+                        placement="right"
+                      >
+                        A measure of how good a player is at shooting mid-range 2s relative to their overall scoring efficiency (2Pmid%/eFG)
+                      </ForwardRef>
+                    }
+                    placement="auto"
+                  >
+                    <b>
+                      MidQ%
+                    </b>
+                  </OverlayTrigger>,
+                  "player": Object {
+                    "value": 0.6299099744703721,
+                  },
+                  "pos_c": Object {
+                    "value": -0.02632626,
+                  },
+                  "pos_pf": Object {
+                    "value": 0.01991123,
+                  },
+                  "pos_pg": Object {
+                    "value": 0.00281905,
+                  },
+                  "pos_sf": Object {
+                    "value": 0.00400989,
+                  },
+                  "pos_sg": Object {
+                    "value": 0.00377201,
+                  },
+                },
+                "kind": "data-row",
+                "prefixFn": [Function],
+                "tableFieldsOverride": undefined,
+              },
+              GenericTableDataRow {
+                "cellMetaFn": [Function],
+                "dataObj": Object {
+                  "contrib_c": Object {
+                    "value": -0.20484555769066667,
+                  },
+                  "contrib_pf": Object {
+                    "value": 0.30293786667551637,
+                  },
+                  "contrib_pg": Object {
+                    "value": -0.15270143510199866,
+                  },
+                  "contrib_sf": Object {
+                    "value": 0.38987904987410404,
+                  },
+                  "contrib_sg": Object {
+                    "value": 0.15367853474643478,
+                  },
+                  "feature": <OverlayTrigger
+                    overlay={
+                      <ForwardRef
+                        id="calc_rim_relativeTooltip"
+                        placement="right"
+                      >
+                        A measure of how good a player is at shooting layups/posts/drunks relative to their overall scoring efficiency (2Prim%/eFG)
+                      </ForwardRef>
+                    }
+                    placement="auto"
+                  >
+                    <b>
+                      RimQ%
+                    </b>
+                  </OverlayTrigger>,
+                  "player": Object {
+                    "value": 1.5758917978327929,
+                  },
+                  "pos_c": Object {
+                    "value": -0.03693076,
+                  },
+                  "pos_pf": Object {
+                    "value": 0.03010704,
+                  },
+                  "pos_pg": Object {
+                    "value": -0.00995088,
+                  },
+                  "pos_sf": Object {
+                    "value": 0.01560057,
+                  },
+                  "pos_sg": Object {
+                    "value": 0.00740773,
+                  },
+                },
+                "kind": "data-row",
+                "prefixFn": [Function],
+                "tableFieldsOverride": undefined,
+              },
+              GenericTableTextRow {
+                "className": "small",
+                "kind": "text-row",
+                "text": <span>
+                  <em>
+                    Rebounding and Defense
+                  </em>
+                </span>,
+              },
+              GenericTableDataRow {
+                "cellMetaFn": [Function],
+                "dataObj": Object {
+                  "contrib_c": Object {
+                    "value": -0.08724529201311297,
+                  },
+                  "contrib_pf": Object {
+                    "value": -0.07773338943023375,
+                  },
+                  "contrib_pg": Object {
+                    "value": 0.1407552872721284,
+                  },
+                  "contrib_sf": Object {
+                    "value": -0.007274048520781206,
+                  },
+                  "contrib_sg": Object {
+                    "value": 0.12812584047046469,
+                  },
+                  "feature": <OverlayTrigger
+                    overlay={
+                      <ForwardRef
+                        id="def_toTooltip"
+                        placement="right"
+                      >
+                        Steal % in selected lineups
+                      </ForwardRef>
+                    }
+                    placement="auto"
+                  >
+                    <b>
+                      Stl%
+                    </b>
+                  </OverlayTrigger>,
+                  "player": Object {
+                    "value": 0.0177717019822283,
+                  },
+                  "pos_c": Object {
+                    "value": -1.39476509,
+                  },
+                  "pos_pf": Object {
+                    "value": -0.68504559,
+                  },
+                  "pos_pg": Object {
+                    "value": 0.8133556,
+                  },
+                  "pos_sf": Object {
+                    "value": -0.02580977,
+                  },
+                  "pos_sg": Object {
+                    "value": 0.54765371,
+                  },
+                },
+                "kind": "data-row",
+                "prefixFn": [Function],
+                "tableFieldsOverride": undefined,
+              },
+              GenericTableDataRow {
+                "cellMetaFn": [Function],
+                "dataObj": Object {
+                  "contrib_c": Object {
+                    "value": 0.06617712322799577,
+                  },
+                  "contrib_pf": Object {
+                    "value": 0.0743323644093373,
+                  },
+                  "contrib_pg": Object {
+                    "value": -0.11629761921263389,
+                  },
+                  "contrib_sf": Object {
+                    "value": 0.055172198986375674,
+                  },
+                  "contrib_sg": Object {
+                    "value": -0.1280063097818053,
+                  },
+                  "feature": <OverlayTrigger
+                    overlay={
+                      <ForwardRef
+                        id="off_orbTooltip"
+                        placement="right"
+                      >
+                        Offensive rebounding % in selected lineups
+                      </ForwardRef>
+                    }
+                    placement="auto"
+                  >
+                    <b>
+                      OR%
+                    </b>
+                  </OverlayTrigger>,
+                  "player": Object {
+                    "value": 0.044416243654822336,
+                  },
+                  "pos_c": Object {
+                    "value": 0.42330573,
+                  },
+                  "pos_pf": Object {
+                    "value": 0.26210603,
+                  },
+                  "pos_pg": Object {
+                    "value": -0.26888945,
+                  },
+                  "pos_sf": Object {
+                    "value": 0.07832771,
+                  },
+                  "pos_sg": Object {
+                    "value": -0.21892123,
+                  },
+                },
+                "kind": "data-row",
+                "prefixFn": [Function],
+                "tableFieldsOverride": undefined,
+              },
+              GenericTableDataRow {
+                "cellMetaFn": [Function],
+                "dataObj": Object {
+                  "contrib_c": Object {
+                    "value": 0,
+                  },
+                  "contrib_pf": Object {
+                    "value": 0,
+                  },
+                  "contrib_pg": Object {
+                    "value": -0,
+                  },
+                  "contrib_sf": Object {
+                    "value": 0,
+                  },
+                  "contrib_sg": Object {
+                    "value": -0,
+                  },
+                  "feature": <OverlayTrigger
+                    overlay={
+                      <ForwardRef
+                        id="off_drbTooltip"
+                        placement="right"
+                      >
+                        Defensive rebounding % in selected lineups
+                      </ForwardRef>
+                    }
+                    placement="auto"
+                  >
+                    <b>
+                      DR%
+                    </b>
+                  </OverlayTrigger>,
+                  "player": Object {
+                    "value": 0,
+                  },
+                  "pos_c": Object {
+                    "value": 0.15512722,
+                  },
+                  "pos_pf": Object {
+                    "value": 0.21672752,
+                  },
+                  "pos_pg": Object {
+                    "value": -0.23799504,
+                  },
+                  "pos_sf": Object {
+                    "value": 0.10442655,
+                  },
+                  "pos_sg": Object {
+                    "value": -0.07938086,
+                  },
+                },
+                "kind": "data-row",
+                "prefixFn": [Function],
+                "tableFieldsOverride": undefined,
+              },
+              GenericTableDataRow {
+                "cellMetaFn": [Function],
+                "dataObj": Object {
+                  "contrib_c": Object {
+                    "value": 0.040620194014135816,
+                  },
+                  "contrib_pf": Object {
+                    "value": 0.02214657528613736,
+                  },
+                  "contrib_pg": Object {
+                    "value": -0.047023696991819776,
+                  },
+                  "contrib_sf": Object {
+                    "value": -0.025660347552082692,
+                  },
+                  "contrib_sg": Object {
+                    "value": -0.04993411683362525,
+                  },
+                  "feature": <OverlayTrigger
+                    overlay={
+                      <ForwardRef
+                        id="def_2primTooltip"
+                        placement="right"
+                      >
+                        Block % in selected lineups
+                      </ForwardRef>
+                    }
+                    placement="auto"
+                  >
+                    <b>
+                      Blk%
+                    </b>
+                  </OverlayTrigger>,
+                  "player": Object {
+                    "value": 0.016581632653061226,
+                  },
+                  "pos_c": Object {
+                    "value": 0.69598967,
+                  },
+                  "pos_pf": Object {
+                    "value": 0.20918001,
+                  },
+                  "pos_pg": Object {
+                    "value": -0.29122875,
+                  },
+                  "pos_sf": Object {
+                    "value": -0.09758256,
+                  },
+                  "pos_sg": Object {
+                    "value": -0.22875385,
+                  },
+                },
+                "kind": "data-row",
+                "prefixFn": [Function],
+                "tableFieldsOverride": undefined,
+              },
+              GenericTableDataRow {
+                "cellMetaFn": [Function],
+                "dataObj": Object {
+                  "contrib_c": Object {
+                    "value": 0.025638811755007884,
+                  },
+                  "contrib_pf": Object {
+                    "value": 0.032786791204866335,
+                  },
+                  "contrib_pg": Object {
+                    "value": -0.019330119783944333,
+                  },
+                  "contrib_sf": Object {
+                    "value": -0.006516633176261896,
+                  },
+                  "contrib_sg": Object {
+                    "value": -0.061205365779553544,
+                  },
+                  "feature": <OverlayTrigger
+                    overlay={
+                      <ForwardRef
+                        id="def_ftrTooltip"
+                        placement="right"
+                      >
+                        Fouls called/50 possessions in selected lineups
+                      </ForwardRef>
+                    }
+                    placement="auto"
+                  >
+                    <b>
+                      F/50
+                    </b>
+                  </OverlayTrigger>,
+                  "player": Object {
+                    "value": 0.02248803827751196,
+                  },
+                  "pos_c": Object {
+                    "value": 0.3239175,
+                  },
+                  "pos_pf": Object {
+                    "value": 0.22834328,
+                  },
+                  "pos_pg": Object {
+                    "value": -0.08827297,
+                  },
+                  "pos_sf": Object {
+                    "value": -0.01827295,
+                  },
+                  "pos_sg": Object {
+                    "value": -0.20674559,
+                  },
+                },
+                "kind": "data-row",
+                "prefixFn": [Function],
+                "tableFieldsOverride": undefined,
+              },
+            ]
+          }
+          tableFields={
+            Object {
+              "contrib_c": GenericTableColProps {
+                "className": "",
+                "colName": "+- C%",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "How much this feature improves/reduces the chance of this player's fit for this position ([Center])",
+                "widthUnits": 2,
+              },
+              "contrib_pf": GenericTableColProps {
+                "className": "",
+                "colName": "+- PF%",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "How much this feature improves/reduces the chance of this player's fit for this position ([Power Forward])",
+                "widthUnits": 2,
+              },
+              "contrib_pg": GenericTableColProps {
+                "className": "",
+                "colName": "+- PG%",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "How much this feature improves/reduces the chance of this player's fit for this position ([Point Guard])",
+                "widthUnits": 2,
+              },
+              "contrib_sf": GenericTableColProps {
+                "className": "",
+                "colName": "+- SF%",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "How much this feature improves/reduces the chance of this player's fit for this position ([Small Forward])",
+                "widthUnits": 2,
+              },
+              "contrib_sg": GenericTableColProps {
+                "className": "",
+                "colName": "+- SG%",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "How much this feature improves/reduces the chance of this player's fit for this position ([Shooting Guard])",
+                "widthUnits": 2,
+              },
+              "feature": GenericTableColProps {
+                "className": "",
+                "colName": "",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": true,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "Each of the statistical features used in the classification",
+                "widthUnits": 8,
+              },
+              "player": GenericTableColProps {
+                "className": "",
+                "colName": "Player%",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "The value of this player vs this statistic",
+                "widthUnits": 2,
+              },
+              "pos_c": GenericTableColProps {
+                "className": "",
+                "colName": "Wt C",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "The weight associated with this feature for the position [Center]",
+                "widthUnits": 2,
+              },
+              "pos_pf": GenericTableColProps {
+                "className": "",
+                "colName": "Wt PF",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "The weight associated with this feature for the position [Power Forward]",
+                "widthUnits": 2,
+              },
+              "pos_pg": GenericTableColProps {
+                "className": "",
+                "colName": "Wt PG",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "The weight associated with this feature for the position [Point Guard]",
+                "widthUnits": 2,
+              },
+              "pos_sf": GenericTableColProps {
+                "className": "",
+                "colName": "Wt SF",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "The weight associated with this feature for the position [Small Forward]",
+                "widthUnits": 2,
+              },
+              "pos_sg": GenericTableColProps {
+                "className": "",
+                "colName": "Wt SG",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "The weight associated with this feature for the position [Shooting Guard]",
+                "widthUnits": 2,
+              },
+              "sep0": GenericTableColProps {
+                "className": "",
+                "colName": "",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "",
+                "widthUnits": 0.5,
+              },
+              "sep1": GenericTableColProps {
+                "className": "",
+                "colName": "",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "",
+                "widthUnits": 0.5,
+              },
+              "sep2": GenericTableColProps {
+                "className": "",
+                "colName": "",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "",
+                "widthUnits": 0.5,
+              },
+              "sep3": GenericTableColProps {
+                "className": "",
+                "colName": "",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "",
+                "widthUnits": 0.5,
+              },
+              "sep4": GenericTableColProps {
+                "className": "",
+                "colName": "",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "",
+                "widthUnits": 0.5,
+              },
+              "sep5": GenericTableColProps {
+                "className": "",
+                "colName": "",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "",
+                "widthUnits": 0.5,
+              },
+            }
+          }
+        />
+      </Col>
+    </Container>
+    (
+    <a
+      href="#"
+      onClick={[Function]}
+    >
+      Scroll back to start of positional diagnostics
+    </a>
+    )
+  </span>
+</span>
+`;
