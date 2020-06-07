@@ -76,13 +76,16 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, tea
     ParamDefaults.defaultPlayerDiagMode : gameFilterParams.showDiag
   );
 
-  const [ showPositionDiags, setShowPositionDiags ] = useState(true); //TODO add to URL etc etc
+  /** Show a diagnostics mode explaining the positional evaluation */
+  const [ showPositionDiags, setShowPositionDiags ] = useState(_.isNil(gameFilterParams.showPosDiag) ?
+      ParamDefaults.defaultPlayerPosDiagMode : gameFilterParams.showPosDiag
+  );
 
   /** Show a diagnostics mode explaining the off/def ratings */
   const [ possAsPct, setPossAsPct ] = useState(_.isNil(gameFilterParams.possAsPct) ?
     ParamDefaults.defaultPlayerPossAsPct : gameFilterParams.possAsPct
   );
-
+  
   /** Incorporates SoS into rating calcs "Adj [Eq] Rtg" */
   const [ adjORtgForSos, setAdjORtgForSos ] = useState(false);
 
@@ -117,7 +120,8 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, tea
       showBase: alwaysShowBaseline,
       showExpanded: expandedView,
       showDiag: showDiagMode,
-      possAsPct: possAsPct
+      possAsPct: possAsPct,
+      showPosDiag: showPositionDiags,
     }).omit(_.flatten([ // omit all defaults
       (sortBy == ParamDefaults.defaultPlayerSortBy) ? [ 'sortBy' ] : [],
       (filterStr == ParamDefaults.defaultPlayerFilter) ? [ 'filter' ] : [],
@@ -125,9 +129,10 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, tea
       (expandedView == ParamDefaults.defaultPlayerShowExpanded) ? [ 'showExpanded' ] : [],
       (showDiagMode == ParamDefaults.defaultPlayerDiagMode) ? [ 'showDiag' ] : [],
       (possAsPct == ParamDefaults.defaultPlayerPossAsPct) ? [ 'possAsPct' ] : [],
+      (showPositionDiags == ParamDefaults.defaultPlayerPosDiagMode) ? [ 'showPosDiag' ] : [],
     ])).value();
     onChangeState(newState);
-  }, [ sortBy, filterStr, showDiagMode, alwaysShowBaseline, expandedView, possAsPct ]);
+  }, [ sortBy, filterStr, showDiagMode, alwaysShowBaseline, expandedView, possAsPct, showPositionDiags ]);
 
   // 2] Data Model
 

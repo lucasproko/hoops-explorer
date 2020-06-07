@@ -93,7 +93,7 @@ const calculatedDescriptions = {
   calc_rim_relative: [ "RimQ%", "A measure of how good a player is at shooting layups/posts/drunks relative to their overall scoring efficiency (2Prim%/eFG)" ],
   calc_assist_per_fga: [ "A/FG%", "The ratio of Assists to FG attempts, expressed as a %" ],
   calc_ft_relative_inv: [ "FGD%", "A very approximate measure of how tough the shots a player takes relative to their overall shooting ability (eFG/FT%) - the lower the number the tougher the shots the player takes." ]
-}
+} as Record<string, [ string, string ]>;
 
 const complexDiagSubtitles = {
   calc_ast_tov: "Ball-Handling",
@@ -119,7 +119,7 @@ const PositionalDiagView: React.FunctionComponent<Props> = ({player}) => {
     ...(_.mapValues(positionInfo, (p: number) => { return { value: p }; }))
   }, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta) ];
 
-  const buildFeatureTooltip = (key: string, text) => {
+  const buildFeatureTooltip = (key: string, text: string) => {
     return <Tooltip id={key + "Tooltip"}>{text}</Tooltip>;
   };
 
@@ -177,7 +177,9 @@ const PositionalDiagView: React.FunctionComponent<Props> = ({player}) => {
       <ul>
         <li>Rule used to categorize player: <em>{positionIdDiag}</em></li>
       </ul>
-      <br/>
+      (<a href="#" onClick={(event) => { event.preventDefault(); setShowComplexDiag(!showComplexDiag) }}>
+        {showComplexDiag ? "Hide": "Show"} detailed positional breakdown
+      </a>)
       {showComplexDiag ? <Container>
         <Col xs={8}>
           <GenericTable tableCopyId="complexDiagTable" tableFields={complexDiagTable} tableData={complexDiagTableData}/>

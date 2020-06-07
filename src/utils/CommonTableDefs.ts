@@ -35,7 +35,7 @@ export class CommonTableDefs {
       default: return 1;
     }
   }
-  private static singleLineRowSpanCalculator(cellMeta: string) {
+  static singleLineRowSpanCalculator(cellMeta: string) {
     switch(cellMeta) {
       case "off": return 1;
       case "def": return 0;
