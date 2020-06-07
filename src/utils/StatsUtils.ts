@@ -143,10 +143,6 @@ export type DRtgDiagnostics = {
 /** (just to make copy/pasting between colab and this code easier)*/
 const array = (v: number[]) => { return v; }
 
-/** List of the fields used in the positional confidence vectors */
-const tradPosList = [ "pos_pg", "pos_sg", "pos_sf", "pos_pf", "pos_c" ];
-
-
 /** General cbb complex stats calcs */
 export class StatsUtils {
 
@@ -488,10 +484,40 @@ export class StatsUtils {
   /** The LDA intercepts */
   static readonly positionFeatureInit = [-2.82375823, -2.41283573, -3.74982844, -8.98755013, -3.23442276];
 
+  /** List of the fields used in the positional confidence vectors */
+  static readonly tradPosList = [ "pos_pg", "pos_sg", "pos_sf", "pos_pf", "pos_c" ];
+
   /** triples in the form [ fieldname, scale, weights-from-ML ] */
   static readonly positionFeatureWeights = [
+    // Ball handling
     ['calc_ast_tov', 1.0,
       array([ 0.08281269,  0.09093907, -0.37973552, -0.67240486,  0.5964297 ])
+    ],
+    ['off_assist', 100.0,
+      array([ 0.15829941,  0.02598234, -0.06537337, -0.05021328, -0.12142258])
+    ],
+    ['off_to', 100.0,
+      array([-0.00680258,  0.0051497 , -0.02123889, -0.03861639,  0.04709196])
+    ],
+    ['calc_assist_per_fga', 100.0, //(expressed as %)
+      array([ 0.01429017, -0.00313073,  0.0082461 ,  0.01833772, -0.0319402 ])
+    ],
+    // Shot selection
+    ['off_3pr', 100.0,
+      array([ 0.02713631,  0.0218532 , -0.00223302,  0.00081636, -0.06555841])
+    ],
+    ['off_2pmidr', 100.0,
+      array([-0.0010662 , -0.00969839, -0.01555429, -0.04862983,  0.06485701])
+    ],
+    ['off_2primr', 100.0,
+      array([ 0.01545738,  0.01531782, -0.00856427, -0.03075521, -0.01459524])
+    ],
+    ['off_ftr', 100.0,
+      array([ 0.00270944,  0.00083536,  0.00011253, -0.01560428,  0.00500472])
+    ],
+    // Shot making ability
+    ['calc_ft_relative_inv', 100.0,
+      array([-0.01016761, -0.0056131 , -0.00079665, -0.00547513,  0.02533069])
     ],
     ['calc_three_relative', 100.0,
       array([ 0.00753295,  0.00814222,  0.00794373,  0.01847985, -0.04255395])
@@ -502,51 +528,29 @@ export class StatsUtils {
     ['calc_rim_relative', 100.0,
       array([-0.00995088,  0.00740773,  0.01560057,  0.03010704, -0.03693076])
     ],
-    ['def_ftr', 100.0, //(this is FC/(50*100), which isn't _quite_ FC/40m but close enough given these low numbers)
-      array([-0.08827297, -0.20674559, -0.01827295,  0.22834328,  0.3239175 ])
-    ],
-    ['off_assist', 100.0,
-      array([ 0.15829941,  0.02598234, -0.06537337, -0.05021328, -0.12142258])
-    ],
-    ['off_to', 100.0,
-      array([-0.00680258,  0.0051497 , -0.02123889, -0.03861639,  0.04709196])
-    ],
-    ['off_drb', 100.0,
-      array([-0.23799504, -0.07938086,  0.10442655,  0.21672752,  0.15512722])
+    // Rebounding and defense
+    ['def_to', 100.0, //(used as the field for steals)
+      array([ 0.8133556 ,  0.54765371, -0.02580977, -0.68504559, -1.39476509])
     ],
     ['off_orb', 100.0,
       array([-0.26888945, -0.21892123,  0.07832771,  0.26210603,  0.42330573])
     ],
-    ['off_ftr', 100.0,
-      array([ 0.00270944,  0.00083536,  0.00011253, -0.01560428,  0.00500472])
-    ],
-    ['off_2primr', 100.0,
-      array([ 0.01545738,  0.01531782, -0.00856427, -0.03075521, -0.01459524])
-    ],
-    ['off_2pmidr', 100.0,
-      array([-0.0010662 , -0.00969839, -0.01555429, -0.04862983,  0.06485701])
-    ],
-    ['off_3pr', 100.0,
-      array([ 0.02713631,  0.0218532 , -0.00223302,  0.00081636, -0.06555841])
+    ['off_drb', 100.0,
+      array([-0.23799504, -0.07938086,  0.10442655,  0.21672752,  0.15512722])
     ],
     ['def_2prim', 100.0, //(used as the field for blocks)
       array([-0.29122875, -0.22875385, -0.09758256,  0.20918001,  0.69598967])
     ],
-    ['def_to', 100.0, //(used as the field for steals)
-      array([ 0.8133556 ,  0.54765371, -0.02580977, -0.68504559, -1.39476509])
+    ['def_ftr', 100.0, //(this is FC/(50*100), which isn't _quite_ FC/40m but close enough given these low numbers)
+      array([-0.08827297, -0.20674559, -0.01827295,  0.22834328,  0.3239175 ])
     ],
-    ['calc_assist_per_fga', 100.0, //(expressed as %)
-      array([ 0.01429017, -0.00313073,  0.0082461 ,  0.01833772, -0.0319402 ])
-    ],
-    ['calc_ft_relative_inv', 100.0,
-      array([-0.01016761, -0.0056131 , -0.00079665, -0.00547513,  0.02533069])
-    ]
   ] as Array<[string, number, number[]]>;
 
   /** Returns a vector of 5 elements representing the confidence that the player
       can play that position (0=PG, 1=SG, 4=SF, 4=PF, 5=C)
   */
   static buildPositionConfidences(player: Record<string, any>): [ Record<string, number>, any ] {
+    const posList = StatsUtils.tradPosList;
 
     const calculated = {
       calc_ast_tov: player.total_off_assist.value / (player.total_off_to.value || 1),
@@ -558,23 +562,29 @@ export class StatsUtils {
         (player.off_efg.value * player.total_off_fta.value) / (player.total_off_ftm.value || 1)
     } as Record<string, number>;
 
-    const scores = _.transform(StatsUtils.positionFeatureWeights,
-      (acc, pos_scale_weights: [string, number, number[]]) => {
-        const pos = pos_scale_weights[0];
-        const scale = pos_scale_weights[1];
-        const weights = pos_scale_weights[2];
-        const fieldVal = _.startsWith(pos, "calc_") ? (calculated[pos] || 0) : (player[pos]?.value || 0);
+    const [ scores, absScores ] = _.transform(StatsUtils.positionFeatureWeights,
+      (acc: [number[], number[]], feat_scale_weights: [string, number, number[]]) => {
+        const feat = feat_scale_weights[0];
+        const scale = feat_scale_weights[1];
+        const weights = feat_scale_weights[2];
+        const fieldVal = _.startsWith(feat, "calc_") ? (calculated[feat] || 0) : (player[feat]?.value || 0);
 
-        weights.forEach((weight, index) => acc[index] += fieldVal*scale*weight);
+        const confs = acc[0];
+        const absConfs = acc[1];
+        weights.forEach((weight, index) => {
+          const sumPart = fieldVal*scale*weight
+          confs[index] += sumPart;
+          absConfs[index] += Math.abs(sumPart);
+        });
 
         // (used for debugging - shouldn't be needed moving forward)
         //console.log(`${player.key}: ${pos} ${scale} ${weights}  - ${fieldVal} ... ${acc}`);
 
-      }, _.clone(StatsUtils.positionFeatureInit)
+      }, ([ _.clone(StatsUtils.positionFeatureInit), [0, 0, 0, 0, 0] ])
     );
 
     const addPos = (v: number[], scale: number) => {
-      return _.chain(v).map((s: number, i: number) => [ tradPosList[i], s*scale ]).fromPairs().value();
+      return _.chain(v).map((s: number, i: number) => [ posList[i], s*scale ]).fromPairs().value();
     }
     const maxScore = _.max(scores) || 0;
     const confs = scores.map((s: number) => Math.exp(s - maxScore));
@@ -584,7 +594,8 @@ export class StatsUtils {
       addPos(confs, maxConfInv),
       {
         scores: addPos(scores, 1.0),
-        calculated: calculated
+        absScores: absScores,
+        calculated: calculated,
       }
     ];
   }
@@ -605,8 +616,10 @@ export class StatsUtils {
 
   /** Tag the player with a position string given the confidences */
   static buildPosition(confs: Record<string, number>, player: Record<string, any>): [string, string] {
+    const posList = StatsUtils.tradPosList;
+
     // Get the class with the highest prio
-    const maxPos = _.maxBy(tradPosList, (pos: string) => confs[pos] || 0) || 0;
+    const maxPos = _.maxBy(posList, (pos: string) => confs[pos] || 0) || 0;
 
     const assistRate = player?.off_assist?.value || 0;
     const minAstRate = 0.09; // (less than this and you can't be a PG!)
@@ -625,23 +638,23 @@ export class StatsUtils {
         return (assistRate >= minAstRate) ?
           [ "s-PG", `(P[PG] >= 50%)`, "G?" ] :
           [ "WG", `(pG:)(P[PG] >= 50%) BUT (AST%[${(assistRate*100).toFixed(1)}] < 9%)`, "G?" ];
-      } else if (maxPos == tradPosList[0]) {
+      } else if (maxPos == posList[0]) {
         return (assistRate >= minAstRate) ?
           [ "CG", `(Max[P] == PG)`, "G?" ] :
           [ "WG", `(CG:)(Max[P] == PG) BUT (AST%[${(assistRate*100).toFixed(1)}] < 9%)`, "G?" ];
-      } else if ((maxPos == tradPosList[1]) && (confs["pos_pg"] >= fwdConfSum)) {
+      } else if ((maxPos == posList[1]) && (confs["pos_pg"] >= fwdConfSum)) {
         return (assistRate >= minAstRate) ?
         [ "CG", `(Max[P] == SG) AND (P[PG] >= P[SF] + P[PF] + P[C])`, "G?" ] :
         [ "WG", `(CG:)(Max[P] == SG) AND (P[PG] >= P[SF] + P[PF] + P[C]) BUT (AST%[${(assistRate*100).toFixed(1)}] < 9%)`, "G?" ];
-      } else if ((maxPos == tradPosList[1]) && (confs["pos_pg"] < fwdConfSum)) {
+      } else if ((maxPos == posList[1]) && (confs["pos_pg"] < fwdConfSum)) {
         return [ "WG", `(Max[P] == SG) AND (P[PG] < P[SF] + P[PF] + P[C])`, "G?" ];
-      } else if ((maxPos == tradPosList[2]) && (confs["pos_pg"] + confs["pos_sg"] >= confs["pos_pf"] + confs["pos_c"])) {
+      } else if ((maxPos == posList[2]) && (confs["pos_pg"] + confs["pos_sg"] >= confs["pos_pf"] + confs["pos_c"])) {
         return [ "WG", `(Max[P] == SF) AND (P[PG] + P[SG] >= P[PF] + P[C])`, "G?" ];
-      } else if (maxPos == tradPosList[2]) {
+      } else if (maxPos == posList[2]) {
         return [ "WF", `(Max[P] == SF) AND (P[PG] + P[SG] < P[PF] + P[C])`, "F/C?" ];
       } else if (confs["pos_pf"] >= 0.85) {
         return [ "PF/C", `(P[PF] >= 85%)`, "F/C?" ];
-      } else if ((maxPos == tradPosList[3]) && (confs["pos_pg"] + confs["pos_sg"] + confs["pos_sf"] >= confs["pos_c"])) {
+      } else if ((maxPos == posList[3]) && (confs["pos_pg"] + confs["pos_sg"] + confs["pos_sf"] >= confs["pos_c"])) {
         return (threeRate >= minThreeRate) ?
           [ "S-PF", `(Max[P] == PF) AND (P[PG] + P[SG] + P[SF] >= P[C])`, "F/C?" ] :
           [ "PF/C", `(S4:)(Max[P] == PF) AND (P[PG] + P[SG] + P[SF] >= P[C]) BUT 3PR%[${(threeRate*100).toFixed(1)}] < 20%`, "F/C?" ];

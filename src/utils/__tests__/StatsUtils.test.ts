@@ -46,8 +46,8 @@ describe("StatsUtils", () => {
       "calc_rim_relative": "1.07",
       "calc_three_relative": "1.02"
     });
-    expect(_.keys(realConfidences)).toEqual(["pos_pg", "pos_sg", "pos_sf", "pos_pf", "pos_c"])
-    expect(_.keys(realDiags.scores)).toEqual(["pos_pg", "pos_sg", "pos_sf", "pos_pf", "pos_c"])
+    expect(_.keys(realConfidences)).toEqual(StatsUtils.tradPosList)
+    expect(_.keys(realDiags.scores)).toEqual(StatsUtils.tradPosList)
 
     const [ realConfidences2, realDiags2 ] = StatsUtils.buildPositionConfidences(
       samplePlayerStatsResponse.aggregations.tri_filter.buckets.baseline.player.buckets[1]
@@ -133,7 +133,7 @@ describe("StatsUtils", () => {
         pos: "C", fallbackPos: "F/C?", diag: `(P[C] >= 85%)`, name: "Center"
       }
     ];
-    const posList = [ "pos_pg", "pos_sg", "pos_sf", "pos_pf", "pos_c" ];
+    const posList = StatsUtils.tradPosList;
     testCases.forEach((caseObj: any) => {
       const confObj = _.fromPairs(_.zip(posList, caseObj.confs).map(kv => [kv[0], kv[1]]));
       const player = _.mapValues(caseObj.extra, (v: any) => { return { value: v}; });

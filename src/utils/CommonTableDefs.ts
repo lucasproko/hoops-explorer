@@ -75,6 +75,21 @@ export class CommonTableDefs {
 
   // ON/OFF - INDIVIDUAL
 
+  /** Map of fields to descriptions, TODO: start usng this in the tables below */
+  static individualDescriptions = {
+    "off_assist": [ "A%", "Assist % for player in selected lineups" ],
+    "off_to": [ "TO%", "Turnover % in selected lineups" ],
+    "def_to": [ "Stl%", "Steal % in selected lineups" ],
+    "off_3pr": [ "3PR", "Percentage of 3 pointers taken against all field goals" ],
+    "off_2pmidr": [ "2PR mid", "Percentage of mid range 2 pointers taken against all field goals" ],
+    "off_2primr": [ "2PR rim", "Percentage of layup/dunk/etc 2 pointers taken against all field goals" ],
+    "def_2prim": [ "Blk%", "Block % in selected lineups" ],
+    "off_ftr": [ "FTR", "Free throw rate in selected lineups" ],
+    "def_ftr": [ "F/50", "Fouls called/50 possessions in selected lineups" ],
+    "off_orb": [ "OR%", "Offensive rebounding % in selected lineups" ],
+    "off_drb": [ "DR%", "Defensive rebounding % in selected lineups" ],
+  } as Record<string, any>;
+
   static onOffIndividualTable = (expandedView: boolean) => { return { //accessors vs column metadata
     "title": expandedView ?
       GenericTableOps.addTitle("", "", CommonTableDefs.rowSpanCalculator, "small", GenericTableOps.htmlFormatter) :
