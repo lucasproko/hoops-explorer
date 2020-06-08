@@ -26,10 +26,13 @@ describe("StatsUtils", () => {
     expect(adjDRtg).toEqual({value:0.4085659844387266});
     expect(dRtgDiags).toEqual(sampleDrtgDiagnostics);
   });
-  test("StatsUtils - buildPositionConfidences", () => {
 
-    const tidyArr = (vv: number[]) => vv.map((v: number) => v.toFixed(2))
-    const tidyObj = (vo: Record<string, number>) => _.mapValues(vo, (v: number) => v.toFixed(2))
+  const tidyObj = (vo: Record<string, number>) => _.mapValues(vo, (v: any) => (v.value || v).toFixed(2))
+
+  test("StatsUtils - averageScoresByPos", () => {
+    expect(_.values(tidyObj(StatsUtils.averageScoresByPos))).toEqual(["0.12", "-0.04", "-0.12", "0.03", "0.44", ]);
+  });
+  test("StatsUtils - buildPositionConfidences", () => {
 
     // Some hand-checked results:
 
@@ -37,7 +40,7 @@ describe("StatsUtils", () => {
       samplePlayerStatsResponse.aggregations.tri_filter.buckets.baseline.player.buckets[0]
     );
     expect(_.values(tidyObj(realConfidences))).toEqual(["0.95", "0.05", "0.00", "0.00", "0.00", ]);
-    expect(_.values(tidyObj(realDiags.scores))).toEqual(["4.10","1.19","-4.38","-8.11","-17.04"]);
+    expect(_.values(tidyObj(realDiags.scores))).toEqual(["0.41","0.12","-0.44","-0.81","-1.70"]);
     expect(tidyObj(realDiags.calculated)).toEqual({
       "calc_assist_per_fga": "0.41",
       "calc_ast_tov": "2.09",

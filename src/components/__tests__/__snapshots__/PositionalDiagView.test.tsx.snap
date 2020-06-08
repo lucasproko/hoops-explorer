@@ -324,7 +324,7 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
       fluid={false}
     >
       <Col
-        xs={8}
+        xs={11}
       >
         <GenericTable
           tableCopyId="complexDiagTable"
@@ -333,22 +333,51 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
               GenericTableDataRow {
                 "cellMetaFn": [Function],
                 "dataObj": Object {
-                  "feature": "Total Score",
-                  "pos_c": Object {
-                    "value": -0.14516627912414032,
+                  "av_pos_c": Object {
+                    "value": 0.4398477456096173,
                   },
-                  "pos_pf": Object {
-                    "value": -0.0420741853061077,
+                  "av_pos_pf": Object {
+                    "value": 0.0348712666630011,
                   },
-                  "pos_pg": Object {
-                    "value": -0.010020557237015684,
+                  "av_pos_pg": Object {
+                    "value": 0.12240657566527435,
                   },
-                  "pos_sf": Object {
-                    "value": -0.020723744784802857,
+                  "av_pos_sf": Object {
+                    "value": -0.12008620073298096,
                   },
-                  "pos_sg": Object {
-                    "value": 0.00203879626128261,
+                  "av_pos_sg": Object {
+                    "value": -0.039406143718373456,
                   },
+                  "contrib_pos_c": Object {
+                    "value": -1.4516627912414033,
+                  },
+                  "contrib_pos_pf": Object {
+                    "value": -0.42074185306107703,
+                  },
+                  "contrib_pos_pg": Object {
+                    "value": -0.10020557237015684,
+                  },
+                  "contrib_pos_sf": Object {
+                    "value": -0.20723744784802856,
+                  },
+                  "contrib_pos_sg": Object {
+                    "value": 0.0203879626128261,
+                  },
+                  "feature": <OverlayTrigger
+                    overlay={
+                      <ForwardRef
+                        id="totalScoreTooltip"
+                        placement="right"
+                      >
+                        The average score per position/positional group, and the total score for this player/position group. (10x the actual -relative- value, to make it more readable.)
+                      </ForwardRef>
+                    }
+                    placement="auto"
+                  >
+                    <b>
+                      Total Score
+                    </b>
+                  </OverlayTrigger>,
                 },
                 "kind": "data-row",
                 "prefixFn": [Function],
@@ -366,20 +395,35 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
               GenericTableDataRow {
                 "cellMetaFn": [Function],
                 "dataObj": Object {
-                  "contrib_c": Object {
-                    "value": 0.017993861855428415,
+                  "av_pos_c": Object {
+                    "value": 0.0053099646000000006,
                   },
-                  "contrib_pf": Object {
-                    "value": -0.03679960543367233,
+                  "av_pos_pf": Object {
+                    "value": 0.007407267600000001,
                   },
-                  "contrib_pg": Object {
-                    "value": 0.00691202558279862,
+                  "av_pos_pg": Object {
+                    "value": 0.0158247317,
                   },
-                  "contrib_sf": Object {
-                    "value": -0.051617559869774406,
+                  "av_pos_sf": Object {
+                    "value": 0.007924755300000001,
                   },
-                  "contrib_sg": Object {
-                    "value": 0.010261371009774053,
+                  "av_pos_sg": Object {
+                    "value": 0.0116668407,
+                  },
+                  "contrib_pos_c": Object {
+                    "value": 0.01945233978039951,
+                  },
+                  "contrib_pos_pf": Object {
+                    "value": -0.007827874950108919,
+                  },
+                  "contrib_pos_pg": Object {
+                    "value": -0.006006655434624159,
+                  },
+                  "contrib_pos_sf": Object {
+                    "value": -0.002455648109960294,
+                  },
+                  "contrib_pos_sg": Object {
+                    "value": -0.002814939002390063,
                   },
                   "feature": <OverlayTrigger
                     overlay={
@@ -422,20 +466,35 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
               GenericTableDataRow {
                 "cellMetaFn": [Function],
                 "dataObj": Object {
-                  "contrib_c": Object {
-                    "value": -0.04223492496091544,
+                  "av_pos_c": Object {
+                    "value": 0.0678368195,
                   },
-                  "contrib_pf": Object {
-                    "value": -0.03168385808689023,
+                  "av_pos_pf": Object {
+                    "value": 0.0872447119,
                   },
-                  "contrib_pg": Object {
-                    "value": 0.15233331427951713,
+                  "av_pos_pg": Object {
+                    "value": 0.22959304020000001,
                   },
-                  "contrib_sf": Object {
-                    "value": -0.10245290360067807,
+                  "av_pos_sf": Object {
+                    "value": 0.0965046281,
                   },
-                  "contrib_sg": Object {
-                    "value": 0.03380183622924033,
+                  "av_pos_sg": Object {
+                    "value": 0.1289834115,
+                  },
+                  "contrib_pos_c": Object {
+                    "value": -0.037624862631980414,
+                  },
+                  "contrib_pos_pf": Object {
+                    "value": -0.0058141040578714425,
+                  },
+                  "contrib_pos_pg": Object {
+                    "value": -0.20700736403766284,
+                  },
+                  "contrib_pos_sf": Object {
+                    "value": -0.0015159439344747828,
+                  },
+                  "contrib_pos_sg": Object {
+                    "value": -0.0078362431077644,
                   },
                   "feature": <OverlayTrigger
                     overlay={
@@ -478,20 +537,35 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
               GenericTableDataRow {
                 "cellMetaFn": [Function],
                 "dataObj": Object {
-                  "contrib_c": Object {
-                    "value": 0.026647517533843396,
+                  "av_pos_c": Object {
+                    "value": 0.2031569443,
                   },
-                  "contrib_pf": Object {
-                    "value": -0.03963956319487794,
+                  "av_pos_pf": Object {
+                    "value": 0.17624070020000002,
                   },
-                  "contrib_pg": Object {
-                    "value": -0.010649444941996322,
+                  "av_pos_pg": Object {
+                    "value": 0.2245687342,
                   },
-                  "contrib_sf": Object {
-                    "value": -0.05414931077874611,
+                  "av_pos_sf": Object {
+                    "value": 0.18473305790000003,
                   },
-                  "contrib_sg": Object {
-                    "value": 0.010898875237855803,
+                  "av_pos_sg": Object {
+                    "value": 0.180322477,
+                  },
+                  "contrib_pos_c": Object {
+                    "value": -0.019962051211768028,
+                  },
+                  "contrib_pos_pf": Object {
+                    "value": 0.005975216802748543,
+                  },
+                  "contrib_pos_pg": Object {
+                    "value": 0.004340134483836627,
+                  },
+                  "contrib_pos_sf": Object {
+                    "value": 0.005090032487604871,
+                  },
+                  "contrib_pos_sg": Object {
+                    "value": -0.0010070260468663683,
                   },
                   "feature": <OverlayTrigger
                     overlay={
@@ -534,20 +608,35 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
               GenericTableDataRow {
                 "cellMetaFn": [Function],
                 "dataObj": Object {
-                  "contrib_c": Object {
-                    "value": -0.016115033448116056,
+                  "av_pos_c": Object {
+                    "value": 0.1414271782,
                   },
-                  "contrib_pf": Object {
-                    "value": 0.016783638442221253,
+                  "av_pos_pf": Object {
+                    "value": 0.1509850604,
                   },
-                  "contrib_pg": Object {
-                    "value": 0.019946848991563935,
+                  "av_pos_pg": Object {
+                    "value": 0.4749040871,
                   },
-                  "contrib_sf": Object {
-                    "value": 0.018745339249080523,
+                  "av_pos_sf": Object {
+                    "value": 0.1780757985,
                   },
-                  "contrib_sg": Object {
-                    "value": -0.005907843146371329,
+                  "av_pos_sg": Object {
+                    "value": 0.2387527222,
+                  },
+                  "contrib_pos_c": Object {
+                    "value": -0.000612463459280325,
+                  },
+                  "contrib_pos_pf": Object {
+                    "value": -0.0014010660821467027,
+                  },
+                  "contrib_pos_pg": Object {
+                    "value": -0.04738039865316264,
+                  },
+                  "contrib_pos_sf": Object {
+                    "value": -0.0028639602972416055,
+                  },
+                  "contrib_pos_sg": Object {
+                    "value": 0.0029869672635545854,
                   },
                   "feature": <OverlayTrigger
                     overlay={
@@ -599,20 +688,35 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
               GenericTableDataRow {
                 "cellMetaFn": [Function],
                 "dataObj": Object {
-                  "contrib_c": Object {
-                    "value": -0.12836904374477995,
+                  "av_pos_c": Object {
+                    "value": 0.0356379852,
                   },
-                  "contrib_pf": Object {
-                    "value": 0.0028997516825672175,
+                  "av_pos_pf": Object {
+                    "value": 0.3325425692,
                   },
-                  "contrib_pg": Object {
-                    "value": 0.1470029365750779,
+                  "av_pos_pg": Object {
+                    "value": 0.4229289926,
                   },
-                  "contrib_sf": Object {
-                    "value": -0.0197004267655158,
+                  "av_pos_sf": Object {
+                    "value": 0.2889785749,
                   },
-                  "contrib_sg": Object {
-                    "value": 0.16004300449129966,
+                  "av_pos_sg": Object {
+                    "value": 0.4942537206,
+                  },
+                  "contrib_pos_c": Object {
+                    "value": -0.3413469120792678,
+                  },
+                  "contrib_pos_pf": Object {
+                    "value": 0.001826780396754647,
+                  },
+                  "contrib_pos_pg": Object {
+                    "value": 0.03619576724927907,
+                  },
+                  "contrib_pos_sf": Object {
+                    "value": -0.005969653357143445,
+                  },
+                  "contrib_pos_sg": Object {
+                    "value": 0.013562155486154774,
                   },
                   "feature": <OverlayTrigger
                     overlay={
@@ -655,20 +759,35 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
               GenericTableDataRow {
                 "cellMetaFn": [Function],
                 "dataObj": Object {
-                  "contrib_c": Object {
-                    "value": 0.0646664924542532,
+                  "av_pos_c": Object {
+                    "value": 0.2847977225,
                   },
-                  "contrib_pf": Object {
-                    "value": -0.08795738950827506,
+                  "av_pos_pf": Object {
+                    "value": 0.2956317965,
                   },
-                  "contrib_pg": Object {
-                    "value": -0.0029410633869443683,
+                  "av_pos_pg": Object {
+                    "value": 0.1912683462,
                   },
-                  "contrib_sf": Object {
-                    "value": -0.06987530253774282,
+                  "av_pos_sf": Object {
+                    "value": 0.2860747354,
                   },
-                  "contrib_sg": Object {
-                    "value": -0.03616694183498591,
+                  "av_pos_sg": Object {
+                    "value": 0.235732551,
+                  },
+                  "contrib_pos_c": Object {
+                    "value": -0.0009866515254197896,
+                  },
+                  "contrib_pos_pf": Object {
+                    "value": 0.0060083837499027805,
+                  },
+                  "contrib_pos_pg": Object {
+                    "value": -0.0009809904081739616,
+                  },
+                  "contrib_pos_sf": Object {
+                    "value": 0.0004352533465141939,
+                  },
+                  "contrib_pos_sg": Object {
+                    "value": -0.004610992795876558,
                   },
                   "feature": <OverlayTrigger
                     overlay={
@@ -711,20 +830,35 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
               GenericTableDataRow {
                 "cellMetaFn": [Function],
                 "dataObj": Object {
-                  "contrib_c": Object {
-                    "value": -0.008240496672810755,
+                  "av_pos_c": Object {
+                    "value": 0.4449382138,
                   },
-                  "contrib_pf": Object {
-                    "value": -0.031499817846396876,
+                  "av_pos_pf": Object {
+                    "value": 0.3567309891,
                   },
-                  "contrib_pg": Object {
-                    "value": 0.024144674541452797,
+                  "av_pos_pg": Object {
+                    "value": 0.20777164920000002,
                   },
-                  "contrib_sf": Object {
-                    "value": -0.021786307318795942,
+                  "av_pos_sf": Object {
+                    "value": 0.3696144649,
                   },
-                  "contrib_sg": Object {
-                    "value": 0.03234661733011634,
+                  "av_pos_sg": Object {
+                    "value": 0.25123133599999997,
+                  },
+                  "contrib_pos_c": Object {
+                    "value": 0.04152764042886067,
+                  },
+                  "contrib_pos_pf": Object {
+                    "value": 0.06037906892834526,
+                  },
+                  "contrib_pos_pg": Object {
+                    "value": -0.007320938673343044,
+                  },
+                  "contrib_pos_sf": Object {
+                    "value": 0.01791687322455881,
+                  },
+                  "contrib_pos_sg": Object {
+                    "value": -0.01391191673309909,
                   },
                   "feature": <OverlayTrigger
                     overlay={
@@ -767,20 +901,35 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
               GenericTableDataRow {
                 "cellMetaFn": [Function],
                 "dataObj": Object {
-                  "contrib_c": Object {
-                    "value": 0.0035471216759748844,
+                  "av_pos_c": Object {
+                    "value": 0.4830745745,
                   },
-                  "contrib_pf": Object {
-                    "value": -0.020062600900013054,
+                  "av_pos_pf": Object {
+                    "value": 0.3283595915,
                   },
-                  "contrib_pg": Object {
-                    "value": 0.005312747356383671,
+                  "av_pos_pg": Object {
+                    "value": 0.36792535530000003,
                   },
-                  "contrib_sf": Object {
-                    "value": 0.00035934842651805634,
+                  "av_pos_sf": Object {
+                    "value": 0.38637801650000003,
                   },
-                  "contrib_sg": Object {
-                    "value": 0.0022144186909884896,
+                  "av_pos_sg": Object {
+                    "value": 0.2998916102,
+                  },
+                  "contrib_pos_c": Object {
+                    "value": -0.014098766022390803,
+                  },
+                  "contrib_pos_pf": Object {
+                    "value": 0.019816562351205623,
+                  },
+                  "contrib_pos_pg": Object {
+                    "value": -0.0045128478046607984,
+                  },
+                  "contrib_pos_sf": Object {
+                    "value": -0.00020819493623366162,
+                  },
+                  "contrib_pos_sg": Object {
+                    "value": -0.0008230503228848088,
                   },
                   "feature": <OverlayTrigger
                     overlay={
@@ -832,20 +981,35 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
               GenericTableDataRow {
                 "cellMetaFn": [Function],
                 "dataObj": Object {
-                  "contrib_c": Object {
-                    "value": 0.056156127321300944,
+                  "av_pos_c": Object {
+                    "value": 0.9123980713000001,
                   },
-                  "contrib_pf": Object {
-                    "value": -0.02201870452065462,
+                  "av_pos_pf": Object {
+                    "value": 0.7522508240000001,
                   },
-                  "contrib_pg": Object {
-                    "value": -0.062360894222699616,
+                  "av_pos_pg": Object {
+                    "value": 0.6577471161,
                   },
-                  "contrib_sf": Object {
-                    "value": -0.007957356544934681,
+                  "av_pos_sf": Object {
+                    "value": 0.7451155853,
                   },
-                  "contrib_sg": Object {
-                    "value": -0.04654174590832631,
+                  "av_pos_sg": Object {
+                    "value": 0.6849348449999999,
+                  },
+                  "contrib_pos_c": Object {
+                    "value": -0.07157097695142202,
+                  },
+                  "contrib_pos_pf": Object {
+                    "value": 0.006701517973200819,
+                  },
+                  "contrib_pos_pg": Object {
+                    "value": 0.0028363097733763287,
+                  },
+                  "contrib_pos_sf": Object {
+                    "value": 0.0009182507338974986,
+                  },
+                  "contrib_pos_sg": Object {
+                    "value": 0.003091878999077093,
                   },
                   "feature": <OverlayTrigger
                     overlay={
@@ -888,20 +1052,35 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
               GenericTableDataRow {
                 "cellMetaFn": [Function],
                 "dataObj": Object {
-                  "contrib_c": Object {
-                    "value": -0.1531337633579183,
+                  "av_pos_c": Object {
+                    "value": 0.1884738296,
                   },
-                  "contrib_pf": Object {
-                    "value": 0.12063594110067723,
+                  "av_pos_pf": Object {
+                    "value": 1.1266727492,
                   },
-                  "contrib_pg": Object {
-                    "value": 0.07499623928169635,
+                  "av_pos_pg": Object {
+                    "value": 1.0493396937,
                   },
-                  "contrib_sf": Object {
-                    "value": 0.1287972761851643,
+                  "av_pos_sf": Object {
+                    "value": 0.9566496407,
                   },
-                  "contrib_sg": Object {
-                    "value": 0.10958816899896993,
+                  "av_pos_sg": Object {
+                    "value": 1.0346481608,
+                  },
+                  "contrib_pos_c": Object {
+                    "value": -0.3548668485477285,
+                  },
+                  "contrib_pos_pf": Object {
+                    "value": -0.019270175929596255,
+                  },
+                  "contrib_pos_pg": Object {
+                    "value": -0.0020296505283692464,
+                  },
+                  "contrib_pos_sf": Object {
+                    "value": 0.0052227179562832115,
+                  },
+                  "contrib_pos_sg": Object {
+                    "value": -0.0009975930812728547,
                   },
                   "feature": <OverlayTrigger
                     overlay={
@@ -944,20 +1123,35 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
               GenericTableDataRow {
                 "cellMetaFn": [Function],
                 "dataObj": Object {
-                  "contrib_c": Object {
-                    "value": -0.058368638273739344,
+                  "av_pos_c": Object {
+                    "value": 0.5024908177999999,
                   },
-                  "contrib_pf": Object {
-                    "value": 0.08008214227766312,
+                  "av_pos_pf": Object {
+                    "value": 0.7167442076,
                   },
-                  "contrib_pg": Object {
-                    "value": 0.01729165247734427,
+                  "av_pos_pg": Object {
+                    "value": 0.4884786213,
                   },
-                  "contrib_sf": Object {
-                    "value": 0.040056590613443896,
+                  "av_pos_sf": Object {
+                    "value": 0.6278111965000001,
                   },
-                  "contrib_sg": Object {
-                    "value": 0.031279009510188416,
+                  "av_pos_sg": Object {
+                    "value": 0.6642783824,
+                  },
+                  "contrib_pos_c": Object {
+                    "value": -0.03354469847484951,
+                  },
+                  "contrib_pos_pf": Object {
+                    "value": -0.017289763877176418,
+                  },
+                  "contrib_pos_pg": Object {
+                    "value": 0.003987020561549374,
+                  },
+                  "contrib_pos_sf": Object {
+                    "value": 0.00008415868795615313,
+                  },
+                  "contrib_pos_sg": Object {
+                    "value": -0.0012963797839463578,
                   },
                   "feature": <OverlayTrigger
                     overlay={
@@ -1000,20 +1194,35 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
               GenericTableDataRow {
                 "cellMetaFn": [Function],
                 "dataObj": Object {
-                  "contrib_c": Object {
-                    "value": -0.20484555769066667,
+                  "av_pos_c": Object {
+                    "value": 0.911321825,
                   },
-                  "contrib_pf": Object {
-                    "value": 0.30293786667551637,
+                  "av_pos_pf": Object {
+                    "value": 1.2415465104,
                   },
-                  "contrib_pg": Object {
-                    "value": -0.15270143510199866,
+                  "av_pos_pg": Object {
+                    "value": 0.7356142109,
                   },
-                  "contrib_sf": Object {
-                    "value": 0.38987904987410404,
+                  "av_pos_sf": Object {
+                    "value": 1.1339010007,
                   },
-                  "contrib_sg": Object {
-                    "value": 0.15367853474643478,
+                  "av_pos_sg": Object {
+                    "value": 1.1104221365,
+                  },
+                  "contrib_pos_c": Object {
+                    "value": -0.24543074169894397,
+                  },
+                  "contrib_pos_pf": Object {
+                    "value": 0.10066146942550594,
+                  },
+                  "contrib_pos_pg": Object {
+                    "value": -0.08361501434257791,
+                  },
+                  "contrib_pos_sf": Object {
+                    "value": 0.06895308370025935,
+                  },
+                  "contrib_pos_sg": Object {
+                    "value": 0.034480735743447705,
                   },
                   "feature": <OverlayTrigger
                     overlay={
@@ -1065,20 +1274,35 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
               GenericTableDataRow {
                 "cellMetaFn": [Function],
                 "dataObj": Object {
-                  "contrib_c": Object {
-                    "value": -0.08724529201311297,
+                  "av_pos_c": Object {
+                    "value": 0.014245939999999999,
                   },
-                  "contrib_pf": Object {
-                    "value": -0.07773338943023375,
+                  "av_pos_pf": Object {
+                    "value": 0.0137913931,
                   },
-                  "contrib_pg": Object {
-                    "value": 0.1407552872721284,
+                  "av_pos_pg": Object {
+                    "value": 0.0235837429,
                   },
-                  "contrib_sf": Object {
-                    "value": -0.007274048520781206,
+                  "av_pos_sf": Object {
+                    "value": 0.017650082600000002,
                   },
-                  "contrib_sg": Object {
-                    "value": 0.12812584047046469,
+                  "av_pos_sg": Object {
+                    "value": 0.0192243356,
+                  },
+                  "contrib_pos_c": Object {
+                    "value": -0.049176097284612356,
+                  },
+                  "contrib_pos_pf": Object {
+                    "value": -0.027266930466083267,
+                  },
+                  "contrib_pos_pg": Object {
+                    "value": -0.04727256027898751,
+                  },
+                  "contrib_pos_sf": Object {
+                    "value": -0.000031389682828545,
+                  },
+                  "contrib_pos_sg": Object {
+                    "value": -0.00795540190043393,
                   },
                   "feature": <OverlayTrigger
                     overlay={
@@ -1121,20 +1345,35 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
               GenericTableDataRow {
                 "cellMetaFn": [Function],
                 "dataObj": Object {
-                  "contrib_c": Object {
-                    "value": 0.06617712322799577,
+                  "av_pos_c": Object {
+                    "value": 0.0999968819,
                   },
-                  "contrib_pf": Object {
-                    "value": 0.0743323644093373,
+                  "av_pos_pf": Object {
+                    "value": 0.0802877462,
                   },
-                  "contrib_pg": Object {
-                    "value": -0.11629761921263389,
+                  "av_pos_pg": Object {
+                    "value": 0.0236238544,
                   },
-                  "contrib_sf": Object {
-                    "value": 0.055172198986375674,
+                  "av_pos_sf": Object {
+                    "value": 0.06815933880000001,
                   },
-                  "contrib_sg": Object {
-                    "value": -0.1280063097818053,
+                  "av_pos_sg": Object {
+                    "value": 0.0290276186,
+                  },
+                  "contrib_pos_c": Object {
+                    "value": -0.23527602646240853,
+                  },
+                  "contrib_pos_pf": Object {
+                    "value": -0.09402137122251414,
+                  },
+                  "contrib_pos_pg": Object {
+                    "value": -0.05590854110915088,
+                  },
+                  "contrib_pos_sf": Object {
+                    "value": -0.01859742271033884,
+                  },
+                  "contrib_pos_sg": Object {
+                    "value": -0.033688967250105235,
                   },
                   "feature": <OverlayTrigger
                     overlay={
@@ -1177,20 +1416,35 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
               GenericTableDataRow {
                 "cellMetaFn": [Function],
                 "dataObj": Object {
-                  "contrib_c": Object {
-                    "value": 0,
+                  "av_pos_c": Object {
+                    "value": 0.16956138760000003,
                   },
-                  "contrib_pf": Object {
-                    "value": 0,
+                  "av_pos_pf": Object {
+                    "value": 0.1819500365,
                   },
-                  "contrib_pg": Object {
-                    "value": -0,
+                  "av_pos_pg": Object {
+                    "value": 0.0914476026,
                   },
-                  "contrib_sf": Object {
-                    "value": 0,
+                  "av_pos_sf": Object {
+                    "value": 0.1512246281,
                   },
-                  "contrib_sg": Object {
-                    "value": -0,
+                  "av_pos_sg": Object {
+                    "value": 0.1045976203,
+                  },
+                  "contrib_pos_c": Object {
+                    "value": -0.2630358667773048,
+                  },
+                  "contrib_pos_pf": Object {
+                    "value": -0.39433580174554483,
+                  },
+                  "contrib_pos_pg": Object {
+                    "value": 0.21764075838691102,
+                  },
+                  "contrib_pos_sf": Object {
+                    "value": -0.15791866187516057,
+                  },
+                  "contrib_pos_sg": Object {
+                    "value": 0.08303049053367459,
                   },
                   "feature": <OverlayTrigger
                     overlay={
@@ -1233,20 +1487,35 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
               GenericTableDataRow {
                 "cellMetaFn": [Function],
                 "dataObj": Object {
-                  "contrib_c": Object {
-                    "value": 0.040620194014135816,
+                  "av_pos_c": Object {
+                    "value": 0.0449095752,
                   },
-                  "contrib_pf": Object {
-                    "value": 0.02214657528613736,
+                  "av_pos_pf": Object {
+                    "value": 0.0353329686,
                   },
-                  "contrib_pg": Object {
-                    "value": -0.047023696991819776,
+                  "av_pos_pg": Object {
+                    "value": 0.005074379100000001,
                   },
-                  "contrib_sf": Object {
-                    "value": -0.025660347552082692,
+                  "av_pos_sf": Object {
+                    "value": 0.0174476033,
                   },
-                  "contrib_sg": Object {
-                    "value": -0.04993411683362525,
+                  "av_pos_sg": Object {
+                    "value": 0.007975160700000001,
+                  },
+                  "contrib_pos_c": Object {
+                    "value": -0.19715955385022882,
+                  },
+                  "contrib_pos_pf": Object {
+                    "value": -0.03922404640894013,
+                  },
+                  "contrib_pos_pg": Object {
+                    "value": -0.03351243068191078,
+                  },
+                  "contrib_pos_sf": Object {
+                    "value": 0.0008450363261314196,
+                  },
+                  "contrib_pos_sg": Object {
+                    "value": -0.019687635941797746,
                   },
                   "feature": <OverlayTrigger
                     overlay={
@@ -1289,20 +1558,35 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
               GenericTableDataRow {
                 "cellMetaFn": [Function],
                 "dataObj": Object {
-                  "contrib_c": Object {
-                    "value": 0.025638811755007884,
+                  "av_pos_c": Object {
+                    "value": 0.0495930882,
                   },
-                  "contrib_pf": Object {
-                    "value": 0.032786791204866335,
+                  "av_pos_pf": Object {
+                    "value": 0.0446174325,
                   },
-                  "contrib_pg": Object {
-                    "value": -0.019330119783944333,
+                  "av_pos_pg": Object {
+                    "value": 0.0314774871,
                   },
-                  "contrib_sf": Object {
-                    "value": -0.006516633176261896,
+                  "av_pos_sf": Object {
+                    "value": 0.038600495900000004,
                   },
-                  "contrib_sg": Object {
-                    "value": -0.061205365779553544,
+                  "av_pos_sg": Object {
+                    "value": 0.030842279000000004,
+                  },
+                  "contrib_pos_c": Object {
+                    "value": -0.08779800008267521,
+                  },
+                  "contrib_pos_pf": Object {
+                    "value": -0.05053098461175968,
+                  },
+                  "contrib_pos_pg": Object {
+                    "value": 0.007935253462240222,
+                  },
+                  "contrib_pos_sf": Object {
+                    "value": 0.002944221325128428,
+                  },
+                  "contrib_pos_sg": Object {
+                    "value": 0.01727202427172816,
                   },
                   "feature": <OverlayTrigger
                     overlay={
@@ -1346,7 +1630,62 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
           }
           tableFields={
             Object {
-              "contrib_c": GenericTableColProps {
+              "av_pos_c": GenericTableColProps {
+                "className": "",
+                "colName": "Av C",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "The average for this feature for the players in the training set for position [Center]",
+                "widthUnits": 2,
+              },
+              "av_pos_pf": GenericTableColProps {
+                "className": "",
+                "colName": "Av PF",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "The average for this feature for the players in the training set for position [Power Forward]",
+                "widthUnits": 2,
+              },
+              "av_pos_pg": GenericTableColProps {
+                "className": "",
+                "colName": "Av PG",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "The average for this feature for the players in the training set for position [Point Guard]",
+                "widthUnits": 2,
+              },
+              "av_pos_sf": GenericTableColProps {
+                "className": "",
+                "colName": "Av SF",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "The average for this feature for the players in the training set for position [Small Forward]",
+                "widthUnits": 2,
+              },
+              "av_pos_sg": GenericTableColProps {
+                "className": "",
+                "colName": "Av SG",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "The average for this feature for the players in the training set for position [Shooting Guard]",
+                "widthUnits": 2,
+              },
+              "contrib_pos_c": GenericTableColProps {
                 "className": "",
                 "colName": "+- C%",
                 "colorPicker": [Function],
@@ -1354,10 +1693,10 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                 "isTitle": false,
                 "missingData": undefined,
                 "rowSpan": [Function],
-                "toolTip": "How much this feature improves/reduces the chance of this player's fit for this position ([Center])",
+                "toolTip": "A relative value for much this feature improves/reduces the chance of this player's fit for this position ([Center])",
                 "widthUnits": 2,
               },
-              "contrib_pf": GenericTableColProps {
+              "contrib_pos_pf": GenericTableColProps {
                 "className": "",
                 "colName": "+- PF%",
                 "colorPicker": [Function],
@@ -1365,10 +1704,10 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                 "isTitle": false,
                 "missingData": undefined,
                 "rowSpan": [Function],
-                "toolTip": "How much this feature improves/reduces the chance of this player's fit for this position ([Power Forward])",
+                "toolTip": "A relative value for much this feature improves/reduces the chance of this player's fit for this position ([Power Forward])",
                 "widthUnits": 2,
               },
-              "contrib_pg": GenericTableColProps {
+              "contrib_pos_pg": GenericTableColProps {
                 "className": "",
                 "colName": "+- PG%",
                 "colorPicker": [Function],
@@ -1376,10 +1715,10 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                 "isTitle": false,
                 "missingData": undefined,
                 "rowSpan": [Function],
-                "toolTip": "How much this feature improves/reduces the chance of this player's fit for this position ([Point Guard])",
+                "toolTip": "A relative value for much this feature improves/reduces the chance of this player's fit for this position ([Point Guard])",
                 "widthUnits": 2,
               },
-              "contrib_sf": GenericTableColProps {
+              "contrib_pos_sf": GenericTableColProps {
                 "className": "",
                 "colName": "+- SF%",
                 "colorPicker": [Function],
@@ -1387,10 +1726,10 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                 "isTitle": false,
                 "missingData": undefined,
                 "rowSpan": [Function],
-                "toolTip": "How much this feature improves/reduces the chance of this player's fit for this position ([Small Forward])",
+                "toolTip": "A relative value for much this feature improves/reduces the chance of this player's fit for this position ([Small Forward])",
                 "widthUnits": 2,
               },
-              "contrib_sg": GenericTableColProps {
+              "contrib_pos_sg": GenericTableColProps {
                 "className": "",
                 "colName": "+- SG%",
                 "colorPicker": [Function],
@@ -1398,7 +1737,7 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                 "isTitle": false,
                 "missingData": undefined,
                 "rowSpan": [Function],
-                "toolTip": "How much this feature improves/reduces the chance of this player's fit for this position ([Shooting Guard])",
+                "toolTip": "A relative value for much this feature improves/reduces the chance of this player's fit for this position ([Shooting Guard])",
                 "widthUnits": 2,
               },
               "feature": GenericTableColProps {
@@ -1414,7 +1753,7 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
               },
               "player": GenericTableColProps {
                 "className": "",
-                "colName": "Player%",
+                "colName": "Player %",
                 "colorPicker": [Function],
                 "formatter": [Function],
                 "isTitle": false,

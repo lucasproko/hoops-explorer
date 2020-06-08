@@ -546,6 +546,61 @@ export class StatsUtils {
     ],
   ] as Array<[string, number, number[]]>;
 
+  static readonly positionFeatureAverages = {
+    'calc_ast_tov':
+      array([1.58247317, 1.16668407, 0.79247553, 0.74072676, 0.53099646]),
+    'off_assist':
+      array([22.95930402, 12.89834115,  9.65046281,  8.72447119,  6.78368195]),
+    'off_to':
+      array([22.45687342, 18.0322477 , 18.47330579, 17.62407002, 20.31569443]),
+    'calc_assist_per_fga':
+      array([47.49040871, 23.87527222, 17.80757985, 15.09850604, 14.14271782]),
+
+    'off_3pr':
+      array([42.29289926, 49.42537206, 28.89785749, 33.25425692,  3.56379852]),
+    'off_2pmidr':
+      array([19.12683462, 23.5732551 , 28.60747354, 29.56317965, 28.47977225]),
+    'off_2primr':
+      array([20.77716492, 25.1231336 , 36.96144649, 35.67309891, 44.49382138]),
+    'off_ftr':
+      array([36.79253553, 29.98916102, 38.63780165, 32.83595915, 48.30745745]),
+
+    'calc_ft_relative_inv':
+      array([65.77471161, 68.4934845 , 74.51155853, 75.2250824 , 91.23980713]),
+    'calc_three_relative':
+      array([104.93396937, 103.46481608,  95.66496407, 112.66727492, 18.84738296]),
+    'calc_mid_relative':
+      array([48.84786213, 66.42783824, 62.78111965, 71.67442076, 50.24908178]),
+    'calc_rim_relative':
+      array([ 73.56142109, 111.04221365, 113.39010007, 124.15465104, 91.1321825 ]),
+
+    'def_to':
+      array([2.35837429, 1.92243356, 1.76500826, 1.37913931, 1.424594  ]),
+    'off_orb':
+      array([2.36238544, 2.90276186, 6.81593388, 8.02877462, 9.99968819]),
+    'off_drb':
+      array([ 9.14476026, 10.45976203, 15.12246281, 18.19500365, 16.95613876]),
+    'def_2prim':
+      array([0.50743791, 0.79751607, 1.74476033, 3.53329686, 4.49095752]),
+    'def_ftr':
+      array([3.14774871, 3.0842279 , 3.86004959, 4.46174325, 4.95930882]),
+    } as Record<string, number[]>;
+
+  static readonly averageScoresByPos = _.chain(StatsUtils.positionFeatureWeights).transform(
+    (acc: number[], feat_scale_weights: [string, number, number[]]) => {
+      const feat = feat_scale_weights[0];
+      const scale = feat_scale_weights[1];
+      const weights = feat_scale_weights[2];
+      const fieldVal = StatsUtils.positionFeatureAverages[feat];
+
+      weights.forEach((weight, index) => {
+        const sumPart = fieldVal[index]*weight
+        acc[index] += sumPart; //(factor to make the scores render nicely)
+      });
+
+    }, _.clone(StatsUtils.positionFeatureInit)
+  ).map((v, i) => [ StatsUtils.tradPosList[i], { value: 0.1*v } ]).fromPairs().value();
+
   /** Returns a vector of 5 elements representing the confidence that the player
       can play that position (0=PG, 1=SG, 4=SF, 4=PF, 5=C)
   */
@@ -562,28 +617,26 @@ export class StatsUtils {
         (player.off_efg.value * player.total_off_fta.value) / (player.total_off_ftm.value || 1)
     } as Record<string, number>;
 
-    const [ scores, absScores ] = _.transform(StatsUtils.positionFeatureWeights,
-      (acc: [number[], number[]], feat_scale_weights: [string, number, number[]]) => {
+    const scores = _.transform(StatsUtils.positionFeatureWeights,
+      (acc: number[], feat_scale_weights: [string, number, number[]]) => {
         const feat = feat_scale_weights[0];
         const scale = feat_scale_weights[1];
         const weights = feat_scale_weights[2];
         const fieldVal = _.startsWith(feat, "calc_") ? (calculated[feat] || 0) : (player[feat]?.value || 0);
 
-        const confs = acc[0];
-        const absConfs = acc[1];
         weights.forEach((weight, index) => {
-          const sumPart = fieldVal*scale*weight
-          confs[index] += sumPart;
-          absConfs[index] += Math.abs(sumPart);
+          const sumPart = fieldVal*scale*weight;
+          acc[index] += sumPart;
         });
 
         // (used for debugging - shouldn't be needed moving forward)
         //console.log(`${player.key}: ${pos} ${scale} ${weights}  - ${fieldVal} ... ${acc}`);
 
-      }, ([ _.clone(StatsUtils.positionFeatureInit), [0, 0, 0, 0, 0] ])
+      }, _.clone(StatsUtils.positionFeatureInit)
     );
 
-    const addPos = (v: number[], scale: number) => {
+    const addPosAndScale = (v: number[], scale: number) => {
+
       return _.chain(v).map((s: number, i: number) => [ posList[i], s*scale ]).fromPairs().value();
     }
     const maxScore = _.max(scores) || 0;
@@ -591,10 +644,9 @@ export class StatsUtils {
     const maxConfInv = 1.0/(_.sum(confs) || 1);
 
     return [
-      addPos(confs, maxConfInv),
+      addPosAndScale(confs, maxConfInv),
       {
-        scores: addPos(scores, 1.0),
-        absScores: absScores,
+        scores: addPosAndScale(scores, 0.1), //(0.1 == factor to make the scores render nicely)
         calculated: calculated,
       }
     ];
