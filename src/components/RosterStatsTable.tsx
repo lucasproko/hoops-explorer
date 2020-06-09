@@ -16,6 +16,8 @@ import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Button from 'react-bootstrap/Button';
+import Tooltip from 'react-bootstrap/Tooltip';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 
 // Additional components:
 // @ts-ignore
@@ -193,29 +195,64 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, tea
 
   const baselineIsOnlyLine = !(rosterStats?.on?.length || rosterStats?.off?.length);
 
+  const onOffBaseToPhrase = (type: "on" | "off" | "baseline") => {
+    switch(type) {
+      case "on":  return "A";
+      case "off":  return "B";
+      case "baseline": return "Base"
+    }
+  };
+
+  /** Adds a tooltip to the code */
+  const buildPositionTooltip = (pos: string, type: "on" | "off" | "baseline") => {
+    const fullPos = StatsUtils.idToPosition[pos] || "Unknown"
+    return <Tooltip id={pos + "Tooltip"}>
+      {fullPos}<br/><br/>
+      Algorithmically assigned via stats from {onOffBaseToPhrase(type)} lineups.
+      See "Show Positional diagnostics" (gear icon on right) for more details.
+    </Tooltip>;
+  }
+
+
+  /** Utility function to build the title for the player stats */
+  const insertTitle = (playerName: string, type: "on" | "off" | "baseline", pos: string) => {
+    const singleLineCase = type == "baseline" && baselineIsOnlyLine;
+      //^ (if this is set we only show it together with on/off)
+    const sub = onOffBaseToPhrase(type);
+
+    const posIfNotExpanded1 = expandedView ? null :
+      <OverlayTrigger placement="auto" overlay={buildPositionTooltip(pos, type)}>
+          <sup>{pos}</sup>
+      </OverlayTrigger>;
+
+    const posIfNotExpanded2 = expandedView ? null :
+      <OverlayTrigger placement="auto" overlay={buildPositionTooltip(pos, type)}>
+          <small>{pos} - </small>
+      </OverlayTrigger>;
+
+    return singleLineCase ?
+      <span>
+        <span className="d-none d-xl-block"><b>{playerName}</b> {posIfNotExpanded1}</span>
+        <span className="d-block d-xl-none"><b>{playerName}</b></span>
+      </span> :
+      <span>
+        <span><b>{playerName}</b></span>
+        <span className="d-none d-xl-block">{posIfNotExpanded2}<b>{sub}</b> lineups</span>
+        <span className="d-block d-xl-none"><b>{sub}</b> set</span>
+      </span>;
+  };
+
   // (Always just use A/B here because it's too confusing to say
   // "On <Player name>" meaning ""<Player Name> when <Other other player> is on")
   const allPlayers = _.chain([
     _.map(rosterStats.on  || [], (p) => _.merge(p, {
-      onOffKey: 'On',
-      off_title: <span><b>{p.key}</b><br/>
-        <span className="d-block d-md-none"><b>A</b> set</span>
-        <span className="d-none d-md-block d-lg-block d-xl-block"><b>A</b> lineups</span>
-      </span>
+      onOffKey: 'On'
     })),
     _.map(rosterStats.off  || [], (p) => _.merge(p, {
-      onOffKey: 'Off',
-      off_title: <span><b>{p.key}</b><br/>
-        <span className="d-block d-md-none"><b>B</b> set</span>
-        <span className="d-none d-md-block d-lg-block d-xl-block"><b>B</b> lineups</span>
-      </span>
+      onOffKey: 'Off'
     })),
     _.map(rosterStats.baseline || [], (p) => _.merge(p, {
-      onOffKey: 'Baseline',
-      off_title: baselineIsOnlyLine ? //v (in this case it's the only line)
-        <span><b>{p.key}</b></span> :
-        <span><b>{p.key}</b><br/>Baseline</span>
-        //^ (if this is set we only show it together with on/off)
+      onOffKey: 'Baseline'
 
     })),
   ]).flatten().groupBy("key").toPairs().map((key_onOffBase) => {
@@ -228,7 +265,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, tea
     };
 
     // Inject ORtg and DRB and Poss% (ie mutate player idempotently)
-    [ "on", "off", "baseline" ].forEach((key) => {
+    ([ "on", "off", "baseline" ] as ("on" | "off" | "baseline")[]).forEach((key) => {
       const stat = (player as any)[key];
       const teamStat = (teamStats as any)[key] || {};
       if (stat) {
@@ -246,6 +283,17 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, tea
         stat.def_rtg = dRtg;
         stat.def_adj_rtg = adjDRtg;
         stat.diag_def_rtg = dRtgDiag;
+
+        // Positional info:
+
+        const [ posConfs, posConfsDiags ] = StatsUtils.buildPositionConfidences(stat);
+        const [ pos, posDiags ] = StatsUtils.buildPosition(posConfs, stat);
+        stat.def_usage = <OverlayTrigger placement="auto" overlay={buildPositionTooltip(pos, key)}>
+          <small>{pos}</small>
+        </OverlayTrigger>;
+
+        // Now we have the position we can build the titles:
+        stat.off_title = insertTitle(stat.key, key, pos);
       }
     });
     return player;

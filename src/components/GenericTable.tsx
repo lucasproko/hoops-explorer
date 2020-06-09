@@ -123,6 +123,9 @@ export class GenericTableOps {
   static addIntCol(colName: string, toolTip: string, colorPicker: GenericTableColorPickerFn) {
     return new GenericTableColProps(colName, toolTip, 2, false, GenericTableOps.intFormatter, colorPicker, GenericTableOps.defaultRowSpanCalculator, undefined);
   }
+  static addDataCol(colName: string, toolTip: string, colorPicker: GenericTableColorPickerFn, formatter: (val: any) => string | React.ReactNode) {
+    return new GenericTableColProps(colName, toolTip, 2, false, formatter, colorPicker, GenericTableOps.defaultRowSpanCalculator, undefined);
+  }
   static addTitle(
     colName: string, toolTip: string,
     rowSpan: (key: string) => number = GenericTableOps.defaultRowSpanCalculator,

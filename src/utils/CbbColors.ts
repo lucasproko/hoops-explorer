@@ -15,6 +15,13 @@ export class CbbColors {
         ;
     };
   }
+  /** For off/def tables where only the off is used */
+  static offOnlyPicker(offScale: (val: number) => string, defScale: (val: number) => string) {
+    return (val: any, valMeta: string) => {
+      return ("off" == valMeta) ? CbbColors.picker(offScale, offScale)(val, valMeta) : undefined;
+    }
+  }
+  /** For non-off/def tables, single row */
   static varPicker(scaleFn: (val: number) => string, scale: number = 1) {
     return (val: any, valMeta: string) => {
       const num = val.value as number;
