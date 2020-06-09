@@ -317,15 +317,8 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
   <span>
     <ul>
       <li>
-        This table breaks down how a player scores against each of the traditional positions based on the different statistics used to train the algorithm.
+        This table breaks down how a player matches up against each of the traditional positional categories, based on the different statistics used to train the algorithm.
       </li>
-      <ul>
-        <li>
-          <i>
-            (Note that the *Q% metrics won't average to 100% because it isn't weighted by how often each player takes shots of that type.)
-          </i>
-        </li>
-      </ul>
     </ul>
     <Container
       fluid={false}
