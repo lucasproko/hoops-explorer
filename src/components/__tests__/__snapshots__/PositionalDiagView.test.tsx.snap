@@ -36,7 +36,7 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (basic d
               "cellMetaFn": [Function],
               "dataObj": Object {
                 "pos_c": Object {
-                  "value": 6.240264948172465e-10,
+                  "value": 6.240264948172421e-10,
                 },
                 "pos_pf": Object {
                   "value": 0.000004718217541315014,
@@ -208,7 +208,7 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                   "value": 0.2117152052070425,
                 },
                 "pos_sf": Object {
-                  "value": 0.07259697433209066,
+                  "value": 0.07259697433209061,
                 },
                 "pos_sg": Object {
                   "value": 0.7071037130584001,
@@ -319,6 +319,13 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
       <li>
         This table breaks down how a player scores against each of the traditional positions based on the different statistics used to train the algorithm.
       </li>
+      <ul>
+        <li>
+          <i>
+            (Note that the *Q% metrics won't average to 100% because it isn't weighted by how often each player takes shots of that type.)
+          </i>
+        </li>
+      </ul>
     </ul>
     <Container
       fluid={false}
@@ -334,19 +341,19 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                 "cellMetaFn": [Function],
                 "dataObj": Object {
                   "av_pos_c": Object {
-                    "value": 0.4398477456096173,
+                    "value": 0.41968625431739137,
                   },
                   "av_pos_pf": Object {
-                    "value": 0.0348712666630011,
+                    "value": 0.03445442264999154,
                   },
                   "av_pos_pg": Object {
-                    "value": 0.12240657566527435,
+                    "value": 0.15451093251622613,
                   },
                   "av_pos_sf": Object {
-                    "value": -0.12008620073298096,
+                    "value": -0.10928574613314371,
                   },
                   "av_pos_sg": Object {
-                    "value": -0.039406143718373456,
+                    "value": -0.03291695250711689,
                   },
                   "contrib_pos_c": Object {
                     "value": -1.4516627912414033,
@@ -358,7 +365,7 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                     "value": -0.10020557237015684,
                   },
                   "contrib_pos_sf": Object {
-                    "value": -0.20723744784802856,
+                    "value": -0.2072374478480286,
                   },
                   "contrib_pos_sg": Object {
                     "value": 0.0203879626128261,
@@ -396,34 +403,34 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                 "cellMetaFn": [Function],
                 "dataObj": Object {
                   "av_pos_c": Object {
-                    "value": 0.0053099646000000006,
+                    "value": 0.005125452900000001,
                   },
                   "av_pos_pf": Object {
-                    "value": 0.007407267600000001,
+                    "value": 0.007430685700000001,
                   },
                   "av_pos_pg": Object {
-                    "value": 0.0158247317,
+                    "value": 0.0171771567,
                   },
                   "av_pos_sf": Object {
-                    "value": 0.007924755300000001,
+                    "value": 0.0079621661,
                   },
                   "av_pos_sg": Object {
-                    "value": 0.0116668407,
+                    "value": 0.0117932242,
                   },
                   "contrib_pos_c": Object {
-                    "value": 0.01945233978039951,
+                    "value": 0.02055282235917441,
                   },
                   "contrib_pos_pf": Object {
-                    "value": -0.007827874950108919,
+                    "value": -0.00767041050758926,
                   },
                   "contrib_pos_pg": Object {
-                    "value": -0.006006655434624159,
+                    "value": -0.007126634957356659,
                   },
                   "contrib_pos_sf": Object {
-                    "value": -0.002455648109960294,
+                    "value": -0.002313586014044136,
                   },
                   "contrib_pos_sg": Object {
-                    "value": -0.002814939002390063,
+                    "value": -0.0029298709819235128,
                   },
                   "feature": <OverlayTrigger
                     overlay={
@@ -467,34 +474,34 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                 "cellMetaFn": [Function],
                 "dataObj": Object {
                   "av_pos_c": Object {
-                    "value": 0.0678368195,
+                    "value": 0.06378066660000001,
                   },
                   "av_pos_pf": Object {
-                    "value": 0.0872447119,
+                    "value": 0.08731044669999999,
                   },
                   "av_pos_pg": Object {
-                    "value": 0.22959304020000001,
+                    "value": 0.24867857140000002,
                   },
                   "av_pos_sf": Object {
-                    "value": 0.0965046281,
+                    "value": 0.0963812274,
                   },
                   "av_pos_sg": Object {
-                    "value": 0.1289834115,
+                    "value": 0.1305019881,
                   },
                   "contrib_pos_c": Object {
-                    "value": -0.037624862631980414,
+                    "value": -0.04254994813190524,
                   },
                   "contrib_pos_pf": Object {
-                    "value": -0.0058141040578714425,
+                    "value": -0.005781096458690002,
                   },
                   "contrib_pos_pg": Object {
-                    "value": -0.20700736403766284,
+                    "value": -0.23721964732262882,
                   },
                   "contrib_pos_sf": Object {
-                    "value": -0.0015159439344747828,
+                    "value": -0.0015966151306683757,
                   },
                   "contrib_pos_sg": Object {
-                    "value": -0.0078362431077644,
+                    "value": -0.008230804843136838,
                   },
                   "feature": <OverlayTrigger
                     overlay={
@@ -538,34 +545,34 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                 "cellMetaFn": [Function],
                 "dataObj": Object {
                   "av_pos_c": Object {
-                    "value": 0.2031569443,
+                    "value": 0.2007028442,
                   },
                   "av_pos_pf": Object {
-                    "value": 0.17624070020000002,
+                    "value": 0.1758870432,
                   },
                   "av_pos_pg": Object {
-                    "value": 0.2245687342,
+                    "value": 0.22452999210000002,
                   },
                   "av_pos_sf": Object {
-                    "value": 0.18473305790000003,
+                    "value": 0.1844424188,
                   },
                   "av_pos_sg": Object {
-                    "value": 0.180322477,
+                    "value": 0.1804530996,
                   },
                   "contrib_pos_c": Object {
-                    "value": -0.019962051211768028,
+                    "value": -0.018806367374316065,
                   },
                   "contrib_pos_pf": Object {
-                    "value": 0.005975216802748543,
+                    "value": 0.005838647236366244,
                   },
                   "contrib_pos_pg": Object {
-                    "value": 0.004340134483836627,
+                    "value": 0.004337499021490447,
                   },
                   "contrib_pos_sf": Object {
-                    "value": 0.005090032487604871,
+                    "value": 0.005028303968858877,
                   },
                   "contrib_pos_sg": Object {
-                    "value": -0.0010070260468663683,
+                    "value": -0.001013752718898569,
                   },
                   "feature": <OverlayTrigger
                     overlay={
@@ -609,34 +616,34 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                 "cellMetaFn": [Function],
                 "dataObj": Object {
                   "av_pos_c": Object {
-                    "value": 0.1414271782,
+                    "value": 0.1350735024,
                   },
                   "av_pos_pf": Object {
-                    "value": 0.1509850604,
+                    "value": 0.15103898040000002,
                   },
                   "av_pos_pg": Object {
-                    "value": 0.4749040871,
+                    "value": 0.5181818417,
                   },
                   "av_pos_sf": Object {
-                    "value": 0.1780757985,
+                    "value": 0.1789512103,
                   },
                   "av_pos_sg": Object {
-                    "value": 0.2387527222,
+                    "value": 0.2421690841,
                   },
                   "contrib_pos_c": Object {
-                    "value": -0.000612463459280325,
+                    "value": -0.0026418402171519265,
                   },
                   "contrib_pos_pf": Object {
-                    "value": -0.0014010660821467027,
+                    "value": -0.0014109537807707037,
                   },
                   "contrib_pos_pg": Object {
-                    "value": -0.04738039865316264,
+                    "value": -0.05356486335768547,
                   },
                   "contrib_pos_sf": Object {
-                    "value": -0.0028639602972416055,
+                    "value": -0.0029361476296814043,
                   },
                   "contrib_pos_sg": Object {
-                    "value": 0.0029869672635545854,
+                    "value": 0.0030939243304664555,
                   },
                   "feature": <OverlayTrigger
                     overlay={
@@ -689,34 +696,34 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                 "cellMetaFn": [Function],
                 "dataObj": Object {
                   "av_pos_c": Object {
-                    "value": 0.0356379852,
+                    "value": 0.0168639513,
                   },
                   "av_pos_pf": Object {
-                    "value": 0.3325425692,
+                    "value": 0.3362534936,
                   },
                   "av_pos_pg": Object {
-                    "value": 0.4229289926,
+                    "value": 0.405474501,
                   },
                   "av_pos_sf": Object {
-                    "value": 0.2889785749,
+                    "value": 0.2819592525,
                   },
                   "av_pos_sg": Object {
-                    "value": 0.4942537206,
+                    "value": 0.49221919659999996,
                   },
                   "contrib_pos_c": Object {
-                    "value": -0.3413469120792678,
+                    "value": -0.35365487019696884,
                   },
                   "contrib_pos_pf": Object {
-                    "value": 0.001826780396754647,
+                    "value": 0.0017964858943228072,
                   },
                   "contrib_pos_pg": Object {
-                    "value": 0.03619576724927907,
+                    "value": 0.040932272198779034,
                   },
                   "contrib_pos_sf": Object {
-                    "value": -0.005969653357143445,
+                    "value": -0.006126396230199925,
                   },
                   "contrib_pos_sg": Object {
-                    "value": 0.013562155486154774,
+                    "value": 0.01400676408492278,
                   },
                   "feature": <OverlayTrigger
                     overlay={
@@ -760,34 +767,34 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                 "cellMetaFn": [Function],
                 "dataObj": Object {
                   "av_pos_c": Object {
-                    "value": 0.2847977225,
+                    "value": 0.3824966097,
                   },
                   "av_pos_pf": Object {
-                    "value": 0.2956317965,
+                    "value": 0.2992330697,
                   },
                   "av_pos_pg": Object {
-                    "value": 0.1912683462,
+                    "value": 0.2841474701,
                   },
                   "av_pos_sf": Object {
-                    "value": 0.2860747354,
+                    "value": 0.3124101352,
                   },
                   "av_pos_sg": Object {
-                    "value": 0.235732551,
+                    "value": 0.245276034,
                   },
                   "contrib_pos_c": Object {
-                    "value": -0.0009866515254197896,
+                    "value": -0.06435122856661252,
                   },
                   "contrib_pos_pf": Object {
-                    "value": 0.0060083837499027805,
+                    "value": 0.007759676784898341,
                   },
                   "contrib_pos_pg": Object {
-                    "value": -0.0009809904081739616,
+                    "value": 0.000009286810847838384,
                   },
                   "contrib_pos_sf": Object {
-                    "value": 0.0004352533465141939,
+                    "value": 0.004531537804065611,
                   },
                   "contrib_pos_sg": Object {
-                    "value": -0.004610992795876558,
+                    "value": -0.0036854285949528584,
                   },
                   "feature": <OverlayTrigger
                     overlay={
@@ -831,34 +838,34 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                 "cellMetaFn": [Function],
                 "dataObj": Object {
                   "av_pos_c": Object {
-                    "value": 0.4449382138,
+                    "value": 0.5975727503,
                   },
                   "av_pos_pf": Object {
-                    "value": 0.3567309891,
+                    "value": 0.36107654930000005,
                   },
                   "av_pos_pg": Object {
-                    "value": 0.20777164920000002,
+                    "value": 0.3086647093,
                   },
                   "av_pos_sf": Object {
-                    "value": 0.3696144649,
+                    "value": 0.4036403453,
                   },
                   "av_pos_sg": Object {
-                    "value": 0.25123133599999997,
+                    "value": 0.2614022775,
                   },
                   "contrib_pos_c": Object {
-                    "value": 0.04152764042886067,
+                    "value": 0.06380501735392329,
                   },
                   "contrib_pos_pf": Object {
-                    "value": 0.06037906892834526,
+                    "value": 0.06171555509353169,
                   },
                   "contrib_pos_pg": Object {
-                    "value": -0.007320938673343044,
+                    "value": -0.02291636236662842,
                   },
                   "contrib_pos_sf": Object {
-                    "value": 0.01791687322455881,
+                    "value": 0.020830941491891887,
                   },
                   "contrib_pos_sg": Object {
-                    "value": -0.01391191673309909,
+                    "value": -0.015469883244374392,
                   },
                   "feature": <OverlayTrigger
                     overlay={
@@ -902,34 +909,34 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                 "cellMetaFn": [Function],
                 "dataObj": Object {
                   "av_pos_c": Object {
-                    "value": 0.4830745745,
+                    "value": 0.49064177280000004,
                   },
                   "av_pos_pf": Object {
-                    "value": 0.3283595915,
+                    "value": 0.3261391657,
                   },
                   "av_pos_pg": Object {
-                    "value": 0.36792535530000003,
+                    "value": 0.3830457774,
                   },
                   "av_pos_sf": Object {
-                    "value": 0.38637801650000003,
+                    "value": 0.3907963899,
                   },
                   "av_pos_sg": Object {
-                    "value": 0.2998916102,
+                    "value": 0.3019707211,
                   },
                   "contrib_pos_c": Object {
-                    "value": -0.014098766022390803,
+                    "value": -0.014477483109150563,
                   },
                   "contrib_pos_pf": Object {
-                    "value": 0.019816562351205623,
+                    "value": 0.01947008089218138,
                   },
                   "contrib_pos_pg": Object {
-                    "value": -0.0045128478046607984,
+                    "value": -0.004922526569207038,
                   },
                   "contrib_pos_sf": Object {
-                    "value": -0.00020819493623366162,
+                    "value": -0.0002131669318206816,
                   },
                   "contrib_pos_sg": Object {
-                    "value": -0.0008230503228848088,
+                    "value": -0.0008404183836990489,
                   },
                   "feature": <OverlayTrigger
                     overlay={
@@ -982,105 +989,34 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                 "cellMetaFn": [Function],
                 "dataObj": Object {
                   "av_pos_c": Object {
-                    "value": 0.9123980713000001,
+                    "value": 0.1055692479,
                   },
                   "av_pos_pf": Object {
-                    "value": 0.7522508240000001,
+                    "value": 1.1083302518,
                   },
                   "av_pos_pg": Object {
-                    "value": 0.6577471161,
+                    "value": 1.0520372914,
                   },
                   "av_pos_sf": Object {
-                    "value": 0.7451155853,
+                    "value": 0.9436055369,
                   },
                   "av_pos_sg": Object {
-                    "value": 0.6849348449999999,
+                    "value": 1.0332803494,
                   },
                   "contrib_pos_c": Object {
-                    "value": -0.07157097695142202,
+                    "value": -0.3901460227920557,
                   },
                   "contrib_pos_pf": Object {
-                    "value": 0.006701517973200819,
+                    "value": -0.015880509923822374,
                   },
                   "contrib_pos_pg": Object {
-                    "value": 0.0028363097733763287,
+                    "value": -0.0022328592143113913,
                   },
                   "contrib_pos_sf": Object {
-                    "value": 0.0009182507338974986,
+                    "value": 0.006258906343074945,
                   },
                   "contrib_pos_sg": Object {
-                    "value": 0.003091878999077093,
-                  },
-                  "feature": <OverlayTrigger
-                    overlay={
-                      <ForwardRef
-                        id="calc_ft_relative_invTooltip"
-                        placement="right"
-                      >
-                        A very approximate measure of how tough the shots a player takes relative to their overall shooting ability (eFG/FT%) - the lower the number the tougher the shots the player takes.
-                      </ForwardRef>
-                    }
-                    placement="auto"
-                  >
-                    <b>
-                      FGD%
-                    </b>
-                  </OverlayTrigger>,
-                  "player": Object {
-                    "value": 0.6298515755218668,
-                  },
-                  "pos_c": Object {
-                    "value": 0.02533069,
-                  },
-                  "pos_pf": Object {
-                    "value": -0.00547513,
-                  },
-                  "pos_pg": Object {
-                    "value": -0.01016761,
-                  },
-                  "pos_sf": Object {
-                    "value": -0.00079665,
-                  },
-                  "pos_sg": Object {
-                    "value": -0.0056131,
-                  },
-                },
-                "kind": "data-row",
-                "prefixFn": [Function],
-                "tableFieldsOverride": undefined,
-              },
-              GenericTableDataRow {
-                "cellMetaFn": [Function],
-                "dataObj": Object {
-                  "av_pos_c": Object {
-                    "value": 0.1884738296,
-                  },
-                  "av_pos_pf": Object {
-                    "value": 1.1266727492,
-                  },
-                  "av_pos_pg": Object {
-                    "value": 1.0493396937,
-                  },
-                  "av_pos_sf": Object {
-                    "value": 0.9566496407,
-                  },
-                  "av_pos_sg": Object {
-                    "value": 1.0346481608,
-                  },
-                  "contrib_pos_c": Object {
-                    "value": -0.3548668485477285,
-                  },
-                  "contrib_pos_pf": Object {
-                    "value": -0.019270175929596255,
-                  },
-                  "contrib_pos_pg": Object {
-                    "value": -0.0020296505283692464,
-                  },
-                  "contrib_pos_sf": Object {
-                    "value": 0.0052227179562832115,
-                  },
-                  "contrib_pos_sg": Object {
-                    "value": -0.0009975930812728547,
+                    "value": -0.000886222867899766,
                   },
                   "feature": <OverlayTrigger
                     overlay={
@@ -1124,34 +1060,34 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                 "cellMetaFn": [Function],
                 "dataObj": Object {
                   "av_pos_c": Object {
-                    "value": 0.5024908177999999,
+                    "value": 0.6748685786999999,
                   },
                   "av_pos_pf": Object {
-                    "value": 0.7167442076,
+                    "value": 0.7254753109000001,
                   },
                   "av_pos_pg": Object {
-                    "value": 0.4884786213,
+                    "value": 0.725681835,
                   },
                   "av_pos_sf": Object {
-                    "value": 0.6278111965000001,
+                    "value": 0.6856060901,
                   },
                   "av_pos_sg": Object {
-                    "value": 0.6642783824,
+                    "value": 0.6911712719,
                   },
                   "contrib_pos_c": Object {
-                    "value": -0.03354469847484951,
+                    "value": 0.011835919041862826,
                   },
                   "contrib_pos_pf": Object {
-                    "value": -0.017289763877176418,
+                    "value": -0.019028233936777016,
                   },
                   "contrib_pos_pg": Object {
-                    "value": 0.003987020561549374,
+                    "value": -0.0026998566342604766,
                   },
                   "contrib_pos_sf": Object {
-                    "value": 0.00008415868795615313,
+                    "value": -0.002233352971020884,
                   },
                   "contrib_pos_sg": Object {
-                    "value": -0.0012963797839463578,
+                    "value": -0.0023107822651753096,
                   },
                   "feature": <OverlayTrigger
                     overlay={
@@ -1159,13 +1095,13 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                         id="calc_mid_relativeTooltip"
                         placement="right"
                       >
-                        A measure of how good a player is at shooting mid-range 2s relative to their overall scoring efficiency (2Pmid%/eFG)
+                        A measure of how good a player is at shooting mid-range 2s relative to their overall scoring efficiency (2P% mid/eFG)
                       </ForwardRef>
                     }
                     placement="auto"
                   >
                     <b>
-                      MidQ%
+                      2PQ% mid
                     </b>
                   </OverlayTrigger>,
                   "player": Object {
@@ -1195,34 +1131,34 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                 "cellMetaFn": [Function],
                 "dataObj": Object {
                   "av_pos_c": Object {
-                    "value": 0.911321825,
+                    "value": 1.2239476683,
                   },
                   "av_pos_pf": Object {
-                    "value": 1.2415465104,
+                    "value": 1.2566705542,
                   },
                   "av_pos_pg": Object {
-                    "value": 0.7356142109,
+                    "value": 1.0928254527,
                   },
                   "av_pos_sf": Object {
-                    "value": 1.1339010007,
+                    "value": 1.2382853889,
                   },
                   "av_pos_sg": Object {
-                    "value": 1.1104221365,
+                    "value": 1.1553768733,
                   },
                   "contrib_pos_c": Object {
-                    "value": -0.24543074169894397,
+                    "value": -0.1299756418118449,
                   },
                   "contrib_pos_pf": Object {
-                    "value": 0.10066146942550594,
+                    "value": 0.09610806750902244,
                   },
                   "contrib_pos_pg": Object {
-                    "value": -0.08361501434257791,
+                    "value": -0.04806935232455007,
                   },
                   "contrib_pos_sf": Object {
-                    "value": 0.06895308370025935,
+                    "value": 0.05266852415004661,
                   },
                   "contrib_pos_sg": Object {
-                    "value": 0.034480735743447705,
+                    "value": 0.03115061021909307,
                   },
                   "feature": <OverlayTrigger
                     overlay={
@@ -1230,13 +1166,13 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                         id="calc_rim_relativeTooltip"
                         placement="right"
                       >
-                        A measure of how good a player is at shooting layups/posts/drunks relative to their overall scoring efficiency (2Prim%/eFG)
+                        A measure of how good a player is at shooting layups/posts/drunks relative to their overall scoring efficiency (2P% rim/eFG)
                       </ForwardRef>
                     }
                     placement="auto"
                   >
                     <b>
-                      RimQ%
+                      2PQ% rim
                     </b>
                   </OverlayTrigger>,
                   "player": Object {
@@ -1262,6 +1198,77 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                 "prefixFn": [Function],
                 "tableFieldsOverride": undefined,
               },
+              GenericTableDataRow {
+                "cellMetaFn": [Function],
+                "dataObj": Object {
+                  "av_pos_c": Object {
+                    "value": 0.931631546,
+                  },
+                  "av_pos_pf": Object {
+                    "value": 0.7510386658,
+                  },
+                  "av_pos_pg": Object {
+                    "value": 0.6498897552,
+                  },
+                  "av_pos_sf": Object {
+                    "value": 0.7486478424,
+                  },
+                  "av_pos_sg": Object {
+                    "value": 0.6839666748000001,
+                  },
+                  "contrib_pos_c": Object {
+                    "value": -0.07644294880390745,
+                  },
+                  "contrib_pos_pf": Object {
+                    "value": 0.0066351507359451575,
+                  },
+                  "contrib_pos_pg": Object {
+                    "value": 0.0020374039607718385,
+                  },
+                  "contrib_pos_sf": Object {
+                    "value": 0.0009463904600846488,
+                  },
+                  "contrib_pos_sg": Object {
+                    "value": 0.0030375346375808993,
+                  },
+                  "feature": <OverlayTrigger
+                    overlay={
+                      <ForwardRef
+                        id="calc_ft_relative_invTooltip"
+                        placement="right"
+                      >
+                        (FG Comfort Zone) A very approximate measure of how easy/tough the shots a player takes relative to their overall shooting ability (eFG/FT%) - the lower the number the tougher the shots the player takes.
+                      </ForwardRef>
+                    }
+                    placement="auto"
+                  >
+                    <b>
+                      FGCZ%
+                    </b>
+                  </OverlayTrigger>,
+                  "player": Object {
+                    "value": 0.6298515755218668,
+                  },
+                  "pos_c": Object {
+                    "value": 0.02533069,
+                  },
+                  "pos_pf": Object {
+                    "value": -0.00547513,
+                  },
+                  "pos_pg": Object {
+                    "value": -0.01016761,
+                  },
+                  "pos_sf": Object {
+                    "value": -0.00079665,
+                  },
+                  "pos_sg": Object {
+                    "value": -0.0056131,
+                  },
+                },
+                "kind": "data-row",
+                "prefixFn": [Function],
+                "tableFieldsOverride": undefined,
+              },
               GenericTableTextRow {
                 "className": "small",
                 "kind": "text-row",
@@ -1275,34 +1282,34 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                 "cellMetaFn": [Function],
                 "dataObj": Object {
                   "av_pos_c": Object {
-                    "value": 0.014245939999999999,
+                    "value": 0.0137380911,
                   },
                   "av_pos_pf": Object {
-                    "value": 0.0137913931,
+                    "value": 0.013769656699999999,
                   },
                   "av_pos_pg": Object {
-                    "value": 0.0235837429,
+                    "value": 0.023813338599999997,
                   },
                   "av_pos_sf": Object {
-                    "value": 0.017650082600000002,
+                    "value": 0.0175611913,
                   },
                   "av_pos_sg": Object {
-                    "value": 0.0192243356,
+                    "value": 0.0192994759,
                   },
                   "contrib_pos_c": Object {
-                    "value": -0.049176097284612356,
+                    "value": -0.05625939645176135,
                   },
                   "contrib_pos_pf": Object {
-                    "value": -0.027266930466083267,
+                    "value": -0.027415834715708035,
                   },
                   "contrib_pos_pg": Object {
-                    "value": -0.04727256027898751,
+                    "value": -0.04913998976229669,
                   },
                   "contrib_pos_sf": Object {
-                    "value": -0.000031389682828545,
+                    "value": -0.000054332322908555066,
                   },
                   "contrib_pos_sg": Object {
-                    "value": -0.00795540190043393,
+                    "value": -0.008366910541089062,
                   },
                   "feature": <OverlayTrigger
                     overlay={
@@ -1346,34 +1353,34 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                 "cellMetaFn": [Function],
                 "dataObj": Object {
                   "av_pos_c": Object {
-                    "value": 0.0999968819,
+                    "value": 0.10199319490000001,
                   },
                   "av_pos_pf": Object {
-                    "value": 0.0802877462,
+                    "value": 0.079960502,
                   },
                   "av_pos_pg": Object {
-                    "value": 0.0236238544,
+                    "value": 0.021015390699999997,
                   },
                   "av_pos_sf": Object {
-                    "value": 0.06815933880000001,
+                    "value": 0.0682231047,
                   },
                   "av_pos_sg": Object {
-                    "value": 0.0290276186,
+                    "value": 0.028636182899999998,
                   },
                   "contrib_pos_c": Object {
-                    "value": -0.23527602646240853,
+                    "value": -0.24372653378014342,
                   },
                   "contrib_pos_pf": Object {
-                    "value": -0.09402137122251414,
+                    "value": -0.09316364444148886,
                   },
                   "contrib_pos_pg": Object {
-                    "value": -0.05590854110915088,
+                    "value": -0.06292242480553054,
                   },
                   "contrib_pos_sf": Object {
-                    "value": -0.01859742271033884,
+                    "value": -0.018647369079569723,
                   },
                   "contrib_pos_sg": Object {
-                    "value": -0.033688967250105235,
+                    "value": -0.03454590309920435,
                   },
                   "feature": <OverlayTrigger
                     overlay={
@@ -1417,34 +1424,34 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                 "cellMetaFn": [Function],
                 "dataObj": Object {
                   "av_pos_c": Object {
-                    "value": 0.16956138760000003,
+                    "value": 0.171899494,
                   },
                   "av_pos_pf": Object {
-                    "value": 0.1819500365,
+                    "value": 0.1820837948,
                   },
                   "av_pos_pg": Object {
-                    "value": 0.0914476026,
+                    "value": 0.09067561169999999,
                   },
                   "av_pos_sf": Object {
-                    "value": 0.1512246281,
+                    "value": 0.1515236462,
                   },
                   "av_pos_sg": Object {
-                    "value": 0.1045976203,
+                    "value": 0.1043093259,
                   },
                   "contrib_pos_c": Object {
-                    "value": -0.2630358667773048,
+                    "value": -0.2666629062362668,
                   },
                   "contrib_pos_pf": Object {
-                    "value": -0.39433580174554483,
+                    "value": -0.394625692791929,
                   },
                   "contrib_pos_pg": Object {
-                    "value": 0.21764075838691102,
+                    "value": 0.21580345833565967,
                   },
                   "contrib_pos_sf": Object {
-                    "value": -0.15791866187516057,
+                    "value": -0.15823091616086613,
                   },
                   "contrib_pos_sg": Object {
-                    "value": 0.08303049053367459,
+                    "value": 0.08280163995962274,
                   },
                   "feature": <OverlayTrigger
                     overlay={
@@ -1488,34 +1495,34 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                 "cellMetaFn": [Function],
                 "dataObj": Object {
                   "av_pos_c": Object {
-                    "value": 0.0449095752,
+                    "value": 0.047685918699999996,
                   },
                   "av_pos_pf": Object {
-                    "value": 0.0353329686,
+                    "value": 0.0352768549,
                   },
                   "av_pos_pg": Object {
-                    "value": 0.005074379100000001,
+                    "value": 0.0046286504,
                   },
                   "av_pos_sf": Object {
-                    "value": 0.0174476033,
+                    "value": 0.0177850181,
                   },
                   "av_pos_sg": Object {
-                    "value": 0.007975160700000001,
+                    "value": 0.0079057473,
                   },
                   "contrib_pos_c": Object {
-                    "value": -0.19715955385022882,
+                    "value": -0.21648261781394523,
                   },
                   "contrib_pos_pf": Object {
-                    "value": -0.03922404640894013,
+                    "value": -0.03910666776566876,
                   },
                   "contrib_pos_pg": Object {
-                    "value": -0.03351243068191078,
+                    "value": -0.03481052080331204,
                   },
                   "contrib_pos_sf": Object {
-                    "value": 0.0008450363261314196,
+                    "value": 0.0011742943257902995,
                   },
                   "contrib_pos_sg": Object {
-                    "value": -0.019687635941797746,
+                    "value": -0.019846421766713647,
                   },
                   "feature": <OverlayTrigger
                     overlay={
@@ -1559,34 +1566,34 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                 "cellMetaFn": [Function],
                 "dataObj": Object {
                   "av_pos_c": Object {
-                    "value": 0.0495930882,
+                    "value": 0.0506942942,
                   },
                   "av_pos_pf": Object {
-                    "value": 0.0446174325,
+                    "value": 0.044576227399999994,
                   },
                   "av_pos_pg": Object {
-                    "value": 0.0314774871,
+                    "value": 0.0313113654,
                   },
                   "av_pos_sf": Object {
-                    "value": 0.038600495900000004,
+                    "value": 0.0386938628,
                   },
                   "av_pos_sg": Object {
-                    "value": 0.030842279000000004,
+                    "value": 0.0308755648,
                   },
                   "contrib_pos_c": Object {
-                    "value": -0.08779800008267521,
+                    "value": -0.0913649990277252,
                   },
                   "contrib_pos_pf": Object {
-                    "value": -0.05053098461175968,
+                    "value": -0.050436895534892404,
                   },
                   "contrib_pos_pg": Object {
-                    "value": 0.007935253462240222,
+                    "value": 0.0077886129038357305,
                   },
                   "contrib_pos_sf": Object {
-                    "value": 0.002944221325128428,
+                    "value": 0.0029612822120819783,
                   },
                   "contrib_pos_sg": Object {
-                    "value": 0.01727202427172816,
+                    "value": 0.017340841195324377,
                   },
                   "feature": <OverlayTrigger
                     overlay={

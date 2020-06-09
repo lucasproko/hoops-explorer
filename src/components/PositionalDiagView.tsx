@@ -98,16 +98,16 @@ const complexDiagTable = {
 const calculatedDescriptions = {
   calc_ast_tov: [ "A/TOV", "Assist to Turnover ratio in selected lineups" ],
   calc_three_relative: [ "3PQ%", "A measure of how good a player is at shooting 3s relative to their overall scoring efficiency (1.5*3P%/eFG)" ],
-  calc_mid_relative: [ "MidQ%", "A measure of how good a player is at shooting mid-range 2s relative to their overall scoring efficiency (2Pmid%/eFG)" ],
-  calc_rim_relative: [ "RimQ%", "A measure of how good a player is at shooting layups/posts/drunks relative to their overall scoring efficiency (2Prim%/eFG)" ],
+  calc_mid_relative: [ "2PQ% mid", "A measure of how good a player is at shooting mid-range 2s relative to their overall scoring efficiency (2P% mid/eFG)" ],
+  calc_rim_relative: [ "2PQ% rim", "A measure of how good a player is at shooting layups/posts/drunks relative to their overall scoring efficiency (2P% rim/eFG)" ],
   calc_assist_per_fga: [ "A/FG%", "The ratio of Assists to FG attempts, expressed as a %" ],
-  calc_ft_relative_inv: [ "FGD%", "A very approximate measure of how tough the shots a player takes relative to their overall shooting ability (eFG/FT%) - the lower the number the tougher the shots the player takes." ]
+  calc_ft_relative_inv: [ "FGCZ%", "(FG Comfort Zone) A very approximate measure of how easy/tough the shots a player takes relative to their overall shooting ability (eFG/FT%) - the lower the number the tougher the shots the player takes." ]
 } as Record<string, [ string, string ]>;
 
 const complexDiagSubtitles = {
   calc_ast_tov: "Ball-Handling",
   off_3pr: "Shot Selection",
-  calc_ft_relative_inv: "Shot-Making",
+  calc_three_relative: "Shot-Making",
   def_to: "Rebounding and Defense"
 } as Record<string, string>;
 
@@ -218,6 +218,9 @@ const PositionalDiagView: React.FunctionComponent<Props> = ({player, showHelp, s
           <li>This table breaks down how a player scores against each of the traditional positions
           based on the different statistics used to train the algorithm.
           </li>
+          <ul>
+            <li><i>(Note that the *Q% metrics won't average to 100% because it isn't weighted by how often each player takes shots of that type.)</i></li>
+          </ul>
         </ul>
         <Container>
           <Col xs={11}>

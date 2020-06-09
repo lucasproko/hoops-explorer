@@ -30,7 +30,7 @@ describe("StatsUtils", () => {
   const tidyObj = (vo: Record<string, number>) => _.mapValues(vo, (v: any) => (v.value || v).toFixed(2))
 
   test("StatsUtils - averageScoresByPos", () => {
-    expect(_.values(tidyObj(StatsUtils.averageScoresByPos))).toEqual(["0.12", "-0.04", "-0.12", "0.03", "0.44", ]);
+    expect(_.values(tidyObj(StatsUtils.averageScoresByPos))).toEqual(["0.15", "-0.03", "-0.11", "0.03", "0.42", ]);
   });
   test("StatsUtils - buildPositionConfidences", () => {
 
