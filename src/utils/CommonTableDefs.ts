@@ -90,6 +90,11 @@ export class CommonTableDefs {
     "off_drb": [ "DR%", "Defensive rebounding % in selected lineups" ],
   } as Record<string, any>;
 
+  /** If the field is HTML formats it separately, else treats as a % */
+  private static percentOrHtmlFormatter = (val: any) => {
+    return val?.hasOwnProperty("value") ? GenericTableOps.percentFormatter(val) : GenericTableOps.htmlFormatter(val);
+  }
+
   static onOffIndividualTable = (expandedView: boolean) => { return { //accessors vs column metadata
     "title": expandedView ?
       GenericTableOps.addTitle("", "", CommonTableDefs.rowSpanCalculator, "small", GenericTableOps.htmlFormatter) :
@@ -97,7 +102,10 @@ export class CommonTableDefs {
     ,
     "sep0": GenericTableOps.addColSeparator(),
     "rtg": GenericTableOps.addPtsCol("Rtg", "Offensive/Defensive rating in selected lineups", CbbColors.picker(...CbbColors.pp100)),
-    "usage": GenericTableOps.addPctCol("Usg", "% of team possessions used in selected lineups", CbbColors.picker(...CbbColors.usg)), //TODO needs to be steeper
+    "usage": GenericTableOps.addDataCol(
+      expandedView ? "Usg Pos" : "Usg",
+      expandedView ? "% of team possessions used in selected lineups, plus the position category for this player": "% of team possessions used in selected lineups", 
+      CbbColors.offOnlyPicker(...CbbColors.usg), CommonTableDefs.percentOrHtmlFormatter), //TODO needs to be steeper
     "adj_rtg": GenericTableOps.addPtsCol("Adj+ Rtg", "Offensive/Defensive rating vs average in selected lineups adjusted for SoS and (for ORtg) the player's usage", CbbColors.picker(...CbbColors.diff10_p100_redGreen)),
     "sep1": GenericTableOps.addColSeparator(),
     "efg": GenericTableOps.addPctCol("eFG%", "Effective field goal% (3 pointers count 1.5x as much) in selected lineups", CbbColors.picker(...CbbColors.eFG)),
