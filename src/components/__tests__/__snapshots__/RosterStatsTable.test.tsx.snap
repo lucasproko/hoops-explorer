@@ -620,6 +620,11 @@ exports[`RosterStatsTable RosterStatsTable - should create snapshot 1`] = `
               text="Show Off/Def Rating diagnostics"
               truthVal={false}
             />
+            <GenericTogglingMenuItem
+              onSelect={[Function]}
+              text="Show Positional diagnostics"
+              truthVal={false}
+            />
           </DropdownMenu>
         </Dropdown>
       </FormGroup>

@@ -28,6 +28,7 @@ import { faCheck } from '@fortawesome/free-solid-svg-icons';
 // Component imports
 import GenericTable, { GenericTableOps, GenericTableColProps } from "./GenericTable";
 import RosterStatsDiagView from "./RosterStatsDiagView";
+import PositionalDiagView from "./PositionalDiagView";
 import GenericTogglingMenuItem from "./GenericTogglingMenuItem";
 
 // Util imports
@@ -54,6 +55,12 @@ type Props = {
 
 const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, teamStats, rosterStats, onChangeState}) => {
 
+  const server = (typeof window === `undefined`) ? //(ensures SSR code still compiles)
+    "server" : window.location.hostname
+
+  /** Only show help for diagnstic on/off on main page */
+  const showHelp = !_.startsWith(server, "cbb-on-off-analyzer");
+
   // 1] State (some of these are phase 2+ and aren't plumbed in yet)
 
   const commonParams = getCommonFilterParams(gameFilterParams);
@@ -73,6 +80,11 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, tea
   /** Show a diagnostics mode explaining the off/def ratings */
   const [ showDiagMode, setShowDiagMode ] = useState(_.isNil(gameFilterParams.showDiag) ?
     ParamDefaults.defaultPlayerDiagMode : gameFilterParams.showDiag
+  );
+
+  /** Show a diagnostics mode explaining the positional evaluation */
+  const [ showPositionDiags, setShowPositionDiags ] = useState(_.isNil(gameFilterParams.showPosDiag) ?
+      ParamDefaults.defaultPlayerPosDiagMode : gameFilterParams.showPosDiag
   );
 
   /** Show a diagnostics mode explaining the off/def ratings */
@@ -114,7 +126,8 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, tea
       showBase: alwaysShowBaseline,
       showExpanded: expandedView,
       showDiag: showDiagMode,
-      possAsPct: possAsPct
+      possAsPct: possAsPct,
+      showPosDiag: showPositionDiags,
     }).omit(_.flatten([ // omit all defaults
       (sortBy == ParamDefaults.defaultPlayerSortBy) ? [ 'sortBy' ] : [],
       (filterStr == ParamDefaults.defaultPlayerFilter) ? [ 'filter' ] : [],
@@ -122,9 +135,10 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, tea
       (expandedView == ParamDefaults.defaultPlayerShowExpanded) ? [ 'showExpanded' ] : [],
       (showDiagMode == ParamDefaults.defaultPlayerDiagMode) ? [ 'showDiag' ] : [],
       (possAsPct == ParamDefaults.defaultPlayerPossAsPct) ? [ 'possAsPct' ] : [],
+      (showPositionDiags == ParamDefaults.defaultPlayerPosDiagMode) ? [ 'showPosDiag' ] : [],
     ])).value();
     onChangeState(newState);
-  }, [ sortBy, filterStr, showDiagMode, alwaysShowBaseline, expandedView, possAsPct ]);
+  }, [ sortBy, filterStr, showDiagMode, alwaysShowBaseline, expandedView, possAsPct, showPositionDiags ]);
 
   // 2] Data Model
 
@@ -255,19 +269,25 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, tea
         [ GenericTableOps.buildDataRow(p.on, offPrefixFn, offCellMetaFn) ],
         expandedView ? [ GenericTableOps.buildDataRow(p.on, defPrefixFn, defCellMetaFn) ] : [],
         p.on?.diag_off_rtg ?
-          [ GenericTableOps.buildTextRow(<RosterStatsDiagView ortgDiags={p.on?.diag_off_rtg} drtgDiags={p.on?.diag_def_rtg}/>, "small") ] : []
+          [ GenericTableOps.buildTextRow(<RosterStatsDiagView ortgDiags={p.on?.diag_off_rtg} drtgDiags={p.on?.diag_def_rtg}/>, "small") ] : [],
+        showPositionDiags ?
+          [ GenericTableOps.buildTextRow(<PositionalDiagView player={p.on} showHelp={showHelp}/>, "small") ] : [],
       ]),
       _.isNil(p.off?.off_title) ? [ ] : _.flatten([
         [ GenericTableOps.buildDataRow(p.off, offPrefixFn, offCellMetaFn) ],
         expandedView ? [ GenericTableOps.buildDataRow(p.off, defPrefixFn, defCellMetaFn) ] : [],
         p.off?.diag_off_rtg ?
-          [ GenericTableOps.buildTextRow(<RosterStatsDiagView ortgDiags={p.off?.diag_off_rtg} drtgDiags={p.off?.diag_def_rtg}/>, "small") ] : []
+          [ GenericTableOps.buildTextRow(<RosterStatsDiagView ortgDiags={p.off?.diag_off_rtg} drtgDiags={p.off?.diag_def_rtg}/>, "small") ] : [],
+        showPositionDiags ?
+          [ GenericTableOps.buildTextRow(<PositionalDiagView player={p.off} showHelp={showHelp}/>, "small") ] : [],
       ]),
       (skipBaseline || _.isNil(p.baseline?.off_title)) ? [ ] : _.flatten([
         [ GenericTableOps.buildDataRow(p.baseline, offPrefixFn, offCellMetaFn) ],
         expandedView ? [ GenericTableOps.buildDataRow(p.baseline, defPrefixFn, defCellMetaFn) ] : [],
         p.baseline?.diag_off_rtg ?
-          [ GenericTableOps.buildTextRow(<RosterStatsDiagView ortgDiags={p.baseline?.diag_off_rtg} drtgDiags={p.baseline?.diag_def_rtg}/>, "small") ] : []
+          [ GenericTableOps.buildTextRow(<RosterStatsDiagView ortgDiags={p.baseline?.diag_off_rtg} drtgDiags={p.baseline?.diag_def_rtg}/>, "small") ] : [],
+        showPositionDiags ?
+          [ GenericTableOps.buildTextRow(<PositionalDiagView player={p.baseline} showHelp={showHelp}/>, "small") ] : [],
       ]),
       [ GenericTableOps.buildRowSeparator() ]
     ]);
@@ -438,6 +458,11 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, tea
                 text="Show Off/Def Rating diagnostics"
                 truthVal={showDiagMode}
                 onSelect={() => setShowDiagMode(!showDiagMode)}
+              />
+              <GenericTogglingMenuItem
+                text="Show Positional diagnostics"
+                truthVal={showPositionDiags}
+                onSelect={() => setShowPositionDiags(!showPositionDiags)}
               />
             </Dropdown.Menu>
           </Dropdown>

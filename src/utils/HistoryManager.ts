@@ -145,6 +145,8 @@ export class HistoryManager {
       _.isNil(p.showExpanded) ? ParamDefaults.defaultPlayerShowExpanded : p.showExpanded;
     const showDiag =
       _.isNil(p.showDiag) ? ParamDefaults.defaultPlayerDiagMode : p.showDiag;
+    const showPosDiag =
+      _.isNil(p.showPosDiag) ? ParamDefaults.defaultPlayerPosDiagMode : p.showPosDiag;
     const possAsPct =
       _.isNil(p.possAsPct) ? ParamDefaults.defaultPlayerPossAsPct : p.possAsPct;
 
@@ -153,7 +155,8 @@ export class HistoryManager {
       (filter != "") ? [ `filter:${filter}` ] : [],
       showBase ? [ "show-base" ] : [],
       showExpanded ? [ "show-def" ] : [],
-      showDiag ? [ "show-diags" ] : [],
+      showDiag ? [ "show-rtg-diags" ] : [],
+      showPosDiag ? [ "show-pos-diags" ] : [],
       possAsPct ? [ ] : [ "poss-#" ],
     ]);
     const playerParams = (showArray.length > 0) ?

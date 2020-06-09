@@ -140,4 +140,7 @@ export class CbbColors {
   public static readonly rapmCollinLineup = (val: number) => CbbColors.greenToRed.domain(CbbColors.rapmCollinLineupDomain)(val).toString();
   public static readonly rapmCollinPlayer = (val: number) => CbbColors.blueToOrange.domain(CbbColors.rapmCollinPlayerDomain)(val).toString();
 
+  // Positional diags
+  private static readonly posDomain = [ -0.50, 0.0, 0.50 ];
+  public static readonly posColors = (val: number) => CbbColors.redToGreen.domain(CbbColors.posDomain)(val).toString();
 }

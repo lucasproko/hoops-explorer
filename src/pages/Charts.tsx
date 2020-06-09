@@ -122,18 +122,18 @@ const ChartsPage: NextPage<{}> = () => {
             <Tab.Content>
               <Tab.Pane eventKey="high_major_positions">
                 <div>
-                  <LoadingOverlay
-                    active={positionChartLoading}
-                    text="Loading Chart"
-                  >
-                    <Alert variant="info" className="small">
-                      <em>
-                        A 2-d visualization of the different positions (P6 2010-2020, all D1 2015-2020).
-                        {maybeShowBlogArticle(tabKey)}
-                        &nbsp;The data came from <a target="_blank" href="http://adamcwisports.blogspot.com/p/data.html">barttorvik.com</a>, much appreciated!<br/>
-                        The graph below is interactive - you can scroll in or out, move around, highlight specific teams, etc. Note - it can be a bit slow!<br/>
-                      </em>
-                    </Alert>
+                  <Alert variant="info" className="small">
+                    <em>
+                      A 2-d visualization of the different positions (P6 2010-2020, all D1 2015-2020).
+                      {maybeShowBlogArticle(tabKey)}
+                      &nbsp;The data came from <a target="_blank" href="http://adamcwisports.blogspot.com/p/data.html">barttorvik.com</a>, much appreciated!<br/>
+                      The graph below is interactive - you can scroll in or out, move around, highlight specific teams, etc. Note - it can be a bit slow!<br/>
+                    </em>
+                  </Alert>
+                    <LoadingOverlay
+                      active={positionChartLoading}
+                      text="Loading Chart"
+                    >
                     <iframe
                       onLoad={() => { //(sometimes this fires too early, handled in useEffect above)
                         setPositionChartLoading(false);
@@ -141,24 +141,24 @@ const ChartsPage: NextPage<{}> = () => {
                       ref={highMajorPositionChart}
                       frameBorder="0" src="/high_major_positions.html" width="1024px" height="700px"
                     />
-                    <Alert variant="info" className="small">
-                      <em>
-                        The x- and y- axis are linear combination of the input features that are hard to interpret in basketball terms. But basically:
-                        <ul>
-                          <li>Left-to-right is "guard-like" to "forward-like":</li>
-                          <ul>
-                            <li>leftwards: 3P%, Assist rate, 3P rate, steal rate</li>
-                            <li>rightwards: DRB%, ORB%, dunk rate, mid-2P rate, block rate, foul rate</li>
-                          </ul>
-                          <li>Top-to-bottom is a mishmash of position-specific bonuses/penalties: combined because we only have 2-d to play with!</li>
-                          <ul>
-                            <li>upwards: AST/TOV, Assist rate, TO rate, steal rate; dunk/rim rate, mid-2P rate, block rate</li>
-                            <li>downwards: 3P rate, rim shooting ability, assists/FG; DRB%, ORB%</li>
-                          </ul>
-                        </ul>
-                      </em>
-                    </Alert>
                   </LoadingOverlay>
+                  <Alert variant="info" className="small">
+                    <em>
+                      The x- and y- axis are linear combinations of the input features that are hard to interpret in basketball terms. But basically:
+                      <ul>
+                        <li>Left-to-right is "guard-like" to "forward-like":</li>
+                        <ul>
+                          <li>leftwards: 3P%, Assist rate, 3P rate, steal rate</li>
+                          <li>rightwards: DRB%, ORB%, dunk rate, mid-2P rate, block rate, foul rate</li>
+                        </ul>
+                        <li>Top-to-bottom is a mishmash of position-specific bonuses/penalties: combined because we only have 2-d to play with!</li>
+                        <ul>
+                          <li>upwards: AST/TOV, Assist rate, TO rate, steal rate; dunk/rim rate, mid-2P rate, block rate</li>
+                          <li>downwards: 3P rate, rim shooting ability, assists/FG; DRB%, ORB%</li>
+                        </ul>
+                      </ul>
+                    </em>
+                  </Alert>
                 </div>
               </Tab.Pane>
             </Tab.Content>

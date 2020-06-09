@@ -73,55 +73,55 @@ exports[`ChartsPage ChartsPage - should create snapshot 1`] = `
             eventKey="high_major_positions"
           >
             <div>
+              <Alert
+                className="small"
+                closeLabel="Close alert"
+                show={true}
+                transition={
+                  Object {
+                    "$$typeof": Symbol(react.forward_ref),
+                    "defaultProps": Object {
+                      "appear": false,
+                      "in": false,
+                      "mountOnEnter": false,
+                      "timeout": 300,
+                      "unmountOnExit": false,
+                    },
+                    "displayName": "Fade",
+                    "render": [Function],
+                  }
+                }
+                variant="info"
+              >
+                <em>
+                  A 2-d visualization of the different positions (P6 2010-2020, all D1 2015-2020).
+                  <span>
+                     A description of the fields and methodology used is 
+                    <a
+                      href="https://hoop-explorer.blogspot.com/2020/05/classifying-college-basketball.html"
+                      target="_blank"
+                    >
+                      here
+                    </a>
+                    .
+                  </span>
+                   The data came from 
+                  <a
+                    href="http://adamcwisports.blogspot.com/p/data.html"
+                    target="_blank"
+                  >
+                    barttorvik.com
+                  </a>
+                  , much appreciated!
+                  <br />
+                  The graph below is interactive - you can scroll in or out, move around, highlight specific teams, etc. Note - it can be a bit slow!
+                  <br />
+                </em>
+              </Alert>
               <LoadingOverlay
                 active={true}
                 text="Loading Chart"
               >
-                <Alert
-                  className="small"
-                  closeLabel="Close alert"
-                  show={true}
-                  transition={
-                    Object {
-                      "$$typeof": Symbol(react.forward_ref),
-                      "defaultProps": Object {
-                        "appear": false,
-                        "in": false,
-                        "mountOnEnter": false,
-                        "timeout": 300,
-                        "unmountOnExit": false,
-                      },
-                      "displayName": "Fade",
-                      "render": [Function],
-                    }
-                  }
-                  variant="info"
-                >
-                  <em>
-                    A 2-d visualization of the different positions (P6 2010-2020, all D1 2015-2020).
-                    <span>
-                       A description of the fields and methodology used is 
-                      <a
-                        href="https://hoop-explorer.blogspot.com/2020/05/classifying-college-basketball.html"
-                        target="_blank"
-                      >
-                        here
-                      </a>
-                      .
-                    </span>
-                     The data came from 
-                    <a
-                      href="http://adamcwisports.blogspot.com/p/data.html"
-                      target="_blank"
-                    >
-                      barttorvik.com
-                    </a>
-                    , much appreciated!
-                    <br />
-                    The graph below is interactive - you can scroll in or out, move around, highlight specific teams, etc. Note - it can be a bit slow!
-                    <br />
-                  </em>
-                </Alert>
                 <iframe
                   frameBorder="0"
                   height="700px"
@@ -129,55 +129,55 @@ exports[`ChartsPage ChartsPage - should create snapshot 1`] = `
                   src="/high_major_positions.html"
                   width="1024px"
                 />
-                <Alert
-                  className="small"
-                  closeLabel="Close alert"
-                  show={true}
-                  transition={
-                    Object {
-                      "$$typeof": Symbol(react.forward_ref),
-                      "defaultProps": Object {
-                        "appear": false,
-                        "in": false,
-                        "mountOnEnter": false,
-                        "timeout": 300,
-                        "unmountOnExit": false,
-                      },
-                      "displayName": "Fade",
-                      "render": [Function],
-                    }
+              </LoadingOverlay>
+              <Alert
+                className="small"
+                closeLabel="Close alert"
+                show={true}
+                transition={
+                  Object {
+                    "$$typeof": Symbol(react.forward_ref),
+                    "defaultProps": Object {
+                      "appear": false,
+                      "in": false,
+                      "mountOnEnter": false,
+                      "timeout": 300,
+                      "unmountOnExit": false,
+                    },
+                    "displayName": "Fade",
+                    "render": [Function],
                   }
-                  variant="info"
-                >
-                  <em>
-                    The x- and y- axis are linear combination of the input features that are hard to interpret in basketball terms. But basically:
+                }
+                variant="info"
+              >
+                <em>
+                  The x- and y- axis are linear combinations of the input features that are hard to interpret in basketball terms. But basically:
+                  <ul>
+                    <li>
+                      Left-to-right is "guard-like" to "forward-like":
+                    </li>
                     <ul>
                       <li>
-                        Left-to-right is "guard-like" to "forward-like":
+                        leftwards: 3P%, Assist rate, 3P rate, steal rate
                       </li>
-                      <ul>
-                        <li>
-                          leftwards: 3P%, Assist rate, 3P rate, steal rate
-                        </li>
-                        <li>
-                          rightwards: DRB%, ORB%, dunk rate, mid-2P rate, block rate, foul rate
-                        </li>
-                      </ul>
                       <li>
-                        Top-to-bottom is a mishmash of position-specific bonuses/penalties: combined because we only have 2-d to play with!
+                        rightwards: DRB%, ORB%, dunk rate, mid-2P rate, block rate, foul rate
                       </li>
-                      <ul>
-                        <li>
-                          upwards: AST/TOV, Assist rate, TO rate, steal rate; dunk/rim rate, mid-2P rate, block rate
-                        </li>
-                        <li>
-                          downwards: 3P rate, rim shooting ability, assists/FG; DRB%, ORB%
-                        </li>
-                      </ul>
                     </ul>
-                  </em>
-                </Alert>
-              </LoadingOverlay>
+                    <li>
+                      Top-to-bottom is a mishmash of position-specific bonuses/penalties: combined because we only have 2-d to play with!
+                    </li>
+                    <ul>
+                      <li>
+                        upwards: AST/TOV, Assist rate, TO rate, steal rate; dunk/rim rate, mid-2P rate, block rate
+                      </li>
+                      <li>
+                        downwards: 3P rate, rim shooting ability, assists/FG; DRB%, ORB%
+                      </li>
+                    </ul>
+                  </ul>
+                </em>
+              </Alert>
             </div>
           </TabPane>
         </Bootstrap(TabContent)>

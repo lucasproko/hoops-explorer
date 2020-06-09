@@ -39,6 +39,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
     filter: startFilter, sortBy: startSortBy,
     showBase: startShowBase, showExpanded: startShowExpanded,
     showDiag: startShowDiag, possAsPct: startPossAsPct,
+    showPosDiag: startShowPosDiag,
     //these fields affect the query
     autoOffQuery: startAutoOffQuery,
     onQuery: startOnQuery, offQuery: startOffQuery,
@@ -75,6 +76,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
           filter: startFilter, sortBy: startSortBy,
           showBase: startShowBase, showExpanded: startShowExpanded,
           showDiag: startShowDiag, possAsPct: startPossAsPct,
+          showPosDiag: startShowPosDiag,
       }) : {
         ...commonParams,
         autoOffQuery: autoOffQuery,
