@@ -1,10 +1,12 @@
 
+/** Typescript limitations - also have to repeat this for ParamPrefixesType */
 export class ParamPrefixes {
   static readonly game = "game-";
   static readonly lineup = "lineup-";
   static readonly report = "report-"; //(not used currrently, we re-use lineup)
   static readonly roster = "roster-";
 }
+export type ParamPrefixesType = "game-" | "lineup-" | "report-" | "roster-";
 
 /** Common params across all filter types */
 export type CommonFilterParams = {
@@ -120,4 +122,13 @@ export class ParamDefaults {
   static readonly defaultMaxRank = "400";
   static readonly defaultFilterGarbage = false;
   static readonly defaultQueryFilters = "";
+};
+
+
+export type FilterParamsType = GameFilterParams | LineupFilterParams | TeamReportFilterParams;
+
+/** Which API to call and with what object */
+export type FilterRequestInfo = {
+  context: ParamPrefixesType,
+  paramsObj: FilterParamsType
 };

@@ -4,7 +4,6 @@ exports[`GameFilter GameFilter - should create snapshot 1`] = `
 <CommonFilter
   buildParamsFromState={[Function]}
   childHandleResponse={[Function]}
-  childSubmitRequest={[Function]}
   onChangeCommonState={[Function]}
   onChangeState={[Function]}
   startingState={Object {}}

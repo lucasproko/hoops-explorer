@@ -16,10 +16,7 @@ import Col from 'react-bootstrap/Col';
 // Component imports:
 import { LineupStatsModel } from '../components/LineupStatsTable';
 import CommonFilter from '../components/CommonFilter';
-import { ParamPrefixes, CommonFilterParams, LineupFilterParams } from "../utils/FilterModels";
-
-// Library imports:
-import fetch from 'isomorphic-unfetch';
+import { ParamPrefixes, FilterParamsType, CommonFilterParams, LineupFilterParams, FilterRequestInfo } from "../utils/FilterModels";
 
 type Props = {
   onStats: (lineupStats: LineupStatsModel) => void;
@@ -57,10 +54,11 @@ const LineupFilter: React.FunctionComponent<Props> = ({onStats, startingState, o
   }
 
   /** Builds a game filter from the various state elements */
-  function buildParamsFromState(includeFilterParams: Boolean): LineupFilterParams {
-    return includeFilterParams ?
+  function buildParamsFromState(includeFilterParams: Boolean): [ LineupFilterParams, FilterRequestInfo[] ]
+  {
+    const primaryRequest: LineupFilterParams = includeFilterParams ?
     _.merge(
-      buildParamsFromState(false), {
+      buildParamsFromState(false)[0], {
         maxTableSize: startMaxTableSize,
         minPoss: startMinPoss,
         sortBy: startSortBy,
@@ -68,10 +66,14 @@ const LineupFilter: React.FunctionComponent<Props> = ({onStats, startingState, o
     }) : {
       ...commonParams
     };
+
+    return [ primaryRequest, [] ];
   }
 
   /** Handles the response from ES to a stats calc request */
-  function handleResponse(json: any, wasError: Boolean) {
+  function handleResponse(jsonResps: any[], wasError: Boolean) {
+    const json = jsonResps[0] || []; //(currently just one request)
+
     const jsons = json?.responses || [];
     const lineupJson = (jsons.length > 0) ? jsons[0] : {};
     onStats({
@@ -81,8 +83,11 @@ const LineupFilter: React.FunctionComponent<Props> = ({onStats, startingState, o
   }
 
   /** Builds the query issued to the API server - the response handling is generic */
-  function onSubmit(paramStr: string, callback: (resp: fetch.IsomorphicResponse) => void) {
-    fetch(`/api/calculateLineupStats?${paramStr}`).then(callback);
+  function onSubmit(paramObj: FilterParamsType) {
+    return [{
+      context: ParamPrefixes.lineup,
+      paramsObj: paramObj
+    }];
   }
 
   // Visual components:
@@ -96,7 +101,6 @@ const LineupFilter: React.FunctionComponent<Props> = ({onStats, startingState, o
       tablePrefix = {cacheKeyPrefix}
       buildParamsFromState={buildParamsFromState}
       childHandleResponse={handleResponse}
-      childSubmitRequest={onSubmit}
     />
     ;
 }

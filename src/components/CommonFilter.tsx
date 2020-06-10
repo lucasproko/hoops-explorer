@@ -47,7 +47,8 @@ import { dataLastUpdated } from '../utils/internal-data/dataLastUpdated';
 import { PreloadedDataSamples, preloadedData } from '../utils/internal-data/preloadedData';
 import { AvailableTeams } from '../utils/internal-data/AvailableTeams';
 import { ClientRequestCache } from '../utils/ClientRequestCache';
-import { ParamPrefixes, ParamDefaults, CommonFilterParams, RequiredTeamReportFilterParams } from '../utils/FilterModels';
+import { RequestUtils } from '../utils/RequestUtils';
+import { FilterParamsType, FilterRequestInfo, ParamPrefixes, ParamPrefixesType, ParamDefaults, CommonFilterParams, RequiredTeamReportFilterParams } from '../utils/FilterModels';
 import { HistoryManager } from '../utils/HistoryManager';
 import { UrlRouting } from '../utils/UrlRouting';
 import { CommonFilterType, QueryUtils } from '../utils/QueryUtils';
@@ -59,10 +60,9 @@ interface Props<PARAMS> {
   startingState: PARAMS;
   onChangeState: (newParams: PARAMS) => void;
   onChangeCommonState: (newCommonParams: CommonFilterParams) => void;
-  tablePrefix: string,
-  buildParamsFromState: (includeFilterParams: Boolean) => PARAMS;
+  tablePrefix: ParamPrefixesType,
+  buildParamsFromState: (includeFilterParams: Boolean) => [ PARAMS, FilterRequestInfo[] ];
   childHandleResponse: (json: any, wasError: Boolean) => void;
-  childSubmitRequest: (paramStr: string, callback: (resp: fetch.IsomorphicResponse) => void) => void;
   majorParamsDisabled?: boolean; //(not currently used but would allow you to block changing team/seeason/gender)
 }
 
@@ -75,7 +75,7 @@ type CommonFilterI<PARAMS = any> = React.FunctionComponent<Props<PARAMS>>
 const CommonFilter: CommonFilterI = ({
     children,
     startingState, onChangeState, onChangeCommonState,
-    tablePrefix, buildParamsFromState, childHandleResponse, childSubmitRequest,
+    tablePrefix, buildParamsFromState, childHandleResponse,
     majorParamsDisabled
 }) => {
   //console.log("Loading CommonFilter " + JSON.stringify(startingState));
@@ -175,8 +175,10 @@ const CommonFilter: CommonFilterI = ({
     if (pageJustLoaded) {
       setPageJustLoaded(false); //(ensures this code only gets called once)
 
+//TODO: also need to add RequestUtils logic here
+
       // Check if object is in cache and handle response if so
-      const newParamsStr = QueryUtils.stringify(buildParamsFromState(false));
+      const newParamsStr = QueryUtils.stringify(buildParamsFromState(false)[0]);
       if (isDebug) {
         console.log(`Looking for cache entry for [${tablePrefix}][${newParamsStr}]`);
       }
@@ -209,7 +211,7 @@ const CommonFilter: CommonFilterI = ({
 
   /** If the params match the last request, disable submit */
   function shouldSubmitBeDisabled() {
-    const newParams = buildParamsFromState(false);
+    const newParams = buildParamsFromState(false)[0];
 
     const paramsUnchanged = Object.keys(newParams).filter((key) => {
       return (key != "filterGarbage") && (key != "queryFilters");
@@ -240,24 +242,24 @@ const CommonFilter: CommonFilterI = ({
   /** Handles the response from ES to a stats calc request */
   function handleResponse(json: any) {
     setQueryIsLoading(false);
-    const newParams = buildParamsFromState(true);
+    const newParams = buildParamsFromState(true)[0];
     const wasError = isResponseError(json);
     if (!wasError) {
       setAtLeastOneQueryMade(true);
       setCurrState(newParams);
       onChangeState(newParams);
     }
-    childHandleResponse(json, wasError);
+    childHandleResponse([ json ], wasError); //TODO: make this entire function
   }
 
   /** The user has pressed the submit button - mix of generic and custom logic */
   function onSubmit() {
     setQueryIsLoading(true);
-    const newParamsStr = QueryUtils.stringify(buildParamsFromState(false));
+    const newParamsStr = QueryUtils.stringify(buildParamsFromState(false)[0]); //TODO: have a bunch of these, handle
 
     // Store every request in history, successful or not:
     // including the filtering on the results
-    const newParamsStrWithFilterParams = QueryUtils.stringify(buildParamsFromState(true));
+    const newParamsStrWithFilterParams = QueryUtils.stringify(buildParamsFromState(true)[0]);
     HistoryManager.addParamsToHistory(newParamsStrWithFilterParams, tablePrefix);
 
     // Check if it's in the cache:
@@ -268,25 +270,31 @@ const CommonFilter: CommonFilterI = ({
       handleResponse(cachedJson);
     } else {
       const startTimeMs = new Date().getTime();
-      childSubmitRequest(newParamsStr, function(response: fetch.IsomorphicResponse) {
-        response.json().then(function(json: any) {
-          // Cache result locally:
-          if (isDebug) {
-            console.log(`CACHE_KEY=[${tablePrefix}${newParamsStr}]`);
-            console.log(`CACHE_VAL=[${JSON.stringify(json)}]`);
-            const totalTimeMs = new Date().getTime() - startTimeMs;
-            console.log(`TOOK=[${totalTimeMs}]ms`);
-          }
-          if (response.ok && !isResponseError(json)) { //(never cache errors)
-            ClientRequestCache.cacheResponse(
-              newParamsStr, tablePrefix, json, currentJsonEpoch, isDebug
-            );
-          } else if (isDebug) {
-            console.log(`Response error: status=[${response.status}] keys=[${Object.keys(response || {})}]`)
-          }
-          handleResponse(json);
-        })
-      })
+      const promise = fetch(RequestUtils.requestContextToUrl(tablePrefix, newParamsStr)).then(
+        function(response: fetch.IsomorphicResponse) {
+          return response.json().then(function(json: any) {
+            // Cache result locally:
+            if (isDebug) {
+              console.log(`CACHE_KEY=[${tablePrefix}${newParamsStr}]`);
+              console.log(`CACHE_VAL=[${JSON.stringify(json)}]`);
+              const totalTimeMs = new Date().getTime() - startTimeMs;
+              console.log(`TOOK=[${totalTimeMs}]ms`);
+            }
+            if (response.ok && !isResponseError(json)) { //(never cache errors)
+              ClientRequestCache.cacheResponse(
+                newParamsStr, tablePrefix, json, currentJsonEpoch, isDebug
+              );
+            } else if (isDebug) {
+              console.log(`Response error: status=[${response.status}] keys=[${Object.keys(response || {})}]`)
+            }
+            return json;
+          });
+        }
+      );
+      const allPromises = Promise.all([ promise ]);
+      allPromises.then(function(jsons: any[]) {
+          handleResponse(jsons[0]);
+      });
     }
   }
 
@@ -352,7 +360,7 @@ const CommonFilter: CommonFilterI = ({
       });
       newClipboard.on('success', (event: ClipboardJS.Event) => {
         // Add the saved entry to the clipbaorrd
-        const newParamsStrWithFilterParams = QueryUtils.stringify(buildParamsFromState(true));
+        const newParamsStrWithFilterParams = QueryUtils.stringify(buildParamsFromState(true)[0]);
         HistoryManager.addParamsToHistory(newParamsStrWithFilterParams, tablePrefix);
         // Clear the selection in some visually pleasing way
         setTimeout(function() {
