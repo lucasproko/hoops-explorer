@@ -175,26 +175,22 @@ const CommonFilter: CommonFilterI = ({
     if (pageJustLoaded) {
       setPageJustLoaded(false); //(ensures this code only gets called once)
 
-//TODO: also need to add RequestUtils logic here
-
-      // Check if object is in cache and handle response if so
-      const newParamsStr = QueryUtils.stringify(buildParamsFromState(false)[0]);
-      if (isDebug) {
-        console.log(`Looking for cache entry for [${tablePrefix}][${newParamsStr}]`);
-      }
-      const cachedJson = ClientRequestCache.decacheResponse(
-        newParamsStr, tablePrefix, currentJsonEpoch, isDebug
+      const fetchUrl = (url: string) => {
+        return Promise.reject(new Error('Needed request, currently forcing user to press submit'));
+      };
+      const [ primaryRequest, otherRequests ] = buildParamsFromState(false);
+      const allPromises = Promise.all(
+        RequestUtils.requestHandlingLogic(
+          primaryRequest, tablePrefix, otherRequests,
+          fetchUrl,
+          currentJsonEpoch, isDebug
+        )
       );
-      if (cachedJson && _.isEmpty(cachedJson)) {
-        // Special case: make an API call
-        console.log(`(Found a placeholder cache element for [${tablePrefix}${newParamsStr}])`);
-        onSubmit();
-      } else if (cachedJson) {
-        HistoryManager.addParamsToHistory(newParamsStr, tablePrefix);
-        handleResponse(cachedJson);
-      } else {
+      allPromises.then((jsons: any[]) => {
+        handleResponse(jsons);
+      }, rejection => {        
         console.log(`(no pre-cached entry found)`);
-      }
+      });
     }
     if (typeof document !== `undefined`) {
       //(if we added a clipboard listener, then remove it on page close)
@@ -229,73 +225,45 @@ const CommonFilter: CommonFilterI = ({
     ) || (team == "") || (year == AvailableTeams.extraTeamName);
   }
 
-  /** Whether any of the queries returned an error - we'll treat them all as errors if so */
-  function isResponseError(resp: any) {
-    const jsons = resp?.responses || [];
-    const teamJson = (jsons.length > 0) ? jsons[0] : resp;
-      //(error can be so low level there's not even a responses)
-    const rosterCompareJson = (jsons.length > 1) ? jsons[1] : {};
-    return (Object.keys(teamJson?.error || {}).length > 0) ||
-      (Object.keys(rosterCompareJson?.error || {}).length > 0);
-  }
 
   /** Handles the response from ES to a stats calc request */
-  function handleResponse(json: any) {
+  function handleResponse(jsons: any[]) {
     setQueryIsLoading(false);
     const newParams = buildParamsFromState(true)[0];
-    const wasError = isResponseError(json);
+    const wasError = _.some(jsons, json => RequestUtils.isResponseError(json));
     if (!wasError) {
       setAtLeastOneQueryMade(true);
       setCurrState(newParams);
       onChangeState(newParams);
     }
-    childHandleResponse([ json ], wasError); //TODO: make this entire function
+    childHandleResponse(jsons, wasError);
   }
 
   /** The user has pressed the submit button - mix of generic and custom logic */
   function onSubmit() {
     setQueryIsLoading(true);
-    const newParamsStr = QueryUtils.stringify(buildParamsFromState(false)[0]); //TODO: have a bunch of these, handle
 
-    // Store every request in history, successful or not:
+    // Store every primary request in history, successful or not:
     // including the filtering on the results
     const newParamsStrWithFilterParams = QueryUtils.stringify(buildParamsFromState(true)[0]);
     HistoryManager.addParamsToHistory(newParamsStrWithFilterParams, tablePrefix);
 
-    // Check if it's in the cache:
-    const cachedJson = ClientRequestCache.decacheResponse(
-      newParamsStr, tablePrefix, currentJsonEpoch, isDebug
+    const fetchUrl = (url: string) => {
+      return fetch(url).then((response: fetch.IsomorphicResponse) => {
+        return response.json().then((json: any) => [json, response]);
+      })
+    };
+    const [ primaryRequest, otherRequests ] = buildParamsFromState(false);
+    const allPromises = Promise.all(
+      RequestUtils.requestHandlingLogic(
+        primaryRequest, tablePrefix, otherRequests,
+        fetchUrl,
+        currentJsonEpoch, isDebug
+      )
     );
-    if (cachedJson && !_.isEmpty(cachedJson)) { //(ignore placeholders here)
-      handleResponse(cachedJson);
-    } else {
-      const startTimeMs = new Date().getTime();
-      const promise = fetch(RequestUtils.requestContextToUrl(tablePrefix, newParamsStr)).then(
-        function(response: fetch.IsomorphicResponse) {
-          return response.json().then(function(json: any) {
-            // Cache result locally:
-            if (isDebug) {
-              console.log(`CACHE_KEY=[${tablePrefix}${newParamsStr}]`);
-              console.log(`CACHE_VAL=[${JSON.stringify(json)}]`);
-              const totalTimeMs = new Date().getTime() - startTimeMs;
-              console.log(`TOOK=[${totalTimeMs}]ms`);
-            }
-            if (response.ok && !isResponseError(json)) { //(never cache errors)
-              ClientRequestCache.cacheResponse(
-                newParamsStr, tablePrefix, json, currentJsonEpoch, isDebug
-              );
-            } else if (isDebug) {
-              console.log(`Response error: status=[${response.status}] keys=[${Object.keys(response || {})}]`)
-            }
-            return json;
-          });
-        }
-      );
-      const allPromises = Promise.all([ promise ]);
-      allPromises.then(function(jsons: any[]) {
-          handleResponse(jsons[0]);
-      });
-    }
+    allPromises.then(function(jsons: any[]) {
+      handleResponse(jsons);
+    });
   }
 
   /** Load the designated example */
