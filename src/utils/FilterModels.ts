@@ -5,8 +5,9 @@ export class ParamPrefixes {
   static readonly lineup = "lineup-";
   static readonly report = "report-"; //(not used currrently, we re-use lineup)
   static readonly roster = "roster-";
+  static readonly player = "player-";
 }
-export type ParamPrefixesType = "game-" | "lineup-" | "report-" | "roster-";
+export type ParamPrefixesType = "game-" | "lineup-" | "report-" | "roster-" | "player-";
 
 /** Common params across all filter types */
 export type CommonFilterParams = {

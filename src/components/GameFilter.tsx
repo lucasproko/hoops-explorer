@@ -70,46 +70,51 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
       _.merge(
         buildParamsFromState(false)[0], {
           // Individual stats:
+          autoOffQuery: autoOffQuery,
           filter: startFilter, sortBy: startSortBy,
           showBase: startShowBase, showExpanded: startShowExpanded,
           showDiag: startShowDiag, possAsPct: startPossAsPct,
           showPosDiag: startShowPosDiag,
       }) : {
         ...commonParams,
-        autoOffQuery: autoOffQuery,
         onQuery: onQuery,
         offQuery: offQuery
       };
 
-    return [ primaryRequest, [] ];
+    return [ primaryRequest, [{
+        context: ParamPrefixes.roster, paramsObj: primaryRequest
+      }, {
+        context: ParamPrefixes.player, paramsObj: primaryRequest
+      }] 
+    ];
   }
 
   /** Handles the response from ES to a stats calc request */
   function handleResponse(jsonResps: any[], wasError: Boolean) {
-    const json = jsonResps[0] || []; //(currently just one request)
+    const jsons = _.flatMap(jsonResps, j => j.responses || []);
+    const jsonStatuses = jsonResps.map(j => j.status);
 
-    const jsons = json?.responses || [];
-    const teamJson = (jsons.length > 0) ? jsons[0] : {};
-    const rosterCompareJson = (jsons.length > 1) ? jsons[1] : {};
-    const rosterStatsJson = (jsons.length > 2) ? jsons[2] : {};
+    const teamJson = jsons?.[0] || {};
+    const rosterCompareJson = jsons?.[1] || {};
+    const rosterStatsJson = jsons?.[2] || {};
     onStats({
       on: teamJson?.aggregations?.tri_filter?.buckets?.on || {},
       off: teamJson?.aggregations?.tri_filter?.buckets?.off || {},
       onOffMode: autoOffQuery,
       baseline: teamJson?.aggregations?.tri_filter?.buckets?.baseline || {},
-      error_code: wasError ? (teamJson?.status || json?.status) : undefined
+      error_code: wasError ? (teamJson?.status || jsonStatuses?.[0]) : undefined
     }, {
       on: rosterCompareJson?.aggregations?.tri_filter?.buckets?.on || {},
       off: rosterCompareJson?.aggregations?.tri_filter?.buckets?.off || {},
       onOffMode: autoOffQuery,
       baseline: rosterCompareJson?.aggregations?.tri_filter?.buckets?.baseline || {},
-      error_code: wasError ? (rosterCompareJson?.status || json?.status) : undefined
+      error_code: wasError ? (rosterCompareJson?.status || jsonStatuses?.[1]) : undefined
     }, {
       on: rosterStatsJson?.aggregations?.tri_filter?.buckets?.on?.player?.buckets || [],
       off: rosterStatsJson?.aggregations?.tri_filter?.buckets?.off?.player?.buckets || [],
       onOffMode: autoOffQuery,
       baseline: rosterStatsJson?.aggregations?.tri_filter?.buckets?.baseline?.player?.buckets || [],
-      error_code: wasError ? (rosterStatsJson?.status || json?.status) : undefined
+      error_code: wasError ? (rosterStatsJson?.status || jsonStatuses?.[2]) : undefined
     });
   }
 

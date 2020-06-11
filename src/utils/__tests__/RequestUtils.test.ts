@@ -141,6 +141,7 @@ describe("RequestUtils", () => {
     expect(RequestUtils.requestContextToUrl(ParamPrefixes.lineup, "test2")).toBe("/api/calculateLineupStats?test2");
     expect(RequestUtils.requestContextToUrl(ParamPrefixes.report, "test3")).toBe("/api/calculateLineupStats?test3");
     expect(RequestUtils.requestContextToUrl(ParamPrefixes.roster, "test4")).toBe("/api/getRoster?test4");
+    expect(RequestUtils.requestContextToUrl(ParamPrefixes.player, "test5")).toBe("/api/calculateOnOffPlayerStats?test5");
   });
 
 });

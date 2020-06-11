@@ -85,6 +85,7 @@ export class RequestUtils {
       case ParamPrefixes.lineup: return `/api/calculateLineupStats?${paramStr}`;
       case ParamPrefixes.report: return `/api/calculateLineupStats?${paramStr}`;
       case ParamPrefixes.roster: return `/api/getRoster?${paramStr}`;
+      case ParamPrefixes.player: return `/api/calculateOnOffPlayerStats?${paramStr}`;
     }
   }
 
