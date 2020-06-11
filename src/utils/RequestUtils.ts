@@ -2,7 +2,7 @@
 import _ from "lodash";
 
 // Internal components:
-import { ParamPrefixes, ParamPrefixesType, FilterParamsType, FilterRequestInfo } from "../utils/FilterModels";
+import { ParamPrefixes, ParamPrefixesType, FilterParamsType, FilterRequestInfo } from "./FilterModels";
 import { QueryUtils } from "./QueryUtils";
 import { ClientRequestCache } from "./ClientRequestCache";
 
@@ -29,7 +29,7 @@ export class RequestUtils {
   /** An easily test abstraction for requesting multiple objects from the server */
   static requestHandlingLogic(
     primaryRequest: FilterParamsType, primaryContext: ParamPrefixesType, otherRequests: FilterRequestInfo[],
-    fetchPromiseFactory: (url: string) => Promise<[any, fetch.IsomorphicResponse]>,
+    fetchPromiseFactory: (url: string, force: boolean) => Promise<[any, boolean, fetch.IsomorphicResponse]>,
     currentJsonEpoch: number, isDebug: boolean
   ): Promise<any>[] {
     return RequestUtils.buildRequestList(primaryRequest, primaryContext, otherRequests).map(
@@ -44,14 +44,18 @@ export class RequestUtils {
         const cachedJson = ClientRequestCache.decacheResponse(
           newParamsStr, req.context, currentJsonEpoch, isDebug
         );
-        if (cachedJson && !_.isEmpty(cachedJson)) { //(ignore placeholders here)
+        const jsonExistsButEmpty = !_.isNil(cachedJson) && _.isEmpty(cachedJson);
+
+        if (cachedJson && !jsonExistsButEmpty) { //(ignore placeholders here)
           return Promise.resolve(cachedJson);
         } else {
           const startTimeMs = new Date().getTime();
-          return fetchPromiseFactory(RequestUtils.requestContextToUrl(req.context, newParamsStr))
-            .then(function(jsonResp: [any, fetch.IsomorphicResponse]) {
+          return fetchPromiseFactory(
+            RequestUtils.requestContextToUrl(req.context, newParamsStr), jsonExistsButEmpty
+          ).then(function(jsonResp: [any, boolean, fetch.IsomorphicResponse | undefined]) {
               const json = jsonResp[0];
-              const response = jsonResp[1];
+              const respOk = jsonResp[1];
+              const response = jsonResp[2]; //(just for debugging hence can be undefined)
 
               // Cache result locally:
               if (isDebug) {
@@ -60,18 +64,28 @@ export class RequestUtils {
                 const totalTimeMs = new Date().getTime() - startTimeMs;
                 console.log(`TOOK[${index}]=[${totalTimeMs}]ms`);
               }
-              if (response.ok && !RequestUtils.isResponseError(json)) { //(never cache errors)
+              if (respOk && !RequestUtils.isResponseError(json)) { //(never cache errors)
                 ClientRequestCache.cacheResponse(
                   newParamsStr, req.context, json, currentJsonEpoch, isDebug
                 );
               } else if (isDebug) {
-                console.log(`[${index}] Response error: status=[${response.status}] keys=[${Object.keys(response || {})}]`)
+                console.log(`[${index}] Response error: status=[${response?.status}] keys=[${Object.keys(response || {})}]`)
               }
               return json;
             });
         }
       }
     );
+  }
+
+  /** Switch from one of the request types to the URL */
+  static requestContextToUrl(context: ParamPrefixesType, paramStr: string) {
+    switch (context) {
+      case ParamPrefixes.game: return `/api/calculateOnOffStats?${paramStr}`;
+      case ParamPrefixes.lineup: return `/api/calculateLineupStats?${paramStr}`;
+      case ParamPrefixes.report: return `/api/calculateLineupStats?${paramStr}`;
+      case ParamPrefixes.roster: return `/api/getRoster?${paramStr}`;
+    }
   }
 
   /////////////////////////////////
@@ -84,13 +98,4 @@ export class RequestUtils {
     return [ { context: context, paramsObj: primaryRequest } ].concat(otherRequests);
   }
 
-  /** Switch from one of the request types to the URL */
-  private static requestContextToUrl(context: ParamPrefixesType, paramStr: string) {
-    switch (context) {
-      case ParamPrefixes.game: return `/api/calculateOnOffStats?${paramStr}`;
-      case ParamPrefixes.lineup: return `/api/calculateLineupStats?${paramStr}`;
-      case ParamPrefixes.report: return `/api/calculateLineupStats?${paramStr}`;
-      case ParamPrefixes.roster: return `/api/getRoster?${paramStr}`;
-    }
-  }
 }

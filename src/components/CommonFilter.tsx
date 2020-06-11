@@ -155,6 +155,32 @@ const CommonFilter: CommonFilterI = ({
     }
   };
 
+  /** Handles data loading logic either when loading a page (onLoad==true) or pressing submit (onLoad==false) */
+  const requestHandlingLogic = (onLoad: boolean) => {
+    const fetchUrl = (url: string, force: boolean) => {
+      return !onLoad || force ? //(if onLoad - JSON cache, or wait for user to hit submit)
+        fetch(url).then((response: fetch.IsomorphicResponse) => {
+          return response.json().then((json: any) => [json, response.ok, response]);
+        }) :
+        Promise.reject(new Error('Needed request, currently forcing user to press submit'));
+    };
+    const [ primaryRequest, otherRequests ] = buildParamsFromState(false);
+    const allPromises = Promise.all(
+      RequestUtils.requestHandlingLogic(
+        primaryRequest, tablePrefix, otherRequests,
+        fetchUrl,
+        currentJsonEpoch, isDebug
+      )
+    );
+    allPromises.then((jsons: any[]) => {
+      handleResponse(jsons);
+    }, rejection => {
+      if (isDebug) {
+        console.log(`(no cached entry found)`);
+      }
+    });
+  };
+
   /** Checks if the input has been changed, and also handles on page load logic */
   useEffect(() => {
     initClipboard();
@@ -175,22 +201,8 @@ const CommonFilter: CommonFilterI = ({
     if (pageJustLoaded) {
       setPageJustLoaded(false); //(ensures this code only gets called once)
 
-      const fetchUrl = (url: string) => {
-        return Promise.reject(new Error('Needed request, currently forcing user to press submit'));
-      };
-      const [ primaryRequest, otherRequests ] = buildParamsFromState(false);
-      const allPromises = Promise.all(
-        RequestUtils.requestHandlingLogic(
-          primaryRequest, tablePrefix, otherRequests,
-          fetchUrl,
-          currentJsonEpoch, isDebug
-        )
-      );
-      allPromises.then((jsons: any[]) => {
-        handleResponse(jsons);
-      }, rejection => {        
-        console.log(`(no pre-cached entry found)`);
-      });
+      // Load the data if it's cached
+      requestHandlingLogic(true);
     }
     if (typeof document !== `undefined`) {
       //(if we added a clipboard listener, then remove it on page close)
@@ -248,22 +260,8 @@ const CommonFilter: CommonFilterI = ({
     const newParamsStrWithFilterParams = QueryUtils.stringify(buildParamsFromState(true)[0]);
     HistoryManager.addParamsToHistory(newParamsStrWithFilterParams, tablePrefix);
 
-    const fetchUrl = (url: string) => {
-      return fetch(url).then((response: fetch.IsomorphicResponse) => {
-        return response.json().then((json: any) => [json, response]);
-      })
-    };
-    const [ primaryRequest, otherRequests ] = buildParamsFromState(false);
-    const allPromises = Promise.all(
-      RequestUtils.requestHandlingLogic(
-        primaryRequest, tablePrefix, otherRequests,
-        fetchUrl,
-        currentJsonEpoch, isDebug
-      )
-    );
-    allPromises.then(function(jsons: any[]) {
-      handleResponse(jsons);
-    });
+    // Load the data via request
+    requestHandlingLogic(false);
   }
 
   /** Load the designated example */
