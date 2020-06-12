@@ -9,7 +9,7 @@ import { rosterCompareQuery } from "../../utils/es-queries/rosterCompareQueryTem
 import { playerStatsQuery } from "../../utils/es-queries/playerStatsQueryTemplate";
 import { ParamPrefixes } from '../../utils/FilterModels';
 
-const queryPrefix = ParamPrefixes.game;
+const queryPrefix = ParamPrefixes.player;
 
 function marshallRequest(
   index: string, genderPrefix: string, params: Record<string, any>,
