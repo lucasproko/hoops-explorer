@@ -239,7 +239,7 @@ export const ncaaToKenpomLookup_2019_20 = {
    }
 };
 
-export const ncaaToKenpomLookup_2018_19 = _.merge(ncaaToKenpomLookup_2019_20, {
+export const ncaaToKenpomLookup_2018_19 = _.merge(_.cloneDeep(ncaaToKenpomLookup_2019_20), {
   "NC State": {
      "pbp_kp_team": "North Carolina St."
   },
@@ -248,7 +248,7 @@ export const ncaaToKenpomLookup_2018_19 = _.merge(ncaaToKenpomLookup_2019_20, {
   }
 });
 
-export const ncaaToKenpomLookup_2017_18 = _.merge(ncaaToKenpomLookup_2018_19, {
+export const ncaaToKenpomLookup_2017_18 = _.merge(_.cloneDeep(ncaaToKenpomLookup_2018_19), {
   "Col. of Charleston": {
      "pbp_kp_team": "College of Charleston"
   },
@@ -259,7 +259,7 @@ export const ncaaToKenpomLookup_2017_18 = _.merge(ncaaToKenpomLookup_2018_19, {
 
 export const ncaaToKenpomLookup_2016_17 = ncaaToKenpomLookup_2017_18;
 
-export const ncaaToKenpomLookup_2015_16 = _.merge(ncaaToKenpomLookup_2016_17, {
+export const ncaaToKenpomLookup_2015_16 = _.merge(_.cloneDeep(ncaaToKenpomLookup_2016_17), {
   "Purdue Fort Wayne": {
      "pbp_kp_team": "IPFW"
   },
