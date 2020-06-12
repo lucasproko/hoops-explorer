@@ -18,11 +18,8 @@ import { TeamStatsModel } from '../components/TeamStatsTable';
 import { RosterCompareModel } from '../components/RosterCompareTable';
 import { RosterStatsModel } from '../components/RosterStatsTable';
 import CommonFilter, { GlobalKeypressManager } from '../components/CommonFilter';
-import { ParamPrefixes, CommonFilterParams, GameFilterParams, ParamDefaults } from "../utils/FilterModels";
+import { ParamPrefixes, FilterParamsType, CommonFilterParams, GameFilterParams, FilterRequestInfo, ParamDefaults } from "../utils/FilterModels";
 import AutoSuggestText from './AutoSuggestText';
-
-// Library imports:
-import fetch from 'isomorphic-unfetch';
 
 type Props = {
   onStats: (teamStats: TeamStatsModel, rosterCompareStats: RosterCompareModel, rosterStats: RosterStatsModel) => void;
@@ -67,54 +64,66 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
     setCommonParams(params)
   }
 
-  /** Builds a game filter from the various state elements */
-  function buildParamsFromState(includeFilterParams: Boolean): GameFilterParams {
-    return includeFilterParams ?
+  /** Builds a game filter from the various state elements, and also any secondary filters */
+  function buildParamsFromState(includeFilterParams: Boolean): [ GameFilterParams, FilterRequestInfo[] ]  {
+    const primaryRequest: GameFilterParams = includeFilterParams ?
       _.merge(
-        buildParamsFromState(false), {
+        buildParamsFromState(false)[0], {
           // Individual stats:
+          autoOffQuery: autoOffQuery,
           filter: startFilter, sortBy: startSortBy,
           showBase: startShowBase, showExpanded: startShowExpanded,
           showDiag: startShowDiag, possAsPct: startPossAsPct,
           showPosDiag: startShowPosDiag,
       }) : {
         ...commonParams,
-        autoOffQuery: autoOffQuery,
         onQuery: onQuery,
         offQuery: offQuery
       };
+
+    return [ primaryRequest, [{
+        context: ParamPrefixes.roster, paramsObj: primaryRequest
+      }, {
+        context: ParamPrefixes.player, paramsObj: primaryRequest
+      }] 
+    ];
   }
 
   /** Handles the response from ES to a stats calc request */
-  function handleResponse(json: any, wasError: Boolean) {
-    const jsons = json?.responses || [];
-    const teamJson = (jsons.length > 0) ? jsons[0] : {};
-    const rosterCompareJson = (jsons.length > 1) ? jsons[1] : {};
-    const rosterStatsJson = (jsons.length > 2) ? jsons[2] : {};
+  function handleResponse(jsonResps: any[], wasError: Boolean) {
+    const jsons = _.flatMap(jsonResps, j => j.responses || []);
+    const jsonStatuses = jsonResps.map(j => j.status);
+
+    const teamJson = jsons?.[0] || {};
+    const rosterCompareJson = jsons?.[1] || {};
+    const rosterStatsJson = jsons?.[2] || {};
     onStats({
       on: teamJson?.aggregations?.tri_filter?.buckets?.on || {},
       off: teamJson?.aggregations?.tri_filter?.buckets?.off || {},
       onOffMode: autoOffQuery,
       baseline: teamJson?.aggregations?.tri_filter?.buckets?.baseline || {},
-      error_code: wasError ? (teamJson?.status || json?.status) : undefined
+      error_code: wasError ? (teamJson?.status || jsonStatuses?.[0]) : undefined
     }, {
       on: rosterCompareJson?.aggregations?.tri_filter?.buckets?.on || {},
       off: rosterCompareJson?.aggregations?.tri_filter?.buckets?.off || {},
       onOffMode: autoOffQuery,
       baseline: rosterCompareJson?.aggregations?.tri_filter?.buckets?.baseline || {},
-      error_code: wasError ? (rosterCompareJson?.status || json?.status) : undefined
+      error_code: wasError ? (rosterCompareJson?.status || jsonStatuses?.[1]) : undefined
     }, {
       on: rosterStatsJson?.aggregations?.tri_filter?.buckets?.on?.player?.buckets || [],
       off: rosterStatsJson?.aggregations?.tri_filter?.buckets?.off?.player?.buckets || [],
       onOffMode: autoOffQuery,
       baseline: rosterStatsJson?.aggregations?.tri_filter?.buckets?.baseline?.player?.buckets || [],
-      error_code: wasError ? (rosterStatsJson?.status || json?.status) : undefined
+      error_code: wasError ? (rosterStatsJson?.status || jsonStatuses?.[2]) : undefined
     });
   }
 
   /** Builds the query issued to the API server - the response handling is generic */
-  function onSubmit(paramStr: string, callback: (resp: fetch.IsomorphicResponse) => void) {
-    fetch(`/api/calculateOnOffStats?${paramStr}`).then(callback);
+  function onSubmit(paramObj: FilterParamsType) {
+    return [{
+      context: ParamPrefixes.game,
+      paramsObj: paramObj
+    }];
   }
 
   /** Sets the automatically generated off query, if that option is selected */
@@ -155,7 +164,6 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
       tablePrefix = {cacheKeyPrefix}
       buildParamsFromState={buildParamsFromState}
       childHandleResponse={handleResponse}
-      childSubmitRequest={onSubmit}
     ><GlobalKeypressManager.Consumer>{ globalKeypressHandler => <div>
       <Form.Group as={Row}>
         <Form.Label column sm="2">{maybeOn} Query</Form.Label>

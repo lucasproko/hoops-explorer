@@ -17,7 +17,7 @@ import TextInput from 'react-autocomplete-input';
 import 'react-autocomplete-input/dist/bundle.css';
 
 // Utils:
-import { ParamPrefixes, CommonFilterParams } from '../utils/FilterModels';
+import { ParamPrefixes, ParamDefaults, GameFilterParams } from '../utils/FilterModels';
 import { RosterCompareModel } from '../components/RosterCompareTable';
 import { dataLastUpdated } from '../utils/internal-data/dataLastUpdated';
 import { ClientRequestCache } from '../utils/ClientRequestCache';
@@ -45,7 +45,7 @@ const AutoSuggestText: React.FunctionComponent<Props> = (
 
   // Data model
 
-  const [ savedParams, setSavedParams ] = useState({} as CommonFilterParams);
+  const [ savedParams, setSavedParams ] = useState({} as GameFilterParams);
   const [ basicOptions, setBasicOptions ] = useState([] as Array<string>);
   const [ advOptions, setAdvOptions ] = useState([] as Array<string>);
 
@@ -68,7 +68,7 @@ const AutoSuggestText: React.FunctionComponent<Props> = (
 
   /** Reset everything if team/year/gender changes */
   useEffect(() => {
-    const params: CommonFilterParams = { year: year, gender: gender, team: team }
+    const params: GameFilterParams = { year: year, gender: gender, team: team }
     if (!_.isEqual(params, savedParams)) {
       if (isDebug) console.log(`Update params: old=[${JSON.stringify(savedParams)}] vs new=[${JSON.stringify(params)}]`);
       setSavedParams(params);
@@ -83,10 +83,11 @@ const AutoSuggestText: React.FunctionComponent<Props> = (
       const genderYear = `${gender}_${year}`;
       const currentJsonEpoch = dataLastUpdated[genderYear] || -1;
 
-      const query: CommonFilterParams = {
+      const query: GameFilterParams = {
         gender: gender, year: year, team: team,
-        baseQuery: "*"
-      }
+        baseQuery: "", onQuery: "", offQuery: "",
+        minRank: ParamDefaults.defaultMinRank, maxRank: ParamDefaults.defaultMaxRank
+      };
       const paramStr = QueryUtils.stringify(query);
       // Check if it's in the cache:
       const cachedJson = ClientRequestCache.decacheResponse(

@@ -122,7 +122,7 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
   const globalRapmDiagRef = React.createRef<HTMLDivElement>();
 
   /** If the browser is doing heavier calcs then spin the display vs just be unresponsive */
-  const [ inBrowserRepOnOffPxing, setInBrowserRepOnOffPxing ] = useState(false);
+  const [ inBrowserRepOnOffPxing, setInBrowserRepOnOffPxing ] = useState(0);
 
   const filterFragments =
     filterStr.split(",").map(fragment => _.trim(fragment)).filter(fragment => fragment ? true : false);
@@ -161,15 +161,15 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
 
     // We just set this flag to make the processing async so that we can give some indication that
     // we're processing (vs just being unresponsive)
-    setInBrowserRepOnOffPxing(true);
+    setInBrowserRepOnOffPxing(inBrowserRepOnOffPxing + 1);
 
   }, [ lineupReport, incReplacementOnOff, incRapm, regressDiffs, repOnOffDiagMode, rapmDiagMode ] );
 
-  /** logic to perform whenever the data changes (or the metadata in such a way re-processing is required)*/
-  const onDataChangeProcessing = () => {
+  /** logic to perform whenever the data changes (or the metadata in such a way re-processing is required) */
+  const onDataChangeProcessing = (inLineupReport: LineupStatsModel) => {
     try {
       const tempTeamReport = LineupUtils.lineupToTeamReport(
-        lineupReport, incReplacementOnOff, regressDiffs, repOnOffDiagModeNumLineups
+        inLineupReport, incReplacementOnOff, regressDiffs, repOnOffDiagModeNumLineups
       );
       if (incRapm) {
         try {
@@ -212,10 +212,10 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
   };
 
   React.useEffect(() => {
-    if (inBrowserRepOnOffPxing) {
+    if (inBrowserRepOnOffPxing > 0) {
       setTimeout(() => { //(ensures that the "processing" element is returned _before_ the processing starts)
-        onDataChangeProcessing();
-        setInBrowserRepOnOffPxing(false);
+        onDataChangeProcessing(lineupReport);
+        setInBrowserRepOnOffPxing(inBrowserRepOnOffPxing - 1);
       }, 1);
     }
   }, [ inBrowserRepOnOffPxing ] );
@@ -223,7 +223,7 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
   // Called fron unit test so we build the snapshot based on the actual data
   if (testMode) {
     if (playersWithAdjEff.length == 0) { //(ensure that unit tests don't re-render to infinity)
-      onDataChangeProcessing();
+      onDataChangeProcessing(lineupReport);
     }
   }
 
@@ -492,7 +492,7 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
 
   /** Sticks an overlay on top of the table if no query has ever been loaded */
   function needToLoadQuery() {
-    return inBrowserRepOnOffPxing || (teamReport.players || []).length == 0;
+    return (inBrowserRepOnOffPxing > 0) || (teamReport.players || []).length == 0;
   }
 
   /** For use in selects */

@@ -17,10 +17,7 @@ import Col from 'react-bootstrap/Col';
 import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
 import { LineupStatsModel } from '../components/LineupStatsTable';
 import CommonFilter from '../components/CommonFilter';
-import { ParamPrefixes, CommonFilterParams, TeamReportFilterParams } from "../utils/FilterModels";
-
-// Library imports:
-import fetch from 'isomorphic-unfetch';
+import { ParamPrefixes, ParamPrefixesType, CommonFilterParams, FilterRequestInfo, TeamReportFilterParams } from "../utils/FilterModels";
 
 type Props = {
   onStats: (reportStats: LineupStatsModel) => void;
@@ -62,10 +59,11 @@ const TeamReportFilter: React.FunctionComponent<Props> = ({onStats, startingStat
   }
 
   /** Builds a game filter from the various state elements */
-  function buildParamsFromState(includeFilterParams: Boolean): TeamReportFilterParams {
-    return includeFilterParams ?
+  function buildParamsFromState(includeFilterParams: Boolean): [ TeamReportFilterParams, FilterRequestInfo[] ]
+  {
+    const primaryRequest: TeamReportFilterParams = includeFilterParams ?
     _.merge(
-      buildParamsFromState(false), {
+      buildParamsFromState(false)[0], {
         sortBy: startSortBy,
         filter: startFilter,
         showOnOff: startShowOnOff,
@@ -78,21 +76,18 @@ const TeamReportFilter: React.FunctionComponent<Props> = ({onStats, startingStat
     }) : {
       ...commonParams
     };
+    return [ primaryRequest, [] ];
   }
 
-  /** Handles the response from ES to a stats calc request */
-  function handleResponse(json: any, wasError: Boolean) {
+  function handleResponse(jsonResps: any[], wasError: Boolean) {
+    const json = jsonResps[0] || []; //(currently just one request)
+
     const jsons = json?.responses || [];
     const lineupJson = (jsons.length > 0) ? jsons[0] : {};
     onStats({
       lineups: lineupJson?.aggregations?.lineups?.buckets,
       error_code: wasError ? (lineupJson?.status || json?.status) : undefined
     });
-  }
-
-  /** Builds the query issued to the API server - the response handling is generic */
-  function onSubmit(paramStr: string, callback: (resp: fetch.IsomorphicResponse) => void) {
-    fetch(`/api/calculateLineupStats?${paramStr}`).then(callback);
   }
 
   // Visual components:
@@ -106,7 +101,6 @@ const TeamReportFilter: React.FunctionComponent<Props> = ({onStats, startingStat
       tablePrefix = {cacheKeyPrefix}
       buildParamsFromState={buildParamsFromState}
       childHandleResponse={handleResponse}
-      childSubmitRequest={onSubmit}
     />
     ;
 }
