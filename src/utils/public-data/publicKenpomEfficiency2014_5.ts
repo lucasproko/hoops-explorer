@@ -10,6 +10,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 36.89999999999999,
       "stats.adj_tempo.rank": 274,
       "stats.adj_tempo.value": 62.4,
+      "stats.off._3p_pct.value": 34.9,
+      "total_poss": 2509,
       "ncaa_seed": 1,
       "is_high_major": 1,
       "good_md_comp": 1
@@ -25,6 +27,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 33.8,
       "stats.adj_tempo.rank": 345,
       "stats.adj_tempo.value": 58.7,
+      "stats.off._3p_pct.value": 36.5,
+      "total_poss": 2396,
       "ncaa_seed": 1,
       "is_high_major": 1,
       "good_md_comp": 0
@@ -40,6 +44,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 32.5,
       "stats.adj_tempo.rank": 104,
       "stats.adj_tempo.value": 65.8,
+      "stats.off._3p_pct.value": 38.7,
+      "total_poss": 2587,
       "ncaa_seed": 1,
       "is_high_major": 1,
       "good_md_comp": 0
@@ -55,6 +61,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 32.400000000000006,
       "stats.adj_tempo.rank": 102,
       "stats.adj_tempo.value": 65.8,
+      "stats.off._3p_pct.value": 36,
+      "total_poss": 2535,
       "ncaa_seed": 2,
       "is_high_major": 1,
       "good_md_comp": 0
@@ -70,6 +78,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 30.700000000000003,
       "stats.adj_tempo.rank": 183,
       "stats.adj_tempo.value": 64.2,
+      "stats.off._3p_pct.value": 38.9,
+      "total_poss": 2360,
       "ncaa_seed": 1,
       "is_high_major": 1,
       "good_md_comp": 1
@@ -85,6 +95,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 30.099999999999994,
       "stats.adj_tempo.rank": 349,
       "stats.adj_tempo.value": 58,
+      "stats.off._3p_pct.value": 35.2,
+      "total_poss": 2009,
       "ncaa_seed": 2,
       "is_high_major": 1,
       "good_md_comp": 0
@@ -100,6 +112,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 27.799999999999997,
       "stats.adj_tempo.rank": 154,
       "stats.adj_tempo.value": 64.7,
+      "stats.off._3p_pct.value": 40,
+      "total_poss": 2415,
       "ncaa_seed": 2,
       "is_high_major": 0,
       "good_md_comp": 0
@@ -115,6 +129,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 27.200000000000003,
       "stats.adj_tempo.rank": 328,
       "stats.adj_tempo.value": 60.5,
+      "stats.off._3p_pct.value": 40.1,
+      "total_poss": 2131,
       "ncaa_seed": 5,
       "is_high_major": 1,
       "good_md_comp": 0
@@ -130,6 +146,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 25,
       "stats.adj_tempo.rank": 226,
       "stats.adj_tempo.value": 63.4,
+      "stats.off._3p_pct.value": 39,
+      "total_poss": 2464,
       "ncaa_seed": 3,
       "is_high_major": 1,
       "good_md_comp": 0
@@ -145,6 +163,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 23.799999999999997,
       "stats.adj_tempo.rank": 16,
       "stats.adj_tempo.value": 69.2,
+      "stats.off._3p_pct.value": 35.8,
+      "total_poss": 2646,
       "ncaa_seed": 4,
       "is_high_major": 1,
       "good_md_comp": 0
@@ -160,6 +180,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 22.799999999999997,
       "stats.adj_tempo.rank": 63,
       "stats.adj_tempo.value": 66.7,
+      "stats.off._3p_pct.value": 34.3,
+      "total_poss": 2376,
       "ncaa_seed": 3,
       "is_high_major": 1,
       "good_md_comp": 0
@@ -175,6 +197,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 22.700000000000003,
       "stats.adj_tempo.rank": 56,
       "stats.adj_tempo.value": 67,
+      "stats.off._3p_pct.value": 37.9,
+      "total_poss": 2411,
       "ncaa_seed": 2,
       "is_high_major": 1,
       "good_md_comp": 0
@@ -190,6 +214,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 22.200000000000003,
       "stats.adj_tempo.rank": 279,
       "stats.adj_tempo.value": 62.3,
+      "stats.off._3p_pct.value": 35.4,
+      "total_poss": 2107,
       "ncaa_seed": 7,
       "is_high_major": 0,
       "good_md_comp": 1
@@ -205,6 +231,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 22.099999999999994,
       "stats.adj_tempo.rank": 307,
       "stats.adj_tempo.value": 61.5,
+      "stats.off._3p_pct.value": 38.2,
+      "total_poss": 2080,
       "ncaa_seed": 3,
       "is_high_major": 1,
       "good_md_comp": 0
@@ -220,6 +248,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 21.69999999999999,
       "stats.adj_tempo.rank": 248,
       "stats.adj_tempo.value": 63.1,
+      "stats.off._3p_pct.value": 38.5,
+      "total_poss": 2533,
       "ncaa_seed": 7,
       "is_high_major": 1,
       "good_md_comp": 0
@@ -235,6 +265,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 21.5,
       "stats.adj_tempo.rank": 10,
       "stats.adj_tempo.value": 69.6,
+      "stats.off._3p_pct.value": 36.2,
+      "total_poss": 2376,
       "ncaa_seed": 3,
       "is_high_major": 1,
       "good_md_comp": 1
@@ -250,11 +282,13 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 21.299999999999997,
       "stats.adj_tempo.rank": 155,
       "stats.adj_tempo.value": 64.6,
+      "stats.off._3p_pct.value": 30.7,
+      "total_poss": 2377,
       "ncaa_seed": 4,
       "is_high_major": 1,
       "good_md_comp": 0
    },
-   "Northern Iowa": {
+   "UNI": {
       "team_season.year": 2015,
       "conf": "Missouri Valley Conference",
       "stats.adj_off.rank": 18,
@@ -265,6 +299,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 21,
       "stats.adj_tempo.rank": 348,
       "stats.adj_tempo.value": 58.2,
+      "stats.off._3p_pct.value": 39.8,
+      "total_poss": 2041,
       "ncaa_seed": 5,
       "is_high_major": 0,
       "good_md_comp": 0
@@ -280,6 +316,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 20.799999999999997,
       "stats.adj_tempo.rank": 132,
       "stats.adj_tempo.value": 65.2,
+      "stats.off._3p_pct.value": 37,
+      "total_poss": 2329,
       "ncaa_seed": 10,
       "is_high_major": 1,
       "good_md_comp": 0
@@ -295,6 +333,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 20.10000000000001,
       "stats.adj_tempo.rank": 243,
       "stats.adj_tempo.value": 63.2,
+      "stats.off._3p_pct.value": 35.6,
+      "total_poss": 2214,
       "ncaa_seed": 6,
       "is_high_major": 1,
       "good_md_comp": 0
@@ -310,6 +350,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 19.5,
       "stats.adj_tempo.rank": 137,
       "stats.adj_tempo.value": 65,
+      "stats.off._3p_pct.value": 35.1,
+      "total_poss": 2467,
       "ncaa_seed": 6,
       "is_high_major": 1,
       "good_md_comp": 0
@@ -325,6 +367,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 19.200000000000003,
       "stats.adj_tempo.rank": 192,
       "stats.adj_tempo.value": 64,
+      "stats.off._3p_pct.value": 35.3,
+      "total_poss": 2166,
       "ncaa_seed": 4,
       "is_high_major": 1,
       "good_md_comp": 0
@@ -340,6 +384,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 19.10000000000001,
       "stats.adj_tempo.rank": 209,
       "stats.adj_tempo.value": 63.7,
+      "stats.off._3p_pct.value": 33.3,
+      "total_poss": 2208,
       "ncaa_seed": 7,
       "is_high_major": 1,
       "good_md_comp": 0
@@ -355,6 +401,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 19,
       "stats.adj_tempo.rank": 290,
       "stats.adj_tempo.value": 62,
+      "stats.off._3p_pct.value": 33.9,
+      "total_poss": 2162,
       "ncaa_seed": 11,
       "is_high_major": 1,
       "good_md_comp": 0
@@ -370,6 +418,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 17.69999999999999,
       "stats.adj_tempo.rank": 28,
       "stats.adj_tempo.value": 67.9,
+      "stats.off._3p_pct.value": 31.6,
+      "total_poss": 2422,
       "ncaa_seed": 5,
       "is_high_major": 1,
       "good_md_comp": 0
@@ -385,6 +435,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 17.5,
       "stats.adj_tempo.rank": 250,
       "stats.adj_tempo.value": 63.1,
+      "stats.off._3p_pct.value": 36.3,
+      "total_poss": 2088,
       "ncaa_seed": 6,
       "is_high_major": 0,
       "good_md_comp": 0
@@ -400,6 +452,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 16.69999999999999,
       "stats.adj_tempo.rank": 129,
       "stats.adj_tempo.value": 65.2,
+      "stats.off._3p_pct.value": 31.3,
+      "total_poss": 2247,
       "ncaa_seed": 6,
       "is_high_major": 1,
       "good_md_comp": 0
@@ -415,6 +469,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 16.700000000000003,
       "stats.adj_tempo.rank": 5,
       "stats.adj_tempo.value": 70.4,
+      "stats.off._3p_pct.value": 39,
+      "total_poss": 2346,
       "ncaa_seed": 11,
       "is_high_major": 0,
       "good_md_comp": 0
@@ -430,6 +486,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 16.400000000000006,
       "stats.adj_tempo.rank": 13,
       "stats.adj_tempo.value": 69.3,
+      "stats.off._3p_pct.value": 34.9,
+      "total_poss": 2541,
       "ncaa_seed": 5,
       "is_high_major": 1,
       "good_md_comp": 0
@@ -445,6 +503,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 16.19999999999999,
       "stats.adj_tempo.rank": 70,
       "stats.adj_tempo.value": 66.5,
+      "stats.off._3p_pct.value": 34.3,
+      "total_poss": 2449,
       "ncaa_seed": 7,
       "is_high_major": 0,
       "good_md_comp": 0
@@ -460,11 +520,13 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 15.900000000000006,
       "stats.adj_tempo.rank": 333,
       "stats.adj_tempo.value": 60.4,
+      "stats.off._3p_pct.value": 32,
+      "total_poss": 2139,
       "ncaa_seed": 8,
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "North Carolina St.": {
+   "NC State": {
       "team_season.year": 2015,
       "conf": "Atlantic Coast Conference",
       "stats.adj_off.rank": 25,
@@ -475,6 +537,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 16,
       "stats.adj_tempo.rank": 188,
       "stats.adj_tempo.value": 64.1,
+      "stats.off._3p_pct.value": 35.7,
+      "total_poss": 2338,
       "ncaa_seed": 8,
       "is_high_major": 1,
       "good_md_comp": 0
@@ -490,6 +554,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 15.599999999999994,
       "stats.adj_tempo.rank": 199,
       "stats.adj_tempo.value": 63.9,
+      "stats.off._3p_pct.value": 37.6,
+      "total_poss": 2279,
       "ncaa_seed": 4,
       "is_high_major": 1,
       "good_md_comp": 0
@@ -505,6 +571,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 15.399999999999991,
       "stats.adj_tempo.rank": 266,
       "stats.adj_tempo.value": 62.7,
+      "stats.off._3p_pct.value": 32.3,
+      "total_poss": 2086,
       "ncaa_seed": "",
       "is_high_major": 1,
       "good_md_comp": 0
@@ -520,6 +588,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 15.099999999999994,
       "stats.adj_tempo.rank": 184,
       "stats.adj_tempo.value": 64.1,
+      "stats.off._3p_pct.value": 34.2,
+      "total_poss": 2188,
       "ncaa_seed": 10,
       "is_high_major": 1,
       "good_md_comp": 1
@@ -535,6 +605,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 15,
       "stats.adj_tempo.rank": 62,
       "stats.adj_tempo.value": 66.7,
+      "stats.off._3p_pct.value": 38.7,
+      "total_poss": 2091,
       "ncaa_seed": 10,
       "is_high_major": 0,
       "good_md_comp": 0
@@ -550,6 +622,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 15,
       "stats.adj_tempo.rank": 233,
       "stats.adj_tempo.value": 63.4,
+      "stats.off._3p_pct.value": 39.6,
+      "total_poss": 2177,
       "ncaa_seed": "",
       "is_high_major": 1,
       "good_md_comp": 0
@@ -565,6 +639,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 15,
       "stats.adj_tempo.rank": 238,
       "stats.adj_tempo.value": 63.3,
+      "stats.off._3p_pct.value": 34.6,
+      "total_poss": 2012,
       "ncaa_seed": 9,
       "is_high_major": 1,
       "good_md_comp": 0
@@ -580,6 +656,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 14.699999999999989,
       "stats.adj_tempo.rank": 131,
       "stats.adj_tempo.value": 65.2,
+      "stats.off._3p_pct.value": 37.8,
+      "total_poss": 2465,
       "ncaa_seed": "",
       "is_high_major": 1,
       "good_md_comp": 1
@@ -595,11 +673,13 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 14.700000000000003,
       "stats.adj_tempo.rank": 101,
       "stats.adj_tempo.value": 65.8,
+      "stats.off._3p_pct.value": 36.8,
+      "total_poss": 2439,
       "ncaa_seed": 11,
       "is_high_major": 1,
       "good_md_comp": 0
    },
-   "Miami FL": {
+   "Miami (FL)": {
       "team_season.year": 2015,
       "conf": "Atlantic Coast Conference",
       "stats.adj_off.rank": 44,
@@ -610,6 +690,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 14.400000000000006,
       "stats.adj_tempo.rank": 272,
       "stats.adj_tempo.value": 62.5,
+      "stats.off._3p_pct.value": 35.8,
+      "total_poss": 2413,
       "ncaa_seed": "",
       "is_high_major": 1,
       "good_md_comp": 0
@@ -625,6 +707,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 14.200000000000003,
       "stats.adj_tempo.rank": 229,
       "stats.adj_tempo.value": 63.4,
+      "stats.off._3p_pct.value": 35.7,
+      "total_poss": 2318,
       "ncaa_seed": 11,
       "is_high_major": 0,
       "good_md_comp": 0
@@ -640,6 +724,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 14.200000000000003,
       "stats.adj_tempo.rank": 339,
       "stats.adj_tempo.value": 59.8,
+      "stats.off._3p_pct.value": 32.9,
+      "total_poss": 2055,
       "ncaa_seed": 8,
       "is_high_major": 0,
       "good_md_comp": 0
@@ -655,6 +741,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 13.900000000000006,
       "stats.adj_tempo.rank": 173,
       "stats.adj_tempo.value": 64.3,
+      "stats.off._3p_pct.value": 32.7,
+      "total_poss": 2233,
       "ncaa_seed": 9,
       "is_high_major": 1,
       "good_md_comp": 0
@@ -670,11 +758,13 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 13.900000000000006,
       "stats.adj_tempo.rank": 68,
       "stats.adj_tempo.value": 66.6,
+      "stats.off._3p_pct.value": 36.9,
+      "total_poss": 2401,
       "ncaa_seed": 8,
       "is_high_major": 1,
       "good_md_comp": 0
    },
-   "Mississippi": {
+   "Ole Miss": {
       "team_season.year": 2015,
       "conf": "Southeastern Conference",
       "stats.adj_off.rank": 28,
@@ -685,6 +775,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 13.900000000000006,
       "stats.adj_tempo.rank": 78,
       "stats.adj_tempo.value": 66.2,
+      "stats.off._3p_pct.value": 33.2,
+      "total_poss": 2295,
       "ncaa_seed": 11,
       "is_high_major": 1,
       "good_md_comp": 0
@@ -700,6 +792,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 13.800000000000011,
       "stats.adj_tempo.rank": 259,
       "stats.adj_tempo.value": 62.8,
+      "stats.off._3p_pct.value": 38.9,
+      "total_poss": 2029,
       "ncaa_seed": 11,
       "is_high_major": 0,
       "good_md_comp": 0
@@ -715,6 +809,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 13.799999999999997,
       "stats.adj_tempo.rank": 69,
       "stats.adj_tempo.value": 66.6,
+      "stats.off._3p_pct.value": 40.6,
+      "total_poss": 2285,
       "ncaa_seed": 10,
       "is_high_major": 1,
       "good_md_comp": 0
@@ -730,11 +826,13 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 13.800000000000011,
       "stats.adj_tempo.rank": 12,
       "stats.adj_tempo.value": 69.3,
+      "stats.off._3p_pct.value": 33.9,
+      "total_poss": 2352,
       "ncaa_seed": 9,
       "is_high_major": 1,
       "good_md_comp": 1
    },
-   "St. John's": {
+   "St. John's (NY)": {
       "team_season.year": 2015,
       "conf": "Big East Conference",
       "stats.adj_off.rank": 62,
@@ -745,11 +843,13 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 13.700000000000003,
       "stats.adj_tempo.rank": 61,
       "stats.adj_tempo.value": 66.7,
+      "stats.off._3p_pct.value": 34.5,
+      "total_poss": 2166,
       "ncaa_seed": 9,
       "is_high_major": 1,
       "good_md_comp": 0
    },
-   "Stephen F. Austin": {
+   "SFA": {
       "team_season.year": 2015,
       "conf": "Southland Conference",
       "stats.adj_off.rank": 32,
@@ -760,6 +860,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 13.600000000000009,
       "stats.adj_tempo.rank": 114,
       "stats.adj_tempo.value": 65.4,
+      "stats.off._3p_pct.value": 37.3,
+      "total_poss": 2104,
       "ncaa_seed": 12,
       "is_high_major": 0,
       "good_md_comp": 0
@@ -775,6 +877,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 13,
       "stats.adj_tempo.rank": 47,
       "stats.adj_tempo.value": 67.3,
+      "stats.off._3p_pct.value": 37.2,
+      "total_poss": 2190,
       "ncaa_seed": "",
       "is_high_major": 1,
       "good_md_comp": 0
@@ -790,6 +894,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 12.700000000000003,
       "stats.adj_tempo.rank": 100,
       "stats.adj_tempo.value": 65.8,
+      "stats.off._3p_pct.value": 30.1,
+      "total_poss": 2066,
       "ncaa_seed": "",
       "is_high_major": 1,
       "good_md_comp": 0
@@ -805,6 +911,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 12.300000000000011,
       "stats.adj_tempo.rank": 207,
       "stats.adj_tempo.value": 63.7,
+      "stats.off._3p_pct.value": 34.7,
+      "total_poss": 2136,
       "ncaa_seed": "",
       "is_high_major": 1,
       "good_md_comp": 0
@@ -820,6 +928,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 12.299999999999997,
       "stats.adj_tempo.rank": 283,
       "stats.adj_tempo.value": 62.2,
+      "stats.off._3p_pct.value": 32.2,
+      "total_poss": 2094,
       "ncaa_seed": "",
       "is_high_major": 1,
       "good_md_comp": 0
@@ -835,6 +945,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 12.200000000000003,
       "stats.adj_tempo.rank": 215,
       "stats.adj_tempo.value": 63.6,
+      "stats.off._3p_pct.value": 32.7,
+      "total_poss": 2152,
       "ncaa_seed": "",
       "is_high_major": 1,
       "good_md_comp": 0
@@ -850,6 +962,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 12,
       "stats.adj_tempo.rank": 58,
       "stats.adj_tempo.value": 66.8,
+      "stats.off._3p_pct.value": 38.3,
+      "total_poss": 2223,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 1
@@ -865,6 +979,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 11.899999999999991,
       "stats.adj_tempo.rank": 23,
       "stats.adj_tempo.value": 68.3,
+      "stats.off._3p_pct.value": 34.1,
+      "total_poss": 2268,
       "ncaa_seed": 12,
       "is_high_major": 0,
       "good_md_comp": 0
@@ -880,6 +996,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 11.799999999999997,
       "stats.adj_tempo.rank": 301,
       "stats.adj_tempo.value": 61.8,
+      "stats.off._3p_pct.value": 34,
+      "total_poss": 2214,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -895,6 +1013,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 11.700000000000003,
       "stats.adj_tempo.rank": 89,
       "stats.adj_tempo.value": 66,
+      "stats.off._3p_pct.value": 30.5,
+      "total_poss": 2127,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -910,6 +1030,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 11.599999999999994,
       "stats.adj_tempo.rank": 146,
       "stats.adj_tempo.value": 64.8,
+      "stats.off._3p_pct.value": 35.5,
+      "total_poss": 2163,
       "ncaa_seed": "",
       "is_high_major": 1,
       "good_md_comp": 0
@@ -925,6 +1047,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 11.600000000000009,
       "stats.adj_tempo.rank": 148,
       "stats.adj_tempo.value": 64.7,
+      "stats.off._3p_pct.value": 34.4,
+      "total_poss": 2196,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -940,6 +1064,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 11.299999999999997,
       "stats.adj_tempo.rank": 187,
       "stats.adj_tempo.value": 64.1,
+      "stats.off._3p_pct.value": 30.1,
+      "total_poss": 2084,
       "ncaa_seed": "",
       "is_high_major": 1,
       "good_md_comp": 1
@@ -955,6 +1081,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 11.100000000000009,
       "stats.adj_tempo.rank": 278,
       "stats.adj_tempo.value": 62.3,
+      "stats.off._3p_pct.value": 38.4,
+      "total_poss": 1964,
       "ncaa_seed": 13,
       "is_high_major": 0,
       "good_md_comp": 1
@@ -970,6 +1098,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 11.099999999999994,
       "stats.adj_tempo.rank": 98,
       "stats.adj_tempo.value": 65.8,
+      "stats.off._3p_pct.value": 35,
+      "total_poss": 2284,
       "ncaa_seed": "",
       "is_high_major": 1,
       "good_md_comp": 0
@@ -985,11 +1115,13 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 11.099999999999994,
       "stats.adj_tempo.rank": 116,
       "stats.adj_tempo.value": 65.4,
+      "stats.off._3p_pct.value": 30.4,
+      "total_poss": 2418,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Saint Mary's": {
+   "Saint Mary's (CA)": {
       "team_season.year": 2015,
       "conf": "West Coast Conference",
       "stats.adj_off.rank": 60,
@@ -1000,6 +1132,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 10.300000000000011,
       "stats.adj_tempo.rank": 271,
       "stats.adj_tempo.value": 62.6,
+      "stats.off._3p_pct.value": 37.1,
+      "total_poss": 1899,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -1015,6 +1149,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 10.299999999999997,
       "stats.adj_tempo.rank": 275,
       "stats.adj_tempo.value": 62.4,
+      "stats.off._3p_pct.value": 32.1,
+      "total_poss": 2195,
       "ncaa_seed": 14,
       "is_high_major": 0,
       "good_md_comp": 1
@@ -1030,6 +1166,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 10.200000000000003,
       "stats.adj_tempo.rank": 299,
       "stats.adj_tempo.value": 61.9,
+      "stats.off._3p_pct.value": 35.2,
+      "total_poss": 2241,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -1045,6 +1183,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 10.200000000000003,
       "stats.adj_tempo.rank": 338,
       "stats.adj_tempo.value": 59.9,
+      "stats.off._3p_pct.value": 32.5,
+      "total_poss": 2154,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 1
@@ -1060,6 +1200,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 10.100000000000009,
       "stats.adj_tempo.rank": 141,
       "stats.adj_tempo.value": 64.9,
+      "stats.off._3p_pct.value": 28.3,
+      "total_poss": 2016,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -1075,11 +1217,13 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 10,
       "stats.adj_tempo.rank": 64,
       "stats.adj_tempo.value": 66.6,
+      "stats.off._3p_pct.value": 34.8,
+      "total_poss": 2156,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Connecticut": {
+   "UConn": {
       "team_season.year": 2015,
       "conf": "American Athletic Conference",
       "stats.adj_off.rank": 102,
@@ -1090,6 +1234,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 10,
       "stats.adj_tempo.rank": 287,
       "stats.adj_tempo.value": 62.1,
+      "stats.off._3p_pct.value": 35.5,
+      "total_poss": 2173,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 1
@@ -1105,6 +1251,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 9.5,
       "stats.adj_tempo.rank": 340,
       "stats.adj_tempo.value": 59.7,
+      "stats.off._3p_pct.value": 35.3,
+      "total_poss": 1917,
       "ncaa_seed": "",
       "is_high_major": 1,
       "good_md_comp": 0
@@ -1120,6 +1268,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 9.200000000000003,
       "stats.adj_tempo.rank": 317,
       "stats.adj_tempo.value": 61.1,
+      "stats.off._3p_pct.value": 34.3,
+      "total_poss": 1740,
       "ncaa_seed": 13,
       "is_high_major": 0,
       "good_md_comp": 1
@@ -1135,6 +1285,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 9.200000000000003,
       "stats.adj_tempo.rank": 44,
       "stats.adj_tempo.value": 67.4,
+      "stats.off._3p_pct.value": 32.9,
+      "total_poss": 2392,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -1150,6 +1302,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 8.700000000000003,
       "stats.adj_tempo.rank": 298,
       "stats.adj_tempo.value": 61.9,
+      "stats.off._3p_pct.value": 36.5,
+      "total_poss": 1885,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 1
@@ -1165,6 +1319,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 8.700000000000003,
       "stats.adj_tempo.rank": 327,
       "stats.adj_tempo.value": 60.6,
+      "stats.off._3p_pct.value": 33.6,
+      "total_poss": 2038,
       "ncaa_seed": "",
       "is_high_major": 1,
       "good_md_comp": 0
@@ -1180,11 +1336,13 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 8.400000000000006,
       "stats.adj_tempo.rank": 286,
       "stats.adj_tempo.value": 62.1,
+      "stats.off._3p_pct.value": 34.5,
+      "total_poss": 2122,
       "ncaa_seed": "",
       "is_high_major": 1,
       "good_md_comp": 0
    },
-   "Central Michigan": {
+   "Central Mich.": {
       "team_season.year": 2015,
       "conf": "Mid American Conference",
       "stats.adj_off.rank": 24,
@@ -1195,6 +1353,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 8.300000000000011,
       "stats.adj_tempo.rank": 171,
       "stats.adj_tempo.value": 64.4,
+      "stats.off._3p_pct.value": 36.9,
+      "total_poss": 1894,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -1210,6 +1370,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 8.199999999999989,
       "stats.adj_tempo.rank": 285,
       "stats.adj_tempo.value": 62.1,
+      "stats.off._3p_pct.value": 33.5,
+      "total_poss": 2027,
       "ncaa_seed": "",
       "is_high_major": 1,
       "good_md_comp": 0
@@ -1225,6 +1387,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 8.099999999999994,
       "stats.adj_tempo.rank": 119,
       "stats.adj_tempo.value": 65.4,
+      "stats.off._3p_pct.value": 33.4,
+      "total_poss": 2272,
       "ncaa_seed": "",
       "is_high_major": 1,
       "good_md_comp": 0
@@ -1240,6 +1404,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 8,
       "stats.adj_tempo.rank": 105,
       "stats.adj_tempo.value": 65.7,
+      "stats.off._3p_pct.value": 35,
+      "total_poss": 2064,
       "ncaa_seed": "",
       "is_high_major": 1,
       "good_md_comp": 0
@@ -1255,6 +1421,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 7.799999999999997,
       "stats.adj_tempo.rank": 305,
       "stats.adj_tempo.value": 61.6,
+      "stats.off._3p_pct.value": 29.9,
+      "total_poss": 1961,
       "ncaa_seed": "",
       "is_high_major": 1,
       "good_md_comp": 0
@@ -1270,6 +1438,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 7.699999999999989,
       "stats.adj_tempo.rank": 197,
       "stats.adj_tempo.value": 63.9,
+      "stats.off._3p_pct.value": 32.3,
+      "total_poss": 2127,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -1285,6 +1455,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 7.700000000000003,
       "stats.adj_tempo.rank": 210,
       "stats.adj_tempo.value": 63.7,
+      "stats.off._3p_pct.value": 26.7,
+      "total_poss": 2014,
       "ncaa_seed": "",
       "is_high_major": 1,
       "good_md_comp": 0
@@ -1300,6 +1472,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 7.5,
       "stats.adj_tempo.rank": 80,
       "stats.adj_tempo.value": 66.2,
+      "stats.off._3p_pct.value": 32.8,
+      "total_poss": 2115,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -1315,6 +1489,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 7.5,
       "stats.adj_tempo.rank": 72,
       "stats.adj_tempo.value": 66.4,
+      "stats.off._3p_pct.value": 36.6,
+      "total_poss": 2235,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -1330,6 +1506,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 7.3999999999999915,
       "stats.adj_tempo.rank": 318,
       "stats.adj_tempo.value": 61.1,
+      "stats.off._3p_pct.value": 37.9,
+      "total_poss": 2012,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -1345,6 +1523,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 7.200000000000003,
       "stats.adj_tempo.rank": 332,
       "stats.adj_tempo.value": 60.4,
+      "stats.off._3p_pct.value": 33.1,
+      "total_poss": 1968,
       "ncaa_seed": "",
       "is_high_major": 1,
       "good_md_comp": 0
@@ -1360,6 +1540,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 7.099999999999994,
       "stats.adj_tempo.rank": 227,
       "stats.adj_tempo.value": 63.4,
+      "stats.off._3p_pct.value": 38.2,
+      "total_poss": 2064,
       "ncaa_seed": 13,
       "is_high_major": 0,
       "good_md_comp": 0
@@ -1375,6 +1557,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 7,
       "stats.adj_tempo.rank": 138,
       "stats.adj_tempo.value": 65,
+      "stats.off._3p_pct.value": 33.5,
+      "total_poss": 2261,
       "ncaa_seed": "",
       "is_high_major": 1,
       "good_md_comp": 0
@@ -1390,6 +1574,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 6.799999999999997,
       "stats.adj_tempo.rank": 205,
       "stats.adj_tempo.value": 63.7,
+      "stats.off._3p_pct.value": 34.4,
+      "total_poss": 2089,
       "ncaa_seed": "",
       "is_high_major": 1,
       "good_md_comp": 0
@@ -1405,6 +1591,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 6.799999999999997,
       "stats.adj_tempo.rank": 87,
       "stats.adj_tempo.value": 66.1,
+      "stats.off._3p_pct.value": 38.1,
+      "total_poss": 2207,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -1420,6 +1608,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 6.900000000000006,
       "stats.adj_tempo.rank": 142,
       "stats.adj_tempo.value": 64.9,
+      "stats.off._3p_pct.value": 32.1,
+      "total_poss": 2084,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -1435,6 +1625,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 6.700000000000003,
       "stats.adj_tempo.rank": 331,
       "stats.adj_tempo.value": 60.5,
+      "stats.off._3p_pct.value": 36.8,
+      "total_poss": 2047,
       "ncaa_seed": 12,
       "is_high_major": 0,
       "good_md_comp": 0
@@ -1450,6 +1642,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 6.6000000000000085,
       "stats.adj_tempo.rank": 150,
       "stats.adj_tempo.value": 64.7,
+      "stats.off._3p_pct.value": 36.6,
+      "total_poss": 2166,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -1465,6 +1659,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 6.6000000000000085,
       "stats.adj_tempo.rank": 254,
       "stats.adj_tempo.value": 63,
+      "stats.off._3p_pct.value": 36.3,
+      "total_poss": 2022,
       "ncaa_seed": 15,
       "is_high_major": 0,
       "good_md_comp": 0
@@ -1480,6 +1676,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 6.299999999999997,
       "stats.adj_tempo.rank": 93,
       "stats.adj_tempo.value": 65.9,
+      "stats.off._3p_pct.value": 31.3,
+      "total_poss": 2183,
       "ncaa_seed": "",
       "is_high_major": 1,
       "good_md_comp": 0
@@ -1495,6 +1693,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 6.199999999999989,
       "stats.adj_tempo.rank": 9,
       "stats.adj_tempo.value": 69.7,
+      "stats.off._3p_pct.value": 39.6,
+      "total_poss": 2481,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -1510,6 +1710,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 6.099999999999994,
       "stats.adj_tempo.rank": 258,
       "stats.adj_tempo.value": 62.9,
+      "stats.off._3p_pct.value": 44.2,
+      "total_poss": 1915,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -1525,6 +1727,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 6.200000000000003,
       "stats.adj_tempo.rank": 133,
       "stats.adj_tempo.value": 65.1,
+      "stats.off._3p_pct.value": 36.1,
+      "total_poss": 2090,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -1540,11 +1744,13 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 6,
       "stats.adj_tempo.rank": 185,
       "stats.adj_tempo.value": 64.1,
+      "stats.off._3p_pct.value": 32.1,
+      "total_poss": 2156,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "North Carolina Central": {
+   "N.C. Central": {
       "team_season.year": 2015,
       "conf": "Mid-Eastern Athletic Conference",
       "stats.adj_off.rank": 153,
@@ -1555,6 +1761,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 6,
       "stats.adj_tempo.rank": 342,
       "stats.adj_tempo.value": 59.4,
+      "stats.off._3p_pct.value": 35.6,
+      "total_poss": 1826,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -1570,6 +1778,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 6,
       "stats.adj_tempo.rank": 270,
       "stats.adj_tempo.value": 62.6,
+      "stats.off._3p_pct.value": 37,
+      "total_poss": 1981,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -1585,6 +1795,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 6,
       "stats.adj_tempo.rank": 257,
       "stats.adj_tempo.value": 62.9,
+      "stats.off._3p_pct.value": 34.4,
+      "total_poss": 1913,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -1600,6 +1812,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 5.900000000000006,
       "stats.adj_tempo.rank": 329,
       "stats.adj_tempo.value": 60.5,
+      "stats.off._3p_pct.value": 32,
+      "total_poss": 1866,
       "ncaa_seed": "",
       "is_high_major": 1,
       "good_md_comp": 0
@@ -1615,6 +1829,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 5.699999999999989,
       "stats.adj_tempo.rank": 214,
       "stats.adj_tempo.value": 63.6,
+      "stats.off._3p_pct.value": 34.9,
+      "total_poss": 2204,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -1630,6 +1846,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 5.700000000000003,
       "stats.adj_tempo.rank": 343,
       "stats.adj_tempo.value": 59.1,
+      "stats.off._3p_pct.value": 32.6,
+      "total_poss": 1971,
       "ncaa_seed": 12,
       "is_high_major": 0,
       "good_md_comp": 0
@@ -1645,6 +1863,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 5.6000000000000085,
       "stats.adj_tempo.rank": 231,
       "stats.adj_tempo.value": 63.4,
+      "stats.off._3p_pct.value": 32.4,
+      "total_poss": 2072,
       "ncaa_seed": "",
       "is_high_major": 1,
       "good_md_comp": 0
@@ -1660,6 +1880,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 5.400000000000006,
       "stats.adj_tempo.rank": 19,
       "stats.adj_tempo.value": 68.7,
+      "stats.off._3p_pct.value": 36.2,
+      "total_poss": 2367,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 1
@@ -1675,6 +1897,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 5.300000000000011,
       "stats.adj_tempo.rank": 167,
       "stats.adj_tempo.value": 64.4,
+      "stats.off._3p_pct.value": 31.4,
+      "total_poss": 2036,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -1690,6 +1914,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 5.200000000000003,
       "stats.adj_tempo.rank": 123,
       "stats.adj_tempo.value": 65.3,
+      "stats.off._3p_pct.value": 35.9,
+      "total_poss": 2203,
       "ncaa_seed": "",
       "is_high_major": 1,
       "good_md_comp": 0
@@ -1705,6 +1931,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 5.299999999999997,
       "stats.adj_tempo.rank": 83,
       "stats.adj_tempo.value": 66.2,
+      "stats.off._3p_pct.value": 35.3,
+      "total_poss": 2325,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -1720,6 +1948,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 5.200000000000003,
       "stats.adj_tempo.rank": 208,
       "stats.adj_tempo.value": 63.7,
+      "stats.off._3p_pct.value": 33.8,
+      "total_poss": 2044,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 1
@@ -1735,6 +1965,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 5.1000000000000085,
       "stats.adj_tempo.rank": 198,
       "stats.adj_tempo.value": 63.9,
+      "stats.off._3p_pct.value": 38.9,
+      "total_poss": 2008,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -1750,6 +1982,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 5.200000000000003,
       "stats.adj_tempo.rank": 237,
       "stats.adj_tempo.value": 63.3,
+      "stats.off._3p_pct.value": 38.6,
+      "total_poss": 2247,
       "ncaa_seed": 14,
       "is_high_major": 0,
       "good_md_comp": 0
@@ -1765,6 +1999,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 5.1000000000000085,
       "stats.adj_tempo.rank": 308,
       "stats.adj_tempo.value": 61.5,
+      "stats.off._3p_pct.value": 36.6,
+      "total_poss": 2138,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 1
@@ -1780,6 +2016,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 5,
       "stats.adj_tempo.rank": 127,
       "stats.adj_tempo.value": 65.2,
+      "stats.off._3p_pct.value": 33.3,
+      "total_poss": 2061,
       "ncaa_seed": "",
       "is_high_major": 1,
       "good_md_comp": 0
@@ -1795,6 +2033,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 4.799999999999997,
       "stats.adj_tempo.rank": 26,
       "stats.adj_tempo.value": 68,
+      "stats.off._3p_pct.value": 33.6,
+      "total_poss": 2220,
       "ncaa_seed": "",
       "is_high_major": 1,
       "good_md_comp": 0
@@ -1810,6 +2050,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 4.599999999999994,
       "stats.adj_tempo.rank": 235,
       "stats.adj_tempo.value": 63.3,
+      "stats.off._3p_pct.value": 28.4,
+      "total_poss": 2011,
       "ncaa_seed": "",
       "is_high_major": 1,
       "good_md_comp": 0
@@ -1825,6 +2067,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 4.599999999999994,
       "stats.adj_tempo.rank": 341,
       "stats.adj_tempo.value": 59.7,
+      "stats.off._3p_pct.value": 35.9,
+      "total_poss": 1972,
       "ncaa_seed": "",
       "is_high_major": 1,
       "good_md_comp": 0
@@ -1840,6 +2084,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 4.299999999999997,
       "stats.adj_tempo.rank": 170,
       "stats.adj_tempo.value": 64.4,
+      "stats.off._3p_pct.value": 34.9,
+      "total_poss": 2135,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -1855,6 +2101,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 4.299999999999997,
       "stats.adj_tempo.rank": 224,
       "stats.adj_tempo.value": 63.5,
+      "stats.off._3p_pct.value": 39.4,
+      "total_poss": 1909,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -1870,6 +2118,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 4.200000000000003,
       "stats.adj_tempo.rank": 53,
       "stats.adj_tempo.value": 67,
+      "stats.off._3p_pct.value": 29.5,
+      "total_poss": 2205,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -1885,6 +2135,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 4.099999999999994,
       "stats.adj_tempo.rank": 222,
       "stats.adj_tempo.value": 63.5,
+      "stats.off._3p_pct.value": 31.8,
+      "total_poss": 1976,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -1900,6 +2152,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 3.6999999999999886,
       "stats.adj_tempo.rank": 18,
       "stats.adj_tempo.value": 68.9,
+      "stats.off._3p_pct.value": 32.9,
+      "total_poss": 2297,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -1915,11 +2169,13 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 3.5999999999999943,
       "stats.adj_tempo.rank": 7,
       "stats.adj_tempo.value": 69.9,
+      "stats.off._3p_pct.value": 34.7,
+      "total_poss": 2357,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Eastern Kentucky": {
+   "Eastern Ky.": {
       "team_season.year": 2015,
       "conf": "Ohio Valley Conference",
       "stats.adj_off.rank": 130,
@@ -1930,6 +2186,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 3.5,
       "stats.adj_tempo.rank": 223,
       "stats.adj_tempo.value": 63.5,
+      "stats.off._3p_pct.value": 35.1,
+      "total_poss": 2022,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -1945,11 +2203,13 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 3.299999999999997,
       "stats.adj_tempo.rank": 186,
       "stats.adj_tempo.value": 64.1,
+      "stats.off._3p_pct.value": 32.2,
+      "total_poss": 2102,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Albany": {
+   "Albany (NY)": {
       "team_season.year": 2015,
       "conf": "America East Conference",
       "stats.adj_off.rank": 116,
@@ -1960,6 +2220,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 3.299999999999997,
       "stats.adj_tempo.rank": 323,
       "stats.adj_tempo.value": 60.8,
+      "stats.off._3p_pct.value": 35.8,
+      "total_poss": 2028,
       "ncaa_seed": 14,
       "is_high_major": 0,
       "good_md_comp": 0
@@ -1975,11 +2237,13 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 3.3000000000000114,
       "stats.adj_tempo.rank": 315,
       "stats.adj_tempo.value": 61.1,
+      "stats.off._3p_pct.value": 39.3,
+      "total_poss": 2105,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 1
    },
-   "Eastern Washington": {
+   "Eastern Wash.": {
       "team_season.year": 2015,
       "conf": "Big Sky Conference",
       "stats.adj_off.rank": 39,
@@ -1990,6 +2254,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 3.3000000000000114,
       "stats.adj_tempo.rank": 24,
       "stats.adj_tempo.value": 68.2,
+      "stats.off._3p_pct.value": 39.4,
+      "total_poss": 2205,
       "ncaa_seed": 13,
       "is_high_major": 0,
       "good_md_comp": 0
@@ -2005,6 +2271,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 3.200000000000003,
       "stats.adj_tempo.rank": 180,
       "stats.adj_tempo.value": 64.2,
+      "stats.off._3p_pct.value": 37.8,
+      "total_poss": 2018,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -2020,6 +2288,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 3,
       "stats.adj_tempo.rank": 151,
       "stats.adj_tempo.value": 64.7,
+      "stats.off._3p_pct.value": 33.2,
+      "total_poss": 2361,
       "ncaa_seed": 14,
       "is_high_major": 0,
       "good_md_comp": 1
@@ -2035,6 +2305,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 3.0999999999999943,
       "stats.adj_tempo.rank": 128,
       "stats.adj_tempo.value": 65.2,
+      "stats.off._3p_pct.value": 33.2,
+      "total_poss": 2062,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 1
@@ -2050,11 +2322,13 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 2.8999999999999915,
       "stats.adj_tempo.rank": 289,
       "stats.adj_tempo.value": 62,
+      "stats.off._3p_pct.value": 30.8,
+      "total_poss": 1941,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 1
    },
-   "Eastern Michigan": {
+   "Eastern Mich.": {
       "team_season.year": 2015,
       "conf": "Mid American Conference",
       "stats.adj_off.rank": 225,
@@ -2065,6 +2339,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 2.5999999999999943,
       "stats.adj_tempo.rank": 91,
       "stats.adj_tempo.value": 66,
+      "stats.off._3p_pct.value": 31.4,
+      "total_poss": 2087,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -2080,6 +2356,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 2.5,
       "stats.adj_tempo.rank": 48,
       "stats.adj_tempo.value": 67.2,
+      "stats.off._3p_pct.value": 35,
+      "total_poss": 2326,
       "ncaa_seed": "",
       "is_high_major": 1,
       "good_md_comp": 0
@@ -2095,11 +2373,13 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 2.4000000000000057,
       "stats.adj_tempo.rank": 190,
       "stats.adj_tempo.value": 64.1,
+      "stats.off._3p_pct.value": 35.9,
+      "total_poss": 1944,
       "ncaa_seed": 16,
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Western Kentucky": {
+   "Western Ky.": {
       "team_season.year": 2015,
       "conf": "Conference USA",
       "stats.adj_off.rank": 161,
@@ -2110,6 +2390,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 2.299999999999997,
       "stats.adj_tempo.rank": 75,
       "stats.adj_tempo.value": 66.3,
+      "stats.off._3p_pct.value": 35.6,
+      "total_poss": 2050,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -2125,6 +2407,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 2.299999999999997,
       "stats.adj_tempo.rank": 57,
       "stats.adj_tempo.value": 66.9,
+      "stats.off._3p_pct.value": 37.7,
+      "total_poss": 2151,
       "ncaa_seed": 15,
       "is_high_major": 0,
       "good_md_comp": 1
@@ -2140,6 +2424,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 2.200000000000003,
       "stats.adj_tempo.rank": 51,
       "stats.adj_tempo.value": 67.1,
+      "stats.off._3p_pct.value": 38.1,
+      "total_poss": 2166,
       "ncaa_seed": 16,
       "is_high_major": 0,
       "good_md_comp": 0
@@ -2155,6 +2441,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 2.200000000000003,
       "stats.adj_tempo.rank": 111,
       "stats.adj_tempo.value": 65.5,
+      "stats.off._3p_pct.value": 33.7,
+      "total_poss": 2048,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -2170,6 +2458,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 2,
       "stats.adj_tempo.rank": 284,
       "stats.adj_tempo.value": 62.2,
+      "stats.off._3p_pct.value": 38.6,
+      "total_poss": 1971,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -2185,11 +2475,13 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 1.9000000000000057,
       "stats.adj_tempo.rank": 59,
       "stats.adj_tempo.value": 66.8,
+      "stats.off._3p_pct.value": 37.7,
+      "total_poss": 2220,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Georgia Southern": {
+   "Ga. Southern": {
       "team_season.year": 2015,
       "conf": "Sun Belt Conference",
       "stats.adj_off.rank": 248,
@@ -2200,11 +2492,13 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 1.9000000000000057,
       "stats.adj_tempo.rank": 228,
       "stats.adj_tempo.value": 63.4,
+      "stats.off._3p_pct.value": 31.4,
+      "total_poss": 1816,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Tennessee Martin": {
+   "UT Martin": {
       "team_season.year": 2015,
       "conf": "Ohio Valley Conference",
       "stats.adj_off.rank": 76,
@@ -2215,6 +2509,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 1.9000000000000057,
       "stats.adj_tempo.rank": 292,
       "stats.adj_tempo.value": 62,
+      "stats.off._3p_pct.value": 39.4,
+      "total_poss": 2028,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -2230,11 +2526,13 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 1.7999999999999972,
       "stats.adj_tempo.rank": 230,
       "stats.adj_tempo.value": 63.4,
+      "stats.off._3p_pct.value": 31.8,
+      "total_poss": 2132,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "DePaul": {
+   "Denver": {
       "team_season.year": 2015,
       "conf": "Big East Conference",
       "stats.adj_off.rank": 86,
@@ -2245,11 +2543,13 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 1.7999999999999972,
       "stats.adj_tempo.rank": 54,
       "stats.adj_tempo.value": 67,
+      "stats.off._3p_pct.value": 35.2,
+      "total_poss": 2163,
       "ncaa_seed": "",
       "is_high_major": 1,
       "good_md_comp": 0
    },
-   "USC": {
+   "Southern California": {
       "team_season.year": 2015,
       "conf": "Pac 12 Conference",
       "stats.adj_off.rank": 229,
@@ -2260,6 +2560,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 1.5,
       "stats.adj_tempo.rank": 25,
       "stats.adj_tempo.value": 68,
+      "stats.off._3p_pct.value": 32.9,
+      "total_poss": 2234,
       "ncaa_seed": "",
       "is_high_major": 1,
       "good_md_comp": 0
@@ -2275,6 +2577,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 1.3999999999999915,
       "stats.adj_tempo.rank": 324,
       "stats.adj_tempo.value": 60.8,
+      "stats.off._3p_pct.value": 38.2,
+      "total_poss": 1931,
       "ncaa_seed": 15,
       "is_high_major": 0,
       "good_md_comp": 0
@@ -2290,6 +2594,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 1.2000000000000028,
       "stats.adj_tempo.rank": 346,
       "stats.adj_tempo.value": 58.6,
+      "stats.off._3p_pct.value": 31.5,
+      "total_poss": 1616,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -2305,6 +2611,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 1,
       "stats.adj_tempo.rank": 140,
       "stats.adj_tempo.value": 64.9,
+      "stats.off._3p_pct.value": 34,
+      "total_poss": 2132,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 1
@@ -2320,11 +2628,13 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 1,
       "stats.adj_tempo.rank": 306,
       "stats.adj_tempo.value": 61.6,
+      "stats.off._3p_pct.value": 32.3,
+      "total_poss": 2034,
       "ncaa_seed": "",
       "is_high_major": 1,
       "good_md_comp": 1
    },
-   "Western Michigan": {
+   "Western Mich.": {
       "team_season.year": 2015,
       "conf": "Mid American Conference",
       "stats.adj_off.rank": 96,
@@ -2335,11 +2645,13 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 0.9000000000000057,
       "stats.adj_tempo.rank": 136,
       "stats.adj_tempo.value": 65,
+      "stats.off._3p_pct.value": 35.9,
+      "total_poss": 2105,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "St. Francis NY": {
+   "St. Francis Brooklyn": {
       "team_season.year": 2015,
       "conf": "Northeast Conference",
       "stats.adj_off.rank": 185,
@@ -2350,11 +2662,13 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 0.5999999999999943,
       "stats.adj_tempo.rank": 165,
       "stats.adj_tempo.value": 64.5,
+      "stats.off._3p_pct.value": 29.1,
+      "total_poss": 2252,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Middle Tennessee": {
+   "Middle Tenn.": {
       "team_season.year": 2015,
       "conf": "Conference USA",
       "stats.adj_off.rank": 216,
@@ -2365,6 +2679,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 0.5999999999999943,
       "stats.adj_tempo.rank": 320,
       "stats.adj_tempo.value": 61,
+      "stats.off._3p_pct.value": 36.3,
+      "total_poss": 2209,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 1
@@ -2380,6 +2696,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 0.6000000000000085,
       "stats.adj_tempo.rank": 203,
       "stats.adj_tempo.value": 63.8,
+      "stats.off._3p_pct.value": 31.1,
+      "total_poss": 1992,
       "ncaa_seed": "",
       "is_high_major": 1,
       "good_md_comp": 1
@@ -2395,6 +2713,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 0.5,
       "stats.adj_tempo.rank": 158,
       "stats.adj_tempo.value": 64.6,
+      "stats.off._3p_pct.value": 37.3,
+      "total_poss": 1880,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -2410,6 +2730,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 0.29999999999999716,
       "stats.adj_tempo.rank": 239,
       "stats.adj_tempo.value": 63.3,
+      "stats.off._3p_pct.value": 29.9,
+      "total_poss": 2018,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -2425,6 +2747,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 0.30000000000001137,
       "stats.adj_tempo.rank": 30,
       "stats.adj_tempo.value": 67.7,
+      "stats.off._3p_pct.value": 33.6,
+      "total_poss": 2284,
       "ncaa_seed": 16,
       "is_high_major": 0,
       "good_md_comp": 0
@@ -2440,6 +2764,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 0.20000000000000284,
       "stats.adj_tempo.rank": 179,
       "stats.adj_tempo.value": 64.2,
+      "stats.off._3p_pct.value": 33.4,
+      "total_poss": 2157,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -2455,6 +2781,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 0.20000000000000284,
       "stats.adj_tempo.rank": 294,
       "stats.adj_tempo.value": 62,
+      "stats.off._3p_pct.value": 36.6,
+      "total_poss": 2028,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -2470,6 +2798,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 0.09999999999999432,
       "stats.adj_tempo.rank": 336,
       "stats.adj_tempo.value": 60.2,
+      "stats.off._3p_pct.value": 35.9,
+      "total_poss": 1618,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -2485,6 +2815,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 0.09999999999999432,
       "stats.adj_tempo.rank": 162,
       "stats.adj_tempo.value": 64.5,
+      "stats.off._3p_pct.value": 34.4,
+      "total_poss": 1999,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -2500,6 +2832,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": 0.10000000000000853,
       "stats.adj_tempo.rank": 71,
       "stats.adj_tempo.value": 66.5,
+      "stats.off._3p_pct.value": 35.5,
+      "total_poss": 2126,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -2515,6 +2849,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -0.7000000000000028,
       "stats.adj_tempo.rank": 234,
       "stats.adj_tempo.value": 63.4,
+      "stats.off._3p_pct.value": 34.6,
+      "total_poss": 1839,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -2530,11 +2866,13 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -0.7000000000000028,
       "stats.adj_tempo.rank": 65,
       "stats.adj_tempo.value": 66.6,
+      "stats.off._3p_pct.value": 35.7,
+      "total_poss": 2013,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Louisiana Monroe": {
+   "La.-Monroe": {
       "team_season.year": 2015,
       "conf": "Sun Belt Conference",
       "stats.adj_off.rank": 270,
@@ -2545,6 +2883,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -0.7000000000000028,
       "stats.adj_tempo.rank": 302,
       "stats.adj_tempo.value": 61.8,
+      "stats.off._3p_pct.value": 30.1,
+      "total_poss": 2155,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -2560,11 +2900,13 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -0.7000000000000028,
       "stats.adj_tempo.rank": 139,
       "stats.adj_tempo.value": 65,
+      "stats.off._3p_pct.value": 32.6,
+      "total_poss": 2061,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "IPFW": {
+   "Purdue Fort Wayne": {
       "team_season.year": 2015,
       "conf": "Summit League",
       "stats.adj_off.rank": 103,
@@ -2575,6 +2917,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -0.7999999999999972,
       "stats.adj_tempo.rank": 161,
       "stats.adj_tempo.value": 64.5,
+      "stats.off._3p_pct.value": 36.3,
+      "total_poss": 1827,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -2590,11 +2934,13 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -0.9000000000000057,
       "stats.adj_tempo.rank": 81,
       "stats.adj_tempo.value": 66.2,
+      "stats.off._3p_pct.value": 37.2,
+      "total_poss": 1942,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "UNC Wilmington": {
+   "UNCW": {
       "team_season.year": 2015,
       "conf": "Colonial Athletic Association",
       "stats.adj_off.rank": 230,
@@ -2605,6 +2951,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -0.9000000000000057,
       "stats.adj_tempo.rank": 37,
       "stats.adj_tempo.value": 67.5,
+      "stats.off._3p_pct.value": 34,
+      "total_poss": 2131,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -2620,6 +2968,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -0.9000000000000057,
       "stats.adj_tempo.rank": 216,
       "stats.adj_tempo.value": 63.6,
+      "stats.off._3p_pct.value": 38.9,
+      "total_poss": 2130,
       "ncaa_seed": "",
       "is_high_major": 1,
       "good_md_comp": 1
@@ -2635,6 +2985,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -0.9000000000000057,
       "stats.adj_tempo.rank": 103,
       "stats.adj_tempo.value": 65.8,
+      "stats.off._3p_pct.value": 35.5,
+      "total_poss": 1963,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -2650,11 +3002,13 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -1.0999999999999943,
       "stats.adj_tempo.rank": 76,
       "stats.adj_tempo.value": 66.3,
+      "stats.off._3p_pct.value": 30.7,
+      "total_poss": 2043,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Northern Arizona": {
+   "Northern Ariz.": {
       "team_season.year": 2015,
       "conf": "Big Sky Conference",
       "stats.adj_off.rank": 217,
@@ -2665,11 +3019,13 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -1.1000000000000085,
       "stats.adj_tempo.rank": 147,
       "stats.adj_tempo.value": 64.8,
+      "stats.off._3p_pct.value": 34.8,
+      "total_poss": 2439,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Northern Illinois": {
+   "Northern Ill.": {
       "team_season.year": 2015,
       "conf": "Mid American Conference",
       "stats.adj_off.rank": 207,
@@ -2680,6 +3036,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -1.2000000000000028,
       "stats.adj_tempo.rank": 273,
       "stats.adj_tempo.value": 62.5,
+      "stats.off._3p_pct.value": 32.2,
+      "total_poss": 1864,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -2695,6 +3053,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -1.2000000000000028,
       "stats.adj_tempo.rank": 325,
       "stats.adj_tempo.value": 60.7,
+      "stats.off._3p_pct.value": 39.5,
+      "total_poss": 1966,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -2710,11 +3070,13 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -1.2000000000000028,
       "stats.adj_tempo.rank": 236,
       "stats.adj_tempo.value": 63.3,
+      "stats.off._3p_pct.value": 33.2,
+      "total_poss": 2054,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Detroit": {
+   "Detroit Mercy": {
       "team_season.year": 2015,
       "conf": "Horizon League",
       "stats.adj_off.rank": 192,
@@ -2725,6 +3087,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -1.2999999999999972,
       "stats.adj_tempo.rank": 45,
       "stats.adj_tempo.value": 67.3,
+      "stats.off._3p_pct.value": 37.8,
+      "total_poss": 2131,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -2740,6 +3104,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -1.2999999999999972,
       "stats.adj_tempo.rank": 218,
       "stats.adj_tempo.value": 63.6,
+      "stats.off._3p_pct.value": 33.8,
+      "total_poss": 2140,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -2755,6 +3121,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -1.4000000000000057,
       "stats.adj_tempo.rank": 118,
       "stats.adj_tempo.value": 65.4,
+      "stats.off._3p_pct.value": 37.5,
+      "total_poss": 2353,
       "ncaa_seed": 16,
       "is_high_major": 0,
       "good_md_comp": 0
@@ -2770,6 +3138,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -1.5,
       "stats.adj_tempo.rank": 321,
       "stats.adj_tempo.value": 60.9,
+      "stats.off._3p_pct.value": 34.2,
+      "total_poss": 2073,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -2785,6 +3155,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -1.7000000000000028,
       "stats.adj_tempo.rank": 49,
       "stats.adj_tempo.value": 67.2,
+      "stats.off._3p_pct.value": 34.2,
+      "total_poss": 2124,
       "ncaa_seed": "",
       "is_high_major": 1,
       "good_md_comp": 1
@@ -2800,6 +3172,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -1.7000000000000028,
       "stats.adj_tempo.rank": 337,
       "stats.adj_tempo.value": 60.2,
+      "stats.off._3p_pct.value": 34.3,
+      "total_poss": 2119,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -2815,6 +3189,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -1.7000000000000028,
       "stats.adj_tempo.rank": 351,
       "stats.adj_tempo.value": 56.8,
+      "stats.off._3p_pct.value": 37.3,
+      "total_poss": 1912,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 1
@@ -2830,11 +3206,13 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -1.8999999999999915,
       "stats.adj_tempo.rank": 194,
       "stats.adj_tempo.value": 63.9,
+      "stats.off._3p_pct.value": 37.5,
+      "total_poss": 1961,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Florida Gulf Coast": {
+   "FGCU": {
       "team_season.year": 2015,
       "conf": "Atlantic Sun Conference",
       "stats.adj_off.rank": 227,
@@ -2845,6 +3223,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -2,
       "stats.adj_tempo.rank": 176,
       "stats.adj_tempo.value": 64.2,
+      "stats.off._3p_pct.value": 33.9,
+      "total_poss": 1965,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -2860,6 +3240,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -2,
       "stats.adj_tempo.rank": 157,
       "stats.adj_tempo.value": 64.6,
+      "stats.off._3p_pct.value": 34.5,
+      "total_poss": 2123,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -2875,6 +3257,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -2.0999999999999943,
       "stats.adj_tempo.rank": 291,
       "stats.adj_tempo.value": 62,
+      "stats.off._3p_pct.value": 32.5,
+      "total_poss": 1975,
       "ncaa_seed": "",
       "is_high_major": 1,
       "good_md_comp": 1
@@ -2890,6 +3274,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -2.1999999999999886,
       "stats.adj_tempo.rank": 160,
       "stats.adj_tempo.value": 64.6,
+      "stats.off._3p_pct.value": 40.8,
+      "total_poss": 2071,
       "ncaa_seed": 16,
       "is_high_major": 0,
       "good_md_comp": 0
@@ -2905,11 +3291,13 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -2.0999999999999943,
       "stats.adj_tempo.rank": 316,
       "stats.adj_tempo.value": 61.1,
+      "stats.off._3p_pct.value": 34.6,
+      "total_poss": 1850,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 1
    },
-   "Charleston Southern": {
+   "Charleston So.": {
       "team_season.year": 2015,
       "conf": "Big South Conference",
       "stats.adj_off.rank": 118,
@@ -2920,6 +3308,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -2.200000000000003,
       "stats.adj_tempo.rank": 126,
       "stats.adj_tempo.value": 65.2,
+      "stats.off._3p_pct.value": 33.7,
+      "total_poss": 1874,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 1
@@ -2935,6 +3325,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -2.299999999999997,
       "stats.adj_tempo.rank": 297,
       "stats.adj_tempo.value": 61.9,
+      "stats.off._3p_pct.value": 40.8,
+      "total_poss": 1964,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -2950,6 +3342,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -2.5,
       "stats.adj_tempo.rank": 11,
       "stats.adj_tempo.value": 69.6,
+      "stats.off._3p_pct.value": 31.3,
+      "total_poss": 2111,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 1
@@ -2965,6 +3359,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -2.3999999999999915,
       "stats.adj_tempo.rank": 143,
       "stats.adj_tempo.value": 64.9,
+      "stats.off._3p_pct.value": 29.5,
+      "total_poss": 2078,
       "ncaa_seed": "",
       "is_high_major": 1,
       "good_md_comp": 1
@@ -2980,6 +3376,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -2.700000000000003,
       "stats.adj_tempo.rank": 195,
       "stats.adj_tempo.value": 63.9,
+      "stats.off._3p_pct.value": 37.2,
+      "total_poss": 2128,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 1
@@ -2995,6 +3393,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -2.799999999999997,
       "stats.adj_tempo.rank": 175,
       "stats.adj_tempo.value": 64.2,
+      "stats.off._3p_pct.value": 38.1,
+      "total_poss": 2141,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -3010,6 +3410,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -2.799999999999997,
       "stats.adj_tempo.rank": 79,
       "stats.adj_tempo.value": 66.2,
+      "stats.off._3p_pct.value": 34.8,
+      "total_poss": 1935,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -3025,6 +3427,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -2.799999999999997,
       "stats.adj_tempo.rank": 177,
       "stats.adj_tempo.value": 64.2,
+      "stats.off._3p_pct.value": 30.3,
+      "total_poss": 1874,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -3040,6 +3444,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -2.9000000000000057,
       "stats.adj_tempo.rank": 144,
       "stats.adj_tempo.value": 64.9,
+      "stats.off._3p_pct.value": 31.3,
+      "total_poss": 1937,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -3055,6 +3461,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -3.1000000000000085,
       "stats.adj_tempo.rank": 303,
       "stats.adj_tempo.value": 61.7,
+      "stats.off._3p_pct.value": 35.4,
+      "total_poss": 1778,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -3070,6 +3478,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -3.0999999999999943,
       "stats.adj_tempo.rank": 191,
       "stats.adj_tempo.value": 64,
+      "stats.off._3p_pct.value": 31.6,
+      "total_poss": 1967,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 1
@@ -3085,11 +3495,13 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -3.200000000000003,
       "stats.adj_tempo.rank": 112,
       "stats.adj_tempo.value": 65.5,
+      "stats.off._3p_pct.value": 35.8,
+      "total_poss": 2117,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Maryland Eastern Shore": {
+   "UMES": {
       "team_season.year": 2015,
       "conf": "Mid-Eastern Athletic Conference",
       "stats.adj_off.rank": 170,
@@ -3100,6 +3512,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -3.299999999999997,
       "stats.adj_tempo.rank": 166,
       "stats.adj_tempo.value": 64.4,
+      "stats.off._3p_pct.value": 38.2,
+      "total_poss": 2160,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -3115,6 +3529,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -3.5,
       "stats.adj_tempo.rank": 115,
       "stats.adj_tempo.value": 65.4,
+      "stats.off._3p_pct.value": 29.8,
+      "total_poss": 1993,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 1
@@ -3130,6 +3546,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -3.5999999999999943,
       "stats.adj_tempo.rank": 94,
       "stats.adj_tempo.value": 65.9,
+      "stats.off._3p_pct.value": 32.6,
+      "total_poss": 1863,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -3145,6 +3563,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -3.5999999999999943,
       "stats.adj_tempo.rank": 296,
       "stats.adj_tempo.value": 62,
+      "stats.off._3p_pct.value": 37.3,
+      "total_poss": 1868,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -3160,11 +3580,13 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -3.8000000000000114,
       "stats.adj_tempo.rank": 172,
       "stats.adj_tempo.value": 64.4,
+      "stats.off._3p_pct.value": 33.2,
+      "total_poss": 1834,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Gardner Webb": {
+   "Gardner-Webb": {
       "team_season.year": 2015,
       "conf": "Big South Conference",
       "stats.adj_off.rank": 105,
@@ -3175,6 +3597,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -3.8000000000000114,
       "stats.adj_tempo.rank": 41,
       "stats.adj_tempo.value": 67.4,
+      "stats.off._3p_pct.value": 34.5,
+      "total_poss": 2132,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -3190,6 +3614,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -3.8000000000000114,
       "stats.adj_tempo.rank": 240,
       "stats.adj_tempo.value": 63.3,
+      "stats.off._3p_pct.value": 32.2,
+      "total_poss": 2309,
       "ncaa_seed": 15,
       "is_high_major": 0,
       "good_md_comp": 0
@@ -3205,11 +3631,13 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -3.799999999999997,
       "stats.adj_tempo.rank": 182,
       "stats.adj_tempo.value": 64.2,
+      "stats.off._3p_pct.value": 32,
+      "total_poss": 2076,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Miami OH": {
+   "Miami (OH)": {
       "team_season.year": 2015,
       "conf": "Mid American Conference",
       "stats.adj_off.rank": 212,
@@ -3220,6 +3648,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -4.099999999999994,
       "stats.adj_tempo.rank": 156,
       "stats.adj_tempo.value": 64.6,
+      "stats.off._3p_pct.value": 34.4,
+      "total_poss": 2067,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 1
@@ -3235,6 +3665,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -4.299999999999997,
       "stats.adj_tempo.rank": 121,
       "stats.adj_tempo.value": 65.3,
+      "stats.off._3p_pct.value": 33,
+      "total_poss": 1912,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -3250,11 +3682,13 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -4.300000000000011,
       "stats.adj_tempo.rank": 46,
       "stats.adj_tempo.value": 67.3,
+      "stats.off._3p_pct.value": 36.2,
+      "total_poss": 2024,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "East Tennessee St.": {
+   "ETSU": {
       "team_season.year": 2015,
       "conf": "Southern Conference",
       "stats.adj_off.rank": 194,
@@ -3265,6 +3699,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -4.299999999999997,
       "stats.adj_tempo.rank": 32,
       "stats.adj_tempo.value": 67.7,
+      "stats.off._3p_pct.value": 36.7,
+      "total_poss": 1922,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -3280,6 +3716,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -4.3999999999999915,
       "stats.adj_tempo.rank": 130,
       "stats.adj_tempo.value": 65.2,
+      "stats.off._3p_pct.value": 35.8,
+      "total_poss": 2086,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -3295,11 +3733,13 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -4.400000000000006,
       "stats.adj_tempo.rank": 255,
       "stats.adj_tempo.value": 63,
+      "stats.off._3p_pct.value": 32,
+      "total_poss": 1947,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "St. Francis PA": {
+   "Saint Francis (PA)": {
       "team_season.year": 2015,
       "conf": "Northeast Conference",
       "stats.adj_off.rank": 261,
@@ -3310,11 +3750,13 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -4.6000000000000085,
       "stats.adj_tempo.rank": 268,
       "stats.adj_tempo.value": 62.7,
+      "stats.off._3p_pct.value": 33.1,
+      "total_poss": 1974,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Denver": {
+   "DePaul": {
       "team_season.year": 2015,
       "conf": "Summit League",
       "stats.adj_off.rank": 134,
@@ -3325,11 +3767,13 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -4.599999999999994,
       "stats.adj_tempo.rank": 350,
       "stats.adj_tempo.value": 57.1,
+      "stats.off._3p_pct.value": 38,
+      "total_poss": 1768,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Southern Illinois": {
+   "Southern Ill.": {
       "team_season.year": 2015,
       "conf": "Missouri Valley Conference",
       "stats.adj_off.rank": 275,
@@ -3340,6 +3784,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -4.799999999999997,
       "stats.adj_tempo.rank": 282,
       "stats.adj_tempo.value": 62.2,
+      "stats.off._3p_pct.value": 33.3,
+      "total_poss": 1968,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -3355,11 +3801,13 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -4.8999999999999915,
       "stats.adj_tempo.rank": 314,
       "stats.adj_tempo.value": 61.2,
+      "stats.off._3p_pct.value": 35.6,
+      "total_poss": 1933,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Eastern Illinois": {
+   "Eastern Ill.": {
       "team_season.year": 2015,
       "conf": "Ohio Valley Conference",
       "stats.adj_off.rank": 251,
@@ -3370,6 +3818,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -4.900000000000006,
       "stats.adj_tempo.rank": 246,
       "stats.adj_tempo.value": 63.2,
+      "stats.off._3p_pct.value": 37.4,
+      "total_poss": 1979,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -3385,11 +3835,13 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -4.900000000000006,
       "stats.adj_tempo.rank": 276,
       "stats.adj_tempo.value": 62.4,
+      "stats.off._3p_pct.value": 33,
+      "total_poss": 1935,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Texas A&M Corpus Chris": {
+   "A&M-Corpus Christi": {
       "team_season.year": 2015,
       "conf": "Southland Conference",
       "stats.adj_off.rank": 241,
@@ -3400,11 +3852,13 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -5.1000000000000085,
       "stats.adj_tempo.rank": 267,
       "stats.adj_tempo.value": 62.7,
+      "stats.off._3p_pct.value": 33.5,
+      "total_poss": 2050,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Incarnate Word": {
+   "UIW": {
       "team_season.year": 2015,
       "conf": "Southland Conference",
       "stats.adj_off.rank": 108,
@@ -3415,6 +3869,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -5.099999999999994,
       "stats.adj_tempo.rank": 39,
       "stats.adj_tempo.value": 67.4,
+      "stats.off._3p_pct.value": 35,
+      "total_poss": 1773,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -3430,6 +3886,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -5.099999999999994,
       "stats.adj_tempo.rank": 4,
       "stats.adj_tempo.value": 73.2,
+      "stats.off._3p_pct.value": 36.8,
+      "total_poss": 2083,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -3445,6 +3903,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -5.200000000000003,
       "stats.adj_tempo.rank": 312,
       "stats.adj_tempo.value": 61.2,
+      "stats.off._3p_pct.value": 31.1,
+      "total_poss": 1802,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -3460,6 +3920,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -5.200000000000003,
       "stats.adj_tempo.rank": 35,
       "stats.adj_tempo.value": 67.5,
+      "stats.off._3p_pct.value": 41,
+      "total_poss": 1943,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -3475,11 +3937,13 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -5.5,
       "stats.adj_tempo.rank": 73,
       "stats.adj_tempo.value": 66.4,
+      "stats.off._3p_pct.value": 34.1,
+      "total_poss": 2022,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Southeast Missouri St.": {
+   "Southeast Mo. St.": {
       "team_season.year": 2015,
       "conf": "Ohio Valley Conference",
       "stats.adj_off.rank": 205,
@@ -3490,11 +3954,13 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -5.6000000000000085,
       "stats.adj_tempo.rank": 110,
       "stats.adj_tempo.value": 65.6,
+      "stats.off._3p_pct.value": 33.7,
+      "total_poss": 1873,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Western Carolina": {
+   "Western Caro.": {
       "team_season.year": 2015,
       "conf": "Southern Conference",
       "stats.adj_off.rank": 223,
@@ -3505,6 +3971,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -5.599999999999994,
       "stats.adj_tempo.rank": 106,
       "stats.adj_tempo.value": 65.7,
+      "stats.off._3p_pct.value": 34.8,
+      "total_poss": 2038,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -3520,6 +3988,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -5.6000000000000085,
       "stats.adj_tempo.rank": 174,
       "stats.adj_tempo.value": 64.3,
+      "stats.off._3p_pct.value": 34,
+      "total_poss": 2017,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -3535,6 +4005,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -5.800000000000011,
       "stats.adj_tempo.rank": 249,
       "stats.adj_tempo.value": 63.1,
+      "stats.off._3p_pct.value": 34.6,
+      "total_poss": 2001,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -3550,6 +4022,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -6.199999999999989,
       "stats.adj_tempo.rank": 29,
       "stats.adj_tempo.value": 67.8,
+      "stats.off._3p_pct.value": 35.2,
+      "total_poss": 1932,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -3565,11 +4039,13 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -6.199999999999989,
       "stats.adj_tempo.rank": 22,
       "stats.adj_tempo.value": 68.5,
+      "stats.off._3p_pct.value": 32,
+      "total_poss": 2194,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Boston University": {
+   "Boston U.": {
       "team_season.year": 2015,
       "conf": "Patriot League",
       "stats.adj_off.rank": 127,
@@ -3580,6 +4056,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -6.299999999999997,
       "stats.adj_tempo.rank": 181,
       "stats.adj_tempo.value": 64.2,
+      "stats.off._3p_pct.value": 36.9,
+      "total_poss": 1859,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -3595,11 +4073,13 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -6.400000000000006,
       "stats.adj_tempo.rank": 309,
       "stats.adj_tempo.value": 61.4,
+      "stats.off._3p_pct.value": 34.2,
+      "total_poss": 1754,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Cal St. Bakersfield": {
+   "CSU Bakersfield": {
       "team_season.year": 2015,
       "conf": "Western Athletic Conference",
       "stats.adj_off.rank": 263,
@@ -3610,6 +4090,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -6.5,
       "stats.adj_tempo.rank": 330,
       "stats.adj_tempo.value": 60.5,
+      "stats.off._3p_pct.value": 30.6,
+      "total_poss": 1857,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 1
@@ -3625,6 +4107,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -6.5,
       "stats.adj_tempo.rank": 213,
       "stats.adj_tempo.value": 63.6,
+      "stats.off._3p_pct.value": 33.7,
+      "total_poss": 1861,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 1
@@ -3640,11 +4124,13 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -6.5,
       "stats.adj_tempo.rank": 252,
       "stats.adj_tempo.value": 63,
+      "stats.off._3p_pct.value": 34.1,
+      "total_poss": 1884,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Seattle": {
+   "Seattle U": {
       "team_season.year": 2015,
       "conf": "Western Athletic Conference",
       "stats.adj_off.rank": 285,
@@ -3655,6 +4141,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -6.6000000000000085,
       "stats.adj_tempo.rank": 281,
       "stats.adj_tempo.value": 62.3,
+      "stats.off._3p_pct.value": 37.8,
+      "total_poss": 1989,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 1
@@ -3670,11 +4158,13 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -6.6000000000000085,
       "stats.adj_tempo.rank": 113,
       "stats.adj_tempo.value": 65.5,
+      "stats.off._3p_pct.value": 29.9,
+      "total_poss": 1935,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Northern Kentucky": {
+   "Northern Ky.": {
       "team_season.year": 2015,
       "conf": "Atlantic Sun Conference",
       "stats.adj_off.rank": 174,
@@ -3685,6 +4175,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -6.700000000000003,
       "stats.adj_tempo.rank": 217,
       "stats.adj_tempo.value": 63.6,
+      "stats.off._3p_pct.value": 33.4,
+      "total_poss": 1831,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -3700,11 +4192,13 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -6.8999999999999915,
       "stats.adj_tempo.rank": 84,
       "stats.adj_tempo.value": 66.2,
+      "stats.off._3p_pct.value": 32.3,
+      "total_poss": 1888,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "SIU Edwardsville": {
+   "SIUE": {
       "team_season.year": 2015,
       "conf": "Ohio Valley Conference",
       "stats.adj_off.rank": 288,
@@ -3715,6 +4209,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -6.8999999999999915,
       "stats.adj_tempo.rank": 77,
       "stats.adj_tempo.value": 66.3,
+      "stats.off._3p_pct.value": 36.9,
+      "total_poss": 1735,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -3730,6 +4226,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -7.200000000000003,
       "stats.adj_tempo.rank": 27,
       "stats.adj_tempo.value": 68,
+      "stats.off._3p_pct.value": 34.5,
+      "total_poss": 2140,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -3745,6 +4243,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -7.200000000000003,
       "stats.adj_tempo.rank": 326,
       "stats.adj_tempo.value": 60.7,
+      "stats.off._3p_pct.value": 33,
+      "total_poss": 1796,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -3760,11 +4260,13 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -7.400000000000006,
       "stats.adj_tempo.rank": 15,
       "stats.adj_tempo.value": 69.2,
+      "stats.off._3p_pct.value": 30.4,
+      "total_poss": 2441,
       "ncaa_seed": 16,
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Northern Colorado": {
+   "Northern Colo.": {
       "team_season.year": 2015,
       "conf": "Big Sky Conference",
       "stats.adj_off.rank": 63,
@@ -3775,11 +4277,13 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -7.5,
       "stats.adj_tempo.rank": 247,
       "stats.adj_tempo.value": 63.2,
+      "stats.off._3p_pct.value": 37.5,
+      "total_poss": 1822,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 1
    },
-   "Army": {
+   "Army West Point": {
       "team_season.year": 2015,
       "conf": "Patriot League",
       "stats.adj_off.rank": 252,
@@ -3790,6 +4294,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -7.599999999999994,
       "stats.adj_tempo.rank": 14,
       "stats.adj_tempo.value": 69.2,
+      "stats.off._3p_pct.value": 32.2,
+      "total_poss": 2031,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -3805,6 +4311,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -7.599999999999994,
       "stats.adj_tempo.rank": 288,
       "stats.adj_tempo.value": 62.1,
+      "stats.off._3p_pct.value": 30.1,
+      "total_poss": 1980,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -3820,11 +4328,13 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -7.599999999999994,
       "stats.adj_tempo.rank": 310,
       "stats.adj_tempo.value": 61.3,
+      "stats.off._3p_pct.value": 31.4,
+      "total_poss": 1794,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Nebraska Omaha": {
+   "Omaha": {
       "team_season.year": 2015,
       "conf": "Summit League",
       "stats.adj_off.rank": 201,
@@ -3835,6 +4345,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -7.599999999999994,
       "stats.adj_tempo.rank": 3,
       "stats.adj_tempo.value": 73.4,
+      "stats.off._3p_pct.value": 33.1,
+      "total_poss": 2069,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -3850,6 +4362,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -7.599999999999994,
       "stats.adj_tempo.rank": 220,
       "stats.adj_tempo.value": 63.5,
+      "stats.off._3p_pct.value": 33.6,
+      "total_poss": 1885,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -3865,6 +4379,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -7.799999999999997,
       "stats.adj_tempo.rank": 96,
       "stats.adj_tempo.value": 65.9,
+      "stats.off._3p_pct.value": 37.3,
+      "total_poss": 1814,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -3880,6 +4396,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -8,
       "stats.adj_tempo.rank": 264,
       "stats.adj_tempo.value": 62.7,
+      "stats.off._3p_pct.value": 28.9,
+      "total_poss": 1872,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -3895,6 +4413,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -7.8999999999999915,
       "stats.adj_tempo.rank": 120,
       "stats.adj_tempo.value": 65.3,
+      "stats.off._3p_pct.value": 34.5,
+      "total_poss": 1997,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -3910,6 +4430,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -8,
       "stats.adj_tempo.rank": 8,
       "stats.adj_tempo.value": 69.9,
+      "stats.off._3p_pct.value": 31.1,
+      "total_poss": 2121,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -3925,6 +4447,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -8.200000000000003,
       "stats.adj_tempo.rank": 52,
       "stats.adj_tempo.value": 67.1,
+      "stats.off._3p_pct.value": 35,
+      "total_poss": 2344,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -3940,6 +4464,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -8.299999999999997,
       "stats.adj_tempo.rank": 164,
       "stats.adj_tempo.value": 64.5,
+      "stats.off._3p_pct.value": 33.7,
+      "total_poss": 1930,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 1
@@ -3955,6 +4481,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -8.299999999999997,
       "stats.adj_tempo.rank": 38,
       "stats.adj_tempo.value": 67.5,
+      "stats.off._3p_pct.value": 35.4,
+      "total_poss": 1880,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -3970,6 +4498,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -8.299999999999997,
       "stats.adj_tempo.rank": 90,
       "stats.adj_tempo.value": 66,
+      "stats.off._3p_pct.value": 33.2,
+      "total_poss": 2078,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -3985,6 +4515,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -8.399999999999991,
       "stats.adj_tempo.rank": 265,
       "stats.adj_tempo.value": 62.7,
+      "stats.off._3p_pct.value": 34.9,
+      "total_poss": 1815,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 1
@@ -4000,6 +4532,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -8.399999999999991,
       "stats.adj_tempo.rank": 334,
       "stats.adj_tempo.value": 60.3,
+      "stats.off._3p_pct.value": 30.1,
+      "total_poss": 1930,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -4015,11 +4549,13 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -8.399999999999991,
       "stats.adj_tempo.rank": 40,
       "stats.adj_tempo.value": 67.4,
+      "stats.off._3p_pct.value": 31.1,
+      "total_poss": 1954,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Cal St. Northridge": {
+   "CSUN": {
       "team_season.year": 2015,
       "conf": "Big West Conference",
       "stats.adj_off.rank": 242,
@@ -4030,6 +4566,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -8.400000000000006,
       "stats.adj_tempo.rank": 145,
       "stats.adj_tempo.value": 64.8,
+      "stats.off._3p_pct.value": 33,
+      "total_poss": 2051,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 1
@@ -4045,11 +4583,13 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -8.600000000000009,
       "stats.adj_tempo.rank": 206,
       "stats.adj_tempo.value": 63.7,
+      "stats.off._3p_pct.value": 25.8,
+      "total_poss": 1851,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Loyola Marymount": {
+   "LMU (CA)": {
       "team_season.year": 2015,
       "conf": "West Coast Conference",
       "stats.adj_off.rank": 199,
@@ -4060,6 +4600,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -8.599999999999994,
       "stats.adj_tempo.rank": 280,
       "stats.adj_tempo.value": 62.3,
+      "stats.off._3p_pct.value": 35.1,
+      "total_poss": 1897,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 1
@@ -4075,6 +4617,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -8.599999999999994,
       "stats.adj_tempo.rank": 159,
       "stats.adj_tempo.value": 64.6,
+      "stats.off._3p_pct.value": 31.3,
+      "total_poss": 2055,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -4090,11 +4634,13 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -8.900000000000006,
       "stats.adj_tempo.rank": 55,
       "stats.adj_tempo.value": 67,
+      "stats.off._3p_pct.value": 35.6,
+      "total_poss": 1981,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "South Florida": {
+   "South Fla.": {
       "team_season.year": 2015,
       "conf": "American Athletic Conference",
       "stats.adj_off.rank": 267,
@@ -4105,6 +4651,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -9.099999999999994,
       "stats.adj_tempo.rank": 212,
       "stats.adj_tempo.value": 63.7,
+      "stats.off._3p_pct.value": 30.9,
+      "total_poss": 2009,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -4120,11 +4668,13 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -9,
       "stats.adj_tempo.rank": 344,
       "stats.adj_tempo.value": 58.9,
+      "stats.off._3p_pct.value": 40.6,
+      "total_poss": 1781,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Lamar": {
+   "Lamar University": {
       "team_season.year": 2015,
       "conf": "Southland Conference",
       "stats.adj_off.rank": 253,
@@ -4135,6 +4685,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -9.099999999999994,
       "stats.adj_tempo.rank": 92,
       "stats.adj_tempo.value": 65.9,
+      "stats.off._3p_pct.value": 31.9,
+      "total_poss": 1764,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -4150,11 +4702,13 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -9,
       "stats.adj_tempo.rank": 319,
       "stats.adj_tempo.value": 61,
+      "stats.off._3p_pct.value": 33.1,
+      "total_poss": 1896,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Southern": {
+   "Southern U.": {
       "team_season.year": 2015,
       "conf": "Southwestern Athletic Conference",
       "stats.adj_off.rank": 322,
@@ -4165,11 +4719,13 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -9.099999999999994,
       "stats.adj_tempo.rank": 153,
       "stats.adj_tempo.value": 64.7,
+      "stats.off._3p_pct.value": 30.6,
+      "total_poss": 2127,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "College of Charleston": {
+   "Col. of Charleston": {
       "team_season.year": 2015,
       "conf": "Colonial Athletic Association",
       "stats.adj_off.rank": 309,
@@ -4180,6 +4736,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -9.400000000000006,
       "stats.adj_tempo.rank": 322,
       "stats.adj_tempo.value": 60.8,
+      "stats.off._3p_pct.value": 34.3,
+      "total_poss": 2055,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -4195,6 +4753,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -9.400000000000006,
       "stats.adj_tempo.rank": 244,
       "stats.adj_tempo.value": 63.2,
+      "stats.off._3p_pct.value": 29.6,
+      "total_poss": 2038,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 1
@@ -4210,11 +4770,13 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -9.599999999999994,
       "stats.adj_tempo.rank": 193,
       "stats.adj_tempo.value": 64,
+      "stats.off._3p_pct.value": 34.5,
+      "total_poss": 1902,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Illinois Chicago": {
+   "UIC": {
       "team_season.year": 2015,
       "conf": "Horizon League",
       "stats.adj_off.rank": 236,
@@ -4225,6 +4787,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -9.599999999999994,
       "stats.adj_tempo.rank": 168,
       "stats.adj_tempo.value": 64.4,
+      "stats.off._3p_pct.value": 31.8,
+      "total_poss": 2079,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 1
@@ -4240,6 +4804,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -9.600000000000009,
       "stats.adj_tempo.rank": 125,
       "stats.adj_tempo.value": 65.3,
+      "stats.off._3p_pct.value": 31.6,
+      "total_poss": 1929,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -4255,6 +4821,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -9.699999999999989,
       "stats.adj_tempo.rank": 256,
       "stats.adj_tempo.value": 63,
+      "stats.off._3p_pct.value": 32.5,
+      "total_poss": 1856,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -4270,11 +4838,13 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -9.700000000000003,
       "stats.adj_tempo.rank": 109,
       "stats.adj_tempo.value": 65.7,
+      "stats.off._3p_pct.value": 36.1,
+      "total_poss": 2020,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "UMKC": {
+   "Kansas City": {
       "team_season.year": 2015,
       "conf": "Western Athletic Conference",
       "stats.adj_off.rank": 287,
@@ -4285,6 +4855,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -9.700000000000003,
       "stats.adj_tempo.rank": 219,
       "stats.adj_tempo.value": 63.5,
+      "stats.off._3p_pct.value": 33.4,
+      "total_poss": 2022,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -4300,11 +4872,13 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -9.700000000000003,
       "stats.adj_tempo.rank": 152,
       "stats.adj_tempo.value": 64.7,
+      "stats.off._3p_pct.value": 33.5,
+      "total_poss": 1796,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "LIU Brooklyn": {
+   "LIU": {
       "team_season.year": 2015,
       "conf": "Northeast Conference",
       "stats.adj_off.rank": 299,
@@ -4315,6 +4889,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -9.799999999999997,
       "stats.adj_tempo.rank": 43,
       "stats.adj_tempo.value": 67.4,
+      "stats.off._3p_pct.value": 32.4,
+      "total_poss": 2095,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 1
@@ -4330,11 +4906,13 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -9.899999999999991,
       "stats.adj_tempo.rank": 261,
       "stats.adj_tempo.value": 62.8,
+      "stats.off._3p_pct.value": 32.1,
+      "total_poss": 1987,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Florida Atlantic": {
+   "Fla. Atlantic": {
       "team_season.year": 2015,
       "conf": "Conference USA",
       "stats.adj_off.rank": 277,
@@ -4345,6 +4923,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -10.299999999999997,
       "stats.adj_tempo.rank": 200,
       "stats.adj_tempo.value": 63.9,
+      "stats.off._3p_pct.value": 34.7,
+      "total_poss": 1752,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -4360,6 +4940,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -10.5,
       "stats.adj_tempo.rank": 241,
       "stats.adj_tempo.value": 63.3,
+      "stats.off._3p_pct.value": 34.6,
+      "total_poss": 1777,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -4375,6 +4957,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -10.600000000000009,
       "stats.adj_tempo.rank": 107,
       "stats.adj_tempo.value": 65.7,
+      "stats.off._3p_pct.value": 31.8,
+      "total_poss": 1935,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -4390,6 +4974,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -10.599999999999994,
       "stats.adj_tempo.rank": 86,
       "stats.adj_tempo.value": 66.1,
+      "stats.off._3p_pct.value": 34,
+      "total_poss": 2082,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -4405,6 +4991,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -10.799999999999997,
       "stats.adj_tempo.rank": 1,
       "stats.adj_tempo.value": 76.5,
+      "stats.off._3p_pct.value": 31.4,
+      "total_poss": 2177,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -4420,6 +5008,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -10.799999999999997,
       "stats.adj_tempo.rank": 108,
       "stats.adj_tempo.value": 65.7,
+      "stats.off._3p_pct.value": 32,
+      "total_poss": 1885,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -4435,6 +5025,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -10.899999999999991,
       "stats.adj_tempo.rank": 313,
       "stats.adj_tempo.value": 61.2,
+      "stats.off._3p_pct.value": 32.2,
+      "total_poss": 1965,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 1
@@ -4450,6 +5042,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -11.200000000000003,
       "stats.adj_tempo.rank": 21,
       "stats.adj_tempo.value": 68.6,
+      "stats.off._3p_pct.value": 32.9,
+      "total_poss": 2152,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -4465,6 +5059,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -11.299999999999997,
       "stats.adj_tempo.rank": 31,
       "stats.adj_tempo.value": 67.7,
+      "stats.off._3p_pct.value": 32.6,
+      "total_poss": 1947,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -4480,11 +5076,13 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -11.400000000000006,
       "stats.adj_tempo.rank": 149,
       "stats.adj_tempo.value": 64.7,
+      "stats.off._3p_pct.value": 35.1,
+      "total_poss": 1980,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "McNeese St.": {
+   "McNeese": {
       "team_season.year": 2015,
       "conf": "Southland Conference",
       "stats.adj_off.rank": 246,
@@ -4495,6 +5093,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -11.5,
       "stats.adj_tempo.rank": 260,
       "stats.adj_tempo.value": 62.8,
+      "stats.off._3p_pct.value": 31.6,
+      "total_poss": 1786,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 1
@@ -4510,11 +5110,13 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -11.799999999999997,
       "stats.adj_tempo.rank": 311,
       "stats.adj_tempo.value": 61.3,
+      "stats.off._3p_pct.value": 36,
+      "total_poss": 1822,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Prairie View A&M": {
+   "Prairie View": {
       "team_season.year": 2015,
       "conf": "Southwestern Athletic Conference",
       "stats.adj_off.rank": 295,
@@ -4525,6 +5127,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -12,
       "stats.adj_tempo.rank": 20,
       "stats.adj_tempo.value": 68.6,
+      "stats.off._3p_pct.value": 33.1,
+      "total_poss": 2222,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -4540,6 +5144,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -12.5,
       "stats.adj_tempo.rank": 211,
       "stats.adj_tempo.value": 63.7,
+      "stats.off._3p_pct.value": 35,
+      "total_poss": 1822,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 1
@@ -4555,6 +5161,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -12.5,
       "stats.adj_tempo.rank": 50,
       "stats.adj_tempo.value": 67.2,
+      "stats.off._3p_pct.value": 30.6,
+      "total_poss": 1997,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -4570,11 +5178,13 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -12.800000000000011,
       "stats.adj_tempo.rank": 135,
       "stats.adj_tempo.value": 65,
+      "stats.off._3p_pct.value": 31.5,
+      "total_poss": 2130,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Southeastern Louisiana": {
+   "Southeastern La.": {
       "team_season.year": 2015,
       "conf": "Southland Conference",
       "stats.adj_off.rank": 312,
@@ -4585,6 +5195,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -12.899999999999991,
       "stats.adj_tempo.rank": 82,
       "stats.adj_tempo.value": 66.2,
+      "stats.off._3p_pct.value": 31.2,
+      "total_poss": 2139,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -4600,11 +5212,13 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -13.099999999999994,
       "stats.adj_tempo.rank": 36,
       "stats.adj_tempo.value": 67.5,
+      "stats.off._3p_pct.value": 39.7,
+      "total_poss": 1913,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Loyola MD": {
+   "Loyola Maryland": {
       "team_season.year": 2015,
       "conf": "Patriot League",
       "stats.adj_off.rank": 331,
@@ -4615,6 +5229,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -13.200000000000003,
       "stats.adj_tempo.rank": 263,
       "stats.adj_tempo.value": 62.7,
+      "stats.off._3p_pct.value": 32.5,
+      "total_poss": 1915,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -4630,6 +5246,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -13.200000000000003,
       "stats.adj_tempo.rank": 277,
       "stats.adj_tempo.value": 62.4,
+      "stats.off._3p_pct.value": 32.9,
+      "total_poss": 1965,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -4645,6 +5263,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -13.299999999999997,
       "stats.adj_tempo.rank": 33,
       "stats.adj_tempo.value": 67.6,
+      "stats.off._3p_pct.value": 33.9,
+      "total_poss": 1802,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -4660,6 +5280,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -13.200000000000003,
       "stats.adj_tempo.rank": 251,
       "stats.adj_tempo.value": 63.1,
+      "stats.off._3p_pct.value": 29.5,
+      "total_poss": 1886,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -4675,6 +5297,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -13.5,
       "stats.adj_tempo.rank": 245,
       "stats.adj_tempo.value": 63.2,
+      "stats.off._3p_pct.value": 27.4,
+      "total_poss": 2089,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 1
@@ -4690,6 +5314,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -13.799999999999997,
       "stats.adj_tempo.rank": 232,
       "stats.adj_tempo.value": 63.4,
+      "stats.off._3p_pct.value": 34.9,
+      "total_poss": 1791,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 1
@@ -4705,11 +5331,13 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -13.699999999999989,
       "stats.adj_tempo.rank": 34,
       "stats.adj_tempo.value": 67.6,
+      "stats.off._3p_pct.value": 33.1,
+      "total_poss": 1921,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 1
    },
-   "Southern Miss": {
+   "Southern Miss.": {
       "team_season.year": 2015,
       "conf": "Conference USA",
       "stats.adj_off.rank": 298,
@@ -4720,6 +5348,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -13.700000000000003,
       "stats.adj_tempo.rank": 295,
       "stats.adj_tempo.value": 62,
+      "stats.off._3p_pct.value": 32.8,
+      "total_poss": 1705,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -4735,6 +5365,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -13.799999999999997,
       "stats.adj_tempo.rank": 74,
       "stats.adj_tempo.value": 66.4,
+      "stats.off._3p_pct.value": 36.9,
+      "total_poss": 2183,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -4750,6 +5382,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -14.200000000000003,
       "stats.adj_tempo.rank": 67,
       "stats.adj_tempo.value": 66.6,
+      "stats.off._3p_pct.value": 30,
+      "total_poss": 1908,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -4765,6 +5399,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -14.200000000000003,
       "stats.adj_tempo.rank": 85,
       "stats.adj_tempo.value": 66.2,
+      "stats.off._3p_pct.value": 31.5,
+      "total_poss": 1632,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -4780,6 +5416,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -15.099999999999994,
       "stats.adj_tempo.rank": 42,
       "stats.adj_tempo.value": 67.4,
+      "stats.off._3p_pct.value": 32.1,
+      "total_poss": 1912,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 1
@@ -4795,6 +5433,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -15.099999999999994,
       "stats.adj_tempo.rank": 124,
       "stats.adj_tempo.value": 65.3,
+      "stats.off._3p_pct.value": 35.6,
+      "total_poss": 1917,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 1
@@ -4810,6 +5450,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -16.099999999999994,
       "stats.adj_tempo.rank": 300,
       "stats.adj_tempo.value": 61.9,
+      "stats.off._3p_pct.value": 29.8,
+      "total_poss": 1729,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 1
@@ -4825,11 +5467,13 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -16.400000000000006,
       "stats.adj_tempo.rank": 253,
       "stats.adj_tempo.value": 63,
+      "stats.off._3p_pct.value": 30.6,
+      "total_poss": 1907,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 1
    },
-   "Western Illinois": {
+   "Western Ill.": {
       "team_season.year": 2015,
       "conf": "Summit League",
       "stats.adj_off.rank": 338,
@@ -4840,11 +5484,13 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -16.599999999999994,
       "stats.adj_tempo.rank": 66,
       "stats.adj_tempo.value": 66.6,
+      "stats.off._3p_pct.value": 35.2,
+      "total_poss": 1757,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Arkansas Pine Bluff": {
+   "Ark.-Pine Bluff": {
       "team_season.year": 2015,
       "conf": "Southwestern Athletic Conference",
       "stats.adj_off.rank": 336,
@@ -4855,6 +5501,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -16.900000000000006,
       "stats.adj_tempo.rank": 242,
       "stats.adj_tempo.value": 63.2,
+      "stats.off._3p_pct.value": 33.2,
+      "total_poss": 2080,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 1
@@ -4870,6 +5518,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -17,
       "stats.adj_tempo.rank": 2,
       "stats.adj_tempo.value": 73.7,
+      "stats.off._3p_pct.value": 35.3,
+      "total_poss": 2199,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -4885,6 +5535,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -18.10000000000001,
       "stats.adj_tempo.rank": 293,
       "stats.adj_tempo.value": 62,
+      "stats.off._3p_pct.value": 31.7,
+      "total_poss": 1747,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -4900,6 +5552,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -18.200000000000003,
       "stats.adj_tempo.rank": 269,
       "stats.adj_tempo.value": 62.6,
+      "stats.off._3p_pct.value": 29.4,
+      "total_poss": 1841,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -4915,6 +5569,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -18.299999999999997,
       "stats.adj_tempo.rank": 88,
       "stats.adj_tempo.value": 66.1,
+      "stats.off._3p_pct.value": 31.2,
+      "total_poss": 1794,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -4930,11 +5586,13 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -18.599999999999994,
       "stats.adj_tempo.rank": 347,
       "stats.adj_tempo.value": 58.6,
+      "stats.off._3p_pct.value": 40.2,
+      "total_poss": 1622,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Bethune Cookman": {
+   "Bethune-Cookman": {
       "team_season.year": 2015,
       "conf": "Mid-Eastern Athletic Conference",
       "stats.adj_off.rank": 340,
@@ -4945,6 +5603,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -18.700000000000003,
       "stats.adj_tempo.rank": 335,
       "stats.adj_tempo.value": 60.2,
+      "stats.off._3p_pct.value": 29.1,
+      "total_poss": 1819,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 1
@@ -4960,6 +5620,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -18.69999999999999,
       "stats.adj_tempo.rank": 189,
       "stats.adj_tempo.value": 64.1,
+      "stats.off._3p_pct.value": 30.1,
+      "total_poss": 2019,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 1
@@ -4975,6 +5637,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -18.900000000000006,
       "stats.adj_tempo.rank": 169,
       "stats.adj_tempo.value": 64.4,
+      "stats.off._3p_pct.value": 28.4,
+      "total_poss": 2048,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -4990,6 +5654,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -18.900000000000006,
       "stats.adj_tempo.rank": 97,
       "stats.adj_tempo.value": 65.8,
+      "stats.off._3p_pct.value": 31,
+      "total_poss": 1872,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -5005,6 +5671,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -18.900000000000006,
       "stats.adj_tempo.rank": 221,
       "stats.adj_tempo.value": 63.5,
+      "stats.off._3p_pct.value": 34.8,
+      "total_poss": 1859,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -5020,6 +5688,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -19,
       "stats.adj_tempo.rank": 196,
       "stats.adj_tempo.value": 63.9,
+      "stats.off._3p_pct.value": 28.2,
+      "total_poss": 1796,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -5035,11 +5705,13 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -19.099999999999994,
       "stats.adj_tempo.rank": 225,
       "stats.adj_tempo.value": 63.5,
+      "stats.off._3p_pct.value": 29.1,
+      "total_poss": 1812,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "North Carolina A&T": {
+   "N.C. A&T": {
       "team_season.year": 2015,
       "conf": "Mid-Eastern Athletic Conference",
       "stats.adj_off.rank": 330,
@@ -5050,6 +5722,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -19.400000000000006,
       "stats.adj_tempo.rank": 304,
       "stats.adj_tempo.value": 61.6,
+      "stats.off._3p_pct.value": 28.4,
+      "total_poss": 1881,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -5065,6 +5739,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -19.700000000000003,
       "stats.adj_tempo.rank": 99,
       "stats.adj_tempo.value": 65.8,
+      "stats.off._3p_pct.value": 31.8,
+      "total_poss": 1859,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -5080,6 +5756,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -19.69999999999999,
       "stats.adj_tempo.rank": 163,
       "stats.adj_tempo.value": 64.5,
+      "stats.off._3p_pct.value": 25.2,
+      "total_poss": 1913,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -5095,6 +5773,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -19.799999999999997,
       "stats.adj_tempo.rank": 204,
       "stats.adj_tempo.value": 63.8,
+      "stats.off._3p_pct.value": 35.8,
+      "total_poss": 1903,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -5110,6 +5790,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -20.599999999999994,
       "stats.adj_tempo.rank": 134,
       "stats.adj_tempo.value": 65.1,
+      "stats.off._3p_pct.value": 31.6,
+      "total_poss": 1994,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -5125,6 +5807,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -20.599999999999994,
       "stats.adj_tempo.rank": 202,
       "stats.adj_tempo.value": 63.8,
+      "stats.off._3p_pct.value": 37.8,
+      "total_poss": 1815,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -5140,11 +5824,13 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -20.700000000000003,
       "stats.adj_tempo.rank": 178,
       "stats.adj_tempo.value": 64.2,
+      "stats.off._3p_pct.value": 32.6,
+      "total_poss": 1940,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Central Connecticut": {
+   "Central Conn. St.": {
       "team_season.year": 2015,
       "conf": "Northeast Conference",
       "stats.adj_off.rank": 334,
@@ -5155,6 +5841,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -20.69999999999999,
       "stats.adj_tempo.rank": 262,
       "stats.adj_tempo.value": 62.8,
+      "stats.off._3p_pct.value": 32.2,
+      "total_poss": 1991,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -5170,11 +5858,13 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -21.799999999999997,
       "stats.adj_tempo.rank": 95,
       "stats.adj_tempo.value": 65.9,
+      "stats.off._3p_pct.value": 32.3,
+      "total_poss": 2005,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Alcorn St.": {
+   "Alcorn": {
       "team_season.year": 2015,
       "conf": "Southwestern Athletic Conference",
       "stats.adj_off.rank": 335,
@@ -5185,6 +5875,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -24.39999999999999,
       "stats.adj_tempo.rank": 60,
       "stats.adj_tempo.value": 66.8,
+      "stats.off._3p_pct.value": 28.4,
+      "total_poss": 2032,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 1
@@ -5200,11 +5892,13 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -24.5,
       "stats.adj_tempo.rank": 201,
       "stats.adj_tempo.value": 63.8,
+      "stats.off._3p_pct.value": 29.4,
+      "total_poss": 1792,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Mississippi Valley St.": {
+   "Mississippi Val.": {
       "team_season.year": 2015,
       "conf": "Southwestern Athletic Conference",
       "stats.adj_off.rank": 337,
@@ -5215,11 +5909,13 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -25.700000000000003,
       "stats.adj_tempo.rank": 6,
       "stats.adj_tempo.value": 70.1,
+      "stats.off._3p_pct.value": 30.3,
+      "total_poss": 2298,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Central Arkansas": {
+   "Central Ark.": {
       "team_season.year": 2015,
       "conf": "Southland Conference",
       "stats.adj_off.rank": 341,
@@ -5230,6 +5926,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -27.700000000000003,
       "stats.adj_tempo.rank": 17,
       "stats.adj_tempo.value": 69,
+      "stats.off._3p_pct.value": 35.3,
+      "total_poss": 2069,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
@@ -5245,11 +5943,13 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -31.69999999999999,
       "stats.adj_tempo.rank": 122,
       "stats.adj_tempo.value": 65.3,
+      "stats.off._3p_pct.value": 28.3,
+      "total_poss": 1905,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Grambling St.": {
+   "Grambling": {
       "team_season.year": 2015,
       "conf": "Southwestern Athletic Conference",
       "stats.adj_off.rank": 351,
@@ -5260,6 +5960,8 @@ export const publicKenpomEfficiency2014_5: Record<string, any> = {
       "stats.adj_margin.value": -37.69999999999999,
       "stats.adj_tempo.rank": 117,
       "stats.adj_tempo.value": 65.4,
+      "stats.off._3p_pct.value": 28.4,
+      "total_poss": 1785,
       "ncaa_seed": "",
       "is_high_major": 0,
       "good_md_comp": 0

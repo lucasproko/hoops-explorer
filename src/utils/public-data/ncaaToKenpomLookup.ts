@@ -2,6 +2,9 @@
 import _ from "lodash";
 
 /** The NCAA name to KenPom name mappings, built in 2020, can have per year changes */
+
+/* REMOVED THIS AND MOVED THE LOOKUP TO THE BUILD LOGIC
+
 export const ncaaToKenpomLookup_2019_20 = {
    "A&M-Corpus Christi": {
       "pbp_kp_team": "Texas A&M Corpus Chris"
@@ -266,3 +269,5 @@ export const ncaaToKenpomLookup_2015_16 = _.merge(_.cloneDeep(ncaaToKenpomLookup
 });
 
 export const ncaaToKenpomLookup_2014_15 = ncaaToKenpomLookup_2015_16;
+
+*/
