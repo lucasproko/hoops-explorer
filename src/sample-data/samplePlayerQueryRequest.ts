@@ -346,14 +346,14 @@ export const samplePlayerQueryRequest =           {
                               },
                               "value": {
                                  "script": {
-                                    "source": "\n  def hca = 0.0;\n  if (doc[\"location_type.keyword\"].value == \"Home\") {\n    hca = params.off_hca;\n  } else if (doc[\"location_type.keyword\"].value == \"Away\") {\n    hca = -params.off_hca;\n  }\n  def kp_name = params.pbp_to_kp[doc[\"opponent.team.keyword\"].value];\n  if (kp_name == null) {\n     kp_name = doc[\"opponent.team.keyword\"].value;\n  } else {\n     kp_name = kp_name.pbp_kp_team;\n  }\n  def oppo = params.kp[kp_name];\n  def adj_sos = null;\n  if (oppo != null) {\n     adj_sos = oppo['stats.adj_off.value'] - hca;\n  }\n  \nreturn adj_sos;",
+                                    "source": "\n  def hca = 0.0;\n  if (doc[\"location_type.keyword\"].value == \"Home\") {\n    hca = params.off_hca;\n  } else if (doc[\"location_type.keyword\"].value == \"Away\") {\n    hca = -params.off_hca;\n  }\n  def kp_name = params.pbp_to_kp[doc[\"opponent.team.keyword\"].value];\n  if (kp_name == null) {\n     kp_name = doc[\"opponent.team.keyword\"].value;\n  } else {\n     kp_name = kp_name.pbp_kp_team;\n  }\n  def oppo = params.kp_off[kp_name];\n  def adj_sos = null;\n  if (oppo != null) {\n     adj_sos = oppo['stats.adj_off.value'] - hca;\n  }\n  \nreturn adj_sos;",
                                     "lang": "painless",
                                     "params": {
                                        "avgEff": 100,
                                        "pbp_to_kp": {
                                           "name1": "name1b"
                                        },
-                                       "kp": {
+                                       "kp_off": {
                                           "team": {
                                              "stats": 0
                                           }
@@ -468,14 +468,14 @@ export const samplePlayerQueryRequest =           {
                               },
                               "value": {
                                  "script": {
-                                    "source": "\n  def hca = 0.0;\n  if (doc[\"location_type.keyword\"].value == \"Home\") {\n    hca = params.def_hca;\n  } else if (doc[\"location_type.keyword\"].value == \"Away\") {\n    hca = -params.def_hca;\n  }\n  def kp_name = params.pbp_to_kp[doc[\"opponent.team.keyword\"].value];\n  if (kp_name == null) {\n     kp_name = doc[\"opponent.team.keyword\"].value;\n  } else {\n     kp_name = kp_name.pbp_kp_team;\n  }\n  def oppo = params.kp[kp_name];\n  def adj_sos = null;\n  if (oppo != null) {\n     adj_sos = oppo['stats.adj_def.value'] - hca;\n  }\n  \nreturn adj_sos;",
+                                    "source": "\n  def hca = 0.0;\n  if (doc[\"location_type.keyword\"].value == \"Home\") {\n    hca = params.def_hca;\n  } else if (doc[\"location_type.keyword\"].value == \"Away\") {\n    hca = -params.def_hca;\n  }\n  def kp_name = params.pbp_to_kp[doc[\"opponent.team.keyword\"].value];\n  if (kp_name == null) {\n     kp_name = doc[\"opponent.team.keyword\"].value;\n  } else {\n     kp_name = kp_name.pbp_kp_team;\n  }\n  def oppo = params.kp_def[kp_name];\n  def adj_sos = null;\n  if (oppo != null) {\n     adj_sos = oppo['stats.adj_def.value'] - hca;\n  }\n  \nreturn adj_sos;",
                                     "lang": "painless",
                                     "params": {
                                        "avgEff": 100,
                                        "pbp_to_kp": {
                                           "name1": "name1b"
                                        },
-                                       "kp": {
+                                       "kp_def": {
                                           "team": {
                                              "stats": 0
                                           }
@@ -507,13 +507,13 @@ export const samplePlayerQueryRequest =           {
                   {
                      "script": {
                         "script": {
-                           "source": "\n                  if (params.kp.isEmpty()) return true;\n                  def kp_name = params.pbp_to_kp[doc[\"opponent.team.keyword\"].value];\n                  if (kp_name == null) {\n                     kp_name = doc[\"opponent.team.keyword\"].value;\n                  } else {\n                     kp_name = kp_name.pbp_kp_team;\n                  }\n                  def oppo = params.kp[kp_name];\n                  if (oppo != null) {\n                     def kp_rank = oppo[\"stats.adj_margin.rank\"];\n                     def game_filter = params.game_filter;\n                     def oppo_conf = oppo[\"conf\"];\n                     def conf_allowed = true;\n                     if (!game_filter.conf.isEmpty()) {\n                        conf_allowed = game_filter.conf.equals(oppo_conf);\n                     }\n                     return conf_allowed && (kp_rank >= game_filter.min_kp) && (kp_rank <= game_filter.max_kp);\n                  } else {\n                      return false;\n                  }\n                 ",
+                           "source": "\n                  if (params.kp_opp.isEmpty()) return true;\n                  def kp_name = params.pbp_to_kp[doc[\"opponent.team.keyword\"].value];\n                  if (kp_name == null) {\n                     kp_name = doc[\"opponent.team.keyword\"].value;\n                  } else {\n                     kp_name = kp_name.pbp_kp_team;\n                  }\n                  def oppo = params.kp_opp[kp_name];\n                  if (oppo != null) {\n                     def kp_rank = oppo[\"stats.adj_margin.rank\"];\n                     def game_filter = params.game_filter;\n                     def oppo_conf = oppo[\"conf\"];\n                     def conf_allowed = true;\n                     if (!game_filter.conf.isEmpty()) {\n                        conf_allowed = game_filter.conf.equals(oppo_conf);\n                     }\n                     return conf_allowed && (kp_rank >= game_filter.min_kp) && (kp_rank <= game_filter.max_kp);\n                  } else {\n                      return false;\n                  }\n                 ",
                            "lang": "painless",
                            "params": {
                               "pbp_to_kp": {
                                  "name1": "name1b"
                               },
-                              "kp": {
+                              "kp_opp": {
                                  "team": {
                                     "stats": 0
                                  }

@@ -77,14 +77,14 @@ export const commonTeamQuery = function(
             "script": {
                "script": {
                  "source": `
-                  if (params.kp.isEmpty()) return true;
+                  if (params.kp_opp.isEmpty()) return true;
                   def kp_name = params.pbp_to_kp[doc["opponent.team.keyword"].value];
                   if (kp_name == null) {
                      kp_name = doc["opponent.team.keyword"].value;
                   } else {
                      kp_name = kp_name.pbp_kp_team;
                   }
-                  def oppo = params.kp[kp_name];
+                  def oppo = params.kp_opp[kp_name];
                   if (oppo != null) {
                      def kp_rank = oppo["stats.adj_margin.rank"];
                      def game_filter = params.game_filter;
@@ -101,7 +101,7 @@ export const commonTeamQuery = function(
                   "lang": "painless",
                   "params": {
                      "pbp_to_kp": lookup,
-                     "kp": publicEfficiency, //(if empty then the query auto-returns true)
+                     "kp_opp": publicEfficiency, //(if empty then the query auto-returns true)
                      "game_filter": {
                         "min_kp": Number(params.minRank),
                         "max_kp": Number(params.maxRank),

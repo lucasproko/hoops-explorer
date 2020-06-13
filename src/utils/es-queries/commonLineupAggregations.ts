@@ -17,7 +17,7 @@ const calculateAdjEff = function(offOrDef: "off" | "def") { return `
   } else {
      kp_name = kp_name.pbp_kp_team;
   }
-  def oppo = params.kp[kp_name];
+  def oppo = params.kp_${offOrDef}[kp_name];
   def adj_sos = null;
   if (oppo != null) {
      adj_sos = oppo['stats.adj_${offOrDef}.value'] - hca;
@@ -180,7 +180,7 @@ export const commonAggregations = function(
                  "params": {
                     "avgEff": avgEff,
                     "pbp_to_kp": lookup,
-                    "kp": publicEfficiency,
+                    [`kp_${dstPrefix}`]: publicEfficiency,
                     "off_hca": 1.5, //(this should be derived from year/gender at some point?)
                     "def_hca": -1.5
                  }
@@ -208,7 +208,7 @@ export const commonAggregations = function(
                   "params": {
                      "avgEff": avgEff,
                      "pbp_to_kp": lookup,
-                     "kp": publicEfficiency,
+                     [`kp_${oppoDstPrefix}`]: publicEfficiency,
                      "off_hca": 1.5, //(this should be derived from year/gender at some point?)
                      "def_hca": -1.5
                   }

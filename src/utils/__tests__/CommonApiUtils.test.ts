@@ -75,7 +75,7 @@ describe("CommonApiUtils", () => {
       false,
       // useLocalIndices
       false,
-      // Callacks:
+      // Callbacks:
       testMakeRequest,
       testOnCacheHit,
       testOnTeamNotFound,
@@ -83,7 +83,67 @@ describe("CommonApiUtils", () => {
       testOnResponse
     );
 
+  });
 
+  test("CommonApiUtils - efficiencyReplacer", () => {
+    const sampleTeam = { "Team": {
+        "team_season.year": 2015,
+        "conf": "Misc Conference",
+        "stats.adj_off.rank": 1,
+        "stats.adj_off.value": 129,
+        "stats.adj_def.rank": 35,
+        "stats.adj_def.value": 95.2,
+        "stats.adj_margin.rank": 2,
+        "stats.adj_margin.value": 33.8,
+        "stats.adj_tempo.rank": 345,
+        "stats.adj_tempo.value": 58.7,
+        "ncaa_seed": 1,
+        "is_high_major": 1,
+        "good_md_comp": 0
+    }};
+    const sampleTeamOpp = { "Team": {
+      "conf": "Misc Conference",
+      "stats.adj_margin.rank": 2
+    }};
+    const sampleTeamOff = { "Team": {
+      "stats.adj_off.value": 129,
+    }};
+    const sampleTeamDef = { "Team": {
+      "stats.adj_def.value": 95.2,
+    }};
+    const test = {
+      "misc": 1,
+      "kp_off": {
+        ...sampleTeam
+      },
+      "misc2": { "val": 3 },
+      "nested": {
+        "kp_opp": {
+          ...sampleTeam
+        },
+        "misc3": "test",
+      },
+      "misc4": { "kp": [ "arr" ] },
+      "kp_def": {
+        ...sampleTeam
+      }
+    };
+    const res = {
+      ...test,
+      "kp_off": {
+        ...sampleTeamOff
+      },
+      "nested": {
+        "kp_opp": {
+          ...sampleTeamOpp
+        },
+        "misc3": "test",
+      },
+      "kp_def": {
+        ...sampleTeamDef
+      }
+    }
+    expect(JSON.parse(JSON.stringify(test, CommonApiUtils.efficiencyReplacer(), 3))).toEqual(res);
   });
 
   //TODO: test cache, team error, request error, general error
