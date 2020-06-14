@@ -18,7 +18,7 @@ import { TeamStatsModel } from '../components/TeamStatsTable';
 import { RosterCompareModel } from '../components/RosterCompareTable';
 import { RosterStatsModel } from '../components/RosterStatsTable';
 import CommonFilter, { GlobalKeypressManager } from '../components/CommonFilter';
-import { ParamPrefixes, FilterParamsType, CommonFilterParams, GameFilterParams, FilterRequestInfo, ParamDefaults } from "../utils/FilterModels";
+import { ParamPrefixes, FilterParamsType, CommonFilterParams, GameFilterParams, FilterRequestInfo, ParamPrefixesType, ParamDefaults } from "../utils/FilterModels";
 import AutoSuggestText from './AutoSuggestText';
 
 type Props = {
@@ -89,11 +89,11 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
     };
 
     return [ primaryRequest, [{
-        context: ParamPrefixes.roster, paramsObj: primaryRequest
+        context: ParamPrefixes.roster as ParamPrefixesType, paramsObj: primaryRequest
       }, {
-        context: ParamPrefixes.player, paramsObj: primaryRequest
+        context: ParamPrefixes.player as ParamPrefixesType, paramsObj: primaryRequest
       }].concat(_.isEqual(entireSeasonRequest, primaryRequest) ? [] :[{ //(don't make a spuriois call)
-        context: ParamPrefixes.player, paramsObj: entireSeasonRequest
+        context: ParamPrefixes.player as ParamPrefixesType, paramsObj: entireSeasonRequest
       }])
     ];
   }
