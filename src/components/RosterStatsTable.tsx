@@ -46,6 +46,7 @@ export type RosterStatsModel = {
   off?: Array<any>,
   onOffMode?: boolean,
   baseline?: Array<any>,
+  global?: Array<any>, //(across all samples for the team)
   error_code?: string
 }
 type Props = {

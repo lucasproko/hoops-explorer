@@ -125,7 +125,11 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
     </Row>
     <Row>
       <GenericCollapsibleCard title="Team Analysis">
-        <TeamStatsTable teamStats={teamStats}/>
+        <TeamStatsTable
+          teamStats={teamStats}
+          rosterStats={rosterStats}
+          onChangeState={onGameFilterParamsChange}
+        />
       </GenericCollapsibleCard>
     </Row>
     <Row>
@@ -140,7 +144,10 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
     </Row>
     <Row>
       <GenericCollapsibleCard title="Lineup Comparison">
-        <RosterCompareTable gameFilterParams={gameFilterParams} rosterCompareStats={rosterCompareStats}/>
+        <RosterCompareTable
+          gameFilterParams={gameFilterParams}
+          rosterCompareStats={rosterCompareStats}
+        />
       </GenericCollapsibleCard>
     </Row>
     <Footer year={gameFilterParams.year} gender={gameFilterParams.gender} server={server}/>

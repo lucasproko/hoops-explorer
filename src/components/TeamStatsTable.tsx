@@ -1,5 +1,5 @@
 // React imports:
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 // Next imports:
 import { NextPage } from 'next';
@@ -12,13 +12,21 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Form from 'react-bootstrap/Form';
+import Dropdown from 'react-bootstrap/Dropdown';
 
 // Additional components:
 // @ts-ignore
 import LoadingOverlay from 'react-loading-overlay';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCog } from '@fortawesome/free-solid-svg-icons';
+import { faCheck } from '@fortawesome/free-solid-svg-icons';
 
 // Component imports
 import GenericTable, { GenericTableOps, GenericTableColProps } from "./GenericTable"
+import { RosterStatsModel } from './RosterStatsTable';
+import GenericTogglingMenuItem from "./GenericTogglingMenuItem";
+import LuckAdjDiagView from "./LuckAdjDiagView"
 
 // Util imports
 import { CbbColors } from "../utils/CbbColors"
@@ -28,14 +36,24 @@ export type TeamStatsModel = {
   on: any,
   off: any,
   baseline: any,
+  global: any, //(a subest of the fields, across all samples for the team)
   onOffMode: boolean,
   error_code?: string
 }
 type Props = {
-  teamStats: TeamStatsModel
+  teamStats: TeamStatsModel,
+  rosterStats: RosterStatsModel,
+  onChangeState: (newParams: GameFilterParams) => void;
 }
 
-const TeamStatsTable: React.FunctionComponent<Props> = ({teamStats}) => {
+const TeamStatsTable: React.FunctionComponent<Props> = ({teamStats, rosterStats, onChangeState}) => {
+
+  // 1] Data Model
+
+  const [ adjustForLuck, setAdjustForLuck ] = useState(true);
+  const [ showLuckAdjDiags, setShowLuckAdjDiags ] = useState(true);
+
+  // 2] Data View
 
   const offPrefixFn = (key: string) => "off_" + key;
   const offCellMetaFn = (key: string, val: any) => "off";
@@ -73,8 +91,6 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({teamStats}) => {
     GenericTableOps.buildRowSeparator() ],
   ]);
 
-  // 2] Data Model
-
   // 3] Utils
   /** Sticks an overlay on top of the table if no query has ever been loaded */
   function needToLoadQuery() {
@@ -92,11 +108,40 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({teamStats}) => {
         "Press 'Submit' to view results"
       }
     >
+      <Form.Row>
+        <Col sm="11"/>
+        <Form.Group as={Col} sm="1">
+          <Dropdown alignRight>
+            <Dropdown.Toggle variant="outline-secondary" id="dropdown-basic">
+              <FontAwesomeIcon icon={faCog} />
+            </Dropdown.Toggle>
+            <Dropdown.Menu>
+              <GenericTogglingMenuItem
+                text="Adjust for Luck"
+                truthVal={adjustForLuck}
+                onSelect={() => setAdjustForLuck(!adjustForLuck)}
+              />
+              <Dropdown.Divider />
+              <GenericTogglingMenuItem
+                text="Show Luck Adjustment diagnostics"
+                truthVal={showLuckAdjDiags}
+                onSelect={() => setShowLuckAdjDiags(!showLuckAdjDiags)}
+              />
+            </Dropdown.Menu>
+          </Dropdown>
+        </Form.Group>
+      </Form.Row>
       <Row>
         <Col>
           <GenericTable tableCopyId="teamStatsTable" tableFields={CommonTableDefs.onOffTable} tableData={tableData}/>
         </Col>
       </Row>
+      { showLuckAdjDiags ? <Row className="small">
+          <LuckAdjDiagView
+            teamStats={teamStats}
+            rosterStats={rosterStats}
+          />
+      </Row> : null }
     </LoadingOverlay>
   </Container>;
 };

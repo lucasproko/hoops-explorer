@@ -104,12 +104,14 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
     const teamJson = jsonResps?.[0]?.responses?.[0] || {};
     const rosterCompareJson = jsonResps?.[1]?.responses?.[0] || {};
     const rosterStatsJson = jsonResps?.[2]?.responses?.[0] || {};
+    const globalRosterStatsJson = jsonResps?.[2]?.responses?.[0] || rosterStatsJson;
 
     onStats({
       on: teamJson?.aggregations?.tri_filter?.buckets?.on || {},
       off: teamJson?.aggregations?.tri_filter?.buckets?.off || {},
       onOffMode: autoOffQuery,
       baseline: teamJson?.aggregations?.tri_filter?.buckets?.baseline || {},
+      global: teamJson?.aggregations?.global?.only?.buckets?.team || {},
       error_code: wasError ? (teamJson?.status || jsonStatuses?.[0] || "Unknown") : undefined
     }, {
       on: rosterCompareJson?.aggregations?.tri_filter?.buckets?.on || {},
@@ -122,6 +124,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
       off: rosterStatsJson?.aggregations?.tri_filter?.buckets?.off?.player?.buckets || [],
       onOffMode: autoOffQuery,
       baseline: rosterStatsJson?.aggregations?.tri_filter?.buckets?.baseline?.player?.buckets || [],
+      global: globalRosterStatsJson?.aggregations?.tri_filter?.buckets?.baseline?.player?.buckets || [],
       error_code: wasError ? (rosterStatsJson?.status || jsonStatuses?.[2] || "Unknown") : undefined
     });
   }
