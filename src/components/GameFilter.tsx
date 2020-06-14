@@ -100,30 +100,29 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
 
   /** Handles the response from ES to a stats calc request */
   function handleResponse(jsonResps: any[], wasError: Boolean) {
-    const jsons = _.flatMap(jsonResps, j => j.responses || []);
     const jsonStatuses = jsonResps.map(j => j.status);
+    const teamJson = jsonResps?.[0]?.responses?.[0] || {};
+    const rosterCompareJson = jsonResps?.[1]?.responses?.[0] || {};
+    const rosterStatsJson = jsonResps?.[2]?.responses?.[0] || {};
 
-    const teamJson = jsons?.[0] || {};
-    const rosterCompareJson = jsons?.[1] || {};
-    const rosterStatsJson = jsons?.[2] || {};
     onStats({
       on: teamJson?.aggregations?.tri_filter?.buckets?.on || {},
       off: teamJson?.aggregations?.tri_filter?.buckets?.off || {},
       onOffMode: autoOffQuery,
       baseline: teamJson?.aggregations?.tri_filter?.buckets?.baseline || {},
-      error_code: wasError ? (teamJson?.status || jsonStatuses?.[0]) : undefined
+      error_code: wasError ? (teamJson?.status || jsonStatuses?.[0] || "Unknown") : undefined
     }, {
       on: rosterCompareJson?.aggregations?.tri_filter?.buckets?.on || {},
       off: rosterCompareJson?.aggregations?.tri_filter?.buckets?.off || {},
       onOffMode: autoOffQuery,
       baseline: rosterCompareJson?.aggregations?.tri_filter?.buckets?.baseline || {},
-      error_code: wasError ? (rosterCompareJson?.status || jsonStatuses?.[1]) : undefined
+      error_code: wasError ? (rosterCompareJson?.status || jsonStatuses?.[1] || "Unknown") : undefined
     }, {
       on: rosterStatsJson?.aggregations?.tri_filter?.buckets?.on?.player?.buckets || [],
       off: rosterStatsJson?.aggregations?.tri_filter?.buckets?.off?.player?.buckets || [],
       onOffMode: autoOffQuery,
       baseline: rosterStatsJson?.aggregations?.tri_filter?.buckets?.baseline?.player?.buckets || [],
-      error_code: wasError ? (rosterStatsJson?.status || jsonStatuses?.[2]) : undefined
+      error_code: wasError ? (rosterStatsJson?.status || jsonStatuses?.[2] || "Unknown") : undefined
     });
   }
 

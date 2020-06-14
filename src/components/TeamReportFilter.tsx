@@ -80,6 +80,8 @@ const TeamReportFilter: React.FunctionComponent<Props> = ({onStats, startingStat
   }
 
   function handleResponse(jsonResps: any[], wasError: Boolean) {
+    //TODO: fix this per GameFilter
+    
     const json = jsonResps[0] || []; //(currently just one request)
 
     const jsons = json?.responses || [];
