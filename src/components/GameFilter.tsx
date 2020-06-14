@@ -81,11 +81,20 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
         offQuery: offQuery
       };
 
+    const entireSeasonRequest = { // Get the entire season of players for things like luck adjustments
+      team: primaryRequest.team, year: primaryRequest.year, gender: primaryRequest.gender,
+      minRank: ParamDefaults.defaultMinRank, maxRank: ParamDefaults.defaultMaxRank,
+      filterGarbage:false, queryFilters:"",
+      baseQuery: "", onQuery: "", offQuery: ""
+    };
+
     return [ primaryRequest, [{
         context: ParamPrefixes.roster, paramsObj: primaryRequest
       }, {
         context: ParamPrefixes.player, paramsObj: primaryRequest
-      }] 
+      }].concat(_.isEqual(entireSeasonRequest, primaryRequest) ? [] :[{ //(don't make a spuriois call)
+        context: ParamPrefixes.player, paramsObj: entireSeasonRequest
+      }])
     ];
   }
 
