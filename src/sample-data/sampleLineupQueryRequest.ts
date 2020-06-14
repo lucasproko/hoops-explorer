@@ -247,6 +247,29 @@ export const sampleLineupQueryRequest =         {
                         "script": "(params.my_varFG > 0) ? (1.0*params.my_var2 + 1.5*params.my_var3) / params.my_varFG : 0"
                      }
                   },
+                  "off_3p_opp": {
+                     "weighted_avg": {
+                        "weight": {
+                           "field": "opponent_stats.fg_3p.attempts.total"
+                        },
+                        "value": {
+                           "script": {
+                              "source": "\n  def kp_name = params.pbp_to_kp[doc[\"opponent.team.keyword\"].value];\n  if (kp_name == null) {\n     kp_name = doc[\"opponent.team.keyword\"].value;\n  } else {\n     kp_name = kp_name.pbp_kp_team;\n  }\n  def oppo = params.kp_3p[kp_name];\n  def sos_3p = null;\n  if (oppo != null) {\n     sos_3p = oppo['stats.off._3p_pct.value'];\n  }\n  \nreturn sos_3p;",
+                              "lang": "painless",
+                              "params": {
+                                 "pbp_to_kp": {
+                                    "name1": "name1b"
+                                 },
+                                 "kp_3p": {
+                                    "team": {
+                                       "stats": 0
+                                    }
+                                 }
+                              }
+                           }
+                        }
+                     }
+                  },
                   "off_adj_opp": {
                      "weighted_avg": {
                         "weight": {

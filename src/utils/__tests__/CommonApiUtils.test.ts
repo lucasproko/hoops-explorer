@@ -97,6 +97,8 @@ describe("CommonApiUtils", () => {
         "stats.adj_margin.value": 33.8,
         "stats.adj_tempo.rank": 345,
         "stats.adj_tempo.value": 58.7,
+        "stats.off._3p_pct.value": 34.9,
+        "total_poss": 2509,
         "ncaa_seed": 1,
         "is_high_major": 1,
         "good_md_comp": 0
@@ -110,6 +112,9 @@ describe("CommonApiUtils", () => {
     }};
     const sampleTeamDef = { "Team": {
       "stats.adj_def.value": 95.2,
+    }};
+    const sampleTeam3p = { "Team": {
+      "stats.off._3p_pct.value": 34.9,
     }};
     const test = {
       "misc": 1,
@@ -126,6 +131,9 @@ describe("CommonApiUtils", () => {
       "misc4": { "kp": [ "arr" ] },
       "kp_def": {
         ...sampleTeam
+      },
+      "kp_3p": {
+        ...sampleTeam
       }
     };
     const res = {
@@ -141,6 +149,9 @@ describe("CommonApiUtils", () => {
       },
       "kp_def": {
         ...sampleTeamDef
+      },
+      "kp_3p": {
+        ...sampleTeam3p
       }
     }
     expect(JSON.parse(JSON.stringify(test, CommonApiUtils.efficiencyReplacer(), 3))).toEqual(res);

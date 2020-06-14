@@ -164,7 +164,7 @@ export class CommonApiUtils {
     let kp_ptr: any = undefined; //(so we know when we're done)
 
     return function(this: any, key: string, value: any) {
-      if ((key == "kp_opp") || (key == "kp_off") || (key == "kp_def")) {
+      if ((key == "kp_opp") || (key == "kp_off") || (key == "kp_def") || (key == "kp_3p")) {
         kp_ptr = value;
         kp_type = key;
         return value;
@@ -183,6 +183,10 @@ export class CommonApiUtils {
           } else if ("kp_off" == kp_type) {
             return {
               "stats.adj_off.value": value?.["stats.adj_off.value"]
+            };
+          } else if ("kp_3p" == kp_type) {
+            return {
+              "stats.off._3p_pct.value": value?.["stats.off._3p_pct.value"]
             };
           }
         } else { //(don't need to unset the ptr, since will be ignored)

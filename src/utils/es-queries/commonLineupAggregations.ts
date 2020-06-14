@@ -23,7 +23,23 @@ const calculateAdjEff = function(offOrDef: "off" | "def") { return `
      adj_sos = oppo['stats.adj_${offOrDef}.value'] - hca;
   }
   `;
-}
+};
+
+/** Painless script used below to calculate average opponent's 3P */
+const calculate3pSos = function() { return `
+  def kp_name = params.pbp_to_kp[doc["opponent.team.keyword"].value];
+  if (kp_name == null) {
+     kp_name = doc["opponent.team.keyword"].value;
+  } else {
+     kp_name = kp_name.pbp_kp_team;
+  }
+  def oppo = params.kp_3p[kp_name];
+  def sos_3p = null;
+  if (oppo != null) {
+     sos_3p = oppo['stats.off._3p_pct.value'];
+  }
+  `;
+};
 
 /** srcType/dstType are
  * - (see commonShotAggs)
@@ -188,6 +204,23 @@ export const commonAggregations = function(
            }
         }
      },
+     ...((dstPrefix == "off") ? {"off_3p_opp": {
+       "weighted_avg": {
+          "weight": {
+             "field": `opponent_stats.fg_3p.attempts.total`
+          },
+          "value": {
+             "script": {
+                "source": `${calculate3pSos()}\nreturn sos_3p;`,
+                "lang": "painless",
+                "params": {
+                   "pbp_to_kp": lookup,
+                   "kp_3p": publicEfficiency
+                }
+             }
+          }
+        }
+     }} : {}),
      [`${dstPrefix}_adj_ppp`]: properAdjEffCalc ? {
          "weighted_avg": {
             "weight": {
