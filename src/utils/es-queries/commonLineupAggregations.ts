@@ -204,7 +204,7 @@ export const commonAggregations = function(
            }
         }
      },
-     ...((dstPrefix == "off") ? {"off_3p_opp": {
+     ...((dstPrefix == "def") ? {"def_3p_opp": {
        "weighted_avg": {
           "weight": {
              "field": `opponent_stats.fg_3p.attempts.total`

@@ -339,7 +339,7 @@ export const samplePlayerQueryRequest =           {
                               "script": "(params.my_varFG > 0) ? (1.0*params.my_var2 + 1.5*params.my_var3) / params.my_varFG : 0"
                            }
                         },
-                        "off_3p_opp": {
+                        "oppo_def_3p_opp": {
                            "weighted_avg": {
                               "weight": {
                                  "field": "opponent_stats.fg_3p.attempts.total"

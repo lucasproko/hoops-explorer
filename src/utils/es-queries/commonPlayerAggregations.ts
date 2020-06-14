@@ -33,7 +33,9 @@ export const commonPlayerAggregations = function(publicEfficiency: any, lookup: 
           // For DRtg:
           "total_def_fgm", "total_def_fga", "total_def_ftm", "total_def_fta",
           "total_def_to",
-          "total_def_pts"
+          "total_def_pts",
+          // For luck adjustment in DRtg:
+          "def_3p_opp"
         ]
       ).mergeWith({
         //(nothing yet, see list above)

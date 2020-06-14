@@ -5,6 +5,79 @@ export const sampleTeamQueryRequest =       {
          },
          "size": 0,
          "aggregations": {
+            "global": {
+              "aggregations": {
+                "only": {
+                  "aggregations": {
+                    "def_3p_opp": {
+                       "weighted_avg": {
+                          "weight": {
+                             "field": "opponent_stats.fg_3p.attempts.total"
+                          },
+                          "value": {
+                             "script": {
+                                "source": "\n  def kp_name = params.pbp_to_kp[doc[\"opponent.team.keyword\"].value];\n  if (kp_name == null) {\n     kp_name = doc[\"opponent.team.keyword\"].value;\n  } else {\n     kp_name = kp_name.pbp_kp_team;\n  }\n  def oppo = params.kp_3p[kp_name];\n  def sos_3p = null;\n  if (oppo != null) {\n     sos_3p = oppo['stats.off._3p_pct.value'];\n  }\n  \nreturn sos_3p;",
+                                "lang": "painless",
+                                "params": {
+                                   "pbp_to_kp": {
+                                      "name1": "name1b"
+                                   },
+                                   "kp_3p": {
+                                      "team": {
+                                         "stats": 0
+                                      }
+                                   }
+                                }
+                             }
+                          }
+                       }
+                    },
+                    "total_def_poss": {
+                       "sum": {
+                          "field": "opponent_stats.num_possessions"
+                       }
+                    },
+                    "def_poss": {
+                       "bucket_script": {
+                          "buckets_path": {
+                             "var": "total_def_poss"
+                          },
+                          "script": "params.var"
+                       }
+                    },
+                    "total_def_3p_attempts": {
+                       "sum": {
+                          "field": "opponent_stats.fg_3p.attempts.total"
+                       }
+                    },
+                    "total_def_3p_made": {
+                       "sum": {
+                          "field": "opponent_stats.fg_3p.made.total"
+                       }
+                    },
+                    "def_3p": {
+                       "bucket_script": {
+                          "buckets_path": {
+                             "my_var2": "total_def_3p_attempts",
+                             "my_var1": "total_def_3p_made"
+                          },
+                          "script": "(params.my_var1 > 0) ? 1*params.my_var1 / params.my_var2 : 0"
+                       }
+                    }
+                  },
+                  "filters": {
+                    "filters": {
+                      "team": {
+                        "term": {
+                          "team.team.keyword": `TestTeam`
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "global": {}
+            },
             "tri_filter": {
                "aggregations": {
                   "total_off_poss": {
@@ -247,7 +320,7 @@ export const sampleTeamQueryRequest =       {
                         "script": "(params.my_varFG > 0) ? (1.0*params.my_var2 + 1.5*params.my_var3) / params.my_varFG : 0"
                      }
                   },
-                  "off_3p_opp": {
+                  "def_3p_opp": {
                      "weighted_avg": {
                         "weight": {
                            "field": "opponent_stats.fg_3p.attempts.total"

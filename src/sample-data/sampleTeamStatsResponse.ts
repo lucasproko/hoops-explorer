@@ -17,6 +17,34 @@ export const sampleTeamStatsResponse =
     "hits" : [ ]
   },
   "aggregations" : {
+    "global": {
+  		"doc_count": 720,
+  		"only": {
+  			"buckets": {
+  				"team": {
+  					"doc_count": 720,
+  					"def_3p_opp": {
+  						"value": 35.578840579710146
+  					},
+  					"total_def_3p_attempts": {
+  						"value": 709
+  					},
+  					"total_def_poss": {
+  						"value": 2089
+  					},
+  					"total_def_3p_made": {
+  						"value": 241
+  					},
+  					"def_3p": {
+  						"value": 0.33991537376586745
+  					},
+  					"def_poss": {
+  						"value": 2089
+  					}
+  				}
+  			}
+  		}
+  	},
     "tri_filter" : {
       "buckets" : {
         "baseline" : {
@@ -99,6 +127,7 @@ export const sampleTeamStatsResponse =
           "def_3p" : {
             "value" : 0.3183856502242152
           },
+          "def_3p_opp":{"value":36.240722891566264},
           "off_poss" : {
             "value" : 1883.0
           },
@@ -240,6 +269,7 @@ export const sampleTeamStatsResponse =
           "def_3p" : {
             "value" : 0.3020833333333333
           },
+          "def_3p_opp":{"value":37.240722891566264},
           "off_poss" : {
             "value" : 590.0
           },
@@ -375,6 +405,7 @@ export const sampleTeamStatsResponse =
           "def_3p" : {
             "value" : 0.3249475890985325
           },
+          "def_3p_opp":{"value":35.240722891566264},
           "off_poss" : {
             "value" : 1293.0
           },

@@ -796,6 +796,9 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                     "value": 0.20747998314369998,
                   },
                   "onOffKey": "On",
+                  "oppo_def_3p_opp": Object {
+                    "value": 34.240722891566264,
+                  },
                   "oppo_total_def_2p_attempts": Object {
                     "value": 784,
                   },
@@ -1098,6 +1101,9 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                     "value": 0.24612708128392902,
                   },
                   "onOffKey": "On",
+                  "oppo_def_3p_opp": Object {
+                    "value": 35.240722891566264,
+                  },
                   "oppo_total_def_2p_attempts": Object {
                     "value": 692,
                   },
@@ -1397,6 +1403,9 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                     "value": 0.26103275705186535,
                   },
                   "onOffKey": "Off",
+                  "oppo_def_3p_opp": Object {
+                    "value": 32.240722891566264,
+                  },
                   "oppo_total_def_2p_attempts": Object {
                     "value": 283,
                   },
@@ -1699,6 +1708,9 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                     "value": 0.1638888888888889,
                   },
                   "onOffKey": "Off",
+                  "oppo_def_3p_opp": Object {
+                    "value": 33.240722891566264,
+                  },
                   "oppo_total_def_2p_attempts": Object {
                     "value": 7,
                   },
@@ -2897,6 +2909,9 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
                     "value": 0.25007566018533395,
                   },
                   "onOffKey": "Baseline",
+                  "oppo_def_3p_opp": Object {
+                    "value": 30.240722891566264,
+                  },
                   "oppo_total_def_2p_attempts": Object {
                     "value": 975,
                   },
@@ -3192,6 +3207,9 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
                     "value": 0.20747998314369998,
                   },
                   "onOffKey": "Baseline",
+                  "oppo_def_3p_opp": Object {
+                    "value": 31.240722891566264,
+                  },
                   "oppo_total_def_2p_attempts": Object {
                     "value": 784,
                   },
@@ -4370,6 +4388,9 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                     "value": 0.25007566018533395,
                   },
                   "onOffKey": "Baseline",
+                  "oppo_def_3p_opp": Object {
+                    "value": 30.240722891566264,
+                  },
                   "oppo_total_def_2p_attempts": Object {
                     "value": 975,
                   },
@@ -4642,6 +4663,9 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                     "value": 0.25007566018533395,
                   },
                   "onOffKey": "Baseline",
+                  "oppo_def_3p_opp": Object {
+                    "value": 30.240722891566264,
+                  },
                   "oppo_total_def_2p_attempts": Object {
                     "value": 975,
                   },
@@ -4917,6 +4941,9 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                     "value": 0.20747998314369998,
                   },
                   "onOffKey": "Baseline",
+                  "oppo_def_3p_opp": Object {
+                    "value": 31.240722891566264,
+                  },
                   "oppo_total_def_2p_attempts": Object {
                     "value": 784,
                   },
@@ -5189,6 +5216,9 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                     "value": 0.20747998314369998,
                   },
                   "onOffKey": "Baseline",
+                  "oppo_def_3p_opp": Object {
+                    "value": 31.240722891566264,
+                  },
                   "oppo_total_def_2p_attempts": Object {
                     "value": 784,
                   },
@@ -6373,6 +6403,9 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                     "value": 0.20747998314369998,
                   },
                   "onOffKey": "On",
+                  "oppo_def_3p_opp": Object {
+                    "value": 34.240722891566264,
+                  },
                   "oppo_total_def_2p_attempts": Object {
                     "value": 784,
                   },
@@ -6651,6 +6684,9 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                     "value": 0.20747998314369998,
                   },
                   "onOffKey": "On",
+                  "oppo_def_3p_opp": Object {
+                    "value": 34.240722891566264,
+                  },
                   "oppo_total_def_2p_attempts": Object {
                     "value": 784,
                   },
@@ -6932,6 +6968,9 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                     "value": 0.24612708128392902,
                   },
                   "onOffKey": "On",
+                  "oppo_def_3p_opp": Object {
+                    "value": 35.240722891566264,
+                  },
                   "oppo_total_def_2p_attempts": Object {
                     "value": 692,
                   },
@@ -7210,6 +7249,9 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                     "value": 0.24612708128392902,
                   },
                   "onOffKey": "On",
+                  "oppo_def_3p_opp": Object {
+                    "value": 35.240722891566264,
+                  },
                   "oppo_total_def_2p_attempts": Object {
                     "value": 692,
                   },
@@ -7488,6 +7530,9 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                     "value": 0.26103275705186535,
                   },
                   "onOffKey": "Off",
+                  "oppo_def_3p_opp": Object {
+                    "value": 32.240722891566264,
+                  },
                   "oppo_total_def_2p_attempts": Object {
                     "value": 283,
                   },
@@ -7766,6 +7811,9 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                     "value": 0.26103275705186535,
                   },
                   "onOffKey": "Off",
+                  "oppo_def_3p_opp": Object {
+                    "value": 32.240722891566264,
+                  },
                   "oppo_total_def_2p_attempts": Object {
                     "value": 283,
                   },
@@ -8047,6 +8095,9 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                     "value": 0.1638888888888889,
                   },
                   "onOffKey": "Off",
+                  "oppo_def_3p_opp": Object {
+                    "value": 33.240722891566264,
+                  },
                   "oppo_total_def_2p_attempts": Object {
                     "value": 7,
                   },
@@ -8325,6 +8376,9 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                     "value": 0.1638888888888889,
                   },
                   "onOffKey": "Off",
+                  "oppo_def_3p_opp": Object {
+                    "value": 33.240722891566264,
+                  },
                   "oppo_total_def_2p_attempts": Object {
                     "value": 7,
                   },
