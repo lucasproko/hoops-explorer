@@ -30,6 +30,7 @@ import LuckAdjDiagView from "./LuckAdjDiagView"
 
 // Util imports
 import { CbbColors } from "../utils/CbbColors"
+import { GameFilterParams } from "../utils/FilterModels"
 import { CommonTableDefs } from "../utils/CommonTableDefs"
 
 export type TeamStatsModel = {
