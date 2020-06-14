@@ -14,7 +14,8 @@ function marshallRequest(
   avgEfficiency: number
 ) {
   //(make the query a bit more efficient by not including the efficieny/lookup JSON objects unless we need them)
-  const needEff = (Number(params.minRank || "0") > 0) || (Number(params.maxRank || "400") < 400);
+  const needEff = (Number(params.minRank || "0") > 0) || (Number(params.maxRank || "400") < 400)
+                  || ((params.queryFilters || "").indexOf("Conf") >= 0);
 
   const body = [
     JSON.stringify({ index: index }),
