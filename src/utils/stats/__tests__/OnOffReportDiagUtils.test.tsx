@@ -1,12 +1,12 @@
 import renderer from 'react-test-renderer';
 import React from 'react';
 import { OnOffReportDiagUtils } from '../OnOffReportDiagUtils';
-import { CommonFilterParams } from "../FilterModels";
+import { CommonFilterParams } from "../../FilterModels";
 import { LineupUtils } from "../LineupUtils";
-import { CommonTableDefs } from "../CommonTableDefs";
-import { LineupStatsModel } from '../../components/LineupStatsTable';
-import GenericTable, { GenericTableOps, GenericTableColProps } from "../../components/GenericTable";
-import { sampleLineupStatsResponse } from "../../sample-data/sampleLineupStatsResponse"
+import { CommonTableDefs } from "../../CommonTableDefs";
+import { LineupStatsModel } from '../../../components/LineupStatsTable';
+import GenericTable, { GenericTableOps, GenericTableColProps } from "../../../components/GenericTable";
+import { sampleLineupStatsResponse } from "../../../sample-data/sampleLineupStatsResponse"
 import { shallow } from 'enzyme'
 import toJson from 'enzyme-to-json'
 

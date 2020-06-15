@@ -13,13 +13,13 @@ import Tooltip from 'react-bootstrap/Tooltip';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 
 // Component imports
-import GenericTable, { GenericTableOps, GenericTableColProps } from "../components/GenericTable";
+import GenericTable, { GenericTableOps, GenericTableColProps } from "../../components/GenericTable";
 
 // Utils
-import { QueryUtils } from './QueryUtils';
-import { UrlRouting } from './UrlRouting';
-import { CommonTableDefs } from "./CommonTableDefs";
-import { CommonFilterParams, TeamReportFilterParams, ParamDefaults } from "./FilterModels";
+import { QueryUtils } from '../QueryUtils';
+import { UrlRouting } from '../UrlRouting';
+import { CommonTableDefs } from "../CommonTableDefs";
+import { CommonFilterParams, TeamReportFilterParams, ParamDefaults } from "../FilterModels";
 
 /** Encapsulates some of the logic used to build the diag visualiations in TeamReportStatsTable */
 export class OnOffReportDiagUtils {

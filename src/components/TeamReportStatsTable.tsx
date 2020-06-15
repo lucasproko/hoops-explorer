@@ -37,13 +37,13 @@ import RepOnOffDiagView from "./RepOnOffDiagView";
 
 // Util imports
 import { getCommonFilterParams, TeamReportFilterParams, ParamDefaults } from '../utils/FilterModels';
-import { LineupUtils } from '../utils/LineupUtils';
-import { RapmInfo, RapmUtils } from '../utils/RapmUtils';
+import { LineupUtils } from '../utils/stats/LineupUtils';
+import { RapmInfo, RapmUtils } from '../utils/stats/RapmUtils';
 import { UrlRouting } from '../utils/UrlRouting';
 import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
 import { averageStatsInfo } from '../utils/internal-data/averageStatsInfo';
 import { CbbColors } from "../utils/CbbColors";
-import { OnOffReportDiagUtils } from "../utils/OnOffReportDiagUtils";
+import { OnOffReportDiagUtils } from "../utils/stats/OnOffReportDiagUtils";
 import { CommonTableDefs } from "../utils/CommonTableDefs";
 
 /** Convert from LineupStatsModel into this */

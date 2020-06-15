@@ -18,7 +18,7 @@ import GenericTable, { GenericTableOps, GenericTableColProps } from "./GenericTa
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, Legend, ReferenceLine, Label } from 'recharts';
 
 // Utils
-import { RapmInfo, RapmPlayerContext, RapmPreProcDiagnostics, RapmProcessingInputs, RapmUtils } from "../utils/RapmUtils";
+import { RapmInfo, RapmPlayerContext, RapmPreProcDiagnostics, RapmProcessingInputs, RapmUtils } from "../utils/stats/RapmUtils";
 import { CbbColors } from "../utils/CbbColors";
 
 type Props = {

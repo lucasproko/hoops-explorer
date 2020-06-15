@@ -15,7 +15,7 @@ import Tooltip from 'react-bootstrap/Tooltip';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 
 // Utils
-import { StatsUtils } from "../utils/StatsUtils";
+import { PositionUtils } from "../utils/stats/PositionUtils";
 import { CommonTableDefs } from "../utils/CommonTableDefs";
 import { CbbColors } from "../utils/CbbColors";
 
@@ -122,13 +122,13 @@ const PositionalDiagView: React.FunctionComponent<Props> = ({player, showHelp, s
 
   const topRef = React.createRef<HTMLDivElement>();
 
-  const [ positionInfo, positionDiags ] = StatsUtils.buildPositionConfidences(player);
-  const [ positionId, positionIdDiag ] = StatsUtils.buildPosition(positionInfo, player);
+  const [ positionInfo, positionDiags ] = PositionUtils.buildPositionConfidences(player);
+  const [ positionId, positionIdDiag ] = PositionUtils.buildPosition(positionInfo, player);
 
   const [ showComplexDiag, setShowComplexDiag ] = useState(_.isNil(showDetailsOverride) ? false : showDetailsOverride);
 
   const simpleDiagTableData = [ GenericTableOps.buildDataRow({
-    title: StatsUtils.idToPosition[positionId] || "Unknown",
+    title: PositionUtils.idToPosition[positionId] || "Unknown",
     ...(_.mapValues(positionInfo, (p: number) => { return { value: p }; }))
   }, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta) ];
 
@@ -143,19 +143,19 @@ const PositionalDiagView: React.FunctionComponent<Props> = ({player, showHelp, s
         buildFeatureTooltip("totalScore", "The average score per position/positional group, and the total score for this player/position group. (10x the actual -relative- value, to make it more readable.)")
       }><b>Total Score</b></OverlayTrigger>
       ,
-      ...(_.mapKeys(StatsUtils.averageScoresByPos, (v, s) => "av_" + s)),
+      ...(_.mapKeys(PositionUtils.averageScoresByPos, (v, s) => "av_" + s)),
       ...(_.chain(positionDiags.scores)
           .mapKeys((v, s) => "contrib_" + s)
           .mapValues((s) => { return { value: s } })).value(),
     }, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta)
 
-  ].concat(_.chain(StatsUtils.positionFeatureWeights) // Per field contrib/weights:
+  ].concat(_.chain(PositionUtils.positionFeatureWeights) // Per field contrib/weights:
     .flatMap((feat_scale_weights: [string, number, number[]]) => {
       const feat = feat_scale_weights[0];
       const scale = feat_scale_weights[1];
       const weightArray = feat_scale_weights[2];
       const weights = _.mapValues(_.fromPairs(
-        _.zip(StatsUtils.tradPosList, weightArray)
+        _.zip(PositionUtils.tradPosList, weightArray)
       ), (v: any) => { return { value: v } });
 
       const calculated = positionDiags.calculated;
@@ -172,12 +172,12 @@ const PositionalDiagView: React.FunctionComponent<Props> = ({player, showHelp, s
         ,
         player: { value: fieldVal*(scale*0.01) }, //(convert to % where needed)
         ...weights,
-        ...(_.fromPairs(_.flatMap(StatsUtils.tradPosList, (key: string, index: number) => {
+        ...(_.fromPairs(_.flatMap(PositionUtils.tradPosList, (key: string, index: number) => {
           return [[ "av_" + key, {
-            value: StatsUtils.positionFeatureAverages[feat][index]*0.01 //(convert to %)
+            value: PositionUtils.positionFeatureAverages[feat][index]*0.01 //(convert to %)
           }], [ "contrib_" + key, {
               //(0.1 is being applied to all scores - once used to build conf%s - to make the display prettier)
-            value: (weightArray[index] || 0)*(fieldVal*scale - StatsUtils.positionFeatureAverages[feat][index])*0.1
+            value: (weightArray[index] || 0)*(fieldVal*scale - PositionUtils.positionFeatureAverages[feat][index])*0.1
           } ]];
         })))
       }, GenericTableOps.defaultFormatter, (key: string, value: any) => feat);

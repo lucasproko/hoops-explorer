@@ -3,12 +3,12 @@
 import _ from 'lodash';
 
 import { LineupUtils } from "../LineupUtils";
-import { GameFilterParams, LineupFilterParams, TeamReportFilterParams } from "../utils/FilterModels";
-import { sampleLineupStatsResponse } from "../../sample-data/sampleLineupStatsResponse";
-import { LineupStatsModel } from './LineupStatsTable';
+import { GameFilterParams, LineupFilterParams, TeamReportFilterParams } from "../../FilterModels";
+import { sampleLineupStatsResponse } from "../../../sample-data/sampleLineupStatsResponse";
+//import { LineupStatsModel } from '../../../components/LineupStatsTable';
 
 describe("LineupUtils", () => {
-  const lineupReport: LineupStatsModel = {
+  const lineupReport = {
     lineups: sampleLineupStatsResponse.responses[0].aggregations.lineups.buckets,
     avgOff: 100.0,
     error_code: "test"
@@ -18,7 +18,7 @@ describe("LineupUtils", () => {
   };
 
   test("LineupUtils - calculateAggregatedLineupStats", () => {
-    lineupReport.lineups[1].rapmRemove = true; //ignore the 2nd element
+    (lineupReport.lineups[1] as any).rapmRemove = true; //ignore the 2nd element
     const res = LineupUtils.calculateAggregatedLineupStats(lineupReport.lineups);
     expect(_.chain(res).pick([
       "off_poss", "def_poss", "off_adj_ppp", "def_adj_ppp"

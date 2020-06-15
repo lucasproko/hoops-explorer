@@ -4,7 +4,7 @@ import _ from "lodash";
 
 // Other app utils
 import { LineupUtils } from "./LineupUtils";
-import { CommonTableDefs } from "./CommonTableDefs";
+import { CommonTableDefs } from "../CommonTableDefs";
 
 // Math utils
 // @ts-ignore

@@ -15,7 +15,6 @@ import Tooltip from 'react-bootstrap/Tooltip';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 
 // Utils
-import { StatsUtils } from "../utils/StatsUtils";
 import { CommonTableDefs } from "../utils/CommonTableDefs";
 import { CbbColors } from "../utils/CbbColors";
 
@@ -41,6 +40,7 @@ const LuckAdjDiagView: React.FunctionComponent<Props> = ({teamStats, rosterStats
         <ul>
           <li>GLOBAL POSS {(teamStats?.global?.def_poss?.value || 0).toFixed(0)}</li>
           <li>GLOBAL 3P SOS {(teamStats?.global?.def_3p_opp?.value || 0).toFixed(1)}</li>
+          <li>GLOBAL 3P D {((teamStats?.global?.def_3p?.value || 0)*100).toFixed(1)}</li>
           <li>BASE 3P SOS {(teamStats?.baseline?.def_3p_opp?.value || 0).toFixed(1)}</li>
           <li>ON 3P SOS {(teamStats?.on?.def_3p_opp?.value || 0).toFixed(1)}</li>
           <li>OFF 3P SOS {(teamStats?.off?.def_3p_opp?.value || 0).toFixed(1)}</li>

@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 import { NextPage } from 'next';
 
 // Utils
-import { ORtgDiagnostics, DRtgDiagnostics } from "../utils/StatsUtils";
+import { ORtgDiagnostics, DRtgDiagnostics } from "../utils/stats/RatingUtils";
 
 
 type Props = {

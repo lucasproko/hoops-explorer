@@ -143,8 +143,8 @@ export type DRtgDiagnostics = {
 /** (just to make copy/pasting between colab and this code easier)*/
 const array = (v: number[]) => { return v; }
 
-/** General cbb complex stats calcs */
-export class StatsUtils {
+/** Contains the logic to build offensive and defensive ratings for individual players */
+export class RatingUtils {
 
   /** From https://www.basketball-reference.com/about/ratings.html */
   static buildORtg(
@@ -586,26 +586,26 @@ export class StatsUtils {
       array([3.13113654, 3.08755648, 3.86938628, 4.45762274, 5.06942942]),
     } as Record<string, number[]>;
 
-  static readonly averageScoresByPos = _.chain(StatsUtils.positionFeatureWeights).transform(
+  static readonly averageScoresByPos = _.chain(RatingUtils.positionFeatureWeights).transform(
     (acc: number[], feat_scale_weights: [string, number, number[]]) => {
       const feat = feat_scale_weights[0];
       const scale = feat_scale_weights[1];
       const weights = feat_scale_weights[2];
-      const fieldVal = StatsUtils.positionFeatureAverages[feat];
+      const fieldVal = RatingUtils.positionFeatureAverages[feat];
 
       weights.forEach((weight, index) => {
         const sumPart = fieldVal[index]*weight
         acc[index] += sumPart; //(factor to make the scores render nicely)
       });
 
-    }, _.clone(StatsUtils.positionFeatureInit)
-  ).map((v, i) => [ StatsUtils.tradPosList[i], { value: 0.1*v } ]).fromPairs().value();
+    }, _.clone(RatingUtils.positionFeatureInit)
+  ).map((v, i) => [ RatingUtils.tradPosList[i], { value: 0.1*v } ]).fromPairs().value();
 
   /** Returns a vector of 5 elements representing the confidence that the player
       can play that position (0=PG, 1=SG, 4=SF, 4=PF, 5=C)
   */
   static buildPositionConfidences(player: Record<string, any>): [ Record<string, number>, any ] {
-    const posList = StatsUtils.tradPosList;
+    const posList = RatingUtils.tradPosList;
 
     const calculated = {
       calc_ast_tov: player.total_off_assist.value / (player.total_off_to.value || 1),
@@ -617,7 +617,7 @@ export class StatsUtils {
         (player.off_efg.value * player.total_off_fta.value) / (player.total_off_ftm.value || 1)
     } as Record<string, number>;
 
-    const scores = _.transform(StatsUtils.positionFeatureWeights,
+    const scores = _.transform(RatingUtils.positionFeatureWeights,
       (acc: number[], feat_scale_weights: [string, number, number[]]) => {
         const feat = feat_scale_weights[0];
         const scale = feat_scale_weights[1];
@@ -632,7 +632,7 @@ export class StatsUtils {
         // (used for debugging - shouldn't be needed moving forward)
         //console.log(`${player.key}: ${pos} ${scale} ${weights}  - ${fieldVal} ... ${acc}`);
 
-      }, _.clone(StatsUtils.positionFeatureInit)
+      }, _.clone(RatingUtils.positionFeatureInit)
     );
 
     const addPosAndScale = (v: number[], scale: number) => {
@@ -668,7 +668,7 @@ export class StatsUtils {
 
   /** Tag the player with a position string given the confidences */
   static buildPosition(confs: Record<string, number>, player: Record<string, any>): [string, string] {
-    const posList = StatsUtils.tradPosList;
+    const posList = RatingUtils.tradPosList;
 
     // Get the class with the highest prio
     const maxPos = _.maxBy(posList, (pos: string) => confs[pos] || 0) || 0;

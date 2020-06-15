@@ -2,41 +2,22 @@
 
 import _ from 'lodash';
 
-import { StatsUtils } from "../StatsUtils";
-import { GameFilterParams, LineupFilterParams, TeamReportFilterParams } from "../utils/FilterModels";
-import { samplePlayerStatsResponse } from "../../sample-data/samplePlayerStatsResponse";
-import { sampleOrtgDiagnostics } from "../../sample-data/sampleOrtgDiagnostics";
-import { sampleDrtgDiagnostics } from "../../sample-data/sampleDrtgDiagnostics";
-import { LineupStatsModel } from './RosterStatsTable';
+import { PositionUtils } from "../PositionUtils";
+import { GameFilterParams, LineupFilterParams, TeamReportFilterParams } from "../../FilterModels";
+import { samplePlayerStatsResponse } from "../../../sample-data/samplePlayerStatsResponse";
 
-describe("StatsUtils", () => {
-  test("StatsUtils - buildORtg", () => {
-    const [ oRtg, adjORtg, oRtgDiags ] = StatsUtils.buildORtg(
-      samplePlayerStatsResponse.aggregations.tri_filter.buckets.baseline.player.buckets[0], 100, true
-    );
-    expect(oRtg).toEqual({value:112.99672660419142});
-    expect(adjORtg).toEqual({value:4.916508627129151});
-    expect(oRtgDiags).toEqual(sampleOrtgDiagnostics);
-  });
-  test("StatsUtils - buildDRtg", () => {
-    const [ dRtg, adjDRtg, dRtgDiags ] = StatsUtils.buildDRtg(
-      samplePlayerStatsResponse.aggregations.tri_filter.buckets.baseline.player.buckets[0], 100, true
-    );
-    expect(dRtg).toEqual({value:110.2860531155855});
-    expect(adjDRtg).toEqual({value:0.4085659844387266});
-    expect(dRtgDiags).toEqual(sampleDrtgDiagnostics);
-  });
+describe("PositionUtils", () => {
 
   const tidyObj = (vo: Record<string, number>) => _.mapValues(vo, (v: any) => (v.value || v).toFixed(2))
 
-  test("StatsUtils - averageScoresByPos", () => {
-    expect(_.values(tidyObj(StatsUtils.averageScoresByPos))).toEqual(["0.15", "-0.03", "-0.11", "0.03", "0.42", ]);
+  test("PositionUtils - averageScoresByPos", () => {
+    expect(_.values(tidyObj(PositionUtils.averageScoresByPos))).toEqual(["0.15", "-0.03", "-0.11", "0.03", "0.42", ]);
   });
-  test("StatsUtils - buildPositionConfidences", () => {
+  test("PositionUtils - buildPositionConfidences", () => {
 
     // Some hand-checked results:
 
-    const [ realConfidences, realDiags ] = StatsUtils.buildPositionConfidences(
+    const [ realConfidences, realDiags ] = PositionUtils.buildPositionConfidences(
       samplePlayerStatsResponse.aggregations.tri_filter.buckets.baseline.player.buckets[0]
     );
     expect(_.values(tidyObj(realConfidences))).toEqual(["0.95", "0.05", "0.00", "0.00", "0.00", ]);
@@ -49,15 +30,15 @@ describe("StatsUtils", () => {
       "calc_rim_relative": "1.07",
       "calc_three_relative": "1.02"
     });
-    expect(_.keys(realConfidences)).toEqual(StatsUtils.tradPosList)
-    expect(_.keys(realDiags.scores)).toEqual(StatsUtils.tradPosList)
+    expect(_.keys(realConfidences)).toEqual(PositionUtils.tradPosList)
+    expect(_.keys(realDiags.scores)).toEqual(PositionUtils.tradPosList)
 
-    const [ realConfidences2, realDiags2 ] = StatsUtils.buildPositionConfidences(
+    const [ realConfidences2, realDiags2 ] = PositionUtils.buildPositionConfidences(
       samplePlayerStatsResponse.aggregations.tri_filter.buckets.baseline.player.buckets[1]
     );
     expect(_.values(tidyObj(realConfidences2))).toEqual(["0.21", "0.71", "0.07", "0.01", "0.00", ]);
   });
-  test("StatsUtils - buildPosition", () => {
+  test("PositionUtils - buildPosition", () => {
     const testCases = [
       // Point guards:
       {
@@ -136,22 +117,22 @@ describe("StatsUtils", () => {
         pos: "C", fallbackPos: "F/C?", diag: `(P[C] >= 85%)`, name: "Center"
       }
     ];
-    const posList = StatsUtils.tradPosList;
+    const posList = PositionUtils.tradPosList;
     testCases.forEach((caseObj: any) => {
       const confObj = _.fromPairs(_.zip(posList, caseObj.confs).map(kv => [kv[0], kv[1]]));
       const player = _.mapValues(caseObj.extra, (v: any) => { return { value: v}; });
-      expect(StatsUtils.buildPosition(confObj, player)).toEqual([ caseObj.pos, caseObj.diag ]);
+      expect(PositionUtils.buildPosition(confObj, player)).toEqual([ caseObj.pos, caseObj.diag ]);
 
       if (caseObj.name) {
-        expect(StatsUtils.idToPosition[caseObj.pos as string]).toEqual(caseObj.name);
+        expect(PositionUtils.idToPosition[caseObj.pos as string]).toEqual(caseObj.name);
       }
 
       const playerTooFewPos = _.chain(player).clone().merge({off_team_poss: { value: 100 } }).value();
-      expect(StatsUtils.buildPosition(confObj, playerTooFewPos)).toEqual([ caseObj.fallbackPos,
+      expect(PositionUtils.buildPosition(confObj, playerTooFewPos)).toEqual([ caseObj.fallbackPos,
         `Too few used possessions [20.0]=[100]*[20.0]% < [25.0]. Would have matched [${caseObj.pos}] from rule [${caseObj.diag}]`
       ]);
     });
-    expect(StatsUtils.idToPosition["G?"]).toEqual("Unknown - probably Guard");
-    expect(StatsUtils.idToPosition["F/C?"]).toEqual("Unknown - probably Forward/Center");
+    expect(PositionUtils.idToPosition["G?"]).toEqual("Unknown - probably Guard");
+    expect(PositionUtils.idToPosition["F/C?"]).toEqual("Unknown - probably Forward/Center");
   });
 });

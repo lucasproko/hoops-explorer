@@ -7,7 +7,7 @@ import _ from "lodash";
 import { NextPage } from 'next';
 
 // Utils
-import { RapmInfo, RapmPlayerContext, RapmPreProcDiagnostics, RapmProcessingInputs, RapmUtils } from "../utils/RapmUtils";
+import { RapmInfo, RapmPlayerContext, RapmPreProcDiagnostics, RapmProcessingInputs, RapmUtils } from "../utils/stats/RapmUtils";
 
 type Props = {
   rapmInfo: RapmInfo,

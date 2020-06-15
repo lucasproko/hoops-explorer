@@ -4,9 +4,9 @@ import RapmGlobalDiagView from '../RapmGlobalDiagView';
 
 // Needed to build the data
 import { sampleLineupStatsResponse } from "../../sample-data/sampleLineupStatsResponse";
-import { LineupUtils } from "../../utils/LineupUtils";
-import { RapmUtils } from "../../utils/RapmUtils";
-import { semiRealRapmResults } from "../../utils/__tests__/RapmUtils.test";
+import { LineupUtils } from "../../utils/stats/LineupUtils";
+import { RapmUtils } from "../../utils/stats/RapmUtils";
+import { semiRealRapmResults } from "../../utils/stats/__tests__/RapmUtils.test";
 
 describe("RapmGlobalDiagView", () => {
 

@@ -6,7 +6,7 @@ import { RapmUtils, RapmPlayerContext, RapmPreProcDiagnostics } from "../RapmUti
 import { apply, transpose, matrix, zeros } from 'mathjs'
 
 // For creating test data:
-import { sampleLineupStatsResponse } from "../../sample-data/sampleLineupStatsResponse";
+import { sampleLineupStatsResponse } from "../../../sample-data/sampleLineupStatsResponse";
 import { LineupUtils } from "../LineupUtils";
 
 // Some handy data:
