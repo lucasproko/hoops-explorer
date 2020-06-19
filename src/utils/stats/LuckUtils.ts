@@ -64,9 +64,9 @@ export class LuckUtils {
     const luckPct = 0.66;
 
     const baseDef3P = base?.def_3p?.value || 0;
-    const base3PSos = 0.01*base?.def_3p_opp?.value || 0; //(normalize to %)
+    const baseDef3PSos = 0.01*base?.def_3p_opp?.value || 0; //(normalize to %)
     const basePoss = base?.def_poss?.value || 0;
-    const base3PSosAdj = (1 - luckPct)*(baseDef3P - base3PSos);
+    const base3PSosAdj = (1 - luckPct)*(baseDef3P - baseDef3PSos);
 
     const sampleDef3P = sample?.def_3p?.value || 0;
     const sample3PSos = 0.01*sample?.def_3p_opp?.value || 0; //(normalize to %)
@@ -78,20 +78,20 @@ export class LuckUtils {
     const sampleOffSos = sample?.off_adj_opp?.value || 0;
 
     const avg3PSosAdj = (samplePoss*sample3PSosAdj + basePoss*base3PSosAdj)/((samplePoss + basePoss) || 1);
-    const adj3PDef = sample3PSos + avg3PSosAdj;
+    const adjDef3P = sample3PSos + avg3PSosAdj;
 
     const sampleDef3PM = sample?.total_def_3p_made?.value;
     const sampleDef3PA = sample?.total_def_3p_attempts?.value;
     const sampleDef2PA = sample?.total_def_2p_attempts?.value;
 
-    const deltaDefEfg = 1.5*(adj3PDef - sampleDef3P)*sampleDef3PA/((sampleDef3PA + sampleDef2PA) || 1);
-    const deltaDefPpp = 300*(adj3PDef - sampleDef3P)*sampleDef3PA/(samplePoss || 1);
+    const deltaDefEfg = 1.5*(adjDef3P - sampleDef3P)*sampleDef3PA/((sampleDef3PA + sampleDef2PA) || 1);
+    const deltaDefPpp = 300*(adjDef3P - sampleDef3P)*sampleDef3PA/(samplePoss || 1);
     //TODO: what about off offensive rebounds on misses?
     const deltaDefAdjEff = deltaDefPpp*avgEff/(sampleOffSos || 1);
 
     return {
       avgEff, luckPct,
-      baseDef3P, base3PSos, basePoss,
+      baseDef3P, baseDef3PSos, basePoss,
       base3PSosAdj,
 
       sampleDef3P, sample3PSos, samplePoss,
@@ -100,7 +100,7 @@ export class LuckUtils {
       sampleDefEfg, sampleDefPpp, sampleOffSos,
       sampleDef3PM, sampleDef3PA, sampleDef2PA,
 
-      avg3PSosAdj, adj3PDef,
+      avg3PSosAdj, adjDef3P,
 
       deltaDefEfg, deltaDefPpp, deltaDefAdjEff
     } as DefLuckAdjustmentDiags;
