@@ -164,6 +164,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, teamS
             name="On"
             offLuck={luckAdjustmentOn[0]}
             defLuck={luckAdjustmentOn[1]}
+            baseline={"season"}
           />
       </Row> : null }
       { showLuckAdjDiags && luckAdjustmentOff ? <Row className="small">
@@ -171,6 +172,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, teamS
             name="Off"
             offLuck={luckAdjustmentOff[0]}
             defLuck={luckAdjustmentOff[1]}
+            baseline={"season"}
           />
       </Row> : null }
       { showLuckAdjDiags && luckAdjustmentBase ? <Row className="small">
@@ -178,6 +180,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, teamS
             name="Baseline"
             offLuck={luckAdjustmentBase[0]}
             defLuck={luckAdjustmentBase[1]}
+            baseline={"season"}
           />
       </Row> : null }
     </LoadingOverlay>
