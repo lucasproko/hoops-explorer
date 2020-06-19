@@ -32,6 +32,8 @@ import LuckAdjDiagView from "./LuckAdjDiagView"
 import { CbbColors } from "../utils/CbbColors"
 import { GameFilterParams } from "../utils/FilterModels"
 import { CommonTableDefs } from "../utils/CommonTableDefs"
+import { LuckUtils } from "../utils/stats/LuckUtils";
+import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
 
 export type TeamStatsModel = {
   on: any,
@@ -42,12 +44,13 @@ export type TeamStatsModel = {
   error_code?: string
 }
 type Props = {
+  gameFilterParams: GameFilterParams;
   teamStats: TeamStatsModel,
   rosterStats: RosterStatsModel,
   onChangeState: (newParams: GameFilterParams) => void;
 }
 
-const TeamStatsTable: React.FunctionComponent<Props> = ({teamStats, rosterStats, onChangeState}) => {
+const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, teamStats, rosterStats, onChangeState}) => {
 
   // 1] Data Model
 
@@ -63,6 +66,25 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({teamStats, rosterStats,
 
   const maybeOn = teamStats.onOffMode ? "On ('A')" : "'A'"
   const maybeOff = teamStats.onOffMode ? "Off ('B')" : "'B'"
+
+  //TODO: luck .. incorporate into stats
+  const genderYearLookup = `${gameFilterParams.gender}_${gameFilterParams.year}`;
+  const avgEfficiency = efficiencyAverages[genderYearLookup] || efficiencyAverages.fallback;
+
+  const luckAdjustmentOn = (showLuckAdjDiags && teamStats.on?.doc_count) ? [
+    LuckUtils.calcOffTeamLuckAdj(teamStats.on, teamStats.global, avgEfficiency),
+    LuckUtils.calcDefTeamLuckAdj(teamStats.on, teamStats.global, avgEfficiency),
+  ]: undefined;
+
+  const luckAdjustmentOff = (showLuckAdjDiags && teamStats.off?.doc_count) ? [
+    LuckUtils.calcOffTeamLuckAdj(teamStats.off, teamStats.global, avgEfficiency),
+    LuckUtils.calcDefTeamLuckAdj(teamStats.off, teamStats.global, avgEfficiency),
+  ]: undefined;
+
+  const luckAdjustmentBase = (showLuckAdjDiags && teamStats.baseline?.doc_count) ? [
+    LuckUtils.calcOffTeamLuckAdj(teamStats.baseline, teamStats.global, avgEfficiency),
+    LuckUtils.calcDefTeamLuckAdj(teamStats.baseline, teamStats.global, avgEfficiency),
+  ]: undefined;
 
   const teamStatsOn = {
     off_title: `${maybeOn} Offense`,
@@ -137,10 +159,25 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({teamStats, rosterStats,
           <GenericTable tableCopyId="teamStatsTable" tableFields={CommonTableDefs.onOffTable} tableData={tableData}/>
         </Col>
       </Row>
-      { showLuckAdjDiags ? <Row className="small">
+      { showLuckAdjDiags && luckAdjustmentOn ? <Row className="small">
           <LuckAdjDiagView
-            teamStats={teamStats}
-            rosterStats={rosterStats}
+            name="On"
+            offLuck={luckAdjustmentOn[0]}
+            defLuck={luckAdjustmentOn[1]}
+          />
+      </Row> : null }
+      { showLuckAdjDiags && luckAdjustmentOff ? <Row className="small">
+          <LuckAdjDiagView
+            name="Off"
+            offLuck={luckAdjustmentOff[0]}
+            defLuck={luckAdjustmentOff[1]}
+          />
+      </Row> : null }
+      { showLuckAdjDiags && luckAdjustmentBase ? <Row className="small">
+          <LuckAdjDiagView
+            name="Baseline"
+            offLuck={luckAdjustmentBase[0]}
+            defLuck={luckAdjustmentBase[1]}
           />
       </Row> : null }
     </LoadingOverlay>

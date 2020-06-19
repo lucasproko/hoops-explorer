@@ -17,6 +17,7 @@ import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 // Utils
 import { CommonTableDefs } from "../utils/CommonTableDefs";
 import { CbbColors } from "../utils/CbbColors";
+import { OffLuckAdjustmentDiags, DefLuckAdjustmentDiags } from "../utils/stats/LuckUtils";
 
 // Component imports
 import GenericTable, { GenericTableOps, GenericTableColProps } from "./GenericTable";
@@ -24,26 +25,24 @@ import { TeamStatsModel } from '../components/TeamStatsTable';
 import { RosterStatsModel } from '../components/RosterStatsTable';
 
 type Props = {
-  teamStats: TeamStatsModel,
-  rosterStats: RosterStatsModel
+  name: string,
+  offLuck: OffLuckAdjustmentDiags,
+  defLuck: DefLuckAdjustmentDiags
 };
-const LuckAdjDiagView: React.FunctionComponent<Props> = ({teamStats, rosterStats}) => {
+const LuckAdjDiagView: React.FunctionComponent<Props> = ({name, offLuck, defLuck}) => {
 
   const topRef = React.createRef<HTMLDivElement>();
 
   return <span ref={topRef}>
       <span>
-        <b>Luck Adjustment diagnostics [TODO]</b>
+        <b>Luck Adjustment diagnostics [{name}]</b>
       </span>
       <ul>
+        <li>Offense</li>
         <li>Defense</li>
         <ul>
-          <li>GLOBAL POSS {(teamStats?.global?.def_poss?.value || 0).toFixed(0)}</li>
-          <li>GLOBAL 3P SOS {(teamStats?.global?.def_3p_opp?.value || 0).toFixed(1)}</li>
-          <li>GLOBAL 3P D {((teamStats?.global?.def_3p?.value || 0)*100).toFixed(1)}</li>
-          <li>BASE 3P SOS {(teamStats?.baseline?.def_3p_opp?.value || 0).toFixed(1)}</li>
-          <li>ON 3P SOS {(teamStats?.on?.def_3p_opp?.value || 0).toFixed(1)}</li>
-          <li>OFF 3P SOS {(teamStats?.off?.def_3p_opp?.value || 0).toFixed(1)}</li>
+          <li>{JSON.stringify(_.mapValues(defLuck, (v) => Math.abs(v) < 1.0 ? (100*v).toFixed(1) : v),
+            null, 3)}</li>
         </ul>
       </ul>
 
