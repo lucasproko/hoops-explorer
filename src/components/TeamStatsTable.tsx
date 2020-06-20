@@ -71,20 +71,26 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, teamS
   const genderYearLookup = `${gameFilterParams.gender}_${gameFilterParams.year}`;
   const avgEfficiency = efficiencyAverages[genderYearLookup] || efficiencyAverages.fallback;
 
-  const luckAdjustmentOn = (showLuckAdjDiags && teamStats.on?.doc_count) ? [
+  const luckAdjustmentOn = (adjustForLuck && teamStats.on?.doc_count) ? [
     LuckUtils.calcOffTeamLuckAdj(teamStats.on, teamStats.global, avgEfficiency),
     LuckUtils.calcDefTeamLuckAdj(teamStats.on, teamStats.global, avgEfficiency),
   ] as [OffLuckAdjustmentDiags, DefLuckAdjustmentDiags]: undefined;
 
-  const luckAdjustmentOff = (showLuckAdjDiags && teamStats.off?.doc_count) ? [
+  LuckUtils.injectLuck(teamStats.on, luckAdjustmentOn?.[0], luckAdjustmentOn?.[1]);
+
+  const luckAdjustmentOff = (adjustForLuck && teamStats.off?.doc_count) ? [
     LuckUtils.calcOffTeamLuckAdj(teamStats.off, teamStats.global, avgEfficiency),
     LuckUtils.calcDefTeamLuckAdj(teamStats.off, teamStats.global, avgEfficiency),
   ] as [OffLuckAdjustmentDiags, DefLuckAdjustmentDiags]: undefined;
 
-  const luckAdjustmentBase = (showLuckAdjDiags && teamStats.baseline?.doc_count) ? [
+  LuckUtils.injectLuck(teamStats.off, luckAdjustmentOff?.[0], luckAdjustmentOff?.[1]);
+
+  const luckAdjustmentBase = (adjustForLuck && teamStats.baseline?.doc_count) ? [
     LuckUtils.calcOffTeamLuckAdj(teamStats.baseline, teamStats.global, avgEfficiency),
     LuckUtils.calcDefTeamLuckAdj(teamStats.baseline, teamStats.global, avgEfficiency),
   ] as [OffLuckAdjustmentDiags, DefLuckAdjustmentDiags]: undefined;
+
+  LuckUtils.injectLuck(teamStats.baseline, luckAdjustmentBase?.[0], luckAdjustmentBase?.[1]);
 
   const teamStatsOn = {
     off_title: `${maybeOn} Offense`,

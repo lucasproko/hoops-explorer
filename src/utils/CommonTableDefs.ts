@@ -104,7 +104,7 @@ export class CommonTableDefs {
     "rtg": GenericTableOps.addPtsCol("Rtg", "Offensive/Defensive rating in selected lineups", CbbColors.picker(...CbbColors.pp100)),
     "usage": GenericTableOps.addDataCol(
       expandedView ? "Usg Pos" : "Usg",
-      expandedView ? "% of team possessions used in selected lineups, plus the position category for this player": "% of team possessions used in selected lineups", 
+      expandedView ? "% of team possessions used in selected lineups, plus the position category for this player": "% of team possessions used in selected lineups",
       CbbColors.offOnlyPicker(...CbbColors.usg), CommonTableDefs.percentOrHtmlFormatter), //TODO needs to be steeper
     "adj_rtg": GenericTableOps.addPtsCol("Adj+ Rtg", "Offensive/Defensive rating vs average in selected lineups adjusted for SoS and (for ORtg) the player's usage", CbbColors.picker(...CbbColors.diff10_p100_redGreen)),
     "sep1": GenericTableOps.addColSeparator(),
