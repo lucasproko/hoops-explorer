@@ -34,8 +34,10 @@ const LuckAdjDiagView: React.FunctionComponent<Props> = ({name, offLuck, defLuck
 
   const topRef = React.createRef<HTMLDivElement>();
 
+  const [ show3POff, setShow3POff ] = useState(true);
   const [ show3PDef, setShow3PDef ] = useState(false);
 
+  const o = offLuck;
   const d = defLuck;
 
   return <span ref={topRef}>
@@ -43,7 +45,15 @@ const LuckAdjDiagView: React.FunctionComponent<Props> = ({name, offLuck, defLuck
         <b>Luck Adjustment diagnostics [{name}]</b>
       </span>
       <ul>
-        <li><b>Offense</b>: adjustment [TBD] pts/100</li>
+        <li><b>Offense</b>: adjustment [<b>{o.deltaOffAdjEff.toFixed(1)}</b>] pts/100</li>
+        <ul>
+          <li><b>3P Shooting</b>: 3P% [<b>{(100*o.delta3P).toFixed(1)}</b>%], eFG [<b>{(100*o.deltaOffEfg).toFixed(1)}</b>%], adjustment [<b>{o.deltaOffAdjEff.toFixed(1)}</b>] pts/100
+           (<a href="#" onClick={(event) => { event.preventDefault(); setShow3POff(!show3POff) }}>show {show3POff ? "less" : "more"}</a>)
+          </li>
+          { show3POff ? <ul>
+            <li>{JSON.stringify(offLuck, null, 3)}</li>
+          </ul> : null }
+        </ul>
         <li><b>Defense</b>: adjustment [<b>{d.deltaDefAdjEff.toFixed(1)}</b>] pts/100</li>
         <ul>
           <li><b>3P Shooting</b>: 3P% [<b>{(100*d.delta3P).toFixed(1)}</b>%], eFG [<b>{(100*d.deltaDefEfg).toFixed(1)}</b>%], adjustment [<b>{d.deltaDefAdjEff.toFixed(1)}</b>] pts/100

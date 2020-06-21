@@ -30,10 +30,16 @@ export const teamStatsQuery = function(
                  }
                }
              },
-             "aggregations": _.pick(
-               commonAggregations("opponent_stats", "def", publicEfficiency, lookup, avgEfficiency),
-               [ "def_3p", "def_poss", "total_def_poss", "total_def_3p_attempts", "total_def_3p_made", "def_3p_opp" ]
-             )
+             "aggregations": {
+               ...(_.pick(
+                 commonAggregations("team_stats", "off", publicEfficiency, lookup, avgEfficiency),
+                 [ "total_off_3p_attempts" ]
+              )),
+               ...(_.pick(
+                 commonAggregations("opponent_stats", "def", publicEfficiency, lookup, avgEfficiency),
+                 [ "def_3p", "def_poss", "total_def_poss", "total_def_3p_attempts", "total_def_3p_made", "def_3p_opp" ]
+              ))
+            }
            }
          }
        },
