@@ -81,21 +81,27 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, teamS
     LuckUtils.calcDefTeamLuckAdj(teamStats.on, teamStats.global, avgEfficiency),
   ] as [OffLuckAdjustmentDiags, DefLuckAdjustmentDiags]: undefined;
 
-  LuckUtils.injectLuck(teamStats.on, luckAdjustmentOn?.[0], luckAdjustmentOn?.[1]);
+  if (teamStats.on?.doc_count) {
+    LuckUtils.injectLuck(teamStats.on, luckAdjustmentOn?.[0], luckAdjustmentOn?.[1]);
+  }
 
   const luckAdjustmentOff = (adjustForLuck && teamStats.off?.doc_count) ? [
     LuckUtils.calcOffTeamLuckAdj(teamStats.off, rosterStats.off || [], teamStats.global, baseOrSeason3PMap, avgEfficiency),
     LuckUtils.calcDefTeamLuckAdj(teamStats.off, teamStats.global, avgEfficiency),
   ] as [OffLuckAdjustmentDiags, DefLuckAdjustmentDiags]: undefined;
 
-  LuckUtils.injectLuck(teamStats.off, luckAdjustmentOff?.[0], luckAdjustmentOff?.[1]);
+  if (teamStats.off?.doc_count) {
+    LuckUtils.injectLuck(teamStats.off, luckAdjustmentOff?.[0], luckAdjustmentOff?.[1]);
+  }
 
   const luckAdjustmentBase = (adjustForLuck && teamStats.baseline?.doc_count) ? [
     LuckUtils.calcOffTeamLuckAdj(teamStats.baseline, rosterStats.baseline || [], teamStats.global, baseOrSeason3PMap, avgEfficiency),
     LuckUtils.calcDefTeamLuckAdj(teamStats.baseline, teamStats.global, avgEfficiency),
   ] as [OffLuckAdjustmentDiags, DefLuckAdjustmentDiags]: undefined;
 
-  LuckUtils.injectLuck(teamStats.baseline, luckAdjustmentBase?.[0], luckAdjustmentBase?.[1]);
+  if (teamStats.baseline?.doc_count) {
+    LuckUtils.injectLuck(teamStats.baseline, luckAdjustmentBase?.[0], luckAdjustmentBase?.[1]);
+  }
 
   const teamStatsOn = {
     off_title: `${maybeOn} Offense`,
@@ -110,19 +116,45 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, teamS
   const teamStatsBaseline = { off_title: "Baseline Offense", def_title: "Baseline Defense", ...teamStats.baseline };
 
   const tableData = _.flatMap([
-    (teamStats.on?.doc_count) ? [
-      GenericTableOps.buildDataRow(teamStatsOn, offPrefixFn, offCellMetaFn),
-      GenericTableOps.buildDataRow(teamStatsOn, defPrefixFn, defCellMetaFn),
-      GenericTableOps.buildRowSeparator()
-    ] : [],
-    (teamStats.off?.doc_count) ? [
-      GenericTableOps.buildDataRow(teamStatsOff, offPrefixFn, offCellMetaFn),
-      GenericTableOps.buildDataRow(teamStatsOff, defPrefixFn, defCellMetaFn),
-      GenericTableOps.buildRowSeparator()
-    ] : [],
-    [ GenericTableOps.buildDataRow(teamStatsBaseline, offPrefixFn, offCellMetaFn),
-    GenericTableOps.buildDataRow(teamStatsBaseline, defPrefixFn, defCellMetaFn),
-    GenericTableOps.buildRowSeparator() ],
+    (teamStats.on?.doc_count) ? _.flatten([
+      [ GenericTableOps.buildDataRow(teamStatsOn, offPrefixFn, offCellMetaFn) ],
+      [ GenericTableOps.buildDataRow(teamStatsOn, defPrefixFn, defCellMetaFn) ],
+      showLuckAdjDiags && luckAdjustmentOn ? [ GenericTableOps.buildTextRow(
+        <LuckAdjDiagView
+          name="On"
+          offLuck={luckAdjustmentOn[0]}
+          defLuck={luckAdjustmentOn[1]}
+          baseline={"season"}
+        />, "small pt-2"
+      ) ] : [] ,
+      [ GenericTableOps.buildRowSeparator() ]
+    ]) : [],
+    (teamStats.off?.doc_count) ? _.flatten([
+      [ GenericTableOps.buildDataRow(teamStatsOff, offPrefixFn, offCellMetaFn) ],
+      [ GenericTableOps.buildDataRow(teamStatsOff, defPrefixFn, defCellMetaFn) ],
+      showLuckAdjDiags && luckAdjustmentOff ? [ GenericTableOps.buildTextRow(
+        <LuckAdjDiagView
+          name="Off"
+          offLuck={luckAdjustmentOff[0]}
+          defLuck={luckAdjustmentOff[1]}
+          baseline={"season"}
+        />, "small pt-2"
+      ) ] : [] ,
+      [ GenericTableOps.buildRowSeparator() ]
+    ]) : [],
+    _.flatten([
+      [ GenericTableOps.buildDataRow(teamStatsBaseline, offPrefixFn, offCellMetaFn) ],
+      [ GenericTableOps.buildDataRow(teamStatsBaseline, defPrefixFn, defCellMetaFn) ],
+      showLuckAdjDiags && luckAdjustmentBase ? [ GenericTableOps.buildTextRow(
+        <LuckAdjDiagView
+          name="Baseline"
+          offLuck={luckAdjustmentBase[0]}
+          defLuck={luckAdjustmentBase[1]}
+          baseline={"season"}
+        />, "small pt-2"
+      ) ] : [] ,
+      [ GenericTableOps.buildRowSeparator() ]
+    ]),
   ]);
 
   // 3] Utils
@@ -170,30 +202,6 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, teamS
           <GenericTable tableCopyId="teamStatsTable" tableFields={CommonTableDefs.onOffTable} tableData={tableData}/>
         </Col>
       </Row>
-      { showLuckAdjDiags && luckAdjustmentOn ? <Row className="small">
-          <LuckAdjDiagView
-            name="On"
-            offLuck={luckAdjustmentOn[0]}
-            defLuck={luckAdjustmentOn[1]}
-            baseline={"season"}
-          />
-      </Row> : null }
-      { showLuckAdjDiags && luckAdjustmentOff ? <Row className="small">
-          <LuckAdjDiagView
-            name="Off"
-            offLuck={luckAdjustmentOff[0]}
-            defLuck={luckAdjustmentOff[1]}
-            baseline={"season"}
-          />
-      </Row> : null }
-      { showLuckAdjDiags && luckAdjustmentBase ? <Row className="small">
-          <LuckAdjDiagView
-            name="Baseline"
-            offLuck={luckAdjustmentBase[0]}
-            defLuck={luckAdjustmentBase[1]}
-            baseline={"season"}
-          />
-      </Row> : null }
     </LoadingOverlay>
   </Container>;
 };
