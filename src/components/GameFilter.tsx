@@ -92,7 +92,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
         context: ParamPrefixes.roster as ParamPrefixesType, paramsObj: primaryRequest
       }, {
         context: ParamPrefixes.player as ParamPrefixesType, paramsObj: primaryRequest
-      }].concat(_.isEqual(entireSeasonRequest, primaryRequest) ? [] :[{ //(don't make a spuriois call)
+      }].concat(_.isEqual(entireSeasonRequest, primaryRequest) ? [] :[{ //(don't make a spurious call)
         context: ParamPrefixes.player as ParamPrefixesType, paramsObj: entireSeasonRequest
       }])
     ];
@@ -104,7 +104,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
     const teamJson = jsonResps?.[0]?.responses?.[0] || {};
     const rosterCompareJson = jsonResps?.[1]?.responses?.[0] || {};
     const rosterStatsJson = jsonResps?.[2]?.responses?.[0] || {};
-    const globalRosterStatsJson = jsonResps?.[2]?.responses?.[0] || rosterStatsJson;
+    const globalRosterStatsJson = jsonResps?.[3]?.responses?.[0] || rosterStatsJson;
 
     onStats({
       on: teamJson?.aggregations?.tri_filter?.buckets?.on || {},

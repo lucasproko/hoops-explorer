@@ -54,7 +54,32 @@ const LuckAdjDiagView: React.FunctionComponent<Props> = ({name, offLuck, defLuck
            (<a href="#" onClick={(event) => { event.preventDefault(); setShow3POff(!show3POff) }}>show {show3POff ? "less" : "more"}</a>)
           </li>
           { show3POff ? <ul>
-            <li>{JSON.stringify(offLuck, null, 3)}</li>
+            <li>Delta_eFG: [<b>{(100*o.deltaOffEfg).toFixed(1)}</b>%] =
+            1.5 * (Adj_3P_Off [<b>{(100*(o.delta3P + o.sample3P)).toFixed(1)}</b>%] - Sample_3P_Off [<b>{(100*o.sample3P).toFixed(1)}</b>%]) *
+            Sample_Off_3PR [<b>{(100*o.sampleOff3PRate).toFixed(1)}</b>%]
+            </li>
+            <ul>
+              <li><i>(The idea is we'll calculate the expected shooting performance of the players in the lineup set, weighted by their usage, and then regress the actual 3P shooting agains that.)</i></li>
+              <li>Adj_3P_Off: [<b>{(100*(o.delta3P + o.sample3P)).toFixed(1)}</b>%] = <i>Weighted_Mean</i>(
+                Expected_3P% [<b>{(100*o.sampleBase3P).toFixed(1)}</b>%], Base_3PA [<b>{o.base3PA.toFixed(0)}</b>],
+              Sample_3P% [<b>{(100*o.sample3P).toFixed(1)}</b>%], Sample_3PA [<b>{o.sample3PA.toFixed(0)}</b>])</li>
+              <li>Expected_3P%: [<b>{(100*o.sampleBase3P).toFixed(1)}</b>%] = Calculated from <i>Weighted_Mean</i> of:</li>
+              <ul>
+                {_.toPairs(o.player3PInfo).map((pV: [ string, any ], index: number) => {
+                  return <li key={index}>[<b>{pV[0]}</b>]: Sample_3PA=[<b>{((pV[1]?.sample3PA || 0)).toFixed(0)}</b>] Base_3P%=[<b>{(100*(pV[1]?.base3P || 0)).toFixed(1)}</b>%]</li>
+                })}
+              </ul>
+            </ul>
+            <li>Adj_Delta_Pts/100: [<b>{o.deltaOffAdjEff.toFixed(1)}</b>] = Delta_Pts/100 [<b>{o.deltaOffPpp.toFixed(1)}</b>] * D1_Avg_Eff [<b>{o.avgEff.toFixed(1)}</b>] / Sample_Def_SOS [<b>{o.sampleDefSos.toFixed(1)}</b>]</li>
+            <li>Delta_Pts/100: [<b>{o.deltaOffPpp.toFixed(1)}</b>] = Delta_Pts_No_ORBs/100 [<b>{o.deltaOffPppNoOrb.toFixed(1)}</b>] + Pts_Off_Delta_Misses/100 [<b>{o.deltaPtsOffMisses.toFixed(1)}</b>]</li>
+            <ul>
+              <li><i>(Because of the change in 3P%, there are either more or less misses that can be rebounded by the offense.)</i></li>
+              <li>Delta_Pts_No_ORBs/100: [<b>{d.deltaDefPppNoOrb.toFixed(1)}</b>] = 2 * Delta_eFG [<b>{(100*d.deltaDefEfg).toFixed(1)}</b>%] * Sample_Def_FGA [<b>{d.sampleDefFGA.toFixed(0)}</b>] / Sample_Possessions [<b>{d.samplePoss.toFixed(0)}</b>]</li>
+              <li>Pts_Off_Delta_Misses/100: [<b>{o.deltaPtsOffMisses.toFixed(1)}</b>] = ORB_Factor [<b>{(100*o.deltaOffOrbFactor).toFixed(1)}</b>%] * (Sample_Def_Pts/100 [<b>{o.sampleOffPpp.toFixed(1)}</b>] + Delta_Pts_No_ORBs/100: [<b>{o.deltaOffPppNoOrb.toFixed(1)}</b>])</li>
+              <ul>
+                <li>ORB_Factor: [<b>{(100*o.deltaOffOrbFactor).toFixed(1)}</b>%] = Delta_Misses% [<b>{(100*o.deltaMissesPct).toFixed(1)}</b>%] * Sample_Def_ORB [<b>{(100*o.sampleOffOrb).toFixed(1)}</b>%] / (1 - Delta_Misses/100 [<b>{(100*o.deltaMissesPct).toFixed(1)}</b>%] * Sample_Def_ORB [<b>{(100*o.sampleOffOrb).toFixed(1)}</b>%])</li>
+              </ul>
+            </ul>
           </ul> : null }
         </ul>
         <li><b>Defense</b>: adjustment [<b>{d.deltaDefAdjEff.toFixed(1)}</b>] pts/100</li>

@@ -8,6 +8,7 @@ export type LuckAdjustmentBaseline = "baseline" | "season";
 
 /** Holds all the info required to calculate and explain the delta when luck is regressed away */
 export type OffLuckAdjustmentDiags = {
+  avgEff: number,
   samplePoss: number,
   sample3P: number,
   sample3PA: number,
@@ -147,6 +148,7 @@ export class LuckUtils {
     const deltaOffAdjEff = deltaOffPpp*avgEff/(sampleDefSos || 1);
 
     return {
+      avgEff,
       sample3P,
       sample3PA,
       base3PA,
@@ -164,13 +166,11 @@ export class LuckUtils {
   };
 
   /** Calculate the defensive luck adjustment for a team */
-  static readonly calcDefTeamLuckAdj = (sample: any, base: any, avgEffIn: number) => {
+  static readonly calcDefTeamLuckAdj = (sample: any, base: any, avgEff: number) => {
     const get = (maybeOld: any, fallback: number) => {
       // Uses the non-adjusted luck number if present
       return (_.isNil(maybeOld?.old_value) ? maybeOld?.value : maybeOld?.old_value) || fallback;
     }
-
-    const avgEff = avgEffIn;
     const luckPct = 0.66;
 
     const baseDef3P = get(base?.def_3p, 0);

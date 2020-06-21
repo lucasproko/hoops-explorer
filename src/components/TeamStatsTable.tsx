@@ -67,13 +67,12 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, teamS
   const maybeOn = teamStats.onOffMode ? "On ('A')" : "'A'"
   const maybeOff = teamStats.onOffMode ? "Off ('B')" : "'B'"
 
-  //TODO... the inject doesn't handle pre-query states properly
+  // Luck calculations:
 
-  //TODO: luck .. incorporate into stats
   const genderYearLookup = `${gameFilterParams.gender}_${gameFilterParams.year}`;
   const avgEfficiency = efficiencyAverages[genderYearLookup] || efficiencyAverages.fallback;
 
-  //TODO baselie vs global
+  //TODO baseline vs global setting
   const baseOrSeason3PMap = rosterStats.global ? _.fromPairs(rosterStats.global.map((p: any) => [ p.key, p ])) : {};
 
   const luckAdjustmentOn = (adjustForLuck && teamStats.on?.doc_count) ? [
