@@ -30,9 +30,9 @@ import LuckAdjDiagView from "./LuckAdjDiagView"
 
 // Util imports
 import { CbbColors } from "../utils/CbbColors"
-import { GameFilterParams } from "../utils/FilterModels"
+import { GameFilterParams, ParamDefaults } from "../utils/FilterModels"
 import { CommonTableDefs } from "../utils/CommonTableDefs"
-import { LuckUtils, OffLuckAdjustmentDiags, DefLuckAdjustmentDiags } from "../utils/stats/LuckUtils";
+import { LuckUtils, OffLuckAdjustmentDiags, DefLuckAdjustmentDiags, LuckAdjustmentBaseline } from "../utils/stats/LuckUtils";
 import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
 
 export type TeamStatsModel = {
@@ -54,8 +54,23 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, teamS
 
   // 1] Data Model
 
-  const [ adjustForLuck, setAdjustForLuck ] = useState(true);
-  const [ showLuckAdjDiags, setShowLuckAdjDiags ] = useState(true);
+  const [ adjustForLuck, setAdjustForLuck ] = useState(
+    gameFilterParams.onOffLuck as undefined | LuckAdjustmentBaseline
+  );
+  const [ showLuckAdjDiags, setShowLuckAdjDiags ] = useState(_.isNil(gameFilterParams.showOnOffLuckDiags) ?
+    ParamDefaults.defaultOnOffLuckDiagMode : gameFilterParams.showOnOffLuckDiags
+  );
+
+  useEffect(() => { //(this ensures that the filter component is up to date with the union of these fields)
+    const newState = _.chain(gameFilterParams).merge({
+      onOffLuck: adjustForLuck,
+      showOnOffLuckDiags: showLuckAdjDiags,
+    }).omit(_.flatten([ // omit all defaults
+      (adjustForLuck == undefined) ? [ 'onOffLuck' ] : [],
+      (showLuckAdjDiags == ParamDefaults.defaultOnOffLuckDiagMode) ? [ 'showOnOffLuckDiags' ] : []
+    ])).value();
+    onChangeState(newState);
+  }, [ adjustForLuck, showLuckAdjDiags ]);
 
   // 2] Data View
 
@@ -72,35 +87,38 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, teamS
   const genderYearLookup = `${gameFilterParams.gender}_${gameFilterParams.year}`;
   const avgEfficiency = efficiencyAverages[genderYearLookup] || efficiencyAverages.fallback;
 
-  //TODO baseline vs global setting
-  const baseOrSeason3PMap = rosterStats.global ? _.fromPairs(rosterStats.global.map((p: any) => [ p.key, p ])) : {};
+  // The luck baseline can either be the user-selecteed baseline or the entire season
+  const [ baseOrSeasonTeamStats, baseOrSeason3PMap ] = (() => {
+    switch (adjustForLuck) {
+      case "season":
+        return [
+          teamStats.global, _.fromPairs((rosterStats.global || []).map((p: any) => [ p.key, p ]))
+        ];
+      case "baseline":
+        return [
+          teamStats.baseline, _.fromPairs((rosterStats.baseline || []).map((p: any) => [ p.key, p ]))
+        ];
+      case undefined:
+        return [ {}, {} ]; //(not used)
+    }
+  })();
 
-  const luckAdjustmentOn = (adjustForLuck && teamStats.on?.doc_count) ? [
-    LuckUtils.calcOffTeamLuckAdj(teamStats.on, rosterStats.on || [], teamStats.global, baseOrSeason3PMap, avgEfficiency),
-    LuckUtils.calcDefTeamLuckAdj(teamStats.on, teamStats.global, avgEfficiency),
-  ] as [OffLuckAdjustmentDiags, DefLuckAdjustmentDiags]: undefined;
+  type OnOffBase = "on" | "off" | "baseline";
+  const luckAdjustment = _.fromPairs(([ "on", "off", "baseline" ] as OnOffBase[]).map(k => {
+    const luckAdj = (adjustForLuck && teamStats[k]?.doc_count) ? [
+      LuckUtils.calcOffTeamLuckAdj(teamStats[k], rosterStats[k] || [], baseOrSeasonTeamStats, baseOrSeason3PMap, avgEfficiency),
+      LuckUtils.calcDefTeamLuckAdj(teamStats[k], baseOrSeasonTeamStats, avgEfficiency),
+    ] as [OffLuckAdjustmentDiags, DefLuckAdjustmentDiags] : undefined;
 
-  if (teamStats.on?.doc_count) {
-    LuckUtils.injectLuck(teamStats.on, luckAdjustmentOn?.[0], luckAdjustmentOn?.[1]);
-  }
+    if (teamStats[k]?.doc_count) {
+      LuckUtils.injectLuck(teamStats[k], luckAdj?.[0], luckAdj?.[1]);
+    }
+    return [ k, luckAdj ];
+  })) as {
+    [P in OnOffBase]: [ OffLuckAdjustmentDiags, DefLuckAdjustmentDiags ] | undefined
+  };
 
-  const luckAdjustmentOff = (adjustForLuck && teamStats.off?.doc_count) ? [
-    LuckUtils.calcOffTeamLuckAdj(teamStats.off, rosterStats.off || [], teamStats.global, baseOrSeason3PMap, avgEfficiency),
-    LuckUtils.calcDefTeamLuckAdj(teamStats.off, teamStats.global, avgEfficiency),
-  ] as [OffLuckAdjustmentDiags, DefLuckAdjustmentDiags]: undefined;
-
-  if (teamStats.off?.doc_count) {
-    LuckUtils.injectLuck(teamStats.off, luckAdjustmentOff?.[0], luckAdjustmentOff?.[1]);
-  }
-
-  const luckAdjustmentBase = (adjustForLuck && teamStats.baseline?.doc_count) ? [
-    LuckUtils.calcOffTeamLuckAdj(teamStats.baseline, rosterStats.baseline || [], teamStats.global, baseOrSeason3PMap, avgEfficiency),
-    LuckUtils.calcDefTeamLuckAdj(teamStats.baseline, teamStats.global, avgEfficiency),
-  ] as [OffLuckAdjustmentDiags, DefLuckAdjustmentDiags]: undefined;
-
-  if (teamStats.baseline?.doc_count) {
-    LuckUtils.injectLuck(teamStats.baseline, luckAdjustmentBase?.[0], luckAdjustmentBase?.[1]);
-  }
+  //(end luck calcs)
 
   const teamStatsOn = {
     off_title: `${maybeOn} Offense`,
@@ -118,12 +136,12 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, teamS
     (teamStats.on?.doc_count) ? _.flatten([
       [ GenericTableOps.buildDataRow(teamStatsOn, offPrefixFn, offCellMetaFn) ],
       [ GenericTableOps.buildDataRow(teamStatsOn, defPrefixFn, defCellMetaFn) ],
-      showLuckAdjDiags && luckAdjustmentOn ? [ GenericTableOps.buildTextRow(
+      showLuckAdjDiags && luckAdjustment.on ? [ GenericTableOps.buildTextRow(
         <LuckAdjDiagView
           name="On"
-          offLuck={luckAdjustmentOn[0]}
-          defLuck={luckAdjustmentOn[1]}
-          baseline={"season"}
+          offLuck={luckAdjustment.on[0]}
+          defLuck={luckAdjustment.on[1]}
+          baseline={adjustForLuck || "season"}
         />, "small pt-2"
       ) ] : [] ,
       [ GenericTableOps.buildRowSeparator() ]
@@ -131,12 +149,12 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, teamS
     (teamStats.off?.doc_count) ? _.flatten([
       [ GenericTableOps.buildDataRow(teamStatsOff, offPrefixFn, offCellMetaFn) ],
       [ GenericTableOps.buildDataRow(teamStatsOff, defPrefixFn, defCellMetaFn) ],
-      showLuckAdjDiags && luckAdjustmentOff ? [ GenericTableOps.buildTextRow(
+      showLuckAdjDiags && luckAdjustment.off ? [ GenericTableOps.buildTextRow(
         <LuckAdjDiagView
           name="Off"
-          offLuck={luckAdjustmentOff[0]}
-          defLuck={luckAdjustmentOff[1]}
-          baseline={"season"}
+          offLuck={luckAdjustment.off[0]}
+          defLuck={luckAdjustment.off[1]}
+          baseline={adjustForLuck || "season"}
         />, "small pt-2"
       ) ] : [] ,
       [ GenericTableOps.buildRowSeparator() ]
@@ -144,12 +162,12 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, teamS
     _.flatten([
       [ GenericTableOps.buildDataRow(teamStatsBaseline, offPrefixFn, offCellMetaFn) ],
       [ GenericTableOps.buildDataRow(teamStatsBaseline, defPrefixFn, defCellMetaFn) ],
-      showLuckAdjDiags && luckAdjustmentBase ? [ GenericTableOps.buildTextRow(
+      showLuckAdjDiags && luckAdjustment.baseline ? [ GenericTableOps.buildTextRow(
         <LuckAdjDiagView
           name="Baseline"
-          offLuck={luckAdjustmentBase[0]}
-          defLuck={luckAdjustmentBase[1]}
-          baseline={"season"}
+          offLuck={luckAdjustment.baseline[0]}
+          defLuck={luckAdjustment.baseline[1]}
+          baseline={adjustForLuck || "season"}
         />, "small pt-2"
       ) ] : [] ,
       [ GenericTableOps.buildRowSeparator() ]
@@ -182,9 +200,14 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, teamS
             </Dropdown.Toggle>
             <Dropdown.Menu>
               <GenericTogglingMenuItem
-                text="Adjust for Luck"
-                truthVal={adjustForLuck}
-                onSelect={() => setAdjustForLuck(!adjustForLuck)}
+                text="Adjust for Luck - over season"
+                truthVal={adjustForLuck == "season"}
+                onSelect={() => setAdjustForLuck(adjustForLuck == "season" ? undefined : "season")}
+              />
+              <GenericTogglingMenuItem
+                text="Adjust for Luck - over baseline"
+                truthVal={adjustForLuck == "baseline"}
+                onSelect={() => setAdjustForLuck(adjustForLuck == "baseline" ? undefined : "baseline")}
               />
               <Dropdown.Divider />
               <GenericTogglingMenuItem

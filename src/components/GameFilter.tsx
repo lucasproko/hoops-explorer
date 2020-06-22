@@ -32,6 +32,8 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
   // Data model
 
   const {
+    //(these fields are for the team view)
+    onOffLuck: startOnOffLuck, showOnOffLuckDiags: startShowOnOffLuckDiags,
     //(these fields are for the individual view)
     filter: startFilter, sortBy: startSortBy,
     showBase: startShowBase, showExpanded: startShowExpanded,
@@ -69,6 +71,8 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
     const primaryRequest: GameFilterParams = includeFilterParams ?
       _.merge(
         buildParamsFromState(false)[0], {
+          // Team stats:
+          onOffLuck: startOnOffLuck, showOnOffLuckDiags: startShowOnOffLuckDiags,
           // Individual stats:
           autoOffQuery: autoOffQuery,
           filter: startFilter, sortBy: startSortBy,

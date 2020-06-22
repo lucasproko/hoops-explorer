@@ -149,6 +149,7 @@ export class LuckUtils {
 
     return {
       avgEff,
+      samplePoss,
       sample3P,
       sample3PA,
       base3PA,

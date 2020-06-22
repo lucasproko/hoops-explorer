@@ -49,7 +49,7 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
 
   const [ gaInited, setGaInited ] = useState(false);
   const [ teamStats, setTeamStats ] = useState({on: {}, off: {}, baseline: {}} as TeamStatsModel);
-  const [ rosterStats, setRosterStats ] = useState({on: {}, off: {}, baseline: {}} as RosterStatsModel);
+  const [ rosterStats, setRosterStats ] = useState({on: [], off: [], baseline: []} as RosterStatsModel);
   const [ rosterCompareStats, setRosterCompareStats ] = useState({on: {}, off: {}, baseline: {}} as RosterCompareModel);
 
   const injectStats = (

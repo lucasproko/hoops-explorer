@@ -28,15 +28,16 @@ type Props = {
   name: string,
   offLuck: OffLuckAdjustmentDiags,
   defLuck: DefLuckAdjustmentDiags,
-  baseline: LuckAdjustmentBaseline
+  baseline: LuckAdjustmentBaseline,
+  showDetailsOverride?: boolean
 };
-const LuckAdjDiagView: React.FunctionComponent<Props> = ({name, offLuck, defLuck, baseline}) => {
+const LuckAdjDiagView: React.FunctionComponent<Props> = ({name, offLuck, defLuck, baseline, showDetailsOverride}) => {
 
   const topRef = React.createRef<HTMLDivElement>();
 
   const [ showDetails, setShowDetails ] = useState(true);
-  const [ show3POff, setShow3POff ] = useState(true);
-  const [ show3PDef, setShow3PDef ] = useState(false);
+  const [ show3POff, setShow3POff ] = useState(_.isNil(showDetailsOverride) ? false : showDetailsOverride);
+  const [ show3PDef, setShow3PDef ] = useState(_.isNil(showDetailsOverride) ? false : showDetailsOverride);
 
   const o = offLuck;
   const d = defLuck;
@@ -74,7 +75,7 @@ const LuckAdjDiagView: React.FunctionComponent<Props> = ({name, offLuck, defLuck
             <li>Delta_Pts/100: [<b>{o.deltaOffPpp.toFixed(1)}</b>] = Delta_Pts_No_ORBs/100 [<b>{o.deltaOffPppNoOrb.toFixed(1)}</b>] + Pts_Off_Delta_Misses/100 [<b>{o.deltaPtsOffMisses.toFixed(1)}</b>]</li>
             <ul>
               <li><i>(Because of the change in 3P%, there are either more or less misses that can be rebounded by the offense.)</i></li>
-              <li>Delta_Pts_No_ORBs/100: [<b>{d.deltaDefPppNoOrb.toFixed(1)}</b>] = 2 * Delta_eFG [<b>{(100*d.deltaDefEfg).toFixed(1)}</b>%] * Sample_Def_FGA [<b>{d.sampleDefFGA.toFixed(0)}</b>] / Sample_Possessions [<b>{d.samplePoss.toFixed(0)}</b>]</li>
+              <li>Delta_Pts_No_ORBs/100: [<b>{o.deltaOffPppNoOrb.toFixed(1)}</b>] = 2 * Delta_eFG [<b>{(100*o.deltaOffEfg).toFixed(1)}</b>%] * Sample_Off_FGA [<b>{o.sampleOffFGA.toFixed(0)}</b>] / Sample_Possessions [<b>{o.samplePoss.toFixed(0)}</b>]</li>
               <li>Pts_Off_Delta_Misses/100: [<b>{o.deltaPtsOffMisses.toFixed(1)}</b>] = ORB_Factor [<b>{(100*o.deltaOffOrbFactor).toFixed(1)}</b>%] * (Sample_Def_Pts/100 [<b>{o.sampleOffPpp.toFixed(1)}</b>] + Delta_Pts_No_ORBs/100: [<b>{o.deltaOffPppNoOrb.toFixed(1)}</b>])</li>
               <ul>
                 <li>ORB_Factor: [<b>{(100*o.deltaOffOrbFactor).toFixed(1)}</b>%] = Delta_Misses% [<b>{(100*o.deltaMissesPct).toFixed(1)}</b>%] * Sample_Def_ORB [<b>{(100*o.sampleOffOrb).toFixed(1)}</b>%] / (1 - Delta_Misses/100 [<b>{(100*o.deltaMissesPct).toFixed(1)}</b>%] * Sample_Def_ORB [<b>{(100*o.sampleOffOrb).toFixed(1)}</b>%])</li>
@@ -121,6 +122,8 @@ const LuckAdjDiagView: React.FunctionComponent<Props> = ({name, offLuck, defLuck
             </ul>
           </ul> : null }
         </ul>
+        {baseline == "baseline" ? <li><i>(Regressing over baseline uses in a smaller and possibly biased dataset, which is bad; but can be useful if there is reason to believe the characteristics
+        of the team are different compared to the sample - eg due to injury.)</i></li> : null}
       </ul> : null }
     </span>;
 };

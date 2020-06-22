@@ -9,6 +9,11 @@ export const sampleTeamQueryRequest =       {
               "aggregations": {
                 "only": {
                   "aggregations": {
+                    "total_off_3p_attempts": {
+                       "sum": {
+                          "field": "team_stats.fg_3p.attempts.total"
+                       }
+                    },
                     "def_3p_opp": {
                        "weighted_avg": {
                           "weight": {

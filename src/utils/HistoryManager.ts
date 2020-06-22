@@ -135,6 +135,17 @@ export class HistoryManager {
     const on = `on:'${tidyQuery(p.onQuery)}'`;
     const off = isAutoOff ? `auto-off` : `off:'${tidyQuery(p.offQuery)}'`;
 
+    const onOffLuck = p.onOffLuck;
+    const showOnOffLuckDiags =
+      _.isNil(p.showOnOffLuckDiags) ? ParamDefaults.defaultOnOffLuckDiagMode : p.showOnOffLuckDiags;
+
+    const showTeamArray = _.flatMap([
+      onOffLuck ? [ `on-off-luck:${onOffLuck}`]: [],
+      showOnOffLuckDiags ? [ `show-on-off-luck-diags` ] : []
+    ]);
+    const teamParams = (showTeamArray.length > 0) ?
+      `, team:[${_.join(showTeamArray, ",")}]` : "";
+
     const sortBy =
       _.isNil(p.sortBy) ? ParamDefaults.defaultPlayerSortBy : p.sortBy;
     const filter =
@@ -150,7 +161,7 @@ export class HistoryManager {
     const possAsPct =
       _.isNil(p.possAsPct) ? ParamDefaults.defaultPlayerPossAsPct : p.possAsPct;
 
-    const showArray = _.flatMap([
+    const showPlayerArray = _.flatMap([
       (sortBy != ParamDefaults.defaultPlayerSortBy) ? [ `sort:${sortBy}` ] : [],
       (filter != "") ? [ `filter:${filter}` ] : [],
       showBase ? [ "show-base" ] : [],
@@ -159,10 +170,10 @@ export class HistoryManager {
       showPosDiag ? [ "show-pos-diags" ] : [],
       possAsPct ? [ ] : [ "poss-#" ],
     ]);
-    const playerParams = (showArray.length > 0) ?
-      `, players:[${_.join(showArray, ",")}]` : "";
+    const playerParams = (showPlayerArray.length > 0) ?
+      `, players:[${_.join(showPlayerArray, ",")}]` : "";
 
-    return `On/Off: ${HistoryManager.commonFilterSummary(p)}: ${on}, ${off}, ${base}${playerParams}`;
+    return `On/Off: ${HistoryManager.commonFilterSummary(p)}: ${on}, ${off}, ${base}${teamParams}${playerParams}`;
   }
 
   /** Returns a summary string for the game filter */

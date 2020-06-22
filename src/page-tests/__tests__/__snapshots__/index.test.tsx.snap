@@ -50,6 +50,15 @@ exports[`OnOffAnalyzerPage OnOffAnalyzerPage - should create snapshot 1`] = `
       title="Team Analysis"
     >
       <TeamStatsTable
+        gameFilterParams={Object {}}
+        onChangeState={[Function]}
+        rosterStats={
+          Object {
+            "baseline": Array [],
+            "off": Array [],
+            "on": Array [],
+          }
+        }
         teamStats={
           Object {
             "baseline": Object {},
@@ -71,9 +80,9 @@ exports[`OnOffAnalyzerPage OnOffAnalyzerPage - should create snapshot 1`] = `
         onChangeState={[Function]}
         rosterStats={
           Object {
-            "baseline": Object {},
-            "off": Object {},
-            "on": Object {},
+            "baseline": Array [],
+            "off": Array [],
+            "on": Array [],
           }
         }
         teamStats={

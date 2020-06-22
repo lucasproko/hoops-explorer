@@ -43,6 +43,7 @@ describe("HistoryManager", () => {
     );
     const game1b: GameFilterParams = {
       team: "test",
+      showOnOffLuckDiags: true,
       filter: "test-fil",
       sortBy: "test-sort",
       showDiag: true,
@@ -52,7 +53,7 @@ describe("HistoryManager", () => {
       possAsPct: false
     };
     expect(HistoryManager.gameFilterSummary(game1b)).toBe(
-      `On/Off: 2019/20 test (M): on:'', auto-off, base:'', players:[sort:test-sort,filter:test-fil,show-base,show-def,show-rtg-diags,show-pos-diags,poss-#]`
+      `On/Off: 2019/20 test (M): on:'', auto-off, base:'', team:[show-on-off-luck-diags], players:[sort:test-sort,filter:test-fil,show-base,show-def,show-rtg-diags,show-pos-diags,poss-#]`
     );
     const game2: GameFilterParams = {
       team: "test",
@@ -60,10 +61,11 @@ describe("HistoryManager", () => {
       minRank: "1", maxRank: "150",
       onQuery: "testOn", baseQuery: "testBase",
       offQuery: "testOff", autoOffQuery: false,
+      onOffLuck: "season",
       filterGarbage: true, queryFilters: "Conf"
     };
     expect(HistoryManager.filterSummary("game-", game2)).toBe(
-      `On/Off: 2019/20 test (M) [1:150] [!garbage] [+Conf]: on:'testOn', off:'testOff', base:'testBase'`
+      `On/Off: 2019/20 test (M) [1:150] [!garbage] [+Conf]: on:'testOn', off:'testOff', base:'testBase', team:[on-off-luck:season]`
     );
   });
   test("HistoryManager - lineupFilterSummary", () => {
