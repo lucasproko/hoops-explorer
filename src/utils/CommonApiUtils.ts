@@ -157,4 +157,43 @@ export class CommonApiUtils {
 
   }
 
+  /** Efficiently minimizes the size of the JSON representation of Efficiency depending on use */
+  static efficiencyReplacer = () => {
+
+    let kp_type: string | undefined = undefined; // (kp_filter, kp_off_sos, kp_def_sos)
+    let kp_ptr: any = undefined; //(so we know when we're done)
+
+    return function(this: any, key: string, value: any) {
+      if ((key == "kp_opp") || (key == "kp_off") || (key == "kp_def") || (key == "kp_3p")) {
+        kp_ptr = value;
+        kp_type = key;
+        return value;
+      } else { //(this is set to the parent object per stringify.docs)
+        if (this == kp_ptr) {
+          // Everything key under one of these is [team_name]: { stats }
+          if ("kp_opp" == kp_type) {
+            return {
+              "stats.adj_margin.rank": value?.["stats.adj_margin.rank"],
+              "conf": value?.["conf"]
+            };
+          } else if ("kp_def" == kp_type) {
+            return {
+              "stats.adj_def.value": value?.["stats.adj_def.value"]
+            };
+          } else if ("kp_off" == kp_type) {
+            return {
+              "stats.adj_off.value": value?.["stats.adj_off.value"]
+            };
+          } else if ("kp_3p" == kp_type) {
+            return {
+              "stats.off._3p_pct.value": value?.["stats.off._3p_pct.value"]
+            };
+          }
+        } else { //(don't need to unset the ptr, since will be ignored)
+          return value;
+        }
+      }
+    };
+  };
+
 }

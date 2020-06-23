@@ -223,6 +223,13 @@ const GenericTable: React.FunctionComponent<Props> = ({tableFields, tableData, t
         //(the isNil handles separators)
         const val = _.isNil(tmpVal) ? "" : valBuilder() || "";
 
+        const overrideTooltip = tmpVal?.override ?
+          <Tooltip id={`tooltip_${index}_${key}`}>
+            Original Value: {colProp.formatter({value: tmpVal?.old_value}) || colProp.missingData}<br/>
+            {tmpVal?.override}
+          </Tooltip> : null;
+
+
         const cellMeta = row.cellMetaFn(key, val);
         const rowSpan = colProp.rowSpan(cellMeta);
         const className = colProp.className;
@@ -231,10 +238,12 @@ const GenericTable: React.FunctionComponent<Props> = ({tableFields, tableData, t
               className={className}
               rowSpan={rowSpan}
               key={"" + index} style={style}
-            >{_.isString(val) ?
+            >{tmpVal?.override ?
+              <OverlayTrigger placement="auto" overlay={overrideTooltip}><u>{val}</u></OverlayTrigger>
+              : (_.isString(val) ?
               val.split('\n').map((l, index2) => <div key={"s" + `${index}_${index2}`}>{l}</div>) :
               //(if not string must be element)
-              val}
+              val)}
             </td>
           :
             (null);

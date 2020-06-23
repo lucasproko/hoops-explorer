@@ -17,7 +17,7 @@ describe("RosterStatsTable", () => {
     const wrapper = shallow(
     <RosterStatsTable
       gameFilterParams={{showExpanded: false}}
-      teamStats={{on: {}, off: {}, onOffMode: true, baseline: {}}}
+      teamStats={{on: {}, off: {}, global: {}, onOffMode: true, baseline: {}}}
       rosterStats={testData}
       onChangeState={(newParams: GameFilterParams) => {}}
     />
@@ -34,7 +34,7 @@ describe("RosterStatsTable", () => {
     const wrapper = shallow(
     <RosterStatsTable
       gameFilterParams={{showExpanded: true}}
-      teamStats={{on: {}, off: {}, onOffMode: true, baseline: {}}}
+      teamStats={{on: {}, off: {}, global: {}, onOffMode: true, baseline: {}}}
       rosterStats={testData}
       onChangeState={(newParams: GameFilterParams) => {}}
     />
@@ -51,7 +51,7 @@ describe("RosterStatsTable", () => {
     const wrapper = shallow(
     <RosterStatsTable
       gameFilterParams={{}}
-      teamStats={{on: {}, off: {}, onOffMode: true, baseline: {}}}
+      teamStats={{on: {}, off: {}, global: {}, onOffMode: true, baseline: {}}}
       rosterStats={testData}
       onChangeState={(newParams: GameFilterParams) => {}}
     />
@@ -68,7 +68,7 @@ describe("RosterStatsTable", () => {
     const wrapper = shallow(
     <RosterStatsTable
       gameFilterParams={{showExpanded: true}}
-      teamStats={{on: {}, off: {}, onOffMode: true, baseline: {}}}
+      teamStats={{on: {}, off: {}, global: {}, onOffMode: true, baseline: {}}}
       rosterStats={testData}
       onChangeState={(newParams: GameFilterParams) => {}}
     />

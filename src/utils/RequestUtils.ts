@@ -17,13 +17,12 @@ import fetch from 'isomorphic-unfetch';
 export class RequestUtils {
 
   /** Whether any of the queries returned an error - we'll treat them all as errors if so */
-  static isResponseError(resp: any) {
-    const jsons = resp?.responses || [];
-    const teamJson = (jsons.length > 0) ? jsons[0] : resp;
-      //(error can be so low level there's not even a responses)
-    const rosterCompareJson = (jsons.length > 1) ? jsons[1] : {};
-    return (Object.keys(teamJson?.error || {}).length > 0) ||
-      (Object.keys(rosterCompareJson?.error || {}).length > 0);
+  static isResponseError(resp: any): boolean {
+
+    const isGlobalError = Object.keys(resp?.error || {}).length > 0;
+    const isLocalError = _.some((resp?.responses || []).map((r: any) => Object.keys(r?.error || {}).length > 0)) || false;
+
+    return isGlobalError || isLocalError;
   }
 
   /** An easily test abstraction for requesting multiple objects from the server */
@@ -69,7 +68,7 @@ export class RequestUtils {
                   newParamsStr, req.context, json, currentJsonEpoch, isDebug
                 );
               } else if (isDebug) {
-                console.log(`[${index}] Response error: status=[${response?.status}] keys=[${Object.keys(response || {})}]`)
+                console.log(`[${index}] Response error: ok=[${respOk}] ok_from_obj=[${!RequestUtils.isResponseError(json)}] status=[${response?.status}] keys=[${Object.keys(response || {})}]`)
               }
               return json;
             });

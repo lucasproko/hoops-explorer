@@ -12,15 +12,13 @@ describe("CommonFilter", () => {
     const dummyChangeStateCallback = (stats: LineupFilterParams) => {};
     const dummyChangeCommonStateCallback = (stats: CommonFilterParams) => {};
     const dummyHandleResponse = (a: any, b: Boolean) => {};
-    const dummySubmitRequest = (a: string, b: (r: fetch.IsomorphicResponse) => void) => {};
     const wrapper = shallow(<CommonFilter
       startingState={{}}
       onChangeState={dummyChangeStateCallback}
       onChangeCommonState={dummyChangeCommonStateCallback}
-      tablePrefix = {"test-"}
-      buildParamsFromState={() => {}}
+      tablePrefix = {"game-"}
+      buildParamsFromState={() => [{}, []]}
       childHandleResponse={dummyHandleResponse}
-      childSubmitRequest={dummySubmitRequest}
     />);
     expect(toJson(wrapper)).toMatchSnapshot();
   });
@@ -34,10 +32,9 @@ describe("CommonFilter", () => {
       startingState={{ team: "Maryland", gender: "Men", year: "2018/9" }}
       onChangeState={dummyChangeStateCallback}
       onChangeCommonState={dummyChangeCommonStateCallback}
-      tablePrefix = {"test-"}
-      buildParamsFromState={() => {}}
+      tablePrefix = {"lineup-"}
+      buildParamsFromState={() => [{}, []]}
       childHandleResponse={dummyHandleResponse}
-      childSubmitRequest={dummySubmitRequest}
     />);
     expect(toJson(wrapper)).toMatchSnapshot();
   });

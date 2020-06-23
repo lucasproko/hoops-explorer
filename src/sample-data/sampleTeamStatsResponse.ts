@@ -17,6 +17,40 @@ export const sampleTeamStatsResponse =
     "hits" : [ ]
   },
   "aggregations" : {
+    "global": {
+  		"doc_count": 720,
+  		"only": {
+  			"buckets": {
+  				"team": {
+  					"doc_count": 720,
+  					"def_3p_opp": {
+  						"value": 35.578840579710146
+  					},
+            "total_off_3p_attempts": {
+  						"value": 800
+  					},
+  					"total_def_3p_attempts": {
+  						"value": 709
+  					},
+            "total_def_2p_attempts": {
+  						"value": 900
+  					},
+  					"total_def_poss": {
+  						"value": 2089
+  					},
+  					"total_def_3p_made": {
+  						"value": 241
+  					},
+  					"def_3p": {
+  						"value": 0.33991537376586745
+  					},
+  					"def_poss": {
+  						"value": 2089
+  					}
+  				}
+  			}
+  		}
+  	},
     "tri_filter" : {
       "buckets" : {
         "baseline" : {
@@ -32,6 +66,12 @@ export const sampleTeamStatsResponse =
           },
           "total_off_2pmid_attempts" : {
             "value" : 485.0
+          },
+          "total_def_3p_attempts" : {
+            "value" : 1000
+          },
+          "total_off_2_attempts" : {
+            "value" : 485 + 424
           },
           "total_off_2pmid_made" : {
             "value" : 206.0
@@ -99,6 +139,7 @@ export const sampleTeamStatsResponse =
           "def_3p" : {
             "value" : 0.3183856502242152
           },
+          "def_3p_opp":{"value":36.240722891566264},
           "off_poss" : {
             "value" : 1883.0
           },
@@ -222,6 +263,12 @@ export const sampleTeamStatsResponse =
           "off_orb" : {
             "value" : 0.3494809688581315
           },
+          "total_def_3p_attempts": {
+            "value": 450
+          },
+          "total_def_2p_attempts": {
+            "value": 182 + 163
+          },
           "total_def_2pmid_attempts" : {
             "value" : 182.0
           },
@@ -240,6 +287,7 @@ export const sampleTeamStatsResponse =
           "def_3p" : {
             "value" : 0.3020833333333333
           },
+          "def_3p_opp":{"value":37.240722891566264},
           "off_poss" : {
             "value" : 590.0
           },
@@ -357,6 +405,12 @@ export const sampleTeamStatsResponse =
           "off_orb" : {
             "value" : 0.337442218798151
           },
+          "total_def_3p_attempts": {
+            "value": 750
+          },
+          "total_def_2p_attempts": {
+            "value": 650
+          },
           "total_def_2pmid_attempts" : {
             "value" : 388.0
           },
@@ -375,8 +429,15 @@ export const sampleTeamStatsResponse =
           "def_3p" : {
             "value" : 0.3249475890985325
           },
+          "def_3p_opp":{"value":35.240722891566264},
           "off_poss" : {
             "value" : 1293.0
+          },
+          "total_off_3p_attempts": {
+            "value": 500
+          },
+          "total_off_2p_attempts": {
+            "value": 600
           },
           "total_off_2prim_attempts" : {
             "value" : 369.0
@@ -422,7 +483,13 @@ export const sampleTeamStatsResponse =
           },
           "off_2prim" : {
             "value" : 0.5934959349593496
-          }
+          },
+          "off_adj_ppp": {
+            "value": 111
+          },
+          "def_adj_ppp": {
+            "value": 88
+          },
         }
       }
     }

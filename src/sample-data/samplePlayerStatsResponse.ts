@@ -229,7 +229,8 @@ export const samplePlayerStatsResponse =
                         },
                         "team_total_off_stl": {
                           "value": 150
-                        }
+                        },
+                        "oppo_def_3p_opp":{"value":30.240722891566264}
                      },
                      {
                         "key": "Wiggins, Aaron",
@@ -435,7 +436,8 @@ export const samplePlayerStatsResponse =
                         },
                         "team_total_off_stl": {
                           "value": 150
-                        }
+                        },
+                        "oppo_def_3p_opp":{"value":31.240722891566264}
                      }
                   ]
                }
@@ -650,7 +652,8 @@ export const samplePlayerStatsResponse =
                         },
                         "team_total_off_stl": {
                           "value": 150
-                        }
+                        },
+                        "oppo_def_3p_opp":{"value":32.240722891566264}
                      },
                      {
                         "key": "Mona, Reese",
@@ -856,7 +859,8 @@ export const samplePlayerStatsResponse =
                         },
                         "team_total_off_stl": {
                           "value": 150
-                        }
+                        },
+                        "oppo_def_3p_opp":{"value":33.240722891566264}
                      }
                   ]
                }
@@ -1071,7 +1075,8 @@ export const samplePlayerStatsResponse =
                         },
                         "team_total_off_stl": {
                           "value": 150
-                        }
+                        },
+                        "oppo_def_3p_opp":{"value":34.240722891566264}
                      },
                      {
                         "key": "Cowan, Anthony",
@@ -1277,7 +1282,8 @@ export const samplePlayerStatsResponse =
                         },
                         "team_total_off_stl": {
                           "value": 150
-                        }
+                        },
+                        "oppo_def_3p_opp":{"value":35.240722891566264}
                      }
                   ]
                }

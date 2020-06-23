@@ -56,7 +56,7 @@ const RosterCompareTable: React.FunctionComponent<Props> = ({gameFilterParams, r
     return (obj?.player?.buckets || []).map(function(obj: any) {
       return GenericTableOps.buildDataRow({
         title: obj.key,
-        pct: { value: 1.0*obj.poss_count.value/total },
+        pct: { value: 1.0*(obj?.poss_count?.value || 0)/total },
         poss: obj.poss_count
       }, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta);
     });

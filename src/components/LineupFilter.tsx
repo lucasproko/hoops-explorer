@@ -72,6 +72,8 @@ const LineupFilter: React.FunctionComponent<Props> = ({onStats, startingState, o
 
   /** Handles the response from ES to a stats calc request */
   function handleResponse(jsonResps: any[], wasError: Boolean) {
+    //TODO: fix this per GameFilter
+    
     const json = jsonResps[0] || []; //(currently just one request)
 
     const jsons = json?.responses || [];

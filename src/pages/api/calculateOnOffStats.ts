@@ -18,13 +18,16 @@ function marshallRequest(
 ) {
   const body = [
     JSON.stringify({ index: index }),
-    JSON.stringify(teamStatsQuery(params, currentJsonEpoch, efficiency, lookup, avgEfficiency))
+    JSON.stringify(
+      teamStatsQuery(params, currentJsonEpoch, efficiency, lookup, avgEfficiency),
+      CommonApiUtils.efficiencyReplacer()
+    )
   ].join('\n') + "\n";
 
   // Debug logs:
-  //console.log(JSON.stringify(teamStatsQuery(params, currentJsonEpoch, efficiency, lookup, avgEfficiency), null, 3));
-  //console.log(JSON.stringify(teamStatsQuery(params, currentJsonEpoch, {}, {}, avgEfficiency), null, 3));
-  //console.log(JSON.stringify(teamStatsQuery(params, currentJsonEpoch, {}, {}).query, null, 3));
+  //console.log(JSON.stringify(teamStatsQuery(params, currentJsonEpoch, efficiency, lookup, avgEfficiency), CommonApiUtils.efficiencyReplacer(), 3));
+  //console.log(JSON.stringify(teamStatsQuery(params, currentJsonEpoch, {}, {}, avgEfficiency), CommonApiUtils.efficiencyReplacer(), 3));
+  //console.log(JSON.stringify(teamStatsQuery(params, currentJsonEpoch, {}, {}).query, CommonApiUtils.efficiencyReplacer(), 3));
 
   return body;
 }

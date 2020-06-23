@@ -19,9 +19,11 @@ function marshallRequest(
 
   const body = [
     JSON.stringify({ index: index }),
-    JSON.stringify(rosterCompareQuery(
-      params, currentJsonEpoch, needEff ? efficiency : {}, needEff ? lookup : {}
-    ))
+    JSON.stringify(
+      rosterCompareQuery(
+        params, currentJsonEpoch, needEff ? efficiency : {}, needEff ? lookup : {}
+      ), CommonApiUtils.efficiencyReplacer()
+    )
       //(leaving efficiency blank means that the opponent filter is ignored)
   ].join('\n') + "\n";
 

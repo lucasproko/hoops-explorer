@@ -18,7 +18,10 @@ function marshallRequest(
 ) {
   const body = [
     JSON.stringify({ index: `player_events_${genderPrefix}${index}` }),
-    JSON.stringify(playerStatsQuery(params, currentJsonEpoch, efficiency, lookup, avgEfficiency)),
+    JSON.stringify(
+      playerStatsQuery(params, currentJsonEpoch, efficiency, lookup, avgEfficiency),
+      CommonApiUtils.efficiencyReplacer()
+    ),
   ].join('\n') + "\n";
 
   // Debug logs:

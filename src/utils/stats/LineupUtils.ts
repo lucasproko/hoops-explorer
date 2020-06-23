@@ -1,8 +1,8 @@
 // Lodash
 import _ from "lodash";
 
-import { TeamReportStatsModel } from "../components/TeamReportStatsTable";
-import { LineupStatsModel } from "../components/LineupStatsTable";
+import { TeamReportStatsModel } from "../../components/TeamReportStatsTable";
+import { LineupStatsModel } from "../../components/LineupStatsTable";
 
 /** Handles combining the statistics of different lineups */
 export class LineupUtils {

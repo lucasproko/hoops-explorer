@@ -37,7 +37,8 @@ import GenericTogglingMenuItem from "./GenericTogglingMenuItem";
 import { CbbColors } from "../utils/CbbColors";
 import { CommonTableDefs } from "../utils/CommonTableDefs";
 import { getCommonFilterParams, ParamDefaults, GameFilterParams } from "../utils/FilterModels";
-import { ORtgDiagnostics, StatsUtils } from "../utils/StatsUtils";
+import { ORtgDiagnostics, RatingUtils } from "../utils/stats/RatingUtils";
+import { PositionUtils } from "../utils/stats/PositionUtils";
 import { TeamStatsModel } from '../components/TeamStatsTable';
 import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
 
@@ -46,6 +47,7 @@ export type RosterStatsModel = {
   off?: Array<any>,
   onOffMode?: boolean,
   baseline?: Array<any>,
+  global?: Array<any>, //(across all samples for the team)
   error_code?: string
 }
 type Props = {
@@ -205,7 +207,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, tea
 
   /** Adds a tooltip to the code */
   const buildPositionTooltip = (pos: string, type: "on" | "off" | "baseline") => {
-    const fullPos = StatsUtils.idToPosition[pos] || "Unknown"
+    const fullPos = PositionUtils.idToPosition[pos] || "Unknown"
     return <Tooltip id={pos + "Tooltip"}>
       {fullPos}<br/><br/>
       Algorithmically assigned via stats from {onOffBaseToPhrase(type)} lineups.
@@ -275,8 +277,8 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, tea
             / (teamStat.def_poss?.value || 1), 1 ]) };
 
         stat.off_drb = stat.def_orb;
-        const [ oRtg, adjORtg, oRtgDiag ] = StatsUtils.buildORtg(stat, avgEfficiency, showDiagMode);
-        const [ dRtg, adjDRtg, dRtgDiag ] = StatsUtils.buildDRtg(stat, avgEfficiency, showDiagMode);
+        const [ oRtg, adjORtg, oRtgDiag ] = RatingUtils.buildORtg(stat, avgEfficiency, showDiagMode);
+        const [ dRtg, adjDRtg, dRtgDiag ] = RatingUtils.buildDRtg(stat, avgEfficiency, showDiagMode);
         stat.off_rtg = oRtg;
         stat.off_adj_rtg = adjORtg;
         stat.diag_off_rtg = oRtgDiag;
@@ -286,8 +288,8 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, tea
 
         // Positional info:
 
-        const [ posConfs, posConfsDiags ] = StatsUtils.buildPositionConfidences(stat);
-        const [ pos, posDiags ] = StatsUtils.buildPosition(posConfs, stat);
+        const [ posConfs, posConfsDiags ] = PositionUtils.buildPositionConfidences(stat);
+        const [ pos, posDiags ] = PositionUtils.buildPosition(posConfs, stat);
         stat.def_usage = <OverlayTrigger placement="auto" overlay={buildPositionTooltip(pos, key)}>
           <small>{pos}</small>
         </OverlayTrigger>;

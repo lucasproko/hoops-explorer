@@ -10,6 +10,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 30.299999999999997,
       "stats.adj_tempo.rank": 231,
       "stats.adj_tempo.value": 67.3,
+      "stats.off._3p_pct.value": 34.1,
+      "total_poss": 2037,
       "is_high_major": 1,
       "good_md_comp": 1
    },
@@ -24,6 +26,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 26.700000000000003,
       "stats.adj_tempo.rank": 31,
       "stats.adj_tempo.value": 72.2,
+      "stats.off._3p_pct.value": 39,
+      "total_poss": 2340,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -38,6 +42,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 25.5,
       "stats.adj_tempo.rank": 280,
       "stats.adj_tempo.value": 66.2,
+      "stats.off._3p_pct.value": 35.1,
+      "total_poss": 2006,
       "is_high_major": 1,
       "good_md_comp": 0
    },
@@ -52,6 +58,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 25,
       "stats.adj_tempo.rank": 220,
       "stats.adj_tempo.value": 67.5,
+      "stats.off._3p_pct.value": 37.1,
+      "total_poss": 2133,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -66,6 +74,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 24.700000000000003,
       "stats.adj_tempo.rank": 35,
       "stats.adj_tempo.value": 71.9,
+      "stats.off._3p_pct.value": 35.2,
+      "total_poss": 2297,
       "is_high_major": 1,
       "good_md_comp": 1
    },
@@ -80,6 +90,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 24.5,
       "stats.adj_tempo.rank": 332,
       "stats.adj_tempo.value": 64.6,
+      "stats.off._3p_pct.value": 37.9,
+      "total_poss": 2046,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -94,6 +106,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 24,
       "stats.adj_tempo.rank": 129,
       "stats.adj_tempo.value": 69.1,
+      "stats.off._3p_pct.value": 34.8,
+      "total_poss": 2149,
       "is_high_major": 1,
       "good_md_comp": 0
    },
@@ -108,6 +122,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 22.200000000000003,
       "stats.adj_tempo.rank": 281,
       "stats.adj_tempo.value": 66.2,
+      "stats.off._3p_pct.value": 37.3,
+      "total_poss": 2131,
       "is_high_major": 1,
       "good_md_comp": 0
    },
@@ -122,6 +138,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 21.299999999999997,
       "stats.adj_tempo.rank": 242,
       "stats.adj_tempo.value": 67.1,
+      "stats.off._3p_pct.value": 37.6,
+      "total_poss": 2100,
       "is_high_major": 1,
       "good_md_comp": 0
    },
@@ -136,6 +154,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 21.200000000000003,
       "stats.adj_tempo.rank": 112,
       "stats.adj_tempo.value": 69.4,
+      "stats.off._3p_pct.value": 28.6,
+      "total_poss": 2228,
       "is_high_major": 1,
       "good_md_comp": 0
    },
@@ -150,6 +170,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 21.099999999999994,
       "stats.adj_tempo.rank": 243,
       "stats.adj_tempo.value": 67,
+      "stats.off._3p_pct.value": 31.1,
+      "total_poss": 2093,
       "is_high_major": 1,
       "good_md_comp": 0
    },
@@ -164,6 +186,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 21,
       "stats.adj_tempo.rank": 104,
       "stats.adj_tempo.value": 69.5,
+      "stats.off._3p_pct.value": 42,
+      "total_poss": 2190,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -178,6 +202,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 21,
       "stats.adj_tempo.rank": 179,
       "stats.adj_tempo.value": 68.3,
+      "stats.off._3p_pct.value": 38.7,
+      "total_poss": 2102,
       "is_high_major": 1,
       "good_md_comp": 1
    },
@@ -192,6 +218,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 20.39999999999999,
       "stats.adj_tempo.rank": 301,
       "stats.adj_tempo.value": 65.7,
+      "stats.off._3p_pct.value": 33.7,
+      "total_poss": 2079,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -206,6 +234,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 20.200000000000003,
       "stats.adj_tempo.rank": 90,
       "stats.adj_tempo.value": 69.9,
+      "stats.off._3p_pct.value": 35.1,
+      "total_poss": 2173,
       "is_high_major": 1,
       "good_md_comp": 0
    },
@@ -220,6 +250,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 20.10000000000001,
       "stats.adj_tempo.rank": 150,
       "stats.adj_tempo.value": 68.7,
+      "stats.off._3p_pct.value": 33.9,
+      "total_poss": 2244,
       "is_high_major": 1,
       "good_md_comp": 1
    },
@@ -234,6 +266,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 20.10000000000001,
       "stats.adj_tempo.rank": 318,
       "stats.adj_tempo.value": 65,
+      "stats.off._3p_pct.value": 39.6,
+      "total_poss": 2107,
       "is_high_major": 1,
       "good_md_comp": 0
    },
@@ -248,6 +282,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 20,
       "stats.adj_tempo.rank": 278,
       "stats.adj_tempo.value": 66.2,
+      "stats.off._3p_pct.value": 35.9,
+      "total_poss": 2103,
       "is_high_major": 1,
       "good_md_comp": 0
    },
@@ -262,6 +298,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 19.599999999999994,
       "stats.adj_tempo.rank": 92,
       "stats.adj_tempo.value": 69.8,
+      "stats.off._3p_pct.value": 33.5,
+      "total_poss": 2196,
       "is_high_major": 1,
       "good_md_comp": 0
    },
@@ -276,6 +314,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 19.5,
       "stats.adj_tempo.rank": 131,
       "stats.adj_tempo.value": 69.1,
+      "stats.off._3p_pct.value": 35.2,
+      "total_poss": 2259,
       "is_high_major": 1,
       "good_md_comp": 0
    },
@@ -290,6 +330,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 19.299999999999997,
       "stats.adj_tempo.rank": 234,
       "stats.adj_tempo.value": 67.3,
+      "stats.off._3p_pct.value": 35.5,
+      "total_poss": 2212,
       "is_high_major": 1,
       "good_md_comp": 0
    },
@@ -304,6 +346,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 19,
       "stats.adj_tempo.rank": 342,
       "stats.adj_tempo.value": 63.7,
+      "stats.off._3p_pct.value": 35.2,
+      "total_poss": 2003,
       "is_high_major": 1,
       "good_md_comp": 0
    },
@@ -318,6 +362,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 18.599999999999994,
       "stats.adj_tempo.rank": 75,
       "stats.adj_tempo.value": 70.2,
+      "stats.off._3p_pct.value": 34.7,
+      "total_poss": 2187,
       "is_high_major": 1,
       "good_md_comp": 0
    },
@@ -332,6 +378,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 18.60000000000001,
       "stats.adj_tempo.rank": 333,
       "stats.adj_tempo.value": 64.5,
+      "stats.off._3p_pct.value": 33,
+      "total_poss": 2117,
       "is_high_major": 1,
       "good_md_comp": 0
    },
@@ -346,6 +394,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 18.5,
       "stats.adj_tempo.rank": 341,
       "stats.adj_tempo.value": 63.7,
+      "stats.off._3p_pct.value": 34.1,
+      "total_poss": 2072,
       "is_high_major": 1,
       "good_md_comp": 0
    },
@@ -360,6 +410,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 17.900000000000006,
       "stats.adj_tempo.rank": 53,
       "stats.adj_tempo.value": 70.9,
+      "stats.off._3p_pct.value": 32.5,
+      "total_poss": 2216,
       "is_high_major": 1,
       "good_md_comp": 0
    },
@@ -374,6 +426,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 17.700000000000003,
       "stats.adj_tempo.rank": 226,
       "stats.adj_tempo.value": 67.4,
+      "stats.off._3p_pct.value": 30.8,
+      "total_poss": 2108,
       "is_high_major": 1,
       "good_md_comp": 0
    },
@@ -388,6 +442,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 17.60000000000001,
       "stats.adj_tempo.rank": 214,
       "stats.adj_tempo.value": 67.6,
+      "stats.off._3p_pct.value": 34.3,
+      "total_poss": 2141,
       "is_high_major": 1,
       "good_md_comp": 0
    },
@@ -402,6 +458,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 17.5,
       "stats.adj_tempo.rank": 255,
       "stats.adj_tempo.value": 66.8,
+      "stats.off._3p_pct.value": 33.2,
+      "total_poss": 2108,
       "is_high_major": 1,
       "good_md_comp": 0
    },
@@ -416,6 +474,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 17.299999999999997,
       "stats.adj_tempo.rank": 291,
       "stats.adj_tempo.value": 66,
+      "stats.off._3p_pct.value": 30.3,
+      "total_poss": 2020,
       "is_high_major": 1,
       "good_md_comp": 0
    },
@@ -430,6 +490,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 17.099999999999994,
       "stats.adj_tempo.rank": 59,
       "stats.adj_tempo.value": 70.7,
+      "stats.off._3p_pct.value": 38.2,
+      "total_poss": 2246,
       "is_high_major": 1,
       "good_md_comp": 0
    },
@@ -444,6 +506,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 16.799999999999997,
       "stats.adj_tempo.rank": 193,
       "stats.adj_tempo.value": 68,
+      "stats.off._3p_pct.value": 35.6,
+      "total_poss": 2192,
       "is_high_major": 1,
       "good_md_comp": 0
    },
@@ -458,6 +522,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 16.799999999999997,
       "stats.adj_tempo.rank": 325,
       "stats.adj_tempo.value": 64.9,
+      "stats.off._3p_pct.value": 34.7,
+      "total_poss": 2073,
       "is_high_major": 1,
       "good_md_comp": 0
    },
@@ -472,6 +538,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 15.900000000000006,
       "stats.adj_tempo.rank": 124,
       "stats.adj_tempo.value": 69.2,
+      "stats.off._3p_pct.value": 30.6,
+      "total_poss": 2234,
       "is_high_major": 1,
       "good_md_comp": 0
    },
@@ -486,6 +554,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 15.799999999999997,
       "stats.adj_tempo.rank": 98,
       "stats.adj_tempo.value": 69.6,
+      "stats.off._3p_pct.value": 31.8,
+      "total_poss": 2231,
       "is_high_major": 1,
       "good_md_comp": 1
    },
@@ -500,10 +570,12 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 15.599999999999994,
       "stats.adj_tempo.rank": 86,
       "stats.adj_tempo.value": 70,
+      "stats.off._3p_pct.value": 32.7,
+      "total_poss": 2216,
       "is_high_major": 1,
       "good_md_comp": 0
    },
-   "Saint Mary's": {
+   "Saint Mary's (CA)": {
       "team_season.year": 2020,
       "conf": "West Coast Conference",
       "stats.adj_off.rank": 12,
@@ -514,6 +586,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 15.399999999999991,
       "stats.adj_tempo.rank": 339,
       "stats.adj_tempo.value": 64.1,
+      "stats.off._3p_pct.value": 38.8,
+      "total_poss": 2149,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -528,6 +602,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 15.299999999999997,
       "stats.adj_tempo.rank": 187,
       "stats.adj_tempo.value": 68.2,
+      "stats.off._3p_pct.value": 37.2,
+      "total_poss": 2214,
       "is_high_major": 1,
       "good_md_comp": 0
    },
@@ -542,6 +618,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 15.299999999999997,
       "stats.adj_tempo.rank": 102,
       "stats.adj_tempo.value": 69.5,
+      "stats.off._3p_pct.value": 32.8,
+      "total_poss": 2205,
       "is_high_major": 0,
       "good_md_comp": 1
    },
@@ -556,6 +634,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 15.200000000000003,
       "stats.adj_tempo.rank": 215,
       "stats.adj_tempo.value": 67.6,
+      "stats.off._3p_pct.value": 32.2,
+      "total_poss": 2202,
       "is_high_major": 1,
       "good_md_comp": 0
    },
@@ -570,6 +650,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 15,
       "stats.adj_tempo.rank": 172,
       "stats.adj_tempo.value": 68.4,
+      "stats.off._3p_pct.value": 33.2,
+      "total_poss": 2230,
       "is_high_major": 1,
       "good_md_comp": 0
    },
@@ -584,6 +666,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 14.900000000000006,
       "stats.adj_tempo.rank": 227,
       "stats.adj_tempo.value": 67.4,
+      "stats.off._3p_pct.value": 32.9,
+      "total_poss": 2202,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -598,6 +682,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 14.400000000000006,
       "stats.adj_tempo.rank": 189,
       "stats.adj_tempo.value": 68.1,
+      "stats.off._3p_pct.value": 31.5,
+      "total_poss": 2259,
       "is_high_major": 1,
       "good_md_comp": 0
    },
@@ -612,6 +698,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 14.299999999999997,
       "stats.adj_tempo.rank": 353,
       "stats.adj_tempo.value": 59.4,
+      "stats.off._3p_pct.value": 30.3,
+      "total_poss": 1831,
       "is_high_major": 1,
       "good_md_comp": 0
    },
@@ -626,6 +714,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 14.100000000000009,
       "stats.adj_tempo.rank": 198,
       "stats.adj_tempo.value": 68,
+      "stats.off._3p_pct.value": 31.9,
+      "total_poss": 2136,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -640,6 +730,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 14,
       "stats.adj_tempo.rank": 122,
       "stats.adj_tempo.value": 69.3,
+      "stats.off._3p_pct.value": 36.2,
+      "total_poss": 2166,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -654,10 +746,12 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 13.5,
       "stats.adj_tempo.rank": 275,
       "stats.adj_tempo.value": 66.2,
+      "stats.off._3p_pct.value": 33.6,
+      "total_poss": 2088,
       "is_high_major": 1,
       "good_md_comp": 0
    },
-   "Northern Iowa": {
+   "UNI": {
       "team_season.year": 2020,
       "conf": "Missouri Valley Conference",
       "stats.adj_off.rank": 21,
@@ -668,6 +762,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 13.5,
       "stats.adj_tempo.rank": 298,
       "stats.adj_tempo.value": 65.7,
+      "stats.off._3p_pct.value": 38.6,
+      "total_poss": 1932,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -682,10 +778,12 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 13.399999999999991,
       "stats.adj_tempo.rank": 45,
       "stats.adj_tempo.value": 71.2,
+      "stats.off._3p_pct.value": 33,
+      "total_poss": 2322,
       "is_high_major": 1,
       "good_md_comp": 1
    },
-   "Connecticut": {
+   "UConn": {
       "team_season.year": 2020,
       "conf": "American Athletic Conference",
       "stats.adj_off.rank": 63,
@@ -696,10 +794,12 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 13,
       "stats.adj_tempo.rank": 167,
       "stats.adj_tempo.value": 68.5,
+      "stats.off._3p_pct.value": 32.4,
+      "total_poss": 2276,
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "N.C. State": {
+   "NC State": {
       "team_season.year": 2020,
       "conf": "Atlantic Coast Conference",
       "stats.adj_off.rank": 39,
@@ -710,6 +810,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 12.899999999999991,
       "stats.adj_tempo.rank": 108,
       "stats.adj_tempo.value": 69.4,
+      "stats.off._3p_pct.value": 32,
+      "total_poss": 2195,
       "is_high_major": 1,
       "good_md_comp": 0
    },
@@ -724,6 +826,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 12.900000000000006,
       "stats.adj_tempo.rank": 170,
       "stats.adj_tempo.value": 68.4,
+      "stats.off._3p_pct.value": 31.7,
+      "total_poss": 2193,
       "is_high_major": 1,
       "good_md_comp": 0
    },
@@ -738,10 +842,12 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 12.700000000000003,
       "stats.adj_tempo.rank": 101,
       "stats.adj_tempo.value": 69.5,
+      "stats.off._3p_pct.value": 33.2,
+      "total_poss": 2256,
       "is_high_major": 1,
       "good_md_comp": 0
    },
-   "USC": {
+   "Southern California": {
       "team_season.year": 2020,
       "conf": "Pac 12 Conference",
       "stats.adj_off.rank": 148,
@@ -752,6 +858,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 12.400000000000006,
       "stats.adj_tempo.rank": 141,
       "stats.adj_tempo.value": 68.9,
+      "stats.off._3p_pct.value": 35,
+      "total_poss": 2195,
       "is_high_major": 1,
       "good_md_comp": 0
    },
@@ -766,10 +874,12 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 12.200000000000003,
       "stats.adj_tempo.rank": 183,
       "stats.adj_tempo.value": 68.2,
+      "stats.off._3p_pct.value": 32.9,
+      "total_poss": 2135,
       "is_high_major": 1,
       "good_md_comp": 0
    },
-   "East Tennessee St.": {
+   "ETSU": {
       "team_season.year": 2020,
       "conf": "Southern Conference",
       "stats.adj_off.rank": 72,
@@ -780,6 +890,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 11.799999999999997,
       "stats.adj_tempo.rank": 277,
       "stats.adj_tempo.value": 66.2,
+      "stats.off._3p_pct.value": 33.6,
+      "total_poss": 2097,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -794,6 +906,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 11.599999999999994,
       "stats.adj_tempo.rank": 224,
       "stats.adj_tempo.value": 67.4,
+      "stats.off._3p_pct.value": 36.9,
+      "total_poss": 2038,
       "is_high_major": 0,
       "good_md_comp": 1
    },
@@ -808,6 +922,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 11.5,
       "stats.adj_tempo.rank": 27,
       "stats.adj_tempo.value": 72.6,
+      "stats.off._3p_pct.value": 32.9,
+      "total_poss": 2358,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -822,6 +938,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 11.5,
       "stats.adj_tempo.rank": 195,
       "stats.adj_tempo.value": 68,
+      "stats.off._3p_pct.value": 34.3,
+      "total_poss": 2220,
       "is_high_major": 1,
       "good_md_comp": 0
    },
@@ -836,6 +954,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 11.5,
       "stats.adj_tempo.rank": 3,
       "stats.adj_tempo.value": 74.7,
+      "stats.off._3p_pct.value": 34.9,
+      "total_poss": 2468,
       "is_high_major": 1,
       "good_md_comp": 0
    },
@@ -850,6 +970,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 11.400000000000006,
       "stats.adj_tempo.rank": 295,
       "stats.adj_tempo.value": 65.9,
+      "stats.off._3p_pct.value": 33.4,
+      "total_poss": 2115,
       "is_high_major": 1,
       "good_md_comp": 0
    },
@@ -864,6 +986,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 11.399999999999991,
       "stats.adj_tempo.rank": 218,
       "stats.adj_tempo.value": 67.6,
+      "stats.off._3p_pct.value": 34.2,
+      "total_poss": 2077,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -878,6 +1002,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 11.299999999999997,
       "stats.adj_tempo.rank": 85,
       "stats.adj_tempo.value": 70,
+      "stats.off._3p_pct.value": 35.2,
+      "total_poss": 2292,
       "is_high_major": 1,
       "good_md_comp": 1
    },
@@ -892,6 +1018,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 11.200000000000003,
       "stats.adj_tempo.rank": 14,
       "stats.adj_tempo.value": 73.3,
+      "stats.off._3p_pct.value": 32.3,
+      "total_poss": 2280,
       "is_high_major": 1,
       "good_md_comp": 1
    },
@@ -906,6 +1034,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 11.200000000000003,
       "stats.adj_tempo.rank": 88,
       "stats.adj_tempo.value": 70,
+      "stats.off._3p_pct.value": 31.1,
+      "total_poss": 2133,
       "is_high_major": 1,
       "good_md_comp": 0
    },
@@ -920,6 +1050,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 11.099999999999994,
       "stats.adj_tempo.rank": 46,
       "stats.adj_tempo.value": 71.2,
+      "stats.off._3p_pct.value": 31.5,
+      "total_poss": 2172,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -934,6 +1066,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 10.799999999999997,
       "stats.adj_tempo.rank": 313,
       "stats.adj_tempo.value": 65.2,
+      "stats.off._3p_pct.value": 31.3,
+      "total_poss": 2134,
       "is_high_major": 1,
       "good_md_comp": 0
    },
@@ -948,6 +1082,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 10.699999999999989,
       "stats.adj_tempo.rank": 329,
       "stats.adj_tempo.value": 64.7,
+      "stats.off._3p_pct.value": 36.8,
+      "total_poss": 2077,
       "is_high_major": 0,
       "good_md_comp": 1
    },
@@ -962,6 +1098,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 10.600000000000009,
       "stats.adj_tempo.rank": 17,
       "stats.adj_tempo.value": 73.1,
+      "stats.off._3p_pct.value": 31,
+      "total_poss": 2260,
       "is_high_major": 1,
       "good_md_comp": 0
    },
@@ -976,10 +1114,12 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 10.5,
       "stats.adj_tempo.rank": 276,
       "stats.adj_tempo.value": 66.2,
+      "stats.off._3p_pct.value": 33.1,
+      "total_poss": 2130,
       "is_high_major": 0,
       "good_md_comp": 1
    },
-   "St. John's": {
+   "St. John's (NY)": {
       "team_season.year": 2020,
       "conf": "Big East Conference",
       "stats.adj_off.rank": 100,
@@ -990,6 +1130,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 10.399999999999991,
       "stats.adj_tempo.rank": 20,
       "stats.adj_tempo.value": 73,
+      "stats.off._3p_pct.value": 32.1,
+      "total_poss": 2370,
       "is_high_major": 1,
       "good_md_comp": 0
    },
@@ -1004,6 +1146,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 10.5,
       "stats.adj_tempo.rank": 264,
       "stats.adj_tempo.value": 66.5,
+      "stats.off._3p_pct.value": 35.5,
+      "total_poss": 1909,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -1018,6 +1162,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 10.399999999999991,
       "stats.adj_tempo.rank": 292,
       "stats.adj_tempo.value": 66,
+      "stats.off._3p_pct.value": 31.5,
+      "total_poss": 2091,
       "is_high_major": 1,
       "good_md_comp": 1
    },
@@ -1032,10 +1178,12 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 10.399999999999991,
       "stats.adj_tempo.rank": 136,
       "stats.adj_tempo.value": 69,
+      "stats.off._3p_pct.value": 34.6,
+      "total_poss": 2223,
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Northern Colorado": {
+   "Northern Colo.": {
       "team_season.year": 2020,
       "conf": "Big Sky Conference",
       "stats.adj_off.rank": 45,
@@ -1046,6 +1194,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 10.099999999999994,
       "stats.adj_tempo.rank": 319,
       "stats.adj_tempo.value": 65,
+      "stats.off._3p_pct.value": 37.4,
+      "total_poss": 1919,
       "is_high_major": 0,
       "good_md_comp": 1
    },
@@ -1060,6 +1210,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 10,
       "stats.adj_tempo.rank": 350,
       "stats.adj_tempo.value": 62.9,
+      "stats.off._3p_pct.value": 37.5,
+      "total_poss": 1871,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -1074,6 +1226,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 9.899999999999991,
       "stats.adj_tempo.rank": 322,
       "stats.adj_tempo.value": 64.9,
+      "stats.off._3p_pct.value": 32.2,
+      "total_poss": 2006,
       "is_high_major": 1,
       "good_md_comp": 1
    },
@@ -1088,6 +1242,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 9.700000000000003,
       "stats.adj_tempo.rank": 149,
       "stats.adj_tempo.value": 68.7,
+      "stats.off._3p_pct.value": 33.8,
+      "total_poss": 2303,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -1102,6 +1258,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 9.799999999999997,
       "stats.adj_tempo.rank": 352,
       "stats.adj_tempo.value": 61.4,
+      "stats.off._3p_pct.value": 35,
+      "total_poss": 1960,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -1116,6 +1274,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 9.700000000000003,
       "stats.adj_tempo.rank": 297,
       "stats.adj_tempo.value": 65.8,
+      "stats.off._3p_pct.value": 32.2,
+      "total_poss": 2114,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -1130,6 +1290,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 9.600000000000009,
       "stats.adj_tempo.rank": 186,
       "stats.adj_tempo.value": 68.2,
+      "stats.off._3p_pct.value": 34.5,
+      "total_poss": 2024,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -1144,6 +1306,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 9.599999999999994,
       "stats.adj_tempo.rank": 315,
       "stats.adj_tempo.value": 65.1,
+      "stats.off._3p_pct.value": 35.5,
+      "total_poss": 2058,
       "is_high_major": 1,
       "good_md_comp": 0
    },
@@ -1158,6 +1322,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 9.5,
       "stats.adj_tempo.rank": 105,
       "stats.adj_tempo.value": 69.5,
+      "stats.off._3p_pct.value": 36.2,
+      "total_poss": 2033,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -1172,6 +1338,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 9.399999999999991,
       "stats.adj_tempo.rank": 63,
       "stats.adj_tempo.value": 70.5,
+      "stats.off._3p_pct.value": 30.4,
+      "total_poss": 2292,
       "is_high_major": 1,
       "good_md_comp": 0
    },
@@ -1186,6 +1354,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 9.399999999999991,
       "stats.adj_tempo.rank": 133,
       "stats.adj_tempo.value": 69.1,
+      "stats.off._3p_pct.value": 33.6,
+      "total_poss": 2202,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -1200,6 +1370,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 9.299999999999997,
       "stats.adj_tempo.rank": 51,
       "stats.adj_tempo.value": 71,
+      "stats.off._3p_pct.value": 38.3,
+      "total_poss": 2228,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -1214,6 +1386,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 9.100000000000009,
       "stats.adj_tempo.rank": 300,
       "stats.adj_tempo.value": 65.7,
+      "stats.off._3p_pct.value": 32.3,
+      "total_poss": 2067,
       "is_high_major": 1,
       "good_md_comp": 0
    },
@@ -1228,6 +1402,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 8.600000000000009,
       "stats.adj_tempo.rank": 330,
       "stats.adj_tempo.value": 64.7,
+      "stats.off._3p_pct.value": 32.3,
+      "total_poss": 2086,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -1242,6 +1418,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 8.299999999999997,
       "stats.adj_tempo.rank": 89,
       "stats.adj_tempo.value": 69.9,
+      "stats.off._3p_pct.value": 31.5,
+      "total_poss": 2263,
       "is_high_major": 1,
       "good_md_comp": 0
    },
@@ -1256,6 +1434,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 8.100000000000009,
       "stats.adj_tempo.rank": 209,
       "stats.adj_tempo.value": 67.8,
+      "stats.off._3p_pct.value": 31.9,
+      "total_poss": 2083,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -1270,6 +1450,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 8.099999999999994,
       "stats.adj_tempo.rank": 343,
       "stats.adj_tempo.value": 63.5,
+      "stats.off._3p_pct.value": 34.6,
+      "total_poss": 1940,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -1284,10 +1466,12 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 8,
       "stats.adj_tempo.rank": 237,
       "stats.adj_tempo.value": 67.2,
+      "stats.off._3p_pct.value": 31.4,
+      "total_poss": 2165,
       "is_high_major": 1,
       "good_md_comp": 0
    },
-   "Mississippi": {
+   "Ole Miss": {
       "team_season.year": 2020,
       "conf": "Southeastern Conference",
       "stats.adj_off.rank": 152,
@@ -1298,6 +1482,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 7.6000000000000085,
       "stats.adj_tempo.rank": 199,
       "stats.adj_tempo.value": 67.9,
+      "stats.off._3p_pct.value": 32.5,
+      "total_poss": 2214,
       "is_high_major": 1,
       "good_md_comp": 0
    },
@@ -1312,6 +1498,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 7.6000000000000085,
       "stats.adj_tempo.rank": 208,
       "stats.adj_tempo.value": 67.8,
+      "stats.off._3p_pct.value": 31.8,
+      "total_poss": 2052,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -1326,6 +1514,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 7.6000000000000085,
       "stats.adj_tempo.rank": 327,
       "stats.adj_tempo.value": 64.8,
+      "stats.off._3p_pct.value": 31.7,
+      "total_poss": 1951,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -1340,10 +1530,12 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 7.5,
       "stats.adj_tempo.rank": 305,
       "stats.adj_tempo.value": 65.6,
+      "stats.off._3p_pct.value": 35.5,
+      "total_poss": 2170,
       "is_high_major": 1,
       "good_md_comp": 0
    },
-   "DePaul": {
+   "Denver": {
       "team_season.year": 2020,
       "conf": "Big East Conference",
       "stats.adj_off.rank": 174,
@@ -1354,6 +1546,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 7.5,
       "stats.adj_tempo.rank": 61,
       "stats.adj_tempo.value": 70.6,
+      "stats.off._3p_pct.value": 31.1,
+      "total_poss": 2240,
       "is_high_major": 1,
       "good_md_comp": 0
    },
@@ -1368,6 +1562,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 7.400000000000006,
       "stats.adj_tempo.rank": 267,
       "stats.adj_tempo.value": 66.4,
+      "stats.off._3p_pct.value": 29.7,
+      "total_poss": 2162,
       "is_high_major": 1,
       "good_md_comp": 0
    },
@@ -1382,6 +1578,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 7.299999999999997,
       "stats.adj_tempo.rank": 80,
       "stats.adj_tempo.value": 70.1,
+      "stats.off._3p_pct.value": 35,
+      "total_poss": 2228,
       "is_high_major": 1,
       "good_md_comp": 0
    },
@@ -1396,6 +1594,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 7.300000000000011,
       "stats.adj_tempo.rank": 245,
       "stats.adj_tempo.value": 67,
+      "stats.off._3p_pct.value": 31.9,
+      "total_poss": 2209,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -1410,10 +1610,12 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 7.099999999999994,
       "stats.adj_tempo.rank": 116,
       "stats.adj_tempo.value": 69.3,
+      "stats.off._3p_pct.value": 36.9,
+      "total_poss": 2195,
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Stephen F. Austin": {
+   "SFA": {
       "team_season.year": 2020,
       "conf": "Southland Conference",
       "stats.adj_off.rank": 153,
@@ -1424,6 +1626,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 6.8999999999999915,
       "stats.adj_tempo.rank": 39,
       "stats.adj_tempo.value": 71.8,
+      "stats.off._3p_pct.value": 37.4,
+      "total_poss": 2077,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -1438,10 +1642,12 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 6.900000000000006,
       "stats.adj_tempo.rank": 312,
       "stats.adj_tempo.value": 65.2,
+      "stats.off._3p_pct.value": 36,
+      "total_poss": 2056,
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Miami FL": {
+   "Miami (FL)": {
       "team_season.year": 2020,
       "conf": "Atlantic Coast Conference",
       "stats.adj_off.rank": 82,
@@ -1452,6 +1658,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 6.5,
       "stats.adj_tempo.rank": 174,
       "stats.adj_tempo.value": 68.3,
+      "stats.off._3p_pct.value": 31.8,
+      "total_poss": 2181,
       "is_high_major": 1,
       "good_md_comp": 0
    },
@@ -1466,6 +1674,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 6.5,
       "stats.adj_tempo.rank": 65,
       "stats.adj_tempo.value": 70.4,
+      "stats.off._3p_pct.value": 29.8,
+      "total_poss": 2261,
       "is_high_major": 1,
       "good_md_comp": 0
    },
@@ -1480,6 +1690,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 6.099999999999994,
       "stats.adj_tempo.rank": 211,
       "stats.adj_tempo.value": 67.8,
+      "stats.off._3p_pct.value": 35.6,
+      "total_poss": 2122,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -1494,6 +1706,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 6.099999999999994,
       "stats.adj_tempo.rank": 244,
       "stats.adj_tempo.value": 67,
+      "stats.off._3p_pct.value": 37.1,
+      "total_poss": 2232,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -1508,6 +1722,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 6.099999999999994,
       "stats.adj_tempo.rank": 64,
       "stats.adj_tempo.value": 70.4,
+      "stats.off._3p_pct.value": 34.8,
+      "total_poss": 2314,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -1522,6 +1738,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 5.700000000000003,
       "stats.adj_tempo.rank": 151,
       "stats.adj_tempo.value": 68.7,
+      "stats.off._3p_pct.value": 32.8,
+      "total_poss": 2027,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -1536,6 +1754,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 5.599999999999994,
       "stats.adj_tempo.rank": 257,
       "stats.adj_tempo.value": 66.8,
+      "stats.off._3p_pct.value": 32.9,
+      "total_poss": 2131,
       "is_high_major": 1,
       "good_md_comp": 0
    },
@@ -1550,10 +1770,12 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 5.599999999999994,
       "stats.adj_tempo.rank": 309,
       "stats.adj_tempo.value": 65.4,
+      "stats.off._3p_pct.value": 29.6,
+      "total_poss": 2117,
       "is_high_major": 1,
       "good_md_comp": 1
    },
-   "Western Kentucky": {
+   "Western Ky.": {
       "team_season.year": 2020,
       "conf": "Conference USA",
       "stats.adj_off.rank": 55,
@@ -1564,6 +1786,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 5.5,
       "stats.adj_tempo.rank": 177,
       "stats.adj_tempo.value": 68.3,
+      "stats.off._3p_pct.value": 33.3,
+      "total_poss": 2061,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -1578,6 +1802,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 5.5,
       "stats.adj_tempo.rank": 73,
       "stats.adj_tempo.value": 70.2,
+      "stats.off._3p_pct.value": 32.2,
+      "total_poss": 2282,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -1592,6 +1818,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 5.3999999999999915,
       "stats.adj_tempo.rank": 15,
       "stats.adj_tempo.value": 73.3,
+      "stats.off._3p_pct.value": 36.6,
+      "total_poss": 2158,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -1606,6 +1834,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 5.299999999999997,
       "stats.adj_tempo.rank": 185,
       "stats.adj_tempo.value": 68.2,
+      "stats.off._3p_pct.value": 36.8,
+      "total_poss": 2197,
       "is_high_major": 0,
       "good_md_comp": 1
    },
@@ -1620,6 +1850,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 5.200000000000003,
       "stats.adj_tempo.rank": 196,
       "stats.adj_tempo.value": 68,
+      "stats.off._3p_pct.value": 33.5,
+      "total_poss": 2073,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -1634,6 +1866,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 5.299999999999997,
       "stats.adj_tempo.rank": 158,
       "stats.adj_tempo.value": 68.6,
+      "stats.off._3p_pct.value": 36.1,
+      "total_poss": 2279,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -1648,6 +1882,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 4.8999999999999915,
       "stats.adj_tempo.rank": 206,
       "stats.adj_tempo.value": 67.8,
+      "stats.off._3p_pct.value": 32.3,
+      "total_poss": 2142,
       "is_high_major": 0,
       "good_md_comp": 1
    },
@@ -1662,6 +1898,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 4.700000000000003,
       "stats.adj_tempo.rank": 180,
       "stats.adj_tempo.value": 68.2,
+      "stats.off._3p_pct.value": 35.4,
+      "total_poss": 2273,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -1676,6 +1914,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 4.700000000000003,
       "stats.adj_tempo.rank": 201,
       "stats.adj_tempo.value": 67.9,
+      "stats.off._3p_pct.value": 35.4,
+      "total_poss": 2122,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -1690,6 +1930,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 4.700000000000003,
       "stats.adj_tempo.rank": 324,
       "stats.adj_tempo.value": 64.9,
+      "stats.off._3p_pct.value": 34.1,
+      "total_poss": 2096,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -1704,6 +1946,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 4.599999999999994,
       "stats.adj_tempo.rank": 270,
       "stats.adj_tempo.value": 66.4,
+      "stats.off._3p_pct.value": 37.5,
+      "total_poss": 1930,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -1718,6 +1962,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 4.5,
       "stats.adj_tempo.rank": 32,
       "stats.adj_tempo.value": 72.1,
+      "stats.off._3p_pct.value": 36,
+      "total_poss": 2219,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -1732,10 +1978,12 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 4.299999999999997,
       "stats.adj_tempo.rank": 302,
       "stats.adj_tempo.value": 65.7,
+      "stats.off._3p_pct.value": 34.1,
+      "total_poss": 2001,
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "South Florida": {
+   "South Fla.": {
       "team_season.year": 2020,
       "conf": "American Athletic Conference",
       "stats.adj_off.rank": 214,
@@ -1746,10 +1994,12 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 4.3999999999999915,
       "stats.adj_tempo.rank": 323,
       "stats.adj_tempo.value": 64.9,
+      "stats.off._3p_pct.value": 30.9,
+      "total_poss": 2108,
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Eastern Washington": {
+   "Eastern Wash.": {
       "team_season.year": 2020,
       "conf": "Big Sky Conference",
       "stats.adj_off.rank": 125,
@@ -1760,6 +2010,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 4.300000000000011,
       "stats.adj_tempo.rank": 18,
       "stats.adj_tempo.value": 73.1,
+      "stats.off._3p_pct.value": 34.4,
+      "total_poss": 2151,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -1774,6 +2026,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 4.1000000000000085,
       "stats.adj_tempo.rank": 163,
       "stats.adj_tempo.value": 68.6,
+      "stats.off._3p_pct.value": 34,
+      "total_poss": 2116,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -1788,6 +2042,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 4,
       "stats.adj_tempo.rank": 258,
       "stats.adj_tempo.value": 66.8,
+      "stats.off._3p_pct.value": 31.3,
+      "total_poss": 2085,
       "is_high_major": 1,
       "good_md_comp": 0
    },
@@ -1802,6 +2058,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 4,
       "stats.adj_tempo.rank": 289,
       "stats.adj_tempo.value": 66.1,
+      "stats.off._3p_pct.value": 34.6,
+      "total_poss": 2035,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -1816,6 +2074,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 3.9000000000000057,
       "stats.adj_tempo.rank": 120,
       "stats.adj_tempo.value": 69.3,
+      "stats.off._3p_pct.value": 35.1,
+      "total_poss": 2104,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -1830,6 +2090,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 3.799999999999997,
       "stats.adj_tempo.rank": 212,
       "stats.adj_tempo.value": 67.7,
+      "stats.off._3p_pct.value": 30.4,
+      "total_poss": 2085,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -1844,6 +2106,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 3.799999999999997,
       "stats.adj_tempo.rank": 334,
       "stats.adj_tempo.value": 64.5,
+      "stats.off._3p_pct.value": 29.4,
+      "total_poss": 2044,
       "is_high_major": 1,
       "good_md_comp": 1
    },
@@ -1858,6 +2122,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 3.5999999999999943,
       "stats.adj_tempo.rank": 72,
       "stats.adj_tempo.value": 70.3,
+      "stats.off._3p_pct.value": 33.5,
+      "total_poss": 1958,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -1872,6 +2138,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 3.200000000000003,
       "stats.adj_tempo.rank": 144,
       "stats.adj_tempo.value": 68.8,
+      "stats.off._3p_pct.value": 36.7,
+      "total_poss": 2102,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -1886,6 +2154,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 3.0999999999999943,
       "stats.adj_tempo.rank": 60,
       "stats.adj_tempo.value": 70.6,
+      "stats.off._3p_pct.value": 30.4,
+      "total_poss": 2285,
       "is_high_major": 1,
       "good_md_comp": 1
    },
@@ -1900,6 +2170,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 3.1000000000000085,
       "stats.adj_tempo.rank": 182,
       "stats.adj_tempo.value": 68.2,
+      "stats.off._3p_pct.value": 36.4,
+      "total_poss": 2035,
       "is_high_major": 0,
       "good_md_comp": 1
    },
@@ -1914,6 +2186,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 2.9000000000000057,
       "stats.adj_tempo.rank": 38,
       "stats.adj_tempo.value": 71.8,
+      "stats.off._3p_pct.value": 32.6,
+      "total_poss": 2323,
       "is_high_major": 0,
       "good_md_comp": 1
    },
@@ -1928,6 +2202,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 2.799999999999997,
       "stats.adj_tempo.rank": 57,
       "stats.adj_tempo.value": 70.8,
+      "stats.off._3p_pct.value": 35.1,
+      "total_poss": 2342,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -1942,6 +2218,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 2.6000000000000085,
       "stats.adj_tempo.rank": 36,
       "stats.adj_tempo.value": 71.9,
+      "stats.off._3p_pct.value": 34.4,
+      "total_poss": 2320,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -1956,6 +2234,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 2.700000000000003,
       "stats.adj_tempo.rank": 76,
       "stats.adj_tempo.value": 70.2,
+      "stats.off._3p_pct.value": 32.6,
+      "total_poss": 1924,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -1970,6 +2250,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 2.5999999999999943,
       "stats.adj_tempo.rank": 279,
       "stats.adj_tempo.value": 66.2,
+      "stats.off._3p_pct.value": 36.4,
+      "total_poss": 2119,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -1984,10 +2266,12 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 2.6000000000000085,
       "stats.adj_tempo.rank": 7,
       "stats.adj_tempo.value": 74,
+      "stats.off._3p_pct.value": 31.2,
+      "total_poss": 2335,
       "is_high_major": 0,
       "good_md_comp": 1
    },
-   "Georgia Southern": {
+   "Ga. Southern": {
       "team_season.year": 2020,
       "conf": "Sun Belt Conference",
       "stats.adj_off.rank": 192,
@@ -1998,6 +2282,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 2.5999999999999943,
       "stats.adj_tempo.rank": 37,
       "stats.adj_tempo.value": 71.8,
+      "stats.off._3p_pct.value": 32.1,
+      "total_poss": 2181,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -2012,6 +2298,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 2.0999999999999943,
       "stats.adj_tempo.rank": 121,
       "stats.adj_tempo.value": 69.3,
+      "stats.off._3p_pct.value": 34,
+      "total_poss": 2387,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -2026,6 +2314,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 1.9000000000000057,
       "stats.adj_tempo.rank": 247,
       "stats.adj_tempo.value": 67,
+      "stats.off._3p_pct.value": 35.7,
+      "total_poss": 2122,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -2040,6 +2330,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 1.7999999999999972,
       "stats.adj_tempo.rank": 4,
       "stats.adj_tempo.value": 74.7,
+      "stats.off._3p_pct.value": 31.8,
+      "total_poss": 2334,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -2054,10 +2346,12 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 1.5999999999999943,
       "stats.adj_tempo.rank": 256,
       "stats.adj_tempo.value": 66.8,
+      "stats.off._3p_pct.value": 35.6,
+      "total_poss": 1978,
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Northern Kentucky": {
+   "Northern Ky.": {
       "team_season.year": 2020,
       "conf": "Horizon League",
       "stats.adj_off.rank": 191,
@@ -2068,6 +2362,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 1.5,
       "stats.adj_tempo.rank": 308,
       "stats.adj_tempo.value": 65.4,
+      "stats.off._3p_pct.value": 30.7,
+      "total_poss": 1981,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -2082,6 +2378,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 1.5,
       "stats.adj_tempo.rank": 293,
       "stats.adj_tempo.value": 66,
+      "stats.off._3p_pct.value": 34.4,
+      "total_poss": 2226,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -2096,6 +2394,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 1.5,
       "stats.adj_tempo.rank": 203,
       "stats.adj_tempo.value": 67.9,
+      "stats.off._3p_pct.value": 36.7,
+      "total_poss": 2154,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -2110,6 +2410,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 1.4000000000000057,
       "stats.adj_tempo.rank": 272,
       "stats.adj_tempo.value": 66.3,
+      "stats.off._3p_pct.value": 35.5,
+      "total_poss": 1817,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -2124,6 +2426,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 1.2000000000000028,
       "stats.adj_tempo.rank": 30,
       "stats.adj_tempo.value": 72.3,
+      "stats.off._3p_pct.value": 33.9,
+      "total_poss": 2115,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -2138,6 +2442,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 1.2000000000000028,
       "stats.adj_tempo.rank": 42,
       "stats.adj_tempo.value": 71.5,
+      "stats.off._3p_pct.value": 34.9,
+      "total_poss": 2266,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -2152,6 +2458,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 1.2000000000000028,
       "stats.adj_tempo.rank": 22,
       "stats.adj_tempo.value": 72.9,
+      "stats.off._3p_pct.value": 32,
+      "total_poss": 2376,
       "is_high_major": 1,
       "good_md_comp": 1
    },
@@ -2166,6 +2474,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 1.0999999999999943,
       "stats.adj_tempo.rank": 310,
       "stats.adj_tempo.value": 65.3,
+      "stats.off._3p_pct.value": 33,
+      "total_poss": 1880,
       "is_high_major": 0,
       "good_md_comp": 1
    },
@@ -2180,10 +2490,12 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 1,
       "stats.adj_tempo.rank": 316,
       "stats.adj_tempo.value": 65.1,
+      "stats.off._3p_pct.value": 34.8,
+      "total_poss": 1980,
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Western Carolina": {
+   "Western Caro.": {
       "team_season.year": 2020,
       "conf": "Southern Conference",
       "stats.adj_off.rank": 84,
@@ -2194,6 +2506,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 1,
       "stats.adj_tempo.rank": 43,
       "stats.adj_tempo.value": 71.4,
+      "stats.off._3p_pct.value": 36.8,
+      "total_poss": 2115,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -2208,6 +2522,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 1,
       "stats.adj_tempo.rank": 338,
       "stats.adj_tempo.value": 64.2,
+      "stats.off._3p_pct.value": 33.7,
+      "total_poss": 1925,
       "is_high_major": 0,
       "good_md_comp": 1
    },
@@ -2222,6 +2538,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 0.8000000000000114,
       "stats.adj_tempo.rank": 111,
       "stats.adj_tempo.value": 69.4,
+      "stats.off._3p_pct.value": 31.5,
+      "total_poss": 2131,
       "is_high_major": 0,
       "good_md_comp": 1
    },
@@ -2236,6 +2554,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 0.6999999999999886,
       "stats.adj_tempo.rank": 335,
       "stats.adj_tempo.value": 64.5,
+      "stats.off._3p_pct.value": 34.2,
+      "total_poss": 1951,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -2250,6 +2570,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 0.5999999999999943,
       "stats.adj_tempo.rank": 205,
       "stats.adj_tempo.value": 67.8,
+      "stats.off._3p_pct.value": 34.9,
+      "total_poss": 2163,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -2264,6 +2586,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 0.6000000000000085,
       "stats.adj_tempo.rank": 262,
       "stats.adj_tempo.value": 66.5,
+      "stats.off._3p_pct.value": 29.1,
+      "total_poss": 2177,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -2278,6 +2602,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 0.5,
       "stats.adj_tempo.rank": 307,
       "stats.adj_tempo.value": 65.5,
+      "stats.off._3p_pct.value": 34,
+      "total_poss": 1957,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -2292,10 +2618,12 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 0.5,
       "stats.adj_tempo.rank": 161,
       "stats.adj_tempo.value": 68.6,
+      "stats.off._3p_pct.value": 32.9,
+      "total_poss": 2229,
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Boston University": {
+   "Boston U.": {
       "team_season.year": 2020,
       "conf": "Patriot League",
       "stats.adj_off.rank": 166,
@@ -2306,6 +2634,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 0.4000000000000057,
       "stats.adj_tempo.rank": 265,
       "stats.adj_tempo.value": 66.5,
+      "stats.off._3p_pct.value": 31.8,
+      "total_poss": 2223,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -2320,6 +2650,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 0.29999999999999716,
       "stats.adj_tempo.rank": 107,
       "stats.adj_tempo.value": 69.4,
+      "stats.off._3p_pct.value": 33.6,
+      "total_poss": 2254,
       "is_high_major": 1,
       "good_md_comp": 0
    },
@@ -2334,6 +2666,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 0.29999999999999716,
       "stats.adj_tempo.rank": 110,
       "stats.adj_tempo.value": 69.4,
+      "stats.off._3p_pct.value": 37.8,
+      "total_poss": 2149,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -2348,10 +2682,12 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 0.30000000000001137,
       "stats.adj_tempo.rank": 82,
       "stats.adj_tempo.value": 70.1,
+      "stats.off._3p_pct.value": 34.3,
+      "total_poss": 2076,
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Charleston": {
+   "Col. of Charleston": {
       "team_season.year": 2020,
       "conf": "Colonial Athletic Association",
       "stats.adj_off.rank": 133,
@@ -2362,10 +2698,12 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 0.29999999999999716,
       "stats.adj_tempo.rank": 296,
       "stats.adj_tempo.value": 65.8,
+      "stats.off._3p_pct.value": 34.9,
+      "total_poss": 2000,
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "St. Francis PA": {
+   "Saint Francis (PA)": {
       "team_season.year": 2020,
       "conf": "Northeast Conference",
       "stats.adj_off.rank": 79,
@@ -2376,6 +2714,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 0.10000000000000853,
       "stats.adj_tempo.rank": 137,
       "stats.adj_tempo.value": 69,
+      "stats.off._3p_pct.value": 36.6,
+      "total_poss": 2170,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -2390,6 +2730,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 0.09999999999999432,
       "stats.adj_tempo.rank": 317,
       "stats.adj_tempo.value": 65.1,
+      "stats.off._3p_pct.value": 33.8,
+      "total_poss": 2123,
       "is_high_major": 1,
       "good_md_comp": 0
    },
@@ -2404,6 +2746,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 0,
       "stats.adj_tempo.rank": 246,
       "stats.adj_tempo.value": 67,
+      "stats.off._3p_pct.value": 30.6,
+      "total_poss": 2163,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -2418,6 +2762,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 0,
       "stats.adj_tempo.rank": 210,
       "stats.adj_tempo.value": 67.8,
+      "stats.off._3p_pct.value": 35.3,
+      "total_poss": 2152,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -2432,6 +2778,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -0.10000000000000853,
       "stats.adj_tempo.rank": 250,
       "stats.adj_tempo.value": 66.9,
+      "stats.off._3p_pct.value": 30.8,
+      "total_poss": 2057,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -2446,6 +2794,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": 0,
       "stats.adj_tempo.rank": 40,
       "stats.adj_tempo.value": 71.8,
+      "stats.off._3p_pct.value": 33.8,
+      "total_poss": 2226,
       "is_high_major": 0,
       "good_md_comp": 1
    },
@@ -2460,6 +2810,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -0.09999999999999432,
       "stats.adj_tempo.rank": 175,
       "stats.adj_tempo.value": 68.3,
+      "stats.off._3p_pct.value": 35.7,
+      "total_poss": 2205,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -2474,6 +2826,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -0.20000000000000284,
       "stats.adj_tempo.rank": 127,
       "stats.adj_tempo.value": 69.1,
+      "stats.off._3p_pct.value": 30.8,
+      "total_poss": 2233,
       "is_high_major": 1,
       "good_md_comp": 0
    },
@@ -2488,6 +2842,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -0.29999999999999716,
       "stats.adj_tempo.rank": 191,
       "stats.adj_tempo.value": 68.1,
+      "stats.off._3p_pct.value": 33.8,
+      "total_poss": 2068,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -2502,10 +2858,12 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -0.30000000000001137,
       "stats.adj_tempo.rank": 87,
       "stats.adj_tempo.value": 70,
+      "stats.off._3p_pct.value": 38.8,
+      "total_poss": 2060,
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Southern Illinois": {
+   "Southern Ill.": {
       "team_season.year": 2020,
       "conf": "Missouri Valley Conference",
       "stats.adj_off.rank": 251,
@@ -2516,6 +2874,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -0.4000000000000057,
       "stats.adj_tempo.rank": 337,
       "stats.adj_tempo.value": 64.2,
+      "stats.off._3p_pct.value": 34.1,
+      "total_poss": 1993,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -2530,6 +2890,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -0.8000000000000114,
       "stats.adj_tempo.rank": 130,
       "stats.adj_tempo.value": 69.1,
+      "stats.off._3p_pct.value": 33.6,
+      "total_poss": 2186,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -2544,10 +2906,12 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -1,
       "stats.adj_tempo.rank": 232,
       "stats.adj_tempo.value": 67.3,
+      "stats.off._3p_pct.value": 29.5,
+      "total_poss": 1989,
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Northern Illinois": {
+   "Northern Ill.": {
       "team_season.year": 2020,
       "conf": "Mid American Conference",
       "stats.adj_off.rank": 222,
@@ -2558,6 +2922,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -1,
       "stats.adj_tempo.rank": 328,
       "stats.adj_tempo.value": 64.8,
+      "stats.off._3p_pct.value": 33.8,
+      "total_poss": 1994,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -2572,6 +2938,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -1.1999999999999886,
       "stats.adj_tempo.rank": 97,
       "stats.adj_tempo.value": 69.7,
+      "stats.off._3p_pct.value": 33.8,
+      "total_poss": 2250,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -2586,6 +2954,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -1.0999999999999943,
       "stats.adj_tempo.rank": 336,
       "stats.adj_tempo.value": 64.3,
+      "stats.off._3p_pct.value": 35.2,
+      "total_poss": 1955,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -2600,6 +2970,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -1.0999999999999943,
       "stats.adj_tempo.rank": 156,
       "stats.adj_tempo.value": 68.7,
+      "stats.off._3p_pct.value": 33.4,
+      "total_poss": 2163,
       "is_high_major": 0,
       "good_md_comp": 1
    },
@@ -2614,6 +2986,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -1.2000000000000028,
       "stats.adj_tempo.rank": 173,
       "stats.adj_tempo.value": 68.4,
+      "stats.off._3p_pct.value": 31.5,
+      "total_poss": 1935,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -2628,6 +3002,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -1.2999999999999972,
       "stats.adj_tempo.rank": 49,
       "stats.adj_tempo.value": 71,
+      "stats.off._3p_pct.value": 32.1,
+      "total_poss": 2156,
       "is_high_major": 0,
       "good_md_comp": 1
    },
@@ -2642,6 +3018,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -1.1999999999999886,
       "stats.adj_tempo.rank": 340,
       "stats.adj_tempo.value": 63.8,
+      "stats.off._3p_pct.value": 30.9,
+      "total_poss": 1805,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -2656,6 +3034,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -1.4000000000000057,
       "stats.adj_tempo.rank": 23,
       "stats.adj_tempo.value": 72.9,
+      "stats.off._3p_pct.value": 33,
+      "total_poss": 2274,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -2670,6 +3050,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -1.5,
       "stats.adj_tempo.rank": 304,
       "stats.adj_tempo.value": 65.7,
+      "stats.off._3p_pct.value": 30.9,
+      "total_poss": 2006,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -2684,6 +3066,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -1.7999999999999972,
       "stats.adj_tempo.rank": 159,
       "stats.adj_tempo.value": 68.6,
+      "stats.off._3p_pct.value": 33.4,
+      "total_poss": 1949,
       "is_high_major": 0,
       "good_md_comp": 1
    },
@@ -2698,6 +3082,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -2,
       "stats.adj_tempo.rank": 223,
       "stats.adj_tempo.value": 67.4,
+      "stats.off._3p_pct.value": 35.2,
+      "total_poss": 2102,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -2712,10 +3098,12 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -2.0999999999999943,
       "stats.adj_tempo.rank": 202,
       "stats.adj_tempo.value": 67.9,
+      "stats.off._3p_pct.value": 34.8,
+      "total_poss": 2001,
       "is_high_major": 0,
       "good_md_comp": 1
    },
-   "Eastern Michigan": {
+   "Eastern Mich.": {
       "team_season.year": 2020,
       "conf": "Mid American Conference",
       "stats.adj_off.rank": 325,
@@ -2726,6 +3114,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -2.299999999999997,
       "stats.adj_tempo.rank": 263,
       "stats.adj_tempo.value": 66.5,
+      "stats.off._3p_pct.value": 26.9,
+      "total_poss": 1885,
       "is_high_major": 0,
       "good_md_comp": 1
    },
@@ -2740,10 +3130,12 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -2.4000000000000057,
       "stats.adj_tempo.rank": 78,
       "stats.adj_tempo.value": 70.2,
+      "stats.off._3p_pct.value": 34.1,
+      "total_poss": 2141,
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Florida Atlantic": {
+   "Fla. Atlantic": {
       "team_season.year": 2020,
       "conf": "Conference USA",
       "stats.adj_off.rank": 231,
@@ -2754,6 +3146,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -2.3999999999999915,
       "stats.adj_tempo.rank": 142,
       "stats.adj_tempo.value": 68.9,
+      "stats.off._3p_pct.value": 31.3,
+      "total_poss": 2049,
       "is_high_major": 0,
       "good_md_comp": 1
    },
@@ -2768,6 +3162,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -2.5,
       "stats.adj_tempo.rank": 147,
       "stats.adj_tempo.value": 68.8,
+      "stats.off._3p_pct.value": 36.9,
+      "total_poss": 2134,
       "is_high_major": 0,
       "good_md_comp": 1
    },
@@ -2782,6 +3178,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -2.700000000000003,
       "stats.adj_tempo.rank": 192,
       "stats.adj_tempo.value": 68.1,
+      "stats.off._3p_pct.value": 35.2,
+      "total_poss": 2095,
       "is_high_major": 0,
       "good_md_comp": 1
    },
@@ -2796,10 +3194,12 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -2.700000000000003,
       "stats.adj_tempo.rank": 155,
       "stats.adj_tempo.value": 68.7,
+      "stats.off._3p_pct.value": 32.7,
+      "total_poss": 2223,
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Cal Baptist": {
+   "California Baptist": {
       "team_season.year": 2020,
       "conf": "Western Athletic Conference",
       "stats.adj_off.rank": 127,
@@ -2810,6 +3210,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -2.6999999999999886,
       "stats.adj_tempo.rank": 165,
       "stats.adj_tempo.value": 68.6,
+      "stats.off._3p_pct.value": 37.7,
+      "total_poss": 1901,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -2824,6 +3226,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -2.799999999999997,
       "stats.adj_tempo.rank": 28,
       "stats.adj_tempo.value": 72.6,
+      "stats.off._3p_pct.value": 33.4,
+      "total_poss": 2314,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -2838,6 +3242,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -2.799999999999997,
       "stats.adj_tempo.rank": 160,
       "stats.adj_tempo.value": 68.6,
+      "stats.off._3p_pct.value": 34,
+      "total_poss": 2077,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -2852,6 +3258,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -3.1000000000000085,
       "stats.adj_tempo.rank": 299,
       "stats.adj_tempo.value": 65.7,
+      "stats.off._3p_pct.value": 31.1,
+      "total_poss": 1874,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -2866,6 +3274,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -3.3999999999999915,
       "stats.adj_tempo.rank": 233,
       "stats.adj_tempo.value": 67.3,
+      "stats.off._3p_pct.value": 34.1,
+      "total_poss": 2066,
       "is_high_major": 0,
       "good_md_comp": 1
    },
@@ -2880,10 +3290,12 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -3.3999999999999915,
       "stats.adj_tempo.rank": 171,
       "stats.adj_tempo.value": 68.4,
+      "stats.off._3p_pct.value": 32.9,
+      "total_poss": 2078,
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Loyola Marymount": {
+   "LMU (CA)": {
       "team_season.year": 2020,
       "conf": "West Coast Conference",
       "stats.adj_off.rank": 208,
@@ -2894,6 +3306,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -3.5,
       "stats.adj_tempo.rank": 349,
       "stats.adj_tempo.value": 62.9,
+      "stats.off._3p_pct.value": 29.7,
+      "total_poss": 2001,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -2908,10 +3322,12 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -3.6000000000000085,
       "stats.adj_tempo.rank": 25,
       "stats.adj_tempo.value": 72.8,
+      "stats.off._3p_pct.value": 34.3,
+      "total_poss": 2152,
       "is_high_major": 0,
       "good_md_comp": 1
    },
-   "Central Michigan": {
+   "Central Mich.": {
       "team_season.year": 2020,
       "conf": "Mid American Conference",
       "stats.adj_off.rank": 181,
@@ -2922,6 +3338,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -3.700000000000003,
       "stats.adj_tempo.rank": 10,
       "stats.adj_tempo.value": 73.7,
+      "stats.off._3p_pct.value": 32.2,
+      "total_poss": 2167,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -2936,10 +3354,12 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -3.799999999999997,
       "stats.adj_tempo.rank": 282,
       "stats.adj_tempo.value": 66.2,
+      "stats.off._3p_pct.value": 36.1,
+      "total_poss": 2217,
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Illinois Chicago": {
+   "UIC": {
       "team_season.year": 2020,
       "conf": "Horizon League",
       "stats.adj_off.rank": 277,
@@ -2950,6 +3370,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -3.9000000000000057,
       "stats.adj_tempo.rank": 113,
       "stats.adj_tempo.value": 69.4,
+      "stats.off._3p_pct.value": 34.3,
+      "total_poss": 2342,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -2964,10 +3386,12 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -4,
       "stats.adj_tempo.rank": 347,
       "stats.adj_tempo.value": 63.2,
+      "stats.off._3p_pct.value": 34.8,
+      "total_poss": 1925,
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Northern Arizona": {
+   "Northern Ariz.": {
       "team_season.year": 2020,
       "conf": "Big Sky Conference",
       "stats.adj_off.rank": 169,
@@ -2978,6 +3402,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -4.099999999999994,
       "stats.adj_tempo.rank": 266,
       "stats.adj_tempo.value": 66.5,
+      "stats.off._3p_pct.value": 35.4,
+      "total_poss": 1882,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -2992,10 +3418,12 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -4.1000000000000085,
       "stats.adj_tempo.rank": 48,
       "stats.adj_tempo.value": 71.1,
+      "stats.off._3p_pct.value": 34.8,
+      "total_poss": 2027,
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Prairie View A&M": {
+   "Prairie View": {
       "team_season.year": 2020,
       "conf": "Southwestern Athletic Conference",
       "stats.adj_off.rank": 282,
@@ -3006,6 +3434,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -4.299999999999997,
       "stats.adj_tempo.rank": 67,
       "stats.adj_tempo.value": 70.4,
+      "stats.off._3p_pct.value": 30,
+      "total_poss": 2179,
       "is_high_major": 0,
       "good_md_comp": 1
    },
@@ -3020,6 +3450,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -4.400000000000006,
       "stats.adj_tempo.rank": 8,
       "stats.adj_tempo.value": 73.9,
+      "stats.off._3p_pct.value": 37,
+      "total_poss": 2326,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -3034,10 +3466,12 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -4.3999999999999915,
       "stats.adj_tempo.rank": 62,
       "stats.adj_tempo.value": 70.6,
+      "stats.off._3p_pct.value": 28.1,
+      "total_poss": 2280,
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Gardner Webb": {
+   "Gardner-Webb": {
       "team_season.year": 2020,
       "conf": "Big South Conference",
       "stats.adj_off.rank": 184,
@@ -3048,10 +3482,12 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -4.400000000000006,
       "stats.adj_tempo.rank": 283,
       "stats.adj_tempo.value": 66.1,
+      "stats.off._3p_pct.value": 36.4,
+      "total_poss": 2066,
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Seattle": {
+   "Seattle U": {
       "team_season.year": 2020,
       "conf": "Western Athletic Conference",
       "stats.adj_off.rank": 201,
@@ -3062,10 +3498,12 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -4.5,
       "stats.adj_tempo.rank": 91,
       "stats.adj_tempo.value": 69.8,
+      "stats.off._3p_pct.value": 31.2,
+      "total_poss": 2012,
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Nebraska Omaha": {
+   "Omaha": {
       "team_season.year": 2020,
       "conf": "Summit League",
       "stats.adj_off.rank": 171,
@@ -3076,6 +3514,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -4.5,
       "stats.adj_tempo.rank": 125,
       "stats.adj_tempo.value": 69.2,
+      "stats.off._3p_pct.value": 34,
+      "total_poss": 2226,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -3090,6 +3530,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -4.5,
       "stats.adj_tempo.rank": 168,
       "stats.adj_tempo.value": 68.5,
+      "stats.off._3p_pct.value": 35.9,
+      "total_poss": 2055,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -3104,6 +3546,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -4.699999999999989,
       "stats.adj_tempo.rank": 228,
       "stats.adj_tempo.value": 67.3,
+      "stats.off._3p_pct.value": 31.5,
+      "total_poss": 2037,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -3118,6 +3562,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -4.699999999999989,
       "stats.adj_tempo.rank": 114,
       "stats.adj_tempo.value": 69.3,
+      "stats.off._3p_pct.value": 30.4,
+      "total_poss": 1815,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -3132,6 +3578,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -4.799999999999997,
       "stats.adj_tempo.rank": 194,
       "stats.adj_tempo.value": 68,
+      "stats.off._3p_pct.value": 39.1,
+      "total_poss": 2119,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -3146,6 +3594,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -4.900000000000006,
       "stats.adj_tempo.rank": 253,
       "stats.adj_tempo.value": 66.9,
+      "stats.off._3p_pct.value": 33.6,
+      "total_poss": 2025,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -3160,6 +3610,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -4.8999999999999915,
       "stats.adj_tempo.rank": 348,
       "stats.adj_tempo.value": 63.1,
+      "stats.off._3p_pct.value": 33.3,
+      "total_poss": 1944,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -3174,6 +3626,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -5,
       "stats.adj_tempo.rank": 135,
       "stats.adj_tempo.value": 69,
+      "stats.off._3p_pct.value": 32.4,
+      "total_poss": 2064,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -3188,6 +3642,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -5,
       "stats.adj_tempo.rank": 148,
       "stats.adj_tempo.value": 68.8,
+      "stats.off._3p_pct.value": 33.9,
+      "total_poss": 1953,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -3202,6 +3658,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -5.200000000000003,
       "stats.adj_tempo.rank": 41,
       "stats.adj_tempo.value": 71.7,
+      "stats.off._3p_pct.value": 32,
+      "total_poss": 2324,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -3216,6 +3674,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -5.299999999999997,
       "stats.adj_tempo.rank": 79,
       "stats.adj_tempo.value": 70.2,
+      "stats.off._3p_pct.value": 30.7,
+      "total_poss": 2220,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -3230,6 +3690,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -5.400000000000006,
       "stats.adj_tempo.rank": 269,
       "stats.adj_tempo.value": 66.4,
+      "stats.off._3p_pct.value": 32.3,
+      "total_poss": 2159,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -3244,10 +3706,12 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -5.599999999999994,
       "stats.adj_tempo.rank": 268,
       "stats.adj_tempo.value": 66.4,
+      "stats.off._3p_pct.value": 31.2,
+      "total_poss": 2133,
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Miami OH": {
+   "Miami (OH)": {
       "team_season.year": 2020,
       "conf": "Mid American Conference",
       "stats.adj_off.rank": 197,
@@ -3258,10 +3722,12 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -5.700000000000003,
       "stats.adj_tempo.rank": 240,
       "stats.adj_tempo.value": 67.2,
+      "stats.off._3p_pct.value": 33.4,
+      "total_poss": 2065,
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Cal St. Northridge": {
+   "CSUN": {
       "team_season.year": 2020,
       "conf": "Big West Conference",
       "stats.adj_off.rank": 83,
@@ -3272,10 +3738,12 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -6,
       "stats.adj_tempo.rank": 74,
       "stats.adj_tempo.value": 70.2,
+      "stats.off._3p_pct.value": 37.3,
+      "total_poss": 2198,
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "UMKC": {
+   "Kansas City": {
       "team_season.year": 2020,
       "conf": "Western Athletic Conference",
       "stats.adj_off.rank": 262,
@@ -3286,6 +3754,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -6,
       "stats.adj_tempo.rank": 326,
       "stats.adj_tempo.value": 64.8,
+      "stats.off._3p_pct.value": 35.1,
+      "total_poss": 1877,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -3300,10 +3770,12 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -6.1000000000000085,
       "stats.adj_tempo.rank": 71,
       "stats.adj_tempo.value": 70.3,
+      "stats.off._3p_pct.value": 31.9,
+      "total_poss": 2186,
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Eastern Illinois": {
+   "Eastern Ill.": {
       "team_season.year": 2020,
       "conf": "Ohio Valley Conference",
       "stats.adj_off.rank": 253,
@@ -3314,6 +3786,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -6.299999999999997,
       "stats.adj_tempo.rank": 128,
       "stats.adj_tempo.value": 69.1,
+      "stats.off._3p_pct.value": 33.8,
+      "total_poss": 2130,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -3328,6 +3802,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -6.5,
       "stats.adj_tempo.rank": 286,
       "stats.adj_tempo.value": 66.1,
+      "stats.off._3p_pct.value": 29.4,
+      "total_poss": 2185,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -3342,10 +3818,12 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -6.5,
       "stats.adj_tempo.rank": 261,
       "stats.adj_tempo.value": 66.6,
+      "stats.off._3p_pct.value": 31.7,
+      "total_poss": 2027,
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Western Michigan": {
+   "Western Mich.": {
       "team_season.year": 2020,
       "conf": "Mid American Conference",
       "stats.adj_off.rank": 233,
@@ -3356,6 +3834,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -6.599999999999994,
       "stats.adj_tempo.rank": 238,
       "stats.adj_tempo.value": 67.2,
+      "stats.off._3p_pct.value": 33.2,
+      "total_poss": 2077,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -3370,6 +3850,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -6.700000000000003,
       "stats.adj_tempo.rank": 109,
       "stats.adj_tempo.value": 69.4,
+      "stats.off._3p_pct.value": 34.3,
+      "total_poss": 2374,
       "is_high_major": 0,
       "good_md_comp": 1
    },
@@ -3384,6 +3866,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -6.700000000000003,
       "stats.adj_tempo.rank": 235,
       "stats.adj_tempo.value": 67.3,
+      "stats.off._3p_pct.value": 35.3,
+      "total_poss": 2175,
       "is_high_major": 0,
       "good_md_comp": 1
    },
@@ -3398,6 +3882,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -6.800000000000011,
       "stats.adj_tempo.rank": 260,
       "stats.adj_tempo.value": 66.7,
+      "stats.off._3p_pct.value": 31.8,
+      "total_poss": 2182,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -3412,6 +3898,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -6.8999999999999915,
       "stats.adj_tempo.rank": 154,
       "stats.adj_tempo.value": 68.7,
+      "stats.off._3p_pct.value": 33.7,
+      "total_poss": 2052,
       "is_high_major": 0,
       "good_md_comp": 1
    },
@@ -3426,10 +3914,12 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -7.200000000000003,
       "stats.adj_tempo.rank": 162,
       "stats.adj_tempo.value": 68.6,
+      "stats.off._3p_pct.value": 33,
+      "total_poss": 1972,
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Lamar": {
+   "Lamar University": {
       "team_season.year": 2020,
       "conf": "Southland Conference",
       "stats.adj_off.rank": 296,
@@ -3440,10 +3930,12 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -7.200000000000003,
       "stats.adj_tempo.rank": 96,
       "stats.adj_tempo.value": 69.7,
+      "stats.off._3p_pct.value": 33.1,
+      "total_poss": 2085,
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "UT Rio Grande Valley": {
+   "UTRGV": {
       "team_season.year": 2020,
       "conf": "Western Athletic Conference",
       "stats.adj_off.rank": 244,
@@ -3454,6 +3946,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -7.299999999999997,
       "stats.adj_tempo.rank": 66,
       "stats.adj_tempo.value": 70.4,
+      "stats.off._3p_pct.value": 32.4,
+      "total_poss": 1928,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -3468,6 +3962,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -7.400000000000006,
       "stats.adj_tempo.rank": 188,
       "stats.adj_tempo.value": 68.2,
+      "stats.off._3p_pct.value": 33.9,
+      "total_poss": 2129,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -3482,6 +3978,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -7.6000000000000085,
       "stats.adj_tempo.rank": 200,
       "stats.adj_tempo.value": 67.9,
+      "stats.off._3p_pct.value": 32.4,
+      "total_poss": 2070,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -3496,6 +3994,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -7.700000000000003,
       "stats.adj_tempo.rank": 84,
       "stats.adj_tempo.value": 70.1,
+      "stats.off._3p_pct.value": 30.3,
+      "total_poss": 2255,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -3510,10 +4010,12 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -7.700000000000003,
       "stats.adj_tempo.rank": 145,
       "stats.adj_tempo.value": 68.8,
+      "stats.off._3p_pct.value": 35.7,
+      "total_poss": 2140,
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Louisiana Monroe": {
+   "La.-Monroe": {
       "team_season.year": 2020,
       "conf": "Sun Belt Conference",
       "stats.adj_off.rank": 287,
@@ -3524,6 +4026,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -7.700000000000003,
       "stats.adj_tempo.rank": 320,
       "stats.adj_tempo.value": 64.9,
+      "stats.off._3p_pct.value": 33.7,
+      "total_poss": 1793,
       "is_high_major": 0,
       "good_md_comp": 1
    },
@@ -3538,10 +4042,12 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -7.700000000000003,
       "stats.adj_tempo.rank": 221,
       "stats.adj_tempo.value": 67.5,
+      "stats.off._3p_pct.value": 31,
+      "total_poss": 1952,
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Southern": {
+   "Southern U.": {
       "team_season.year": 2020,
       "conf": "Southwestern Athletic Conference",
       "stats.adj_off.rank": 268,
@@ -3552,6 +4058,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -7.700000000000003,
       "stats.adj_tempo.rank": 254,
       "stats.adj_tempo.value": 66.9,
+      "stats.off._3p_pct.value": 31.4,
+      "total_poss": 2075,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -3566,6 +4074,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -7.8999999999999915,
       "stats.adj_tempo.rank": 68,
       "stats.adj_tempo.value": 70.3,
+      "stats.off._3p_pct.value": 30.2,
+      "total_poss": 1986,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -3580,6 +4090,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -7.900000000000006,
       "stats.adj_tempo.rank": 351,
       "stats.adj_tempo.value": 62.4,
+      "stats.off._3p_pct.value": 29.4,
+      "total_poss": 1837,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -3594,6 +4106,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -7.900000000000006,
       "stats.adj_tempo.rank": 331,
       "stats.adj_tempo.value": 64.6,
+      "stats.off._3p_pct.value": 31.7,
+      "total_poss": 2042,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -3608,6 +4122,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -7.900000000000006,
       "stats.adj_tempo.rank": 204,
       "stats.adj_tempo.value": 67.9,
+      "stats.off._3p_pct.value": 34.8,
+      "total_poss": 2093,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -3622,6 +4138,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -8.199999999999989,
       "stats.adj_tempo.rank": 119,
       "stats.adj_tempo.value": 69.3,
+      "stats.off._3p_pct.value": 35.7,
+      "total_poss": 2200,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -3636,10 +4154,12 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -8.200000000000003,
       "stats.adj_tempo.rank": 47,
       "stats.adj_tempo.value": 71.1,
+      "stats.off._3p_pct.value": 29.7,
+      "total_poss": 2287,
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "McNeese St.": {
+   "McNeese": {
       "team_season.year": 2020,
       "conf": "Southland Conference",
       "stats.adj_off.rank": 161,
@@ -3650,6 +4170,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -8.299999999999997,
       "stats.adj_tempo.rank": 132,
       "stats.adj_tempo.value": 69.1,
+      "stats.off._3p_pct.value": 38,
+      "total_poss": 2013,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -3664,6 +4186,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -8.400000000000006,
       "stats.adj_tempo.rank": 259,
       "stats.adj_tempo.value": 66.7,
+      "stats.off._3p_pct.value": 30,
+      "total_poss": 1961,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -3678,10 +4202,12 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -8.5,
       "stats.adj_tempo.rank": 306,
       "stats.adj_tempo.value": 65.6,
+      "stats.off._3p_pct.value": 34.6,
+      "total_poss": 1940,
       "is_high_major": 0,
       "good_md_comp": 1
    },
-   "Army": {
+   "Army West Point": {
       "team_season.year": 2020,
       "conf": "Patriot League",
       "stats.adj_off.rank": 241,
@@ -3692,6 +4218,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -8.599999999999994,
       "stats.adj_tempo.rank": 106,
       "stats.adj_tempo.value": 69.4,
+      "stats.off._3p_pct.value": 32.8,
+      "total_poss": 2040,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -3706,10 +4234,12 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -8.599999999999994,
       "stats.adj_tempo.rank": 117,
       "stats.adj_tempo.value": 69.3,
+      "stats.off._3p_pct.value": 32.2,
+      "total_poss": 2119,
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Loyola MD": {
+   "Loyola Maryland": {
       "team_season.year": 2020,
       "conf": "Patriot League",
       "stats.adj_off.rank": 212,
@@ -3720,6 +4250,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -8.599999999999994,
       "stats.adj_tempo.rank": 52,
       "stats.adj_tempo.value": 70.9,
+      "stats.off._3p_pct.value": 32.3,
+      "total_poss": 2221,
       "is_high_major": 0,
       "good_md_comp": 1
    },
@@ -3734,10 +4266,12 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -8.699999999999989,
       "stats.adj_tempo.rank": 197,
       "stats.adj_tempo.value": 68,
+      "stats.off._3p_pct.value": 34.1,
+      "total_poss": 2040,
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Cal St. Bakersfield": {
+   "CSU Bakersfield": {
       "team_season.year": 2020,
       "conf": "Western Athletic Conference",
       "stats.adj_off.rank": 283,
@@ -3748,6 +4282,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -8.700000000000003,
       "stats.adj_tempo.rank": 321,
       "stats.adj_tempo.value": 64.9,
+      "stats.off._3p_pct.value": 31.4,
+      "total_poss": 1944,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -3762,6 +4298,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -8.799999999999997,
       "stats.adj_tempo.rank": 24,
       "stats.adj_tempo.value": 72.8,
+      "stats.off._3p_pct.value": 34.2,
+      "total_poss": 2379,
       "is_high_major": 0,
       "good_md_comp": 1
    },
@@ -3776,6 +4314,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -8.900000000000006,
       "stats.adj_tempo.rank": 100,
       "stats.adj_tempo.value": 69.5,
+      "stats.off._3p_pct.value": 31.7,
+      "total_poss": 2090,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -3790,6 +4330,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -8.799999999999997,
       "stats.adj_tempo.rank": 217,
       "stats.adj_tempo.value": 67.6,
+      "stats.off._3p_pct.value": 30.6,
+      "total_poss": 1986,
       "is_high_major": 0,
       "good_md_comp": 1
    },
@@ -3804,10 +4346,12 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -9.099999999999994,
       "stats.adj_tempo.rank": 314,
       "stats.adj_tempo.value": 65.2,
+      "stats.off._3p_pct.value": 32.5,
+      "total_poss": 1669,
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "North Carolina Central": {
+   "N.C. Central": {
       "team_season.year": 2020,
       "conf": "Mid-Eastern Athletic Conference",
       "stats.adj_off.rank": 323,
@@ -3818,6 +4362,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -9.200000000000003,
       "stats.adj_tempo.rank": 273,
       "stats.adj_tempo.value": 66.3,
+      "stats.off._3p_pct.value": 30,
+      "total_poss": 1882,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -3832,6 +4378,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -9.199999999999989,
       "stats.adj_tempo.rank": 70,
       "stats.adj_tempo.value": 70.3,
+      "stats.off._3p_pct.value": 33.7,
+      "total_poss": 2223,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -3846,10 +4394,12 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -9.200000000000003,
       "stats.adj_tempo.rank": 274,
       "stats.adj_tempo.value": 66.2,
+      "stats.off._3p_pct.value": 35.3,
+      "total_poss": 2070,
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Southern Miss": {
+   "Southern Miss.": {
       "team_season.year": 2020,
       "conf": "Conference USA",
       "stats.adj_off.rank": 313,
@@ -3860,6 +4410,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -9.400000000000006,
       "stats.adj_tempo.rank": 239,
       "stats.adj_tempo.value": 67.2,
+      "stats.off._3p_pct.value": 29.9,
+      "total_poss": 1927,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -3874,10 +4426,12 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -9.5,
       "stats.adj_tempo.rank": 285,
       "stats.adj_tempo.value": 66.1,
+      "stats.off._3p_pct.value": 30.7,
+      "total_poss": 2017,
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Eastern Kentucky": {
+   "Eastern Ky.": {
       "team_season.year": 2020,
       "conf": "Ohio Valley Conference",
       "stats.adj_off.rank": 300,
@@ -3888,10 +4442,12 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -9.5,
       "stats.adj_tempo.rank": 5,
       "stats.adj_tempo.value": 74.5,
+      "stats.off._3p_pct.value": 31.3,
+      "total_poss": 2344,
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Albany": {
+   "Albany (NY)": {
       "team_season.year": 2020,
       "conf": "America East Conference",
       "stats.adj_off.rank": 316,
@@ -3902,10 +4458,12 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -9.5,
       "stats.adj_tempo.rank": 166,
       "stats.adj_tempo.value": 68.5,
+      "stats.off._3p_pct.value": 32.6,
+      "total_poss": 2159,
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Central Arkansas": {
+   "Central Ark.": {
       "team_season.year": 2020,
       "conf": "Southland Conference",
       "stats.adj_off.rank": 257,
@@ -3916,10 +4474,12 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -9.599999999999994,
       "stats.adj_tempo.rank": 16,
       "stats.adj_tempo.value": 73.2,
+      "stats.off._3p_pct.value": 31.2,
+      "total_poss": 2332,
       "is_high_major": 0,
       "good_md_comp": 1
    },
-   "North Alabama": {
+   "North Ala.": {
       "team_season.year": 2020,
       "conf": "Atlantic Sun Conference",
       "stats.adj_off.rank": 289,
@@ -3930,6 +4490,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -9.5,
       "stats.adj_tempo.rank": 83,
       "stats.adj_tempo.value": 70.1,
+      "stats.off._3p_pct.value": 33.5,
+      "total_poss": 1964,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -3944,6 +4506,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -9.599999999999994,
       "stats.adj_tempo.rank": 190,
       "stats.adj_tempo.value": 68.1,
+      "stats.off._3p_pct.value": 31.5,
+      "total_poss": 2080,
       "is_high_major": 0,
       "good_md_comp": 1
    },
@@ -3958,10 +4522,12 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -9.799999999999997,
       "stats.adj_tempo.rank": 29,
       "stats.adj_tempo.value": 72.4,
+      "stats.off._3p_pct.value": 35.3,
+      "total_poss": 2008,
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "North Carolina A&T": {
+   "N.C. A&T": {
       "team_season.year": 2020,
       "conf": "Mid-Eastern Athletic Conference",
       "stats.adj_off.rank": 336,
@@ -3972,6 +4538,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -9.900000000000006,
       "stats.adj_tempo.rank": 9,
       "stats.adj_tempo.value": 73.8,
+      "stats.off._3p_pct.value": 29.7,
+      "total_poss": 2259,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -3986,6 +4554,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -9.900000000000006,
       "stats.adj_tempo.rank": 21,
       "stats.adj_tempo.value": 72.9,
+      "stats.off._3p_pct.value": 30.1,
+      "total_poss": 2332,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -4000,6 +4570,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -10,
       "stats.adj_tempo.rank": 123,
       "stats.adj_tempo.value": 69.2,
+      "stats.off._3p_pct.value": 34.4,
+      "total_poss": 2124,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -4014,6 +4586,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -10.099999999999994,
       "stats.adj_tempo.rank": 152,
       "stats.adj_tempo.value": 68.7,
+      "stats.off._3p_pct.value": 26.3,
+      "total_poss": 2114,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -4028,6 +4602,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -10.200000000000003,
       "stats.adj_tempo.rank": 345,
       "stats.adj_tempo.value": 63.2,
+      "stats.off._3p_pct.value": 33.3,
+      "total_poss": 1988,
       "is_high_major": 0,
       "good_md_comp": 1
    },
@@ -4042,6 +4618,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -10.300000000000011,
       "stats.adj_tempo.rank": 13,
       "stats.adj_tempo.value": 73.3,
+      "stats.off._3p_pct.value": 29.6,
+      "total_poss": 2227,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -4056,10 +4634,12 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -10.400000000000006,
       "stats.adj_tempo.rank": 143,
       "stats.adj_tempo.value": 68.9,
+      "stats.off._3p_pct.value": 35.7,
+      "total_poss": 2019,
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Bethune Cookman": {
+   "Bethune-Cookman": {
       "team_season.year": 2020,
       "conf": "Mid-Eastern Athletic Conference",
       "stats.adj_off.rank": 301,
@@ -4070,6 +4650,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -10.399999999999991,
       "stats.adj_tempo.rank": 19,
       "stats.adj_tempo.value": 73,
+      "stats.off._3p_pct.value": 31.7,
+      "total_poss": 2095,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -4084,6 +4666,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -10.5,
       "stats.adj_tempo.rank": 118,
       "stats.adj_tempo.value": 69.3,
+      "stats.off._3p_pct.value": 31.7,
+      "total_poss": 2061,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -4098,10 +4682,12 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -10.599999999999994,
       "stats.adj_tempo.rank": 216,
       "stats.adj_tempo.value": 67.6,
+      "stats.off._3p_pct.value": 31.9,
+      "total_poss": 2153,
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Middle Tennessee": {
+   "Middle Tenn.": {
       "team_season.year": 2020,
       "conf": "Conference USA",
       "stats.adj_off.rank": 263,
@@ -4112,6 +4698,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -10.600000000000009,
       "stats.adj_tempo.rank": 93,
       "stats.adj_tempo.value": 69.8,
+      "stats.off._3p_pct.value": 33,
+      "total_poss": 1991,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -4126,6 +4714,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -10.699999999999989,
       "stats.adj_tempo.rank": 344,
       "stats.adj_tempo.value": 63.3,
+      "stats.off._3p_pct.value": 28.8,
+      "total_poss": 2069,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -4140,10 +4730,12 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -10.799999999999997,
       "stats.adj_tempo.rank": 236,
       "stats.adj_tempo.value": 67.3,
+      "stats.off._3p_pct.value": 33.7,
+      "total_poss": 1915,
       "is_high_major": 0,
       "good_md_comp": 1
    },
-   "Texas A&M Corpus Chris": {
+   "A&M-Corpus Christi": {
       "team_season.year": 2020,
       "conf": "Southland Conference",
       "stats.adj_off.rank": 308,
@@ -4154,6 +4746,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -11,
       "stats.adj_tempo.rank": 303,
       "stats.adj_tempo.value": 65.7,
+      "stats.off._3p_pct.value": 37.7,
+      "total_poss": 2048,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -4168,6 +4762,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -11,
       "stats.adj_tempo.rank": 249,
       "stats.adj_tempo.value": 66.9,
+      "stats.off._3p_pct.value": 30.4,
+      "total_poss": 1933,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -4182,6 +4778,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -11.099999999999994,
       "stats.adj_tempo.rank": 55,
       "stats.adj_tempo.value": 70.8,
+      "stats.off._3p_pct.value": 35.3,
+      "total_poss": 2224,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -4196,6 +4794,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -11.199999999999989,
       "stats.adj_tempo.rank": 346,
       "stats.adj_tempo.value": 63.2,
+      "stats.off._3p_pct.value": 31.3,
+      "total_poss": 2017,
       "is_high_major": 0,
       "good_md_comp": 1
    },
@@ -4210,6 +4810,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -11.299999999999997,
       "stats.adj_tempo.rank": 134,
       "stats.adj_tempo.value": 69.1,
+      "stats.off._3p_pct.value": 29.8,
+      "total_poss": 2038,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -4224,10 +4826,12 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -11.5,
       "stats.adj_tempo.rank": 50,
       "stats.adj_tempo.value": 71,
+      "stats.off._3p_pct.value": 35.3,
+      "total_poss": 2064,
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Grambling St.": {
+   "Grambling": {
       "team_season.year": 2020,
       "conf": "Southwestern Athletic Conference",
       "stats.adj_off.rank": 326,
@@ -4238,6 +4842,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -11.599999999999994,
       "stats.adj_tempo.rank": 146,
       "stats.adj_tempo.value": 68.8,
+      "stats.off._3p_pct.value": 30.2,
+      "total_poss": 1973,
       "is_high_major": 0,
       "good_md_comp": 1
    },
@@ -4252,6 +4858,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -11.600000000000009,
       "stats.adj_tempo.rank": 284,
       "stats.adj_tempo.value": 66.1,
+      "stats.off._3p_pct.value": 37.2,
+      "total_poss": 2150,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -4266,10 +4874,12 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -11.600000000000009,
       "stats.adj_tempo.rank": 176,
       "stats.adj_tempo.value": 68.3,
+      "stats.off._3p_pct.value": 33.7,
+      "total_poss": 2077,
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Denver": {
+   "DePaul": {
       "team_season.year": 2020,
       "conf": "Summit League",
       "stats.adj_off.rank": 305,
@@ -4280,10 +4890,12 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -11.799999999999997,
       "stats.adj_tempo.rank": 54,
       "stats.adj_tempo.value": 70.9,
+      "stats.off._3p_pct.value": 32.1,
+      "total_poss": 2162,
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Detroit": {
+   "Detroit Mercy": {
       "team_season.year": 2020,
       "conf": "Horizon League",
       "stats.adj_off.rank": 223,
@@ -4294,6 +4906,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -11.899999999999991,
       "stats.adj_tempo.rank": 115,
       "stats.adj_tempo.value": 69.3,
+      "stats.off._3p_pct.value": 32.3,
+      "total_poss": 2194,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -4308,10 +4922,12 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -12,
       "stats.adj_tempo.rank": 56,
       "stats.adj_tempo.value": 70.8,
+      "stats.off._3p_pct.value": 32.4,
+      "total_poss": 2210,
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "St. Francis NY": {
+   "St. Francis Brooklyn": {
       "team_season.year": 2020,
       "conf": "Northeast Conference",
       "stats.adj_off.rank": 311,
@@ -4322,6 +4938,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -12,
       "stats.adj_tempo.rank": 69,
       "stats.adj_tempo.value": 70.3,
+      "stats.off._3p_pct.value": 29.3,
+      "total_poss": 2125,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -4336,10 +4954,12 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -12.099999999999994,
       "stats.adj_tempo.rank": 33,
       "stats.adj_tempo.value": 72.1,
+      "stats.off._3p_pct.value": 32.3,
+      "total_poss": 2075,
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Florida Gulf Coast": {
+   "FGCU": {
       "team_season.year": 2020,
       "conf": "Atlantic Sun Conference",
       "stats.adj_off.rank": 340,
@@ -4350,10 +4970,12 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -12.100000000000009,
       "stats.adj_tempo.rank": 290,
       "stats.adj_tempo.value": 66,
+      "stats.off._3p_pct.value": 30.8,
+      "total_poss": 2011,
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "UNC Wilmington": {
+   "UNCW": {
       "team_season.year": 2020,
       "conf": "Colonial Athletic Association",
       "stats.adj_off.rank": 335,
@@ -4364,6 +4986,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -12.300000000000011,
       "stats.adj_tempo.rank": 169,
       "stats.adj_tempo.value": 68.5,
+      "stats.off._3p_pct.value": 31.4,
+      "total_poss": 2004,
       "is_high_major": 0,
       "good_md_comp": 1
    },
@@ -4378,6 +5002,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -12.899999999999991,
       "stats.adj_tempo.rank": 157,
       "stats.adj_tempo.value": 68.6,
+      "stats.off._3p_pct.value": 28.4,
+      "total_poss": 1954,
       "is_high_major": 0,
       "good_md_comp": 1
    },
@@ -4392,6 +5018,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -12.899999999999991,
       "stats.adj_tempo.rank": 241,
       "stats.adj_tempo.value": 67.1,
+      "stats.off._3p_pct.value": 28.4,
+      "total_poss": 2154,
       "is_high_major": 0,
       "good_md_comp": 1
    },
@@ -4406,6 +5034,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -13.299999999999997,
       "stats.adj_tempo.rank": 178,
       "stats.adj_tempo.value": 68.3,
+      "stats.off._3p_pct.value": 34,
+      "total_poss": 1972,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -4420,10 +5050,12 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -13.5,
       "stats.adj_tempo.rank": 229,
       "stats.adj_tempo.value": 67.3,
+      "stats.off._3p_pct.value": 27.3,
+      "total_poss": 2091,
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Charleston Southern": {
+   "Charleston So.": {
       "team_season.year": 2020,
       "conf": "Big South Conference",
       "stats.adj_off.rank": 299,
@@ -4434,6 +5066,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -13.599999999999994,
       "stats.adj_tempo.rank": 248,
       "stats.adj_tempo.value": 66.9,
+      "stats.off._3p_pct.value": 31.8,
+      "total_poss": 2058,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -4448,6 +5082,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -13.600000000000009,
       "stats.adj_tempo.rank": 311,
       "stats.adj_tempo.value": 65.3,
+      "stats.off._3p_pct.value": 34.7,
+      "total_poss": 2013,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -4462,10 +5098,12 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -13.799999999999997,
       "stats.adj_tempo.rank": 207,
       "stats.adj_tempo.value": 67.8,
+      "stats.off._3p_pct.value": 34.4,
+      "total_poss": 2090,
       "is_high_major": 0,
       "good_md_comp": 1
    },
-   "Alcorn St.": {
+   "Alcorn": {
       "team_season.year": 2020,
       "conf": "Southwestern Athletic Conference",
       "stats.adj_off.rank": 260,
@@ -4476,6 +5114,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -13.799999999999997,
       "stats.adj_tempo.rank": 81,
       "stats.adj_tempo.value": 70.1,
+      "stats.off._3p_pct.value": 34.8,
+      "total_poss": 1892,
       "is_high_major": 0,
       "good_md_comp": 1
    },
@@ -4490,6 +5130,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -13.900000000000006,
       "stats.adj_tempo.rank": 294,
       "stats.adj_tempo.value": 65.9,
+      "stats.off._3p_pct.value": 28.2,
+      "total_poss": 1996,
       "is_high_major": 0,
       "good_md_comp": 1
    },
@@ -4504,6 +5146,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -14,
       "stats.adj_tempo.rank": 26,
       "stats.adj_tempo.value": 72.8,
+      "stats.off._3p_pct.value": 33.6,
+      "total_poss": 2239,
       "is_high_major": 0,
       "good_md_comp": 1
    },
@@ -4518,6 +5162,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -14.200000000000003,
       "stats.adj_tempo.rank": 99,
       "stats.adj_tempo.value": 69.6,
+      "stats.off._3p_pct.value": 27.9,
+      "total_poss": 2082,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -4532,6 +5178,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -14.600000000000009,
       "stats.adj_tempo.rank": 138,
       "stats.adj_tempo.value": 69,
+      "stats.off._3p_pct.value": 33.1,
+      "total_poss": 2082,
       "is_high_major": 0,
       "good_md_comp": 1
    },
@@ -4546,6 +5194,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -15.200000000000003,
       "stats.adj_tempo.rank": 126,
       "stats.adj_tempo.value": 69.2,
+      "stats.off._3p_pct.value": 32,
+      "total_poss": 2151,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -4560,6 +5210,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -15.399999999999991,
       "stats.adj_tempo.rank": 94,
       "stats.adj_tempo.value": 69.8,
+      "stats.off._3p_pct.value": 32.6,
+      "total_poss": 1864,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -4574,6 +5226,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -15.700000000000003,
       "stats.adj_tempo.rank": 12,
       "stats.adj_tempo.value": 73.4,
+      "stats.off._3p_pct.value": 28.1,
+      "total_poss": 2396,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -4588,6 +5242,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -16.200000000000003,
       "stats.adj_tempo.rank": 58,
       "stats.adj_tempo.value": 70.8,
+      "stats.off._3p_pct.value": 33.7,
+      "total_poss": 2154,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -4602,10 +5258,12 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -16.700000000000003,
       "stats.adj_tempo.rank": 222,
       "stats.adj_tempo.value": 67.5,
+      "stats.off._3p_pct.value": 30.5,
+      "total_poss": 1951,
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Western Illinois": {
+   "Western Ill.": {
       "team_season.year": 2020,
       "conf": "Summit League",
       "stats.adj_off.rank": 252,
@@ -4616,6 +5274,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -16.60000000000001,
       "stats.adj_tempo.rank": 44,
       "stats.adj_tempo.value": 71.3,
+      "stats.off._3p_pct.value": 36.6,
+      "total_poss": 1747,
       "is_high_major": 0,
       "good_md_comp": 1
    },
@@ -4630,6 +5290,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -16.700000000000003,
       "stats.adj_tempo.rank": 252,
       "stats.adj_tempo.value": 66.9,
+      "stats.off._3p_pct.value": 32.4,
+      "total_poss": 2005,
       "is_high_major": 0,
       "good_md_comp": 1
    },
@@ -4644,6 +5306,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -17,
       "stats.adj_tempo.rank": 95,
       "stats.adj_tempo.value": 69.7,
+      "stats.off._3p_pct.value": 30.6,
+      "total_poss": 2266,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -4658,6 +5322,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -17.200000000000003,
       "stats.adj_tempo.rank": 11,
       "stats.adj_tempo.value": 73.7,
+      "stats.off._3p_pct.value": 32.4,
+      "total_poss": 2030,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -4672,6 +5338,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -17.299999999999997,
       "stats.adj_tempo.rank": 164,
       "stats.adj_tempo.value": 68.6,
+      "stats.off._3p_pct.value": 32.4,
+      "total_poss": 1870,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -4686,6 +5354,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -17.400000000000006,
       "stats.adj_tempo.rank": 251,
       "stats.adj_tempo.value": 66.9,
+      "stats.off._3p_pct.value": 32.5,
+      "total_poss": 2027,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -4700,10 +5370,12 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -17.39999999999999,
       "stats.adj_tempo.rank": 230,
       "stats.adj_tempo.value": 67.3,
+      "stats.off._3p_pct.value": 28.9,
+      "total_poss": 1912,
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Southeastern Louisiana": {
+   "Southeastern La.": {
       "team_season.year": 2020,
       "conf": "Southland Conference",
       "stats.adj_off.rank": 338,
@@ -4714,10 +5386,12 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -17.5,
       "stats.adj_tempo.rank": 34,
       "stats.adj_tempo.value": 72,
+      "stats.off._3p_pct.value": 29.9,
+      "total_poss": 2093,
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "SIU Edwardsville": {
+   "SIUE": {
       "team_season.year": 2020,
       "conf": "Ohio Valley Conference",
       "stats.adj_off.rank": 334,
@@ -4728,10 +5402,12 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -17.69999999999999,
       "stats.adj_tempo.rank": 140,
       "stats.adj_tempo.value": 69,
+      "stats.off._3p_pct.value": 31,
+      "total_poss": 2028,
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Tennessee Martin": {
+   "UT Martin": {
       "team_season.year": 2020,
       "conf": "Ohio Valley Conference",
       "stats.adj_off.rank": 132,
@@ -4742,10 +5418,12 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -17.80000000000001,
       "stats.adj_tempo.rank": 153,
       "stats.adj_tempo.value": 68.7,
+      "stats.off._3p_pct.value": 33.3,
+      "total_poss": 1891,
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Southeast Missouri St.": {
+   "Southeast Mo. St.": {
       "team_season.year": 2020,
       "conf": "Ohio Valley Conference",
       "stats.adj_off.rank": 322,
@@ -4756,6 +5434,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -18.900000000000006,
       "stats.adj_tempo.rank": 219,
       "stats.adj_tempo.value": 67.5,
+      "stats.off._3p_pct.value": 32.1,
+      "total_poss": 1998,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -4770,6 +5450,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -19,
       "stats.adj_tempo.rank": 271,
       "stats.adj_tempo.value": 66.3,
+      "stats.off._3p_pct.value": 31.7,
+      "total_poss": 2028,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -4784,6 +5466,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -19.400000000000006,
       "stats.adj_tempo.rank": 2,
       "stats.adj_tempo.value": 76.1,
+      "stats.off._3p_pct.value": 36.4,
+      "total_poss": 2271,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -4798,6 +5482,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -20.10000000000001,
       "stats.adj_tempo.rank": 225,
       "stats.adj_tempo.value": 67.4,
+      "stats.off._3p_pct.value": 28.3,
+      "total_poss": 2089,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -4812,10 +5498,12 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -21.299999999999997,
       "stats.adj_tempo.rank": 181,
       "stats.adj_tempo.value": 68.2,
+      "stats.off._3p_pct.value": 32,
+      "total_poss": 2146,
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Incarnate Word": {
+   "UIW": {
       "team_season.year": 2020,
       "conf": "Southland Conference",
       "stats.adj_off.rank": 342,
@@ -4826,6 +5514,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -22.39999999999999,
       "stats.adj_tempo.rank": 288,
       "stats.adj_tempo.value": 66.1,
+      "stats.off._3p_pct.value": 29.1,
+      "total_poss": 1954,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -4840,10 +5530,12 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -23,
       "stats.adj_tempo.rank": 6,
       "stats.adj_tempo.value": 74.4,
+      "stats.off._3p_pct.value": 31.1,
+      "total_poss": 2225,
       "is_high_major": 0,
       "good_md_comp": 1
    },
-   "Central Connecticut": {
+   "Central Conn. St.": {
       "team_season.year": 2020,
       "conf": "Northeast Conference",
       "stats.adj_off.rank": 343,
@@ -4854,10 +5546,12 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -23.700000000000003,
       "stats.adj_tempo.rank": 103,
       "stats.adj_tempo.value": 69.5,
+      "stats.off._3p_pct.value": 34.8,
+      "total_poss": 2117,
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Arkansas Pine Bluff": {
+   "Ark.-Pine Bluff": {
       "team_season.year": 2020,
       "conf": "Southwestern Athletic Conference",
       "stats.adj_off.rank": 353,
@@ -4868,10 +5562,12 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -25.69999999999999,
       "stats.adj_tempo.rank": 287,
       "stats.adj_tempo.value": 66.1,
+      "stats.off._3p_pct.value": 26.3,
+      "total_poss": 1964,
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Maryland Eastern Shore": {
+   "UMES": {
       "team_season.year": 2020,
       "conf": "Mid-Eastern Athletic Conference",
       "stats.adj_off.rank": 352,
@@ -4882,6 +5578,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -25.900000000000006,
       "stats.adj_tempo.rank": 213,
       "stats.adj_tempo.value": 67.7,
+      "stats.off._3p_pct.value": 25,
+      "total_poss": 2166,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -4896,10 +5594,12 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -27.099999999999994,
       "stats.adj_tempo.rank": 77,
       "stats.adj_tempo.value": 70.2,
+      "stats.off._3p_pct.value": 34.8,
+      "total_poss": 2180,
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Mississippi Valley St.": {
+   "Mississippi Val.": {
       "team_season.year": 2020,
       "conf": "Southwestern Athletic Conference",
       "stats.adj_off.rank": 345,
@@ -4910,6 +5610,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -27.89999999999999,
       "stats.adj_tempo.rank": 1,
       "stats.adj_tempo.value": 77.1,
+      "stats.off._3p_pct.value": 29.4,
+      "total_poss": 2376,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -4924,6 +5626,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -28.799999999999997,
       "stats.adj_tempo.rank": 184,
       "stats.adj_tempo.value": 68.2,
+      "stats.off._3p_pct.value": 24.8,
+      "total_poss": 1974,
       "is_high_major": 0,
       "good_md_comp": 0
    },
@@ -4938,6 +5642,8 @@ export const publicKenpomEfficiency2019_20: Record<string, any> = {
       "stats.adj_margin.value": -34,
       "stats.adj_tempo.rank": 139,
       "stats.adj_tempo.value": 69,
+      "stats.off._3p_pct.value": 30.4,
+      "total_poss": 1869,
       "is_high_major": 0,
       "good_md_comp": 0
    }

@@ -49,7 +49,7 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
 
   const [ gaInited, setGaInited ] = useState(false);
   const [ teamStats, setTeamStats ] = useState({on: {}, off: {}, baseline: {}} as TeamStatsModel);
-  const [ rosterStats, setRosterStats ] = useState({on: {}, off: {}, baseline: {}} as RosterStatsModel);
+  const [ rosterStats, setRosterStats ] = useState({on: [], off: [], baseline: []} as RosterStatsModel);
   const [ rosterCompareStats, setRosterCompareStats ] = useState({on: {}, off: {}, baseline: {}} as RosterCompareModel);
 
   const injectStats = (
@@ -125,7 +125,12 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
     </Row>
     <Row>
       <GenericCollapsibleCard title="Team Analysis">
-        <TeamStatsTable teamStats={teamStats}/>
+        <TeamStatsTable
+          gameFilterParams={gameFilterParams}
+          teamStats={teamStats}
+          rosterStats={rosterStats}
+          onChangeState={onGameFilterParamsChange}
+        />
       </GenericCollapsibleCard>
     </Row>
     <Row>
@@ -140,7 +145,10 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
     </Row>
     <Row>
       <GenericCollapsibleCard title="Lineup Comparison">
-        <RosterCompareTable gameFilterParams={gameFilterParams} rosterCompareStats={rosterCompareStats}/>
+        <RosterCompareTable
+          gameFilterParams={gameFilterParams}
+          rosterCompareStats={rosterCompareStats}
+        />
       </GenericCollapsibleCard>
     </Row>
     <Footer year={gameFilterParams.year} gender={gameFilterParams.gender} server={server}/>

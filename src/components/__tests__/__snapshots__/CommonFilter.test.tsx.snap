@@ -563,7 +563,7 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
               </ForwardRef>
               <ForwardRef>
                 <HistorySelector
-                  tablePrefix="test-"
+                  tablePrefix="game-"
                 />
               </ForwardRef>
             </ForwardRef(render)>
@@ -634,7 +634,7 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
             active={false}
             className="float-left"
             disabled={false}
-            id="copyLink_test-"
+            id="copyLink_game-"
             size="sm"
             type="button"
             variant="outline-secondary"
@@ -1555,7 +1555,7 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
               </ForwardRef>
               <ForwardRef>
                 <HistorySelector
-                  tablePrefix="test-"
+                  tablePrefix="lineup-"
                 />
               </ForwardRef>
             </ForwardRef(render)>
@@ -1626,7 +1626,7 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
             active={false}
             className="float-left"
             disabled={false}
-            id="copyLink_test-"
+            id="copyLink_lineup-"
             size="sm"
             type="button"
             variant="outline-secondary"
@@ -1970,7 +1970,7 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
           active={false}
           className="float-right"
           disabled={false}
-          id="clearQuery_test-"
+          id="clearQuery_lineup-"
           onClick={[Function]}
           size="sm"
           type="button"

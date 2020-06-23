@@ -42,6 +42,9 @@ export type GameFilterParams = {
   onQuery?: string,
   offQuery?: string,
   autoOffQuery?: boolean
+  // Luck adjustments for team view
+  onOffLuck?: string,
+  showOnOffLuckDiags?: boolean,
   // Filtering of individual view:
   filter?: string,
   sortBy?: string,
@@ -94,6 +97,7 @@ export class ParamDefaults {
   static readonly defaultAutoOffQuery = true;
   static readonly defaultPlayerFilter = "";
   static readonly defaultPlayerSortBy = "desc:off_team_poss_pct:baseline";
+  static readonly defaultOnOffLuckDiagMode = false;
   static readonly defaultPlayerDiagMode = false;
   static readonly defaultPlayerShowBase = false;
   static readonly defaultPlayerShowExpanded = false;

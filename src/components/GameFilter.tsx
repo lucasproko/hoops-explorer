@@ -18,7 +18,7 @@ import { TeamStatsModel } from '../components/TeamStatsTable';
 import { RosterCompareModel } from '../components/RosterCompareTable';
 import { RosterStatsModel } from '../components/RosterStatsTable';
 import CommonFilter, { GlobalKeypressManager } from '../components/CommonFilter';
-import { ParamPrefixes, FilterParamsType, CommonFilterParams, GameFilterParams, FilterRequestInfo, ParamDefaults } from "../utils/FilterModels";
+import { ParamPrefixes, FilterParamsType, CommonFilterParams, GameFilterParams, FilterRequestInfo, ParamPrefixesType, ParamDefaults } from "../utils/FilterModels";
 import AutoSuggestText from './AutoSuggestText';
 
 type Props = {
@@ -32,6 +32,8 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
   // Data model
 
   const {
+    //(these fields are for the team view)
+    onOffLuck: startOnOffLuck, showOnOffLuckDiags: startShowOnOffLuckDiags,
     //(these fields are for the individual view)
     filter: startFilter, sortBy: startSortBy,
     showBase: startShowBase, showExpanded: startShowExpanded,
@@ -69,6 +71,8 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
     const primaryRequest: GameFilterParams = includeFilterParams ?
       _.merge(
         buildParamsFromState(false)[0], {
+          // Team stats:
+          onOffLuck: startOnOffLuck, showOnOffLuckDiags: startShowOnOffLuckDiags,
           // Individual stats:
           autoOffQuery: autoOffQuery,
           filter: startFilter, sortBy: startSortBy,
@@ -81,40 +85,51 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
         offQuery: offQuery
       };
 
+    const entireSeasonRequest = { // Get the entire season of players for things like luck adjustments
+      team: primaryRequest.team, year: primaryRequest.year, gender: primaryRequest.gender,
+      minRank: ParamDefaults.defaultMinRank, maxRank: ParamDefaults.defaultMaxRank,
+      filterGarbage:false, queryFilters:"",
+      baseQuery: "", onQuery: "", offQuery: ""
+    };
+
     return [ primaryRequest, [{
-        context: ParamPrefixes.roster, paramsObj: primaryRequest
+        context: ParamPrefixes.roster as ParamPrefixesType, paramsObj: primaryRequest
       }, {
-        context: ParamPrefixes.player, paramsObj: primaryRequest
-      }] 
+        context: ParamPrefixes.player as ParamPrefixesType, paramsObj: primaryRequest
+      }].concat(_.isEqual(entireSeasonRequest, primaryRequest) ? [] :[{ //(don't make a spurious call)
+        context: ParamPrefixes.player as ParamPrefixesType, paramsObj: entireSeasonRequest
+      }])
     ];
   }
 
   /** Handles the response from ES to a stats calc request */
   function handleResponse(jsonResps: any[], wasError: Boolean) {
-    const jsons = _.flatMap(jsonResps, j => j.responses || []);
     const jsonStatuses = jsonResps.map(j => j.status);
+    const teamJson = jsonResps?.[0]?.responses?.[0] || {};
+    const rosterCompareJson = jsonResps?.[1]?.responses?.[0] || {};
+    const rosterStatsJson = jsonResps?.[2]?.responses?.[0] || {};
+    const globalRosterStatsJson = jsonResps?.[3]?.responses?.[0] || rosterStatsJson;
 
-    const teamJson = jsons?.[0] || {};
-    const rosterCompareJson = jsons?.[1] || {};
-    const rosterStatsJson = jsons?.[2] || {};
     onStats({
       on: teamJson?.aggregations?.tri_filter?.buckets?.on || {},
       off: teamJson?.aggregations?.tri_filter?.buckets?.off || {},
       onOffMode: autoOffQuery,
       baseline: teamJson?.aggregations?.tri_filter?.buckets?.baseline || {},
-      error_code: wasError ? (teamJson?.status || jsonStatuses?.[0]) : undefined
+      global: teamJson?.aggregations?.global?.only?.buckets?.team || {},
+      error_code: wasError ? (teamJson?.status || jsonStatuses?.[0] || "Unknown") : undefined
     }, {
       on: rosterCompareJson?.aggregations?.tri_filter?.buckets?.on || {},
       off: rosterCompareJson?.aggregations?.tri_filter?.buckets?.off || {},
       onOffMode: autoOffQuery,
       baseline: rosterCompareJson?.aggregations?.tri_filter?.buckets?.baseline || {},
-      error_code: wasError ? (rosterCompareJson?.status || jsonStatuses?.[1]) : undefined
+      error_code: wasError ? (rosterCompareJson?.status || jsonStatuses?.[1] || "Unknown") : undefined
     }, {
       on: rosterStatsJson?.aggregations?.tri_filter?.buckets?.on?.player?.buckets || [],
       off: rosterStatsJson?.aggregations?.tri_filter?.buckets?.off?.player?.buckets || [],
       onOffMode: autoOffQuery,
       baseline: rosterStatsJson?.aggregations?.tri_filter?.buckets?.baseline?.player?.buckets || [],
-      error_code: wasError ? (rosterStatsJson?.status || jsonStatuses?.[2]) : undefined
+      global: globalRosterStatsJson?.aggregations?.tri_filter?.buckets?.baseline?.player?.buckets || [],
+      error_code: wasError ? (rosterStatsJson?.status || jsonStatuses?.[2] || "Unknown") : undefined
     });
   }
 

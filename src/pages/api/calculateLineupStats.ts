@@ -15,7 +15,10 @@ function marshallRequest(
 ) {
   const body = [
     JSON.stringify({ index: index }),
-    JSON.stringify(lineupStatsQuery(params, currentJsonEpoch, efficiency, lookup, avgEfficiency))
+    JSON.stringify(
+      lineupStatsQuery(params, currentJsonEpoch, efficiency, lookup, avgEfficiency),
+      CommonApiUtils.efficiencyReplacer()
+    )
   ].join('\n') + "\n";
 
   return body;

@@ -1,6 +1,8 @@
+import _ from "lodash";
+
 import { commonTeamQuery } from "./commonTeamQuery";
 import { commonOnOffBaseQuery } from "./commonOnOffBaseQuery";
-import { commonLineupAggregations } from "./commonLineupAggregations";
+import { commonLineupAggregations, commonAggregations } from "./commonLineupAggregations";
 import { GameFilterParams } from "../FilterModels";
 
 
@@ -15,10 +17,36 @@ export const teamStatsQuery = function(
      },
      "size": 0,
      "aggregations": {
-        "tri_filter": {
+       "global": {
+         "global": {},
+         "aggregations": {
+           "only": {
+             "filters": {
+               "filters": {
+                 "team": {
+                   "term": {
+                     "team.team.keyword": `${params.team}`
+                   }
+                 }
+               }
+             },
+             "aggregations": {
+               ...(_.pick(
+                 commonAggregations("team_stats", "off", publicEfficiency, lookup, avgEfficiency),
+                 [ "total_off_3p_attempts" ]
+              )),
+               ...(_.pick(
+                 commonAggregations("opponent_stats", "def", publicEfficiency, lookup, avgEfficiency),
+                 [ "def_3p", "def_poss", "total_def_poss", "total_def_3p_attempts", "total_def_3p_made", "def_3p_opp" ]
+              ))
+            }
+           }
+         }
+       },
+       "tri_filter": {
            "aggregations": commonLineupAggregations(publicEfficiency, lookup, avgEfficiency),
            "filters": commonOnOffBaseQuery(params)
-        }
+       }
      },
      "query": commonTeamQuery(params, lastDate, publicEfficiency, lookup)
   };
