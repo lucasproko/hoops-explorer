@@ -5,7 +5,7 @@ import _ from 'lodash';
 
 import queryString from "query-string";
 
-import { CommonFilterParams } from "./FilterModels";
+import { CommonFilterParams, ParamDefaults } from "./FilterModels";
 
 /** All the different supported filters */
 export type CommonFilterType =
@@ -31,15 +31,19 @@ export class QueryUtils {
       obj.baseQuery = (obj as any)[QueryUtils.legacyQueryField];
       delete (obj as any)[QueryUtils.legacyQueryField];
     }
-    if (!obj.filterGarbage) { //default==false => remove altogether
-      delete obj.filterGarbage;
-    }
-    if (obj.queryFilters == "") { //default==[] => remove altogether
-      delete obj.queryFilters;
-    }
+    QueryUtils.cleanseQuery(obj);
     return queryString.stringify(obj);
   }
 
+  /** Removes some optional fields that we don't want */
+  static cleanseQuery(mutableObj: CommonFilterParams) {
+    if (mutableObj.filterGarbage == ParamDefaults.defaultFilterGarbage) { //default==false => remove altogether
+      delete mutableObj.filterGarbage;
+    }
+    if (mutableObj.queryFilters == ParamDefaults.defaultQueryFilters) { //default==[] => remove altogether
+      delete mutableObj.queryFilters;
+    }
+  }
 
   /** Returns the advanced query, with NOT support, or undefined if not an advanced query */
   static extractAdvancedQuery(maybeAdvQuery: string): [ string, string | undefined] {

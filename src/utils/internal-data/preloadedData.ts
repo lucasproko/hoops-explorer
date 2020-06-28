@@ -16,9 +16,16 @@ export class PreloadedDataSamples {
 
   static readonly menLineup =
     'baseQuery=&gender=Men&maxRank=400&minRank=0&team=Virginia&year=2018%2F9';
+  static readonly menLineupOnOff =
+  'baseQuery=&gender=Men&maxRank=400&minRank=0&offQuery=&onQuery=&team=Virginia&year=2018%2F9';
+  static readonly menLineupOnOffSeason = PreloadedDataSamples.menLineupOnOff;
 
   static readonly womenLineup =
     'baseQuery=&gender=Women&maxRank=100&minRank=0&team=Maryland&year=2018%2F9';
+  static readonly womenLineupOnOff =
+    'baseQuery=&gender=Women&maxRank=100&minRank=0&offQuery=&onQuery=&team=Maryland&year=2018%2F9';
+  static readonly womenLineupOnOffSeason =
+    'baseQuery=&gender=Women&maxRank=400&minRank=0&offQuery=&onQuery=&team=Maryland&year=2018%2F9';
 
   //(menLineup and womenLineup re-used for pre-loaded Team On/Off Report samples)
 }

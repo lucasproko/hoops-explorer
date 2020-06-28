@@ -16,7 +16,10 @@ import Col from 'react-bootstrap/Col';
 // Component imports:
 import { LineupStatsModel } from '../components/LineupStatsTable';
 import CommonFilter from '../components/CommonFilter';
-import { ParamPrefixes, FilterParamsType, CommonFilterParams, LineupFilterParams, FilterRequestInfo } from "../utils/FilterModels";
+import { ParamDefaults, ParamPrefixesType, ParamPrefixes, FilterParamsType, CommonFilterParams, LineupFilterParams, FilterRequestInfo, getCommonFilterParams } from "../utils/FilterModels";
+
+// Utils
+import { QueryUtils } from '../utils/QueryUtils';
 
 type Props = {
   onStats: (lineupStats: LineupStatsModel) => void;
@@ -68,8 +71,26 @@ const LineupFilter: React.FunctionComponent<Props> = ({onStats, startingState, o
     }) : {
       ...commonParams
     };
+    //(another ugly hack to be fixed - remove default optional fields)
+    QueryUtils.cleanseQuery(primaryRequest);
 
-    return [ primaryRequest, [] ];
+    const secondaryRequest = {
+      ...primaryRequest,
+      onQuery: "", offQuery: ""
+    };
+
+    const entireSeasonRequest = { // Get the entire season of players for things like luck adjustments
+      team: primaryRequest.team, year: primaryRequest.year, gender: primaryRequest.gender,
+      minRank: ParamDefaults.defaultMinRank, maxRank: ParamDefaults.defaultMaxRank,
+      baseQuery: "", onQuery: "", offQuery: ""
+    };
+
+    return [ primaryRequest, [{
+        context: ParamPrefixes.player as ParamPrefixesType, paramsObj: secondaryRequest
+      }].concat(_.isEqual(entireSeasonRequest, secondaryRequest) ? [] :[{ //(don't make a spurious call)
+        context: ParamPrefixes.player as ParamPrefixesType, paramsObj: entireSeasonRequest
+      }])
+    ];
   }
 
   /** Handles the response from ES to a stats calc request */

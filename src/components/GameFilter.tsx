@@ -21,6 +21,9 @@ import CommonFilter, { GlobalKeypressManager } from '../components/CommonFilter'
 import { ParamPrefixes, FilterParamsType, CommonFilterParams, GameFilterParams, FilterRequestInfo, ParamPrefixesType, ParamDefaults } from "../utils/FilterModels";
 import AutoSuggestText from './AutoSuggestText';
 
+// Utils
+import { QueryUtils } from '../utils/QueryUtils';
+
 type Props = {
   onStats: (teamStats: TeamStatsModel, rosterCompareStats: RosterCompareModel, rosterStats: RosterStatsModel) => void;
   startingState: GameFilterParams;
@@ -87,10 +90,12 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
         offQuery: offQuery
       };
 
+    //(another ugly hack to be fixed - remove default optional fields)
+    QueryUtils.cleanseQuery(primaryRequest);
+
     const entireSeasonRequest = { // Get the entire season of players for things like luck adjustments
       team: primaryRequest.team, year: primaryRequest.year, gender: primaryRequest.gender,
       minRank: ParamDefaults.defaultMinRank, maxRank: ParamDefaults.defaultMaxRank,
-      filterGarbage:false, queryFilters:"",
       baseQuery: "", onQuery: "", offQuery: ""
     };
 

@@ -227,9 +227,11 @@ const CommonFilter: CommonFilterI = ({
       (key: string) => (newParams as any)[key] == (currState as any)[key]
     );
     const garbageSpecialCase =
-      (newParams?.filterGarbage || false) == (currState?.filterGarbage || false);
+      (newParams?.filterGarbage || ParamDefaults.defaultFilterGarbage) ==
+        (currState?.filterGarbage || ParamDefaults.defaultFilterGarbage);
     const queryFiltersSpecialCase =
-      (newParams?.queryFilters || "") == (currState?.queryFilters || "");
+      (newParams?.queryFilters || ParamDefaults.defaultQueryFilters) ==
+        (currState?.queryFilters || ParamDefaults.defaultQueryFilters);
 
     return (
       atLeastOneQueryMade && paramsUnchanged &&
@@ -273,10 +275,14 @@ const CommonFilter: CommonFilterI = ({
       if (tablePrefix == ParamPrefixes.report) {
         if (gender == "Women") {
           const newUrl = `${PreloadedDataSamples.womenLineup}`;
-          return [ [ "TeamReport", newUrl ] ];
+          return [
+            [ "TeamReport", newUrl ]
+          ];
         } else { //(default is men)
           const newUrl = `${PreloadedDataSamples.menLineup}`;
-          return [ [ "TeamReport", newUrl ] ];
+          return [
+            [ "TeamReport", newUrl ]
+          ];
         }
       } else if (tablePrefix == ParamPrefixes.game) {
         if (gender == "Women") {
@@ -297,10 +303,20 @@ const CommonFilter: CommonFilterI = ({
       } else if (tablePrefix == ParamPrefixes.lineup) {
         if (gender == "Women") {
           const newUrl = `${PreloadedDataSamples.womenLineup}`;
-          return [ [ "LineupAnalyzer", newUrl ] ];
+          const newPlayerUrl = `${PreloadedDataSamples.womenLineupOnOff}`;
+          const baseUrl = `${PreloadedDataSamples.womenLineupOnOffSeason}`;
+          return [
+            [ "LineupAnalyzer", newUrl ],
+            [ ParamPrefixes.player, newPlayerUrl ], [ ParamPrefixes.player, baseUrl ]
+          ];
         } else { //(default is men)
           const newUrl = `${PreloadedDataSamples.menLineup}`;
-          return [ [ "LineupAnalyzer", newUrl ] ];
+          const newPlayerUrl = `${PreloadedDataSamples.menLineupOnOff}`;
+          const baseUrl = `${PreloadedDataSamples.menLineupOnOffSeason}`;
+          return [
+            [ "LineupAnalyzer", newUrl ],
+            [ ParamPrefixes.player, newPlayerUrl ], [ ParamPrefixes.player, baseUrl ]
+          ];
         }
       }
       return [ ["", ""] ];

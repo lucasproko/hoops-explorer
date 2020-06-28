@@ -174,13 +174,16 @@ export class LuckUtils {
     }
     const luckPct = 0.66;
 
+    //TODO: if we don't have 3PSos then just regress
+    //TODO: also add a test for this case
+
     const baseDef3P = get(base?.def_3p, 0);
-    const baseDef3PSos = 0.01*get(base?.def_3p_opp, 0); //(normalize to %)
+    const baseDef3PSos = _.isNil(base?.def_3p_opp?.value) ? baseDef3P : 0.01*get(base?.def_3p_opp, 0); //(normalize to %)
     const basePoss = get(base?.def_poss, 0);
     const base3PSosAdj = (1 - luckPct)*(baseDef3P - baseDef3PSos);
 
     const sampleDef3P = get(sample?.def_3p, 0);
-    const sampleDef3PSos = 0.01*get(sample?.def_3p_opp, 0); //(normalize to %)
+    const sampleDef3PSos = _.isNil(sample?.def_3p_opp?.value) ? sampleDef3P : 0.01*get(sample?.def_3p_opp, 0); //(normalize to %)
     const samplePoss = get(sample?.def_poss, 0);
     const sample3PSosAdj = (1 - luckPct)*(sampleDef3P - sampleDef3PSos);
 

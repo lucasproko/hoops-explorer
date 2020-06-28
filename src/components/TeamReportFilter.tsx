@@ -19,6 +19,9 @@ import { LineupStatsModel } from '../components/LineupStatsTable';
 import CommonFilter from '../components/CommonFilter';
 import { ParamPrefixes, ParamPrefixesType, CommonFilterParams, FilterRequestInfo, TeamReportFilterParams } from "../utils/FilterModels";
 
+// Utils
+import { QueryUtils } from '../utils/QueryUtils';
+
 type Props = {
   onStats: (reportStats: LineupStatsModel) => void;
   startingState: TeamReportFilterParams;
@@ -78,6 +81,9 @@ const TeamReportFilter: React.FunctionComponent<Props> = ({onStats, startingStat
     }) : {
       ...commonParams
     };
+    //(another ugly hack to be fixed - remove default optional fields)
+    QueryUtils.cleanseQuery(primaryRequest);
+
     return [ primaryRequest, [] ];
   }
 
