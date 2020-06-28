@@ -3,10 +3,16 @@
 /** Some sample keys, for convenience */
 export class PreloadedDataSamples {
   static readonly womenOnOff =
-    'autoOffQuery=true&baseQuery=&gender=Women&maxRank=400&minRank=0&offQuery=NOT%20%28Kaila%29&onQuery=Kaila&team=Maryland&year=2018%2F9';
+    'baseQuery=&gender=Women&maxRank=400&minRank=0&offQuery=NOT%20%28Kaila%29&onQuery=Kaila&team=Maryland&year=2018%2F9';
+  /** Entire season results for Men on/off demo */
+  static readonly womenOnOffSeason =
+    'baseQuery=&gender=Women&maxRank=400&minRank=0&offQuery=&onQuery=&team=Maryland&year=2018%2F9';
 
   static readonly menOnOff =
-    'autoOffQuery=true&baseQuery=NOT%20%28Terrell%20OR%20Valmon%20OR%20Clark%29&gender=Men&maxRank=100&minRank=0&offQuery=NOT%20%28Bruno%29&onQuery=Bruno&team=Maryland&year=2018%2F9';
+    'baseQuery=NOT%20%28Terrell%20OR%20Valmon%20OR%20Clark%29&gender=Men&maxRank=100&minRank=0&offQuery=NOT%20%28Bruno%29&onQuery=Bruno&team=Maryland&year=2018%2F9';
+  /** Entire season results for Men on/off demo */
+  static readonly menOnOffSeason =
+    'baseQuery=&gender=Men&maxRank=400&minRank=0&offQuery=&onQuery=&team=Maryland&year=2018%2F9';
 
   static readonly menLineup =
     'baseQuery=&gender=Men&maxRank=400&minRank=0&team=Virginia&year=2018%2F9';

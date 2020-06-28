@@ -58,7 +58,9 @@ const TeamReportFilter: React.FunctionComponent<Props> = ({onStats, startingStat
     setCommonParams(params)
   }
 
-  /** Builds a game filter from the various state elements */
+  /** Builds a team report filter from the various state elements, and also any secondary filters
+   * NOTE: ugly hack I need to fix, needs to sync with CommonFilter.onSeeExample
+  */
   function buildParamsFromState(includeFilterParams: Boolean): [ TeamReportFilterParams, FilterRequestInfo[] ]
   {
     const primaryRequest: TeamReportFilterParams = includeFilterParams ?
@@ -81,7 +83,7 @@ const TeamReportFilter: React.FunctionComponent<Props> = ({onStats, startingStat
 
   function handleResponse(jsonResps: any[], wasError: Boolean) {
     //TODO: fix this per GameFilter
-    
+
     const json = jsonResps[0] || []; //(currently just one request)
 
     const jsons = json?.responses || [];

@@ -53,7 +53,9 @@ const LineupFilter: React.FunctionComponent<Props> = ({onStats, startingState, o
     setCommonParams(params)
   }
 
-  /** Builds a game filter from the various state elements */
+  /** Builds a lineup filter from the various state elements, and also any secondary filters
+   * NOTE: ugly hack I need to fix, needs to sync with CommonFilter.onSeeExample
+  */
   function buildParamsFromState(includeFilterParams: Boolean): [ LineupFilterParams, FilterRequestInfo[] ]
   {
     const primaryRequest: LineupFilterParams = includeFilterParams ?
@@ -73,7 +75,7 @@ const LineupFilter: React.FunctionComponent<Props> = ({onStats, startingState, o
   /** Handles the response from ES to a stats calc request */
   function handleResponse(jsonResps: any[], wasError: Boolean) {
     //TODO: fix this per GameFilter
-    
+
     const json = jsonResps[0] || []; //(currently just one request)
 
     const jsons = json?.responses || [];

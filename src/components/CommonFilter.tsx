@@ -266,38 +266,54 @@ const CommonFilter: CommonFilterI = ({
 
   /** Load the designated example */
   function onSeeExample() {
-    const [ pathPrefix, paramStr ] = (() => {
+    const prefixesAndParamStrs = (() => {
+      //(ugly hack I need to tidy up when I have a moment: the first pair is page/params
+      // subsqeuent pairs are ParamPrefixes)
+      // ALSO: the pairs need to map to the arrays returned by buildParamsFromState
       if (tablePrefix == ParamPrefixes.report) {
         if (gender == "Women") {
           const newUrl = `${PreloadedDataSamples.womenLineup}`;
-          return [ "TeamReport", newUrl ];
+          return [ [ "TeamReport", newUrl ] ];
         } else { //(default is men)
           const newUrl = `${PreloadedDataSamples.menLineup}`;
-          return [ "TeamReport", newUrl ];
+          return [ [ "TeamReport", newUrl ] ];
         }
       } else if (tablePrefix == ParamPrefixes.game) {
         if (gender == "Women") {
           const newUrl = `${PreloadedDataSamples.womenOnOff}`;
-          return [ "", newUrl ];
+          const baseUrl = `${PreloadedDataSamples.womenOnOffSeason}`
+          return [
+            [ "", newUrl ], //(primary)
+            [ ParamPrefixes.roster, newUrl ], [ ParamPrefixes.player, newUrl ], [ ParamPrefixes.player, baseUrl ]
+          ];
         } else { //(default is men)
           const newUrl = `${PreloadedDataSamples.menOnOff}`;
-          return [ "", newUrl ];
+          const baseUrl = `${PreloadedDataSamples.menOnOffSeason}`
+          return [
+            [ "", newUrl ], //(primary)
+            [ ParamPrefixes.roster, newUrl ], [ ParamPrefixes.player, newUrl ], [ ParamPrefixes.player, baseUrl ]
+          ];
         }
       } else if (tablePrefix == ParamPrefixes.lineup) {
         if (gender == "Women") {
           const newUrl = `${PreloadedDataSamples.womenLineup}`;
-          return [ "LineupAnalyzer", newUrl ];
+          return [ [ "LineupAnalyzer", newUrl ] ];
         } else { //(default is men)
           const newUrl = `${PreloadedDataSamples.menLineup}`;
-          return [ "LineupAnalyzer", newUrl ];
+          return [ [ "LineupAnalyzer", newUrl ] ];
         }
       }
-      return ["", ""];
+      return [ ["", ""] ];
     })();
-    ClientRequestCache.directInsertCache(
-      paramStr, tablePrefix, "{}", currentJsonEpoch, isDebug
-    );
-    window.location.href = `/${pathPrefix}?${paramStr}`;
+    prefixesAndParamStrs.forEach((prefixAndParam: string[], index: number) => {
+      ClientRequestCache.directInsertCache(
+        prefixAndParam[1],
+        (index == 0) ? tablePrefix : prefixAndParam[0],
+        "{}", currentJsonEpoch, isDebug
+      );
+    });
+    const pageAndParam = prefixesAndParamStrs[0] as [ string, string ];
+    window.location.href = `/${pageAndParam[0]}?${pageAndParam[1]}`;
   }
 
   /** For use in selects */

@@ -66,7 +66,9 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
     setCommonParams(params)
   }
 
-  /** Builds a game filter from the various state elements, and also any secondary filters */
+  /** Builds a game filter from the various state elements, and also any secondary filters
+   * NOTE: ugly hack I need to fix, needs to sync with CommonFilter.onSeeExample
+  */
   function buildParamsFromState(includeFilterParams: Boolean): [ GameFilterParams, FilterRequestInfo[] ]  {
     const primaryRequest: GameFilterParams = includeFilterParams ?
       _.merge(
