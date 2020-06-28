@@ -13,13 +13,13 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 // Component imports
-import GenericTable, { GenericTableOps, GenericTableColProps } from "./GenericTable";
+import GenericTable, { GenericTableOps, GenericTableColProps } from "../GenericTable";
 // @ts-ignore
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, Legend, ReferenceLine, Label } from 'recharts';
 
 // Utils
-import { RapmInfo, RapmPlayerContext, RapmPreProcDiagnostics, RapmProcessingInputs, RapmUtils } from "../utils/stats/RapmUtils";
-import { CbbColors } from "../utils/CbbColors";
+import { RapmInfo, RapmPlayerContext, RapmPreProcDiagnostics, RapmProcessingInputs, RapmUtils } from "../../utils/stats/RapmUtils";
+import { CbbColors } from "../../utils/CbbColors";
 
 type Props = {
   rapmInfo: RapmInfo

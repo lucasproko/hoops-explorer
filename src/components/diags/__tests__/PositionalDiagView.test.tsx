@@ -1,8 +1,8 @@
 import renderer from 'react-test-renderer';
 import React from 'react';
 import PositionalDiagView from '../PositionalDiagView';
-import { samplePlayerStatsResponse } from "../../sample-data/samplePlayerStatsResponse";
-import { GameFilterParams } from "../utils/FilterModels";
+import { samplePlayerStatsResponse } from "../../../sample-data/samplePlayerStatsResponse";
+import { GameFilterParams } from "../../utils/FilterModels";
 import { shallow } from 'enzyme'
 import toJson from 'enzyme-to-json'
 

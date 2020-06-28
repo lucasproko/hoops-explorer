@@ -1,0 +1,128 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RapmPlayerDiagView RapmPlayerDiagView - should create snapshot 1`] = `
+<span>
+  <b>
+    RAPM diagnostics for [
+    Wiggins, Aaron
+    ]:
+  </b>
+   adj_off=[
+  <b>
+    2.78
+  </b>
+  ], adj_def=[
+  <b>
+    -5.91
+  </b>
+  ]
+  <ul>
+    <li>
+      RAPM contribution: off=[
+      <b>
+        2.98
+      </b>
+      ], def=[
+      <b>
+        -5.00
+      </b>
+      ], total=[
+      <b>
+        7.99
+      </b>
+      ]
+    </li>
+    <li>
+      Priors contribution: off=[
+      <b>
+        -0.20
+      </b>
+      ], def=[
+      <b>
+        -0.90
+      </b>
+      ], total=[
+      <b>
+        0.70
+      </b>
+      ]
+    </li>
+    <ul>
+      <li>
+        We calculate the total team priors (off=[
+        <b>
+          -1.32
+        </b>
+        ] def=[
+        <b>
+          -5.39
+        </b>
+        ]) from the reduction in the team adjusted efficiency due to the regression factor, eg compare 
+        <em>
+          observed
+        </em>
+         (off=[
+        <b>
+          10.00
+        </b>
+        ] def=[
+        <b>
+          -20.00
+        </b>
+        ]) vs 
+        <em>
+          derived from RAPM
+        </em>
+         (off=[
+        <b>
+          11.32
+        </b>
+        ] def=[
+        <b>
+          -14.61
+        </b>
+        ]).
+      </li>
+      <li>
+        Then we calculate a player's contribution to the team prior - currently this is mostly based on their % on floor, [
+        <b>
+          82
+          %
+        </b>
+        ] (of [
+        <b>
+          101
+        </b>
+        ] poss); eg for the offense approximately [
+        <b>
+          82
+          %
+        </b>
+        ] * (1/5) * [
+        <b>
+          -1.32
+        </b>
+        ] = [
+        <b>
+          -0.22
+        </b>
+        ], plus some smaller lineup adjustments.
+      </li>
+    </ul>
+  </ul>
+  (
+  <b>
+    More player diagnostics to come...
+  </b>
+  )
+  <br />
+  (
+  <a
+    href="#"
+    onClick={[Function]}
+  >
+    Scroll to global RAPM diagnostics
+  </a>
+  )
+</span>
+`;

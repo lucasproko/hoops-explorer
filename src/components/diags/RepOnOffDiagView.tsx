@@ -12,9 +12,9 @@ import { NextPage } from 'next';
 import { mean, std } from "mathjs";
 
 // Utils
-import { OnOffReportDiagUtils } from "../utils/stats/OnOffReportDiagUtils";
-import { CommonFilterParams } from "../utils/FilterModels";
-import { QueryUtils } from "../utils/QueryUtils";
+import { OnOffReportDiagUtils } from "../../utils/stats/OnOffReportDiagUtils";
+import { CommonFilterParams } from "../../utils/FilterModels";
+import { QueryUtils } from "../../utils/QueryUtils";
 
 type Props = {
   diagInfo: Array<any>,

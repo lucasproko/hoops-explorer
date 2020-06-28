@@ -1,7 +1,7 @@
 import renderer from 'react-test-renderer';
 import React from 'react';
 import LuckAdjDiagView from '../LuckAdjDiagView';
-import { sampleOffOnOffLuckDiagnostics, sampleDefOnOffLuckDiagnostics } from "../../sample-data/sampleOnOffLuckDiagnostics";
+import { sampleOffOnOffLuckDiagnostics, sampleDefOnOffLuckDiagnostics } from "../../../sample-data/sampleOnOffLuckDiagnostics";
 import { shallow } from 'enzyme'
 import toJson from 'enzyme-to-json'
 

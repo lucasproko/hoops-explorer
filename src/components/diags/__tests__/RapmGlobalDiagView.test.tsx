@@ -1,23 +1,22 @@
 import renderer from 'react-test-renderer';
 import React from 'react';
-import RapmPlayerDiagView from '../RapmPlayerDiagView';
+import RapmGlobalDiagView from '../RapmGlobalDiagView';
 
 // Needed to build the data
-import { sampleLineupStatsResponse } from "../../sample-data/sampleLineupStatsResponse";
-import { LineupUtils } from "../../utils/stats/LineupUtils";
-import { RapmUtils } from "../../utils/stats/RapmUtils";
-import { semiRealRapmResults } from "../../utils/stats/__tests__/RapmUtils.test";
+import { sampleLineupStatsResponse } from "../../../sample-data/sampleLineupStatsResponse";
+import { LineupUtils } from "../../../utils/stats/LineupUtils";
+import { RapmUtils } from "../../../utils/stats/RapmUtils";
+import { semiRealRapmResults } from "../../../utils/stats/__tests__/RapmUtils.test";
 
-describe("RapmPlayerDiagView", () => {
+describe("RapmGlobalDiagView", () => {
 
   const lineupReport = {
     lineups: sampleLineupStatsResponse.responses[0].aggregations.lineups.buckets,
     avgEff: 100.0,
     error_code: "test"
   };
-  const globalRapmDiagRef = React.createRef<HTMLDivElement>();
 
-  test("RapmPlayerDiagView - should create snapshot", () => {
+  test("RapmGlobalDiagView - should create snapshot", () => {
     const [ offResults, defResults ] = RapmUtils.pickRidgeRegression(
       semiRealRapmResults.testOffWeights, semiRealRapmResults.testDefWeights, semiRealRapmResults.testContext, true
     );
@@ -41,10 +40,10 @@ describe("RapmPlayerDiagView", () => {
       defInputs: defResults
     };
 
-    const component = renderer.create(<RapmPlayerDiagView
-      globalRef={globalRapmDiagRef}
+    const component = renderer.create(<RapmGlobalDiagView
+      topRef={React.createRef<HTMLDivElement>()}
       rapmInfo={rapmInfo}
-      player={onOffReport.players?.[0] || {}}
+      players={onOffReport.players || []}
     />);
 
     const tree = component.toJSON();

@@ -29,8 +29,8 @@ import { faCheck } from '@fortawesome/free-solid-svg-icons';
 
 // Component imports
 import GenericTable, { GenericTableOps, GenericTableColProps } from "./GenericTable";
-import RosterStatsDiagView from "./RosterStatsDiagView";
-import PositionalDiagView from "./PositionalDiagView";
+import RosterStatsDiagView from "./diags/RosterStatsDiagView";
+import PositionalDiagView from "./diags/PositionalDiagView";
 import GenericTogglingMenuItem from "./GenericTogglingMenuItem";
 
 // Util imports

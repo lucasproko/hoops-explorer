@@ -26,7 +26,7 @@ import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import GenericTable, { GenericTableOps, GenericTableColProps } from "./GenericTable"
 import { RosterStatsModel } from './RosterStatsTable';
 import GenericTogglingMenuItem from "./GenericTogglingMenuItem";
-import LuckAdjDiagView from "./LuckAdjDiagView"
+import LuckAdjDiagView from "./diags/LuckAdjDiagView"
 
 // Util imports
 import { CbbColors } from "../utils/CbbColors"

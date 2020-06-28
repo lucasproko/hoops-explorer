@@ -15,14 +15,14 @@ import Tooltip from 'react-bootstrap/Tooltip';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 
 // Utils
-import { CommonTableDefs } from "../utils/CommonTableDefs";
-import { CbbColors } from "../utils/CbbColors";
-import { LuckAdjustmentBaseline, OffLuckAdjustmentDiags, DefLuckAdjustmentDiags } from "../utils/stats/LuckUtils";
+import { CommonTableDefs } from "../../utils/CommonTableDefs";
+import { CbbColors } from "../../utils/CbbColors";
+import { LuckAdjustmentBaseline, OffLuckAdjustmentDiags, DefLuckAdjustmentDiags } from "../../utils/stats/LuckUtils";
 
 // Component imports
-import GenericTable, { GenericTableOps, GenericTableColProps } from "./GenericTable";
-import { TeamStatsModel } from '../components/TeamStatsTable';
-import { RosterStatsModel } from '../components/RosterStatsTable';
+import GenericTable, { GenericTableOps, GenericTableColProps } from "../GenericTable";
+import { TeamStatsModel } from '../../components/TeamStatsTable';
+import { RosterStatsModel } from '../../components/RosterStatsTable';
 
 type Props = {
   name: string,

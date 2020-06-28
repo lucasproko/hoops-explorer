@@ -31,9 +31,9 @@ import { faCheck } from '@fortawesome/free-solid-svg-icons'
 import GenericTable, { GenericTableOps, GenericTableColProps } from "./GenericTable";
 import { LineupStatsModel } from './LineupStatsTable';
 import GenericTogglingMenuItem from "./GenericTogglingMenuItem";
-import RapmGlobalDiagView from "./RapmGlobalDiagView";
-import RapmPlayerDiagView from "./RapmPlayerDiagView";
-import RepOnOffDiagView from "./RepOnOffDiagView";
+import RapmGlobalDiagView from "./diags/RapmGlobalDiagView";
+import RapmPlayerDiagView from "./diags/RapmPlayerDiagView";
+import RepOnOffDiagView from "./diags/RepOnOffDiagView";
 
 // Util imports
 import { getCommonFilterParams, TeamReportFilterParams, ParamDefaults } from '../utils/FilterModels';

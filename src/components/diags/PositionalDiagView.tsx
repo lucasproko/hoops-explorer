@@ -15,12 +15,12 @@ import Tooltip from 'react-bootstrap/Tooltip';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 
 // Utils
-import { PositionUtils } from "../utils/stats/PositionUtils";
-import { CommonTableDefs } from "../utils/CommonTableDefs";
-import { CbbColors } from "../utils/CbbColors";
+import { PositionUtils } from "../../utils/stats/PositionUtils";
+import { CommonTableDefs } from "../../utils/CommonTableDefs";
+import { CbbColors } from "../../utils/CbbColors";
 
 // Component imports
-import GenericTable, { GenericTableOps, GenericTableColProps } from "./GenericTable";
+import GenericTable, { GenericTableOps, GenericTableColProps } from "../GenericTable";
 
 const tooltipTradPosGenerator = (pos: string) => {
   return `% Fit of the player vs signature stats associated with players traditionally called [${pos}]`;
