@@ -5,6 +5,7 @@ import _ from 'lodash';
 import { PositionUtils } from "../PositionUtils";
 import { GameFilterParams, LineupFilterParams, TeamReportFilterParams } from "../../FilterModels";
 import { samplePlayerStatsResponse } from "../../../sample-data/samplePlayerStatsResponse";
+import { sampleLineupStatsResponse } from "../../../sample-data/sampleLineupStatsResponse";
 
 describe("PositionUtils", () => {
 
@@ -135,4 +136,44 @@ describe("PositionUtils", () => {
     expect(PositionUtils.idToPosition["G?"]).toEqual("Unknown - probably Guard");
     expect(PositionUtils.idToPosition["F/C?"]).toEqual("Unknown - probably Forward/Center");
   });
+
+  test("PositionUtils - orderLineup", () => {
+    // Setup test data:
+    const playerCodesAndIds =
+      sampleLineupStatsResponse.responses[0].aggregations.lineups.buckets[0]
+        .players_array.hits.hits[0]._source.players;
+        //(!!)
+
+    const playersById = {
+      "Wiggins, Aaron": {
+        posConfidences: [ 10, 20, 50, 10, 0  ]
+      },
+      "Cowan, Anthony": {
+        posConfidences: [ 60, 40, 10, 0, 0 ]
+      },
+      "Morsell, Darryl": {
+        posConfidences: [ 10, 40, 50, 30, 10  ]
+      },
+      "Ayala, Eric": {
+        posConfidences: [ 40, 60, 10, 0, 0 ]
+      },
+      "Smith, Jalen": {
+        posConfidences: [ 0, 0, 0, 50, 50 ]
+      },
+    };
+    const expectedResult = [
+      { code: "AnCowan", id: "Cowan, Anthony" },
+      { code: "ErAyala", id: "Ayala, Eric" },
+      { code: "AaWiggins", id: "Wiggins, Aaron" },
+      { code: "DaMorsell", id: "Morsell, Darryl" },
+      { code: "JaSmith", id: "Smith, Jalen" },
+    ];
+
+    // Tests:
+    for (let i = 0; i < 50; ++i) {
+      const shuffledCodesAndIds = _.shuffle(playerCodesAndIds);
+      expect(PositionUtils.orderLineup(shuffledCodesAndIds, playersById)).toEqual(expectedResult);
+    }
+  });
+
 });

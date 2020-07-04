@@ -257,4 +257,55 @@ export class PositionUtils {
       return [ pos, diag ];
     }
   }
+
+  /** Takes lineup in form X1_X2_X3_X4_X5 and returns an array of Xi ordered by position and some info for tooltips */
+  static orderLineup(
+    playerCodesAndIds: { code: string, id: string }[], playersById: Record<string, any>
+  ): { code: string, id: string }[] {
+
+    const playerIdToPlayerCode = _.fromPairs(
+      playerCodesAndIds.map((codeId: { code: string, id: string}) => [ codeId.id, codeId.code ])
+    );
+
+    const playerIds = _.keys(playerIdToPlayerCode);
+    const init = -100000;
+    const scores = [ init, init, init, init, init ]; //TODO use fill heree, make this small number
+    const bestFits = [ -1, -1, -1, -1, -1 ]; //(indices of "winning" player)
+    const playerInfos = playerIds.map((pid: string) => playersById[pid]);
+
+    /** Fit a player to their best position, refitting recursively any player dislodged */
+    const fitPlayer = (pid: string, plIndex: number) => {
+      const posClass = playerInfos[plIndex].posConfidences || [0, 0, 0, 0, 0];
+        //(require for this to be injected by the calling function)
+      const backcourtScore = posClass[0] + posClass[1];
+      const frontcourtScore = posClass[4] + posClass[3];
+      const plScores = [ //(could do better here?)
+        [ 10*posClass[0] + posClass[1] - 5*frontcourtScore, 0 ], //PG
+        [ 10*posClass[4] + posClass[3] - 5*backcourtScore, 4 ], //C
+        [ backcourtScore - frontcourtScore, 1 ], //SG
+        [ frontcourtScore - backcourtScore, 3 ], //PF
+        [ 0, 2 ] // SF is fallback
+      ] as [ number, number ][];
+      _.takeWhile(plScores, ([score, scorePos]: [number, number]) => {
+        if (score > scores[scorePos]) {
+          const prevBestFit = bestFits[scorePos];
+          if (prevBestFit >= 0) { //refit the player being replaced
+            fitPlayer(playerIds[prevBestFit], prevBestFit);
+          }
+          bestFits[scorePos] = plIndex;
+          scores[scorePos] = score;
+          return false;
+        } else {
+          return true; //(keep going)
+        }
+      });
+    }
+    playerIds.forEach((pid: string, plIndex: number) => {
+      fitPlayer(pid, plIndex);
+    });
+    return bestFits.map((index: number) => {
+      const playerId = playerIds[index];
+      return { code: playerIdToPlayerCode[playerId], id: playerId };
+    });
+  }
 }
