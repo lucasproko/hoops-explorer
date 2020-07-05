@@ -275,7 +275,7 @@ export class PositionUtils {
 
     /** Fit a player to their best position, refitting recursively any player dislodged */
     const fitPlayer = (pid: string, plIndex: number) => {
-      const posClass = playerInfos[plIndex].posConfidences || [0, 0, 0, 0, 0];
+      const posClass = playerInfos[plIndex]?.posConfidences || [0, 0, 0, 0, 0];
         //(require for this to be injected by the calling function)
       const backcourtScore = posClass[0] + posClass[1];
       const frontcourtScore = posClass[4] + posClass[3];

@@ -18,15 +18,17 @@ import InputGroup from 'react-bootstrap/InputGroup';
 // Additional components:
 // @ts-ignore
 import LoadingOverlay from 'react-loading-overlay';
-import Select, { components} from "react-select"
+import Select, { components} from "react-select";
 
 // Component imports
-import GenericTable, { GenericTableOps, GenericTableColProps } from "./GenericTable"
+import GenericTable, { GenericTableOps, GenericTableColProps } from "./GenericTable";
 import { LineupFilterParams, ParamDefaults } from '../utils/FilterModels';
+import { RosterStatsModel } from '../components/RosterStatsTable';
 
 // Util imports
-import { CbbColors } from "../utils/CbbColors"
-import { CommonTableDefs } from "../utils/CommonTableDefs"
+import { CbbColors } from "../utils/CbbColors";
+import { CommonTableDefs } from "../utils/CommonTableDefs";
+import { PositionUtils } from "../utils/stats/PositionUtils";
 
 export type LineupStatsModel = {
   lineups?: Array<any>,
@@ -34,11 +36,12 @@ export type LineupStatsModel = {
 }
 type Props = {
   lineupStats: LineupStatsModel,
+  rosterStats: RosterStatsModel,
   startingState: LineupFilterParams;
   onChangeState: (newParams: LineupFilterParams) => void;
 }
 
-const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, startingState, onChangeState}) => {
+const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, rosterStats, startingState, onChangeState}) => {
 
   // 1] State
 
@@ -72,7 +75,16 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, starting
 
   // 3] Utils
 
-  // 3.1] Table building
+  // 3.1] Build individual info
+
+  // 3.1.1] Positional info from the season stats
+
+  const positionFromPlayerKey = _.chain(rosterStats.global || []).map((player: any) => {
+    const [ posConfs, posConfsDiags ] = PositionUtils.buildPositionConfidences(player);
+    return [ player.key, { posConfidences: _.values(posConfs || {}) } ];
+  }).fromPairs().value();
+
+  // 3.2] Table building
 
   const offPrefixFn = (key: string) => "off_" + key;
   const offCellMetaFn = (key: string, val: any) => "off";
@@ -122,7 +134,9 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, starting
     ).take(
       parseInt(maxTableSize)
     ).flatMap((lineup) => {
-      const title = lineup.key.replace(/_/g, " / "); //TODO: merge the lines
+      const codesAndIds = lineup.players_array?.hits?.hits?.[0]?._source?.players || [];
+      const sortedCodesAndIds = PositionUtils.orderLineup(codesAndIds, positionFromPlayerKey);
+      const title = sortedCodesAndIds.map((cid: { code: string, id: string}) => cid.code).join(" / ");
       const stats = { off_title: title, def_title: "", ...lineup };
       return [
         GenericTableOps.buildDataRow(stats, offPrefixFn, offCellMetaFn),

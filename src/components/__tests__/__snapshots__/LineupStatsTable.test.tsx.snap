@@ -627,7 +627,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot 1`] = `
                   "off_ppp": Object {
                     "value": 111.22448979591837,
                   },
-                  "off_title": "AaWiggins / AnCowan / DaMorsell / ErAyala / JaSmith",
+                  "off_title": "AaWiggins / DaMorsell / JaSmith / ErAyala / AnCowan",
                   "off_to": Object {
                     "value": 0.14285714285714285,
                   },
@@ -854,7 +854,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot 1`] = `
                   "off_ppp": Object {
                     "value": 111.22448979591837,
                   },
-                  "off_title": "AaWiggins / AnCowan / DaMorsell / ErAyala / JaSmith",
+                  "off_title": "AaWiggins / DaMorsell / JaSmith / ErAyala / AnCowan",
                   "off_to": Object {
                     "value": 0.14285714285714285,
                   },
@@ -1084,7 +1084,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot 1`] = `
                   "off_ppp": Object {
                     "value": 89.1891891891892,
                   },
-                  "off_title": "AaWiggins / AnCowan / DaMorsell / DoScott / JaSmith",
+                  "off_title": "AaWiggins / DaMorsell / JaSmith / DoScott / AnCowan",
                   "off_to": Object {
                     "value": 0.18018018018018017,
                   },
@@ -1311,7 +1311,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot 1`] = `
                   "off_ppp": Object {
                     "value": 89.1891891891892,
                   },
-                  "off_title": "AaWiggins / AnCowan / DaMorsell / DoScott / JaSmith",
+                  "off_title": "AaWiggins / DaMorsell / JaSmith / DoScott / AnCowan",
                   "off_to": Object {
                     "value": 0.18018018018018017,
                   },
@@ -1541,7 +1541,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot 1`] = `
                   "off_ppp": Object {
                     "value": 109.80392156862744,
                   },
-                  "off_title": "AaWiggins / AnCowan / DoScott / ErAyala / JaSmith",
+                  "off_title": "AaWiggins / DoScott / JaSmith / ErAyala / AnCowan",
                   "off_to": Object {
                     "value": 0.20588235294117646,
                   },
@@ -1768,7 +1768,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot 1`] = `
                   "off_ppp": Object {
                     "value": 109.80392156862744,
                   },
-                  "off_title": "AaWiggins / AnCowan / DoScott / ErAyala / JaSmith",
+                  "off_title": "AaWiggins / DoScott / JaSmith / ErAyala / AnCowan",
                   "off_to": Object {
                     "value": 0.20588235294117646,
                   },

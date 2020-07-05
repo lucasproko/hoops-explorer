@@ -23,6 +23,7 @@ import LineupFilter from '../components/LineupFilter';
 import { ParamPrefixes, GameFilterParams, LineupFilterParams } from '../utils/FilterModels';
 import { HistoryManager } from '../utils/HistoryManager';
 import LineupStatsTable, { LineupStatsModel } from '../components/LineupStatsTable';
+import { RosterStatsModel } from '../components/RosterStatsTable';
 import GenericCollapsibleCard from '../components/GenericCollapsibleCard';
 import Footer from '../components/Footer';
 import HeaderBar from '../components/HeaderBar';
@@ -46,9 +47,11 @@ const LineupAnalyzerPage: NextPage<{}> = () => {
 
   const [ gaInited, setGaInited ] = useState(false);
   const [ lineupStats, setLineupStats ] = useState({} as LineupStatsModel);
+  const [ rosterStats, setRosterStats ] = useState({on: [], off: [], baseline: []} as RosterStatsModel);
 
-  const injectStats = (lineupStats: LineupStatsModel) => {
+  const injectStats = (lineupStats: LineupStatsModel, rosterStats: RosterStatsModel) => {
     setLineupStats(lineupStats);
+    setRosterStats(rosterStats);
   }
 
   // Game filter
@@ -108,6 +111,7 @@ const LineupAnalyzerPage: NextPage<{}> = () => {
       <GenericCollapsibleCard title="Lineup Analysis">
         <LineupStatsTable
           lineupStats={lineupStats}
+          rosterStats={rosterStats}
           startingState={lineupFilterParams}
           onChangeState={onLineupFilterParamsChange}
         />
