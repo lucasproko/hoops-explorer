@@ -81,7 +81,8 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, rosterSt
 
   const positionFromPlayerKey = _.chain(rosterStats.global || []).map((player: any) => {
     const [ posConfs, posConfsDiags ] = PositionUtils.buildPositionConfidences(player);
-    return [ player.key, { posConfidences: _.values(posConfs || {}) } ];
+    const [ pos, posDiags ] = PositionUtils.buildPosition(posConfs, player);
+    return [ player.key, { posConfidences: _.values(posConfs || {}), posClass: pos } ];
   }).fromPairs().value();
 
   // 3.2] Table building
@@ -135,7 +136,9 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, rosterSt
       parseInt(maxTableSize)
     ).flatMap((lineup) => {
       const codesAndIds = lineup.players_array?.hits?.hits?.[0]?._source?.players || [];
+
       const sortedCodesAndIds = PositionUtils.orderLineup(codesAndIds, positionFromPlayerKey);
+
       const title = sortedCodesAndIds.map((cid: { code: string, id: string}) => cid.code).join(" / ");
       const stats = { off_title: title, def_title: "", ...lineup };
       return [

@@ -276,7 +276,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, tea
         stat.def_team_poss_pct = { value: _.min([(stat.def_team_poss.value || 0)
             / (teamStat.def_poss?.value || 1), 1 ]) };
 
-        stat.off_drb = stat.def_orb;
+        stat.off_drb = stat.def_orb; //(just for display, all processing should use def_orb)
         const [ oRtg, adjORtg, oRtgDiag ] = RatingUtils.buildORtg(stat, avgEfficiency, showDiagMode);
         const [ dRtg, adjDRtg, dRtgDiag ] = RatingUtils.buildDRtg(stat, avgEfficiency, showDiagMode);
         stat.off_rtg = oRtg;

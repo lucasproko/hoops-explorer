@@ -62,7 +62,7 @@ export class PositionUtils {
     ['off_orb', 100.0,
       array([-0.26888945, -0.21892123,  0.07832771,  0.26210603,  0.42330573])
     ],
-    ['off_drb', 100.0,
+    ['def_orb', 100.0,
       array([-0.23799504, -0.07938086,  0.10442655,  0.21672752,  0.15512722])
     ],
     ['def_2prim', 100.0, //(used as the field for blocks)
@@ -105,7 +105,7 @@ export class PositionUtils {
       array([2.38133386, 1.92994759, 1.75611913, 1.37696567, 1.37380911]),
     'off_orb':
       array([ 2.10153907,  2.86361829,  6.82231047,  7.9960502 , 10.19931949]),
-    'off_drb':
+    'def_orb':
       array([ 9.06756117, 10.43093259, 15.15236462, 18.20837948, 17.1899494 ]),
     'def_2prim':
       array([0.46286504, 0.79057473, 1.77850181, 3.52768549, 4.76859187]),
@@ -258,6 +258,23 @@ export class PositionUtils {
     }
   }
 
+  /** We usee the positional class of the player as the most important */
+  private static posClassToScore(posClass: string) {
+    switch (posClass) {
+      case "G?": return 1500;
+      case "PG": return 1000;
+      case "s-PG": return 2000;
+      case "CG": return 3000;
+      case "WG": return 4000;
+      case "WF": return 5000;
+      case "S-PF": return 6000;
+      case "PF/C": return 7000;
+      case "F/C?": return 7000;
+      case "C": return 8000;
+      default: return 4000; //(won't happen)
+    }
+  }
+
   /** Takes lineup in form X1_X2_X3_X4_X5 and returns an array of Xi ordered by position and some info for tooltips */
   static orderLineup(
     playerCodesAndIds: { code: string, id: string }[], playersById: Record<string, any>
@@ -275,17 +292,24 @@ export class PositionUtils {
 
     /** Fit a player to their best position, refitting recursively any player dislodged */
     const fitPlayer = (pid: string, plIndex: number) => {
+
       const posClass = playerInfos[plIndex]?.posConfidences || [0, 0, 0, 0, 0];
         //(require for this to be injected by the calling function)
+      const posClassScore = PositionUtils.posClassToScore(playerInfos[plIndex]?.posClass || "");
+        // (^ basically this is the dominating scoring factor, the others are just within position classes)
+      const pgScore = 3*posClass[0] + posClass[1];
+      const postScore = 3*posClass[4] + posClass[3];
       const backcourtScore = posClass[0] + posClass[1];
       const frontcourtScore = posClass[4] + posClass[3];
+      
       const plScores = [ //(could do better here?)
-        [ 10*posClass[0] + posClass[1] - 5*frontcourtScore, 0 ], //PG
-        [ 10*posClass[4] + posClass[3] - 5*backcourtScore, 4 ], //C
-        [ backcourtScore - frontcourtScore, 1 ], //SG
-        [ frontcourtScore - backcourtScore, 3 ], //PF
+        [ pgScore - 2*frontcourtScore - posClassScore, 0 ], //PG
+        [ postScore - 2*backcourtScore + posClassScore, 4 ], //C
+        [ backcourtScore - frontcourtScore - posClassScore, 1 ], //SG
+        [ frontcourtScore - backcourtScore + posClassScore, 3 ], //PF
         [ 0, 2 ] // SF is fallback
       ] as [ number, number ][];
+
       _.takeWhile(plScores, ([score, scorePos]: [number, number]) => {
         if (score > scores[scorePos]) {
           const prevBestFit = bestFits[scorePos];

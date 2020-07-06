@@ -21,8 +21,8 @@ describe("PositionUtils", () => {
     const [ realConfidences, realDiags ] = PositionUtils.buildPositionConfidences(
       samplePlayerStatsResponse.aggregations.tri_filter.buckets.baseline.player.buckets[0]
     );
-    expect(_.values(tidyObj(realConfidences))).toEqual(["0.95", "0.05", "0.00", "0.00", "0.00", ]);
-    expect(_.values(tidyObj(realDiags.scores))).toEqual(["0.41","0.12","-0.44","-0.81","-1.70"]);
+    expect(_.values(tidyObj(realConfidences))).toEqual(["0.80", "0.20", "0.00", "0.00", "0.00", ]);
+    expect(_.values(tidyObj(realDiags.scores))).toEqual(["0.18","0.04","-0.34","-0.60","-1.56"]);
     expect(tidyObj(realDiags.calculated)).toEqual({
       "calc_assist_per_fga": "0.41",
       "calc_ast_tov": "2.09",
@@ -37,7 +37,7 @@ describe("PositionUtils", () => {
     const [ realConfidences2, realDiags2 ] = PositionUtils.buildPositionConfidences(
       samplePlayerStatsResponse.aggregations.tri_filter.buckets.baseline.player.buckets[1]
     );
-    expect(_.values(tidyObj(realConfidences2))).toEqual(["0.21", "0.71", "0.07", "0.01", "0.00", ]);
+    expect(_.values(tidyObj(realConfidences2))).toEqual(["0.01", "0.33", "0.42", "0.23", "0.00", ]);
   });
   test("PositionUtils - buildPosition", () => {
     const testCases = [
