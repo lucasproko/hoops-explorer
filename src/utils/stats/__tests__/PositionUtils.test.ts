@@ -144,23 +144,33 @@ describe("PositionUtils", () => {
         .players_array.hits.hits[0]._source.players;
         //(!!)
 
-    const playersById = {
+    /** Test cases:
+    *   - 1 normal (will basically just use the posClass)
+    *   - 2 double check if works if all the same (ie uses only posConfidences)
+    *   - 3 pick some stupid posClass and check that overrides posConfidence
+    */
+    const playersById = (testCase: number) => { return {
       "Wiggins, Aaron": {
-        posConfidences: [ 10, 20, 50, 10, 0  ]
+        posConfidences: [ 10, 20, 50, 10, 0 ],
+        posClass: (testCase == 0) ? "WG" : ((testCase == 1) ? "C" : "PF/C")
       },
       "Cowan, Anthony": {
-        posConfidences: [ 60, 40, 10, 0, 0 ]
+        posConfidences: [ 60, 40, 10, 0, 0 ],
+        posClass: (testCase == 0) ? "s-PG" : ((testCase == 1) ? "C" : "C")
       },
       "Morsell, Darryl": {
-        posConfidences: [ 10, 40, 50, 30, 10  ]
+        posConfidences: [ 10, 40, 50, 30, 10 ],
+        posClass: (testCase == 0) ? "WG" : ((testCase == 1) ? "C" : "CG")
       },
       "Ayala, Eric": {
-        posConfidences: [ 40, 60, 10, 0, 0 ]
+        posConfidences: [ 40, 60, 10, 0, 0 ],
+        posClass: (testCase == 0) ? "CG" : ((testCase == 1) ? "C" : "WF")
       },
       "Smith, Jalen": {
-        posConfidences: [ 0, 0, 0, 50, 50 ]
+        posConfidences: [ 0, 0, 0, 50, 50 ],
+        posClass: (testCase == 0) ? "PF/C" : ((testCase == 1) ? "C" : "s-PG")
       },
-    };
+    } };
     const expectedResult = [
       { code: "AnCowan", id: "Cowan, Anthony" },
       { code: "ErAyala", id: "Ayala, Eric" },
@@ -168,12 +178,50 @@ describe("PositionUtils", () => {
       { code: "DaMorsell", id: "Morsell, Darryl" },
       { code: "JaSmith", id: "Smith, Jalen" },
     ];
+    const expectedResultFake = [
+      { code: "JaSmith", id: "Smith, Jalen" },
+      { code: "DaMorsell", id: "Morsell, Darryl" },
+      { code: "ErAyala", id: "Ayala, Eric" },
+      { code: "AaWiggins", id: "Wiggins, Aaron" },
+      { code: "AnCowan", id: "Cowan, Anthony" },
+    ];
+    const expectedResultByBase = [
+      expectedResult, expectedResult, expectedResultFake
+    ];
 
     // Tests:
-    for (let i = 0; i < 50; ++i) {
-      const shuffledCodesAndIds = _.shuffle(playerCodesAndIds);
-      expect(PositionUtils.orderLineup(shuffledCodesAndIds, playersById)).toEqual(expectedResult);
+    for (let caseId = 0; caseId < 3; ++caseId) {
+      for (let i = 0; i < 50; ++i) {
+        const shuffledCodesAndIds = _.shuffle(playerCodesAndIds);
+        const teamSeason = "";//(i % 2 == 0) ? "NoOverrideRules" : "Men_Maryland_2019/20";
+        expect(
+          [ caseId, PositionUtils.orderLineup(shuffledCodesAndIds, playersById(caseId), teamSeason) ]
+        ).toEqual([ caseId, expectedResultByBase[caseId] ]);
+      }
     }
+
+    // Check the override rules:
+    const switchMorsellWiggins = playersById(0);
+    switchMorsellWiggins["Wiggins, Aaron"].posClass = "WF";
+
+    expect(
+      PositionUtils.orderLineup(playerCodesAndIds, switchMorsellWiggins, "Men_Maryland_2019/20")
+    ).toEqual(expectedResultByBase[0]);
+
+    // (Double check the posClass change did have an affect!)
+
+    const expectedResultUnsorted = [
+      { code: "AnCowan", id: "Cowan, Anthony" },
+      { code: "ErAyala", id: "Ayala, Eric" },
+      { code: "DaMorsell", id: "Morsell, Darryl" },
+      { code: "AaWiggins", id: "Wiggins, Aaron" },
+      { code: "JaSmith", id: "Smith, Jalen" },
+    ];
+
+    expect(
+      PositionUtils.orderLineup(playerCodesAndIds, switchMorsellWiggins, "NoOverrideRules/20")
+    ).toEqual(expectedResultUnsorted);
+
   });
 
 });

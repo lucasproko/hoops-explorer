@@ -45,6 +45,8 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, rosterSt
 
   // 1] State
 
+  const teamSeasonLookup = `${startingState.gender}_${startingState.team}_${startingState.year}`;
+
   const [ minPoss, setMinPoss ] = useState(startingState.minPoss || ParamDefaults.defaultLineupMinPos);
   const [ maxTableSize, setMaxTableSize ] = useState(startingState.maxTableSize || ParamDefaults.defaultLineupMaxTableSize);
   const [ sortBy, setSortBy ] = useState(startingState.sortBy || ParamDefaults.defaultLineupSortBy);
@@ -137,7 +139,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, rosterSt
     ).flatMap((lineup) => {
       const codesAndIds = lineup.players_array?.hits?.hits?.[0]?._source?.players || [];
 
-      const sortedCodesAndIds = PositionUtils.orderLineup(codesAndIds, positionFromPlayerKey);
+      const sortedCodesAndIds = PositionUtils.orderLineup(codesAndIds, positionFromPlayerKey, teamSeasonLookup);
 
       const title = sortedCodesAndIds.map((cid: { code: string, id: string}) => cid.code).join(" / ");
       const stats = { off_title: title, def_title: "", ...lineup };

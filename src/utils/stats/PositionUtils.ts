@@ -2,6 +2,8 @@
 // Utils:
 import _ from 'lodash'
 
+import { relativePositionFixes, RelativePositionFixRule } from './PositionalManualFixes';
+
 /** (just to make copy/pasting between colab and this code easier)*/
 const array = (v: number[]) => { return v; }
 
@@ -275,9 +277,36 @@ export class PositionUtils {
     }
   }
 
+  /** Allows me to swap lineups around by hand when someone complains */
+  private static applyRelativePositionalOverrides(
+    results: { code: string, id: string }[],
+    teamSeason: string
+  ) {
+    const rules = relativePositionFixes[teamSeason];
+    if (rules) {
+      const ruleSet = _.find(rules, (rule: RelativePositionFixRule) => {
+        return _.every(rule.key, (key: string | undefined, index: number) => {
+          return (key == undefined) || (key == results[index].code);
+        });
+      });
+      if (ruleSet) { // Matching rule
+        return results.map((val: {code: string, id: string}, index: number) => {
+          const changeRule = ruleSet.rule[index];
+          return (changeRule == undefined) ? val : changeRule;
+        });
+      } else { // The team/season didn't match
+        return results;
+      }
+    } else { // This team/season has no overrides
+      return results; // (return unchanged)
+    }
+  }
+
   /** Takes lineup in form X1_X2_X3_X4_X5 and returns an array of Xi ordered by position and some info for tooltips */
   static orderLineup(
-    playerCodesAndIds: { code: string, id: string }[], playersById: Record<string, any>
+    playerCodesAndIds: { code: string, id: string }[],
+    playersById: Record<string, any>,
+    teamSeason: string
   ): { code: string, id: string }[] {
 
     const playerIdToPlayerCode = _.fromPairs(
@@ -301,7 +330,7 @@ export class PositionUtils {
       const postScore = 3*posClass[4] + posClass[3];
       const backcourtScore = posClass[0] + posClass[1];
       const frontcourtScore = posClass[4] + posClass[3];
-      
+
       const plScores = [ //(could do better here?)
         [ pgScore - 2*frontcourtScore - posClassScore, 0 ], //PG
         [ postScore - 2*backcourtScore + posClassScore, 4 ], //C
@@ -327,9 +356,11 @@ export class PositionUtils {
     playerIds.forEach((pid: string, plIndex: number) => {
       fitPlayer(pid, plIndex);
     });
-    return bestFits.map((index: number) => {
-      const playerId = playerIds[index];
-      return { code: playerIdToPlayerCode[playerId], id: playerId };
-    });
+    return PositionUtils.applyRelativePositionalOverrides(
+      bestFits.map((index: number) => {
+        const playerId = playerIds[index];
+        return { code: playerIdToPlayerCode[playerId], id: playerId };
+      }), teamSeason
+    );
   }
 }
