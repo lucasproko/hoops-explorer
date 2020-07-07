@@ -142,10 +142,18 @@ export class PositionUtils {
         calc_mid_relative: "total_off_2pmid_attempts",
         calc_rim_relative: "total_off_2prim_attempts"
       };
+      const regressVol = 15;
+      const regressVolInv = 1.0/regressVol;
       const volume = player[volumeIndex[feat]]?.value || 0;
-      if (volume < 20) {
-        const av = 0.01*PositionUtils.positionFeatureAverages[feat][pos];
-        return 0.05*(volume*stat + (20 - volume)*av);
+      if (volume < regressVol) {
+        // Special case: as a C if you've only taken 0-2 3s and hit none of them, we'll keep that
+        // at 0 to avoid widespread changes
+        if ((pos == 4) && (volume < 3) && (stat == 0) && (feat == "calc_three_relative")) {
+          return stat;
+        } else {
+          const av = 0.01*PositionUtils.positionFeatureAverages[feat][pos];
+          return regressVolInv*(volume*stat + (regressVol - volume)*av);
+        }
       } else { //(enough samples, leave as is)
         return stat;
       }

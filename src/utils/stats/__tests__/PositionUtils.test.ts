@@ -136,6 +136,28 @@ describe("PositionUtils", () => {
     expect(PositionUtils.idToPosition["G?"]).toEqual("Unknown - probably Guard");
     expect(PositionUtils.idToPosition["F/C?"]).toEqual("Unknown - probably Forward/Center");
   });
+  test("PositionUtils - regressShotQuality", () => {
+    const player = {
+      total_off_3p_attempts: { value: 1 },
+      total_off_2pmid_attempts: { value: 16 },
+      total_off_2prim_attempts: { value: 8 }
+    };
+
+    // Case 1: Not one of the features we're regressing:
+    expect(PositionUtils.regressShotQuality(-15.5, 2, "misc_feature", player)).toEqual(-15.5);
+
+    // Case 2: Feature we're regressing but volume is high enough
+    expect(PositionUtils.regressShotQuality(-15.5, 2, "calc_mid_relative", player)).toEqual(-15.5);
+
+    // Case 3: Special "post player taking 3s" case
+    expect(PositionUtils.regressShotQuality(0, 4, "calc_three_relative", player)).toEqual(0);
+    expect(PositionUtils.regressShotQuality(10, 4, "calc_three_relative", player).toFixed(2)).toEqual("0.77");
+    expect(PositionUtils.regressShotQuality(0, 3, "calc_three_relative", player).toFixed(2)).toEqual("1.03");
+
+    // Case 4: regression
+    expect(PositionUtils.regressShotQuality(100, 3, "calc_rim_relative", player).toFixed(2)).toEqual("53.92");
+
+  });
 
   test("PositionUtils - orderLineup", () => {
     // Setup test data:

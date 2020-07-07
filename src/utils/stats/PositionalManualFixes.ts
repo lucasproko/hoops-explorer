@@ -11,49 +11,31 @@ export type RelativePositionFixRule = {
   rule: Array<{code: string, id: string} | undefined>
 };
 
+/** 7/6/2020: In 4-guard lineups, Morsell plays the 4 (18/19 and 19/20 seasons) */
+const Maryland_2018_2020 = [
+  {
+    // 7/6/2020: In 4-guard lineups, Morsell plays the 4
+    key: [ undefined, undefined, "DaMorsell", "AaWiggins", undefined ],
+    rule: [ undefined, undefined,
+      { code: "AaWiggins", id: "Wiggins, Aaron" },
+      { code: "DaMorsell", id: "Morsell, Darryl" },
+      undefined
+    ]
+  },
+  {
+    // 7/6/2020: In 4-guard lineups, Morsell plays the 4
+    key: [ undefined, "DaMorsell", "SeSmith", "AaWiggins", undefined ],
+    rule: [ undefined,
+      { code: "SeSmith", id: "Smith, Serrel" },
+      { code: "AaWiggins", id: "Wiggins, Aaron" },
+      { code: "DaMorsell", id: "Morsell, Darryl" },
+      undefined
+    ]
+  }
+];
+
 /** Team/season -> lineups -> positional overrides */
 export const relativePositionFixes: Record<string, RelativePositionFixRule[]> = {
-
-  "Men_Maryland_2018/9": [
-    {
-      // 7/6/2020: In 4-guard lineups, Morsell plays the 4
-      key: [ undefined, undefined, "DaMorsell", "AaWiggins", undefined ],
-      rule: [ undefined, undefined,
-        { code: "AaWiggins", id: "Wiggins, Aaron" },
-        { code: "DaMorsell", id: "Morsell, Darryl" },
-        undefined
-      ]
-    },
-    {
-      // 7/6/2020: In 4-guard lineups, Morsell plays the 4
-      key: [ undefined, "DaMorsell", "SeSmith", "AaWiggins", undefined ],
-      rule: [ undefined,
-        { code: "SeSmith", id: "Smith, Serrel" },
-        { code: "AaWiggins", id: "Wiggins, Aaron" },
-        { code: "DaMorsell", id: "Morsell, Darryl" },
-        undefined
-      ]
-    }
-  ],
-  "Men_Maryland_2019/20": [
-    {
-      // 7/6/2020: In 4-guard lineups, Morsell plays the 4
-      key: [ undefined, undefined, "DaMorsell", "AaWiggins", undefined ],
-      rule: [ undefined, undefined,
-        { code: "AaWiggins", id: "Wiggins, Aaron" },
-        { code: "DaMorsell", id: "Morsell, Darryl" },
-        undefined
-      ]
-    },
-    {
-      // 7/6/2020: In 4-guard lineups, Morsell plays the 4
-      key: [ undefined, "DaMorsell", "SeSmith", "AaWiggins", undefined ],
-      rule: [ undefined,
-        { code: "SeSmith", id: "Smith, Serrel" },
-        { code: "AaWiggins", id: "Wiggins, Aaron" },
-        { code: "DaMorsell", id: "Morsell, Darryl" },
-        undefined
-      ]
-    }
-  ]
+  "Men_Maryland_2018/9": Maryland_2018_2020,
+  "Men_Maryland_2019/20": Maryland_2018_2020
 };
