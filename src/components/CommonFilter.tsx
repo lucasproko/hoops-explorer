@@ -38,9 +38,9 @@ import { Shake } from 'reshake'
 // Component imports:
 import { TeamStatsModel } from '../components/TeamStatsTable';
 import { RosterCompareModel } from '../components/RosterCompareTable';
-import HistorySelector, { historySelectContainerWidth } from '../components/HistorySelector';
-import AutoSuggestText, { notFromAutoSuggest } from './AutoSuggestText';
-import GenericTogglingMenuItem from "./GenericTogglingMenuItem";
+import HistorySelector, { historySelectContainerWidth } from './shared/HistorySelector';
+import AutoSuggestText, { notFromAutoSuggest } from './shared/AutoSuggestText';
+import GenericTogglingMenuItem from "./shared/GenericTogglingMenuItem";
 
 // Utils:
 import { dataLastUpdated } from '../utils/internal-data/dataLastUpdated';

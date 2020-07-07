@@ -1,7 +1,6 @@
 // React imports:
 import React, { useState, useEffect } from 'react';
 import Router from 'next/router';
-import { QueryUtils } from "../utils/QueryUtils";
 
 // Bootstrap imports:
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -10,9 +9,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Select, { components} from "react-select"
 
 // Utils:
-import { UrlRouting } from "../utils/UrlRouting"
-import { HistoryManager } from "../utils/HistoryManager"
-import { ParamPrefixes, GameFilterParams, LineupFilterParams, TeamReportFilterParams } from '../utils/FilterModels';
+import { QueryUtils } from "../../utils/QueryUtils";
+import { UrlRouting } from "../../utils/UrlRouting"
+import { HistoryManager } from "../../utils/HistoryManager"
+import { ParamPrefixes, GameFilterParams, LineupFilterParams, TeamReportFilterParams } from '../../utils/FilterModels';
 
 /** Popovers appear to need to know their children's width, if it's "complex" */
 export const historySelectContainerWidth = "600px";

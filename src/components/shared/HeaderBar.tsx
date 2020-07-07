@@ -18,12 +18,10 @@ import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Popover from 'react-bootstrap/Popover';
 import Tooltip from 'react-bootstrap/Tooltip';
 
-// App components:
-import { getCommonFilterParams, ParamPrefixes, CommonFilterParams, GameFilterParams, LineupFilterParams, TeamReportFilterParams } from '../utils/FilterModels';
-
 // Utils:
-import { UrlRouting } from "../utils/UrlRouting";
-import { HistoryManager } from '../utils/HistoryManager';
+import { getCommonFilterParams, ParamPrefixes, CommonFilterParams, GameFilterParams, LineupFilterParams, TeamReportFilterParams } from '../../utils/FilterModels';
+import { UrlRouting } from "../../utils/UrlRouting";
+import { HistoryManager } from '../../utils/HistoryManager';
 
 type Props = {
   thisPage: string,
@@ -33,7 +31,7 @@ type Props = {
 const HeaderBar: React.FunctionComponent<Props> = ({thisPage, common}) => {
 
   const server = (typeof window === `undefined`) ? //(ensures SSR code still compiles)
-    "server" : window.location.hostname
+    "server" : window.location.hostname;
 
   // Last visited
   function getLastGameUrl() {

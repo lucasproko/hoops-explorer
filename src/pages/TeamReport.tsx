@@ -24,9 +24,9 @@ import { ParamPrefixes, GameFilterParams, LineupFilterParams, TeamReportFilterPa
 import { HistoryManager } from '../utils/HistoryManager';
 import TeamReportStatsTable from '../components/TeamReportStatsTable';
 import { LineupStatsModel } from '../components/LineupStatsTable';
-import GenericCollapsibleCard from '../components/GenericCollapsibleCard';
-import Footer from '../components/Footer';
-import HeaderBar from '../components/HeaderBar';
+import GenericCollapsibleCard from '../components/shared/GenericCollapsibleCard';
+import Footer from '../components/shared/Footer';
+import HeaderBar from '../components/shared/HeaderBar';
 
 // Utils:
 import { UrlRouting } from "../utils/UrlRouting";

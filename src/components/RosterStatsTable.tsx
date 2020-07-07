@@ -31,7 +31,8 @@ import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import GenericTable, { GenericTableOps, GenericTableColProps } from "./GenericTable";
 import RosterStatsDiagView from "./diags/RosterStatsDiagView";
 import PositionalDiagView from "./diags/PositionalDiagView";
-import GenericTogglingMenuItem from "./GenericTogglingMenuItem";
+import GenericTogglingMenuItem from "./shared/GenericTogglingMenuItem";
+import { TeamStatsModel } from '../components/TeamStatsTable';
 
 // Util imports
 import { CbbColors } from "../utils/CbbColors";
@@ -39,7 +40,6 @@ import { CommonTableDefs } from "../utils/CommonTableDefs";
 import { getCommonFilterParams, ParamDefaults, GameFilterParams } from "../utils/FilterModels";
 import { ORtgDiagnostics, RatingUtils } from "../utils/stats/RatingUtils";
 import { PositionUtils } from "../utils/stats/PositionUtils";
-import { TeamStatsModel } from '../components/TeamStatsTable';
 import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
 
 export type RosterStatsModel = {

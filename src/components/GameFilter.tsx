@@ -19,7 +19,7 @@ import { RosterCompareModel } from '../components/RosterCompareTable';
 import { RosterStatsModel } from '../components/RosterStatsTable';
 import CommonFilter, { GlobalKeypressManager } from '../components/CommonFilter';
 import { ParamPrefixes, FilterParamsType, CommonFilterParams, GameFilterParams, FilterRequestInfo, ParamPrefixesType, ParamDefaults } from "../utils/FilterModels";
-import AutoSuggestText from './AutoSuggestText';
+import AutoSuggestText from './shared/AutoSuggestText';
 
 // Utils
 import { QueryUtils } from '../utils/QueryUtils';

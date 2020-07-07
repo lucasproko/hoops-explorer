@@ -30,7 +30,7 @@ import { faCheck } from '@fortawesome/free-solid-svg-icons'
 // Component imports
 import GenericTable, { GenericTableOps, GenericTableColProps } from "./GenericTable";
 import { LineupStatsModel } from './LineupStatsTable';
-import GenericTogglingMenuItem from "./GenericTogglingMenuItem";
+import GenericTogglingMenuItem from "./shared/GenericTogglingMenuItem";
 import RapmGlobalDiagView from "./diags/RapmGlobalDiagView";
 import RapmPlayerDiagView from "./diags/RapmPlayerDiagView";
 import RepOnOffDiagView from "./diags/RepOnOffDiagView";
