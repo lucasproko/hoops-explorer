@@ -173,11 +173,15 @@ const PositionalDiagView: React.FunctionComponent<Props> = ({player, showHelp, s
         player: { value: fieldVal*(scale*0.01) }, //(convert to % where needed)
         ...weights,
         ...(_.fromPairs(_.flatMap(PositionUtils.tradPosList, (key: string, index: number) => {
+
+          // Regressed value:
+          const regressedFieldVal = PositionUtils.regressShotQuality(fieldVal, index, feat, player);
+
           return [[ "av_" + key, {
             value: PositionUtils.positionFeatureAverages[feat][index]*0.01 //(convert to %)
           }], [ "contrib_" + key, {
               //(0.1 is being applied to all scores - once used to build conf%s - to make the display prettier)
-            value: (weightArray[index] || 0)*(fieldVal*scale - PositionUtils.positionFeatureAverages[feat][index])*0.1
+            value: (weightArray[index] || 0)*(regressedFieldVal*scale - PositionUtils.positionFeatureAverages[feat][index])*0.1
           } ]];
         })))
       }, GenericTableOps.defaultFormatter, (key: string, value: any) => feat);

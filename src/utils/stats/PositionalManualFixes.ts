@@ -24,6 +24,16 @@ export const relativePositionFixes: Record<string, RelativePositionFixRule[]> = 
         undefined
       ]
     },
+    {
+      // 7/6/2020: In 4-guard lineups, Morsell plays the 4
+      key: [ undefined, "DaMorsell", "SeSmith", "AaWiggins", undefined ],
+      rule: [ undefined,
+        { code: "SeSmith", id: "Smith, Serrel" },
+        { code: "AaWiggins", id: "Wiggins, Aaron" },
+        { code: "DaMorsell", id: "Morsell, Darryl" },
+        undefined
+      ]
+    }
   ],
   "Men_Maryland_2019/20": [
     {

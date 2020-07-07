@@ -88,6 +88,7 @@ export class CommonTableDefs {
     "def_ftr": [ "F/50", "Fouls called/50 possessions in selected lineups" ],
     "off_orb": [ "OR%", "Offensive rebounding % in selected lineups" ],
     "off_drb": [ "DR%", "Defensive rebounding % in selected lineups" ],
+    "def_orb": [ "DR%", "Defensive rebounding % in selected lineups" ],
   } as Record<string, any>;
 
   /** If the field is HTML formats it separately, else treats as a % */

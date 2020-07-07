@@ -130,6 +130,30 @@ export class PositionUtils {
     }, _.clone(PositionUtils.positionFeatureInit)
   ).map((v, i) => [ PositionUtils.tradPosList[i], { value: 0.1*v } ]).fromPairs().value();
 
+  /** Some shot quality stats on small samples can skew the stats badly
+      We'll regress samples <20 to the average for that position
+  */
+  static regressShotQuality(
+    stat: number, pos: number, feat: string, player: Record<string, any>
+  ) {
+    if ((feat == "calc_three_relative") || (feat == "calc_rim_relative") || (feat == "calc_mid_relative")) {
+      const volumeIndex = {
+        calc_three_relative: "total_off_3p_attempts",
+        calc_mid_relative: "total_off_2pmid_attempts",
+        calc_rim_relative: "total_off_2prim_attempts"
+      };
+      const volume = player[volumeIndex[feat]]?.value || 0;
+      if (volume < 20) {
+        const av = 0.01*PositionUtils.positionFeatureAverages[feat][pos];
+        return 0.05*(volume*stat + (20 - volume)*av);
+      } else { //(enough samples, leave as is)
+        return stat;
+      }
+    } else {
+      return stat;
+    }
+  }
+
   /** Returns a vector of 5 elements representing the confidence that the player
       can play that position (0=PG, 1=SG, 4=SF, 4=PF, 5=C)
   */
@@ -154,7 +178,8 @@ export class PositionUtils {
         const fieldVal = _.startsWith(feat, "calc_") ? (calculated[feat] || 0) : (player[feat]?.value || 0);
 
         weights.forEach((weight, index) => {
-          const sumPart = fieldVal*scale*weight;
+          const regressedFieldVal = PositionUtils.regressShotQuality(fieldVal, index, feat, player);
+          const sumPart = regressedFieldVal*scale*weight;
           acc[index] += sumPart;
         });
 

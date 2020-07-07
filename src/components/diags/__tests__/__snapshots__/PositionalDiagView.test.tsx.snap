@@ -1452,13 +1452,13 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                         id="def_orbTooltip"
                         placement="right"
                       >
-                        
+                        Defensive rebounding % in selected lineups
                       </ForwardRef>
                     }
                     placement="auto"
                   >
                     <b>
-                      def_orb
+                      DR%
                     </b>
                   </OverlayTrigger>,
                   "player": Object {
