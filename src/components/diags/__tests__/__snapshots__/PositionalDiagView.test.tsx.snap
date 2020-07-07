@@ -18,7 +18,7 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (basic d
       Rule used to categorize player: 
       <i>
         <b>
-          (P[PG] &gt;= 85%)
+          (P[PG] &gt;= 50%)
         </b>
       </i>
     </li>
@@ -36,21 +36,21 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (basic d
               "cellMetaFn": [Function],
               "dataObj": Object {
                 "pos_c": Object {
-                  "value": 6.240264948172421e-10,
+                  "value": 2.2626131714146176e-8,
                 },
                 "pos_pf": Object {
-                  "value": 0.000004718217541315014,
+                  "value": 0.00030851044154688387,
                 },
                 "pos_pg": Object {
-                  "value": 0.948515301744713,
+                  "value": 0.7982973225292522,
                 },
                 "pos_sf": Object {
-                  "value": 0.0001964375248842393,
+                  "value": 0.004383883727363923,
                 },
                 "pos_sg": Object {
-                  "value": 0.051283541888835105,
+                  "value": 0.19701026067570515,
                 },
-                "title": "Pure PG",
+                "title": "Scoring PG",
               },
               "kind": "data-row",
               "prefixFn": [Function],
@@ -181,7 +181,7 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
       Rule used to categorize player: 
       <i>
         <b>
-          (Max[P] == SG) AND (P[PG] &gt;= P[SF] + P[PF] + P[C])
+          (Max[P] == SF) AND (P[PG] + P[SG] &gt;= P[PF] + P[C])
         </b>
       </i>
     </li>
@@ -199,21 +199,21 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
               "cellMetaFn": [Function],
               "dataObj": Object {
                 "pos_c": Object {
-                  "value": 2.860539327602177e-7,
+                  "value": 0.0000033279697700022213,
                 },
                 "pos_pf": Object {
-                  "value": 0.008583821348534111,
+                  "value": 0.23164047510982508,
                 },
                 "pos_pg": Object {
-                  "value": 0.2117152052070425,
+                  "value": 0.011469651859149974,
                 },
                 "pos_sf": Object {
-                  "value": 0.07259697433209061,
+                  "value": 0.4225736022943093,
                 },
                 "pos_sg": Object {
-                  "value": 0.7071037130584001,
+                  "value": 0.3343129427669457,
                 },
-                "title": "Combo Guard",
+                "title": "Wing Guard",
               },
               "kind": "data-row",
               "prefixFn": [Function],
@@ -349,19 +349,19 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                     "value": -0.03291695250711689,
                   },
                   "contrib_pos_c": Object {
-                    "value": -1.4516627912414033,
+                    "value": -1.2397817102657935,
                   },
                   "contrib_pos_pf": Object {
-                    "value": -0.42074185306107703,
+                    "value": -0.12472377696351603,
                   },
                   "contrib_pos_pg": Object {
-                    "value": -0.10020557237015684,
+                    "value": -0.4252719684677178,
                   },
                   "contrib_pos_sf": Object {
-                    "value": -0.2072374478480286,
+                    "value": -0.06460606248217492,
                   },
                   "contrib_pos_sg": Object {
-                    "value": 0.0203879626128261,
+                    "value": -0.0880346754359544,
                   },
                   "feature": <OverlayTrigger
                     overlay={
@@ -1432,24 +1432,24 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                     "value": 0.1043093259,
                   },
                   "contrib_pos_c": Object {
-                    "value": -0.2666629062362668,
+                    "value": -0.05478182526065703,
                   },
                   "contrib_pos_pf": Object {
-                    "value": -0.394625692791929,
+                    "value": -0.09860761669436799,
                   },
                   "contrib_pos_pg": Object {
-                    "value": 0.21580345833565967,
+                    "value": -0.10926293776190135,
                   },
                   "contrib_pos_sf": Object {
-                    "value": -0.15823091616086613,
+                    "value": -0.01559953079501243,
                   },
                   "contrib_pos_sg": Object {
-                    "value": 0.08280163995962274,
+                    "value": -0.025620998089157767,
                   },
                   "feature": <OverlayTrigger
                     overlay={
                       <ForwardRef
-                        id="off_drbTooltip"
+                        id="def_orbTooltip"
                         placement="right"
                       >
                         Defensive rebounding % in selected lineups
@@ -1462,7 +1462,7 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                     </b>
                   </OverlayTrigger>,
                   "player": Object {
-                    "value": 0,
+                    "value": 0.13658536585365855,
                   },
                   "pos_c": Object {
                     "value": 0.15512722,

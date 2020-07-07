@@ -2,6 +2,8 @@
 // Utils:
 import _ from 'lodash'
 
+import { relativePositionFixes, RelativePositionFixRule } from './PositionalManualFixes';
+
 /** (just to make copy/pasting between colab and this code easier)*/
 const array = (v: number[]) => { return v; }
 
@@ -62,7 +64,7 @@ export class PositionUtils {
     ['off_orb', 100.0,
       array([-0.26888945, -0.21892123,  0.07832771,  0.26210603,  0.42330573])
     ],
-    ['off_drb', 100.0,
+    ['def_orb', 100.0,
       array([-0.23799504, -0.07938086,  0.10442655,  0.21672752,  0.15512722])
     ],
     ['def_2prim', 100.0, //(used as the field for blocks)
@@ -105,7 +107,7 @@ export class PositionUtils {
       array([2.38133386, 1.92994759, 1.75611913, 1.37696567, 1.37380911]),
     'off_orb':
       array([ 2.10153907,  2.86361829,  6.82231047,  7.9960502 , 10.19931949]),
-    'off_drb':
+    'def_orb':
       array([ 9.06756117, 10.43093259, 15.15236462, 18.20837948, 17.1899494 ]),
     'def_2prim':
       array([0.46286504, 0.79057473, 1.77850181, 3.52768549, 4.76859187]),
@@ -127,6 +129,38 @@ export class PositionUtils {
 
     }, _.clone(PositionUtils.positionFeatureInit)
   ).map((v, i) => [ PositionUtils.tradPosList[i], { value: 0.1*v } ]).fromPairs().value();
+
+  /** Some shot quality stats on small samples can skew the stats badly
+      We'll regress samples <20 to the average for that position
+  */
+  static regressShotQuality(
+    stat: number, pos: number, feat: string, player: Record<string, any>
+  ) {
+    if ((feat == "calc_three_relative") || (feat == "calc_rim_relative") || (feat == "calc_mid_relative")) {
+      const volumeIndex = {
+        calc_three_relative: "total_off_3p_attempts",
+        calc_mid_relative: "total_off_2pmid_attempts",
+        calc_rim_relative: "total_off_2prim_attempts"
+      };
+      const regressVol = 15;
+      const regressVolInv = 1.0/regressVol;
+      const volume = player[volumeIndex[feat]]?.value || 0;
+      if (volume < regressVol) {
+        // Special case: as a C if you've only taken 0-2 3s and hit none of them, we'll keep that
+        // at 0 to avoid widespread changes
+        if ((pos == 4) && (volume < 3) && (stat == 0) && (feat == "calc_three_relative")) {
+          return stat;
+        } else {
+          const av = 0.01*PositionUtils.positionFeatureAverages[feat][pos];
+          return regressVolInv*(volume*stat + (regressVol - volume)*av);
+        }
+      } else { //(enough samples, leave as is)
+        return stat;
+      }
+    } else {
+      return stat;
+    }
+  }
 
   /** Returns a vector of 5 elements representing the confidence that the player
       can play that position (0=PG, 1=SG, 4=SF, 4=PF, 5=C)
@@ -152,7 +186,8 @@ export class PositionUtils {
         const fieldVal = _.startsWith(feat, "calc_") ? (calculated[feat] || 0) : (player[feat]?.value || 0);
 
         weights.forEach((weight, index) => {
-          const sumPart = fieldVal*scale*weight;
+          const regressedFieldVal = PositionUtils.regressShotQuality(fieldVal, index, feat, player);
+          const sumPart = regressedFieldVal*scale*weight;
           acc[index] += sumPart;
         });
 
@@ -256,5 +291,109 @@ export class PositionUtils {
     } else {
       return [ pos, diag ];
     }
+  }
+
+  /** We usee the positional class of the player as the most important */
+  private static posClassToScore(posClass: string) {
+    switch (posClass) {
+      case "G?": return 1500;
+      case "PG": return 1000;
+      case "s-PG": return 2000;
+      case "CG": return 3000;
+      case "WG": return 4000;
+      case "WF": return 5000;
+      case "S-PF": return 6000;
+      case "PF/C": return 7000;
+      case "F/C?": return 7000;
+      case "C": return 8000;
+      default: return 4000; //(won't happen)
+    }
+  }
+
+  /** Allows me to swap lineups around by hand when someone complains */
+  private static applyRelativePositionalOverrides(
+    results: { code: string, id: string }[],
+    teamSeason: string
+  ) {
+    const rules = relativePositionFixes[teamSeason];
+    if (rules) {
+      const ruleSet = _.find(rules, (rule: RelativePositionFixRule) => {
+        return _.every(rule.key, (key: string | undefined, index: number) => {
+          return (key == undefined) || (key == results[index].code);
+        });
+      });
+      if (ruleSet) { // Matching rule
+        return results.map((val: {code: string, id: string}, index: number) => {
+          const changeRule = ruleSet.rule[index];
+          return (changeRule == undefined) ? val : changeRule;
+        });
+      } else { // The team/season didn't match
+        return results;
+      }
+    } else { // This team/season has no overrides
+      return results; // (return unchanged)
+    }
+  }
+
+  /** Takes lineup in form X1_X2_X3_X4_X5 and returns an array of Xi ordered by position and some info for tooltips */
+  static orderLineup(
+    playerCodesAndIds: { code: string, id: string }[],
+    playersById: Record<string, any>,
+    teamSeason: string
+  ): { code: string, id: string }[] {
+
+    const playerIdToPlayerCode = _.fromPairs(
+      playerCodesAndIds.map((codeId: { code: string, id: string}) => [ codeId.id, codeId.code ])
+    );
+
+    const playerIds = _.keys(playerIdToPlayerCode);
+    const init = -100000;
+    const scores = [ init, init, init, init, init ]; //TODO use fill heree, make this small number
+    const bestFits = [ -1, -1, -1, -1, -1 ]; //(indices of "winning" player)
+    const playerInfos = playerIds.map((pid: string) => playersById[pid]);
+
+    /** Fit a player to their best position, refitting recursively any player dislodged */
+    const fitPlayer = (pid: string, plIndex: number) => {
+
+      const posClass = playerInfos[plIndex]?.posConfidences || [0, 0, 0, 0, 0];
+        //(require for this to be injected by the calling function)
+      const posClassScore = PositionUtils.posClassToScore(playerInfos[plIndex]?.posClass || "");
+        // (^ basically this is the dominating scoring factor, the others are just within position classes)
+      const pgScore = 3*posClass[0] + posClass[1];
+      const postScore = 3*posClass[4] + posClass[3];
+      const backcourtScore = posClass[0] + posClass[1];
+      const frontcourtScore = posClass[4] + posClass[3];
+
+      const plScores = [ //(could do better here?)
+        [ pgScore - 2*frontcourtScore - posClassScore, 0 ], //PG
+        [ postScore - 2*backcourtScore + posClassScore, 4 ], //C
+        [ backcourtScore - frontcourtScore - posClassScore, 1 ], //SG
+        [ frontcourtScore - backcourtScore + posClassScore, 3 ], //PF
+        [ 0, 2 ] // SF is fallback
+      ] as [ number, number ][];
+
+      _.takeWhile(plScores, ([score, scorePos]: [number, number]) => {
+        if (score > scores[scorePos]) {
+          const prevBestFit = bestFits[scorePos];
+          if (prevBestFit >= 0) { //refit the player being replaced
+            fitPlayer(playerIds[prevBestFit], prevBestFit);
+          }
+          bestFits[scorePos] = plIndex;
+          scores[scorePos] = score;
+          return false;
+        } else {
+          return true; //(keep going)
+        }
+      });
+    }
+    playerIds.forEach((pid: string, plIndex: number) => {
+      fitPlayer(pid, plIndex);
+    });
+    return PositionUtils.applyRelativePositionalOverrides(
+      bestFits.map((index: number) => {
+        const playerId = playerIds[index];
+        return { code: playerIdToPlayerCode[playerId], id: playerId };
+      }), teamSeason
+    );
   }
 }

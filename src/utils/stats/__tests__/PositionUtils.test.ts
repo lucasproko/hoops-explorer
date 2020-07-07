@@ -5,6 +5,7 @@ import _ from 'lodash';
 import { PositionUtils } from "../PositionUtils";
 import { GameFilterParams, LineupFilterParams, TeamReportFilterParams } from "../../FilterModels";
 import { samplePlayerStatsResponse } from "../../../sample-data/samplePlayerStatsResponse";
+import { sampleLineupStatsResponse } from "../../../sample-data/sampleLineupStatsResponse";
 
 describe("PositionUtils", () => {
 
@@ -20,8 +21,8 @@ describe("PositionUtils", () => {
     const [ realConfidences, realDiags ] = PositionUtils.buildPositionConfidences(
       samplePlayerStatsResponse.aggregations.tri_filter.buckets.baseline.player.buckets[0]
     );
-    expect(_.values(tidyObj(realConfidences))).toEqual(["0.95", "0.05", "0.00", "0.00", "0.00", ]);
-    expect(_.values(tidyObj(realDiags.scores))).toEqual(["0.41","0.12","-0.44","-0.81","-1.70"]);
+    expect(_.values(tidyObj(realConfidences))).toEqual(["0.80", "0.20", "0.00", "0.00", "0.00", ]);
+    expect(_.values(tidyObj(realDiags.scores))).toEqual(["0.18","0.04","-0.34","-0.60","-1.56"]);
     expect(tidyObj(realDiags.calculated)).toEqual({
       "calc_assist_per_fga": "0.41",
       "calc_ast_tov": "2.09",
@@ -36,7 +37,7 @@ describe("PositionUtils", () => {
     const [ realConfidences2, realDiags2 ] = PositionUtils.buildPositionConfidences(
       samplePlayerStatsResponse.aggregations.tri_filter.buckets.baseline.player.buckets[1]
     );
-    expect(_.values(tidyObj(realConfidences2))).toEqual(["0.21", "0.71", "0.07", "0.01", "0.00", ]);
+    expect(_.values(tidyObj(realConfidences2))).toEqual(["0.01", "0.33", "0.42", "0.23", "0.00", ]);
   });
   test("PositionUtils - buildPosition", () => {
     const testCases = [
@@ -135,4 +136,114 @@ describe("PositionUtils", () => {
     expect(PositionUtils.idToPosition["G?"]).toEqual("Unknown - probably Guard");
     expect(PositionUtils.idToPosition["F/C?"]).toEqual("Unknown - probably Forward/Center");
   });
+  test("PositionUtils - regressShotQuality", () => {
+    const player = {
+      total_off_3p_attempts: { value: 1 },
+      total_off_2pmid_attempts: { value: 16 },
+      total_off_2prim_attempts: { value: 8 }
+    };
+
+    // Case 1: Not one of the features we're regressing:
+    expect(PositionUtils.regressShotQuality(-15.5, 2, "misc_feature", player)).toEqual(-15.5);
+
+    // Case 2: Feature we're regressing but volume is high enough
+    expect(PositionUtils.regressShotQuality(-15.5, 2, "calc_mid_relative", player)).toEqual(-15.5);
+
+    // Case 3: Special "post player taking 3s" case
+    expect(PositionUtils.regressShotQuality(0, 4, "calc_three_relative", player)).toEqual(0);
+    expect(PositionUtils.regressShotQuality(10, 4, "calc_three_relative", player).toFixed(2)).toEqual("0.77");
+    expect(PositionUtils.regressShotQuality(0, 3, "calc_three_relative", player).toFixed(2)).toEqual("1.03");
+
+    // Case 4: regression
+    expect(PositionUtils.regressShotQuality(100, 3, "calc_rim_relative", player).toFixed(2)).toEqual("53.92");
+
+  });
+
+  test("PositionUtils - orderLineup", () => {
+    // Setup test data:
+    const playerCodesAndIds =
+      sampleLineupStatsResponse.responses[0].aggregations.lineups.buckets[0]
+        .players_array.hits.hits[0]._source.players;
+        //(!!)
+
+    /** Test cases:
+    *   - 1 normal (will basically just use the posClass)
+    *   - 2 double check if works if all the same (ie uses only posConfidences)
+    *   - 3 pick some stupid posClass and check that overrides posConfidence
+    */
+    const playersById = (testCase: number) => { return {
+      "Wiggins, Aaron": {
+        posConfidences: [ 10, 20, 50, 10, 0 ],
+        posClass: (testCase == 0) ? "WG" : ((testCase == 1) ? "C" : "PF/C")
+      },
+      "Cowan, Anthony": {
+        posConfidences: [ 60, 40, 10, 0, 0 ],
+        posClass: (testCase == 0) ? "s-PG" : ((testCase == 1) ? "C" : "C")
+      },
+      "Morsell, Darryl": {
+        posConfidences: [ 10, 40, 50, 30, 10 ],
+        posClass: (testCase == 0) ? "WG" : ((testCase == 1) ? "C" : "CG")
+      },
+      "Ayala, Eric": {
+        posConfidences: [ 40, 60, 10, 0, 0 ],
+        posClass: (testCase == 0) ? "CG" : ((testCase == 1) ? "C" : "WF")
+      },
+      "Smith, Jalen": {
+        posConfidences: [ 0, 0, 0, 50, 50 ],
+        posClass: (testCase == 0) ? "PF/C" : ((testCase == 1) ? "C" : "s-PG")
+      },
+    } };
+    const expectedResult = [
+      { code: "AnCowan", id: "Cowan, Anthony" },
+      { code: "ErAyala", id: "Ayala, Eric" },
+      { code: "AaWiggins", id: "Wiggins, Aaron" },
+      { code: "DaMorsell", id: "Morsell, Darryl" },
+      { code: "JaSmith", id: "Smith, Jalen" },
+    ];
+    const expectedResultFake = [
+      { code: "JaSmith", id: "Smith, Jalen" },
+      { code: "DaMorsell", id: "Morsell, Darryl" },
+      { code: "ErAyala", id: "Ayala, Eric" },
+      { code: "AaWiggins", id: "Wiggins, Aaron" },
+      { code: "AnCowan", id: "Cowan, Anthony" },
+    ];
+    const expectedResultByBase = [
+      expectedResult, expectedResult, expectedResultFake
+    ];
+
+    // Tests:
+    for (let caseId = 0; caseId < 3; ++caseId) {
+      for (let i = 0; i < 50; ++i) {
+        const shuffledCodesAndIds = _.shuffle(playerCodesAndIds);
+        const teamSeason = "";//(i % 2 == 0) ? "NoOverrideRules" : "Men_Maryland_2019/20";
+        expect(
+          [ caseId, PositionUtils.orderLineup(shuffledCodesAndIds, playersById(caseId), teamSeason) ]
+        ).toEqual([ caseId, expectedResultByBase[caseId] ]);
+      }
+    }
+
+    // Check the override rules:
+    const switchMorsellWiggins = playersById(0);
+    switchMorsellWiggins["Wiggins, Aaron"].posClass = "WF";
+
+    expect(
+      PositionUtils.orderLineup(playerCodesAndIds, switchMorsellWiggins, "Men_Maryland_2019/20")
+    ).toEqual(expectedResultByBase[0]);
+
+    // (Double check the posClass change did have an affect!)
+
+    const expectedResultUnsorted = [
+      { code: "AnCowan", id: "Cowan, Anthony" },
+      { code: "ErAyala", id: "Ayala, Eric" },
+      { code: "DaMorsell", id: "Morsell, Darryl" },
+      { code: "AaWiggins", id: "Wiggins, Aaron" },
+      { code: "JaSmith", id: "Smith, Jalen" },
+    ];
+
+    expect(
+      PositionUtils.orderLineup(playerCodesAndIds, switchMorsellWiggins, "NoOverrideRules/20")
+    ).toEqual(expectedResultUnsorted);
+
+  });
+
 });

@@ -136,7 +136,9 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
       onOffMode: autoOffQuery,
       baseline: rosterStatsJson?.aggregations?.tri_filter?.buckets?.baseline?.player?.buckets || [],
       global: globalRosterStatsJson?.aggregations?.tri_filter?.buckets?.baseline?.player?.buckets || [],
-      error_code: wasError ? (rosterStatsJson?.status || jsonStatuses?.[2] || "Unknown") : undefined
+      error_code: wasError ?
+        (rosterStatsJson?.status || jsonStatuses?.[2] ||
+          globalRosterStatsJson?.status || jsonStatuses?.[3] || "Unknown") : undefined
     });
   }
 

@@ -15,6 +15,7 @@ import Col from 'react-bootstrap/Col';
 
 // Component imports:
 import { LineupStatsModel } from '../components/LineupStatsTable';
+import { RosterStatsModel } from '../components/RosterStatsTable';
 import CommonFilter from '../components/CommonFilter';
 import { ParamDefaults, ParamPrefixesType, ParamPrefixes, FilterParamsType, CommonFilterParams, LineupFilterParams, FilterRequestInfo, getCommonFilterParams } from "../utils/FilterModels";
 
@@ -22,7 +23,7 @@ import { ParamDefaults, ParamPrefixesType, ParamPrefixes, FilterParamsType, Comm
 import { QueryUtils } from '../utils/QueryUtils';
 
 type Props = {
-  onStats: (lineupStats: LineupStatsModel) => void;
+  onStats: (lineupStats: LineupStatsModel, rosterStats: RosterStatsModel) => void;
   startingState: LineupFilterParams;
   onChangeState: (newParams: LineupFilterParams) => void;
 }
@@ -95,15 +96,19 @@ const LineupFilter: React.FunctionComponent<Props> = ({onStats, startingState, o
 
   /** Handles the response from ES to a stats calc request */
   function handleResponse(jsonResps: any[], wasError: Boolean) {
-    //TODO: fix this per GameFilter
+    const jsonStatuses = jsonResps.map(j => j.status);
+    const lineupJson = jsonResps?.[0]?.responses?.[0] || {};
+    const rosterStatsJson = jsonResps?.[1]?.responses?.[0] || {};
+    const globalRosterStatsJson = jsonResps?.[2]?.responses?.[0] || rosterStatsJson;
 
-    const json = jsonResps[0] || []; //(currently just one request)
-
-    const jsons = json?.responses || [];
-    const lineupJson = (jsons.length > 0) ? jsons[0] : {};
     onStats({
       lineups: lineupJson?.aggregations?.lineups?.buckets,
-      error_code: wasError ? (lineupJson?.status || json?.status) : undefined
+      error_code: wasError ? (lineupJson?.status || jsonStatuses?.[0] || "Unknown") : undefined
+    }, {
+      baseline: rosterStatsJson?.aggregations?.tri_filter?.buckets?.baseline?.player?.buckets || [],
+      global: globalRosterStatsJson?.aggregations?.tri_filter?.buckets?.baseline?.player?.buckets || [],
+      error_code: wasError ? (rosterStatsJson?.status || jsonStatuses?.[1] ||
+          globalRosterStatsJson?.status || jsonStatuses?.[2] || "Unknown") : undefined
     });
   }
 
