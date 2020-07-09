@@ -275,13 +275,21 @@ const CommonFilter: CommonFilterI = ({
       if (tablePrefix == ParamPrefixes.report) {
         if (gender == "Women") {
           const newUrl = `${PreloadedDataSamples.womenLineup}`;
+          const newPlayerUrl = `${PreloadedDataSamples.womenLineupOnOff}`;
+          const baseUrl = `${PreloadedDataSamples.womenLineupOnOffSeason}`;
           return [
-            [ "TeamReport", newUrl ]
+            [ "TeamReport", newUrl ],
+            [ ParamPrefixes.game, newPlayerUrl ],
+            [ ParamPrefixes.player, newPlayerUrl ], [ ParamPrefixes.player, baseUrl ]
           ];
         } else { //(default is men)
           const newUrl = `${PreloadedDataSamples.menLineup}`;
+          const newPlayerUrl = `${PreloadedDataSamples.menLineupOnOff}`;
+          const baseUrl = `${PreloadedDataSamples.menLineupOnOffSeason}`;
           return [
-            [ "TeamReport", newUrl ]
+            [ "TeamReport", newUrl ],
+            [ ParamPrefixes.game, newPlayerUrl ],
+            [ ParamPrefixes.player, newPlayerUrl ], [ ParamPrefixes.player, baseUrl ]
           ];
         }
       } else if (tablePrefix == ParamPrefixes.game) {
@@ -307,6 +315,7 @@ const CommonFilter: CommonFilterI = ({
           const baseUrl = `${PreloadedDataSamples.womenLineupOnOffSeason}`;
           return [
             [ "LineupAnalyzer", newUrl ],
+            [ ParamPrefixes.game, newPlayerUrl ],
             [ ParamPrefixes.player, newPlayerUrl ], [ ParamPrefixes.player, baseUrl ]
           ];
         } else { //(default is men)
@@ -315,6 +324,7 @@ const CommonFilter: CommonFilterI = ({
           const baseUrl = `${PreloadedDataSamples.menLineupOnOffSeason}`;
           return [
             [ "LineupAnalyzer", newUrl ],
+            [ ParamPrefixes.game, newPlayerUrl ],
             [ ParamPrefixes.player, newPlayerUrl ], [ ParamPrefixes.player, baseUrl ]
           ];
         }
