@@ -9,6 +9,11 @@ export class ParamPrefixes {
 }
 export type ParamPrefixesType = "game-" | "lineup-" | "report-" | "roster-" | "player-";
 
+/** The common luck config */
+export type LuckParams = {
+  base: "baseline" | "season"
+};
+
 /** Common params across all filter types */
 export type CommonFilterParams = {
   year?: string,
@@ -19,7 +24,7 @@ export type CommonFilterParams = {
   baseQuery?: string,
   filterGarbage?: boolean, //(missing iff "false")
   queryFilters?: string //(missing iff empty)
-}
+};
 
 /** Extracts the common params from a superset */
 export function getCommonFilterParams(p: CommonFilterParams) {
@@ -42,8 +47,10 @@ export type GameFilterParams = {
   onQuery?: string,
   offQuery?: string,
   autoOffQuery?: boolean
+  // Global luck adjustments
+  luck?: LuckParams, //(missing iff default)
   // Luck adjustments for team view
-  onOffLuck?: string,
+  onOffLuck?: boolean,
   showOnOffLuckDiags?: boolean,
   // Filtering of individual view:
   filter?: string,
@@ -97,6 +104,7 @@ export class ParamDefaults {
   static readonly defaultAutoOffQuery = true;
   static readonly defaultPlayerFilter = "";
   static readonly defaultPlayerSortBy = "desc:off_team_poss_pct:baseline";
+  static readonly defaultOnOffLuckAdjust = false;
   static readonly defaultOnOffLuckDiagMode = false;
   static readonly defaultPlayerDiagMode = false;
   static readonly defaultPlayerShowBase = false;
@@ -127,8 +135,8 @@ export class ParamDefaults {
   static readonly defaultMaxRank = "400";
   static readonly defaultFilterGarbage = false;
   static readonly defaultQueryFilters = "";
+  static readonly defaultLuckConfig: LuckParams = { base: "season" };
 };
-
 
 export type FilterParamsType = GameFilterParams | LineupFilterParams | TeamReportFilterParams;
 

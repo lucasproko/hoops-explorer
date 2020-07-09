@@ -14,7 +14,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 // Data imports:
-import { dataLastUpdated } from '../utils/internal-data/dataLastUpdated';
+import { dataLastUpdated } from '../../utils/internal-data/dataLastUpdated';
 
 type Props = {
   readonly server: string,

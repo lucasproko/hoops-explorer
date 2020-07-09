@@ -24,9 +24,9 @@ import { ParamPrefixes, GameFilterParams, LineupFilterParams } from '../utils/Fi
 import TeamStatsTable, { TeamStatsModel } from '../components/TeamStatsTable';
 import RosterStatsTable, { RosterStatsModel } from '../components/RosterStatsTable';
 import RosterCompareTable, { RosterCompareModel } from '../components/RosterCompareTable';
-import GenericCollapsibleCard from '../components/GenericCollapsibleCard';
-import Footer from '../components/Footer';
-import HeaderBar from '../components/HeaderBar';
+import GenericCollapsibleCard from '../components/shared/GenericCollapsibleCard';
+import Footer from '../components/shared/Footer';
+import HeaderBar from '../components/shared/HeaderBar';
 
 // Utils:
 import { UrlRouting } from "../utils/UrlRouting";

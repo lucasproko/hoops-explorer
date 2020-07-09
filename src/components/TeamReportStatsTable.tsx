@@ -23,14 +23,12 @@ import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 // @ts-ignore
 import LoadingOverlay from 'react-loading-overlay';
 import Select, { components} from "react-select";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCog } from '@fortawesome/free-solid-svg-icons'
-import { faCheck } from '@fortawesome/free-solid-svg-icons'
 
 // Component imports
 import GenericTable, { GenericTableOps, GenericTableColProps } from "./GenericTable";
 import { LineupStatsModel } from './LineupStatsTable';
-import GenericTogglingMenuItem from "./GenericTogglingMenuItem";
+import GenericTogglingMenu from "./shared/GenericTogglingMenu";
+import GenericTogglingMenuItem from "./shared/GenericTogglingMenuItem";
 import RapmGlobalDiagView from "./diags/RapmGlobalDiagView";
 import RapmPlayerDiagView from "./diags/RapmPlayerDiagView";
 import RepOnOffDiagView from "./diags/RepOnOffDiagView";
@@ -552,60 +550,55 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
           </InputGroup>
         </Form.Group>
         <Form.Group as={Col} sm="1">
-          <Dropdown alignRight>
-            <Dropdown.Toggle variant="outline-secondary" id="dropdown-basic">
-              <FontAwesomeIcon icon={faCog} />
-            </Dropdown.Toggle>
-            <Dropdown.Menu>
-              <GenericTogglingMenuItem
-                text="Show on/off statistics"
-                truthVal={showOnOff}
-                onSelect={() => setShowOnOff(!showOnOff)}
-              />
-              <GenericTogglingMenuItem
-                text={<span>Show replacement On-Off <span className="badge badge-pill badge-info">alpha!</span></span>}
-                truthVal={incReplacementOnOff}
-                onSelect={() => setIncReplacementOnOff(!incReplacementOnOff)}
-              />
-              <GenericTogglingMenuItem
-                text={<span>Show RAPM <span className="badge badge-pill badge-info">experimental!</span></span>}
-                truthVal={incRapm}
-                onSelect={() => setIncRapm(!incRapm)}
-              />
-              <Dropdown.Divider />
-              <GenericTogglingMenuItem
-                text="Show lineup compositions"
-                truthVal={showLineupCompositions}
-                onSelect={() => setShowLineupCompositions(!showLineupCompositions)}
-              />
-              <GenericTogglingMenuItem
-                text={`Regress 'r:On-Off' ${
-                  startingRegressDiffs > 0 ? "by" : "to"
-                } ${
-                  Math.abs(startingRegressDiffs != 0 ? startingRegressDiffs : parseInt(ParamDefaults.defaultTeamReportRegressDiffs))
-                } samples`}
-                truthVal={regressDiffs != 0}
-                onSelect={() => setRegressDiffs(
-                  regressDiffs != 0 ?
-                    0 : // switch off if on, else switch to the number the page was loaded with
-                    (startingRegressDiffs != 0 ? startingRegressDiffs : parseInt(ParamDefaults.defaultTeamReportRegressDiffs))
-                )}
-              />
-              <GenericTogglingMenuItem
-                text="'r:On-Off' diagnostic mode"
-                truthVal={repOnOffDiagMode != "0"}
-                onSelect={() => setRepOnOffDiagMode(
-                  repOnOffDiagMode != "0" ? //(only set the lineup size if the other are the defaults)
-                    "0" : ParamDefaults.defaultTeamReportRepOnOffDiagModeIfEnabled[0]
-                )}
-              />
-              <GenericTogglingMenuItem
-                text="'RAPM diagnostic mode"
-                truthVal={rapmDiagMode != ""}
-                onSelect={() => setRapmDiagMode(rapmDiagMode != "" ? "" : "base")}
-              />
-            </Dropdown.Menu>
-          </Dropdown>
+          <GenericTogglingMenu>
+            <GenericTogglingMenuItem
+              text="Show on/off statistics"
+              truthVal={showOnOff}
+              onSelect={() => setShowOnOff(!showOnOff)}
+            />
+            <GenericTogglingMenuItem
+              text={<span>Show replacement On-Off <span className="badge badge-pill badge-info">alpha!</span></span>}
+              truthVal={incReplacementOnOff}
+              onSelect={() => setIncReplacementOnOff(!incReplacementOnOff)}
+            />
+            <GenericTogglingMenuItem
+              text={<span>Show RAPM <span className="badge badge-pill badge-info">experimental!</span></span>}
+              truthVal={incRapm}
+              onSelect={() => setIncRapm(!incRapm)}
+            />
+            <Dropdown.Divider />
+            <GenericTogglingMenuItem
+              text="Show lineup compositions"
+              truthVal={showLineupCompositions}
+              onSelect={() => setShowLineupCompositions(!showLineupCompositions)}
+            />
+            <GenericTogglingMenuItem
+              text={`Regress 'r:On-Off' ${
+                startingRegressDiffs > 0 ? "by" : "to"
+              } ${
+                Math.abs(startingRegressDiffs != 0 ? startingRegressDiffs : parseInt(ParamDefaults.defaultTeamReportRegressDiffs))
+              } samples`}
+              truthVal={regressDiffs != 0}
+              onSelect={() => setRegressDiffs(
+                regressDiffs != 0 ?
+                  0 : // switch off if on, else switch to the number the page was loaded with
+                  (startingRegressDiffs != 0 ? startingRegressDiffs : parseInt(ParamDefaults.defaultTeamReportRegressDiffs))
+              )}
+            />
+            <GenericTogglingMenuItem
+              text="'r:On-Off' diagnostic mode"
+              truthVal={repOnOffDiagMode != "0"}
+              onSelect={() => setRepOnOffDiagMode(
+                repOnOffDiagMode != "0" ? //(only set the lineup size if the other are the defaults)
+                  "0" : ParamDefaults.defaultTeamReportRepOnOffDiagModeIfEnabled[0]
+              )}
+            />
+            <GenericTogglingMenuItem
+              text="'RAPM diagnostic mode"
+              truthVal={rapmDiagMode != ""}
+              onSelect={() => setRapmDiagMode(rapmDiagMode != "" ? "" : "base")}
+            />
+          </GenericTogglingMenu>
         </Form.Group>
       </Form.Row>
       <Row>

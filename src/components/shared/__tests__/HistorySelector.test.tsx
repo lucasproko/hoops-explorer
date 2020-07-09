@@ -1,8 +1,8 @@
 import React from 'react';
 import HistorySelector from '../HistorySelector';
-import { shallow } from 'enzyme'
-import toJson from 'enzyme-to-json'
-import { HistoryManager } from '../../utils/HistoryManager';
+import { shallow } from 'enzyme';
+import toJson from 'enzyme-to-json';
+import { HistoryManager } from '../../../utils/HistoryManager';
 
 describe("HistorySelector", () => {
   test("HistorySelector - should create snapshot", () => {

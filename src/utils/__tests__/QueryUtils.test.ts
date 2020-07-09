@@ -28,6 +28,17 @@ describe("QueryUtils", () => {
     expect(QueryUtils.stringify({lineupQuery: "a", queryFilters: ""} as CommonFilterParams)).toEqual(
       "baseQuery=a"
     );
+    // Test nested luck object handling
+    expect(QueryUtils.stringify({lineupQuery: "a", luck: { base: "season" }} as CommonFilterParams)).toEqual(
+      "baseQuery=a&luck.base=season"
+    );
+    expect(QueryUtils.parse("lineupQuery=a&otherField=true&luck.base=baseline")).toEqual(
+      {baseQuery: "a", otherField: true, luck: { base: "baseline"} }
+    );
+    // Test bwc change to onOffLuck:
+    expect(QueryUtils.parse("lineupQuery=a&onOffLuck=season&luck.base=baseline")).toEqual(
+      {baseQuery: "a", onOffLuck: true, luck: { base: "season"} }
+    );
 
   });
   test("QueryUtils - extractAdvancedQuery", () => {

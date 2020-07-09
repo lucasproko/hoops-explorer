@@ -23,8 +23,8 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import Alert from 'react-bootstrap/Alert';
 
 // App components:
-import Footer from '../components/Footer';
-import HeaderBar from '../components/HeaderBar';
+import Footer from '../components/shared/Footer';
+import HeaderBar from '../components/shared/HeaderBar';
 
 // Additional components:
 // @ts-ignore
