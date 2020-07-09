@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LuckConfigModal LuckConfigModal - should create snapshot 1`] = `
+<div>
+  <LuckConfigModal
+    luck={
+      Object {
+        "base": "baseline",
+      }
+    }
+    onHide={[Function]}
+    onSave={[Function]}
+    show={true}
+  />
+</div>
+`;
