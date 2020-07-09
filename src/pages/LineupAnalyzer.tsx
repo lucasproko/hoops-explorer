@@ -24,7 +24,7 @@ import { ParamPrefixes, GameFilterParams, LineupFilterParams } from '../utils/Fi
 import { HistoryManager } from '../utils/HistoryManager';
 import LineupStatsTable, { LineupStatsModel } from '../components/LineupStatsTable';
 import { RosterStatsModel } from '../components/RosterStatsTable';
-import { TeamStatsModel } from '../components/TeamStatsModel';
+import { TeamStatsModel } from '../components/TeamStatsTable';
 import GenericCollapsibleCard from '../components/shared/GenericCollapsibleCard';
 import Footer from '../components/shared/Footer';
 import HeaderBar from '../components/shared/HeaderBar';

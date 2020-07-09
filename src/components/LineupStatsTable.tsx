@@ -24,7 +24,7 @@ import Select, { components } from "react-select";
 // Component imports
 import GenericTable, { GenericTableOps, GenericTableColProps } from "./GenericTable";
 import { RosterStatsModel } from './RosterStatsTable';
-import { TeamStatsModel } from './TeamStatsModel';
+import { TeamStatsModel } from './TeamStatsTable';
 import LuckConfigModal from './shared/LuckConfigModal';
 import GenericTogglingMenu from './shared/GenericTogglingMenu';
 import GenericTogglingMenuItem from './shared/GenericTogglingMenuItem';

@@ -16,7 +16,7 @@ import Col from 'react-bootstrap/Col';
 // Component imports:
 import { LineupStatsModel } from '../components/LineupStatsTable';
 import { RosterStatsModel } from '../components/RosterStatsTable';
-import { TeamStatsModel } from '../components/TeamStatsModel';
+import { TeamStatsModel } from '../components/TeamStatsTable';
 import CommonFilter from '../components/CommonFilter';
 import { ParamDefaults, ParamPrefixesType, ParamPrefixes, FilterParamsType, CommonFilterParams, LineupFilterParams, FilterRequestInfo, getCommonFilterParams } from "../utils/FilterModels";
 
@@ -117,6 +117,7 @@ const LineupFilter: React.FunctionComponent<Props> = ({onStats, startingState, o
       lineups: lineupJson?.aggregations?.lineups?.buckets,
       error_code: wasError ? (lineupJson?.status || jsonStatuses?.[0] || "Unknown") : undefined
     }, {
+      on: {}, off: {}, onOffMode: true,
       baseline: teamJson?.aggregations?.tri_filter?.buckets?.baseline || {},
       global: teamJson?.aggregations?.global?.only?.buckets?.team || {},
       error_code: wasError ? (teamJson?.status || jsonStatuses?.[1] || "Unknown") : undefined
