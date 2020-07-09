@@ -15,7 +15,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
         className="form-group col-sm-1"
       >
         <div
-          className="dropdown"
+          className="dropup"
           onKeyDown={[Function]}
         >
           <button

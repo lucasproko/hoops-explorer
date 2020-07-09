@@ -16,23 +16,50 @@ export class QueryUtils {
   private static readonly legacyQueryField = "lineupQuery";
   private static readonly newQueryField = "baseQuery";
 
-  /** Wraps QueryUtils.parse but with baseQuery/lineupQuery handling */
+  /** Wraps QueryUtils.parse but with luck/baseQuery/lineupQuery handling */
   static parse(str: string): any {
     const parsed: Record<string, any> = queryString.parse(str, {parseBooleans: true}) as any;
+    // Handle baseQuery/lineupQuery
     if (parsed && parsed[QueryUtils.legacyQueryField]) {
       parsed[QueryUtils.newQueryField] = parsed[QueryUtils.legacyQueryField];
       delete parsed[QueryUtils.legacyQueryField];
     }
+    // Handle nested luck:
+    const luck = {} as any;
+    _.forEach(parsed, (value: any, key: string) => {
+      if (_.startsWith(key, "luck.")) {
+        luck[key.substring(5)] = value;
+        delete parsed[key];
+      }
+    });
+    // (Extra annoyance: handle bwc in change of onOffLuck becoming a boolean)
+    if (_.isString(parsed.onOffLuck)) {
+      luck.base = parsed.onOffLuck;
+      parsed.onOffLuck = true;
+    }
+    if (!_.isEmpty(luck)) {
+      parsed.luck = luck;
+    }
     return parsed;
   }
-  /** Wraps QueryUtils.parse but with baseQuery/lineupQuery handling */
-  static stringify(obj: CommonFilterParams): string {
-    if (obj && obj.hasOwnProperty(QueryUtils.legacyQueryField)) {
-      obj.baseQuery = (obj as any)[QueryUtils.legacyQueryField];
-      delete (obj as any)[QueryUtils.legacyQueryField];
+  /** Wraps QueryUtils.parse but with luck/baseQuery/lineupQuery handling */
+  static stringify(obj: any): string {
+    const objCopy = _.clone(obj); //(shallow clone)
+    // Handle nested luck:
+    if (objCopy.luck) {
+      const luckCfg = objCopy.luck as any;
+      delete objCopy.luck;
+      _.forEach(luckCfg, (value: any, key: string) => {
+        objCopy["luck." + key] = value;
+      });
     }
-    QueryUtils.cleanseQuery(obj);
-    return queryString.stringify(obj);
+    // Handle baseQuery/lineupQuery
+    if (objCopy && objCopy.hasOwnProperty(QueryUtils.legacyQueryField)) {
+      objCopy.baseQuery = (objCopy as any)[QueryUtils.legacyQueryField];
+      delete (objCopy as any)[QueryUtils.legacyQueryField];
+    }
+    QueryUtils.cleanseQuery(objCopy);
+    return queryString.stringify(objCopy);
   }
 
   /** Removes some optional fields that we don't want */

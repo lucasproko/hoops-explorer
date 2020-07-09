@@ -35,6 +35,8 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
   // Data model
 
   const {
+    //(common visualization fields across all tables)
+    luck: startLuck,
     //(these fields are for the team view)
     onOffLuck: startOnOffLuck, showOnOffLuckDiags: startShowOnOffLuckDiags,
     //(these fields are for the individual view)
@@ -76,6 +78,8 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
     const primaryRequest: GameFilterParams = includeFilterParams ?
       _.merge(
         buildParamsFromState(false)[0], {
+          // Common stats across all tables:
+          luck: startLuck,
           // Team stats:
           onOffLuck: startOnOffLuck, showOnOffLuckDiags: startShowOnOffLuckDiags,
           // Individual stats:

@@ -18,19 +18,18 @@ import Dropdown from 'react-bootstrap/Dropdown';
 // Additional components:
 // @ts-ignore
 import LoadingOverlay from 'react-loading-overlay';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCog } from '@fortawesome/free-solid-svg-icons';
-import { faCheck } from '@fortawesome/free-solid-svg-icons';
 
 // Component imports
 import GenericTable, { GenericTableOps, GenericTableColProps } from "./GenericTable"
 import { RosterStatsModel } from './RosterStatsTable';
+import LuckConfigModal from "./shared/LuckConfigModal";
+import GenericTogglingMenu from "./shared/GenericTogglingMenu";
 import GenericTogglingMenuItem from "./shared/GenericTogglingMenuItem";
 import LuckAdjDiagView from "./diags/LuckAdjDiagView"
 
 // Util imports
 import { CbbColors } from "../utils/CbbColors"
-import { GameFilterParams, ParamDefaults } from "../utils/FilterModels"
+import { GameFilterParams, ParamDefaults, LuckParams } from "../utils/FilterModels"
 import { CommonTableDefs } from "../utils/CommonTableDefs"
 import { LuckUtils, OffLuckAdjustmentDiags, DefLuckAdjustmentDiags, LuckAdjustmentBaseline } from "../utils/stats/LuckUtils";
 import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
@@ -54,23 +53,31 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, teamS
 
   // 1] Data Model
 
-  const [ adjustForLuck, setAdjustForLuck ] = useState(
-    gameFilterParams.onOffLuck as undefined | LuckAdjustmentBaseline
+  const [ adjustForLuck, setAdjustForLuck ] = useState(_.isNil(gameFilterParams.onOffLuck) ?
+    ParamDefaults.defaultOnOffLuckAdjust : gameFilterParams.onOffLuck
   );
   const [ showLuckAdjDiags, setShowLuckAdjDiags ] = useState(_.isNil(gameFilterParams.showOnOffLuckDiags) ?
     ParamDefaults.defaultOnOffLuckDiagMode : gameFilterParams.showOnOffLuckDiags
   );
+  const [ luckConfig, setLuckConfig ] = useState(_.isNil(gameFilterParams.luck) ?
+    ParamDefaults.defaultLuckConfig : gameFilterParams.luck
+  );
+
+  /** Whether we are showing the luck config modal */
+  const [ showLuckConfig, setShowLuckConfig ] = useState(false);
 
   useEffect(() => { //(this ensures that the filter component is up to date with the union of these fields)
     const newState = _.chain(gameFilterParams).merge({
+      luck: luckConfig,
       onOffLuck: adjustForLuck,
       showOnOffLuckDiags: showLuckAdjDiags,
     }).omit(_.flatten([ // omit all defaults
-      (adjustForLuck == undefined) ? [ 'onOffLuck' ] : [],
+      _.isEqual(luckConfig, ParamDefaults.defaultLuckConfig) ? [ 'luck' ] : [],
+      !adjustForLuck ? [ 'onOffLuck' ] : [],
       (showLuckAdjDiags == ParamDefaults.defaultOnOffLuckDiagMode) ? [ 'showOnOffLuckDiags' ] : []
     ])).value();
     onChangeState(newState);
-  }, [ adjustForLuck, showLuckAdjDiags ]);
+  }, [ luckConfig, adjustForLuck, showLuckAdjDiags ]);
 
   // 2] Data View
 
@@ -89,18 +96,18 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, teamS
 
   // The luck baseline can either be the user-selecteed baseline or the entire season
   const [ baseOrSeasonTeamStats, baseOrSeason3PMap ] = (() => {
-    switch (adjustForLuck) {
-      case "season":
-        return [
-          teamStats.global, _.fromPairs((rosterStats.global || []).map((p: any) => [ p.key, p ]))
-        ];
-      case "baseline":
-        return [
-          teamStats.baseline, _.fromPairs((rosterStats.baseline || []).map((p: any) => [ p.key, p ]))
-        ];
-      case undefined:
-        return [ {}, {} ]; //(not used)
-    }
+    if (adjustForLuck) {
+      switch (luckConfig.base) {
+        case "baseline":
+          return [
+            teamStats.baseline, _.fromPairs((rosterStats.baseline || []).map((p: any) => [ p.key, p ]))
+          ];
+        default: //("season")
+          return [
+            teamStats.global, _.fromPairs((rosterStats.global || []).map((p: any) => [ p.key, p ]))
+          ];
+      }
+    } else return [ {}, {} ]; //(not used)
   })();
 
   type OnOffBase = "on" | "off" | "baseline";
@@ -141,7 +148,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, teamS
           name="On"
           offLuck={luckAdjustment.on[0]}
           defLuck={luckAdjustment.on[1]}
-          baseline={adjustForLuck || "season"}
+          baseline={luckConfig.base}
         />, "small pt-2"
       ) ] : [] ,
       [ GenericTableOps.buildRowSeparator() ]
@@ -154,7 +161,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, teamS
           name="Off"
           offLuck={luckAdjustment.off[0]}
           defLuck={luckAdjustment.off[1]}
-          baseline={adjustForLuck || "season"}
+          baseline={luckConfig.base}
         />, "small pt-2"
       ) ] : [] ,
       [ GenericTableOps.buildRowSeparator() ]
@@ -167,7 +174,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, teamS
           name="Baseline"
           offLuck={luckAdjustment.baseline[0]}
           defLuck={luckAdjustment.baseline[1]}
-          baseline={adjustForLuck || "season"}
+          baseline={luckConfig.base}
         />, "small pt-2"
       ) ] : [] ,
       [ GenericTableOps.buildRowSeparator() ]
@@ -183,6 +190,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, teamS
   }
 
   // 4] View
+
   return <Container>
     <LoadingOverlay
       active={needToLoadQuery()}
@@ -191,32 +199,33 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, teamS
         "Press 'Submit' to view results"
       }
     >
+      <LuckConfigModal
+        show={showLuckConfig}
+        onHide={() => setShowLuckConfig(false)}
+        onSave={(l: LuckParams) => setLuckConfig(l)}
+        luck={luckConfig}
+      />
       <Form.Row>
         <Col sm="11"/>
         <Form.Group as={Col} sm="1">
-          <Dropdown alignRight>
-            <Dropdown.Toggle variant="outline-secondary" id="dropdown-basic">
-              <FontAwesomeIcon icon={faCog} />
-            </Dropdown.Toggle>
-            <Dropdown.Menu>
-              <GenericTogglingMenuItem
-                text="Adjust for Luck - over season"
-                truthVal={adjustForLuck == "season"}
-                onSelect={() => setAdjustForLuck(adjustForLuck == "season" ? undefined : "season")}
-              />
-              <GenericTogglingMenuItem
-                text="Adjust for Luck - over baseline"
-                truthVal={adjustForLuck == "baseline"}
-                onSelect={() => setAdjustForLuck(adjustForLuck == "baseline" ? undefined : "baseline")}
-              />
-              <Dropdown.Divider />
-              <GenericTogglingMenuItem
-                text="Show Luck Adjustment diagnostics"
-                truthVal={showLuckAdjDiags}
-                onSelect={() => setShowLuckAdjDiags(!showLuckAdjDiags)}
-              />
-            </Dropdown.Menu>
-          </Dropdown>
+          <GenericTogglingMenu>
+            <GenericTogglingMenuItem
+              text="Adjust for Luck"
+              truthVal={adjustForLuck}
+              onSelect={() => setAdjustForLuck(!adjustForLuck)}
+            />
+            <Dropdown.Divider />
+            <GenericTogglingMenuItem
+              text="Configure Luck Adjustments..."
+              truthVal={false}
+              onSelect={() => setShowLuckConfig(true)}
+            />
+            <GenericTogglingMenuItem
+              text="Show Luck Adjustment diagnostics"
+              truthVal={showLuckAdjDiags}
+              onSelect={() => setShowLuckAdjDiags(!showLuckAdjDiags)}
+            />
+          </GenericTogglingMenu>
         </Form.Group>
       </Form.Row>
       <Row>

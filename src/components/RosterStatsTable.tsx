@@ -23,14 +23,12 @@ import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 // @ts-ignore
 import LoadingOverlay from 'react-loading-overlay';
 import Select, { components} from "react-select";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCog } from '@fortawesome/free-solid-svg-icons';
-import { faCheck } from '@fortawesome/free-solid-svg-icons';
 
 // Component imports
 import GenericTable, { GenericTableOps, GenericTableColProps } from "./GenericTable";
 import RosterStatsDiagView from "./diags/RosterStatsDiagView";
 import PositionalDiagView from "./diags/PositionalDiagView";
+import GenericTogglingMenu from "./shared/GenericTogglingMenu";
 import GenericTogglingMenuItem from "./shared/GenericTogglingMenuItem";
 import { TeamStatsModel } from '../components/TeamStatsTable';
 
@@ -481,41 +479,36 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, tea
           </InputGroup>
         </Form.Group>
         <Form.Group as={Col} sm="1">
-          <Dropdown alignRight>
-            <Dropdown.Toggle variant="outline-secondary" id="dropdown-basic">
-              <FontAwesomeIcon icon={faCog} />
-            </Dropdown.Toggle>
-            <Dropdown.Menu>
-              <GenericTogglingMenuItem
-                text="Show expanded statistics"
-                truthVal={expandedView}
-                onSelect={() => setExpandedView(!expandedView)}
-              />
-              <GenericTogglingMenuItem
-                text="Always show baseline statistics"
-                truthVal={alwaysShowBaseline}
-                onSelect={() => setAlwaysShowBaseline(!alwaysShowBaseline)}
-              />
-              <GenericTogglingMenuItem
-                text={<span>{possAsPct ?
-                  "Show possessions as count" : "Show possessions as % of team"
-                }</span>}
-                truthVal={false}
-                onSelect={() => setPossAsPct(!possAsPct)}
-              />
-              <Dropdown.Divider />
-              <GenericTogglingMenuItem
-                text="Show Off/Def Rating diagnostics"
-                truthVal={showDiagMode}
-                onSelect={() => setShowDiagMode(!showDiagMode)}
-              />
-              <GenericTogglingMenuItem
-                text="Show Positional diagnostics"
-                truthVal={showPositionDiags}
-                onSelect={() => setShowPositionDiags(!showPositionDiags)}
-              />
-            </Dropdown.Menu>
-          </Dropdown>
+          <GenericTogglingMenu>
+            <GenericTogglingMenuItem
+              text="Show expanded statistics"
+              truthVal={expandedView}
+              onSelect={() => setExpandedView(!expandedView)}
+            />
+            <GenericTogglingMenuItem
+              text="Always show baseline statistics"
+              truthVal={alwaysShowBaseline}
+              onSelect={() => setAlwaysShowBaseline(!alwaysShowBaseline)}
+            />
+            <GenericTogglingMenuItem
+              text={<span>{possAsPct ?
+                "Show possessions as count" : "Show possessions as % of team"
+              }</span>}
+              truthVal={false}
+              onSelect={() => setPossAsPct(!possAsPct)}
+            />
+            <Dropdown.Divider />
+            <GenericTogglingMenuItem
+              text="Show Off/Def Rating diagnostics"
+              truthVal={showDiagMode}
+              onSelect={() => setShowDiagMode(!showDiagMode)}
+            />
+            <GenericTogglingMenuItem
+              text="Show Positional diagnostics"
+              truthVal={showPositionDiags}
+              onSelect={() => setShowPositionDiags(!showPositionDiags)}
+            />
+          </GenericTogglingMenu>
         </Form.Group>
       </Form.Row>
       <Row>
