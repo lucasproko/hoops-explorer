@@ -8,6 +8,16 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
     active={false}
     text="Press 'Submit' to view results"
   >
+    <LuckConfigModal
+      luck={
+        Object {
+          "base": "season",
+        }
+      }
+      onHide={[Function]}
+      onSave={[Function]}
+      show={false}
+    />
     <FormRow>
       <FormGroup
         as={
@@ -34,6 +44,40 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
             value=""
           />
         </InputGroup>
+      </FormGroup>
+      <Col
+        sm="5"
+      />
+      <FormGroup
+        as={
+          Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "displayName": "Col",
+            "render": [Function],
+          }
+        }
+        sm="1"
+      >
+        <GenericTogglingMenu>
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Adjust for Luck"
+            truthVal={false}
+          />
+          <DropdownDivider
+            role="separator"
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Configure Luck Adjustments..."
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show Luck Adjustment diagnostics"
+            truthVal={false}
+          />
+        </GenericTogglingMenu>
       </FormGroup>
     </FormRow>
     <FormRow>
@@ -2173,6 +2217,16 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
     active={false}
     text="Press 'Submit' to view results"
   >
+    <LuckConfigModal
+      luck={
+        Object {
+          "base": "season",
+        }
+      }
+      onHide={[Function]}
+      onSave={[Function]}
+      show={false}
+    />
     <FormRow>
       <FormGroup
         as={
@@ -2199,6 +2253,40 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
             value=""
           />
         </InputGroup>
+      </FormGroup>
+      <Col
+        sm="5"
+      />
+      <FormGroup
+        as={
+          Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "displayName": "Col",
+            "render": [Function],
+          }
+        }
+        sm="1"
+      >
+        <GenericTogglingMenu>
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Adjust for Luck"
+            truthVal={false}
+          />
+          <DropdownDivider
+            role="separator"
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Configure Luck Adjustments..."
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show Luck Adjustment diagnostics"
+            truthVal={false}
+          />
+        </GenericTogglingMenu>
       </FormGroup>
     </FormRow>
     <FormRow>

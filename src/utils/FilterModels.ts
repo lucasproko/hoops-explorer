@@ -72,7 +72,11 @@ export type LineupFilterParams = {
   maxTableSize?: string,
   sortBy?: string,
   // Filtering:
-  filter?: string
+  filter?: string,
+  // Luck adjustments
+  luck?: LuckParams, //(missing iff default)
+  lineupLuck?: boolean,
+  showLineupLuckDiags?: boolean,
 };
 
 export type TeamReportFilterParams = {
@@ -116,6 +120,8 @@ export class ParamDefaults {
   static readonly defaultLineupMaxTableSize = "50";
   static readonly defaultLineupSortBy = "desc:off_poss";
   static readonly defaultLineupFilter = "";
+  static readonly defaultLineupLuckAdjust = false;
+  static readonly defaultLineupLuckDiagMode = false;
   // Report
   static readonly defaultTeamReportSortBy = "desc:off_poss:on";
   static readonly defaultTeamReportFilter = "";

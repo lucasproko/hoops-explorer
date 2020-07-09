@@ -60,6 +60,7 @@ exports[`LineupAnalyzerPage LineupAnalyzerPage - should create snapshot 1`] = `
           }
         }
         startingState={Object {}}
+        teamStats={Object {}}
       />
     </GenericCollapsibleCard>
   </ForwardRef>

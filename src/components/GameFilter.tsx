@@ -78,9 +78,9 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
     const primaryRequest: GameFilterParams = includeFilterParams ?
       _.merge(
         buildParamsFromState(false)[0], {
-          // Common stats across all tables:
+          // Common luck stats across all tables:
           luck: startLuck,
-          // Team stats:
+          // Team luck stats:
           onOffLuck: startOnOffLuck, showOnOffLuckDiags: startShowOnOffLuckDiags,
           // Individual stats:
           autoOffQuery: autoOffQuery,
