@@ -24,6 +24,7 @@ import { ParamPrefixes, GameFilterParams, LineupFilterParams } from '../utils/Fi
 import { HistoryManager } from '../utils/HistoryManager';
 import LineupStatsTable, { LineupStatsModel } from '../components/LineupStatsTable';
 import { RosterStatsModel } from '../components/RosterStatsTable';
+import { TeamStatsModel } from '../components/TeamStatsTable';
 import GenericCollapsibleCard from '../components/shared/GenericCollapsibleCard';
 import Footer from '../components/shared/Footer';
 import HeaderBar from '../components/shared/HeaderBar';
@@ -47,10 +48,12 @@ const LineupAnalyzerPage: NextPage<{}> = () => {
 
   const [ gaInited, setGaInited ] = useState(false);
   const [ lineupStats, setLineupStats ] = useState({} as LineupStatsModel);
+  const [ teamStats, setTeamStats ] = useState({} as TeamStatsModel);
   const [ rosterStats, setRosterStats ] = useState({on: [], off: [], baseline: []} as RosterStatsModel);
 
-  const injectStats = (lineupStats: LineupStatsModel, rosterStats: RosterStatsModel) => {
+  const injectStats = (lineupStats: LineupStatsModel, teamStats: TeamStatsModel, rosterStats: RosterStatsModel) => {
     setLineupStats(lineupStats);
+    setTeamStats(teamStats);
     setRosterStats(rosterStats);
   }
 
@@ -111,6 +114,7 @@ const LineupAnalyzerPage: NextPage<{}> = () => {
       <GenericCollapsibleCard title="Lineup Analysis">
         <LineupStatsTable
           lineupStats={lineupStats}
+          teamStats={teamStats}
           rosterStats={rosterStats}
           startingState={lineupFilterParams}
           onChangeState={onLineupFilterParamsChange}

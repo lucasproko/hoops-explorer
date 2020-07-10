@@ -16,6 +16,7 @@ import Col from 'react-bootstrap/Col';
 // Component imports:
 import { LineupStatsModel } from '../components/LineupStatsTable';
 import { RosterStatsModel } from '../components/RosterStatsTable';
+import { TeamStatsModel } from '../components/TeamStatsTable';
 import CommonFilter from '../components/CommonFilter';
 import { ParamDefaults, ParamPrefixesType, ParamPrefixes, FilterParamsType, CommonFilterParams, LineupFilterParams, FilterRequestInfo, getCommonFilterParams } from "../utils/FilterModels";
 
@@ -23,7 +24,7 @@ import { ParamDefaults, ParamPrefixesType, ParamPrefixes, FilterParamsType, Comm
 import { QueryUtils } from '../utils/QueryUtils';
 
 type Props = {
-  onStats: (lineupStats: LineupStatsModel, rosterStats: RosterStatsModel) => void;
+  onStats: (lineupStats: LineupStatsModel, teamStats: TeamStatsModel, rosterStats: RosterStatsModel) => void;
   startingState: LineupFilterParams;
   onChangeState: (newParams: LineupFilterParams) => void;
 }
@@ -34,6 +35,10 @@ const LineupFilter: React.FunctionComponent<Props> = ({onStats, startingState, o
   // Data model
 
   const {
+    // Luck stats:
+    luck: startLuck,
+    lineupLuck: startLineupLuck, showLineupLuckDiags: startShowLineupLuckDiags,
+    // Filters etc
     maxTableSize: startMaxTableSize,
     minPoss: startMinPoss,
     sortBy: startSortBy,
@@ -65,6 +70,10 @@ const LineupFilter: React.FunctionComponent<Props> = ({onStats, startingState, o
     const primaryRequest: LineupFilterParams = includeFilterParams ?
     _.merge(
       buildParamsFromState(false)[0], {
+        // Luck stats:
+        luck: startLuck,
+        lineupLuck: startLineupLuck, showLineupLuckDiags: startShowLineupLuckDiags,
+        // Filters etc
         maxTableSize: startMaxTableSize,
         minPoss: startMinPoss,
         sortBy: startSortBy,
@@ -87,6 +96,8 @@ const LineupFilter: React.FunctionComponent<Props> = ({onStats, startingState, o
     };
 
     return [ primaryRequest, [{
+        context: ParamPrefixes.game as ParamPrefixesType, paramsObj: secondaryRequest
+      }, {
         context: ParamPrefixes.player as ParamPrefixesType, paramsObj: secondaryRequest
       }].concat(_.isEqual(entireSeasonRequest, secondaryRequest) ? [] :[{ //(don't make a spurious call)
         context: ParamPrefixes.player as ParamPrefixesType, paramsObj: entireSeasonRequest
@@ -98,17 +109,23 @@ const LineupFilter: React.FunctionComponent<Props> = ({onStats, startingState, o
   function handleResponse(jsonResps: any[], wasError: Boolean) {
     const jsonStatuses = jsonResps.map(j => j.status);
     const lineupJson = jsonResps?.[0]?.responses?.[0] || {};
-    const rosterStatsJson = jsonResps?.[1]?.responses?.[0] || {};
-    const globalRosterStatsJson = jsonResps?.[2]?.responses?.[0] || rosterStatsJson;
+    const teamJson = jsonResps?.[1]?.responses?.[0] || {};
+    const rosterStatsJson = jsonResps?.[2]?.responses?.[0] || {};
+    const globalRosterStatsJson = jsonResps?.[3]?.responses?.[0] || rosterStatsJson;
 
     onStats({
       lineups: lineupJson?.aggregations?.lineups?.buckets,
       error_code: wasError ? (lineupJson?.status || jsonStatuses?.[0] || "Unknown") : undefined
     }, {
+      on: {}, off: {}, onOffMode: true,
+      baseline: teamJson?.aggregations?.tri_filter?.buckets?.baseline || {},
+      global: teamJson?.aggregations?.global?.only?.buckets?.team || {},
+      error_code: wasError ? (teamJson?.status || jsonStatuses?.[1] || "Unknown") : undefined
+    }, {
       baseline: rosterStatsJson?.aggregations?.tri_filter?.buckets?.baseline?.player?.buckets || [],
       global: globalRosterStatsJson?.aggregations?.tri_filter?.buckets?.baseline?.player?.buckets || [],
-      error_code: wasError ? (rosterStatsJson?.status || jsonStatuses?.[1] ||
-          globalRosterStatsJson?.status || jsonStatuses?.[2] || "Unknown") : undefined
+      error_code: wasError ? (rosterStatsJson?.status || jsonStatuses?.[2] ||
+          globalRosterStatsJson?.status || jsonStatuses?.[3] || "Unknown") : undefined
     });
   }
 
