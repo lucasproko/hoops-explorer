@@ -31,6 +31,7 @@ import GenericTogglingMenuItem from './shared/GenericTogglingMenuItem';
 import LuckAdjDiagView from './diags/LuckAdjDiagView';
 
 // Util imports
+import { LineupUtils } from "../utils/stats/LineupUtils";
 import { CbbColors } from "../utils/CbbColors";
 import { CommonTableDefs } from "../utils/CommonTableDefs";
 import { PositionUtils } from "../utils/stats/PositionUtils";
@@ -54,12 +55,18 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, teamStat
 
   // 1] Data Model
 
+  /** Whether to show the weighted combo of all visible lineups */
+  const [ showTotals, setShowTotals ] = useState(false);
+
+  /** Adjust for luck in all stats */
   const [ adjustForLuck, setAdjustForLuck ] = useState(_.isNil(startingState.lineupLuck) ?
     ParamDefaults.defaultLineupLuckAdjust : startingState.lineupLuck
   );
+  /** Whether to show the luck diagnostics */
   const [ showLuckAdjDiags, setShowLuckAdjDiags ] = useState(_.isNil(startingState.showLineupLuckDiags) ?
     ParamDefaults.defaultLineupLuckDiagMode : startingState.showLineupLuckDiags
   );
+  /** The settings to use for luck adjustment */
   const [ luckConfig, setLuckConfig ] = useState(_.isNil(startingState.luck) ?
     ParamDefaults.defaultLuckConfig : startingState.luck
   );
@@ -166,7 +173,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, teamStat
   };
 
   const lineups = lineupStats?.lineups || [];
-  const tableData = _.chain(lineups).filter((lineup) => {
+  const filteredLineups = _.chain(lineups).filter((lineup) => {
       const minPossInt = parseInt(minPoss);
       const offPos = lineup.off_poss?.value || 0;
       const defPos = lineup.def_poss?.value || 0;
@@ -189,14 +196,24 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, teamStat
        [ sorter(sortBy) ]
     ).take(
       parseInt(maxTableSize)
-    ).flatMap((lineup) => {
+    ).value();
+
+  const totalLineupId = "TOTAL";
+  const totalLineup = showTotals ? [
+    _.merge(LineupUtils.calculateAggregatedLineupStats(filteredLineups), {
+      key: totalLineupId
+    })
+  ] : [];
+
+  const tableData = totalLineup.concat(filteredLineups).flatMap((lineup) => {
       const codesAndIds = lineup.players_array?.hits?.hits?.[0]?._source?.players || [];
 
-      const sortedCodesAndIds = PositionUtils.orderLineup(codesAndIds, positionFromPlayerKey, teamSeasonLookup);
+      const sortedCodesAndIds = (lineup.key == totalLineupId) ? undefined :
+        PositionUtils.orderLineup(codesAndIds, positionFromPlayerKey, teamSeasonLookup);
+
       const perLineupPlayerMap = _.fromPairs(codesAndIds.map((cid: { code: string, id: string }) => {
         return [  cid.id, baseOrSeason3PMap[cid.id] ];
       }));
-
       const luckAdj = (adjustForLuck && lineup?.doc_count) ? [
         LuckUtils.calcOffTeamLuckAdj(lineup, rosterStats.baseline || [], baseOrSeasonTeamStats, perLineupPlayerMap, avgEfficiency),
         LuckUtils.calcDefTeamLuckAdj(lineup, baseOrSeasonTeamStats, avgEfficiency),
@@ -206,7 +223,9 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, teamStat
         LuckUtils.injectLuck(lineup, luckAdj?.[0], luckAdj?.[1]);
       }
 
-      const title = sortedCodesAndIds.map((cid: { code: string, id: string}) => cid.code).join(" / ");
+      const title = sortedCodesAndIds ?
+        sortedCodesAndIds.map((cid: { code: string, id: string}) => cid.code).join(" / ") :
+        "Weighted Total";
       const stats = { off_title: title, def_title: "", ...lineup };
       return _.flatten([
         [ GenericTableOps.buildDataRow(stats, offPrefixFn, offCellMetaFn) ],
@@ -221,7 +240,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, teamStat
         ) ] : [] ,
         [ GenericTableOps.buildRowSeparator() ]
       ]);
-    }).value();
+    });
 
   // 3.2] Sorting utils
 
@@ -347,6 +366,11 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, teamStat
         <Col sm="5"/>
         <Form.Group as={Col} sm="1">
           <GenericTogglingMenu>
+            <GenericTogglingMenuItem
+              text="Show Weighted Combo of All Lineups"
+              truthVal={showTotals}
+              onSelect={() => setShowTotals(!showTotals)}
+            />
             <GenericTogglingMenuItem
               text="Adjust for Luck"
               truthVal={adjustForLuck}
