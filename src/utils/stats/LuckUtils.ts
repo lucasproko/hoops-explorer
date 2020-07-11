@@ -107,13 +107,18 @@ export class LuckUtils {
     var varTotal3PA = 0.0;
     var varTotal3P = 0.0;
     const player3PInfo = _.chain(samplePlayers).flatMap((player: any) => {
-      const samplePlayer3PA = get(player?.total_off_3p_attempts, 0);
-      const samplePlayer3P = get(basePlayersMap[player?.key]?.off_3p, 0);
-      varTotal3PA += samplePlayer3PA;
-      varTotal3P += samplePlayer3PA*samplePlayer3P;
+      const playerInfo = basePlayersMap[player?.key];
+      if (playerInfo) {
+        const samplePlayer3PA = get(player?.total_off_3p_attempts, 0);
+        const samplePlayer3P = get(basePlayersMap[player?.key]?.off_3p, 0);
+        varTotal3PA += samplePlayer3PA;
+        varTotal3P += samplePlayer3PA*samplePlayer3P;
 
-      return (samplePlayer3PA > 0) ? //(don't bother with any players who didn't take a 3P shot)
-        [ [ player?.key, { sample3PA: samplePlayer3PA, base3P: samplePlayer3P }  ] ] : [];
+        return (samplePlayer3PA > 0) ? //(don't bother with any players who didn't take a 3P shot)
+          [ [ player?.key, { sample3PA: samplePlayer3PA, base3P: samplePlayer3P }  ] ] : [];
+        } else {
+          return []; //(player not in this lineup)
+        }
 
     }).sortBy((pV: any[]) => -1*(pV?.[1]?.sample3PA || 0)).fromPairs().value();
 
@@ -239,84 +244,86 @@ export class LuckUtils {
     const reset = (mutableVal: any) => {
       return _.isNil(mutableVal?.old_value) ? mutableVal?.value : mutableVal?.old_value;
     }
+    /** If the old value was null we leave it alone */
+    const ignoreNull = (val: any) => (val?.old_value == null) ? { value: null }  : val;
 
     // Offense - 3P
 
-    const off3P = reset(mutableStats?.off_3p)
-    mutableStats.off_3p = offLuck ? {
+    const off3P = reset(mutableStats?.off_3p);
+    mutableStats.off_3p = offLuck ? ignoreNull({
       value: off3P + offLuck.delta3P,
       old_value: off3P,
       override: "Luck adjusted"
-    } : {
+    }) : {
       value: off3P
     };
 
     // Offense - derived 4 factors and efficiency
 
     const eFgOff = reset(mutableStats?.off_efg);
-    mutableStats.off_efg = offLuck ? {
+    mutableStats.off_efg = offLuck ? ignoreNull({
       value: eFgOff + offLuck.deltaOffEfg,
       old_value: eFgOff,
       override: "Adjustment derived from Off 3P%"
-    } : {
+    }) : {
       value: eFgOff
     };
 
     const rawOffPpp = reset(mutableStats?.off_ppp);
-    mutableStats.off_ppp = offLuck ? {
+    mutableStats.off_ppp = offLuck ? ignoreNull({
       value: rawOffPpp + offLuck.deltaOffPpp,
       old_value: rawOffPpp,
       override: "Adjustment derived from Off 3P%"
-    } : {
+    }) : {
       value: rawOffPpp
     };
 
     const adjOffPpp = reset(mutableStats?.off_adj_ppp);
-    mutableStats.off_adj_ppp = offLuck ? {
+    mutableStats.off_adj_ppp = offLuck ? ignoreNull({
       value: adjOffPpp + offLuck.deltaOffPpp,
       old_value: adjOffPpp,
       override: "Adjustment derived from Off 3P%"
-    } : {
+    }) : {
       value: adjOffPpp
     };
 
     // Defense - 3P
 
-    const def3P = reset(mutableStats?.def_3p)
-    mutableStats.def_3p = defLuck ? {
+    const def3P = reset(mutableStats?.def_3p);
+    mutableStats.def_3p = defLuck ? ignoreNull({
       value: defLuck.adjDef3P,
       old_value: def3P,
       override: "Luck adjusted"
-    } : {
+    }) : {
       value: def3P
     };
 
     // Defense - derived 4 factors and efficiency
 
     const eFgDef = reset(mutableStats?.def_efg);
-    mutableStats.def_efg = defLuck ? {
+    mutableStats.def_efg = defLuck ? ignoreNull({
       value: eFgDef + defLuck.deltaDefEfg,
       old_value: eFgDef,
       override: "Adjustment derived from Def 3P%"
-    } : {
+    }) : {
       value: eFgDef
     };
 
     const rawDefPpp = reset(mutableStats?.def_ppp);
-    mutableStats.def_ppp = defLuck ? {
+    mutableStats.def_ppp = defLuck ? ignoreNull({
       value: rawDefPpp + defLuck.deltaDefPpp,
       old_value: rawDefPpp,
       override: "Adjustment derived from Def 3P%"
-    } : {
+    }) : {
       value: rawDefPpp
     };
 
     const adjDefPpp = reset(mutableStats?.def_adj_ppp);
-    mutableStats.def_adj_ppp = defLuck ? {
+    mutableStats.def_adj_ppp = defLuck ? ignoreNull({
       value: adjDefPpp + defLuck.deltaDefPpp,
       old_value: adjDefPpp,
       override: "Adjustment derived from Def 3P%"
-    } : {
+    }) : {
       value: adjDefPpp
     };
 

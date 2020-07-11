@@ -193,9 +193,12 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, teamStat
       const codesAndIds = lineup.players_array?.hits?.hits?.[0]?._source?.players || [];
 
       const sortedCodesAndIds = PositionUtils.orderLineup(codesAndIds, positionFromPlayerKey, teamSeasonLookup);
+      const perLineupPlayerMap = _.fromPairs(codesAndIds.map((cid: { code: string, id: string }) => {
+        return [  cid.id, baseOrSeason3PMap[cid.id] ];
+      }));
 
       const luckAdj = (adjustForLuck && lineup?.doc_count) ? [
-        LuckUtils.calcOffTeamLuckAdj(lineup, rosterStats.baseline || [], baseOrSeasonTeamStats, baseOrSeason3PMap, avgEfficiency),
+        LuckUtils.calcOffTeamLuckAdj(lineup, rosterStats.baseline || [], baseOrSeasonTeamStats, perLineupPlayerMap, avgEfficiency),
         LuckUtils.calcDefTeamLuckAdj(lineup, baseOrSeasonTeamStats, avgEfficiency),
       ] as [OffLuckAdjustmentDiags, DefLuckAdjustmentDiags] : undefined;
 

@@ -213,22 +213,21 @@ const GenericTable: React.FunctionComponent<Props> = ({tableFields, tableData, t
         const actualKey = row.prefixFn(key);
         const tmpVal = row.dataObj[actualKey] || colProp.missingData;
         const style = getRowStyle(key, tmpVal, colProp, row);
-        const valBuilder = () => {
+        const valBuilder = (inVal: any) => {
           try {
-            return colProp.formatter(tmpVal);
+            return colProp.formatter(inVal);
           } catch (e) { //handle formatting errors by making it return blank
             return "";
           }
         };
         //(the isNil handles separators)
-        const val = _.isNil(tmpVal) ? "" : valBuilder() || "";
+        const val = _.isNil(tmpVal) ? "" : valBuilder(tmpVal) || "";
 
         const overrideTooltip = tmpVal?.override ?
           <Tooltip id={`tooltip_${index}_${key}`}>
-            Original Value: {colProp.formatter({value: tmpVal?.old_value}) || colProp.missingData}<br/>
+            Original Value: {valBuilder({value: tmpVal?.old_value}) || colProp.missingData}<br/>
             {tmpVal?.override}
           </Tooltip> : null;
-
 
         const cellMeta = row.cellMetaFn(key, val);
         const rowSpan = colProp.rowSpan(cellMeta);
