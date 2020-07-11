@@ -87,12 +87,9 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, teamStat
   const [ timeoutId, setTimeoutId ] = useState(-1);
   const [ tmpFilterStr, setTmpFilterStr ] = useState(filterStr);
 
-  const filterFragments =
-    filterStr.split(",").map(fragment => _.trim(fragment)).filter(fragment => fragment ? true : false);
-  const filterFragmentsPve =
-    filterFragments.filter(fragment => fragment[0] != '-');
-  const filterFragmentsNve =
-    filterFragments.filter(fragment => fragment[0] == '-').map(fragment => fragment.substring(1));
+  const [
+    filterFragmentsPve, filterFragmentsNve, filterOnPosition
+  ] = PositionUtils.buildPositionalAwareFilter(filterStr);
 
   useEffect(() => { //(this ensures that the filter component is up to date with the union of these fields)
     const newState = _.chain(startingState).merge({
@@ -179,17 +176,15 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, teamStat
       const defPos = lineup.def_poss?.value || 0;
       return offPos >= minPossInt || defPos >= minPossInt; //(unclear which of || vs && is best...)
     }).filter((lineup) => {
-      const namesToTest = _.chain(lineup?.players_array?.hits?.hits).flatMap((pDoc) => {
-        return pDoc?._source.players.map((p: any) => p.id);
-      }).value().concat([ lineup.key ]);
 
-      const playerFilter =
-        (_.isEmpty(filterFragmentsPve) ||
-          _.every(filterFragmentsPve, (frag) => _.some(namesToTest, (name) => name.indexOf(frag) >= 0))
-        ) &&
-        (_.isEmpty(filterFragmentsNve) ||
-          !_.some(filterFragmentsNve, (frag) => _.some(namesToTest, (name) => name.indexOf(frag) >= 0))
-        );
+      const codesAndIds = lineup.players_array?.hits?.hits?.[0]?._source?.players || [];
+      const namesToTest = filterOnPosition ?
+        PositionUtils.orderLineup(codesAndIds, positionFromPlayerKey, teamSeasonLookup) : codesAndIds;
+
+      const playerFilter = PositionUtils.testPositionalAwareFilter(
+        namesToTest, filterFragmentsPve, filterFragmentsNve
+      );
+
       return playerFilter && (lineup.key != ""); // (workaround for #53 pending fix)
 
     }).sortBy(
@@ -331,7 +326,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, teamStat
     }
     setTimeoutId(window.setTimeout(() => {
       setFilterStr(toSet);
-    }, 100));
+    }, 250));
   };
 
   // 4] View

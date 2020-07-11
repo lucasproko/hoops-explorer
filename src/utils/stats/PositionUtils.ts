@@ -396,4 +396,69 @@ export class PositionUtils {
       }), teamSeason
     );
   }
+
+  /** Decomposes a filter string into positionally aware +ve and -ve filters */
+  static buildPositionalAwareFilter(filterStr: string):
+    [ { filter: string, pos: number[] }[], { filter: string, pos: number[] }[], boolean ]
+  {
+    var hasPosition = false;
+    const decomp = (filterStr: string) => {
+      const matchInfo = /([^=]+)(?:=(([a-zA-Z1-5+]+)))?/.exec(filterStr);
+      const filter = matchInfo?.[1];
+      if (filter) {
+        const pos = _.flatMap((matchInfo?.[2] || "").split("+"), s => {
+          switch(_.trim(s.toLowerCase())) {
+            case "1": case "pg": return [ 0 ];
+            case "2": case "sg": return [ 1 ];
+            case "3": case "sf": return [ 2 ];
+            case "4": case "pf": return [ 3 ];
+            case "5": case "c": return [ 4 ];
+          };
+          return [];
+        });
+        hasPosition = hasPosition || !_.isEmpty(pos);
+        return [ { filter: filter.toLowerCase(), pos } ];
+      } else {
+        return [];
+      }
+    };
+    // Basic decomposition:
+    const filterFragments =
+      filterStr.split(/[,/;]/).map(fragment => _.trim(fragment)).filter(fragment => fragment ? true : false);
+    const filterFragmentsPve =
+      filterFragments.filter(fragment => fragment[0] != '-');
+    const filterFragmentsNve =
+      filterFragments.filter(fragment => fragment[0] == '-').map(fragment => fragment.substring(1));
+
+    return [
+      _.flatMap(filterFragmentsPve, s => decomp(s)),
+      _.flatMap(filterFragmentsNve, s => decomp(s)),
+      hasPosition
+    ];
+  }
+
+  /** Checks a positional aware filter against a sorted lineup array */
+  static testPositionalAwareFilter(
+    sortedToTest: { id: string, code: string }[],
+    pveFrags: { filter: string, pos: number[] }[],
+    nveFrags: { filter: string, pos: number[] }[]
+  ): boolean {
+    const noPveFrags = _.isEmpty(pveFrags);
+    const noNveFrags = _.isEmpty(nveFrags);
+
+    const matchFrag = (cid: { id: string, code: string }, frag: string) => {
+      return cid.id.toLowerCase().indexOf(frag) >= 0 || cid.code.toLowerCase().indexOf(frag) >= 0;
+    };
+    const match = (frag: { filter: string, pos: number[] }) => {
+      const namesToTest = _.isEmpty(frag.pos) ? sortedToTest :
+        frag.pos.map(index => sortedToTest[index]);
+
+      return _.some(namesToTest,
+        (cid: { id: string, code: string }) => matchFrag(cid, frag.filter)
+      );
+    };
+    return (noPveFrags || _.every(pveFrags, match))
+        &&
+      (noNveFrags || !_.some(nveFrags, match));
+  }
 }
