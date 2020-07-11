@@ -61,6 +61,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
         <GenericTogglingMenu>
           <GenericTogglingMenuItem
             onSelect={[Function]}
+            text="Show Weighted Combo of All Lineups"
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
             text="Adjust for Luck"
             truthVal={false}
           />
@@ -2268,6 +2273,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
         sm="1"
       >
         <GenericTogglingMenu>
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show Weighted Combo of All Lineups"
+            truthVal={false}
+          />
           <GenericTogglingMenuItem
             onSelect={[Function]}
             text="Adjust for Luck"
