@@ -37,5 +37,13 @@ const Maryland_2018_2020 = [
 /** Team/season -> lineups -> positional overrides */
 export const relativePositionFixes: Record<string, RelativePositionFixRule[]> = {
   "Men_Maryland_2018/9": Maryland_2018_2020,
-  "Men_Maryland_2019/20": Maryland_2018_2020
+  "Men_Maryland_2019/20": Maryland_2018_2020.concat([
+  // 7/10/2020: Lindo plays the 4 alongside Jalen Smith
+  {
+    key: [ undefined, undefined, undefined, "JaSmith", "RiLindo" ],
+    rule: [ undefined, undefined, undefined,
+      { code: "RiLindo", id: "Lindo Jr., Ricky" },
+      { code: "JaSmith", id: "Smith, Jalen" }
+    ]
+  }])
 };

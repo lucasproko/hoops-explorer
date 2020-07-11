@@ -67,15 +67,11 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, teamS
   const [ showLuckConfig, setShowLuckConfig ] = useState(false);
 
   useEffect(() => { //(this ensures that the filter component is up to date with the union of these fields)
-    const newState = _.chain(gameFilterParams).merge({
+    const newState = _.merge(gameFilterParams, {
       luck: luckConfig,
       onOffLuck: adjustForLuck,
       showOnOffLuckDiags: showLuckAdjDiags,
-    }).omit(_.flatten([ // omit all defaults
-      _.isEqual(luckConfig, ParamDefaults.defaultLuckConfig) ? [ 'luck' ] : [],
-      !adjustForLuck ? [ 'onOffLuck' ] : [],
-      (showLuckAdjDiags == ParamDefaults.defaultOnOffLuckDiagMode) ? [ 'showOnOffLuckDiags' ] : []
-    ])).value();
+    });
     onChangeState(newState);
   }, [ luckConfig, adjustForLuck, showLuckAdjDiags ]);
 

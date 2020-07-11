@@ -20,7 +20,7 @@ import Col from 'react-bootstrap/Col';
 
 // App components:
 import GameFilter from '../components/GameFilter';
-import { ParamPrefixes, GameFilterParams, LineupFilterParams } from '../utils/FilterModels';
+import { ParamDefaults, ParamPrefixes, GameFilterParams, LineupFilterParams } from '../utils/FilterModels';
 import TeamStatsTable, { TeamStatsModel } from '../components/TeamStatsTable';
 import RosterStatsTable, { RosterStatsModel } from '../components/RosterStatsTable';
 import RosterCompareTable, { RosterCompareModel } from '../components/RosterCompareTable';
@@ -85,7 +85,24 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
     return UrlRouting.getGameUrl(params, {});
   }
 
-  const onGameFilterParamsChange = (params: GameFilterParams) => {
+  const onGameFilterParamsChange = (rawParams: GameFilterParams) => {
+
+    // Omit all the defaults
+    const params = _.omit(rawParams, _.flatten([ // omit all defaults
+      // TeamStatsTable
+      _.isEqual(rawParams.luck, ParamDefaults.defaultLuckConfig) ? [ 'luck' ] : [],
+      !rawParams.onOffLuck ? [ 'onOffLuck' ] : [],
+      (rawParams.showOnOffLuckDiags == ParamDefaults.defaultOnOffLuckDiagMode) ? [ 'showOnOffLuckDiags' ] : [],
+      // RosterStatsTable
+      (rawParams.sortBy == ParamDefaults.defaultPlayerSortBy) ? [ 'sortBy' ] : [],
+      (rawParams.filter == ParamDefaults.defaultPlayerFilter) ? [ 'filter' ] : [],
+      (rawParams.showBase == ParamDefaults.defaultPlayerShowBase) ? [ 'showBase' ] : [],
+      (rawParams.showExpanded == ParamDefaults.defaultPlayerShowExpanded) ? [ 'showExpanded' ] : [],
+      (rawParams.showDiag == ParamDefaults.defaultPlayerDiagMode) ? [ 'showDiag' ] : [],
+      (rawParams.possAsPct == ParamDefaults.defaultPlayerPossAsPct) ? [ 'possAsPct' ] : [],
+      (rawParams.showPosDiag == ParamDefaults.defaultPlayerPosDiagMode) ? [ 'showPosDiag' ] : [],
+    ]));
+
     const href = getRootUrl(params);
     const as = href;
     //TODO: this doesn't work if it's the same page (#91)

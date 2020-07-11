@@ -122,7 +122,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, tea
   );
 
   useEffect(() => { //(this ensures that the filter component is up to date with the union of these fields)
-    const newState = _.chain(gameFilterParams).merge({
+    const newState = _.merge(gameFilterParams, {
       sortBy: sortBy,
       filter: filterStr,
       showBase: alwaysShowBaseline,
@@ -130,15 +130,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, tea
       showDiag: showDiagMode,
       possAsPct: possAsPct,
       showPosDiag: showPositionDiags,
-    }).omit(_.flatten([ // omit all defaults
-      (sortBy == ParamDefaults.defaultPlayerSortBy) ? [ 'sortBy' ] : [],
-      (filterStr == ParamDefaults.defaultPlayerFilter) ? [ 'filter' ] : [],
-      (alwaysShowBaseline == ParamDefaults.defaultPlayerShowBase) ? [ 'showBase' ] : [],
-      (expandedView == ParamDefaults.defaultPlayerShowExpanded) ? [ 'showExpanded' ] : [],
-      (showDiagMode == ParamDefaults.defaultPlayerDiagMode) ? [ 'showDiag' ] : [],
-      (possAsPct == ParamDefaults.defaultPlayerPossAsPct) ? [ 'possAsPct' ] : [],
-      (showPositionDiags == ParamDefaults.defaultPlayerPosDiagMode) ? [ 'showPosDiag' ] : [],
-    ])).value();
+    });
     onChangeState(newState);
   }, [ sortBy, filterStr, showDiagMode, alwaysShowBaseline, expandedView, possAsPct, showPositionDiags ]);
 

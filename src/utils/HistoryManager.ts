@@ -135,16 +135,28 @@ export class HistoryManager {
     const on = `on:'${tidyQuery(p.onQuery)}'`;
     const off = isAutoOff ? `auto-off` : `off:'${tidyQuery(p.offQuery)}'`;
 
+    // Luck config is not tied to on-off / players
+
+    const showLuckArray = _.flatMap([
+      p.luck ?  [ `${p.luck.base}` ] : []
+    ]);
+    const luckParams = (showLuckArray.length > 0) ?
+      `, luck:[${_.join(showLuckArray, ",")}]` : "";
+
+    // Team view params
+
     const onOffLuck = p.onOffLuck;
     const showOnOffLuckDiags =
       _.isNil(p.showOnOffLuckDiags) ? ParamDefaults.defaultOnOffLuckDiagMode : p.showOnOffLuckDiags;
 
     const showTeamArray = _.flatMap([
-      onOffLuck ? [ `on-off-luck:${onOffLuck}`]: [],
+      onOffLuck ? [ `on-off-luck`]: [],
       showOnOffLuckDiags ? [ `show-on-off-luck-diags` ] : []
     ]);
     const teamParams = (showTeamArray.length > 0) ?
       `, team:[${_.join(showTeamArray, ",")}]` : "";
+
+    // Individual view params
 
     const sortBy =
       _.isNil(p.sortBy) ? ParamDefaults.defaultPlayerSortBy : p.sortBy;
@@ -173,18 +185,38 @@ export class HistoryManager {
     const playerParams = (showPlayerArray.length > 0) ?
       `, players:[${_.join(showPlayerArray, ",")}]` : "";
 
-    return `On/Off: ${HistoryManager.commonFilterSummary(p)}: ${on}, ${off}, ${base}${teamParams}${playerParams}`;
+    return `On/Off: ${HistoryManager.commonFilterSummary(p)}: ${on}, ${off}, ${base}${luckParams}${teamParams}${playerParams}`;
   }
 
   /** Returns a summary string for the game filter */
   static lineupFilterSummary(p: LineupFilterParams) {
     const baseQuery = `query:'${tidyQuery(p.baseQuery)}'`;
+
+    // Luck config
+
+    const luckArray = _.flatMap([
+      p.luck ?  [ `${p.luck.base}` ] : []
+    ]);
+    const luckCfgParams = (luckArray.length > 0) ?
+      `, luck:[${_.join(luckArray, ",")}]` : "";
+
+    // Luck view
+
+    const showLuckArray = _.flatMap([
+      p.lineupLuck ? [ `lineup-luck`]: [],
+      p.showLineupLuckDiags ? [ `show-lineup-luck-diags` ] : []
+    ]);
+    const luckParams = (showLuckArray.length > 0) ?
+      `, ${_.join(showLuckArray, ",")}` : "";
+
+    // Other params
+
     const otherParams = `max:${p.maxTableSize || ParamDefaults.defaultLineupMaxTableSize}, ` +
       `min-poss:${p.minPoss || ParamDefaults.defaultLineupMinPos}, ` +
       `sort:${p.sortBy || ParamDefaults.defaultLineupSortBy}, ` +
       `filter:'${tidyQuery(p.filter)}'`
       ;
-    return `Lineups: ${HistoryManager.commonFilterSummary(p)}: ${baseQuery} (${otherParams})`;
+    return `Lineups: ${HistoryManager.commonFilterSummary(p)}: ${baseQuery}${luckCfgParams}${luckParams} (${otherParams})`;
   }
 
   /** Returns a summary string for the game filter */
