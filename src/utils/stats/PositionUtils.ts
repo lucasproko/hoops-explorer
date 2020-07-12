@@ -401,6 +401,14 @@ export class PositionUtils {
   static buildPositionalAwareFilter(filterStr: string):
     [ { filter: string, pos: number[] }[], { filter: string, pos: number[] }[], boolean ]
   {
+    var separator = "!!!";
+    _.takeWhile([ ';', '/', ',' ], (sep) => {
+      if (filterStr.indexOf(sep) >= 0) {
+        separator = sep;
+      }
+      return separator == "!!!";
+    });
+
     var hasPosition = false;
     const decomp = (filterStr: string) => {
       const matchInfo = /([^=]+)(?:=(([a-zA-Z1-5+]+)))?/.exec(filterStr);
@@ -424,7 +432,7 @@ export class PositionUtils {
     };
     // Basic decomposition:
     const filterFragments =
-      filterStr.split(/[,/;]/).map(fragment => _.trim(fragment)).filter(fragment => fragment ? true : false);
+      filterStr.split(separator).map(fragment => _.trim(fragment)).filter(fragment => fragment ? true : false);
     const filterFragmentsPve =
       filterFragments.filter(fragment => fragment[0] != '-');
     const filterFragmentsNve =

@@ -68,6 +68,7 @@ export type LineupFilterParams = {
 } & {
   // These params need to be explicitly merged in buildParamsFromState(true)
   // For sorting in the generated table:
+  showTotal?: boolean,
   minPoss?: string,
   maxTableSize?: string,
   sortBy?: string,
@@ -116,6 +117,7 @@ export class ParamDefaults {
   static readonly defaultPlayerPossAsPct = true;
   static readonly defaultPlayerPosDiagMode = false;
   // Lineup
+  static readonly defaultLineupShowTotal = false;
   static readonly defaultLineupMinPos = "5";
   static readonly defaultLineupMaxTableSize = "50";
   static readonly defaultLineupSortBy = "desc:off_poss";

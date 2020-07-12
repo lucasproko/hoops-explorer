@@ -55,8 +55,23 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, teamStat
 
   // 1] Data Model
 
+  // 2] State
+
+  // Misc display
+
   /** Whether to show the weighted combo of all visible lineups */
-  const [ showTotals, setShowTotals ] = useState(false);
+  const [ showTotals, setShowTotals ] = useState(_.isNil(startingState.showTotal) ?
+    ParamDefaults.defaultLineupShowTotal : startingState.showTotal
+  );
+
+  const teamSeasonLookup = `${startingState.gender}_${startingState.team}_${startingState.year}`;
+
+  const [ minPoss, setMinPoss ] = useState(startingState.minPoss || ParamDefaults.defaultLineupMinPos);
+  const [ maxTableSize, setMaxTableSize ] = useState(startingState.maxTableSize || ParamDefaults.defaultLineupMaxTableSize);
+  const [ sortBy, setSortBy ] = useState(startingState.sortBy || ParamDefaults.defaultLineupSortBy);
+  const [ filterStr, setFilterStr ] = useState(startingState.filter || ParamDefaults.defaultLineupFilter);
+
+  // Luck:
 
   /** Adjust for luck in all stats */
   const [ adjustForLuck, setAdjustForLuck ] = useState(_.isNil(startingState.lineupLuck) ?
@@ -74,15 +89,6 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, teamStat
   /** Whether we are showing the luck config modal */
   const [ showLuckConfig, setShowLuckConfig ] = useState(false);
 
-  // 2] State
-
-  const teamSeasonLookup = `${startingState.gender}_${startingState.team}_${startingState.year}`;
-
-  const [ minPoss, setMinPoss ] = useState(startingState.minPoss || ParamDefaults.defaultLineupMinPos);
-  const [ maxTableSize, setMaxTableSize ] = useState(startingState.maxTableSize || ParamDefaults.defaultLineupMaxTableSize);
-  const [ sortBy, setSortBy ] = useState(startingState.sortBy || ParamDefaults.defaultLineupSortBy);
-  const [ filterStr, setFilterStr ] = useState(startingState.filter || ParamDefaults.defaultLineupFilter);
-
   // (slight delay when typing into the filter to make it more responsive)
   const [ timeoutId, setTimeoutId ] = useState(-1);
   const [ tmpFilterStr, setTmpFilterStr ] = useState(filterStr);
@@ -98,17 +104,19 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, teamStat
       lineupLuck: adjustForLuck,
       showLineupLuckDiags: showLuckAdjDiags,
       // Misc filters
+      showTotal: showTotals,
       minPoss: minPoss,
       maxTableSize: maxTableSize,
       sortBy: sortBy,
       filter: filterStr
     }).omit(_.flatten([
+      (showTotals == ParamDefaults.defaultLineupShowTotal) ? [ 'showTotal' ] : [],
       _.isEqual(luckConfig, ParamDefaults.defaultLuckConfig) ? [ 'luck' ] : [],
       !adjustForLuck ? [ 'lineupLuck' ] : [],
       (showLuckAdjDiags == ParamDefaults.defaultOnOffLuckDiagMode) ? [ 'showLineupLuckDiags' ] : []
     ])).value();
     onChangeState(newState);
-  }, [ minPoss, maxTableSize, sortBy, filterStr,
+  }, [ showTotals, minPoss, maxTableSize, sortBy, filterStr,
         luckConfig, adjustForLuck, showLuckAdjDiags ]);
 
   // 3] Utils
@@ -345,7 +353,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, teamStat
         luck={luckConfig}
       />
       <Form.Row>
-        <Form.Group as={Col} sm="6">
+        <Form.Group as={Col} sm="8">
           <InputGroup>
             <InputGroup.Prepend>
               <InputGroup.Text id="filter">Filter</InputGroup.Text>
@@ -353,12 +361,12 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, teamStat
             <Form.Control
               onKeyUp={onFilterChange}
               onChange={onFilterChange}
-              placeholder = "eg Player1Surname,Player2FirstName,-Player3Name"
+              placeholder = "eg Player1Code=PG/Player2FirstName/-Player3Surname/Player4Name=4+5"
               value={tmpFilterStr}
             />
           </InputGroup>
         </Form.Group>
-        <Col sm="5"/>
+        <Col sm="3"/>
         <Form.Group as={Col} sm="1">
           <GenericTogglingMenu>
             <GenericTogglingMenuItem

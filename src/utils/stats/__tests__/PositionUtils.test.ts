@@ -246,6 +246,10 @@ describe("PositionUtils", () => {
 
   });
   test("PositionUtils - buildPositionalAwareFilter", () => {
+    expect(PositionUtils.buildPositionalAwareFilter("test1,test3;test2")).toEqual([[
+      { filter: "test1,test3", pos: [] },
+      { filter: "test2", pos: [] },
+    ], [], false]);
     expect(PositionUtils.buildPositionalAwareFilter("Test1,test2")).toEqual([[
       { filter: "test1", pos: [] },
       { filter: "test2", pos: [] },
@@ -254,11 +258,11 @@ describe("PositionUtils", () => {
       { filter: "test1", pos: [] },
       { filter: "test3", pos: [] },
     ], [ { filter: "test2", pos: [] } ], false]);
-    expect(PositionUtils.buildPositionalAwareFilter("test1=pg / -test2=Pf+C ; test3")).toEqual([[
+    expect(PositionUtils.buildPositionalAwareFilter("test1=pg / -test2=Pf+C / test3")).toEqual([[
       { filter: "test1", pos: [0] },
       { filter: "test3", pos: [] },
     ], [ { filter: "test2", pos: [3, 4] } ], true]);
-    expect(PositionUtils.buildPositionalAwareFilter("test1=1+2+3,-test2=SG+SF ,test3=4+5")).toEqual([[
+    expect(PositionUtils.buildPositionalAwareFilter("test1=1+2+3;-test2=SG+SF ;test3=4+5")).toEqual([[
       { filter: "test1", pos: [0,1,2] },
       { filter: "test3", pos: [3,4] },
     ], [ { filter: "test2", pos: [1, 2] } ], true]);

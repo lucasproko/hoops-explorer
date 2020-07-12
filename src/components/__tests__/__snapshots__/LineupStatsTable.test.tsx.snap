@@ -27,7 +27,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
             "render": [Function],
           }
         }
-        sm="6"
+        sm="8"
       >
         <InputGroup>
           <InputGroupPrepend>
@@ -40,13 +40,13 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
           <FormControl
             onChange={[Function]}
             onKeyUp={[Function]}
-            placeholder="eg Player1Surname,Player2FirstName,-Player3Name"
+            placeholder="eg Player1Code=PG/Player2FirstName/-Player3Surname/Player4Name=4+5"
             value=""
           />
         </InputGroup>
       </FormGroup>
       <Col
-        sm="5"
+        sm="3"
       />
       <FormGroup
         as={
@@ -2241,7 +2241,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
             "render": [Function],
           }
         }
-        sm="6"
+        sm="8"
       >
         <InputGroup>
           <InputGroupPrepend>
@@ -2254,13 +2254,13 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
           <FormControl
             onChange={[Function]}
             onKeyUp={[Function]}
-            placeholder="eg Player1Surname,Player2FirstName,-Player3Name"
+            placeholder="eg Player1Code=PG/Player2FirstName/-Player3Surname/Player4Name=4+5"
             value=""
           />
         </InputGroup>
       </FormGroup>
       <Col
-        sm="5"
+        sm="3"
       />
       <FormGroup
         as={

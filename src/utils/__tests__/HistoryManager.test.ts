@@ -73,7 +73,7 @@ describe("HistoryManager", () => {
     const lineup1: LineupFilterParams = {
     };
     expect(HistoryManager.lineupFilterSummary(lineup1)).toBe(
-      `Lineups: 2019/20  (M): query:'' (max:50, min-poss:5, sort:desc:off_poss, filter:'')`
+      `Lineups: 2019/20  (M): query:'' (max:50, min-poss:5)`
     );
     const lineup2: LineupFilterParams = {
       team: "team2",
@@ -93,12 +93,13 @@ describe("HistoryManager", () => {
       year: "2018/19", gender: "Women",
       baseQuery: "test ''", maxTableSize: 11,
       minRank: "1", maxRank: "370",
+      showTotal: true,
       minPoss: 10, sortBy: "test-sort",
       filter: "Test'Filter",
       lineupLuck: true
     };
     expect(HistoryManager.filterSummary("lineup-", lineup3)).toBe(
-      `Lineups: 2018/19 team2 (W): query:'test ""', lineup-luck (max:11, min-poss:10, sort:test-sort, filter:'Test"Filter')`
+      `Lineups: 2018/19 team2 (W): query:'test ""', lineup-luck (max:11, min-poss:10, show-total, sort:test-sort, filter:'Test"Filter')`
     );
   });
   test("HistoryManager - teamReportFilterSummary", () => {
