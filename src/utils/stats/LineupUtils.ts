@@ -232,24 +232,43 @@ export class LineupUtils {
       const key = keyVal[0];
       if (!LineupUtils.ignoreFieldSet.hasOwnProperty(key)) {
         const val = keyVal[1]?.value || 0;
+        const oldVal = keyVal[1]?.old_value || undefined; //(used in luck adjustment)
         // all the shot type stats:
         const totalShotTypeKey: string | undefined = LineupUtils.getShotTypeField(key);
 
         if (!mutableAcc.hasOwnProperty(key)) { //(init if necessary)
           mutableAcc[key] = { value: 0 };
+          if (oldVal) { //(luck adjustment)
+            mutableAcc[key].old_value = 0;
+            mutableAcc[key].override = keyVal[1]?.override;
+          }
         }
         if (totalShotTypeKey) {
           mutableAcc[key].value += val*obj[totalShotTypeKey]?.value || 0;
+          if (oldVal) {
+            mutableAcc[key].old_value += oldVal*obj[totalShotTypeKey]?.value || 0;
+          }
         } else if (weights.ppp_totals.hasOwnProperty(key)) {
           mutableAcc[key].value += val*(weights.ppp_totals as any)[key];
+          if (oldVal) {
+            mutableAcc[key].old_value += oldVal*(weights.ppp_totals as any)[key];
+          }
         } else if (weights.orb_totals.hasOwnProperty(key)) {
           mutableAcc[key].value += val*(weights.orb_totals as any)[key];
+          //(no luck adjustment currently)
         } else if (_.startsWith(key, "total_") || LineupUtils.sumFieldSet.hasOwnProperty(key)) {
           mutableAcc[key].value += val;
+          //(no luck adjustment currently)
         } else if (_.startsWith(key, "off_")) { // everything else if off/def FGA
           mutableAcc[key].value += val*weights.fga_totals.off;
+          if (oldVal) {
+            mutableAcc[key].old_value += oldVal*weights.fga_totals.off;
+          }
         } else if (_.startsWith(key, "def_")) {
           mutableAcc[key].value += val*weights.fga_totals.def;
+          if (oldVal) {
+            mutableAcc[key].old_value += oldVal*weights.fga_totals.def;
+          }
         }
       }
     }).value();
@@ -260,6 +279,8 @@ export class LineupUtils {
   ) {
     const weights = LineupUtils.getSimpleWeights(mutableAcc, 1, regressDiffs);
 
+    //TODO: why are some of these completions harmonic dependent and some not?!
+
     _.chain(mutableAcc).toPairs().forEach((keyVal) => {
       const key = keyVal[0];
       // all the shot type stats:
@@ -267,6 +288,7 @@ export class LineupUtils {
 
       if (!LineupUtils.ignoreFieldSet.hasOwnProperty(key)) {
         const val = keyVal[1]?.value || 0;
+        const oldVal = keyVal[1]?.old_value || undefined;
 
         if (totalShotTypeKey) {
           const offOrDefWeight = _.startsWith(key, "off_") ?
@@ -275,10 +297,17 @@ export class LineupUtils {
           const adjRegWeight = _.endsWith(key, "2p") ? offOrDefWeight*2.0/3 : offOrDefWeight/3;
 
           mutableAcc[key].value = 1.0*val/(adjRegWeight + mutableAcc[totalShotTypeKey]?.value || 1);
+          if (oldVal) {
+            mutableAcc[key].old_value = 1.0*oldVal/(adjRegWeight + mutableAcc[totalShotTypeKey]?.value || 1);
+          }
         } else if (weights.ppp_totals.hasOwnProperty(key)) {
           mutableAcc[key].value = 1.0*val/(weights.ppp_totals as any)[key];
+          if (oldVal) {
+            mutableAcc[key].old_value = 1.0*oldVal/(weights.ppp_totals as any)[key];
+          }
         } else if (weights.orb_totals.hasOwnProperty(key)) {
           mutableAcc[key].value = 1.0*val/(weights.orb_totals as any)[key];
+          // (no luck adjustment for these stats)
         } else if (_.startsWith(key, "total_") || LineupUtils.sumFieldSet.hasOwnProperty(key)) {
           //(nothing to do)
         } else if (key == "off_ftr") { // FTR are special case because you can have a FT but 0 FGA
@@ -287,16 +316,24 @@ export class LineupUtils {
           } else {
             mutableAcc[key].value = 1.0*(mutableAcc.total_off_fta?.value || 0.0)/weights.fga_totals.off;
           }
+          // (no luck adjustment for these stats)
         } else if (key == "def_ftr") {
           if (harmonicWeighting) {
             mutableAcc[key].value = 1.0*val/weights.fga_totals.def;
           } else {
             mutableAcc[key].value = 1.0*(mutableAcc.total_def_fta?.value || 0.0)/weights.fga_totals.def;
           }
+          // (no luck adjustment for these stats)
         } else if (_.startsWith(key, "off_")) { // everything else if off/def FGA
           mutableAcc[key].value = 1.0*val/weights.fga_totals.off;
+          if (oldVal) {
+            mutableAcc[key].old_value = 1.0*oldVal/weights.fga_totals.off;
+          }
         } else if (_.startsWith(key, "def_")) {
           mutableAcc[key].value = 1.0*val/weights.fga_totals.def;
+          if (oldVal) {
+            mutableAcc[key].old_value = 1.0*oldVal/weights.fga_totals.def;
+          }
         }
       }
     }).value();

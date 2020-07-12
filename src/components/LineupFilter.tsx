@@ -39,6 +39,7 @@ const LineupFilter: React.FunctionComponent<Props> = ({onStats, startingState, o
     luck: startLuck,
     lineupLuck: startLineupLuck, showLineupLuckDiags: startShowLineupLuckDiags,
     // Filters etc
+    showTotal: startShowTotal,
     maxTableSize: startMaxTableSize,
     minPoss: startMinPoss,
     sortBy: startSortBy,
@@ -74,6 +75,7 @@ const LineupFilter: React.FunctionComponent<Props> = ({onStats, startingState, o
         luck: startLuck,
         lineupLuck: startLineupLuck, showLineupLuckDiags: startShowLineupLuckDiags,
         // Filters etc
+        showTotal: startShowTotal,
         maxTableSize: startMaxTableSize,
         minPoss: startMinPoss,
         sortBy: startSortBy,

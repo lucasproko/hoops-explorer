@@ -245,5 +245,73 @@ describe("PositionUtils", () => {
     ).toEqual(expectedResultUnsorted);
 
   });
+  test("PositionUtils - buildPositionalAwareFilter", () => {
+    expect(PositionUtils.buildPositionalAwareFilter("test1,test3;test2")).toEqual([[
+      { filter: "test1,test3", pos: [] },
+      { filter: "test2", pos: [] },
+    ], [], false]);
+    expect(PositionUtils.buildPositionalAwareFilter("Test1,test2")).toEqual([[
+      { filter: "test1", pos: [] },
+      { filter: "test2", pos: [] },
+    ], [], false]);
+    expect(PositionUtils.buildPositionalAwareFilter("test1,-test2 ,tEst3")).toEqual([[
+      { filter: "test1", pos: [] },
+      { filter: "test3", pos: [] },
+    ], [ { filter: "test2", pos: [] } ], false]);
+    expect(PositionUtils.buildPositionalAwareFilter("test1=pg / -test2=Pf+C / test3")).toEqual([[
+      { filter: "test1", pos: [0] },
+      { filter: "test3", pos: [] },
+    ], [ { filter: "test2", pos: [3, 4] } ], true]);
+    expect(PositionUtils.buildPositionalAwareFilter("test1=1+2+3;-test2=SG+SF ;test3=4+5")).toEqual([[
+      { filter: "test1", pos: [0,1,2] },
+      { filter: "test3", pos: [3,4] },
+    ], [ { filter: "test2", pos: [1, 2] } ], true]);
+  });
+  test("PositionUtils - testPositionalAwareFilter", () => {
+    const testLineup = [
+      { code: "AnCowan", id: "Cowan, Anthony" },
+      { code: "ErAyala", id: "Ayala, Eric" },
+      { code: "AaWiggins", id: "Wiggins, Aaron" },
+      { code: "DaMorsell", id: "Morsell, Darryl" },
+      { code: "JaSmith", id: "Smith, Jalen" },
+    ];
+    expect(PositionUtils.testPositionalAwareFilter(testLineup,
+      [], []
+    )).toBe(true);
+    expect(PositionUtils.testPositionalAwareFilter(testLineup,
+      [ { filter: "eric", pos: [] } ], []
+    )).toBe(true);
+    expect(PositionUtils.testPositionalAwareFilter(testLineup,
+      [ { filter: "jalen", pos: [] } ], [ { filter: "darryl", pos: [0] } ] //(wrong pos)
+    )).toBe(true);
+    expect(PositionUtils.testPositionalAwareFilter(testLineup,
+      [ { filter: "jalen", pos: [] } ], [ { filter: "darryl", pos: [0,3] } ] //(only pos has to be right)
+    )).toBe(false);
+
+    expect(PositionUtils.testPositionalAwareFilter(testLineup,
+      [ { filter: "jalen", pos: [] } ], [ { filter: "darryl", pos: [] } ] //(nve matches)
+    )).toBe(false);
+    expect(PositionUtils.testPositionalAwareFilter(testLineup,
+      [ { filter: "aaron", pos: [] }, { filter: "anthony", pos: [] } ], //(need all +ve matches)
+      []
+    )).toBe(true);
+    expect(PositionUtils.testPositionalAwareFilter(testLineup,
+      [ { filter: "missing", pos: [] }, { filter: "eric", pos: [] } ], //(need all +ve matches)
+      []
+    )).toBe(false);
+    expect(PositionUtils.testPositionalAwareFilter(testLineup,
+      [ { filter: "jalen", pos: [] }, { filter: "eric", pos: [] } ],
+      [ { filter: "darryl", pos: [] }, { filter: "darryl", pos: [0] } ] //(just need one nve match)
+    )).toBe(false);
+
+    testLineup.forEach((cid: {code: string, id: string}, index: number) => {
+      expect(PositionUtils.testPositionalAwareFilter(testLineup,
+        [ { filter: cid.code.toLowerCase(), pos: [index] } ], []
+      )).toBe(true);
+      expect(PositionUtils.testPositionalAwareFilter(testLineup,
+        [], [ { filter: cid.code.toLowerCase(), pos: [index] } ],
+      )).toBe(false);
+    });
+  });
 
 });

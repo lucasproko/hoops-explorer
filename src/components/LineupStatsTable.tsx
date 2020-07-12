@@ -31,6 +31,7 @@ import GenericTogglingMenuItem from './shared/GenericTogglingMenuItem';
 import LuckAdjDiagView from './diags/LuckAdjDiagView';
 
 // Util imports
+import { LineupUtils } from "../utils/stats/LineupUtils";
 import { CbbColors } from "../utils/CbbColors";
 import { CommonTableDefs } from "../utils/CommonTableDefs";
 import { PositionUtils } from "../utils/stats/PositionUtils";
@@ -54,20 +55,14 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, teamStat
 
   // 1] Data Model
 
-  const [ adjustForLuck, setAdjustForLuck ] = useState(_.isNil(startingState.lineupLuck) ?
-    ParamDefaults.defaultLineupLuckAdjust : startingState.lineupLuck
-  );
-  const [ showLuckAdjDiags, setShowLuckAdjDiags ] = useState(_.isNil(startingState.showLineupLuckDiags) ?
-    ParamDefaults.defaultLineupLuckDiagMode : startingState.showLineupLuckDiags
-  );
-  const [ luckConfig, setLuckConfig ] = useState(_.isNil(startingState.luck) ?
-    ParamDefaults.defaultLuckConfig : startingState.luck
-  );
-
-  /** Whether we are showing the luck config modal */
-  const [ showLuckConfig, setShowLuckConfig ] = useState(false);
-
   // 2] State
+
+  // Misc display
+
+  /** Whether to show the weighted combo of all visible lineups */
+  const [ showTotals, setShowTotals ] = useState(_.isNil(startingState.showTotal) ?
+    ParamDefaults.defaultLineupShowTotal : startingState.showTotal
+  );
 
   const teamSeasonLookup = `${startingState.gender}_${startingState.team}_${startingState.year}`;
 
@@ -76,16 +71,31 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, teamStat
   const [ sortBy, setSortBy ] = useState(startingState.sortBy || ParamDefaults.defaultLineupSortBy);
   const [ filterStr, setFilterStr ] = useState(startingState.filter || ParamDefaults.defaultLineupFilter);
 
+  // Luck:
+
+  /** Adjust for luck in all stats */
+  const [ adjustForLuck, setAdjustForLuck ] = useState(_.isNil(startingState.lineupLuck) ?
+    ParamDefaults.defaultLineupLuckAdjust : startingState.lineupLuck
+  );
+  /** Whether to show the luck diagnostics */
+  const [ showLuckAdjDiags, setShowLuckAdjDiags ] = useState(_.isNil(startingState.showLineupLuckDiags) ?
+    ParamDefaults.defaultLineupLuckDiagMode : startingState.showLineupLuckDiags
+  );
+  /** The settings to use for luck adjustment */
+  const [ luckConfig, setLuckConfig ] = useState(_.isNil(startingState.luck) ?
+    ParamDefaults.defaultLuckConfig : startingState.luck
+  );
+
+  /** Whether we are showing the luck config modal */
+  const [ showLuckConfig, setShowLuckConfig ] = useState(false);
+
   // (slight delay when typing into the filter to make it more responsive)
   const [ timeoutId, setTimeoutId ] = useState(-1);
   const [ tmpFilterStr, setTmpFilterStr ] = useState(filterStr);
 
-  const filterFragments =
-    filterStr.split(",").map(fragment => _.trim(fragment)).filter(fragment => fragment ? true : false);
-  const filterFragmentsPve =
-    filterFragments.filter(fragment => fragment[0] != '-');
-  const filterFragmentsNve =
-    filterFragments.filter(fragment => fragment[0] == '-').map(fragment => fragment.substring(1));
+  const [
+    filterFragmentsPve, filterFragmentsNve, filterOnPosition
+  ] = PositionUtils.buildPositionalAwareFilter(filterStr);
 
   useEffect(() => { //(this ensures that the filter component is up to date with the union of these fields)
     const newState = _.chain(startingState).merge({
@@ -94,17 +104,19 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, teamStat
       lineupLuck: adjustForLuck,
       showLineupLuckDiags: showLuckAdjDiags,
       // Misc filters
+      showTotal: showTotals,
       minPoss: minPoss,
       maxTableSize: maxTableSize,
       sortBy: sortBy,
       filter: filterStr
     }).omit(_.flatten([
+      (showTotals == ParamDefaults.defaultLineupShowTotal) ? [ 'showTotal' ] : [],
       _.isEqual(luckConfig, ParamDefaults.defaultLuckConfig) ? [ 'luck' ] : [],
       !adjustForLuck ? [ 'lineupLuck' ] : [],
       (showLuckAdjDiags == ParamDefaults.defaultOnOffLuckDiagMode) ? [ 'showLineupLuckDiags' ] : []
     ])).value();
     onChangeState(newState);
-  }, [ minPoss, maxTableSize, sortBy, filterStr,
+  }, [ showTotals, minPoss, maxTableSize, sortBy, filterStr,
         luckConfig, adjustForLuck, showLuckAdjDiags ]);
 
   // 3] Utils
@@ -166,37 +178,45 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, teamStat
   };
 
   const lineups = lineupStats?.lineups || [];
-  const tableData = _.chain(lineups).filter((lineup) => {
+  const filteredLineups = _.chain(lineups).filter((lineup) => {
       const minPossInt = parseInt(minPoss);
       const offPos = lineup.off_poss?.value || 0;
       const defPos = lineup.def_poss?.value || 0;
       return offPos >= minPossInt || defPos >= minPossInt; //(unclear which of || vs && is best...)
     }).filter((lineup) => {
-      const namesToTest = _.chain(lineup?.players_array?.hits?.hits).flatMap((pDoc) => {
-        return pDoc?._source.players.map((p: any) => p.id);
-      }).value().concat([ lineup.key ]);
 
-      const playerFilter =
-        (_.isEmpty(filterFragmentsPve) ||
-          _.every(filterFragmentsPve, (frag) => _.some(namesToTest, (name) => name.indexOf(frag) >= 0))
-        ) &&
-        (_.isEmpty(filterFragmentsNve) ||
-          !_.some(filterFragmentsNve, (frag) => _.some(namesToTest, (name) => name.indexOf(frag) >= 0))
-        );
+      const codesAndIds = lineup.players_array?.hits?.hits?.[0]?._source?.players || [];
+      const namesToTest = filterOnPosition ?
+        PositionUtils.orderLineup(codesAndIds, positionFromPlayerKey, teamSeasonLookup) : codesAndIds;
+
+      const playerFilter = PositionUtils.testPositionalAwareFilter(
+        namesToTest, filterFragmentsPve, filterFragmentsNve
+      );
+
       return playerFilter && (lineup.key != ""); // (workaround for #53 pending fix)
 
     }).sortBy(
        [ sorter(sortBy) ]
     ).take(
       parseInt(maxTableSize)
-    ).flatMap((lineup) => {
+    ).value();
+
+  const totalLineupId = "TOTAL";
+  const totalLineup = showTotals ? [
+    _.merge(LineupUtils.calculateAggregatedLineupStats(filteredLineups), {
+      key: totalLineupId
+    })
+  ] : [];
+
+  const tableData = totalLineup.concat(filteredLineups).flatMap((lineup) => {
       const codesAndIds = lineup.players_array?.hits?.hits?.[0]?._source?.players || [];
 
-      const sortedCodesAndIds = PositionUtils.orderLineup(codesAndIds, positionFromPlayerKey, teamSeasonLookup);
+      const sortedCodesAndIds = (lineup.key == totalLineupId) ? undefined :
+        PositionUtils.orderLineup(codesAndIds, positionFromPlayerKey, teamSeasonLookup);
+
       const perLineupPlayerMap = _.fromPairs(codesAndIds.map((cid: { code: string, id: string }) => {
         return [  cid.id, baseOrSeason3PMap[cid.id] ];
       }));
-
       const luckAdj = (adjustForLuck && lineup?.doc_count) ? [
         LuckUtils.calcOffTeamLuckAdj(lineup, rosterStats.baseline || [], baseOrSeasonTeamStats, perLineupPlayerMap, avgEfficiency),
         LuckUtils.calcDefTeamLuckAdj(lineup, baseOrSeasonTeamStats, avgEfficiency),
@@ -206,7 +226,9 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, teamStat
         LuckUtils.injectLuck(lineup, luckAdj?.[0], luckAdj?.[1]);
       }
 
-      const title = sortedCodesAndIds.map((cid: { code: string, id: string}) => cid.code).join(" / ");
+      const title = sortedCodesAndIds ?
+        sortedCodesAndIds.map((cid: { code: string, id: string}) => cid.code).join(" / ") :
+        "Weighted Total";
       const stats = { off_title: title, def_title: "", ...lineup };
       return _.flatten([
         [ GenericTableOps.buildDataRow(stats, offPrefixFn, offCellMetaFn) ],
@@ -221,7 +243,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, teamStat
         ) ] : [] ,
         [ GenericTableOps.buildRowSeparator() ]
       ]);
-    }).value();
+    });
 
   // 3.2] Sorting utils
 
@@ -312,7 +334,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, teamStat
     }
     setTimeoutId(window.setTimeout(() => {
       setFilterStr(toSet);
-    }, 100));
+    }, 250));
   };
 
   // 4] View
@@ -331,7 +353,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, teamStat
         luck={luckConfig}
       />
       <Form.Row>
-        <Form.Group as={Col} sm="6">
+        <Form.Group as={Col} sm="8">
           <InputGroup>
             <InputGroup.Prepend>
               <InputGroup.Text id="filter">Filter</InputGroup.Text>
@@ -339,14 +361,19 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, teamStat
             <Form.Control
               onKeyUp={onFilterChange}
               onChange={onFilterChange}
-              placeholder = "eg Player1Surname,Player2FirstName,-Player3Name"
+              placeholder = "eg Player1Code=PG/Player2FirstName/-Player3Surname/Player4Name=4+5"
               value={tmpFilterStr}
             />
           </InputGroup>
         </Form.Group>
-        <Col sm="5"/>
+        <Col sm="3"/>
         <Form.Group as={Col} sm="1">
           <GenericTogglingMenu>
+            <GenericTogglingMenuItem
+              text="Show Weighted Combo of All Lineups"
+              truthVal={showTotals}
+              onSelect={() => setShowTotals(!showTotals)}
+            />
             <GenericTogglingMenuItem
               text="Adjust for Luck"
               truthVal={adjustForLuck}

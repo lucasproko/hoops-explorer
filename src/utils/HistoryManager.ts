@@ -211,11 +211,17 @@ export class HistoryManager {
 
     // Other params
 
+    const otherParamArray = _.flatMap([
+      p.showTotal ? [ `show-total` ] : [],
+      p.sortBy && (p.sortBy != ParamDefaults.defaultLineupSortBy) ? [ `sort:${p.sortBy || ParamDefaults.defaultLineupSortBy}` ] : [],
+      p.filter ? [ `filter:'${tidyQuery(p.filter)}'` ] : [],
+    ]);
+    const otherParamsFromArray = (otherParamArray.length > 0) ?
+      `, ${_.join(otherParamArray, ", ")}` : "";
     const otherParams = `max:${p.maxTableSize || ParamDefaults.defaultLineupMaxTableSize}, ` +
-      `min-poss:${p.minPoss || ParamDefaults.defaultLineupMinPos}, ` +
-      `sort:${p.sortBy || ParamDefaults.defaultLineupSortBy}, ` +
-      `filter:'${tidyQuery(p.filter)}'`
-      ;
+      `min-poss:${p.minPoss || ParamDefaults.defaultLineupMinPos}` +
+      `${otherParamsFromArray}`;
+
     return `Lineups: ${HistoryManager.commonFilterSummary(p)}: ${baseQuery}${luckCfgParams}${luckParams} (${otherParams})`;
   }
 

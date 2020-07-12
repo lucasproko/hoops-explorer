@@ -21,7 +21,7 @@ exports[`HistorySelector HistorySelector - should create snapshot 1`] = `
           "value": "[\\"report-\\",{\\"gender\\":\\"Women\\",\\"year\\":\\"2018/9\\"}]",
         },
         Object {
-          "label": "Lineups: 2018/9  (W): query:'' (max:50, min-poss:5, sort:desc:off_poss, filter:'')",
+          "label": "Lineups: 2018/9  (W): query:'' (max:50, min-poss:5)",
           "value": "[\\"lineup-\\",{\\"gender\\":\\"Women\\",\\"year\\":\\"2018/9\\"}]",
         },
         Object {
