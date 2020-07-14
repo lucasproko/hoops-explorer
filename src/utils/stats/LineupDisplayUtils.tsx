@@ -111,7 +111,7 @@ export class LineupDisplayUtils {
 //          background: `linear-gradient(to right, ${singleColorField(cid.id, colorField)}, white, ${singleColorField(cid.id, "def_adj_rtg")})`
         }}>
           <span style={{
-            fontSize: "larger",
+            fontSize: "small",
             fontWeight: fontWeight(cid.id)
           }}>{cid.code}</span>
       </Badge>
