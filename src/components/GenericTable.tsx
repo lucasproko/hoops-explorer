@@ -89,7 +89,11 @@ export class GenericTableOps {
   static readonly defaultFormatter = (val: any) => "" + val;
   static readonly htmlFormatter = (val: React.ReactNode) => val;
   static readonly intFormatter = (val: any) => "" + (val.value as number).toFixed(0);
-  static readonly percentFormatter = (val: any) => ((val.value as number)*100.0).toFixed(1); //(no % it's too ugly)
+  static readonly percentFormatter = (val: any) => {
+    return (val.value >= 1) ?
+        ((val.value as number)*100.0).toFixed(0) //(remove the .0 in the 100% case)
+      : ((val.value as number)*100.0).toFixed(1); //(no % it's too ugly)
+  }
   static readonly pointsFormatter = (val: any) => (val.value as number).toFixed(1);
   static readonly defaultCellMeta = (key: string, value: any) => "";
   static readonly defaultColorPicker =  (val: any, cellMeta: string) => undefined;
@@ -130,9 +134,10 @@ export class GenericTableOps {
     colName: string, toolTip: string,
     rowSpan: (key: string) => number = GenericTableOps.defaultRowSpanCalculator,
     className: string = "",
-    colFormatterOverride: (val: any) => string | React.ReactNode = GenericTableOps.defaultFormatter
+    colFormatterOverride: (val: any) => string | React.ReactNode = GenericTableOps.defaultFormatter,
+    widthOverride: number = 8
   ) {
-    return new GenericTableColProps(colName, toolTip, 8, true,
+    return new GenericTableColProps(colName, toolTip, widthOverride, true,
       colFormatterOverride, GenericTableOps.defaultColorPicker,
       rowSpan, undefined, className
     );

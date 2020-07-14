@@ -40,7 +40,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
           <FormControl
             onChange={[Function]}
             onKeyUp={[Function]}
-            placeholder="eg Player1Code=PG/Player2FirstName/-Player3Surname/Player4Name=4+5"
+            placeholder="eg Player1Code=PG;Player2FirstName;-Player3Surname;Player4Name=4+5"
             value=""
           />
         </InputGroup>
@@ -59,6 +59,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
         sm="1"
       >
         <GenericTogglingMenu>
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Decorate Lineups"
+            truthVal={true}
+          />
           <GenericTogglingMenuItem
             onSelect={[Function]}
             text="Show Weighted Combo of All Lineups"
@@ -272,27 +277,27 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                       "value": "asc:diff_to",
                     },
                     Object {
-                      "label": "ORB% (Desc. / Offensive)",
+                      "label": "OR% (Desc. / Offensive)",
                       "value": "desc:off_orb",
                     },
                     Object {
-                      "label": "ORB% (Asc. / Offensive)",
+                      "label": "OR% (Asc. / Offensive)",
                       "value": "asc:off_orb",
                     },
                     Object {
-                      "label": "ORB% (Desc. / Defensive)",
+                      "label": "OR% (Desc. / Defensive)",
                       "value": "desc:def_orb",
                     },
                     Object {
-                      "label": "ORB% (Asc. / Defensive)",
+                      "label": "OR% (Asc. / Defensive)",
                       "value": "asc:def_orb",
                     },
                     Object {
-                      "label": "ORB% (Desc. / Off-Def)",
+                      "label": "OR% (Desc. / Off-Def)",
                       "value": "desc:diff_orb",
                     },
                     Object {
-                      "label": "ORB% (Asc. / Off-Def)",
+                      "label": "OR% (Asc. / Off-Def)",
                       "value": "asc:diff_orb",
                     },
                     Object {
@@ -676,7 +681,364 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                   "off_ppp": Object {
                     "value": 111.22448979591837,
                   },
-                  "off_title": "AaWiggins / DaMorsell / JaSmith / ErAyala / AnCowan",
+                  "off_title": Array [
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith_info"
+                          placement="right"
+                        >
+                          <span>
+                            Wiggins, Aaron: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Morsell, Darryl: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Smith, Jalen: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Ayala, Eric: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Cowan, Anthony: unknown
+                            <br />
+                          </span>
+                        </ForwardRef>
+                      }
+                      placement="auto"
+                    >
+                      <span>
+                        <span
+                          style={
+                            Object {
+                              "whiteSpace": "nowrap",
+                            }
+                          }
+                        >
+                          <ForwardRef
+                            pill={false}
+                            style={
+                              Object {
+                                "backgroundColor": "#cccccc80",
+                              }
+                            }
+                            variant="light"
+                          >
+                            <span
+                              style={
+                                Object {
+                                  "fontSize": "larger",
+                                  "fontWeight": 500,
+                                }
+                              }
+                            >
+                              AaWiggins
+                            </span>
+                          </ForwardRef>
+                          <span
+                            style={Object {}}
+                          />
+                        </span>
+                        <span
+                          style={
+                            Object {
+                              "opacity": 0,
+                            }
+                          }
+                        >
+                           ; 
+                        </span>
+                      </span>
+                    </OverlayTrigger>,
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith_info"
+                          placement="right"
+                        >
+                          <span>
+                            Wiggins, Aaron: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Morsell, Darryl: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Smith, Jalen: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Ayala, Eric: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Cowan, Anthony: unknown
+                            <br />
+                          </span>
+                        </ForwardRef>
+                      }
+                      placement="auto"
+                    >
+                      <span>
+                        <span
+                          style={
+                            Object {
+                              "whiteSpace": "nowrap",
+                            }
+                          }
+                        >
+                          <ForwardRef
+                            pill={false}
+                            style={
+                              Object {
+                                "backgroundColor": "#cccccc80",
+                              }
+                            }
+                            variant="light"
+                          >
+                            <span
+                              style={
+                                Object {
+                                  "fontSize": "larger",
+                                  "fontWeight": 500,
+                                }
+                              }
+                            >
+                              DaMorsell
+                            </span>
+                          </ForwardRef>
+                          <span
+                            style={Object {}}
+                          />
+                        </span>
+                        <span
+                          style={
+                            Object {
+                              "opacity": 0,
+                            }
+                          }
+                        >
+                           ; 
+                        </span>
+                      </span>
+                    </OverlayTrigger>,
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith_info"
+                          placement="right"
+                        >
+                          <span>
+                            Wiggins, Aaron: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Morsell, Darryl: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Smith, Jalen: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Ayala, Eric: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Cowan, Anthony: unknown
+                            <br />
+                          </span>
+                        </ForwardRef>
+                      }
+                      placement="auto"
+                    >
+                      <span>
+                        <span
+                          style={
+                            Object {
+                              "whiteSpace": "nowrap",
+                            }
+                          }
+                        >
+                          <ForwardRef
+                            pill={false}
+                            style={
+                              Object {
+                                "backgroundColor": "#cccccc80",
+                              }
+                            }
+                            variant="light"
+                          >
+                            <span
+                              style={
+                                Object {
+                                  "fontSize": "larger",
+                                  "fontWeight": 500,
+                                }
+                              }
+                            >
+                              JaSmith
+                            </span>
+                          </ForwardRef>
+                          <span
+                            style={Object {}}
+                          />
+                        </span>
+                        <span
+                          style={
+                            Object {
+                              "opacity": 0,
+                            }
+                          }
+                        >
+                           ; 
+                        </span>
+                      </span>
+                    </OverlayTrigger>,
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith_info"
+                          placement="right"
+                        >
+                          <span>
+                            Wiggins, Aaron: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Morsell, Darryl: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Smith, Jalen: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Ayala, Eric: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Cowan, Anthony: unknown
+                            <br />
+                          </span>
+                        </ForwardRef>
+                      }
+                      placement="auto"
+                    >
+                      <span>
+                        <span
+                          style={
+                            Object {
+                              "whiteSpace": "nowrap",
+                            }
+                          }
+                        >
+                          <ForwardRef
+                            pill={false}
+                            style={
+                              Object {
+                                "backgroundColor": "#cccccc80",
+                              }
+                            }
+                            variant="light"
+                          >
+                            <span
+                              style={
+                                Object {
+                                  "fontSize": "larger",
+                                  "fontWeight": 500,
+                                }
+                              }
+                            >
+                              ErAyala
+                            </span>
+                          </ForwardRef>
+                          <span
+                            style={Object {}}
+                          />
+                        </span>
+                        <span
+                          style={
+                            Object {
+                              "opacity": 0,
+                            }
+                          }
+                        >
+                           ; 
+                        </span>
+                      </span>
+                    </OverlayTrigger>,
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith_info"
+                          placement="right"
+                        >
+                          <span>
+                            Wiggins, Aaron: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Morsell, Darryl: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Smith, Jalen: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Ayala, Eric: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Cowan, Anthony: unknown
+                            <br />
+                          </span>
+                        </ForwardRef>
+                      }
+                      placement="auto"
+                    >
+                      <span>
+                        <span
+                          style={
+                            Object {
+                              "whiteSpace": "nowrap",
+                            }
+                          }
+                        >
+                          <ForwardRef
+                            pill={false}
+                            style={
+                              Object {
+                                "backgroundColor": "#cccccc80",
+                              }
+                            }
+                            variant="light"
+                          >
+                            <span
+                              style={
+                                Object {
+                                  "fontSize": "larger",
+                                  "fontWeight": 500,
+                                }
+                              }
+                            >
+                              AnCowan
+                            </span>
+                          </ForwardRef>
+                          <span
+                            style={Object {}}
+                          />
+                        </span>
+                      </span>
+                    </OverlayTrigger>,
+                  ],
                   "off_to": Object {
                     "value": 0.14285714285714285,
                   },
@@ -903,7 +1265,364 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                   "off_ppp": Object {
                     "value": 111.22448979591837,
                   },
-                  "off_title": "AaWiggins / DaMorsell / JaSmith / ErAyala / AnCowan",
+                  "off_title": Array [
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith_info"
+                          placement="right"
+                        >
+                          <span>
+                            Wiggins, Aaron: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Morsell, Darryl: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Smith, Jalen: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Ayala, Eric: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Cowan, Anthony: unknown
+                            <br />
+                          </span>
+                        </ForwardRef>
+                      }
+                      placement="auto"
+                    >
+                      <span>
+                        <span
+                          style={
+                            Object {
+                              "whiteSpace": "nowrap",
+                            }
+                          }
+                        >
+                          <ForwardRef
+                            pill={false}
+                            style={
+                              Object {
+                                "backgroundColor": "#cccccc80",
+                              }
+                            }
+                            variant="light"
+                          >
+                            <span
+                              style={
+                                Object {
+                                  "fontSize": "larger",
+                                  "fontWeight": 500,
+                                }
+                              }
+                            >
+                              AaWiggins
+                            </span>
+                          </ForwardRef>
+                          <span
+                            style={Object {}}
+                          />
+                        </span>
+                        <span
+                          style={
+                            Object {
+                              "opacity": 0,
+                            }
+                          }
+                        >
+                           ; 
+                        </span>
+                      </span>
+                    </OverlayTrigger>,
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith_info"
+                          placement="right"
+                        >
+                          <span>
+                            Wiggins, Aaron: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Morsell, Darryl: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Smith, Jalen: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Ayala, Eric: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Cowan, Anthony: unknown
+                            <br />
+                          </span>
+                        </ForwardRef>
+                      }
+                      placement="auto"
+                    >
+                      <span>
+                        <span
+                          style={
+                            Object {
+                              "whiteSpace": "nowrap",
+                            }
+                          }
+                        >
+                          <ForwardRef
+                            pill={false}
+                            style={
+                              Object {
+                                "backgroundColor": "#cccccc80",
+                              }
+                            }
+                            variant="light"
+                          >
+                            <span
+                              style={
+                                Object {
+                                  "fontSize": "larger",
+                                  "fontWeight": 500,
+                                }
+                              }
+                            >
+                              DaMorsell
+                            </span>
+                          </ForwardRef>
+                          <span
+                            style={Object {}}
+                          />
+                        </span>
+                        <span
+                          style={
+                            Object {
+                              "opacity": 0,
+                            }
+                          }
+                        >
+                           ; 
+                        </span>
+                      </span>
+                    </OverlayTrigger>,
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith_info"
+                          placement="right"
+                        >
+                          <span>
+                            Wiggins, Aaron: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Morsell, Darryl: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Smith, Jalen: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Ayala, Eric: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Cowan, Anthony: unknown
+                            <br />
+                          </span>
+                        </ForwardRef>
+                      }
+                      placement="auto"
+                    >
+                      <span>
+                        <span
+                          style={
+                            Object {
+                              "whiteSpace": "nowrap",
+                            }
+                          }
+                        >
+                          <ForwardRef
+                            pill={false}
+                            style={
+                              Object {
+                                "backgroundColor": "#cccccc80",
+                              }
+                            }
+                            variant="light"
+                          >
+                            <span
+                              style={
+                                Object {
+                                  "fontSize": "larger",
+                                  "fontWeight": 500,
+                                }
+                              }
+                            >
+                              JaSmith
+                            </span>
+                          </ForwardRef>
+                          <span
+                            style={Object {}}
+                          />
+                        </span>
+                        <span
+                          style={
+                            Object {
+                              "opacity": 0,
+                            }
+                          }
+                        >
+                           ; 
+                        </span>
+                      </span>
+                    </OverlayTrigger>,
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith_info"
+                          placement="right"
+                        >
+                          <span>
+                            Wiggins, Aaron: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Morsell, Darryl: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Smith, Jalen: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Ayala, Eric: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Cowan, Anthony: unknown
+                            <br />
+                          </span>
+                        </ForwardRef>
+                      }
+                      placement="auto"
+                    >
+                      <span>
+                        <span
+                          style={
+                            Object {
+                              "whiteSpace": "nowrap",
+                            }
+                          }
+                        >
+                          <ForwardRef
+                            pill={false}
+                            style={
+                              Object {
+                                "backgroundColor": "#cccccc80",
+                              }
+                            }
+                            variant="light"
+                          >
+                            <span
+                              style={
+                                Object {
+                                  "fontSize": "larger",
+                                  "fontWeight": 500,
+                                }
+                              }
+                            >
+                              ErAyala
+                            </span>
+                          </ForwardRef>
+                          <span
+                            style={Object {}}
+                          />
+                        </span>
+                        <span
+                          style={
+                            Object {
+                              "opacity": 0,
+                            }
+                          }
+                        >
+                           ; 
+                        </span>
+                      </span>
+                    </OverlayTrigger>,
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith_info"
+                          placement="right"
+                        >
+                          <span>
+                            Wiggins, Aaron: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Morsell, Darryl: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Smith, Jalen: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Ayala, Eric: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Cowan, Anthony: unknown
+                            <br />
+                          </span>
+                        </ForwardRef>
+                      }
+                      placement="auto"
+                    >
+                      <span>
+                        <span
+                          style={
+                            Object {
+                              "whiteSpace": "nowrap",
+                            }
+                          }
+                        >
+                          <ForwardRef
+                            pill={false}
+                            style={
+                              Object {
+                                "backgroundColor": "#cccccc80",
+                              }
+                            }
+                            variant="light"
+                          >
+                            <span
+                              style={
+                                Object {
+                                  "fontSize": "larger",
+                                  "fontWeight": 500,
+                                }
+                              }
+                            >
+                              AnCowan
+                            </span>
+                          </ForwardRef>
+                          <span
+                            style={Object {}}
+                          />
+                        </span>
+                      </span>
+                    </OverlayTrigger>,
+                  ],
                   "off_to": Object {
                     "value": 0.14285714285714285,
                   },
@@ -1133,7 +1852,364 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                   "off_ppp": Object {
                     "value": 89.1891891891892,
                   },
-                  "off_title": "AaWiggins / DaMorsell / JaSmith / DoScott / AnCowan",
+                  "off_title": Array [
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith_info"
+                          placement="right"
+                        >
+                          <span>
+                            Wiggins, Aaron: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Morsell, Darryl: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Smith, Jalen: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Scott, Donta: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Cowan, Anthony: unknown
+                            <br />
+                          </span>
+                        </ForwardRef>
+                      }
+                      placement="auto"
+                    >
+                      <span>
+                        <span
+                          style={
+                            Object {
+                              "whiteSpace": "nowrap",
+                            }
+                          }
+                        >
+                          <ForwardRef
+                            pill={false}
+                            style={
+                              Object {
+                                "backgroundColor": "#cccccc80",
+                              }
+                            }
+                            variant="light"
+                          >
+                            <span
+                              style={
+                                Object {
+                                  "fontSize": "larger",
+                                  "fontWeight": 500,
+                                }
+                              }
+                            >
+                              AaWiggins
+                            </span>
+                          </ForwardRef>
+                          <span
+                            style={Object {}}
+                          />
+                        </span>
+                        <span
+                          style={
+                            Object {
+                              "opacity": 0,
+                            }
+                          }
+                        >
+                           ; 
+                        </span>
+                      </span>
+                    </OverlayTrigger>,
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith_info"
+                          placement="right"
+                        >
+                          <span>
+                            Wiggins, Aaron: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Morsell, Darryl: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Smith, Jalen: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Scott, Donta: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Cowan, Anthony: unknown
+                            <br />
+                          </span>
+                        </ForwardRef>
+                      }
+                      placement="auto"
+                    >
+                      <span>
+                        <span
+                          style={
+                            Object {
+                              "whiteSpace": "nowrap",
+                            }
+                          }
+                        >
+                          <ForwardRef
+                            pill={false}
+                            style={
+                              Object {
+                                "backgroundColor": "#cccccc80",
+                              }
+                            }
+                            variant="light"
+                          >
+                            <span
+                              style={
+                                Object {
+                                  "fontSize": "larger",
+                                  "fontWeight": 500,
+                                }
+                              }
+                            >
+                              DaMorsell
+                            </span>
+                          </ForwardRef>
+                          <span
+                            style={Object {}}
+                          />
+                        </span>
+                        <span
+                          style={
+                            Object {
+                              "opacity": 0,
+                            }
+                          }
+                        >
+                           ; 
+                        </span>
+                      </span>
+                    </OverlayTrigger>,
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith_info"
+                          placement="right"
+                        >
+                          <span>
+                            Wiggins, Aaron: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Morsell, Darryl: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Smith, Jalen: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Scott, Donta: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Cowan, Anthony: unknown
+                            <br />
+                          </span>
+                        </ForwardRef>
+                      }
+                      placement="auto"
+                    >
+                      <span>
+                        <span
+                          style={
+                            Object {
+                              "whiteSpace": "nowrap",
+                            }
+                          }
+                        >
+                          <ForwardRef
+                            pill={false}
+                            style={
+                              Object {
+                                "backgroundColor": "#cccccc80",
+                              }
+                            }
+                            variant="light"
+                          >
+                            <span
+                              style={
+                                Object {
+                                  "fontSize": "larger",
+                                  "fontWeight": 500,
+                                }
+                              }
+                            >
+                              JaSmith
+                            </span>
+                          </ForwardRef>
+                          <span
+                            style={Object {}}
+                          />
+                        </span>
+                        <span
+                          style={
+                            Object {
+                              "opacity": 0,
+                            }
+                          }
+                        >
+                           ; 
+                        </span>
+                      </span>
+                    </OverlayTrigger>,
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith_info"
+                          placement="right"
+                        >
+                          <span>
+                            Wiggins, Aaron: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Morsell, Darryl: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Smith, Jalen: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Scott, Donta: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Cowan, Anthony: unknown
+                            <br />
+                          </span>
+                        </ForwardRef>
+                      }
+                      placement="auto"
+                    >
+                      <span>
+                        <span
+                          style={
+                            Object {
+                              "whiteSpace": "nowrap",
+                            }
+                          }
+                        >
+                          <ForwardRef
+                            pill={false}
+                            style={
+                              Object {
+                                "backgroundColor": "#cccccc80",
+                              }
+                            }
+                            variant="light"
+                          >
+                            <span
+                              style={
+                                Object {
+                                  "fontSize": "larger",
+                                  "fontWeight": 500,
+                                }
+                              }
+                            >
+                              DoScott
+                            </span>
+                          </ForwardRef>
+                          <span
+                            style={Object {}}
+                          />
+                        </span>
+                        <span
+                          style={
+                            Object {
+                              "opacity": 0,
+                            }
+                          }
+                        >
+                           ; 
+                        </span>
+                      </span>
+                    </OverlayTrigger>,
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith_info"
+                          placement="right"
+                        >
+                          <span>
+                            Wiggins, Aaron: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Morsell, Darryl: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Smith, Jalen: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Scott, Donta: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Cowan, Anthony: unknown
+                            <br />
+                          </span>
+                        </ForwardRef>
+                      }
+                      placement="auto"
+                    >
+                      <span>
+                        <span
+                          style={
+                            Object {
+                              "whiteSpace": "nowrap",
+                            }
+                          }
+                        >
+                          <ForwardRef
+                            pill={false}
+                            style={
+                              Object {
+                                "backgroundColor": "#cccccc80",
+                              }
+                            }
+                            variant="light"
+                          >
+                            <span
+                              style={
+                                Object {
+                                  "fontSize": "larger",
+                                  "fontWeight": 500,
+                                }
+                              }
+                            >
+                              AnCowan
+                            </span>
+                          </ForwardRef>
+                          <span
+                            style={Object {}}
+                          />
+                        </span>
+                      </span>
+                    </OverlayTrigger>,
+                  ],
                   "off_to": Object {
                     "value": 0.18018018018018017,
                   },
@@ -1360,7 +2436,364 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                   "off_ppp": Object {
                     "value": 89.1891891891892,
                   },
-                  "off_title": "AaWiggins / DaMorsell / JaSmith / DoScott / AnCowan",
+                  "off_title": Array [
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith_info"
+                          placement="right"
+                        >
+                          <span>
+                            Wiggins, Aaron: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Morsell, Darryl: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Smith, Jalen: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Scott, Donta: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Cowan, Anthony: unknown
+                            <br />
+                          </span>
+                        </ForwardRef>
+                      }
+                      placement="auto"
+                    >
+                      <span>
+                        <span
+                          style={
+                            Object {
+                              "whiteSpace": "nowrap",
+                            }
+                          }
+                        >
+                          <ForwardRef
+                            pill={false}
+                            style={
+                              Object {
+                                "backgroundColor": "#cccccc80",
+                              }
+                            }
+                            variant="light"
+                          >
+                            <span
+                              style={
+                                Object {
+                                  "fontSize": "larger",
+                                  "fontWeight": 500,
+                                }
+                              }
+                            >
+                              AaWiggins
+                            </span>
+                          </ForwardRef>
+                          <span
+                            style={Object {}}
+                          />
+                        </span>
+                        <span
+                          style={
+                            Object {
+                              "opacity": 0,
+                            }
+                          }
+                        >
+                           ; 
+                        </span>
+                      </span>
+                    </OverlayTrigger>,
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith_info"
+                          placement="right"
+                        >
+                          <span>
+                            Wiggins, Aaron: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Morsell, Darryl: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Smith, Jalen: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Scott, Donta: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Cowan, Anthony: unknown
+                            <br />
+                          </span>
+                        </ForwardRef>
+                      }
+                      placement="auto"
+                    >
+                      <span>
+                        <span
+                          style={
+                            Object {
+                              "whiteSpace": "nowrap",
+                            }
+                          }
+                        >
+                          <ForwardRef
+                            pill={false}
+                            style={
+                              Object {
+                                "backgroundColor": "#cccccc80",
+                              }
+                            }
+                            variant="light"
+                          >
+                            <span
+                              style={
+                                Object {
+                                  "fontSize": "larger",
+                                  "fontWeight": 500,
+                                }
+                              }
+                            >
+                              DaMorsell
+                            </span>
+                          </ForwardRef>
+                          <span
+                            style={Object {}}
+                          />
+                        </span>
+                        <span
+                          style={
+                            Object {
+                              "opacity": 0,
+                            }
+                          }
+                        >
+                           ; 
+                        </span>
+                      </span>
+                    </OverlayTrigger>,
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith_info"
+                          placement="right"
+                        >
+                          <span>
+                            Wiggins, Aaron: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Morsell, Darryl: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Smith, Jalen: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Scott, Donta: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Cowan, Anthony: unknown
+                            <br />
+                          </span>
+                        </ForwardRef>
+                      }
+                      placement="auto"
+                    >
+                      <span>
+                        <span
+                          style={
+                            Object {
+                              "whiteSpace": "nowrap",
+                            }
+                          }
+                        >
+                          <ForwardRef
+                            pill={false}
+                            style={
+                              Object {
+                                "backgroundColor": "#cccccc80",
+                              }
+                            }
+                            variant="light"
+                          >
+                            <span
+                              style={
+                                Object {
+                                  "fontSize": "larger",
+                                  "fontWeight": 500,
+                                }
+                              }
+                            >
+                              JaSmith
+                            </span>
+                          </ForwardRef>
+                          <span
+                            style={Object {}}
+                          />
+                        </span>
+                        <span
+                          style={
+                            Object {
+                              "opacity": 0,
+                            }
+                          }
+                        >
+                           ; 
+                        </span>
+                      </span>
+                    </OverlayTrigger>,
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith_info"
+                          placement="right"
+                        >
+                          <span>
+                            Wiggins, Aaron: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Morsell, Darryl: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Smith, Jalen: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Scott, Donta: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Cowan, Anthony: unknown
+                            <br />
+                          </span>
+                        </ForwardRef>
+                      }
+                      placement="auto"
+                    >
+                      <span>
+                        <span
+                          style={
+                            Object {
+                              "whiteSpace": "nowrap",
+                            }
+                          }
+                        >
+                          <ForwardRef
+                            pill={false}
+                            style={
+                              Object {
+                                "backgroundColor": "#cccccc80",
+                              }
+                            }
+                            variant="light"
+                          >
+                            <span
+                              style={
+                                Object {
+                                  "fontSize": "larger",
+                                  "fontWeight": 500,
+                                }
+                              }
+                            >
+                              DoScott
+                            </span>
+                          </ForwardRef>
+                          <span
+                            style={Object {}}
+                          />
+                        </span>
+                        <span
+                          style={
+                            Object {
+                              "opacity": 0,
+                            }
+                          }
+                        >
+                           ; 
+                        </span>
+                      </span>
+                    </OverlayTrigger>,
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith_info"
+                          placement="right"
+                        >
+                          <span>
+                            Wiggins, Aaron: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Morsell, Darryl: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Smith, Jalen: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Scott, Donta: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Cowan, Anthony: unknown
+                            <br />
+                          </span>
+                        </ForwardRef>
+                      }
+                      placement="auto"
+                    >
+                      <span>
+                        <span
+                          style={
+                            Object {
+                              "whiteSpace": "nowrap",
+                            }
+                          }
+                        >
+                          <ForwardRef
+                            pill={false}
+                            style={
+                              Object {
+                                "backgroundColor": "#cccccc80",
+                              }
+                            }
+                            variant="light"
+                          >
+                            <span
+                              style={
+                                Object {
+                                  "fontSize": "larger",
+                                  "fontWeight": 500,
+                                }
+                              }
+                            >
+                              AnCowan
+                            </span>
+                          </ForwardRef>
+                          <span
+                            style={Object {}}
+                          />
+                        </span>
+                      </span>
+                    </OverlayTrigger>,
+                  ],
                   "off_to": Object {
                     "value": 0.18018018018018017,
                   },
@@ -1590,7 +3023,364 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                   "off_ppp": Object {
                     "value": 109.80392156862744,
                   },
-                  "off_title": "AaWiggins / DoScott / JaSmith / ErAyala / AnCowan",
+                  "off_title": Array [
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="AaWiggins_AnCowan_DoScott_ErAyala_JaSmith_info"
+                          placement="right"
+                        >
+                          <span>
+                            Wiggins, Aaron: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Scott, Donta: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Smith, Jalen: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Ayala, Eric: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Cowan, Anthony: unknown
+                            <br />
+                          </span>
+                        </ForwardRef>
+                      }
+                      placement="auto"
+                    >
+                      <span>
+                        <span
+                          style={
+                            Object {
+                              "whiteSpace": "nowrap",
+                            }
+                          }
+                        >
+                          <ForwardRef
+                            pill={false}
+                            style={
+                              Object {
+                                "backgroundColor": "#cccccc80",
+                              }
+                            }
+                            variant="light"
+                          >
+                            <span
+                              style={
+                                Object {
+                                  "fontSize": "larger",
+                                  "fontWeight": 500,
+                                }
+                              }
+                            >
+                              AaWiggins
+                            </span>
+                          </ForwardRef>
+                          <span
+                            style={Object {}}
+                          />
+                        </span>
+                        <span
+                          style={
+                            Object {
+                              "opacity": 0,
+                            }
+                          }
+                        >
+                           ; 
+                        </span>
+                      </span>
+                    </OverlayTrigger>,
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="AaWiggins_AnCowan_DoScott_ErAyala_JaSmith_info"
+                          placement="right"
+                        >
+                          <span>
+                            Wiggins, Aaron: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Scott, Donta: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Smith, Jalen: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Ayala, Eric: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Cowan, Anthony: unknown
+                            <br />
+                          </span>
+                        </ForwardRef>
+                      }
+                      placement="auto"
+                    >
+                      <span>
+                        <span
+                          style={
+                            Object {
+                              "whiteSpace": "nowrap",
+                            }
+                          }
+                        >
+                          <ForwardRef
+                            pill={false}
+                            style={
+                              Object {
+                                "backgroundColor": "#cccccc80",
+                              }
+                            }
+                            variant="light"
+                          >
+                            <span
+                              style={
+                                Object {
+                                  "fontSize": "larger",
+                                  "fontWeight": 500,
+                                }
+                              }
+                            >
+                              DoScott
+                            </span>
+                          </ForwardRef>
+                          <span
+                            style={Object {}}
+                          />
+                        </span>
+                        <span
+                          style={
+                            Object {
+                              "opacity": 0,
+                            }
+                          }
+                        >
+                           ; 
+                        </span>
+                      </span>
+                    </OverlayTrigger>,
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="AaWiggins_AnCowan_DoScott_ErAyala_JaSmith_info"
+                          placement="right"
+                        >
+                          <span>
+                            Wiggins, Aaron: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Scott, Donta: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Smith, Jalen: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Ayala, Eric: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Cowan, Anthony: unknown
+                            <br />
+                          </span>
+                        </ForwardRef>
+                      }
+                      placement="auto"
+                    >
+                      <span>
+                        <span
+                          style={
+                            Object {
+                              "whiteSpace": "nowrap",
+                            }
+                          }
+                        >
+                          <ForwardRef
+                            pill={false}
+                            style={
+                              Object {
+                                "backgroundColor": "#cccccc80",
+                              }
+                            }
+                            variant="light"
+                          >
+                            <span
+                              style={
+                                Object {
+                                  "fontSize": "larger",
+                                  "fontWeight": 500,
+                                }
+                              }
+                            >
+                              JaSmith
+                            </span>
+                          </ForwardRef>
+                          <span
+                            style={Object {}}
+                          />
+                        </span>
+                        <span
+                          style={
+                            Object {
+                              "opacity": 0,
+                            }
+                          }
+                        >
+                           ; 
+                        </span>
+                      </span>
+                    </OverlayTrigger>,
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="AaWiggins_AnCowan_DoScott_ErAyala_JaSmith_info"
+                          placement="right"
+                        >
+                          <span>
+                            Wiggins, Aaron: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Scott, Donta: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Smith, Jalen: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Ayala, Eric: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Cowan, Anthony: unknown
+                            <br />
+                          </span>
+                        </ForwardRef>
+                      }
+                      placement="auto"
+                    >
+                      <span>
+                        <span
+                          style={
+                            Object {
+                              "whiteSpace": "nowrap",
+                            }
+                          }
+                        >
+                          <ForwardRef
+                            pill={false}
+                            style={
+                              Object {
+                                "backgroundColor": "#cccccc80",
+                              }
+                            }
+                            variant="light"
+                          >
+                            <span
+                              style={
+                                Object {
+                                  "fontSize": "larger",
+                                  "fontWeight": 500,
+                                }
+                              }
+                            >
+                              ErAyala
+                            </span>
+                          </ForwardRef>
+                          <span
+                            style={Object {}}
+                          />
+                        </span>
+                        <span
+                          style={
+                            Object {
+                              "opacity": 0,
+                            }
+                          }
+                        >
+                           ; 
+                        </span>
+                      </span>
+                    </OverlayTrigger>,
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="AaWiggins_AnCowan_DoScott_ErAyala_JaSmith_info"
+                          placement="right"
+                        >
+                          <span>
+                            Wiggins, Aaron: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Scott, Donta: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Smith, Jalen: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Ayala, Eric: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Cowan, Anthony: unknown
+                            <br />
+                          </span>
+                        </ForwardRef>
+                      }
+                      placement="auto"
+                    >
+                      <span>
+                        <span
+                          style={
+                            Object {
+                              "whiteSpace": "nowrap",
+                            }
+                          }
+                        >
+                          <ForwardRef
+                            pill={false}
+                            style={
+                              Object {
+                                "backgroundColor": "#cccccc80",
+                              }
+                            }
+                            variant="light"
+                          >
+                            <span
+                              style={
+                                Object {
+                                  "fontSize": "larger",
+                                  "fontWeight": 500,
+                                }
+                              }
+                            >
+                              AnCowan
+                            </span>
+                          </ForwardRef>
+                          <span
+                            style={Object {}}
+                          />
+                        </span>
+                      </span>
+                    </OverlayTrigger>,
+                  ],
                   "off_to": Object {
                     "value": 0.20588235294117646,
                   },
@@ -1817,7 +3607,364 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                   "off_ppp": Object {
                     "value": 109.80392156862744,
                   },
-                  "off_title": "AaWiggins / DoScott / JaSmith / ErAyala / AnCowan",
+                  "off_title": Array [
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="AaWiggins_AnCowan_DoScott_ErAyala_JaSmith_info"
+                          placement="right"
+                        >
+                          <span>
+                            Wiggins, Aaron: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Scott, Donta: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Smith, Jalen: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Ayala, Eric: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Cowan, Anthony: unknown
+                            <br />
+                          </span>
+                        </ForwardRef>
+                      }
+                      placement="auto"
+                    >
+                      <span>
+                        <span
+                          style={
+                            Object {
+                              "whiteSpace": "nowrap",
+                            }
+                          }
+                        >
+                          <ForwardRef
+                            pill={false}
+                            style={
+                              Object {
+                                "backgroundColor": "#cccccc80",
+                              }
+                            }
+                            variant="light"
+                          >
+                            <span
+                              style={
+                                Object {
+                                  "fontSize": "larger",
+                                  "fontWeight": 500,
+                                }
+                              }
+                            >
+                              AaWiggins
+                            </span>
+                          </ForwardRef>
+                          <span
+                            style={Object {}}
+                          />
+                        </span>
+                        <span
+                          style={
+                            Object {
+                              "opacity": 0,
+                            }
+                          }
+                        >
+                           ; 
+                        </span>
+                      </span>
+                    </OverlayTrigger>,
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="AaWiggins_AnCowan_DoScott_ErAyala_JaSmith_info"
+                          placement="right"
+                        >
+                          <span>
+                            Wiggins, Aaron: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Scott, Donta: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Smith, Jalen: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Ayala, Eric: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Cowan, Anthony: unknown
+                            <br />
+                          </span>
+                        </ForwardRef>
+                      }
+                      placement="auto"
+                    >
+                      <span>
+                        <span
+                          style={
+                            Object {
+                              "whiteSpace": "nowrap",
+                            }
+                          }
+                        >
+                          <ForwardRef
+                            pill={false}
+                            style={
+                              Object {
+                                "backgroundColor": "#cccccc80",
+                              }
+                            }
+                            variant="light"
+                          >
+                            <span
+                              style={
+                                Object {
+                                  "fontSize": "larger",
+                                  "fontWeight": 500,
+                                }
+                              }
+                            >
+                              DoScott
+                            </span>
+                          </ForwardRef>
+                          <span
+                            style={Object {}}
+                          />
+                        </span>
+                        <span
+                          style={
+                            Object {
+                              "opacity": 0,
+                            }
+                          }
+                        >
+                           ; 
+                        </span>
+                      </span>
+                    </OverlayTrigger>,
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="AaWiggins_AnCowan_DoScott_ErAyala_JaSmith_info"
+                          placement="right"
+                        >
+                          <span>
+                            Wiggins, Aaron: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Scott, Donta: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Smith, Jalen: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Ayala, Eric: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Cowan, Anthony: unknown
+                            <br />
+                          </span>
+                        </ForwardRef>
+                      }
+                      placement="auto"
+                    >
+                      <span>
+                        <span
+                          style={
+                            Object {
+                              "whiteSpace": "nowrap",
+                            }
+                          }
+                        >
+                          <ForwardRef
+                            pill={false}
+                            style={
+                              Object {
+                                "backgroundColor": "#cccccc80",
+                              }
+                            }
+                            variant="light"
+                          >
+                            <span
+                              style={
+                                Object {
+                                  "fontSize": "larger",
+                                  "fontWeight": 500,
+                                }
+                              }
+                            >
+                              JaSmith
+                            </span>
+                          </ForwardRef>
+                          <span
+                            style={Object {}}
+                          />
+                        </span>
+                        <span
+                          style={
+                            Object {
+                              "opacity": 0,
+                            }
+                          }
+                        >
+                           ; 
+                        </span>
+                      </span>
+                    </OverlayTrigger>,
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="AaWiggins_AnCowan_DoScott_ErAyala_JaSmith_info"
+                          placement="right"
+                        >
+                          <span>
+                            Wiggins, Aaron: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Scott, Donta: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Smith, Jalen: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Ayala, Eric: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Cowan, Anthony: unknown
+                            <br />
+                          </span>
+                        </ForwardRef>
+                      }
+                      placement="auto"
+                    >
+                      <span>
+                        <span
+                          style={
+                            Object {
+                              "whiteSpace": "nowrap",
+                            }
+                          }
+                        >
+                          <ForwardRef
+                            pill={false}
+                            style={
+                              Object {
+                                "backgroundColor": "#cccccc80",
+                              }
+                            }
+                            variant="light"
+                          >
+                            <span
+                              style={
+                                Object {
+                                  "fontSize": "larger",
+                                  "fontWeight": 500,
+                                }
+                              }
+                            >
+                              ErAyala
+                            </span>
+                          </ForwardRef>
+                          <span
+                            style={Object {}}
+                          />
+                        </span>
+                        <span
+                          style={
+                            Object {
+                              "opacity": 0,
+                            }
+                          }
+                        >
+                           ; 
+                        </span>
+                      </span>
+                    </OverlayTrigger>,
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="AaWiggins_AnCowan_DoScott_ErAyala_JaSmith_info"
+                          placement="right"
+                        >
+                          <span>
+                            Wiggins, Aaron: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Scott, Donta: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Smith, Jalen: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Ayala, Eric: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Cowan, Anthony: unknown
+                            <br />
+                          </span>
+                        </ForwardRef>
+                      }
+                      placement="auto"
+                    >
+                      <span>
+                        <span
+                          style={
+                            Object {
+                              "whiteSpace": "nowrap",
+                            }
+                          }
+                        >
+                          <ForwardRef
+                            pill={false}
+                            style={
+                              Object {
+                                "backgroundColor": "#cccccc80",
+                              }
+                            }
+                            variant="light"
+                          >
+                            <span
+                              style={
+                                Object {
+                                  "fontSize": "larger",
+                                  "fontWeight": 500,
+                                }
+                              }
+                            >
+                              AnCowan
+                            </span>
+                          </ForwardRef>
+                          <span
+                            style={Object {}}
+                          />
+                        </span>
+                      </span>
+                    </OverlayTrigger>,
+                  ],
                   "off_to": Object {
                     "value": 0.20588235294117646,
                   },
@@ -2086,7 +4233,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
               },
               "orb": GenericTableColProps {
                 "className": "",
-                "colName": "ORB%",
+                "colName": "OR%",
                 "colorPicker": [Function],
                 "formatter": [Function],
                 "isTitle": false,
@@ -2181,7 +4328,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                 "missingData": undefined,
                 "rowSpan": [Function],
                 "toolTip": "",
-                "widthUnits": 0.5,
+                "widthUnits": 0.05,
               },
               "title": GenericTableColProps {
                 "className": "small",
@@ -2192,7 +4339,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                 "missingData": undefined,
                 "rowSpan": [Function],
                 "toolTip": "",
-                "widthUnits": 8,
+                "widthUnits": 16,
               },
               "to": GenericTableColProps {
                 "className": "",
@@ -2254,7 +4401,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
           <FormControl
             onChange={[Function]}
             onKeyUp={[Function]}
-            placeholder="eg Player1Code=PG/Player2FirstName/-Player3Surname/Player4Name=4+5"
+            placeholder="eg Player1Code=PG;Player2FirstName;-Player3Surname;Player4Name=4+5"
             value=""
           />
         </InputGroup>
@@ -2273,6 +4420,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
         sm="1"
       >
         <GenericTogglingMenu>
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Decorate Lineups"
+            truthVal={true}
+          />
           <GenericTogglingMenuItem
             onSelect={[Function]}
             text="Show Weighted Combo of All Lineups"
@@ -2486,27 +4638,27 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                       "value": "asc:diff_to",
                     },
                     Object {
-                      "label": "ORB% (Desc. / Offensive)",
+                      "label": "OR% (Desc. / Offensive)",
                       "value": "desc:off_orb",
                     },
                     Object {
-                      "label": "ORB% (Asc. / Offensive)",
+                      "label": "OR% (Asc. / Offensive)",
                       "value": "asc:off_orb",
                     },
                     Object {
-                      "label": "ORB% (Desc. / Defensive)",
+                      "label": "OR% (Desc. / Defensive)",
                       "value": "desc:def_orb",
                     },
                     Object {
-                      "label": "ORB% (Asc. / Defensive)",
+                      "label": "OR% (Asc. / Defensive)",
                       "value": "asc:def_orb",
                     },
                     Object {
-                      "label": "ORB% (Desc. / Off-Def)",
+                      "label": "OR% (Desc. / Off-Def)",
                       "value": "desc:diff_orb",
                     },
                     Object {
-                      "label": "ORB% (Asc. / Off-Def)",
+                      "label": "OR% (Asc. / Off-Def)",
                       "value": "asc:diff_orb",
                     },
                     Object {
@@ -2890,7 +5042,378 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                   "off_ppp": Object {
                     "value": 111.22448979591837,
                   },
-                  "off_title": "AnCowan / AaWiggins / JaSmith / ErAyala / DaMorsell",
+                  "off_title": Array [
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith_info"
+                          placement="right"
+                        >
+                          <span>
+                            Cowan, Anthony: s-PG
+                            <br />
+                          </span>
+                          <span>
+                            Wiggins, Aaron: WG
+                            <br />
+                          </span>
+                          <span>
+                            Smith, Jalen: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Ayala, Eric: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Morsell, Darryl: unknown
+                            <br />
+                          </span>
+                        </ForwardRef>
+                      }
+                      placement="auto"
+                    >
+                      <span>
+                        <span
+                          style={
+                            Object {
+                              "whiteSpace": "nowrap",
+                            }
+                          }
+                        >
+                          <ForwardRef
+                            pill={false}
+                            style={
+                              Object {
+                                "backgroundColor": "#86c38680",
+                              }
+                            }
+                            variant="light"
+                          >
+                            <span
+                              style={
+                                Object {
+                                  "fontSize": "larger",
+                                  "fontWeight": 600,
+                                }
+                              }
+                            >
+                              AnCowan
+                            </span>
+                          </ForwardRef>
+                          <span
+                            style={Object {}}
+                          >
+                            <sup
+                              className="threePointBadge"
+                            />
+                            <sub
+                              className="megaFreeThrowBadge"
+                            />
+                            <sup
+                              className="megaAssistBadge"
+                            />
+                          </span>
+                        </span>
+                        <span
+                          style={
+                            Object {
+                              "opacity": 0,
+                            }
+                          }
+                        >
+                           ; 
+                        </span>
+                      </span>
+                    </OverlayTrigger>,
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith_info"
+                          placement="right"
+                        >
+                          <span>
+                            Cowan, Anthony: s-PG
+                            <br />
+                          </span>
+                          <span>
+                            Wiggins, Aaron: WG
+                            <br />
+                          </span>
+                          <span>
+                            Smith, Jalen: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Ayala, Eric: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Morsell, Darryl: unknown
+                            <br />
+                          </span>
+                        </ForwardRef>
+                      }
+                      placement="auto"
+                    >
+                      <span>
+                        <span
+                          style={
+                            Object {
+                              "whiteSpace": "nowrap",
+                            }
+                          }
+                        >
+                          <ForwardRef
+                            pill={false}
+                            style={
+                              Object {
+                                "backgroundColor": "#f1f8f180",
+                              }
+                            }
+                            variant="light"
+                          >
+                            <span
+                              style={
+                                Object {
+                                  "fontSize": "larger",
+                                  "fontWeight": 500,
+                                }
+                              }
+                            >
+                              AaWiggins
+                            </span>
+                          </ForwardRef>
+                          <span
+                            style={Object {}}
+                          >
+                            <sup
+                              className="threePointBadge"
+                            />
+                          </span>
+                        </span>
+                        <span
+                          style={
+                            Object {
+                              "opacity": 0,
+                            }
+                          }
+                        >
+                           ; 
+                        </span>
+                      </span>
+                    </OverlayTrigger>,
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith_info"
+                          placement="right"
+                        >
+                          <span>
+                            Cowan, Anthony: s-PG
+                            <br />
+                          </span>
+                          <span>
+                            Wiggins, Aaron: WG
+                            <br />
+                          </span>
+                          <span>
+                            Smith, Jalen: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Ayala, Eric: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Morsell, Darryl: unknown
+                            <br />
+                          </span>
+                        </ForwardRef>
+                      }
+                      placement="auto"
+                    >
+                      <span>
+                        <span
+                          style={
+                            Object {
+                              "whiteSpace": "nowrap",
+                            }
+                          }
+                        >
+                          <ForwardRef
+                            pill={false}
+                            style={
+                              Object {
+                                "backgroundColor": "#cccccc80",
+                              }
+                            }
+                            variant="light"
+                          >
+                            <span
+                              style={
+                                Object {
+                                  "fontSize": "larger",
+                                  "fontWeight": 500,
+                                }
+                              }
+                            >
+                              JaSmith
+                            </span>
+                          </ForwardRef>
+                          <span
+                            style={Object {}}
+                          />
+                        </span>
+                        <span
+                          style={
+                            Object {
+                              "opacity": 0,
+                            }
+                          }
+                        >
+                           ; 
+                        </span>
+                      </span>
+                    </OverlayTrigger>,
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith_info"
+                          placement="right"
+                        >
+                          <span>
+                            Cowan, Anthony: s-PG
+                            <br />
+                          </span>
+                          <span>
+                            Wiggins, Aaron: WG
+                            <br />
+                          </span>
+                          <span>
+                            Smith, Jalen: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Ayala, Eric: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Morsell, Darryl: unknown
+                            <br />
+                          </span>
+                        </ForwardRef>
+                      }
+                      placement="auto"
+                    >
+                      <span>
+                        <span
+                          style={
+                            Object {
+                              "whiteSpace": "nowrap",
+                            }
+                          }
+                        >
+                          <ForwardRef
+                            pill={false}
+                            style={
+                              Object {
+                                "backgroundColor": "#cccccc80",
+                              }
+                            }
+                            variant="light"
+                          >
+                            <span
+                              style={
+                                Object {
+                                  "fontSize": "larger",
+                                  "fontWeight": 500,
+                                }
+                              }
+                            >
+                              ErAyala
+                            </span>
+                          </ForwardRef>
+                          <span
+                            style={Object {}}
+                          />
+                        </span>
+                        <span
+                          style={
+                            Object {
+                              "opacity": 0,
+                            }
+                          }
+                        >
+                           ; 
+                        </span>
+                      </span>
+                    </OverlayTrigger>,
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith_info"
+                          placement="right"
+                        >
+                          <span>
+                            Cowan, Anthony: s-PG
+                            <br />
+                          </span>
+                          <span>
+                            Wiggins, Aaron: WG
+                            <br />
+                          </span>
+                          <span>
+                            Smith, Jalen: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Ayala, Eric: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Morsell, Darryl: unknown
+                            <br />
+                          </span>
+                        </ForwardRef>
+                      }
+                      placement="auto"
+                    >
+                      <span>
+                        <span
+                          style={
+                            Object {
+                              "whiteSpace": "nowrap",
+                            }
+                          }
+                        >
+                          <ForwardRef
+                            pill={false}
+                            style={
+                              Object {
+                                "backgroundColor": "#cccccc80",
+                              }
+                            }
+                            variant="light"
+                          >
+                            <span
+                              style={
+                                Object {
+                                  "fontSize": "larger",
+                                  "fontWeight": 500,
+                                }
+                              }
+                            >
+                              DaMorsell
+                            </span>
+                          </ForwardRef>
+                          <span
+                            style={Object {}}
+                          />
+                        </span>
+                      </span>
+                    </OverlayTrigger>,
+                  ],
                   "off_to": Object {
                     "value": 0.14285714285714285,
                   },
@@ -3117,7 +5640,378 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                   "off_ppp": Object {
                     "value": 111.22448979591837,
                   },
-                  "off_title": "AnCowan / AaWiggins / JaSmith / ErAyala / DaMorsell",
+                  "off_title": Array [
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith_info"
+                          placement="right"
+                        >
+                          <span>
+                            Cowan, Anthony: s-PG
+                            <br />
+                          </span>
+                          <span>
+                            Wiggins, Aaron: WG
+                            <br />
+                          </span>
+                          <span>
+                            Smith, Jalen: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Ayala, Eric: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Morsell, Darryl: unknown
+                            <br />
+                          </span>
+                        </ForwardRef>
+                      }
+                      placement="auto"
+                    >
+                      <span>
+                        <span
+                          style={
+                            Object {
+                              "whiteSpace": "nowrap",
+                            }
+                          }
+                        >
+                          <ForwardRef
+                            pill={false}
+                            style={
+                              Object {
+                                "backgroundColor": "#86c38680",
+                              }
+                            }
+                            variant="light"
+                          >
+                            <span
+                              style={
+                                Object {
+                                  "fontSize": "larger",
+                                  "fontWeight": 600,
+                                }
+                              }
+                            >
+                              AnCowan
+                            </span>
+                          </ForwardRef>
+                          <span
+                            style={Object {}}
+                          >
+                            <sup
+                              className="threePointBadge"
+                            />
+                            <sub
+                              className="megaFreeThrowBadge"
+                            />
+                            <sup
+                              className="megaAssistBadge"
+                            />
+                          </span>
+                        </span>
+                        <span
+                          style={
+                            Object {
+                              "opacity": 0,
+                            }
+                          }
+                        >
+                           ; 
+                        </span>
+                      </span>
+                    </OverlayTrigger>,
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith_info"
+                          placement="right"
+                        >
+                          <span>
+                            Cowan, Anthony: s-PG
+                            <br />
+                          </span>
+                          <span>
+                            Wiggins, Aaron: WG
+                            <br />
+                          </span>
+                          <span>
+                            Smith, Jalen: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Ayala, Eric: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Morsell, Darryl: unknown
+                            <br />
+                          </span>
+                        </ForwardRef>
+                      }
+                      placement="auto"
+                    >
+                      <span>
+                        <span
+                          style={
+                            Object {
+                              "whiteSpace": "nowrap",
+                            }
+                          }
+                        >
+                          <ForwardRef
+                            pill={false}
+                            style={
+                              Object {
+                                "backgroundColor": "#f1f8f180",
+                              }
+                            }
+                            variant="light"
+                          >
+                            <span
+                              style={
+                                Object {
+                                  "fontSize": "larger",
+                                  "fontWeight": 500,
+                                }
+                              }
+                            >
+                              AaWiggins
+                            </span>
+                          </ForwardRef>
+                          <span
+                            style={Object {}}
+                          >
+                            <sup
+                              className="threePointBadge"
+                            />
+                          </span>
+                        </span>
+                        <span
+                          style={
+                            Object {
+                              "opacity": 0,
+                            }
+                          }
+                        >
+                           ; 
+                        </span>
+                      </span>
+                    </OverlayTrigger>,
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith_info"
+                          placement="right"
+                        >
+                          <span>
+                            Cowan, Anthony: s-PG
+                            <br />
+                          </span>
+                          <span>
+                            Wiggins, Aaron: WG
+                            <br />
+                          </span>
+                          <span>
+                            Smith, Jalen: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Ayala, Eric: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Morsell, Darryl: unknown
+                            <br />
+                          </span>
+                        </ForwardRef>
+                      }
+                      placement="auto"
+                    >
+                      <span>
+                        <span
+                          style={
+                            Object {
+                              "whiteSpace": "nowrap",
+                            }
+                          }
+                        >
+                          <ForwardRef
+                            pill={false}
+                            style={
+                              Object {
+                                "backgroundColor": "#cccccc80",
+                              }
+                            }
+                            variant="light"
+                          >
+                            <span
+                              style={
+                                Object {
+                                  "fontSize": "larger",
+                                  "fontWeight": 500,
+                                }
+                              }
+                            >
+                              JaSmith
+                            </span>
+                          </ForwardRef>
+                          <span
+                            style={Object {}}
+                          />
+                        </span>
+                        <span
+                          style={
+                            Object {
+                              "opacity": 0,
+                            }
+                          }
+                        >
+                           ; 
+                        </span>
+                      </span>
+                    </OverlayTrigger>,
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith_info"
+                          placement="right"
+                        >
+                          <span>
+                            Cowan, Anthony: s-PG
+                            <br />
+                          </span>
+                          <span>
+                            Wiggins, Aaron: WG
+                            <br />
+                          </span>
+                          <span>
+                            Smith, Jalen: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Ayala, Eric: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Morsell, Darryl: unknown
+                            <br />
+                          </span>
+                        </ForwardRef>
+                      }
+                      placement="auto"
+                    >
+                      <span>
+                        <span
+                          style={
+                            Object {
+                              "whiteSpace": "nowrap",
+                            }
+                          }
+                        >
+                          <ForwardRef
+                            pill={false}
+                            style={
+                              Object {
+                                "backgroundColor": "#cccccc80",
+                              }
+                            }
+                            variant="light"
+                          >
+                            <span
+                              style={
+                                Object {
+                                  "fontSize": "larger",
+                                  "fontWeight": 500,
+                                }
+                              }
+                            >
+                              ErAyala
+                            </span>
+                          </ForwardRef>
+                          <span
+                            style={Object {}}
+                          />
+                        </span>
+                        <span
+                          style={
+                            Object {
+                              "opacity": 0,
+                            }
+                          }
+                        >
+                           ; 
+                        </span>
+                      </span>
+                    </OverlayTrigger>,
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith_info"
+                          placement="right"
+                        >
+                          <span>
+                            Cowan, Anthony: s-PG
+                            <br />
+                          </span>
+                          <span>
+                            Wiggins, Aaron: WG
+                            <br />
+                          </span>
+                          <span>
+                            Smith, Jalen: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Ayala, Eric: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Morsell, Darryl: unknown
+                            <br />
+                          </span>
+                        </ForwardRef>
+                      }
+                      placement="auto"
+                    >
+                      <span>
+                        <span
+                          style={
+                            Object {
+                              "whiteSpace": "nowrap",
+                            }
+                          }
+                        >
+                          <ForwardRef
+                            pill={false}
+                            style={
+                              Object {
+                                "backgroundColor": "#cccccc80",
+                              }
+                            }
+                            variant="light"
+                          >
+                            <span
+                              style={
+                                Object {
+                                  "fontSize": "larger",
+                                  "fontWeight": 500,
+                                }
+                              }
+                            >
+                              DaMorsell
+                            </span>
+                          </ForwardRef>
+                          <span
+                            style={Object {}}
+                          />
+                        </span>
+                      </span>
+                    </OverlayTrigger>,
+                  ],
                   "off_to": Object {
                     "value": 0.14285714285714285,
                   },
@@ -3347,7 +6241,378 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                   "off_ppp": Object {
                     "value": 89.1891891891892,
                   },
-                  "off_title": "AnCowan / AaWiggins / JaSmith / DoScott / DaMorsell",
+                  "off_title": Array [
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith_info"
+                          placement="right"
+                        >
+                          <span>
+                            Cowan, Anthony: s-PG
+                            <br />
+                          </span>
+                          <span>
+                            Wiggins, Aaron: WG
+                            <br />
+                          </span>
+                          <span>
+                            Smith, Jalen: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Scott, Donta: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Morsell, Darryl: unknown
+                            <br />
+                          </span>
+                        </ForwardRef>
+                      }
+                      placement="auto"
+                    >
+                      <span>
+                        <span
+                          style={
+                            Object {
+                              "whiteSpace": "nowrap",
+                            }
+                          }
+                        >
+                          <ForwardRef
+                            pill={false}
+                            style={
+                              Object {
+                                "backgroundColor": "#86c38680",
+                              }
+                            }
+                            variant="light"
+                          >
+                            <span
+                              style={
+                                Object {
+                                  "fontSize": "larger",
+                                  "fontWeight": 600,
+                                }
+                              }
+                            >
+                              AnCowan
+                            </span>
+                          </ForwardRef>
+                          <span
+                            style={Object {}}
+                          >
+                            <sup
+                              className="threePointBadge"
+                            />
+                            <sub
+                              className="megaFreeThrowBadge"
+                            />
+                            <sup
+                              className="megaAssistBadge"
+                            />
+                          </span>
+                        </span>
+                        <span
+                          style={
+                            Object {
+                              "opacity": 0,
+                            }
+                          }
+                        >
+                           ; 
+                        </span>
+                      </span>
+                    </OverlayTrigger>,
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith_info"
+                          placement="right"
+                        >
+                          <span>
+                            Cowan, Anthony: s-PG
+                            <br />
+                          </span>
+                          <span>
+                            Wiggins, Aaron: WG
+                            <br />
+                          </span>
+                          <span>
+                            Smith, Jalen: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Scott, Donta: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Morsell, Darryl: unknown
+                            <br />
+                          </span>
+                        </ForwardRef>
+                      }
+                      placement="auto"
+                    >
+                      <span>
+                        <span
+                          style={
+                            Object {
+                              "whiteSpace": "nowrap",
+                            }
+                          }
+                        >
+                          <ForwardRef
+                            pill={false}
+                            style={
+                              Object {
+                                "backgroundColor": "#f1f8f180",
+                              }
+                            }
+                            variant="light"
+                          >
+                            <span
+                              style={
+                                Object {
+                                  "fontSize": "larger",
+                                  "fontWeight": 500,
+                                }
+                              }
+                            >
+                              AaWiggins
+                            </span>
+                          </ForwardRef>
+                          <span
+                            style={Object {}}
+                          >
+                            <sup
+                              className="threePointBadge"
+                            />
+                          </span>
+                        </span>
+                        <span
+                          style={
+                            Object {
+                              "opacity": 0,
+                            }
+                          }
+                        >
+                           ; 
+                        </span>
+                      </span>
+                    </OverlayTrigger>,
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith_info"
+                          placement="right"
+                        >
+                          <span>
+                            Cowan, Anthony: s-PG
+                            <br />
+                          </span>
+                          <span>
+                            Wiggins, Aaron: WG
+                            <br />
+                          </span>
+                          <span>
+                            Smith, Jalen: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Scott, Donta: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Morsell, Darryl: unknown
+                            <br />
+                          </span>
+                        </ForwardRef>
+                      }
+                      placement="auto"
+                    >
+                      <span>
+                        <span
+                          style={
+                            Object {
+                              "whiteSpace": "nowrap",
+                            }
+                          }
+                        >
+                          <ForwardRef
+                            pill={false}
+                            style={
+                              Object {
+                                "backgroundColor": "#cccccc80",
+                              }
+                            }
+                            variant="light"
+                          >
+                            <span
+                              style={
+                                Object {
+                                  "fontSize": "larger",
+                                  "fontWeight": 500,
+                                }
+                              }
+                            >
+                              JaSmith
+                            </span>
+                          </ForwardRef>
+                          <span
+                            style={Object {}}
+                          />
+                        </span>
+                        <span
+                          style={
+                            Object {
+                              "opacity": 0,
+                            }
+                          }
+                        >
+                           ; 
+                        </span>
+                      </span>
+                    </OverlayTrigger>,
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith_info"
+                          placement="right"
+                        >
+                          <span>
+                            Cowan, Anthony: s-PG
+                            <br />
+                          </span>
+                          <span>
+                            Wiggins, Aaron: WG
+                            <br />
+                          </span>
+                          <span>
+                            Smith, Jalen: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Scott, Donta: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Morsell, Darryl: unknown
+                            <br />
+                          </span>
+                        </ForwardRef>
+                      }
+                      placement="auto"
+                    >
+                      <span>
+                        <span
+                          style={
+                            Object {
+                              "whiteSpace": "nowrap",
+                            }
+                          }
+                        >
+                          <ForwardRef
+                            pill={false}
+                            style={
+                              Object {
+                                "backgroundColor": "#cccccc80",
+                              }
+                            }
+                            variant="light"
+                          >
+                            <span
+                              style={
+                                Object {
+                                  "fontSize": "larger",
+                                  "fontWeight": 500,
+                                }
+                              }
+                            >
+                              DoScott
+                            </span>
+                          </ForwardRef>
+                          <span
+                            style={Object {}}
+                          />
+                        </span>
+                        <span
+                          style={
+                            Object {
+                              "opacity": 0,
+                            }
+                          }
+                        >
+                           ; 
+                        </span>
+                      </span>
+                    </OverlayTrigger>,
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith_info"
+                          placement="right"
+                        >
+                          <span>
+                            Cowan, Anthony: s-PG
+                            <br />
+                          </span>
+                          <span>
+                            Wiggins, Aaron: WG
+                            <br />
+                          </span>
+                          <span>
+                            Smith, Jalen: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Scott, Donta: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Morsell, Darryl: unknown
+                            <br />
+                          </span>
+                        </ForwardRef>
+                      }
+                      placement="auto"
+                    >
+                      <span>
+                        <span
+                          style={
+                            Object {
+                              "whiteSpace": "nowrap",
+                            }
+                          }
+                        >
+                          <ForwardRef
+                            pill={false}
+                            style={
+                              Object {
+                                "backgroundColor": "#cccccc80",
+                              }
+                            }
+                            variant="light"
+                          >
+                            <span
+                              style={
+                                Object {
+                                  "fontSize": "larger",
+                                  "fontWeight": 500,
+                                }
+                              }
+                            >
+                              DaMorsell
+                            </span>
+                          </ForwardRef>
+                          <span
+                            style={Object {}}
+                          />
+                        </span>
+                      </span>
+                    </OverlayTrigger>,
+                  ],
                   "off_to": Object {
                     "value": 0.18018018018018017,
                   },
@@ -3574,7 +6839,378 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                   "off_ppp": Object {
                     "value": 89.1891891891892,
                   },
-                  "off_title": "AnCowan / AaWiggins / JaSmith / DoScott / DaMorsell",
+                  "off_title": Array [
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith_info"
+                          placement="right"
+                        >
+                          <span>
+                            Cowan, Anthony: s-PG
+                            <br />
+                          </span>
+                          <span>
+                            Wiggins, Aaron: WG
+                            <br />
+                          </span>
+                          <span>
+                            Smith, Jalen: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Scott, Donta: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Morsell, Darryl: unknown
+                            <br />
+                          </span>
+                        </ForwardRef>
+                      }
+                      placement="auto"
+                    >
+                      <span>
+                        <span
+                          style={
+                            Object {
+                              "whiteSpace": "nowrap",
+                            }
+                          }
+                        >
+                          <ForwardRef
+                            pill={false}
+                            style={
+                              Object {
+                                "backgroundColor": "#86c38680",
+                              }
+                            }
+                            variant="light"
+                          >
+                            <span
+                              style={
+                                Object {
+                                  "fontSize": "larger",
+                                  "fontWeight": 600,
+                                }
+                              }
+                            >
+                              AnCowan
+                            </span>
+                          </ForwardRef>
+                          <span
+                            style={Object {}}
+                          >
+                            <sup
+                              className="threePointBadge"
+                            />
+                            <sub
+                              className="megaFreeThrowBadge"
+                            />
+                            <sup
+                              className="megaAssistBadge"
+                            />
+                          </span>
+                        </span>
+                        <span
+                          style={
+                            Object {
+                              "opacity": 0,
+                            }
+                          }
+                        >
+                           ; 
+                        </span>
+                      </span>
+                    </OverlayTrigger>,
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith_info"
+                          placement="right"
+                        >
+                          <span>
+                            Cowan, Anthony: s-PG
+                            <br />
+                          </span>
+                          <span>
+                            Wiggins, Aaron: WG
+                            <br />
+                          </span>
+                          <span>
+                            Smith, Jalen: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Scott, Donta: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Morsell, Darryl: unknown
+                            <br />
+                          </span>
+                        </ForwardRef>
+                      }
+                      placement="auto"
+                    >
+                      <span>
+                        <span
+                          style={
+                            Object {
+                              "whiteSpace": "nowrap",
+                            }
+                          }
+                        >
+                          <ForwardRef
+                            pill={false}
+                            style={
+                              Object {
+                                "backgroundColor": "#f1f8f180",
+                              }
+                            }
+                            variant="light"
+                          >
+                            <span
+                              style={
+                                Object {
+                                  "fontSize": "larger",
+                                  "fontWeight": 500,
+                                }
+                              }
+                            >
+                              AaWiggins
+                            </span>
+                          </ForwardRef>
+                          <span
+                            style={Object {}}
+                          >
+                            <sup
+                              className="threePointBadge"
+                            />
+                          </span>
+                        </span>
+                        <span
+                          style={
+                            Object {
+                              "opacity": 0,
+                            }
+                          }
+                        >
+                           ; 
+                        </span>
+                      </span>
+                    </OverlayTrigger>,
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith_info"
+                          placement="right"
+                        >
+                          <span>
+                            Cowan, Anthony: s-PG
+                            <br />
+                          </span>
+                          <span>
+                            Wiggins, Aaron: WG
+                            <br />
+                          </span>
+                          <span>
+                            Smith, Jalen: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Scott, Donta: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Morsell, Darryl: unknown
+                            <br />
+                          </span>
+                        </ForwardRef>
+                      }
+                      placement="auto"
+                    >
+                      <span>
+                        <span
+                          style={
+                            Object {
+                              "whiteSpace": "nowrap",
+                            }
+                          }
+                        >
+                          <ForwardRef
+                            pill={false}
+                            style={
+                              Object {
+                                "backgroundColor": "#cccccc80",
+                              }
+                            }
+                            variant="light"
+                          >
+                            <span
+                              style={
+                                Object {
+                                  "fontSize": "larger",
+                                  "fontWeight": 500,
+                                }
+                              }
+                            >
+                              JaSmith
+                            </span>
+                          </ForwardRef>
+                          <span
+                            style={Object {}}
+                          />
+                        </span>
+                        <span
+                          style={
+                            Object {
+                              "opacity": 0,
+                            }
+                          }
+                        >
+                           ; 
+                        </span>
+                      </span>
+                    </OverlayTrigger>,
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith_info"
+                          placement="right"
+                        >
+                          <span>
+                            Cowan, Anthony: s-PG
+                            <br />
+                          </span>
+                          <span>
+                            Wiggins, Aaron: WG
+                            <br />
+                          </span>
+                          <span>
+                            Smith, Jalen: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Scott, Donta: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Morsell, Darryl: unknown
+                            <br />
+                          </span>
+                        </ForwardRef>
+                      }
+                      placement="auto"
+                    >
+                      <span>
+                        <span
+                          style={
+                            Object {
+                              "whiteSpace": "nowrap",
+                            }
+                          }
+                        >
+                          <ForwardRef
+                            pill={false}
+                            style={
+                              Object {
+                                "backgroundColor": "#cccccc80",
+                              }
+                            }
+                            variant="light"
+                          >
+                            <span
+                              style={
+                                Object {
+                                  "fontSize": "larger",
+                                  "fontWeight": 500,
+                                }
+                              }
+                            >
+                              DoScott
+                            </span>
+                          </ForwardRef>
+                          <span
+                            style={Object {}}
+                          />
+                        </span>
+                        <span
+                          style={
+                            Object {
+                              "opacity": 0,
+                            }
+                          }
+                        >
+                           ; 
+                        </span>
+                      </span>
+                    </OverlayTrigger>,
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith_info"
+                          placement="right"
+                        >
+                          <span>
+                            Cowan, Anthony: s-PG
+                            <br />
+                          </span>
+                          <span>
+                            Wiggins, Aaron: WG
+                            <br />
+                          </span>
+                          <span>
+                            Smith, Jalen: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Scott, Donta: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Morsell, Darryl: unknown
+                            <br />
+                          </span>
+                        </ForwardRef>
+                      }
+                      placement="auto"
+                    >
+                      <span>
+                        <span
+                          style={
+                            Object {
+                              "whiteSpace": "nowrap",
+                            }
+                          }
+                        >
+                          <ForwardRef
+                            pill={false}
+                            style={
+                              Object {
+                                "backgroundColor": "#cccccc80",
+                              }
+                            }
+                            variant="light"
+                          >
+                            <span
+                              style={
+                                Object {
+                                  "fontSize": "larger",
+                                  "fontWeight": 500,
+                                }
+                              }
+                            >
+                              DaMorsell
+                            </span>
+                          </ForwardRef>
+                          <span
+                            style={Object {}}
+                          />
+                        </span>
+                      </span>
+                    </OverlayTrigger>,
+                  ],
                   "off_to": Object {
                     "value": 0.18018018018018017,
                   },
@@ -3804,7 +7440,378 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                   "off_ppp": Object {
                     "value": 109.80392156862744,
                   },
-                  "off_title": "AnCowan / AaWiggins / JaSmith / ErAyala / DoScott",
+                  "off_title": Array [
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="AaWiggins_AnCowan_DoScott_ErAyala_JaSmith_info"
+                          placement="right"
+                        >
+                          <span>
+                            Cowan, Anthony: s-PG
+                            <br />
+                          </span>
+                          <span>
+                            Wiggins, Aaron: WG
+                            <br />
+                          </span>
+                          <span>
+                            Smith, Jalen: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Ayala, Eric: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Scott, Donta: unknown
+                            <br />
+                          </span>
+                        </ForwardRef>
+                      }
+                      placement="auto"
+                    >
+                      <span>
+                        <span
+                          style={
+                            Object {
+                              "whiteSpace": "nowrap",
+                            }
+                          }
+                        >
+                          <ForwardRef
+                            pill={false}
+                            style={
+                              Object {
+                                "backgroundColor": "#86c38680",
+                              }
+                            }
+                            variant="light"
+                          >
+                            <span
+                              style={
+                                Object {
+                                  "fontSize": "larger",
+                                  "fontWeight": 600,
+                                }
+                              }
+                            >
+                              AnCowan
+                            </span>
+                          </ForwardRef>
+                          <span
+                            style={Object {}}
+                          >
+                            <sup
+                              className="threePointBadge"
+                            />
+                            <sub
+                              className="megaFreeThrowBadge"
+                            />
+                            <sup
+                              className="megaAssistBadge"
+                            />
+                          </span>
+                        </span>
+                        <span
+                          style={
+                            Object {
+                              "opacity": 0,
+                            }
+                          }
+                        >
+                           ; 
+                        </span>
+                      </span>
+                    </OverlayTrigger>,
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="AaWiggins_AnCowan_DoScott_ErAyala_JaSmith_info"
+                          placement="right"
+                        >
+                          <span>
+                            Cowan, Anthony: s-PG
+                            <br />
+                          </span>
+                          <span>
+                            Wiggins, Aaron: WG
+                            <br />
+                          </span>
+                          <span>
+                            Smith, Jalen: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Ayala, Eric: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Scott, Donta: unknown
+                            <br />
+                          </span>
+                        </ForwardRef>
+                      }
+                      placement="auto"
+                    >
+                      <span>
+                        <span
+                          style={
+                            Object {
+                              "whiteSpace": "nowrap",
+                            }
+                          }
+                        >
+                          <ForwardRef
+                            pill={false}
+                            style={
+                              Object {
+                                "backgroundColor": "#f1f8f180",
+                              }
+                            }
+                            variant="light"
+                          >
+                            <span
+                              style={
+                                Object {
+                                  "fontSize": "larger",
+                                  "fontWeight": 500,
+                                }
+                              }
+                            >
+                              AaWiggins
+                            </span>
+                          </ForwardRef>
+                          <span
+                            style={Object {}}
+                          >
+                            <sup
+                              className="threePointBadge"
+                            />
+                          </span>
+                        </span>
+                        <span
+                          style={
+                            Object {
+                              "opacity": 0,
+                            }
+                          }
+                        >
+                           ; 
+                        </span>
+                      </span>
+                    </OverlayTrigger>,
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="AaWiggins_AnCowan_DoScott_ErAyala_JaSmith_info"
+                          placement="right"
+                        >
+                          <span>
+                            Cowan, Anthony: s-PG
+                            <br />
+                          </span>
+                          <span>
+                            Wiggins, Aaron: WG
+                            <br />
+                          </span>
+                          <span>
+                            Smith, Jalen: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Ayala, Eric: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Scott, Donta: unknown
+                            <br />
+                          </span>
+                        </ForwardRef>
+                      }
+                      placement="auto"
+                    >
+                      <span>
+                        <span
+                          style={
+                            Object {
+                              "whiteSpace": "nowrap",
+                            }
+                          }
+                        >
+                          <ForwardRef
+                            pill={false}
+                            style={
+                              Object {
+                                "backgroundColor": "#cccccc80",
+                              }
+                            }
+                            variant="light"
+                          >
+                            <span
+                              style={
+                                Object {
+                                  "fontSize": "larger",
+                                  "fontWeight": 500,
+                                }
+                              }
+                            >
+                              JaSmith
+                            </span>
+                          </ForwardRef>
+                          <span
+                            style={Object {}}
+                          />
+                        </span>
+                        <span
+                          style={
+                            Object {
+                              "opacity": 0,
+                            }
+                          }
+                        >
+                           ; 
+                        </span>
+                      </span>
+                    </OverlayTrigger>,
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="AaWiggins_AnCowan_DoScott_ErAyala_JaSmith_info"
+                          placement="right"
+                        >
+                          <span>
+                            Cowan, Anthony: s-PG
+                            <br />
+                          </span>
+                          <span>
+                            Wiggins, Aaron: WG
+                            <br />
+                          </span>
+                          <span>
+                            Smith, Jalen: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Ayala, Eric: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Scott, Donta: unknown
+                            <br />
+                          </span>
+                        </ForwardRef>
+                      }
+                      placement="auto"
+                    >
+                      <span>
+                        <span
+                          style={
+                            Object {
+                              "whiteSpace": "nowrap",
+                            }
+                          }
+                        >
+                          <ForwardRef
+                            pill={false}
+                            style={
+                              Object {
+                                "backgroundColor": "#cccccc80",
+                              }
+                            }
+                            variant="light"
+                          >
+                            <span
+                              style={
+                                Object {
+                                  "fontSize": "larger",
+                                  "fontWeight": 500,
+                                }
+                              }
+                            >
+                              ErAyala
+                            </span>
+                          </ForwardRef>
+                          <span
+                            style={Object {}}
+                          />
+                        </span>
+                        <span
+                          style={
+                            Object {
+                              "opacity": 0,
+                            }
+                          }
+                        >
+                           ; 
+                        </span>
+                      </span>
+                    </OverlayTrigger>,
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="AaWiggins_AnCowan_DoScott_ErAyala_JaSmith_info"
+                          placement="right"
+                        >
+                          <span>
+                            Cowan, Anthony: s-PG
+                            <br />
+                          </span>
+                          <span>
+                            Wiggins, Aaron: WG
+                            <br />
+                          </span>
+                          <span>
+                            Smith, Jalen: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Ayala, Eric: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Scott, Donta: unknown
+                            <br />
+                          </span>
+                        </ForwardRef>
+                      }
+                      placement="auto"
+                    >
+                      <span>
+                        <span
+                          style={
+                            Object {
+                              "whiteSpace": "nowrap",
+                            }
+                          }
+                        >
+                          <ForwardRef
+                            pill={false}
+                            style={
+                              Object {
+                                "backgroundColor": "#cccccc80",
+                              }
+                            }
+                            variant="light"
+                          >
+                            <span
+                              style={
+                                Object {
+                                  "fontSize": "larger",
+                                  "fontWeight": 500,
+                                }
+                              }
+                            >
+                              DoScott
+                            </span>
+                          </ForwardRef>
+                          <span
+                            style={Object {}}
+                          />
+                        </span>
+                      </span>
+                    </OverlayTrigger>,
+                  ],
                   "off_to": Object {
                     "value": 0.20588235294117646,
                   },
@@ -4031,7 +8038,378 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                   "off_ppp": Object {
                     "value": 109.80392156862744,
                   },
-                  "off_title": "AnCowan / AaWiggins / JaSmith / ErAyala / DoScott",
+                  "off_title": Array [
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="AaWiggins_AnCowan_DoScott_ErAyala_JaSmith_info"
+                          placement="right"
+                        >
+                          <span>
+                            Cowan, Anthony: s-PG
+                            <br />
+                          </span>
+                          <span>
+                            Wiggins, Aaron: WG
+                            <br />
+                          </span>
+                          <span>
+                            Smith, Jalen: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Ayala, Eric: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Scott, Donta: unknown
+                            <br />
+                          </span>
+                        </ForwardRef>
+                      }
+                      placement="auto"
+                    >
+                      <span>
+                        <span
+                          style={
+                            Object {
+                              "whiteSpace": "nowrap",
+                            }
+                          }
+                        >
+                          <ForwardRef
+                            pill={false}
+                            style={
+                              Object {
+                                "backgroundColor": "#86c38680",
+                              }
+                            }
+                            variant="light"
+                          >
+                            <span
+                              style={
+                                Object {
+                                  "fontSize": "larger",
+                                  "fontWeight": 600,
+                                }
+                              }
+                            >
+                              AnCowan
+                            </span>
+                          </ForwardRef>
+                          <span
+                            style={Object {}}
+                          >
+                            <sup
+                              className="threePointBadge"
+                            />
+                            <sub
+                              className="megaFreeThrowBadge"
+                            />
+                            <sup
+                              className="megaAssistBadge"
+                            />
+                          </span>
+                        </span>
+                        <span
+                          style={
+                            Object {
+                              "opacity": 0,
+                            }
+                          }
+                        >
+                           ; 
+                        </span>
+                      </span>
+                    </OverlayTrigger>,
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="AaWiggins_AnCowan_DoScott_ErAyala_JaSmith_info"
+                          placement="right"
+                        >
+                          <span>
+                            Cowan, Anthony: s-PG
+                            <br />
+                          </span>
+                          <span>
+                            Wiggins, Aaron: WG
+                            <br />
+                          </span>
+                          <span>
+                            Smith, Jalen: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Ayala, Eric: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Scott, Donta: unknown
+                            <br />
+                          </span>
+                        </ForwardRef>
+                      }
+                      placement="auto"
+                    >
+                      <span>
+                        <span
+                          style={
+                            Object {
+                              "whiteSpace": "nowrap",
+                            }
+                          }
+                        >
+                          <ForwardRef
+                            pill={false}
+                            style={
+                              Object {
+                                "backgroundColor": "#f1f8f180",
+                              }
+                            }
+                            variant="light"
+                          >
+                            <span
+                              style={
+                                Object {
+                                  "fontSize": "larger",
+                                  "fontWeight": 500,
+                                }
+                              }
+                            >
+                              AaWiggins
+                            </span>
+                          </ForwardRef>
+                          <span
+                            style={Object {}}
+                          >
+                            <sup
+                              className="threePointBadge"
+                            />
+                          </span>
+                        </span>
+                        <span
+                          style={
+                            Object {
+                              "opacity": 0,
+                            }
+                          }
+                        >
+                           ; 
+                        </span>
+                      </span>
+                    </OverlayTrigger>,
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="AaWiggins_AnCowan_DoScott_ErAyala_JaSmith_info"
+                          placement="right"
+                        >
+                          <span>
+                            Cowan, Anthony: s-PG
+                            <br />
+                          </span>
+                          <span>
+                            Wiggins, Aaron: WG
+                            <br />
+                          </span>
+                          <span>
+                            Smith, Jalen: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Ayala, Eric: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Scott, Donta: unknown
+                            <br />
+                          </span>
+                        </ForwardRef>
+                      }
+                      placement="auto"
+                    >
+                      <span>
+                        <span
+                          style={
+                            Object {
+                              "whiteSpace": "nowrap",
+                            }
+                          }
+                        >
+                          <ForwardRef
+                            pill={false}
+                            style={
+                              Object {
+                                "backgroundColor": "#cccccc80",
+                              }
+                            }
+                            variant="light"
+                          >
+                            <span
+                              style={
+                                Object {
+                                  "fontSize": "larger",
+                                  "fontWeight": 500,
+                                }
+                              }
+                            >
+                              JaSmith
+                            </span>
+                          </ForwardRef>
+                          <span
+                            style={Object {}}
+                          />
+                        </span>
+                        <span
+                          style={
+                            Object {
+                              "opacity": 0,
+                            }
+                          }
+                        >
+                           ; 
+                        </span>
+                      </span>
+                    </OverlayTrigger>,
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="AaWiggins_AnCowan_DoScott_ErAyala_JaSmith_info"
+                          placement="right"
+                        >
+                          <span>
+                            Cowan, Anthony: s-PG
+                            <br />
+                          </span>
+                          <span>
+                            Wiggins, Aaron: WG
+                            <br />
+                          </span>
+                          <span>
+                            Smith, Jalen: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Ayala, Eric: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Scott, Donta: unknown
+                            <br />
+                          </span>
+                        </ForwardRef>
+                      }
+                      placement="auto"
+                    >
+                      <span>
+                        <span
+                          style={
+                            Object {
+                              "whiteSpace": "nowrap",
+                            }
+                          }
+                        >
+                          <ForwardRef
+                            pill={false}
+                            style={
+                              Object {
+                                "backgroundColor": "#cccccc80",
+                              }
+                            }
+                            variant="light"
+                          >
+                            <span
+                              style={
+                                Object {
+                                  "fontSize": "larger",
+                                  "fontWeight": 500,
+                                }
+                              }
+                            >
+                              ErAyala
+                            </span>
+                          </ForwardRef>
+                          <span
+                            style={Object {}}
+                          />
+                        </span>
+                        <span
+                          style={
+                            Object {
+                              "opacity": 0,
+                            }
+                          }
+                        >
+                           ; 
+                        </span>
+                      </span>
+                    </OverlayTrigger>,
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="AaWiggins_AnCowan_DoScott_ErAyala_JaSmith_info"
+                          placement="right"
+                        >
+                          <span>
+                            Cowan, Anthony: s-PG
+                            <br />
+                          </span>
+                          <span>
+                            Wiggins, Aaron: WG
+                            <br />
+                          </span>
+                          <span>
+                            Smith, Jalen: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Ayala, Eric: unknown
+                            <br />
+                          </span>
+                          <span>
+                            Scott, Donta: unknown
+                            <br />
+                          </span>
+                        </ForwardRef>
+                      }
+                      placement="auto"
+                    >
+                      <span>
+                        <span
+                          style={
+                            Object {
+                              "whiteSpace": "nowrap",
+                            }
+                          }
+                        >
+                          <ForwardRef
+                            pill={false}
+                            style={
+                              Object {
+                                "backgroundColor": "#cccccc80",
+                              }
+                            }
+                            variant="light"
+                          >
+                            <span
+                              style={
+                                Object {
+                                  "fontSize": "larger",
+                                  "fontWeight": 500,
+                                }
+                              }
+                            >
+                              DoScott
+                            </span>
+                          </ForwardRef>
+                          <span
+                            style={Object {}}
+                          />
+                        </span>
+                      </span>
+                    </OverlayTrigger>,
+                  ],
                   "off_to": Object {
                     "value": 0.20588235294117646,
                   },
@@ -4300,7 +8678,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
               },
               "orb": GenericTableColProps {
                 "className": "",
-                "colName": "ORB%",
+                "colName": "OR%",
                 "colorPicker": [Function],
                 "formatter": [Function],
                 "isTitle": false,
@@ -4395,7 +8773,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                 "missingData": undefined,
                 "rowSpan": [Function],
                 "toolTip": "",
-                "widthUnits": 0.5,
+                "widthUnits": 0.05,
               },
               "title": GenericTableColProps {
                 "className": "small",
@@ -4406,7 +8784,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                 "missingData": undefined,
                 "rowSpan": [Function],
                 "toolTip": "",
-                "widthUnits": 8,
+                "widthUnits": 16,
               },
               "to": GenericTableColProps {
                 "className": "",
