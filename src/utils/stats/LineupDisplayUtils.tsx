@@ -25,10 +25,10 @@ export class LineupDisplayUtils {
     colorField: string,
     decorateLineup: boolean
   ) {
-    const tooltipTexts = sortedLineup.map((cid: {id: string, code: string}) => {
+    const tooltipTexts = _.flatMap(sortedLineup, (cid: {id: string, code: string}) => {
       return LineupDisplayUtils.buildTooltipText(cid, perLineupPlayerMap, positionFromPlayerKey);
     });
-    const tooltip = <Tooltip id={`${key}_info`}>{_.flatMap(tooltipTexts,
+    const tooltip = <Tooltip id={`${key}_info`}>{_.map(tooltipTexts,
       (t: string, i: number) => <span key={"" + i}>{t}<br/></span>
     )}</Tooltip>;
     if (decorateLineup) {
@@ -49,8 +49,15 @@ export class LineupDisplayUtils {
     perLineupPlayerMap: Record<string, Record<string, any>>,
     positionFromPlayerKey: Record<string, {posClass: string}>
   ) {
+    // Some minimal info:
+    const playerInfo = perLineupPlayerMap[cid.id] || {};
+    const oRtgStr = (playerInfo.off_rtg?.value || 0).toFixed(0);
+    const usageStr = (100*(playerInfo.off_usage?.value || 0)).toFixed(0) + "%";
+    const defRbStr = (100*(playerInfo.def_orb?.value || 0)).toFixed(0) + "%";
     return [
-      `${cid.id}: ${positionFromPlayerKey[cid.id]?.posClass || "unknown"}`,
+      `${cid.id}: ${positionFromPlayerKey[cid.id]?.posClass || "??"}`,
+      `ORtg ${oRtgStr} on ${usageStr}, DRB ${defRbStr}`,
+      ""
     ];
   }
 

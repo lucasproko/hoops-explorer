@@ -92,7 +92,9 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, teamStat
   const [ showLuckConfig, setShowLuckConfig ] = useState(false);
 
   /** Whether to badge/colorize the lineups */
-  const [ decorateLineups, setDecorateLineups ] = useState(true); //TODO
+  const [ decorateLineups, setDecorateLineups ] = useState(_.isNil(startingState.decorate) ?
+    ParamDefaults.defaultLineupDecorate : startingState.decorate
+  );
 
   // (slight delay when typing into the filter to make it more responsive)
   const [ timeoutId, setTimeoutId ] = useState(-1);
@@ -109,19 +111,21 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, teamStat
       lineupLuck: adjustForLuck,
       showLineupLuckDiags: showLuckAdjDiags,
       // Misc filters
+      decorate: decorateLineups,
       showTotal: showTotals,
       minPoss: minPoss,
       maxTableSize: maxTableSize,
       sortBy: sortBy,
       filter: filterStr
     }).omit(_.flatten([
+      (decorateLineups == ParamDefaults.defaultLineupDecorate) ? [ 'decorate' ] : [],
       (showTotals == ParamDefaults.defaultLineupShowTotal) ? [ 'showTotal' ] : [],
       _.isEqual(luckConfig, ParamDefaults.defaultLuckConfig) ? [ 'luck' ] : [],
       !adjustForLuck ? [ 'lineupLuck' ] : [],
       (showLuckAdjDiags == ParamDefaults.defaultOnOffLuckDiagMode) ? [ 'showLineupLuckDiags' ] : []
     ])).value();
     onChangeState(newState);
-  }, [ showTotals, minPoss, maxTableSize, sortBy, filterStr,
+  }, [ decorateLineups, showTotals, minPoss, maxTableSize, sortBy, filterStr,
         luckConfig, adjustForLuck, showLuckAdjDiags ]);
 
   // 3] Utils
