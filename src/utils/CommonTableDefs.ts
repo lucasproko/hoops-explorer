@@ -145,14 +145,14 @@ export class CommonTableDefs {
   // LINEUP:
 
   static readonly lineupTable = { //accessors vs column metadata
-    "title": GenericTableOps.addTitle("", "", CommonTableDefs.rowSpanCalculator, "small"),
+    "title": GenericTableOps.addTitle("", "", CommonTableDefs.rowSpanCalculator, "small", GenericTableOps.htmlFormatter, 16),
     "sep0": GenericTableOps.addColSeparator(),
     "ppp": GenericTableOps.addPtsCol("P/100", "Points per 100 possessions", CommonTableDefs.picker(...CbbColors.pp100)),
     "adj_ppp": GenericTableOps.addPtsCol("Adj P/100", "Approximate schedule-adjusted Points per 100 possessions", CommonTableDefs.picker(...CbbColors.pp100)),
     "sep1": GenericTableOps.addColSeparator(),
     "efg": GenericTableOps.addPctCol("eFG%", "Effective field goal% (3 pointers count 1.5x as much) for selected lineups", CommonTableDefs.picker(...CbbColors.eFG)),
     "to": GenericTableOps.addPctCol("TO%", "Turnover % for selected lineups", CommonTableDefs.picker(...CbbColors.tOver)),
-    "orb": GenericTableOps.addPctCol("ORB%", "Offensive rebounding % for selected lineups", CommonTableDefs.picker(...CbbColors.oReb)),
+    "orb": GenericTableOps.addPctCol("OR%", "Offensive rebounding % for selected lineups", CommonTableDefs.picker(...CbbColors.oReb)),
     "ftr": GenericTableOps.addPctCol("FTR", "Free throw rate for selected lineups", CommonTableDefs.picker(...CbbColors.ftr)),
     "sep2a": GenericTableOps.addColSeparator(),
     "assist": GenericTableOps.addPctCol("A%", "Assist % for selected lineups", CommonTableDefs.picker(...CbbColors.ast)),
@@ -165,7 +165,7 @@ export class CommonTableDefs {
     "2p": GenericTableOps.addPctCol("2P%", "2 point field goal percentage", CommonTableDefs.picker(...CbbColors.fg2P)),
     "2pmid": GenericTableOps.addPctCol("2P% mid", "2 point field goal percentage (mid range)", CommonTableDefs.picker(...CbbColors.fg2P_mid)),
     "2prim": GenericTableOps.addPctCol("2P% rim", "2 point field goal percentage (layup/dunk/etc)", CommonTableDefs.picker(...CbbColors.fg2P_rim)),
-    "sep4": GenericTableOps.addColSeparator(),
+    "sep4": GenericTableOps.addColSeparator(0.05),
     "poss": GenericTableOps.addIntCol("Poss", "Total number of possessions for selected lineups", GenericTableOps.defaultColorPicker),
     "adj_opp": GenericTableOps.addPtsCol("SoS", "Weighted average of the offensive or defensive efficiencies of the lineups' opponents", GenericTableOps.defaultColorPicker),
   };
@@ -180,7 +180,7 @@ export class CommonTableDefs {
     "sep1": GenericTableOps.addColSeparator(),
     "efg": GenericTableOps.addPctCol("eFG%", "Effective field goal% (3 pointers count 1.5x as much) for selected lineups", CommonTableDefs.picker(...CbbColors.eFG)),
     "to": GenericTableOps.addPctCol("TO%", "Turnover % for selected lineups", CommonTableDefs.picker(...CbbColors.tOver)),
-    "orb": GenericTableOps.addPctCol("ORB%", "Offensive rebounding % for selected lineups", CommonTableDefs.picker(...CbbColors.oReb)),
+    "orb": GenericTableOps.addPctCol("OR%", "Offensive rebounding % for selected lineups", CommonTableDefs.picker(...CbbColors.oReb)),
     "ftr": GenericTableOps.addPctCol("FTR", "Free throw rate for selected lineups", CommonTableDefs.picker(...CbbColors.ftr)),
     "sep2a": GenericTableOps.addColSeparator(),
     "assist": GenericTableOps.addPctCol("A%", "Assist % for selected lineups", CommonTableDefs.picker(...CbbColors.ast)),

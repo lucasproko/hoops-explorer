@@ -1,0 +1,28 @@
+.assistBadge::after {
+  content: "A"
+}
+.megaAssistBadge::after {
+  content: "A";
+  font-weight: 700;
+}
+.freeThrowBadge::after {
+  content: "F"
+}
+.megaFreeThrowBadge::after {
+  content: "F";
+  font-weight: 700;
+}
+.twoPointBadge::after {
+  content: "2";
+}
+.megaTwoPointBadge::after {
+  content: "2";
+  font-weight: 700;
+}
+.threePointBadge::after {
+  content: "3";
+}
+.megaThreePointBadge::after {
+  content: "3";
+  font-weight: 700;
+}

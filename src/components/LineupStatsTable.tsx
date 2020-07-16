@@ -31,6 +31,8 @@ import GenericTogglingMenuItem from './shared/GenericTogglingMenuItem';
 import LuckAdjDiagView from './diags/LuckAdjDiagView';
 
 // Util imports
+import { LineupDisplayUtils } from "../utils/stats/LineupDisplayUtils";
+import { RatingUtils } from "../utils/stats/RatingUtils";
 import { LineupUtils } from "../utils/stats/LineupUtils";
 import { CbbColors } from "../utils/CbbColors";
 import { CommonTableDefs } from "../utils/CommonTableDefs";
@@ -89,6 +91,11 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, teamStat
   /** Whether we are showing the luck config modal */
   const [ showLuckConfig, setShowLuckConfig ] = useState(false);
 
+  /** Whether to badge/colorize the lineups */
+  const [ decorateLineups, setDecorateLineups ] = useState(_.isNil(startingState.decorate) ?
+    ParamDefaults.defaultLineupDecorate : startingState.decorate
+  );
+
   // (slight delay when typing into the filter to make it more responsive)
   const [ timeoutId, setTimeoutId ] = useState(-1);
   const [ tmpFilterStr, setTmpFilterStr ] = useState(filterStr);
@@ -104,19 +111,21 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, teamStat
       lineupLuck: adjustForLuck,
       showLineupLuckDiags: showLuckAdjDiags,
       // Misc filters
+      decorate: decorateLineups,
       showTotal: showTotals,
       minPoss: minPoss,
       maxTableSize: maxTableSize,
       sortBy: sortBy,
       filter: filterStr
     }).omit(_.flatten([
+      (decorateLineups == ParamDefaults.defaultLineupDecorate) ? [ 'decorate' ] : [],
       (showTotals == ParamDefaults.defaultLineupShowTotal) ? [ 'showTotal' ] : [],
       _.isEqual(luckConfig, ParamDefaults.defaultLuckConfig) ? [ 'luck' ] : [],
       !adjustForLuck ? [ 'lineupLuck' ] : [],
       (showLuckAdjDiags == ParamDefaults.defaultOnOffLuckDiagMode) ? [ 'showLineupLuckDiags' ] : []
     ])).value();
     onChangeState(newState);
-  }, [ showTotals, minPoss, maxTableSize, sortBy, filterStr,
+  }, [ decorateLineups, showTotals, minPoss, maxTableSize, sortBy, filterStr,
         luckConfig, adjustForLuck, showLuckAdjDiags ]);
 
   // 3] Utils
@@ -126,13 +135,28 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, teamStat
   const genderYearLookup = `${startingState.gender}_${startingState.year}`;
   const avgEfficiency = efficiencyAverages[genderYearLookup] || efficiencyAverages.fallback;
 
+  /** Need baseline player info for tooltip view/lineup decoration */
+  const baselinePlayerInfo = _.fromPairs(
+    (rosterStats.baseline || []).map((mutableP: any) => {
+      // Add ORtg to lineup stats:
+      const [ oRtg, adjORtg, oRtgDiag ] = RatingUtils.buildORtg(mutableP, avgEfficiency, false);
+      const [ dRtg, adjDRtg, dRtgDiag ] = RatingUtils.buildDRtg(mutableP, avgEfficiency, false);
+      mutableP.off_rtg = oRtg;
+      mutableP.off_adj_rtg = adjORtg;
+      mutableP.def_rtg = dRtg;
+      mutableP.def_adj_rtg = adjDRtg;
+
+      return [ mutableP.key, mutableP ];
+    })
+  );
+
   // The luck baseline can either be the user-selecteed baseline or the entire season
   const [ baseOrSeasonTeamStats, baseOrSeason3PMap ] = (() => {
     if (adjustForLuck) {
       switch (luckConfig.base) {
         case "baseline":
           return [
-            teamStats.baseline, _.fromPairs((rosterStats.baseline || []).map((p: any) => [ p.key, p ]))
+            teamStats.baseline, baselinePlayerInfo
           ];
         default: //("season")
           return [
@@ -214,11 +238,13 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, teamStat
       const sortedCodesAndIds = (lineup.key == totalLineupId) ? undefined :
         PositionUtils.orderLineup(codesAndIds, positionFromPlayerKey, teamSeasonLookup);
 
-      const perLineupPlayerMap = _.fromPairs(codesAndIds.map((cid: { code: string, id: string }) => {
+      const perLineupPlayerLuckMap = _.fromPairs(codesAndIds.map((cid: { code: string, id: string }) => {
         return [  cid.id, baseOrSeason3PMap[cid.id] ];
       }));
       const luckAdj = (adjustForLuck && lineup?.doc_count) ? [
-        LuckUtils.calcOffTeamLuckAdj(lineup, rosterStats.baseline || [], baseOrSeasonTeamStats, perLineupPlayerMap, avgEfficiency),
+        LuckUtils.calcOffTeamLuckAdj(
+          lineup, rosterStats.baseline || [], baseOrSeasonTeamStats, perLineupPlayerLuckMap, avgEfficiency
+        ),
         LuckUtils.calcDefTeamLuckAdj(lineup, baseOrSeasonTeamStats, avgEfficiency),
       ] as [OffLuckAdjustmentDiags, DefLuckAdjustmentDiags] : undefined;
 
@@ -226,9 +252,14 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, teamStat
         LuckUtils.injectLuck(lineup, luckAdj?.[0], luckAdj?.[1]);
       }
 
+      const perLineupBaselinePlayerMap = _.fromPairs(codesAndIds.map((cid: { code: string, id: string }) => {
+        return [  cid.id, baselinePlayerInfo[cid.id] || {} ];
+      })) as Record<string, Record<string, any>>;
       const title = sortedCodesAndIds ?
-        sortedCodesAndIds.map((cid: { code: string, id: string}) => cid.code).join(" / ") :
-        "Weighted Total";
+        LineupDisplayUtils.buildDecoratedLineup(
+          lineup.key, sortedCodesAndIds, perLineupBaselinePlayerMap, positionFromPlayerKey, "off_adj_rtg", decorateLineups
+        ) : "Weighted Total";
+
       const stats = { off_title: title, def_title: "", ...lineup };
       return _.flatten([
         [ GenericTableOps.buildDataRow(stats, offPrefixFn, offCellMetaFn) ],
@@ -361,7 +392,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, teamStat
             <Form.Control
               onKeyUp={onFilterChange}
               onChange={onFilterChange}
-              placeholder = "eg Player1Code=PG/Player2FirstName/-Player3Surname/Player4Name=4+5"
+              placeholder = "eg Player1Code=PG;Player2FirstName;-Player3Surname;Player4Name=4+5"
               value={tmpFilterStr}
             />
           </InputGroup>
@@ -369,6 +400,11 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, teamStat
         <Col sm="3"/>
         <Form.Group as={Col} sm="1">
           <GenericTogglingMenu>
+            <GenericTogglingMenuItem
+              text="Decorate Lineups"
+              truthVal={decorateLineups}
+              onSelect={() => setDecorateLineups(!decorateLineups)}
+            />
             <GenericTogglingMenuItem
               text="Show Weighted Combo of All Lineups"
               truthVal={showTotals}

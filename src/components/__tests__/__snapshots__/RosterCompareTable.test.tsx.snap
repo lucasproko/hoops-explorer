@@ -151,7 +151,7 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                   }
                 >
                   <div>
-                    100.0
+                    100
                   </div>
                 </td>
                 <td
@@ -954,7 +954,7 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                   }
                 >
                   <div>
-                    100.0
+                    100
                   </div>
                 </td>
                 <td
@@ -1024,7 +1024,7 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                   }
                 >
                   <div>
-                    100.0
+                    100
                   </div>
                 </td>
                 <td
@@ -1757,7 +1757,7 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                   }
                 >
                   <div>
-                    100.0
+                    100
                   </div>
                 </td>
                 <td

@@ -468,99 +468,99 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (all
                         "value": "asc:diff_to:rep",
                       },
                       Object {
-                        "label": "'On' ORB% (Desc. / Offensive)",
+                        "label": "'On' OR% (Desc. / Offensive)",
                         "value": "desc:off_orb:on",
                       },
                       Object {
-                        "label": "'Off' ORB% (Desc. / Offensive)",
+                        "label": "'Off' OR% (Desc. / Offensive)",
                         "value": "desc:off_orb:off",
                       },
                       Object {
-                        "label": "'On-Off' ORB% (Desc. / Offensive)",
+                        "label": "'On-Off' OR% (Desc. / Offensive)",
                         "value": "desc:off_orb:delta",
                       },
                       Object {
-                        "label": "'r:On-Off' ORB% (Desc. / Offensive)",
+                        "label": "'r:On-Off' OR% (Desc. / Offensive)",
                         "value": "desc:off_orb:rep",
                       },
                       Object {
-                        "label": "'On' ORB% (Asc. / Offensive)",
+                        "label": "'On' OR% (Asc. / Offensive)",
                         "value": "asc:off_orb:on",
                       },
                       Object {
-                        "label": "'Off' ORB% (Asc. / Offensive)",
+                        "label": "'Off' OR% (Asc. / Offensive)",
                         "value": "asc:off_orb:off",
                       },
                       Object {
-                        "label": "'On-Off' ORB% (Asc. / Offensive)",
+                        "label": "'On-Off' OR% (Asc. / Offensive)",
                         "value": "asc:off_orb:delta",
                       },
                       Object {
-                        "label": "'r:On-Off' ORB% (Asc. / Offensive)",
+                        "label": "'r:On-Off' OR% (Asc. / Offensive)",
                         "value": "asc:off_orb:rep",
                       },
                       Object {
-                        "label": "'On' ORB% (Desc. / Defensive)",
+                        "label": "'On' OR% (Desc. / Defensive)",
                         "value": "desc:def_orb:on",
                       },
                       Object {
-                        "label": "'Off' ORB% (Desc. / Defensive)",
+                        "label": "'Off' OR% (Desc. / Defensive)",
                         "value": "desc:def_orb:off",
                       },
                       Object {
-                        "label": "'On-Off' ORB% (Desc. / Defensive)",
+                        "label": "'On-Off' OR% (Desc. / Defensive)",
                         "value": "desc:def_orb:delta",
                       },
                       Object {
-                        "label": "'r:On-Off' ORB% (Desc. / Defensive)",
+                        "label": "'r:On-Off' OR% (Desc. / Defensive)",
                         "value": "desc:def_orb:rep",
                       },
                       Object {
-                        "label": "'On' ORB% (Asc. / Defensive)",
+                        "label": "'On' OR% (Asc. / Defensive)",
                         "value": "asc:def_orb:on",
                       },
                       Object {
-                        "label": "'Off' ORB% (Asc. / Defensive)",
+                        "label": "'Off' OR% (Asc. / Defensive)",
                         "value": "asc:def_orb:off",
                       },
                       Object {
-                        "label": "'On-Off' ORB% (Asc. / Defensive)",
+                        "label": "'On-Off' OR% (Asc. / Defensive)",
                         "value": "asc:def_orb:delta",
                       },
                       Object {
-                        "label": "'r:On-Off' ORB% (Asc. / Defensive)",
+                        "label": "'r:On-Off' OR% (Asc. / Defensive)",
                         "value": "asc:def_orb:rep",
                       },
                       Object {
-                        "label": "'On' ORB% (Desc. / Off-Def)",
+                        "label": "'On' OR% (Desc. / Off-Def)",
                         "value": "desc:diff_orb:on",
                       },
                       Object {
-                        "label": "'Off' ORB% (Desc. / Off-Def)",
+                        "label": "'Off' OR% (Desc. / Off-Def)",
                         "value": "desc:diff_orb:off",
                       },
                       Object {
-                        "label": "'On-Off' ORB% (Desc. / Off-Def)",
+                        "label": "'On-Off' OR% (Desc. / Off-Def)",
                         "value": "desc:diff_orb:delta",
                       },
                       Object {
-                        "label": "'r:On-Off' ORB% (Desc. / Off-Def)",
+                        "label": "'r:On-Off' OR% (Desc. / Off-Def)",
                         "value": "desc:diff_orb:rep",
                       },
                       Object {
-                        "label": "'On' ORB% (Asc. / Off-Def)",
+                        "label": "'On' OR% (Asc. / Off-Def)",
                         "value": "asc:diff_orb:on",
                       },
                       Object {
-                        "label": "'Off' ORB% (Asc. / Off-Def)",
+                        "label": "'Off' OR% (Asc. / Off-Def)",
                         "value": "asc:diff_orb:off",
                       },
                       Object {
-                        "label": "'On-Off' ORB% (Asc. / Off-Def)",
+                        "label": "'On-Off' OR% (Asc. / Off-Def)",
                         "value": "asc:diff_orb:delta",
                       },
                       Object {
-                        "label": "'r:On-Off' ORB% (Asc. / Off-Def)",
+                        "label": "'r:On-Off' OR% (Asc. / Off-Def)",
                         "value": "asc:diff_orb:rep",
                       },
                       Object {
@@ -2036,7 +2036,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (all
                     },
                     "orb": GenericTableColProps {
                       "className": "",
-                      "colName": "ORB%",
+                      "colName": "OR%",
                       "colorPicker": [Function],
                       "formatter": [Function],
                       "isTitle": false,
@@ -2715,7 +2715,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (all
                     },
                     "orb": GenericTableColProps {
                       "className": "",
-                      "colName": "ORB%",
+                      "colName": "OR%",
                       "colorPicker": [Function],
                       "formatter": [Function],
                       "isTitle": false,
@@ -3953,7 +3953,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (all
                     },
                     "orb": GenericTableColProps {
                       "className": "",
-                      "colName": "ORB%",
+                      "colName": "OR%",
                       "colorPicker": [Function],
                       "formatter": [Function],
                       "isTitle": false,
@@ -4632,7 +4632,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (all
                     },
                     "orb": GenericTableColProps {
                       "className": "",
-                      "colName": "ORB%",
+                      "colName": "OR%",
                       "colorPicker": [Function],
                       "formatter": [Function],
                       "isTitle": false,
@@ -5870,7 +5870,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (all
                     },
                     "orb": GenericTableColProps {
                       "className": "",
-                      "colName": "ORB%",
+                      "colName": "OR%",
                       "colorPicker": [Function],
                       "formatter": [Function],
                       "isTitle": false,
@@ -6549,7 +6549,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (all
                     },
                     "orb": GenericTableColProps {
                       "className": "",
-                      "colName": "ORB%",
+                      "colName": "OR%",
                       "colorPicker": [Function],
                       "formatter": [Function],
                       "isTitle": false,
@@ -7787,7 +7787,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (all
                     },
                     "orb": GenericTableColProps {
                       "className": "",
-                      "colName": "ORB%",
+                      "colName": "OR%",
                       "colorPicker": [Function],
                       "formatter": [Function],
                       "isTitle": false,
@@ -8466,7 +8466,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (all
                     },
                     "orb": GenericTableColProps {
                       "className": "",
-                      "colName": "ORB%",
+                      "colName": "OR%",
                       "colorPicker": [Function],
                       "formatter": [Function],
                       "isTitle": false,
@@ -10052,7 +10052,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (all
                     },
                     "orb": GenericTableColProps {
                       "className": "",
-                      "colName": "ORB%",
+                      "colName": "OR%",
                       "colorPicker": [Function],
                       "formatter": [Function],
                       "isTitle": false,
@@ -10731,7 +10731,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (all
                     },
                     "orb": GenericTableColProps {
                       "className": "",
-                      "colName": "ORB%",
+                      "colName": "OR%",
                       "colorPicker": [Function],
                       "formatter": [Function],
                       "isTitle": false,
@@ -12317,7 +12317,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (all
                     },
                     "orb": GenericTableColProps {
                       "className": "",
-                      "colName": "ORB%",
+                      "colName": "OR%",
                       "colorPicker": [Function],
                       "formatter": [Function],
                       "isTitle": false,
@@ -12996,7 +12996,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (all
                     },
                     "orb": GenericTableColProps {
                       "className": "",
-                      "colName": "ORB%",
+                      "colName": "OR%",
                       "colorPicker": [Function],
                       "formatter": [Function],
                       "isTitle": false,
@@ -14382,7 +14382,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (all
                 },
                 "orb": GenericTableColProps {
                   "className": "",
-                  "colName": "ORB%",
+                  "colName": "OR%",
                   "colorPicker": [Function],
                   "formatter": [Function],
                   "isTitle": false,
@@ -14979,99 +14979,99 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (rep
                         "value": "asc:diff_to:rep",
                       },
                       Object {
-                        "label": "'On' ORB% (Desc. / Offensive)",
+                        "label": "'On' OR% (Desc. / Offensive)",
                         "value": "desc:off_orb:on",
                       },
                       Object {
-                        "label": "'Off' ORB% (Desc. / Offensive)",
+                        "label": "'Off' OR% (Desc. / Offensive)",
                         "value": "desc:off_orb:off",
                       },
                       Object {
-                        "label": "'On-Off' ORB% (Desc. / Offensive)",
+                        "label": "'On-Off' OR% (Desc. / Offensive)",
                         "value": "desc:off_orb:delta",
                       },
                       Object {
-                        "label": "'r:On-Off' ORB% (Desc. / Offensive)",
+                        "label": "'r:On-Off' OR% (Desc. / Offensive)",
                         "value": "desc:off_orb:rep",
                       },
                       Object {
-                        "label": "'On' ORB% (Asc. / Offensive)",
+                        "label": "'On' OR% (Asc. / Offensive)",
                         "value": "asc:off_orb:on",
                       },
                       Object {
-                        "label": "'Off' ORB% (Asc. / Offensive)",
+                        "label": "'Off' OR% (Asc. / Offensive)",
                         "value": "asc:off_orb:off",
                       },
                       Object {
-                        "label": "'On-Off' ORB% (Asc. / Offensive)",
+                        "label": "'On-Off' OR% (Asc. / Offensive)",
                         "value": "asc:off_orb:delta",
                       },
                       Object {
-                        "label": "'r:On-Off' ORB% (Asc. / Offensive)",
+                        "label": "'r:On-Off' OR% (Asc. / Offensive)",
                         "value": "asc:off_orb:rep",
                       },
                       Object {
-                        "label": "'On' ORB% (Desc. / Defensive)",
+                        "label": "'On' OR% (Desc. / Defensive)",
                         "value": "desc:def_orb:on",
                       },
                       Object {
-                        "label": "'Off' ORB% (Desc. / Defensive)",
+                        "label": "'Off' OR% (Desc. / Defensive)",
                         "value": "desc:def_orb:off",
                       },
                       Object {
-                        "label": "'On-Off' ORB% (Desc. / Defensive)",
+                        "label": "'On-Off' OR% (Desc. / Defensive)",
                         "value": "desc:def_orb:delta",
                       },
                       Object {
-                        "label": "'r:On-Off' ORB% (Desc. / Defensive)",
+                        "label": "'r:On-Off' OR% (Desc. / Defensive)",
                         "value": "desc:def_orb:rep",
                       },
                       Object {
-                        "label": "'On' ORB% (Asc. / Defensive)",
+                        "label": "'On' OR% (Asc. / Defensive)",
                         "value": "asc:def_orb:on",
                       },
                       Object {
-                        "label": "'Off' ORB% (Asc. / Defensive)",
+                        "label": "'Off' OR% (Asc. / Defensive)",
                         "value": "asc:def_orb:off",
                       },
                       Object {
-                        "label": "'On-Off' ORB% (Asc. / Defensive)",
+                        "label": "'On-Off' OR% (Asc. / Defensive)",
                         "value": "asc:def_orb:delta",
                       },
                       Object {
-                        "label": "'r:On-Off' ORB% (Asc. / Defensive)",
+                        "label": "'r:On-Off' OR% (Asc. / Defensive)",
                         "value": "asc:def_orb:rep",
                       },
                       Object {
-                        "label": "'On' ORB% (Desc. / Off-Def)",
+                        "label": "'On' OR% (Desc. / Off-Def)",
                         "value": "desc:diff_orb:on",
                       },
                       Object {
-                        "label": "'Off' ORB% (Desc. / Off-Def)",
+                        "label": "'Off' OR% (Desc. / Off-Def)",
                         "value": "desc:diff_orb:off",
                       },
                       Object {
-                        "label": "'On-Off' ORB% (Desc. / Off-Def)",
+                        "label": "'On-Off' OR% (Desc. / Off-Def)",
                         "value": "desc:diff_orb:delta",
                       },
                       Object {
-                        "label": "'r:On-Off' ORB% (Desc. / Off-Def)",
+                        "label": "'r:On-Off' OR% (Desc. / Off-Def)",
                         "value": "desc:diff_orb:rep",
                       },
                       Object {
-                        "label": "'On' ORB% (Asc. / Off-Def)",
+                        "label": "'On' OR% (Asc. / Off-Def)",
                         "value": "asc:diff_orb:on",
                       },
                       Object {
-                        "label": "'Off' ORB% (Asc. / Off-Def)",
+                        "label": "'Off' OR% (Asc. / Off-Def)",
                         "value": "asc:diff_orb:off",
                       },
                       Object {
-                        "label": "'On-Off' ORB% (Asc. / Off-Def)",
+                        "label": "'On-Off' OR% (Asc. / Off-Def)",
                         "value": "asc:diff_orb:delta",
                       },
                       Object {
-                        "label": "'r:On-Off' ORB% (Asc. / Off-Def)",
+                        "label": "'r:On-Off' OR% (Asc. / Off-Def)",
                         "value": "asc:diff_orb:rep",
                       },
                       Object {
@@ -16547,7 +16547,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (rep
                     },
                     "orb": GenericTableColProps {
                       "className": "",
-                      "colName": "ORB%",
+                      "colName": "OR%",
                       "colorPicker": [Function],
                       "formatter": [Function],
                       "isTitle": false,
@@ -17226,7 +17226,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (rep
                     },
                     "orb": GenericTableColProps {
                       "className": "",
-                      "colName": "ORB%",
+                      "colName": "OR%",
                       "colorPicker": [Function],
                       "formatter": [Function],
                       "isTitle": false,
@@ -18925,7 +18925,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (rep
                     },
                     "orb": GenericTableColProps {
                       "className": "",
-                      "colName": "ORB%",
+                      "colName": "OR%",
                       "colorPicker": [Function],
                       "formatter": [Function],
                       "isTitle": false,
@@ -19604,7 +19604,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (rep
                     },
                     "orb": GenericTableColProps {
                       "className": "",
-                      "colName": "ORB%",
+                      "colName": "OR%",
                       "colorPicker": [Function],
                       "formatter": [Function],
                       "isTitle": false,
@@ -21303,7 +21303,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (rep
                     },
                     "orb": GenericTableColProps {
                       "className": "",
-                      "colName": "ORB%",
+                      "colName": "OR%",
                       "colorPicker": [Function],
                       "formatter": [Function],
                       "isTitle": false,
@@ -21982,7 +21982,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (rep
                     },
                     "orb": GenericTableColProps {
                       "className": "",
-                      "colName": "ORB%",
+                      "colName": "OR%",
                       "colorPicker": [Function],
                       "formatter": [Function],
                       "isTitle": false,
@@ -23681,7 +23681,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (rep
                     },
                     "orb": GenericTableColProps {
                       "className": "",
-                      "colName": "ORB%",
+                      "colName": "OR%",
                       "colorPicker": [Function],
                       "formatter": [Function],
                       "isTitle": false,
@@ -24360,7 +24360,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (rep
                     },
                     "orb": GenericTableColProps {
                       "className": "",
-                      "colName": "ORB%",
+                      "colName": "OR%",
                       "colorPicker": [Function],
                       "formatter": [Function],
                       "isTitle": false,
@@ -33083,7 +33083,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (rep
                     },
                     "orb": GenericTableColProps {
                       "className": "",
-                      "colName": "ORB%",
+                      "colName": "OR%",
                       "colorPicker": [Function],
                       "formatter": [Function],
                       "isTitle": false,
@@ -33762,7 +33762,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (rep
                     },
                     "orb": GenericTableColProps {
                       "className": "",
-                      "colName": "ORB%",
+                      "colName": "OR%",
                       "colorPicker": [Function],
                       "formatter": [Function],
                       "isTitle": false,
@@ -42485,7 +42485,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (rep
                     },
                     "orb": GenericTableColProps {
                       "className": "",
-                      "colName": "ORB%",
+                      "colName": "OR%",
                       "colorPicker": [Function],
                       "formatter": [Function],
                       "isTitle": false,
@@ -43164,7 +43164,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (rep
                     },
                     "orb": GenericTableColProps {
                       "className": "",
-                      "colName": "ORB%",
+                      "colName": "OR%",
                       "colorPicker": [Function],
                       "formatter": [Function],
                       "isTitle": false,
@@ -51687,7 +51687,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (rep
                 },
                 "orb": GenericTableColProps {
                   "className": "",
-                  "colName": "ORB%",
+                  "colName": "OR%",
                   "colorPicker": [Function],
                   "formatter": [Function],
                   "isTitle": false,
@@ -52284,99 +52284,99 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (rep
                         "value": "asc:diff_to:rep",
                       },
                       Object {
-                        "label": "'On' ORB% (Desc. / Offensive)",
+                        "label": "'On' OR% (Desc. / Offensive)",
                         "value": "desc:off_orb:on",
                       },
                       Object {
-                        "label": "'Off' ORB% (Desc. / Offensive)",
+                        "label": "'Off' OR% (Desc. / Offensive)",
                         "value": "desc:off_orb:off",
                       },
                       Object {
-                        "label": "'On-Off' ORB% (Desc. / Offensive)",
+                        "label": "'On-Off' OR% (Desc. / Offensive)",
                         "value": "desc:off_orb:delta",
                       },
                       Object {
-                        "label": "'r:On-Off' ORB% (Desc. / Offensive)",
+                        "label": "'r:On-Off' OR% (Desc. / Offensive)",
                         "value": "desc:off_orb:rep",
                       },
                       Object {
-                        "label": "'On' ORB% (Asc. / Offensive)",
+                        "label": "'On' OR% (Asc. / Offensive)",
                         "value": "asc:off_orb:on",
                       },
                       Object {
-                        "label": "'Off' ORB% (Asc. / Offensive)",
+                        "label": "'Off' OR% (Asc. / Offensive)",
                         "value": "asc:off_orb:off",
                       },
                       Object {
-                        "label": "'On-Off' ORB% (Asc. / Offensive)",
+                        "label": "'On-Off' OR% (Asc. / Offensive)",
                         "value": "asc:off_orb:delta",
                       },
                       Object {
-                        "label": "'r:On-Off' ORB% (Asc. / Offensive)",
+                        "label": "'r:On-Off' OR% (Asc. / Offensive)",
                         "value": "asc:off_orb:rep",
                       },
                       Object {
-                        "label": "'On' ORB% (Desc. / Defensive)",
+                        "label": "'On' OR% (Desc. / Defensive)",
                         "value": "desc:def_orb:on",
                       },
                       Object {
-                        "label": "'Off' ORB% (Desc. / Defensive)",
+                        "label": "'Off' OR% (Desc. / Defensive)",
                         "value": "desc:def_orb:off",
                       },
                       Object {
-                        "label": "'On-Off' ORB% (Desc. / Defensive)",
+                        "label": "'On-Off' OR% (Desc. / Defensive)",
                         "value": "desc:def_orb:delta",
                       },
                       Object {
-                        "label": "'r:On-Off' ORB% (Desc. / Defensive)",
+                        "label": "'r:On-Off' OR% (Desc. / Defensive)",
                         "value": "desc:def_orb:rep",
                       },
                       Object {
-                        "label": "'On' ORB% (Asc. / Defensive)",
+                        "label": "'On' OR% (Asc. / Defensive)",
                         "value": "asc:def_orb:on",
                       },
                       Object {
-                        "label": "'Off' ORB% (Asc. / Defensive)",
+                        "label": "'Off' OR% (Asc. / Defensive)",
                         "value": "asc:def_orb:off",
                       },
                       Object {
-                        "label": "'On-Off' ORB% (Asc. / Defensive)",
+                        "label": "'On-Off' OR% (Asc. / Defensive)",
                         "value": "asc:def_orb:delta",
                       },
                       Object {
-                        "label": "'r:On-Off' ORB% (Asc. / Defensive)",
+                        "label": "'r:On-Off' OR% (Asc. / Defensive)",
                         "value": "asc:def_orb:rep",
                       },
                       Object {
-                        "label": "'On' ORB% (Desc. / Off-Def)",
+                        "label": "'On' OR% (Desc. / Off-Def)",
                         "value": "desc:diff_orb:on",
                       },
                       Object {
-                        "label": "'Off' ORB% (Desc. / Off-Def)",
+                        "label": "'Off' OR% (Desc. / Off-Def)",
                         "value": "desc:diff_orb:off",
                       },
                       Object {
-                        "label": "'On-Off' ORB% (Desc. / Off-Def)",
+                        "label": "'On-Off' OR% (Desc. / Off-Def)",
                         "value": "desc:diff_orb:delta",
                       },
                       Object {
-                        "label": "'r:On-Off' ORB% (Desc. / Off-Def)",
+                        "label": "'r:On-Off' OR% (Desc. / Off-Def)",
                         "value": "desc:diff_orb:rep",
                       },
                       Object {
-                        "label": "'On' ORB% (Asc. / Off-Def)",
+                        "label": "'On' OR% (Asc. / Off-Def)",
                         "value": "asc:diff_orb:on",
                       },
                       Object {
-                        "label": "'Off' ORB% (Asc. / Off-Def)",
+                        "label": "'Off' OR% (Asc. / Off-Def)",
                         "value": "asc:diff_orb:off",
                       },
                       Object {
-                        "label": "'On-Off' ORB% (Asc. / Off-Def)",
+                        "label": "'On-Off' OR% (Asc. / Off-Def)",
                         "value": "asc:diff_orb:delta",
                       },
                       Object {
-                        "label": "'r:On-Off' ORB% (Asc. / Off-Def)",
+                        "label": "'r:On-Off' OR% (Asc. / Off-Def)",
                         "value": "asc:diff_orb:rep",
                       },
                       Object {
@@ -53852,7 +53852,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (rep
                     },
                     "orb": GenericTableColProps {
                       "className": "",
-                      "colName": "ORB%",
+                      "colName": "OR%",
                       "colorPicker": [Function],
                       "formatter": [Function],
                       "isTitle": false,
@@ -54531,7 +54531,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (rep
                     },
                     "orb": GenericTableColProps {
                       "className": "",
-                      "colName": "ORB%",
+                      "colName": "OR%",
                       "colorPicker": [Function],
                       "formatter": [Function],
                       "isTitle": false,
@@ -56126,7 +56126,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (rep
                 },
                 "orb": GenericTableColProps {
                   "className": "",
-                  "colName": "ORB%",
+                  "colName": "OR%",
                   "colorPicker": [Function],
                   "formatter": [Function],
                   "isTitle": false,
@@ -56623,75 +56623,75 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot 1`] 
                         "value": "asc:diff_to:delta",
                       },
                       Object {
-                        "label": "'On' ORB% (Desc. / Offensive)",
+                        "label": "'On' OR% (Desc. / Offensive)",
                         "value": "desc:off_orb:on",
                       },
                       Object {
-                        "label": "'Off' ORB% (Desc. / Offensive)",
+                        "label": "'Off' OR% (Desc. / Offensive)",
                         "value": "desc:off_orb:off",
                       },
                       Object {
-                        "label": "'On-Off' ORB% (Desc. / Offensive)",
+                        "label": "'On-Off' OR% (Desc. / Offensive)",
                         "value": "desc:off_orb:delta",
                       },
                       Object {
-                        "label": "'On' ORB% (Asc. / Offensive)",
+                        "label": "'On' OR% (Asc. / Offensive)",
                         "value": "asc:off_orb:on",
                       },
                       Object {
-                        "label": "'Off' ORB% (Asc. / Offensive)",
+                        "label": "'Off' OR% (Asc. / Offensive)",
                         "value": "asc:off_orb:off",
                       },
                       Object {
-                        "label": "'On-Off' ORB% (Asc. / Offensive)",
+                        "label": "'On-Off' OR% (Asc. / Offensive)",
                         "value": "asc:off_orb:delta",
                       },
                       Object {
-                        "label": "'On' ORB% (Desc. / Defensive)",
+                        "label": "'On' OR% (Desc. / Defensive)",
                         "value": "desc:def_orb:on",
                       },
                       Object {
-                        "label": "'Off' ORB% (Desc. / Defensive)",
+                        "label": "'Off' OR% (Desc. / Defensive)",
                         "value": "desc:def_orb:off",
                       },
                       Object {
-                        "label": "'On-Off' ORB% (Desc. / Defensive)",
+                        "label": "'On-Off' OR% (Desc. / Defensive)",
                         "value": "desc:def_orb:delta",
                       },
                       Object {
-                        "label": "'On' ORB% (Asc. / Defensive)",
+                        "label": "'On' OR% (Asc. / Defensive)",
                         "value": "asc:def_orb:on",
                       },
                       Object {
-                        "label": "'Off' ORB% (Asc. / Defensive)",
+                        "label": "'Off' OR% (Asc. / Defensive)",
                         "value": "asc:def_orb:off",
                       },
                       Object {
-                        "label": "'On-Off' ORB% (Asc. / Defensive)",
+                        "label": "'On-Off' OR% (Asc. / Defensive)",
                         "value": "asc:def_orb:delta",
                       },
                       Object {
-                        "label": "'On' ORB% (Desc. / Off-Def)",
+                        "label": "'On' OR% (Desc. / Off-Def)",
                         "value": "desc:diff_orb:on",
                       },
                       Object {
-                        "label": "'Off' ORB% (Desc. / Off-Def)",
+                        "label": "'Off' OR% (Desc. / Off-Def)",
                         "value": "desc:diff_orb:off",
                       },
                       Object {
-                        "label": "'On-Off' ORB% (Desc. / Off-Def)",
+                        "label": "'On-Off' OR% (Desc. / Off-Def)",
                         "value": "desc:diff_orb:delta",
                       },
                       Object {
-                        "label": "'On' ORB% (Asc. / Off-Def)",
+                        "label": "'On' OR% (Asc. / Off-Def)",
                         "value": "asc:diff_orb:on",
                       },
                       Object {
-                        "label": "'Off' ORB% (Asc. / Off-Def)",
+                        "label": "'Off' OR% (Asc. / Off-Def)",
                         "value": "asc:diff_orb:off",
                       },
                       Object {
-                        "label": "'On-Off' ORB% (Asc. / Off-Def)",
+                        "label": "'On-Off' OR% (Asc. / Off-Def)",
                         "value": "asc:diff_orb:delta",
                       },
                       Object {
@@ -57907,7 +57907,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot 1`] 
                     },
                     "orb": GenericTableColProps {
                       "className": "",
-                      "colName": "ORB%",
+                      "colName": "OR%",
                       "colorPicker": [Function],
                       "formatter": [Function],
                       "isTitle": false,
@@ -58586,7 +58586,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot 1`] 
                     },
                     "orb": GenericTableColProps {
                       "className": "",
-                      "colName": "ORB%",
+                      "colName": "OR%",
                       "colorPicker": [Function],
                       "formatter": [Function],
                       "isTitle": false,
@@ -59268,7 +59268,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot 1`] 
                     },
                     "orb": GenericTableColProps {
                       "className": "",
-                      "colName": "ORB%",
+                      "colName": "OR%",
                       "colorPicker": [Function],
                       "formatter": [Function],
                       "isTitle": false,
@@ -59947,7 +59947,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot 1`] 
                     },
                     "orb": GenericTableColProps {
                       "className": "",
-                      "colName": "ORB%",
+                      "colName": "OR%",
                       "colorPicker": [Function],
                       "formatter": [Function],
                       "isTitle": false,
@@ -60629,7 +60629,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot 1`] 
                     },
                     "orb": GenericTableColProps {
                       "className": "",
-                      "colName": "ORB%",
+                      "colName": "OR%",
                       "colorPicker": [Function],
                       "formatter": [Function],
                       "isTitle": false,
@@ -61308,7 +61308,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot 1`] 
                     },
                     "orb": GenericTableColProps {
                       "className": "",
-                      "colName": "ORB%",
+                      "colName": "OR%",
                       "colorPicker": [Function],
                       "formatter": [Function],
                       "isTitle": false,
@@ -61990,7 +61990,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot 1`] 
                     },
                     "orb": GenericTableColProps {
                       "className": "",
-                      "colName": "ORB%",
+                      "colName": "OR%",
                       "colorPicker": [Function],
                       "formatter": [Function],
                       "isTitle": false,
@@ -62669,7 +62669,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot 1`] 
                     },
                     "orb": GenericTableColProps {
                       "className": "",
-                      "colName": "ORB%",
+                      "colName": "OR%",
                       "colorPicker": [Function],
                       "formatter": [Function],
                       "isTitle": false,
@@ -63351,7 +63351,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot 1`] 
                     },
                     "orb": GenericTableColProps {
                       "className": "",
-                      "colName": "ORB%",
+                      "colName": "OR%",
                       "colorPicker": [Function],
                       "formatter": [Function],
                       "isTitle": false,
@@ -64030,7 +64030,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot 1`] 
                     },
                     "orb": GenericTableColProps {
                       "className": "",
-                      "colName": "ORB%",
+                      "colName": "OR%",
                       "colorPicker": [Function],
                       "formatter": [Function],
                       "isTitle": false,
@@ -64712,7 +64712,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot 1`] 
                     },
                     "orb": GenericTableColProps {
                       "className": "",
-                      "colName": "ORB%",
+                      "colName": "OR%",
                       "colorPicker": [Function],
                       "formatter": [Function],
                       "isTitle": false,
@@ -65391,7 +65391,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot 1`] 
                     },
                     "orb": GenericTableColProps {
                       "className": "",
-                      "colName": "ORB%",
+                      "colName": "OR%",
                       "colorPicker": [Function],
                       "formatter": [Function],
                       "isTitle": false,
@@ -65873,7 +65873,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot 1`] 
                 },
                 "orb": GenericTableColProps {
                   "className": "",
-                  "colName": "ORB%",
+                  "colName": "OR%",
                   "colorPicker": [Function],
                   "formatter": [Function],
                   "isTitle": false,

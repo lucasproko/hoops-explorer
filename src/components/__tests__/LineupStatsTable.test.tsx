@@ -19,7 +19,7 @@ describe("LineupStatsTable", () => {
       <LineupStatsTable
         lineupStats={testData}
         rosterStats={{}}
-        teamStats={{}}
+        teamStats={{ on:{}, off: {}, baseline: {}, global: {}, onOffMode: true }}
         startingState={{}}
         onChangeState={dummyChangeStateCallback}
       />
@@ -45,6 +45,30 @@ describe("LineupStatsTable", () => {
         teamStats={teamData}
         rosterStats={playerData}
         startingState={{}}
+        onChangeState={dummyChangeStateCallback}
+      />
+    );
+    expect(toJson(wrapper)).toMatchSnapshot();
+  });
+  test("LineupStatsTable - should create snapshot (with individual data - plain, luck, luck diags)", () => {
+    const testData = {
+      lineups: sampleLineupStatsResponse.responses[0].aggregations.lineups.buckets
+    };
+    const teamData = _.merge(
+      sampleTeamStatsResponse.aggregations.tri_filter.buckets,
+      { global: {}, onOffMode: true }
+    );
+    const playerData = {
+      baseline: samplePlayerStatsResponse.aggregations.tri_filter.buckets.on.player.buckets,
+      global: samplePlayerStatsResponse.aggregations.tri_filter.buckets.baseline.player.buckets
+    };
+    const dummyChangeStateCallback = (stats: LineupFilterParams) => {};
+    const wrapper = shallow(
+      <LineupStatsTable
+        lineupStats={testData}
+        teamStats={teamData}
+        rosterStats={playerData}
+        startingState={{ decorate: false, lineupLuck: true, showLineupLuckDiags: true }}
         onChangeState={dummyChangeStateCallback}
       />
     );

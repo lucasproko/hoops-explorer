@@ -1,0 +1,338 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LineupDisplayUtils buildDecoratedLineup - buildTooltipTexts 1`] = `
+<span>
+  <div
+    className="tooltip bs-tooltip-right"
+    id="p1_p2_p3_p4_p5_info"
+    role="tooltip"
+    x-placement="right"
+  >
+    <div
+      className="arrow"
+    />
+    <div
+      className="tooltip-inner"
+    >
+      <span>
+        player1: p-PG
+        <br />
+      </span>
+      <span>
+        ORtg 101 on 10%, DRB 5%
+        <br />
+      </span>
+      <span>
+        
+        <br />
+      </span>
+      <span>
+        player2: CG
+        <br />
+      </span>
+      <span>
+        ORtg 102 on 15%, DRB 10%
+        <br />
+      </span>
+      <span>
+        
+        <br />
+      </span>
+      <span>
+        player3: WG
+        <br />
+      </span>
+      <span>
+        ORtg 103 on 20%, DRB 15%
+        <br />
+      </span>
+      <span>
+        
+        <br />
+      </span>
+      <span>
+        player4: WF
+        <br />
+      </span>
+      <span>
+        ORtg 104 on 25%, DRB 20%
+        <br />
+      </span>
+      <span>
+        
+        <br />
+      </span>
+      <span>
+        player5: PF/C
+        <br />
+      </span>
+      <span>
+        ORtg 105 on 30%, DRB 25%
+        <br />
+      </span>
+      <span>
+        
+        <br />
+      </span>
+    </div>
+  </div>
+</span>
+`;
+
+exports[`LineupDisplayUtils buildDecoratedLineup - decorated version 1`] = `
+<span>
+  <div>
+    <span>
+      <span
+        style={
+          Object {
+            "whiteSpace": "nowrap",
+          }
+        }
+      >
+        <span
+          className="badge badge-light"
+          style={
+            Object {
+              "backgroundColor": "#f2f9f280",
+            }
+          }
+        >
+          <span
+            style={
+              Object {
+                "fontSize": "small",
+                "fontWeight": 100,
+              }
+            }
+          >
+            p1
+          </span>
+        </span>
+        <span
+          style={Object {}}
+        >
+          <sup
+            className="megaThreePointBadge"
+          />
+          <sup
+            className="assistBadge"
+          />
+        </span>
+      </span>
+      <span
+        style={
+          Object {
+            "opacity": 0,
+          }
+        }
+      >
+         ; 
+      </span>
+    </span>
+  </div>
+  <div>
+    <span>
+      <span
+        style={
+          Object {
+            "whiteSpace": "nowrap",
+          }
+        }
+      >
+        <span
+          className="badge badge-light"
+          style={
+            Object {
+              "backgroundColor": "#e5f2e580",
+            }
+          }
+        >
+          <span
+            style={
+              Object {
+                "fontSize": "small",
+                "fontWeight": 300,
+              }
+            }
+          >
+            p2
+          </span>
+        </span>
+        <span
+          style={Object {}}
+        >
+          <sub
+            className="megaFreeThrowBadge"
+          />
+          <sup
+            className="megaAssistBadge"
+          />
+        </span>
+      </span>
+      <span
+        style={
+          Object {
+            "opacity": 0,
+          }
+        }
+      >
+         ; 
+      </span>
+    </span>
+  </div>
+  <div>
+    <span>
+      <span
+        style={
+          Object {
+            "whiteSpace": "nowrap",
+          }
+        }
+      >
+        <span
+          className="badge badge-light"
+          style={
+            Object {
+              "backgroundColor": "#d9ecd980",
+            }
+          }
+        >
+          <span
+            style={
+              Object {
+                "fontSize": "small",
+                "fontWeight": 500,
+              }
+            }
+          >
+            p3
+          </span>
+        </span>
+        <span
+          style={Object {}}
+        >
+          <sup
+            className="megaTwoPointBadge"
+          />
+        </span>
+      </span>
+      <span
+        style={
+          Object {
+            "opacity": 0,
+          }
+        }
+      >
+         ; 
+      </span>
+    </span>
+  </div>
+  <div>
+    <span>
+      <span
+        style={
+          Object {
+            "whiteSpace": "nowrap",
+          }
+        }
+      >
+        <span
+          className="badge badge-light"
+          style={
+            Object {
+              "backgroundColor": "#cce6cc80",
+            }
+          }
+        >
+          <span
+            style={
+              Object {
+                "fontSize": "small",
+                "fontWeight": 600,
+              }
+            }
+          >
+            p4
+          </span>
+        </span>
+        <span
+          style={Object {}}
+        >
+          <sup
+            className="twoPointBadge"
+          />
+          <sub
+            className="freeThrowBadge"
+          />
+        </span>
+      </span>
+      <span
+        style={
+          Object {
+            "opacity": 0,
+          }
+        }
+      >
+         ; 
+      </span>
+    </span>
+  </div>
+  <div>
+    <span>
+      <span
+        style={
+          Object {
+            "whiteSpace": "nowrap",
+          }
+        }
+      >
+        <span
+          className="badge badge-light"
+          style={
+            Object {
+              "backgroundColor": "#bfdfbf80",
+            }
+          }
+        >
+          <span
+            style={
+              Object {
+                "fontSize": "small",
+                "fontWeight": 700,
+              }
+            }
+          >
+            p5
+          </span>
+        </span>
+        <span
+          style={Object {}}
+        >
+          <sup
+            className="threePointBadge"
+          />
+          <sub
+            className="freeThrowBadge"
+          />
+          <sup
+            className="assistBadge"
+          />
+        </span>
+      </span>
+    </span>
+  </div>
+</span>
+`;
+
+exports[`LineupDisplayUtils buildDecoratedLineup - plain version 1`] = `
+<span>
+  <div>
+    <span>
+      <b>
+        p1 / p2 / p3 / p4 / p5
+      </b>
+    </span>
+  </div>
+</span>
+`;
