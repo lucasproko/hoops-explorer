@@ -25,12 +25,9 @@ export class LineupDisplayUtils {
     colorField: string,
     decorateLineup: boolean
   ) {
-    const tooltipTexts = _.flatMap(sortedLineup, (cid: {id: string, code: string}) => {
-      return LineupDisplayUtils.buildTooltipText(cid, perLineupPlayerMap, positionFromPlayerKey);
-    });
-    const tooltip = <Tooltip id={`${key}_info`}>{_.map(tooltipTexts,
-      (t: string, i: number) => <span key={"" + i}>{t}<br/></span>
-    )}</Tooltip>;
+    const tooltip = LineupDisplayUtils.buildTooltipTexts(
+      key, sortedLineup, perLineupPlayerMap, positionFromPlayerKey
+    );
     if (decorateLineup) {
       return sortedLineup.map((cid: { code: string, id: string }, pid: number) => {
         return <OverlayTrigger placement="auto" overlay={tooltip} key={"" + pid}>{
@@ -44,7 +41,24 @@ export class LineupDisplayUtils {
     }
   }
 
-  static buildTooltipText(
+  /** Builds a tooltip element for the entire lineup */
+  static buildTooltipTexts(
+    key: string,
+    sortedLineup: { code: string, id: string }[],
+    perLineupPlayerMap: Record<string, Record<string, any>>,
+    positionFromPlayerKey: Record<string, {posClass: string}>
+  ) {
+    const tooltipTexts = _.flatMap(sortedLineup, (cid: {id: string, code: string}) => {
+      return LineupDisplayUtils.buildTooltipText(cid, perLineupPlayerMap, positionFromPlayerKey);
+    });
+    const tooltip = <Tooltip id={`${key}_info`}>{_.map(tooltipTexts,
+      (t: string, i: number) => <span key={"" + i}>{t}<br/></span>
+    )}</Tooltip>;
+
+    return tooltip;
+  }
+
+  private static buildTooltipText(
     cid: { code: string, id: string },
     perLineupPlayerMap: Record<string, Record<string, any>>,
     positionFromPlayerKey: Record<string, {posClass: string}>
@@ -68,10 +82,10 @@ export class LineupDisplayUtils {
     colorField: string,
     finalPlayer: boolean
   ) {
-    const fontWeight = (id: string) => {
+    const fontWeight = (playerInfo: Record<string, any>) => {
       const usage = _.max(
         [ 0.10, _.min(
-          [ perLineupPlayerMap[id]?.off_usage?.value || 0.20, 0.35 ]
+          [ playerInfo.off_usage?.value || 0.20, 0.35 ]
         )]
       );
       return 100*_.round((usage < 0.20) ? //10 == 100 weight
@@ -88,16 +102,16 @@ export class LineupDisplayUtils {
       };
     };
 
-    const singleColorField = (id: string, field: string) => {
-      const val = perLineupPlayerMap[id]?.[field]?.value;
+    const singleColorField = (playerInfo: Record<string, any>, field: string) => {
+      const val = playerInfo[field]?.value;
       const color = colorChooser(field)(val) + "80"; //(opacity at the end)
       return color;
     };
 
-    const buildBadges = (id: string) => {
-      const _3pr = perLineupPlayerMap[id]?.off_3pr?.value;
-      const ftr = perLineupPlayerMap[id]?.off_ftr?.value;
-      const assist = perLineupPlayerMap[id]?.off_assist?.value;
+    const buildBadges = (playerInfo: Record<string, any>) => {
+      const _3pr = playerInfo.off_3pr?.value;
+      const ftr = playerInfo.off_ftr?.value;
+      const assist = playerInfo.off_assist?.value;
       return <span style={{}}>
         { _3pr <= 0.05 ? <sup className="megaTwoPointBadge"></sup> : null }
         { _3pr >= 0.05 && _3pr < 0.2 ? <sup className="twoPointBadge"></sup> : null }
@@ -110,19 +124,20 @@ export class LineupDisplayUtils {
       </span>;
     };
 
+    const playerInfo = perLineupPlayerMap[cid.id];
     return <span key={cid.code}>
       <span style={{whiteSpace: 'nowrap'}}><Badge variant="light"
         style={{
-          backgroundColor: singleColorField(cid.id, colorField)
+          backgroundColor: singleColorField(playerInfo, colorField)
 // consider this in the future:
 //          background: `linear-gradient(to right, ${singleColorField(cid.id, colorField)}, white, ${singleColorField(cid.id, "def_adj_rtg")})`
         }}>
           <span style={{
             fontSize: "small",
-            fontWeight: fontWeight(cid.id)
+            fontWeight: fontWeight(playerInfo)
           }}>{cid.code}</span>
       </Badge>
-      {buildBadges(cid.id)}</span>
+      {buildBadges(playerInfo)}</span>
       {finalPlayer ? null : <span style={{opacity: 0}}> ; </span> }
     </span>;
   }
