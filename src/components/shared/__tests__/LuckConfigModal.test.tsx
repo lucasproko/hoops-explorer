@@ -15,6 +15,7 @@ describe("LuckConfigModal", () => {
           onHide={() => {}}
           onSave={(l: LuckParams) => {}}
           luck={{base: "baseline"}}
+          showHelp={true}
         />
       </div>
     );

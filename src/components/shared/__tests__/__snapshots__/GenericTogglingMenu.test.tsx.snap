@@ -67,6 +67,15 @@ exports[`GenericTogglingMenu GenericTogglingMenuItem - should create snapshot 1`
         Test2
       </span>
       <span>
+         
+        <a
+          href="https://test.com"
+          target="_blank"
+        >
+          (?)
+        </a>
+      </span>
+      <span>
             
       </span>
       <svg

@@ -560,11 +560,13 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
               text={<span>Show replacement On-Off <span className="badge badge-pill badge-info">alpha!</span></span>}
               truthVal={incReplacementOnOff}
               onSelect={() => setIncReplacementOnOff(!incReplacementOnOff)}
+              helpLink={showHelp ? "https://hoop-explorer.blogspot.com/2020/04/replacement-on-off-heres-elevator-pitch.html" : undefined}
             />
             <GenericTogglingMenuItem
               text={<span>Show RAPM <span className="badge badge-pill badge-info">experimental!</span></span>}
               truthVal={incRapm}
               onSelect={() => setIncRapm(!incRapm)}
+              helpLink={showHelp ? "https://hoop-explorer.blogspot.com/2020/03/understanding-team-report-onoff-page.html#RAPM" : undefined}
             />
             <Dropdown.Divider />
             <GenericTogglingMenuItem

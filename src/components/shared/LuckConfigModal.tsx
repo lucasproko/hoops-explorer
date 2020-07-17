@@ -23,15 +23,18 @@ type Props = {
   show: boolean,
   onHide: () => void,
   onSave: (luck: LuckParams) => void,
-  luck: LuckParams
+  luck: LuckParams,
+  showHelp: boolean
 };
-const LuckConfigModal: React.FunctionComponent<Props> = ({onSave, luck, ...props}) => {
+const LuckConfigModal: React.FunctionComponent<Props> = ({onSave, luck, showHelp, ...props}) => {
 
   // State decomposition:
   const [ generalLuckBase, setGeneralLuckBase ] = useState(luck.base as "baseline" | "season");
   return <Modal {...props}>
     <Modal.Header closeButton>
-      <Modal.Title>Luck Adjustment Config</Modal.Title>
+      <Modal.Title>Luck Adjustment Config</Modal.Title>&nbsp;{showHelp ?
+        <a target="_blank" href="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html">(?)</a> : null
+      }
     </Modal.Header>
     <Modal.Body>
       <Card className="w-100">

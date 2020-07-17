@@ -500,6 +500,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, tea
               text="Show Positional diagnostics"
               truthVal={showPositionDiags}
               onSelect={() => setShowPositionDiags(!showPositionDiags)}
+              helpLink={showHelp ? "https://hoop-explorer.blogspot.com/2020/05/classifying-college-basketball.html" : undefined}
             />
           </GenericTogglingMenu>
         </Form.Group>

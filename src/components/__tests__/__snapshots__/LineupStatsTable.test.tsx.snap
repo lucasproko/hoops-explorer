@@ -17,6 +17,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
       onHide={[Function]}
       onSave={[Function]}
       show={false}
+      showHelp={true}
     />
     <FormRow>
       <FormGroup
@@ -70,6 +71,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
             truthVal={false}
           />
           <GenericTogglingMenuItem
+            helpLink="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
             onSelect={[Function]}
             text="Adjust for Luck"
             truthVal={false}
@@ -5578,6 +5580,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
       onHide={[Function]}
       onSave={[Function]}
       show={false}
+      showHelp={true}
     />
     <FormRow>
       <FormGroup
@@ -5631,6 +5634,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
             truthVal={false}
           />
           <GenericTogglingMenuItem
+            helpLink="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
             onSelect={[Function]}
             text="Adjust for Luck"
             truthVal={true}
@@ -6850,6 +6854,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                       "samplePoss": 196,
                     }
                   }
+                  showHelp={true}
                 />,
               },
               GenericTableSeparator {
@@ -7562,6 +7567,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                       "samplePoss": 111,
                     }
                   }
+                  showHelp={true}
                 />,
               },
               GenericTableSeparator {
@@ -8274,6 +8280,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                       "samplePoss": 102,
                     }
                   }
+                  showHelp={true}
                 />,
               },
               GenericTableSeparator {
@@ -8562,6 +8569,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
       onHide={[Function]}
       onSave={[Function]}
       show={false}
+      showHelp={true}
     />
     <FormRow>
       <FormGroup
@@ -8615,6 +8623,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
             truthVal={false}
           />
           <GenericTogglingMenuItem
+            helpLink="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
             onSelect={[Function]}
             text="Adjust for Luck"
             truthVal={false}

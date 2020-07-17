@@ -578,6 +578,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
             truthVal={false}
           />
           <GenericTogglingMenuItem
+            helpLink="https://hoop-explorer.blogspot.com/2020/05/classifying-college-basketball.html"
             onSelect={[Function]}
             text="Show Positional diagnostics"
             truthVal={false}
@@ -2654,6 +2655,7 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
             truthVal={false}
           />
           <GenericTogglingMenuItem
+            helpLink="https://hoop-explorer.blogspot.com/2020/05/classifying-college-basketball.html"
             onSelect={[Function]}
             text="Show Positional diagnostics"
             truthVal={false}
@@ -4109,6 +4111,7 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
             truthVal={false}
           />
           <GenericTogglingMenuItem
+            helpLink="https://hoop-explorer.blogspot.com/2020/05/classifying-college-basketball.html"
             onSelect={[Function]}
             text="Show Positional diagnostics"
             truthVal={false}
@@ -6074,6 +6077,7 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
             truthVal={false}
           />
           <GenericTogglingMenuItem
+            helpLink="https://hoop-explorer.blogspot.com/2020/05/classifying-college-basketball.html"
             onSelect={[Function]}
             text="Show Positional diagnostics"
             truthVal={false}

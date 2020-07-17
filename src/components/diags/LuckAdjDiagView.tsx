@@ -29,9 +29,10 @@ type Props = {
   offLuck: OffLuckAdjustmentDiags,
   defLuck: DefLuckAdjustmentDiags,
   baseline: LuckAdjustmentBaseline,
+  showHelp: boolean,
   showDetailsOverride?: boolean
 };
-const LuckAdjDiagView: React.FunctionComponent<Props> = ({name, offLuck, defLuck, baseline, showDetailsOverride}) => {
+const LuckAdjDiagView: React.FunctionComponent<Props> = ({name, offLuck, defLuck, baseline, showHelp, showDetailsOverride}) => {
 
   const topRef = React.createRef<HTMLDivElement>();
 
@@ -45,6 +46,7 @@ const LuckAdjDiagView: React.FunctionComponent<Props> = ({name, offLuck, defLuck
   return <span ref={topRef}>
       <span>
         <b>Luck Adjustment diagnostics [{name}]</b>
+        {showHelp ? <span> <a target="_blank" href="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html">(?)</a></span> : null}
         &nbsp;off=[<b>{o.deltaOffAdjEff.toFixed(1)}</b>], def=[<b>{d.deltaDefAdjEff.toFixed(1)}</b>], margin=[<b>{(o.deltaOffAdjEff - d.deltaDefAdjEff).toFixed(1)}</b>] pts/100
         &nbsp;(<a href="#" onClick={(event) => { event.preventDefault(); setShowDetails(!showDetails) }}>show {showDetails ? "less" : "more"}</a>)
       </span>

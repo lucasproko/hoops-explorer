@@ -55,6 +55,12 @@ type Props = {
 
 const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, teamStats, rosterStats, startingState, onChangeState}) => {
 
+  const server = (typeof window === `undefined`) ? //(ensures SSR code still compiles)
+    "server" : window.location.hostname
+
+  /** Only show help for diagnstic on/off on main page */
+  const showHelp = !_.startsWith(server, "cbb-on-off-analyzer");
+
   // 1] Data Model
 
   // 2] State
@@ -270,6 +276,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, teamStat
             offLuck={luckAdj[0]}
             defLuck={luckAdj[1]}
             baseline={luckConfig.base}
+            showHelp={showHelp}
           />, "small pt-2"
         ) ] : [] ,
         [ GenericTableOps.buildRowSeparator() ]
@@ -382,6 +389,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, teamStat
         onHide={() => setShowLuckConfig(false)}
         onSave={(l: LuckParams) => setLuckConfig(l)}
         luck={luckConfig}
+        showHelp={showHelp}
       />
       <Form.Row>
         <Form.Group as={Col} sm="8">
@@ -414,6 +422,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, teamStat
               text="Adjust for Luck"
               truthVal={adjustForLuck}
               onSelect={() => setAdjustForLuck(!adjustForLuck)}
+              helpLink={showHelp ? "https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html" : undefined}
             />
             <Dropdown.Divider />
             <GenericTogglingMenuItem

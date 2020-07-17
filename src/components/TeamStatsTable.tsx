@@ -51,6 +51,12 @@ type Props = {
 
 const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, teamStats, rosterStats, onChangeState}) => {
 
+  const server = (typeof window === `undefined`) ? //(ensures SSR code still compiles)
+    "server" : window.location.hostname
+
+  /** Only show help for diagnstic on/off on main page */
+  const showHelp = !_.startsWith(server, "cbb-on-off-analyzer");
+
   // 1] Data Model
 
   const [ adjustForLuck, setAdjustForLuck ] = useState(_.isNil(gameFilterParams.onOffLuck) ?
@@ -145,6 +151,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, teamS
           offLuck={luckAdjustment.on[0]}
           defLuck={luckAdjustment.on[1]}
           baseline={luckConfig.base}
+          showHelp={showHelp}
         />, "small pt-2"
       ) ] : [] ,
       [ GenericTableOps.buildRowSeparator() ]
@@ -158,6 +165,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, teamS
           offLuck={luckAdjustment.off[0]}
           defLuck={luckAdjustment.off[1]}
           baseline={luckConfig.base}
+          showHelp={showHelp}
         />, "small pt-2"
       ) ] : [] ,
       [ GenericTableOps.buildRowSeparator() ]
@@ -171,6 +179,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, teamS
           offLuck={luckAdjustment.baseline[0]}
           defLuck={luckAdjustment.baseline[1]}
           baseline={luckConfig.base}
+          showHelp={showHelp}
         />, "small pt-2"
       ) ] : [] ,
       [ GenericTableOps.buildRowSeparator() ]
@@ -200,6 +209,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, teamS
         onHide={() => setShowLuckConfig(false)}
         onSave={(l: LuckParams) => setLuckConfig(l)}
         luck={luckConfig}
+        showHelp={showHelp}
       />
       <Form.Row>
         <Col sm="11"/>
@@ -209,6 +219,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, teamS
               text="Adjust for Luck"
               truthVal={adjustForLuck}
               onSelect={() => setAdjustForLuck(!adjustForLuck)}
+              helpLink={showHelp ? "https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html" : undefined}
             />
             <Dropdown.Divider />
             <GenericTogglingMenuItem

@@ -32,6 +32,7 @@ describe("GenericTogglingMenu", () => {
           text="Test2"
           truthVal={true}
           onSelect={() => ""}
+          helpLink="https://test.com"
         />
         <GenericTogglingMenuItem
           text={<span>Test3</span>}

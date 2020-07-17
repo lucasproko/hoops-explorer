@@ -19,14 +19,16 @@ import { faCheck } from '@fortawesome/free-solid-svg-icons'
 type Props = {
   readonly text: string | React.ReactNode,
   readonly truthVal: boolean,
-  readonly onSelect: () => void
+  readonly onSelect: () => void,
+  readonly helpLink?: string
 };
 
-const GenericTogglingMenuItem: React.FunctionComponent<Props> = ({text, truthVal, onSelect}) => {
+const GenericTogglingMenuItem: React.FunctionComponent<Props> = ({text, truthVal, onSelect, helpLink}) => {
 
   return <Dropdown.Item as={Button}>
-      <div onClick={() => onSelect()}>
+      <div onClick={(e: any) => { if (!e.target.href) onSelect() }}>
         {_.isString(text) ? <span>{text}</span> : text}
+        {helpLink ? <span>&nbsp;<a  target="_blank" href={helpLink}>(?)</a></span> : null}
         <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
         {truthVal ? <FontAwesomeIcon icon={faCheck}/> : null}
       </div>

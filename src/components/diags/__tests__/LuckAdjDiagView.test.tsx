@@ -14,6 +14,7 @@ describe("LuckAdjDiagView", () => {
         offLuck={sampleOffOnOffLuckDiagnostics}
         defLuck={sampleDefOnOffLuckDiagnostics}
         baseline="season"
+        showHelp={false}
       />
     );
     expect(toJson(wrapper)).toMatchSnapshot();
@@ -26,6 +27,7 @@ describe("LuckAdjDiagView", () => {
         offLuck={sampleOffOnOffLuckDiagnostics}
         defLuck={sampleDefOnOffLuckDiagnostics}
         baseline="baseline"
+        showHelp={true}
         showDetailsOverride={true}
       />
     );

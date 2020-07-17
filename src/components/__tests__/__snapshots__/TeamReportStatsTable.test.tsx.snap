@@ -1637,6 +1637,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (all
               truthVal={true}
             />
             <GenericTogglingMenuItem
+              helpLink="https://hoop-explorer.blogspot.com/2020/04/replacement-on-off-heres-elevator-pitch.html"
               onSelect={[Function]}
               text={
                 <span>
@@ -1651,6 +1652,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (all
               truthVal={true}
             />
             <GenericTogglingMenuItem
+              helpLink="https://hoop-explorer.blogspot.com/2020/03/understanding-team-report-onoff-page.html#RAPM"
               onSelect={[Function]}
               text={
                 <span>
@@ -16148,6 +16150,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (rep
               truthVal={true}
             />
             <GenericTogglingMenuItem
+              helpLink="https://hoop-explorer.blogspot.com/2020/04/replacement-on-off-heres-elevator-pitch.html"
               onSelect={[Function]}
               text={
                 <span>
@@ -16162,6 +16165,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (rep
               truthVal={true}
             />
             <GenericTogglingMenuItem
+              helpLink="https://hoop-explorer.blogspot.com/2020/03/understanding-team-report-onoff-page.html#RAPM"
               onSelect={[Function]}
               text={
                 <span>
@@ -53453,6 +53457,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (rep
               truthVal={true}
             />
             <GenericTogglingMenuItem
+              helpLink="https://hoop-explorer.blogspot.com/2020/04/replacement-on-off-heres-elevator-pitch.html"
               onSelect={[Function]}
               text={
                 <span>
@@ -53467,6 +53472,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (rep
               truthVal={true}
             />
             <GenericTogglingMenuItem
+              helpLink="https://hoop-explorer.blogspot.com/2020/03/understanding-team-report-onoff-page.html#RAPM"
               onSelect={[Function]}
               text={
                 <span>
@@ -57508,6 +57514,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot 1`] 
               truthVal={true}
             />
             <GenericTogglingMenuItem
+              helpLink="https://hoop-explorer.blogspot.com/2020/04/replacement-on-off-heres-elevator-pitch.html"
               onSelect={[Function]}
               text={
                 <span>
@@ -57522,6 +57529,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot 1`] 
               truthVal={false}
             />
             <GenericTogglingMenuItem
+              helpLink="https://hoop-explorer.blogspot.com/2020/03/understanding-team-report-onoff-page.html#RAPM"
               onSelect={[Function]}
               text={
                 <span>

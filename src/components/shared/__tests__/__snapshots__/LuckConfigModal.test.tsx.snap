@@ -11,6 +11,7 @@ exports[`LuckConfigModal LuckConfigModal - should create snapshot 1`] = `
     onHide={[Function]}
     onSave={[Function]}
     show={true}
+    showHelp={true}
   />
 </div>
 `;
