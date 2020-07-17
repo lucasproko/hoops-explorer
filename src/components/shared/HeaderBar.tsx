@@ -55,7 +55,7 @@ const HeaderBar: React.FunctionComponent<Props> = ({thisPage, common}) => {
   // From baseline query
   function getBaseGameUrl() {
     return UrlRouting.getGameUrl(
-      getCommonFilterParams(common)  as GameFilterParams, {}
+      getCommonFilterParams(common) as GameFilterParams, {}
     );
   }
   function getBaseLineupUrl() {
@@ -104,55 +104,63 @@ const HeaderBar: React.FunctionComponent<Props> = ({thisPage, common}) => {
     <Tooltip id="lastReportTooltip">View a gallery of interesting basketball analytics charts</Tooltip>
   );
 
+  /** Adds the current selection to history before navigating away */
+  const onNav = (e: any) => {
+    if (!_.isEmpty(common)) { //(do nothing if the page has just been loaded and not modified)
+      const key = UrlRouting.getUrl({ [UrlRouting.noSuffix]: common });
+      HistoryManager.addParamsToHistory(key, thisPage);
+    }
+  };
+
   //(only render client-side - was running into cache issues of the Link href)
   return (typeof window !== `undefined`) ? <Container>
       <Row className="border-top">
         {(thisPage != ParamPrefixes.game) ?
             <Col className="text-center small">
               <OverlayTrigger placement="auto" overlay={baseGameTooltip}>
-                <span><Link href={getBaseGameUrl()}><a>On/Off: Base</a></Link></span>
+                <span><Link href={getBaseGameUrl()}><div><a href="#" onClick={onNav}>On/Off: Base</a></div></Link></span>
               </OverlayTrigger>
             </Col> : null
         }
         {(thisPage != ParamPrefixes.game) ?
             <Col className="text-center small">
               <OverlayTrigger placement="auto" overlay={lastGameTooltip}>
-                <span><Link href={getLastGameUrl()}><a>On/Off: Last</a></Link></span>
+                <span><Link href={getLastGameUrl()}><div><a href="#" onClick={onNav}>On/Off: Last</a></div></Link></span>
               </OverlayTrigger>
             </Col> : null
         }
         {(thisPage != ParamPrefixes.lineup) ?
             <Col className="text-center small">
               <OverlayTrigger placement="auto" overlay={baseLineupTooltip}>
-                <span><Link href={getBaseLineupUrl()}><a>Lineups: Base</a></Link></span>
+                <span><Link href={getBaseLineupUrl()}><div><a href="#" onClick={onNav}>Lineups: Base</a></div></Link></span>
               </OverlayTrigger>
             </Col> : null
         }
         {(thisPage != ParamPrefixes.lineup) ?
             <Col className="text-center small">
             <OverlayTrigger placement="auto" overlay={lastLineupTooltip}>
-                <span><Link href={getLastLineupUrl()}><a>Lineups: Last</a></Link></span>
+                <span><Link href={getLastLineupUrl()}><div><a href="#" onClick={onNav}>Lineups: Last</a></div></Link></span>
               </OverlayTrigger>
             </Col> : null
         }
         {(thisPage != ParamPrefixes.report) ?
             <Col className="text-center small">
             <OverlayTrigger placement="auto" overlay={baseReportTooltip}>
-                <span><Link href={getBaseReportUrl()}><a>Report: Base</a></Link></span>
+                <span><Link href={getBaseReportUrl()}><div><a href="#" onClick={onNav}>Report: Base</a></div></Link></span>
             </OverlayTrigger>
             </Col> : null
         }
         {(thisPage != ParamPrefixes.report) ?
             <Col className="text-center small">
               <OverlayTrigger placement="auto" overlay={lastReportTooltip}>
-                <span><Link href={getLastReportUrl()}><a>Report: Last</a></Link></span>
+                <span><Link href={getLastReportUrl()}><div><a href="#" onClick={onNav}>Report: Last</a></div></Link></span>
               </OverlayTrigger>
             </Col> : null
         }
         {(thisPage != "charts") ?
             <Col className="text-center small">
               <OverlayTrigger placement="auto" overlay={chartTooltip}>
-                <span><Link href={"/Charts"}><a>Charts</a></Link></span>
+                <span><Link href={"/Charts"}><div><a href="#" onClick={onNav}>Charts</a></div></Link></span>
               </OverlayTrigger>
             </Col> : null
         }
