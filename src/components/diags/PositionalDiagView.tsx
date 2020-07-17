@@ -115,15 +115,16 @@ const contribKeys = [ "contrib_pg", "contrib_sg", "contrib_sf", "contrib_pf", "c
 
 type Props = {
   player: Record<string, any>,
+  teamSeason: string,
   showHelp: boolean,
   showDetailsOverride?: boolean
 };
-const PositionalDiagView: React.FunctionComponent<Props> = ({player, showHelp, showDetailsOverride}) => {
+const PositionalDiagView: React.FunctionComponent<Props> = ({player, teamSeason, showHelp, showDetailsOverride}) => {
 
   const topRef = React.createRef<HTMLDivElement>();
 
   const [ positionInfo, positionDiags ] = PositionUtils.buildPositionConfidences(player);
-  const [ positionId, positionIdDiag ] = PositionUtils.buildPosition(positionInfo, player);
+  const [ positionId, positionIdDiag ] = PositionUtils.buildPosition(positionInfo, player, teamSeason);
 
   const [ showComplexDiag, setShowComplexDiag ] = useState(_.isNil(showDetailsOverride) ? false : showDetailsOverride);
 

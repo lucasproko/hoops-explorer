@@ -2,7 +2,7 @@
 // Utils:
 import _ from 'lodash'
 
-import { relativePositionFixes, RelativePositionFixRule } from './PositionalManualFixes';
+import { absolutePositionFixes, relativePositionFixes, RelativePositionFixRule } from './PositionalManualFixes';
 
 /** (just to make copy/pasting between colab and this code easier)*/
 const array = (v: number[]) => { return v; }
@@ -229,67 +229,77 @@ export class PositionUtils {
   } as Record<string, string>;
 
   /** Tag the player with a position string given the confidences */
-  static buildPosition(confs: Record<string, number>, player: Record<string, any>): [string, string] {
-    const posList = PositionUtils.tradPosList;
-
-    // Get the class with the highest prio
-    const maxPos = _.maxBy(posList, (pos: string) => confs[pos] || 0) || 0;
-
-    const assistRate = player?.off_assist?.value || 0;
-    const minAstRate = 0.09; // (less than this and you can't be a PG!)
-    const threeRate = player?.off_3pr?.value || 0;
-    const minThreeRate = 0.20;
-
-    const fwdConfSum = confs["pos_sf"] + confs["pos_pf"] + confs["pos_c"];
-
-    // Just do the rules as a big bunch of if statements
-    const getPosition = () => {
-      if (confs["pos_pg"] > 0.85) {
-        return (assistRate >= minAstRate) ?
-          [ "PG", `(P[PG] >= 85%)`, "G?" ] :
-          [ "WG", `(PG:)(P[PG] >= 85%) BUT (AST%[${(assistRate*100).toFixed(1)}] < 9%)`, "G?" ];
-      } else if (confs["pos_pg"] > 0.5) {
-        return (assistRate >= minAstRate) ?
-          [ "s-PG", `(P[PG] >= 50%)`, "G?" ] :
-          [ "WG", `(pG:)(P[PG] >= 50%) BUT (AST%[${(assistRate*100).toFixed(1)}] < 9%)`, "G?" ];
-      } else if (maxPos == posList[0]) {
-        return (assistRate >= minAstRate) ?
-          [ "CG", `(Max[P] == PG)`, "G?" ] :
-          [ "WG", `(CG:)(Max[P] == PG) BUT (AST%[${(assistRate*100).toFixed(1)}] < 9%)`, "G?" ];
-      } else if ((maxPos == posList[1]) && (confs["pos_pg"] >= fwdConfSum)) {
-        return (assistRate >= minAstRate) ?
-        [ "CG", `(Max[P] == SG) AND (P[PG] >= P[SF] + P[PF] + P[C])`, "G?" ] :
-        [ "WG", `(CG:)(Max[P] == SG) AND (P[PG] >= P[SF] + P[PF] + P[C]) BUT (AST%[${(assistRate*100).toFixed(1)}] < 9%)`, "G?" ];
-      } else if ((maxPos == posList[1]) && (confs["pos_pg"] < fwdConfSum)) {
-        return [ "WG", `(Max[P] == SG) AND (P[PG] < P[SF] + P[PF] + P[C])`, "G?" ];
-      } else if ((maxPos == posList[2]) && (confs["pos_pg"] + confs["pos_sg"] >= confs["pos_pf"] + confs["pos_c"])) {
-        return [ "WG", `(Max[P] == SF) AND (P[PG] + P[SG] >= P[PF] + P[C])`, "G?" ];
-      } else if (maxPos == posList[2]) {
-        return [ "WF", `(Max[P] == SF) AND (P[PG] + P[SG] < P[PF] + P[C])`, "F/C?" ];
-      } else if (confs["pos_pf"] >= 0.85) {
-        return [ "PF/C", `(P[PF] >= 85%)`, "F/C?" ];
-      } else if ((maxPos == posList[3]) && (confs["pos_pg"] + confs["pos_sg"] + confs["pos_sf"] >= confs["pos_c"])) {
-        return (threeRate >= minThreeRate) ?
-          [ "S-PF", `(Max[P] == PF) AND (P[PG] + P[SG] + P[SF] >= P[C])`, "F/C?" ] :
-          [ "PF/C", `(S4:)(Max[P] == PF) AND (P[PG] + P[SG] + P[SF] >= P[C]) BUT 3PR%[${(threeRate*100).toFixed(1)}] < 20%`, "F/C?" ];
-      } else if (confs["pos_c"] >= 0.85) {
-        return [ "C", `(P[C] >= 85%)`, "F/C?" ];
-      }
-      //(else fallback)
-      return [ "PF/C", `(Max[P] == C) OR ((Max[P] == PF) AND (P[PG] + P[SG] + P[SF] < P[C]))`, "F/C?" ];
-    };
-    const [ pos, diag, fallbackPos ] = getPosition();
-
-    const usage = (player?.off_usage?.value || 0);
-    const poss = (player?.off_team_poss?.value || 0);
-    const effectivePoss = poss*usage;
-
-    if (effectivePoss < 25.0) { // Too few possessions to make an accurate determination
-      return [ fallbackPos,
-        `Too few used possessions [${effectivePoss.toFixed(1)}]=[${poss.toFixed(0)}]*[${(usage*100).toFixed(1)}]% < [25.0]. ` +
-        `Would have matched [${pos}] from rule [${diag}]` ];
+  static buildPosition(
+    confs: Record<string, number>, player: Record<string, any>, teamSeason: string
+  ): [string, string] {
+    const override = absolutePositionFixes[teamSeason]?.[player.key];
+    if (override) { // Look for overrides
+      const [ manualPos, diag ] = PositionUtils.buildPosition(confs, player, "");
+      return [ override.position,
+        `Override from [${manualPos}] which matched rule [${diag}]`
+      ];
     } else {
-      return [ pos, diag ];
+      const posList = PositionUtils.tradPosList;
+
+      // Get the class with the highest prio
+      const maxPos = _.maxBy(posList, (pos: string) => confs[pos] || 0) || 0;
+
+      const assistRate = player?.off_assist?.value || 0;
+      const minAstRate = 0.09; // (less than this and you can't be a PG!)
+      const threeRate = player?.off_3pr?.value || 0;
+      const minThreeRate = 0.20;
+
+      const fwdConfSum = confs["pos_sf"] + confs["pos_pf"] + confs["pos_c"];
+
+      // Just do the rules as a big bunch of if statements
+      const getPosition = () => {
+        if (confs["pos_pg"] > 0.85) {
+          return (assistRate >= minAstRate) ?
+            [ "PG", `(P[PG] >= 85%)`, "G?" ] :
+            [ "WG", `(PG:)(P[PG] >= 85%) BUT (AST%[${(assistRate*100).toFixed(1)}] < 9%)`, "G?" ];
+        } else if (confs["pos_pg"] > 0.5) {
+          return (assistRate >= minAstRate) ?
+            [ "s-PG", `(P[PG] >= 50%)`, "G?" ] :
+            [ "WG", `(pG:)(P[PG] >= 50%) BUT (AST%[${(assistRate*100).toFixed(1)}] < 9%)`, "G?" ];
+        } else if (maxPos == posList[0]) {
+          return (assistRate >= minAstRate) ?
+            [ "CG", `(Max[P] == PG)`, "G?" ] :
+            [ "WG", `(CG:)(Max[P] == PG) BUT (AST%[${(assistRate*100).toFixed(1)}] < 9%)`, "G?" ];
+        } else if ((maxPos == posList[1]) && (confs["pos_pg"] >= fwdConfSum)) {
+          return (assistRate >= minAstRate) ?
+          [ "CG", `(Max[P] == SG) AND (P[PG] >= P[SF] + P[PF] + P[C])`, "G?" ] :
+          [ "WG", `(CG:)(Max[P] == SG) AND (P[PG] >= P[SF] + P[PF] + P[C]) BUT (AST%[${(assistRate*100).toFixed(1)}] < 9%)`, "G?" ];
+        } else if ((maxPos == posList[1]) && (confs["pos_pg"] < fwdConfSum)) {
+          return [ "WG", `(Max[P] == SG) AND (P[PG] < P[SF] + P[PF] + P[C])`, "G?" ];
+        } else if ((maxPos == posList[2]) && (confs["pos_pg"] + confs["pos_sg"] >= confs["pos_pf"] + confs["pos_c"])) {
+          return [ "WG", `(Max[P] == SF) AND (P[PG] + P[SG] >= P[PF] + P[C])`, "G?" ];
+        } else if (maxPos == posList[2]) {
+          return [ "WF", `(Max[P] == SF) AND (P[PG] + P[SG] < P[PF] + P[C])`, "F/C?" ];
+        } else if (confs["pos_pf"] >= 0.85) {
+          return [ "PF/C", `(P[PF] >= 85%)`, "F/C?" ];
+        } else if ((maxPos == posList[3]) && (confs["pos_pg"] + confs["pos_sg"] + confs["pos_sf"] >= confs["pos_c"])) {
+          return (threeRate >= minThreeRate) ?
+            [ "S-PF", `(Max[P] == PF) AND (P[PG] + P[SG] + P[SF] >= P[C])`, "F/C?" ] :
+            [ "PF/C", `(S4:)(Max[P] == PF) AND (P[PG] + P[SG] + P[SF] >= P[C]) BUT 3PR%[${(threeRate*100).toFixed(1)}] < 20%`, "F/C?" ];
+        } else if (confs["pos_c"] >= 0.85) {
+          return [ "C", `(P[C] >= 85%)`, "F/C?" ];
+        }
+        //(else fallback)
+        return [ "PF/C", `(Max[P] == C) OR ((Max[P] == PF) AND (P[PG] + P[SG] + P[SF] < P[C]))`, "F/C?" ];
+      };
+      const [ pos, diag, fallbackPos ] = getPosition();
+
+      const usage = (player?.off_usage?.value || 0);
+      const poss = (player?.off_team_poss?.value || 0);
+      const effectivePoss = poss*usage;
+
+      if (effectivePoss < 25.0) { // Too few possessions to make an accurate determination
+        return [ fallbackPos,
+          `Too few used possessions [${effectivePoss.toFixed(1)}]=[${poss.toFixed(0)}]*[${(usage*100).toFixed(1)}]% < [25.0]. ` +
+          `Would have matched [${pos}] from rule [${diag}]` ];
+      } else {
+        return [ pos, diag ];
+      }
     }
   }
 

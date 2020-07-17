@@ -18,6 +18,7 @@ describe("PositionalDiagView", () => {
     <PositionalDiagView
       showHelp={true}
       player={testData.on[0]}
+      teamSeason="Men_Maryland_2018/9"
       showDetailsOverride={true}
     />
     );
@@ -28,6 +29,7 @@ describe("PositionalDiagView", () => {
     <PositionalDiagView
       showHelp={false}
       player={testData.baseline[0]}
+      teamSeason="Men_Maryland_2018/9"
       showDetailsOverride={false}
     />
     );

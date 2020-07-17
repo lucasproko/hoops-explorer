@@ -67,6 +67,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, tea
 
   const commonParams = getCommonFilterParams(gameFilterParams);
   const genderYearLookup = `${commonParams.gender}_${commonParams.year}`;
+  const teamSeasonLookup = `${commonParams.gender}_${commonParams.team}_${commonParams.year}`;
   const avgEfficiency = efficiencyAverages[genderYearLookup] || efficiencyAverages.fallback;
 
   /** Splits out offensive and defensive metrics into separate rows */
@@ -279,7 +280,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, tea
         // Positional info:
 
         const [ posConfs, posConfsDiags ] = PositionUtils.buildPositionConfidences(stat);
-        const [ pos, posDiags ] = PositionUtils.buildPosition(posConfs, stat);
+        const [ pos, posDiags ] = PositionUtils.buildPosition(posConfs, stat, teamSeasonLookup);
         stat.def_usage = <OverlayTrigger placement="auto" overlay={buildPositionTooltip(pos, key)}>
           <small>{pos}</small>
         </OverlayTrigger>;
@@ -311,7 +312,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, tea
         p.on?.diag_off_rtg ?
           [ GenericTableOps.buildTextRow(<RosterStatsDiagView ortgDiags={p.on?.diag_off_rtg} drtgDiags={p.on?.diag_def_rtg}/>, "small") ] : [],
         showPositionDiags ?
-          [ GenericTableOps.buildTextRow(<PositionalDiagView player={p.on} showHelp={showHelp}/>, "small") ] : [],
+          [ GenericTableOps.buildTextRow(<PositionalDiagView player={p.on} teamSeason={teamSeasonLookup} showHelp={showHelp}/>, "small") ] : [],
       ]),
       _.isNil(p.off?.off_title) ? [ ] : _.flatten([
         [ GenericTableOps.buildDataRow(p.off, offPrefixFn, offCellMetaFn) ],
@@ -319,7 +320,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, tea
         p.off?.diag_off_rtg ?
           [ GenericTableOps.buildTextRow(<RosterStatsDiagView ortgDiags={p.off?.diag_off_rtg} drtgDiags={p.off?.diag_def_rtg}/>, "small") ] : [],
         showPositionDiags ?
-          [ GenericTableOps.buildTextRow(<PositionalDiagView player={p.off} showHelp={showHelp}/>, "small") ] : [],
+          [ GenericTableOps.buildTextRow(<PositionalDiagView player={p.off} teamSeason={teamSeasonLookup} showHelp={showHelp}/>, "small") ] : [],
       ]),
       (skipBaseline || _.isNil(p.baseline?.off_title)) ? [ ] : _.flatten([
         [ GenericTableOps.buildDataRow(p.baseline, offPrefixFn, offCellMetaFn) ],
@@ -327,7 +328,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, tea
         p.baseline?.diag_off_rtg ?
           [ GenericTableOps.buildTextRow(<RosterStatsDiagView ortgDiags={p.baseline?.diag_off_rtg} drtgDiags={p.baseline?.diag_def_rtg}/>, "small") ] : [],
         showPositionDiags ?
-          [ GenericTableOps.buildTextRow(<PositionalDiagView player={p.baseline} showHelp={showHelp}/>, "small") ] : [],
+          [ GenericTableOps.buildTextRow(<PositionalDiagView player={p.baseline} teamSeason={teamSeasonLookup} showHelp={showHelp}/>, "small") ] : [],
       ]),
       [ GenericTableOps.buildRowSeparator() ]
     ]);

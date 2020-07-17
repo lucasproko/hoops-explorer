@@ -40,6 +40,8 @@ describe("PositionUtils", () => {
     expect(_.values(tidyObj(realConfidences2))).toEqual(["0.01", "0.33", "0.42", "0.23", "0.00", ]);
   });
   test("PositionUtils - buildPosition", () => {
+    const sampleTeamSeason1 = "Men_Boston College_2019/20";
+    const sampleTeamSeason2 = "RandomLookup";
     const testCases = [
       // Point guards:
       {
@@ -122,17 +124,25 @@ describe("PositionUtils", () => {
     testCases.forEach((caseObj: any) => {
       const confObj = _.fromPairs(_.zip(posList, caseObj.confs).map(kv => [kv[0], kv[1]]));
       const player = _.mapValues(caseObj.extra, (v: any) => { return { value: v}; });
-      expect(PositionUtils.buildPosition(confObj, player)).toEqual([ caseObj.pos, caseObj.diag ]);
+      expect(PositionUtils.buildPosition(confObj, player, sampleTeamSeason1)).toEqual([ caseObj.pos, caseObj.diag ]);
 
       if (caseObj.name) {
         expect(PositionUtils.idToPosition[caseObj.pos as string]).toEqual(caseObj.name);
       }
 
       const playerTooFewPos = _.chain(player).clone().merge({off_team_poss: { value: 100 } }).value();
-      expect(PositionUtils.buildPosition(confObj, playerTooFewPos)).toEqual([ caseObj.fallbackPos,
+      expect(PositionUtils.buildPosition(confObj, playerTooFewPos, sampleTeamSeason2)).toEqual([ caseObj.fallbackPos,
         `Too few used possessions [20.0]=[100]*[20.0]% < [25.0]. Would have matched [${caseObj.pos}] from rule [${caseObj.diag}]`
       ]);
     });
+    // Check overrides:
+    const confObj = _.fromPairs(_.zip(posList, testCases[0].confs).map(kv => [kv[0], kv[1]]));
+    expect(PositionUtils.buildPosition(confObj, {
+      key: 'Popovic, Nik', off_usage: { value: 1 }, off_team_poss: { value: 200 }, off_assist: { value: 0.10 }
+    }, sampleTeamSeason1)).toEqual([
+      "PF/C", "Override from [PG] which matched rule [(P[PG] >= 85%)]"
+    ]);
+    // Check position names:
     expect(PositionUtils.idToPosition["G?"]).toEqual("Unknown - probably Guard");
     expect(PositionUtils.idToPosition["F/C?"]).toEqual("Unknown - probably Forward/Center");
   });

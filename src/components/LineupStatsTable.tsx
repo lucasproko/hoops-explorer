@@ -172,7 +172,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, teamStat
 
   const positionFromPlayerKey = _.chain(rosterStats.global || []).map((player: any) => {
     const [ posConfs, posConfsDiags ] = PositionUtils.buildPositionConfidences(player);
-    const [ pos, posDiags ] = PositionUtils.buildPosition(posConfs, player);
+    const [ pos, posDiags ] = PositionUtils.buildPosition(posConfs, player, teamSeasonLookup);
     return [ player.key, { posConfidences: _.values(posConfs || {}), posClass: pos } ];
   }).fromPairs().value();
 

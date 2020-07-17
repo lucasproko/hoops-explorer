@@ -1,7 +1,15 @@
 
+export type AbsolutePositionFixRule = {
+  position: string
+};
+
 /** Team/season -> player -> positional override */
-export const absolutePositionFixes: Record<string, Record<string, string>> = {
-  //TODO: currently not in use
+export const absolutePositionFixes: Record<string, Record<string, AbsolutePositionFixRule>> = {
+  "Men_Boston College_2019/20": {
+    "Popovic, Nik": {
+      position: "PF/C"
+    }
+  }
 };
 
 export type RelativePositionFixRule = {
