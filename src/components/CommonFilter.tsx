@@ -34,6 +34,8 @@ import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 import ClipboardJS from 'clipboard';
 // @ts-ignore
 import { Shake } from 'reshake'
+// @ts-ignore
+import ls from 'local-storage';
 
 // Component imports:
 import { TeamStatsModel } from '../components/TeamStatsTable';
@@ -155,8 +157,33 @@ const CommonFilter: CommonFilterI = ({
     }
   };
 
+  /** Used with LS to determine if user is active */
+  const sessionActiveKey = "session-activity";
+
+  /** Was the session active recently enough that we'll auto-load? */
+  const isSessionActive = () => {
+    const thresholdMs = 24*3600*1000; //(1 day)
+    const lastActive = parseInt((ls as any).get(sessionActiveKey));
+    const now = new Date().getTime();
+    return (now - lastActive) < thresholdMs; //4hrs
+  }
+  /** Update session activity */
+  const registerSessionActivity = (sessionActive: boolean) => {
+    if (!sessionActive) {
+      console.log("Set browser session active, will auto-retrieve non-cached requests");
+    }
+    (ls as any).set(sessionActiveKey, "" + new Date().getTime());
+  }
+
   /** Handles data loading logic either when loading a page (onLoad==true) or pressing submit (onLoad==false) */
-  const requestHandlingLogic = (onLoad: boolean) => {
+  const requestHandlingLogic = (onLoadIn: boolean) => {
+    const sessionActive = isSessionActive();
+    const onLoad = onLoadIn && !sessionActive; //(ie always false if session active)
+    if (!onLoadIn) registerSessionActivity(sessionActive); //(pressed button => session active)
+    if (onLoadIn && !onLoad) { // (user visited page but we're going to load it anyway)
+      setQueryIsLoading(true);
+    }
+
     const fetchUrl = (url: string, force: boolean) => {
       return !onLoad || force ? //(if onLoad - JSON cache, or wait for user to hit submit)
         fetch(url).then((response: fetch.IsomorphicResponse) => {
@@ -173,6 +200,7 @@ const CommonFilter: CommonFilterI = ({
       )
     );
     allPromises.then((jsons: any[]) => {
+      if (onLoadIn) registerSessionActivity(sessionActive); //(retrieved from cache => session active)
       handleResponse(jsons);
     }, rejection => {
       if (isDebug) {
@@ -268,76 +296,50 @@ const CommonFilter: CommonFilterI = ({
 
   /** Load the designated example */
   function onSeeExample() {
+    registerSessionActivity(true); //(ensures gets cached)
+
+    // (this is overly complicated looking because it used to include a load of cache management
+    //  which has been removed - it's close enough to optimal it's not currently worth tidying up though)
     const prefixesAndParamStrs = (() => {
-      //(ugly hack I need to tidy up when I have a moment: the first pair is page/params
-      // subsqeuent pairs are ParamPrefixes)
-      // ALSO: the pairs need to map to the arrays returned by buildParamsFromState
       if (tablePrefix == ParamPrefixes.report) {
         if (gender == "Women") {
           const newUrl = `${PreloadedDataSamples.womenLineup}`;
-          const newPlayerUrl = `${PreloadedDataSamples.womenLineupOnOff}`;
-          const baseUrl = `${PreloadedDataSamples.womenLineupOnOffSeason}`;
           return [
             [ "TeamReport", newUrl ],
-            [ ParamPrefixes.game, newPlayerUrl ],
-            [ ParamPrefixes.player, newPlayerUrl ], [ ParamPrefixes.player, baseUrl ]
           ];
         } else { //(default is men)
           const newUrl = `${PreloadedDataSamples.menLineup}`;
-          const newPlayerUrl = `${PreloadedDataSamples.menLineupOnOff}`;
-          const baseUrl = `${PreloadedDataSamples.menLineupOnOffSeason}`;
           return [
             [ "TeamReport", newUrl ],
-            [ ParamPrefixes.game, newPlayerUrl ],
-            [ ParamPrefixes.player, newPlayerUrl ], [ ParamPrefixes.player, baseUrl ]
           ];
         }
       } else if (tablePrefix == ParamPrefixes.game) {
         if (gender == "Women") {
           const newUrl = `${PreloadedDataSamples.womenOnOff}`;
-          const baseUrl = `${PreloadedDataSamples.womenOnOffSeason}`
           return [
-            [ "", newUrl ], //(primary)
-            [ ParamPrefixes.roster, newUrl ], [ ParamPrefixes.player, newUrl ], [ ParamPrefixes.player, baseUrl ]
+            [ "", newUrl ],
           ];
         } else { //(default is men)
           const newUrl = `${PreloadedDataSamples.menOnOff}`;
-          const baseUrl = `${PreloadedDataSamples.menOnOffSeason}`
           return [
-            [ "", newUrl ], //(primary)
-            [ ParamPrefixes.roster, newUrl ], [ ParamPrefixes.player, newUrl ], [ ParamPrefixes.player, baseUrl ]
+            [ "", newUrl ],
           ];
         }
       } else if (tablePrefix == ParamPrefixes.lineup) {
         if (gender == "Women") {
           const newUrl = `${PreloadedDataSamples.womenLineup}`;
-          const newPlayerUrl = `${PreloadedDataSamples.womenLineupOnOff}`;
-          const baseUrl = `${PreloadedDataSamples.womenLineupOnOffSeason}`;
           return [
             [ "LineupAnalyzer", newUrl ],
-            [ ParamPrefixes.game, newPlayerUrl ],
-            [ ParamPrefixes.player, newPlayerUrl ], [ ParamPrefixes.player, baseUrl ]
           ];
         } else { //(default is men)
           const newUrl = `${PreloadedDataSamples.menLineup}`;
-          const newPlayerUrl = `${PreloadedDataSamples.menLineupOnOff}`;
-          const baseUrl = `${PreloadedDataSamples.menLineupOnOffSeason}`;
           return [
             [ "LineupAnalyzer", newUrl ],
-            [ ParamPrefixes.game, newPlayerUrl ],
-            [ ParamPrefixes.player, newPlayerUrl ], [ ParamPrefixes.player, baseUrl ]
           ];
         }
       }
       return [ ["", ""] ];
     })();
-    prefixesAndParamStrs.forEach((prefixAndParam: string[], index: number) => {
-      ClientRequestCache.directInsertCache(
-        prefixAndParam[1],
-        (index == 0) ? tablePrefix : prefixAndParam[0],
-        "{}", currentJsonEpoch, isDebug
-      );
-    });
     const pageAndParam = prefixesAndParamStrs[0] as [ string, string ];
     window.location.href = `/${pageAndParam[0]}?${pageAndParam[1]}`;
   }
