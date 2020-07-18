@@ -86,6 +86,14 @@ const LineupAnalyzerPage: NextPage<{}> = () => {
 
   // View
 
+  function maybeShowDocs() {
+    if (!_.startsWith(server, "cbb-on-off-analyzer")) {
+      return "https://hoop-explorer.blogspot.com/2020/07/understanding-lineup-analyzer-page.html";
+    } else {
+      return undefined;
+    }
+  }
+
   return <Container>
     <Row>
       <Col xs={12} className="text-center">
@@ -111,7 +119,7 @@ const LineupAnalyzerPage: NextPage<{}> = () => {
       </GenericCollapsibleCard>
     </Row>
     <Row>
-      <GenericCollapsibleCard title="Lineup Analysis">
+      <GenericCollapsibleCard title="Lineup Analysis" helpLink={maybeShowDocs()}>
         <LineupStatsTable
           lineupStats={lineupStats}
           teamStats={teamStats}

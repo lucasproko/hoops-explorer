@@ -923,7 +923,7 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
       </FormLabel>
       <Col
         className="mt-1 pt-1"
-        sm="2"
+        sm="3"
       >
         <OverlayTrigger
           overlay={
@@ -944,7 +944,20 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
               inline={false}
               isInvalid={false}
               isValid={false}
-              label="Filter Garbage"
+              label={
+                <span>
+                  Filter Garbage
+                  <span>
+                     
+                    <a
+                      href="https://hoop-explorer.blogspot.com/2020/01/garbage-time.html"
+                      target="_blank"
+                    >
+                      (?)
+                    </a>
+                  </span>
+                </span>
+              }
               onChange={[Function]}
               title=""
               type="switch"
@@ -1915,7 +1928,7 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
       </FormLabel>
       <Col
         className="mt-1 pt-1"
-        sm="2"
+        sm="3"
       >
         <OverlayTrigger
           overlay={
@@ -1936,7 +1949,20 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
               inline={false}
               isInvalid={false}
               isValid={false}
-              label="Filter Garbage"
+              label={
+                <span>
+                  Filter Garbage
+                  <span>
+                     
+                    <a
+                      href="https://hoop-explorer.blogspot.com/2020/01/garbage-time.html"
+                      target="_blank"
+                    >
+                      (?)
+                    </a>
+                  </span>
+                </span>
+              }
               onChange={[Function]}
               title=""
               type="switch"

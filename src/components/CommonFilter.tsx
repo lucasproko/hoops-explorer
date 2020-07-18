@@ -485,6 +485,18 @@ const CommonFilter: CommonFilterI = ({
     }
   }
 
+  function maybeShowGarbageHelp() {
+    const publicSite = !_.startsWith(server, "cbb-on-off-analyzer")
+    if (publicSite) {
+      return <span>
+      &nbsp;
+        <a href="https://hoop-explorer.blogspot.com/2020/01/garbage-time.html" target="_blank">(?)</a>
+      </span>;
+    } else {
+      return undefined;
+    }
+  }
+
   const garbageFilterTooltip = (
     <Tooltip id="garbageFilterTooltip">Filters out lineups in garbage time - see the "Garbage time" article under "Blog contents" for more details</Tooltip>
   );
@@ -639,7 +651,7 @@ const CommonFilter: CommonFilterI = ({
           </InputGroup>
       </Col>
       <Form.Label column sm="2"><span className="text-muted">(out of ~360 teams)</span></Form.Label>
-      <Col sm="2" className="mt-1 pt-1">
+      <Col sm="3" className="mt-1 pt-1">
         <OverlayTrigger placement="auto" overlay={garbageFilterTooltip}>
           <div>
             <Form.Check type="switch"
@@ -648,7 +660,7 @@ const CommonFilter: CommonFilterI = ({
               onChange={() => {
                 setGarbageTimeFiltered(!garbageTimeFiltered);
               }}
-              label="Filter Garbage"
+              label={<span>Filter Garbage{maybeShowGarbageHelp()}</span>}
             />
           </div>
         </OverlayTrigger>

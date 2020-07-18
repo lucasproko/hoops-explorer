@@ -116,6 +116,14 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
 
   // View
 
+  function maybeShowDocs() {
+    if (!_.startsWith(server, "cbb-on-off-analyzer")) {
+      return "https://hoop-explorer.blogspot.com/2019/11/fun-with-college-basketball-onoff.html";
+    } else {
+      return undefined;
+    }
+  }
+
   return <Container>
     <Row>
       <Col xs={12} className="text-center">
@@ -141,7 +149,7 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
       </GenericCollapsibleCard>
     </Row>
     <Row>
-      <GenericCollapsibleCard title="Team Analysis">
+      <GenericCollapsibleCard title="Team Analysis" helpLink={maybeShowDocs()}>
         <TeamStatsTable
           gameFilterParams={gameFilterParams}
           teamStats={teamStats}
@@ -151,7 +159,7 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
       </GenericCollapsibleCard>
     </Row>
     <Row>
-      <GenericCollapsibleCard title="Individual Analysis">
+      <GenericCollapsibleCard title="Individual Analysis" helpLink={maybeShowDocs()}>
         <RosterStatsTable
           gameFilterParams={gameFilterParams}
           teamStats={teamStats}
@@ -161,7 +169,7 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
       </GenericCollapsibleCard>
     </Row>
     <Row>
-      <GenericCollapsibleCard title="Lineup Comparison">
+      <GenericCollapsibleCard title="Lineup Comparison" helpLink={maybeShowDocs()}>
         <RosterCompareTable
           gameFilterParams={gameFilterParams}
           rosterCompareStats={rosterCompareStats}

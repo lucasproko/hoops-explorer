@@ -47,6 +47,7 @@ exports[`OnOffAnalyzerPage OnOffAnalyzerPage - should create snapshot 1`] = `
     noGutters={false}
   >
     <GenericCollapsibleCard
+      helpLink="https://hoop-explorer.blogspot.com/2019/11/fun-with-college-basketball-onoff.html"
       title="Team Analysis"
     >
       <TeamStatsTable
@@ -73,6 +74,7 @@ exports[`OnOffAnalyzerPage OnOffAnalyzerPage - should create snapshot 1`] = `
     noGutters={false}
   >
     <GenericCollapsibleCard
+      helpLink="https://hoop-explorer.blogspot.com/2019/11/fun-with-college-basketball-onoff.html"
       title="Individual Analysis"
     >
       <RosterStatsTable
@@ -99,6 +101,7 @@ exports[`OnOffAnalyzerPage OnOffAnalyzerPage - should create snapshot 1`] = `
     noGutters={false}
   >
     <GenericCollapsibleCard
+      helpLink="https://hoop-explorer.blogspot.com/2019/11/fun-with-college-basketball-onoff.html"
       title="Lineup Comparison"
     >
       <RosterCompareTable

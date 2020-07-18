@@ -47,6 +47,7 @@ exports[`LineupAnalyzerPage LineupAnalyzerPage - should create snapshot 1`] = `
     noGutters={false}
   >
     <GenericCollapsibleCard
+      helpLink="https://hoop-explorer.blogspot.com/2020/07/understanding-lineup-analyzer-page.html"
       title="Lineup Analysis"
     >
       <LineupStatsTable
