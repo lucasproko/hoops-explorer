@@ -177,6 +177,9 @@ const CommonFilter: CommonFilterI = ({
 
   /** Handles data loading logic either when loading a page (onLoad==true) or pressing submit (onLoad==false) */
   const requestHandlingLogic = (onLoadIn: boolean) => {
+    if (onLoadIn && shouldSubmitBeDisabled()) {
+      return; //page load when no team/gender/season is selected
+    }
     const sessionActive = isSessionActive();
     const onLoad = onLoadIn && !sessionActive; //(ie always false if session active)
     if (!onLoadIn) registerSessionActivity(sessionActive); //(pressed button => session active)
