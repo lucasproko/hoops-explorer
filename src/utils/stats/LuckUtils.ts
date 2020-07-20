@@ -290,7 +290,7 @@ export class LuckUtils {
     // Defense - 3P
 
     const def3P = reset(mutableStats?.def_3p);
-    if (mutableStats.def3P) mutableStats.def_3p = defLuck ? ignoreNull({
+    if (mutableStats.def_3p) mutableStats.def_3p = defLuck ? ignoreNull({
       value: defLuck.adjDef3P,
       old_value: def3P,
       override: "Luck adjusted"

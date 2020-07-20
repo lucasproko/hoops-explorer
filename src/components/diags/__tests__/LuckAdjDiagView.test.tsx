@@ -33,4 +33,19 @@ describe("LuckAdjDiagView", () => {
     );
     expect(toJson(wrapper)).toMatchSnapshot();
   });
+  test("LuckAdjDiagView - should create snapshot (individual mode, baseline, override)", () => {
+
+    const wrapper = shallow(
+      <LuckAdjDiagView
+        name="Test2"
+        offLuck={sampleOffOnOffLuckDiagnostics}
+        defLuck={sampleDefOnOffLuckDiagnostics}
+        baseline="baseline"
+        individualMode={true}
+        showHelp={true}
+        showDetailsOverride={true}
+      />
+    );
+    expect(toJson(wrapper)).toMatchSnapshot();
+  });
 });

@@ -48,16 +48,17 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
   // Team Stats interface
 
   const [ gaInited, setGaInited ] = useState(false);
-  const [ teamStats, setTeamStats ] = useState({on: {}, off: {}, baseline: {}} as TeamStatsModel);
-  const [ rosterStats, setRosterStats ] = useState({on: [], off: [], baseline: []} as RosterStatsModel);
+  const [ dataEvent, setDataEvent ] = useState({
+    teamStats: {on: {}, off: {}, baseline: {}} as TeamStatsModel,
+    rosterStats: {on: [], off: [], baseline: []} as RosterStatsModel
+  });
   const [ rosterCompareStats, setRosterCompareStats ] = useState({on: {}, off: {}, baseline: {}} as RosterCompareModel);
 
   const injectStats = (
     teamStats: TeamStatsModel, rosterCompareStats: RosterCompareModel, rosterStats: RosterStatsModel
   ) => {
-    setTeamStats(teamStats);
+    setDataEvent({teamStats, rosterStats});
     setRosterCompareStats(rosterCompareStats);
-    setRosterStats(rosterStats);
   }
 
   // Game and Lineup filters
@@ -153,8 +154,7 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
       <GenericCollapsibleCard title="Team Analysis" helpLink={maybeShowDocs()}>
         <TeamStatsTable
           gameFilterParams={gameFilterParams}
-          teamStats={teamStats}
-          rosterStats={rosterStats}
+          dataEvent={dataEvent}
           onChangeState={onGameFilterParamsChange}
         />
       </GenericCollapsibleCard>
@@ -163,8 +163,7 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
       <GenericCollapsibleCard title="Individual Analysis" helpLink={maybeShowDocs()}>
         <RosterStatsTable
           gameFilterParams={gameFilterParams}
-          teamStats={teamStats}
-          rosterStats={rosterStats}
+          dataEvent={dataEvent}
           onChangeState={onGameFilterParamsChange}
         />
       </GenericCollapsibleCard>

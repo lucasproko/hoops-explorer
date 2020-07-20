@@ -53,12 +53,19 @@ export type RosterStatsModel = {
 }
 type Props = {
   gameFilterParams: GameFilterParams,
-  teamStats: TeamStatsModel,
-  rosterStats: RosterStatsModel,
-  onChangeState: (newParams: GameFilterParams) => void;
+  /** Ensures that all relevant data is received at the same time */
+  dataEvent: {
+    teamStats: TeamStatsModel,
+    rosterStats: RosterStatsModel
+  },
+  onChangeState: (newParams: GameFilterParams) => void
 }
 
-const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, teamStats, rosterStats, onChangeState}) => {
+//TODO: this at least is very broken currently:
+//http://localhost:3000/?autoOffQuery=true&baseQuery=&filter=Ayala&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%28Cowan%20%29&onOffLuck=true&onQuery=Cowan%20&possAsPct=false&queryFilters=Conf&showBase=true&showDiag=true&showExpanded=true&showOnOffLuckDiags=true&showPlayerOnOffLuckDiags=true&team=Maryland&year=2019%2F20&
+
+const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataEvent, onChangeState}) => {
+  const { teamStats, rosterStats } = dataEvent;
 
   const server = (typeof window === `undefined`) ? //(ensures SSR code still compiles)
     "server" : window.location.hostname
@@ -310,17 +317,23 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, tea
 
         // Handle luck:
         const baseOrGlobalPlayer = (luckConfig.base == "baseline")
-          ? (player as any)["baseline"] : (player as any)["season"];
+          ? (player as any)["baseline"] : (player as any)["global"];
 
-        const offLuckAdj = adjustForLuck ? LuckUtils.calcOffTeamLuckAdj(
-          stat, [ baseOrGlobalPlayer ], baseOrSeasonTeamStats, {
-            [baseOrGlobalPlayer?.key || ""]: baseOrGlobalPlayer
-          }, avgEfficiency
-        ) : undefined;
+        const [ offLuckAdj, defLuckAdj ] = adjustForLuck ? [
+          LuckUtils.calcOffTeamLuckAdj(
+            stat, [ baseOrGlobalPlayer ], baseOrSeasonTeamStats, {
+              [baseOrGlobalPlayer.key || ""]: baseOrGlobalPlayer
+            }, avgEfficiency
+          ), LuckUtils.calcDefTeamLuckAdj(
+            stat, baseOrSeasonTeamStats, avgEfficiency
+          ) ] : [ undefined, undefined ];
 
         if (stat?.doc_count) {
           LuckUtils.injectLuck(stat, offLuckAdj, undefined);
+          //TODO: defensive luck
         }
+        stat.off_luck = offLuckAdj;
+        stat.def_luck = defLuckAdj;
 
         // Ratings:
 
@@ -378,6 +391,16 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, tea
           [ GenericTableOps.buildTextRow(<RosterStatsDiagView ortgDiags={p.on?.diag_off_rtg} drtgDiags={p.on?.diag_def_rtg}/>, "small") ] : [],
         showPositionDiags ?
           [ GenericTableOps.buildTextRow(<PositionalDiagView player={p.on} teamSeason={teamSeasonLookup} showHelp={showHelp}/>, "small") ] : [],
+        showLuckAdjDiags && p.on?.off_luck ? [ GenericTableOps.buildTextRow(
+          <LuckAdjDiagView
+            name="Player On"
+            offLuck={p.on?.off_luck}
+            defLuck={p.on?.def_luck}
+            baseline={luckConfig.base}
+            individualMode={true}
+            showHelp={showHelp}
+          />, "small pt-2"
+        ) ] : [] ,
       ]),
       _.isNil(p.off?.off_title) ? [ ] : _.flatten([
         [ GenericTableOps.buildDataRow(p.off, offPrefixFn, offCellMetaFn) ],
@@ -386,6 +409,16 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, tea
           [ GenericTableOps.buildTextRow(<RosterStatsDiagView ortgDiags={p.off?.diag_off_rtg} drtgDiags={p.off?.diag_def_rtg}/>, "small") ] : [],
         showPositionDiags ?
           [ GenericTableOps.buildTextRow(<PositionalDiagView player={p.off} teamSeason={teamSeasonLookup} showHelp={showHelp}/>, "small") ] : [],
+        showLuckAdjDiags && p.off?.off_luck? [ GenericTableOps.buildTextRow(
+          <LuckAdjDiagView
+            name="Player Off"
+            offLuck={p.off?.off_luck}
+            defLuck={p.off?.def_luck}
+            baseline={luckConfig.base}
+            individualMode={true}
+            showHelp={showHelp}
+          />, "small pt-2"
+        ) ] : [] ,
       ]),
       (skipBaseline || _.isNil(p.baseline?.off_title)) ? [ ] : _.flatten([
         [ GenericTableOps.buildDataRow(p.baseline, offPrefixFn, offCellMetaFn) ],
@@ -394,6 +427,16 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, tea
           [ GenericTableOps.buildTextRow(<RosterStatsDiagView ortgDiags={p.baseline?.diag_off_rtg} drtgDiags={p.baseline?.diag_def_rtg}/>, "small") ] : [],
         showPositionDiags ?
           [ GenericTableOps.buildTextRow(<PositionalDiagView player={p.baseline} teamSeason={teamSeasonLookup} showHelp={showHelp}/>, "small") ] : [],
+        showLuckAdjDiags && p.baseline?.off_luck ? [ GenericTableOps.buildTextRow(
+          <LuckAdjDiagView
+            name="Player Base"
+            offLuck={p.baseline?.off_luck}
+            defLuck={p.baseline?.def_luck}
+            baseline={luckConfig.base}
+            individualMode={true}
+            showHelp={showHelp}
+          />, "small pt-2"
+        ) ] : [] ,
       ]),
       [ GenericTableOps.buildRowSeparator() ]
     ]);
@@ -570,6 +613,12 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, tea
             />
             <Dropdown.Divider />
             <GenericTogglingMenuItem
+              text="Configure Luck Adjustments..."
+              truthVal={false}
+              onSelect={() => setShowLuckConfig(true)}
+            />
+            <Dropdown.Divider />
+            <GenericTogglingMenuItem
               text="Show Off/Def Rating diagnostics"
               truthVal={showDiagMode}
               onSelect={() => setShowDiagMode(!showDiagMode)}
@@ -579,11 +628,6 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, tea
               truthVal={showPositionDiags}
               onSelect={() => setShowPositionDiags(!showPositionDiags)}
               helpLink={showHelp ? "https://hoop-explorer.blogspot.com/2020/05/classifying-college-basketball.html" : undefined}
-            />
-            <GenericTogglingMenuItem
-              text="Configure Luck Adjustments..."
-              truthVal={false}
-              onSelect={() => setShowLuckConfig(true)}
             />
             <GenericTogglingMenuItem
               text="Show Luck Adjustment diagnostics"

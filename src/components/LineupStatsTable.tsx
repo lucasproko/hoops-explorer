@@ -46,14 +46,17 @@ export type LineupStatsModel = {
   error_code?: string
 }
 type Props = {
-  lineupStats: LineupStatsModel,
-  teamStats: TeamStatsModel,
-  rosterStats: RosterStatsModel,
-  startingState: LineupFilterParams;
-  onChangeState: (newParams: LineupFilterParams) => void;
+  startingState: LineupFilterParams,
+  dataEvent: {
+    lineupStats: LineupStatsModel,
+    teamStats: TeamStatsModel,
+    rosterStats: RosterStatsModel,
+  },
+  onChangeState: (newParams: LineupFilterParams) => void
 }
 
-const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, teamStats, rosterStats, startingState, onChangeState}) => {
+const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEvent, onChangeState}) => {
+  const { lineupStats, teamStats, rosterStats } = dataEvent;
 
   const server = (typeof window === `undefined`) ? //(ensures SSR code still compiles)
     "server" : window.location.hostname
@@ -430,6 +433,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, teamStat
               truthVal={false}
               onSelect={() => setShowLuckConfig(true)}
             />
+            <Dropdown.Divider />
             <GenericTogglingMenuItem
               text="Show Luck Adjustment diagnostics"
               truthVal={showLuckAdjDiags}

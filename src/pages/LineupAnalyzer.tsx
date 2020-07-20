@@ -47,14 +47,14 @@ const LineupAnalyzerPage: NextPage<{}> = () => {
   // Team Stats interface
 
   const [ gaInited, setGaInited ] = useState(false);
-  const [ lineupStats, setLineupStats ] = useState({} as LineupStatsModel);
-  const [ teamStats, setTeamStats ] = useState({} as TeamStatsModel);
-  const [ rosterStats, setRosterStats ] = useState({on: [], off: [], baseline: []} as RosterStatsModel);
+  const [ dataEvent, setDataEvent ] = useState({
+    lineupStats: {} as LineupStatsModel,
+    teamStats: {on: {}, off: {}, baseline: {}} as TeamStatsModel,
+    rosterStats: {on: [], off: [], baseline: []} as RosterStatsModel
+  });
 
   const injectStats = (lineupStats: LineupStatsModel, teamStats: TeamStatsModel, rosterStats: RosterStatsModel) => {
-    setLineupStats(lineupStats);
-    setTeamStats(teamStats);
-    setRosterStats(rosterStats);
+    setDataEvent({ lineupStats, teamStats, rosterStats });
   }
 
   // Game filter
@@ -121,10 +121,8 @@ const LineupAnalyzerPage: NextPage<{}> = () => {
     <Row>
       <GenericCollapsibleCard title="Lineup Analysis" helpLink={maybeShowDocs()}>
         <LineupStatsTable
-          lineupStats={lineupStats}
-          teamStats={teamStats}
-          rosterStats={rosterStats}
           startingState={lineupFilterParams}
+          dataEvent={dataEvent}
           onChangeState={onLineupFilterParamsChange}
         />
       </GenericCollapsibleCard>
