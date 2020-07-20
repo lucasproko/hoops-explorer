@@ -270,7 +270,7 @@ export class LuckUtils {
     };
 
     const rawOffPpp = reset(mutableStats?.off_ppp);
-    mutableStats.off_ppp = offLuck ? ignoreNull({
+    if (mutableStats.off_ppp) mutableStats.off_ppp = offLuck ? ignoreNull({
       value: rawOffPpp + offLuck.deltaOffPpp,
       old_value: rawOffPpp,
       override: "Adjustment derived from Off 3P%"
@@ -279,7 +279,7 @@ export class LuckUtils {
     };
 
     const adjOffPpp = reset(mutableStats?.off_adj_ppp);
-    mutableStats.off_adj_ppp = offLuck ? ignoreNull({
+    if (mutableStats.off_adj_ppp) mutableStats.off_adj_ppp = offLuck ? ignoreNull({
       value: adjOffPpp + offLuck.deltaOffPpp,
       old_value: adjOffPpp,
       override: "Adjustment derived from Off 3P%"
@@ -290,7 +290,7 @@ export class LuckUtils {
     // Defense - 3P
 
     const def3P = reset(mutableStats?.def_3p);
-    mutableStats.def_3p = defLuck ? ignoreNull({
+    if (mutableStats.def3P) mutableStats.def_3p = defLuck ? ignoreNull({
       value: defLuck.adjDef3P,
       old_value: def3P,
       override: "Luck adjusted"
@@ -301,7 +301,7 @@ export class LuckUtils {
     // Defense - derived 4 factors and efficiency
 
     const eFgDef = reset(mutableStats?.def_efg);
-    mutableStats.def_efg = defLuck ? ignoreNull({
+    if (mutableStats.def_efg) mutableStats.def_efg = defLuck ? ignoreNull({
       value: eFgDef + defLuck.deltaDefEfg,
       old_value: eFgDef,
       override: "Adjustment derived from Def 3P%"
@@ -310,7 +310,7 @@ export class LuckUtils {
     };
 
     const rawDefPpp = reset(mutableStats?.def_ppp);
-    mutableStats.def_ppp = defLuck ? ignoreNull({
+    if (mutableStats.def_ppp) mutableStats.def_ppp = defLuck ? ignoreNull({
       value: rawDefPpp + defLuck.deltaDefPpp,
       old_value: rawDefPpp,
       override: "Adjustment derived from Def 3P%"
@@ -319,7 +319,7 @@ export class LuckUtils {
     };
 
     const adjDefPpp = reset(mutableStats?.def_adj_ppp);
-    mutableStats.def_adj_ppp = defLuck ? ignoreNull({
+    if (mutableStats.def_adj_ppp) mutableStats.def_adj_ppp = defLuck ? ignoreNull({
       value: adjDefPpp + defLuck.deltaDefPpp,
       old_value: adjDefPpp,
       override: "Adjustment derived from Def 3P%"
@@ -327,6 +327,5 @@ export class LuckUtils {
       value: adjDefPpp
     };
 
-  }
-
+  };
 };

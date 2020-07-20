@@ -31,6 +31,8 @@ import PositionalDiagView from "./diags/PositionalDiagView";
 import GenericTogglingMenu from "./shared/GenericTogglingMenu";
 import GenericTogglingMenuItem from "./shared/GenericTogglingMenuItem";
 import { TeamStatsModel } from '../components/TeamStatsTable';
+import LuckAdjDiagView from "./diags/LuckAdjDiagView"
+import LuckConfigModal from "./shared/LuckConfigModal";
 
 // Util imports
 import { CbbColors } from "../utils/CbbColors";
@@ -38,6 +40,7 @@ import { CommonTableDefs } from "../utils/CommonTableDefs";
 import { getCommonFilterParams, ParamDefaults, GameFilterParams } from "../utils/FilterModels";
 import { ORtgDiagnostics, RatingUtils } from "../utils/stats/RatingUtils";
 import { PositionUtils } from "../utils/stats/PositionUtils";
+import { LuckUtils } from "../utils/stats/LuckUtils";
 import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
 
 export type RosterStatsModel = {
@@ -122,6 +125,30 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, tea
     ParamDefaults.defaultPlayerSortBy : gameFilterParams.sortBy
   );
 
+  // Luck
+
+  const [ adjustForLuck, setAdjustForLuck ] = useState(_.isNil(gameFilterParams.onOffLuck) ?
+    ParamDefaults.defaultOnOffLuckAdjust : gameFilterParams.onOffLuck
+  );
+  const [ showLuckAdjDiags, setShowLuckAdjDiags ] = useState(_.isNil(gameFilterParams.showPlayerOnOffLuckDiags) ?
+    ParamDefaults.defaultOnOffLuckDiagMode : gameFilterParams.showPlayerOnOffLuckDiags
+  );
+  const [ luckConfig, setLuckConfig ] = useState(_.isNil(gameFilterParams.luck) ?
+    ParamDefaults.defaultLuckConfig : gameFilterParams.luck
+  );
+
+  /** Whether we are showing the luck config modal */
+  const [ showLuckConfig, setShowLuckConfig ] = useState(false);
+
+  useEffect(() => { //(keep luck up to date between the two views)
+    setAdjustForLuck(_.isNil(gameFilterParams.onOffLuck) ?
+        ParamDefaults.defaultOnOffLuckAdjust : gameFilterParams.onOffLuck
+    );
+    setLuckConfig(_.isNil(gameFilterParams.luck) ?
+      ParamDefaults.defaultLuckConfig : gameFilterParams.luck
+    );
+  }, [ gameFilterParams ]);
+
   useEffect(() => { //(this ensures that the filter component is up to date with the union of these fields)
     const newState = _.merge(gameFilterParams, {
       sortBy: sortBy,
@@ -131,9 +158,15 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, tea
       showDiag: showDiagMode,
       possAsPct: possAsPct,
       showPosDiag: showPositionDiags,
+      // Luck:
+      luck: luckConfig,
+      onOffLuck: adjustForLuck,
+      showPlayerOnOffLuckDiags: showLuckAdjDiags,
     });
     onChangeState(newState);
-  }, [ sortBy, filterStr, showDiagMode, alwaysShowBaseline, expandedView, possAsPct, showPositionDiags ]);
+  }, [ sortBy, filterStr, showDiagMode, alwaysShowBaseline, expandedView, possAsPct, showPositionDiags,
+      luckConfig, adjustForLuck, showLuckAdjDiags
+    ]);
 
   // 2] Data Model
 
@@ -147,6 +180,8 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, tea
   );
 
   // 3] Utils
+
+  //(end luck calcs)
 
   // 3.1] Table building
 
@@ -246,7 +281,9 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, tea
     })),
     _.map(rosterStats.baseline || [], (p) => _.merge(p, {
       onOffKey: 'Baseline'
-
+    })),
+    _.map(rosterStats.global || [], (p) => _.merge(p, {
+      onOffKey: 'Global'
     })),
   ]).flatten().groupBy("key").toPairs().map((key_onOffBase) => {
 
@@ -254,8 +291,12 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, tea
       key: key_onOffBase[0],
       on: onOffBasePicker("On", key_onOffBase[1]),
       off: onOffBasePicker("Off", key_onOffBase[1]),
-      baseline: onOffBasePicker("Baseline", key_onOffBase[1])
+      baseline: onOffBasePicker("Baseline", key_onOffBase[1]),
+      global: onOffBasePicker("Global", key_onOffBase[1]),
     };
+
+    const baseOrSeasonTeamStats = (luckConfig.base == "baseline")
+      ? teamStats.baseline : teamStats.global;
 
     // Inject ORtg and DRB and Poss% (ie mutate player idempotently)
     ([ "on", "off", "baseline" ] as ("on" | "off" | "baseline")[]).forEach((key) => {
@@ -267,11 +308,35 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, tea
         stat.def_team_poss_pct = { value: _.min([(stat.def_team_poss.value || 0)
             / (teamStat.def_poss?.value || 1), 1 ]) };
 
+        // Handle luck:
+        const baseOrGlobalPlayer = (luckConfig.base == "baseline")
+          ? (player as any)["baseline"] : (player as any)["season"];
+
+        const offLuckAdj = adjustForLuck ? LuckUtils.calcOffTeamLuckAdj(
+          stat, [ baseOrGlobalPlayer ], baseOrSeasonTeamStats, {
+            [baseOrGlobalPlayer?.key || ""]: baseOrGlobalPlayer
+          }, avgEfficiency
+        ) : undefined;
+
+        if (stat?.doc_count) {
+          LuckUtils.injectLuck(stat, offLuckAdj, undefined);
+        }
+
+        // Ratings:
+
         stat.off_drb = stat.def_orb; //(just for display, all processing should use def_orb)
-        const [ oRtg, adjORtg, oRtgDiag ] = RatingUtils.buildORtg(stat, avgEfficiency, showDiagMode);
+        const [
+          oRtg, adjORtg, rawORtg, rawAdjORtg, oRtgDiag
+        ] = RatingUtils.buildORtg(stat, avgEfficiency, showDiagMode, adjustForLuck);
         const [ dRtg, adjDRtg, dRtgDiag ] = RatingUtils.buildDRtg(stat, avgEfficiency, showDiagMode);
-        stat.off_rtg = oRtg;
-        stat.off_adj_rtg = adjORtg;
+        stat.off_rtg = {
+          value: oRtg?.value, old_value: rawORtg?.value,
+          override: adjustForLuck ? "Luck adjusted" : undefined
+        };
+        stat.off_adj_rtg = {
+          value: adjORtg?.value, old_value: rawAdjORtg?.value,
+          override: adjustForLuck ? "Luck adjusted" : undefined
+        };
         stat.diag_off_rtg = oRtgDiag;
         stat.def_rtg = dRtg;
         stat.def_adj_rtg = adjDRtg;
@@ -441,6 +506,13 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, tea
         "Press 'Submit' to view results"
       }
     >
+      <LuckConfigModal
+        show={showLuckConfig}
+        onHide={() => setShowLuckConfig(false)}
+        onSave={(l: LuckParams) => setLuckConfig(l)}
+        luck={luckConfig}
+        showHelp={showHelp}
+      />
       <Form.Row>
         <Form.Group as={Col} sm="6">
           <InputGroup>
@@ -490,6 +562,12 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, tea
               truthVal={false}
               onSelect={() => setPossAsPct(!possAsPct)}
             />
+            <GenericTogglingMenuItem
+              text="Adjust for Luck"
+              truthVal={adjustForLuck}
+              onSelect={() => setAdjustForLuck(!adjustForLuck)}
+              helpLink={showHelp ? "https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html" : undefined}
+            />
             <Dropdown.Divider />
             <GenericTogglingMenuItem
               text="Show Off/Def Rating diagnostics"
@@ -501,6 +579,16 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, tea
               truthVal={showPositionDiags}
               onSelect={() => setShowPositionDiags(!showPositionDiags)}
               helpLink={showHelp ? "https://hoop-explorer.blogspot.com/2020/05/classifying-college-basketball.html" : undefined}
+            />
+            <GenericTogglingMenuItem
+              text="Configure Luck Adjustments..."
+              truthVal={false}
+              onSelect={() => setShowLuckConfig(true)}
+            />
+            <GenericTogglingMenuItem
+              text="Show Luck Adjustment diagnostics"
+              truthVal={showLuckAdjDiags}
+              onSelect={() => setShowLuckAdjDiags(!showLuckAdjDiags)}
             />
           </GenericTogglingMenu>
         </Form.Group>

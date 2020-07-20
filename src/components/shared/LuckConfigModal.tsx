@@ -28,6 +28,10 @@ type Props = {
 };
 const LuckConfigModal: React.FunctionComponent<Props> = ({onSave, luck, showHelp, ...props}) => {
 
+  useEffect(() => { // Update luck when the settings change:
+    setGeneralLuckBase(luck.base as "baseline" | "season");
+  }, [ luck ]);
+
   // State decomposition:
   const [ generalLuckBase, setGeneralLuckBase ] = useState(luck.base as "baseline" | "season");
   return <Modal {...props}>

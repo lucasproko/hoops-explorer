@@ -38,7 +38,9 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
     //(common visualization fields across all tables)
     luck: startLuck,
     //(these fields are for the team view)
-    onOffLuck: startOnOffLuck, showOnOffLuckDiags: startShowOnOffLuckDiags,
+    onOffLuck: startOnOffLuck,
+    showOnOffLuckDiags: startShowOnOffLuckDiags,
+    showPlayerOnOffLuckDiags: startShowPlayerOnOffLuckDiags,
     //(these fields are for the individual view)
     filter: startFilter, sortBy: startSortBy,
     showBase: startShowBase, showExpanded: startShowExpanded,
@@ -81,7 +83,9 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
           // Common luck stats across all tables:
           luck: startLuck,
           // Team luck stats:
-          onOffLuck: startOnOffLuck, showOnOffLuckDiags: startShowOnOffLuckDiags,
+          onOffLuck: startOnOffLuck,
+          showOnOffLuckDiags: startShowOnOffLuckDiags,
+          showPlayerOnOffLuckDiags: startShowPlayerOnOffLuckDiags,
           // Individual stats:
           autoOffQuery: autoOffQuery,
           filter: startFilter, sortBy: startSortBy,
