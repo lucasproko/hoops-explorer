@@ -301,7 +301,6 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
       baseline: onOffBasePicker("Baseline", key_onOffBase[1]),
       global: onOffBasePicker("Global", key_onOffBase[1]),
     };
-
     const baseOrSeasonTeamStats = (luckConfig.base == "baseline")
       ? teamStats.baseline : teamStats.global;
 
@@ -319,7 +318,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
         const baseOrGlobalPlayer = (luckConfig.base == "baseline")
           ? (player as any)["baseline"] : (player as any)["global"];
 
-        const [ offLuckAdj, defLuckAdj ] = adjustForLuck ? [
+        const [ offLuckAdj, defLuckAdj ] = baseOrGlobalPlayer && adjustForLuck ? [
           LuckUtils.calcOffPlayerLuckAdj(
             stat, baseOrGlobalPlayer, avgEfficiency
           ), LuckUtils.calcDefPlayerLuckAdj(
@@ -377,6 +376,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
 
   const tableData = _.chain(allPlayers).filter((player) => {
     const strToTest = (player.on?.key || player.off?.key || player.baseline?.key || "");
+
     return(
       (filterFragmentsPve.length == 0) ||
         (_.find(filterFragmentsPve, (fragment) => strToTest.indexOf(fragment) >= 0) ? true : false))
@@ -387,7 +387,6 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
   }).sortBy(
     [ sorter(sortBy) , (p) => { p.baseline?.off_team_poss?.value || 0 } ]
   ).flatMap((p) => {
-
     return _.flatten([
       _.isNil(p.on?.off_title) ? [ ] : _.flatten([
         [ GenericTableOps.buildDataRow(p.on, offPrefixFn, offCellMetaFn) ],

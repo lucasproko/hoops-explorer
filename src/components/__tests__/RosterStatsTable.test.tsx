@@ -5,6 +5,7 @@ import { samplePlayerStatsResponse } from "../../sample-data/samplePlayerStatsRe
 import { GameFilterParams } from "../utils/FilterModels";
 import { shallow } from 'enzyme'
 import toJson from 'enzyme-to-json'
+import _ from "lodash";
 
 describe("RosterStatsTable", () => {
   test("RosterStatsTable (baseline only, !expanded) - should create snapshot", () => {
@@ -12,6 +13,7 @@ describe("RosterStatsTable", () => {
       on: [],
       off: [],
       baseline: samplePlayerStatsResponse?.aggregations?.tri_filter?.buckets?.baseline?.player?.buckets || [],
+      global: _.cloneDeep(samplePlayerStatsResponse?.aggregations?.tri_filter?.buckets?.baseline?.player?.buckets || []),
       error_code: undefined
     };
     const wrapper = shallow(
@@ -31,6 +33,7 @@ describe("RosterStatsTable", () => {
       on: [],
       off: [],
       baseline: samplePlayerStatsResponse?.aggregations?.tri_filter?.buckets?.baseline?.player?.buckets || [],
+      global: _.cloneDeep(samplePlayerStatsResponse?.aggregations?.tri_filter?.buckets?.baseline?.player?.buckets || []),
       error_code: undefined
     };
     const wrapper = shallow(
@@ -50,6 +53,7 @@ describe("RosterStatsTable", () => {
       on: samplePlayerStatsResponse?.aggregations?.tri_filter?.buckets?.on?.player?.buckets || [],
       off: samplePlayerStatsResponse?.aggregations?.tri_filter?.buckets?.off?.player?.buckets || [],
       baseline: samplePlayerStatsResponse?.aggregations?.tri_filter?.buckets?.baseline?.player?.buckets || [],
+      global: _.cloneDeep(samplePlayerStatsResponse?.aggregations?.tri_filter?.buckets?.baseline?.player?.buckets || []),
       error_code: undefined
     };
     const wrapper = shallow(
@@ -69,6 +73,7 @@ describe("RosterStatsTable", () => {
       on: samplePlayerStatsResponse?.aggregations?.tri_filter?.buckets?.on?.player?.buckets || [],
       off: samplePlayerStatsResponse?.aggregations?.tri_filter?.buckets?.off?.player?.buckets || [],
       baseline: samplePlayerStatsResponse?.aggregations?.tri_filter?.buckets?.baseline?.player?.buckets || [],
+      global: _.cloneDeep(samplePlayerStatsResponse?.aggregations?.tri_filter?.buckets?.baseline?.player?.buckets || []),
       error_code: undefined
     };
     const wrapper = shallow(
@@ -88,8 +93,12 @@ describe("RosterStatsTable", () => {
       on: samplePlayerStatsResponse?.aggregations?.tri_filter?.buckets?.on?.player?.buckets || [],
       off: samplePlayerStatsResponse?.aggregations?.tri_filter?.buckets?.off?.player?.buckets || [],
       baseline: samplePlayerStatsResponse?.aggregations?.tri_filter?.buckets?.baseline?.player?.buckets || [],
+      global: _.cloneDeep(samplePlayerStatsResponse?.aggregations?.tri_filter?.buckets?.baseline?.player?.buckets || []),
       error_code: undefined
     };
+
+//TODO: not showing luck adjustment AFAICT
+
     const wrapper = shallow(
     <RosterStatsTable
       gameFilterParams={{onOffLuck: true, showPlayerOnOffLuckDiags: true, showDiag: true, showPosDiag: true }}

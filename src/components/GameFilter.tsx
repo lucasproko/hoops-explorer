@@ -106,6 +106,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
       minRank: ParamDefaults.defaultMinRank, maxRank: ParamDefaults.defaultMaxRank,
       baseQuery: "", onQuery: "", offQuery: ""
     };
+    //TODO: also if the main query minus/on-off matches can't we just re-use that?!
 
     return [ primaryRequest, [{
         context: ParamPrefixes.roster as ParamPrefixesType, paramsObj: primaryRequest
@@ -123,7 +124,8 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
     const teamJson = jsonResps?.[0]?.responses?.[0] || {};
     const rosterCompareJson = jsonResps?.[1]?.responses?.[0] || {};
     const rosterStatsJson = jsonResps?.[2]?.responses?.[0] || {};
-    const globalRosterStatsJson = jsonResps?.[3]?.responses?.[0] || rosterStatsJson;
+    const globalRosterStatsJson = jsonResps?.[3]?.responses?.[0] || _.cloneDeep(rosterStatsJson);
+      //(need to clone it so that changes to baseline don't overwrite global)
 
     onStats({
       on: teamJson?.aggregations?.tri_filter?.buckets?.on || {},
