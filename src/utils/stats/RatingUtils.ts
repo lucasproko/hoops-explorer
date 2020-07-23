@@ -147,10 +147,13 @@ const array = (v: number[]) => { return v; }
 export class RatingUtils {
 
   /** Builds the overrides to the raw fields based on stat overrides */
-  private static buildOverrides(statSet: Record<string, any>) {
+  private static buildOffOverrides(statSet: Record<string, any>) {
+    const getOrOld = (stat: any) => {
+      return (_.isNil(stat?.old_value) ? stat?.value : stat.old_value) || 0;
+    };
 
     const threePTries = statSet?.total_off_3p_attempts?.value || 0;
-    const extra3PMakes = ((statSet.off_3p.value || 0) - (statSet.off_3p.old_value || 0))*threePTries;
+    const extra3PMakes = ((statSet.off_3p.value || 0) - getOrOld(statSet.off_3p))*threePTries;
     //TODO: additional ORBs? It's a bit tricky because you'd then need to add more shots and hits/misses
     //(some of which would be made by the player - so for now it's probably best just to ignore, I think
     // it's a second-order effect anyway)
@@ -169,12 +172,12 @@ export class RatingUtils {
     statSet: Record<string, any>, avgEfficiency: number, calcDiags: boolean, overrideAdjusted: boolean
   ): [
     { value: number } | undefined, { value: number } | undefined,
-    number | undefined, number | undefined, //< if overrridden these are the raw vals
+    { value: number } | undefined, { value: number } | undefined, //< if overrridden these are the raw vals
     ORtgDiagnostics | undefined
   ] {
-    if (!statSet) return [ undefined, undefined, undefined ];
+    if (!statSet) return [ undefined, undefined, undefined, undefined, undefined ];
 
-    const overrides = overrideAdjusted ? RatingUtils.buildOverrides(statSet) : {};
+    const overrides = overrideAdjusted ? RatingUtils.buildOffOverrides(statSet) : ({} as Record<string, any>);
     const statGet = (key: string) => {
       return !_.isNil(overrides[key]) ? overrides[key].value : statSet?.[key]?.value || 0;
     };
@@ -381,11 +384,33 @@ export class RatingUtils {
     } : undefined) as (ORtgDiagnostics | undefined) ];
   }
 
+  /** Builds the overrides to the raw fields based on stat overrides */
+  private static buildDefOverrides(statSet: Record<string, any>) {
+    const getOrOld = (stat: any, fallback: number = 0.0) => {
+      return (_.isNil(stat?.old_value) ? stat?.value : stat.old_value) || fallback;
+    };
+
+    const threePTries = (statSet?.oppo_total_def_3p_attempts?.value || 0);
+    const extra3PMakes = ((statSet.oppo_def_3p?.value || 0) - getOrOld(statSet.oppo_def_3p))*threePTries;
+
+    return {
+      oppo_total_def_pts: { value: (statSet?.oppo_total_def_pts?.value || 0) + 3*extra3PMakes },
+      oppo_total_def_fgm: { value: (statSet?.oppo_total_def_fgm?.value || 0) + extra3PMakes },
+    };
+  };
+
   /** From https://www.basketball-reference.com/about/ratings.html */
   static buildDRtg(
-    statSet: Record<string, any>, avgEfficiency: number, calcDiags: boolean
-  ): [ { value: number } | undefined, { value: number } | undefined, DRtgDiagnostics | undefined ] {
-    if (!statSet) return [ undefined, undefined, undefined ];
+    statSet: Record<string, any>, avgEfficiency: number, calcDiags: boolean, overrideAdjusted: boolean
+  ): [ { value: number } | undefined, { value: number } | undefined,
+      { value: number } | undefined, { value: number } | undefined, //< if overrridden these are the raw vals
+      DRtgDiagnostics | undefined ] {
+    if (!statSet) return [ undefined, undefined, undefined, undefined, undefined ];
+
+    const overrides = overrideAdjusted ? RatingUtils.buildDefOverrides(statSet) : ({} as Record<string, any>);
+    const statGet = (key: string) => {
+      return !_.isNil(overrides[key]) ? overrides[key].value : statSet?.[key]?.value || 0;
+    };
 
     // Player:
     const STL = statSet?.total_off_stl?.value || 0;
@@ -399,13 +424,13 @@ export class RatingUtils {
     const Team_PF = statSet?.team_total_off_foul?.value || 0;
     // Opponent:
     const Opponent_FGA = statSet?.oppo_total_def_fga?.value || 0;
-    const Opponent_FGM = statSet?.oppo_total_def_fgm?.value || 0;
+    const Opponent_FGM = statGet("oppo_total_def_fgm");
     const Opponent_ORB = statSet?.oppo_total_def_orb?.value || 0;
     const Opponent_TOV = statSet?.oppo_total_def_to?.value || 0;
     const Opponent_FTA = statSet?.oppo_total_def_fta?.value || 0;
     const Opponent_FTM = statSet?.oppo_total_def_ftm?.value || 0;
     const Opponent_Possessions = statSet?.oppo_total_def_poss?.value || 0;
-    const Opponent_PTS = statSet?.oppo_total_def_pts?.value || 0;
+    const Opponent_PTS = statGet("oppo_total_def_pts");
 
     const Opponent_FTposs = 0.475*Opponent_FTA;
 
@@ -461,9 +486,15 @@ export class RatingUtils {
     // remove Stop_Ind
     // and then add an extra term 100/Team_Poss*(SF_FTM/SF_Poss)
 
+    // If the values have been overridden then calculate the un-overridden values
+    const [ rawDRtg, rawAdjRating ] = overrideAdjusted ? RatingUtils.buildDRtg(
+      statSet, avgEfficiency, false, false
+    ) : [ undefined, undefined ];
+
     return [
       Opponent_Possessions > 0 ? { value: DRtg } : undefined,
       Opponent_Possessions > 0 ? { value: Adj_DRtgPlus } : undefined,
+      rawDRtg, rawAdjRating,
       (calcDiags ? {
       // Basic player numbers
       stl: STL,

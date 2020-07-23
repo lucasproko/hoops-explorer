@@ -51,22 +51,22 @@ exports[`OnOffAnalyzerPage OnOffAnalyzerPage - should create snapshot 1`] = `
       title="Team Analysis"
     >
       <TeamStatsTable
+        dataEvent={
+          Object {
+            "rosterStats": Object {
+              "baseline": Array [],
+              "off": Array [],
+              "on": Array [],
+            },
+            "teamStats": Object {
+              "baseline": Object {},
+              "off": Object {},
+              "on": Object {},
+            },
+          }
+        }
         gameFilterParams={Object {}}
         onChangeState={[Function]}
-        rosterStats={
-          Object {
-            "baseline": Array [],
-            "off": Array [],
-            "on": Array [],
-          }
-        }
-        teamStats={
-          Object {
-            "baseline": Object {},
-            "off": Object {},
-            "on": Object {},
-          }
-        }
       />
     </GenericCollapsibleCard>
   </ForwardRef>
@@ -78,22 +78,22 @@ exports[`OnOffAnalyzerPage OnOffAnalyzerPage - should create snapshot 1`] = `
       title="Individual Analysis"
     >
       <RosterStatsTable
+        dataEvent={
+          Object {
+            "rosterStats": Object {
+              "baseline": Array [],
+              "off": Array [],
+              "on": Array [],
+            },
+            "teamStats": Object {
+              "baseline": Object {},
+              "off": Object {},
+              "on": Object {},
+            },
+          }
+        }
         gameFilterParams={Object {}}
         onChangeState={[Function]}
-        rosterStats={
-          Object {
-            "baseline": Array [],
-            "off": Array [],
-            "on": Array [],
-          }
-        }
-        teamStats={
-          Object {
-            "baseline": Object {},
-            "off": Object {},
-            "on": Object {},
-          }
-        }
       />
     </GenericCollapsibleCard>
   </ForwardRef>

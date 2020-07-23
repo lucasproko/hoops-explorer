@@ -10,8 +10,23 @@ describe("TeamStatsTable", () => {
     const testData = _.merge(sampleTeamStatsResponse.aggregations.tri_filter.buckets, { global: {}, onOffMode: true });
     const component = renderer.create(<TeamStatsTable
       gameFilterParams={{}}
-      rosterStats={{}}
-      teamStats={testData}
+      dataEvent={{
+        teamStats: testData,
+        rosterStats: {}
+      }}
+      onChangeState={(newParams: GameFilterParams) => {}}
+      />);
+    const tree = component.toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+  test("TeamStatsTable - should create snapshot, luck enabled + diagnostics shown", () => {
+    const testData = _.merge(sampleTeamStatsResponse.aggregations.tri_filter.buckets, { global: {}, onOffMode: true });
+    const component = renderer.create(<TeamStatsTable
+      gameFilterParams={{ onOffLuck: true, showOnOffLuckDiags: true }}
+      dataEvent={{
+        teamStats: testData,
+        rosterStats: {}
+      }}
       onChangeState={(newParams: GameFilterParams) => {}}
       />);
     const tree = component.toJSON();

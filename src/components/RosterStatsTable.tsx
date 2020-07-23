@@ -37,7 +37,7 @@ import LuckConfigModal from "./shared/LuckConfigModal";
 // Util imports
 import { CbbColors } from "../utils/CbbColors";
 import { CommonTableDefs } from "../utils/CommonTableDefs";
-import { getCommonFilterParams, ParamDefaults, GameFilterParams } from "../utils/FilterModels";
+import { getCommonFilterParams, ParamDefaults, GameFilterParams, LuckParams } from "../utils/FilterModels";
 import { ORtgDiagnostics, RatingUtils } from "../utils/stats/RatingUtils";
 import { PositionUtils } from "../utils/stats/PositionUtils";
 import { LuckUtils } from "../utils/stats/LuckUtils";
@@ -220,7 +220,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
   const defPrefixFn = (key: string) => "def_" + key;
   const defCellMetaFn = (key: string, val: any) => "def";
 
-  const onOffBasePicker = (str: "On" | "Off" | "Baseline", arr: Array<any>) => {
+  const onOffBasePicker = (str: "On" | "Off" | "Baseline" | "Global", arr: Array<any>) => {
     return _.find(arr, (p) => _.startsWith(p.onOffKey, str));
   }
 
@@ -320,17 +320,14 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
           ? (player as any)["baseline"] : (player as any)["global"];
 
         const [ offLuckAdj, defLuckAdj ] = adjustForLuck ? [
-          LuckUtils.calcOffTeamLuckAdj(
-            stat, [ baseOrGlobalPlayer ], baseOrSeasonTeamStats, {
-              [baseOrGlobalPlayer.key || ""]: baseOrGlobalPlayer
-            }, avgEfficiency
-          ), LuckUtils.calcDefTeamLuckAdj(
-            stat, baseOrSeasonTeamStats, avgEfficiency
+          LuckUtils.calcOffPlayerLuckAdj(
+            stat, baseOrGlobalPlayer, avgEfficiency
+          ), LuckUtils.calcDefPlayerLuckAdj(
+            stat, baseOrGlobalPlayer, avgEfficiency
           ) ] : [ undefined, undefined ];
 
         if (stat?.doc_count) {
-          LuckUtils.injectLuck(stat, offLuckAdj, undefined);
-          //TODO: defensive luck
+          LuckUtils.injectLuck(stat, offLuckAdj, defLuckAdj);
         }
         stat.off_luck = offLuckAdj;
         stat.def_luck = defLuckAdj;
@@ -341,7 +338,9 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
         const [
           oRtg, adjORtg, rawORtg, rawAdjORtg, oRtgDiag
         ] = RatingUtils.buildORtg(stat, avgEfficiency, showDiagMode, adjustForLuck);
-        const [ dRtg, adjDRtg, dRtgDiag ] = RatingUtils.buildDRtg(stat, avgEfficiency, showDiagMode);
+        const [
+          dRtg, adjDRtg, rawDRtg, rawAdjDRtg, dRtgDiag
+        ] = RatingUtils.buildDRtg(stat, avgEfficiency, showDiagMode, adjustForLuck);
         stat.off_rtg = {
           value: oRtg?.value, old_value: rawORtg?.value,
           override: adjustForLuck ? "Luck adjusted" : undefined
@@ -351,8 +350,14 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
           override: adjustForLuck ? "Luck adjusted" : undefined
         };
         stat.diag_off_rtg = oRtgDiag;
-        stat.def_rtg = dRtg;
-        stat.def_adj_rtg = adjDRtg;
+        stat.def_rtg = {
+          value: dRtg?.value, old_value: rawDRtg?.value,
+          override: adjustForLuck ? "Luck adjusted" : undefined
+        };
+        stat.def_adj_rtg = {
+          value: adjDRtg?.value, old_value: rawAdjDRtg?.value,
+          override: adjustForLuck ? "Luck adjusted" : undefined
+        };
         stat.diag_def_rtg = dRtgDiag;
 
         // Positional info:

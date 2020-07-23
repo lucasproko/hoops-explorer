@@ -93,16 +93,22 @@ const LuckAdjDiagView: React.FunctionComponent<Props> = ({name, offLuck, defLuck
             </span> : null }
           </ul> : null }
         </ul>
-        <li><b>Defense</b>: adjustment [<b>{d.deltaDefAdjEff.toFixed(1)}</b>] pts/100</li>
+        <li><b>Defense</b>:
+          {!individualMode ? <span> adjustment [<b>{d.deltaDefAdjEff.toFixed(1)}</b>] pts/100</span> : null }
+        </li>
         <ul>
-          <li><b>3P Shooting</b>: 3P% [<b>{(100*d.delta3P).toFixed(1)}</b>%], eFG [<b>{(100*d.deltaDefEfg).toFixed(1)}</b>%], adjustment [<b>{d.deltaDefAdjEff.toFixed(1)}</b>] pts/100
-           (<a href="#" onClick={(event) => { event.preventDefault(); setShow3PDef(!show3PDef) }}>show {show3PDef ? "less" : "more"}</a>)
+          <li><b>3P Shooting</b>: 3P% [<b>{(100*d.delta3P).toFixed(1)}</b>%]
+            {!individualMode ? <span>, eFG [<b>{(100*d.deltaDefEfg).toFixed(1)}</b>%], adjustment [<b>{d.deltaDefAdjEff.toFixed(1)}</b>] pts/100</span> : null}
+           &nbsp;(<a href="#" onClick={(event) => { event.preventDefault(); setShow3PDef(!show3PDef) }}>show {show3PDef ? "less" : "more"}</a>)
           </li>
           { show3PDef ? <ul>
-            <li>Delta_eFG: [<b>{(100*d.deltaDefEfg).toFixed(1)}</b>%] =
+            {individualMode ?
+              <li>Delta_3P%: [<b>{(100*d.delta3P).toFixed(1)}</b>%] =
+            Adj_3P_Def [<b>{(100*d.adjDef3P).toFixed(1)}</b>%] - Sample_3P_Def [<b>{(100*d.sampleDef3P).toFixed(1)}</b>%]</li>
+              : <li>Delta_eFG: [<b>{(100*d.deltaDefEfg).toFixed(1)}</b>%] =
             1.5 * (Adj_3P_Def [<b>{(100*d.adjDef3P).toFixed(1)}</b>%] - Sample_3P_Def [<b>{(100*d.sampleDef3P).toFixed(1)}</b>%]) *
-            Sample_Def_3PR [<b>{(100*d.sampleDef3PRate).toFixed(1)}</b>%]
-            </li>
+            Sample_Def_3PR [<b>{(100*d.sampleDef3PRate).toFixed(1)}</b>%]</li>
+            }
             <ul>
               <li><i>(The idea is we calculate a "3P defense" number from the sample, regressed to the [<b>{baseline}</b>], assuming that [<b>{(100*d.luckPct).toFixed(1)}</b>%] of it is just luck.
               Then we calculate a "luck adjusted" 3P% by combining "3P defense" and the weighted average opponent 3P%.)
@@ -120,16 +126,16 @@ const LuckAdjDiagView: React.FunctionComponent<Props> = ({name, offLuck, defLuck
                 </li>
               </ul>
             </ul>
-            <li>Adj_Delta_Pts/100: [<b>{d.deltaDefAdjEff.toFixed(1)}</b>] = Delta_Pts/100 [<b>{d.deltaDefPpp.toFixed(1)}</b>] * D1_Avg_Eff [<b>{d.avgEff.toFixed(1)}</b>] / Sample_Off_SOS [<b>{d.sampleOffSos.toFixed(1)}</b>]</li>
-            <li>Delta_Pts/100: [<b>{d.deltaDefPpp.toFixed(1)}</b>] = Delta_Pts_No_ORBs/100 [<b>{d.deltaDefPppNoOrb.toFixed(1)}</b>] + Pts_Off_Delta_Misses/100 [<b>{d.deltaPtsOffMisses.toFixed(1)}</b>]</li>
-            <ul>
+            {!individualMode ? <li>Adj_Delta_Pts/100: [<b>{d.deltaDefAdjEff.toFixed(1)}</b>] = Delta_Pts/100 [<b>{d.deltaDefPpp.toFixed(1)}</b>] * D1_Avg_Eff [<b>{d.avgEff.toFixed(1)}</b>] / Sample_Off_SOS [<b>{d.sampleOffSos.toFixed(1)}</b>]</li> : null}
+            {!individualMode ? <li>Delta_Pts/100: [<b>{d.deltaDefPpp.toFixed(1)}</b>] = Delta_Pts_No_ORBs/100 [<b>{d.deltaDefPppNoOrb.toFixed(1)}</b>] + Pts_Off_Delta_Misses/100 [<b>{d.deltaPtsOffMisses.toFixed(1)}</b>]</li> : null}
+            {!individualMode ? <ul>
               <li><i>(Because of the change in 3P%, there are either more or less misses that can be rebounded by the offense.)</i></li>
               <li>Delta_Pts_No_ORBs/100: [<b>{d.deltaDefPppNoOrb.toFixed(1)}</b>] = 2 * Delta_eFG [<b>{(100*d.deltaDefEfg).toFixed(1)}</b>%] * Sample_Def_FGA [<b>{d.sampleDefFGA.toFixed(0)}</b>] / Sample_Possessions [<b>{d.samplePoss.toFixed(0)}</b>]</li>
               <li>Pts_Off_Delta_Misses/100: [<b>{d.deltaPtsOffMisses.toFixed(1)}</b>] = ORB_Factor [<b>{(100*d.deltaDefOrbFactor).toFixed(1)}</b>%] * (Sample_Def_Pts/100 [<b>{d.sampleDefPpp.toFixed(1)}</b>] + Delta_Pts_No_ORBs/100: [<b>{d.deltaDefPppNoOrb.toFixed(1)}</b>])</li>
               <ul>
                 <li>ORB_Factor: [<b>{(100*d.deltaDefOrbFactor).toFixed(1)}</b>%] = Delta_Misses% [<b>{(100*d.deltaMissesPct).toFixed(1)}</b>%] * Sample_Def_ORB [<b>{(100*d.sampleDefOrb).toFixed(1)}</b>%] / (1 - Delta_Misses/100 [<b>{(100*d.deltaMissesPct).toFixed(1)}</b>%] * Sample_Def_ORB [<b>{(100*d.sampleDefOrb).toFixed(1)}</b>%])</li>
               </ul>
-            </ul>
+            </ul> : null}
           </ul> : null }
         </ul>
         {baseline == "baseline" ? <li><i>(Regressing over baseline uses in a smaller and possibly biased dataset, which is bad; but can be useful if there is reason to believe the characteristics

@@ -85,6 +85,17 @@ export type DefLuckAdjustmentDiags = {
 /** Contains logic to help other stats modules adjust for luck */
 export class LuckUtils {
 
+  /** Calculate the offensive luck adjustment for a player */
+  static readonly calcOffPlayerLuckAdj = (
+    samplePlayer: any, basePlayer: any,
+    avgEff: number
+  ) => {
+    // The team calc basically works fine here, apart from ORBs, which we'll ignore
+    return LuckUtils.calcOffTeamLuckAdj(
+      samplePlayer, [ samplePlayer ], basePlayer, { [basePlayer.key]: basePlayer }, avgEff
+    );
+  }
+
   /** Calculate the offensive luck adjustment for a team ...samplePlayers==players.map(_.on/off/baseline) */
   static readonly calcOffTeamLuckAdj = (
     sampleTeam: any, samplePlayers: any[], baseTeam: any, basePlayersMap: Record<string,any>,
@@ -169,6 +180,24 @@ export class LuckUtils {
 
       deltaOffOrbFactor, deltaPtsOffMisses, deltaOffPpp, deltaOffAdjEff
     } as OffLuckAdjustmentDiags;
+  };
+
+  /** Calculate the defensive luck adjustment for a player */
+  static readonly calcDefPlayerLuckAdj = (sample: any, base: any, avgEff: number) => {
+    const translate = (statSet: any) => {
+      return {
+        def_3p: {
+          value: (statSet.oppo_total_def_3p_made?.value || 0)
+                / (statSet.oppo_total_def_3p_attempts?.value || 1)
+        },
+        def_3p_opp: statSet.oppo_def_3p_opp,
+        def_poss: statSet.oppo_total_def_poss,
+      };
+    };
+    // We really just want the 3P delta:
+    return LuckUtils.calcDefTeamLuckAdj(
+      translate(sample), translate(base), avgEff
+    );
   };
 
   /** Calculate the defensive luck adjustment for a team */
@@ -326,6 +355,26 @@ export class LuckUtils {
     }) : {
       value: adjDefPpp
     };
+
+    // Player defense
+
+    // Don't have oppo_3p_def so we'll calculate it every time
+    if (mutableStats.oppo_total_def_3p_made) {
+      if (defLuck) {
+        mutableStats.oppo_def_3p = {
+          value: defLuck.adjDef3P,
+          old_value: (mutableStats.oppo_total_def_3p_made?.value || 0)
+                / (mutableStats.oppo_total_def_3p_attempts?.value || 1),
+          override: "Luck adjusted"
+        };
+
+      } else {
+        mutableStats.oppo_def_3p = {
+          value: (mutableStats.oppo_total_def_3p_made?.value || 0)
+                / (mutableStats.oppo_total_def_3p_attempts?.value || 1)
+        };
+      }
+    }
 
   };
 };

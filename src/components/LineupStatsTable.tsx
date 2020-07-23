@@ -148,12 +148,29 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
   const baselinePlayerInfo = _.fromPairs(
     (rosterStats.baseline || []).map((mutableP: any) => {
       // Add ORtg to lineup stats:
-      const [ oRtg, adjORtg, oRtgDiag ] = RatingUtils.buildORtg(mutableP, avgEfficiency, false);
-      const [ dRtg, adjDRtg, dRtgDiag ] = RatingUtils.buildDRtg(mutableP, avgEfficiency, false);
-      mutableP.off_rtg = oRtg;
-      mutableP.off_adj_rtg = adjORtg;
-      mutableP.def_rtg = dRtg;
-      mutableP.def_adj_rtg = adjDRtg;
+      const playerAdjustForLuck = false; //TODO: longer term I think we will want to do this
+      const [ oRtg, adjORtg, rawORtg, rawAdjORtg, oRtgDiag ] = RatingUtils.buildORtg(
+        mutableP, avgEfficiency, false, playerAdjustForLuck
+      );
+      const [ dRtg, adjDRtg, rawDRtg, rawAdjDRtg, dRtgDiag ] = RatingUtils.buildDRtg(
+        mutableP, avgEfficiency, false, playerAdjustForLuck
+      );
+      mutableP.off_rtg = {
+        value: oRtg?.value, old_value: rawORtg?.value,
+        override: playerAdjustForLuck ? "Luck adjusted" : undefined
+      };
+      mutableP.off_adj_rtg = {
+        value: adjORtg?.value, old_value: rawAdjORtg?.value,
+        override: playerAdjustForLuck ? "Luck adjusted" : undefined
+      };
+      mutableP.def_rtg = {
+        value: dRtg?.value, old_value: rawDRtg?.value,
+        override: playerAdjustForLuck ? "Luck adjusted" : undefined
+      };
+      mutableP.def_adj_rtg = {
+        value: adjDRtg?.value, old_value: rawAdjDRtg?.value,
+        override: playerAdjustForLuck ? "Luck adjusted" : undefined
+      };
 
       return [ mutableP.key, mutableP ];
     })

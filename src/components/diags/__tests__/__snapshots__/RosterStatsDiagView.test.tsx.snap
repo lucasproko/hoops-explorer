@@ -77,15 +77,15 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 1`] = 
         <em>
           Compare raw stats: orb=[
           <b>
-            17
+            17.0
           </b>
           ], pts=[
           <b>
-            497
+            497.0
           </b>
           ] (fg_pts=[
           <b>
-            331
+            331.0
           </b>
            = 
           <b>
@@ -93,7 +93,7 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 1`] = 
           </b>
           *
           <b>
-            55
+            55.0
           </b>
            + 
           <b>
@@ -101,19 +101,19 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 1`] = 
           </b>
           *(
           <b>
-            46
+            46.0
           </b>
            + 
           <b>
-            37
+            37.0
           </b>
           )] + ftm=[
           <b>
-            166
+            166.0
           </b>
           ]), assists=[
           <b>
-            144
+            144.0
           </b>
           ]
         </em>

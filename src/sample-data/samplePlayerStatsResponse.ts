@@ -37,6 +37,12 @@ export const samplePlayerStatsResponse =
                         "oppo_total_def_2p_attempts": {
                            "value": 975
                         },
+                        "oppo_total_def_3p_attempts": {
+                           "value": 500
+                        },
+                        "oppo_total_def_3p_made": {
+                           "value": 200
+                        },
                         "total_off_2pmid_made": {
                            "value": 46
                         },
@@ -243,6 +249,12 @@ export const samplePlayerStatsResponse =
                         },
                         "oppo_total_def_2p_attempts": {
                            "value": 784
+                        },
+                        "oppo_total_def_3p_attempts": {
+                           "value": 400
+                        },
+                        "oppo_total_def_3p_made": {
+                           "value": 100
                         },
                         "total_off_2pmid_made": {
                            "value": 24
@@ -460,6 +472,12 @@ export const samplePlayerStatsResponse =
                         "oppo_total_def_2p_attempts": {
                            "value": 283
                         },
+                        "oppo_total_def_3p_attempts": {
+                           "value": 200
+                        },
+                        "oppo_total_def_3p_made": {
+                           "value": 20
+                        },
                         "total_off_2pmid_made": {
                            "value": 17
                         },
@@ -666,6 +684,12 @@ export const samplePlayerStatsResponse =
                         },
                         "oppo_total_def_2p_attempts": {
                            "value": 7
+                        },
+                        "oppo_total_def_3p_attempts": {
+                           "value": 1
+                        },
+                        "oppo_total_def_3p_made": {
+                           "value": 1
                         },
                         "total_off_2pmid_made": {
                            "value": 0
@@ -883,6 +907,12 @@ export const samplePlayerStatsResponse =
                         "oppo_total_def_2p_attempts": {
                            "value": 784
                         },
+                        "oppo_total_def_3p_attempts": {
+                           "value": 100
+                        },
+                        "oppo_total_def_3p_made": {
+                           "value": 30
+                        },
                         "total_off_2pmid_made": {
                            "value": 24
                         },
@@ -1089,6 +1119,12 @@ export const samplePlayerStatsResponse =
                         },
                         "oppo_total_def_2p_attempts": {
                            "value": 692
+                        },
+                        "oppo_total_def_3p_attempts": {
+                           "value": 300
+                        },
+                        "oppo_total_def_3p_made": {
+                           "value": 100
                         },
                         "total_off_2pmid_made": {
                            "value": 29

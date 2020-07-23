@@ -51,17 +51,23 @@ exports[`LineupAnalyzerPage LineupAnalyzerPage - should create snapshot 1`] = `
       title="Lineup Analysis"
     >
       <LineupStatsTable
-        lineupStats={Object {}}
-        onChangeState={[Function]}
-        rosterStats={
+        dataEvent={
           Object {
-            "baseline": Array [],
-            "off": Array [],
-            "on": Array [],
+            "lineupStats": Object {},
+            "rosterStats": Object {
+              "baseline": Array [],
+              "off": Array [],
+              "on": Array [],
+            },
+            "teamStats": Object {
+              "baseline": Object {},
+              "off": Object {},
+              "on": Object {},
+            },
           }
         }
+        onChangeState={[Function]}
         startingState={Object {}}
-        teamStats={Object {}}
       />
     </GenericCollapsibleCard>
   </ForwardRef>

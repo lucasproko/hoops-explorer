@@ -553,6 +553,317 @@ exports[`LuckAdjDiagView LuckAdjDiagView - should create snapshot (baseline, ove
 </span>
 `;
 
+exports[`LuckAdjDiagView LuckAdjDiagView - should create snapshot (individual mode, baseline, override) 1`] = `
+<span>
+  <span>
+    <b>
+      Luck Adjustment diagnostics [
+      Test2
+      ]
+    </b>
+    <span>
+       
+      <a
+        href="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
+        target="_blank"
+      >
+        (?)
+      </a>
+    </span>
+     (
+    <a
+      href="#"
+      onClick={[Function]}
+    >
+      show 
+      less
+    </a>
+    )
+  </span>
+  <ul>
+    <li>
+      <b>
+        Offense
+      </b>
+      :
+    </li>
+    <ul>
+      <li>
+        <b>
+          3P Shooting
+        </b>
+        : 3P% [
+        <b>
+          -2.2
+        </b>
+        %], eFG [
+        <b>
+          -1.2
+        </b>
+        %]
+         (
+        <a
+          href="#"
+          onClick={[Function]}
+        >
+          show 
+          less
+        </a>
+        )
+      </li>
+      <ul>
+        <li>
+          Delta_eFG: [
+          <b>
+            -1.2
+          </b>
+          %] = 1.5 * (Adj_3P_Off [
+          <b>
+            33.0
+          </b>
+          %] - Sample_3P_Off [
+          <b>
+            35.3
+          </b>
+          %]) * Sample_Off_3PR [
+          <b>
+            37.3
+          </b>
+          %]
+        </li>
+        <ul>
+          <li>
+            <i>
+              (The idea is we'll calculate the expected shooting performance of the players in the lineup set, weighted by their usage, and then regress the actual 3P shooting agains that.)
+            </i>
+          </li>
+          <li>
+            Adj_3P_Off: [
+            <b>
+              33.0
+            </b>
+            %] = 
+            <i>
+              Weighted_Mean
+            </i>
+            ( Expected_3P% [
+            <b>
+              31.7
+            </b>
+            %], Base_3PA [
+            <b>
+              800
+            </b>
+            ], Sample_3P% [
+            <b>
+              35.3
+            </b>
+            %], Sample_3PA [
+            <b>
+              500
+            </b>
+            ])
+          </li>
+          <li>
+            Expected_3P%: [
+            <b>
+              31.7
+            </b>
+            %] = Calculated from 
+            <i>
+              Weighted_Mean
+            </i>
+             of:
+          </li>
+          <ul>
+            <li
+              key="0"
+            >
+              [
+              <b>
+                Cowan, Anthony
+              </b>
+              ]: Sample_3PA=[
+              <b>
+                122
+              </b>
+              ] Base_3P%=[
+              <b>
+                32.2
+              </b>
+              %]
+            </li>
+            <li
+              key="1"
+            >
+              [
+              <b>
+                Wiggins, Aaron
+              </b>
+              ]: Sample_3PA=[
+              <b>
+                163
+              </b>
+              ] Base_3P%=[
+              <b>
+                31.3
+              </b>
+              %]
+            </li>
+          </ul>
+        </ul>
+      </ul>
+    </ul>
+    <li>
+      <b>
+        Defense
+      </b>
+      :
+    </li>
+    <ul>
+      <li>
+        <b>
+          3P Shooting
+        </b>
+        : 3P% [
+        <b>
+          6.1
+        </b>
+        %]
+         (
+        <a
+          href="#"
+          onClick={[Function]}
+        >
+          show 
+          less
+        </a>
+        )
+      </li>
+      <ul>
+        <li>
+          Delta_3P%: [
+          <b>
+            6.1
+          </b>
+          %] = Adj_3P_Def [
+          <b>
+            36.3
+          </b>
+          %] - Sample_3P_Def [
+          <b>
+            30.2
+          </b>
+          %]
+        </li>
+        <ul>
+          <li>
+            <i>
+              (The idea is we calculate a "3P defense" number from the sample, regressed to the [
+              <b>
+                baseline
+              </b>
+              ], assuming that [
+              <b>
+                66.0
+              </b>
+              %] of it is just luck. Then we calculate a "luck adjusted" 3P% by combining "3P defense" and the weighted average opponent 3P%.)
+            </i>
+          </li>
+          <li>
+            Adj_3P_Def: [
+            <b>
+              36.3
+            </b>
+            %] = Sample_3P_SoS [
+            <b>
+              37.2
+            </b>
+            %] + Delta_3PD [
+            <b>
+              -1.0
+            </b>
+            %]
+          </li>
+          <li>
+            Delta_3PD: [
+            <b>
+              -1.0
+            </b>
+            %] = 
+            <i>
+              Weighted_Mean
+            </i>
+            ( Base_Delta_3PD [
+            <b>
+              -0.5
+            </b>
+            %], Base_Possessions [
+            <b>
+              2089
+            </b>
+            ], Sample_Delta_3PD [
+            <b>
+              -2.4
+            </b>
+            %], Sample_Possessions [
+            <b>
+              596
+            </b>
+            ])
+          </li>
+          <ul>
+            <li>
+              Base_Delta_3PD: [
+              <b>
+                -0.5
+              </b>
+              %] = (1 - Luck_Factor [
+              <b>
+                66.0
+              </b>
+              %]) * (Base_3P_Def [
+              <b>
+                34.0
+              </b>
+              %] - Base_3P_SoS [
+              <b>
+                35.6
+              </b>
+              %])
+            </li>
+            <li>
+              Sample_Delta_3PD: [
+              <b>
+                -2.4
+              </b>
+              %] = (1 - Luck_Factor [
+              <b>
+                66.0
+              </b>
+              %]) * (Sample_3P_Def [
+              <b>
+                30.2
+              </b>
+              %] - Sample_3P_SoS [
+              <b>
+                37.2
+              </b>
+              %])
+            </li>
+          </ul>
+        </ul>
+      </ul>
+    </ul>
+    <li>
+      <i>
+        (Regressing over baseline uses in a smaller and possibly biased dataset, which is bad; but can be useful if there is reason to believe the characteristics of the team are different compared to the sample - eg due to injury.)
+      </i>
+    </li>
+  </ul>
+</span>
+`;
+
 exports[`LuckAdjDiagView LuckAdjDiagView - should create snapshot (season, !override) 1`] = `
 <span>
   <span>
