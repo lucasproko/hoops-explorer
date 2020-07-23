@@ -87,7 +87,7 @@ export class LuckUtils {
 
   /** Calculate the offensive luck adjustment for a player */
   static readonly calcOffPlayerLuckAdj = (
-    samplePlayer: any, basePlayer: any,
+    samplePlayer: Record<string, any>, basePlayer: Record<string, any>,
     avgEff: number
   ) => {
     // The team calc basically works fine here, apart from ORBs, which we'll ignore
@@ -98,7 +98,8 @@ export class LuckUtils {
 
   /** Calculate the offensive luck adjustment for a team ...samplePlayers==players.map(_.on/off/baseline) */
   static readonly calcOffTeamLuckAdj = (
-    sampleTeam: any, samplePlayers: any[], baseTeam: any, basePlayersMap: Record<string,any>,
+    sampleTeam: Record<string, any>, samplePlayers: Record<string, any>[],
+    baseTeam: Record<string, any>, basePlayersMap: Record<string,any>,
     avgEff: number
   ) => {
     const get = (maybeOld: any, fallback: number) => {
@@ -118,15 +119,15 @@ export class LuckUtils {
     var varTotal3PA = 0.0;
     var varTotal3P = 0.0;
     const player3PInfo = _.chain(samplePlayers).flatMap((player: any) => {
-      const playerInfo = basePlayersMap[player?.key];
+      const playerInfo = basePlayersMap[player.key];
       if (playerInfo) {
-        const samplePlayer3PA = get(player?.total_off_3p_attempts, 0);
-        const samplePlayer3P = get(basePlayersMap[player?.key]?.off_3p, 0);
+        const samplePlayer3PA = get(player.total_off_3p_attempts, 0);
+        const samplePlayer3P = get(basePlayersMap[player.key]?.off_3p, 0);
         varTotal3PA += samplePlayer3PA;
         varTotal3P += samplePlayer3PA*samplePlayer3P;
 
         return (samplePlayer3PA > 0) ? //(don't bother with any players who didn't take a 3P shot)
-          [ [ player?.key, { sample3PA: samplePlayer3PA, base3P: samplePlayer3P }  ] ] : [];
+          [ [ player.key, { sample3PA: samplePlayer3PA, base3P: samplePlayer3P }  ] ] : [];
         } else {
           return []; //(player not in this lineup)
         }
@@ -183,7 +184,7 @@ export class LuckUtils {
   };
 
   /** Calculate the defensive luck adjustment for a player */
-  static readonly calcDefPlayerLuckAdj = (sample: any, base: any, avgEff: number) => {
+  static readonly calcDefPlayerLuckAdj = (sample: Record<string, any>, base: Record<string, any>, avgEff: number) => {
     const translate = (statSet: any) => {
       return {
         def_3p: {
@@ -201,7 +202,7 @@ export class LuckUtils {
   };
 
   /** Calculate the defensive luck adjustment for a team */
-  static readonly calcDefTeamLuckAdj = (sample: any, base: any, avgEff: number) => {
+  static readonly calcDefTeamLuckAdj = (sample: Record<string, any>, base: Record<string, any>, avgEff: number) => {
     const get = (maybeOld: any, fallback: number) => {
       // Uses the non-adjusted luck number if present
       return (_.isNil(maybeOld?.old_value) ? maybeOld?.value : maybeOld?.old_value) || fallback;
@@ -266,7 +267,7 @@ export class LuckUtils {
 
   /** Mutates (in a reversible way) the team stats with luck adjustments */
   static readonly injectLuck = (
-    mutableStats: any,
+    mutableStats: Record<string, any>,
     offLuck: OffLuckAdjustmentDiags | undefined,
     defLuck: DefLuckAdjustmentDiags | undefined
   ) => {
@@ -279,7 +280,7 @@ export class LuckUtils {
     // Offense - 3P
 
     const off3P = reset(mutableStats?.off_3p);
-    mutableStats.off_3p = offLuck ? ignoreNull({
+    if (mutableStats.off_3p) mutableStats.off_3p = offLuck ? ignoreNull({
       value: off3P + offLuck.delta3P,
       old_value: off3P,
       override: "Luck adjusted"
@@ -290,7 +291,7 @@ export class LuckUtils {
     // Offense - derived 4 factors and efficiency
 
     const eFgOff = reset(mutableStats?.off_efg);
-    mutableStats.off_efg = offLuck ? ignoreNull({
+    if (mutableStats.off_efg) mutableStats.off_efg = offLuck ? ignoreNull({
       value: eFgOff + offLuck.deltaOffEfg,
       old_value: eFgOff,
       override: "Adjustment derived from Off 3P%"

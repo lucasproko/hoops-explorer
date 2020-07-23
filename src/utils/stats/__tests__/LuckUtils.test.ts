@@ -50,19 +50,24 @@ describe("LuckUtils", () => {
   });
   test("LuckUtils - calcDefPlayerLuckAdj", () => {
     // (just check it's a - somewhat! - straight translation of the team version)
+    // (TODO this is a bit horrible, I'm just copy/pasting the logic I'm testing, but not sure
+    //  how better to test)
     const samplePlayerWithExtraStats = _.merge(_.cloneDeep(samplePlayersOn[0] as any), {
       def_3p: { value: samplePlayersOn[0].oppo_total_def_3p_made.value /  samplePlayersOn[0].oppo_total_def_3p_attempts.value },
       def_3p_opp: samplePlayersOn[0].oppo_def_3p_opp,
-      def_3p_poss: samplePlayersOn[0].oppo_total_def_poss
+      def_poss: samplePlayersOn[0].oppo_total_def_poss
     });
     const basePlayerWithExtraStats = _.merge(_.cloneDeep(basePlayers[0] as any), {
       def_3p: { value: basePlayers[0].oppo_total_def_3p_made.value /  basePlayers[0].oppo_total_def_3p_attempts.value },
       def_3p_opp: basePlayers[0].oppo_def_3p_opp,
-      def_3p_poss: basePlayers[0].oppo_total_def_poss
+      def_poss: basePlayers[0].oppo_total_def_poss
     });
-    const defTeamLuckAdj = LuckUtils.calcDefTeamLuckAdj(
+    const defTeamLuckAdj = _.merge(LuckUtils.calcDefTeamLuckAdj(
       samplePlayerWithExtraStats, basePlayerWithExtraStats, 100.0
-    );
+    ), {
+      sampleDefOrb: 0, //(we ignore ORBs)
+      sampleOffSos: 0 //(for individual players, don't transform it into efficiency so this isn't needed)
+    });
     const defPlayerLuckAdj = LuckUtils.calcDefPlayerLuckAdj(
       samplePlayersOn[0], basePlayers[0], 100.0
     );
@@ -183,20 +188,27 @@ describe("LuckUtils", () => {
     //Check injectLuck when called on individual player (diff on the defensive side)
 
     const samplePlayerDef = { // (only difference is this one field)
-      oppo_total_def_3p_made: {
+      oppo_total_def_3p_attempts: {
         value: 100
-      }
+      },
+      oppo_total_def_3p_made: {
+        value: 25
+      },
     };
     const testPlayerDef = _.cloneDeep(samplePlayerDef);
     LuckUtils.injectLuck(testPlayerDef, offTeamLuckAdj, defTeamLuckAdj);
-    expect(testPlayerDef).toEqual({
-      oppo_total_def_3p_made: {
-        value: 0, //TODO
-        old_value: 100,
+    expect(testPlayerDef).toEqual(_.merge(_.cloneDeep(samplePlayerDef), {
+      oppo_def_3p: {
+        value: 0.36290092949990566,
+        old_value: 0.25,
         override: "Luck adjusted"
       }
-    });
+    }));
     LuckUtils.injectLuck(testPlayerDef, undefined, undefined);
-    expect(testPlayerDef).toEqual(samplePlayerDef);
+    expect(testPlayerDef).toEqual(_.merge(_.cloneDeep(samplePlayerDef), {
+      oppo_def_3p: {
+        value: 0.25
+      }
+    }));
   });
 });
