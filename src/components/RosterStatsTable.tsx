@@ -61,9 +61,6 @@ type Props = {
   onChangeState: (newParams: GameFilterParams) => void
 }
 
-//TODO: this at least is very broken currently:
-//http://localhost:3000/?autoOffQuery=true&baseQuery=&filter=Ayala&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%28Cowan%20%29&onOffLuck=true&onQuery=Cowan%20&possAsPct=false&queryFilters=Conf&showBase=true&showDiag=true&showExpanded=true&showOnOffLuckDiags=true&showPlayerOnOffLuckDiags=true&team=Maryland&year=2019%2F20&
-
 const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataEvent, onChangeState}) => {
   const { teamStats, rosterStats } = dataEvent;
 

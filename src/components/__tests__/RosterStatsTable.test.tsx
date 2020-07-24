@@ -97,8 +97,6 @@ describe("RosterStatsTable", () => {
       error_code: undefined
     };
 
-//TODO: not showing luck adjustment AFAICT
-
     const wrapper = shallow(
     <RosterStatsTable
       gameFilterParams={{onOffLuck: true, showPlayerOnOffLuckDiags: true, showDiag: true, showPosDiag: true }}
