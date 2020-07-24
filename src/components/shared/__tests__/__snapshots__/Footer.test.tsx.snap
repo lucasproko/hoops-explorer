@@ -1,0 +1,98 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Footer Footer - should create snapshot 1`] = `
+<div
+  className="container"
+>
+  <div
+    className="row"
+  >
+    <div
+      className="col"
+    >
+      <i>
+        <small>
+          Selected year's data last updated: [
+          Wed Mar 11 2020 19:18:33 GMT-0400 (EDT)
+          ]
+        </small>
+      </i>
+    </div>
+    <div
+      className="col"
+    >
+      <span
+        className="float-right"
+      >
+        <i>
+          <small>
+            PbP events from 
+            <a
+              href="https://stats.ncaa.org"
+              target="_new"
+            >
+              stats.ncaa.org
+            </a>
+          </small>
+        </i>
+      </span>
+    </div>
+  </div>
+  <div
+    className="row"
+  >
+    <div
+      className="col"
+    >
+      <i>
+        <small>
+          It's a beta, so let me know if you see anything weird: 
+          <span>
+            <a
+              href="aHR0cHM6Ly90d2l0dGVyLmNvbS9JdHNBVGVycF9DQkI="
+              onMouseOver={[Function]}
+              target="_new"
+            >
+              twitter
+            </a>
+             / 
+          </span>
+          <a
+            href="bWFpbHRvOmhvb3AuZXhwbG9yZXJAZ21haWwuY29t"
+            onMouseOver={[Function]}
+            target="_new"
+          >
+            email
+          </a>
+        </small>
+      </i>
+    </div>
+    <div
+      className="col"
+    >
+      <span
+        className="float-right"
+      >
+        <i>
+          <small>
+            SoS stats with kind permission from 
+            <a
+              href="https://kenpom.com"
+              target="_new"
+            >
+              kenpom.com
+            </a>
+             and 
+            <a
+              href="https://herhoopstats.com"
+              target="_new"
+            >
+              herhoopstats.com
+            </a>
+          </small>
+        </i>
+      </span>
+    </div>
+  </div>
+</div>
+`;

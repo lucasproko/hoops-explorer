@@ -1,0 +1,355 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HeaderBar HeaderBar - should create snapshot (game) 1`] = `
+<div
+  className="container"
+>
+  <div
+    className="border-top row"
+  >
+    <div
+      className="text-center small col"
+    >
+      <div>
+        <span>
+          <div
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+          >
+            <a
+              href="/LineupAnalyzer?baseQuery=query1&gender=Men&team=Test1&year=2019%2F20&"
+              onClick={[Function]}
+            >
+              Lineups: Base
+            </a>
+          </div>
+        </span>
+      </div>
+    </div>
+    <div
+      className="text-center small col"
+    >
+      <div>
+        <span>
+          <div
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+          >
+            <a
+              href="/LineupAnalyzer?"
+              onClick={[Function]}
+            >
+              Lineups: Last
+            </a>
+          </div>
+        </span>
+      </div>
+    </div>
+    <div
+      className="text-center small col"
+    >
+      <div>
+        <span>
+          <div
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+          >
+            <a
+              href="/TeamReport?baseQuery=query1&gender=Men&team=Test1&year=2019%2F20&"
+              onClick={[Function]}
+            >
+              Report: Base
+            </a>
+          </div>
+        </span>
+      </div>
+    </div>
+    <div
+      className="text-center small col"
+    >
+      <div>
+        <span>
+          <div
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+          >
+            <a
+              href="/TeamReport?"
+              onClick={[Function]}
+            >
+              Report: Last
+            </a>
+          </div>
+        </span>
+      </div>
+    </div>
+    <div
+      className="text-center small col"
+    >
+      <div>
+        <span>
+          <div
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+          >
+            <a
+              href="/Charts"
+              onClick={[Function]}
+            >
+              Charts
+            </a>
+          </div>
+        </span>
+      </div>
+    </div>
+    <div
+      className="small col-1"
+    >
+      <div>
+        <a
+          href="https://hoop-explorer.blogspot.com/p/blog-page.html"
+          target="_new"
+        >
+          Blog...
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`HeaderBar HeaderBar - should create snapshot (lineup) 1`] = `
+<div
+  className="container"
+>
+  <div
+    className="border-top row"
+  >
+    <div
+      className="text-center small col"
+    >
+      <div>
+        <span>
+          <div
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+          >
+            <a
+              href="/?baseQuery=query2&gender=Men&team=Test2&year=2019%2F20&"
+              onClick={[Function]}
+            >
+              On/Off: Base
+            </a>
+          </div>
+        </span>
+      </div>
+    </div>
+    <div
+      className="text-center small col"
+    >
+      <div>
+        <span>
+          <div
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+          >
+            <a
+              href="/?"
+              onClick={[Function]}
+            >
+              On/Off: Last
+            </a>
+          </div>
+        </span>
+      </div>
+    </div>
+    <div
+      className="text-center small col"
+    >
+      <div>
+        <span>
+          <div
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+          >
+            <a
+              href="/TeamReport?baseQuery=query2&gender=Men&team=Test2&year=2019%2F20&"
+              onClick={[Function]}
+            >
+              Report: Base
+            </a>
+          </div>
+        </span>
+      </div>
+    </div>
+    <div
+      className="text-center small col"
+    >
+      <div>
+        <span>
+          <div
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+          >
+            <a
+              href="/TeamReport?"
+              onClick={[Function]}
+            >
+              Report: Last
+            </a>
+          </div>
+        </span>
+      </div>
+    </div>
+    <div
+      className="text-center small col"
+    >
+      <div>
+        <span>
+          <div
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+          >
+            <a
+              href="/Charts"
+              onClick={[Function]}
+            >
+              Charts
+            </a>
+          </div>
+        </span>
+      </div>
+    </div>
+    <div
+      className="small col-1"
+    >
+      <div>
+        <a
+          href="https://hoop-explorer.blogspot.com/p/blog-page.html"
+          target="_new"
+        >
+          Blog...
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`HeaderBar HeaderBar - should create snapshot (report) 1`] = `
+<div
+  className="container"
+>
+  <div
+    className="border-top row"
+  >
+    <div
+      className="text-center small col"
+    >
+      <div>
+        <span>
+          <div
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+          >
+            <a
+              href="/?baseQuery=query3&gender=Men&team=Test3&year=2019%2F20&"
+              onClick={[Function]}
+            >
+              On/Off: Base
+            </a>
+          </div>
+        </span>
+      </div>
+    </div>
+    <div
+      className="text-center small col"
+    >
+      <div>
+        <span>
+          <div
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+          >
+            <a
+              href="/?"
+              onClick={[Function]}
+            >
+              On/Off: Last
+            </a>
+          </div>
+        </span>
+      </div>
+    </div>
+    <div
+      className="text-center small col"
+    >
+      <div>
+        <span>
+          <div
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+          >
+            <a
+              href="/LineupAnalyzer?baseQuery=query3&gender=Men&team=Test3&year=2019%2F20&"
+              onClick={[Function]}
+            >
+              Lineups: Base
+            </a>
+          </div>
+        </span>
+      </div>
+    </div>
+    <div
+      className="text-center small col"
+    >
+      <div>
+        <span>
+          <div
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+          >
+            <a
+              href="/LineupAnalyzer?"
+              onClick={[Function]}
+            >
+              Lineups: Last
+            </a>
+          </div>
+        </span>
+      </div>
+    </div>
+    <div
+      className="text-center small col"
+    >
+      <div>
+        <span>
+          <div
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+          >
+            <a
+              href="/Charts"
+              onClick={[Function]}
+            >
+              Charts
+            </a>
+          </div>
+        </span>
+      </div>
+    </div>
+    <div
+      className="small col-1"
+    >
+      <div>
+        <a
+          href="https://hoop-explorer.blogspot.com/p/blog-page.html"
+          target="_new"
+        >
+          Blog...
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+`;
