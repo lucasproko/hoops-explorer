@@ -17,10 +17,12 @@ describe("LineupStatsTable", () => {
     const dummyChangeStateCallback = (stats: LineupFilterParams) => {};
     const wrapper = shallow(
       <LineupStatsTable
-        lineupStats={testData}
-        rosterStats={{}}
-        teamStats={{ on:{}, off: {}, baseline: {}, global: {}, onOffMode: true }}
         startingState={{}}
+        dataEvent={{
+          teamStats: { on:{}, off: {}, baseline: {}, global: {}, onOffMode: true },
+          rosterStats: {},
+          lineupStats: testData
+        }}
         onChangeState={dummyChangeStateCallback}
       />
     );
@@ -41,10 +43,12 @@ describe("LineupStatsTable", () => {
     const dummyChangeStateCallback = (stats: LineupFilterParams) => {};
     const wrapper = shallow(
       <LineupStatsTable
-        lineupStats={testData}
-        teamStats={teamData}
-        rosterStats={playerData}
         startingState={{}}
+        dataEvent={{
+          teamStats: teamData,
+          rosterStats: playerData,
+          lineupStats: testData
+        }}
         onChangeState={dummyChangeStateCallback}
       />
     );
@@ -65,10 +69,12 @@ describe("LineupStatsTable", () => {
     const dummyChangeStateCallback = (stats: LineupFilterParams) => {};
     const wrapper = shallow(
       <LineupStatsTable
-        lineupStats={testData}
-        teamStats={teamData}
-        rosterStats={playerData}
         startingState={{ decorate: false, lineupLuck: true, showLineupLuckDiags: true }}
+        dataEvent={{
+          teamStats: teamData,
+          rosterStats: playerData,
+          lineupStats: testData
+        }}
         onChangeState={dummyChangeStateCallback}
       />
     );

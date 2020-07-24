@@ -85,9 +85,21 @@ export type DefLuckAdjustmentDiags = {
 /** Contains logic to help other stats modules adjust for luck */
 export class LuckUtils {
 
+  /** Calculate the offensive luck adjustment for a player */
+  static readonly calcOffPlayerLuckAdj = (
+    samplePlayer: Record<string, any>, basePlayer: Record<string, any>,
+    avgEff: number
+  ) => {
+    // The team calc basically works fine here, apart from ORBs, which we'll ignore
+    return LuckUtils.calcOffTeamLuckAdj(
+      samplePlayer, [ samplePlayer ], basePlayer, { [basePlayer.key]: basePlayer }, avgEff
+    );
+  }
+
   /** Calculate the offensive luck adjustment for a team ...samplePlayers==players.map(_.on/off/baseline) */
   static readonly calcOffTeamLuckAdj = (
-    sampleTeam: any, samplePlayers: any[], baseTeam: any, basePlayersMap: Record<string,any>,
+    sampleTeam: Record<string, any>, samplePlayers: Record<string, any>[],
+    baseTeam: Record<string, any>, basePlayersMap: Record<string,any>,
     avgEff: number
   ) => {
     const get = (maybeOld: any, fallback: number) => {
@@ -107,15 +119,15 @@ export class LuckUtils {
     var varTotal3PA = 0.0;
     var varTotal3P = 0.0;
     const player3PInfo = _.chain(samplePlayers).flatMap((player: any) => {
-      const playerInfo = basePlayersMap[player?.key];
+      const playerInfo = basePlayersMap[player.key];
       if (playerInfo) {
-        const samplePlayer3PA = get(player?.total_off_3p_attempts, 0);
-        const samplePlayer3P = get(basePlayersMap[player?.key]?.off_3p, 0);
+        const samplePlayer3PA = get(player.total_off_3p_attempts, 0);
+        const samplePlayer3P = get(basePlayersMap[player.key]?.off_3p, 0);
         varTotal3PA += samplePlayer3PA;
         varTotal3P += samplePlayer3PA*samplePlayer3P;
 
         return (samplePlayer3PA > 0) ? //(don't bother with any players who didn't take a 3P shot)
-          [ [ player?.key, { sample3PA: samplePlayer3PA, base3P: samplePlayer3P }  ] ] : [];
+          [ [ player.key, { sample3PA: samplePlayer3PA, base3P: samplePlayer3P }  ] ] : [];
         } else {
           return []; //(player not in this lineup)
         }
@@ -171,8 +183,26 @@ export class LuckUtils {
     } as OffLuckAdjustmentDiags;
   };
 
+  /** Calculate the defensive luck adjustment for a player */
+  static readonly calcDefPlayerLuckAdj = (sample: Record<string, any>, base: Record<string, any>, avgEff: number) => {
+    const translate = (statSet: any) => {
+      return {
+        def_3p: {
+          value: (statSet.oppo_total_def_3p_made?.value || 0)
+                / (statSet.oppo_total_def_3p_attempts?.value || 1)
+        },
+        def_3p_opp: statSet.oppo_def_3p_opp,
+        def_poss: statSet.oppo_total_def_poss,
+      };
+    };
+    // We really just want the 3P delta:
+    return LuckUtils.calcDefTeamLuckAdj(
+      translate(sample), translate(base), avgEff
+    );
+  };
+
   /** Calculate the defensive luck adjustment for a team */
-  static readonly calcDefTeamLuckAdj = (sample: any, base: any, avgEff: number) => {
+  static readonly calcDefTeamLuckAdj = (sample: Record<string, any>, base: Record<string, any>, avgEff: number) => {
     const get = (maybeOld: any, fallback: number) => {
       // Uses the non-adjusted luck number if present
       return (_.isNil(maybeOld?.old_value) ? maybeOld?.value : maybeOld?.old_value) || fallback;
@@ -237,7 +267,7 @@ export class LuckUtils {
 
   /** Mutates (in a reversible way) the team stats with luck adjustments */
   static readonly injectLuck = (
-    mutableStats: any,
+    mutableStats: Record<string, any>,
     offLuck: OffLuckAdjustmentDiags | undefined,
     defLuck: DefLuckAdjustmentDiags | undefined
   ) => {
@@ -250,7 +280,7 @@ export class LuckUtils {
     // Offense - 3P
 
     const off3P = reset(mutableStats?.off_3p);
-    mutableStats.off_3p = offLuck ? ignoreNull({
+    if (mutableStats.off_3p) mutableStats.off_3p = offLuck ? ignoreNull({
       value: off3P + offLuck.delta3P,
       old_value: off3P,
       override: "Luck adjusted"
@@ -261,7 +291,7 @@ export class LuckUtils {
     // Offense - derived 4 factors and efficiency
 
     const eFgOff = reset(mutableStats?.off_efg);
-    mutableStats.off_efg = offLuck ? ignoreNull({
+    if (mutableStats.off_efg) mutableStats.off_efg = offLuck ? ignoreNull({
       value: eFgOff + offLuck.deltaOffEfg,
       old_value: eFgOff,
       override: "Adjustment derived from Off 3P%"
@@ -270,7 +300,7 @@ export class LuckUtils {
     };
 
     const rawOffPpp = reset(mutableStats?.off_ppp);
-    mutableStats.off_ppp = offLuck ? ignoreNull({
+    if (mutableStats.off_ppp) mutableStats.off_ppp = offLuck ? ignoreNull({
       value: rawOffPpp + offLuck.deltaOffPpp,
       old_value: rawOffPpp,
       override: "Adjustment derived from Off 3P%"
@@ -279,7 +309,7 @@ export class LuckUtils {
     };
 
     const adjOffPpp = reset(mutableStats?.off_adj_ppp);
-    mutableStats.off_adj_ppp = offLuck ? ignoreNull({
+    if (mutableStats.off_adj_ppp) mutableStats.off_adj_ppp = offLuck ? ignoreNull({
       value: adjOffPpp + offLuck.deltaOffPpp,
       old_value: adjOffPpp,
       override: "Adjustment derived from Off 3P%"
@@ -290,7 +320,7 @@ export class LuckUtils {
     // Defense - 3P
 
     const def3P = reset(mutableStats?.def_3p);
-    mutableStats.def_3p = defLuck ? ignoreNull({
+    if (mutableStats.def_3p) mutableStats.def_3p = defLuck ? ignoreNull({
       value: defLuck.adjDef3P,
       old_value: def3P,
       override: "Luck adjusted"
@@ -301,7 +331,7 @@ export class LuckUtils {
     // Defense - derived 4 factors and efficiency
 
     const eFgDef = reset(mutableStats?.def_efg);
-    mutableStats.def_efg = defLuck ? ignoreNull({
+    if (mutableStats.def_efg) mutableStats.def_efg = defLuck ? ignoreNull({
       value: eFgDef + defLuck.deltaDefEfg,
       old_value: eFgDef,
       override: "Adjustment derived from Def 3P%"
@@ -310,7 +340,7 @@ export class LuckUtils {
     };
 
     const rawDefPpp = reset(mutableStats?.def_ppp);
-    mutableStats.def_ppp = defLuck ? ignoreNull({
+    if (mutableStats.def_ppp) mutableStats.def_ppp = defLuck ? ignoreNull({
       value: rawDefPpp + defLuck.deltaDefPpp,
       old_value: rawDefPpp,
       override: "Adjustment derived from Def 3P%"
@@ -319,7 +349,7 @@ export class LuckUtils {
     };
 
     const adjDefPpp = reset(mutableStats?.def_adj_ppp);
-    mutableStats.def_adj_ppp = defLuck ? ignoreNull({
+    if (mutableStats.def_adj_ppp) mutableStats.def_adj_ppp = defLuck ? ignoreNull({
       value: adjDefPpp + defLuck.deltaDefPpp,
       old_value: adjDefPpp,
       override: "Adjustment derived from Def 3P%"
@@ -327,6 +357,25 @@ export class LuckUtils {
       value: adjDefPpp
     };
 
-  }
+    // Player defense
 
+    // Don't have oppo_3p_def so we'll calculate it every time
+    if (mutableStats.oppo_total_def_3p_made) {
+      if (defLuck) {
+        mutableStats.oppo_def_3p = {
+          value: defLuck.adjDef3P,
+          old_value: (mutableStats.oppo_total_def_3p_made?.value || 0)
+                / (mutableStats.oppo_total_def_3p_attempts?.value || 1),
+          override: "Luck adjusted"
+        };
+
+      } else {
+        mutableStats.oppo_def_3p = {
+          value: (mutableStats.oppo_total_def_3p_made?.value || 0)
+                / (mutableStats.oppo_total_def_3p_attempts?.value || 1)
+        };
+      }
+    }
+
+  };
 };

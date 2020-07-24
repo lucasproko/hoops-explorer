@@ -24,7 +24,7 @@ export const commonPlayerAggregations = function(publicEfficiency: any, lookup: 
       }).mapKeys((value, key) => {
         return `team_${key}`;
       }).value()
-    ), //TODO rename the total_ to team_total for use in player stats calcs
+    ),
     ...(_.chain(
         commonAggregations("opponent_stats", "def", publicEfficiency, lookup, avgEff)
       ).pick(
@@ -35,8 +35,8 @@ export const commonPlayerAggregations = function(publicEfficiency: any, lookup: 
           "total_def_to",
           "total_def_pts",
           // For luck adjustment in DRtg:
-          "def_3p_opp"
-        ]
+          "def_3p_opp", "total_def_3p_attempts", "total_def_3p_made",
+        ] //TODO: need to build my own def_3p :(
       ).mergeWith({
         //(nothing yet, see list above)
       }).mapKeys((value, key) => {
@@ -158,7 +158,7 @@ export const commonPlayerAggregations = function(publicEfficiency: any, lookup: 
             "script": "params.poss > 0 ? 1.0*params.stl/params.poss : 0.0"
           }
         },
-        "def_2prim": { //blo ... player_stl / opponent_poss
+        "def_2prim": { //blocks ... player_blk / opponent_2p_attempts
           "bucket_script": {
             "buckets_path": {
               "blk": "total_off_blk",

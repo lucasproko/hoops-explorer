@@ -7,7 +7,6 @@ import { NextPage } from 'next';
 // Utils
 import { ORtgDiagnostics, DRtgDiagnostics } from "../../utils/stats/RatingUtils";
 
-
 type Props = {
   ortgDiags: ORtgDiagnostics,
   drtgDiags: DRtgDiagnostics,
@@ -33,18 +32,18 @@ const RosterStatsDiagView: React.FunctionComponent<Props> = ({ortgDiags, drtgDia
       less Team_ORB_Contrib% [<b>{(100*o.teamOrbContribPct).toFixed(1)}%</b>]==[<b>{((o.ppFg + o.ppAssist + o.rawFtm)*o.teamOrbContribPct).toFixed(1)}</b>])
       </li>
       <ul>
-        <li><em>Compare raw stats: orb=[<b>{o.rawOrb}</b>], pts=[<b>{o.rawPts}</b>] (fg_pts=[<b>{o.ptsFgm}</b> = <b>3</b>*<b>{o.raw3Fgm}</b> + <b>2</b>*(<b>{o.raw2midFgm}</b> + <b>{o.raw2rimFgm}</b>)] + ftm=[<b>{o.rawFtm}</b>]), assists=[<b>{o.rawAssist}</b>]</em></li>
+        <li><em>Compare raw stats: orb=[<b>{o.rawOrb.toFixed(1)}</b>], pts=[<b>{o.rawPts.toFixed(1)}</b>] (fg_pts=[<b>{o.ptsFgm.toFixed(1)}</b> = <b>3</b>*<b>{o.raw3Fgm.toFixed(1)}</b> + <b>2</b>*(<b>{o.raw2midFgm.toFixed(1)}</b> + <b>{o.raw2rimFgm.toFixed(1)}</b>)] + ftm=[<b>{o.rawFtm.toFixed(1)}</b>]), assists=[<b>{o.rawAssist.toFixed(1)}</b>]</em></li>
       </ul>
       {showMoreORtgPts ?
       <span><li><u>Points section</u></li>
       <ul>
-        <li>PProd_From_FG: [<b>{o.ppFg.toFixed(1)}</b>] = Raw_FG_Pts [<b>{o.ptsFgm}</b>], less Team_Assist_Contrib% [<b>{(100*o.ppFgTeamAstPct).toFixed(1)}%</b>]===[<b>{(o.ptsFgm-o.ppFg).toFixed(1)}</b>]</li>
+        <li>PProd_From_FG: [<b>{o.ppFg.toFixed(1)}</b>] = Raw_FG_Pts [<b>{o.ptsFgm.toFixed(1)}</b>], less Team_Assist_Contrib% [<b>{(100*o.ppFgTeamAstPct).toFixed(1)}%</b>]===[<b>{(o.ptsFgm-o.ppFg).toFixed(1)}</b>]</li>
         <ul>
           <li><em>(Team_Assist_Contrib%: In the same way that Player gets rewarded for assisting their team, they get slightly less rewarded when they scored off an assist):</em></li>
           <li>Team_Assist_Contrib% [<b>{(100*o.ppFgTeamAstPct).toFixed(1)}%</b>] = Weighting ([<b>0.5</b>] * Player_eFG [<b>{(100*o.eFG).toFixed(1)}%</b>]) * Team_Assist_Rate [<b>{(100*o.teamAssistRate).toFixed(1)}%</b>]</li>
           <ul>
             <li><em>(The theory behind the weighting is that easier shots are harder to assist, so the higher the eFG the more credit to the assist.)</em></li>
-            <li>Team_Assist_Rate: [<b>{(100*o.teamAssistRate).toFixed(1)}%</b>] = (Weighting [<b>1.14</b>] * (Others_AST [<b>{o.othersAssist}</b>] / Team_FGM [<b>{o.teamFgm}</b>])</li>
+            <li>Team_Assist_Rate: [<b>{(100*o.teamAssistRate).toFixed(1)}%</b>] = (Weighting [<b>1.14</b>] * (Others_AST [<b>{o.othersAssist.toFixed(1)}</b>] / Team_FGM [<b>{o.teamFgm.toFixed(1)}</b>])</li>
           </ul>
         </ul>
         <li>PProd_From_AST: [<b>{o.ppAssist.toFixed(1)}</b>] = Weighting ([<b>0.5</b>] * Team_Not_Player_eFG [<b>{(100*o.otherEfg).toFixed(1)}%</b>]) * Team_Not_Player_Pts_Per_Made_Shot [<b>{o.otherPtsPerFgm.toFixed(1)}</b>] * Player_Assists [<b>{o.rawAssist.toFixed(1)}</b>]</li>
@@ -52,7 +51,7 @@ const RosterStatsDiagView: React.FunctionComponent<Props> = ({ortgDiags, drtgDia
         <ul>
           <li><em>(Team_ORB_Weight is described under Team_ORB_Contrib%, below)</em></li>
           <li><em>(% Plays_Team_Scored is described in the possessions section, below)</em></li>
-          <li>Pts_Per_Scoring_Possession: [<b>{o.teamPtsPerScore.toFixed(1)}</b>] = Team_Pts [<b>{o.teamPts}</b>] / Team_Scoring_Plays [<b>{o.teamScoringPoss.toFixed(1)}</b>]</li>
+          <li>Pts_Per_Scoring_Possession: [<b>{o.teamPtsPerScore.toFixed(1)}</b>] = Team_Pts [<b>{o.teamPts.toFixed(1)}</b>] / Team_Scoring_Plays [<b>{o.teamScoringPoss.toFixed(1)}</b>]</li>
           <ul>
             <li><em>(Team_Scoring_Plays described under possessions section, below)</em></li>
           </ul>
@@ -87,7 +86,7 @@ const RosterStatsDiagView: React.FunctionComponent<Props> = ({ortgDiags, drtgDia
           * Scoring_Plays_From_Rebound [<b>{(o.rawOrb*o.teamScoredPlayPct).toFixed(1)}</b>] (ORB [<b>{o.rawOrb}</b>] * % Plays_Team_Scored [<b>{(100*o.teamScoredPlayPct).toFixed(1)}%</b>]) </li>
           <ul>
             <li>% Plays_Team_Scored: [<b>{(100*o.teamScoredPlayPct).toFixed(1)}%</b>] = Team_Scoring_Plays [<b>{o.teamScoringPoss.toFixed(1)}</b>] / Team_Total_Plays [<b>{o.teamPlays.toFixed(1)}</b>]</li>
-            <li>Team_Scoring_Plays: [<b>{o.teamScoringPoss.toFixed(1)}</b>] = Team_FGM [<b>{o.teamFgm}</b>] + Team_FTs_Hit_1+ [<b>{o.teamFtHitOnePlus.toFixed(1)}</b>]</li>
+            <li>Team_Scoring_Plays: [<b>{o.teamScoringPoss.toFixed(1)}</b>] = Team_FGM [<b>{o.teamFgm.toFixed(1)}</b>] + Team_FTs_Hit_1+ [<b>{o.teamFtHitOnePlus.toFixed(1)}</b>]</li>
             <ul>
               <li>Team_FTs_Hit_1+: [<b>{o.teamFtHitOnePlus.toFixed(1)}</b>] = (1 - Team_FTs_Missed_Both% [<b>{(100*(1 - o.teamProbFtHitOnePlus)).toFixed(1)}%</b>]) * (0.475*Team_FTA) [<b>{(0.475*o.teamFta).toFixed(1)}</b>]</li>
               <ul>
@@ -98,7 +97,7 @@ const RosterStatsDiagView: React.FunctionComponent<Props> = ({ortgDiags, drtgDia
             <li>Team_Total_Plays: [<b>{o.teamPlays.toFixed(1)}</b>] = Team_FGA [<b>{o.teamFga}</b>] + (0.475*Team_FTA) [<b>{(0.475*o.teamFta).toFixed(1)}</b>] + Team_TOV [<b>{o.teamTo}</b>]</li>
             <li><em>(Team_ORB_Weight is described in the points section, above. The cost of the play is reduced like the reward of the score)</em></li>
           </ul>
-          <li>FG_Part: [<b>{o.fgPart.toFixed(1)}</b>] = FGM [<b>{o.rawFgm}</b>], less Team_Assist_Contrib% [<b>{(100*o.ppFgTeamAstPct).toFixed(1)}%</b>]===[<b>{(o.rawFgm*o.ppFgTeamAstPct).toFixed(1)}</b>]</li>
+          <li>FG_Part: [<b>{o.fgPart.toFixed(1)}</b>] = FGM [<b>{o.rawFgm.toFixed(1)}</b>], less Team_Assist_Contrib% [<b>{(100*o.ppFgTeamAstPct).toFixed(1)}%</b>]===[<b>{(o.rawFgm*o.ppFgTeamAstPct).toFixed(1)}</b>]</li>
           <ul>
             <li><em>(Team_Assist_Contrib% is described in the points section, above. Since it reduces the reward of a score, it also reduces the cost of the play)</em></li>
           </ul>

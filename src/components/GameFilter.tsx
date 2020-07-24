@@ -38,7 +38,9 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
     //(common visualization fields across all tables)
     luck: startLuck,
     //(these fields are for the team view)
-    onOffLuck: startOnOffLuck, showOnOffLuckDiags: startShowOnOffLuckDiags,
+    onOffLuck: startOnOffLuck,
+    showOnOffLuckDiags: startShowOnOffLuckDiags,
+    showPlayerOnOffLuckDiags: startShowPlayerOnOffLuckDiags,
     //(these fields are for the individual view)
     filter: startFilter, sortBy: startSortBy,
     showBase: startShowBase, showExpanded: startShowExpanded,
@@ -81,7 +83,9 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
           // Common luck stats across all tables:
           luck: startLuck,
           // Team luck stats:
-          onOffLuck: startOnOffLuck, showOnOffLuckDiags: startShowOnOffLuckDiags,
+          onOffLuck: startOnOffLuck,
+          showOnOffLuckDiags: startShowOnOffLuckDiags,
+          showPlayerOnOffLuckDiags: startShowPlayerOnOffLuckDiags,
           // Individual stats:
           autoOffQuery: autoOffQuery,
           filter: startFilter, sortBy: startSortBy,
@@ -102,6 +106,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
       minRank: ParamDefaults.defaultMinRank, maxRank: ParamDefaults.defaultMaxRank,
       baseQuery: "", onQuery: "", offQuery: ""
     };
+    //TODO: also if the main query minus/on-off matches can't we just re-use that?!
 
     return [ primaryRequest, [{
         context: ParamPrefixes.roster as ParamPrefixesType, paramsObj: primaryRequest
@@ -119,7 +124,8 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
     const teamJson = jsonResps?.[0]?.responses?.[0] || {};
     const rosterCompareJson = jsonResps?.[1]?.responses?.[0] || {};
     const rosterStatsJson = jsonResps?.[2]?.responses?.[0] || {};
-    const globalRosterStatsJson = jsonResps?.[3]?.responses?.[0] || rosterStatsJson;
+    const globalRosterStatsJson = jsonResps?.[3]?.responses?.[0] || _.cloneDeep(rosterStatsJson);
+      //(need to clone it so that changes to baseline don't overwrite global)
 
     onStats({
       on: teamJson?.aggregations?.tri_filter?.buckets?.on || {},

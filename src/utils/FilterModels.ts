@@ -49,9 +49,10 @@ export type GameFilterParams = {
   autoOffQuery?: boolean
   // Global luck adjustments
   luck?: LuckParams, //(missing iff default)
-  // Luck adjustments for team view
+  // Luck adjustments
   onOffLuck?: boolean,
   showOnOffLuckDiags?: boolean,
+  showPlayerOnOffLuckDiags?: boolean,
   // Filtering of individual view:
   filter?: string,
   sortBy?: string,

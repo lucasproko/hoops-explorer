@@ -193,7 +193,13 @@ export const sampleTeamStatsResponse =
           },
           "off_2prim" : {
             "value" : 0.6109022556390977
-          }
+          },
+          "off_adj_ppp" : {
+            "value" : 120.6744556558683
+          },
+          "def_adj_ppp" : {
+            "value" : 100.23529411764706
+          },
         },
         "off" : {
           "doc_count" : 204,
@@ -335,7 +341,13 @@ export const sampleTeamStatsResponse =
           },
           "off_2prim" : {
             "value" : 0.6503067484662577
-          }
+          },
+          "off_adj_ppp" : {
+            "value" : 115.6744556558683
+          },
+          "def_adj_ppp" : {
+            "value" : 105.23529411764706
+          },
         },
         "on" : {
           "doc_count" : 367,

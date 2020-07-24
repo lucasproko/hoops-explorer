@@ -44,12 +44,16 @@ export type TeamStatsModel = {
 }
 type Props = {
   gameFilterParams: GameFilterParams;
-  teamStats: TeamStatsModel,
-  rosterStats: RosterStatsModel,
+  /** Ensures that all relevant data is received at the same time */
+  dataEvent: {
+    teamStats: TeamStatsModel,
+    rosterStats: RosterStatsModel
+  },
   onChangeState: (newParams: GameFilterParams) => void;
 }
 
-const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, teamStats, rosterStats, onChangeState}) => {
+const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataEvent, onChangeState}) => {
+  const { teamStats, rosterStats } = dataEvent;
 
   const server = (typeof window === `undefined`) ? //(ensures SSR code still compiles)
     "server" : window.location.hostname
@@ -71,6 +75,15 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, teamS
 
   /** Whether we are showing the luck config modal */
   const [ showLuckConfig, setShowLuckConfig ] = useState(false);
+
+  useEffect(() => { //(keep luck up to date between the two views)
+    setAdjustForLuck(_.isNil(gameFilterParams.onOffLuck) ?
+        ParamDefaults.defaultOnOffLuckAdjust : gameFilterParams.onOffLuck
+    );
+    setLuckConfig(_.isNil(gameFilterParams.luck) ?
+      ParamDefaults.defaultLuckConfig : gameFilterParams.luck
+    );
+  }, [ gameFilterParams ]);
 
   useEffect(() => { //(this ensures that the filter component is up to date with the union of these fields)
     const newState = _.merge(gameFilterParams, {
@@ -227,6 +240,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, teamS
               truthVal={false}
               onSelect={() => setShowLuckConfig(true)}
             />
+            <Dropdown.Divider />
             <GenericTogglingMenuItem
               text="Show Luck Adjustment diagnostics"
               truthVal={showLuckAdjDiags}

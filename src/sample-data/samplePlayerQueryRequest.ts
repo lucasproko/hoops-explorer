@@ -112,6 +112,16 @@ export const samplePlayerQueryRequest =           {
                               "field": "opponent_stats.fg_2p.attempts.total"
                            }
                         },
+                        "oppo_total_def_3p_attempts": {
+                           "sum": {
+                              "field": "opponent_stats.fg_3p.attempts.total"
+                           }
+                        },
+                        "oppo_total_def_3p_made": {
+                           "sum": {
+                              "field": "opponent_stats.fg_3p.made.total"
+                           }
+                        },
                         "oppo_total_def_drb": {
                            "sum": {
                               "field": "opponent_stats.drb.total"

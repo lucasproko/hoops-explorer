@@ -84,6 +84,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
             text="Configure Luck Adjustments..."
             truthVal={false}
           />
+          <DropdownDivider
+            role="separator"
+          />
           <GenericTogglingMenuItem
             onSelect={[Function]}
             text="Show Luck Adjustment diagnostics"
@@ -5647,6 +5650,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
             text="Configure Luck Adjustments..."
             truthVal={false}
           />
+          <DropdownDivider
+            role="separator"
+          />
           <GenericTogglingMenuItem
             onSelect={[Function]}
             text="Show Luck Adjustment diagnostics"
@@ -8635,6 +8641,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
             onSelect={[Function]}
             text="Configure Luck Adjustments..."
             truthVal={false}
+          />
+          <DropdownDivider
+            role="separator"
           />
           <GenericTogglingMenuItem
             onSelect={[Function]}

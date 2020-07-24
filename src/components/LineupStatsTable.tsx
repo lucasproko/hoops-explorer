@@ -46,14 +46,17 @@ export type LineupStatsModel = {
   error_code?: string
 }
 type Props = {
-  lineupStats: LineupStatsModel,
-  teamStats: TeamStatsModel,
-  rosterStats: RosterStatsModel,
-  startingState: LineupFilterParams;
-  onChangeState: (newParams: LineupFilterParams) => void;
+  startingState: LineupFilterParams,
+  dataEvent: {
+    lineupStats: LineupStatsModel,
+    teamStats: TeamStatsModel,
+    rosterStats: RosterStatsModel,
+  },
+  onChangeState: (newParams: LineupFilterParams) => void
 }
 
-const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, teamStats, rosterStats, startingState, onChangeState}) => {
+const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEvent, onChangeState}) => {
+  const { lineupStats, teamStats, rosterStats } = dataEvent;
 
   const server = (typeof window === `undefined`) ? //(ensures SSR code still compiles)
     "server" : window.location.hostname
@@ -145,12 +148,29 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, teamStat
   const baselinePlayerInfo = _.fromPairs(
     (rosterStats.baseline || []).map((mutableP: any) => {
       // Add ORtg to lineup stats:
-      const [ oRtg, adjORtg, oRtgDiag ] = RatingUtils.buildORtg(mutableP, avgEfficiency, false);
-      const [ dRtg, adjDRtg, dRtgDiag ] = RatingUtils.buildDRtg(mutableP, avgEfficiency, false);
-      mutableP.off_rtg = oRtg;
-      mutableP.off_adj_rtg = adjORtg;
-      mutableP.def_rtg = dRtg;
-      mutableP.def_adj_rtg = adjDRtg;
+      const playerAdjustForLuck = false; //TODO: longer term I think we will want to do this
+      const [ oRtg, adjORtg, rawORtg, rawAdjORtg, oRtgDiag ] = RatingUtils.buildORtg(
+        mutableP, avgEfficiency, false, playerAdjustForLuck
+      );
+      const [ dRtg, adjDRtg, rawDRtg, rawAdjDRtg, dRtgDiag ] = RatingUtils.buildDRtg(
+        mutableP, avgEfficiency, false, playerAdjustForLuck
+      );
+      mutableP.off_rtg = {
+        value: oRtg?.value, old_value: rawORtg?.value,
+        override: playerAdjustForLuck ? "Luck adjusted" : undefined
+      };
+      mutableP.off_adj_rtg = {
+        value: adjORtg?.value, old_value: rawAdjORtg?.value,
+        override: playerAdjustForLuck ? "Luck adjusted" : undefined
+      };
+      mutableP.def_rtg = {
+        value: dRtg?.value, old_value: rawDRtg?.value,
+        override: playerAdjustForLuck ? "Luck adjusted" : undefined
+      };
+      mutableP.def_adj_rtg = {
+        value: adjDRtg?.value, old_value: rawAdjDRtg?.value,
+        override: playerAdjustForLuck ? "Luck adjusted" : undefined
+      };
 
       return [ mutableP.key, mutableP ];
     })
@@ -430,6 +450,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({lineupStats, teamStat
               truthVal={false}
               onSelect={() => setShowLuckConfig(true)}
             />
+            <Dropdown.Divider />
             <GenericTogglingMenuItem
               text="Show Luck Adjustment diagnostics"
               truthVal={showLuckAdjDiags}
