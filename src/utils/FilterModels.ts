@@ -14,6 +14,12 @@ export type LuckParams = {
   base: "baseline" | "season"
 };
 
+export type ManualOverride = {
+  rowId: string, //(the player key, lineup key, or on/off key)
+  statName: string, //(the field that has been changed)
+  newVal: number
+}
+
 /** Common params across all filter types */
 export type CommonFilterParams = {
   year?: string,
@@ -47,6 +53,9 @@ export type GameFilterParams = {
   onQuery?: string,
   offQuery?: string,
   autoOffQuery?: boolean
+  // Manual override:
+  manual?: ManualOverride[],
+  showPlayerManual?: boolean,
   // Global luck adjustments
   luck?: LuckParams, //(missing iff default)
   // Luck adjustments

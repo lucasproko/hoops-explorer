@@ -33,11 +33,12 @@ import GenericTogglingMenuItem from "./shared/GenericTogglingMenuItem";
 import { TeamStatsModel } from '../components/TeamStatsTable';
 import LuckAdjDiagView from "./diags/LuckAdjDiagView"
 import LuckConfigModal from "./shared/LuckConfigModal";
+import ManualOverrideModal from "./shared/ManualOverrideModal";
 
 // Util imports
 import { CbbColors } from "../utils/CbbColors";
 import { CommonTableDefs } from "../utils/CommonTableDefs";
-import { getCommonFilterParams, ParamDefaults, GameFilterParams, LuckParams } from "../utils/FilterModels";
+import { getCommonFilterParams, ParamDefaults, ParamPrefixes, GameFilterParams, LuckParams, ManualOverride } from "../utils/FilterModels";
 import { ORtgDiagnostics, RatingUtils } from "../utils/stats/RatingUtils";
 import { PositionUtils } from "../utils/stats/PositionUtils";
 import { LuckUtils } from "../utils/stats/LuckUtils";
@@ -111,6 +112,14 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
   /** Which players to filter */
   const [ filterStr, setFilterStr ] = useState(_.isNil(gameFilterParams.filter) ?
     ParamDefaults.defaultPlayerFilter : gameFilterParams.filter
+  );
+
+  const [ manualOverrides, setManualOverrides ] = useState(_.isNil(gameFilterParams.manual) ?
+    [] : gameFilterParams.manual
+  );
+
+  const [ showManualOverrides, setShowManualOverrides ] = useState(_.isNil(gameFilterParams.showPlayerManual) ?
+    false : gameFilterParams.showPlayerManual
   );
 
   // (slight delay when typing into the filter to make it more responsive)
@@ -443,6 +452,15 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
     ]);
   }).value();
 
+  /** A list of all the players in poss count order */
+  const playersAsList = _.flatMap(allPlayers, (p) => {
+    return _.flatten([
+      p.on?.off_team_poss ? [ p.on ] : [],
+      p.off?.off_team_poss ? [ p.off ] : [],
+      p.baseline?.off_team_poss ? [ p.baseline ] : [],
+    ]);
+  });
+
   /** Sticks an overlay on top of the table if no query has ever been loaded */
   function needToLoadQuery() {
     return (rosterStats?.baseline?.length || 0) == 0;
@@ -550,6 +568,15 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
         "Press 'Submit' to view results"
       }
     >
+      <ManualOverrideModal
+        tableType={ParamPrefixes.player}
+        inStats={playersAsList}
+        overrides={manualOverrides}
+        show={showManualOverrides}
+        onHide={() => setShowManualOverrides(false)}
+        onSave={(overrides: ManualOverride[]) => setManualOverrides(overrides)}
+        showHelp={false}
+      />
       <LuckConfigModal
         show={showLuckConfig}
         onHide={() => setShowLuckConfig(false)}
@@ -613,6 +640,11 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
               helpLink={showHelp ? "https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html" : undefined}
             />
             <Dropdown.Divider />
+            <GenericTogglingMenuItem
+              text="Configure Manual Overrides..."
+              truthVal={showManualOverrides}
+              onSelect={() => setShowManualOverrides(!showManualOverrides)}
+            />
             <GenericTogglingMenuItem
               text="Configure Luck Adjustments..."
               truthVal={false}
