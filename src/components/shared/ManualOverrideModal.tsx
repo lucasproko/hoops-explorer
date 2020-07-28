@@ -58,16 +58,16 @@ const ManualOverrideModal: React.FunctionComponent<Props> = ({tableType, inStats
   const statToOption = (statSet: any) => {
     if (statSet) {
       const labelAndVal = `${statSet.key} / ${statSet.onOffKey}`;
-      return {
+      return [{
         label: labelAndVal,
         value: labelAndVal
-      };
-    } else return undefined;
+      }];
+    } else return [];
   };
 
   /** From stat set label to stat set */
   const valueToStatMap = _.fromPairs(
-    inStats.map(stat => [ statToOption(stat).label, stat ])
+    _.flatMap(inStats, stat => statToOption(stat).map(s =>  [s.label, stat ]))
   );
 
   // Lits of metrics
@@ -80,7 +80,7 @@ const ManualOverrideModal: React.FunctionComponent<Props> = ({tableType, inStats
         [ "off_2prim", "Offensive rim/dunk 2P%" ],
         [ "off_ft", "Offensive FT%" ],
 //TODO: avoid rate stats for now ... longer term would like to be able to say
-// more mid-range shots, more rim shots, etc and can also include FTR then       
+// more mid-range shots, more rim shots, etc and can also include FTR then
 //        [ "off_ftr", "Offensive FT rate" ],
         [ "off_to", "Offensive TO%" ],
       ], [ (o: any[]) => o[1] ]);
@@ -90,9 +90,9 @@ const ManualOverrideModal: React.FunctionComponent<Props> = ({tableType, inStats
 
   const metricToOption = (valLabel: [ string, string ]) => {
     if (valLabel[0]) {
-      return { label: valLabel[1], value: valLabel[0] };
+      return [ { label: valLabel[1], value: valLabel[0] } ];
     } else {
-      return undefined;
+      return [];
     }
   };
 
@@ -200,7 +200,7 @@ const ManualOverrideModal: React.FunctionComponent<Props> = ({tableType, inStats
                   <Select
                     className="w-75"
                     value={statToOption(valueToStatMap[currInStat])}
-                    options={inStats.map(stat => statToOption(stat))}
+                    options={_.flatMap(inStats, stat => statToOption(stat))}
                     onChange={(option) => {
                       const val = (option as any)?.value;
                       if (val) {
@@ -221,7 +221,7 @@ const ManualOverrideModal: React.FunctionComponent<Props> = ({tableType, inStats
                   <Select
                     className="w-75"
                     value={metricToOption([currStatName, metricsMap[currStatName]])}
-                    options={_.toPairs(metricsMap).map(stat => metricToOption(stat))}
+                    options={_.chain(metricsMap).toPairs().flatMap(stat => metricToOption(stat)).value()}
                     onChange={(option) => {
                       const val = (option as any)?.value;
                       if (val) {
@@ -256,11 +256,11 @@ const ManualOverrideModal: React.FunctionComponent<Props> = ({tableType, inStats
                   onChange={(ev: any) => {
                     const num = parseFloat(ev.target.value);
                     if ((num != NaN) && (num >= 0)) {
-                      setCurrReplacement(parseFloat(num))
+                      setCurrReplacement(num)
                     }
                   }}
                   placeholder = "eg 33.3"
-                  value={currReplacement}
+                  value={"" + currReplacement}
                 />
                 <InputGroup.Append>
                   <InputGroup.Text id="pct2">%</InputGroup.Text>

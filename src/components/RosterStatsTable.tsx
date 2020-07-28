@@ -175,10 +175,11 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
       luck: luckConfig,
       onOffLuck: adjustForLuck,
       showPlayerOnOffLuckDiags: showLuckAdjDiags,
+      showPlayerManual: showManualOverrides
     });
     onChangeState(newState);
   }, [ sortBy, filterStr, showDiagMode, alwaysShowBaseline, expandedView, possAsPct, showPositionDiags,
-      luckConfig, adjustForLuck, showLuckAdjDiags
+      luckConfig, adjustForLuck, showLuckAdjDiags, showManualOverrides
     ]);
 
   // 2] Data Model

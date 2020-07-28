@@ -24,14 +24,29 @@ export class QueryUtils {
       parsed[QueryUtils.newQueryField] = parsed[QueryUtils.legacyQueryField];
       delete parsed[QueryUtils.legacyQueryField];
     }
-    // Handle nested luck:
+    // Handle nested luck + manual overrides:
     const luck = {} as any;
+    const manualTmp = {} as any; //(start as map of arrays, will convert to array of maps later)
     _.forEach(parsed, (value: any, key: string) => {
       if (_.startsWith(key, "luck.")) {
         luck[key.substring(5)] = value;
         delete parsed[key];
+      } else if (_.startsWith(key, "manual.")) {
+        manualTmp[key.substring(7)] = _.isArray(value) ? value : [ value ];
+        delete parsed[key];
       }
     });
+    // complete nested overrides
+    if (!_.isEmpty(manualTmp)) {
+      parsed.manual = manualTmp.rowId.map((rid: string, index: number) => {
+        return {
+          rowId: rid,
+          statName: manualTmp.statName?.[index] || "",
+          newVal: parseFloat(manualTmp.newVal?.[index] || "")
+        };
+      });
+    }
+
     // (Extra annoyance: handle bwc in change of onOffLuck becoming a boolean)
     if (_.isString(parsed.onOffLuck)) {
       luck.base = parsed.onOffLuck;
@@ -51,6 +66,14 @@ export class QueryUtils {
       delete objCopy.luck;
       _.forEach(luckCfg, (value: any, key: string) => {
         objCopy["luck." + key] = value;
+      });
+    }
+    // Handle manual overrides (convert from array of obj into set of arrays):
+    if (objCopy.manual && (objCopy.manual.length > 0)) {
+      const manualOverrides = objCopy.manual as any[];
+      delete objCopy.manual;
+      _.forEach(manualOverrides[0], (value: any, key: string) => {
+        objCopy["manual." + key] = manualOverrides.map(m => m[key]);
       });
     }
     // Handle baseQuery/lineupQuery

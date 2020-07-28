@@ -41,6 +41,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
     onOffLuck: startOnOffLuck,
     showOnOffLuckDiags: startShowOnOffLuckDiags,
     showPlayerOnOffLuckDiags: startShowPlayerOnOffLuckDiags,
+    showPlayerManual: startShowPlayerManual,
     //(these fields are for the individual view)
     filter: startFilter, sortBy: startSortBy,
     showBase: startShowBase, showExpanded: startShowExpanded,
@@ -86,6 +87,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
           onOffLuck: startOnOffLuck,
           showOnOffLuckDiags: startShowOnOffLuckDiags,
           showPlayerOnOffLuckDiags: startShowPlayerOnOffLuckDiags,
+          showPlayerManual: startShowPlayerManual,
           // Individual stats:
           autoOffQuery: autoOffQuery,
           filter: startFilter, sortBy: startSortBy,

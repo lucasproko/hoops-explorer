@@ -39,7 +39,21 @@ describe("QueryUtils", () => {
     expect(QueryUtils.parse("lineupQuery=a&onOffLuck=season&luck.base=baseline")).toEqual(
       {baseQuery: "a", onOffLuck: true, luck: { base: "season"} }
     );
+    // Test nested manual override object handling
+    const testOverride1 = {filterGarbage: true, manual: [
+      { rowId: "test1", statName: "test2", newVal: 4 }
+    ]} as CommonFilterParams;
+    const testOverrideResult1 = "filterGarbage=true&manual.newVal=4&manual.rowId=test1&manual.statName=test2";
+    expect(QueryUtils.stringify(testOverride1)).toEqual(testOverrideResult1);
+    expect(QueryUtils.parse(testOverrideResult1)).toEqual(testOverride1);
 
+    const testOverride2 = {filterGarbage: true, manual: [
+      { rowId: "test1", statName: "test2", newVal: 4 },
+      { rowId: "test3", statName: "test4", newVal: 2 },
+    ]} as CommonFilterParams;
+    const testOverrideResult2 = "filterGarbage=true&manual.newVal=4&manual.newVal=2&manual.rowId=test1&manual.rowId=test3&manual.statName=test2&manual.statName=test4";
+    expect(QueryUtils.stringify(testOverride2)).toEqual(testOverrideResult2);
+    expect(QueryUtils.parse(testOverrideResult2)).toEqual(testOverride2);
   });
   test("QueryUtils - extractAdvancedQuery", () => {
     const query1 = "test1";

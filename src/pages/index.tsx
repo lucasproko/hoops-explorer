@@ -95,6 +95,7 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
       !rawParams.onOffLuck ? [ 'onOffLuck' ] : [],
       (rawParams.showPlayerOnOffLuckDiags == ParamDefaults.defaultOnOffLuckDiagMode) ? [ 'showPlayerOnOffLuckDiags' ] : [],
       (rawParams.showOnOffLuckDiags == ParamDefaults.defaultOnOffLuckDiagMode) ? [ 'showOnOffLuckDiags' ] : [],
+      (rawParams.showPlayerManual == false) ? [ 'showPlayerManual' ] : [],
       // RosterStatsTable
       (rawParams.sortBy == ParamDefaults.defaultPlayerSortBy) ? [ 'sortBy' ] : [],
       (rawParams.filter == ParamDefaults.defaultPlayerFilter) ? [ 'filter' ] : [],
