@@ -116,18 +116,24 @@ const ManualOverrideModal: React.FunctionComponent<Props> = ({tableType, inStats
     }
   }
 
+  const insertOrUpdate = (newObj: ManualOverride) => {
+    const currObj = _.find(overrides, (o) => o.rowId == newObj.rowId && o.statName == newObj.statName);
+    if (currObj) {
+      currObj.newVal = newObj.newVal;
+      currObj.use = newObj.use;
+    }
+    onSave(overrides.concat(currObj ? [] : [newObj]));
+  }
+
   /** Update the overrides list with the new value */
   const addToOverrides = () => {
     const newObj = {
       rowId: currInStat,
       statName: currStatName,
-      newVal: currReplacement
+      newVal: currReplacement,
+      use: true
     };
-    const currObj = _.find(overrides, (o) => o.rowId == newObj.rowId && o.statName == newObj.statName);
-    if (currObj) {
-      currObj.newVal = newObj.newVal;
-    }
-    onSave(overrides.concat(currObj ? [] : [newObj]));
+    insertOrUpdate(newObj);
   };
 
   /** Remove an override */
@@ -157,8 +163,12 @@ const ManualOverrideModal: React.FunctionComponent<Props> = ({tableType, inStats
     if (playerRow) {
       return [GenericTableOps.buildDataRow({
         title: <span>
-          {over.rowId}<br/>
+          {over.use ? over.rowId : <del>{over.rowId}</del>}<br/>
           <a href="#" onClick={() => {
+            insertOrUpdate({ ...over, use: !over.use });
+            return false;
+          }}>{over.use ? "(disable)" : "(enable)"}</a>
+          &nbsp;<a href="#" onClick={() => {
             removeOverride(over);
             return false;
           }}>(delete)</a>
@@ -278,7 +288,20 @@ const ManualOverrideModal: React.FunctionComponent<Props> = ({tableType, inStats
       </Card>
 
       <Card className="w-100">
-        <Card.Header className="small">Existing Overrides</Card.Header>
+        <Card.Header className="small">Existing Overrides
+        &nbsp;<a href="#" onClick={() => {
+          overrides.forEach((over) => {
+            if (!over.use) insertOrUpdate({ ...over, use: true });
+          })
+          return false;
+        }}>(enable all)</a>
+        &nbsp;<a href="#" onClick={() => {
+          overrides.forEach((over) => {
+            if (over.use) insertOrUpdate({ ...over, use: false });
+          })
+          return false;
+        }}>(disable all)</a>
+        </Card.Header>
         <Card.Body>
           <Container>
             <Col xs={11}>

@@ -41,17 +41,17 @@ describe("QueryUtils", () => {
     );
     // Test nested manual override object handling
     const testOverride1 = {filterGarbage: true, manual: [
-      { rowId: "test1", statName: "test2", newVal: 4 }
+      { rowId: "test1", statName: "test2", newVal: 4, use: true }
     ]} as CommonFilterParams;
-    const testOverrideResult1 = "filterGarbage=true&manual.newVal=4&manual.rowId=test1&manual.statName=test2";
+    const testOverrideResult1 = "filterGarbage=true&manual.newVal=4&manual.rowId=test1&manual.statName=test2&manual.use=true";
     expect(QueryUtils.stringify(testOverride1)).toEqual(testOverrideResult1);
     expect(QueryUtils.parse(testOverrideResult1)).toEqual(testOverride1);
 
     const testOverride2 = {filterGarbage: true, manual: [
-      { rowId: "test1", statName: "test2", newVal: 4 },
-      { rowId: "test3", statName: "test4", newVal: 2 },
+      { rowId: "test1", statName: "test2", newVal: 4, use: true },
+      { rowId: "test3", statName: "test4", newVal: 2, use: false },
     ]} as CommonFilterParams;
-    const testOverrideResult2 = "filterGarbage=true&manual.newVal=4&manual.newVal=2&manual.rowId=test1&manual.rowId=test3&manual.statName=test2&manual.statName=test4";
+    const testOverrideResult2 = "filterGarbage=true&manual.newVal=4&manual.newVal=2&manual.rowId=test1&manual.rowId=test3&manual.statName=test2&manual.statName=test4&manual.use=true&manual.use=false";
     expect(QueryUtils.stringify(testOverride2)).toEqual(testOverrideResult2);
     expect(QueryUtils.parse(testOverrideResult2)).toEqual(testOverride2);
   });

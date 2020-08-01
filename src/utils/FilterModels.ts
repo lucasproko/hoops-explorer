@@ -17,7 +17,8 @@ export type LuckParams = {
 export type ManualOverride = {
   rowId: string, //(the player key, lineup key, or on/off key)
   statName: string, //(the field that has been changed)
-  newVal: number
+  newVal: number,
+  use: boolean
 }
 
 /** Common params across all filter types */

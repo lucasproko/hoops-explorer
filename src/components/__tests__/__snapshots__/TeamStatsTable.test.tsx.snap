@@ -3655,7 +3655,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                 rowSpan={1}
                 style={
                   Object {
-                    "backgroundColor": "#83c183",
+                    "backgroundColor": "#81c081",
                     "fontWeight": "normal",
                     "textAlign": "center",
                     "verticalAlign": "middle",
@@ -3665,7 +3665,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
               >
                 <div>
                   <u>
-                    90.3
+                    90.1
                   </u>
                 </div>
               </td>
@@ -4625,7 +4625,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                 rowSpan={1}
                 style={
                   Object {
-                    "backgroundColor": "#ff6a6a",
+                    "backgroundColor": "#ff7171",
                     "fontWeight": "normal",
                     "textAlign": "center",
                     "verticalAlign": "middle",
@@ -4635,7 +4635,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
               >
                 <div>
                   <u>
-                    111.7
+                    111.1
                   </u>
                 </div>
               </td>
@@ -5595,7 +5595,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                 rowSpan={1}
                 style={
                   Object {
-                    "backgroundColor": "#ffe8e8",
+                    "backgroundColor": "#ffeaea",
                     "fontWeight": "normal",
                     "textAlign": "center",
                     "verticalAlign": "middle",
@@ -5605,7 +5605,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
               >
                 <div>
                   <u>
-                    101.8
+                    101.7
                   </u>
                 </div>
               </td>

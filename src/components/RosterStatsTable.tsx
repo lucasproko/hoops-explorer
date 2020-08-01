@@ -118,6 +118,8 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
     [] : gameFilterParams.manual
   );
 
+  const manualOverridesAsMap = _.fromPairs(manualOverrides.map((over) => [ over.rowId, over ]));
+
   const [ showManualOverrides, setShowManualOverrides ] = useState(_.isNil(gameFilterParams.showPlayerManual) ?
     false : gameFilterParams.showPlayerManual
   );

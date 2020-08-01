@@ -42,7 +42,8 @@ export class QueryUtils {
         return {
           rowId: rid,
           statName: manualTmp.statName?.[index] || "",
-          newVal: parseFloat(manualTmp.newVal?.[index] || "")
+          newVal: parseFloat(manualTmp.newVal?.[index] || ""),
+          use: manualTmp.use?.[index] || false
         };
       });
     }

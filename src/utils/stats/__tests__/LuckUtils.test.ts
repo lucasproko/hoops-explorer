@@ -151,7 +151,7 @@ describe("LuckUtils", () => {
            {
             "old_value": 111,
             "override": "Adjustment derived from Off 3P%",
-            "value": 109.19697091493352,
+            "value": 109.16572439169413,
           },
         ],
          [
@@ -159,7 +159,7 @@ describe("LuckUtils", () => {
            {
             "old_value": 88,
             "override": "Adjustment derived from Def 3P%",
-            "value": 96.40706874893569,
+            "value": 95.6971251825972,
           },
         ]
     ]);
