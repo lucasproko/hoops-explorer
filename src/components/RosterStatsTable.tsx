@@ -42,6 +42,7 @@ import { getCommonFilterParams, ParamDefaults, ParamPrefixes, GameFilterParams, 
 import { ORtgDiagnostics, RatingUtils } from "../utils/stats/RatingUtils";
 import { PositionUtils } from "../utils/stats/PositionUtils";
 import { LuckUtils } from "../utils/stats/LuckUtils";
+import { OverrideUtils } from "../utils/stats/OverrideUtils";
 import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
 
 export type RosterStatsModel = {
@@ -118,7 +119,15 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
     [] : gameFilterParams.manual
   );
 
-  const manualOverridesAsMap = _.fromPairs(manualOverrides.map((over) => [ over.rowId, over ]));
+  // Transform the list into a map of maps of values
+  //TODO: move this into override utils?!
+  const manualOverridesAsMap = _.transform(manualOverrides, (acc, over) => {
+    if (over.use) {
+      const maybePlayer = acc[over.rowId] || {};
+      maybePlayer[over.statName] = 0.01*over.newVal;
+      acc[over.rowId] = maybePlayer;
+    }
+  }, {});
 
   const [ showManualOverrides, setShowManualOverrides ] = useState(_.isNil(gameFilterParams.showPlayerManual) ?
     false : gameFilterParams.showPlayerManual
@@ -340,12 +349,27 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
         stat.off_luck = offLuckAdj;
         stat.def_luck = defLuckAdj;
 
+        // Once luck is applied do the override
+
+        //TODO: more fields
+        //TODO: do global/baseline first
+        //TODO: move this key into OverrideUtils
+        const playerOverrideKey = `${stat.key} / ${stat.onOffKey}`;
+        const overrides = manualOverridesAsMap[playerOverrideKey];
+        const overrodeOffFields = overrides ? _.reduce([ "off_3p" ], (acc, statName) => {
+          const override = overrides?.[statName];
+          const maybeDoOverride = OverrideUtils.overrideMutableVal(stat, statName, override, "Manually adjusted");
+          return acc || maybeDoOverride;
+        }, false) : false;
+
         // Ratings:
+
+//TODO: for some reason isn't handling override displays here correctly
 
         stat.off_drb = stat.def_orb; //(just for display, all processing should use def_orb)
         const [
           oRtg, adjORtg, rawORtg, rawAdjORtg, oRtgDiag
-        ] = RatingUtils.buildORtg(stat, avgEfficiency, showDiagMode, adjustForLuck);
+        ] = RatingUtils.buildORtg(stat, avgEfficiency, showDiagMode, adjustForLuck || overrodeOffFields);
         const [
           dRtg, adjDRtg, rawDRtg, rawAdjDRtg, dRtgDiag
         ] = RatingUtils.buildDRtg(stat, avgEfficiency, showDiagMode, adjustForLuck);

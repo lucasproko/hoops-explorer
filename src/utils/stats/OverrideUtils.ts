@@ -11,7 +11,7 @@ export class OverrideUtils {
   /** If the old value was null we leave it alone */
   private static readonly getIgnoreNull = (val: any) => (val?.old_value == null) ? { value: null }  : val;
 
-  /** Overrides the specified key (newVal undefined means set back)*/
+  /** Overrides the specified key (newVal undefined means set back), returns true if mutated */
   static readonly overrideMutableVal = (
     mutableStats: any, key: string, newVal: number | { delta: number } | undefined, reason: string | undefined
   ) => {
@@ -24,6 +24,9 @@ export class OverrideUtils {
           old_value: originalVal,
           override: reason || "unknown"
         });
+        return !_.isNil(newVal);
+    } else {
+      return false;
     }
   }
 

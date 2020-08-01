@@ -39,6 +39,8 @@ const ManualOverrideModal: React.FunctionComponent<Props> = ({tableType, inStats
 
   //(TODO: lots of work to make this more generic and not just per player)
 
+  //TODO: move list of stats (indexed by tableType) and player name builder into overrideUtils
+
   const inStatsLabel = (() => {
     switch (tableType) {
       case ParamPrefixes.player: return "Player";
