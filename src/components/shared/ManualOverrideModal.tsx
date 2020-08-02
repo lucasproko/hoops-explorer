@@ -23,6 +23,7 @@ import GenericTable, { GenericTableOps } from "../GenericTable";
 // Utils:
 import { ManualOverride, ParamPrefixes, ParamPrefixesType } from '../../utils/FilterModels';
 import { CommonTableDefs } from "../../utils/CommonTableDefs";
+import { OverrideUtils } from "../../utils/stats/OverrideUtils";
 
 // External Data Model
 
@@ -38,8 +39,6 @@ type Props = {
 const ManualOverrideModal: React.FunctionComponent<Props> = ({tableType, inStats, onSave, overrides, showHelp, ...props}) => {
 
   //(TODO: lots of work to make this more generic and not just per player)
-
-  //TODO: move list of stats (indexed by tableType) and player name builder into overrideUtils
 
   const inStatsLabel = (() => {
     switch (tableType) {
@@ -59,7 +58,7 @@ const ManualOverrideModal: React.FunctionComponent<Props> = ({tableType, inStats
   /** Formats a stat set into a label */
   const statToOption = (statSet: any) => {
     if (statSet) {
-      const labelAndVal = `${statSet.key} / ${statSet.onOffKey}`;
+      const labelAndVal = OverrideUtils.getPlayerRowId(statSet.key, statSet.onOffKey);
       return [{
         label: labelAndVal,
         value: labelAndVal
@@ -74,21 +73,7 @@ const ManualOverrideModal: React.FunctionComponent<Props> = ({tableType, inStats
 
   // Lits of metrics
 
-  const metricsMap = _.fromPairs((() => {
-    switch (tableType) {
-      case ParamPrefixes.player: return _.sortBy([
-        [ "off_3p", "Offensive 3P%" ],
-        [ "off_2pmid", "Offensive mid-range 2P%" ],
-        [ "off_2prim", "Offensive rim/dunk 2P%" ],
-        [ "off_ft", "Offensive FT%" ],
-//TODO: avoid rate stats for now ... longer term would like to be able to say
-// more mid-range shots, more rim shots, etc and can also include FTR then
-//        [ "off_ftr", "Offensive FT rate" ],
-        [ "off_to", "Offensive TO%" ],
-      ], [ (o: any[]) => o[1] ]);
-      default: return [];
-    }
-  })());
+  const metricsMap = OverrideUtils.getOverridableStats(tableType);
 
   const metricToOption = (valLabel: [ string, string ]) => {
     if (valLabel[0]) {
@@ -112,9 +97,9 @@ const ManualOverrideModal: React.FunctionComponent<Props> = ({tableType, inStats
     if (isDefined(inStat, statName)) {
       const playerStat = valueToStatMap?.[inStat]?.[statName];
       const startingVal = 100*getOldVal(playerStat);
-      const currValVal = 100*(playerStat?.value || 0);
+      const currVal = 100*(playerStat?.value || 0);
       setOldStatVal(startingVal);
-      setCurrReplacement(parseFloat(currValVal.toFixed(1)));
+      setCurrReplacement(parseFloat(currVal.toFixed(1)));
     }
   }
 
@@ -132,7 +117,7 @@ const ManualOverrideModal: React.FunctionComponent<Props> = ({tableType, inStats
     const newObj = {
       rowId: currInStat,
       statName: currStatName,
-      newVal: currReplacement,
+      newVal: currReplacement*0.01, //(at some point this might need to depend on stat name)
       use: true
     };
     insertOrUpdate(newObj);
@@ -182,7 +167,7 @@ const ManualOverrideModal: React.FunctionComponent<Props> = ({tableType, inStats
             }}>(select)</a>}
         </span>,
         stat: <span>{metricsMap[over.statName] || over.statName}</span>,
-        to: { value: 0.01*over.newVal },
+        to: { value: over.newVal },
         from: { value: getOldVal(playerRow[over.statName] || 0) },
       }, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta)];
     } else {

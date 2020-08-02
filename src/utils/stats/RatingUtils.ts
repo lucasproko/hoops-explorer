@@ -181,7 +181,6 @@ export class RatingUtils {
     const statGet = (key: string) => {
       return !_.isNil(overrides[key]) ? overrides[key].value : statSet?.[key]?.value || 0;
     };
-
     // The formulate references (MP / (Team_MP / 5)) a fair bit
     // All our team numbers are when the player is on the floor, so we set to 1
 

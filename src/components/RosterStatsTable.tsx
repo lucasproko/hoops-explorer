@@ -120,14 +120,8 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
   );
 
   // Transform the list into a map of maps of values
-  //TODO: move this into override utils?!
-  const manualOverridesAsMap = _.transform(manualOverrides, (acc, over) => {
-    if (over.use) {
-      const maybePlayer = acc[over.rowId] || {};
-      maybePlayer[over.statName] = 0.01*over.newVal;
-      acc[over.rowId] = maybePlayer;
-    }
-  }, {});
+  const manualOverridesAsMap = OverrideUtils.buildOverrideAsMap(manualOverrides);
+  const overridableStatsList = _.keys(OverrideUtils.getOverridableStats(ParamPrefixes.player));
 
   const [ showManualOverrides, setShowManualOverrides ] = useState(_.isNil(gameFilterParams.showPlayerManual) ?
     false : gameFilterParams.showPlayerManual
@@ -353,18 +347,30 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
 
         //TODO: more fields
         //TODO: do global/baseline first
-        //TODO: move this key into OverrideUtils
-        const playerOverrideKey = `${stat.key} / ${stat.onOffKey}`;
+        const playerOverrideKey = OverrideUtils.getPlayerRowId(stat.key, stat.onOffKey);
         const overrides = manualOverridesAsMap[playerOverrideKey];
-        const overrodeOffFields = overrides ? _.reduce([ "off_3p" ], (acc, statName) => {
+        const overrodeOffFields = overrides ? _.reduce(overridableStatsList, (acc, statName) => {
           const override = overrides?.[statName];
           const maybeDoOverride = OverrideUtils.overrideMutableVal(stat, statName, override, "Manually adjusted");
           return acc || maybeDoOverride;
         }, false) : false;
 
-        // Ratings:
+        const adjustmentReason = (() => {
+          if (adjustForLuck && overrodeOffFields) {
+            return "Derived from luck adjustments and manual overrides";
+          } else if (!adjustForLuck && overrodeOffFields) {
+            return "Derived from manual overrides";
+          } else if (adjustForLuck && !overrodeOffFields) {
+            return "Derived from luck adjustments";
+          } else {
+            return undefined;
+          }
+        })();
 
-//TODO: for some reason isn't handling override displays here correctly
+        if (overrodeOffFields) { // sync changes with derived stats
+          OverrideUtils.updatePlayer4Factors(stat, adjustmentReason);
+        }
+        // Ratings:
 
         stat.off_drb = stat.def_orb; //(just for display, all processing should use def_orb)
         const [
@@ -375,20 +381,20 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
         ] = RatingUtils.buildDRtg(stat, avgEfficiency, showDiagMode, adjustForLuck);
         stat.off_rtg = {
           value: oRtg?.value, old_value: rawORtg?.value,
-          override: adjustForLuck ? "Luck adjusted" : undefined
+          override: adjustmentReason
         };
         stat.off_adj_rtg = {
           value: adjORtg?.value, old_value: rawAdjORtg?.value,
-          override: adjustForLuck ? "Luck adjusted" : undefined
+          override: adjustmentReason
         };
         stat.diag_off_rtg = oRtgDiag;
         stat.def_rtg = {
           value: dRtg?.value, old_value: rawDRtg?.value,
-          override: adjustForLuck ? "Luck adjusted" : undefined
+          override: adjustForLuck ? "Derived from luck adjustments" : undefined
         };
         stat.def_adj_rtg = {
           value: adjDRtg?.value, old_value: rawAdjDRtg?.value,
-          override: adjustForLuck ? "Luck adjusted" : undefined
+          override: adjustForLuck ? "Derived from luck adjustments" : undefined
         };
         stat.diag_def_rtg = dRtgDiag;
 

@@ -14012,7 +14012,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
             },
             "def_adj_rtg": Object {
               "old_value": 2.793183941858203,
-              "override": "Luck adjusted",
+              "override": "Derived from luck adjustments",
               "value": 2.8781143680912127,
             },
             "def_ftr": Object {
@@ -14051,7 +14051,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
             },
             "def_rtg": Object {
               "old_value": 122.8244135284989,
-              "override": "Luck adjusted",
+              "override": "Derived from luck adjustments",
               "value": 123.28207358246082,
             },
             "def_team_poss": Object {
@@ -14226,7 +14226,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
             },
             "off_adj_rtg": Object {
               "old_value": 0.5375979464179608,
-              "override": "Luck adjusted",
+              "override": "Derived from luck adjustments",
               "value": 0.5375979464179608,
             },
             "off_assist": Object {
@@ -14280,7 +14280,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
             },
             "off_rtg": Object {
               "old_value": 98.48922807683817,
-              "override": "Luck adjusted",
+              "override": "Derived from luck adjustments",
               "value": 98.48922807683817,
             },
             "off_team_poss": Object {
@@ -14499,7 +14499,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
             },
             "def_adj_rtg": Object {
               "old_value": 2.793183941858203,
-              "override": "Luck adjusted",
+              "override": "Derived from luck adjustments",
               "value": 3.362659956853318,
             },
             "def_ftr": Object {
@@ -14538,7 +14538,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
             },
             "def_rtg": Object {
               "old_value": 122.8244135284989,
-              "override": "Luck adjusted",
+              "override": "Derived from luck adjustments",
               "value": 125.89311852990377,
             },
             "def_team_poss": Object {
@@ -14713,7 +14713,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
             },
             "off_adj_rtg": Object {
               "old_value": 0.5375979464179608,
-              "override": "Luck adjusted",
+              "override": "Derived from luck adjustments",
               "value": 0.5375979464179608,
             },
             "off_assist": Object {
@@ -14767,7 +14767,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
             },
             "off_rtg": Object {
               "old_value": 98.48922807683817,
-              "override": "Luck adjusted",
+              "override": "Derived from luck adjustments",
               "value": 98.48922807683817,
             },
             "off_team_poss": Object {
@@ -14986,7 +14986,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
             },
             "def_adj_rtg": Object {
               "old_value": 5.499254404169722,
-              "override": "Luck adjusted",
+              "override": "Derived from luck adjustments",
               "value": 5.9040152949214475,
             },
             "def_ftr": Object {
@@ -15025,7 +15025,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
             },
             "def_rtg": Object {
               "old_value": 137.60064854186737,
-              "override": "Luck adjusted",
+              "override": "Derived from luck adjustments",
               "value": 139.78484421241663,
             },
             "def_team_poss": Object {
@@ -15200,7 +15200,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
             },
             "off_adj_rtg": Object {
               "old_value": 4.755529914777663,
-              "override": "Luck adjusted",
+              "override": "Derived from luck adjustments",
               "value": 4.776052068332359,
             },
             "off_assist": Object {
@@ -15254,7 +15254,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
             },
             "off_rtg": Object {
               "old_value": 112.89975161303268,
-              "override": "Luck adjusted",
+              "override": "Derived from luck adjustments",
               "value": 112.99238275561949,
             },
             "off_team_poss": Object {
@@ -15473,7 +15473,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
             },
             "def_adj_rtg": Object {
               "old_value": 37.656048521248,
-              "override": "Luck adjusted",
+              "override": "Derived from luck adjustments",
               "value": 42.129600419305284,
             },
             "def_ftr": Object {
@@ -15512,7 +15512,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
             },
             "def_rtg": Object {
               "old_value": 312.75632077764516,
-              "override": "Luck adjusted",
+              "override": "Derived from luck adjustments",
               "value": 337.0231872787135,
             },
             "def_team_poss": Object {
@@ -15687,7 +15687,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
             },
             "off_adj_rtg": Object {
               "old_value": 5.232025159723711,
-              "override": "Luck adjusted",
+              "override": "Derived from luck adjustments",
               "value": 5.154636314765077,
             },
             "off_assist": Object {
@@ -15741,7 +15741,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
             },
             "off_rtg": Object {
               "old_value": 112.67901018514969,
-              "override": "Luck adjusted",
+              "override": "Derived from luck adjustments",
               "value": 112.33861784920134,
             },
             "off_team_poss": Object {
@@ -15960,7 +15960,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
             },
             "def_adj_rtg": Object {
               "old_value": 0.4085659844387266,
-              "override": "Luck adjusted",
+              "override": "Derived from luck adjustments",
               "value": -0.5227281859701265,
             },
             "def_ftr": Object {
@@ -15999,7 +15999,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
             },
             "def_rtg": Object {
               "old_value": 110.2860531155855,
-              "override": "Luck adjusted",
+              "override": "Derived from luck adjustments",
               "value": 105.2534232668122,
             },
             "def_team_poss": Object {
@@ -16174,7 +16174,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
             },
             "off_adj_rtg": Object {
               "old_value": 4.916508627129151,
-              "override": "Luck adjusted",
+              "override": "Derived from luck adjustments",
               "value": 4.916508627129151,
             },
             "off_assist": Object {
@@ -16228,7 +16228,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
             },
             "off_rtg": Object {
               "old_value": 112.99672660419142,
-              "override": "Luck adjusted",
+              "override": "Derived from luck adjustments",
               "value": 112.99672660419142,
             },
             "off_team_poss": Object {
@@ -16447,7 +16447,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
             },
             "def_adj_rtg": Object {
               "old_value": 2491.9246164072297,
-              "override": "Luck adjusted",
+              "override": "Derived from luck adjustments",
               "value": 2491.9246164072297,
             },
             "def_ftr": Object {
@@ -16459,7 +16459,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
             },
             "def_rtg": Object {
               "old_value": 14481.245413587676,
-              "override": "Luck adjusted",
+              "override": "Derived from luck adjustments",
               "value": 14481.245413587676,
             },
             "def_team_poss": Object {
@@ -16632,7 +16632,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
             },
             "off_adj_rtg": Object {
               "old_value": -19.114571968759833,
-              "override": "Luck adjusted",
+              "override": "Derived from luck adjustments",
               "value": -19.114571968759833,
             },
             "off_assist": Object {
@@ -16656,7 +16656,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
             },
             "off_rtg": Object {
               "old_value": 4.895992356131935,
-              "override": "Luck adjusted",
+              "override": "Derived from luck adjustments",
               "value": 4.895992356131935,
             },
             "off_team_poss": Object {
@@ -17505,7 +17505,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                   },
                   "def_adj_rtg": Object {
                     "old_value": 2.793183941858203,
-                    "override": "Luck adjusted",
+                    "override": "Derived from luck adjustments",
                     "value": 2.8781143680912127,
                   },
                   "def_ftr": Object {
@@ -17544,7 +17544,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                   },
                   "def_rtg": Object {
                     "old_value": 122.8244135284989,
-                    "override": "Luck adjusted",
+                    "override": "Derived from luck adjustments",
                     "value": 123.28207358246082,
                   },
                   "def_team_poss": Object {
@@ -17719,7 +17719,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                   },
                   "off_adj_rtg": Object {
                     "old_value": 0.5375979464179608,
-                    "override": "Luck adjusted",
+                    "override": "Derived from luck adjustments",
                     "value": 0.5375979464179608,
                   },
                   "off_assist": Object {
@@ -17773,7 +17773,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                   },
                   "off_rtg": Object {
                     "old_value": 98.48922807683817,
-                    "override": "Luck adjusted",
+                    "override": "Derived from luck adjustments",
                     "value": 98.48922807683817,
                   },
                   "off_team_poss": Object {
@@ -18124,7 +18124,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                       },
                       "def_adj_rtg": Object {
                         "old_value": 2.793183941858203,
-                        "override": "Luck adjusted",
+                        "override": "Derived from luck adjustments",
                         "value": 2.8781143680912127,
                       },
                       "def_ftr": Object {
@@ -18163,7 +18163,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                       },
                       "def_rtg": Object {
                         "old_value": 122.8244135284989,
-                        "override": "Luck adjusted",
+                        "override": "Derived from luck adjustments",
                         "value": 123.28207358246082,
                       },
                       "def_team_poss": Object {
@@ -18338,7 +18338,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                       },
                       "off_adj_rtg": Object {
                         "old_value": 0.5375979464179608,
-                        "override": "Luck adjusted",
+                        "override": "Derived from luck adjustments",
                         "value": 0.5375979464179608,
                       },
                       "off_assist": Object {
@@ -18392,7 +18392,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                       },
                       "off_rtg": Object {
                         "old_value": 98.48922807683817,
-                        "override": "Luck adjusted",
+                        "override": "Derived from luck adjustments",
                         "value": 98.48922807683817,
                       },
                       "off_team_poss": Object {
@@ -18692,7 +18692,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                   },
                   "def_adj_rtg": Object {
                     "old_value": 5.499254404169722,
-                    "override": "Luck adjusted",
+                    "override": "Derived from luck adjustments",
                     "value": 5.9040152949214475,
                   },
                   "def_ftr": Object {
@@ -18731,7 +18731,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                   },
                   "def_rtg": Object {
                     "old_value": 137.60064854186737,
-                    "override": "Luck adjusted",
+                    "override": "Derived from luck adjustments",
                     "value": 139.78484421241663,
                   },
                   "def_team_poss": Object {
@@ -18906,7 +18906,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                   },
                   "off_adj_rtg": Object {
                     "old_value": 4.755529914777663,
-                    "override": "Luck adjusted",
+                    "override": "Derived from luck adjustments",
                     "value": 4.776052068332359,
                   },
                   "off_assist": Object {
@@ -18960,7 +18960,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                   },
                   "off_rtg": Object {
                     "old_value": 112.89975161303268,
-                    "override": "Luck adjusted",
+                    "override": "Derived from luck adjustments",
                     "value": 112.99238275561949,
                   },
                   "off_team_poss": Object {
@@ -19311,7 +19311,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                       },
                       "def_adj_rtg": Object {
                         "old_value": 5.499254404169722,
-                        "override": "Luck adjusted",
+                        "override": "Derived from luck adjustments",
                         "value": 5.9040152949214475,
                       },
                       "def_ftr": Object {
@@ -19350,7 +19350,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                       },
                       "def_rtg": Object {
                         "old_value": 137.60064854186737,
-                        "override": "Luck adjusted",
+                        "override": "Derived from luck adjustments",
                         "value": 139.78484421241663,
                       },
                       "def_team_poss": Object {
@@ -19525,7 +19525,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                       },
                       "off_adj_rtg": Object {
                         "old_value": 4.755529914777663,
-                        "override": "Luck adjusted",
+                        "override": "Derived from luck adjustments",
                         "value": 4.776052068332359,
                       },
                       "off_assist": Object {
@@ -19579,7 +19579,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                       },
                       "off_rtg": Object {
                         "old_value": 112.89975161303268,
-                        "override": "Luck adjusted",
+                        "override": "Derived from luck adjustments",
                         "value": 112.99238275561949,
                       },
                       "off_team_poss": Object {
@@ -19876,7 +19876,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                   },
                   "def_adj_rtg": Object {
                     "old_value": 37.656048521248,
-                    "override": "Luck adjusted",
+                    "override": "Derived from luck adjustments",
                     "value": 42.129600419305284,
                   },
                   "def_ftr": Object {
@@ -19915,7 +19915,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                   },
                   "def_rtg": Object {
                     "old_value": 312.75632077764516,
-                    "override": "Luck adjusted",
+                    "override": "Derived from luck adjustments",
                     "value": 337.0231872787135,
                   },
                   "def_team_poss": Object {
@@ -20090,7 +20090,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                   },
                   "off_adj_rtg": Object {
                     "old_value": 5.232025159723711,
-                    "override": "Luck adjusted",
+                    "override": "Derived from luck adjustments",
                     "value": 5.154636314765077,
                   },
                   "off_assist": Object {
@@ -20144,7 +20144,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                   },
                   "off_rtg": Object {
                     "old_value": 112.67901018514969,
-                    "override": "Luck adjusted",
+                    "override": "Derived from luck adjustments",
                     "value": 112.33861784920134,
                   },
                   "off_team_poss": Object {
@@ -20495,7 +20495,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                       },
                       "def_adj_rtg": Object {
                         "old_value": 37.656048521248,
-                        "override": "Luck adjusted",
+                        "override": "Derived from luck adjustments",
                         "value": 42.129600419305284,
                       },
                       "def_ftr": Object {
@@ -20534,7 +20534,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                       },
                       "def_rtg": Object {
                         "old_value": 312.75632077764516,
-                        "override": "Luck adjusted",
+                        "override": "Derived from luck adjustments",
                         "value": 337.0231872787135,
                       },
                       "def_team_poss": Object {
@@ -20709,7 +20709,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                       },
                       "off_adj_rtg": Object {
                         "old_value": 5.232025159723711,
-                        "override": "Luck adjusted",
+                        "override": "Derived from luck adjustments",
                         "value": 5.154636314765077,
                       },
                       "off_assist": Object {
@@ -20763,7 +20763,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                       },
                       "off_rtg": Object {
                         "old_value": 112.67901018514969,
-                        "override": "Luck adjusted",
+                        "override": "Derived from luck adjustments",
                         "value": 112.33861784920134,
                       },
                       "off_team_poss": Object {
@@ -21063,7 +21063,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                   },
                   "def_adj_rtg": Object {
                     "old_value": 2491.9246164072297,
-                    "override": "Luck adjusted",
+                    "override": "Derived from luck adjustments",
                     "value": 2491.9246164072297,
                   },
                   "def_ftr": Object {
@@ -21075,7 +21075,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                   },
                   "def_rtg": Object {
                     "old_value": 14481.245413587676,
-                    "override": "Luck adjusted",
+                    "override": "Derived from luck adjustments",
                     "value": 14481.245413587676,
                   },
                   "def_team_poss": Object {
@@ -21248,7 +21248,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                   },
                   "off_adj_rtg": Object {
                     "old_value": -19.114571968759833,
-                    "override": "Luck adjusted",
+                    "override": "Derived from luck adjustments",
                     "value": -19.114571968759833,
                   },
                   "off_assist": Object {
@@ -21272,7 +21272,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                   },
                   "off_rtg": Object {
                     "old_value": 4.895992356131935,
-                    "override": "Luck adjusted",
+                    "override": "Derived from luck adjustments",
                     "value": 4.895992356131935,
                   },
                   "off_team_poss": Object {
@@ -21621,7 +21621,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                       },
                       "def_adj_rtg": Object {
                         "old_value": 2491.9246164072297,
-                        "override": "Luck adjusted",
+                        "override": "Derived from luck adjustments",
                         "value": 2491.9246164072297,
                       },
                       "def_ftr": Object {
@@ -21633,7 +21633,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                       },
                       "def_rtg": Object {
                         "old_value": 14481.245413587676,
-                        "override": "Luck adjusted",
+                        "override": "Derived from luck adjustments",
                         "value": 14481.245413587676,
                       },
                       "def_team_poss": Object {
@@ -21806,7 +21806,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                       },
                       "off_adj_rtg": Object {
                         "old_value": -19.114571968759833,
-                        "override": "Luck adjusted",
+                        "override": "Derived from luck adjustments",
                         "value": -19.114571968759833,
                       },
                       "off_assist": Object {
@@ -21830,7 +21830,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                       },
                       "off_rtg": Object {
                         "old_value": 4.895992356131935,
-                        "override": "Luck adjusted",
+                        "override": "Derived from luck adjustments",
                         "value": 4.895992356131935,
                       },
                       "off_team_poss": Object {
