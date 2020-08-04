@@ -71,7 +71,7 @@ export class OverrideUtils {
 
   /** The delta from the raw value to the override */
   static readonly diff = (val: any) => {
-    return _.isNil(val.old_value) ? 0.0 : (val?.value || 0) - val.old_value;
+    return _.isNil(val?.old_value) ? 0.0 : (val?.value || 0) - val.old_value;
   };
 
   /** Where overrides to shooting have occurred, update 4 factors */
