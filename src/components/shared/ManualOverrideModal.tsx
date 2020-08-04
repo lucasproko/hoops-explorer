@@ -291,9 +291,14 @@ const ManualOverrideModal: React.FunctionComponent<Props> = ({tableType, inStats
         </Card.Header>
         <Card.Body>
           <Container>
-            <Col xs={11}>
-              <GenericTable tableCopyId="overridesTable" tableFields={manualOverridesTable} tableData={tableData}/>
-            </Col>
+            <Row>
+              <small><i>(Note that player edits are not currently reflected in the team stats)</i></small><br/>
+            </Row>
+            <Row>
+              <Col xs={11}>
+                <GenericTable tableCopyId="overridesTable" tableFields={manualOverridesTable} tableData={tableData}/>
+              </Col>
+            </Row>
           </Container>
         </Card.Body>
       </Card>

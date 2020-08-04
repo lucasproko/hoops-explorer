@@ -176,6 +176,8 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
       showDiag: showDiagMode,
       possAsPct: possAsPct,
       showPosDiag: showPositionDiags,
+      // Overrides:
+      manual: manualOverrides,
       // Luck:
       luck: luckConfig,
       onOffLuck: adjustForLuck,
@@ -184,7 +186,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
     });
     onChangeState(newState);
   }, [ sortBy, filterStr, showDiagMode, alwaysShowBaseline, expandedView, possAsPct, showPositionDiags,
-      luckConfig, adjustForLuck, showLuckAdjDiags, showManualOverrides
+      luckConfig, adjustForLuck, showLuckAdjDiags, showManualOverrides, manualOverrides
     ]);
 
   // 2] Data Model
@@ -317,7 +319,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
       ? teamStats.baseline : teamStats.global;
 
     // Inject ORtg and DRB and Poss% (ie mutate player idempotently)
-    ([ "on", "off", "baseline" ] as ("on" | "off" | "baseline")[]).forEach((key) => {
+    ([ "baseline", "on", "off" ] as ("baseline" | "on" | "off")[]).forEach((key) => {
       const stat = (player as any)[key];
       const teamStat = (teamStats as any)[key] || {};
       if (stat) {
@@ -343,10 +345,8 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
         stat.off_luck = offLuckAdj;
         stat.def_luck = defLuckAdj;
 
-        // Once luck is applied do the override
+        // Once luck is applied apply any manual overrides
 
-        //TODO: more fields
-        //TODO: do global/baseline first
         const playerOverrideKey = OverrideUtils.getPlayerRowId(stat.key, stat.onOffKey);
         const overrides = manualOverridesAsMap[playerOverrideKey];
         const overrodeOffFields = overrides ? _.reduce(overridableStatsList, (acc, statName) => {

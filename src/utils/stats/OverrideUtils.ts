@@ -69,13 +69,26 @@ export class OverrideUtils {
     }
   };
 
+  /** The delta from the raw value to the override */
+  static readonly diff = (val: any) => {
+    return _.isNil(val.old_value) ? 0.0 : (val?.value || 0) - val.old_value;
+  };
+
   /** Where overrides to shooting have occurred, update 4 factors */
   static readonly updatePlayer4Factors = (mutableStats: any, reason: string | undefined) => {
-    const diff = (val: any) => {
-      return _.isNil(val.old_value) ? 0.0 : (val?.value || 0) - val.old_value;
-    };
-    const deltaEfg = (mutableStats.off_3pr?.value || 0)*diff(mutableStats.off_3p)*1.5;
+    const threePR = (mutableStats.off_3pr?.value || 0);
+    const midR = (mutableStats.off_2pmidr?.value || 0);
+    const rimR = (mutableStats.off_2primr?.value || 0);
+    const deltaEfg_3p = threePR*OverrideUtils.diff(mutableStats.off_3p)*1.5;
+    const deltaEfg_2p_mid = midR*OverrideUtils.diff(mutableStats.off_2pmid);
+    const deltaEfg_2p_rim = rimR*OverrideUtils.diff(mutableStats.off_2prim);
+    const deltaEfg = deltaEfg_3p + deltaEfg_2p_mid + deltaEfg_2p_rim;
 
+    const delta2p = (deltaEfg_2p_mid + deltaEfg_2p_rim)/(1.0 - threePR);
+
+    if (delta2p != 0.0) {
+      OverrideUtils.overrideMutableVal(mutableStats, "off_2p", { delta: delta2p }, reason);
+    }
     if (deltaEfg != 0.0) {
       OverrideUtils.overrideMutableVal(mutableStats, "off_efg", { delta: deltaEfg }, reason);
     }

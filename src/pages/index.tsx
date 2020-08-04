@@ -91,11 +91,11 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
     // Omit all the defaults
     const params = _.omit(rawParams, _.flatten([ // omit all defaults
       // TeamStatsTable
+      //(manual overrides is an array so is always missing if empty)
       _.isEqual(rawParams.luck, ParamDefaults.defaultLuckConfig) ? [ 'luck' ] : [],
       !rawParams.onOffLuck ? [ 'onOffLuck' ] : [],
       (rawParams.showPlayerOnOffLuckDiags == ParamDefaults.defaultOnOffLuckDiagMode) ? [ 'showPlayerOnOffLuckDiags' ] : [],
       (rawParams.showOnOffLuckDiags == ParamDefaults.defaultOnOffLuckDiagMode) ? [ 'showOnOffLuckDiags' ] : [],
-      (rawParams.showPlayerManual == false) ? [ 'showPlayerManual' ] : [],
       // RosterStatsTable
       (rawParams.sortBy == ParamDefaults.defaultPlayerSortBy) ? [ 'sortBy' ] : [],
       (rawParams.filter == ParamDefaults.defaultPlayerFilter) ? [ 'filter' ] : [],
@@ -104,6 +104,7 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
       (rawParams.showDiag == ParamDefaults.defaultPlayerDiagMode) ? [ 'showDiag' ] : [],
       (rawParams.possAsPct == ParamDefaults.defaultPlayerPossAsPct) ? [ 'possAsPct' ] : [],
       (rawParams.showPosDiag == ParamDefaults.defaultPlayerPosDiagMode) ? [ 'showPosDiag' ] : [],
+      (rawParams.showPlayerManual == false) ? [ 'showPlayerManual' ] : [],
     ]));
 
     const href = getRootUrl(params);
