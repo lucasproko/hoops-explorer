@@ -86,8 +86,18 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
     return UrlRouting.getGameUrl(params, {});
   }
 
-  const onGameFilterParamsChange = (rawParams: GameFilterParams) => {
+/**/
+//TODO where does this go?!
+  /** We're going to want to remove the manual options if the year changes */
+/*
+  const yearTeamGenderChange = (rawParams: GameFilterParams, currParams: GameFilterParams) => {
+    return (rawParams.year != currParams.year) ||
+            (rawParams.gender != currParams.gender) ||
+            (rawParams.team != currParams.team);
+  }
+  */
 
+  const onGameFilterParamsChange = (rawParams: GameFilterParams) => {
     // Omit all the defaults
     const params = _.omit(rawParams, _.flatten([ // omit all defaults
       // TeamStatsTable

@@ -51,7 +51,7 @@ const ManualOverrideModal: React.FunctionComponent<Props> = ({tableType, inStats
   const [ currInStat, setCurrInStat ] = useState("" as string);
   const [ currStatName, setCurrStatName ] = useState("" as string);
   const [ oldStatVal, setOldStatVal ] = useState(0 as number);
-  const [ currReplacement, setCurrReplacement ] = useState(0 as number);
+  const [ currReplacementAsStr, setCurrReplacementAsStr ] = useState("" as string);
 
   // Player/lineup/row
 
@@ -99,7 +99,7 @@ const ManualOverrideModal: React.FunctionComponent<Props> = ({tableType, inStats
       const startingVal = 100*getOldVal(playerStat);
       const currVal = 100*(playerStat?.value || 0);
       setOldStatVal(startingVal);
-      setCurrReplacement(parseFloat(currVal.toFixed(1)));
+      setCurrReplacementAsStr(currVal.toFixed(1));
     }
   }
 
@@ -117,7 +117,7 @@ const ManualOverrideModal: React.FunctionComponent<Props> = ({tableType, inStats
     const newObj = {
       rowId: currInStat,
       statName: currStatName,
-      newVal: currReplacement*0.01, //(at some point this might need to depend on stat name)
+      newVal: parseFloat(currReplacementAsStr)*0.01, //(at some point this might need to depend on stat name)
       use: true
     };
     insertOrUpdate(newObj);
@@ -248,16 +248,14 @@ const ManualOverrideModal: React.FunctionComponent<Props> = ({tableType, inStats
                   <InputGroup.Text id="to">To</InputGroup.Text>
                 </InputGroup.Prepend>
                 <Form.Control
-                  type="number"
                   disabled={!isDefined(currInStat, currStatName)}
                   onChange={(ev: any) => {
-                    const num = parseFloat(ev.target.value);
-                    if ((num != NaN) && (num >= 0)) {
-                      setCurrReplacement(num)
+                    if (/^[0-9.]*$/.exec(ev.target.value || "")) {
+                      setCurrReplacementAsStr(ev.target.value);
                     }
                   }}
                   placeholder = "eg 33.3"
-                  value={"" + currReplacement}
+                  value={currReplacementAsStr}
                 />
                 <InputGroup.Append>
                   <InputGroup.Text id="pct2">%</InputGroup.Text>
@@ -265,7 +263,9 @@ const ManualOverrideModal: React.FunctionComponent<Props> = ({tableType, inStats
               </InputGroup>
               <InputGroup as={Col} sm="2">
                 <Button variant="outline-secondary"
-                  disabled={!isDefined(currInStat, currStatName)}
+                  disabled={
+                    _.isNaN(parseFloat(currReplacementAsStr)) || !isDefined(currInStat, currStatName)
+                  }
                   onClick={() => addToOverrides()}
                 >+</Button>
               </InputGroup>
