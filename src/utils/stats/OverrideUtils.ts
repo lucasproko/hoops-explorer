@@ -80,7 +80,7 @@ export class OverrideUtils {
   };
 
   /** Where overrides to shooting have occurred, update 4 factors - overwrites any luck values */
-  static readonly updateDerivedStats = (mutableStats: any, reason: string) => {
+  static readonly updateDerivedStats = (mutableStats: any, reason: string | undefined) => {
 
     //TODO: this is a bit of a mess ... should handle luck and override derived vals in one place
 

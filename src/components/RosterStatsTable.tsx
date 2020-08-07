@@ -294,7 +294,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
   };
 
   /** Need to be able to see the stats table for players in the manual override table */
-  const mutableTableDisplayForOverrides = {};
+  const mutableTableDisplayForOverrides = {} as Record<string, any[]>;
 
   // (Always just use A/B here because it's too confusing to say
   // "On <Player name>" meaning ""<Player Name> when <Other other player> is on")
