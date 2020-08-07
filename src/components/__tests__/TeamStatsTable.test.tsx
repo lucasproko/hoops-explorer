@@ -7,7 +7,7 @@ import { GameFilterParams } from '../../utils/FilterModels';
 
 describe("TeamStatsTable", () => {
   test("TeamStatsTable - should create snapshot", () => {
-    const testData = _.merge(sampleTeamStatsResponse.aggregations.tri_filter.buckets, { global: {}, onOffMode: true });
+    const testData = _.assign(sampleTeamStatsResponse.aggregations.tri_filter.buckets, { global: {}, onOffMode: true });
     const component = renderer.create(<TeamStatsTable
       gameFilterParams={{}}
       dataEvent={{
@@ -20,7 +20,7 @@ describe("TeamStatsTable", () => {
     expect(tree).toMatchSnapshot();
   });
   test("TeamStatsTable - should create snapshot, luck enabled + diagnostics shown", () => {
-    const testData = _.merge(sampleTeamStatsResponse.aggregations.tri_filter.buckets, { global: {}, onOffMode: true });
+    const testData = _.assign(sampleTeamStatsResponse.aggregations.tri_filter.buckets, { global: {}, onOffMode: true });
     const component = renderer.create(<TeamStatsTable
       gameFilterParams={{ onOffLuck: true, showOnOffLuckDiags: true }}
       dataEvent={{

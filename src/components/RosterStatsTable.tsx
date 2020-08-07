@@ -165,12 +165,12 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
     setLuckConfig(_.isNil(gameFilterParams.luck) ?
       ParamDefaults.defaultLuckConfig : gameFilterParams.luck
     );
-    setManualOverrides(gameFilterParams.manual);
+    setManualOverrides(gameFilterParams.manual || []);
 
   }, [ gameFilterParams ]);
 
   useEffect(() => { //(this ensures that the filter component is up to date with the union of these fields)
-    const newState = _.merge(gameFilterParams, {
+    const newState = _.assign(gameFilterParams, {
       sortBy: sortBy,
       filter: filterStr,
       showBase: alwaysShowBaseline,
@@ -296,16 +296,16 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
   // (Always just use A/B here because it's too confusing to say
   // "On <Player name>" meaning ""<Player Name> when <Other other player> is on")
   const allPlayers = _.chain([
-    _.map(rosterStats.on  || [], (p) => _.merge(p, {
+    _.map(rosterStats.on  || [], (p) => _.assign(p, {
       onOffKey: 'On'
     })),
-    _.map(rosterStats.off  || [], (p) => _.merge(p, {
+    _.map(rosterStats.off  || [], (p) => _.assign(p, {
       onOffKey: 'Off'
     })),
-    _.map(rosterStats.baseline || [], (p) => _.merge(p, {
+    _.map(rosterStats.baseline || [], (p) => _.assign(p, {
       onOffKey: 'Baseline'
     })),
-    _.map(rosterStats.global || [], (p) => _.merge(p, {
+    _.map(rosterStats.global || [], (p) => _.assign(p, {
       onOffKey: 'Global'
     })),
   ]).flatten().groupBy("key").toPairs().map((key_onOffBase) => {

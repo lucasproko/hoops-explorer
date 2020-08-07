@@ -130,7 +130,7 @@ export class ClientRequestCache {
           const decompStr = LZUTF8.decompress(
             compCacheJsonTmp, { inputEncoding: "StorageBinaryString" }
           );
-          return _.merge(JSON.parse(decompStr), { cacheEpoch: cacheEpoch });
+          return _.assign(JSON.parse(decompStr), { cacheEpoch: cacheEpoch });
         } else {
           return null;
         }

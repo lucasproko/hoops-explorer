@@ -125,7 +125,13 @@ const ManualOverrideModal: React.FunctionComponent<Props> = ({tableType, inStats
 
   /** Remove an override */
   const removeOverride = (toRemove: ManualOverride) => {
-    onSave(overrides.filter((over) => (toRemove.rowId != over.rowId) || (toRemove.statName != over.statName)));
+    const newOverrideSet =
+      overrides.filter((over) => (toRemove.rowId != over.rowId) || (toRemove.statName != over.statName));
+
+/**/
+console.log("remove " + JSON.stringify(newOverrideSet));
+
+    onSave(newOverrideSet);
   };
 
   /** Remove an override */

@@ -107,14 +107,14 @@ const RapmGlobalDiagView: React.FunctionComponent<Props> = (({rapmInfo, players,
       "title": GenericTableOps.addTitle("", ""),
       "sep0": GenericTableOps.addColSeparator(),
     };
-    const collinTableFields_CondIndices = _.merge(_.clone(collinTableFields_Base),
+    const collinTableFields_CondIndices = _.assign(_.clone(collinTableFields_Base),
       _.fromPairs(lineupCombos.map((n: number, index: number) =>
         [ collinCol(index),
           GenericTableOps.addPtsCol(collinCol(index), collinColDef(index), CbbColors.varPicker(CbbColors.rapmCollinLineup, 0.01))
         ]
       ))
     );
-    const collinTableFields = _.merge(_.clone(collinTableFields_Base),
+    const collinTableFields = _.assign(_.clone(collinTableFields_Base),
       _.fromPairs(lineupCombos.map((n: number, index: number) =>
         [ collinCol(index),
           GenericTableOps.addPctCol(collinCol(index), collinColDef(index), CbbColors.varPicker(CbbColors.rapmCollinPlayer, n*0.01))

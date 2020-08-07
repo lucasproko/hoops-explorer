@@ -253,7 +253,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
 
   const totalLineupId = "TOTAL";
   const totalLineup = showTotals ? [
-    _.merge(LineupUtils.calculateAggregatedLineupStats(filteredLineups), {
+    _.assign(LineupUtils.calculateAggregatedLineupStats(filteredLineups), {
       key: totalLineupId
     })
   ] : [];

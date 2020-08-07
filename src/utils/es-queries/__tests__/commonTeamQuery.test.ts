@@ -9,7 +9,7 @@ describe("commonTeamQuery", () => {
     const lookup = {};
 
     const queryWithFilters = (filters: CommonFilterType[], filterGarbage: boolean) => {
-      return _.merge({
+      return _.assign({
         team: "TestTeam", year: "2019",
         minRank: "10", maxRank: "100",
         baseQuery: "base"

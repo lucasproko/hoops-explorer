@@ -32,7 +32,7 @@ describe("LineupStatsTable", () => {
     const testData = {
       lineups: sampleLineupStatsResponse.responses[0].aggregations.lineups.buckets
     };
-    const teamData = _.merge(
+    const teamData = _.assign(
       sampleTeamStatsResponse.aggregations.tri_filter.buckets,
       { global: {}, onOffMode: true }
     );
@@ -58,7 +58,7 @@ describe("LineupStatsTable", () => {
     const testData = {
       lineups: sampleLineupStatsResponse.responses[0].aggregations.lineups.buckets
     };
-    const teamData = _.merge(
+    const teamData = _.assign(
       sampleTeamStatsResponse.aggregations.tri_filter.buckets,
       { global: {}, onOffMode: true }
     );

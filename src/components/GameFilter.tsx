@@ -82,7 +82,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
   */
   function buildParamsFromState(includeFilterParams: Boolean): [ GameFilterParams, FilterRequestInfo[] ]  {
     const primaryRequest: GameFilterParams = includeFilterParams ?
-      _.merge(
+      _.assign(
         buildParamsFromState(false)[0], {
           // Common luck stats across all tables:
           //(manual overrides)

@@ -70,7 +70,7 @@ const LineupFilter: React.FunctionComponent<Props> = ({onStats, startingState, o
   function buildParamsFromState(includeFilterParams: Boolean): [ LineupFilterParams, FilterRequestInfo[] ]
   {
     const primaryRequest: LineupFilterParams = includeFilterParams ?
-    _.merge(
+    _.assign(
       buildParamsFromState(false)[0], {
         // Luck stats:
         luck: startLuck,

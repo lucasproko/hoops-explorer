@@ -76,7 +76,7 @@ export class LineupUtils {
               const playersSet = getPlayerSet(lineup);
               return playersSet.hasOwnProperty(playerId) && (lineup.key != ""); //(workaround for #53 pending fix)
             }).map((lineup) => {
-              return _.merge({ offLineups: {}, offLineupKeys: [], onLineup: {} }, lineup);
+              return _.assign({ offLineups: {}, offLineupKeys: [], onLineup: {} }, lineup);
                 //(copies lineup and adds empty offLineups/offLineupList/onLineup)
             }).value()
           } : undefined
