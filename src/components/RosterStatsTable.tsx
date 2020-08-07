@@ -170,7 +170,8 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
   }, [ gameFilterParams ]);
 
   useEffect(() => { //(this ensures that the filter component is up to date with the union of these fields)
-    const newState = _.assign(gameFilterParams, {
+    const newState = {
+      ...gameFilterParams,
       sortBy: sortBy,
       filter: filterStr,
       showBase: alwaysShowBaseline,
@@ -185,8 +186,9 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
       onOffLuck: adjustForLuck,
       showPlayerOnOffLuckDiags: showLuckAdjDiags,
       showPlayerManual: showManualOverrides
-    });
+    };
     onChangeState(newState);
+
   }, [ sortBy, filterStr, showDiagMode, alwaysShowBaseline, expandedView, possAsPct, showPositionDiags,
       luckConfig, adjustForLuck, showLuckAdjDiags, showManualOverrides, manualOverrides
     ]);

@@ -82,6 +82,7 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
   const [ gameFilterParams, setGameFilterParams ] = useState(
     UrlRouting.removedSavedKeys(allParams) as GameFilterParams
   )
+  
   function getRootUrl(params: GameFilterParams) {
     return UrlRouting.getGameUrl(params, {});
   }
@@ -114,15 +115,17 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
       (rawParams.showPlayerManual == false) ? [ 'showPlayerManual' ] : [],
     ]));
 
-    const href = getRootUrl(params);
-    const as = href;
-    //TODO: this doesn't work if it's the same page (#91)
-    // (plus adding the _current_ query to the history is a bit counter-intuitive)
-    // (for intra-page, need to add to HistoryBounce page which will redirect back to force reload)
-    // (need to figure out how to detect inter-page)
-    // (for now use use "replace" vs "push" to avoid stupidly long browser histories)
-    Router.replace(href, as, { shallow: true });
-    setGameFilterParams(params); //(to ensure the new params are included in links)
+    if (!_.isEqual(params, gameFilterParams)) { //(to avoid recursion)
+      const href = getRootUrl(params);
+      const as = href;
+      //TODO: this doesn't work if it's the same page (#91)
+      // (plus adding the _current_ query to the history is a bit counter-intuitive)
+      // (for intra-page, need to add to HistoryBounce page which will redirect back to force reload)
+      // (need to figure out how to detect inter-page)
+      // (for now use use "replace" vs "push" to avoid stupidly long browser histories)
+      Router.replace(href, as, { shallow: true });
+      setGameFilterParams(params); //(to ensure the new params are included in links)
+    }
   }
 
   // View

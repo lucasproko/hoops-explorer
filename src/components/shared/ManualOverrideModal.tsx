@@ -284,7 +284,7 @@ console.log("remove " + JSON.stringify(newOverrideSet));
       </Card>
 
       <Card className="w-100">
-        <Card.Header className="small">Overriden Stats</Card.Header>
+        <Card.Header className="small">Selected Player Overriden Stats</Card.Header>
         <Card.Body>
           <Container>
             <Row>

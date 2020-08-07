@@ -20,7 +20,7 @@ import Col from 'react-bootstrap/Col';
 
 // App components:
 import TeamReportFilter from '../components/TeamReportFilter';
-import { ParamPrefixes, GameFilterParams, LineupFilterParams, TeamReportFilterParams } from '../utils/FilterModels';
+import { ParamPrefixes, GameFilterParams, LineupFilterParams, TeamReportFilterParams, ParamDefaults } from '../utils/FilterModels';
 import { HistoryManager } from '../utils/HistoryManager';
 import TeamReportStatsTable from '../components/TeamReportStatsTable';
 import { LineupStatsModel } from '../components/LineupStatsTable';
@@ -67,16 +67,24 @@ const TeamReportPage: NextPage<{}> = () => {
     return UrlRouting.getTeamReportUrl(params);
   }
 
-  const onTeamReportFilterParamsChange = (params: TeamReportFilterParams) => {
-    const href = getRootUrl(params);
-    const as = href;
-    //TODO: this doesn't work if it's the same page (#91)
-    // (plus adding the _current_ query to the history is a bit counter-intuitive)
-    // (for intra-page, need to add to HistoryBounce page which will redirect back to force reload)
-    // (need to figure out how to detect inter-page)
-    // (for now use use "replace" vs "push" to avoid stupidly long browser histories)
-    Router.replace(href, as, { shallow: true });
-    setTeamReportFilterParams(params); // (to ensure the new params are included in links)
+  const onTeamReportFilterParamsChange = (rawParams: TeamReportFilterParams) => {
+    const params = _.omit(rawParams, _.flatten([ // omit all defaults
+      (rawParams.showComps == ParamDefaults.defaultShowComps) ? [ 'showComps' ] : [],
+      (rawParams.repOnOffDiagMode == "0") ? [ 'repOnOffDiagMode' ] : [],
+      (rawParams.rapmDiagMode == "") ? [ 'rapmDiagMode' ] : [],
+    ]));
+
+    if (!_.isEqual(params, teamReportFilterParams)) { //(to avoid recursion)
+      const href = getRootUrl(params);
+      const as = href;
+      //TODO: this doesn't work if it's the same page (#91)
+      // (plus adding the _current_ query to the history is a bit counter-intuitive)
+      // (for intra-page, need to add to HistoryBounce page which will redirect back to force reload)
+      // (need to figure out how to detect inter-page)
+      // (for now use use "replace" vs "push" to avoid stupidly long browser histories)
+      Router.replace(href, as, { shallow: true });
+      setTeamReportFilterParams(params); // (to ensure the new params are included in links)
+    }
   }
 
   // View
