@@ -30,13 +30,14 @@ import { OverrideUtils } from "../../utils/stats/OverrideUtils";
 type Props = {
   tableType: ParamPrefixesType,
   inStats: any[],
+  statsAsTable: Record<string, any[]>,
   show: boolean,
   onHide: () => void,
   onSave: (overrides: ManualOverride[]) => void,
   overrides: ManualOverride[],
   showHelp: boolean
 };
-const ManualOverrideModal: React.FunctionComponent<Props> = ({tableType, inStats, onSave, overrides, showHelp, ...props}) => {
+const ManualOverrideModal: React.FunctionComponent<Props> = ({tableType, inStats, statsAsTable, onSave, overrides, showHelp, ...props}) => {
 
   //(TODO: lots of work to make this more generic and not just per player)
 
@@ -183,6 +184,8 @@ console.log("remove " + JSON.stringify(newOverrideSet));
 
   // View
 
+  const statsTableFields = CommonTableDefs.onOffIndividualTable(true);
+
   return <div><Modal size="lg" {...props}>
     <Modal.Header closeButton>
       <Modal.Title>Manual Overrides</Modal.Title>&nbsp;{showHelp ?
@@ -277,6 +280,19 @@ console.log("remove " + JSON.stringify(newOverrideSet));
               </InputGroup>
             </Form.Row>
           </Form>
+        </Card.Body>
+      </Card>
+
+      <Card className="w-100">
+        <Card.Header className="small">Overriden Stats</Card.Header>
+        <Card.Body>
+          <Container>
+            <Row>
+              <Col xs={12}>
+                <GenericTable responsive={true} tableCopyId="overrideEffectsTable" tableFields={statsTableFields} tableData={statsAsTable[currInStat] || []}/>
+              </Col>
+            </Row>
+          </Container>
         </Card.Body>
       </Card>
 

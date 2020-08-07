@@ -147,11 +147,12 @@ export class GenericTableOps {
   }
 }
 type Props = {
+  responsive?: boolean,
   tableFields: Record<string, GenericTableColProps>,
   tableData: Array<GenericTableRow>,
   tableCopyId?: string
 }
-const GenericTable: React.FunctionComponent<Props> = ({tableFields, tableData, tableCopyId}) => {
+const GenericTable: React.FunctionComponent<Props> = ({responsive, tableFields, tableData, tableCopyId}) => {
 
   const tableId: string = tableCopyId || Math.random().toString(36).substring(8);
   const buttonId = tableId + "_copy";
@@ -294,7 +295,7 @@ const GenericTable: React.FunctionComponent<Props> = ({tableFields, tableData, t
   }
 
   // (tooltips don't work if table has `responsive` attribute, see popper.js #276)
-  return <Table id={tableId} size="sm">
+  return <Table responsive={responsive} id={tableId} size="sm">
     <thead>
       <tr>{ renderTableHeaders() }</tr>
     </thead>

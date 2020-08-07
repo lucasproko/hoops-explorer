@@ -55,15 +55,20 @@ export class OverrideUtils {
     mutableStats: any, key: string, newVal: number | { delta: number } | undefined, reason: string | undefined
   ) => {
     if (mutableStats[key]) {
-      const originalVal = OverrideUtils.getOriginalVal(mutableStats?.[key]);
+      const originalVal = OverrideUtils.getOriginalVal(mutableStats[key]);
+      const maybeReason = mutableStats[key]?.override;
+      // (don't unset an param that was overridden for a different reason - though empty reason always unsets)
+      const noOverwrite = _.isNil(newVal) && !_.isNil(maybeReason) && !_.isNil(reason) && (maybeReason != reason);
+      if (!noOverwrite) {
         mutableStats[key] = _.isNil(newVal) ? {
           value: originalVal
         } : OverrideUtils.getIgnoreNull({
           value: _.isNumber(newVal) ? newVal : originalVal + (newVal?.delta || 0),
           old_value: originalVal,
-          override: reason || "unknown"
+          override: reason
         });
-        return !_.isNil(newVal);
+      }
+      return !_.isNil(newVal);
     } else {
       return false;
     }
@@ -74,8 +79,11 @@ export class OverrideUtils {
     return _.isNil(val?.old_value) ? 0.0 : (val?.value || 0) - val.old_value;
   };
 
-  /** Where overrides to shooting have occurred, update 4 factors */
-  static readonly updatePlayer4Factors = (mutableStats: any, reason: string | undefined) => {
+  /** Where overrides to shooting have occurred, update 4 factors - overwrites any luck values */
+  static readonly updateDerivedStats = (mutableStats: any, reason: string) => {
+
+    //TODO: this is a bit of a mess ... should handle luck and override derived vals in one place
+
     const threePR = (mutableStats.off_3pr?.value || 0);
     const midR = (mutableStats.off_2pmidr?.value || 0);
     const rimR = (mutableStats.off_2primr?.value || 0);
@@ -85,12 +93,16 @@ export class OverrideUtils {
     const deltaEfg = deltaEfg_3p + deltaEfg_2p_mid + deltaEfg_2p_rim;
 
     const delta2p = (deltaEfg_2p_mid + deltaEfg_2p_rim)/(1.0 - threePR);
-
     if (delta2p != 0.0) {
       OverrideUtils.overrideMutableVal(mutableStats, "off_2p", { delta: delta2p }, reason);
+    } else { //(setting reason as undefined ensures it gets overwritten...
+      //... this is desirable because I'm overwriting any luck effects)
+      OverrideUtils.overrideMutableVal(mutableStats, "off_2p", undefined, undefined);
     }
     if (deltaEfg != 0.0) {
       OverrideUtils.overrideMutableVal(mutableStats, "off_efg", { delta: deltaEfg }, reason);
+    } else { //(always set reason as undefined, see above)
+      OverrideUtils.overrideMutableVal(mutableStats, "off_efg", undefined, undefined);
     }
   };
 

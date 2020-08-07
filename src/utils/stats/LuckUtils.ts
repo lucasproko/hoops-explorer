@@ -123,13 +123,14 @@ export class LuckUtils {
     const player3PInfo = _.chain(samplePlayers).flatMap((player: any) => {
       const playerInfo = basePlayersMap[player.key];
       if (playerInfo) {
+        //(we use the sample size but the base 3P%)
         const samplePlayer3PA = get(player.total_off_3p_attempts, 0);
-        const samplePlayer3P = get(basePlayersMap[player.key]?.off_3p, 0);
+        const basePlayer3P = get(basePlayersMap[player.key]?.off_3p, 0);
         varTotal3PA += samplePlayer3PA;
-        varTotal3P += samplePlayer3PA*samplePlayer3P;
+        varTotal3P += samplePlayer3PA*basePlayer3P;
 
         return (samplePlayer3PA > 0) ? //(don't bother with any players who didn't take a 3P shot)
-          [ [ player.key, { sample3PA: samplePlayer3PA, base3P: samplePlayer3P }  ] ] : [];
+          [ [ player.key, { sample3PA: samplePlayer3PA, base3P: basePlayer3P }  ] ] : [];
         } else {
           return []; //(player not in this lineup)
         }

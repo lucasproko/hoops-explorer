@@ -293,6 +293,9 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
       </span>;
   };
 
+  /** Need to be able to see the stats table for players in the manual override table */
+  const mutableTableDisplayForOverrides = {};
+
   // (Always just use A/B here because it's too confusing to say
   // "On <Player name>" meaning ""<Player Name> when <Other other player> is on")
   const allPlayers = _.chain([
@@ -351,11 +354,11 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
 
         const playerOverrideKey = OverrideUtils.getPlayerRowId(stat.key, stat.onOffKey);
         const overrides = manualOverridesAsMap[playerOverrideKey];
-        const overrodeOffFields = overrides ? _.reduce(overridableStatsList, (acc, statName) => {
+        const overrodeOffFields = _.reduce(overridableStatsList, (acc, statName) => {
           const override = overrides?.[statName];
           const maybeDoOverride = OverrideUtils.overrideMutableVal(stat, statName, override, "Manually adjusted");
           return acc || maybeDoOverride;
-        }, false) : false;
+        }, false);
 
         const adjustmentReason = (() => {
           if (adjustForLuck && overrodeOffFields) {
@@ -368,10 +371,9 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
             return undefined;
           }
         })();
+        // Set or unset derived stats:
+        OverrideUtils.updateDerivedStats(stat, adjustmentReason);
 
-        if (overrodeOffFields) { // sync changes with derived stats
-          OverrideUtils.updatePlayer4Factors(stat, adjustmentReason);
-        }
         // Ratings:
 
         stat.off_drb = stat.def_orb; //(just for display, all processing should use def_orb)
@@ -410,6 +412,13 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
 
         // Now we have the position we can build the titles:
         stat.off_title = insertTitle(stat.key, key, pos);
+
+        // Create a table for the mutable overrides:
+
+        mutableTableDisplayForOverrides[OverrideUtils.getPlayerRowId(stat.key, stat.onOffKey)] = [
+           GenericTableOps.buildDataRow(stat, offPrefixFn, offCellMetaFn),
+           GenericTableOps.buildDataRow(stat, defPrefixFn, defCellMetaFn)
+        ];
       }
     });
     return player;
@@ -606,6 +615,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
       <ManualOverrideModal
         tableType={ParamPrefixes.player}
         inStats={playersAsList}
+        statsAsTable={mutableTableDisplayForOverrides}
         overrides={manualOverrides}
         show={showManualOverrides}
         onHide={() => setShowManualOverrides(false)}
