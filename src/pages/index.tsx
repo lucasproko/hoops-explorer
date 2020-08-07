@@ -86,22 +86,19 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
     return UrlRouting.getGameUrl(params, {});
   }
 
-/**/
-//TODO where does this go?!
-  /** We're going to want to remove the manual options if the year changes */
-/*
-  const yearTeamGenderChange = (rawParams: GameFilterParams, currParams: GameFilterParams) => {
-    return (rawParams.year != currParams.year) ||
-            (rawParams.gender != currParams.gender) ||
-            (rawParams.team != currParams.team);
-  }
-  */
-
   const onGameFilterParamsChange = (rawParams: GameFilterParams) => {
+    /** We're going to want to remove the manual options if the year changes */
+    const yearTeamGenderChange = (rawParams: GameFilterParams, currParams: GameFilterParams) => {
+      return (rawParams.year != currParams.year) ||
+              (rawParams.gender != currParams.gender) ||
+              (rawParams.team != currParams.team);
+    }
+
     // Omit all the defaults
     const params = _.omit(rawParams, _.flatten([ // omit all defaults
       // TeamStatsTable
-      //(manual overrides is an array so is always missing if empty)
+      //(manual overrides is an array so is always missing if empty, but we do reset it if the year/team/gender changes)
+      yearTeamGenderChange(rawParams, gameFilterParams) ? [ 'manual' ] : [],
       _.isEqual(rawParams.luck, ParamDefaults.defaultLuckConfig) ? [ 'luck' ] : [],
       !rawParams.onOffLuck ? [ 'onOffLuck' ] : [],
       (rawParams.showPlayerOnOffLuckDiags == ParamDefaults.defaultOnOffLuckDiagMode) ? [ 'showPlayerOnOffLuckDiags' ] : [],
