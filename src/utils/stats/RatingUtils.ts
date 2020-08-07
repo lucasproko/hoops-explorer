@@ -222,7 +222,7 @@ export class RatingUtils {
     const offPoss = statGet("off_poss");
     const usage = 100*(statSet.off_usage?.value || 0);
     const Def_SOS = (statSet?.def_adj_opp?.value || avgEfficiency);
-    
+
     const Team_AST = statSet?.team_total_off_assist?.value || 0;
     const Team_FGM = statGet("team_total_off_fgm");
     const Team_FGA = statSet?.team_total_off_fga?.value || 0;
@@ -412,7 +412,7 @@ export class RatingUtils {
   /** Builds the overrides to the raw fields based on stat overrides */
   private static buildDefOverrides(statSet: Record<string, any>) {
     const threePTries = (statSet?.oppo_total_def_3p_attempts?.value || 0);
-    const extra3PMakes = OverrideUtils.diff(statSet.oppo_def_3p?.value)*threePTries;
+    const extra3PMakes = OverrideUtils.diff(statSet.oppo_def_3p)*threePTries;
 
     return {
       oppo_total_def_pts: { value: (statSet?.oppo_total_def_pts?.value || 0) + 3*extra3PMakes },
