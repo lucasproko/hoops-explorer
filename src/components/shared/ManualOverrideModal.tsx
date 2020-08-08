@@ -35,9 +35,10 @@ type Props = {
   onHide: () => void,
   onSave: (overrides: ManualOverride[]) => void,
   overrides: ManualOverride[],
-  showHelp: boolean
+  showHelp: boolean,
+  startOverride?: ManualOverride //(just for testing)
 };
-const ManualOverrideModal: React.FunctionComponent<Props> = ({tableType, inStats, statsAsTable, onSave, overrides, showHelp, ...props}) => {
+const ManualOverrideModal: React.FunctionComponent<Props> = ({tableType, inStats, statsAsTable, onSave, overrides, showHelp, startOverride, ...props}) => {
 
   //(TODO: lots of work to make this more generic and not just per player)
 
@@ -49,10 +50,12 @@ const ManualOverrideModal: React.FunctionComponent<Props> = ({tableType, inStats
   })();
 
   // Starting values:
-  const [ currInStat, setCurrInStat ] = useState("" as string);
-  const [ currStatName, setCurrStatName ] = useState("" as string);
+  const [ currInStat, setCurrInStat ] = useState(startOverride?.rowId || "");
+  const [ currStatName, setCurrStatName ] = useState(startOverride?.statName || "");
   const [ oldStatVal, setOldStatVal ] = useState(0 as number);
-  const [ currReplacementAsStr, setCurrReplacementAsStr ] = useState("" as string);
+  const [ currReplacementAsStr, setCurrReplacementAsStr ] = useState(
+    _.isNil(startOverride) ? "" : "" + startOverride.newVal
+  );
 
   // Player/lineup/row
 
@@ -128,10 +131,6 @@ const ManualOverrideModal: React.FunctionComponent<Props> = ({tableType, inStats
   const removeOverride = (toRemove: ManualOverride) => {
     const newOverrideSet =
       overrides.filter((over) => (toRemove.rowId != over.rowId) || (toRemove.statName != over.statName));
-
-/**/
-console.log("remove " + JSON.stringify(newOverrideSet));
-
     onSave(newOverrideSet);
   };
 
