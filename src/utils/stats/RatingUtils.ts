@@ -148,7 +148,7 @@ const array = (v: number[]) => { return v; }
 export class RatingUtils {
 
   /** Builds the overrides to the raw fields based on stat overrides */
-  private static buildOffOverrides(statSet: Record<string, any>) {
+  static buildOffOverrides(statSet: Record<string, any>) {
     const threePTries = statSet?.total_off_3p_attempts?.value || 0;
     const twoPTries = statSet?.total_off_2p_attempts?.value || 0;
     const freeThrowTries = statSet?.total_off_fta?.value || 0;
