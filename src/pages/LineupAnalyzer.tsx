@@ -20,7 +20,7 @@ import Col from 'react-bootstrap/Col';
 
 // App components:
 import LineupFilter from '../components/LineupFilter';
-import { ParamPrefixes, GameFilterParams, LineupFilterParams } from '../utils/FilterModels';
+import { ParamPrefixes, GameFilterParams, LineupFilterParams, ParamDefaults } from '../utils/FilterModels';
 import { HistoryManager } from '../utils/HistoryManager';
 import LineupStatsTable, { LineupStatsModel } from '../components/LineupStatsTable';
 import { RosterStatsModel } from '../components/RosterStatsTable';
@@ -72,16 +72,26 @@ const LineupAnalyzerPage: NextPage<{}> = () => {
     return UrlRouting.getLineupUrl(params, {});
   }
 
-  const onLineupFilterParamsChange = (params: LineupFilterParams) => {
-    const href = getRootUrl(params);
-    const as = href;
-    //TODO: this doesn't work if it's the same page (#91)
-    // (plus adding the _current_ query to the history is a bit counter-intuitive)
-    // (for intra-page, need to add to HistoryBounce page which will redirect back to force reload)
-    // (need to figure out how to detect inter-page)
-    // (for now use use "replace" vs "push" to avoid stupidly long browser histories)
-    Router.replace(href, as, { shallow: true });
-    setLineupFilterParams(params); // (to ensure the new params are included in links)
+  const onLineupFilterParamsChange = (rawParams: LineupFilterParams) => {
+    const params = _.omit(rawParams, _.flatten([ // omit all defaults
+      (rawParams.decorate == ParamDefaults.defaultLineupDecorate) ? [ 'decorate' ] : [],
+      (rawParams.showTotal == ParamDefaults.defaultLineupShowTotal) ? [ 'showTotal' ] : [],
+      _.isEqual(rawParams.luck, ParamDefaults.defaultLuckConfig) ? [ 'luck' ] : [],
+      !rawParams.lineupLuck ? [ 'lineupLuck' ] : [],
+      (rawParams.showLineupLuckDiags == ParamDefaults.defaultOnOffLuckDiagMode) ? [ 'showLineupLuckDiags' ] : []
+    ]));
+
+    if (!_.isEqual(params, lineupFilterParams)) { //(to avoid recursion)
+      const href = getRootUrl(params);
+      const as = href;
+      //TODO: this doesn't work if it's the same page (#91)
+      // (plus adding the _current_ query to the history is a bit counter-intuitive)
+      // (for intra-page, need to add to HistoryBounce page which will redirect back to force reload)
+      // (need to figure out how to detect inter-page)
+      // (for now use use "replace" vs "push" to avoid stupidly long browser histories)
+      Router.replace(href, as, { shallow: true });
+      setLineupFilterParams(params); // (to ensure the new params are included in links)
+    }
   }
 
   // View

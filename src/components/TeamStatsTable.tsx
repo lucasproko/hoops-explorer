@@ -86,11 +86,12 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
   }, [ gameFilterParams ]);
 
   useEffect(() => { //(this ensures that the filter component is up to date with the union of these fields)
-    const newState = _.merge(gameFilterParams, {
+    const newState = {
+      ...gameFilterParams,
       luck: luckConfig,
       onOffLuck: adjustForLuck,
       showOnOffLuckDiags: showLuckAdjDiags,
-    });
+    };
     onChangeState(newState);
   }, [ luckConfig, adjustForLuck, showLuckAdjDiags ]);
 

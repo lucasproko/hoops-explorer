@@ -33,14 +33,16 @@ import GenericTogglingMenuItem from "./shared/GenericTogglingMenuItem";
 import { TeamStatsModel } from '../components/TeamStatsTable';
 import LuckAdjDiagView from "./diags/LuckAdjDiagView"
 import LuckConfigModal from "./shared/LuckConfigModal";
+import ManualOverrideModal from "./shared/ManualOverrideModal";
 
 // Util imports
 import { CbbColors } from "../utils/CbbColors";
 import { CommonTableDefs } from "../utils/CommonTableDefs";
-import { getCommonFilterParams, ParamDefaults, GameFilterParams, LuckParams } from "../utils/FilterModels";
+import { getCommonFilterParams, ParamDefaults, ParamPrefixes, GameFilterParams, LuckParams, ManualOverride } from "../utils/FilterModels";
 import { ORtgDiagnostics, RatingUtils } from "../utils/stats/RatingUtils";
 import { PositionUtils } from "../utils/stats/PositionUtils";
 import { LuckUtils } from "../utils/stats/LuckUtils";
+import { OverrideUtils } from "../utils/stats/OverrideUtils";
 import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
 
 export type RosterStatsModel = {
@@ -113,6 +115,18 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
     ParamDefaults.defaultPlayerFilter : gameFilterParams.filter
   );
 
+  const [ manualOverrides, setManualOverrides ] = useState(_.isNil(gameFilterParams.manual) ?
+    [] : gameFilterParams.manual
+  );
+
+  // Transform the list into a map of maps of values
+  const manualOverridesAsMap = OverrideUtils.buildOverrideAsMap(manualOverrides);
+  const overridableStatsList = _.keys(OverrideUtils.getOverridableStats(ParamPrefixes.player));
+
+  const [ showManualOverrides, setShowManualOverrides ] = useState(_.isNil(gameFilterParams.showPlayerManual) ?
+    false : gameFilterParams.showPlayerManual
+  );
+
   // (slight delay when typing into the filter to make it more responsive)
   const [ timeoutId, setTimeoutId ] = useState(-1);
   const [ tmpFilterStr, setTmpFilterStr ] = useState(filterStr);
@@ -144,17 +158,20 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
   /** Whether we are showing the luck config modal */
   const [ showLuckConfig, setShowLuckConfig ] = useState(false);
 
-  useEffect(() => { //(keep luck up to date between the two views)
+  useEffect(() => { //(keep luck and manual up to date between the two views)
     setAdjustForLuck(_.isNil(gameFilterParams.onOffLuck) ?
         ParamDefaults.defaultOnOffLuckAdjust : gameFilterParams.onOffLuck
     );
     setLuckConfig(_.isNil(gameFilterParams.luck) ?
       ParamDefaults.defaultLuckConfig : gameFilterParams.luck
     );
+    setManualOverrides(gameFilterParams.manual || []);
+
   }, [ gameFilterParams ]);
 
   useEffect(() => { //(this ensures that the filter component is up to date with the union of these fields)
-    const newState = _.merge(gameFilterParams, {
+    const newState = {
+      ...gameFilterParams,
       sortBy: sortBy,
       filter: filterStr,
       showBase: alwaysShowBaseline,
@@ -162,14 +179,18 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
       showDiag: showDiagMode,
       possAsPct: possAsPct,
       showPosDiag: showPositionDiags,
+      // Overrides:
+      manual: manualOverrides,
       // Luck:
       luck: luckConfig,
       onOffLuck: adjustForLuck,
       showPlayerOnOffLuckDiags: showLuckAdjDiags,
-    });
+      showPlayerManual: showManualOverrides
+    };
     onChangeState(newState);
+
   }, [ sortBy, filterStr, showDiagMode, alwaysShowBaseline, expandedView, possAsPct, showPositionDiags,
-      luckConfig, adjustForLuck, showLuckAdjDiags
+      luckConfig, adjustForLuck, showLuckAdjDiags, showManualOverrides, manualOverrides
     ]);
 
   // 2] Data Model
@@ -274,19 +295,22 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
       </span>;
   };
 
+  /** Need to be able to see the stats table for players in the manual override table */
+  const mutableTableDisplayForOverrides = {} as Record<string, any[]>;
+
   // (Always just use A/B here because it's too confusing to say
   // "On <Player name>" meaning ""<Player Name> when <Other other player> is on")
   const allPlayers = _.chain([
-    _.map(rosterStats.on  || [], (p) => _.merge(p, {
+    _.map(rosterStats.on  || [], (p) => _.assign(p, {
       onOffKey: 'On'
     })),
-    _.map(rosterStats.off  || [], (p) => _.merge(p, {
+    _.map(rosterStats.off  || [], (p) => _.assign(p, {
       onOffKey: 'Off'
     })),
-    _.map(rosterStats.baseline || [], (p) => _.merge(p, {
+    _.map(rosterStats.baseline || [], (p) => _.assign(p, {
       onOffKey: 'Baseline'
     })),
-    _.map(rosterStats.global || [], (p) => _.merge(p, {
+    _.map(rosterStats.global || [], (p) => _.assign(p, {
       onOffKey: 'Global'
     })),
   ]).flatten().groupBy("key").toPairs().map((key_onOffBase) => {
@@ -302,7 +326,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
       ? teamStats.baseline : teamStats.global;
 
     // Inject ORtg and DRB and Poss% (ie mutate player idempotently)
-    ([ "on", "off", "baseline" ] as ("on" | "off" | "baseline")[]).forEach((key) => {
+    ([ "baseline", "on", "off" ] as ("baseline" | "on" | "off")[]).forEach((key) => {
       const stat = (player as any)[key];
       const teamStat = (teamStats as any)[key] || {};
       if (stat) {
@@ -328,31 +352,55 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
         stat.off_luck = offLuckAdj;
         stat.def_luck = defLuckAdj;
 
+        // Once luck is applied apply any manual overrides
+
+        const playerOverrideKey = OverrideUtils.getPlayerRowId(stat.key, stat.onOffKey);
+        const overrides = manualOverridesAsMap[playerOverrideKey];
+        const overrodeOffFields = _.reduce(overridableStatsList, (acc, statName) => {
+          const override = overrides?.[statName];
+          const maybeDoOverride = OverrideUtils.overrideMutableVal(stat, statName, override, "Manually adjusted");
+          return acc || maybeDoOverride;
+        }, false);
+
+        const adjustmentReason = (() => {
+          if (adjustForLuck && overrodeOffFields) {
+            return "Derived from luck adjustments and manual overrides";
+          } else if (!adjustForLuck && overrodeOffFields) {
+            return "Derived from manual overrides";
+          } else if (adjustForLuck && !overrodeOffFields) {
+            return "Derived from luck adjustments";
+          } else {
+            return undefined;
+          }
+        })();
+        // Set or unset derived stats:
+        OverrideUtils.updateDerivedStats(stat, adjustmentReason);
+
         // Ratings:
 
         stat.off_drb = stat.def_orb; //(just for display, all processing should use def_orb)
         const [
           oRtg, adjORtg, rawORtg, rawAdjORtg, oRtgDiag
-        ] = RatingUtils.buildORtg(stat, avgEfficiency, showDiagMode, adjustForLuck);
+        ] = RatingUtils.buildORtg(stat, avgEfficiency, showDiagMode, adjustForLuck || overrodeOffFields);
         const [
           dRtg, adjDRtg, rawDRtg, rawAdjDRtg, dRtgDiag
         ] = RatingUtils.buildDRtg(stat, avgEfficiency, showDiagMode, adjustForLuck);
         stat.off_rtg = {
           value: oRtg?.value, old_value: rawORtg?.value,
-          override: adjustForLuck ? "Luck adjusted" : undefined
+          override: adjustmentReason
         };
         stat.off_adj_rtg = {
           value: adjORtg?.value, old_value: rawAdjORtg?.value,
-          override: adjustForLuck ? "Luck adjusted" : undefined
+          override: adjustmentReason
         };
         stat.diag_off_rtg = oRtgDiag;
         stat.def_rtg = {
           value: dRtg?.value, old_value: rawDRtg?.value,
-          override: adjustForLuck ? "Luck adjusted" : undefined
+          override: adjustForLuck ? "Derived from luck adjustments" : undefined
         };
         stat.def_adj_rtg = {
           value: adjDRtg?.value, old_value: rawAdjDRtg?.value,
-          override: adjustForLuck ? "Luck adjusted" : undefined
+          override: adjustForLuck ? "Derived from luck adjustments" : undefined
         };
         stat.diag_def_rtg = dRtgDiag;
 
@@ -366,6 +414,13 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
 
         // Now we have the position we can build the titles:
         stat.off_title = insertTitle(stat.key, key, pos);
+
+        // Create a table for the mutable overrides:
+
+        mutableTableDisplayForOverrides[OverrideUtils.getPlayerRowId(stat.key, stat.onOffKey)] = [
+           GenericTableOps.buildDataRow(stat, offPrefixFn, offCellMetaFn),
+           GenericTableOps.buildDataRow(stat, defPrefixFn, defCellMetaFn)
+        ];
       }
     });
     return player;
@@ -442,6 +497,15 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
       [ GenericTableOps.buildRowSeparator() ]
     ]);
   }).value();
+
+  /** A list of all the players in poss count order */
+  const playersAsList = _.flatMap(allPlayers, (p) => {
+    return _.flatten([
+      p.on?.off_team_poss ? [ p.on ] : [],
+      p.off?.off_team_poss ? [ p.off ] : [],
+      p.baseline?.off_team_poss ? [ p.baseline ] : [],
+    ]);
+  });
 
   /** Sticks an overlay on top of the table if no query has ever been loaded */
   function needToLoadQuery() {
@@ -550,6 +614,16 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
         "Press 'Submit' to view results"
       }
     >
+      <ManualOverrideModal
+        tableType={ParamPrefixes.player}
+        inStats={playersAsList}
+        statsAsTable={mutableTableDisplayForOverrides}
+        overrides={manualOverrides}
+        show={showManualOverrides}
+        onHide={() => setShowManualOverrides(false)}
+        onSave={(overrides: ManualOverride[]) => setManualOverrides(overrides)}
+        showHelp={false}
+      />
       <LuckConfigModal
         show={showLuckConfig}
         onHide={() => setShowLuckConfig(false)}
@@ -613,6 +687,11 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
               helpLink={showHelp ? "https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html" : undefined}
             />
             <Dropdown.Divider />
+            <GenericTogglingMenuItem
+              text="Configure Manual Overrides..."
+              truthVal={showManualOverrides}
+              onSelect={() => setShowManualOverrides(!showManualOverrides)}
+            />
             <GenericTogglingMenuItem
               text="Configure Luck Adjustments..."
               truthVal={false}

@@ -82,15 +82,24 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
   const [ gameFilterParams, setGameFilterParams ] = useState(
     UrlRouting.removedSavedKeys(allParams) as GameFilterParams
   )
+  
   function getRootUrl(params: GameFilterParams) {
     return UrlRouting.getGameUrl(params, {});
   }
 
   const onGameFilterParamsChange = (rawParams: GameFilterParams) => {
+    /** We're going to want to remove the manual options if the year changes */
+    const yearTeamGenderChange = (rawParams: GameFilterParams, currParams: GameFilterParams) => {
+      return (rawParams.year != currParams.year) ||
+              (rawParams.gender != currParams.gender) ||
+              (rawParams.team != currParams.team);
+    }
 
     // Omit all the defaults
     const params = _.omit(rawParams, _.flatten([ // omit all defaults
       // TeamStatsTable
+      //(manual overrides is an array so is always missing if empty, but we do reset it if the year/team/gender changes)
+      yearTeamGenderChange(rawParams, gameFilterParams) ? [ 'manual' ] : [],
       _.isEqual(rawParams.luck, ParamDefaults.defaultLuckConfig) ? [ 'luck' ] : [],
       !rawParams.onOffLuck ? [ 'onOffLuck' ] : [],
       (rawParams.showPlayerOnOffLuckDiags == ParamDefaults.defaultOnOffLuckDiagMode) ? [ 'showPlayerOnOffLuckDiags' ] : [],
@@ -103,17 +112,20 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
       (rawParams.showDiag == ParamDefaults.defaultPlayerDiagMode) ? [ 'showDiag' ] : [],
       (rawParams.possAsPct == ParamDefaults.defaultPlayerPossAsPct) ? [ 'possAsPct' ] : [],
       (rawParams.showPosDiag == ParamDefaults.defaultPlayerPosDiagMode) ? [ 'showPosDiag' ] : [],
+      (rawParams.showPlayerManual == false) ? [ 'showPlayerManual' ] : [],
     ]));
 
-    const href = getRootUrl(params);
-    const as = href;
-    //TODO: this doesn't work if it's the same page (#91)
-    // (plus adding the _current_ query to the history is a bit counter-intuitive)
-    // (for intra-page, need to add to HistoryBounce page which will redirect back to force reload)
-    // (need to figure out how to detect inter-page)
-    // (for now use use "replace" vs "push" to avoid stupidly long browser histories)
-    Router.replace(href, as, { shallow: true });
-    setGameFilterParams(params); //(to ensure the new params are included in links)
+    if (!_.isEqual(params, gameFilterParams)) { //(to avoid recursion)
+      const href = getRootUrl(params);
+      const as = href;
+      //TODO: this doesn't work if it's the same page (#91)
+      // (plus adding the _current_ query to the history is a bit counter-intuitive)
+      // (for intra-page, need to add to HistoryBounce page which will redirect back to force reload)
+      // (need to figure out how to detect inter-page)
+      // (for now use use "replace" vs "push" to avoid stupidly long browser histories)
+      Router.replace(href, as, { shallow: true });
+      setGameFilterParams(params); //(to ensure the new params are included in links)
+    }
   }
 
   // View

@@ -130,7 +130,8 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
     filterFragments.filter(fragment => fragment[0] == '-').map(fragment => fragment.substring(1));
 
   useEffect(() => { //(this ensures that the filter component is up to date with the union of these fields)
-    const newState = _.chain(startingState).merge({
+    const newState = {
+      ...startingState,
       sortBy: sortBy,
       filter: filterStr,
       showOnOff: showOnOff,
@@ -140,14 +141,10 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
       regressDiffs: regressDiffs.toString(),
       repOnOffDiagMode: repOnOffDiagMode,
       rapmDiagMode: rapmDiagMode
-    }).omit( // remove "debuggy" fields
-      _.flatten([
-        (repOnOffDiagMode == "0") ? [ 'repOnOffDiagMode' ] : [],
-        (rapmDiagMode == "") ? [ 'rapmDiagMode' ] : [],
-      ])
-    ).value();
+    };
     onChangeState(newState);
-  }, [ sortBy, filterStr, showOnOff, showLineupCompositions, incReplacementOnOff, incRapm, regressDiffs, repOnOffDiagMode, rapmDiagMode ]);
+  }, [ sortBy, filterStr, showOnOff, showLineupCompositions, incReplacementOnOff, incRapm,
+        regressDiffs, repOnOffDiagMode, rapmDiagMode ]);
 
   // (cache this below)
   const [ teamReport, setTeamReport ] = useState({} as any);

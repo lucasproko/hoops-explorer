@@ -1,6 +1,7 @@
 
 // Utils:
 import _ from 'lodash'
+import { OverrideUtils } from "./OverrideUtils";
 
 /** All the info needed to explain the ORtg calculation, see "buildORtgDiag" */
 export type ORtgDiagnostics = {
@@ -147,23 +148,48 @@ const array = (v: number[]) => { return v; }
 export class RatingUtils {
 
   /** Builds the overrides to the raw fields based on stat overrides */
-  private static buildOffOverrides(statSet: Record<string, any>) {
-    const getOrOld = (stat: any) => {
-      return (_.isNil(stat?.old_value) ? stat?.value : stat.old_value) || 0;
-    };
-
+  static buildOffOverrides(statSet: Record<string, any>) {
     const threePTries = statSet?.total_off_3p_attempts?.value || 0;
-    const extra3PMakes = ((statSet.off_3p.value || 0) - getOrOld(statSet.off_3p))*threePTries;
+    const twoPTries = statSet?.total_off_2p_attempts?.value || 0;
+    const freeThrowTries = statSet?.total_off_fta?.value || 0;
+
+    const extra3PMakes = OverrideUtils.diff(statSet.off_3p)*threePTries;
+    const extra2PMakes = OverrideUtils.diff(statSet.off_2p)*twoPTries;
+    const extraFgMakes = extra3PMakes + extra2PMakes;
+    const extraFtMakes = OverrideUtils.diff(statSet.off_ft)*freeThrowTries;
+
+    // TOs are more complicated:
+    // (old_tos + tos_diff)/(currPoss + tos_diff) = new_to% =>
+    // ie (old_tos + tos_diff) = new_to%*(currPoss + tos_diff)
+    // ie tos_diff = (new_to%*currPoss - old_tos)/(1 - new_to%)
+    const newToPct = statSet?.off_to?.value || 0; //(new value)
+    const adjNewToPct = (newToPct > 0.9) ? 0.9 : newToPct; //(avoid stupidly high TO%)
+    const oldTos = statSet?.total_off_to?.value || 0;
+    const currPoss = statSet?.off_poss?.value || 0;
+    const extraTos = (adjNewToPct*currPoss - oldTos)/(1 - adjNewToPct);
+
     //TODO: additional ORBs? It's a bit tricky because you'd then need to add more shots and hits/misses
     //(some of which would be made by the player - so for now it's probably best just to ignore, I think
     // it's a second-order effect anyway)
 
+    //TODO: also not taking into account other players' manual edits (at the team level)
+
     return {
-      total_off_fgm: { value: (statSet?.total_off_fgm?.value || 0) + extra3PMakes },
+      total_off_fgm: { value: (statSet?.total_off_fgm?.value || 0) + extraFgMakes },
+      total_off_2p_made: { value: (statSet?.total_off_2p_made?.value || 0) + extra2PMakes },
       total_off_3p_made: { value: (statSet?.total_off_3p_made?.value || 0) + extra3PMakes },
-      team_total_off_pts: { value: (statSet?.team_total_off_pts?.value || 0) + 3*extra3PMakes },
-      team_total_off_fgm: { value: (statSet?.team_total_off_fgm?.value || 0) + extra3PMakes },
+      total_off_ftm: { value: (statSet?.total_off_ftm?.value || 0) + extraFtMakes },
+
+      total_off_to: { value: (statSet?.total_off_to?.value || 0) + extraTos },
+      off_poss: { value: (statSet?.off_poss?.value || 0) + extraTos },
+
+      team_total_off_pts: { value: (statSet?.team_total_off_pts?.value || 0) + 3*extra3PMakes + 2*extra2PMakes + extraFtMakes },
+      team_total_off_fgm: { value: (statSet?.team_total_off_fgm?.value || 0) + extraFgMakes },
       team_total_off_3p_made: { value: (statSet?.team_total_off_3p_made?.value || 0) + extra3PMakes },
+      team_total_off_ftm: { value: (statSet?.team_total_off_ftm?.value || 0) + extraFtMakes },
+
+      team_total_off_to: { value: (statSet?.team_total_off_to?.value || 0) + extraTos },
+
     };
   };
 
@@ -181,28 +207,29 @@ export class RatingUtils {
     const statGet = (key: string) => {
       return !_.isNil(overrides[key]) ? overrides[key].value : statSet?.[key]?.value || 0;
     };
-
     // The formulate references (MP / (Team_MP / 5)) a fair bit
     // All our team numbers are when the player is on the floor, so we set to 1
 
     const FGA = statSet?.total_off_fga?.value || 0;
     const FGM = statGet("total_off_fgm");
-    const FTM = statSet?.total_off_ftm?.value || 0;
+    const FTM = statGet("total_off_ftm");
     const FTA = statSet?.total_off_fta?.value || 0;
     const AST = statSet?.total_off_assist?.value || 0;
-    const TOV = statSet?.total_off_to?.value || 0;
+    const TOV = statGet("total_off_to");
     const ORB = statSet?.total_off_orb?.value || 0;
-    const FG2PM = statSet?.total_off_2p_made?.value || 0;
+    const FG2PM = statGet("total_off_2p_made");
     const FG3PM = statGet("total_off_3p_made");
-    const offPoss = statSet?.off_poss?.value || 0;
+    const offPoss = statGet("off_poss");
+    const usage = 100*(statSet.off_usage?.value || 0);
+    const Def_SOS = (statSet?.def_adj_opp?.value || avgEfficiency);
 
     const Team_AST = statSet?.team_total_off_assist?.value || 0;
     const Team_FGM = statGet("team_total_off_fgm");
     const Team_FGA = statSet?.team_total_off_fga?.value || 0;
-    const Team_FTM = statSet?.team_total_off_ftm?.value || 0;
+    const Team_FTM = statGet("team_total_off_ftm");
     const Team_FTA = statSet?.team_total_off_fta?.value || 0;
     const Team_PTS = statGet("team_total_off_pts");
-    const Team_TOV = statSet?.team_total_off_to?.value || 0;
+    const Team_TOV = statGet("team_total_off_to");
     const Team_3PM = statGet("team_total_off_3p_made");
 
     // TODO: regress this to bigger samples
@@ -277,8 +304,6 @@ export class RatingUtils {
     // Adjusted efficiency
     // Adapted from: https://www.bigtengeeks.com/new-stat-porpagatu/
 
-    const usage = 100*(statSet.off_usage?.value || 0);
-    const Def_SOS = (statSet?.def_adj_opp?.value || avgEfficiency);
     const o_adj = avgEfficiency / Def_SOS;
     const SD_at_Usage = usage * -.144 + 13.023;
     const SDs_Above_Mean = SD_at_Usage > 0 ? (ORtg - avgEfficiency) / SD_at_Usage : 0;
@@ -386,12 +411,8 @@ export class RatingUtils {
 
   /** Builds the overrides to the raw fields based on stat overrides */
   private static buildDefOverrides(statSet: Record<string, any>) {
-    const getOrOld = (stat: any, fallback: number = 0.0) => {
-      return (_.isNil(stat?.old_value) ? stat?.value : stat.old_value) || fallback;
-    };
-
     const threePTries = (statSet?.oppo_total_def_3p_attempts?.value || 0);
-    const extra3PMakes = ((statSet.oppo_def_3p?.value || 0) - getOrOld(statSet.oppo_def_3p))*threePTries;
+    const extra3PMakes = OverrideUtils.diff(statSet.oppo_def_3p)*threePTries;
 
     return {
       oppo_total_def_pts: { value: (statSet?.oppo_total_def_pts?.value || 0) + 3*extra3PMakes },

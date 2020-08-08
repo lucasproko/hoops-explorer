@@ -57,6 +57,7 @@ describe("HistoryManager", () => {
     );
     const game2: GameFilterParams = {
       team: "test",
+      manual: [{ newVal: 1, rowId: "test", use: true, statName: "test" }],
       year: "2019/20", gender: "Men",
       minRank: "1", maxRank: "150",
       onQuery: "testOn", baseQuery: "testBase",
@@ -66,7 +67,7 @@ describe("HistoryManager", () => {
       filterGarbage: true, queryFilters: "Conf"
     };
     expect(HistoryManager.filterSummary("game-", game2)).toBe(
-      `On/Off: 2019/20 test (M) [1:150] [!garbage] [+Conf]: on:'testOn', off:'testOff', base:'testBase', luck:[baseline], team:[on-off-luck]`
+      `On/Off: 2019/20 test (M) [1:150] [!garbage] [+Conf]: on:'testOn', off:'testOff', base:'testBase', luck:[baseline], [overrides], team:[on-off-luck]`
     );
   });
   test("HistoryManager - lineupFilterSummary", () => {
@@ -123,19 +124,19 @@ describe("HistoryManager", () => {
     expect(HistoryManager.teamReportFilterSummary(report2)).toBe(
       `On/Off Report: 2018/19 team3 (W) [10:370]: query:'test ""' (sort:test-sort, filter:'Test"Filter', show:[])`
     );
-    expect(HistoryManager.teamReportFilterSummary(_.merge(_.clone(report2), { showOnOff: false, showComps: true }))).toBe(
+    expect(HistoryManager.teamReportFilterSummary(_.assign(_.clone(report2), { showOnOff: false, showComps: true }))).toBe(
       `On/Off Report: 2018/19 team3 (W) [10:370]: query:'test ""' (sort:test-sort, filter:'Test"Filter', show:[!on/off,comps])`
     );
-    expect(HistoryManager.teamReportFilterSummary(_.merge(_.clone(report2), { incRepOnOff: true, regressDiffs: 0 }))).toBe(
+    expect(HistoryManager.teamReportFilterSummary(_.assign(_.clone(report2), { incRepOnOff: true, regressDiffs: 0 }))).toBe(
       `On/Off Report: 2018/19 team3 (W) [10:370]: query:'test ""' (sort:test-sort, filter:'Test"Filter', show:[r:on-off:R0])`
     );
-    expect(HistoryManager.teamReportFilterSummary(_.merge(_.clone(report2), { incRapm: true, rapmDiagMode: "" }))).toBe(
+    expect(HistoryManager.teamReportFilterSummary(_.assign(_.clone(report2), { incRapm: true, rapmDiagMode: "" }))).toBe(
       `On/Off Report: 2018/19 team3 (W) [10:370]: query:'test ""' (sort:test-sort, filter:'Test"Filter', show:[rapm])`
     );
-    expect(HistoryManager.teamReportFilterSummary(_.merge(_.clone(report2), { incRapm: true, rapmDiagMode: "base" }))).toBe(
+    expect(HistoryManager.teamReportFilterSummary(_.assign(_.clone(report2), { incRapm: true, rapmDiagMode: "base" }))).toBe(
       `On/Off Report: 2018/19 team3 (W) [10:370]: query:'test ""' (sort:test-sort, filter:'Test"Filter', show:[rapm,rapm:diag])`
     );
-    expect(HistoryManager.teamReportFilterSummary(_.merge(_.clone(report2), { incRepOnOff: true, repOnOffDiagMode: 10 }))).toBe(
+    expect(HistoryManager.teamReportFilterSummary(_.assign(_.clone(report2), { incRepOnOff: true, repOnOffDiagMode: 10 }))).toBe(
       `On/Off Report: 2018/19 team3 (W) [10:370]: query:'test ""' (sort:test-sort, filter:'Test"Filter', show:[r:on-off,r:on-off:diag])`
     );
   });

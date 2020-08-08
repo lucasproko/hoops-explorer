@@ -37,6 +37,65 @@ describe("RatingUtils", () => {
     expect(rawORtg2).toEqual(expORtg);
     expect(rawAdjORtg2).toEqual(expORtgAdj);
   });
+  test("RatingUtils - buildOffOverrides", () => {
+    const outputs = {
+      total_off_fgm: { value: 0.0001 },
+      total_off_2p_made: { value: 0.0002 },
+      total_off_3p_made: { value: 0.0003 },
+      total_off_ftm: { value: 0.0004 },
+      team_total_off_pts: { value: 0.0005 },
+      team_total_off_fgm: undefined, //(check it will be set as 0)
+      team_total_off_3p_made: { value: 0.0007 },
+      team_total_off_ftm: { value: 0.0008 },
+      team_total_off_to: { value: 0.0009 }
+    };
+    const testStatSet = {
+      // some volume numbers:
+      total_off_3p_attempts: { value: 10 },
+      total_off_2p_attempts: { value: 20 },
+      total_off_fta: { value: 20 },
+      total_off_to: { value: 20 },
+      off_poss: { value: 100 },
+
+      // all the possible overrides currently:
+      off_3p: { value: 0.5, old_value: 0.4 },
+      off_2p: { value: 0.6, old_value: 0.4 },
+      off_ft: { value: 0.9, old_value: 0.7 },
+      off_to: { value: 0.25, old_value: 0.2 },
+
+      // Outputs:
+      ...outputs
+    };
+    expect(RatingUtils.buildOffOverrides(testStatSet)).toEqual({
+      total_off_to: { value: 26.666666666666668 },
+      off_poss: { value: 106.66666666666667 }, //(extra 5% TOs)
+
+      total_off_fgm: { value: 5.000099999999999 },
+      total_off_2p_made: { value: 4.0001999999999995 },
+      total_off_3p_made: { value: 1.0002999999999997 },
+      total_off_ftm: { value: 4.000400000000002 },
+      team_total_off_pts: { value: 15.000499999999999 },
+      team_total_off_fgm: { value: 4.999999999999999 },
+      team_total_off_3p_made: { value: 1.0006999999999997 },
+      team_total_off_ftm: { value: 4.000800000000002 },
+      team_total_off_to: { value: 6.667566666666667 }
+    });
+    // Now just check it does nothing if there are no changes
+    const testStatSet2 = {
+      ...testStatSet,
+      off_3p: { value: 0.4 },
+      off_2p: { value: 0.4 },
+      off_ft: { value: 0.7 },
+      off_to: { value: 0.2 }
+    };
+    expect(RatingUtils.buildOffOverrides(testStatSet2)).toEqual({
+      ...outputs,
+      team_total_off_fgm: { value: 0 },
+      total_off_to: { value: 20 },
+      off_poss: { value: 100 },
+    });
+  });
+
   test("RatingUtils - buildDRtg", () => {
     const playerInfo = _.cloneDeep(
       samplePlayerStatsResponse.aggregations.tri_filter.buckets.baseline.player.buckets[0]

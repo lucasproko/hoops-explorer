@@ -509,7 +509,7 @@ export class RapmUtils {
   ): [ number[], number[] ] {
     // (see pickRidgeRegression for context)
 
-    const ctxNoWeights = _.merge(_.clone(ctx), {
+    const ctxNoWeights = _.assign(_.clone(ctx), {
       unbiasWeight: 0
     });
     const [ offAdjPoss, defAdjPoss ] = RapmUtils.calcLineupOutputs(

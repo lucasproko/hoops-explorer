@@ -114,7 +114,8 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
   ] = PositionUtils.buildPositionalAwareFilter(filterStr);
 
   useEffect(() => { //(this ensures that the filter component is up to date with the union of these fields)
-    const newState = _.chain(startingState).merge({
+    const newState = {
+      ...startingState,
       // Luck
       luck: luckConfig,
       lineupLuck: adjustForLuck,
@@ -126,13 +127,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
       maxTableSize: maxTableSize,
       sortBy: sortBy,
       filter: filterStr
-    }).omit(_.flatten([
-      (decorateLineups == ParamDefaults.defaultLineupDecorate) ? [ 'decorate' ] : [],
-      (showTotals == ParamDefaults.defaultLineupShowTotal) ? [ 'showTotal' ] : [],
-      _.isEqual(luckConfig, ParamDefaults.defaultLuckConfig) ? [ 'luck' ] : [],
-      !adjustForLuck ? [ 'lineupLuck' ] : [],
-      (showLuckAdjDiags == ParamDefaults.defaultOnOffLuckDiagMode) ? [ 'showLineupLuckDiags' ] : []
-    ])).value();
+    };
     onChangeState(newState);
   }, [ decorateLineups, showTotals, minPoss, maxTableSize, sortBy, filterStr,
         luckConfig, adjustForLuck, showLuckAdjDiags ]);
@@ -253,7 +248,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
 
   const totalLineupId = "TOTAL";
   const totalLineup = showTotals ? [
-    _.merge(LineupUtils.calculateAggregatedLineupStats(filteredLineups), {
+    _.assign(LineupUtils.calculateAggregatedLineupStats(filteredLineups), {
       key: totalLineupId
     })
   ] : [];

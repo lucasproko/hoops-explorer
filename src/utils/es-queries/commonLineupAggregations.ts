@@ -135,6 +135,7 @@ export const commonAggregations = function(
     ...commonAverageShotAggs(dstPrefix, "3p"),
     ...commonAverageShotAggs(dstPrefix, "2prim"),
     ...commonAverageShotAggs(dstPrefix, "2pmid"),
+    ...commonAverageAggs(dstPrefix, "ft", "ftm", "fta"),
     ...commonAverageAggs(dstPrefix, "ftr", "fta", "fga"),
     // Per Possession stats
     ...commonAverageAggs(dstPrefix, "ppp", "pts", "poss", 100.0),

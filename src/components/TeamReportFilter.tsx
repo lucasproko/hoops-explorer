@@ -67,7 +67,7 @@ const TeamReportFilter: React.FunctionComponent<Props> = ({onStats, startingStat
   function buildParamsFromState(includeFilterParams: Boolean): [ TeamReportFilterParams, FilterRequestInfo[] ]
   {
     const primaryRequest: TeamReportFilterParams = includeFilterParams ?
-    _.merge(
+    _.assign(
       buildParamsFromState(false)[0], {
         sortBy: startSortBy,
         filter: startFilter,

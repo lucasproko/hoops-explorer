@@ -143,6 +143,8 @@ export class HistoryManager {
     const luckParams = (showLuckArray.length > 0) ?
       `, luck:[${_.join(showLuckArray, ",")}]` : "";
 
+    const manualParams = p.manual ? `, [overrides]`: "";
+
     // Team view params
 
     const onOffLuck = p.onOffLuck;
@@ -185,7 +187,7 @@ export class HistoryManager {
     const playerParams = (showPlayerArray.length > 0) ?
       `, players:[${_.join(showPlayerArray, ",")}]` : "";
 
-    return `On/Off: ${HistoryManager.commonFilterSummary(p)}: ${on}, ${off}, ${base}${luckParams}${teamParams}${playerParams}`;
+    return `On/Off: ${HistoryManager.commonFilterSummary(p)}: ${on}, ${off}, ${base}${luckParams}${manualParams}${teamParams}${playerParams}`;
   }
 
   /** Returns a summary string for the game filter */

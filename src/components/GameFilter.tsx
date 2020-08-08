@@ -36,6 +36,10 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
 
   const {
     //(common visualization fields across all tables)
+    //(manual overrides)
+    manual: startManual,
+    showPlayerManual: startShowPlayerManual,
+    //(luck)
     luck: startLuck,
     //(these fields are for the team view)
     onOffLuck: startOnOffLuck,
@@ -78,9 +82,13 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
   */
   function buildParamsFromState(includeFilterParams: Boolean): [ GameFilterParams, FilterRequestInfo[] ]  {
     const primaryRequest: GameFilterParams = includeFilterParams ?
-      _.merge(
+      _.assign(
         buildParamsFromState(false)[0], {
           // Common luck stats across all tables:
+          //(manual overrides)
+          manual: startManual,
+          showPlayerManual: startShowPlayerManual,
+          //(luck)
           luck: startLuck,
           // Team luck stats:
           onOffLuck: startOnOffLuck,

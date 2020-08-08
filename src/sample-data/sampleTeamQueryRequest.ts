@@ -226,6 +226,15 @@ export const sampleTeamQueryRequest =       {
                         "script": "(params.my_var1 > 0) ? 1*params.my_var1 / params.my_var2 : 0"
                      }
                   },
+                  "off_ft": {
+                     "bucket_script": {
+                        "buckets_path": {
+                           "my_var2": "total_off_fta",
+                           "my_var1": "total_off_ftm"
+                        },
+                        "script": "(params.my_var1 > 0) ? 1*params.my_var1 / params.my_var2 : 0"
+                     }
+                  },
                   "off_ftr": {
                      "bucket_script": {
                         "buckets_path": {
@@ -533,6 +542,15 @@ export const sampleTeamQueryRequest =       {
                         "buckets_path": {
                            "my_var2": "total_def_2pmid_attempts",
                            "my_var1": "total_def_2pmid_made"
+                        },
+                        "script": "(params.my_var1 > 0) ? 1*params.my_var1 / params.my_var2 : 0"
+                     }
+                  },
+                  "def_ft": {
+                     "bucket_script": {
+                        "buckets_path": {
+                           "my_var2": "total_def_fta",
+                           "my_var1": "total_def_ftm"
                         },
                         "script": "(params.my_var1 > 0) ? 1*params.my_var1 / params.my_var2 : 0"
                      }
