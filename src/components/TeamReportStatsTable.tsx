@@ -26,7 +26,6 @@ import Select, { components} from "react-select";
 
 // Component imports
 import GenericTable, { GenericTableOps, GenericTableColProps } from "./GenericTable";
-import { LineupStatsModel } from './LineupStatsTable';
 import GenericTogglingMenu from "./shared/GenericTogglingMenu";
 import GenericTogglingMenuItem from "./shared/GenericTogglingMenuItem";
 import RapmGlobalDiagView from "./diags/RapmGlobalDiagView";
@@ -43,6 +42,9 @@ import { averageStatsInfo } from '../utils/internal-data/averageStatsInfo';
 import { CbbColors } from "../utils/CbbColors";
 import { OnOffReportDiagUtils } from "../utils/stats/OnOffReportDiagUtils";
 import { CommonTableDefs } from "../utils/CommonTableDefs";
+import { LineupStatsModel } from '../components/LineupStatsTable';
+import { RosterStatsModel } from '../components/RosterStatsModel';
+import { TeamStatsModel } from '../components/TeamStatsModel';
 
 /** Convert from LineupStatsModel into this */
 export type TeamReportStatsModel = {
@@ -51,13 +53,18 @@ export type TeamReportStatsModel = {
   error_code?: string
 }
 type Props = {
-  lineupReport: LineupStatsModel,
   startingState: TeamReportFilterParams;
+  dataEvent: {
+    lineupStats: LineupStatsModel,
+    teamStats: TeamStatsModel,
+    rosterStats: RosterStatsModel,
+  },
   onChangeState: (newParams: TeamReportFilterParams) => void;
   testMode?: boolean; //(if set, the initial processing occurs synchronously)
 }
 
-const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, startingState, onChangeState, testMode}) => {
+const TeamReportStatsTable: React.FunctionComponent<Props> = ({startingState, dataEvent, onChangeState, testMode}) => {
+  const { lineupStats, teamStats, rosterStats } = dataEvent;
 
   const topRef = React.createRef<HTMLDivElement>();
 
@@ -158,7 +165,7 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
     // we're processing (vs just being unresponsive)
     setInBrowserRepOnOffPxing(inBrowserRepOnOffPxing + 1);
 
-  }, [ lineupReport, incReplacementOnOff, incRapm, regressDiffs, repOnOffDiagMode, rapmDiagMode ] );
+  }, [ lineupStats, incReplacementOnOff, incRapm, regressDiffs, repOnOffDiagMode, rapmDiagMode ] );
 
   /** logic to perform whenever the data changes (or the metadata in such a way re-processing is required) */
   const onDataChangeProcessing = (inLineupReport: LineupStatsModel) => {
@@ -169,7 +176,7 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
       if (incRapm) {
         try {
           const rapmContext = RapmUtils.buildPlayerContext(
-            tempTeamReport.players || [], lineupReport.lineups || [],
+            tempTeamReport.players || [], lineupStats.lineups || [],
             avgEfficiency
           );
           const [ offRapmWeights, defRapmWeights ] = RapmUtils.calcPlayerWeights(rapmContext);
@@ -209,7 +216,7 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
   React.useEffect(() => {
     if (inBrowserRepOnOffPxing > 0) {
       setTimeout(() => { //(ensures that the "processing" element is returned _before_ the processing starts)
-        onDataChangeProcessing(lineupReport);
+        onDataChangeProcessing(lineupStats);
         setInBrowserRepOnOffPxing(inBrowserRepOnOffPxing - 1);
       }, 1);
     }
@@ -218,7 +225,7 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({lineupReport, sta
   // Called fron unit test so we build the snapshot based on the actual data
   if (testMode) {
     if (playersWithAdjEff.length == 0) { //(ensure that unit tests don't re-render to infinity)
-      onDataChangeProcessing(lineupReport);
+      onDataChangeProcessing(lineupStats);
     }
   }
 

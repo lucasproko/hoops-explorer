@@ -160,14 +160,6 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
     });
   }
 
-  /** Builds the query issued to the API server - the response handling is generic */
-  function onSubmit(paramObj: FilterParamsType) {
-    return [{
-      context: ParamPrefixes.game,
-      paramsObj: paramObj
-    }];
-  }
-
   /** Sets the automatically generated off query, if that option is selected */
   const setAutoOffQuery = (onQuery: string) => {
     setOffQuery(onQuery == "" ? "" : `NOT (${onQuery})`);

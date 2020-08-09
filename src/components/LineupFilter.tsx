@@ -70,21 +70,21 @@ const LineupFilter: React.FunctionComponent<Props> = ({onStats, startingState, o
   function buildParamsFromState(includeFilterParams: Boolean): [ LineupFilterParams, FilterRequestInfo[] ]
   {
     const primaryRequest: LineupFilterParams = includeFilterParams ?
-    _.assign(
-      buildParamsFromState(false)[0], {
-        // Luck stats:
-        luck: startLuck,
-        lineupLuck: startLineupLuck, showLineupLuckDiags: startShowLineupLuckDiags,
-        // Filters etc
-        decorate: startDecorate,
-        showTotal: startShowTotal,
-        maxTableSize: startMaxTableSize,
-        minPoss: startMinPoss,
-        sortBy: startSortBy,
-        filter: startFilter
-    }) : {
-      ...commonParams
-    };
+      _.assign(
+        buildParamsFromState(false)[0], {
+          // Luck stats:
+          luck: startLuck,
+          lineupLuck: startLineupLuck, showLineupLuckDiags: startShowLineupLuckDiags,
+          // Filters etc
+          decorate: startDecorate,
+          showTotal: startShowTotal,
+          maxTableSize: startMaxTableSize,
+          minPoss: startMinPoss,
+          sortBy: startSortBy,
+          filter: startFilter
+      }) : {
+        ...commonParams
+      };
     //(another ugly hack to be fixed - remove default optional fields)
     QueryUtils.cleanseQuery(primaryRequest);
 
@@ -131,14 +131,6 @@ const LineupFilter: React.FunctionComponent<Props> = ({onStats, startingState, o
       error_code: wasError ? (rosterStatsJson?.status || jsonStatuses?.[2] ||
           globalRosterStatsJson?.status || jsonStatuses?.[3] || "Unknown") : undefined
     });
-  }
-
-  /** Builds the query issued to the API server - the response handling is generic */
-  function onSubmit(paramObj: FilterParamsType) {
-    return [{
-      context: ParamPrefixes.lineup,
-      paramsObj: paramObj
-    }];
   }
 
   // Visual components:

@@ -24,6 +24,8 @@ import { ParamPrefixes, GameFilterParams, LineupFilterParams, TeamReportFilterPa
 import { HistoryManager } from '../utils/HistoryManager';
 import TeamReportStatsTable from '../components/TeamReportStatsTable';
 import { LineupStatsModel } from '../components/LineupStatsTable';
+import { RosterStatsModel } from '../components/RosterStatsModel';
+import { TeamStatsModel } from '../components/TeamStatsModel';
 import GenericCollapsibleCard from '../components/shared/GenericCollapsibleCard';
 import Footer from '../components/shared/Footer';
 import HeaderBar from '../components/shared/HeaderBar';
@@ -46,10 +48,14 @@ const TeamReportPage: NextPage<{}> = () => {
   // Team Stats interface
 
   const [ gaInited, setGaInited ] = useState(false);
-  const [ teamReportStats, setTeamReportStats ] = useState({} as LineupStatsModel);
+  const [ dataEvent, setDataEvent ] = useState({
+    lineupStats: {} as LineupStatsModel,
+    teamStats: {on: {}, off: {}, baseline: {}} as TeamStatsModel,
+    rosterStats: {on: [], off: [], baseline: []} as RosterStatsModel
+  });
 
-  const injectStats = (teamReportStats: LineupStatsModel) => {
-    setTeamReportStats(teamReportStats);
+  const injectStats = (lineupStats: LineupStatsModel, teamStats: TeamStatsModel, rosterStats: RosterStatsModel) => {
+    setDataEvent({ lineupStats, teamStats, rosterStats });
   }
 
   // Game filter
@@ -124,8 +130,8 @@ const TeamReportPage: NextPage<{}> = () => {
     <Row>
       <GenericCollapsibleCard title="Team Analysis" helpLink={maybeShowDocs()}>
         <TeamReportStatsTable
-          lineupReport={teamReportStats}
           startingState={teamReportFilterParams}
+          dataEvent={dataEvent}
           onChangeState={onTeamReportFilterParamsChange}
         />
       </GenericCollapsibleCard>

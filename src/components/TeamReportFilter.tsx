@@ -16,14 +16,16 @@ import Col from 'react-bootstrap/Col';
 // Component imports:
 import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
 import { LineupStatsModel } from '../components/LineupStatsTable';
+import { RosterStatsModel } from '../components/RosterStatsModel';
+import { TeamStatsModel } from '../components/TeamStatsModel';
 import CommonFilter from '../components/CommonFilter';
-import { ParamPrefixes, ParamPrefixesType, CommonFilterParams, FilterRequestInfo, TeamReportFilterParams } from "../utils/FilterModels";
+import { ParamDefaults, ParamPrefixes, ParamPrefixesType, CommonFilterParams, FilterRequestInfo, TeamReportFilterParams } from "../utils/FilterModels";
 
 // Utils
 import { QueryUtils } from '../utils/QueryUtils';
 
 type Props = {
-  onStats: (reportStats: LineupStatsModel) => void;
+  onStats: (lineupStats: LineupStatsModel, teamStats: TeamStatsModel, rosterStats: RosterStatsModel) => void;
   startingState: TeamReportFilterParams;
   onChangeState: (newParams: TeamReportFilterParams) => void;
 }
@@ -78,25 +80,52 @@ const TeamReportFilter: React.FunctionComponent<Props> = ({onStats, startingStat
         regressDiffs: startingRegressDiffs,
         repOnOffDiagMode: startingRepOnOffDiagMode,
         rapmDiagMode: startingRapmDiagMode
-    }) : {
-      ...commonParams
-    };
-    //(another ugly hack to be fixed - remove default optional fields)
-    QueryUtils.cleanseQuery(primaryRequest);
+      }) : {
+        ...commonParams
+      };
 
-    return [ primaryRequest, [] ];
+    const secondaryRequest = {
+      ...primaryRequest,
+      onQuery: "", offQuery: ""
+    };
+
+    const entireSeasonRequest = { // Get the entire season of players for things like luck adjustments
+      team: primaryRequest.team, year: primaryRequest.year, gender: primaryRequest.gender,
+      minRank: ParamDefaults.defaultMinRank, maxRank: ParamDefaults.defaultMaxRank,
+      baseQuery: "", onQuery: "", offQuery: ""
+    };
+
+    return [ primaryRequest, [{
+        context: ParamPrefixes.game as ParamPrefixesType, paramsObj: secondaryRequest
+      }, {
+        context: ParamPrefixes.player as ParamPrefixesType, paramsObj: secondaryRequest
+      }].concat(_.isEqual(entireSeasonRequest, secondaryRequest) ? [] :[{ //(don't make a spurious call)
+        context: ParamPrefixes.player as ParamPrefixesType, paramsObj: entireSeasonRequest
+      }])
+    ];
   }
 
+  /** Handles the response from ES to a stats calc request */
   function handleResponse(jsonResps: any[], wasError: Boolean) {
-    //TODO: fix this per GameFilter
+    const jsonStatuses = jsonResps.map(j => j.status);
+    const lineupJson = jsonResps?.[0]?.responses?.[0] || {};
+    const teamJson = jsonResps?.[1]?.responses?.[0] || {};
+    const rosterStatsJson = jsonResps?.[2]?.responses?.[0] || {};
+    const globalRosterStatsJson = jsonResps?.[3]?.responses?.[0] || rosterStatsJson;
 
-    const json = jsonResps[0] || []; //(currently just one request)
-
-    const jsons = json?.responses || [];
-    const lineupJson = (jsons.length > 0) ? jsons[0] : {};
     onStats({
       lineups: lineupJson?.aggregations?.lineups?.buckets,
-      error_code: wasError ? (lineupJson?.status || json?.status) : undefined
+      error_code: wasError ? (lineupJson?.status || jsonStatuses?.[0] || "Unknown") : undefined
+    }, {
+      on: {}, off: {}, onOffMode: true,
+      baseline: teamJson?.aggregations?.tri_filter?.buckets?.baseline || {},
+      global: teamJson?.aggregations?.global?.only?.buckets?.team || {},
+      error_code: wasError ? (teamJson?.status || jsonStatuses?.[1] || "Unknown") : undefined
+    }, {
+      baseline: rosterStatsJson?.aggregations?.tri_filter?.buckets?.baseline?.player?.buckets || [],
+      global: globalRosterStatsJson?.aggregations?.tri_filter?.buckets?.baseline?.player?.buckets || [],
+      error_code: wasError ? (rosterStatsJson?.status || jsonStatuses?.[2] ||
+          globalRosterStatsJson?.status || jsonStatuses?.[3] || "Unknown") : undefined
     });
   }
 

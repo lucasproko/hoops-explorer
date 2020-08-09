@@ -51,7 +51,21 @@ exports[`TeamReportPage TeamReportPage - should create snapshot 1`] = `
       title="Team Analysis"
     >
       <TeamReportStatsTable
-        lineupReport={Object {}}
+        dataEvent={
+          Object {
+            "lineupStats": Object {},
+            "rosterStats": Object {
+              "baseline": Array [],
+              "off": Array [],
+              "on": Array [],
+            },
+            "teamStats": Object {
+              "baseline": Object {},
+              "off": Object {},
+              "on": Object {},
+            },
+          }
+        }
         onChangeState={[Function]}
         startingState={Object {}}
       />

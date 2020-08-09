@@ -1,13 +1,15 @@
 import React from 'react';
 import TeamReportFilter from '../TeamReportFilter';
 import { TeamReportFilterParams } from "../utils/FilterModels";
-import { TeamReportStatsModel } from '../TeamReportStatsTable';
+import { LineupStatsModel } from '../components/LineupStatsTable';
+import { RosterStatsModel } from '../components/RosterStatsModel';
+import { TeamStatsModel } from '../components/TeamStatsModel';
 import { shallow } from 'enzyme'
 import toJson from 'enzyme-to-json'
 
 describe("TeamReportFilter", () => {
   test("TeamReportFilter - should create snapshot", () => {
-    const dummySubmitCallback = (stats: TeamReportStatsModel) => {};
+    const dummySubmitCallback = (lineupStats: LineupStatsModel, teamStats: TeamStatsModel, rosterStats: RosterStatsModel) => {};
     const dummyChangeStateCallback = (stats: TeamReportFilterParams) => {};
     const wrapper = shallow(<TeamReportFilter
       onStats={dummySubmitCallback}

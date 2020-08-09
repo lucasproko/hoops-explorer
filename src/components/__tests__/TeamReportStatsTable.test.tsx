@@ -3,38 +3,84 @@ import React from 'react';
 import TeamReportStatsTable, { TeamReportStatsModel } from '../TeamReportStatsTable';
 import { LineupStatsModel } from '../LineupStatsTable';
 import { TeamReportFilterParams } from "../utils/FilterModels";
-import { sampleLineupStatsResponse } from "../../sample-data/sampleLineupStatsResponse"
-import { shallow } from 'enzyme'
-import toJson from 'enzyme-to-json'
+import { sampleLineupStatsResponse } from "../../sample-data/sampleLineupStatsResponse";
+import { sampleTeamStatsResponse } from "../../sample-data/sampleTeamStatsResponse";
+import { samplePlayerStatsResponse } from "../../sample-data/samplePlayerStatsResponse";
+import { shallow } from 'enzyme';
+import toJson from 'enzyme-to-json';
+import _ from "lodash";
 
 describe("TeamReportStatsTable", () => {
-  test("TeamReportStatsTable - should create snapshot", () => {
+  test("TeamReportStatsTable - should create snapshot (no individual data)", () => {
     const testData = {
       lineups: sampleLineupStatsResponse.responses[0].aggregations.lineups.buckets
     };
     const dummyChangeStateCallback = (stats: TeamReportFilterParams) => {};
     const wrapper = shallow(
       <TeamReportStatsTable
-        lineupReport={testData}
         startingState={{}}
+        dataEvent={{
+          teamStats: { on:{}, off: {}, baseline: {}, global: {}, onOffMode: true },
+          rosterStats: {},
+          lineupStats: testData
+        }}
         onChangeState={dummyChangeStateCallback}
         testMode = {true}
       />
     );
     expect(toJson(wrapper)).toMatchSnapshot();
   });
-  test("TeamReportStatsTable - should create snapshot (all viewing modes on)", () => {
+  test("TeamReportStatsTable - should create snapshot (with individual data)", () => {
+    const testData = {
+      lineups: sampleLineupStatsResponse.responses[0].aggregations.lineups.buckets
+    };
+    const teamData = _.assign(
+      sampleTeamStatsResponse.aggregations.tri_filter.buckets,
+      { global: {}, onOffMode: true }
+    );
+    const playerData = {
+      baseline: samplePlayerStatsResponse.aggregations.tri_filter.buckets.on.player.buckets,
+      global: samplePlayerStatsResponse.aggregations.tri_filter.buckets.baseline.player.buckets
+    };
+    const dummyChangeStateCallback = (stats: TeamReportFilterParams) => {};
+    const wrapper = shallow(
+      <TeamReportStatsTable
+        startingState={{}}
+        dataEvent={{
+          teamStats: teamData,
+          rosterStats: playerData,
+          lineupStats: testData
+        }}
+        onChangeState={dummyChangeStateCallback}
+        testMode = {true}
+      />
+    );
+    expect(toJson(wrapper)).toMatchSnapshot();
+  });
+  test("TeamReportStatsTable - should create snapshot (with individual data - all viewing modes on)", () => {
 
     //TODO: RAPM, but need some better sample data
 
     const testData = {
       lineups: sampleLineupStatsResponse.responses[0].aggregations.lineups.buckets
     };
+    const teamData = _.assign(
+      sampleTeamStatsResponse.aggregations.tri_filter.buckets,
+      { global: {}, onOffMode: true }
+    );
+    const playerData = {
+      baseline: samplePlayerStatsResponse.aggregations.tri_filter.buckets.on.player.buckets,
+      global: samplePlayerStatsResponse.aggregations.tri_filter.buckets.baseline.player.buckets
+    };
     const dummyChangeStateCallback = (stats: TeamReportFilterParams) => {};
     const wrapper = shallow(
       <TeamReportStatsTable
-        lineupReport={testData}
         startingState={{incRepOnOff: true}}
+        dataEvent={{
+          teamStats: teamData,
+          rosterStats: playerData,
+          lineupStats: testData
+        }}
         onChangeState={dummyChangeStateCallback}
         testMode = {true}
       />
@@ -44,30 +90,54 @@ describe("TeamReportStatsTable", () => {
 
   // TODO: RAPM diagnostics mode, but need some better sample data
 
-  test("TeamReportStatsTable - should create snapshot (rep on-off diagnostic mode)", () => {
+  test("TeamReportStatsTable - should create snapshot (with individual data - rep on-off diagnostic mode)", () => {
     const testData = {
       lineups: sampleLineupStatsResponse.responses[0].aggregations.lineups.buckets
+    };
+    const teamData = _.assign(
+      sampleTeamStatsResponse.aggregations.tri_filter.buckets,
+      { global: {}, onOffMode: true }
+    );
+    const playerData = {
+      baseline: samplePlayerStatsResponse.aggregations.tri_filter.buckets.on.player.buckets,
+      global: samplePlayerStatsResponse.aggregations.tri_filter.buckets.baseline.player.buckets
     };
     const dummyChangeStateCallback = (stats: TeamReportFilterParams) => {};
     const wrapper = shallow(
       <TeamReportStatsTable
-        lineupReport={testData}
         startingState={{incRepOnOff: true, repOnOffDiagMode: "20"}}
+        dataEvent={{
+          teamStats: teamData,
+          rosterStats: playerData,
+          lineupStats: testData
+        }}
         onChangeState={dummyChangeStateCallback}
         testMode = {true}
       />
     );
     expect(toJson(wrapper)).toMatchSnapshot();
   });
-  test("TeamReportStatsTable - should create snapshot (rep on-off diagnostic mode, expanded)", () => {
+  test("TeamReportStatsTable - should create snapshot (with individual data - rep on-off diagnostic mode, expanded)", () => {
     const testData = {
       lineups: sampleLineupStatsResponse.responses[0].aggregations.lineups.buckets
+    };
+    const teamData = _.assign(
+      sampleTeamStatsResponse.aggregations.tri_filter.buckets,
+      { global: {}, onOffMode: true }
+    );
+    const playerData = {
+      baseline: samplePlayerStatsResponse.aggregations.tri_filter.buckets.on.player.buckets,
+      global: samplePlayerStatsResponse.aggregations.tri_filter.buckets.baseline.player.buckets
     };
     const dummyChangeStateCallback = (stats: TeamReportFilterParams) => {};
     const wrapper = shallow(
       <TeamReportStatsTable
-        lineupReport={testData}
         startingState={{incRepOnOff: true, repOnOffDiagMode: "20", filter: "AaWiggins"}}
+        dataEvent={{
+          teamStats: teamData,
+          rosterStats: playerData,
+          lineupStats: testData
+        }}
         onChangeState={dummyChangeStateCallback}
         testMode = {true}
       />
