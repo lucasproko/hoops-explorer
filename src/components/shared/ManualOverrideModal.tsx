@@ -183,7 +183,7 @@ const ManualOverrideModal: React.FunctionComponent<Props> = ({tableType, inStats
 
   // View
 
-  const statsTableFields = CommonTableDefs.onOffIndividualTable(true);
+  const statsTableFields = CommonTableDefs.onOffIndividualTable(true, false); //(expanded view, abs poss count)
 
   return <div><Modal size="lg" {...props}>
     <Modal.Header closeButton>

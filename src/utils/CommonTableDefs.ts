@@ -96,7 +96,8 @@ export class CommonTableDefs {
     return val?.hasOwnProperty("value") ? GenericTableOps.percentFormatter(val) : GenericTableOps.htmlFormatter(val);
   }
 
-  static onOffIndividualTable = (expandedView: boolean) => { return { //accessors vs column metadata
+  /** All stats that could possibly be used in the roster stats table */
+  static onOffIndividualTableAllFields = (expandedView: boolean) => { return { //accessors vs column metadata
     "title": expandedView ?
       GenericTableOps.addTitle("", "", CommonTableDefs.rowSpanCalculator, "small", GenericTableOps.htmlFormatter) :
       GenericTableOps.addTitle("", "", CommonTableDefs.singleLineRowSpanCalculator, "small", GenericTableOps.htmlFormatter)
@@ -141,6 +142,16 @@ export class CommonTableDefs {
     "team_poss_pct": GenericTableOps.addPctCol("Poss%", "% of team possessions in selected lineups that player was on the floor", GenericTableOps.defaultColorPicker),
     "adj_opp": GenericTableOps.addPtsCol("SoS", "Weighted average of the offensive or defensive efficiencies of the player's opponents", GenericTableOps.defaultColorPicker),
   }; };
+
+  /** Specific fields required for an instance of a roster stats table */
+  static readonly onOffIndividualTable = (expandedView: boolean, possAsPct: boolean) => {
+    return _.omit(CommonTableDefs.onOffIndividualTableAllFields(expandedView),
+      [
+        expandedView ?  "drb"  : "adj_opp",
+        possAsPct ? "team_poss" : "team_poss_pct",
+      ]
+    );
+  };
 
   // LINEUP:
 
