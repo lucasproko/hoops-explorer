@@ -35,6 +35,10 @@ const TeamReportFilter: React.FunctionComponent<Props> = ({onStats, startingStat
   // Data model
 
   const {
+    // Luck stats:
+    luck: startLuck,
+    teamLuck: startTeamLuck,
+    //  display/processing
     sortBy: startSortBy,
     filter: startFilter,
     showOnOff: startShowOnOff,
@@ -71,6 +75,10 @@ const TeamReportFilter: React.FunctionComponent<Props> = ({onStats, startingStat
     const primaryRequest: TeamReportFilterParams = includeFilterParams ?
     _.assign(
       buildParamsFromState(false)[0], {
+        // Luck stats:
+        luck: startLuck,
+        teamLuck: startTeamLuck,
+        //  display/processing
         sortBy: startSortBy,
         filter: startFilter,
         showOnOff: startShowOnOff,

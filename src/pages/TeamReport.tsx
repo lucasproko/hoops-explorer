@@ -78,6 +78,8 @@ const TeamReportPage: NextPage<{}> = () => {
       (rawParams.showComps == ParamDefaults.defaultShowComps) ? [ 'showComps' ] : [],
       (rawParams.repOnOffDiagMode == "0") ? [ 'repOnOffDiagMode' ] : [],
       (rawParams.rapmDiagMode == "") ? [ 'rapmDiagMode' ] : [],
+      _.isEqual(rawParams.luck, ParamDefaults.defaultLuckConfig) ? [ 'luck' ] : [],
+      !rawParams.teamLuck ? [ 'teamLuck' ] : [],
     ]));
 
     if (!_.isEqual(params, teamReportFilterParams)) { //(to avoid recursion)

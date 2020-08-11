@@ -6350,6 +6350,9 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
             }
             truthVal={false}
           />
+          <DropdownDivider
+            role="separator"
+          />
           <GenericTogglingMenuItem
             helpLink="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
             onSelect={[Function]}
@@ -10430,6 +10433,9 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
             }
             truthVal={false}
           />
+          <DropdownDivider
+            role="separator"
+          />
           <GenericTogglingMenuItem
             helpLink="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
             onSelect={[Function]}
@@ -13730,6 +13736,9 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
               </span>
             }
             truthVal={false}
+          />
+          <DropdownDivider
+            role="separator"
           />
           <GenericTogglingMenuItem
             helpLink="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
@@ -21199,6 +21208,9 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
               </span>
             }
             truthVal={false}
+          />
+          <DropdownDivider
+            role="separator"
           />
           <GenericTogglingMenuItem
             helpLink="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
@@ -33168,6 +33180,9 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
               </span>
             }
             truthVal={false}
+          />
+          <DropdownDivider
+            role="separator"
           />
           <GenericTogglingMenuItem
             helpLink="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
@@ -47292,6 +47307,9 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
             }
             truthVal={false}
           />
+          <DropdownDivider
+            role="separator"
+          />
           <GenericTogglingMenuItem
             helpLink="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
             onSelect={[Function]}
@@ -60523,6 +60541,9 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
               </span>
             }
             truthVal={false}
+          />
+          <DropdownDivider
+            role="separator"
           />
           <GenericTogglingMenuItem
             helpLink="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"

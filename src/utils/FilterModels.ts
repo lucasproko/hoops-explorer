@@ -106,7 +106,11 @@ export type TeamReportFilterParams = {
   regressDiffs?: string, //+ve to add that number of 0 samples, -ve to regress to the given sample size
   repOnOffDiagMode?: string //(the number of diagnostic lineups to show, basically 0 or 20:sort order:sort field)
   incRapm?: boolean,
-  rapmDiagMode?: string //"" if disabled, "team" if enabled with nobody expanded, "playerId[;playerId]+" if expanded for players
+  rapmDiagMode?: string, //"" if disabled, "team" if enabled with nobody expanded, "playerId[;playerId]+" if expanded for players
+  // Luck adjustments
+  luck?: LuckParams, //(missing iff default)
+  teamLuck?: boolean
+  //(there's no luck diags here because we're applying at the lineup level)
 };
 
 /** Used to give compile errors if a field is omitted, for fw compat */
@@ -148,6 +152,7 @@ export class ParamDefaults {
   static readonly defaultTeamReportRepOnOffDiagMode = "0";
   static readonly defaultTeamReportRepOnOffDiagModeIfEnabled = [ "20", "-1", "lineup.off_poss.value" ];
   static readonly defaultTeamReportRapmDiagMode = "";
+  static readonly defaultTeamReportLuckAdjust = false;
   // Common
   static readonly defaultTeam = "";
   static readonly defaultYear = "2019/20";

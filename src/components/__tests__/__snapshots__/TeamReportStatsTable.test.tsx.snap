@@ -9,6 +9,17 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
       active={false}
       text="Press 'Submit' to view results"
     >
+      <LuckConfigModal
+        luck={
+          Object {
+            "base": "season",
+          }
+        }
+        onHide={[Function]}
+        onSave={[Function]}
+        show={false}
+        showHelp={true}
+      />
       <FormRow>
         <FormGroup
           as={
@@ -1282,18 +1293,35 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
               }
               truthVal={false}
             />
-            <DropdownDivider
-              role="separator"
-            />
             <GenericTogglingMenuItem
               onSelect={[Function]}
               text="Show lineup compositions"
               truthVal={false}
             />
+            <DropdownDivider
+              role="separator"
+            />
+            <GenericTogglingMenuItem
+              helpLink="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
+              onSelect={[Function]}
+              text="Adjust for Luck"
+              truthVal={false}
+            />
+            <DropdownDivider
+              role="separator"
+            />
             <GenericTogglingMenuItem
               onSelect={[Function]}
               text="Regress 'r:On-Off' to 2000 samples"
               truthVal={true}
+            />
+            <GenericTogglingMenuItem
+              onSelect={[Function]}
+              text="Configure Luck Adjustments..."
+              truthVal={false}
+            />
+            <DropdownDivider
+              role="separator"
             />
             <GenericTogglingMenuItem
               onSelect={[Function]}
@@ -9758,6 +9786,17 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
       active={false}
       text="Press 'Submit' to view results"
     >
+      <LuckConfigModal
+        luck={
+          Object {
+            "base": "season",
+          }
+        }
+        onHide={[Function]}
+        onSave={[Function]}
+        show={false}
+        showHelp={true}
+      />
       <FormRow>
         <FormGroup
           as={
@@ -11415,18 +11454,35 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
               }
               truthVal={false}
             />
-            <DropdownDivider
-              role="separator"
-            />
             <GenericTogglingMenuItem
               onSelect={[Function]}
               text="Show lineup compositions"
               truthVal={false}
             />
+            <DropdownDivider
+              role="separator"
+            />
+            <GenericTogglingMenuItem
+              helpLink="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
+              onSelect={[Function]}
+              text="Adjust for Luck"
+              truthVal={false}
+            />
+            <DropdownDivider
+              role="separator"
+            />
             <GenericTogglingMenuItem
               onSelect={[Function]}
               text="Regress 'r:On-Off' to 2000 samples"
               truthVal={true}
+            />
+            <GenericTogglingMenuItem
+              onSelect={[Function]}
+              text="Configure Luck Adjustments..."
+              truthVal={false}
+            />
+            <DropdownDivider
+              role="separator"
             />
             <GenericTogglingMenuItem
               onSelect={[Function]}
@@ -24271,6 +24327,17 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
       active={false}
       text="Press 'Submit' to view results"
     >
+      <LuckConfigModal
+        luck={
+          Object {
+            "base": "season",
+          }
+        }
+        onHide={[Function]}
+        onSave={[Function]}
+        show={false}
+        showHelp={true}
+      />
       <FormRow>
         <FormGroup
           as={
@@ -25928,18 +25995,35 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
               }
               truthVal={false}
             />
-            <DropdownDivider
-              role="separator"
-            />
             <GenericTogglingMenuItem
               onSelect={[Function]}
               text="Show lineup compositions"
               truthVal={false}
             />
+            <DropdownDivider
+              role="separator"
+            />
+            <GenericTogglingMenuItem
+              helpLink="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
+              onSelect={[Function]}
+              text="Adjust for Luck"
+              truthVal={false}
+            />
+            <DropdownDivider
+              role="separator"
+            />
             <GenericTogglingMenuItem
               onSelect={[Function]}
               text="Regress 'r:On-Off' to 2000 samples"
               truthVal={true}
+            />
+            <GenericTogglingMenuItem
+              onSelect={[Function]}
+              text="Configure Luck Adjustments..."
+              truthVal={false}
+            />
+            <DropdownDivider
+              role="separator"
             />
             <GenericTogglingMenuItem
               onSelect={[Function]}
@@ -61578,6 +61662,17 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
       active={false}
       text="Press 'Submit' to view results"
     >
+      <LuckConfigModal
+        luck={
+          Object {
+            "base": "season",
+          }
+        }
+        onHide={[Function]}
+        onSave={[Function]}
+        show={false}
+        showHelp={true}
+      />
       <FormRow>
         <FormGroup
           as={
@@ -63235,18 +63330,35 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
               }
               truthVal={false}
             />
-            <DropdownDivider
-              role="separator"
-            />
             <GenericTogglingMenuItem
               onSelect={[Function]}
               text="Show lineup compositions"
               truthVal={false}
             />
+            <DropdownDivider
+              role="separator"
+            />
+            <GenericTogglingMenuItem
+              helpLink="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
+              onSelect={[Function]}
+              text="Adjust for Luck"
+              truthVal={false}
+            />
+            <DropdownDivider
+              role="separator"
+            />
             <GenericTogglingMenuItem
               onSelect={[Function]}
               text="Regress 'r:On-Off' to 2000 samples"
               truthVal={true}
+            />
+            <GenericTogglingMenuItem
+              onSelect={[Function]}
+              text="Configure Luck Adjustments..."
+              truthVal={false}
+            />
+            <DropdownDivider
+              role="separator"
             />
             <GenericTogglingMenuItem
               onSelect={[Function]}
@@ -66019,6 +66131,17 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
       active={false}
       text="Press 'Submit' to view results"
     >
+      <LuckConfigModal
+        luck={
+          Object {
+            "base": "season",
+          }
+        }
+        onHide={[Function]}
+        onSave={[Function]}
+        show={false}
+        showHelp={true}
+      />
       <FormRow>
         <FormGroup
           as={
@@ -67292,18 +67415,35 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
               }
               truthVal={false}
             />
-            <DropdownDivider
-              role="separator"
-            />
             <GenericTogglingMenuItem
               onSelect={[Function]}
               text="Show lineup compositions"
               truthVal={false}
             />
+            <DropdownDivider
+              role="separator"
+            />
+            <GenericTogglingMenuItem
+              helpLink="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
+              onSelect={[Function]}
+              text="Adjust for Luck"
+              truthVal={false}
+            />
+            <DropdownDivider
+              role="separator"
+            />
             <GenericTogglingMenuItem
               onSelect={[Function]}
               text="Regress 'r:On-Off' to 2000 samples"
               truthVal={true}
+            />
+            <GenericTogglingMenuItem
+              onSelect={[Function]}
+              text="Configure Luck Adjustments..."
+              truthVal={false}
+            />
+            <DropdownDivider
+              role="separator"
             />
             <GenericTogglingMenuItem
               onSelect={[Function]}
