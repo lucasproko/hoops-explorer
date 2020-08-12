@@ -613,7 +613,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
         inStats={playersAsList}
         statsAsTable={mutableTableDisplayForOverrides}
         overrides={manualOverrides}
-        show={showManualOverrides}
+        show={showManualOverrides && !_.isEmpty(rosterStats?.baseline || [])}
         onHide={() => setShowManualOverrides(false)}
         onSave={(overrides: ManualOverride[]) => setManualOverrides(overrides)}
         showHelp={false}
