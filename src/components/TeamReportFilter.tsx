@@ -16,7 +16,7 @@ import Col from 'react-bootstrap/Col';
 // Component imports:
 import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
 import { LineupStatsModel } from '../components/LineupStatsTable';
-import { RosterStatsModel } from '../components/RosterStatsModel';
+import { RosterStatsModel } from '../components/RosterStatsTable';
 import { TeamStatsModel } from '../components/TeamStatsModel';
 import CommonFilter from '../components/CommonFilter';
 import { ParamDefaults, ParamPrefixes, ParamPrefixesType, CommonFilterParams, FilterRequestInfo, TeamReportFilterParams } from "../utils/FilterModels";
