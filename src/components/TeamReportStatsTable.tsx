@@ -234,8 +234,6 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({startingState, da
 
       // Processing
 
-//TODO: ugh need to show the different values?
-
       const tempTeamReport = LineupUtils.lineupToTeamReport(
         inLineupStats, incReplacementOnOff, regressDiffs, repOnOffDiagModeNumLineups
       );
@@ -251,7 +249,17 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({startingState, da
           );
           RapmUtils.injectRapmIntoPlayers(
             tempTeamReport.players || [], offRapmInputs, defRapmInputs, statsAverages, rapmContext
-          )
+          );
+          if (adjustForLuck) { // (Calculate RAPM without luck, for display purposes)
+            const [ offNoLuckRapmInputs, defNoLuckRapmInputs ] = RapmUtils.pickRidgeRegression(
+              offRapmWeights, defRapmWeights, rapmContext, (rapmDiagMode != ""),
+              true //<- uses old_value (ie pre-luck-adjusted)
+            );
+            RapmUtils.injectRapmIntoPlayers(
+              tempTeamReport.players || [], offNoLuckRapmInputs, defNoLuckRapmInputs, statsAverages, rapmContext,
+              true //<- only applies RAPM to old_values
+            );
+          }
           setRapmInfo({
             ctx: rapmContext,
             preProcDiags: (rapmDiagMode != "") ?
