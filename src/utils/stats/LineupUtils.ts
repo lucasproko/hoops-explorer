@@ -232,25 +232,26 @@ export class LineupUtils {
       const key = keyVal[0];
       if (!LineupUtils.ignoreFieldSet.hasOwnProperty(key)) {
         const val = keyVal[1]?.value || 0;
-        const oldVal = keyVal[1]?.old_value || undefined; //(used in luck adjustment)
+        const oldVal = keyVal[1]?.old_value || 0; //(used in luck adjustment)
+        const oldValOverride = keyVal[1]?.override;
         // all the shot type stats:
         const totalShotTypeKey: string | undefined = LineupUtils.getShotTypeField(key);
 
         if (!mutableAcc.hasOwnProperty(key)) { //(init if necessary)
           mutableAcc[key] = { value: 0 };
-          if (oldVal) { //(luck adjustment)
+          if (oldValOverride) { //(luck adjustment)
             mutableAcc[key].old_value = 0;
-            mutableAcc[key].override = keyVal[1]?.override;
+            mutableAcc[key].override = oldValOverride;
           }
         }
         if (totalShotTypeKey) {
           mutableAcc[key].value += val*obj[totalShotTypeKey]?.value || 0;
-          if (oldVal) {
+          if (oldValOverride) {
             mutableAcc[key].old_value += oldVal*obj[totalShotTypeKey]?.value || 0;
           }
         } else if (weights.ppp_totals.hasOwnProperty(key)) {
           mutableAcc[key].value += val*(weights.ppp_totals as any)[key];
-          if (oldVal) {
+          if (oldValOverride) {
             mutableAcc[key].old_value += oldVal*(weights.ppp_totals as any)[key];
           }
         } else if (weights.orb_totals.hasOwnProperty(key)) {
@@ -261,12 +262,12 @@ export class LineupUtils {
           //(no luck adjustment currently)
         } else if (_.startsWith(key, "off_")) { // everything else if off/def FGA
           mutableAcc[key].value += val*weights.fga_totals.off;
-          if (oldVal) {
+          if (oldValOverride) {
             mutableAcc[key].old_value += oldVal*weights.fga_totals.off;
           }
         } else if (_.startsWith(key, "def_")) {
           mutableAcc[key].value += val*weights.fga_totals.def;
-          if (oldVal) {
+          if (oldValOverride) {
             mutableAcc[key].old_value += oldVal*weights.fga_totals.def;
           }
         }
@@ -288,7 +289,8 @@ export class LineupUtils {
 
       if (!LineupUtils.ignoreFieldSet.hasOwnProperty(key)) {
         const val = keyVal[1]?.value || 0;
-        const oldVal = keyVal[1]?.old_value || undefined;
+        const oldVal = keyVal[1]?.old_value || 0;
+        const oldValOverride = keyVal[1]?.override || 0;
 
         if (totalShotTypeKey) {
           const offOrDefWeight = _.startsWith(key, "off_") ?
@@ -297,12 +299,12 @@ export class LineupUtils {
           const adjRegWeight = _.endsWith(key, "2p") ? offOrDefWeight*2.0/3 : offOrDefWeight/3;
 
           mutableAcc[key].value = 1.0*val/(adjRegWeight + mutableAcc[totalShotTypeKey]?.value || 1);
-          if (oldVal) {
+          if (oldValOverride) {
             mutableAcc[key].old_value = 1.0*oldVal/(adjRegWeight + mutableAcc[totalShotTypeKey]?.value || 1);
           }
         } else if (weights.ppp_totals.hasOwnProperty(key)) {
           mutableAcc[key].value = 1.0*val/(weights.ppp_totals as any)[key];
-          if (oldVal) {
+          if (oldValOverride) {
             mutableAcc[key].old_value = 1.0*oldVal/(weights.ppp_totals as any)[key];
           }
         } else if (weights.orb_totals.hasOwnProperty(key)) {
@@ -326,12 +328,12 @@ export class LineupUtils {
           // (no luck adjustment for these stats)
         } else if (_.startsWith(key, "off_")) { // everything else if off/def FGA
           mutableAcc[key].value = 1.0*val/weights.fga_totals.off;
-          if (oldVal) {
+          if (oldValOverride) {
             mutableAcc[key].old_value = 1.0*oldVal/weights.fga_totals.off;
           }
         } else if (_.startsWith(key, "def_")) {
           mutableAcc[key].value = 1.0*val/weights.fga_totals.def;
-          if (oldVal) {
+          if (oldValOverride) {
             mutableAcc[key].old_value = 1.0*oldVal/weights.fga_totals.def;
           }
         }
@@ -434,12 +436,27 @@ export class LineupUtils {
         }
 
         _.keys(harmonicWeights).forEach((key) => {
+          const oldValue = myLineup?.[key]?.old_value;
+          const oldValOverride = myLineup?.[key]?.override;
+
           if ((myLineup?.[key]?.value > 0) && (offLineups?.[key]?.value > 0)) {
             myLineup[key] = { value: LineupUtils.calcHarmonicMean(
               myLineup[key].value, offLineups[key].value
             ) };
           } else {
             myLineup[key] = { value: 0 };
+          }
+          // Same logic but for overridden values:
+          // TODO: in the future neeed to handle when old_value is only present some of the time?
+          if (oldValOverride) {
+            if ((myLineup?.[key]?.old_value > 0) && (offLineups?.[key]?.old_value > 0)) {
+              myLineup[key].old_value = LineupUtils.calcHarmonicMean(
+                myLineup[key].old_value, offLineups[key].old_value
+              );
+              myLineup[key].override = oldValOverride;
+            } else {
+              myLineup[key].old_value = 0;
+            }
           }
         });
         _.chain(myLineup).toPairs().forEach((keyVal) => {
@@ -450,6 +467,10 @@ export class LineupUtils {
             myLineup[key] = { // calc on-off
               value: (keyVal[1]?.value || 0) - (offLineups[key]?.value || 0)
             }; //(gets weigted by offensive pos/FGA/etc, so fine that it's nonsense if no samples)
+            if (keyVal[1].override) {
+              myLineup[key].old_value = (keyVal[1]?.old_value || 0) - (offLineups[key]?.old_value || 0);
+              myLineup[key].override = keyVal[1].override;
+            }
           }
         }).value();
 
