@@ -44,8 +44,8 @@ import { CbbColors } from "../utils/CbbColors";
 import { OnOffReportDiagUtils } from "../utils/stats/OnOffReportDiagUtils";
 import { CommonTableDefs } from "../utils/CommonTableDefs";
 import { LineupStatsModel } from '../components/LineupStatsTable';
-import { RosterStatsModel } from '../components/RosterStatsModel';
-import { TeamStatsModel } from '../components/TeamStatsModel';
+import { RosterStatsModel } from '../components/RosterStatsTable';
+import { TeamStatsModel } from '../components/TeamStatsTable';
 import { LuckUtils, OffLuckAdjustmentDiags, DefLuckAdjustmentDiags, LuckAdjustmentBaseline } from "../utils/stats/LuckUtils";
 
 /** Convert from LineupStatsModel into this */
