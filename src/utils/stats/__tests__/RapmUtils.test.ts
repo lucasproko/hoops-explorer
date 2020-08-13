@@ -2,6 +2,7 @@
 import _ from 'lodash';
 
 import { RapmUtils, RapmPlayerContext, RapmPreProcDiagnostics } from "../RapmUtils";
+import { LuckUtils } from "../LuckUtils";
 // @ts-ignore
 import { apply, transpose, matrix, zeros } from 'mathjs'
 
@@ -36,8 +37,22 @@ export const semiRealRapmResults = {
 
 describe("RapmUtils", () => {
 
+  /** Inject old_values everywhere to test the calcs */
+  const insertOldValues = (mutableLineup: any) => {
+     _.toPairs(mutableLineup as Record<string, any>).forEach(([ key, stat ]: [string, any]) => {
+      if (LuckUtils.affectedFieldSet.has(key) && !_.isNil(stat.value)) {
+        stat.old_value = stat.value;
+        stat.override = "Test override";
+      }
+    });
+    return mutableLineup;
+  };
+
   const lineupReport = {
-    lineups: sampleLineupStatsResponse.responses[0].aggregations.lineups.buckets,
+    lineups: (
+        sampleLineupStatsResponse.responses[0].aggregations.lineups.buckets || []
+      ).map(insertOldValues)
+    ,
     avgOff: 100.0,
     error_code: "test"
   };
@@ -171,65 +186,86 @@ describe("RapmUtils", () => {
         [ "-9.98", "-13.09", "-12.08" ].concat(unbiasWeight > 0 ? [ "-39.60" ] : [])
          //(extra value if adding unbiasing obs)
       ]);
+      const oldValResults = RapmUtils.calcLineupOutputs(
+        "adj_ppp", 100.0, 100.0, context, true
+      );
+      expect(tidyResults(oldValResults)).toEqual([
+        [ "11.23", "-1.97", "7.10" ].concat(unbiasWeight > 0 ? [ "20.60" ] : []),
+        [ "-9.98", "-13.09", "-12.08" ].concat(unbiasWeight > 0 ? [ "-39.60" ] : [])
+         //(extra value if adding unbiasing obs)
+      ]);
     });
   });
 
   test("RapmUtils - pickRidgeRegression", () => {
-    const [ offResults, defResults ] = RapmUtils.pickRidgeRegression(
-      semiRealRapmResults.testOffWeights, semiRealRapmResults.testDefWeights, semiRealRapmResults.testContext, false
-    );
 
-    // Hand checked results, just checking nothing's broken with changes!
+    [ true, false ].forEach((luckAdjusted) => {
+      const [ offResults, defResults ] = RapmUtils.pickRidgeRegression(
+        semiRealRapmResults.testOffWeights, semiRealRapmResults.testDefWeights, semiRealRapmResults.testContext, false,
+        luckAdjusted
+      );
 
-    expect(offResults.prevAttempts.map((o: any) => {
-      return { l: o?.ridgeLambda?.toFixed(2), ex: o?.results?.[0]?.toFixed(2) }
-    })).toEqual( // 4 iterations
-      [ { l: "0.44", ex: "2.00" }, { l: "0.66", ex: "2.17" }, { l: "0.88", ex: "2.25" }, { l: "1.10", ex: "2.29" } ]
-    );
-    expect(offResults.ridgeLambda.toFixed(3)).toEqual("1.097");
-    expect(defResults.prevAttempts.map((o: any) => {
-      return { l: o?.ridgeLambda?.toFixed(2), ex: o?.results?.[0]?.toFixed(2) }
-    })).toEqual( // 4 iterations
-      [ { l: "0.44", ex: "-6.61" }, { l: "0.66", ex: "-5.97" } ]
-    );
-    expect(defResults.ridgeLambda.toFixed(3)).toEqual("0.439");
+      // Hand checked results, just checking nothing's broken with changes!
+
+      expect(offResults.prevAttempts.map((o: any) => {
+        return { l: o?.ridgeLambda?.toFixed(2), ex: o?.results?.[0]?.toFixed(2) }
+      })).toEqual( // 4 iterations
+        [ { l: "0.44", ex: "2.00" }, { l: "0.66", ex: "2.17" }, { l: "0.88", ex: "2.25" }, { l: "1.10", ex: "2.29" } ]
+      );
+      expect(offResults.ridgeLambda.toFixed(3)).toEqual("1.097");
+      expect(defResults.prevAttempts.map((o: any) => {
+        return { l: o?.ridgeLambda?.toFixed(2), ex: o?.results?.[0]?.toFixed(2) }
+      })).toEqual( // 4 iterations
+        [ { l: "0.44", ex: "-6.61" }, { l: "0.66", ex: "-5.97" } ]
+      );
+      expect(defResults.ridgeLambda.toFixed(3)).toEqual("0.439");
+    });
   });
 
   test("RapmUtils - injectRapmIntoPlayers", () => {
-    const [ offResults, defResults ] = RapmUtils.pickRidgeRegression(
-      semiRealRapmResults.testOffWeights, semiRealRapmResults.testDefWeights, semiRealRapmResults.testContext, false
-    );
-    const onOffReport = LineupUtils.lineupToTeamReport(lineupReport);
+    [ true, false ].forEach((luckAdjusted) => {
+      const [ offResults, defResults ] = RapmUtils.pickRidgeRegression(
+        semiRealRapmResults.testOffWeights, semiRealRapmResults.testDefWeights, semiRealRapmResults.testContext, false,
+        luckAdjusted
+      );
+      const onOffReport = LineupUtils.lineupToTeamReport(lineupReport);
 
-    // Check that removed players are handled
-    const players = [ { playerId: "Mitchell, Makhel" } as Record<string, any> ].concat(onOffReport.players || []);
-    RapmUtils.injectRapmIntoPlayers(
-      players, offResults, defResults, {}, semiRealRapmResults.testContext
-    );
+      // Check that removed players are handled
+      const players = [ { playerId: "Mitchell, Makhel" } as Record<string, any> ].concat(onOffReport.players || []);
+      if (luckAdjusted) {  //(needs to be run in normal mode first)
+        RapmUtils.injectRapmIntoPlayers(
+          players, offResults, defResults, {}, semiRealRapmResults.testContext, false
+        );
+      }
+      RapmUtils.injectRapmIntoPlayers(
+        players, offResults, defResults, {}, semiRealRapmResults.testContext, luckAdjusted
+      );
 
-    const resultsToExamine =
-      _.chain((players || [])).map((p) => p.rapm || { noRapm: true }).take(2).map((p: any) => {
-        return _.chain(p).pick(
-          [ "noRapm", "key", "off_adj_ppp", "def_adj_ppp", "off_poss", "def_poss", "off_to", "def_to" ]
-        ).mapValues((v: any) =>
-          (v || {}).hasOwnProperty("value") ? (v?.value || 0).toFixed(2) : v
-        ).value()
-      }).value();
+      const keyToCheck = luckAdjusted ? "old_value" : "value";
+      const resultsToExamine =
+        _.chain((players || [])).map((p) => p.rapm || { noRapm: true }).take(2).map((p: any) => {
+          return _.chain(p).pick(
+            [ "noRapm", "key", "off_adj_ppp", "def_adj_ppp", "off_poss", "def_poss", "off_to", "def_to" ]
+          ).mapValues((v: any) =>
+            (v || {}).hasOwnProperty("value") ? (v?.[keyToCheck] || 0).toFixed(2) : v
+          ).value()
+        }).value();
 
-    expect(resultsToExamine).toEqual([
-         {
-           "noRapm": true,
-         },
-         {
-           "def_adj_ppp": "-5.91",
-           "def_poss": "99.00",
-           "def_to": "0.02",
-           "key": "RAPM Wiggins, Aaron",
-           "off_adj_ppp": "2.78",
-           "off_poss": "101.00",
-           "off_to": "0.00",
-         },
-    ]);
+      expect(resultsToExamine).toEqual([
+           {
+             "noRapm": true,
+           },
+           {
+             "def_adj_ppp": "-5.91",
+             "def_poss": luckAdjusted ? "0.00" : "99.00", //(these don't get an old_value)
+             "def_to": luckAdjusted ? "0.00" : "0.02",
+             "key": "RAPM Wiggins, Aaron",
+             "off_adj_ppp": "2.78",
+             "off_poss": luckAdjusted ? "0.00" : "101.00",
+             "off_to": "0.00",
+           },
+      ]);
+    });
   });
 
   test("RapmUtils - recalcNoUnbiasWeightingRapmForDiag", () => {

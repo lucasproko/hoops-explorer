@@ -278,7 +278,10 @@ export class RapmUtils {
     return transpose(multiply(regressionMatrix, out)).valueOf();
   }
 
-  /** Injects the RAPM predicted diffs into player.rapm */
+  /** Injects the RAPM predicted diffs into player.rapm
+   * NOTE: useOldVals=true needs to be run after useOldVals=false
+   * (since it injects the old value versions into the existing one)
+   */
   static injectRapmIntoPlayers(
     players: Array<Record<string, any>>,
     offRapmInput: RapmProcessingInputs, defRapmInput: RapmProcessingInputs,
