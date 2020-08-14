@@ -579,7 +579,28 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
         </InputGroup>
       </FormGroup>
     </FormRow>
+    <FormRow>
+      <ToggleButtonGroup
+        items={
+          Array [
+            Object {
+              "label": "Luck",
+              "onClick": [Function],
+              "toggled": false,
+              "tooltip": "Adjust statistics for luck",
+            },
+            Object {
+              "label": "Totals",
+              "onClick": [Function],
+              "toggled": false,
+              "tooltip": "Show Weighted Combo of All Lineups",
+            },
+          ]
+        }
+      />
+    </FormRow>
     <ForwardRef
+      className="mt-2"
       noGutters={false}
     >
       <Col>
@@ -6145,7 +6166,28 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
         </InputGroup>
       </FormGroup>
     </FormRow>
+    <FormRow>
+      <ToggleButtonGroup
+        items={
+          Array [
+            Object {
+              "label": "Luck",
+              "onClick": [Function],
+              "toggled": true,
+              "tooltip": "Remove luck adjustments",
+            },
+            Object {
+              "label": "Totals",
+              "onClick": [Function],
+              "toggled": false,
+              "tooltip": "Show Weighted Combo of All Lineups",
+            },
+          ]
+        }
+      />
+    </FormRow>
     <ForwardRef
+      className="mt-2"
       noGutters={false}
     >
       <Col>
@@ -9137,7 +9179,28 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
         </InputGroup>
       </FormGroup>
     </FormRow>
+    <FormRow>
+      <ToggleButtonGroup
+        items={
+          Array [
+            Object {
+              "label": "Luck",
+              "onClick": [Function],
+              "toggled": false,
+              "tooltip": "Adjust statistics for luck",
+            },
+            Object {
+              "label": "Totals",
+              "onClick": [Function],
+              "toggled": false,
+              "tooltip": "Show Weighted Combo of All Lineups",
+            },
+          ]
+        }
+      />
+    </FormRow>
     <ForwardRef
+      className="mt-2"
       noGutters={false}
     >
       <Col>

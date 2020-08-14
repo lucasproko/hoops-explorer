@@ -28,6 +28,7 @@ import { TeamStatsModel } from './TeamStatsTable';
 import LuckConfigModal from './shared/LuckConfigModal';
 import GenericTogglingMenu from './shared/GenericTogglingMenu';
 import GenericTogglingMenuItem from './shared/GenericTogglingMenuItem';
+import ToggleButtonGroup from "./shared/ToggleButtonGroup";
 import LuckAdjDiagView from './diags/LuckAdjDiagView';
 
 // Util imports
@@ -504,7 +505,23 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
           </InputGroup>
         </Form.Group>
       </Form.Row>
-      <Row>
+      <Form.Row>
+        <ToggleButtonGroup items={[
+          {
+            label: "Luck",
+            tooltip: adjustForLuck ? "Remove luck adjustments" : "Adjust statistics for luck",
+            toggled: adjustForLuck,
+            onClick: () => setAdjustForLuck(!adjustForLuck)
+          },
+          {
+            label: "Totals",
+            tooltip: showTotals ? "Hide Weighted Combo of All Lineups" : "Show Weighted Combo of All Lineups",
+            toggled: showTotals,
+            onClick: () => setShowTotals(!showTotals)
+          }
+        ]}/>
+      </Form.Row>
+      <Row className="mt-2">
         <Col>
           <GenericTable tableCopyId="lineupStatsTable" tableFields={CommonTableDefs.lineupTable} tableData={tableData}/>
         </Col>
