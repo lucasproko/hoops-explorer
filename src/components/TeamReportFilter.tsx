@@ -16,8 +16,8 @@ import Col from 'react-bootstrap/Col';
 // Component imports:
 import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
 import { LineupStatsModel } from '../components/LineupStatsTable';
-import { RosterStatsModel } from '../components/RosterStatsModel';
-import { TeamStatsModel } from '../components/TeamStatsModel';
+import { RosterStatsModel } from '../components/RosterStatsTable';
+import { TeamStatsModel } from '../components/TeamStatsTable';
 import CommonFilter from '../components/CommonFilter';
 import { ParamDefaults, ParamPrefixes, ParamPrefixesType, CommonFilterParams, FilterRequestInfo, TeamReportFilterParams } from "../utils/FilterModels";
 
@@ -35,6 +35,10 @@ const TeamReportFilter: React.FunctionComponent<Props> = ({onStats, startingStat
   // Data model
 
   const {
+    // Luck stats:
+    luck: startLuck,
+    teamLuck: startTeamLuck,
+    //  display/processing
     sortBy: startSortBy,
     filter: startFilter,
     showOnOff: startShowOnOff,
@@ -71,6 +75,10 @@ const TeamReportFilter: React.FunctionComponent<Props> = ({onStats, startingStat
     const primaryRequest: TeamReportFilterParams = includeFilterParams ?
     _.assign(
       buildParamsFromState(false)[0], {
+        // Luck stats:
+        luck: startLuck,
+        teamLuck: startTeamLuck,
+        //  display/processing
         sortBy: startSortBy,
         filter: startFilter,
         showOnOff: startShowOnOff,

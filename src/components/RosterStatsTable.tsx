@@ -674,6 +674,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
               truthVal={false}
               onSelect={() => setPossAsPct(!possAsPct)}
             />
+            <Dropdown.Divider />
             <GenericTogglingMenuItem
               text="Adjust for Luck"
               truthVal={adjustForLuck}

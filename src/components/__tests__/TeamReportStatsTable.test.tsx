@@ -88,6 +88,37 @@ describe("TeamReportStatsTable", () => {
     expect(toJson(wrapper)).toMatchSnapshot();
   });
 
+  test("TeamReportStatsTable - should create snapshot (with individual data - all viewing modes on + luck)", () => {
+
+    //TODO: RAPM, but need some better sample data
+
+    const testData = {
+      lineups: sampleLineupStatsResponse.responses[0].aggregations.lineups.buckets
+    };
+    const teamData = _.assign(
+      sampleTeamStatsResponse.aggregations.tri_filter.buckets,
+      { global: {}, onOffMode: true }
+    );
+    const playerData = {
+      baseline: samplePlayerStatsResponse.aggregations.tri_filter.buckets.on.player.buckets,
+      global: samplePlayerStatsResponse.aggregations.tri_filter.buckets.baseline.player.buckets
+    };
+    const dummyChangeStateCallback = (stats: TeamReportFilterParams) => {};
+    const wrapper = shallow(
+      <TeamReportStatsTable
+        startingState={{incRepOnOff: true, teamLuck: true}}
+        dataEvent={{
+          teamStats: teamData,
+          rosterStats: playerData,
+          lineupStats: testData
+        }}
+        onChangeState={dummyChangeStateCallback}
+        testMode = {true}
+      />
+    );
+    expect(toJson(wrapper)).toMatchSnapshot();
+  });
+
   // TODO: RAPM diagnostics mode, but need some better sample data
 
   test("TeamReportStatsTable - should create snapshot (with individual data - rep on-off diagnostic mode)", () => {

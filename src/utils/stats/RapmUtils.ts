@@ -4,6 +4,7 @@ import _ from "lodash";
 
 // Other app utils
 import { LineupUtils } from "./LineupUtils";
+import { LuckUtils } from "./LuckUtils";
 import { CommonTableDefs } from "../CommonTableDefs";
 
 // Math utils
@@ -135,6 +136,7 @@ export class RapmUtils {
       }
     }
     // Calculate the aggregated team stats
+    //(note includes pre-luck-adjusted stats if the main stats are luck adjusted)
     const teamInfo = LineupUtils.calculateAggregatedLineupStats(lineups);
 
     const sortedPlayers = _.chain(playerPossessionCountTracker).toPairs().filter((kv) => {
@@ -215,7 +217,13 @@ export class RapmUtils {
     field: string,
     offOffset: number, defOffset: number,
     ctx: RapmPlayerContext,
+    useOldValIfPossible: boolean = false
   ) {
+    const getVal = (o: any) => {
+      return useOldValIfPossible ?
+        ((_.isNil(o?.old_value) ? o?.value : o?.old_value) || 0) :
+        o?.value || 0;
+    };
     const offsets = {
       off: offOffset,
       def: defOffset
@@ -225,7 +233,7 @@ export class RapmUtils {
         const possCount = (lineup as any)[`${prefix}_poss`]?.value || 0;
         const lineupPossCount = ((ctx as any)[`${prefix}LineupPoss`] || 1);
         const possCountWeight = Math.sqrt(possCount/lineupPossCount);
-        const val = (lineup as any)[`${prefix}_${field}`]?.value || 0;
+        const val = getVal((lineup as any)[`${prefix}_${field}`]);
         return (val - offsets[prefix])*possCountWeight;
       });
     };
@@ -233,10 +241,10 @@ export class RapmUtils {
 
     return [
       calculateVector("off").concat(
-        extra ? [ ctx.unbiasWeight*((ctx.teamInfo[`off_${field}`]?.value || 0)  - offOffset) ] : []
+        extra ? [ ctx.unbiasWeight*(getVal(ctx.teamInfo[`off_${field}`])  - offOffset) ] : []
       ),
       calculateVector("def").concat(
-        extra ? [ ctx.unbiasWeight*((ctx.teamInfo[`def_${field}`]?.value || 0)  - defOffset) ] : []
+        extra ? [ ctx.unbiasWeight*(getVal(ctx.teamInfo[`def_${field}`])  - defOffset) ] : []
       )
     ];
   }
@@ -270,35 +278,47 @@ export class RapmUtils {
     return transpose(multiply(regressionMatrix, out)).valueOf();
   }
 
-  /** Injects the RAPM predicted diffs into player.rapm */
+  /** Injects the RAPM predicted diffs into player.rapm
+   * NOTE: useOldVals=true needs to be run after useOldVals=false
+   * (since it injects the old value versions into the existing one)
+   */
   static injectRapmIntoPlayers(
     players: Array<Record<string, any>>,
     offRapmInput: RapmProcessingInputs, defRapmInput: RapmProcessingInputs,
     statsAverages: Record<string, any>,
-    ctx: RapmPlayerContext
+    ctx: RapmPlayerContext,
+    useOldVals: boolean = false
   ) {
+    const getVal = (o: any) => { //(in practice we're going to discard fields without old_value anyway)
+      return useOldVals ?
+        ((_.isNil(o?.old_value) ? o?.value : o?.old_value) || 0) :
+        o?.value || 0;
+    };
     if (offRapmInput.solnMatrix && defRapmInput.solnMatrix) {
       const rapmInput = {
         off: offRapmInput,
         def: defRapmInput
       };
       // Get a map (per field) of arrays (per player) of the RAPM results
-      const fieldToPlayerRapmArray = _.chain(CommonTableDefs.onOffReportReplacement).omit(
-        [ "title", "sep0", "ppp", "sep1", "sep2", "sep3", "sep4", "poss", "adj_opp" ]
-      ).keys().flatMap((partialField: string) => {
+      const fieldToPlayerRapmArray = (useOldVals ?
+        _.chain(LuckUtils.affectedPartialFieldnames).filter(p => p != "ppp") :
+        _.chain(CommonTableDefs.onOffReportReplacement).omit(
+          [ "title", "sep0", "ppp", "sep1", "sep2", "sep3", "sep4", "poss", "adj_opp" ]
+        ).keys()
+      ).flatMap((partialField: string) => {
         const [ offOffset, defOffset ] = ({
           "ppp": [ ctx.avgEfficiency, ctx.avgEfficiency ],
           "adj_ppp": [ ctx.avgEfficiency, ctx.avgEfficiency ],
         } as Record<string, any>)[partialField] || [
-          statsAverages[`off_${partialField}`]?.value || ctx.teamInfo[`off_${partialField}`]?.value || 0,
-          statsAverages[`def_${partialField}`]?.value || ctx.teamInfo[`def_${partialField}`]?.value || 0
+          statsAverages[`off_${partialField}`]?.value || getVal(ctx.teamInfo[`off_${partialField}`]),
+          statsAverages[`def_${partialField}`]?.value || getVal(ctx.teamInfo[`def_${partialField}`])
         ];
         const [ offVal, defVal ] = RapmUtils.calcLineupOutputs(
-          partialField, offOffset, defOffset, ctx
+          partialField, offOffset, defOffset, ctx, useOldVals
         );
         const vals = {
           off: offVal, def: defVal
-        }
+        };
         const onOffField = _.chain(["off", "def"]).map((offOrDef: "off" | "def") => {
           const field = `${offOrDef}_${partialField}`;
           const results: number[] = RapmUtils.calculateRapm(
@@ -311,14 +331,20 @@ export class RapmUtils {
 
       }).fromPairs().value(); //ie returns [ ON1, OFF1, ON2, OFF2, ... ] where ON/OFF as above
 
+      const keyForValOrOldVal = useOldVals ? "old_value" : "value";
       players.filter((p) => !ctx.removedPlayers.hasOwnProperty(p.playerId)).forEach((p) => {
         const index = ctx.playerToCol[p.playerId];
-        p.rapm = _.chain(fieldToPlayerRapmArray).toPairs().map((kv) => {
-          return [ kv[0] , { value: kv[1][index] } ];
+        const playerRapm = _.chain(fieldToPlayerRapmArray).toPairs().map((kv) => {
+          return [ kv[0] , {
+            [keyForValOrOldVal]: kv[1][index],
+            override: useOldVals ? ctx.teamInfo[kv[0]]?.override : undefined
+          } ];
         }).fromPairs().merge({
           key: `RAPM ${p.playerId}`,
           off_poss: ctx.teamInfo.off_poss, def_poss: ctx.teamInfo.def_poss
         }).value();
+
+        p.rapm = useOldVals ? _.merge(p.rapm, playerRapm)  : playerRapm;
       });
     } //(else do nothing)
   }
@@ -330,8 +356,15 @@ export class RapmUtils {
   static pickRidgeRegression(
     offWeights: any, defWeights: any,
     ctx: RapmPlayerContext,
-    diagMode: boolean
+    diagMode: boolean,
+    useOldValIfPossible: boolean = false
   ) {
+    const getVal = (o: any) => {
+      return useOldValIfPossible ?
+        ((_.isNil(o?.old_value) ? o?.value : o?.old_value) || 0) :
+        o?.value || 0;
+    };
+
     const debugMode = false;
     const generateTestCases = false;
 
@@ -367,8 +400,8 @@ export class RapmUtils {
     // Get an approximate idea of the scale of the lambdas:
     const avgEigenVal = 0.5*mean(svd.off.q) + 0.5*mean(svd.def.q);
     const actualEff = {
-      off: ctx.teamInfo.off_adj_ppp.value - ctx.avgEfficiency,
-      def: ctx.teamInfo.def_adj_ppp.value - ctx.avgEfficiency
+      off: getVal(ctx.teamInfo.off_adj_ppp) - ctx.avgEfficiency,
+      def: getVal(ctx.teamInfo.def_adj_ppp) - ctx.avgEfficiency
     };
 
     // Build player usage vectors:
@@ -392,7 +425,7 @@ export class RapmUtils {
     if (debugMode) console.log(`(Off) Player Poss = [${pctByPlayer.off.map((p: number) => p.toFixed(2))}]`);
 
     const [ offAdjPoss, defAdjPoss ] = RapmUtils.calcLineupOutputs(
-      "adj_ppp", ctx.avgEfficiency, ctx.avgEfficiency, ctx
+      "adj_ppp", ctx.avgEfficiency, ctx.avgEfficiency, ctx, useOldValIfPossible
     );
     const adjPoss = {
       off: offAdjPoss,

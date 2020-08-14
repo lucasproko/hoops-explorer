@@ -2,8 +2,8 @@ import React from 'react';
 import TeamReportFilter from '../TeamReportFilter';
 import { TeamReportFilterParams } from "../utils/FilterModels";
 import { LineupStatsModel } from '../components/LineupStatsTable';
-import { RosterStatsModel } from '../components/RosterStatsModel';
-import { TeamStatsModel } from '../components/TeamStatsModel';
+import { RosterStatsModel } from '../components/RosterStatsTable';
+import { TeamStatsModel } from '../components/TeamStatsTable';
 import { shallow } from 'enzyme'
 import toJson from 'enzyme-to-json'
 

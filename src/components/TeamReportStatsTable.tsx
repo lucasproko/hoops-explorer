@@ -31,9 +31,10 @@ import GenericTogglingMenuItem from "./shared/GenericTogglingMenuItem";
 import RapmGlobalDiagView from "./diags/RapmGlobalDiagView";
 import RapmPlayerDiagView from "./diags/RapmPlayerDiagView";
 import RepOnOffDiagView from "./diags/RepOnOffDiagView";
+import LuckConfigModal from './shared/LuckConfigModal';
 
 // Util imports
-import { getCommonFilterParams, TeamReportFilterParams, ParamDefaults } from '../utils/FilterModels';
+import { getCommonFilterParams, TeamReportFilterParams, ParamDefaults, LuckParams } from '../utils/FilterModels';
 import { LineupUtils } from '../utils/stats/LineupUtils';
 import { RapmInfo, RapmUtils } from '../utils/stats/RapmUtils';
 import { UrlRouting } from '../utils/UrlRouting';
@@ -43,8 +44,9 @@ import { CbbColors } from "../utils/CbbColors";
 import { OnOffReportDiagUtils } from "../utils/stats/OnOffReportDiagUtils";
 import { CommonTableDefs } from "../utils/CommonTableDefs";
 import { LineupStatsModel } from '../components/LineupStatsTable';
-import { RosterStatsModel } from '../components/RosterStatsModel';
-import { TeamStatsModel } from '../components/TeamStatsModel';
+import { RosterStatsModel } from '../components/RosterStatsTable';
+import { TeamStatsModel } from '../components/TeamStatsTable';
+import { LuckUtils, OffLuckAdjustmentDiags, DefLuckAdjustmentDiags, LuckAdjustmentBaseline } from "../utils/stats/LuckUtils";
 
 /** Convert from LineupStatsModel into this */
 export type TeamReportStatsModel = {
@@ -85,6 +87,20 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({startingState, da
   // (slight delay when typing into the filter to make it more responsive)
   const [ timeoutId, setTimeoutId ] = useState(-1);
   const [ tmpFilterStr, setTmpFilterStr ] = useState(filterStr);
+
+  // Luck:
+
+  /** Adjust for luck in all stats */
+  const [ adjustForLuck, setAdjustForLuck ] = useState(_.isNil(startingState.teamLuck) ?
+    ParamDefaults.defaultTeamReportLuckAdjust : startingState.teamLuck
+  );
+  /** The settings to use for luck adjustment */
+  const [ luckConfig, setLuckConfig ] = useState(_.isNil(startingState.luck) ?
+    ParamDefaults.defaultLuckConfig : startingState.luck
+  );
+
+  /** Whether we are showing the luck config modal */
+  const [ showLuckConfig, setShowLuckConfig ] = useState(false);
 
   // Display options:
 
@@ -139,6 +155,10 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({startingState, da
   useEffect(() => { //(this ensures that the filter component is up to date with the union of these fields)
     const newState = {
       ...startingState,
+      // Luck
+      luck: luckConfig,
+      teamLuck: adjustForLuck,
+      // display/processing
       sortBy: sortBy,
       filter: filterStr,
       showOnOff: showOnOff,
@@ -151,7 +171,8 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({startingState, da
     };
     onChangeState(newState);
   }, [ sortBy, filterStr, showOnOff, showLineupCompositions, incReplacementOnOff, incRapm,
-        regressDiffs, repOnOffDiagMode, rapmDiagMode ]);
+        regressDiffs, repOnOffDiagMode, rapmDiagMode,
+        luckConfig, adjustForLuck ]);
 
   // (cache this below)
   const [ teamReport, setTeamReport ] = useState({} as any);
@@ -165,13 +186,56 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({startingState, da
     // we're processing (vs just being unresponsive)
     setInBrowserRepOnOffPxing(inBrowserRepOnOffPxing + 1);
 
-  }, [ lineupStats, incReplacementOnOff, incRapm, regressDiffs, repOnOffDiagMode, rapmDiagMode ] );
+  }, [ lineupStats, incReplacementOnOff, incRapm, regressDiffs, repOnOffDiagMode, rapmDiagMode,
+        luckConfig, adjustForLuck ] );
 
   /** logic to perform whenever the data changes (or the metadata in such a way re-processing is required) */
-  const onDataChangeProcessing = (inLineupReport: LineupStatsModel) => {
+  const onDataChangeProcessing = (
+    inLineupStats: LineupStatsModel, inTeamStats: TeamStatsModel, inRosterStats: RosterStatsModel
+  ) => {
     try {
+
+      // Luck
+
+      // The luck baseline can either be the user-selecteed baseline or the entire season
+      const [ baseOrSeasonTeamStats, baseOrSeason3PMap ] = (() => {
+        if (adjustForLuck) {
+          switch (luckConfig.base) {
+            case "baseline":
+              return [
+                inTeamStats.baseline, _.fromPairs((inRosterStats.baseline || []).map((p: any) => [ p.key, p ]))
+              ];
+            default: //("season")
+              return [
+                inTeamStats.global, _.fromPairs((inRosterStats.global || []).map((p: any) => [ p.key, p ]))
+              ];
+          }
+        } else return [ {}, {} ]; //(not used)
+      })();
+
+      // Mutate lineups:
+      _.forEach(inLineupStats?.lineups || [], (lineup) => {
+        const codesAndIds = lineup.players_array?.hits?.hits?.[0]?._source?.players || [];
+
+        const perLineupPlayerLuckMap = _.fromPairs(codesAndIds.map((cid: { code: string, id: string }) => {
+          return [  cid.id, baseOrSeason3PMap[cid.id] ];
+        }));
+        const luckAdj = (adjustForLuck && lineup?.doc_count) ? [
+          LuckUtils.calcOffTeamLuckAdj(
+            lineup, inRosterStats.baseline || [], baseOrSeasonTeamStats, perLineupPlayerLuckMap, avgEfficiency
+          ),
+          LuckUtils.calcDefTeamLuckAdj(lineup, baseOrSeasonTeamStats, avgEfficiency),
+        ] as [OffLuckAdjustmentDiags, DefLuckAdjustmentDiags] : undefined;
+
+        if (lineup?.doc_count) {
+          LuckUtils.injectLuck(lineup, luckAdj?.[0], luckAdj?.[1]);
+        }
+      });
+
+      // Processing
+
       const tempTeamReport = LineupUtils.lineupToTeamReport(
-        inLineupReport, incReplacementOnOff, regressDiffs, repOnOffDiagModeNumLineups
+        inLineupStats, incReplacementOnOff, regressDiffs, repOnOffDiagModeNumLineups
       );
       if (incRapm) {
         try {
@@ -185,7 +249,17 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({startingState, da
           );
           RapmUtils.injectRapmIntoPlayers(
             tempTeamReport.players || [], offRapmInputs, defRapmInputs, statsAverages, rapmContext
-          )
+          );
+          if (adjustForLuck) { // (Calculate RAPM without luck, for display purposes)
+            const [ offNoLuckRapmInputs, defNoLuckRapmInputs ] = RapmUtils.pickRidgeRegression(
+              offRapmWeights, defRapmWeights, rapmContext, (rapmDiagMode != ""),
+              true //<- uses old_value (ie pre-luck-adjusted)
+            );
+            RapmUtils.injectRapmIntoPlayers(
+              tempTeamReport.players || [], offNoLuckRapmInputs, defNoLuckRapmInputs, statsAverages, rapmContext,
+              true //<- only applies RAPM to old_values
+            );
+          }
           setRapmInfo({
             ctx: rapmContext,
             preProcDiags: (rapmDiagMode != "") ?
@@ -216,7 +290,7 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({startingState, da
   React.useEffect(() => {
     if (inBrowserRepOnOffPxing > 0) {
       setTimeout(() => { //(ensures that the "processing" element is returned _before_ the processing starts)
-        onDataChangeProcessing(lineupStats);
+        onDataChangeProcessing(lineupStats, teamStats, rosterStats);
         setInBrowserRepOnOffPxing(inBrowserRepOnOffPxing - 1);
       }, 1);
     }
@@ -225,7 +299,7 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({startingState, da
   // Called fron unit test so we build the snapshot based on the actual data
   if (testMode) {
     if (playersWithAdjEff.length == 0) { //(ensure that unit tests don't re-render to infinity)
-      onDataChangeProcessing(lineupStats);
+      onDataChangeProcessing(lineupStats, teamStats, rosterStats);
     }
   }
 
@@ -523,6 +597,13 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({startingState, da
         "Press 'Submit' to view results"
       }
     >
+      <LuckConfigModal
+        show={showLuckConfig}
+        onHide={() => setShowLuckConfig(false)}
+        onSave={(l: LuckParams) => setLuckConfig(l)}
+        luck={luckConfig}
+        showHelp={showHelp}
+      />
       <Form.Row>
         <Form.Group as={Col} sm="6">
           <InputGroup>
@@ -572,12 +653,19 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({startingState, da
               onSelect={() => setIncRapm(!incRapm)}
               helpLink={showHelp ? "https://hoop-explorer.blogspot.com/2020/03/understanding-team-report-onoff-page.html#RAPM" : undefined}
             />
-            <Dropdown.Divider />
             <GenericTogglingMenuItem
               text="Show lineup compositions"
               truthVal={showLineupCompositions}
               onSelect={() => setShowLineupCompositions(!showLineupCompositions)}
             />
+            <Dropdown.Divider />
+            <GenericTogglingMenuItem
+              text="Adjust for Luck"
+              truthVal={adjustForLuck}
+              onSelect={() => setAdjustForLuck(!adjustForLuck)}
+              helpLink={showHelp ? "https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html" : undefined}
+            />
+            <Dropdown.Divider />
             <GenericTogglingMenuItem
               text={`Regress 'r:On-Off' ${
                 startingRegressDiffs > 0 ? "by" : "to"
@@ -591,6 +679,12 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({startingState, da
                   (startingRegressDiffs != 0 ? startingRegressDiffs : parseInt(ParamDefaults.defaultTeamReportRegressDiffs))
               )}
             />
+            <GenericTogglingMenuItem
+              text="Configure Luck Adjustments..."
+              truthVal={false}
+              onSelect={() => setShowLuckConfig(true)}
+            />
+            <Dropdown.Divider />
             <GenericTogglingMenuItem
               text="'r:On-Off' diagnostic mode"
               truthVal={repOnOffDiagMode != "0"}

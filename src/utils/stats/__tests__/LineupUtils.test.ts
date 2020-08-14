@@ -3,18 +3,44 @@
 import _ from 'lodash';
 
 import { LineupUtils } from "../LineupUtils";
+import { LuckUtils } from "../LuckUtils";
 import { GameFilterParams, LineupFilterParams, TeamReportFilterParams } from "../../FilterModels";
 import { sampleLineupStatsResponse } from "../../../sample-data/sampleLineupStatsResponse";
 //import { LineupStatsModel } from '../../../components/LineupStatsTable';
 
 describe("LineupUtils", () => {
+
+  /** Inject old_values everywhere to test the calcs */
+  const insertOldValues = (mutableLineup: any) => {
+     _.toPairs(mutableLineup as Record<string, any>).forEach(([ key, stat ]: [string, any]) => {
+      if (LuckUtils.affectedFieldSet.has(key) && !_.isNil(stat.value)) {
+        stat.old_value = stat.value;
+        stat.override = "Test override";
+      }
+    });
+    return mutableLineup;
+  };
+
   const lineupReport = {
-    lineups: sampleLineupStatsResponse.responses[0].aggregations.lineups.buckets,
+    lineups: (
+        sampleLineupStatsResponse.responses[0].aggregations.lineups.buckets || []
+      ).map(insertOldValues)
+    ,
     avgOff: 100.0,
     error_code: "test"
   };
   const toFixed = (obj: any) => {
-    return obj.hasOwnProperty("value") ? { value: obj.value.toFixed(3) } : obj
+
+    if (obj?.override) { return {
+        value: obj.value.toFixed(3),
+        old_value: obj.old_value.toFixed(3),
+        override: obj.override
+      };
+    } else {
+      return obj.hasOwnProperty("value") ? {
+        value: obj.value.toFixed(3)
+      } : obj
+    }
   };
 
   test("LineupUtils - calculateAggregatedLineupStats", () => {
@@ -25,12 +51,16 @@ describe("LineupUtils", () => {
     ]).mapValues(toFixed).value()).toEqual({
          "def_adj_ppp": {
            "value": "82.085",
+           "old_value": "82.085",
+           "override": "Test override",
          },
          "def_poss": {
            "value": "286.000",
          },
          "off_adj_ppp": {
            "value": "115.540",
+           "old_value": "115.540",
+           "override": "Test override",
          },
          "off_poss": {
            "value": "298.000",
@@ -143,7 +173,7 @@ describe("LineupUtils", () => {
           const defOrbAllowed = 19 + 27;
           const defDrbAllowed = 68 + 36;
           expect(someOnOffVals).toEqual([
-            _.mapValues({
+            _.mapValues(insertOldValues({
               key: "'On' Ayala, Eric",
               off_poss: { value: totalOffPoss }, def_poss: { value: totalDefPoss },
               off_ppp: { value: 196.0/(totalOffPoss)*111.22448979591837 + 102.0/(totalOffPoss)*109.80392156862744 },
@@ -165,9 +195,9 @@ describe("LineupUtils", () => {
 
               total_off_fga: { value: totalOffFga },
               total_off_pts: { value: 330.0 }
-            }, toFixed)
+            }), toFixed)
             ,
-            _.mapValues({
+            _.mapValues(insertOldValues({
               key: "'Off' Ayala, Eric",
               off_poss: { value: 111 }, def_poss: { value: 114 },
               off_ppp: { value: 89.1891891891892 },
@@ -183,9 +213,9 @@ describe("LineupUtils", () => {
 
               total_off_fga: { value: 87 },
               total_off_pts: { value: 99.0 }
-            }, toFixed)
+            }), toFixed)
             ,
-            incOnOff ? { //(hand-chcked)
+            incOnOff ? insertOldValues({ //(hand-chcked)
               key: "'r:On-Off' Ayala, Eric",
               "off_poss": { "value": "248.043" },
               "def_poss": { "value": "247.033" },
@@ -200,7 +230,7 @@ describe("LineupUtils", () => {
               "off_ftr": { "value": regressed(regressDiffs, "-0.187", "-0.135", "-0.095") },
               "total_off_fga": { "value": "205.680" },
               "total_off_pts": { "value": "241.264" }
-            } : {}
+            }) : {}
           ]);
           // Check roster
 

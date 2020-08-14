@@ -87,6 +87,17 @@ export type DefLuckAdjustmentDiags = {
 /** Contains logic to help other stats modules adjust for luck */
 export class LuckUtils {
 
+  /** Set of all the fields that are affected by luck adjustments */
+  static readonly affectedFieldSet = new Set([
+    "off_adj_ppp", "off_ppp", "off_efg", "off_3p",
+    "def_adj_ppp", "def_ppp", "def_efg", "def_3p",
+    "oppo_def_3p"
+  ]);
+  /** List of the partial fieldnames affected by luck adjustments */
+  static readonly affectedPartialFieldnames = [
+    "adj_ppp", "ppp", "efg", "3p"
+  ];
+
   /** Calculate the offensive luck adjustment for a player */
   static readonly calcOffPlayerLuckAdj = (
     samplePlayer: Record<string, any>, basePlayer: Record<string, any>,

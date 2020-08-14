@@ -248,6 +248,24 @@ export class HistoryManager {
     const rapmDiagMode =
       _.isNil(p.rapmDiagMode) ? false : (p.rapmDiagMode != "");
 
+    // Luck config
+
+    const luckArray = _.flatMap([
+      p.luck ?  [ `${p.luck.base}` ] : []
+    ]);
+    const luckCfgParams = (luckArray.length > 0) ?
+      `, luck:[${_.join(luckArray, ",")}]` : "";
+
+    // Luck view
+
+    const showLuckArray = _.flatMap([
+      p.teamLuck ? [ `team-luck`]: []
+    ]);
+    const luckParams = (showLuckArray.length > 0) ?
+      `, ${_.join(showLuckArray, ",")}` : "";
+
+    // Others
+
     const showArray = _.flatMap([
       showOnOff ? [] : [ "!on/off" ],
       showComps ? [ "comps" ] : [],
@@ -262,7 +280,7 @@ export class HistoryManager {
       `filter:'${tidyQuery(p.filter)}', ` +
       `show:[${_.join(showArray, ",")}]`
       ;
-    return `On/Off Report: ${HistoryManager.commonFilterSummary(p)}: ${baseQuery} (${otherParams})`;
+    return `On/Off Report: ${HistoryManager.commonFilterSummary(p)}: ${baseQuery}${luckCfgParams}${luckParams} (${otherParams})`;
   }
 }
 /** (handy util) */
