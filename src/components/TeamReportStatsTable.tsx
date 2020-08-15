@@ -31,6 +31,7 @@ import GenericTogglingMenuItem from "./shared/GenericTogglingMenuItem";
 import RapmGlobalDiagView from "./diags/RapmGlobalDiagView";
 import RapmPlayerDiagView from "./diags/RapmPlayerDiagView";
 import RepOnOffDiagView from "./diags/RepOnOffDiagView";
+import ToggleButtonGroup from "./shared/ToggleButtonGroup";
 import LuckConfigModal from './shared/LuckConfigModal';
 
 // Util imports
@@ -701,7 +702,35 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({startingState, da
           </GenericTogglingMenu>
         </Form.Group>
       </Form.Row>
-      <Row>
+      <Form.Row>
+        <ToggleButtonGroup items={[
+          {
+            label: "On/Off",
+            tooltip: showOnOff ? "Hide Basic On/Off Stats" : "Show Basic On/Off Stats",
+            toggled: showOnOff,
+            onClick: () => setShowOnOff(!showOnOff)
+          },
+          {
+            label: "Same-4",
+            tooltip: incReplacementOnOff ? "Hide Replacement ('Same-4') On-Off" : "Show Replacement ('Same-4') On-Off",
+            toggled: incReplacementOnOff,
+            onClick: () => setIncReplacementOnOff(!incReplacementOnOff)
+          },
+          {
+            label: "RAPM",
+            tooltip: incRapm ? "Hide Player RAPM" : "Show Player RAPM",
+            toggled: incRapm,
+            onClick: () => setIncRapm(!incRapm)
+          },
+          {
+            label: "Luck",
+            tooltip: adjustForLuck ? "Remove luck adjustments" : "Adjust statistics for luck",
+            toggled: adjustForLuck,
+            onClick: () => setAdjustForLuck(!adjustForLuck)
+          }
+        ]}/>
+      </Form.Row>
+      <Row className="mt-2">
         <Col>
           <GenericTable
             tableCopyId="teamReportStatsTable"
