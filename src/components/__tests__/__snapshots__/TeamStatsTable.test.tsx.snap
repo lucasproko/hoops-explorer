@@ -14,25 +14,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
         <div
           className="form-row"
         >
-          <div>
-            <small>
-              Quick Select:
-            </small>
-              
-            <span>
-              <div>
-                <button
-                  className="btn btn-outline-secondary btn-sm"
-                  disabled={false}
-                  onClick={[Function]}
-                  type="button"
-                >
-                  Luck
-                </button>
-              </div>
-                
-            </span>
-          </div>
+          <div />
         </div>
       </div>
       <div
@@ -2861,25 +2843,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
         <div
           className="form-row"
         >
-          <div>
-            <small>
-              Quick Select:
-            </small>
-              
-            <span>
-              <div>
-                <button
-                  className="btn btn-dark btn-sm"
-                  disabled={false}
-                  onClick={[Function]}
-                  type="button"
-                >
-                  Luck
-                </button>
-              </div>
-                
-            </span>
-          </div>
+          <div />
         </div>
       </div>
       <div

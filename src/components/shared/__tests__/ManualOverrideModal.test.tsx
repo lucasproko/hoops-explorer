@@ -56,6 +56,33 @@ describe("ManualOverride", () => {
     );
     expect(toJson(wrapper)).toMatchSnapshot();
   });
+  test("ManualOverride - should create snapshot (pick first in list)", () => {
+    //(annoyingly this needs to be shallow because Modal doesn't work with full rendering)
+    const wrapper = shallow(
+      <div>
+        <ManualOverrideModal
+          tableType={ParamPrefixes.player}
+          inStats={[
+            { onOffKey: "Baseline", key: "Player1", off_3p: { value: 0.3 } },
+            { onOffKey: "On", key: "Player2", off_3p: { value: 0.4 } }
+          ]}
+          statsAsTable={{
+            "Player1 / Baseline": [
+              GenericTableOps.buildTextRow(<p>Test</p>)
+            ]
+          }}
+          overrides={[
+            { rowId: "Player2 / On", newVal: 0.5, statName: "off_3p", use: true }
+          ]}
+          show={true}
+          onHide={() => false}
+          onSave={(overrides: ManualOverride[]) => false}
+          showHelp={true}
+        />
+      </div>
+    );
+    expect(toJson(wrapper)).toMatchSnapshot();
+  });
   test("ManualOverride - should create snapshot (players and overrides, something selected)", () => {
     //(annoyingly this needs to be shallow because Modal doesn't work with full rendering)
     const wrapper = shallow(

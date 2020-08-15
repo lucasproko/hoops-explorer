@@ -49,8 +49,20 @@ const ManualOverrideModal: React.FunctionComponent<Props> = ({tableType, inStats
     }
   })();
 
+  const getFirstPlayer = (statList: any[]) => {
+    const first = statList?.[0];
+    return first ? OverrideUtils.getPlayerRowId(first.key, first.onOffKey) : undefined;
+  }
+  useEffect(() => {
+    if ("" == currInStat) {
+      setCurrInStat(getFirstPlayer(inStats) || "");
+    }
+  }, [ inStats ]);
+
   // Starting values:
-  const [ currInStat, setCurrInStat ] = useState(startOverride?.rowId || "");
+  const [ currInStat, setCurrInStat ] = useState(
+    startOverride?.rowId || getFirstPlayer(inStats) || ""
+  );
   const [ currStatName, setCurrStatName ] = useState(startOverride?.statName || "");
   const [ oldStatVal, setOldStatVal ] = useState(0 as number);
   const [ currReplacementAsStr, setCurrReplacementAsStr ] = useState(
