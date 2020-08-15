@@ -34,6 +34,7 @@ import { TeamStatsModel } from '../components/TeamStatsTable';
 import LuckAdjDiagView from "./diags/LuckAdjDiagView"
 import LuckConfigModal from "./shared/LuckConfigModal";
 import ManualOverrideModal from "./shared/ManualOverrideModal";
+import ToggleButtonGroup from "./shared/ToggleButtonGroup";
 
 // Util imports
 import { CbbColors } from "../utils/CbbColors";
@@ -712,7 +713,35 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
           </GenericTogglingMenu>
         </Form.Group>
       </Form.Row>
-      <Row>
+      <Form.Row>
+        <ToggleButtonGroup items={[
+          {
+            label: "Expanded",
+            tooltip: expandedView ? "Show single row of player stats" : "Show expanded player stats",
+            toggled: expandedView,
+            onClick: () => setExpandedView(!expandedView)
+          },
+          {
+            label: "Poss%",
+            tooltip: possAsPct ? "Show possessions as count" : "Show possessions as percentage",
+            toggled: possAsPct,
+            onClick: () => setPossAsPct(!possAsPct)
+          },
+          {
+            label: "Luck",
+            tooltip: adjustForLuck ? "Remove luck adjustments" : "Adjust statistics for luck",
+            toggled: adjustForLuck,
+            onClick: () => setAdjustForLuck(!adjustForLuck)
+          },
+          {
+            label: "Edit...",
+            tooltip: "Launch player stats manual editor",
+            toggled: false,
+            onClick: () => setShowManualOverrides(true)
+          },
+        ]}/>
+      </Form.Row>
+      <Row className="mt-2">
         <Col>
           <GenericTable tableCopyId="rosterStatsTable" tableFields={tableFields} tableData={tableData}/>
         </Col>

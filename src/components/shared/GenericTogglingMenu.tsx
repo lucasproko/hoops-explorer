@@ -8,6 +8,8 @@ import { faCog } from '@fortawesome/free-solid-svg-icons';
 // Bootstrap imports:
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Dropdown from 'react-bootstrap/Dropdown';
+import Tooltip from 'react-bootstrap/Tooltip';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 
 type Props = {}
 
@@ -23,10 +25,14 @@ const GenericTogglingMenu: React.FunctionComponent<Props> = ({children}) => {
     }
   };
 
+  const advancedSettingsTooltip = <Tooltip id="gearTooltip">Advanced options</Tooltip>
+
   return <Dropdown alignRight drop="up" onToggle={handleToggle} show={configDropdownOpen}>
-    <Dropdown.Toggle variant="outline-secondary" id="dropdown-basic">
-      <FontAwesomeIcon icon={faCog} />
-    </Dropdown.Toggle>
+    <OverlayTrigger placement="bottom" overlay={advancedSettingsTooltip}>
+      <Dropdown.Toggle variant="outline-secondary" id="dropdown-basic">
+        <FontAwesomeIcon icon={faCog} />
+      </Dropdown.Toggle>
+    </OverlayTrigger>
     <Dropdown.Menu>
       {children}
     </Dropdown.Menu>

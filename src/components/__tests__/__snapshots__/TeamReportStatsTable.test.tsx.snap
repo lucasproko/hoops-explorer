@@ -1336,7 +1336,40 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
           </GenericTogglingMenu>
         </FormGroup>
       </FormRow>
+      <FormRow>
+        <ToggleButtonGroup
+          items={
+            Array [
+              Object {
+                "label": "On/Off",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Hide Basic On/Off Stats",
+              },
+              Object {
+                "label": "Same-4",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show Replacement ('Same-4') On-Off",
+              },
+              Object {
+                "label": "RAPM",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show Player RAPM",
+              },
+              Object {
+                "label": "Luck",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Adjust statistics for luck",
+              },
+            ]
+          }
+        />
+      </FormRow>
       <ForwardRef
+        className="mt-2"
         noGutters={false}
       >
         <Col>
@@ -11497,7 +11530,40 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
           </GenericTogglingMenu>
         </FormGroup>
       </FormRow>
+      <FormRow>
+        <ToggleButtonGroup
+          items={
+            Array [
+              Object {
+                "label": "On/Off",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Hide Basic On/Off Stats",
+              },
+              Object {
+                "label": "Same-4",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Hide Replacement ('Same-4') On-Off",
+              },
+              Object {
+                "label": "RAPM",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show Player RAPM",
+              },
+              Object {
+                "label": "Luck",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Remove luck adjustments",
+              },
+            ]
+          }
+        />
+      </FormRow>
       <ForwardRef
+        className="mt-2"
         noGutters={false}
       >
         <Col>
@@ -26422,7 +26488,40 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
           </GenericTogglingMenu>
         </FormGroup>
       </FormRow>
+      <FormRow>
+        <ToggleButtonGroup
+          items={
+            Array [
+              Object {
+                "label": "On/Off",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Hide Basic On/Off Stats",
+              },
+              Object {
+                "label": "Same-4",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Hide Replacement ('Same-4') On-Off",
+              },
+              Object {
+                "label": "RAPM",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show Player RAPM",
+              },
+              Object {
+                "label": "Luck",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Adjust statistics for luck",
+              },
+            ]
+          }
+        />
+      </FormRow>
       <ForwardRef
+        className="mt-2"
         noGutters={false}
       >
         <Col>
@@ -40963,7 +41062,40 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
           </GenericTogglingMenu>
         </FormGroup>
       </FormRow>
+      <FormRow>
+        <ToggleButtonGroup
+          items={
+            Array [
+              Object {
+                "label": "On/Off",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Hide Basic On/Off Stats",
+              },
+              Object {
+                "label": "Same-4",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Hide Replacement ('Same-4') On-Off",
+              },
+              Object {
+                "label": "RAPM",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show Player RAPM",
+              },
+              Object {
+                "label": "Luck",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Adjust statistics for luck",
+              },
+            ]
+          }
+        />
+      </FormRow>
       <ForwardRef
+        className="mt-2"
         noGutters={false}
       >
         <Col>
@@ -78298,7 +78430,40 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
           </GenericTogglingMenu>
         </FormGroup>
       </FormRow>
+      <FormRow>
+        <ToggleButtonGroup
+          items={
+            Array [
+              Object {
+                "label": "On/Off",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Hide Basic On/Off Stats",
+              },
+              Object {
+                "label": "Same-4",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Hide Replacement ('Same-4') On-Off",
+              },
+              Object {
+                "label": "RAPM",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show Player RAPM",
+              },
+              Object {
+                "label": "Luck",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Adjust statistics for luck",
+              },
+            ]
+          }
+        />
+      </FormRow>
       <ForwardRef
+        className="mt-2"
         noGutters={false}
       >
         <Col>
@@ -82383,7 +82548,40 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
           </GenericTogglingMenu>
         </FormGroup>
       </FormRow>
+      <FormRow>
+        <ToggleButtonGroup
+          items={
+            Array [
+              Object {
+                "label": "On/Off",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Hide Basic On/Off Stats",
+              },
+              Object {
+                "label": "Same-4",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show Replacement ('Same-4') On-Off",
+              },
+              Object {
+                "label": "RAPM",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show Player RAPM",
+              },
+              Object {
+                "label": "Luck",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Adjust statistics for luck",
+              },
+            ]
+          }
+        />
+      </FormRow>
       <ForwardRef
+        className="mt-2"
         noGutters={false}
       >
         <Col>

@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ToggleButtonGroup ToggleButtonGroup 1`] = `
+<div>
+  <small>
+    Quick Select:
+  </small>
+    
+  <span>
+    <div>
+      <button
+        className="btn btn-dark btn-sm"
+        disabled={false}
+        onClick={[Function]}
+        type="button"
+      >
+        Test A
+      </button>
+    </div>
+      
+  </span>
+  <span>
+    <div>
+      <button
+        className="btn btn-outline-secondary btn-sm"
+        disabled={false}
+        onClick={[Function]}
+        type="button"
+      >
+        Test B
+      </button>
+    </div>
+      
+  </span>
+</div>
+`;

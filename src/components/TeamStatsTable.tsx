@@ -25,6 +25,7 @@ import { RosterStatsModel } from './RosterStatsTable';
 import LuckConfigModal from "./shared/LuckConfigModal";
 import GenericTogglingMenu from "./shared/GenericTogglingMenu";
 import GenericTogglingMenuItem from "./shared/GenericTogglingMenuItem";
+import ToggleButtonGroup from "./shared/ToggleButtonGroup";
 import LuckAdjDiagView from "./diags/LuckAdjDiagView"
 
 // Util imports
@@ -226,7 +227,18 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
         showHelp={showHelp}
       />
       <Form.Row>
-        <Col sm="11"/>
+        <Col sm="11">
+        <Form.Row>
+          <ToggleButtonGroup items={[
+            {
+              label: "Luck",
+              tooltip: adjustForLuck ? "Remove luck adjustments" : "Adjust statistics for luck",
+              toggled: adjustForLuck,
+              onClick: () => setAdjustForLuck(!adjustForLuck)
+            }
+          ]}/>
+        </Form.Row>
+        </Col>        
         <Form.Group as={Col} sm="1">
           <GenericTogglingMenu>
             <GenericTogglingMenuItem
@@ -250,7 +262,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
           </GenericTogglingMenu>
         </Form.Group>
       </Form.Row>
-      <Row>
+      <Row className="mt-2">
         <Col>
           <GenericTable tableCopyId="teamStatsTable" tableFields={CommonTableDefs.onOffTable} tableData={tableData}/>
         </Col>

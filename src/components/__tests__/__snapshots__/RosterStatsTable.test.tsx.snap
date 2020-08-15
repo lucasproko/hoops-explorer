@@ -6394,7 +6394,40 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
         </GenericTogglingMenu>
       </FormGroup>
     </FormRow>
+    <FormRow>
+      <ToggleButtonGroup
+        items={
+          Array [
+            Object {
+              "label": "Expanded",
+              "onClick": [Function],
+              "toggled": false,
+              "tooltip": "Show expanded player stats",
+            },
+            Object {
+              "label": "Poss%",
+              "onClick": [Function],
+              "toggled": true,
+              "tooltip": "Show possessions as count",
+            },
+            Object {
+              "label": "Luck",
+              "onClick": [Function],
+              "toggled": false,
+              "tooltip": "Adjust statistics for luck",
+            },
+            Object {
+              "label": "Edit...",
+              "onClick": [Function],
+              "toggled": false,
+              "tooltip": "Launch player stats manual editor",
+            },
+          ]
+        }
+      />
+    </FormRow>
     <ForwardRef
+      className="mt-2"
       noGutters={false}
     >
       <Col>
@@ -10477,7 +10510,40 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
         </GenericTogglingMenu>
       </FormGroup>
     </FormRow>
+    <FormRow>
+      <ToggleButtonGroup
+        items={
+          Array [
+            Object {
+              "label": "Expanded",
+              "onClick": [Function],
+              "toggled": false,
+              "tooltip": "Show expanded player stats",
+            },
+            Object {
+              "label": "Poss%",
+              "onClick": [Function],
+              "toggled": true,
+              "tooltip": "Show possessions as count",
+            },
+            Object {
+              "label": "Luck",
+              "onClick": [Function],
+              "toggled": false,
+              "tooltip": "Adjust statistics for luck",
+            },
+            Object {
+              "label": "Edit...",
+              "onClick": [Function],
+              "toggled": false,
+              "tooltip": "Launch player stats manual editor",
+            },
+          ]
+        }
+      />
+    </FormRow>
     <ForwardRef
+      className="mt-2"
       noGutters={false}
     >
       <Col>
@@ -13781,7 +13847,40 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
         </GenericTogglingMenu>
       </FormGroup>
     </FormRow>
+    <FormRow>
+      <ToggleButtonGroup
+        items={
+          Array [
+            Object {
+              "label": "Expanded",
+              "onClick": [Function],
+              "toggled": true,
+              "tooltip": "Show single row of player stats",
+            },
+            Object {
+              "label": "Poss%",
+              "onClick": [Function],
+              "toggled": true,
+              "tooltip": "Show possessions as count",
+            },
+            Object {
+              "label": "Luck",
+              "onClick": [Function],
+              "toggled": false,
+              "tooltip": "Adjust statistics for luck",
+            },
+            Object {
+              "label": "Edit...",
+              "onClick": [Function],
+              "toggled": false,
+              "tooltip": "Launch player stats manual editor",
+            },
+          ]
+        }
+      />
+    </FormRow>
     <ForwardRef
+      className="mt-2"
       noGutters={false}
     >
       <Col>
@@ -21253,7 +21352,40 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
         </GenericTogglingMenu>
       </FormGroup>
     </FormRow>
+    <FormRow>
+      <ToggleButtonGroup
+        items={
+          Array [
+            Object {
+              "label": "Expanded",
+              "onClick": [Function],
+              "toggled": true,
+              "tooltip": "Show single row of player stats",
+            },
+            Object {
+              "label": "Poss%",
+              "onClick": [Function],
+              "toggled": true,
+              "tooltip": "Show possessions as count",
+            },
+            Object {
+              "label": "Luck",
+              "onClick": [Function],
+              "toggled": false,
+              "tooltip": "Adjust statistics for luck",
+            },
+            Object {
+              "label": "Edit...",
+              "onClick": [Function],
+              "toggled": false,
+              "tooltip": "Launch player stats manual editor",
+            },
+          ]
+        }
+      />
+    </FormRow>
     <ForwardRef
+      className="mt-2"
       noGutters={false}
     >
       <Col>
@@ -33225,7 +33357,40 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
         </GenericTogglingMenu>
       </FormGroup>
     </FormRow>
+    <FormRow>
+      <ToggleButtonGroup
+        items={
+          Array [
+            Object {
+              "label": "Expanded",
+              "onClick": [Function],
+              "toggled": false,
+              "tooltip": "Show expanded player stats",
+            },
+            Object {
+              "label": "Poss%",
+              "onClick": [Function],
+              "toggled": true,
+              "tooltip": "Show possessions as count",
+            },
+            Object {
+              "label": "Luck",
+              "onClick": [Function],
+              "toggled": true,
+              "tooltip": "Remove luck adjustments",
+            },
+            Object {
+              "label": "Edit...",
+              "onClick": [Function],
+              "toggled": false,
+              "tooltip": "Launch player stats manual editor",
+            },
+          ]
+        }
+      />
+    </FormRow>
     <ForwardRef
+      className="mt-2"
       noGutters={false}
     >
       <Col>
@@ -47351,7 +47516,40 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
         </GenericTogglingMenu>
       </FormGroup>
     </FormRow>
+    <FormRow>
+      <ToggleButtonGroup
+        items={
+          Array [
+            Object {
+              "label": "Expanded",
+              "onClick": [Function],
+              "toggled": false,
+              "tooltip": "Show expanded player stats",
+            },
+            Object {
+              "label": "Poss%",
+              "onClick": [Function],
+              "toggled": true,
+              "tooltip": "Show possessions as count",
+            },
+            Object {
+              "label": "Luck",
+              "onClick": [Function],
+              "toggled": true,
+              "tooltip": "Remove luck adjustments",
+            },
+            Object {
+              "label": "Edit...",
+              "onClick": [Function],
+              "toggled": false,
+              "tooltip": "Launch player stats manual editor",
+            },
+          ]
+        }
+      />
+    </FormRow>
     <ForwardRef
+      className="mt-2"
       noGutters={false}
     >
       <Col>
@@ -60586,7 +60784,40 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
         </GenericTogglingMenu>
       </FormGroup>
     </FormRow>
+    <FormRow>
+      <ToggleButtonGroup
+        items={
+          Array [
+            Object {
+              "label": "Expanded",
+              "onClick": [Function],
+              "toggled": false,
+              "tooltip": "Show expanded player stats",
+            },
+            Object {
+              "label": "Poss%",
+              "onClick": [Function],
+              "toggled": true,
+              "tooltip": "Show possessions as count",
+            },
+            Object {
+              "label": "Luck",
+              "onClick": [Function],
+              "toggled": false,
+              "tooltip": "Adjust statistics for luck",
+            },
+            Object {
+              "label": "Edit...",
+              "onClick": [Function],
+              "toggled": false,
+              "tooltip": "Launch player stats manual editor",
+            },
+          ]
+        }
+      />
+    </FormRow>
     <ForwardRef
+      className="mt-2"
       noGutters={false}
     >
       <Col>
