@@ -584,16 +584,16 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
         items={
           Array [
             Object {
-              "label": "Luck",
-              "onClick": [Function],
-              "toggled": false,
-              "tooltip": "Adjust statistics for luck",
-            },
-            Object {
               "label": "Totals",
               "onClick": [Function],
               "toggled": false,
               "tooltip": "Show Weighted Combo of All Lineups",
+            },
+            Object {
+              "label": "Luck",
+              "onClick": [Function],
+              "toggled": false,
+              "tooltip": "Adjust statistics for luck",
             },
           ]
         }
@@ -6171,16 +6171,16 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
         items={
           Array [
             Object {
-              "label": "Luck",
-              "onClick": [Function],
-              "toggled": true,
-              "tooltip": "Remove luck adjustments",
-            },
-            Object {
               "label": "Totals",
               "onClick": [Function],
               "toggled": false,
               "tooltip": "Show Weighted Combo of All Lineups",
+            },
+            Object {
+              "label": "Luck",
+              "onClick": [Function],
+              "toggled": true,
+              "tooltip": "Remove luck adjustments",
             },
           ]
         }
@@ -9184,16 +9184,16 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
         items={
           Array [
             Object {
-              "label": "Luck",
-              "onClick": [Function],
-              "toggled": false,
-              "tooltip": "Adjust statistics for luck",
-            },
-            Object {
               "label": "Totals",
               "onClick": [Function],
               "toggled": false,
               "tooltip": "Show Weighted Combo of All Lineups",
+            },
+            Object {
+              "label": "Luck",
+              "onClick": [Function],
+              "toggled": false,
+              "tooltip": "Adjust statistics for luck",
             },
           ]
         }

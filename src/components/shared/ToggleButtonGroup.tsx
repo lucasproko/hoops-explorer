@@ -29,7 +29,7 @@ const ToggleButtonGroup: React.FunctionComponent<Props> = ({items}) => {
   {
     items.map((item, index) => {
       return <span key={"divtog" + index}>
-        <OverlayTrigger placement="top" overlay={tooltip(item.tooltip, index)}>
+        <OverlayTrigger placement="auto" overlay={tooltip(item.tooltip, index)}>
           <Button onClick={item.onClick} size="sm" key={"tog" + index} variant={item.toggled ? "dark" : "outline-secondary"}>{item.label}</Button>
         </OverlayTrigger>
         &nbsp;&nbsp;

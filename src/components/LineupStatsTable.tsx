@@ -392,6 +392,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
   };
 
   // 4] View
+
   return <Container>
     <LoadingOverlay
       active={needToLoadQuery()}
@@ -508,16 +509,16 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
       <Form.Row>
         <ToggleButtonGroup items={[
           {
-            label: "Luck",
-            tooltip: adjustForLuck ? "Remove luck adjustments" : "Adjust statistics for luck",
-            toggled: adjustForLuck,
-            onClick: () => setAdjustForLuck(!adjustForLuck)
-          },
-          {
             label: "Totals",
             tooltip: showTotals ? "Hide Weighted Combo of All Lineups" : "Show Weighted Combo of All Lineups",
             toggled: showTotals,
             onClick: () => setShowTotals(!showTotals)
+          },
+          {
+            label: "Luck",
+            tooltip: adjustForLuck ? "Remove luck adjustments" : "Adjust statistics for luck",
+            toggled: adjustForLuck,
+            onClick: () => setAdjustForLuck(!adjustForLuck)
           }
         ]}/>
       </Form.Row>
