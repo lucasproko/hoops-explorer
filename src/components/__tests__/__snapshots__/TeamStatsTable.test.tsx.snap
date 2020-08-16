@@ -558,7 +558,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 rowSpan={1}
                 style={
                   Object {
-                    "backgroundColor": "#ffedcc",
+                    "backgroundColor": "#fff3dd",
                     "fontWeight": "normal",
                     "textAlign": "center",
                     "verticalAlign": "middle",
@@ -568,7 +568,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
               >
                 <div>
                   <div>
-                    53.0
+                    52.0
                     <small>
                       <sup
                         className="infoBadge"
@@ -979,7 +979,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 rowSpan={1}
                 style={
                   Object {
-                    "backgroundColor": "#eff7fa",
+                    "backgroundColor": "#ffffff",
                     "fontWeight": "normal",
                     "textAlign": "center",
                     "verticalAlign": "middle",
@@ -989,7 +989,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
               >
                 <div>
                   <div>
-                    47.0
+                    50.0
                     <small>
                       <sup
                         className="infoBadge"
@@ -1427,7 +1427,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 rowSpan={1}
                 style={
                   Object {
-                    "backgroundColor": "#fff3dd",
+                    "backgroundColor": "#fff9ee",
                     "fontWeight": "normal",
                     "textAlign": "center",
                     "verticalAlign": "middle",
@@ -1437,7 +1437,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
               >
                 <div>
                   <div>
-                    52.0
+                    51.0
                     <small>
                       <sup
                         className="infoBadge"
@@ -1848,7 +1848,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 rowSpan={1}
                 style={
                   Object {
-                    "backgroundColor": "#f4fafc",
+                    "backgroundColor": "#fafcfd",
                     "fontWeight": "normal",
                     "textAlign": "center",
                     "verticalAlign": "middle",
@@ -1858,7 +1858,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
               >
                 <div>
                   <div>
-                    48.0
+                    49.0
                     <small>
                       <sup
                         className="infoBadge"
@@ -2296,7 +2296,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 rowSpan={1}
                 style={
                   Object {
-                    "backgroundColor": "#fff9ee",
+                    "backgroundColor": "#ffffff",
                     "fontWeight": "normal",
                     "textAlign": "center",
                     "verticalAlign": "middle",
@@ -2306,7 +2306,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
               >
                 <div>
                   <div>
-                    51.0
+                    50.0
                     <small>
                       <sup
                         className="infoBadge"
@@ -2717,7 +2717,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 rowSpan={1}
                 style={
                   Object {
-                    "backgroundColor": "#fafcfd",
+                    "backgroundColor": "#f4fafc",
                     "fontWeight": "normal",
                     "textAlign": "center",
                     "verticalAlign": "middle",
@@ -2727,7 +2727,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
               >
                 <div>
                   <div>
-                    49.0
+                    48.0
                     <small>
                       <sup
                         className="infoBadge"
@@ -3561,7 +3561,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                 rowSpan={1}
                 style={
                   Object {
-                    "backgroundColor": "#ffedcc",
+                    "backgroundColor": "#fff3dd",
                     "fontWeight": "normal",
                     "textAlign": "center",
                     "verticalAlign": "middle",
@@ -3571,7 +3571,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
               >
                 <div>
                   <div>
-                    53.0
+                    52.0
                     <small>
                       <sup
                         className="infoBadge"
@@ -3990,7 +3990,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                 rowSpan={1}
                 style={
                   Object {
-                    "backgroundColor": "#eff7fa",
+                    "backgroundColor": "#ffffff",
                     "fontWeight": "normal",
                     "textAlign": "center",
                     "verticalAlign": "middle",
@@ -4000,7 +4000,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
               >
                 <div>
                   <div>
-                    47.0
+                    50.0
                     <small>
                       <sup
                         className="infoBadge"
@@ -4587,7 +4587,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                 rowSpan={1}
                 style={
                   Object {
-                    "backgroundColor": "#fff3dd",
+                    "backgroundColor": "#fff9ee",
                     "fontWeight": "normal",
                     "textAlign": "center",
                     "verticalAlign": "middle",
@@ -4597,7 +4597,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
               >
                 <div>
                   <div>
-                    52.0
+                    51.0
                     <small>
                       <sup
                         className="infoBadge"
@@ -5016,7 +5016,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                 rowSpan={1}
                 style={
                   Object {
-                    "backgroundColor": "#f4fafc",
+                    "backgroundColor": "#fafcfd",
                     "fontWeight": "normal",
                     "textAlign": "center",
                     "verticalAlign": "middle",
@@ -5026,7 +5026,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
               >
                 <div>
                   <div>
-                    48.0
+                    49.0
                     <small>
                       <sup
                         className="infoBadge"
@@ -5613,7 +5613,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                 rowSpan={1}
                 style={
                   Object {
-                    "backgroundColor": "#fff9ee",
+                    "backgroundColor": "#ffffff",
                     "fontWeight": "normal",
                     "textAlign": "center",
                     "verticalAlign": "middle",
@@ -5623,7 +5623,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
               >
                 <div>
                   <div>
-                    51.0
+                    50.0
                     <small>
                       <sup
                         className="infoBadge"
@@ -6042,7 +6042,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                 rowSpan={1}
                 style={
                   Object {
-                    "backgroundColor": "#fafcfd",
+                    "backgroundColor": "#f4fafc",
                     "fontWeight": "normal",
                     "textAlign": "center",
                     "verticalAlign": "middle",
@@ -6052,7 +6052,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
               >
                 <div>
                   <div>
-                    49.0
+                    48.0
                     <small>
                       <sup
                         className="infoBadge"

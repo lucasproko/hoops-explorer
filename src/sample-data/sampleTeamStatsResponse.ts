@@ -161,12 +161,6 @@ export const sampleTeamStatsResponse =
           "off_efg" : {
             "value" : 0.5213358070500927
           },
-          "off_assist" : {
-            "value" : 0.51
-          },
-          "def_assist" : {
-            "value" : 0.49
-          },
           "off_to" : {
             "value" : 0.18693574083908657
           },
@@ -200,6 +194,106 @@ export const sampleTeamStatsResponse =
           "def_adj_ppp" : {
             "value" : 100.23529411764706
           },
+          // Assists
+          "off_assist" : {
+            "value" : 0.50
+          },
+          "def_assist" : {
+            "value" : 0.48
+          },
+          "total_off_assists": {
+            "value": 100
+          },
+          "total_def_assists": {
+            "value": 110
+          },
+          //(off assist)
+          "total_off_ast_3p": {
+            "value": 40
+          },
+          "total_off_ast_mid": {
+            "value": 30
+          },
+          "total_off_ast_rim": {
+            "value": 30
+          },
+          "off_ast_3p": {
+            "value": 0.4
+          },
+          "off_ast_mid": {
+            "value": 0.3
+          },
+          "off_ast_rim": {
+            "value": 0.3
+          },
+          "total_off_3p_ast": {
+            "value": 40
+          },
+          "total_off_2p_ast": {
+            "value": 30
+          },
+          "total_off_2pmid_ast": {
+            "value": 30
+          },
+          "total_off_2prim_ast": {
+            "value": 60
+          },
+          "off_3p_ast": {
+            "value": 0.60
+          },
+          "off_2p_ast": {
+            "value": 0.5
+          },
+          "off_2pmid_ast": {
+            "value": 0.25
+          },
+          "off_2prim_ast": {
+            "value": 0.25
+          },
+          //(def assist)
+          "total_def_ast_3p": {
+            "value": 45
+          },
+          "total_def_ast_mid": {
+            "value": 35
+          },
+          "total_def_ast_rim": {
+            "value": 35
+          },
+          "def_ast_3p": {
+            "value": 0.45
+          },
+          "def_ast_mid": {
+            "value": 0.35
+          },
+          "def_ast_rim": {
+            "value": 0.35
+          },
+          "total_def_3p_ast": {
+            "value": 45
+          },
+          "total_def_2p_ast": {
+            "value": 35
+          },
+          "total_def_2pmid_ast": {
+            "value": 35
+          },
+          "total_def_2prim_ast": {
+            "value": 65
+          },
+          "def_3p_ast": {
+            "value": 0.65
+          },
+          "def_2p_ast": {
+            "value": 0.55
+          },
+          "def_2pmid_ast": {
+            "value": 0.30
+          },
+          "def_2prim_ast": {
+            "value": 0.30
+          },
+          //(end assists)
         },
         "off" : {
           "doc_count" : 204,
@@ -238,12 +332,6 @@ export const sampleTeamStatsResponse =
           },
           "total_off_2prim_made" : {
             "value" : 106.0
-          },
-          "off_assist" : {
-            "value" : 0.52
-          },
-          "def_assist" : {
-            "value" : 0.48
           },
           "def_to" : {
             "value" : 0.18120805369127516
@@ -348,6 +436,106 @@ export const sampleTeamStatsResponse =
           "def_adj_ppp" : {
             "value" : 105.23529411764706
           },
+          // Assists
+          "off_assist" : {
+            "value" : 0.51
+          },
+          "def_assist" : {
+            "value" : 0.49
+          },
+          "total_off_assists": {
+            "value": 101
+          },
+          "total_def_assists": {
+            "value": 111
+          },
+          //(off assist)
+          "total_off_ast_3p": {
+            "value": 41
+          },
+          "total_off_ast_mid": {
+            "value": 31
+          },
+          "total_off_ast_rim": {
+            "value": 31
+          },
+          "off_ast_3p": {
+            "value": 0.41
+          },
+          "off_ast_mid": {
+            "value": 0.31
+          },
+          "off_ast_rim": {
+            "value": 0.31
+          },
+          "total_off_3p_ast": {
+            "value": 41
+          },
+          "total_off_2p_ast": {
+            "value": 31
+          },
+          "total_off_2pmid_ast": {
+            "value": 31
+          },
+          "total_off_2prim_ast": {
+            "value": 61
+          },
+          "off_3p_ast": {
+            "value": 0.61
+          },
+          "off_2p_ast": {
+            "value": 0.51
+          },
+          "off_2pmid_ast": {
+            "value": 0.26
+          },
+          "off_2prim_ast": {
+            "value": 0.26
+          },
+          //(def assist)
+          "total_def_ast_3p": {
+            "value": 46
+          },
+          "total_def_ast_mid": {
+            "value": 36
+          },
+          "total_def_ast_rim": {
+            "value": 36
+          },
+          "def_ast_3p": {
+            "value": 0.46
+          },
+          "def_ast_mid": {
+            "value": 0.36
+          },
+          "def_ast_rim": {
+            "value": 0.36
+          },
+          "total_def_3p_ast": {
+            "value": 46
+          },
+          "total_def_2p_ast": {
+            "value": 36
+          },
+          "total_def_2pmid_ast": {
+            "value": 36
+          },
+          "total_def_2prim_ast": {
+            "value": 66
+          },
+          "def_3p_ast": {
+            "value": 0.66
+          },
+          "def_2p_ast": {
+            "value": 0.56
+          },
+          "def_2pmid_ast": {
+            "value": 0.31
+          },
+          "def_2prim_ast": {
+            "value": 0.31
+          },
+          //(end assists)
         },
         "on" : {
           "doc_count" : 367,
@@ -386,12 +574,6 @@ export const sampleTeamStatsResponse =
           },
           "total_off_2prim_made" : {
             "value" : 219.0
-          },
-          "off_assist" : {
-            "value" : 0.53
-          },
-          "def_assist" : {
-            "value" : 0.47
           },
           "def_to" : {
             "value" : 0.12637362637362637
@@ -502,6 +684,106 @@ export const sampleTeamStatsResponse =
           "def_adj_ppp": {
             "value": 88
           },
+          // Assists
+          "off_assist" : {
+            "value" : 0.52
+          },
+          "def_assist" : {
+            "value" : 0.50
+          },
+          "total_off_assists": {
+            "value": 102
+          },
+          "total_def_assists": {
+            "value": 112
+          },
+          //(off assist)
+          "total_off_ast_3p": {
+            "value": 42
+          },
+          "total_off_ast_mid": {
+            "value": 32
+          },
+          "total_off_ast_rim": {
+            "value": 32
+          },
+          "off_ast_3p": {
+            "value": 0.42
+          },
+          "off_ast_mid": {
+            "value": 0.32
+          },
+          "off_ast_rim": {
+            "value": 0.32
+          },
+          "total_off_3p_ast": {
+            "value": 42
+          },
+          "total_off_2p_ast": {
+            "value": 32
+          },
+          "total_off_2pmid_ast": {
+            "value": 32
+          },
+          "total_off_2prim_ast": {
+            "value": 62
+          },
+          "off_3p_ast": {
+            "value": 0.62
+          },
+          "off_2p_ast": {
+            "value": 0.52
+          },
+          "off_2pmid_ast": {
+            "value": 0.27
+          },
+          "off_2prim_ast": {
+            "value": 0.27
+          },
+          //(def assist)
+          "total_def_ast_3p": {
+            "value": 47
+          },
+          "total_def_ast_mid": {
+            "value": 37
+          },
+          "total_def_ast_rim": {
+            "value": 37
+          },
+          "def_ast_3p": {
+            "value": 0.47
+          },
+          "def_ast_mid": {
+            "value": 0.37
+          },
+          "def_ast_rim": {
+            "value": 0.37
+          },
+          "total_def_3p_ast": {
+            "value": 47
+          },
+          "total_def_2p_ast": {
+            "value": 37
+          },
+          "total_def_2pmid_ast": {
+            "value": 37
+          },
+          "total_def_2prim_ast": {
+            "value": 67
+          },
+          "def_3p_ast": {
+            "value": 0.67
+          },
+          "def_2p_ast": {
+            "value": 0.57
+          },
+          "def_2pmid_ast": {
+            "value": 0.32
+          },
+          "def_2prim_ast": {
+            "value": 0.32
+          },
+          //(end assists)
         }
       }
     }

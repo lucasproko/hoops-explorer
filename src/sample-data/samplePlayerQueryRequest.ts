@@ -366,6 +366,180 @@ export const samplePlayerQueryRequest =           {
                               "script": "(params.my_var1 > 0) ? 1*params.my_var1 / params.my_var2 : 0"
                            }
                         },
+                        "off_ast_3p_target": {
+                          "scripted_metric": {
+                            "init_script": "state.codes = [:]",
+                            "map_script": `
+                def code_array = doc['player_stats.ast_3p.target.player_code.keyword'];
+                def count_array = doc['player_stats.ast_3p.target.count.total'];
+                for (def i = 0; i < code_array.length; ++i) {
+                  def code = code_array[i];
+                  def inc = count_array[i];
+                  def curr_val = state.codes[code];
+                  state.codes[code] = curr_val != null ? (curr_val + inc) : inc;
+                }
+              `,
+                            "combine_script": "state.codes",
+                            "reduce_script": `
+                def toCombine = states.size();
+                def end_state = toCombine > 0 ? states[0] : [:];
+                for (def i = 1; i < toCombine; ++i) {
+                  def state = states[i];
+                  for (code in state.keySet()) {
+                    def new_val = state[code];
+                    def curr_val = end_state[code];
+                    end_state[code] = curr_val != null ? (curr_val + new_val) : new_val;
+                  }
+                }
+                return end_state;
+              `
+                          }
+                        },
+                        "off_ast_mid_target": {
+                          "scripted_metric": {
+                            "init_script": "state.codes = [:]",
+                            "map_script": `
+                def code_array = doc['player_stats.ast_mid.target.player_code.keyword'];
+                def count_array = doc['player_stats.ast_mid.target.count.total'];
+                for (def i = 0; i < code_array.length; ++i) {
+                  def code = code_array[i];
+                  def inc = count_array[i];
+                  def curr_val = state.codes[code];
+                  state.codes[code] = curr_val != null ? (curr_val + inc) : inc;
+                }
+              `,
+                            "combine_script": "state.codes",
+                            "reduce_script": `
+                def toCombine = states.size();
+                def end_state = toCombine > 0 ? states[0] : [:];
+                for (def i = 1; i < toCombine; ++i) {
+                  def state = states[i];
+                  for (code in state.keySet()) {
+                    def new_val = state[code];
+                    def curr_val = end_state[code];
+                    end_state[code] = curr_val != null ? (curr_val + new_val) : new_val;
+                  }
+                }
+                return end_state;
+              `
+                          }
+                        },
+                        "off_ast_rim_target": {
+                          "scripted_metric": {
+                            "init_script": "state.codes = [:]",
+                            "map_script": `
+                def code_array = doc['player_stats.ast_rim.target.player_code.keyword'];
+                def count_array = doc['player_stats.ast_rim.target.count.total'];
+                for (def i = 0; i < code_array.length; ++i) {
+                  def code = code_array[i];
+                  def inc = count_array[i];
+                  def curr_val = state.codes[code];
+                  state.codes[code] = curr_val != null ? (curr_val + inc) : inc;
+                }
+              `,
+                            "combine_script": "state.codes",
+                            "reduce_script": `
+                def toCombine = states.size();
+                def end_state = toCombine > 0 ? states[0] : [:];
+                for (def i = 1; i < toCombine; ++i) {
+                  def state = states[i];
+                  for (code in state.keySet()) {
+                    def new_val = state[code];
+                    def curr_val = end_state[code];
+                    end_state[code] = curr_val != null ? (curr_val + new_val) : new_val;
+                  }
+                }
+                return end_state;
+              `
+                          }
+                        },
+                        "off_ast_3p_source": {
+                          "scripted_metric": {
+                            "init_script": "state.codes = [:]",
+                            "map_script": `
+                def code_array = doc['player_stats.ast_3p.source.player_code.keyword'];
+                def count_array = doc['player_stats.ast_3p.source.count.total'];
+                for (def i = 0; i < code_array.length; ++i) {
+                  def code = code_array[i];
+                  def inc = count_array[i];
+                  def curr_val = state.codes[code];
+                  state.codes[code] = curr_val != null ? (curr_val + inc) : inc;
+                }
+              `,
+                            "combine_script": "state.codes",
+                            "reduce_script": `
+                def toCombine = states.size();
+                def end_state = toCombine > 0 ? states[0] : [:];
+                for (def i = 1; i < toCombine; ++i) {
+                  def state = states[i];
+                  for (code in state.keySet()) {
+                    def new_val = state[code];
+                    def curr_val = end_state[code];
+                    end_state[code] = curr_val != null ? (curr_val + new_val) : new_val;
+                  }
+                }
+                return end_state;
+              `
+                          }
+                        },
+                        "off_ast_mid_source": {
+                          "scripted_metric": {
+                            "init_script": "state.codes = [:]",
+                            "map_script": `
+                def code_array = doc['player_stats.ast_mid.source.player_code.keyword'];
+                def count_array = doc['player_stats.ast_mid.source.count.total'];
+                for (def i = 0; i < code_array.length; ++i) {
+                  def code = code_array[i];
+                  def inc = count_array[i];
+                  def curr_val = state.codes[code];
+                  state.codes[code] = curr_val != null ? (curr_val + inc) : inc;
+                }
+              `,
+                            "combine_script": "state.codes",
+                            "reduce_script": `
+                def toCombine = states.size();
+                def end_state = toCombine > 0 ? states[0] : [:];
+                for (def i = 1; i < toCombine; ++i) {
+                  def state = states[i];
+                  for (code in state.keySet()) {
+                    def new_val = state[code];
+                    def curr_val = end_state[code];
+                    end_state[code] = curr_val != null ? (curr_val + new_val) : new_val;
+                  }
+                }
+                return end_state;
+              `
+                          }
+                        },
+                        "off_ast_rim_source": {
+                          "scripted_metric": {
+                            "init_script": "state.codes = [:]",
+                            "map_script": `
+                def code_array = doc['player_stats.ast_rim.source.player_code.keyword'];
+                def count_array = doc['player_stats.ast_rim.source.count.total'];
+                for (def i = 0; i < code_array.length; ++i) {
+                  def code = code_array[i];
+                  def inc = count_array[i];
+                  def curr_val = state.codes[code];
+                  state.codes[code] = curr_val != null ? (curr_val + inc) : inc;
+                }
+              `,
+                            "combine_script": "state.codes",
+                            "reduce_script": `
+                def toCombine = states.size();
+                def end_state = toCombine > 0 ? states[0] : [:];
+                for (def i = 1; i < toCombine; ++i) {
+                  def state = states[i];
+                  for (code in state.keySet()) {
+                    def new_val = state[code];
+                    def curr_val = end_state[code];
+                    end_state[code] = curr_val != null ? (curr_val + new_val) : new_val;
+                  }
+                }
+                return end_state;
+              `
+                          }
+                        },
                         //(end assists)
                         "off_2p": {
                            "bucket_script": {

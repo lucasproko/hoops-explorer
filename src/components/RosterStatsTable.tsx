@@ -35,6 +35,7 @@ import LuckAdjDiagView from "./diags/LuckAdjDiagView"
 import LuckConfigModal from "./shared/LuckConfigModal";
 import ManualOverrideModal from "./shared/ManualOverrideModal";
 import ToggleButtonGroup from "./shared/ToggleButtonGroup";
+import PlayTypeDiagView from "./diags/PlayTypeDiagView"
 
 // Util imports
 import { CbbColors } from "../utils/CbbColors";
@@ -490,6 +491,10 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
             showHelp={showHelp}
           />, "small pt-2"
         ) ] : [] ,
+//TODO
+        // [ GenericTableOps.buildTextRow(
+        //   <PlayTypeDiagView player={p.baseline} teamSeason={teamSeasonLookup} showHelp={showHelp}/>, "small"
+        // ) ],
       ]),
       [ GenericTableOps.buildRowSeparator() ]
     ]);
