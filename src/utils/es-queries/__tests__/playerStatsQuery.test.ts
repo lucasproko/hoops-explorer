@@ -1,6 +1,5 @@
 
 import { playerStatsQuery } from "../playerStatsQueryTemplate";
-import { samplePlayerQueryRequest } from "../../../sample-data/samplePlayerQueryRequest";
 
 describe("playerStatsQuery", () => {
   test("playerStatsQuery", () => {
@@ -14,6 +13,12 @@ describe("playerStatsQuery", () => {
       "name1": "name1b"
     }, 100.0);
 
-    expect(test).toEqual(samplePlayerQueryRequest);
+    // Write the resulting object out in pure JS format in case we want to paste it into
+    // the ES console
+    expect.addSnapshotSerializer({
+      test: (val: any) => true,
+      print: (val: any) => JSON.stringify(test, null, 3)
+    });
+    expect(test).toMatchSnapshot();
   });
 });

@@ -27,6 +27,7 @@ import GenericTogglingMenu from "./shared/GenericTogglingMenu";
 import GenericTogglingMenuItem from "./shared/GenericTogglingMenuItem";
 import ToggleButtonGroup from "./shared/ToggleButtonGroup";
 import LuckAdjDiagView from "./diags/LuckAdjDiagView"
+import TeamPlayTypeDiagView from "./diags/TeamPlayTypeDiagView"
 
 // Util imports
 import { CbbColors } from "../utils/CbbColors"
@@ -174,6 +175,10 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
           showHelp={showHelp}
         />, "small pt-2"
       ) ] : [] ,
+//TODO
+        // [ GenericTableOps.buildTextRow(
+        //   <TeamPlayTypeDiagView lineupSet={teamStats.off} showHelp={showHelp}/>, "small"
+        // ) ],
       [ GenericTableOps.buildRowSeparator() ]
     ]) : [],
     (teamStats.off?.doc_count) ? _.flatten([
@@ -188,6 +193,10 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
           showHelp={showHelp}
         />, "small pt-2"
       ) ] : [] ,
+//TODO
+        // [ GenericTableOps.buildTextRow(
+        //   <TeamPlayTypeDiagView lineupSet={teamStats.off} showHelp={showHelp}/>, "small"
+        // ) ],
       [ GenericTableOps.buildRowSeparator() ]
     ]) : [],
     _.flatten([
@@ -202,7 +211,11 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
           showHelp={showHelp}
         />, "small pt-2"
       ) ] : [] ,
-      [ GenericTableOps.buildRowSeparator() ]
+//TODO
+        // [ GenericTableOps.buildTextRow(
+        //   <TeamPlayTypeDiagView lineupSet={teamStats.baseline} showHelp={showHelp}/>, "small"
+        // ) ],
+      [ GenericTableOps.buildRowSeparator() ],
     ]),
   ]);
 

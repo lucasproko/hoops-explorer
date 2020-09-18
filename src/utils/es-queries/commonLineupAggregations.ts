@@ -1,4 +1,6 @@
 
+import _ from "lodash";
+
 /////////////////////////////////////////////////////////////
 
 // Util methods
@@ -48,12 +50,12 @@ const calculate3pSos = function() { return `
  * - "orb"x2; "drb"x2
 */
 const commonMiscAggs = function(
-  srcPrefix: string, dstPrefix: "off" | "def", srcType: string, dstType: string, totalSuffix: boolean = true
+  srcPrefix: string, dstPrefix: "off" | "def", srcType: string, dstType: string, suffix: string = ".total"
 ) {
   return {
     [`total_${dstPrefix}_${dstType}`]: {
        "sum": {
-          "field": `${srcPrefix}.${srcType}${totalSuffix ? ".total" : ""}`
+          "field": `${srcPrefix}.${srcType}${suffix}`
        }
     }
   };
@@ -61,12 +63,12 @@ const commonMiscAggs = function(
 
 /** shotType is 2p, 3p, 2prim, 2pmid */
 const commonShotAggs = function(
-  srcPrefix: string, dstPrefix: "off" | "def", shotType: string, altShotType: string | undefined = undefined
+  srcPrefix: string, dstPrefix: "off" | "def", altShotType: string, shotType: string, suffix: string
 ) {
   return {
-    ...commonMiscAggs(srcPrefix, dstPrefix, `fg_${altShotType || shotType}.attempts`, `${shotType}_attempts`),
-    ...commonMiscAggs(srcPrefix, dstPrefix, `fg_${altShotType || shotType}.made`, `${shotType}_made`),
-    ...commonMiscAggs(srcPrefix, dstPrefix, `fg_${altShotType || shotType}.ast`, `${shotType}_ast`),
+    ...commonMiscAggs(srcPrefix, dstPrefix, `fg_${altShotType || shotType}.attempts`, `${shotType}_attempts`, suffix),
+    ...commonMiscAggs(srcPrefix, dstPrefix, `fg_${altShotType || shotType}.made`, `${shotType}_made`, suffix),
+    ...commonMiscAggs(srcPrefix, dstPrefix, `fg_${altShotType || shotType}.ast`, `${shotType}_ast`, suffix),
   };
 }
 
@@ -126,46 +128,95 @@ export const commonAggregations = function(
   //  of lineups against on/off, which feels wrong, even though appears slightly more accurate)
   const properAdjEffCalc = true;
 
+  const typeSuffixFromPrefix = (typePrefix: "" | "scramble_" | "trans_") => { switch (typePrefix) {
+    case "": return ".total";
+    case "scramble_": return ".orb";
+    case "trans_": return ".early";
+  }};
+  const typePrefixes = ["", "scramble_", "trans_"] as ("" | "scramble_" | "trans_")[]
+
   return {
     // Totals:
-    ...commonMiscAggs(srcPrefix, dstPrefix, "num_possessions", "poss", false),
-    ...commonMiscAggs(srcPrefix, dstPrefix, "pts", "pts", false),
-    ...commonMiscAggs(srcPrefix, dstPrefix, "to", "to"), //(does want total)
+    ...commonMiscAggs(srcPrefix, dstPrefix, "num_possessions", "poss", ""),
+    ...commonMiscAggs(srcPrefix, dstPrefix, "pts", "pts", ""),
+    //TODO: needs to be an object not an array
+    ...(_.transform(typePrefixes, (acc, typePrefix) => { return _.merge(acc, {
+      ...commonMiscAggs(srcPrefix, dstPrefix, "to", typePrefix + "to", typeSuffixFromPrefix(typePrefix)),
+      ...commonMiscAggs(srcPrefix, dstPrefix, "assist", typePrefix + "assist", typeSuffixFromPrefix(typePrefix)),
+    }); }, {})),
     ...commonMiscAggs(srcPrefix, dstPrefix, "stl", "stl"), //(does want total)
     ...commonMiscAggs(srcPrefix, dstPrefix, "blk", "blk"), //(does want total)
-    ...commonMiscAggs(srcPrefix, dstPrefix, "assist", "assist"), //(does want total)
     ...commonMiscAggs(srcPrefix, dstPrefix, "foul", "foul"), //(does want total)
     // Shots
-    ...commonShotAggs(srcPrefix, dstPrefix, "2p"),
-    ...commonShotAggs(srcPrefix, dstPrefix, "3p"),
-    ...commonShotAggs(srcPrefix, dstPrefix, "2prim", "rim"),
-    ...commonShotAggs(srcPrefix, dstPrefix, "2pmid", "mid"),
-    ...commonMiscAggs(srcPrefix, dstPrefix, "fg.attempts", "fga"),
-    ...commonMiscAggs(srcPrefix, dstPrefix, "fg.made", "fgm"),
-    ...commonMiscAggs(srcPrefix, dstPrefix, "ft.attempts", "fta"),
-    ...commonMiscAggs(srcPrefix, dstPrefix, "ft.made", "ftm"),
+    ...(_.transform(typePrefixes, (acc, typePrefix) => { return _.merge(acc, {
+      ...commonShotAggs(srcPrefix, dstPrefix, "2p", typePrefix + "2p", typeSuffixFromPrefix(typePrefix)),
+      ...commonShotAggs(srcPrefix, dstPrefix, "3p", typePrefix + "3p", typeSuffixFromPrefix(typePrefix)),
+      ...commonShotAggs(srcPrefix, dstPrefix, "rim", typePrefix + "2prim", typeSuffixFromPrefix(typePrefix)),
+      ...commonShotAggs(srcPrefix, dstPrefix, "mid", typePrefix + "2pmid", typeSuffixFromPrefix(typePrefix)),
+
+      ...commonMiscAggs(srcPrefix, dstPrefix, "fg.attempts", typePrefix + "fga", typeSuffixFromPrefix(typePrefix)),
+      ...commonMiscAggs(srcPrefix, dstPrefix, "fg.made", typePrefix + "fgm", typeSuffixFromPrefix(typePrefix)),
+      ...commonMiscAggs(srcPrefix, dstPrefix, "ft.attempts", typePrefix + "fta", typeSuffixFromPrefix(typePrefix)),
+      ...commonMiscAggs(srcPrefix, dstPrefix, "ft.made", typePrefix + "ftm", typeSuffixFromPrefix(typePrefix)),
+    }); }, {})),
     // Rebounding
     ...commonMiscAggs(srcPrefix, dstPrefix, "orb", "orb"),
     ...commonMiscAggs(srcPrefix, dstPrefix, "drb", "drb"),
     // X/Y type expressions
-    ...commonAverageShotAggs(dstPrefix, "2p"),
-    ...commonAverageShotAggs(dstPrefix, "3p"),
-    ...commonAverageShotAggs(dstPrefix, "2prim"),
-    ...commonAverageShotAggs(dstPrefix, "2pmid"),
-    ...commonAverageAggs(dstPrefix, "ft", "ftm", "fta"),
-    ...commonAverageAggs(dstPrefix, "ftr", "fta", "fga"),
-    // Assist %s (includes totals for ast_)
-    ...commonAverageAggs(dstPrefix, "assist", "assist", "fgm"),
+    ...(_.transform(typePrefixes, (acc, typePrefix) => { return _.merge(acc, {
+      ...commonAverageShotAggs(dstPrefix, typePrefix + "2p"),
+      ...commonAverageShotAggs(dstPrefix, typePrefix + "3p"),
+      ...commonAverageShotAggs(dstPrefix, typePrefix + "2prim"),
+      ...commonAverageShotAggs(dstPrefix, typePrefix + "2pmid"),
+      ...commonAverageAggs(dstPrefix, typePrefix + "ft", typePrefix + "ftm", typePrefix + "fta"),
+      ...commonAverageAggs(dstPrefix, typePrefix + "ftr", typePrefix + "fta", typePrefix + "fga"),
+      // Shot type stats
+      ...commonAverageAggs(dstPrefix, typePrefix + "2primr", typePrefix + "2prim_attempts", typePrefix + "fga"),
+      ...commonAverageAggs(dstPrefix, typePrefix + "2pmidr", typePrefix + "2pmid_attempts", typePrefix + "fga"),
+      ...commonAverageAggs(dstPrefix, typePrefix + "3pr", typePrefix + "3p_attempts", typePrefix + "fga"),
+      // Assist %s (includes totals for ast_)
+      ...commonAverageAggs(dstPrefix, typePrefix + "assist", typePrefix + "assist", typePrefix + "fgm"),
+    }); }, {})),
+    // Other assist %s (includes totals for ast_)
     ...commonAssistInfo(srcPrefix, dstPrefix, "rim"),
     ...commonAssistInfo(srcPrefix, dstPrefix, "mid"),
     ...commonAssistInfo(srcPrefix, dstPrefix, "3p"),
     // Per Possession stats
-    ...commonAverageAggs(dstPrefix, "ppp", "pts", "poss", 100.0),
-    ...commonAverageAggs(dstPrefix, "to", "to", "poss"),
-    // Shot type stats
-    ...commonAverageAggs(dstPrefix, "2primr", "2prim_attempts", "fga"),
-    ...commonAverageAggs(dstPrefix, "2pmidr", "2pmid_attempts", "fga"),
-    ...commonAverageAggs(dstPrefix, "3pr", "3p_attempts", "fga"),
+    ...(_.transform(_.drop(typePrefixes), (acc, typePrefix) => { return _.merge(acc, { //TODO
+      [`total_${dstPrefix}_${typePrefix}pts`]: {
+        "bucket_script": {
+          "buckets_path": {
+            "made3p": `total_${dstPrefix}_${typePrefix}3p_made`,
+            "made2p": `total_${dstPrefix}_${typePrefix}2p_made`,
+            "ftm": `total_${dstPrefix}_${typePrefix}ftm`,
+          },
+          "script": "3*params.made3p + 2*params.made2p + params.ftm"
+        }
+      },
+      [`total_${dstPrefix}_${typePrefix}poss`]: { //fgm + (approx-unrebounded) fgM + 0.475*fta + to
+        "bucket_script": {
+          "buckets_path": {
+            "fga": `total_${dstPrefix}_${typePrefix}fga`,
+            "fgm": `total_${dstPrefix}_${typePrefix}fgm`,
+            "fta": `total_${dstPrefix}_${typePrefix}fta`,
+            "to": `total_${dstPrefix}_${typePrefix}to`,
+
+            "var_orb": `total_${dstPrefix}_orb`, //(for "trans_", treat ORB% as 0 since never count post-ORB as transition)
+            "var_drb": `total_${oppoDstPrefix}_drb`,
+          },
+          "script": `
+            def fgM = params.fga - params.fgm;
+            def rebound_pct = (params.var_orb > 0) ? 1.0*params.var_orb/(params.var_orb + params.var_drb) : 0.0;
+            ${(typePrefix == "trans_") ? "rebound_pct = 0.0;" : "" }
+            return params.fgm + (1.0 - rebound_pct)*fgM + 0.475*params.fta + params.to;
+          `
+        }
+      },
+    }); }, {})),
+    ...(_.transform(typePrefixes, (acc, typePrefix) => { return _.merge(acc, {
+      ...commonAverageAggs(dstPrefix, typePrefix + "ppp", typePrefix + "pts", typePrefix + "poss", 100.0),
+      ...commonAverageAggs(dstPrefix, typePrefix + "to", typePrefix + "to", typePrefix + "poss"),
+    }); }, {})),
     // Dumb rename:
     [`${dstPrefix}_poss`]: { //TODO fix this, there's a mess of total prefixes
       "bucket_script": {
@@ -187,16 +238,18 @@ export const commonAggregations = function(
       }
     },
     // eFG:
-    [`${dstPrefix}_efg`]: {
-       "bucket_script": {
-          "buckets_path": {
-             "my_varFG": `total_${dstPrefix}_fga`,
-             "my_var2": `total_${dstPrefix}_2p_made`,
-             "my_var3": `total_${dstPrefix}_3p_made`
-          },
-          "script": `(params.my_varFG > 0) ? (1.0*params.my_var2 + 1.5*params.my_var3) / params.my_varFG : 0`
-       }
-    },
+    ...(_.transform(typePrefixes, (acc, typePrefix) => { return _.merge(acc, {
+      [`${dstPrefix}_${typePrefix}efg`]: {
+         "bucket_script": {
+            "buckets_path": {
+               "my_varFG": `total_${dstPrefix}_${typePrefix}fga`,
+               "my_var2": `total_${dstPrefix}_${typePrefix}2p_made`,
+               "my_var3": `total_${dstPrefix}_${typePrefix}3p_made`
+            },
+            "script": `(params.my_varFG > 0) ? (1.0*params.my_var2 + 1.5*params.my_var3) / params.my_varFG : 0`
+         }
+      },
+    }); }, {})),
     [`${dstPrefix}_adj_opp`]: {
         "weighted_avg": {
            "weight": {

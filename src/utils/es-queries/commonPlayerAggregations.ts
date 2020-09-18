@@ -85,7 +85,11 @@ export const commonPlayerAggregations = function(publicEfficiency: any, lookup: 
     ...(_.chain(
         commonAggregations("player_stats", "off", publicEfficiency, lookup, avgEff)
       ).omit(
-        [ "off_poss", "off_ppp", "off_to", "off_orb", "off_adj_ppp", "off_assist" ]
+        [ "off_poss", "off_ppp", "off_to", "off_orb", "off_adj_ppp", "off_assist",
+//TODO: handle scramble and transition breakdowns better
+          "total_off_trans_poss", "off_trans_ppp", "off_trans_to",
+          "total_off_scramble_poss", "off_scramble_ppp", "off_scramble_to"
+       ]
       ).mergeWith({
 
         // Offensive fields

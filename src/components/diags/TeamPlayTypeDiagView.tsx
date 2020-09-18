@@ -63,29 +63,43 @@ const complexDiagTable = {
 */
 
 type Props = {
-  player: Record<string, any>,
-  teamSeason: string,
+  lineupSet: Record<string, any>,
   showHelp: boolean,
   showDetailsOverride?: boolean
 };
-const PlayTypeDiagView: React.FunctionComponent<Props> = ({player, teamSeason, showHelp, showDetailsOverride}) => {
+const TeamPlayTypeDiagView: React.FunctionComponent<Props> = ({lineupSet, showHelp, showDetailsOverride}) => {
 
   return <span>
       <span>
-        <b>Play Type Breakdown for [{player.key}]</b>
+        <b>Play Type Breakdown</b>
       </span>
       <br/>
-      {[ "3p", "mid", "rim" ].flatMap((key) => {
-          return [ "target", "source" ].map((loc) => {
-            return <span key={key+loc}>
-                <span>{key} {loc} {JSON.stringify(
-                  player[`off_ast_${key}_${loc}`]?.value || {}, null, 3
-                )}</span>
-                <br/>
-              </span>;
-          });
-        })
+      <span>
+        <b>Scrambles off rebounds</b>
+      </span>
+      <br/>
+      <span>
+      {
+        JSON.stringify(_.chain(lineupSet).toPairs().filter((kv: [string, any]) => {
+          return kv[0].indexOf("scramble_") > 0
+        }).fromPairs().value())
       }
+      </span>
+      <br/>
+      <span>
+        <b>Transition</b>
+      </span>
+      <br/>
+      <span>
+      {
+//TODO: these transition numbers seem way too high ... 400 vs 300 FGA and more importantly 60% FTR vs 16% (2019)
+//2015/6: FGAs are almost identical (273) but 50% FTR (138) vs 15% again, leading to noticeable difference
+// trans TO also slightly high (20% vs 13%)     
+        JSON.stringify(_.chain(lineupSet).toPairs().filter((kv: [string, any]) => {
+          return kv[0].indexOf("trans_") > 0
+        }).fromPairs().value())
+      }
+      </span>
     </span>;
 };
-export default PlayTypeDiagView;
+export default TeamPlayTypeDiagView;
