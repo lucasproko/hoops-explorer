@@ -93,11 +93,11 @@ describe("LuckUtils", () => {
     LuckUtils.injectLuck(sampleTeamOn, offTeamLuckAdj, defTeamLuckAdj);
     LuckUtils.injectLuck(sampleTeamOff, offTeamLuckAdj, defTeamLuckAdj);
 
-    expect(_.differenceWith(
+    expect(_.fromPairs(_.differenceWith(
       _.toPairs(sampleTeamOn),
       _.toPairs(savedSampleTeamOn),
       _.isEqual
-    )).toEqual([
+    ))).toEqual(_.fromPairs([
          [
           "off_ppp",
            {
@@ -162,7 +162,7 @@ describe("LuckUtils", () => {
             "value": 95.6971251825972,
           },
         ]
-    ]);
+    ]));
 
     // Recalculate and check that calcOffTeamLuckAdj / calcDefTeamLuckAdj
 

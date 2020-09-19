@@ -1,4 +1,558 @@
-export const sampleLineupStatsResponse = { //TODO: need to change this...
+import { SampleDataUtils } from "./SampleDataUtils"
+
+const sampleLineupStatsTemplate =
+{
+  // A: Top Level Scoring
+
+   "efg": {
+      "AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith": {
+         "off_": 0.47305389221556887,
+         "def_": 0.43354430379746833
+      },
+      "AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith": {
+         "off_": 0.3735632183908046,
+         "def_": 0.4176470588235294
+      },
+      "AaWiggins_AnCowan_DoScott_ErAyala_JaSmith": {
+         "off_": 0.5052083333333334,
+         "def_": 0.34408602150537637
+      }
+   },
+   "fga": {
+      "AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith": {
+         "total_off_": 167,
+         "total_def_": 158
+      },
+      "AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith": {
+         "total_off_": 87,
+         "total_def_": 85
+      },
+      "AaWiggins_AnCowan_DoScott_ErAyala_JaSmith": {
+         "total_off_": 96,
+         "total_def_": 93
+      }
+   },
+   "fta": {
+      "AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith": {
+         "total_off_": 83,
+         "total_def_": 47
+      },
+      "AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith": {
+         "total_off_": 48,
+         "total_def_": 24
+      },
+      "AaWiggins_AnCowan_DoScott_ErAyala_JaSmith": {
+         "total_off_": 19,
+         "total_def_": 27
+      }
+   },
+   "ftr": {
+      "AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith": {
+         "off_": 0.49700598802395207,
+         "def_": 0.2974683544303797
+      },
+      "AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith": {
+         "off_": 0.5517241379310345,
+         "def_": 0.2823529411764706
+      },
+      "AaWiggins_AnCowan_DoScott_ErAyala_JaSmith": {
+         "off_": 0.19791666666666666,
+         "def_": 0.2903225806451613
+      }
+   },
+
+    // B] Advanced Shooting Stats
+
+   "2p": {
+      "AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith": {
+         "off_": 0.5098039215686274,
+         "def_": 0.43478260869565216
+      },
+      "AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith": {
+         "off_": 0.39285714285714285,
+         "def_": 0.3793103448275862
+      },
+      "AaWiggins_AnCowan_DoScott_ErAyala_JaSmith": {
+         "off_": 0.4642857142857143,
+         "def_": 0.34
+      }
+   },
+   "2p_attempts": {
+      "AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith": {
+         "total_off_": 102,
+         "total_def_": 92
+      },
+      "AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith": {
+         "total_off_": 56,
+         "total_def_": 58
+      },
+      "AaWiggins_AnCowan_DoScott_ErAyala_JaSmith": {
+         "total_off_": 56,
+         "total_def_": 50
+      }
+   },
+   "2p_made": {
+      "AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith": {
+         "total_off_": 52,
+         "total_def_": 40
+      },
+      "AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith": {
+         "total_off_": 22,
+         "total_def_": 22
+      },
+      "AaWiggins_AnCowan_DoScott_ErAyala_JaSmith": {
+         "total_off_": 26,
+         "total_def_": 17
+      }
+   },
+   "2pmid": {
+      "AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith": {
+         "off_": 0.2727272727272727,
+         "def_": 0.3269230769230769
+      },
+      "AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith": {
+         "off_": 0.14814814814814814,
+         "def_": 0.25806451612903225
+      },
+      "AaWiggins_AnCowan_DoScott_ErAyala_JaSmith": {
+         "off_": 0.4,
+         "def_": 0.13636363636363635
+      }
+   },
+   "2pmid_attempts": {
+      "AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith": {
+         "total_off_": 44,
+         "total_def_": 52
+      },
+      "AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith": {
+         "total_off_": 27,
+         "total_def_": 31
+      },
+      "AaWiggins_AnCowan_DoScott_ErAyala_JaSmith": {
+         "total_off_": 25,
+         "total_def_": 22
+      }
+   },
+   "2pmid_made": {
+      "AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith": {
+         "total_off_": 12,
+         "total_def_": 17
+      },
+      "AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith": {
+         "total_off_": 4,
+         "total_def_": 8
+      },
+      "AaWiggins_AnCowan_DoScott_ErAyala_JaSmith": {
+         "total_off_": 10,
+         "total_def_": 3
+      }
+   },
+   "2pmidr": {
+      "AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith": {
+         "off_": 0.2634730538922156,
+         "def_": 0.3291139240506329
+      },
+      "AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith": {
+         "off_": 0.3103448275862069,
+         "def_": 0.36470588235294116
+      },
+      "AaWiggins_AnCowan_DoScott_ErAyala_JaSmith": {
+         "off_": 0.2604166666666667,
+         "def_": 0.23655913978494625
+      }
+   },
+   "2prim": {
+      "AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith": {
+         "off_": 0.6896551724137931,
+         "def_": 0.575
+      },
+      "AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith": {
+         "off_": 0.6206896551724138,
+         "def_": 0.5185185185185185
+      },
+      "AaWiggins_AnCowan_DoScott_ErAyala_JaSmith": {
+         "off_": 0.5161290322580645,
+         "def_": 0.5
+      }
+   },
+   "2prim_attempts": {
+      "AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith": {
+         "total_off_": 58,
+         "total_def_": 40
+      },
+      "AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith": {
+         "total_off_": 29,
+         "total_def_": 27
+      },
+      "AaWiggins_AnCowan_DoScott_ErAyala_JaSmith": {
+         "total_off_": 31,
+         "total_def_": 28
+      }
+   },
+   "2prim_made": {
+      "AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith": {
+         "total_off_": 40,
+         "total_def_": 23
+      },
+      "AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith": {
+         "total_off_": 18,
+         "total_def_": 14
+      },
+      "AaWiggins_AnCowan_DoScott_ErAyala_JaSmith": {
+         "total_off_": 16,
+         "total_def_": 14
+      }
+   },
+   "2primr": {
+      "AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith": {
+         "off_": 0.3473053892215569,
+         "def_": 0.25316455696202533
+      },
+      "AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith": {
+         "off_": 0.3333333333333333,
+         "def_": 0.3176470588235294
+      },
+      "AaWiggins_AnCowan_DoScott_ErAyala_JaSmith": {
+         "off_": 0.3229166666666667,
+         "def_": 0.3010752688172043
+      }
+   },
+   "3p": {
+      "AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith": {
+         "off_": 0.27692307692307694,
+         "def_": 0.2878787878787879
+      },
+      "AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith": {
+         "off_": 0.22580645161290322,
+         "def_": 0.3333333333333333
+      },
+      "AaWiggins_AnCowan_DoScott_ErAyala_JaSmith": {
+         "off_": 0.375,
+         "def_": 0.23255813953488372
+      }
+   },
+   "3p_attempts": {
+      "AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith": {
+         "total_off_": 65,
+         "total_def_": 66
+      },
+      "AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith": {
+         "total_off_": 31,
+         "total_def_": 27
+      },
+      "AaWiggins_AnCowan_DoScott_ErAyala_JaSmith": {
+         "total_off_": 40,
+         "total_def_": 43
+      }
+   },
+   "3p_made": {
+      "AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith": {
+         "total_off_": 18,
+         "total_def_": 19
+      },
+      "AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith": {
+         "total_off_": 7,
+         "total_def_": 9
+      },
+      "AaWiggins_AnCowan_DoScott_ErAyala_JaSmith": {
+         "total_off_": 15,
+         "total_def_": 10
+      }
+   },
+   "3pr": {
+      "AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith": {
+         "off_": 0.38922155688622756,
+         "def_": 0.4177215189873418
+      },
+      "AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith": {
+         "off_": 0.3563218390804598,
+         "def_": 0.3176470588235294
+      },
+      "AaWiggins_AnCowan_DoScott_ErAyala_JaSmith": {
+         "off_": 0.4166666666666667,
+         "def_": 0.46236559139784944
+      }
+   },
+
+    // C] Rebounds
+
+   "drb": {
+      "AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith": {
+         "total_off_": 90,
+         "total_def_": 68
+      },
+      "AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith": {
+         "total_off_": 43,
+         "total_def_": 43
+      },
+      "AaWiggins_AnCowan_DoScott_ErAyala_JaSmith": {
+         "total_off_": 43,
+         "total_def_": 36
+      }
+   },
+   "orb": {
+      "AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith": {
+         "total_off_": 39,
+         "total_def_": 19,
+         "off_": 0.3644859813084112,
+         "def_": 0.1743119266055046
+      },
+      "AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith": {
+         "total_off_": 18,
+         "total_def_": 14,
+         "off_": 0.29508196721311475,
+         "def_": 0.24561403508771928
+      },
+      "AaWiggins_AnCowan_DoScott_ErAyala_JaSmith": {
+         "total_off_": 21,
+         "total_def_": 27,
+         "off_": 0.3684210526315789,
+         "def_": 0.38571428571428573
+      }
+   },
+
+    // D] Assists and TOs
+
+   "assist": {
+      "AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith": {
+         "off_": 0.52,
+         "def_": 0.48
+      },
+      "AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith": {
+         "off_": 0.53,
+         "def_": 0.47
+      },
+      "AaWiggins_AnCowan_DoScott_ErAyala_JaSmith": {
+         "off_": 0.52,
+         "def_": 0.48
+      }
+   },
+   "to": {
+      "AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith": {
+         "off_": 0.14285714285714285,
+         "def_": 0.14285714285714285
+      },
+      "AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith": {
+         "off_": 0.18018018018018017,
+         "def_": 0.2719298245614035
+      },
+      "AaWiggins_AnCowan_DoScott_ErAyala_JaSmith": {
+         "off_": 0.20588235294117646,
+         "def_": 0.21649484536082475
+      }
+   },
+
+    // E] Adjusted Numbers
+
+   "adj_opp": {
+      "AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith": {
+         "off_": 103.93650793650794,
+         "def_": 95.56989795918368
+      },
+      "AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith": {
+         "off_": 106.32105263157895,
+         "def_": 93.37927927927929
+      },
+      "AaWiggins_AnCowan_DoScott_ErAyala_JaSmith": {
+         "off_": 104.70927835051546,
+         "def_": 93.46372549019607
+      }
+   },
+   "adj_ppp": {
+      "AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith": {
+         "off_": 116.22448979591837,
+         "def_": 85.47619047619048
+      },
+      "AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith": {
+         "off_": 96.22448979591837,
+         "def_": 75.47619047619048
+      },
+      "AaWiggins_AnCowan_DoScott_ErAyala_JaSmith": {
+         "off_": 114.22448979591837,
+         "def_": 75.47619047619048
+      }
+   },
+
+    // F] Misc Stats
+
+   "poss": {
+      "AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith": {
+         "off_": 196,
+         "def_": 189
+      },
+      "AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith": {
+         "off_": 111,
+         "def_": 114
+      },
+      "AaWiggins_AnCowan_DoScott_ErAyala_JaSmith": {
+         "off_": 102,
+         "def_": 97
+      }
+   },
+   "ppp": {
+      "AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith": {
+         "off_": 111.22448979591837,
+         "def_": 90.47619047619048
+      },
+      "AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith": {
+         "off_": 89.1891891891892,
+         "def_": 77.19298245614036
+      },
+      "AaWiggins_AnCowan_DoScott_ErAyala_JaSmith": {
+         "off_": 109.80392156862744,
+         "def_": 80.41237113402062
+      }
+   },
+   "pts": {
+      "AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith": {
+         "total_off_": 218,
+         "total_def_": 171
+      },
+      "AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith": {
+         "total_off_": 99,
+         "total_def_": 88
+      },
+      "AaWiggins_AnCowan_DoScott_ErAyala_JaSmith": {
+         "total_off_": 112,
+         "total_def_": 78
+      }
+   },
+   "main": {
+      "doc_count": {
+         "AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith": 38,
+         "AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith": 27,
+         "AaWiggins_AnCowan_DoScott_ErAyala_JaSmith": 24
+      },
+      "players_array": {
+         "AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith": {
+            "hits": {
+               "total": {
+                  "value": 38,
+                  "relation": "eq"
+               },
+               "max_score": 4.760141,
+               "hits": [
+                  {
+                     "_index": "bigten_2019",
+                     "_type": "_doc",
+                     "_id": "k5mWzG4B8OZ7gWZVgjRk",
+                     "_score": 4.760141,
+                     "_source": {
+                        "players": [
+                           {
+                              "code": "AaWiggins",
+                              "id": "Wiggins, Aaron"
+                           },
+                           {
+                              "code": "AnCowan",
+                              "id": "Cowan, Anthony"
+                           },
+                           {
+                              "code": "DaMorsell",
+                              "id": "Morsell, Darryl"
+                           },
+                           {
+                              "code": "ErAyala",
+                              "id": "Ayala, Eric"
+                           },
+                           {
+                              "code": "JaSmith",
+                              "id": "Smith, Jalen"
+                           }
+                        ]
+                     }
+                  }
+               ]
+            }
+         },
+         "AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith": {
+            "hits": {
+               "total": {
+                  "value": 27,
+                  "relation": "eq"
+               },
+               "max_score": 4.760141,
+               "hits": [
+                  {
+                     "_index": "bigten_2019",
+                     "_type": "_doc",
+                     "_id": "apmWzG4B8OZ7gWZVgTSi",
+                     "_score": 4.760141,
+                     "_source": {
+                        "players": [
+                           {
+                              "code": "AaWiggins",
+                              "id": "Wiggins, Aaron"
+                           },
+                           {
+                              "code": "AnCowan",
+                              "id": "Cowan, Anthony"
+                           },
+                           {
+                              "code": "DaMorsell",
+                              "id": "Morsell, Darryl"
+                           },
+                           {
+                              "code": "DoScott",
+                              "id": "Scott, Donta"
+                           },
+                           {
+                              "code": "JaSmith",
+                              "id": "Smith, Jalen"
+                           }
+                        ]
+                     }
+                  }
+               ]
+            }
+         },
+         "AaWiggins_AnCowan_DoScott_ErAyala_JaSmith": {
+            "hits": {
+               "total": {
+                  "value": 24,
+                  "relation": "eq"
+               },
+               "max_score": 4.760141,
+               "hits": [
+                  {
+                     "_index": "bigten_2019",
+                     "_type": "_doc",
+                     "_id": "FJmWzG4B8OZ7gWZVjTbp",
+                     "_score": 4.760141,
+                     "_source": {
+                        "players": [
+                           {
+                              "code": "AaWiggins",
+                              "id": "Wiggins, Aaron"
+                           },
+                           {
+                              "code": "AnCowan",
+                              "id": "Cowan, Anthony"
+                           },
+                           {
+                              "code": "DoScott",
+                              "id": "Scott, Donta"
+                           },
+                           {
+                              "code": "ErAyala",
+                              "id": "Ayala, Eric"
+                           },
+                           {
+                              "code": "JaSmith",
+                              "id": "Smith, Jalen"
+                           }
+                        ]
+                     }
+                  }
+               ]
+            }
+         }
+      }
+   }
+};
+
+export const sampleLineupStatsResponse =
+{
    "took": 204,
    "responses": [
       {
@@ -22,667 +576,9 @@ export const sampleLineupStatsResponse = { //TODO: need to change this...
             "lineups": {
                "doc_count_error_upper_bound": 0,
                "sum_other_doc_count": 0,
-               "buckets": [
-                 {
-                    "key": "AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith",
-                    "doc_count": 38,
-                    "total_off_fga": {
-                       "value": 167
-                    },
-                    "total_def_2prim_attempts": {
-                       "value": 40
-                    },
-                    "total_def_drb": {
-                       "value": 68
-                    },
-                    "total_off_2pmid_made": {
-                       "value": 12
-                    },
-                    "total_off_2pmid_attempts": {
-                       "value": 44
-                    },
-                    "total_def_fta": {
-                       "value": 47
-                    },
-                    "total_def_2p_made": {
-                       "value": 40
-                    },
-                    "off_2pmidr": {
-                       "value": 0.2634730538922156
-                    },
-                    "off_ppp": {
-                       "value": 111.22448979591837
-                    },
-                    "off_3pr": {
-                       "value": 0.38922155688622756
-                    },
-                    "total_off_3p_attempts": {
-                       "value": 65
-                    },
-                    "total_off_2p_made": {
-                       "value": 52
-                    },
-                    "total_def_fga": {
-                       "value": 158
-                    },
-                    "total_def_2p_attempts": {
-                       "value": 92
-                    },
-                    "def_poss": {
-                       "value": 189
-                    },
-                    "total_off_2prim_made": {
-                       "value": 40
-                    },
-                    "off_assist" : {
-                      "value" : 0.52
-                    },
-                    "def_assist" : {
-                      "value" : 0.48
-                    },
-                    "def_to": {
-                       "value": 0.14285714285714285
-                    },
-                    "def_adj_opp": {
-                       "value": 95.56989795918368
-                    },
-                    "off_2primr": {
-                       "value": 0.3473053892215569
-                    },
-                    "def_2primr": {
-                       "value": 0.25316455696202533
-                    },
-                    "total_off_pts": {
-                       "value": 218
-                    },
-                    "total_off_orb": {
-                       "value": 39
-                    },
-                    "off_adj_opp": {
-                       "value": 103.93650793650794
-                    },
-                    "def_ppp": {
-                       "value": 90.47619047619048
-                    },
-                    "total_def_2pmid_attempts": {
-                       "value": 52
-                    },
-                    "def_2pmidr": {
-                       "value": 0.3291139240506329
-                    },
-                    "total_off_3p_made": {
-                       "value": 18
-                    },
-                    "def_3pr": {
-                       "value": 0.4177215189873418
-                    },
-                    "total_def_3p_made": {
-                       "value": 19
-                    },
-                    "total_def_pts": {
-                       "value": 171
-                    },
-                    "total_def_orb": {
-                       "value": 19
-                    },
-                    "players_array": {
-                       "hits": {
-                          "total": {
-                             "value": 38,
-                             "relation": "eq"
-                          },
-                          "max_score": 4.760141,
-                          "hits": [
-                             {
-                                "_index": "bigten_2019",
-                                "_type": "_doc",
-                                "_id": "k5mWzG4B8OZ7gWZVgjRk",
-                                "_score": 4.760141,
-                                "_source": {
-                                   "players": [
-                                      {
-                                         "code": "AaWiggins",
-                                         "id": "Wiggins, Aaron"
-                                      },
-                                      {
-                                         "code": "AnCowan",
-                                         "id": "Cowan, Anthony"
-                                      },
-                                      {
-                                         "code": "DaMorsell",
-                                         "id": "Morsell, Darryl"
-                                      },
-                                      {
-                                         "code": "ErAyala",
-                                         "id": "Ayala, Eric"
-                                      },
-                                      {
-                                         "code": "JaSmith",
-                                         "id": "Smith, Jalen"
-                                      }
-                                   ]
-                                }
-                             }
-                          ]
-                       }
-                    },
-                    "total_off_2p_attempts": {
-                       "value": 102
-                    },
-                    "total_def_3p_attempts": {
-                       "value": 66
-                    },
-                    "off_poss": {
-                       "value": 196
-                    },
-                    "total_off_2prim_attempts": {
-                       "value": 58
-                    },
-                    "total_def_2pmid_made": {
-                       "value": 17
-                    },
-                    "total_def_2prim_made": {
-                       "value": 23
-                    },
-                    "off_efg": {
-                       "value": 0.47305389221556887
-                    },
-                    "off_to": {
-                       "value": 0.14285714285714285
-                    },
-                    "total_off_drb": {
-                       "value": 90
-                    },
-                    "total_off_fta": {
-                       "value": 83
-                    },
-                    "def_efg": {
-                       "value": 0.43354430379746833
-                    },
-                    "off_2p": {
-                       "value": 0.5098039215686274
-                    },
-                    "def_2p": {
-                       "value": 0.43478260869565216
-                    },
-                    "off_3p": {
-                       "value": 0.27692307692307694
-                    },
-                    "def_3p": {
-                       "value": 0.2878787878787879
-                    },
-                    "off_2prim": {
-                       "value": 0.6896551724137931
-                    },
-                    "def_2prim": {
-                       "value": 0.575
-                    },
-                    "off_2pmid": {
-                       "value": 0.2727272727272727
-                    },
-                    "def_2pmid": {
-                       "value": 0.3269230769230769
-                    },
-                    "off_ftr": {
-                       "value": 0.49700598802395207
-                    },
-                    "def_ftr": {
-                       "value": 0.2974683544303797
-                    },
-                    "off_orb": {
-                       "value": 0.3644859813084112
-                    },
-                    "def_orb": {
-                       "value": 0.1743119266055046
-                    },
-                    "off_adj_ppp": {
-                       "value": 116.22448979591837
-                    },
-                    "def_adj_ppp": {
-                       "value": 85.47619047619048
-                    }
-                 },
-                 {
-                    "key": "AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith",
-                    "doc_count": 27,
-                    "total_off_fga": {
-                       "value": 87
-                    },
-                    "total_def_2prim_attempts": {
-                       "value": 27
-                    },
-                    "total_def_drb": {
-                       "value": 43
-                    },
-                    "total_off_2pmid_made": {
-                       "value": 4
-                    },
-                    "total_off_2pmid_attempts": {
-                       "value": 27
-                    },
-                    "total_def_fta": {
-                       "value": 24
-                    },
-                    "total_def_2p_made": {
-                       "value": 22
-                    },
-                    "off_2pmidr": {
-                       "value": 0.3103448275862069
-                    },
-                    "off_ppp": {
-                       "value": 89.1891891891892
-                    },
-                    "off_3pr": {
-                       "value": 0.3563218390804598
-                    },
-                    "total_off_3p_attempts": {
-                       "value": 31
-                    },
-                    "total_off_2p_made": {
-                       "value": 22
-                    },
-                    "total_def_fga": {
-                       "value": 85
-                    },
-                    "total_def_2p_attempts": {
-                       "value": 58
-                    },
-                    "def_poss": {
-                       "value": 114
-                    },
-                    "total_off_2prim_made": {
-                       "value": 18
-                    },
-                    "off_assist" : {
-                      "value" : 0.53
-                    },
-                    "def_assist" : {
-                      "value" : 0.47
-                    },
-                    "def_to": {
-                       "value": 0.2719298245614035
-                    },
-                    "def_adj_opp": {
-                       "value": 93.37927927927929
-                    },
-                    "off_2primr": {
-                       "value": 0.3333333333333333
-                    },
-                    "def_2primr": {
-                       "value": 0.3176470588235294
-                    },
-                    "total_off_pts": {
-                       "value": 99
-                    },
-                    "total_off_orb": {
-                       "value": 18
-                    },
-                    "off_adj_opp": {
-                       "value": 106.32105263157895
-                    },
-                    "def_ppp": {
-                       "value": 77.19298245614036
-                    },
-                    "total_def_2pmid_attempts": {
-                       "value": 31
-                    },
-                    "def_2pmidr": {
-                       "value": 0.36470588235294116
-                    },
-                    "total_off_3p_made": {
-                       "value": 7
-                    },
-                    "def_3pr": {
-                       "value": 0.3176470588235294
-                    },
-                    "total_def_3p_made": {
-                       "value": 9
-                    },
-                    "total_def_pts": {
-                       "value": 88
-                    },
-                    "total_def_orb": {
-                       "value": 14
-                    },
-                    "players_array": {
-                       "hits": {
-                          "total": {
-                             "value": 27,
-                             "relation": "eq"
-                          },
-                          "max_score": 4.760141,
-                          "hits": [
-                             {
-                                "_index": "bigten_2019",
-                                "_type": "_doc",
-                                "_id": "apmWzG4B8OZ7gWZVgTSi",
-                                "_score": 4.760141,
-                                "_source": {
-                                   "players": [
-                                      {
-                                         "code": "AaWiggins",
-                                         "id": "Wiggins, Aaron"
-                                      },
-                                      {
-                                         "code": "AnCowan",
-                                         "id": "Cowan, Anthony"
-                                      },
-                                      {
-                                         "code": "DaMorsell",
-                                         "id": "Morsell, Darryl"
-                                      },
-                                      {
-                                         "code": "DoScott",
-                                         "id": "Scott, Donta"
-                                      },
-                                      {
-                                         "code": "JaSmith",
-                                         "id": "Smith, Jalen"
-                                      }
-                                   ]
-                                }
-                             }
-                          ]
-                       }
-                    },
-                    "total_off_2p_attempts": {
-                       "value": 56
-                    },
-                    "total_def_3p_attempts": {
-                       "value": 27
-                    },
-                    "off_poss": {
-                       "value": 111
-                    },
-                    "total_off_2prim_attempts": {
-                       "value": 29
-                    },
-                    "total_def_2pmid_made": {
-                       "value": 8
-                    },
-                    "total_def_2prim_made": {
-                       "value": 14
-                    },
-                    "off_efg": {
-                       "value": 0.3735632183908046
-                    },
-                    "off_to": {
-                       "value": 0.18018018018018017
-                    },
-                    "total_off_drb": {
-                       "value": 43
-                    },
-                    "total_off_fta": {
-                       "value": 48
-                    },
-                    "def_efg": {
-                       "value": 0.4176470588235294
-                    },
-                    "off_2p": {
-                       "value": 0.39285714285714285
-                    },
-                    "def_2p": {
-                       "value": 0.3793103448275862
-                    },
-                    "off_3p": {
-                       "value": 0.22580645161290322
-                    },
-                    "def_3p": {
-                       "value": 0.3333333333333333
-                    },
-                    "off_2prim": {
-                       "value": 0.6206896551724138
-                    },
-                    "def_2prim": {
-                       "value": 0.5185185185185185
-                    },
-                    "off_2pmid": {
-                       "value": 0.14814814814814814
-                    },
-                    "def_2pmid": {
-                       "value": 0.25806451612903225
-                    },
-                    "off_ftr": {
-                       "value": 0.5517241379310345
-                    },
-                    "def_ftr": {
-                       "value": 0.2823529411764706
-                    },
-                    "off_orb": {
-                       "value": 0.29508196721311475
-                    },
-                    "def_orb": {
-                       "value": 0.24561403508771928
-                    },
-                    "off_adj_ppp": {
-                       "value": 96.22448979591837
-                    },
-                    "def_adj_ppp": {
-                       "value": 75.47619047619048
-                    }
-                 },
-                 {
-                    "key": "AaWiggins_AnCowan_DoScott_ErAyala_JaSmith",
-                    "doc_count": 24,
-                    "total_off_fga": {
-                       "value": 96
-                    },
-                    "total_def_2prim_attempts": {
-                       "value": 28
-                    },
-                    "total_def_drb": {
-                       "value": 36
-                    },
-                    "total_off_2pmid_made": {
-                       "value": 10
-                    },
-                    "total_off_2pmid_attempts": {
-                       "value": 25
-                    },
-                    "total_def_fta": {
-                       "value": 27
-                    },
-                    "total_def_2p_made": {
-                       "value": 17
-                    },
-                    "off_2pmidr": {
-                       "value": 0.2604166666666667
-                    },
-                    "off_ppp": {
-                       "value": 109.80392156862744
-                    },
-                    "off_3pr": {
-                       "value": 0.4166666666666667
-                    },
-                    "total_off_3p_attempts": {
-                       "value": 40
-                    },
-                    "total_off_2p_made": {
-                       "value": 26
-                    },
-                    "total_def_fga": {
-                       "value": 93
-                    },
-                    "total_def_2p_attempts": {
-                       "value": 50
-                    },
-                    "def_poss": {
-                       "value": 97
-                    },
-                    "total_off_2prim_made": {
-                       "value": 16
-                    },
-                    "off_assist" : {
-                      "value" : 0.52
-                    },
-                    "def_assist" : {
-                      "value" : 0.48
-                    },
-                    "def_to": {
-                       "value": 0.21649484536082475
-                    },
-                    "def_adj_opp": {
-                       "value": 93.46372549019607
-                    },
-                    "off_2primr": {
-                       "value": 0.3229166666666667
-                    },
-                    "def_2primr": {
-                       "value": 0.3010752688172043
-                    },
-                    "total_off_pts": {
-                       "value": 112
-                    },
-                    "total_off_orb": {
-                       "value": 21
-                    },
-                    "off_adj_opp": {
-                       "value": 104.70927835051546
-                    },
-                    "def_ppp": {
-                       "value": 80.41237113402062
-                    },
-                    "total_def_2pmid_attempts": {
-                       "value": 22
-                    },
-                    "def_2pmidr": {
-                       "value": 0.23655913978494625
-                    },
-                    "total_off_3p_made": {
-                       "value": 15
-                    },
-                    "def_3pr": {
-                       "value": 0.46236559139784944
-                    },
-                    "total_def_3p_made": {
-                       "value": 10
-                    },
-                    "total_def_pts": {
-                       "value": 78
-                    },
-                    "total_def_orb": {
-                       "value": 27
-                    },
-                    "players_array": {
-                       "hits": {
-                          "total": {
-                             "value": 24,
-                             "relation": "eq"
-                          },
-                          "max_score": 4.760141,
-                          "hits": [
-                             {
-                                "_index": "bigten_2019",
-                                "_type": "_doc",
-                                "_id": "FJmWzG4B8OZ7gWZVjTbp",
-                                "_score": 4.760141,
-                                "_source": {
-                                   "players": [
-                                      {
-                                         "code": "AaWiggins",
-                                         "id": "Wiggins, Aaron"
-                                      },
-                                      {
-                                         "code": "AnCowan",
-                                         "id": "Cowan, Anthony"
-                                      },
-                                      {
-                                         "code": "DoScott",
-                                         "id": "Scott, Donta"
-                                      },
-                                      {
-                                         "code": "ErAyala",
-                                         "id": "Ayala, Eric"
-                                      },
-                                      {
-                                         "code": "JaSmith",
-                                         "id": "Smith, Jalen"
-                                      }
-                                   ]
-                                }
-                             }
-                          ]
-                       }
-                    },
-                    "total_off_2p_attempts": {
-                       "value": 56
-                    },
-                    "total_def_3p_attempts": {
-                       "value": 43
-                    },
-                    "off_poss": {
-                       "value": 102
-                    },
-                    "total_off_2prim_attempts": {
-                       "value": 31
-                    },
-                    "total_def_2pmid_made": {
-                       "value": 3
-                    },
-                    "total_def_2prim_made": {
-                       "value": 14
-                    },
-                    "off_efg": {
-                       "value": 0.5052083333333334
-                    },
-                    "off_to": {
-                       "value": 0.20588235294117646
-                    },
-                    "total_off_drb": {
-                       "value": 43
-                    },
-                    "total_off_fta": {
-                       "value": 19
-                    },
-                    "def_efg": {
-                       "value": 0.34408602150537637
-                    },
-                    "off_2p": {
-                       "value": 0.4642857142857143
-                    },
-                    "def_2p": {
-                       "value": 0.34
-                    },
-                    "off_3p": {
-                       "value": 0.375
-                    },
-                    "def_3p": {
-                       "value": 0.23255813953488372
-                    },
-                    "off_2prim": {
-                       "value": 0.5161290322580645
-                    },
-                    "def_2prim": {
-                       "value": 0.5
-                    },
-                    "off_2pmid": {
-                       "value": 0.4
-                    },
-                    "def_2pmid": {
-                       "value": 0.13636363636363635
-                    },
-                    "off_ftr": {
-                       "value": 0.19791666666666666
-                    },
-                    "def_ftr": {
-                       "value": 0.2903225806451613
-                    },
-                    "off_orb": {
-                       "value": 0.3684210526315789
-                    },
-                    "def_orb": {
-                       "value": 0.38571428571428573
-                    },
-                    "off_adj_ppp": {
-                       "value": 114.22448979591837
-                    },
-                    "def_adj_ppp": {
-                       "value": 75.47619047619048
-                    }
-                 }
-              ]
+               "buckets": SampleDataUtils.buildResponseFromTemplateLineup(sampleLineupStatsTemplate)
             }
          }
     }
   ]
-}
+};

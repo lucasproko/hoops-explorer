@@ -4445,7 +4445,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                 rowSpan={1}
                 style={
                   Object {
-                    "backgroundColor": "#4ca64c",
+                    "backgroundColor": "#ff0000",
                     "fontWeight": "normal",
                     "textAlign": "center",
                     "verticalAlign": "middle",
@@ -4455,7 +4455,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
               >
                 <div>
                   <u>
-                    114.0
+                    54.9
                   </u>
                 </div>
               </td>
@@ -4464,7 +4464,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                 rowSpan={1}
                 style={
                   Object {
-                    "backgroundColor": "#008000",
+                    "backgroundColor": "#ff0000",
                     "fontWeight": "normal",
                     "textAlign": "center",
                     "verticalAlign": "middle",
@@ -4474,7 +4474,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
               >
                 <div>
                   <u>
-                    120.6
+                    61.0
                   </u>
                 </div>
               </td>
@@ -5287,7 +5287,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                     <span>
                        off=[
                       <b>
-                        4.9
+                        -54.7
                       </b>
                       ], def=[
                       <b>
@@ -5295,7 +5295,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                       </b>
                       ], margin=[
                       <b>
-                        -1.0
+                        -60.6
                       </b>
                       ] pts/100
                     </span>
@@ -5318,7 +5318,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                       <span>
                          adjustment [
                         <b>
-                          4.9
+                          -54.7
                         </b>
                         ] pts/100
                       </span>
@@ -5340,7 +5340,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                         <span>
                           , adjustment [
                           <b>
-                            4.9
+                            -54.7
                           </b>
                           ] pts/100
                         </span>
