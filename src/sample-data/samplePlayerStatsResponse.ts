@@ -1,5 +1,3120 @@
 import { SampleDataUtils } from "./SampleDataUtils"
 
+// Query: On/Off: 2019/20 Maryland (M): on:'NOT (Hart Or Serrel )', auto-off, base:'', [overrides]
+
+// Cowan, Anthony - baseline
+// Wiggins, Aaron - baseline
+// Cowan, Anthony - on
+// Wiggins, Aaron - on
+// Cowan, Anthony - off
+// Mona, Reese - off
+
+//(need to remove the intermediate doc_count / doc_count_error_upper_bound / sum_other_doc_count)
+
+export const samplePlayerStatsResponse =
+{
+  	"took": 202,
+		"responses": [{
+			"took": 202,
+			"timed_out": false,
+			"_shards": {
+				"total": 1,
+				"successful": 1,
+				"skipped": 0,
+				"failed": 0
+			},
+			"hits": {
+				"total": {
+					"value": 2970,
+					"relation": "eq"
+				},
+				"max_score": null,
+				"hits": []
+			},
+			"aggregations": {
+				"tri_filter": {
+					"buckets": {
+						"baseline": {
+							"player": {
+								"buckets": [
+                  {
+									"key": "Cowan, Anthony",
+									"doc_count": 486,
+									"total_off_fga": {
+										"value": 356
+									},
+									"oppo_total_def_fga": {
+										"value": 1588
+									},
+									"total_off_2pmid_made": {
+										"value": 18
+									},
+									"total_off_trans_to": {
+										"value": 20
+									},
+									"total_off_trans_assist": {
+										"value": 38
+									},
+									"total_off_2pmid_ast": {
+										"value": 0
+									},
+									"total_off_3p_attempts": {
+										"value": 174
+									},
+									"oppo_total_def_fgm": {
+										"value": 637
+									},
+									"total_off_scramble_assist": {
+										"value": 10
+									},
+									"oppo_def_3p_opp": {
+										"value": 33.15740432612313
+									},
+									"team_total_off_ftm": {
+										"value": 438
+									},
+									"total_off_to": {
+										"value": 69
+									},
+									"total_off_scramble_2pmid_attempts": {
+										"value": 4
+									},
+									"total_off_foul": {
+										"value": 63
+									},
+									"team_total_off_blk": {
+										"value": 108
+									},
+									"oppo_total_def_drb": {
+										"value": 674
+									},
+									"team_total_off_fta": {
+										"value": 579
+									},
+									"total_off_2prim_attempts": {
+										"value": 117
+									},
+									"total_off_drb": {
+										"value": 96
+									},
+									"total_off_scramble_fgm": {
+										"value": 11
+									},
+									"total_off_scramble_fga": {
+										"value": 22
+									},
+									"total_off_scramble_2prim_attempts": {
+										"value": 5
+									},
+									"off_ast_3p_source": {
+										"value": {
+											"DaMorsell": 10,
+											"SeSmith": 2,
+											"MlMitchell": 1,
+											"ErAyala": 8,
+											"AaWiggins": 9,
+											"DoScott": 1,
+											"RiLindo": 1,
+											"JaSmith": 3
+										}
+									},
+									"total_off_2p_made": {
+										"value": 83
+									},
+									"total_off_2prim_made": {
+										"value": 65
+									},
+									"total_off_trans_3p_ast": {
+										"value": 5
+									},
+									"total_off_3p_ast": {
+										"value": 35
+									},
+									"total_off_trans_fga": {
+										"value": 55
+									},
+									"total_off_2prim_ast": {
+										"value": 17
+									},
+									"total_off_scramble_3p_ast": {
+										"value": 5
+									},
+									"total_off_trans_3p_attempts": {
+										"value": 23
+									},
+									"total_off_ftm": {
+										"value": 172
+									},
+									"off_adj_opp": {
+										"value": 108.03972067039106
+									},
+									"total_off_blk": {
+										"value": 5
+									},
+									"oppo_total_def_orb": {
+										"value": 274
+									},
+									"total_off_trans_fgm": {
+										"value": 26
+									},
+									"off_ast_rim_source": {
+										"value": {
+											"DaMorsell": 5,
+											"HaHart": 1,
+											"SeSmith": 1,
+											"MiMitchell": 1,
+											"ErAyala": 3,
+											"AaWiggins": 3,
+											"JaSmith": 3
+										}
+									},
+									"team_total_off_to": {
+										"value": 299
+									},
+									"oppo_total_def_pts": {
+										"value": 1738
+									},
+									"team_total_off_drb": {
+										"value": 726
+									},
+									"total_off_trans_2prim_made": {
+										"value": 17
+									},
+									"team_total_off_poss": {
+										"value": 1802
+									},
+									"total_off_scramble_2pmid_ast": {
+										"value": 0
+									},
+									"oppo_total_def_poss": {
+										"value": 1790
+									},
+									"total_off_trans_2prim_ast": {
+										"value": 5
+									},
+									"total_off_fta": {
+										"value": 212
+									},
+									"oppo_total_def_to": {
+										"value": 312
+									},
+									"team_total_off_fga": {
+										"value": 1550
+									},
+									"total_off_scramble_2prim_made": {
+										"value": 4
+									},
+									"oppo_total_def_2p_attempts": {
+										"value": 987
+									},
+									"total_off_trans_2p_made": {
+										"value": 18
+									},
+									"team_total_off_fgm": {
+										"value": 643
+									},
+									"oppo_total_def_fta": {
+										"value": 384
+									},
+									"total_off_assist": {
+										"value": 147
+									},
+									"total_off_stl": {
+										"value": 30
+									},
+									"off_ast_mid_source": {
+										"value": {}
+									},
+									"total_off_ast_3p": {
+										"value": 70
+									},
+									"total_off_scramble_ftm": {
+										"value": 11
+									},
+									"oppo_total_def_3p_attempts": {
+										"value": 601
+									},
+									"team_total_off_orb": {
+										"value": 310
+									},
+									"total_off_ast_rim": {
+										"value": 67
+									},
+									"total_off_3p_made": {
+										"value": 56
+									},
+									"total_off_scramble_3p_attempts": {
+										"value": 13
+									},
+									"total_off_trans_2pmid_ast": {
+										"value": 0
+									},
+									"total_off_scramble_2pmid_made": {
+										"value": 1
+									},
+									"total_off_scramble_3p_made": {
+										"value": 6
+									},
+									"off_poss": {
+										"value": 451.4845238095238
+									},
+									"total_off_scramble_fta": {
+										"value": 12
+									},
+									"team_total_off_3p_made": {
+										"value": 213
+									},
+									"total_off_poss": {
+										"value": 0
+									},
+									"total_off_scramble_2prim_ast": {
+										"value": 0
+									},
+									"total_off_trans_2p_attempts": {
+										"value": 32
+									},
+									"total_off_2pmid_attempts": {
+										"value": 65
+									},
+									"oppo_total_def_3p_made": {
+										"value": 194
+									},
+									"total_off_trans_2pmid_made": {
+										"value": 1
+									},
+									"total_off_scramble_2p_attempts": {
+										"value": 9
+									},
+									"total_off_trans_2prim_attempts": {
+										"value": 30
+									},
+									"total_off_scramble_2p_ast": {
+										"value": 0
+									},
+									"off_ast_3p_target": {
+										"value": {
+											"DaMorsell": 7,
+											"SeSmith": 2,
+											"ErAyala": 23,
+											"DoScott": 5,
+											"AaWiggins": 20,
+											"RiLindo": 1,
+											"JaSmith": 12
+										}
+									},
+									"total_off_pts": {
+										"value": 0
+									},
+									"team_total_off_pts": {
+										"value": 1937
+									},
+									"team_total_off_assist": {
+										"value": 361
+									},
+									"off_ast_rim_target": {
+										"value": {
+											"DaMorsell": 12,
+											"HaHart": 1,
+											"MlMitchell": 2,
+											"ErAyala": 3,
+											"AaWiggins": 7,
+											"DoScott": 8,
+											"JaSmith": 32,
+											"JoTomaic": 2
+										}
+									},
+									"total_off_trans_3p_made": {
+										"value": 8
+									},
+									"total_off_scramble_to": {
+										"value": 2
+									},
+									"def_adj_opp": {
+										"value": 96.60184357541898
+									},
+									"total_off_orb": {
+										"value": 17
+									},
+									"off_ast_mid_target": {
+										"value": {
+											"DaMorsell": 4,
+											"MiMitchell": 1,
+											"AaWiggins": 4,
+											"JaSmith": 1
+										}
+									},
+									"oppo_total_def_ftm": {
+										"value": 270
+									},
+									"total_off_ast_mid": {
+										"value": 10
+									},
+									"total_off_trans_2pmid_attempts": {
+										"value": 2
+									},
+									"team_total_off_stl": {
+										"value": 126
+									},
+									"total_off_2p_ast": {
+										"value": 0
+									},
+									"total_off_2p_attempts": {
+										"value": 182
+									},
+									"total_off_fgm": {
+										"value": 139
+									},
+									"total_off_trans_fta": {
+										"value": 85
+									},
+									"total_off_scramble_2p_made": {
+										"value": 5
+									},
+									"team_total_off_foul": {
+										"value": 399
+									},
+									"total_off_trans_ftm": {
+										"value": 70
+									},
+									"total_off_trans_2p_ast": {
+										"value": 0
+									},
+									"off_2p": {
+										"value": 0.45604395604395603
+									},
+									"off_2p_ast": {
+										"value": 0
+									},
+									"off_3p": {
+										"value": 0.3218390804597701
+									},
+									"off_3p_ast": {
+										"value": 0.625
+									},
+									"off_2prim": {
+										"value": 0.5555555555555556
+									},
+									"off_2prim_ast": {
+										"value": 0.26153846153846155
+									},
+									"off_2pmid": {
+										"value": 0.27692307692307694
+									},
+									"off_2pmid_ast": {
+										"value": 0
+									},
+									"off_ft": {
+										"value": 0.8113207547169812
+									},
+									"off_ftr": {
+										"value": 0.5955056179775281
+									},
+									"off_2primr": {
+										"value": 0.32865168539325845
+									},
+									"off_2pmidr": {
+										"value": 0.18258426966292135
+									},
+									"off_3pr": {
+										"value": 0.4887640449438202
+									},
+									"off_scramble_2p": {
+										"value": 0.5555555555555556
+									},
+									"off_scramble_2p_ast": {
+										"value": 0
+									},
+									"off_scramble_3p": {
+										"value": 0.46153846153846156
+									},
+									"off_scramble_3p_ast": {
+										"value": 0.8333333333333334
+									},
+									"off_scramble_2prim": {
+										"value": 0.8
+									},
+									"off_scramble_2prim_ast": {
+										"value": 0
+									},
+									"off_scramble_2pmid": {
+										"value": 0.25
+									},
+									"off_scramble_2pmid_ast": {
+										"value": 0
+									},
+									"off_scramble_ft": {
+										"value": 0.9166666666666666
+									},
+									"off_scramble_ftr": {
+										"value": 0.5454545454545454
+									},
+									"off_scramble_2primr": {
+										"value": 0.22727272727272727
+									},
+									"off_scramble_2pmidr": {
+										"value": 0.18181818181818182
+									},
+									"off_scramble_3pr": {
+										"value": 0.5909090909090909
+									},
+									"off_scramble_assist": {
+										"value": 0.9090909090909091
+									},
+									"off_trans_2p": {
+										"value": 0.5625
+									},
+									"off_trans_2p_ast": {
+										"value": 0
+									},
+									"off_trans_3p": {
+										"value": 0.34782608695652173
+									},
+									"off_trans_3p_ast": {
+										"value": 0.625
+									},
+									"off_trans_2prim": {
+										"value": 0.5666666666666667
+									},
+									"off_trans_2prim_ast": {
+										"value": 0.29411764705882354
+									},
+									"off_trans_2pmid": {
+										"value": 0.5
+									},
+									"off_trans_2pmid_ast": {
+										"value": 0
+									},
+									"off_trans_ft": {
+										"value": 0.8235294117647058
+									},
+									"off_trans_ftr": {
+										"value": 1.5454545454545454
+									},
+									"off_trans_2primr": {
+										"value": 0.5454545454545454
+									},
+									"off_trans_2pmidr": {
+										"value": 0.03636363636363636
+									},
+									"off_trans_3pr": {
+										"value": 0.41818181818181815
+									},
+									"off_trans_assist": {
+										"value": 1.4615384615384615
+									},
+									"off_ast_rim": {
+										"value": 0.4557823129251701
+									},
+									"off_ast_mid": {
+										"value": 0.06802721088435375
+									},
+									"off_ast_3p": {
+										"value": 0.47619047619047616
+									},
+									"total_off_scramble_pts": {
+										"value": 39
+									},
+									"total_off_trans_pts": {
+										"value": 130
+									},
+									"off_efg": {
+										"value": 0.4691011235955056
+									},
+									"off_scramble_efg": {
+										"value": 0.6363636363636364
+									},
+									"off_trans_efg": {
+										"value": 0.5454545454545454
+									},
+									"off_team_poss": {
+										"value": 1802
+									},
+									"off_assist": {
+										"value": 0.2916666666666667
+									},
+									"off_to": {
+										"value": 0.1528291588331615
+									},
+									"off_orb": {
+										"value": 0.017276422764227643
+									},
+									"off_usage": {
+										"value": 0.250546350615718
+									},
+									"def_team_poss": {
+										"value": 1790
+									},
+									"def_orb": {
+										"value": 0.096
+									},
+									"def_ftr": {
+										"value": 0.024636871508379884
+									},
+									"def_to": {
+										"value": 0.01675977653631285
+									},
+									"def_2prim": {
+										"value": 0.005065856129685917
+									}
+								},
+                  {
+									"key": "Wiggins, Aaron",
+									"doc_count": 421,
+									"total_off_fga": {
+										"value": 300
+									},
+									"oppo_total_def_fga": {
+										"value": 1294
+									},
+									"total_off_2pmid_made": {
+										"value": 18
+									},
+									"total_off_trans_to": {
+										"value": 6
+									},
+									"total_off_trans_assist": {
+										"value": 11
+									},
+									"total_off_2pmid_ast": {
+										"value": 6
+									},
+									"total_off_3p_attempts": {
+										"value": 167
+									},
+									"oppo_total_def_fgm": {
+										"value": 504
+									},
+									"total_off_scramble_assist": {
+										"value": 1
+									},
+									"oppo_def_3p_opp": {
+										"value": 33.168145161290326
+									},
+									"team_total_off_ftm": {
+										"value": 392
+									},
+									"total_off_to": {
+										"value": 50
+									},
+									"total_off_scramble_2pmid_attempts": {
+										"value": 5
+									},
+									"total_off_foul": {
+										"value": 48
+									},
+									"team_total_off_blk": {
+										"value": 91
+									},
+									"oppo_total_def_drb": {
+										"value": 545
+									},
+									"team_total_off_fta": {
+										"value": 523
+									},
+									"total_off_2prim_attempts": {
+										"value": 59
+									},
+									"total_off_drb": {
+										"value": 116
+									},
+									"total_off_scramble_fgm": {
+										"value": 11
+									},
+									"total_off_scramble_fga": {
+										"value": 26
+									},
+									"total_off_scramble_2prim_attempts": {
+										"value": 12
+									},
+									"off_ast_3p_source": {
+										"value": {
+											"DaMorsell": 6,
+											"HaHart": 1,
+											"SeSmith": 1,
+											"ErAyala": 18,
+											"AnCowan": 20,
+											"DoScott": 2,
+											"JaSmith": 1
+										}
+									},
+									"total_off_2p_made": {
+										"value": 60
+									},
+									"total_off_2prim_made": {
+										"value": 42
+									},
+									"total_off_trans_3p_ast": {
+										"value": 12
+									},
+									"total_off_3p_ast": {
+										"value": 49
+									},
+									"total_off_trans_fga": {
+										"value": 73
+									},
+									"total_off_2prim_ast": {
+										"value": 19
+									},
+									"total_off_scramble_3p_ast": {
+										"value": 2
+									},
+									"total_off_trans_3p_attempts": {
+										"value": 47
+									},
+									"total_off_ftm": {
+										"value": 43
+									},
+									"off_adj_opp": {
+										"value": 107.7926845637584
+									},
+									"total_off_blk": {
+										"value": 13
+									},
+									"oppo_total_def_orb": {
+										"value": 221
+									},
+									"total_off_trans_fgm": {
+										"value": 30
+									},
+									"off_ast_rim_source": {
+										"value": {
+											"DaMorsell": 6,
+											"HaHart": 1,
+											"ErAyala": 3,
+											"AnCowan": 7,
+											"JaSmith": 2
+										}
+									},
+									"team_total_off_to": {
+										"value": 246
+									},
+									"oppo_total_def_pts": {
+										"value": 1376
+									},
+									"team_total_off_drb": {
+										"value": 619
+									},
+									"total_off_trans_2prim_made": {
+										"value": 13
+									},
+									"team_total_off_poss": {
+										"value": 1499
+									},
+									"total_off_scramble_2pmid_ast": {
+										"value": 1
+									},
+									"oppo_total_def_poss": {
+										"value": 1490
+									},
+									"total_off_trans_2prim_ast": {
+										"value": 8
+									},
+									"total_off_fta": {
+										"value": 60
+									},
+									"oppo_total_def_to": {
+										"value": 278
+									},
+									"team_total_off_fga": {
+										"value": 1278
+									},
+									"total_off_scramble_2prim_made": {
+										"value": 8
+									},
+									"oppo_total_def_2p_attempts": {
+										"value": 798
+									},
+									"total_off_trans_2p_made": {
+										"value": 17
+									},
+									"team_total_off_fgm": {
+										"value": 545
+									},
+									"oppo_total_def_fta": {
+										"value": 314
+									},
+									"total_off_assist": {
+										"value": 44
+									},
+									"total_off_stl": {
+										"value": 26
+									},
+									"off_ast_mid_source": {
+										"value": {
+											"MiMitchell": 1,
+											"AnCowan": 4,
+											"JaSmith": 1
+										}
+									},
+									"total_off_ast_3p": {
+										"value": 22
+									},
+									"total_off_scramble_ftm": {
+										"value": 3
+									},
+									"oppo_total_def_3p_attempts": {
+										"value": 496
+									},
+									"team_total_off_orb": {
+										"value": 259
+									},
+									"total_off_ast_rim": {
+										"value": 18
+									},
+									"total_off_3p_made": {
+										"value": 53
+									},
+									"total_off_scramble_3p_attempts": {
+										"value": 9
+									},
+									"total_off_trans_2pmid_ast": {
+										"value": 1
+									},
+									"total_off_scramble_2pmid_made": {
+										"value": 1
+									},
+									"total_off_scramble_3p_made": {
+										"value": 2
+									},
+									"off_poss": {
+										"value": 312.7630952380952
+									},
+									"total_off_scramble_fta": {
+										"value": 5
+									},
+									"team_total_off_3p_made": {
+										"value": 177
+									},
+									"total_off_poss": {
+										"value": 0
+									},
+									"total_off_scramble_2prim_ast": {
+										"value": 2
+									},
+									"total_off_trans_2p_attempts": {
+										"value": 26
+									},
+									"total_off_2pmid_attempts": {
+										"value": 74
+									},
+									"oppo_total_def_3p_made": {
+										"value": 151
+									},
+									"total_off_trans_2pmid_made": {
+										"value": 4
+									},
+									"total_off_scramble_2p_attempts": {
+										"value": 17
+									},
+									"total_off_trans_2prim_attempts": {
+										"value": 18
+									},
+									"total_off_scramble_2p_ast": {
+										"value": 0
+									},
+									"off_ast_3p_target": {
+										"value": {
+											"DaMorsell": 1,
+											"SeSmith": 1,
+											"HaHart": 1,
+											"ErAyala": 1,
+											"AnCowan": 9,
+											"DoScott": 6,
+											"RiLindo": 1,
+											"JaSmith": 2
+										}
+									},
+									"total_off_pts": {
+										"value": 0
+									},
+									"team_total_off_pts": {
+										"value": 1659
+									},
+									"team_total_off_assist": {
+										"value": 288
+									},
+									"off_ast_rim_target": {
+										"value": {
+											"DaMorsell": 1,
+											"SeSmith": 1,
+											"MiMitchell": 1,
+											"ErAyala": 1,
+											"AnCowan": 3,
+											"DoScott": 1,
+											"RiLindo": 1,
+											"JaSmith": 9
+										}
+									},
+									"total_off_trans_3p_made": {
+										"value": 13
+									},
+									"total_off_scramble_to": {
+										"value": 7
+									},
+									"def_adj_opp": {
+										"value": 96.76946308724833
+									},
+									"total_off_orb": {
+										"value": 35
+									},
+									"off_ast_mid_target": {
+										"value": {
+											"DaMorsell": 2,
+											"JaSmith": 2
+										}
+									},
+									"oppo_total_def_ftm": {
+										"value": 217
+									},
+									"total_off_ast_mid": {
+										"value": 4
+									},
+									"total_off_trans_2pmid_attempts": {
+										"value": 8
+									},
+									"team_total_off_stl": {
+										"value": 111
+									},
+									"total_off_2p_ast": {
+										"value": 0
+									},
+									"total_off_2p_attempts": {
+										"value": 133
+									},
+									"total_off_fgm": {
+										"value": 113
+									},
+									"total_off_trans_fta": {
+										"value": 24
+									},
+									"total_off_scramble_2p_made": {
+										"value": 9
+									},
+									"team_total_off_foul": {
+										"value": 343
+									},
+									"total_off_trans_ftm": {
+										"value": 19
+									},
+									"total_off_trans_2p_ast": {
+										"value": 0
+									},
+									"off_2p": {
+										"value": 0.45112781954887216
+									},
+									"off_2p_ast": {
+										"value": 0
+									},
+									"off_3p": {
+										"value": 0.31736526946107785
+									},
+									"off_3p_ast": {
+										"value": 0.9245283018867925
+									},
+									"off_2prim": {
+										"value": 0.711864406779661
+									},
+									"off_2prim_ast": {
+										"value": 0.4523809523809524
+									},
+									"off_2pmid": {
+										"value": 0.24324324324324326
+									},
+									"off_2pmid_ast": {
+										"value": 0.3333333333333333
+									},
+									"off_ft": {
+										"value": 0.7166666666666667
+									},
+									"off_ftr": {
+										"value": 0.2
+									},
+									"off_2primr": {
+										"value": 0.19666666666666666
+									},
+									"off_2pmidr": {
+										"value": 0.24666666666666667
+									},
+									"off_3pr": {
+										"value": 0.5566666666666666
+									},
+									"off_scramble_2p": {
+										"value": 0.5294117647058824
+									},
+									"off_scramble_2p_ast": {
+										"value": 0
+									},
+									"off_scramble_3p": {
+										"value": 0.2222222222222222
+									},
+									"off_scramble_3p_ast": {
+										"value": 1
+									},
+									"off_scramble_2prim": {
+										"value": 0.6666666666666666
+									},
+									"off_scramble_2prim_ast": {
+										"value": 0.25
+									},
+									"off_scramble_2pmid": {
+										"value": 0.2
+									},
+									"off_scramble_2pmid_ast": {
+										"value": 1
+									},
+									"off_scramble_ft": {
+										"value": 0.6
+									},
+									"off_scramble_ftr": {
+										"value": 0.19230769230769232
+									},
+									"off_scramble_2primr": {
+										"value": 0.46153846153846156
+									},
+									"off_scramble_2pmidr": {
+										"value": 0.19230769230769232
+									},
+									"off_scramble_3pr": {
+										"value": 0.34615384615384615
+									},
+									"off_scramble_assist": {
+										"value": 0.09090909090909091
+									},
+									"off_trans_2p": {
+										"value": 0.6538461538461539
+									},
+									"off_trans_2p_ast": {
+										"value": 0
+									},
+									"off_trans_3p": {
+										"value": 0.2765957446808511
+									},
+									"off_trans_3p_ast": {
+										"value": 0.9230769230769231
+									},
+									"off_trans_2prim": {
+										"value": 0.7222222222222222
+									},
+									"off_trans_2prim_ast": {
+										"value": 0.6153846153846154
+									},
+									"off_trans_2pmid": {
+										"value": 0.5
+									},
+									"off_trans_2pmid_ast": {
+										"value": 0.25
+									},
+									"off_trans_ft": {
+										"value": 0.7916666666666666
+									},
+									"off_trans_ftr": {
+										"value": 0.3287671232876712
+									},
+									"off_trans_2primr": {
+										"value": 0.2465753424657534
+									},
+									"off_trans_2pmidr": {
+										"value": 0.1095890410958904
+									},
+									"off_trans_3pr": {
+										"value": 0.6438356164383562
+									},
+									"off_trans_assist": {
+										"value": 0.36666666666666664
+									},
+									"off_ast_rim": {
+										"value": 0.4090909090909091
+									},
+									"off_ast_mid": {
+										"value": 0.09090909090909091
+									},
+									"off_ast_3p": {
+										"value": 0.5
+									},
+									"total_off_scramble_pts": {
+										"value": 27
+									},
+									"total_off_trans_pts": {
+										"value": 92
+									},
+									"off_efg": {
+										"value": 0.465
+									},
+									"off_scramble_efg": {
+										"value": 0.46153846153846156
+									},
+									"off_trans_efg": {
+										"value": 0.5
+									},
+									"off_team_poss": {
+										"value": 1499
+									},
+									"off_assist": {
+										"value": 0.10185185185185185
+									},
+									"off_to": {
+										"value": 0.15986540855127684
+									},
+									"off_orb": {
+										"value": 0.043532338308457715
+									},
+									"off_usage": {
+										"value": 0.20864782871120427
+									},
+									"def_team_poss": {
+										"value": 1490
+									},
+									"def_orb": {
+										"value": 0.1380952380952381
+									},
+									"def_ftr": {
+										"value": 0.022550335570469794
+									},
+									"def_to": {
+										"value": 0.0174496644295302
+									},
+									"def_2prim": {
+										"value": 0.016290726817042606
+									}
+								}
+                ]
+							}
+						},
+						"off": {
+							"player": {
+								"buckets": [
+                  {
+									"key": "Cowan, Anthony",
+									"doc_count": 110,
+									"total_off_fga": {
+										"value": 64
+									},
+									"oppo_total_def_fga": {
+										"value": 244
+									},
+									"total_off_2pmid_made": {
+										"value": 4
+									},
+									"total_off_trans_to": {
+										"value": 4
+									},
+									"total_off_trans_assist": {
+										"value": 5
+									},
+									"total_off_2pmid_ast": {
+										"value": 0
+									},
+									"total_off_3p_attempts": {
+										"value": 30
+									},
+									"oppo_total_def_fgm": {
+										"value": 97
+									},
+									"total_off_scramble_assist": {
+										"value": 5
+									},
+									"oppo_def_3p_opp": {
+										"value": 32.68260869565218
+									},
+									"team_total_off_ftm": {
+										"value": 72
+									},
+									"total_off_to": {
+										"value": 9
+									},
+									"total_off_scramble_2pmid_attempts": {
+										"value": 2
+									},
+									"total_off_foul": {
+										"value": 11
+									},
+									"team_total_off_blk": {
+										"value": 15
+									},
+									"oppo_total_def_drb": {
+										"value": 115
+									},
+									"team_total_off_fta": {
+										"value": 92
+									},
+									"total_off_2prim_attempts": {
+										"value": 21
+									},
+									"total_off_drb": {
+										"value": 16
+									},
+									"total_off_scramble_fgm": {
+										"value": 4
+									},
+									"total_off_scramble_fga": {
+										"value": 7
+									},
+									"total_off_scramble_2prim_attempts": {
+										"value": 2
+									},
+									"off_ast_3p_source": {
+										"value": {
+											"DaMorsell": 2,
+											"SeSmith": 2,
+											"AaWiggins": 1,
+											"RiLindo": 1
+										}
+									},
+									"total_off_2p_made": {
+										"value": 15
+									},
+									"total_off_2prim_made": {
+										"value": 11
+									},
+									"total_off_trans_3p_ast": {
+										"value": 1
+									},
+									"total_off_3p_ast": {
+										"value": 6
+									},
+									"total_off_trans_fga": {
+										"value": 9
+									},
+									"total_off_2prim_ast": {
+										"value": 2
+									},
+									"total_off_scramble_3p_ast": {
+										"value": 2
+									},
+									"total_off_trans_3p_attempts": {
+										"value": 4
+									},
+									"total_off_ftm": {
+										"value": 38
+									},
+									"off_adj_opp": {
+										"value": 106.80295202952028
+									},
+									"total_off_blk": {
+										"value": 0
+									},
+									"oppo_total_def_orb": {
+										"value": 53
+									},
+									"total_off_trans_fgm": {
+										"value": 5
+									},
+									"off_ast_rim_source": {
+										"value": {
+											"HaHart": 1,
+											"SeSmith": 1
+										}
+									},
+									"team_total_off_to": {
+										"value": 38
+									},
+									"oppo_total_def_pts": {
+										"value": 272
+									},
+									"team_total_off_drb": {
+										"value": 99
+									},
+									"total_off_trans_2prim_made": {
+										"value": 3
+									},
+									"team_total_off_poss": {
+										"value": 272
+									},
+									"total_off_scramble_2pmid_ast": {
+										"value": 0
+									},
+									"oppo_total_def_poss": {
+										"value": 271
+									},
+									"total_off_trans_2prim_ast": {
+										"value": 1
+									},
+									"total_off_fta": {
+										"value": 43
+									},
+									"oppo_total_def_to": {
+										"value": 52
+									},
+									"team_total_off_fga": {
+										"value": 250
+									},
+									"total_off_scramble_2prim_made": {
+										"value": 1
+									},
+									"oppo_total_def_2p_attempts": {
+										"value": 152
+									},
+									"total_off_trans_2p_made": {
+										"value": 3
+									},
+									"team_total_off_fgm": {
+										"value": 89
+									},
+									"oppo_total_def_fta": {
+										"value": 57
+									},
+									"total_off_assist": {
+										"value": 21
+									},
+									"total_off_stl": {
+										"value": 2
+									},
+									"off_ast_mid_source": {
+										"value": {}
+									},
+									"total_off_ast_3p": {
+										"value": 13
+									},
+									"total_off_scramble_ftm": {
+										"value": 2
+									},
+									"oppo_total_def_3p_attempts": {
+										"value": 92
+									},
+									"team_total_off_orb": {
+										"value": 57
+									},
+									"total_off_ast_rim": {
+										"value": 7
+									},
+									"total_off_3p_made": {
+										"value": 9
+									},
+									"total_off_scramble_3p_attempts": {
+										"value": 3
+									},
+									"total_off_trans_2pmid_ast": {
+										"value": 0
+									},
+									"total_off_scramble_2pmid_made": {
+										"value": 1
+									},
+									"total_off_scramble_3p_made": {
+										"value": 2
+									},
+									"off_poss": {
+										"value": 78.06547619047619
+									},
+									"total_off_scramble_fta": {
+										"value": 2
+									},
+									"team_total_off_3p_made": {
+										"value": 32
+									},
+									"total_off_poss": {
+										"value": 0
+									},
+									"total_off_scramble_2prim_ast": {
+										"value": 0
+									},
+									"total_off_trans_2p_attempts": {
+										"value": 5
+									},
+									"total_off_2pmid_attempts": {
+										"value": 13
+									},
+									"oppo_total_def_3p_made": {
+										"value": 32
+									},
+									"total_off_trans_2pmid_made": {
+										"value": 0
+									},
+									"total_off_scramble_2p_attempts": {
+										"value": 4
+									},
+									"total_off_trans_2prim_attempts": {
+										"value": 5
+									},
+									"total_off_scramble_2p_ast": {
+										"value": 0
+									},
+									"off_ast_3p_target": {
+										"value": {
+											"SeSmith": 2,
+											"ErAyala": 1,
+											"AaWiggins": 7,
+											"DoScott": 1,
+											"RiLindo": 1,
+											"JaSmith": 1
+										}
+									},
+									"total_off_pts": {
+										"value": 0
+									},
+									"team_total_off_pts": {
+										"value": 282
+									},
+									"team_total_off_assist": {
+										"value": 49
+									},
+									"off_ast_rim_target": {
+										"value": {
+											"HaHart": 1,
+											"MlMitchell": 1,
+											"AaWiggins": 2,
+											"JaSmith": 2,
+											"JoTomaic": 1
+										}
+									},
+									"total_off_trans_3p_made": {
+										"value": 2
+									},
+									"total_off_scramble_to": {
+										"value": 0
+									},
+									"def_adj_opp": {
+										"value": 98.20405904059041
+									},
+									"total_off_orb": {
+										"value": 5
+									},
+									"off_ast_mid_target": {
+										"value": {
+											"AaWiggins": 1
+										}
+									},
+									"oppo_total_def_ftm": {
+										"value": 46
+									},
+									"total_off_ast_mid": {
+										"value": 1
+									},
+									"total_off_trans_2pmid_attempts": {
+										"value": 0
+									},
+									"team_total_off_stl": {
+										"value": 17
+									},
+									"total_off_2p_ast": {
+										"value": 0
+									},
+									"total_off_2p_attempts": {
+										"value": 34
+									},
+									"total_off_fgm": {
+										"value": 24
+									},
+									"total_off_trans_fta": {
+										"value": 17
+									},
+									"total_off_scramble_2p_made": {
+										"value": 2
+									},
+									"team_total_off_foul": {
+										"value": 69
+									},
+									"total_off_trans_ftm": {
+										"value": 16
+									},
+									"total_off_trans_2p_ast": {
+										"value": 0
+									},
+									"off_2p": {
+										"value": 0.4411764705882353
+									},
+									"off_2p_ast": {
+										"value": 0
+									},
+									"off_3p": {
+										"value": 0.3
+									},
+									"off_3p_ast": {
+										"value": 0.6666666666666666
+									},
+									"off_2prim": {
+										"value": 0.5238095238095238
+									},
+									"off_2prim_ast": {
+										"value": 0.18181818181818182
+									},
+									"off_2pmid": {
+										"value": 0.3076923076923077
+									},
+									"off_2pmid_ast": {
+										"value": 0
+									},
+									"off_ft": {
+										"value": 0.8837209302325582
+									},
+									"off_ftr": {
+										"value": 0.671875
+									},
+									"off_2primr": {
+										"value": 0.328125
+									},
+									"off_2pmidr": {
+										"value": 0.203125
+									},
+									"off_3pr": {
+										"value": 0.46875
+									},
+									"off_scramble_2p": {
+										"value": 0.5
+									},
+									"off_scramble_2p_ast": {
+										"value": 0
+									},
+									"off_scramble_3p": {
+										"value": 0.6666666666666666
+									},
+									"off_scramble_3p_ast": {
+										"value": 1
+									},
+									"off_scramble_2prim": {
+										"value": 0.5
+									},
+									"off_scramble_2prim_ast": {
+										"value": 0
+									},
+									"off_scramble_2pmid": {
+										"value": 0.5
+									},
+									"off_scramble_2pmid_ast": {
+										"value": 0
+									},
+									"off_scramble_ft": {
+										"value": 1
+									},
+									"off_scramble_ftr": {
+										"value": 0.2857142857142857
+									},
+									"off_scramble_2primr": {
+										"value": 0.2857142857142857
+									},
+									"off_scramble_2pmidr": {
+										"value": 0.2857142857142857
+									},
+									"off_scramble_3pr": {
+										"value": 0.42857142857142855
+									},
+									"off_scramble_assist": {
+										"value": 1.25
+									},
+									"off_trans_2p": {
+										"value": 0.6
+									},
+									"off_trans_2p_ast": {
+										"value": 0
+									},
+									"off_trans_3p": {
+										"value": 0.5
+									},
+									"off_trans_3p_ast": {
+										"value": 0.5
+									},
+									"off_trans_2prim": {
+										"value": 0.6
+									},
+									"off_trans_2prim_ast": {
+										"value": 0.3333333333333333
+									},
+									"off_trans_2pmid": {
+										"value": 0
+									},
+									"off_trans_2pmid_ast": {
+										"value": 0
+									},
+									"off_trans_ft": {
+										"value": 0.9411764705882353
+									},
+									"off_trans_ftr": {
+										"value": 1.8888888888888888
+									},
+									"off_trans_2primr": {
+										"value": 0.5555555555555556
+									},
+									"off_trans_2pmidr": {
+										"value": 0
+									},
+									"off_trans_3pr": {
+										"value": 0.4444444444444444
+									},
+									"off_trans_assist": {
+										"value": 1
+									},
+									"off_ast_rim": {
+										"value": 0.3333333333333333
+									},
+									"off_ast_mid": {
+										"value": 0.047619047619047616
+									},
+									"off_ast_3p": {
+										"value": 0.6190476190476191
+									},
+									"total_off_scramble_pts": {
+										"value": 12
+									},
+									"total_off_trans_pts": {
+										"value": 28
+									},
+									"off_efg": {
+										"value": 0.4453125
+									},
+									"off_scramble_efg": {
+										"value": 0.7142857142857143
+									},
+									"off_trans_efg": {
+										"value": 0.6666666666666666
+									},
+									"off_team_poss": {
+										"value": 272
+									},
+									"off_assist": {
+										"value": 0.3230769230769231
+									},
+									"off_to": {
+										"value": 0.11528783835303089
+									},
+									"off_orb": {
+										"value": 0.029069767441860465
+									},
+									"off_usage": {
+										"value": 0.28700542717086835
+									},
+									"def_team_poss": {
+										"value": 271
+									},
+									"def_orb": {
+										"value": 0.10526315789473684
+									},
+									"def_ftr": {
+										"value": 0.028413284132841325
+									},
+									"def_to": {
+										"value": 0.007380073800738007
+									},
+									"def_2prim": {
+										"value": 0
+									}
+								},
+                  {
+									"key": "Mona, Reese",
+									"doc_count": 17,
+									"total_off_fga": {
+										"value": 3
+									},
+									"oppo_total_def_fga": {
+										"value": 34
+									},
+									"total_off_2pmid_made": {
+										"value": 1
+									},
+									"total_off_trans_to": {
+										"value": 0
+									},
+									"total_off_trans_assist": {
+										"value": 0
+									},
+									"total_off_2pmid_ast": {
+										"value": 1
+									},
+									"total_off_3p_attempts": {
+										"value": 1
+									},
+									"oppo_total_def_fgm": {
+										"value": 19
+									},
+									"total_off_scramble_assist": {
+										"value": 0
+									},
+									"oppo_def_3p_opp": {
+										"value": 31.123529411764707
+									},
+									"team_total_off_ftm": {
+										"value": 13
+									},
+									"total_off_to": {
+										"value": 1
+									},
+									"total_off_scramble_2pmid_attempts": {
+										"value": 0
+									},
+									"total_off_foul": {
+										"value": 3
+									},
+									"team_total_off_blk": {
+										"value": 2
+									},
+									"oppo_total_def_drb": {
+										"value": 12
+									},
+									"team_total_off_fta": {
+										"value": 16
+									},
+									"total_off_2prim_attempts": {
+										"value": 1
+									},
+									"total_off_drb": {
+										"value": 1
+									},
+									"total_off_scramble_fgm": {
+										"value": 0
+									},
+									"total_off_scramble_fga": {
+										"value": 0
+									},
+									"total_off_scramble_2prim_attempts": {
+										"value": 0
+									},
+									"off_ast_3p_source": {
+										"value": {
+											"HaHart": 1
+										}
+									},
+									"total_off_2p_made": {
+										"value": 2
+									},
+									"total_off_2prim_made": {
+										"value": 1
+									},
+									"total_off_trans_3p_ast": {
+										"value": 1
+									},
+									"total_off_3p_ast": {
+										"value": 1
+									},
+									"total_off_trans_fga": {
+										"value": 2
+									},
+									"total_off_2prim_ast": {
+										"value": 0
+									},
+									"total_off_scramble_3p_ast": {
+										"value": 0
+									},
+									"total_off_trans_3p_attempts": {
+										"value": 1
+									},
+									"total_off_ftm": {
+										"value": 2
+									},
+									"off_adj_opp": {
+										"value": 101.45714285714286
+									},
+									"total_off_blk": {
+										"value": 1
+									},
+									"oppo_total_def_orb": {
+										"value": 3
+									},
+									"total_off_trans_fgm": {
+										"value": 2
+									},
+									"off_ast_rim_source": {
+										"value": {}
+									},
+									"team_total_off_to": {
+										"value": 6
+									},
+									"oppo_total_def_pts": {
+										"value": 57
+									},
+									"team_total_off_drb": {
+										"value": 12
+									},
+									"total_off_trans_2prim_made": {
+										"value": 0
+									},
+									"team_total_off_poss": {
+										"value": 38
+									},
+									"total_off_scramble_2pmid_ast": {
+										"value": 0
+									},
+									"oppo_total_def_poss": {
+										"value": 42
+									},
+									"total_off_trans_2prim_ast": {
+										"value": 0
+									},
+									"total_off_fta": {
+										"value": 2
+									},
+									"oppo_total_def_to": {
+										"value": 6
+									},
+									"team_total_off_fga": {
+										"value": 28
+									},
+									"total_off_scramble_2prim_made": {
+										"value": 0
+									},
+									"oppo_total_def_2p_attempts": {
+										"value": 17
+									},
+									"total_off_trans_2p_made": {
+										"value": 1
+									},
+									"team_total_off_fgm": {
+										"value": 15
+									},
+									"oppo_total_def_fta": {
+										"value": 12
+									},
+									"total_off_assist": {
+										"value": 2
+									},
+									"total_off_stl": {
+										"value": 1
+									},
+									"off_ast_mid_source": {
+										"value": {
+											"SeSmith": 1
+										}
+									},
+									"total_off_ast_3p": {
+										"value": 1
+									},
+									"total_off_scramble_ftm": {
+										"value": 0
+									},
+									"oppo_total_def_3p_attempts": {
+										"value": 17
+									},
+									"team_total_off_orb": {
+										"value": 2
+									},
+									"total_off_ast_rim": {
+										"value": 1
+									},
+									"total_off_3p_made": {
+										"value": 1
+									},
+									"total_off_scramble_3p_attempts": {
+										"value": 0
+									},
+									"total_off_trans_2pmid_ast": {
+										"value": 1
+									},
+									"total_off_scramble_2pmid_made": {
+										"value": 0
+									},
+									"total_off_scramble_3p_made": {
+										"value": 0
+									},
+									"off_poss": {
+										"value": 4.95
+									},
+									"total_off_scramble_fta": {
+										"value": 0
+									},
+									"team_total_off_3p_made": {
+										"value": 3
+									},
+									"total_off_poss": {
+										"value": 0
+									},
+									"total_off_scramble_2prim_ast": {
+										"value": 0
+									},
+									"total_off_trans_2p_attempts": {
+										"value": 1
+									},
+									"total_off_2pmid_attempts": {
+										"value": 1
+									},
+									"oppo_total_def_3p_made": {
+										"value": 10
+									},
+									"total_off_trans_2pmid_made": {
+										"value": 1
+									},
+									"total_off_scramble_2p_attempts": {
+										"value": 0
+									},
+									"total_off_trans_2prim_attempts": {
+										"value": 0
+									},
+									"total_off_scramble_2p_ast": {
+										"value": 0
+									},
+									"off_ast_3p_target": {
+										"value": {
+											"HaHart": 1
+										}
+									},
+									"total_off_pts": {
+										"value": 0
+									},
+									"team_total_off_pts": {
+										"value": 46
+									},
+									"team_total_off_assist": {
+										"value": 7
+									},
+									"off_ast_rim_target": {
+										"value": {
+											"RiLindo": 1
+										}
+									},
+									"total_off_trans_3p_made": {
+										"value": 1
+									},
+									"total_off_scramble_to": {
+										"value": 0
+									},
+									"def_adj_opp": {
+										"value": 102.20714285714286
+									},
+									"total_off_orb": {
+										"value": 0
+									},
+									"off_ast_mid_target": {
+										"value": {}
+									},
+									"oppo_total_def_ftm": {
+										"value": 9
+									},
+									"total_off_ast_mid": {
+										"value": 0
+									},
+									"total_off_trans_2pmid_attempts": {
+										"value": 1
+									},
+									"team_total_off_stl": {
+										"value": 2
+									},
+									"total_off_2p_ast": {
+										"value": 0
+									},
+									"total_off_2p_attempts": {
+										"value": 2
+									},
+									"total_off_fgm": {
+										"value": 3
+									},
+									"total_off_trans_fta": {
+										"value": 0
+									},
+									"total_off_scramble_2p_made": {
+										"value": 0
+									},
+									"team_total_off_foul": {
+										"value": 7
+									},
+									"total_off_trans_ftm": {
+										"value": 0
+									},
+									"total_off_trans_2p_ast": {
+										"value": 0
+									},
+									"off_2p": {
+										"value": 1
+									},
+									"off_2p_ast": {
+										"value": 0
+									},
+									"off_3p": {
+										"value": 1
+									},
+									"off_3p_ast": {
+										"value": 1
+									},
+									"off_2prim": {
+										"value": 1
+									},
+									"off_2prim_ast": {
+										"value": 0
+									},
+									"off_2pmid": {
+										"value": 1
+									},
+									"off_2pmid_ast": {
+										"value": 1
+									},
+									"off_ft": {
+										"value": 1
+									},
+									"off_ftr": {
+										"value": 0.6666666666666666
+									},
+									"off_2primr": {
+										"value": 0.3333333333333333
+									},
+									"off_2pmidr": {
+										"value": 0.3333333333333333
+									},
+									"off_3pr": {
+										"value": 0.3333333333333333
+									},
+									"off_scramble_2p": {
+										"value": 0
+									},
+									"off_scramble_2p_ast": {
+										"value": 0
+									},
+									"off_scramble_3p": {
+										"value": 0
+									},
+									"off_scramble_3p_ast": {
+										"value": 0
+									},
+									"off_scramble_2prim": {
+										"value": 0
+									},
+									"off_scramble_2prim_ast": {
+										"value": 0
+									},
+									"off_scramble_2pmid": {
+										"value": 0
+									},
+									"off_scramble_2pmid_ast": {
+										"value": 0
+									},
+									"off_scramble_ft": {
+										"value": 0
+									},
+									"off_scramble_ftr": {
+										"value": 0
+									},
+									"off_scramble_2primr": {
+										"value": 0
+									},
+									"off_scramble_2pmidr": {
+										"value": 0
+									},
+									"off_scramble_3pr": {
+										"value": 0
+									},
+									"off_scramble_assist": {
+										"value": 0
+									},
+									"off_trans_2p": {
+										"value": 1
+									},
+									"off_trans_2p_ast": {
+										"value": 0
+									},
+									"off_trans_3p": {
+										"value": 1
+									},
+									"off_trans_3p_ast": {
+										"value": 1
+									},
+									"off_trans_2prim": {
+										"value": 0
+									},
+									"off_trans_2prim_ast": {
+										"value": 0
+									},
+									"off_trans_2pmid": {
+										"value": 1
+									},
+									"off_trans_2pmid_ast": {
+										"value": 1
+									},
+									"off_trans_ft": {
+										"value": 0
+									},
+									"off_trans_ftr": {
+										"value": 0
+									},
+									"off_trans_2primr": {
+										"value": 0
+									},
+									"off_trans_2pmidr": {
+										"value": 0.5
+									},
+									"off_trans_3pr": {
+										"value": 0.5
+									},
+									"off_trans_assist": {
+										"value": 0
+									},
+									"off_ast_rim": {
+										"value": 0.5
+									},
+									"off_ast_mid": {
+										"value": 0
+									},
+									"off_ast_3p": {
+										"value": 0.5
+									},
+									"total_off_scramble_pts": {
+										"value": 0
+									},
+									"total_off_trans_pts": {
+										"value": 5
+									},
+									"off_efg": {
+										"value": 1.1666666666666667
+									},
+									"off_scramble_efg": {
+										"value": 0
+									},
+									"off_trans_efg": {
+										"value": 1.25
+									},
+									"off_team_poss": {
+										"value": 38
+									},
+									"off_assist": {
+										"value": 0.16666666666666666
+									},
+									"off_to": {
+										"value": 0.20202020202020202
+									},
+									"off_orb": {
+										"value": 0
+									},
+									"off_usage": {
+										"value": 0.13026315789473686
+									},
+									"def_team_poss": {
+										"value": 42
+									},
+									"def_orb": {
+										"value": 0.06666666666666667
+									},
+									"def_ftr": {
+										"value": 0.04999999999999999
+									},
+									"def_to": {
+										"value": 0.023809523809523808
+									},
+									"def_2prim": {
+										"value": 0.058823529411764705
+									}
+								}
+                ]
+							}
+						},
+						"on": {
+							"player": {
+								"buckets": [{
+									"key": "Cowan, Anthony",
+									"doc_count": 376,
+									"total_off_fga": {
+										"value": 292
+									},
+									"oppo_total_def_fga": {
+										"value": 1344
+									},
+									"total_off_2pmid_made": {
+										"value": 14
+									},
+									"total_off_trans_to": {
+										"value": 16
+									},
+									"total_off_trans_assist": {
+										"value": 33
+									},
+									"total_off_2pmid_ast": {
+										"value": 0
+									},
+									"total_off_3p_attempts": {
+										"value": 144
+									},
+									"oppo_total_def_fgm": {
+										"value": 540
+									},
+									"total_off_scramble_assist": {
+										"value": 5
+									},
+									"oppo_def_3p_opp": {
+										"value": 33.24322200392927
+									},
+									"team_total_off_ftm": {
+										"value": 366
+									},
+									"total_off_to": {
+										"value": 60
+									},
+									"total_off_scramble_2pmid_attempts": {
+										"value": 2
+									},
+									"total_off_foul": {
+										"value": 52
+									},
+									"team_total_off_blk": {
+										"value": 93
+									},
+									"oppo_total_def_drb": {
+										"value": 559
+									},
+									"team_total_off_fta": {
+										"value": 487
+									},
+									"total_off_2prim_attempts": {
+										"value": 96
+									},
+									"total_off_drb": {
+										"value": 80
+									},
+									"total_off_scramble_fgm": {
+										"value": 7
+									},
+									"total_off_scramble_fga": {
+										"value": 15
+									},
+									"total_off_scramble_2prim_attempts": {
+										"value": 3
+									},
+									"off_ast_3p_source": {
+										"value": {
+											"DaMorsell": 8,
+											"MlMitchell": 1,
+											"ErAyala": 8,
+											"AaWiggins": 8,
+											"DoScott": 1,
+											"JaSmith": 3
+										}
+									},
+									"total_off_2p_made": {
+										"value": 68
+									},
+									"total_off_2prim_made": {
+										"value": 54
+									},
+									"total_off_trans_3p_ast": {
+										"value": 4
+									},
+									"total_off_3p_ast": {
+										"value": 29
+									},
+									"total_off_trans_fga": {
+										"value": 46
+									},
+									"total_off_2prim_ast": {
+										"value": 15
+									},
+									"total_off_scramble_3p_ast": {
+										"value": 3
+									},
+									"total_off_trans_3p_attempts": {
+										"value": 19
+									},
+									"total_off_ftm": {
+										"value": 134
+									},
+									"off_adj_opp": {
+										"value": 108.26036866359448
+									},
+									"total_off_blk": {
+										"value": 5
+									},
+									"oppo_total_def_orb": {
+										"value": 221
+									},
+									"total_off_trans_fgm": {
+										"value": 21
+									},
+									"off_ast_rim_source": {
+										"value": {
+											"DaMorsell": 5,
+											"MiMitchell": 1,
+											"ErAyala": 3,
+											"AaWiggins": 3,
+											"JaSmith": 3
+										}
+									},
+									"team_total_off_to": {
+										"value": 261
+									},
+									"oppo_total_def_pts": {
+										"value": 1466
+									},
+									"team_total_off_drb": {
+										"value": 627
+									},
+									"total_off_trans_2prim_made": {
+										"value": 14
+									},
+									"team_total_off_poss": {
+										"value": 1530
+									},
+									"total_off_scramble_2pmid_ast": {
+										"value": 0
+									},
+									"oppo_total_def_poss": {
+										"value": 1519
+									},
+									"total_off_trans_2prim_ast": {
+										"value": 4
+									},
+									"total_off_fta": {
+										"value": 169
+									},
+									"oppo_total_def_to": {
+										"value": 260
+									},
+									"team_total_off_fga": {
+										"value": 1300
+									},
+									"total_off_scramble_2prim_made": {
+										"value": 3
+									},
+									"oppo_total_def_2p_attempts": {
+										"value": 835
+									},
+									"total_off_trans_2p_made": {
+										"value": 15
+									},
+									"team_total_off_fgm": {
+										"value": 554
+									},
+									"oppo_total_def_fta": {
+										"value": 327
+									},
+									"total_off_assist": {
+										"value": 126
+									},
+									"total_off_stl": {
+										"value": 28
+									},
+									"off_ast_mid_source": {
+										"value": {}
+									},
+									"total_off_ast_3p": {
+										"value": 57
+									},
+									"total_off_scramble_ftm": {
+										"value": 9
+									},
+									"oppo_total_def_3p_attempts": {
+										"value": 509
+									},
+									"team_total_off_orb": {
+										"value": 253
+									},
+									"total_off_ast_rim": {
+										"value": 60
+									},
+									"total_off_3p_made": {
+										"value": 47
+									},
+									"total_off_scramble_3p_attempts": {
+										"value": 10
+									},
+									"total_off_trans_2pmid_ast": {
+										"value": 0
+									},
+									"total_off_scramble_2pmid_made": {
+										"value": 0
+									},
+									"total_off_scramble_3p_made": {
+										"value": 4
+									},
+									"off_poss": {
+										"value": 373.4190476190476
+									},
+									"total_off_scramble_fta": {
+										"value": 10
+									},
+									"team_total_off_3p_made": {
+										"value": 181
+									},
+									"total_off_poss": {
+										"value": 0
+									},
+									"total_off_scramble_2prim_ast": {
+										"value": 0
+									},
+									"total_off_trans_2p_attempts": {
+										"value": 27
+									},
+									"total_off_2pmid_attempts": {
+										"value": 52
+									},
+									"oppo_total_def_3p_made": {
+										"value": 162
+									},
+									"total_off_trans_2pmid_made": {
+										"value": 1
+									},
+									"total_off_scramble_2p_attempts": {
+										"value": 5
+									},
+									"total_off_trans_2prim_attempts": {
+										"value": 25
+									},
+									"total_off_scramble_2p_ast": {
+										"value": 0
+									},
+									"off_ast_3p_target": {
+										"value": {
+											"DaMorsell": 7,
+											"ErAyala": 22,
+											"DoScott": 4,
+											"AaWiggins": 13,
+											"JaSmith": 11
+										}
+									},
+									"total_off_pts": {
+										"value": 0
+									},
+									"team_total_off_pts": {
+										"value": 1655
+									},
+									"team_total_off_assist": {
+										"value": 312
+									},
+									"off_ast_rim_target": {
+										"value": {
+											"DaMorsell": 12,
+											"MlMitchell": 1,
+											"ErAyala": 3,
+											"DoScott": 8,
+											"AaWiggins": 5,
+											"JaSmith": 30,
+											"JoTomaic": 1
+										}
+									},
+									"total_off_trans_3p_made": {
+										"value": 6
+									},
+									"total_off_scramble_to": {
+										"value": 2
+									},
+									"def_adj_opp": {
+										"value": 96.3159973666886
+									},
+									"total_off_orb": {
+										"value": 12
+									},
+									"off_ast_mid_target": {
+										"value": {
+											"DaMorsell": 4,
+											"MiMitchell": 1,
+											"AaWiggins": 3,
+											"JaSmith": 1
+										}
+									},
+									"oppo_total_def_ftm": {
+										"value": 224
+									},
+									"total_off_ast_mid": {
+										"value": 9
+									},
+									"total_off_trans_2pmid_attempts": {
+										"value": 2
+									},
+									"team_total_off_stl": {
+										"value": 109
+									},
+									"total_off_2p_ast": {
+										"value": 0
+									},
+									"total_off_2p_attempts": {
+										"value": 148
+									},
+									"total_off_fgm": {
+										"value": 115
+									},
+									"total_off_trans_fta": {
+										"value": 68
+									},
+									"total_off_scramble_2p_made": {
+										"value": 3
+									},
+									"team_total_off_foul": {
+										"value": 330
+									},
+									"total_off_trans_ftm": {
+										"value": 54
+									},
+									"total_off_trans_2p_ast": {
+										"value": 0
+									},
+									"off_2p": {
+										"value": 0.4594594594594595
+									},
+									"off_2p_ast": {
+										"value": 0
+									},
+									"off_3p": {
+										"value": 0.3263888888888889
+									},
+									"off_3p_ast": {
+										"value": 0.6170212765957447
+									},
+									"off_2prim": {
+										"value": 0.5625
+									},
+									"off_2prim_ast": {
+										"value": 0.2777777777777778
+									},
+									"off_2pmid": {
+										"value": 0.2692307692307692
+									},
+									"off_2pmid_ast": {
+										"value": 0
+									},
+									"off_ft": {
+										"value": 0.7928994082840237
+									},
+									"off_ftr": {
+										"value": 0.5787671232876712
+									},
+									"off_2primr": {
+										"value": 0.3287671232876712
+									},
+									"off_2pmidr": {
+										"value": 0.1780821917808219
+									},
+									"off_3pr": {
+										"value": 0.4931506849315068
+									},
+									"off_scramble_2p": {
+										"value": 0.6
+									},
+									"off_scramble_2p_ast": {
+										"value": 0
+									},
+									"off_scramble_3p": {
+										"value": 0.4
+									},
+									"off_scramble_3p_ast": {
+										"value": 0.75
+									},
+									"off_scramble_2prim": {
+										"value": 1
+									},
+									"off_scramble_2prim_ast": {
+										"value": 0
+									},
+									"off_scramble_2pmid": {
+										"value": 0
+									},
+									"off_scramble_2pmid_ast": {
+										"value": 0
+									},
+									"off_scramble_ft": {
+										"value": 0.9
+									},
+									"off_scramble_ftr": {
+										"value": 0.6666666666666666
+									},
+									"off_scramble_2primr": {
+										"value": 0.2
+									},
+									"off_scramble_2pmidr": {
+										"value": 0.13333333333333333
+									},
+									"off_scramble_3pr": {
+										"value": 0.6666666666666666
+									},
+									"off_scramble_assist": {
+										"value": 0.7142857142857143
+									},
+									"off_trans_2p": {
+										"value": 0.5555555555555556
+									},
+									"off_trans_2p_ast": {
+										"value": 0
+									},
+									"off_trans_3p": {
+										"value": 0.3157894736842105
+									},
+									"off_trans_3p_ast": {
+										"value": 0.6666666666666666
+									},
+									"off_trans_2prim": {
+										"value": 0.56
+									},
+									"off_trans_2prim_ast": {
+										"value": 0.2857142857142857
+									},
+									"off_trans_2pmid": {
+										"value": 0.5
+									},
+									"off_trans_2pmid_ast": {
+										"value": 0
+									},
+									"off_trans_ft": {
+										"value": 0.7941176470588235
+									},
+									"off_trans_ftr": {
+										"value": 1.4782608695652173
+									},
+									"off_trans_2primr": {
+										"value": 0.5434782608695652
+									},
+									"off_trans_2pmidr": {
+										"value": 0.043478260869565216
+									},
+									"off_trans_3pr": {
+										"value": 0.41304347826086957
+									},
+									"off_trans_assist": {
+										"value": 1.5714285714285714
+									},
+									"off_ast_rim": {
+										"value": 0.47619047619047616
+									},
+									"off_ast_mid": {
+										"value": 0.07142857142857142
+									},
+									"off_ast_3p": {
+										"value": 0.4523809523809524
+									},
+									"total_off_scramble_pts": {
+										"value": 27
+									},
+									"total_off_trans_pts": {
+										"value": 102
+									},
+									"off_efg": {
+										"value": 0.4743150684931507
+									},
+									"off_scramble_efg": {
+										"value": 0.6
+									},
+									"off_trans_efg": {
+										"value": 0.5217391304347826
+									},
+									"off_team_poss": {
+										"value": 1530
+									},
+									"off_assist": {
+										"value": 0.2870159453302961
+									},
+									"off_to": {
+										"value": 0.16067739549593207
+									},
+									"off_orb": {
+										"value": 0.014778325123152709
+									},
+									"off_usage": {
+										"value": 0.24406473700591347
+									},
+									"def_team_poss": {
+										"value": 1519
+									},
+									"def_orb": {
+										"value": 0.09433962264150944
+									},
+									"def_ftr": {
+										"value": 0.023963133640552994
+									},
+									"def_to": {
+										"value": 0.018433179723502304
+									},
+									"def_2prim": {
+										"value": 0.005988023952095809
+									}
+								},
+                  {
+									"key": "Wiggins, Aaron",
+									"doc_count": 311,
+									"total_off_fga": {
+										"value": 246
+									},
+									"oppo_total_def_fga": {
+										"value": 1039
+									},
+									"total_off_2pmid_made": {
+										"value": 16
+									},
+									"total_off_trans_to": {
+										"value": 5
+									},
+									"total_off_trans_assist": {
+										"value": 9
+									},
+									"total_off_2pmid_ast": {
+										"value": 5
+									},
+									"total_off_3p_attempts": {
+										"value": 133
+									},
+									"oppo_total_def_fgm": {
+										"value": 399
+									},
+									"total_off_scramble_assist": {
+										"value": 1
+									},
+									"oppo_def_3p_opp": {
+										"value": 33.28283582089552
+									},
+									"team_total_off_ftm": {
+										"value": 321
+									},
+									"total_off_to": {
+										"value": 42
+									},
+									"total_off_scramble_2pmid_attempts": {
+										"value": 4
+									},
+									"total_off_foul": {
+										"value": 40
+									},
+									"team_total_off_blk": {
+										"value": 72
+									},
+									"oppo_total_def_drb": {
+										"value": 439
+									},
+									"team_total_off_fta": {
+										"value": 427
+									},
+									"total_off_2prim_attempts": {
+										"value": 48
+									},
+									"total_off_drb": {
+										"value": 101
+									},
+									"total_off_scramble_fgm": {
+										"value": 7
+									},
+									"total_off_scramble_fga": {
+										"value": 20
+									},
+									"total_off_scramble_2prim_attempts": {
+										"value": 8
+									},
+									"off_ast_3p_source": {
+										"value": {
+											"DaMorsell": 5,
+											"ErAyala": 14,
+											"AnCowan": 13,
+											"DoScott": 2,
+											"JaSmith": 1
+										}
+									},
+									"total_off_2p_made": {
+										"value": 50
+									},
+									"total_off_2prim_made": {
+										"value": 34
+									},
+									"total_off_trans_3p_ast": {
+										"value": 8
+									},
+									"total_off_3p_ast": {
+										"value": 35
+									},
+									"total_off_trans_fga": {
+										"value": 56
+									},
+									"total_off_2prim_ast": {
+										"value": 13
+									},
+									"total_off_scramble_3p_ast": {
+										"value": 1
+									},
+									"total_off_trans_3p_attempts": {
+										"value": 36
+									},
+									"total_off_ftm": {
+										"value": 37
+									},
+									"off_adj_opp": {
+										"value": 107.99691409507923
+									},
+									"total_off_blk": {
+										"value": 8
+									},
+									"oppo_total_def_orb": {
+										"value": 176
+									},
+									"total_off_trans_fgm": {
+										"value": 23
+									},
+									"off_ast_rim_source": {
+										"value": {
+											"DaMorsell": 5,
+											"ErAyala": 2,
+											"AnCowan": 5,
+											"JaSmith": 1
+										}
+									},
+									"team_total_off_to": {
+										"value": 199
+									},
+									"oppo_total_def_pts": {
+										"value": 1098
+									},
+									"team_total_off_drb": {
+										"value": 505
+									},
+									"total_off_trans_2prim_made": {
+										"value": 10
+									},
+									"team_total_off_poss": {
+										"value": 1220
+									},
+									"total_off_scramble_2pmid_ast": {
+										"value": 0
+									},
+									"oppo_total_def_poss": {
+										"value": 1199
+									},
+									"total_off_trans_2prim_ast": {
+										"value": 5
+									},
+									"total_off_fta": {
+										"value": 51
+									},
+									"oppo_total_def_to": {
+										"value": 221
+									},
+									"team_total_off_fga": {
+										"value": 1029
+									},
+									"total_off_scramble_2prim_made": {
+										"value": 6
+									},
+									"oppo_total_def_2p_attempts": {
+										"value": 637
+									},
+									"total_off_trans_2p_made": {
+										"value": 14
+									},
+									"team_total_off_fgm": {
+										"value": 448
+									},
+									"oppo_total_def_fta": {
+										"value": 265
+									},
+									"total_off_assist": {
+										"value": 33
+									},
+									"total_off_stl": {
+										"value": 19
+									},
+									"off_ast_mid_source": {
+										"value": {
+											"MiMitchell": 1,
+											"AnCowan": 3,
+											"JaSmith": 1
+										}
+									},
+									"total_off_ast_3p": {
+										"value": 15
+									},
+									"total_off_scramble_ftm": {
+										"value": 3
+									},
+									"oppo_total_def_3p_attempts": {
+										"value": 402
+									},
+									"team_total_off_orb": {
+										"value": 201
+									},
+									"total_off_ast_rim": {
+										"value": 15
+									},
+									"total_off_3p_made": {
+										"value": 39
+									},
+									"total_off_scramble_3p_attempts": {
+										"value": 8
+									},
+									"total_off_trans_2pmid_ast": {
+										"value": 1
+									},
+									"total_off_scramble_2pmid_made": {
+										"value": 0
+									},
+									"total_off_scramble_3p_made": {
+										"value": 1
+									},
+									"off_poss": {
+										"value": 259.89285714285717
+									},
+									"total_off_scramble_fta": {
+										"value": 5
+									},
+									"team_total_off_3p_made": {
+										"value": 142
+									},
+									"total_off_poss": {
+										"value": 0
+									},
+									"total_off_scramble_2prim_ast": {
+										"value": 1
+									},
+									"total_off_trans_2p_attempts": {
+										"value": 20
+									},
+									"total_off_2pmid_attempts": {
+										"value": 65
+									},
+									"oppo_total_def_3p_made": {
+										"value": 117
+									},
+									"total_off_trans_2pmid_made": {
+										"value": 4
+									},
+									"total_off_scramble_2p_attempts": {
+										"value": 12
+									},
+									"total_off_trans_2prim_attempts": {
+										"value": 14
+									},
+									"total_off_scramble_2p_ast": {
+										"value": 0
+									},
+									"off_ast_3p_target": {
+										"value": {
+											"DaMorsell": 1,
+											"AnCowan": 8,
+											"DoScott": 6
+										}
+									},
+									"total_off_pts": {
+										"value": 0
+									},
+									"team_total_off_pts": {
+										"value": 1359
+									},
+									"team_total_off_assist": {
+										"value": 231
+									},
+									"off_ast_rim_target": {
+										"value": {
+											"DaMorsell": 1,
+											"MiMitchell": 1,
+											"ErAyala": 1,
+											"AnCowan": 3,
+											"DoScott": 1,
+											"JaSmith": 8
+										}
+									},
+									"total_off_trans_3p_made": {
+										"value": 9
+									},
+									"total_off_scramble_to": {
+										"value": 6
+									},
+									"def_adj_opp": {
+										"value": 96.3929941618015
+									},
+									"total_off_orb": {
+										"value": 25
+									},
+									"off_ast_mid_target": {
+										"value": {
+											"DaMorsell": 1,
+											"JaSmith": 2
+										}
+									},
+									"oppo_total_def_ftm": {
+										"value": 183
+									},
+									"total_off_ast_mid": {
+										"value": 3
+									},
+									"total_off_trans_2pmid_attempts": {
+										"value": 6
+									},
+									"team_total_off_stl": {
+										"value": 94
+									},
+									"total_off_2p_ast": {
+										"value": 0
+									},
+									"total_off_2p_attempts": {
+										"value": 113
+									},
+									"total_off_fgm": {
+										"value": 89
+									},
+									"total_off_trans_fta": {
+										"value": 19
+									},
+									"total_off_scramble_2p_made": {
+										"value": 6
+									},
+									"team_total_off_foul": {
+										"value": 268
+									},
+									"total_off_trans_ftm": {
+										"value": 17
+									},
+									"total_off_trans_2p_ast": {
+										"value": 0
+									},
+									"off_2p": {
+										"value": 0.4424778761061947
+									},
+									"off_2p_ast": {
+										"value": 0
+									},
+									"off_3p": {
+										"value": 0.2932330827067669
+									},
+									"off_3p_ast": {
+										"value": 0.8974358974358975
+									},
+									"off_2prim": {
+										"value": 0.7083333333333334
+									},
+									"off_2prim_ast": {
+										"value": 0.38235294117647056
+									},
+									"off_2pmid": {
+										"value": 0.24615384615384617
+									},
+									"off_2pmid_ast": {
+										"value": 0.3125
+									},
+									"off_ft": {
+										"value": 0.7254901960784313
+									},
+									"off_ftr": {
+										"value": 0.2073170731707317
+									},
+									"off_2primr": {
+										"value": 0.1951219512195122
+									},
+									"off_2pmidr": {
+										"value": 0.26422764227642276
+									},
+									"off_3pr": {
+										"value": 0.540650406504065
+									},
+									"off_scramble_2p": {
+										"value": 0.5
+									},
+									"off_scramble_2p_ast": {
+										"value": 0
+									},
+									"off_scramble_3p": {
+										"value": 0.125
+									},
+									"off_scramble_3p_ast": {
+										"value": 1
+									},
+									"off_scramble_2prim": {
+										"value": 0.75
+									},
+									"off_scramble_2prim_ast": {
+										"value": 0.16666666666666666
+									},
+									"off_scramble_2pmid": {
+										"value": 0
+									},
+									"off_scramble_2pmid_ast": {
+										"value": 0
+									},
+									"off_scramble_ft": {
+										"value": 0.6
+									},
+									"off_scramble_ftr": {
+										"value": 0.25
+									},
+									"off_scramble_2primr": {
+										"value": 0.4
+									},
+									"off_scramble_2pmidr": {
+										"value": 0.2
+									},
+									"off_scramble_3pr": {
+										"value": 0.4
+									},
+									"off_scramble_assist": {
+										"value": 0.14285714285714285
+									},
+									"off_trans_2p": {
+										"value": 0.7
+									},
+									"off_trans_2p_ast": {
+										"value": 0
+									},
+									"off_trans_3p": {
+										"value": 0.25
+									},
+									"off_trans_3p_ast": {
+										"value": 0.8888888888888888
+									},
+									"off_trans_2prim": {
+										"value": 0.7142857142857143
+									},
+									"off_trans_2prim_ast": {
+										"value": 0.5
+									},
+									"off_trans_2pmid": {
+										"value": 0.6666666666666666
+									},
+									"off_trans_2pmid_ast": {
+										"value": 0.25
+									},
+									"off_trans_ft": {
+										"value": 0.8947368421052632
+									},
+									"off_trans_ftr": {
+										"value": 0.3392857142857143
+									},
+									"off_trans_2primr": {
+										"value": 0.25
+									},
+									"off_trans_2pmidr": {
+										"value": 0.10714285714285714
+									},
+									"off_trans_3pr": {
+										"value": 0.6428571428571429
+									},
+									"off_trans_assist": {
+										"value": 0.391304347826087
+									},
+									"off_ast_rim": {
+										"value": 0.45454545454545453
+									},
+									"off_ast_mid": {
+										"value": 0.09090909090909091
+									},
+									"off_ast_3p": {
+										"value": 0.45454545454545453
+									},
+									"total_off_scramble_pts": {
+										"value": 18
+									},
+									"total_off_trans_pts": {
+										"value": 72
+									},
+									"off_efg": {
+										"value": 0.4410569105691057
+									},
+									"off_scramble_efg": {
+										"value": 0.375
+									},
+									"off_trans_efg": {
+										"value": 0.49107142857142855
+									},
+									"off_team_poss": {
+										"value": 1220
+									},
+									"off_assist": {
+										"value": 0.09192200557103064
+									},
+									"off_to": {
+										"value": 0.16160505702899544
+									},
+									"off_orb": {
+										"value": 0.0390625
+									},
+									"off_usage": {
+										"value": 0.21302693208430915
+									},
+									"def_team_poss": {
+										"value": 1199
+									},
+									"def_orb": {
+										"value": 0.14831130690161526
+									},
+									"def_ftr": {
+										"value": 0.02335279399499583
+									},
+									"def_to": {
+										"value": 0.0158465387823186
+									},
+									"def_2prim": {
+										"value": 0.012558869701726845
+									}
+								}
+                ]
+							}
+						}
+					}
+				}
+			},
+			"status": 200
+		}]
+	}
+
+
 const samplePlayerStatsTemplate =
 {
   // A: Top Level Scoring
@@ -927,7 +4042,7 @@ const samplePlayerStatsTemplate =
    }
 };
 
-export const samplePlayerStatsResponse =
+export const samplePlayerStatsResponseOld =
 {
    "took": 97,
    "timed_out": false,

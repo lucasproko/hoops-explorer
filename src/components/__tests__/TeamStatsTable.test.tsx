@@ -10,12 +10,12 @@ describe("TeamStatsTable", () => {
 
   // Tidy up snapshot rendering:
   expect.addSnapshotSerializer(SampleDataUtils.summarizeEnrichedApiResponse(
-    sampleTeamStatsResponse.aggregations.tri_filter.buckets.baseline
+    sampleTeamStatsResponse.responses[0].aggregations.tri_filter.buckets.baseline
   ));
 
   test("TeamStatsTable - should create snapshot", () => {
     const testData = _.assign(
-      sampleTeamStatsResponse.aggregations.tri_filter.buckets as { on: any, off: any, baseline: any },
+      sampleTeamStatsResponse.responses[0].aggregations.tri_filter.buckets as { on: any, off: any, baseline: any },
       { global: {}, onOffMode: true }
     );
     const component = renderer.create(<TeamStatsTable
@@ -31,7 +31,7 @@ describe("TeamStatsTable", () => {
   });
   test("TeamStatsTable - should create snapshot, luck enabled + diagnostics shown", () => {
     const testData = _.assign(
-      sampleTeamStatsResponse.aggregations.tri_filter.buckets as { on: any, off: any, baseline: any },
+      sampleTeamStatsResponse.responses[0].aggregations.tri_filter.buckets as { on: any, off: any, baseline: any },
       { global: {}, onOffMode: true }
     );
     const component = renderer.create(<TeamStatsTable

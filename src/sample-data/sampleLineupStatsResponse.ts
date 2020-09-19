@@ -1,5 +1,12 @@
 import { SampleDataUtils } from "./SampleDataUtils"
 
+// Query: Lineups: 2019/20 Maryland (M): base:'', [overrides]
+
+// Only keep these 3 lineups:
+// AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith
+// AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith
+// AaWiggins_AnCowan_DoScott_ErAyala_JaSmith
+
 export const sampleLineupStatsResponse =
 {
 	"took": 1554,

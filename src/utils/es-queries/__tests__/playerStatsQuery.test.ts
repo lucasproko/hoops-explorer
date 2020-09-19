@@ -17,7 +17,7 @@ describe("playerStatsQuery", () => {
     // the ES console
     expect.addSnapshotSerializer({
       test: (val: any) => true,
-      print: (val: any) => JSON.stringify(test, null, 3)
+      print: (val: any) => JSON.stringify(val, null, 3)
     });
     expect(test).toMatchSnapshot();
   });
