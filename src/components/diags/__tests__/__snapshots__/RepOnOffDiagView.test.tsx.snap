@@ -34,11 +34,11 @@ exports[`RepOnOffDiagView RepOnOffDiagView - should create snapshot (expanded mo
         Good
          "Same-4"s, total contrib=[
         <b>
-          0.8
+          1.4
         </b>
         ] (mean=[
         <b>
-          0.8
+          1.4
         </b>
         ], std=[
         <b>
@@ -57,11 +57,11 @@ exports[`RepOnOffDiagView RepOnOffDiagView - should create snapshot (expanded mo
         Bad
          "Same-4"s, total contrib=[
         <b>
-          -5.6
+          -1.5
         </b>
         ] (mean=[
         <b>
-          -5.6
+          -1.5
         </b>
         ], std=[
         <b>
@@ -87,11 +87,11 @@ exports[`RepOnOffDiagView RepOnOffDiagView - should create snapshot (expanded mo
         Bad
          "Same-4"s, total contrib=[
         <b>
-          3.8
+          2.7
         </b>
         ] (mean=[
         <b>
-          3.8
+          2.7
         </b>
         ], std=[
         <b>
@@ -104,17 +104,17 @@ exports[`RepOnOffDiagView RepOnOffDiagView - should create snapshot (expanded mo
       <li>
         [
         <b>
-          0
+          1
         </b>
         ] 
         Good
          "Same-4"s, total contrib=[
         <b>
-          0.0
+          -1.0
         </b>
         ] (mean=[
         <b>
-          0.0
+          -1.0
         </b>
         ], std=[
         <b>
@@ -172,11 +172,11 @@ exports[`RepOnOffDiagView RepOnOffDiagView - should create snapshot (expanded mo
         Good
          "Same-4"s, total contrib=[
         <b>
-          0.8
+          1.4
         </b>
         ] (mean=[
         <b>
-          0.8
+          1.4
         </b>
         ], std=[
         <b>
@@ -197,15 +197,15 @@ exports[`RepOnOffDiagView RepOnOffDiagView - should create snapshot (expanded mo
           </div>
            contrib=[
           <b>
-            0.79
+            1.37
           </b>
           ]  (poss=[
           <b>
-            134.2
+            264.2
           </b>
           ], [
           <b>
-            39.4
+            46.5
             %
           </b>
           ])
@@ -223,7 +223,7 @@ exports[`RepOnOffDiagView RepOnOffDiagView - should create snapshot (expanded mo
             </div>
              (poss=[
             <b>
-              102
+              197
             </b>
             ])
             
@@ -239,11 +239,11 @@ exports[`RepOnOffDiagView RepOnOffDiagView - should create snapshot (expanded mo
         Bad
          "Same-4"s, total contrib=[
         <b>
-          -5.6
+          -1.5
         </b>
         ] (mean=[
         <b>
-          -5.6
+          -1.5
         </b>
         ], std=[
         <b>
@@ -269,11 +269,11 @@ exports[`RepOnOffDiagView RepOnOffDiagView - should create snapshot (expanded mo
         Bad
          "Same-4"s, total contrib=[
         <b>
-          3.8
+          2.7
         </b>
         ] (mean=[
         <b>
-          3.8
+          2.7
         </b>
         ], std=[
         <b>
@@ -294,15 +294,15 @@ exports[`RepOnOffDiagView RepOnOffDiagView - should create snapshot (expanded mo
           </div>
            contrib=[
           <b>
-            3.85
+            2.66
           </b>
           ]  (poss=[
           <b>
-            128.2
+            257.8
           </b>
           ], [
           <b>
-            38.5
+            46.0
             %
           </b>
           ])
@@ -320,7 +320,7 @@ exports[`RepOnOffDiagView RepOnOffDiagView - should create snapshot (expanded mo
             </div>
              (poss=[
             <b>
-              102
+              197
             </b>
             ])
             
@@ -330,17 +330,17 @@ exports[`RepOnOffDiagView RepOnOffDiagView - should create snapshot (expanded mo
       <li>
         [
         <b>
-          0
+          1
         </b>
         ] 
         Good
          "Same-4"s, total contrib=[
         <b>
-          0.0
+          -1.0
         </b>
         ] (mean=[
         <b>
-          0.0
+          -1.0
         </b>
         ], std=[
         <b>

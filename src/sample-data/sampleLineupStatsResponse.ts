@@ -1,584 +1,2420 @@
 import { SampleDataUtils } from "./SampleDataUtils"
 
-const sampleLineupStatsTemplate =
-{
-  // A: Top Level Scoring
-
-   "efg": {
-      "AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith": {
-         "off_": 0.47305389221556887,
-         "def_": 0.43354430379746833
-      },
-      "AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith": {
-         "off_": 0.3735632183908046,
-         "def_": 0.4176470588235294
-      },
-      "AaWiggins_AnCowan_DoScott_ErAyala_JaSmith": {
-         "off_": 0.5052083333333334,
-         "def_": 0.34408602150537637
-      }
-   },
-   "fga": {
-      "AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith": {
-         "total_off_": 167,
-         "total_def_": 158
-      },
-      "AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith": {
-         "total_off_": 87,
-         "total_def_": 85
-      },
-      "AaWiggins_AnCowan_DoScott_ErAyala_JaSmith": {
-         "total_off_": 96,
-         "total_def_": 93
-      }
-   },
-   "fta": {
-      "AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith": {
-         "total_off_": 83,
-         "total_def_": 47
-      },
-      "AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith": {
-         "total_off_": 48,
-         "total_def_": 24
-      },
-      "AaWiggins_AnCowan_DoScott_ErAyala_JaSmith": {
-         "total_off_": 19,
-         "total_def_": 27
-      }
-   },
-   "ftr": {
-      "AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith": {
-         "off_": 0.49700598802395207,
-         "def_": 0.2974683544303797
-      },
-      "AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith": {
-         "off_": 0.5517241379310345,
-         "def_": 0.2823529411764706
-      },
-      "AaWiggins_AnCowan_DoScott_ErAyala_JaSmith": {
-         "off_": 0.19791666666666666,
-         "def_": 0.2903225806451613
-      }
-   },
-
-    // B] Advanced Shooting Stats
-
-   "2p": {
-      "AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith": {
-         "off_": 0.5098039215686274,
-         "def_": 0.43478260869565216
-      },
-      "AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith": {
-         "off_": 0.39285714285714285,
-         "def_": 0.3793103448275862
-      },
-      "AaWiggins_AnCowan_DoScott_ErAyala_JaSmith": {
-         "off_": 0.4642857142857143,
-         "def_": 0.34
-      }
-   },
-   "2p_attempts": {
-      "AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith": {
-         "total_off_": 102,
-         "total_def_": 92
-      },
-      "AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith": {
-         "total_off_": 56,
-         "total_def_": 58
-      },
-      "AaWiggins_AnCowan_DoScott_ErAyala_JaSmith": {
-         "total_off_": 56,
-         "total_def_": 50
-      }
-   },
-   "2p_made": {
-      "AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith": {
-         "total_off_": 52,
-         "total_def_": 40
-      },
-      "AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith": {
-         "total_off_": 22,
-         "total_def_": 22
-      },
-      "AaWiggins_AnCowan_DoScott_ErAyala_JaSmith": {
-         "total_off_": 26,
-         "total_def_": 17
-      }
-   },
-   "2pmid": {
-      "AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith": {
-         "off_": 0.2727272727272727,
-         "def_": 0.3269230769230769
-      },
-      "AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith": {
-         "off_": 0.14814814814814814,
-         "def_": 0.25806451612903225
-      },
-      "AaWiggins_AnCowan_DoScott_ErAyala_JaSmith": {
-         "off_": 0.4,
-         "def_": 0.13636363636363635
-      }
-   },
-   "2pmid_attempts": {
-      "AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith": {
-         "total_off_": 44,
-         "total_def_": 52
-      },
-      "AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith": {
-         "total_off_": 27,
-         "total_def_": 31
-      },
-      "AaWiggins_AnCowan_DoScott_ErAyala_JaSmith": {
-         "total_off_": 25,
-         "total_def_": 22
-      }
-   },
-   "2pmid_made": {
-      "AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith": {
-         "total_off_": 12,
-         "total_def_": 17
-      },
-      "AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith": {
-         "total_off_": 4,
-         "total_def_": 8
-      },
-      "AaWiggins_AnCowan_DoScott_ErAyala_JaSmith": {
-         "total_off_": 10,
-         "total_def_": 3
-      }
-   },
-   "2pmidr": {
-      "AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith": {
-         "off_": 0.2634730538922156,
-         "def_": 0.3291139240506329
-      },
-      "AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith": {
-         "off_": 0.3103448275862069,
-         "def_": 0.36470588235294116
-      },
-      "AaWiggins_AnCowan_DoScott_ErAyala_JaSmith": {
-         "off_": 0.2604166666666667,
-         "def_": 0.23655913978494625
-      }
-   },
-   "2prim": {
-      "AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith": {
-         "off_": 0.6896551724137931,
-         "def_": 0.575
-      },
-      "AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith": {
-         "off_": 0.6206896551724138,
-         "def_": 0.5185185185185185
-      },
-      "AaWiggins_AnCowan_DoScott_ErAyala_JaSmith": {
-         "off_": 0.5161290322580645,
-         "def_": 0.5
-      }
-   },
-   "2prim_attempts": {
-      "AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith": {
-         "total_off_": 58,
-         "total_def_": 40
-      },
-      "AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith": {
-         "total_off_": 29,
-         "total_def_": 27
-      },
-      "AaWiggins_AnCowan_DoScott_ErAyala_JaSmith": {
-         "total_off_": 31,
-         "total_def_": 28
-      }
-   },
-   "2prim_made": {
-      "AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith": {
-         "total_off_": 40,
-         "total_def_": 23
-      },
-      "AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith": {
-         "total_off_": 18,
-         "total_def_": 14
-      },
-      "AaWiggins_AnCowan_DoScott_ErAyala_JaSmith": {
-         "total_off_": 16,
-         "total_def_": 14
-      }
-   },
-   "2primr": {
-      "AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith": {
-         "off_": 0.3473053892215569,
-         "def_": 0.25316455696202533
-      },
-      "AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith": {
-         "off_": 0.3333333333333333,
-         "def_": 0.3176470588235294
-      },
-      "AaWiggins_AnCowan_DoScott_ErAyala_JaSmith": {
-         "off_": 0.3229166666666667,
-         "def_": 0.3010752688172043
-      }
-   },
-   "3p": {
-      "AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith": {
-         "off_": 0.27692307692307694,
-         "def_": 0.2878787878787879
-      },
-      "AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith": {
-         "off_": 0.22580645161290322,
-         "def_": 0.3333333333333333
-      },
-      "AaWiggins_AnCowan_DoScott_ErAyala_JaSmith": {
-         "off_": 0.375,
-         "def_": 0.23255813953488372
-      }
-   },
-   "3p_attempts": {
-      "AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith": {
-         "total_off_": 65,
-         "total_def_": 66
-      },
-      "AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith": {
-         "total_off_": 31,
-         "total_def_": 27
-      },
-      "AaWiggins_AnCowan_DoScott_ErAyala_JaSmith": {
-         "total_off_": 40,
-         "total_def_": 43
-      }
-   },
-   "3p_made": {
-      "AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith": {
-         "total_off_": 18,
-         "total_def_": 19
-      },
-      "AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith": {
-         "total_off_": 7,
-         "total_def_": 9
-      },
-      "AaWiggins_AnCowan_DoScott_ErAyala_JaSmith": {
-         "total_off_": 15,
-         "total_def_": 10
-      }
-   },
-   "3pr": {
-      "AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith": {
-         "off_": 0.38922155688622756,
-         "def_": 0.4177215189873418
-      },
-      "AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith": {
-         "off_": 0.3563218390804598,
-         "def_": 0.3176470588235294
-      },
-      "AaWiggins_AnCowan_DoScott_ErAyala_JaSmith": {
-         "off_": 0.4166666666666667,
-         "def_": 0.46236559139784944
-      }
-   },
-
-    // C] Rebounds
-
-   "drb": {
-      "AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith": {
-         "total_off_": 90,
-         "total_def_": 68
-      },
-      "AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith": {
-         "total_off_": 43,
-         "total_def_": 43
-      },
-      "AaWiggins_AnCowan_DoScott_ErAyala_JaSmith": {
-         "total_off_": 43,
-         "total_def_": 36
-      }
-   },
-   "orb": {
-      "AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith": {
-         "total_off_": 39,
-         "total_def_": 19,
-         "off_": 0.3644859813084112,
-         "def_": 0.1743119266055046
-      },
-      "AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith": {
-         "total_off_": 18,
-         "total_def_": 14,
-         "off_": 0.29508196721311475,
-         "def_": 0.24561403508771928
-      },
-      "AaWiggins_AnCowan_DoScott_ErAyala_JaSmith": {
-         "total_off_": 21,
-         "total_def_": 27,
-         "off_": 0.3684210526315789,
-         "def_": 0.38571428571428573
-      }
-   },
-
-    // D] Assists and TOs
-
-   "assist": {
-      "AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith": {
-         "off_": 0.52,
-         "def_": 0.48
-      },
-      "AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith": {
-         "off_": 0.53,
-         "def_": 0.47
-      },
-      "AaWiggins_AnCowan_DoScott_ErAyala_JaSmith": {
-         "off_": 0.52,
-         "def_": 0.48
-      }
-   },
-   "to": {
-      "AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith": {
-         "off_": 0.14285714285714285,
-         "def_": 0.14285714285714285
-      },
-      "AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith": {
-         "off_": 0.18018018018018017,
-         "def_": 0.2719298245614035
-      },
-      "AaWiggins_AnCowan_DoScott_ErAyala_JaSmith": {
-         "off_": 0.20588235294117646,
-         "def_": 0.21649484536082475
-      }
-   },
-
-    // E] Adjusted Numbers
-
-   "adj_opp": {
-      "AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith": {
-         "off_": 103.93650793650794,
-         "def_": 95.56989795918368
-      },
-      "AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith": {
-         "off_": 106.32105263157895,
-         "def_": 93.37927927927929
-      },
-      "AaWiggins_AnCowan_DoScott_ErAyala_JaSmith": {
-         "off_": 104.70927835051546,
-         "def_": 93.46372549019607
-      }
-   },
-   "adj_ppp": {
-      "AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith": {
-         "off_": 116.22448979591837,
-         "def_": 85.47619047619048
-      },
-      "AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith": {
-         "off_": 96.22448979591837,
-         "def_": 75.47619047619048
-      },
-      "AaWiggins_AnCowan_DoScott_ErAyala_JaSmith": {
-         "off_": 114.22448979591837,
-         "def_": 75.47619047619048
-      }
-   },
-
-    // F] Misc Stats
-
-   "poss": {
-      "AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith": {
-         "off_": 196,
-         "def_": 189
-      },
-      "AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith": {
-         "off_": 111,
-         "def_": 114
-      },
-      "AaWiggins_AnCowan_DoScott_ErAyala_JaSmith": {
-         "off_": 102,
-         "def_": 97
-      }
-   },
-   "ppp": {
-      "AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith": {
-         "off_": 111.22448979591837,
-         "def_": 90.47619047619048
-      },
-      "AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith": {
-         "off_": 89.1891891891892,
-         "def_": 77.19298245614036
-      },
-      "AaWiggins_AnCowan_DoScott_ErAyala_JaSmith": {
-         "off_": 109.80392156862744,
-         "def_": 80.41237113402062
-      }
-   },
-   "pts": {
-      "AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith": {
-         "total_off_": 218,
-         "total_def_": 171
-      },
-      "AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith": {
-         "total_off_": 99,
-         "total_def_": 88
-      },
-      "AaWiggins_AnCowan_DoScott_ErAyala_JaSmith": {
-         "total_off_": 112,
-         "total_def_": 78
-      }
-   },
-   "main": {
-      "doc_count": {
-         "AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith": 38,
-         "AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith": 27,
-         "AaWiggins_AnCowan_DoScott_ErAyala_JaSmith": 24
-      },
-      "players_array": {
-         "AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith": {
-            "hits": {
-               "total": {
-                  "value": 38,
-                  "relation": "eq"
-               },
-               "max_score": 4.760141,
-               "hits": [
-                  {
-                     "_index": "bigten_2019",
-                     "_type": "_doc",
-                     "_id": "k5mWzG4B8OZ7gWZVgjRk",
-                     "_score": 4.760141,
-                     "_source": {
-                        "players": [
-                           {
-                              "code": "AaWiggins",
-                              "id": "Wiggins, Aaron"
-                           },
-                           {
-                              "code": "AnCowan",
-                              "id": "Cowan, Anthony"
-                           },
-                           {
-                              "code": "DaMorsell",
-                              "id": "Morsell, Darryl"
-                           },
-                           {
-                              "code": "ErAyala",
-                              "id": "Ayala, Eric"
-                           },
-                           {
-                              "code": "JaSmith",
-                              "id": "Smith, Jalen"
-                           }
-                        ]
-                     }
-                  }
-               ]
-            }
-         },
-         "AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith": {
-            "hits": {
-               "total": {
-                  "value": 27,
-                  "relation": "eq"
-               },
-               "max_score": 4.760141,
-               "hits": [
-                  {
-                     "_index": "bigten_2019",
-                     "_type": "_doc",
-                     "_id": "apmWzG4B8OZ7gWZVgTSi",
-                     "_score": 4.760141,
-                     "_source": {
-                        "players": [
-                           {
-                              "code": "AaWiggins",
-                              "id": "Wiggins, Aaron"
-                           },
-                           {
-                              "code": "AnCowan",
-                              "id": "Cowan, Anthony"
-                           },
-                           {
-                              "code": "DaMorsell",
-                              "id": "Morsell, Darryl"
-                           },
-                           {
-                              "code": "DoScott",
-                              "id": "Scott, Donta"
-                           },
-                           {
-                              "code": "JaSmith",
-                              "id": "Smith, Jalen"
-                           }
-                        ]
-                     }
-                  }
-               ]
-            }
-         },
-         "AaWiggins_AnCowan_DoScott_ErAyala_JaSmith": {
-            "hits": {
-               "total": {
-                  "value": 24,
-                  "relation": "eq"
-               },
-               "max_score": 4.760141,
-               "hits": [
-                  {
-                     "_index": "bigten_2019",
-                     "_type": "_doc",
-                     "_id": "FJmWzG4B8OZ7gWZVjTbp",
-                     "_score": 4.760141,
-                     "_source": {
-                        "players": [
-                           {
-                              "code": "AaWiggins",
-                              "id": "Wiggins, Aaron"
-                           },
-                           {
-                              "code": "AnCowan",
-                              "id": "Cowan, Anthony"
-                           },
-                           {
-                              "code": "DoScott",
-                              "id": "Scott, Donta"
-                           },
-                           {
-                              "code": "ErAyala",
-                              "id": "Ayala, Eric"
-                           },
-                           {
-                              "code": "JaSmith",
-                              "id": "Smith, Jalen"
-                           }
-                        ]
-                     }
-                  }
-               ]
-            }
-         }
-      }
-   }
-};
-
 export const sampleLineupStatsResponse =
 {
-   "took": 204,
-   "responses": [
-      {
-         "took": 204,
-         "timed_out": false,
-         "_shards": {
-            "total": 1,
-            "successful": 1,
-            "skipped": 0,
-            "failed": 0
-         },
-         "hits": {
-            "total": {
-               "value": 318,
-               "relation": "eq"
-            },
-            "max_score": null,
-            "hits": []
-         },
-         "aggregations": {
-            "lineups": {
-               "doc_count_error_upper_bound": 0,
-               "sum_other_doc_count": 0,
-               "buckets": SampleDataUtils.buildResponseFromTemplateLineup(sampleLineupStatsTemplate)
-            }
-         }
-    }
-  ]
+	"took": 1554,
+	"responses": [{
+		"took": 1553,
+		"timed_out": false,
+		"_shards": {
+			"total": 1,
+			"successful": 1,
+			"skipped": 0,
+			"failed": 0
+		},
+		"hits": {
+			"total": {
+				"value": 594,
+				"relation": "eq"
+			},
+			"max_score": null,
+			"hits": []
+		},
+		"aggregations": {
+			"lineups": {
+				"doc_count_error_upper_bound": 0,
+				"sum_other_doc_count": 0,
+				"buckets": [{
+					"key": "AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith",
+					"doc_count": 72,
+					"total_off_fga": {
+						"value": 323
+					},
+					"total_def_scramble_3p_attempts": {
+						"value": 0
+					},
+					"total_def_drb": {
+						"value": 145
+					},
+					"total_off_2pmid_made": {
+						"value": 14
+					},
+					"total_def_2p_made": {
+						"value": 87
+					},
+					"total_off_trans_to": {
+						"value": 0
+					},
+					"total_off_trans_assist": {
+						"value": 0
+					},
+					"total_off_2pmid_ast": {
+						"value": 0
+					},
+					"total_off_3p_attempts": {
+						"value": 147
+					},
+					"total_def_2p_attempts": {
+						"value": 204
+					},
+					"total_def_trans_2p_attempts": {
+						"value": 0
+					},
+					"total_def_trans_2pmid_made": {
+						"value": 0
+					},
+					"total_off_scramble_assist": {
+						"value": 0
+					},
+					"total_def_trans_ftm": {
+						"value": 0
+					},
+					"total_off_to": {
+						"value": 49
+					},
+					"total_off_scramble_2pmid_attempts": {
+						"value": 0
+					},
+					"total_off_foul": {
+						"value": 82
+					},
+					"total_def_2p_ast": {
+						"value": 0
+					},
+					"total_def_ast_rim": {
+						"value": 0
+					},
+					"total_def_poss": {
+						"value": 388
+					},
+					"off_adj_ppp": {
+						"value": 123.30858896547036
+					},
+					"total_def_trans_3p_attempts": {
+						"value": 0
+					},
+					"total_def_trans_2prim_ast": {
+						"value": 0
+					},
+					"total_def_trans_fta": {
+						"value": 0
+					},
+					"total_def_scramble_fgm": {
+						"value": 0
+					},
+					"total_off_2prim_attempts": {
+						"value": 118
+					},
+					"total_def_scramble_fga": {
+						"value": 0
+					},
+					"total_off_drb": {
+						"value": 174
+					},
+					"total_off_scramble_fgm": {
+						"value": 0
+					},
+					"total_def_scramble_2prim_made": {
+						"value": 0
+					},
+					"total_off_scramble_fga": {
+						"value": 0
+					},
+					"total_def_2prim_attempts": {
+						"value": 103
+					},
+					"total_def_fta": {
+						"value": 91
+					},
+					"total_off_scramble_2prim_attempts": {
+						"value": 0
+					},
+					"total_def_trans_to": {
+						"value": 0
+					},
+					"total_off_2p_made": {
+						"value": 97
+					},
+					"total_def_trans_assist": {
+						"value": 0
+					},
+					"total_def_3p_ast": {
+						"value": 0
+					},
+					"total_off_2prim_made": {
+						"value": 83
+					},
+					"total_off_trans_3p_ast": {
+						"value": 0
+					},
+					"total_off_3p_ast": {
+						"value": 0
+					},
+					"total_def_scramble_ftm": {
+						"value": 0
+					},
+					"total_off_trans_fga": {
+						"value": 0
+					},
+					"total_off_2prim_ast": {
+						"value": 0
+					},
+					"total_def_ast_mid": {
+						"value": 0
+					},
+					"total_off_scramble_3p_ast": {
+						"value": 0
+					},
+					"total_off_trans_3p_attempts": {
+						"value": 0
+					},
+					"total_off_ftm": {
+						"value": 141
+					},
+					"total_def_scramble_2p_made": {
+						"value": 0
+					},
+					"total_def_trans_2pmid_ast": {
+						"value": 0
+					},
+					"off_adj_opp": {
+						"value": 108.34432989690721
+					},
+					"total_off_blk": {
+						"value": 24
+					},
+					"total_def_2pmid_attempts": {
+						"value": 101
+					},
+					"total_def_scramble_2prim_ast": {
+						"value": 0
+					},
+					"total_off_trans_fgm": {
+						"value": 0
+					},
+					"total_def_ftm": {
+						"value": 68
+					},
+					"players_array": {
+						"hits": {
+							"total": {
+								"value": 72,
+								"relation": "eq"
+							},
+							"max_score": 4.823819,
+							"hits": [{
+								"_index": "bigten_2019_lping",
+								"_type": "_doc",
+								"_id": "uofFinEBuJ1HE7yusJhB",
+								"_score": 4.823819,
+								"_source": {
+									"players": [{
+										"code": "AaWiggins",
+										"id": "Wiggins, Aaron"
+									}, {
+										"code": "AnCowan",
+										"id": "Cowan, Anthony"
+									}, {
+										"code": "DaMorsell",
+										"id": "Morsell, Darryl"
+									}, {
+										"code": "ErAyala",
+										"id": "Ayala, Eric"
+									}, {
+										"code": "JaSmith",
+										"id": "Smith, Jalen"
+									}]
+								}
+							}]
+						}
+					},
+					"total_off_trans_2prim_made": {
+						"value": 0
+					},
+					"total_def_blk": {
+						"value": 15
+					},
+					"total_off_scramble_2pmid_ast": {
+						"value": 0
+					},
+					"total_off_trans_2prim_ast": {
+						"value": 0
+					},
+					"total_off_fta": {
+						"value": 184
+					},
+					"total_off_scramble_2prim_made": {
+						"value": 0
+					},
+					"total_off_trans_2p_made": {
+						"value": 0
+					},
+					"total_def_scramble_assist": {
+						"value": 0
+					},
+					"total_off_assist": {
+						"value": 74
+					},
+					"total_def_scramble_to": {
+						"value": 0
+					},
+					"total_def_trans_2p_made": {
+						"value": 0
+					},
+					"total_off_stl": {
+						"value": 31
+					},
+					"total_def_trans_3p_ast": {
+						"value": 0
+					},
+					"def_adj_ppp": {
+						"value": 87.8676478552093
+					},
+					"total_off_ast_3p": {
+						"value": 0
+					},
+					"total_off_scramble_ftm": {
+						"value": 0
+					},
+					"total_def_2pmid_ast": {
+						"value": 0
+					},
+					"total_off_ast_rim": {
+						"value": 0
+					},
+					"total_def_assist": {
+						"value": 67
+					},
+					"total_off_3p_made": {
+						"value": 45
+					},
+					"total_def_scramble_2pmid_ast": {
+						"value": 0
+					},
+					"total_off_scramble_3p_attempts": {
+						"value": 0
+					},
+					"total_def_3p_made": {
+						"value": 40
+					},
+					"total_def_stl": {
+						"value": 25
+					},
+					"total_off_trans_2pmid_ast": {
+						"value": 0
+					},
+					"total_def_scramble_fta": {
+						"value": 0
+					},
+					"total_def_foul": {
+						"value": 143
+					},
+					"total_off_scramble_2pmid_made": {
+						"value": 0
+					},
+					"total_def_scramble_2pmid_made": {
+						"value": 0
+					},
+					"total_off_scramble_3p_made": {
+						"value": 0
+					},
+					"def_3p_opp": {
+						"value": 33.58872180451128
+					},
+					"total_def_trans_fgm": {
+						"value": 0
+					},
+					"total_off_scramble_fta": {
+						"value": 0
+					},
+					"total_def_2pmid_made": {
+						"value": 31
+					},
+					"total_off_poss": {
+						"value": 401
+					},
+					"total_def_scramble_3p_made": {
+						"value": 0
+					},
+					"total_off_scramble_2prim_ast": {
+						"value": 0
+					},
+					"total_def_scramble_2p_ast": {
+						"value": 0
+					},
+					"total_off_trans_2p_attempts": {
+						"value": 0
+					},
+					"total_off_2pmid_attempts": {
+						"value": 58
+					},
+					"total_def_trans_fga": {
+						"value": 0
+					},
+					"total_def_trans_2prim_made": {
+						"value": 0
+					},
+					"total_off_trans_2pmid_made": {
+						"value": 0
+					},
+					"total_off_scramble_2p_attempts": {
+						"value": 0
+					},
+					"total_off_trans_2prim_attempts": {
+						"value": 0
+					},
+					"total_def_fgm": {
+						"value": 127
+					},
+					"total_off_scramble_2p_ast": {
+						"value": 0
+					},
+					"total_def_trans_3p_made": {
+						"value": 0
+					},
+					"total_def_fga": {
+						"value": 337
+					},
+					"total_def_2prim_ast": {
+						"value": 0
+					},
+					"total_off_pts": {
+						"value": 470
+					},
+					"total_def_ast_3p": {
+						"value": 0
+					},
+					"total_def_scramble_2prim_attempts": {
+						"value": 0
+					},
+					"total_off_trans_3p_made": {
+						"value": 0
+					},
+					"total_def_scramble_2pmid_attempts": {
+						"value": 0
+					},
+					"total_off_scramble_to": {
+						"value": 0
+					},
+					"def_adj_opp": {
+						"value": 97.46209476309228
+					},
+					"total_def_to": {
+						"value": 59
+					},
+					"total_def_pts": {
+						"value": 362
+					},
+					"total_off_orb": {
+						"value": 58
+					},
+					"total_off_ast_mid": {
+						"value": 0
+					},
+					"total_off_trans_2pmid_attempts": {
+						"value": 0
+					},
+					"total_def_scramble_3p_ast": {
+						"value": 0
+					},
+					"total_def_scramble_2p_attempts": {
+						"value": 0
+					},
+					"total_def_orb": {
+						"value": 51
+					},
+					"total_off_2p_ast": {
+						"value": 0
+					},
+					"total_def_trans_2p_ast": {
+						"value": 0
+					},
+					"total_off_2p_attempts": {
+						"value": 176
+					},
+					"total_def_trans_2pmid_attempts": {
+						"value": 0
+					},
+					"total_def_3p_attempts": {
+						"value": 133
+					},
+					"total_off_fgm": {
+						"value": 142
+					},
+					"total_off_trans_fta": {
+						"value": 0
+					},
+					"total_off_scramble_2p_made": {
+						"value": 0
+					},
+					"total_def_trans_2prim_attempts": {
+						"value": 0
+					},
+					"total_def_2prim_made": {
+						"value": 56
+					},
+					"total_off_trans_ftm": {
+						"value": 0
+					},
+					"total_off_trans_2p_ast": {
+						"value": 0
+					},
+					"off_2p": {
+						"value": 0.5511363636363636
+					},
+					"off_2p_ast": {
+						"value": 0
+					},
+					"off_3p": {
+						"value": 0.30612244897959184
+					},
+					"off_3p_ast": {
+						"value": 0
+					},
+					"off_2prim": {
+						"value": 0.7033898305084746
+					},
+					"off_2prim_ast": {
+						"value": 0
+					},
+					"off_2pmid": {
+						"value": 0.2413793103448276
+					},
+					"off_2pmid_ast": {
+						"value": 0
+					},
+					"off_ft": {
+						"value": 0.7663043478260869
+					},
+					"off_ftr": {
+						"value": 0.5696594427244582
+					},
+					"off_2primr": {
+						"value": 0.3653250773993808
+					},
+					"off_2pmidr": {
+						"value": 0.17956656346749225
+					},
+					"off_3pr": {
+						"value": 0.4551083591331269
+					},
+					"off_assist": {
+						"value": 0.5211267605633803
+					},
+					"off_scramble_2p": {
+						"value": 0
+					},
+					"off_scramble_2p_ast": {
+						"value": 0
+					},
+					"off_scramble_3p": {
+						"value": 0
+					},
+					"off_scramble_3p_ast": {
+						"value": 0
+					},
+					"off_scramble_2prim": {
+						"value": 0
+					},
+					"off_scramble_2prim_ast": {
+						"value": 0
+					},
+					"off_scramble_2pmid": {
+						"value": 0
+					},
+					"off_scramble_2pmid_ast": {
+						"value": 0
+					},
+					"off_scramble_ft": {
+						"value": 0
+					},
+					"off_scramble_ftr": {
+						"value": 0
+					},
+					"off_scramble_2primr": {
+						"value": 0
+					},
+					"off_scramble_2pmidr": {
+						"value": 0
+					},
+					"off_scramble_3pr": {
+						"value": 0
+					},
+					"off_scramble_assist": {
+						"value": 0
+					},
+					"off_trans_2p": {
+						"value": 0
+					},
+					"off_trans_2p_ast": {
+						"value": 0
+					},
+					"off_trans_3p": {
+						"value": 0
+					},
+					"off_trans_3p_ast": {
+						"value": 0
+					},
+					"off_trans_2prim": {
+						"value": 0
+					},
+					"off_trans_2prim_ast": {
+						"value": 0
+					},
+					"off_trans_2pmid": {
+						"value": 0
+					},
+					"off_trans_2pmid_ast": {
+						"value": 0
+					},
+					"off_trans_ft": {
+						"value": 0
+					},
+					"off_trans_ftr": {
+						"value": 0
+					},
+					"off_trans_2primr": {
+						"value": 0
+					},
+					"off_trans_2pmidr": {
+						"value": 0
+					},
+					"off_trans_3pr": {
+						"value": 0
+					},
+					"off_trans_assist": {
+						"value": 0
+					},
+					"off_ast_rim": {
+						"value": 0
+					},
+					"off_ast_mid": {
+						"value": 0
+					},
+					"off_ast_3p": {
+						"value": 0
+					},
+					"total_off_scramble_pts": {
+						"value": 0
+					},
+					"total_off_scramble_poss": {
+						"value": 0
+					},
+					"total_off_trans_pts": {
+						"value": 0
+					},
+					"total_off_trans_poss": {
+						"value": 0
+					},
+					"off_ppp": {
+						"value": 117.2069825436409
+					},
+					"off_to": {
+						"value": 0.12219451371571072
+					},
+					"off_scramble_ppp": {
+						"value": 0
+					},
+					"off_scramble_to": {
+						"value": 0
+					},
+					"off_trans_ppp": {
+						"value": 0
+					},
+					"off_trans_to": {
+						"value": 0
+					},
+					"off_poss": {
+						"value": 401
+					},
+					"off_orb": {
+						"value": 0.2857142857142857
+					},
+					"off_efg": {
+						"value": 0.5092879256965944
+					},
+					"off_scramble_efg": {
+						"value": 0
+					},
+					"off_trans_efg": {
+						"value": 0
+					},
+					"def_2p": {
+						"value": 0.4264705882352941
+					},
+					"def_2p_ast": {
+						"value": 0
+					},
+					"def_3p": {
+						"value": 0.3007518796992481
+					},
+					"def_3p_ast": {
+						"value": 0
+					},
+					"def_2prim": {
+						"value": 0.5436893203883495
+					},
+					"def_2prim_ast": {
+						"value": 0
+					},
+					"def_2pmid": {
+						"value": 0.3069306930693069
+					},
+					"def_2pmid_ast": {
+						"value": 0
+					},
+					"def_ft": {
+						"value": 0.7472527472527473
+					},
+					"def_ftr": {
+						"value": 0.27002967359050445
+					},
+					"def_2primr": {
+						"value": 0.3056379821958457
+					},
+					"def_2pmidr": {
+						"value": 0.2997032640949555
+					},
+					"def_3pr": {
+						"value": 0.39465875370919884
+					},
+					"def_assist": {
+						"value": 0.5275590551181102
+					},
+					"def_scramble_2p": {
+						"value": 0
+					},
+					"def_scramble_2p_ast": {
+						"value": 0
+					},
+					"def_scramble_3p": {
+						"value": 0
+					},
+					"def_scramble_3p_ast": {
+						"value": 0
+					},
+					"def_scramble_2prim": {
+						"value": 0
+					},
+					"def_scramble_2prim_ast": {
+						"value": 0
+					},
+					"def_scramble_2pmid": {
+						"value": 0
+					},
+					"def_scramble_2pmid_ast": {
+						"value": 0
+					},
+					"def_scramble_ft": {
+						"value": 0
+					},
+					"def_scramble_ftr": {
+						"value": 0
+					},
+					"def_scramble_2primr": {
+						"value": 0
+					},
+					"def_scramble_2pmidr": {
+						"value": 0
+					},
+					"def_scramble_3pr": {
+						"value": 0
+					},
+					"def_scramble_assist": {
+						"value": 0
+					},
+					"def_trans_2p": {
+						"value": 0
+					},
+					"def_trans_2p_ast": {
+						"value": 0
+					},
+					"def_trans_3p": {
+						"value": 0
+					},
+					"def_trans_3p_ast": {
+						"value": 0
+					},
+					"def_trans_2prim": {
+						"value": 0
+					},
+					"def_trans_2prim_ast": {
+						"value": 0
+					},
+					"def_trans_2pmid": {
+						"value": 0
+					},
+					"def_trans_2pmid_ast": {
+						"value": 0
+					},
+					"def_trans_ft": {
+						"value": 0
+					},
+					"def_trans_ftr": {
+						"value": 0
+					},
+					"def_trans_2primr": {
+						"value": 0
+					},
+					"def_trans_2pmidr": {
+						"value": 0
+					},
+					"def_trans_3pr": {
+						"value": 0
+					},
+					"def_trans_assist": {
+						"value": 0
+					},
+					"def_ast_rim": {
+						"value": 0
+					},
+					"def_ast_mid": {
+						"value": 0
+					},
+					"def_ast_3p": {
+						"value": 0
+					},
+					"total_def_scramble_pts": {
+						"value": 0
+					},
+					"total_def_scramble_poss": {
+						"value": 0
+					},
+					"total_def_trans_pts": {
+						"value": 0
+					},
+					"total_def_trans_poss": {
+						"value": 0
+					},
+					"def_ppp": {
+						"value": 93.29896907216495
+					},
+					"def_to": {
+						"value": 0.15206185567010308
+					},
+					"def_scramble_ppp": {
+						"value": 0
+					},
+					"def_scramble_to": {
+						"value": 0
+					},
+					"def_trans_ppp": {
+						"value": 0
+					},
+					"def_trans_to": {
+						"value": 0
+					},
+					"def_poss": {
+						"value": 388
+					},
+					"def_orb": {
+						"value": 0.22666666666666666
+					},
+					"def_efg": {
+						"value": 0.4362017804154303
+					},
+					"def_scramble_efg": {
+						"value": 0
+					},
+					"def_trans_efg": {
+						"value": 0
+					}
+				},
+        {
+					"key": "AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith",
+					"doc_count": 50,
+					"total_off_fga": {
+						"value": 174
+					},
+					"total_def_scramble_3p_attempts": {
+						"value": 0
+					},
+					"total_def_drb": {
+						"value": 79
+					},
+					"total_off_2pmid_made": {
+						"value": 6
+					},
+					"total_def_2p_made": {
+						"value": 51
+					},
+					"total_off_trans_to": {
+						"value": 0
+					},
+					"total_off_trans_assist": {
+						"value": 0
+					},
+					"total_off_2pmid_ast": {
+						"value": 0
+					},
+					"total_off_3p_attempts": {
+						"value": 72
+					},
+					"total_def_2p_attempts": {
+						"value": 120
+					},
+					"total_def_trans_2p_attempts": {
+						"value": 0
+					},
+					"total_def_trans_2pmid_made": {
+						"value": 0
+					},
+					"total_off_scramble_assist": {
+						"value": 0
+					},
+					"total_def_trans_ftm": {
+						"value": 0
+					},
+					"total_off_to": {
+						"value": 33
+					},
+					"total_off_scramble_2pmid_attempts": {
+						"value": 0
+					},
+					"total_off_foul": {
+						"value": 51
+					},
+					"total_def_2p_ast": {
+						"value": 0
+					},
+					"total_def_ast_rim": {
+						"value": 0
+					},
+					"total_def_poss": {
+						"value": 213
+					},
+					"off_adj_ppp": {
+						"value": 116.18465333545907
+					},
+					"total_def_trans_3p_attempts": {
+						"value": 0
+					},
+					"total_def_trans_2prim_ast": {
+						"value": 0
+					},
+					"total_def_trans_fta": {
+						"value": 0
+					},
+					"total_def_scramble_fgm": {
+						"value": 0
+					},
+					"total_off_2prim_attempts": {
+						"value": 66
+					},
+					"total_def_scramble_fga": {
+						"value": 0
+					},
+					"total_off_drb": {
+						"value": 90
+					},
+					"total_off_scramble_fgm": {
+						"value": 0
+					},
+					"total_def_scramble_2prim_made": {
+						"value": 0
+					},
+					"total_off_scramble_fga": {
+						"value": 0
+					},
+					"total_def_2prim_attempts": {
+						"value": 56
+					},
+					"total_def_fta": {
+						"value": 41
+					},
+					"total_off_scramble_2prim_attempts": {
+						"value": 0
+					},
+					"total_def_trans_to": {
+						"value": 0
+					},
+					"total_off_2p_made": {
+						"value": 49
+					},
+					"total_def_trans_assist": {
+						"value": 0
+					},
+					"total_def_3p_ast": {
+						"value": 0
+					},
+					"total_off_2prim_made": {
+						"value": 43
+					},
+					"total_off_trans_3p_ast": {
+						"value": 0
+					},
+					"total_off_3p_ast": {
+						"value": 0
+					},
+					"total_def_scramble_ftm": {
+						"value": 0
+					},
+					"total_off_trans_fga": {
+						"value": 0
+					},
+					"total_off_2prim_ast": {
+						"value": 0
+					},
+					"total_def_ast_mid": {
+						"value": 0
+					},
+					"total_off_scramble_3p_ast": {
+						"value": 0
+					},
+					"total_off_trans_3p_attempts": {
+						"value": 0
+					},
+					"total_off_ftm": {
+						"value": 62
+					},
+					"total_def_scramble_2p_made": {
+						"value": 0
+					},
+					"total_def_trans_2pmid_ast": {
+						"value": 0
+					},
+					"off_adj_opp": {
+						"value": 109.45211267605633
+					},
+					"total_off_blk": {
+						"value": 13
+					},
+					"total_def_2pmid_attempts": {
+						"value": 64
+					},
+					"total_def_scramble_2prim_ast": {
+						"value": 0
+					},
+					"total_off_trans_fgm": {
+						"value": 0
+					},
+					"total_def_ftm": {
+						"value": 26
+					},
+					"players_array": {
+						"hits": {
+							"total": {
+								"value": 50,
+								"relation": "eq"
+							},
+							"max_score": 4.823819,
+							"hits": [{
+								"_index": "bigten_2019_lping",
+								"_type": "_doc",
+								"_id": "JYfFinEBuJ1HE7yutpmt",
+								"_score": 4.823819,
+								"_source": {
+									"players": [{
+										"code": "AaWiggins",
+										"id": "Wiggins, Aaron"
+									}, {
+										"code": "AnCowan",
+										"id": "Cowan, Anthony"
+									}, {
+										"code": "DaMorsell",
+										"id": "Morsell, Darryl"
+									}, {
+										"code": "DoScott",
+										"id": "Scott, Donta"
+									}, {
+										"code": "JaSmith",
+										"id": "Smith, Jalen"
+									}]
+								}
+							}]
+						}
+					},
+					"total_off_trans_2prim_made": {
+						"value": 0
+					},
+					"total_def_blk": {
+						"value": 6
+					},
+					"total_off_scramble_2pmid_ast": {
+						"value": 0
+					},
+					"total_off_trans_2prim_ast": {
+						"value": 0
+					},
+					"total_off_fta": {
+						"value": 87
+					},
+					"total_off_scramble_2prim_made": {
+						"value": 0
+					},
+					"total_off_trans_2p_made": {
+						"value": 0
+					},
+					"total_def_scramble_assist": {
+						"value": 0
+					},
+					"total_off_assist": {
+						"value": 39
+					},
+					"total_def_scramble_to": {
+						"value": 0
+					},
+					"total_def_trans_2p_made": {
+						"value": 0
+					},
+					"total_off_stl": {
+						"value": 18
+					},
+					"total_def_trans_3p_ast": {
+						"value": 0
+					},
+					"def_adj_ppp": {
+						"value": 79.356108708242
+					},
+					"total_off_ast_3p": {
+						"value": 0
+					},
+					"total_off_scramble_ftm": {
+						"value": 0
+					},
+					"total_def_2pmid_ast": {
+						"value": 0
+					},
+					"total_off_ast_rim": {
+						"value": 0
+					},
+					"total_def_assist": {
+						"value": 34
+					},
+					"total_off_3p_made": {
+						"value": 22
+					},
+					"total_def_scramble_2pmid_ast": {
+						"value": 0
+					},
+					"total_off_scramble_3p_attempts": {
+						"value": 0
+					},
+					"total_def_3p_made": {
+						"value": 17
+					},
+					"total_def_stl": {
+						"value": 17
+					},
+					"total_off_trans_2pmid_ast": {
+						"value": 0
+					},
+					"total_def_scramble_fta": {
+						"value": 0
+					},
+					"total_def_foul": {
+						"value": 67
+					},
+					"total_off_scramble_2pmid_made": {
+						"value": 0
+					},
+					"total_def_scramble_2pmid_made": {
+						"value": 0
+					},
+					"total_off_scramble_3p_made": {
+						"value": 0
+					},
+					"def_3p_opp": {
+						"value": 33.36290322580645
+					},
+					"total_def_trans_fgm": {
+						"value": 0
+					},
+					"total_off_scramble_fta": {
+						"value": 0
+					},
+					"total_def_2pmid_made": {
+						"value": 20
+					},
+					"total_off_poss": {
+						"value": 211
+					},
+					"total_def_scramble_3p_made": {
+						"value": 0
+					},
+					"total_off_scramble_2prim_ast": {
+						"value": 0
+					},
+					"total_def_scramble_2p_ast": {
+						"value": 0
+					},
+					"total_off_trans_2p_attempts": {
+						"value": 0
+					},
+					"total_off_2pmid_attempts": {
+						"value": 36
+					},
+					"total_def_trans_fga": {
+						"value": 0
+					},
+					"total_def_trans_2prim_made": {
+						"value": 0
+					},
+					"total_off_trans_2pmid_made": {
+						"value": 0
+					},
+					"total_off_scramble_2p_attempts": {
+						"value": 0
+					},
+					"total_off_trans_2prim_attempts": {
+						"value": 0
+					},
+					"total_def_fgm": {
+						"value": 68
+					},
+					"total_off_scramble_2p_ast": {
+						"value": 0
+					},
+					"total_def_trans_3p_made": {
+						"value": 0
+					},
+					"total_def_fga": {
+						"value": 182
+					},
+					"total_def_2prim_ast": {
+						"value": 0
+					},
+					"total_off_pts": {
+						"value": 226
+					},
+					"total_def_ast_3p": {
+						"value": 0
+					},
+					"total_def_scramble_2prim_attempts": {
+						"value": 0
+					},
+					"total_off_trans_3p_made": {
+						"value": 0
+					},
+					"total_def_scramble_2pmid_attempts": {
+						"value": 0
+					},
+					"total_off_scramble_to": {
+						"value": 0
+					},
+					"def_adj_opp": {
+						"value": 94.87867298578198
+					},
+					"total_def_to": {
+						"value": 47
+					},
+					"total_def_pts": {
+						"value": 179
+					},
+					"total_off_orb": {
+						"value": 37
+					},
+					"total_off_ast_mid": {
+						"value": 0
+					},
+					"total_off_trans_2pmid_attempts": {
+						"value": 0
+					},
+					"total_def_scramble_3p_ast": {
+						"value": 0
+					},
+					"total_def_scramble_2p_attempts": {
+						"value": 0
+					},
+					"total_def_orb": {
+						"value": 33
+					},
+					"total_off_2p_ast": {
+						"value": 0
+					},
+					"total_def_trans_2p_ast": {
+						"value": 0
+					},
+					"total_off_2p_attempts": {
+						"value": 102
+					},
+					"total_def_trans_2pmid_attempts": {
+						"value": 0
+					},
+					"total_def_3p_attempts": {
+						"value": 62
+					},
+					"total_off_fgm": {
+						"value": 71
+					},
+					"total_off_trans_fta": {
+						"value": 0
+					},
+					"total_off_scramble_2p_made": {
+						"value": 0
+					},
+					"total_def_trans_2prim_attempts": {
+						"value": 0
+					},
+					"total_def_2prim_made": {
+						"value": 31
+					},
+					"total_off_trans_ftm": {
+						"value": 0
+					},
+					"total_off_trans_2p_ast": {
+						"value": 0
+					},
+					"off_2p": {
+						"value": 0.4803921568627451
+					},
+					"off_2p_ast": {
+						"value": 0
+					},
+					"off_3p": {
+						"value": 0.3055555555555556
+					},
+					"off_3p_ast": {
+						"value": 0
+					},
+					"off_2prim": {
+						"value": 0.6515151515151515
+					},
+					"off_2prim_ast": {
+						"value": 0
+					},
+					"off_2pmid": {
+						"value": 0.16666666666666666
+					},
+					"off_2pmid_ast": {
+						"value": 0
+					},
+					"off_ft": {
+						"value": 0.7126436781609196
+					},
+					"off_ftr": {
+						"value": 0.5
+					},
+					"off_2primr": {
+						"value": 0.3793103448275862
+					},
+					"off_2pmidr": {
+						"value": 0.20689655172413793
+					},
+					"off_3pr": {
+						"value": 0.41379310344827586
+					},
+					"off_assist": {
+						"value": 0.5492957746478874
+					},
+					"off_scramble_2p": {
+						"value": 0
+					},
+					"off_scramble_2p_ast": {
+						"value": 0
+					},
+					"off_scramble_3p": {
+						"value": 0
+					},
+					"off_scramble_3p_ast": {
+						"value": 0
+					},
+					"off_scramble_2prim": {
+						"value": 0
+					},
+					"off_scramble_2prim_ast": {
+						"value": 0
+					},
+					"off_scramble_2pmid": {
+						"value": 0
+					},
+					"off_scramble_2pmid_ast": {
+						"value": 0
+					},
+					"off_scramble_ft": {
+						"value": 0
+					},
+					"off_scramble_ftr": {
+						"value": 0
+					},
+					"off_scramble_2primr": {
+						"value": 0
+					},
+					"off_scramble_2pmidr": {
+						"value": 0
+					},
+					"off_scramble_3pr": {
+						"value": 0
+					},
+					"off_scramble_assist": {
+						"value": 0
+					},
+					"off_trans_2p": {
+						"value": 0
+					},
+					"off_trans_2p_ast": {
+						"value": 0
+					},
+					"off_trans_3p": {
+						"value": 0
+					},
+					"off_trans_3p_ast": {
+						"value": 0
+					},
+					"off_trans_2prim": {
+						"value": 0
+					},
+					"off_trans_2prim_ast": {
+						"value": 0
+					},
+					"off_trans_2pmid": {
+						"value": 0
+					},
+					"off_trans_2pmid_ast": {
+						"value": 0
+					},
+					"off_trans_ft": {
+						"value": 0
+					},
+					"off_trans_ftr": {
+						"value": 0
+					},
+					"off_trans_2primr": {
+						"value": 0
+					},
+					"off_trans_2pmidr": {
+						"value": 0
+					},
+					"off_trans_3pr": {
+						"value": 0
+					},
+					"off_trans_assist": {
+						"value": 0
+					},
+					"off_ast_rim": {
+						"value": 0
+					},
+					"off_ast_mid": {
+						"value": 0
+					},
+					"off_ast_3p": {
+						"value": 0
+					},
+					"total_off_scramble_pts": {
+						"value": 0
+					},
+					"total_off_scramble_poss": {
+						"value": 0
+					},
+					"total_off_trans_pts": {
+						"value": 0
+					},
+					"total_off_trans_poss": {
+						"value": 0
+					},
+					"off_ppp": {
+						"value": 107.1090047393365
+					},
+					"off_to": {
+						"value": 0.15639810426540285
+					},
+					"off_scramble_ppp": {
+						"value": 0
+					},
+					"off_scramble_to": {
+						"value": 0
+					},
+					"off_trans_ppp": {
+						"value": 0
+					},
+					"off_trans_to": {
+						"value": 0
+					},
+					"off_poss": {
+						"value": 211
+					},
+					"off_orb": {
+						"value": 0.31896551724137934
+					},
+					"off_efg": {
+						"value": 0.47126436781609193
+					},
+					"off_scramble_efg": {
+						"value": 0
+					},
+					"off_trans_efg": {
+						"value": 0
+					},
+					"def_2p": {
+						"value": 0.425
+					},
+					"def_2p_ast": {
+						"value": 0
+					},
+					"def_3p": {
+						"value": 0.27419354838709675
+					},
+					"def_3p_ast": {
+						"value": 0
+					},
+					"def_2prim": {
+						"value": 0.5535714285714286
+					},
+					"def_2prim_ast": {
+						"value": 0
+					},
+					"def_2pmid": {
+						"value": 0.3125
+					},
+					"def_2pmid_ast": {
+						"value": 0
+					},
+					"def_ft": {
+						"value": 0.6341463414634146
+					},
+					"def_ftr": {
+						"value": 0.22527472527472528
+					},
+					"def_2primr": {
+						"value": 0.3076923076923077
+					},
+					"def_2pmidr": {
+						"value": 0.3516483516483517
+					},
+					"def_3pr": {
+						"value": 0.34065934065934067
+					},
+					"def_assist": {
+						"value": 0.5
+					},
+					"def_scramble_2p": {
+						"value": 0
+					},
+					"def_scramble_2p_ast": {
+						"value": 0
+					},
+					"def_scramble_3p": {
+						"value": 0
+					},
+					"def_scramble_3p_ast": {
+						"value": 0
+					},
+					"def_scramble_2prim": {
+						"value": 0
+					},
+					"def_scramble_2prim_ast": {
+						"value": 0
+					},
+					"def_scramble_2pmid": {
+						"value": 0
+					},
+					"def_scramble_2pmid_ast": {
+						"value": 0
+					},
+					"def_scramble_ft": {
+						"value": 0
+					},
+					"def_scramble_ftr": {
+						"value": 0
+					},
+					"def_scramble_2primr": {
+						"value": 0
+					},
+					"def_scramble_2pmidr": {
+						"value": 0
+					},
+					"def_scramble_3pr": {
+						"value": 0
+					},
+					"def_scramble_assist": {
+						"value": 0
+					},
+					"def_trans_2p": {
+						"value": 0
+					},
+					"def_trans_2p_ast": {
+						"value": 0
+					},
+					"def_trans_3p": {
+						"value": 0
+					},
+					"def_trans_3p_ast": {
+						"value": 0
+					},
+					"def_trans_2prim": {
+						"value": 0
+					},
+					"def_trans_2prim_ast": {
+						"value": 0
+					},
+					"def_trans_2pmid": {
+						"value": 0
+					},
+					"def_trans_2pmid_ast": {
+						"value": 0
+					},
+					"def_trans_ft": {
+						"value": 0
+					},
+					"def_trans_ftr": {
+						"value": 0
+					},
+					"def_trans_2primr": {
+						"value": 0
+					},
+					"def_trans_2pmidr": {
+						"value": 0
+					},
+					"def_trans_3pr": {
+						"value": 0
+					},
+					"def_trans_assist": {
+						"value": 0
+					},
+					"def_ast_rim": {
+						"value": 0
+					},
+					"def_ast_mid": {
+						"value": 0
+					},
+					"def_ast_3p": {
+						"value": 0
+					},
+					"total_def_scramble_pts": {
+						"value": 0
+					},
+					"total_def_scramble_poss": {
+						"value": 0
+					},
+					"total_def_trans_pts": {
+						"value": 0
+					},
+					"total_def_trans_poss": {
+						"value": 0
+					},
+					"def_ppp": {
+						"value": 84.03755868544602
+					},
+					"def_to": {
+						"value": 0.22065727699530516
+					},
+					"def_scramble_ppp": {
+						"value": 0
+					},
+					"def_scramble_to": {
+						"value": 0
+					},
+					"def_trans_ppp": {
+						"value": 0
+					},
+					"def_trans_to": {
+						"value": 0
+					},
+					"def_poss": {
+						"value": 213
+					},
+					"def_orb": {
+						"value": 0.2682926829268293
+					},
+					"def_efg": {
+						"value": 0.42032967032967034
+					},
+					"def_scramble_efg": {
+						"value": 0
+					},
+					"def_trans_efg": {
+						"value": 0
+					}
+				},
+        {
+					"key": "AaWiggins_AnCowan_DoScott_ErAyala_JaSmith",
+					"doc_count": 52,
+					"total_off_fga": {
+						"value": 182
+					},
+					"total_def_scramble_3p_attempts": {
+						"value": 0
+					},
+					"total_def_drb": {
+						"value": 74
+					},
+					"total_off_2pmid_made": {
+						"value": 11
+					},
+					"total_def_2p_made": {
+						"value": 41
+					},
+					"total_off_trans_to": {
+						"value": 0
+					},
+					"total_off_trans_assist": {
+						"value": 0
+					},
+					"total_off_2pmid_ast": {
+						"value": 0
+					},
+					"total_off_3p_attempts": {
+						"value": 83
+					},
+					"total_def_2p_attempts": {
+						"value": 106
+					},
+					"total_def_trans_2p_attempts": {
+						"value": 0
+					},
+					"total_def_trans_2pmid_made": {
+						"value": 0
+					},
+					"total_off_scramble_assist": {
+						"value": 0
+					},
+					"total_def_trans_ftm": {
+						"value": 0
+					},
+					"total_off_to": {
+						"value": 34
+					},
+					"total_off_scramble_2pmid_attempts": {
+						"value": 0
+					},
+					"total_off_foul": {
+						"value": 48
+					},
+					"total_def_2p_ast": {
+						"value": 0
+					},
+					"total_def_ast_rim": {
+						"value": 0
+					},
+					"total_def_poss": {
+						"value": 193
+					},
+					"off_adj_ppp": {
+						"value": 120.3613605770025
+					},
+					"total_def_trans_3p_attempts": {
+						"value": 0
+					},
+					"total_def_trans_2prim_ast": {
+						"value": 0
+					},
+					"total_def_trans_fta": {
+						"value": 0
+					},
+					"total_def_scramble_fgm": {
+						"value": 0
+					},
+					"total_off_2prim_attempts": {
+						"value": 65
+					},
+					"total_def_scramble_fga": {
+						"value": 0
+					},
+					"total_off_drb": {
+						"value": 87
+					},
+					"total_off_scramble_fgm": {
+						"value": 0
+					},
+					"total_def_scramble_2prim_made": {
+						"value": 0
+					},
+					"total_off_scramble_fga": {
+						"value": 0
+					},
+					"total_def_2prim_attempts": {
+						"value": 62
+					},
+					"total_def_fta": {
+						"value": 54
+					},
+					"total_off_scramble_2prim_attempts": {
+						"value": 0
+					},
+					"total_def_trans_to": {
+						"value": 0
+					},
+					"total_off_2p_made": {
+						"value": 53
+					},
+					"total_def_trans_assist": {
+						"value": 0
+					},
+					"total_def_3p_ast": {
+						"value": 0
+					},
+					"total_off_2prim_made": {
+						"value": 42
+					},
+					"total_off_trans_3p_ast": {
+						"value": 0
+					},
+					"total_off_3p_ast": {
+						"value": 0
+					},
+					"total_def_scramble_ftm": {
+						"value": 0
+					},
+					"total_off_trans_fga": {
+						"value": 0
+					},
+					"total_off_2prim_ast": {
+						"value": 0
+					},
+					"total_def_ast_mid": {
+						"value": 0
+					},
+					"total_off_scramble_3p_ast": {
+						"value": 0
+					},
+					"total_off_trans_3p_attempts": {
+						"value": 0
+					},
+					"total_off_ftm": {
+						"value": 31
+					},
+					"total_def_scramble_2p_made": {
+						"value": 0
+					},
+					"total_def_trans_2pmid_ast": {
+						"value": 0
+					},
+					"off_adj_opp": {
+						"value": 108.46632124352331
+					},
+					"total_off_blk": {
+						"value": 17
+					},
+					"total_def_2pmid_attempts": {
+						"value": 44
+					},
+					"total_def_scramble_2prim_ast": {
+						"value": 0
+					},
+					"total_off_trans_fgm": {
+						"value": 0
+					},
+					"total_def_ftm": {
+						"value": 32
+					},
+					"players_array": {
+						"hits": {
+							"total": {
+								"value": 52,
+								"relation": "eq"
+							},
+							"max_score": 4.823819,
+							"hits": [{
+								"_index": "bigten_2019_lping",
+								"_type": "_doc",
+								"_id": "KbjFinEB8OZ7gWZVt0-S",
+								"_score": 4.823819,
+								"_source": {
+									"players": [{
+										"code": "AaWiggins",
+										"id": "Wiggins, Aaron"
+									}, {
+										"code": "AnCowan",
+										"id": "Cowan, Anthony"
+									}, {
+										"code": "DoScott",
+										"id": "Scott, Donta"
+									}, {
+										"code": "ErAyala",
+										"id": "Ayala, Eric"
+									}, {
+										"code": "JaSmith",
+										"id": "Smith, Jalen"
+									}]
+								}
+							}]
+						}
+					},
+					"total_off_trans_2prim_made": {
+						"value": 0
+					},
+					"total_def_blk": {
+						"value": 11
+					},
+					"total_off_scramble_2pmid_ast": {
+						"value": 0
+					},
+					"total_off_trans_2prim_ast": {
+						"value": 0
+					},
+					"total_off_fta": {
+						"value": 41
+					},
+					"total_off_scramble_2prim_made": {
+						"value": 0
+					},
+					"total_off_trans_2p_made": {
+						"value": 0
+					},
+					"total_def_scramble_assist": {
+						"value": 0
+					},
+					"total_off_assist": {
+						"value": 43
+					},
+					"total_def_scramble_to": {
+						"value": 0
+					},
+					"total_def_trans_2p_made": {
+						"value": 0
+					},
+					"total_off_stl": {
+						"value": 11
+					},
+					"total_def_trans_3p_ast": {
+						"value": 0
+					},
+					"def_adj_ppp": {
+						"value": 82.0894333612718
+					},
+					"total_off_ast_3p": {
+						"value": 0
+					},
+					"total_off_scramble_ftm": {
+						"value": 0
+					},
+					"total_def_2pmid_ast": {
+						"value": 0
+					},
+					"total_off_ast_rim": {
+						"value": 0
+					},
+					"total_def_assist": {
+						"value": 35
+					},
+					"total_off_3p_made": {
+						"value": 28
+					},
+					"total_def_scramble_2pmid_ast": {
+						"value": 0
+					},
+					"total_off_scramble_3p_attempts": {
+						"value": 0
+					},
+					"total_def_3p_made": {
+						"value": 18
+					},
+					"total_def_stl": {
+						"value": 17
+					},
+					"total_off_trans_2pmid_ast": {
+						"value": 0
+					},
+					"total_def_scramble_fta": {
+						"value": 0
+					},
+					"total_def_foul": {
+						"value": 48
+					},
+					"total_off_scramble_2pmid_made": {
+						"value": 0
+					},
+					"total_def_scramble_2pmid_made": {
+						"value": 0
+					},
+					"total_off_scramble_3p_made": {
+						"value": 0
+					},
+					"def_3p_opp": {
+						"value": 33.34861111111111
+					},
+					"total_def_trans_fgm": {
+						"value": 0
+					},
+					"total_off_scramble_fta": {
+						"value": 0
+					},
+					"total_def_2pmid_made": {
+						"value": 9
+					},
+					"total_off_poss": {
+						"value": 197
+					},
+					"total_def_scramble_3p_made": {
+						"value": 0
+					},
+					"total_off_scramble_2prim_ast": {
+						"value": 0
+					},
+					"total_def_scramble_2p_ast": {
+						"value": 0
+					},
+					"total_off_trans_2p_attempts": {
+						"value": 0
+					},
+					"total_off_2pmid_attempts": {
+						"value": 34
+					},
+					"total_def_trans_fga": {
+						"value": 0
+					},
+					"total_def_trans_2prim_made": {
+						"value": 0
+					},
+					"total_off_trans_2pmid_made": {
+						"value": 0
+					},
+					"total_off_scramble_2p_attempts": {
+						"value": 0
+					},
+					"total_off_trans_2prim_attempts": {
+						"value": 0
+					},
+					"total_def_fgm": {
+						"value": 59
+					},
+					"total_off_scramble_2p_ast": {
+						"value": 0
+					},
+					"total_def_trans_3p_made": {
+						"value": 0
+					},
+					"total_def_fga": {
+						"value": 178
+					},
+					"total_def_2prim_ast": {
+						"value": 0
+					},
+					"total_off_pts": {
+						"value": 221
+					},
+					"total_def_ast_3p": {
+						"value": 0
+					},
+					"total_def_scramble_2prim_attempts": {
+						"value": 0
+					},
+					"total_off_trans_3p_made": {
+						"value": 0
+					},
+					"total_def_scramble_2pmid_attempts": {
+						"value": 0
+					},
+					"total_off_scramble_to": {
+						"value": 0
+					},
+					"def_adj_opp": {
+						"value": 95.28071065989847
+					},
+					"total_def_to": {
+						"value": 33
+					},
+					"total_def_pts": {
+						"value": 168
+					},
+					"total_off_orb": {
+						"value": 34
+					},
+					"total_off_ast_mid": {
+						"value": 0
+					},
+					"total_off_trans_2pmid_attempts": {
+						"value": 0
+					},
+					"total_def_scramble_3p_ast": {
+						"value": 0
+					},
+					"total_def_scramble_2p_attempts": {
+						"value": 0
+					},
+					"total_def_orb": {
+						"value": 41
+					},
+					"total_off_2p_ast": {
+						"value": 0
+					},
+					"total_def_trans_2p_ast": {
+						"value": 0
+					},
+					"total_off_2p_attempts": {
+						"value": 99
+					},
+					"total_def_trans_2pmid_attempts": {
+						"value": 0
+					},
+					"total_def_3p_attempts": {
+						"value": 72
+					},
+					"total_off_fgm": {
+						"value": 81
+					},
+					"total_off_trans_fta": {
+						"value": 0
+					},
+					"total_off_scramble_2p_made": {
+						"value": 0
+					},
+					"total_def_trans_2prim_attempts": {
+						"value": 0
+					},
+					"total_def_2prim_made": {
+						"value": 32
+					},
+					"total_off_trans_ftm": {
+						"value": 0
+					},
+					"total_off_trans_2p_ast": {
+						"value": 0
+					},
+					"off_2p": {
+						"value": 0.5353535353535354
+					},
+					"off_2p_ast": {
+						"value": 0
+					},
+					"off_3p": {
+						"value": 0.3373493975903614
+					},
+					"off_3p_ast": {
+						"value": 0
+					},
+					"off_2prim": {
+						"value": 0.6461538461538462
+					},
+					"off_2prim_ast": {
+						"value": 0
+					},
+					"off_2pmid": {
+						"value": 0.3235294117647059
+					},
+					"off_2pmid_ast": {
+						"value": 0
+					},
+					"off_ft": {
+						"value": 0.7560975609756098
+					},
+					"off_ftr": {
+						"value": 0.22527472527472528
+					},
+					"off_2primr": {
+						"value": 0.35714285714285715
+					},
+					"off_2pmidr": {
+						"value": 0.18681318681318682
+					},
+					"off_3pr": {
+						"value": 0.45604395604395603
+					},
+					"off_assist": {
+						"value": 0.5308641975308642
+					},
+					"off_scramble_2p": {
+						"value": 0
+					},
+					"off_scramble_2p_ast": {
+						"value": 0
+					},
+					"off_scramble_3p": {
+						"value": 0
+					},
+					"off_scramble_3p_ast": {
+						"value": 0
+					},
+					"off_scramble_2prim": {
+						"value": 0
+					},
+					"off_scramble_2prim_ast": {
+						"value": 0
+					},
+					"off_scramble_2pmid": {
+						"value": 0
+					},
+					"off_scramble_2pmid_ast": {
+						"value": 0
+					},
+					"off_scramble_ft": {
+						"value": 0
+					},
+					"off_scramble_ftr": {
+						"value": 0
+					},
+					"off_scramble_2primr": {
+						"value": 0
+					},
+					"off_scramble_2pmidr": {
+						"value": 0
+					},
+					"off_scramble_3pr": {
+						"value": 0
+					},
+					"off_scramble_assist": {
+						"value": 0
+					},
+					"off_trans_2p": {
+						"value": 0
+					},
+					"off_trans_2p_ast": {
+						"value": 0
+					},
+					"off_trans_3p": {
+						"value": 0
+					},
+					"off_trans_3p_ast": {
+						"value": 0
+					},
+					"off_trans_2prim": {
+						"value": 0
+					},
+					"off_trans_2prim_ast": {
+						"value": 0
+					},
+					"off_trans_2pmid": {
+						"value": 0
+					},
+					"off_trans_2pmid_ast": {
+						"value": 0
+					},
+					"off_trans_ft": {
+						"value": 0
+					},
+					"off_trans_ftr": {
+						"value": 0
+					},
+					"off_trans_2primr": {
+						"value": 0
+					},
+					"off_trans_2pmidr": {
+						"value": 0
+					},
+					"off_trans_3pr": {
+						"value": 0
+					},
+					"off_trans_assist": {
+						"value": 0
+					},
+					"off_ast_rim": {
+						"value": 0
+					},
+					"off_ast_mid": {
+						"value": 0
+					},
+					"off_ast_3p": {
+						"value": 0
+					},
+					"total_off_scramble_pts": {
+						"value": 0
+					},
+					"total_off_scramble_poss": {
+						"value": 0
+					},
+					"total_off_trans_pts": {
+						"value": 0
+					},
+					"total_off_trans_poss": {
+						"value": 0
+					},
+					"off_ppp": {
+						"value": 112.18274111675127
+					},
+					"off_to": {
+						"value": 0.17258883248730963
+					},
+					"off_scramble_ppp": {
+						"value": 0
+					},
+					"off_scramble_to": {
+						"value": 0
+					},
+					"off_trans_ppp": {
+						"value": 0
+					},
+					"off_trans_to": {
+						"value": 0
+					},
+					"off_poss": {
+						"value": 197
+					},
+					"off_orb": {
+						"value": 0.3148148148148148
+					},
+					"off_efg": {
+						"value": 0.521978021978022
+					},
+					"off_scramble_efg": {
+						"value": 0
+					},
+					"off_trans_efg": {
+						"value": 0
+					},
+					"def_2p": {
+						"value": 0.3867924528301887
+					},
+					"def_2p_ast": {
+						"value": 0
+					},
+					"def_3p": {
+						"value": 0.25
+					},
+					"def_3p_ast": {
+						"value": 0
+					},
+					"def_2prim": {
+						"value": 0.5161290322580645
+					},
+					"def_2prim_ast": {
+						"value": 0
+					},
+					"def_2pmid": {
+						"value": 0.20454545454545456
+					},
+					"def_2pmid_ast": {
+						"value": 0
+					},
+					"def_ft": {
+						"value": 0.5925925925925926
+					},
+					"def_ftr": {
+						"value": 0.30337078651685395
+					},
+					"def_2primr": {
+						"value": 0.34831460674157305
+					},
+					"def_2pmidr": {
+						"value": 0.24719101123595505
+					},
+					"def_3pr": {
+						"value": 0.4044943820224719
+					},
+					"def_assist": {
+						"value": 0.5932203389830508
+					},
+					"def_scramble_2p": {
+						"value": 0
+					},
+					"def_scramble_2p_ast": {
+						"value": 0
+					},
+					"def_scramble_3p": {
+						"value": 0
+					},
+					"def_scramble_3p_ast": {
+						"value": 0
+					},
+					"def_scramble_2prim": {
+						"value": 0
+					},
+					"def_scramble_2prim_ast": {
+						"value": 0
+					},
+					"def_scramble_2pmid": {
+						"value": 0
+					},
+					"def_scramble_2pmid_ast": {
+						"value": 0
+					},
+					"def_scramble_ft": {
+						"value": 0
+					},
+					"def_scramble_ftr": {
+						"value": 0
+					},
+					"def_scramble_2primr": {
+						"value": 0
+					},
+					"def_scramble_2pmidr": {
+						"value": 0
+					},
+					"def_scramble_3pr": {
+						"value": 0
+					},
+					"def_scramble_assist": {
+						"value": 0
+					},
+					"def_trans_2p": {
+						"value": 0
+					},
+					"def_trans_2p_ast": {
+						"value": 0
+					},
+					"def_trans_3p": {
+						"value": 0
+					},
+					"def_trans_3p_ast": {
+						"value": 0
+					},
+					"def_trans_2prim": {
+						"value": 0
+					},
+					"def_trans_2prim_ast": {
+						"value": 0
+					},
+					"def_trans_2pmid": {
+						"value": 0
+					},
+					"def_trans_2pmid_ast": {
+						"value": 0
+					},
+					"def_trans_ft": {
+						"value": 0
+					},
+					"def_trans_ftr": {
+						"value": 0
+					},
+					"def_trans_2primr": {
+						"value": 0
+					},
+					"def_trans_2pmidr": {
+						"value": 0
+					},
+					"def_trans_3pr": {
+						"value": 0
+					},
+					"def_trans_assist": {
+						"value": 0
+					},
+					"def_ast_rim": {
+						"value": 0
+					},
+					"def_ast_mid": {
+						"value": 0
+					},
+					"def_ast_3p": {
+						"value": 0
+					},
+					"total_def_scramble_pts": {
+						"value": 0
+					},
+					"total_def_scramble_poss": {
+						"value": 0
+					},
+					"total_def_trans_pts": {
+						"value": 0
+					},
+					"total_def_trans_poss": {
+						"value": 0
+					},
+					"def_ppp": {
+						"value": 87.04663212435233
+					},
+					"def_to": {
+						"value": 0.17098445595854922
+					},
+					"def_scramble_ppp": {
+						"value": 0
+					},
+					"def_scramble_to": {
+						"value": 0
+					},
+					"def_trans_ppp": {
+						"value": 0
+					},
+					"def_trans_to": {
+						"value": 0
+					},
+					"def_poss": {
+						"value": 193
+					},
+					"def_orb": {
+						"value": 0.3203125
+					},
+					"def_efg": {
+						"value": 0.38202247191011235
+					},
+					"def_scramble_efg": {
+						"value": 0
+					},
+					"def_trans_efg": {
+						"value": 0
+					}
+				},
+        ]
+			}
+		},
+		"status": 200
+	}]
 };

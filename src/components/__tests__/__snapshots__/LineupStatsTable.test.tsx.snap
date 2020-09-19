@@ -615,21 +615,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.3291139240506329,
+                                    "value": 0.2997032640949555,
                                   }
 
                   def_2primr: Object {
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.25316455696202533,
+                                    "value": 0.3056379821958457,
                                   }
 
                   def_3pr: Object {
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.4177215189873418,
+                                    "value": 0.39465875370919884,
                                   }
 
                   def_assist: Object {
@@ -648,7 +648,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                         % for 3P
                                       </li>
                                     </span>,
-                                    "value": 0.48,
+                                    "value": 0.5275590551181102,
                                   }
 
                   def_title: ""
@@ -657,21 +657,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.2634730538922156,
+                                    "value": 0.17956656346749225,
                                   }
 
                   off_2primr: Object {
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.3473053892215569,
+                                    "value": 0.3653250773993808,
                                   }
 
                   off_3pr: Object {
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.38922155688622756,
+                                    "value": 0.4551083591331269,
                                   }
 
                   off_assist: Object {
@@ -690,7 +690,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                         % for 3P
                                       </li>
                                     </span>,
-                                    "value": 0.52,
+                                    "value": 0.5211267605633803,
                                   }
 
                   off_title: Array [
@@ -1262,21 +1262,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.3291139240506329,
+                                    "value": 0.2997032640949555,
                                   }
 
                   def_2primr: Object {
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.25316455696202533,
+                                    "value": 0.3056379821958457,
                                   }
 
                   def_3pr: Object {
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.4177215189873418,
+                                    "value": 0.39465875370919884,
                                   }
 
                   def_assist: Object {
@@ -1295,7 +1295,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                         % for 3P
                                       </li>
                                     </span>,
-                                    "value": 0.48,
+                                    "value": 0.5275590551181102,
                                   }
 
                   def_title: ""
@@ -1304,21 +1304,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.2634730538922156,
+                                    "value": 0.17956656346749225,
                                   }
 
                   off_2primr: Object {
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.3473053892215569,
+                                    "value": 0.3653250773993808,
                                   }
 
                   off_3pr: Object {
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.38922155688622756,
+                                    "value": 0.4551083591331269,
                                   }
 
                   off_assist: Object {
@@ -1337,7 +1337,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                         % for 3P
                                       </li>
                                     </span>,
-                                    "value": 0.52,
+                                    "value": 0.5211267605633803,
                                   }
 
                   off_title: Array [
@@ -1912,21 +1912,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.36470588235294116,
+                                    "value": 0.3516483516483517,
                                   }
 
                   def_2primr: Object {
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.3176470588235294,
+                                    "value": 0.3076923076923077,
                                   }
 
                   def_3pr: Object {
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.3176470588235294,
+                                    "value": 0.34065934065934067,
                                   }
 
                   def_assist: Object {
@@ -1945,7 +1945,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                         % for 3P
                                       </li>
                                     </span>,
-                                    "value": 0.47,
+                                    "value": 0.5,
                                   }
 
                   def_title: ""
@@ -1954,21 +1954,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.3103448275862069,
+                                    "value": 0.20689655172413793,
                                   }
 
                   off_2primr: Object {
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.3333333333333333,
+                                    "value": 0.3793103448275862,
                                   }
 
                   off_3pr: Object {
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.3563218390804598,
+                                    "value": 0.41379310344827586,
                                   }
 
                   off_assist: Object {
@@ -1987,7 +1987,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                         % for 3P
                                       </li>
                                     </span>,
-                                    "value": 0.53,
+                                    "value": 0.5492957746478874,
                                   }
 
                   off_title: Array [
@@ -2559,21 +2559,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.36470588235294116,
+                                    "value": 0.3516483516483517,
                                   }
 
                   def_2primr: Object {
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.3176470588235294,
+                                    "value": 0.3076923076923077,
                                   }
 
                   def_3pr: Object {
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.3176470588235294,
+                                    "value": 0.34065934065934067,
                                   }
 
                   def_assist: Object {
@@ -2592,7 +2592,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                         % for 3P
                                       </li>
                                     </span>,
-                                    "value": 0.47,
+                                    "value": 0.5,
                                   }
 
                   def_title: ""
@@ -2601,21 +2601,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.3103448275862069,
+                                    "value": 0.20689655172413793,
                                   }
 
                   off_2primr: Object {
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.3333333333333333,
+                                    "value": 0.3793103448275862,
                                   }
 
                   off_3pr: Object {
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.3563218390804598,
+                                    "value": 0.41379310344827586,
                                   }
 
                   off_assist: Object {
@@ -2634,7 +2634,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                         % for 3P
                                       </li>
                                     </span>,
-                                    "value": 0.53,
+                                    "value": 0.5492957746478874,
                                   }
 
                   off_title: Array [
@@ -3209,21 +3209,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.23655913978494625,
+                                    "value": 0.24719101123595505,
                                   }
 
                   def_2primr: Object {
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.3010752688172043,
+                                    "value": 0.34831460674157305,
                                   }
 
                   def_3pr: Object {
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.46236559139784944,
+                                    "value": 0.4044943820224719,
                                   }
 
                   def_assist: Object {
@@ -3242,7 +3242,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                         % for 3P
                                       </li>
                                     </span>,
-                                    "value": 0.48,
+                                    "value": 0.5932203389830508,
                                   }
 
                   def_title: ""
@@ -3251,21 +3251,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.2604166666666667,
+                                    "value": 0.18681318681318682,
                                   }
 
                   off_2primr: Object {
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.3229166666666667,
+                                    "value": 0.35714285714285715,
                                   }
 
                   off_3pr: Object {
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.4166666666666667,
+                                    "value": 0.45604395604395603,
                                   }
 
                   off_assist: Object {
@@ -3284,7 +3284,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                         % for 3P
                                       </li>
                                     </span>,
-                                    "value": 0.52,
+                                    "value": 0.5308641975308642,
                                   }
 
                   off_title: Array [
@@ -3856,21 +3856,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.23655913978494625,
+                                    "value": 0.24719101123595505,
                                   }
 
                   def_2primr: Object {
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.3010752688172043,
+                                    "value": 0.34831460674157305,
                                   }
 
                   def_3pr: Object {
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.46236559139784944,
+                                    "value": 0.4044943820224719,
                                   }
 
                   def_assist: Object {
@@ -3889,7 +3889,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                         % for 3P
                                       </li>
                                     </span>,
-                                    "value": 0.48,
+                                    "value": 0.5932203389830508,
                                   }
 
                   def_title: ""
@@ -3898,21 +3898,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.2604166666666667,
+                                    "value": 0.18681318681318682,
                                   }
 
                   off_2primr: Object {
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.3229166666666667,
+                                    "value": 0.35714285714285715,
                                   }
 
                   off_3pr: Object {
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.4166666666666667,
+                                    "value": 0.45604395604395603,
                                   }
 
                   off_assist: Object {
@@ -3931,7 +3931,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                         % for 3P
                                       </li>
                                     </span>,
-                                    "value": 0.52,
+                                    "value": 0.5308641975308642,
                                   }
 
                   off_title: Array [
@@ -5380,33 +5380,33 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.3291139240506329,
+                                    "value": 0.2997032640949555,
                                   }
 
                   def_2primr: Object {
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.25316455696202533,
+                                    "value": 0.3056379821958457,
                                   }
 
                   def_3p: Object {
-                                    "old_value": 0.2878787878787879,
+                                    "old_value": 0.3007518796992481,
                                     "override": "Luck adjusted",
-                                    "value": 0.2878787878787879,
+                                    "value": 0.3239412030075188,
                                   }
 
                   def_3pr: Object {
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.4177215189873418,
+                                    "value": 0.39465875370919884,
                                   }
 
                   def_adj_ppp: Object {
-                                    "old_value": 85.47619047619048,
+                                    "old_value": 87.8676478552093,
                                     "override": "Adjustment derived from Def 3P%",
-                                    "value": 85.47619047619048,
+                                    "value": 89.88584090076684,
                                   }
 
                   def_assist: Object {
@@ -5425,19 +5425,19 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                         % for 3P
                                       </li>
                                     </span>,
-                                    "value": 0.48,
+                                    "value": 0.5275590551181102,
                                   }
 
                   def_efg: Object {
-                                    "old_value": 0.43354430379746833,
+                                    "old_value": 0.4362017804154303,
                                     "override": "Adjustment derived from Def 3P%",
-                                    "value": 0.43354430379746833,
+                                    "value": 0.449929584569733,
                                   }
 
                   def_ppp: Object {
-                                    "old_value": 90.47619047619048,
+                                    "old_value": 93.29896907216495,
                                     "override": "Adjustment derived from Def 3P%",
-                                    "value": 90.47619047619048,
+                                    "value": 95.48556680340025,
                                   }
 
                   def_title: ""
@@ -5446,33 +5446,33 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.2634730538922156,
+                                    "value": 0.17956656346749225,
                                   }
 
                   off_2primr: Object {
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.3473053892215569,
+                                    "value": 0.3653250773993808,
                                   }
 
                   off_3p: Object {
-                                    "old_value": 0.27692307692307694,
+                                    "old_value": 0.30612244897959184,
                                     "override": "Luck adjusted",
-                                    "value": 0.27692307692307694,
+                                    "value": 0.30612244897959184,
                                   }
 
                   off_3pr: Object {
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.38922155688622756,
+                                    "value": 0.4551083591331269,
                                   }
 
                   off_adj_ppp: Object {
-                                    "old_value": 116.22448979591837,
+                                    "old_value": 123.30858896547036,
                                     "override": "Adjustment derived from Off 3P%",
-                                    "value": 116.22448979591837,
+                                    "value": 123.30858896547036,
                                   }
 
                   off_assist: Object {
@@ -5491,19 +5491,19 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                         % for 3P
                                       </li>
                                     </span>,
-                                    "value": 0.52,
+                                    "value": 0.5211267605633803,
                                   }
 
                   off_efg: Object {
-                                    "old_value": 0.47305389221556887,
+                                    "old_value": 0.5092879256965944,
                                     "override": "Adjustment derived from Off 3P%",
-                                    "value": 0.47305389221556887,
+                                    "value": 0.5092879256965944,
                                   }
 
                   off_ppp: Object {
-                                    "old_value": 111.22448979591837,
+                                    "old_value": 117.2069825436409,
                                     "override": "Adjustment derived from Off 3P%",
-                                    "value": 111.22448979591837,
+                                    "value": 117.2069825436409,
                                   }
 
                   off_title: <OverlayTrigger
@@ -5593,33 +5593,33 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.3291139240506329,
+                                    "value": 0.2997032640949555,
                                   }
 
                   def_2primr: Object {
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.25316455696202533,
+                                    "value": 0.3056379821958457,
                                   }
 
                   def_3p: Object {
-                                    "old_value": 0.2878787878787879,
+                                    "old_value": 0.3007518796992481,
                                     "override": "Luck adjusted",
-                                    "value": 0.2878787878787879,
+                                    "value": 0.3239412030075188,
                                   }
 
                   def_3pr: Object {
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.4177215189873418,
+                                    "value": 0.39465875370919884,
                                   }
 
                   def_adj_ppp: Object {
-                                    "old_value": 85.47619047619048,
+                                    "old_value": 87.8676478552093,
                                     "override": "Adjustment derived from Def 3P%",
-                                    "value": 85.47619047619048,
+                                    "value": 89.88584090076684,
                                   }
 
                   def_assist: Object {
@@ -5638,19 +5638,19 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                         % for 3P
                                       </li>
                                     </span>,
-                                    "value": 0.48,
+                                    "value": 0.5275590551181102,
                                   }
 
                   def_efg: Object {
-                                    "old_value": 0.43354430379746833,
+                                    "old_value": 0.4362017804154303,
                                     "override": "Adjustment derived from Def 3P%",
-                                    "value": 0.43354430379746833,
+                                    "value": 0.449929584569733,
                                   }
 
                   def_ppp: Object {
-                                    "old_value": 90.47619047619048,
+                                    "old_value": 93.29896907216495,
                                     "override": "Adjustment derived from Def 3P%",
-                                    "value": 90.47619047619048,
+                                    "value": 95.48556680340025,
                                   }
 
                   def_title: ""
@@ -5659,33 +5659,33 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.2634730538922156,
+                                    "value": 0.17956656346749225,
                                   }
 
                   off_2primr: Object {
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.3473053892215569,
+                                    "value": 0.3653250773993808,
                                   }
 
                   off_3p: Object {
-                                    "old_value": 0.27692307692307694,
+                                    "old_value": 0.30612244897959184,
                                     "override": "Luck adjusted",
-                                    "value": 0.27692307692307694,
+                                    "value": 0.30612244897959184,
                                   }
 
                   off_3pr: Object {
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.38922155688622756,
+                                    "value": 0.4551083591331269,
                                   }
 
                   off_adj_ppp: Object {
-                                    "old_value": 116.22448979591837,
+                                    "old_value": 123.30858896547036,
                                     "override": "Adjustment derived from Off 3P%",
-                                    "value": 116.22448979591837,
+                                    "value": 123.30858896547036,
                                   }
 
                   off_assist: Object {
@@ -5704,19 +5704,19 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                         % for 3P
                                       </li>
                                     </span>,
-                                    "value": 0.52,
+                                    "value": 0.5211267605633803,
                                   }
 
                   off_efg: Object {
-                                    "old_value": 0.47305389221556887,
+                                    "old_value": 0.5092879256965944,
                                     "override": "Adjustment derived from Off 3P%",
-                                    "value": 0.47305389221556887,
+                                    "value": 0.5092879256965944,
                                   }
 
                   off_ppp: Object {
-                                    "old_value": 111.22448979591837,
+                                    "old_value": 117.2069825436409,
                                     "override": "Adjustment derived from Off 3P%",
-                                    "value": 111.22448979591837,
+                                    "value": 117.2069825436409,
                                   }
 
                   off_title: <OverlayTrigger
@@ -5806,9 +5806,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                   baseline="season"
                   defLuck={
                     {
-   "deltaDefPpp": 0,
-   "deltaDefEfg": 0,
-   "deltaDefAdjEff": 0
+   "deltaDefPpp": 2.186597731235298,
+   "deltaDefEfg": 0.013727804154302668,
+   "deltaDefAdjEff": 2.018193045557538
 }
                   }
                   name="lineup"
@@ -5832,33 +5832,33 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.36470588235294116,
+                                    "value": 0.3516483516483517,
                                   }
 
                   def_2primr: Object {
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.3176470588235294,
+                                    "value": 0.3076923076923077,
                                   }
 
                   def_3p: Object {
-                                    "old_value": 0.3333333333333333,
+                                    "old_value": 0.27419354838709675,
                                     "override": "Luck adjusted",
-                                    "value": 0.3333333333333333,
+                                    "value": 0.31342096774193545,
                                   }
 
                   def_3pr: Object {
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.3176470588235294,
+                                    "value": 0.34065934065934067,
                                   }
 
                   def_adj_ppp: Object {
-                                    "old_value": 75.47619047619048,
+                                    "old_value": 79.356108708242,
                                     "override": "Adjustment derived from Def 3P%",
-                                    "value": 75.47619047619048,
+                                    "value": 82.20030844467563,
                                   }
 
                   def_assist: Object {
@@ -5877,19 +5877,19 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                         % for 3P
                                       </li>
                                     </span>,
-                                    "value": 0.47,
+                                    "value": 0.5,
                                   }
 
                   def_efg: Object {
-                                    "old_value": 0.4176470588235294,
+                                    "old_value": 0.42032967032967034,
                                     "override": "Adjustment derived from Def 3P%",
-                                    "value": 0.4176470588235294,
+                                    "value": 0.44037445054945057,
                                   }
 
                   def_ppp: Object {
-                                    "old_value": 77.19298245614036,
+                                    "old_value": 84.03755868544602,
                                     "override": "Adjustment derived from Def 3P%",
-                                    "value": 77.19298245614036,
+                                    "value": 87.15059538569945,
                                   }
 
                   def_title: ""
@@ -5898,33 +5898,33 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.3103448275862069,
+                                    "value": 0.20689655172413793,
                                   }
 
                   off_2primr: Object {
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.3333333333333333,
+                                    "value": 0.3793103448275862,
                                   }
 
                   off_3p: Object {
-                                    "old_value": 0.22580645161290322,
+                                    "old_value": 0.3055555555555556,
                                     "override": "Luck adjusted",
-                                    "value": 0.22580645161290322,
+                                    "value": 0.3055555555555556,
                                   }
 
                   off_3pr: Object {
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.3563218390804598,
+                                    "value": 0.41379310344827586,
                                   }
 
                   off_adj_ppp: Object {
-                                    "old_value": 96.22448979591837,
+                                    "old_value": 116.18465333545907,
                                     "override": "Adjustment derived from Off 3P%",
-                                    "value": 96.22448979591837,
+                                    "value": 116.18465333545907,
                                   }
 
                   off_assist: Object {
@@ -5943,19 +5943,19 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                         % for 3P
                                       </li>
                                     </span>,
-                                    "value": 0.53,
+                                    "value": 0.5492957746478874,
                                   }
 
                   off_efg: Object {
-                                    "old_value": 0.3735632183908046,
+                                    "old_value": 0.47126436781609193,
                                     "override": "Adjustment derived from Off 3P%",
-                                    "value": 0.3735632183908046,
+                                    "value": 0.47126436781609193,
                                   }
 
                   off_ppp: Object {
-                                    "old_value": 89.1891891891892,
+                                    "old_value": 107.1090047393365,
                                     "override": "Adjustment derived from Off 3P%",
-                                    "value": 89.1891891891892,
+                                    "value": 107.1090047393365,
                                   }
 
                   off_title: <OverlayTrigger
@@ -6045,33 +6045,33 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.36470588235294116,
+                                    "value": 0.3516483516483517,
                                   }
 
                   def_2primr: Object {
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.3176470588235294,
+                                    "value": 0.3076923076923077,
                                   }
 
                   def_3p: Object {
-                                    "old_value": 0.3333333333333333,
+                                    "old_value": 0.27419354838709675,
                                     "override": "Luck adjusted",
-                                    "value": 0.3333333333333333,
+                                    "value": 0.31342096774193545,
                                   }
 
                   def_3pr: Object {
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.3176470588235294,
+                                    "value": 0.34065934065934067,
                                   }
 
                   def_adj_ppp: Object {
-                                    "old_value": 75.47619047619048,
+                                    "old_value": 79.356108708242,
                                     "override": "Adjustment derived from Def 3P%",
-                                    "value": 75.47619047619048,
+                                    "value": 82.20030844467563,
                                   }
 
                   def_assist: Object {
@@ -6090,19 +6090,19 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                         % for 3P
                                       </li>
                                     </span>,
-                                    "value": 0.47,
+                                    "value": 0.5,
                                   }
 
                   def_efg: Object {
-                                    "old_value": 0.4176470588235294,
+                                    "old_value": 0.42032967032967034,
                                     "override": "Adjustment derived from Def 3P%",
-                                    "value": 0.4176470588235294,
+                                    "value": 0.44037445054945057,
                                   }
 
                   def_ppp: Object {
-                                    "old_value": 77.19298245614036,
+                                    "old_value": 84.03755868544602,
                                     "override": "Adjustment derived from Def 3P%",
-                                    "value": 77.19298245614036,
+                                    "value": 87.15059538569945,
                                   }
 
                   def_title: ""
@@ -6111,33 +6111,33 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.3103448275862069,
+                                    "value": 0.20689655172413793,
                                   }
 
                   off_2primr: Object {
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.3333333333333333,
+                                    "value": 0.3793103448275862,
                                   }
 
                   off_3p: Object {
-                                    "old_value": 0.22580645161290322,
+                                    "old_value": 0.3055555555555556,
                                     "override": "Luck adjusted",
-                                    "value": 0.22580645161290322,
+                                    "value": 0.3055555555555556,
                                   }
 
                   off_3pr: Object {
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.3563218390804598,
+                                    "value": 0.41379310344827586,
                                   }
 
                   off_adj_ppp: Object {
-                                    "old_value": 96.22448979591837,
+                                    "old_value": 116.18465333545907,
                                     "override": "Adjustment derived from Off 3P%",
-                                    "value": 96.22448979591837,
+                                    "value": 116.18465333545907,
                                   }
 
                   off_assist: Object {
@@ -6156,19 +6156,19 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                         % for 3P
                                       </li>
                                     </span>,
-                                    "value": 0.53,
+                                    "value": 0.5492957746478874,
                                   }
 
                   off_efg: Object {
-                                    "old_value": 0.3735632183908046,
+                                    "old_value": 0.47126436781609193,
                                     "override": "Adjustment derived from Off 3P%",
-                                    "value": 0.3735632183908046,
+                                    "value": 0.47126436781609193,
                                   }
 
                   off_ppp: Object {
-                                    "old_value": 89.1891891891892,
+                                    "old_value": 107.1090047393365,
                                     "override": "Adjustment derived from Off 3P%",
-                                    "value": 89.1891891891892,
+                                    "value": 107.1090047393365,
                                   }
 
                   off_title: <OverlayTrigger
@@ -6258,9 +6258,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                   baseline="season"
                   defLuck={
                     {
-   "deltaDefPpp": 0,
-   "deltaDefEfg": 0,
-   "deltaDefAdjEff": 0
+   "deltaDefPpp": 3.1130367002534265,
+   "deltaDefEfg": 0.020044780219780216,
+   "deltaDefAdjEff": 2.844199736433623
 }
                   }
                   name="lineup"
@@ -6284,33 +6284,33 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.23655913978494625,
+                                    "value": 0.24719101123595505,
                                   }
 
                   def_2primr: Object {
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.3010752688172043,
+                                    "value": 0.34831460674157305,
                                   }
 
                   def_3p: Object {
-                                    "old_value": 0.23255813953488372,
+                                    "old_value": 0.25,
                                     "override": "Luck adjusted",
-                                    "value": 0.23255813953488372,
+                                    "value": 0.3051008333333333,
                                   }
 
                   def_3pr: Object {
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.46236559139784944,
+                                    "value": 0.4044943820224719,
                                   }
 
                   def_adj_ppp: Object {
-                                    "old_value": 75.47619047619048,
+                                    "old_value": 82.0894333612718,
                                     "override": "Adjustment derived from Def 3P%",
-                                    "value": 75.47619047619048,
+                                    "value": 87.16564624911064,
                                   }
 
                   def_assist: Object {
@@ -6329,19 +6329,19 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                         % for 3P
                                       </li>
                                     </span>,
-                                    "value": 0.48,
+                                    "value": 0.5932203389830508,
                                   }
 
                   def_efg: Object {
-                                    "old_value": 0.34408602150537637,
+                                    "old_value": 0.38202247191011235,
                                     "override": "Adjustment derived from Def 3P%",
-                                    "value": 0.34408602150537637,
+                                    "value": 0.41545443820224714,
                                   }
 
                   def_ppp: Object {
-                                    "old_value": 80.41237113402062,
+                                    "old_value": 87.04663212435233,
                                     "override": "Adjustment derived from Def 3P%",
-                                    "value": 80.41237113402062,
+                                    "value": 92.55261350228072,
                                   }
 
                   def_title: ""
@@ -6350,33 +6350,33 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.2604166666666667,
+                                    "value": 0.18681318681318682,
                                   }
 
                   off_2primr: Object {
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.3229166666666667,
+                                    "value": 0.35714285714285715,
                                   }
 
                   off_3p: Object {
-                                    "old_value": 0.375,
+                                    "old_value": 0.3373493975903614,
                                     "override": "Luck adjusted",
-                                    "value": 0.375,
+                                    "value": 0.3373493975903614,
                                   }
 
                   off_3pr: Object {
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.4166666666666667,
+                                    "value": 0.45604395604395603,
                                   }
 
                   off_adj_ppp: Object {
-                                    "old_value": 114.22448979591837,
+                                    "old_value": 120.3613605770025,
                                     "override": "Adjustment derived from Off 3P%",
-                                    "value": 114.22448979591837,
+                                    "value": 120.3613605770025,
                                   }
 
                   off_assist: Object {
@@ -6395,19 +6395,19 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                         % for 3P
                                       </li>
                                     </span>,
-                                    "value": 0.52,
+                                    "value": 0.5308641975308642,
                                   }
 
                   off_efg: Object {
-                                    "old_value": 0.5052083333333334,
+                                    "old_value": 0.521978021978022,
                                     "override": "Adjustment derived from Off 3P%",
-                                    "value": 0.5052083333333334,
+                                    "value": 0.521978021978022,
                                   }
 
                   off_ppp: Object {
-                                    "old_value": 109.80392156862744,
+                                    "old_value": 112.18274111675127,
                                     "override": "Adjustment derived from Off 3P%",
-                                    "value": 109.80392156862744,
+                                    "value": 112.18274111675127,
                                   }
 
                   off_title: <OverlayTrigger
@@ -6497,33 +6497,33 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.23655913978494625,
+                                    "value": 0.24719101123595505,
                                   }
 
                   def_2primr: Object {
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.3010752688172043,
+                                    "value": 0.34831460674157305,
                                   }
 
                   def_3p: Object {
-                                    "old_value": 0.23255813953488372,
+                                    "old_value": 0.25,
                                     "override": "Luck adjusted",
-                                    "value": 0.23255813953488372,
+                                    "value": 0.3051008333333333,
                                   }
 
                   def_3pr: Object {
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.46236559139784944,
+                                    "value": 0.4044943820224719,
                                   }
 
                   def_adj_ppp: Object {
-                                    "old_value": 75.47619047619048,
+                                    "old_value": 82.0894333612718,
                                     "override": "Adjustment derived from Def 3P%",
-                                    "value": 75.47619047619048,
+                                    "value": 87.16564624911064,
                                   }
 
                   def_assist: Object {
@@ -6542,19 +6542,19 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                         % for 3P
                                       </li>
                                     </span>,
-                                    "value": 0.48,
+                                    "value": 0.5932203389830508,
                                   }
 
                   def_efg: Object {
-                                    "old_value": 0.34408602150537637,
+                                    "old_value": 0.38202247191011235,
                                     "override": "Adjustment derived from Def 3P%",
-                                    "value": 0.34408602150537637,
+                                    "value": 0.41545443820224714,
                                   }
 
                   def_ppp: Object {
-                                    "old_value": 80.41237113402062,
+                                    "old_value": 87.04663212435233,
                                     "override": "Adjustment derived from Def 3P%",
-                                    "value": 80.41237113402062,
+                                    "value": 92.55261350228072,
                                   }
 
                   def_title: ""
@@ -6563,33 +6563,33 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.2604166666666667,
+                                    "value": 0.18681318681318682,
                                   }
 
                   off_2primr: Object {
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.3229166666666667,
+                                    "value": 0.35714285714285715,
                                   }
 
                   off_3p: Object {
-                                    "old_value": 0.375,
+                                    "old_value": 0.3373493975903614,
                                     "override": "Luck adjusted",
-                                    "value": 0.375,
+                                    "value": 0.3373493975903614,
                                   }
 
                   off_3pr: Object {
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.4166666666666667,
+                                    "value": 0.45604395604395603,
                                   }
 
                   off_adj_ppp: Object {
-                                    "old_value": 114.22448979591837,
+                                    "old_value": 120.3613605770025,
                                     "override": "Adjustment derived from Off 3P%",
-                                    "value": 114.22448979591837,
+                                    "value": 120.3613605770025,
                                   }
 
                   off_assist: Object {
@@ -6608,19 +6608,19 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                         % for 3P
                                       </li>
                                     </span>,
-                                    "value": 0.52,
+                                    "value": 0.5308641975308642,
                                   }
 
                   off_efg: Object {
-                                    "old_value": 0.5052083333333334,
+                                    "old_value": 0.521978021978022,
                                     "override": "Adjustment derived from Off 3P%",
-                                    "value": 0.5052083333333334,
+                                    "value": 0.521978021978022,
                                   }
 
                   off_ppp: Object {
-                                    "old_value": 109.80392156862744,
+                                    "old_value": 112.18274111675127,
                                     "override": "Adjustment derived from Off 3P%",
-                                    "value": 109.80392156862744,
+                                    "value": 112.18274111675127,
                                   }
 
                   off_title: <OverlayTrigger
@@ -6710,9 +6710,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                   baseline="season"
                   defLuck={
                     {
-   "deltaDefPpp": 0,
-   "deltaDefEfg": 0,
-   "deltaDefAdjEff": 0
+   "deltaDefPpp": 5.505981377928396,
+   "deltaDefEfg": 0.033431966292134824,
+   "deltaDefAdjEff": 5.07621288783883
 }
                   }
                   name="lineup"
@@ -7610,21 +7610,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.3291139240506329,
+                                    "value": 0.2997032640949555,
                                   }
 
                   def_2primr: Object {
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.25316455696202533,
+                                    "value": 0.3056379821958457,
                                   }
 
                   def_3pr: Object {
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.4177215189873418,
+                                    "value": 0.39465875370919884,
                                   }
 
                   def_assist: Object {
@@ -7643,7 +7643,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                         % for 3P
                                       </li>
                                     </span>,
-                                    "value": 0.48,
+                                    "value": 0.5275590551181102,
                                   }
 
                   def_title: ""
@@ -7652,21 +7652,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.2634730538922156,
+                                    "value": 0.17956656346749225,
                                   }
 
                   off_2primr: Object {
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.3473053892215569,
+                                    "value": 0.3653250773993808,
                                   }
 
                   off_3pr: Object {
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.38922155688622756,
+                                    "value": 0.4551083591331269,
                                   }
 
                   off_assist: Object {
@@ -7685,7 +7685,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                         % for 3P
                                       </li>
                                     </span>,
-                                    "value": 0.52,
+                                    "value": 0.5211267605633803,
                                   }
 
                   off_title: Array [
@@ -8271,21 +8271,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.3291139240506329,
+                                    "value": 0.2997032640949555,
                                   }
 
                   def_2primr: Object {
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.25316455696202533,
+                                    "value": 0.3056379821958457,
                                   }
 
                   def_3pr: Object {
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.4177215189873418,
+                                    "value": 0.39465875370919884,
                                   }
 
                   def_assist: Object {
@@ -8304,7 +8304,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                         % for 3P
                                       </li>
                                     </span>,
-                                    "value": 0.48,
+                                    "value": 0.5275590551181102,
                                   }
 
                   def_title: ""
@@ -8313,21 +8313,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.2634730538922156,
+                                    "value": 0.17956656346749225,
                                   }
 
                   off_2primr: Object {
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.3473053892215569,
+                                    "value": 0.3653250773993808,
                                   }
 
                   off_3pr: Object {
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.38922155688622756,
+                                    "value": 0.4551083591331269,
                                   }
 
                   off_assist: Object {
@@ -8346,7 +8346,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                         % for 3P
                                       </li>
                                     </span>,
-                                    "value": 0.52,
+                                    "value": 0.5211267605633803,
                                   }
 
                   off_title: Array [
@@ -8935,21 +8935,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.36470588235294116,
+                                    "value": 0.3516483516483517,
                                   }
 
                   def_2primr: Object {
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.3176470588235294,
+                                    "value": 0.3076923076923077,
                                   }
 
                   def_3pr: Object {
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.3176470588235294,
+                                    "value": 0.34065934065934067,
                                   }
 
                   def_assist: Object {
@@ -8968,7 +8968,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                         % for 3P
                                       </li>
                                     </span>,
-                                    "value": 0.47,
+                                    "value": 0.5,
                                   }
 
                   def_title: ""
@@ -8977,21 +8977,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.3103448275862069,
+                                    "value": 0.20689655172413793,
                                   }
 
                   off_2primr: Object {
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.3333333333333333,
+                                    "value": 0.3793103448275862,
                                   }
 
                   off_3pr: Object {
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.3563218390804598,
+                                    "value": 0.41379310344827586,
                                   }
 
                   off_assist: Object {
@@ -9010,7 +9010,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                         % for 3P
                                       </li>
                                     </span>,
-                                    "value": 0.53,
+                                    "value": 0.5492957746478874,
                                   }
 
                   off_title: Array [
@@ -9596,21 +9596,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.36470588235294116,
+                                    "value": 0.3516483516483517,
                                   }
 
                   def_2primr: Object {
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.3176470588235294,
+                                    "value": 0.3076923076923077,
                                   }
 
                   def_3pr: Object {
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.3176470588235294,
+                                    "value": 0.34065934065934067,
                                   }
 
                   def_assist: Object {
@@ -9629,7 +9629,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                         % for 3P
                                       </li>
                                     </span>,
-                                    "value": 0.47,
+                                    "value": 0.5,
                                   }
 
                   def_title: ""
@@ -9638,21 +9638,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.3103448275862069,
+                                    "value": 0.20689655172413793,
                                   }
 
                   off_2primr: Object {
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.3333333333333333,
+                                    "value": 0.3793103448275862,
                                   }
 
                   off_3pr: Object {
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.3563218390804598,
+                                    "value": 0.41379310344827586,
                                   }
 
                   off_assist: Object {
@@ -9671,7 +9671,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                         % for 3P
                                       </li>
                                     </span>,
-                                    "value": 0.53,
+                                    "value": 0.5492957746478874,
                                   }
 
                   off_title: Array [
@@ -10260,21 +10260,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.23655913978494625,
+                                    "value": 0.24719101123595505,
                                   }
 
                   def_2primr: Object {
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.3010752688172043,
+                                    "value": 0.34831460674157305,
                                   }
 
                   def_3pr: Object {
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.46236559139784944,
+                                    "value": 0.4044943820224719,
                                   }
 
                   def_assist: Object {
@@ -10293,7 +10293,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                         % for 3P
                                       </li>
                                     </span>,
-                                    "value": 0.48,
+                                    "value": 0.5932203389830508,
                                   }
 
                   def_title: ""
@@ -10302,21 +10302,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.2604166666666667,
+                                    "value": 0.18681318681318682,
                                   }
 
                   off_2primr: Object {
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.3229166666666667,
+                                    "value": 0.35714285714285715,
                                   }
 
                   off_3pr: Object {
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.4166666666666667,
+                                    "value": 0.45604395604395603,
                                   }
 
                   off_assist: Object {
@@ -10335,7 +10335,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                         % for 3P
                                       </li>
                                     </span>,
-                                    "value": 0.52,
+                                    "value": 0.5308641975308642,
                                   }
 
                   off_title: Array [
@@ -10921,21 +10921,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.23655913978494625,
+                                    "value": 0.24719101123595505,
                                   }
 
                   def_2primr: Object {
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.3010752688172043,
+                                    "value": 0.34831460674157305,
                                   }
 
                   def_3pr: Object {
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.46236559139784944,
+                                    "value": 0.4044943820224719,
                                   }
 
                   def_assist: Object {
@@ -10954,7 +10954,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                         % for 3P
                                       </li>
                                     </span>,
-                                    "value": 0.48,
+                                    "value": 0.5932203389830508,
                                   }
 
                   def_title: ""
@@ -10963,21 +10963,21 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.2604166666666667,
+                                    "value": 0.18681318681318682,
                                   }
 
                   off_2primr: Object {
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.3229166666666667,
+                                    "value": 0.35714285714285715,
                                   }
 
                   off_3pr: Object {
                                     "extraInfo": <span>
                                       0% assisted
                                     </span>,
-                                    "value": 0.4166666666666667,
+                                    "value": 0.45604395604395603,
                                   }
 
                   off_assist: Object {
@@ -10996,7 +10996,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                         % for 3P
                                       </li>
                                     </span>,
-                                    "value": 0.52,
+                                    "value": 0.5308641975308642,
                                   }
 
                   off_title: Array [
