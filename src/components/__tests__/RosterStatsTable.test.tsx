@@ -1,6 +1,7 @@
 import renderer from 'react-test-renderer';
 import React from 'react';
 import RosterStatsTable from '../RosterStatsTable';
+import { SampleDataUtils } from "../../sample-data/SampleDataUtils";
 import { samplePlayerStatsResponse } from "../../sample-data/samplePlayerStatsResponse";
 import { GameFilterParams } from "../utils/FilterModels";
 import { shallow } from 'enzyme'
@@ -8,6 +9,12 @@ import toJson from 'enzyme-to-json'
 import _ from "lodash";
 
 describe("RosterStatsTable", () => {
+
+  // Tidy up snapshot rendering:
+  expect.addSnapshotSerializer(SampleDataUtils.summarizeEnrichedApiResponse(
+    samplePlayerStatsResponse?.aggregations?.tri_filter?.buckets?.baseline?.player?.buckets[0]
+  ));
+
   test("RosterStatsTable (baseline only, !expanded) - should create snapshot", () => {
     const testData = {
       on: [],
