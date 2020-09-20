@@ -59,7 +59,8 @@ export const commonPlayerAggregations = function(publicEfficiency: any, lookup: 
               def team_fga = doc["team_stats.fg.attempts.total"].value;
               def team_fgm = doc["team_stats.fg.made.total"].value;
               def team_fgM = team_fga - team_fgm;
-              def team_orb =doc["team_stats.orb.total"].value;
+              def maybe_team_orb = doc["team_stats.orb.total"];
+              def team_orb = (0 != maybe_team_orb.size()) ? maybe_team_orb.value : 0.0;
               team_orb = team_orb > team_fgM ? team_fgM : team_orb;
               def rebound_pct = team_fgM > 0 ? 1.0*team_orb/team_fgM : 0.0;
 
