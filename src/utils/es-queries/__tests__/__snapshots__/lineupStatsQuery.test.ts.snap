@@ -755,7 +755,7 @@ exports[`lineupStatsQuery lineupStatsQuery 1`] = `
                      "var_orb": "total_off_orb",
                      "var_drb": "total_def_drb"
                   },
-                  "script": "\\n            def fgM = params.fga - params.fgm;\\n            def rebound_pct = (params.var_orb > 0) ? 1.0*params.var_orb/(params.var_orb + params.var_drb) : 0.0;\\n            \\n            return params.fgm + (1.0 - rebound_pct)*fgM + 0.475*params.fta + params.to;\\n          "
+                  "script": "\\n            def fgM = params.fga - params.fgm;\\n            def rebound_pct = (params.var_orb > 0) ? 1.0*params.var_orb/(params.var_orb + params.var_drb) : 0.0;\\n            return params.fgm + (1.0 - rebound_pct)*fgM + 0.475*params.fta + params.to;\\n          "
                }
             },
             "total_off_trans_pts": {
@@ -778,7 +778,7 @@ exports[`lineupStatsQuery lineupStatsQuery 1`] = `
                      "var_orb": "total_off_orb",
                      "var_drb": "total_def_drb"
                   },
-                  "script": "\\n            def fgM = params.fga - params.fgm;\\n            def rebound_pct = (params.var_orb > 0) ? 1.0*params.var_orb/(params.var_orb + params.var_drb) : 0.0;\\n            rebound_pct = 0.0;\\n            return params.fgm + (1.0 - rebound_pct)*fgM + 0.475*params.fta + params.to;\\n          "
+                  "script": "\\n            def fgM = params.fga - params.fgm;\\n            def rebound_pct = (params.var_orb > 0) ? 1.0*params.var_orb/(params.var_orb + params.var_drb) : 0.0;\\n            return params.fgm + (1.0 - rebound_pct)*fgM + 0.475*params.fta + params.to;\\n          "
                }
             },
             "off_ppp": {
@@ -1679,7 +1679,7 @@ exports[`lineupStatsQuery lineupStatsQuery 1`] = `
                      "var_orb": "total_def_orb",
                      "var_drb": "total_off_drb"
                   },
-                  "script": "\\n            def fgM = params.fga - params.fgm;\\n            def rebound_pct = (params.var_orb > 0) ? 1.0*params.var_orb/(params.var_orb + params.var_drb) : 0.0;\\n            \\n            return params.fgm + (1.0 - rebound_pct)*fgM + 0.475*params.fta + params.to;\\n          "
+                  "script": "\\n            def fgM = params.fga - params.fgm;\\n            def rebound_pct = (params.var_orb > 0) ? 1.0*params.var_orb/(params.var_orb + params.var_drb) : 0.0;\\n            return params.fgm + (1.0 - rebound_pct)*fgM + 0.475*params.fta + params.to;\\n          "
                }
             },
             "total_def_trans_pts": {
@@ -1702,7 +1702,7 @@ exports[`lineupStatsQuery lineupStatsQuery 1`] = `
                      "var_orb": "total_def_orb",
                      "var_drb": "total_off_drb"
                   },
-                  "script": "\\n            def fgM = params.fga - params.fgm;\\n            def rebound_pct = (params.var_orb > 0) ? 1.0*params.var_orb/(params.var_orb + params.var_drb) : 0.0;\\n            rebound_pct = 0.0;\\n            return params.fgm + (1.0 - rebound_pct)*fgM + 0.475*params.fta + params.to;\\n          "
+                  "script": "\\n            def fgM = params.fga - params.fgm;\\n            def rebound_pct = (params.var_orb > 0) ? 1.0*params.var_orb/(params.var_orb + params.var_drb) : 0.0;\\n            return params.fgm + (1.0 - rebound_pct)*fgM + 0.475*params.fta + params.to;\\n          "
                }
             },
             "def_ppp": {

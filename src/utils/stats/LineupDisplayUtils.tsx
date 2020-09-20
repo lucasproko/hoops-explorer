@@ -144,7 +144,7 @@ export class LineupDisplayUtils {
   }
 
   /** Inject various assist info into the table cell inputs */
-  static injectAssistInfo(stat: Record<string, any>, expandedView: boolean, playerView: boolean) {
+  static injectPlayTypeInfo(stat: Record<string, any>, expandedView: boolean, playerView: boolean) {
     if (playerView) {
       // Put assist %s as the row underneath shot types:
       const buildInfoRow = (stat: any) =>
@@ -165,8 +165,31 @@ export class LineupDisplayUtils {
         <li>{midPct}% for mid-range</li>
         <li>{threePct}% for 3P</li>
       </span>;
-
     }
+    const playCategoryBuilder = (stat: any, offDef: "off" | "def") => {
+      const totalPoss = stat[`total_${offDef}_poss`]?.value || 1;
+      const scramblePct = 100*(stat[`total_${offDef}_scramble_poss`]?.value || 0)/totalPoss;
+      const transPct = 100*(stat[`total_${offDef}_trans_poss`]?.value || 0)/totalPoss;
+      const totalPpp = (stat[`${offDef}_ppp`]?.value || 0); //TODO: depends on player vs team/lineup
+      const scramblePpp = (stat[`${offDef}_scramble_ppp`]?.value || 0) ;
+      const scramblePppDelta = scramblePpp - totalPpp;
+      const scramblePm = scramblePppDelta > 0 ? "+" : "";
+      const transPpp = (stat[`${offDef}_trans_ppp`]?.value || 0);
+      const transPppDelta = transPpp - totalPpp;
+      const transPm = transPppDelta > 0 ? "+" : "";
+
+      return <span>
+        Play category breakdown:
+        { scramblePct > 5 ?
+          <li>{scramblePct.toFixed(1)}% scramble:<br/>{scramblePm}{scramblePppDelta.toFixed(1)} pts/100</li> :
+          <li>{scramblePct.toFixed(1)}% scramble</li>
+        }
+        { transPct > 5 ?
+          <li>{transPct.toFixed(1)}% transition:<br/>{transPm}{transPppDelta.toFixed(1)} pts/100</li> :
+          <li>{transPct.toFixed(1)}% transition</li>
+        }
+      </span>;
+    };
     if (stat.off_assist) {
       stat.off_assist.extraInfo = assistBuilder(stat, "off");
     }
@@ -196,6 +219,12 @@ export class LineupDisplayUtils {
         stat.off_3pr.extraInfo = <span>{buildText(stat.off_3p_ast)}</span>;
       }
       if (!playerView) { // team/lineup views have both offense and defense
+        if (stat.off_ppp) {
+          stat.off_ppp.extraInfo = playCategoryBuilder(stat, "off");
+        }
+        if (stat.def_ppp) {
+          stat.def_ppp.extraInfo = playCategoryBuilder(stat, "def");
+        }
         if (stat.def_assist) {
           stat.def_assist.extraInfo = assistBuilder(stat, "def");
         }

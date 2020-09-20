@@ -158,6 +158,9 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
     ParamDefaults.defaultLuckConfig : gameFilterParams.luck
   );
 
+  /** (placeholder for positional info)*/
+  const [ showPlayTypes, setShowPlayTypes ] = useState(false)
+
   /** Whether we are showing the luck config modal */
   const [ showLuckConfig, setShowLuckConfig ] = useState(false);
 
@@ -373,7 +376,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
         // Set or unset derived stats:
         OverrideUtils.updateDerivedStats(stat, adjustmentReason);
         stat.off_drb = stat.def_orb; //(just for display, all processing should use def_orb)
-        LineupDisplayUtils.injectAssistInfo(stat, expandedView, true);
+        LineupDisplayUtils.injectPlayTypeInfo(stat, expandedView, true);
 
         // Ratings:
 
@@ -491,10 +494,10 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
             showHelp={showHelp}
           />, "small pt-2"
         ) ] : [] ,
-//TODO
-        // [ GenericTableOps.buildTextRow(
-        //   <PlayerPlayTypeDiagView player={p.baseline} teamSeason={teamSeasonLookup} showHelp={showHelp}/>, "small"
-        // ) ],
+        showPlayTypes ?
+          [ GenericTableOps.buildTextRow(
+            <PlayerPlayTypeDiagView player={p.baseline} teamSeason={teamSeasonLookup} showHelp={showHelp}/>, "small"
+          ) ] : [],
       ]),
       [ GenericTableOps.buildRowSeparator() ]
     ]);

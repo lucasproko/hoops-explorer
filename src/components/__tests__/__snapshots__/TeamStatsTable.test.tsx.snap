@@ -431,7 +431,14 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 }
               >
                 <div>
-                  108.4
+                  <div>
+                    108.4
+                    <small>
+                      <sup
+                        className="infoBadge"
+                      />
+                    </small>
+                  </div>
                 </div>
               </td>
               <td
@@ -852,7 +859,14 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 }
               >
                 <div>
-                  95.4
+                  <div>
+                    95.4
+                    <small>
+                      <sup
+                        className="infoBadge"
+                      />
+                    </small>
+                  </div>
                 </div>
               </td>
               <td
@@ -1300,7 +1314,14 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 }
               >
                 <div>
-                  103.2
+                  <div>
+                    103.2
+                    <small>
+                      <sup
+                        className="infoBadge"
+                      />
+                    </small>
+                  </div>
                 </div>
               </td>
               <td
@@ -1721,7 +1742,14 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 }
               >
                 <div>
-                  98.2
+                  <div>
+                    98.2
+                    <small>
+                      <sup
+                        className="infoBadge"
+                      />
+                    </small>
+                  </div>
                 </div>
               </td>
               <td
@@ -2169,7 +2197,14 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 }
               >
                 <div>
-                  107.2
+                  <div>
+                    107.2
+                    <small>
+                      <sup
+                        className="infoBadge"
+                      />
+                    </small>
+                  </div>
                 </div>
               </td>
               <td
@@ -2590,7 +2625,14 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                 }
               >
                 <div>
-                  96.1
+                  <div>
+                    96.1
+                    <small>
+                      <sup
+                        className="infoBadge"
+                      />
+                    </small>
+                  </div>
                 </div>
               </td>
               <td
@@ -3428,9 +3470,16 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                 }
               >
                 <div>
-                  <u>
-                    108.4
-                  </u>
+                  <div>
+                    <u>
+                      108.4
+                    </u>
+                    <small>
+                      <sup
+                        className="infoBadge"
+                      />
+                    </small>
+                  </div>
                 </div>
               </td>
               <td
@@ -3857,9 +3906,16 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                 }
               >
                 <div>
-                  <u>
-                    96.5
-                  </u>
+                  <div>
+                    <u>
+                      96.5
+                    </u>
+                    <small>
+                      <sup
+                        className="infoBadge"
+                      />
+                    </small>
+                  </div>
                 </div>
               </td>
               <td
@@ -4454,9 +4510,16 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                 }
               >
                 <div>
-                  <u>
-                    103.2
-                  </u>
+                  <div>
+                    <u>
+                      103.2
+                    </u>
+                    <small>
+                      <sup
+                        className="infoBadge"
+                      />
+                    </small>
+                  </div>
                 </div>
               </td>
               <td
@@ -4883,9 +4946,16 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                 }
               >
                 <div>
-                  <u>
-                    95.8
-                  </u>
+                  <div>
+                    <u>
+                      95.8
+                    </u>
+                    <small>
+                      <sup
+                        className="infoBadge"
+                      />
+                    </small>
+                  </div>
                 </div>
               </td>
               <td
@@ -5480,9 +5550,16 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                 }
               >
                 <div>
-                  <u>
-                    107.2
-                  </u>
+                  <div>
+                    <u>
+                      107.2
+                    </u>
+                    <small>
+                      <sup
+                        className="infoBadge"
+                      />
+                    </small>
+                  </div>
                 </div>
               </td>
               <td
@@ -5909,9 +5986,16 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                 }
               >
                 <div>
-                  <u>
-                    96.3
-                  </u>
+                  <div>
+                    <u>
+                      96.3
+                    </u>
+                    <small>
+                      <sup
+                        className="infoBadge"
+                      />
+                    </small>
+                  </div>
                 </div>
               </td>
               <td

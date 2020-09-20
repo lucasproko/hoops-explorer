@@ -370,8 +370,8 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({startingState, da
       <Tooltip id="playerOnOffTooltip">Open a tab with the on/off analysis for this player</Tooltip>;
 
     const tableData = _.chain(tableDataInputs).flatMap((player, index) => {
-      LineupDisplayUtils.injectAssistInfo(player.on, false, false); //(inject assist numbers)
-      LineupDisplayUtils.injectAssistInfo(player.off, false, false); //(inject assist numbers)
+      LineupDisplayUtils.injectPlayTypeInfo(player.on, false, false); //(inject assist numbers)
+      LineupDisplayUtils.injectPlayTypeInfo(player.off, false, false); //(inject assist numbers)
 
       const [ onMargin, offMargin ] = OnOffReportDiagUtils.getAdjEffMargins(player);
       const onSuffix =

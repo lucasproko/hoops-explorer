@@ -76,6 +76,9 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
     ParamDefaults.defaultLuckConfig : gameFilterParams.luck
   );
 
+  /** (placeholder for positional info)*/
+  const [ showPlayTypes, setShowPlayTypes ] = useState(false)
+
   /** Whether we are showing the luck config modal */
   const [ showLuckConfig, setShowLuckConfig ] = useState(false);
 
@@ -159,7 +162,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
   const teamStatsBaseline = { off_title: "Baseline Offense", def_title: "Baseline Defense", ...teamStats.baseline };
 
   ([ "on", "off", "baseline" ] as OnOffBase[]).forEach(k => {
-    LineupDisplayUtils.injectAssistInfo(teamStats[k], false, false);
+    LineupDisplayUtils.injectPlayTypeInfo(teamStats[k], false, false);
   });
 
   const tableData = _.flatMap([
@@ -175,10 +178,10 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
           showHelp={showHelp}
         />, "small pt-2"
       ) ] : [] ,
-//TODO
-        // [ GenericTableOps.buildTextRow(
-        //   <TeamPlayTypeDiagView lineupSet={teamStats.off} showHelp={showHelp}/>, "small"
-        // ) ],
+      showPlayTypes ?
+        [ GenericTableOps.buildTextRow(
+          <TeamPlayTypeDiagView lineupSet={teamStats.off} showHelp={showHelp}/>, "small"
+        ) ] : [],
       [ GenericTableOps.buildRowSeparator() ]
     ]) : [],
     (teamStats.off?.doc_count) ? _.flatten([
@@ -193,10 +196,10 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
           showHelp={showHelp}
         />, "small pt-2"
       ) ] : [] ,
-//TODO
-        // [ GenericTableOps.buildTextRow(
-        //   <TeamPlayTypeDiagView lineupSet={teamStats.off} showHelp={showHelp}/>, "small"
-        // ) ],
+      showPlayTypes ?
+        [ GenericTableOps.buildTextRow(
+          <TeamPlayTypeDiagView lineupSet={teamStats.off} showHelp={showHelp}/>, "small"
+        ) ] : [],
       [ GenericTableOps.buildRowSeparator() ]
     ]) : [],
     _.flatten([
@@ -211,10 +214,10 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
           showHelp={showHelp}
         />, "small pt-2"
       ) ] : [] ,
-//TODO
-        // [ GenericTableOps.buildTextRow(
-        //   <TeamPlayTypeDiagView lineupSet={teamStats.baseline} showHelp={showHelp}/>, "small"
-        // ) ],
+      showPlayTypes ?
+        [ GenericTableOps.buildTextRow(
+          <TeamPlayTypeDiagView lineupSet={teamStats.baseline} showHelp={showHelp}/>, "small"
+        ) ] : [],
       [ GenericTableOps.buildRowSeparator() ],
     ]),
   ]);

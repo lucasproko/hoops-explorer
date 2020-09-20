@@ -255,7 +255,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
   ] : [];
 
   const tableData = totalLineup.concat(filteredLineups).flatMap((lineup) => {
-      LineupDisplayUtils.injectAssistInfo(lineup, false, false); //(inject assist numbers)
+      LineupDisplayUtils.injectPlayTypeInfo(lineup, false, false); //(inject assist numbers)
 
       const codesAndIds = lineup.players_array?.hits?.hits?.[0]?._source?.players || [];
 

@@ -201,13 +201,12 @@ export const commonAggregations = function(
             "fta": `total_${dstPrefix}_${typePrefix}fta`,
             "to": `total_${dstPrefix}_${typePrefix}to`,
 
-            "var_orb": `total_${dstPrefix}_orb`, //(for "trans_", treat ORB% as 0 since never count post-ORB as transition)
+            "var_orb": `total_${dstPrefix}_orb`,
             "var_drb": `total_${oppoDstPrefix}_drb`,
           },
           "script": `
             def fgM = params.fga - params.fgm;
             def rebound_pct = (params.var_orb > 0) ? 1.0*params.var_orb/(params.var_orb + params.var_drb) : 0.0;
-            ${(typePrefix == "trans_") ? "rebound_pct = 0.0;" : "" }
             return params.fgm + (1.0 - rebound_pct)*fgM + 0.475*params.fta + params.to;
           `
         }
