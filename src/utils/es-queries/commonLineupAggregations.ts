@@ -114,6 +114,13 @@ const commonAssistInfo = function(srcPrefix: string, dstPrefix: "off" | "def", s
 
 // Public methods
 
+/** Time analysis to calculate pace: */
+export const timeAnalysis = function() {
+  return {
+    "duration_mins": { "sum": { "field": "duration_mins" } },
+  };
+}
+
 /** srcPrefix is "team_stats", "opponent_stats", dstPrefix is "off", "def" */
 export const commonAggregations = function(
   srcPrefix: string, dstPrefix: "off" | "def",
@@ -339,6 +346,7 @@ export const commonLineupAggregations = function(publicEfficiency: any, lookup: 
   return {
     // Derived
     ...commonAggregations("team_stats", "off", publicEfficiency, lookup, avgEff),
-    ...commonAggregations("opponent_stats", "def", publicEfficiency, lookup, avgEff)
+    ...commonAggregations("opponent_stats", "def", publicEfficiency, lookup, avgEff),
+    ...timeAnalysis()
    };
 }

@@ -1,4 +1,4 @@
-import { commonAggregations } from "./commonLineupAggregations";
+import { commonAggregations, timeAnalysis } from "./commonLineupAggregations";
 
 import _ from "lodash";
 
@@ -221,6 +221,8 @@ export const commonPlayerAggregations = function(publicEfficiency: any, lookup: 
       ).pick(
         [ "def_adj_opp" ]
       ).value()
-    )
+    ),
+    //(common time analysis)
+    ...timeAnalysis()
   };
 }

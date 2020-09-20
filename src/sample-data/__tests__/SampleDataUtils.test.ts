@@ -10,10 +10,18 @@ describe("SampleDataUtils", () => {
 
   test("buildTemplateFromResponse", () => {
     const lineupTemplate = SampleDataUtils.buildTemplateFromResponseLineup(
-      sampleLineupStatsResponse.responses[0].aggregations.lineups.buckets
+      sampleLineupStatsResponse.responses[0].aggregations.lineups.buckets,
+      new Set([
+        "AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith",
+        "AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith",
+        "AaWiggins_AnCowan_DoScott_ErAyala_JaSmith"
+      ])
     );
     if (false) console.log(JSON.stringify(
       lineupTemplate, null, 3
+    ));
+    if (false) console.log(JSON.stringify(
+      SampleDataUtils.buildResponseFromTemplateLineup(lineupTemplate), null, 3
     ));
     expect(SampleDataUtils.buildResponseFromTemplateLineup(lineupTemplate)).toEqual(
       sampleLineupStatsResponse.responses[0].aggregations.lineups.buckets

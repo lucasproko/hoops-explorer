@@ -693,6 +693,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                     "value": 0.5211267605633803,
                                   }
 
+                  off_poss: Object {
+                                    "extraInfo": undefined,
+                                    "value": 401,
+                                  }
+
                   off_title: Array [
                                     <OverlayTrigger
                                       overlay={
@@ -1340,6 +1345,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                     "value": 0.5211267605633803,
                                   }
 
+                  off_poss: Object {
+                                    "extraInfo": undefined,
+                                    "value": 401,
+                                  }
+
                   off_title: Array [
                                     <OverlayTrigger
                                       overlay={
@@ -1990,6 +2000,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                     "value": 0.5492957746478874,
                                   }
 
+                  off_poss: Object {
+                                    "extraInfo": undefined,
+                                    "value": 211,
+                                  }
+
                   off_title: Array [
                                     <OverlayTrigger
                                       overlay={
@@ -2635,6 +2650,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                       </li>
                                     </span>,
                                     "value": 0.5492957746478874,
+                                  }
+
+                  off_poss: Object {
+                                    "extraInfo": undefined,
+                                    "value": 211,
                                   }
 
                   off_title: Array [
@@ -3287,6 +3307,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                     "value": 0.5308641975308642,
                                   }
 
+                  off_poss: Object {
+                                    "extraInfo": undefined,
+                                    "value": 197,
+                                  }
+
                   off_title: Array [
                                     <OverlayTrigger
                                       overlay={
@@ -3932,6 +3957,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                       </li>
                                     </span>,
                                     "value": 0.5308641975308642,
+                                  }
+
+                  off_poss: Object {
+                                    "extraInfo": undefined,
+                                    "value": 197,
                                   }
 
                   off_title: Array [
@@ -5500,6 +5530,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 0.5092879256965944,
                                   }
 
+                  off_poss: Object {
+                                    "extraInfo": undefined,
+                                    "value": 401,
+                                  }
+
                   off_ppp: Object {
                                     "old_value": 117.2069825436409,
                                     "override": "Adjustment derived from Off 3P%",
@@ -5711,6 +5746,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "old_value": 0.5092879256965944,
                                     "override": "Adjustment derived from Off 3P%",
                                     "value": 0.5092879256965944,
+                                  }
+
+                  off_poss: Object {
+                                    "extraInfo": undefined,
+                                    "value": 401,
                                   }
 
                   off_ppp: Object {
@@ -5952,6 +5992,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 0.47126436781609193,
                                   }
 
+                  off_poss: Object {
+                                    "extraInfo": undefined,
+                                    "value": 211,
+                                  }
+
                   off_ppp: Object {
                                     "old_value": 107.1090047393365,
                                     "override": "Adjustment derived from Off 3P%",
@@ -6163,6 +6208,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "old_value": 0.47126436781609193,
                                     "override": "Adjustment derived from Off 3P%",
                                     "value": 0.47126436781609193,
+                                  }
+
+                  off_poss: Object {
+                                    "extraInfo": undefined,
+                                    "value": 211,
                                   }
 
                   off_ppp: Object {
@@ -6404,6 +6454,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 0.521978021978022,
                                   }
 
+                  off_poss: Object {
+                                    "extraInfo": undefined,
+                                    "value": 197,
+                                  }
+
                   off_ppp: Object {
                                     "old_value": 112.18274111675127,
                                     "override": "Adjustment derived from Off 3P%",
@@ -6615,6 +6670,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "old_value": 0.521978021978022,
                                     "override": "Adjustment derived from Off 3P%",
                                     "value": 0.521978021978022,
+                                  }
+
+                  off_poss: Object {
+                                    "extraInfo": undefined,
+                                    "value": 197,
                                   }
 
                   off_ppp: Object {
@@ -7688,6 +7748,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 0.5211267605633803,
                                   }
 
+                  off_poss: Object {
+                                    "extraInfo": undefined,
+                                    "value": 401,
+                                  }
+
                   off_title: Array [
                                     <OverlayTrigger
                                       overlay={
@@ -8349,6 +8414,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 0.5211267605633803,
                                   }
 
+                  off_poss: Object {
+                                    "extraInfo": undefined,
+                                    "value": 401,
+                                  }
+
                   off_title: Array [
                                     <OverlayTrigger
                                       overlay={
@@ -9013,6 +9083,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 0.5492957746478874,
                                   }
 
+                  off_poss: Object {
+                                    "extraInfo": undefined,
+                                    "value": 211,
+                                  }
+
                   off_title: Array [
                                     <OverlayTrigger
                                       overlay={
@@ -9672,6 +9747,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                       </li>
                                     </span>,
                                     "value": 0.5492957746478874,
+                                  }
+
+                  off_poss: Object {
+                                    "extraInfo": undefined,
+                                    "value": 211,
                                   }
 
                   off_title: Array [
@@ -10338,6 +10418,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 0.5308641975308642,
                                   }
 
+                  off_poss: Object {
+                                    "extraInfo": undefined,
+                                    "value": 197,
+                                  }
+
                   off_title: Array [
                                     <OverlayTrigger
                                       overlay={
@@ -10997,6 +11082,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                       </li>
                                     </span>,
                                     "value": 0.5308641975308642,
+                                  }
+
+                  off_poss: Object {
+                                    "extraInfo": undefined,
+                                    "value": 197,
                                   }
 
                   off_title: Array [

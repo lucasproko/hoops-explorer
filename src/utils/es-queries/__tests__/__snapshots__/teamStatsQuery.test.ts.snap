@@ -1958,6 +1958,11 @@ exports[`teamStatsQuery teamStatsQuery 1`] = `
                      }
                   }
                }
+            },
+            "duration_mins": {
+               "sum": {
+                  "field": "duration_mins"
+               }
             }
          },
          "filters": {

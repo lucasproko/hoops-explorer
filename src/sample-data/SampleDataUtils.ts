@@ -98,7 +98,7 @@ export class SampleDataUtils {
   }
 
   /** Builds an easier to manipulate template for the different responses, from an actual response */
-  static buildTemplateFromResponseLineup(input: Array<Record<string, any>>) {
+  static buildTemplateFromResponseLineup(input: Array<Record<string, any>>, filter?: Set<String>) {
     const preSorted = _.transform(input, (acc, inEl) => {
       const recordId = inEl?.key || "unknown";
       const injectInfo = (k: string, prefix: string) => {
@@ -114,23 +114,25 @@ export class SampleDataUtils {
         }
       };
 
-      _.keys(inEl).filter(k => k != "key").forEach(k => {
-        const stat = _.find([
-          "oppo_total_off_", "oppo_total_def_",
-          "oppo_off_", "oppo_def_",
+      if (!filter || filter.has(recordId)) {
+        _.keys(inEl).filter(k => k != "key").forEach(k => {
+          const stat = _.find([
+            "oppo_total_off_", "oppo_total_def_",
+            "oppo_off_", "oppo_def_",
 
-          "team_total_off_", "team_total_def_",
-          "team_off_", "team_def_",
+            "team_total_off_", "team_total_def_",
+            "team_off_", "team_def_",
 
-          "total_off_", "total_def_",
-          "off_", "def_"
-        ], prefix => k.indexOf(prefix) == 0);
-        if (stat) {
-          injectInfo(k, stat);
-        } else {
-          injectInfo(k, "");
-        }
-      });
+            "total_off_", "total_def_",
+            "off_", "def_"
+          ], prefix => k.indexOf(prefix) == 0);
+          if (stat) {
+            injectInfo(k, stat);
+          } else {
+            injectInfo(k, "");
+          }
+        });
+      }
     }, {} as Record<string, any>);
 
     // Sort the keys into some sort of logical order

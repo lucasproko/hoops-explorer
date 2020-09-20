@@ -190,6 +190,14 @@ export class LineupDisplayUtils {
         }
       </span>;
     };
+    const paceBuilder = (stat: any, isPlayer: boolean) => {
+      const totalOffPoss = (isPlayer ? stat[`off_team_poss`]?.value : stat[`off_poss`]?.value) || 0;
+      const totalDefPoss = (isPlayer ? totalOffPoss : stat[`def_poss`]?.value) || 0;
+      const totalTime = stat[`duration_mins`]?.value || 0;
+      const possPer40 = 0.5*(totalOffPoss + totalDefPoss) / (totalTime/40);
+      return totalTime > 0 ? <span>{possPer40.toFixed(1)} ppg</span> : undefined;
+    }
+
     if (stat.off_assist) {
       stat.off_assist.extraInfo = assistBuilder(stat, "off");
     }
@@ -236,6 +244,16 @@ export class LineupDisplayUtils {
         }
         if (stat.def_3pr) {
           stat.def_3pr.extraInfo = <span>{buildText(stat.def_3p_ast)}</span>;
+        }
+        if (stat.off_poss) {
+          stat.off_poss.extraInfo = paceBuilder(stat, false);
+        }
+      } else {
+        if (stat.off_team_poss) {
+          stat.off_team_poss.extraInfo = paceBuilder(stat, true);
+        }
+        if (stat.off_team_poss_pct) {
+          stat.off_team_poss_pct.extraInfo = paceBuilder(stat, true);
         }
       }
     }

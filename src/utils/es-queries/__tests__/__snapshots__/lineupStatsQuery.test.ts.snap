@@ -1881,6 +1881,11 @@ exports[`lineupStatsQuery lineupStatsQuery 1`] = `
                   }
                }
             },
+            "duration_mins": {
+               "sum": {
+                  "field": "duration_mins"
+               }
+            },
             "players_array": {
                "top_hits": {
                   "size": 1,
