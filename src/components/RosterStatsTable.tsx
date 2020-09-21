@@ -752,7 +752,12 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
       </Form.Row>
       <Row className="mt-2">
         <Col>
-          <GenericTable tableCopyId="rosterStatsTable" tableFields={tableFields} tableData={tableData}/>
+          <GenericTable
+            tableCopyId="rosterStatsTable"
+            tableFields={tableFields}
+            tableData={tableData}
+            cellTooltipMode="none"
+          />
         </Col>
       </Row>
     </LoadingOverlay>

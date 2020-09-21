@@ -19,8 +19,11 @@ import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 
 // Libary imports
 import ClipboardJS from 'clipboard';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faClipboard } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faClipboard } from '@fortawesome/free-solid-svg-icons';
+import { faCircle } from '@fortawesome/free-solid-svg-icons';
+import { faArrowAltCircleRight } from '@fortawesome/free-solid-svg-icons';
+import { faArrowAltCircleDown } from '@fortawesome/free-solid-svg-icons';
 
 type GenericTableColorPickerFn =  (val: any, cellMeta: string) => string | undefined
 export class GenericTableColProps {
@@ -156,14 +159,18 @@ export class GenericTableOps {
     return new GenericTableColProps("", "", width);
   }
 }
+type LockModes = "col" | "none" | "row" | "missing";
+const nextLockMode: Record<LockModes, LockModes> = { "none": "col", "col": "row", "row": "none", "missing": "missing" };
 type Props = {
   responsive?: boolean,
   tableFields: Record<string, GenericTableColProps>,
   tableData: Array<GenericTableRow>,
-  tableCopyId?: string
+  tableCopyId?: string,
+  cellTooltipMode?: LockModes
 }
-const GenericTable: React.FunctionComponent<Props> = ({responsive, tableFields, tableData, tableCopyId}) => {
+const GenericTable: React.FunctionComponent<Props> = ({responsive, tableFields, tableData, tableCopyId, cellTooltipMode}) => {
 
+  const [ lockMode, setLockMode ]= useState((cellTooltipMode || "missing") as LockModes);
   const [ cellOverlayShowStates, setCellOverlayShowStates ] = useState({} as Record<string, boolean>);
 
   const tableId: string = tableCopyId || Math.random().toString(36).substring(8);
@@ -205,6 +212,33 @@ const GenericTable: React.FunctionComponent<Props> = ({responsive, tableFields, 
           </OverlayTrigger>;
       }
     }
+    function insertTooltipLockMode() {
+      function getTooltipLockModeIcon() {
+        switch (lockMode) {
+          case "missing": return undefined;
+          case "none": return faCircle;
+          case "row": return faArrowAltCircleRight;
+          case "col": return faArrowAltCircleDown;
+        }
+      }
+      const lockIcon = getTooltipLockModeIcon();
+      if (lockIcon) {
+        const tooltip = (
+          <Tooltip id={`${toolTipId}-lock`}>Cell tooltip locking mode ({lockMode})</Tooltip>
+        );
+        return  <OverlayTrigger placement="top" overlay={tooltip}>
+            <Button
+              className="float-right" variant="outline-secondary" size="sm"
+              onClick={() => {
+                setLockMode(nextLockMode[lockMode] as LockModes);
+                setCellOverlayShowStates({}); //(clear it all out)
+              }}
+            >
+              <FontAwesomeIcon icon={lockIcon} />
+            </Button>
+          </OverlayTrigger>;
+      }
+    }
     return Object.values(tableFields).map((colProp, index) => {
         const style = getColStyle(colProp);
         const tooltip = (
@@ -214,6 +248,7 @@ const GenericTable: React.FunctionComponent<Props> = ({responsive, tableFields, 
           <th key={"" + index} style={style}>
               {colProp.colName}
               {insertCopyButton(index == 0)}
+              {index == 0 ? insertTooltipLockMode() : null}
           </th>
         );
         return (colProp.toolTip == "") ?
@@ -224,8 +259,15 @@ const GenericTable: React.FunctionComponent<Props> = ({responsive, tableFields, 
           </OverlayTrigger>);
     });
   }
-  function renderTableRow(row: GenericTableDataRow, rowIndex: number) {
+  function renderTableRow(row: GenericTableDataRow, mutableRowOffsetMap: Record<string, number>) {
+    var rowIndex = 0;
+    var tooltipColIndex = 0;
+    const prefixType = row.prefixFn("")
     return Object.entries(tableFields).map((keyVal, index) => {
+        if (0 == index) { // Update mutableRowOffsetMap
+          rowIndex = _.get(mutableRowOffsetMap, prefixType, 0);
+          _.set(mutableRowOffsetMap, prefixType, rowIndex + 1)
+        }
         const key: string = keyVal[0];
         const colProp: GenericTableColProps = row.tableFieldsOverride?.[key] || keyVal[1];
         const actualKey = row.prefixFn(key);
@@ -244,7 +286,9 @@ const GenericTable: React.FunctionComponent<Props> = ({responsive, tableFields, 
         const hasTooltip = (cellVal: any) => {
           return cellVal?.override || cellVal?.extraInfo;
         }
-        const cellTooltipId = `tooltip_${index}_${actualKey}`;
+        tooltipColIndex = hasTooltip(tmpVal) ? tooltipColIndex + 1 : tooltipColIndex;
+        const cellTooltipId =
+          lockMode == "col" ? `tooltip_${index}_${actualKey}` : `tooltip_${rowIndex}_${prefixType}`;
         const cellTooltip = hasTooltip(tmpVal) ?
           <Tooltip id={cellTooltipId}>
             {tmpVal?.override ? <span>
@@ -256,6 +300,7 @@ const GenericTable: React.FunctionComponent<Props> = ({responsive, tableFields, 
                 {tmpVal?.extraInfo}
             </span> : null}
           </Tooltip> : null;
+
 
         const addTooltipIndicator = (viewVal: any, cellVal: any) => {
           const addOverrideIndicator = (viewVal: any) => {
@@ -270,8 +315,11 @@ const GenericTable: React.FunctionComponent<Props> = ({responsive, tableFields, 
           );
         };
 
-//TODO: actually it's a touch more complex than this ... off/def..
-        const placement = (rowIndex % 2) == 0 ? "left" : "right";
+        const placement =
+          lockMode == "col" ?
+            ((rowIndex % 2) == 0 ? "left" : "right") :
+            ((tooltipColIndex % 2) == 0 ? "top" : "bottom")
+            ;
         const cellMeta = row.cellMetaFn(key, val);
         const rowSpan = colProp.rowSpan(cellMeta);
         const className = colProp.className;
@@ -281,15 +329,23 @@ const GenericTable: React.FunctionComponent<Props> = ({responsive, tableFields, 
               rowSpan={rowSpan}
               key={"" + index} style={style}
             >{hasTooltip(tmpVal) ?
-              <GroupedOverlayTrigger
-                placement={placement}
-                show={cellOverlayShowStates[cellTooltipId]}
-                onShowOrHide={show => setCellOverlayShowStates({...cellOverlayShowStates, [cellTooltipId]: show})}
-                overlay={cellTooltip}
-              >
-                {addTooltipIndicator(val, tmpVal)}
-              </GroupedOverlayTrigger>
-              :
+              ((lockMode == "row" || lockMode == "col") ?
+                <GroupedOverlayTrigger
+                  placement={placement}
+                  show={cellOverlayShowStates[cellTooltipId]}
+                  onShowOrHide={show => setCellOverlayShowStates({[cellTooltipId]: show})}
+                  overlay={cellTooltip}
+                >
+                  {addTooltipIndicator(val, tmpVal)}
+                </GroupedOverlayTrigger>
+                :
+                <OverlayTrigger
+                  placement="auto"
+                  overlay={cellTooltip}
+                >
+                  {addTooltipIndicator(val, tmpVal)}
+                </OverlayTrigger>
+              ) :
               (_.isString(val) ?
                 val.split('\n').map((l, index2) => <div key={"s" + `${index}_${index2}`}>{l}</div>) :
                 //(if not string must be element)
@@ -300,11 +356,10 @@ const GenericTable: React.FunctionComponent<Props> = ({responsive, tableFields, 
     });
   }
   function renderTableRows() {
-    var dataRowIndex = 0;
+    var prefixAwareDataMap = {} as Record<string, number>;
     return tableData.map((row, index) => {
       if (row instanceof GenericTableDataRow) {
-        dataRowIndex = dataRowIndex + 1;
-        return <tr key={"" + index}>{ renderTableRow(row, dataRowIndex) }</tr>;
+        return <tr key={"" + index}>{ renderTableRow(row, prefixAwareDataMap) }</tr>;
       } else if (row instanceof GenericTableTextRow) {
         return <tr key={"" + index}><td colSpan={totalTableCols} className={row.className}>{row.text}</td></tr>;
       } else { //(separator, don't merge the cols because we don't have cell boundaries and that messes up spreadsheet)

@@ -740,6 +740,7 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({startingState, da
             tableCopyId="teamReportStatsTable"
             tableFields={CommonTableDefs.onOffReport}
             tableData={tableData}
+            cellTooltipMode="none"
           />
         </Col>
       </Row>

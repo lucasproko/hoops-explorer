@@ -4380,6 +4380,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
     >
       <Col>
         <GenericTable
+          cellTooltipMode="none"
           tableCopyId="rosterStatsTable"
           tableData={
             Array [
@@ -7356,6 +7357,7 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
     >
       <Col>
         <GenericTable
+          cellTooltipMode="none"
           tableCopyId="rosterStatsTable"
           tableData={
             Array [
@@ -9649,6 +9651,7 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
     >
       <Col>
         <GenericTable
+          cellTooltipMode="none"
           tableCopyId="rosterStatsTable"
           tableData={
             Array [
@@ -14162,6 +14165,7 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
     >
       <Col>
         <GenericTable
+          cellTooltipMode="none"
           tableCopyId="rosterStatsTable"
           tableData={
             Array [
@@ -20570,6 +20574,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
     >
       <Col>
         <GenericTable
+          cellTooltipMode="none"
           tableCopyId="rosterStatsTable"
           tableData={
             Array [
@@ -27713,6 +27718,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
     >
       <Col>
         <GenericTable
+          cellTooltipMode="none"
           tableCopyId="rosterStatsTable"
           tableData={
             Array [
@@ -34580,6 +34586,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
     >
       <Col>
         <GenericTable
+          cellTooltipMode="none"
           tableCopyId="rosterStatsTable"
           tableData={
             Array [

@@ -72,12 +72,12 @@ exports[`LuckUtils LuckUtils - injectLuck 1`] = `
    "off_adj_ppp": {
       "value": 115.21690584736811,
       "old_value": 115.21113764911924,
-      "override": "Adjustment derived from Off 3P%"
+      "override": "Adjusted from Off 3P%"
    },
    "def_adj_ppp": {
       "value": 86.95817296735666,
       "old_value": 90.212208900746,
-      "override": "Adjustment derived from Def 3P%"
+      "override": "Adjusted from Def 3P%"
    },
    "off_3p": {
       "value": 0.31964633922358715,
@@ -87,12 +87,12 @@ exports[`LuckUtils LuckUtils - injectLuck 1`] = `
    "off_ppp": {
       "value": 108.37010110006125,
       "old_value": 108.3645443196005,
-      "override": "Adjustment derived from Off 3P%"
+      "override": "Adjusted from Off 3P%"
    },
    "off_efg": {
       "value": 0.49783180451631737,
       "old_value": 0.49779411764705883,
-      "override": "Adjustment derived from Off 3P%"
+      "override": "Adjusted from Off 3P%"
    },
    "def_3p": {
       "value": 0.32377075874747585,
@@ -102,12 +102,12 @@ exports[`LuckUtils LuckUtils - injectLuck 1`] = `
    "def_ppp": {
       "value": 91.98291581204879,
       "old_value": 95.41457286432161,
-      "override": "Adjustment derived from Def 3P%"
+      "override": "Adjusted from Def 3P%"
    },
    "def_efg": {
       "value": 0.43573415064529347,
       "old_value": 0.4575,
-      "override": "Adjustment derived from Def 3P%"
+      "override": "Adjusted from Def 3P%"
    }
 }
 `;

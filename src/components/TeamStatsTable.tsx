@@ -285,7 +285,12 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
       </Form.Row>
       <Row className="mt-2">
         <Col>
-          <GenericTable tableCopyId="teamStatsTable" tableFields={CommonTableDefs.onOffTable} tableData={tableData}/>
+          <GenericTable
+            tableCopyId="teamStatsTable"
+            tableFields={CommonTableDefs.onOffTable}
+            tableData={tableData}
+            cellTooltipMode="none"
+          />
         </Col>
       </Row>
     </LoadingOverlay>

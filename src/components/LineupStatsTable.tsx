@@ -526,7 +526,12 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
       </Form.Row>
       <Row className="mt-2">
         <Col>
-          <GenericTable tableCopyId="lineupStatsTable" tableFields={CommonTableDefs.lineupTable} tableData={tableData}/>
+          <GenericTable
+            tableCopyId="lineupStatsTable"
+            tableFields={CommonTableDefs.lineupTable}
+            tableData={tableData}
+            cellTooltipMode="none"
+          />
         </Col>
       </Row>
     </LoadingOverlay>

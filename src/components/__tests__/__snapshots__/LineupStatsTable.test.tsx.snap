@@ -605,6 +605,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
     >
       <Col>
         <GenericTable
+          cellTooltipMode="none"
           tableCopyId="lineupStatsTable"
           tableData={
             Array [
@@ -5400,6 +5401,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
     >
       <Col>
         <GenericTable
+          cellTooltipMode="none"
           tableCopyId="lineupStatsTable"
           tableData={
             Array [
@@ -5435,7 +5437,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   def_adj_ppp: Object {
                                     "old_value": 87.8676478552093,
-                                    "override": "Adjustment derived from Def 3P%",
+                                    "override": "Adjusted from Def 3P%",
                                     "value": 89.88584090076684,
                                   }
 
@@ -5460,13 +5462,13 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   def_efg: Object {
                                     "old_value": 0.4362017804154303,
-                                    "override": "Adjustment derived from Def 3P%",
+                                    "override": "Adjusted from Def 3P%",
                                     "value": 0.449929584569733,
                                   }
 
                   def_ppp: Object {
                                     "old_value": 93.29896907216495,
-                                    "override": "Adjustment derived from Def 3P%",
+                                    "override": "Adjusted from Def 3P%",
                                     "value": 95.48556680340025,
                                   }
 
@@ -5501,7 +5503,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   off_adj_ppp: Object {
                                     "old_value": 123.30858896547036,
-                                    "override": "Adjustment derived from Off 3P%",
+                                    "override": "Adjusted from Off 3P%",
                                     "value": 123.30858896547036,
                                   }
 
@@ -5526,7 +5528,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   off_efg: Object {
                                     "old_value": 0.5092879256965944,
-                                    "override": "Adjustment derived from Off 3P%",
+                                    "override": "Adjusted from Off 3P%",
                                     "value": 0.5092879256965944,
                                   }
 
@@ -5537,7 +5539,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   off_ppp: Object {
                                     "old_value": 117.2069825436409,
-                                    "override": "Adjustment derived from Off 3P%",
+                                    "override": "Adjusted from Off 3P%",
                                     "value": 117.2069825436409,
                                   }
 
@@ -5653,7 +5655,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   def_adj_ppp: Object {
                                     "old_value": 87.8676478552093,
-                                    "override": "Adjustment derived from Def 3P%",
+                                    "override": "Adjusted from Def 3P%",
                                     "value": 89.88584090076684,
                                   }
 
@@ -5678,13 +5680,13 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   def_efg: Object {
                                     "old_value": 0.4362017804154303,
-                                    "override": "Adjustment derived from Def 3P%",
+                                    "override": "Adjusted from Def 3P%",
                                     "value": 0.449929584569733,
                                   }
 
                   def_ppp: Object {
                                     "old_value": 93.29896907216495,
-                                    "override": "Adjustment derived from Def 3P%",
+                                    "override": "Adjusted from Def 3P%",
                                     "value": 95.48556680340025,
                                   }
 
@@ -5719,7 +5721,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   off_adj_ppp: Object {
                                     "old_value": 123.30858896547036,
-                                    "override": "Adjustment derived from Off 3P%",
+                                    "override": "Adjusted from Off 3P%",
                                     "value": 123.30858896547036,
                                   }
 
@@ -5744,7 +5746,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   off_efg: Object {
                                     "old_value": 0.5092879256965944,
-                                    "override": "Adjustment derived from Off 3P%",
+                                    "override": "Adjusted from Off 3P%",
                                     "value": 0.5092879256965944,
                                   }
 
@@ -5755,7 +5757,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   off_ppp: Object {
                                     "old_value": 117.2069825436409,
-                                    "override": "Adjustment derived from Off 3P%",
+                                    "override": "Adjusted from Off 3P%",
                                     "value": 117.2069825436409,
                                   }
 
@@ -5897,7 +5899,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   def_adj_ppp: Object {
                                     "old_value": 79.356108708242,
-                                    "override": "Adjustment derived from Def 3P%",
+                                    "override": "Adjusted from Def 3P%",
                                     "value": 82.20030844467563,
                                   }
 
@@ -5922,13 +5924,13 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   def_efg: Object {
                                     "old_value": 0.42032967032967034,
-                                    "override": "Adjustment derived from Def 3P%",
+                                    "override": "Adjusted from Def 3P%",
                                     "value": 0.44037445054945057,
                                   }
 
                   def_ppp: Object {
                                     "old_value": 84.03755868544602,
-                                    "override": "Adjustment derived from Def 3P%",
+                                    "override": "Adjusted from Def 3P%",
                                     "value": 87.15059538569945,
                                   }
 
@@ -5963,7 +5965,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   off_adj_ppp: Object {
                                     "old_value": 116.18465333545907,
-                                    "override": "Adjustment derived from Off 3P%",
+                                    "override": "Adjusted from Off 3P%",
                                     "value": 116.18465333545907,
                                   }
 
@@ -5988,7 +5990,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   off_efg: Object {
                                     "old_value": 0.47126436781609193,
-                                    "override": "Adjustment derived from Off 3P%",
+                                    "override": "Adjusted from Off 3P%",
                                     "value": 0.47126436781609193,
                                   }
 
@@ -5999,7 +6001,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   off_ppp: Object {
                                     "old_value": 107.1090047393365,
-                                    "override": "Adjustment derived from Off 3P%",
+                                    "override": "Adjusted from Off 3P%",
                                     "value": 107.1090047393365,
                                   }
 
@@ -6115,7 +6117,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   def_adj_ppp: Object {
                                     "old_value": 79.356108708242,
-                                    "override": "Adjustment derived from Def 3P%",
+                                    "override": "Adjusted from Def 3P%",
                                     "value": 82.20030844467563,
                                   }
 
@@ -6140,13 +6142,13 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   def_efg: Object {
                                     "old_value": 0.42032967032967034,
-                                    "override": "Adjustment derived from Def 3P%",
+                                    "override": "Adjusted from Def 3P%",
                                     "value": 0.44037445054945057,
                                   }
 
                   def_ppp: Object {
                                     "old_value": 84.03755868544602,
-                                    "override": "Adjustment derived from Def 3P%",
+                                    "override": "Adjusted from Def 3P%",
                                     "value": 87.15059538569945,
                                   }
 
@@ -6181,7 +6183,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   off_adj_ppp: Object {
                                     "old_value": 116.18465333545907,
-                                    "override": "Adjustment derived from Off 3P%",
+                                    "override": "Adjusted from Off 3P%",
                                     "value": 116.18465333545907,
                                   }
 
@@ -6206,7 +6208,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   off_efg: Object {
                                     "old_value": 0.47126436781609193,
-                                    "override": "Adjustment derived from Off 3P%",
+                                    "override": "Adjusted from Off 3P%",
                                     "value": 0.47126436781609193,
                                   }
 
@@ -6217,7 +6219,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   off_ppp: Object {
                                     "old_value": 107.1090047393365,
-                                    "override": "Adjustment derived from Off 3P%",
+                                    "override": "Adjusted from Off 3P%",
                                     "value": 107.1090047393365,
                                   }
 
@@ -6359,7 +6361,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   def_adj_ppp: Object {
                                     "old_value": 82.0894333612718,
-                                    "override": "Adjustment derived from Def 3P%",
+                                    "override": "Adjusted from Def 3P%",
                                     "value": 87.16564624911064,
                                   }
 
@@ -6384,13 +6386,13 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   def_efg: Object {
                                     "old_value": 0.38202247191011235,
-                                    "override": "Adjustment derived from Def 3P%",
+                                    "override": "Adjusted from Def 3P%",
                                     "value": 0.41545443820224714,
                                   }
 
                   def_ppp: Object {
                                     "old_value": 87.04663212435233,
-                                    "override": "Adjustment derived from Def 3P%",
+                                    "override": "Adjusted from Def 3P%",
                                     "value": 92.55261350228072,
                                   }
 
@@ -6425,7 +6427,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   off_adj_ppp: Object {
                                     "old_value": 120.3613605770025,
-                                    "override": "Adjustment derived from Off 3P%",
+                                    "override": "Adjusted from Off 3P%",
                                     "value": 120.3613605770025,
                                   }
 
@@ -6450,7 +6452,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   off_efg: Object {
                                     "old_value": 0.521978021978022,
-                                    "override": "Adjustment derived from Off 3P%",
+                                    "override": "Adjusted from Off 3P%",
                                     "value": 0.521978021978022,
                                   }
 
@@ -6461,7 +6463,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   off_ppp: Object {
                                     "old_value": 112.18274111675127,
-                                    "override": "Adjustment derived from Off 3P%",
+                                    "override": "Adjusted from Off 3P%",
                                     "value": 112.18274111675127,
                                   }
 
@@ -6577,7 +6579,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   def_adj_ppp: Object {
                                     "old_value": 82.0894333612718,
-                                    "override": "Adjustment derived from Def 3P%",
+                                    "override": "Adjusted from Def 3P%",
                                     "value": 87.16564624911064,
                                   }
 
@@ -6602,13 +6604,13 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   def_efg: Object {
                                     "old_value": 0.38202247191011235,
-                                    "override": "Adjustment derived from Def 3P%",
+                                    "override": "Adjusted from Def 3P%",
                                     "value": 0.41545443820224714,
                                   }
 
                   def_ppp: Object {
                                     "old_value": 87.04663212435233,
-                                    "override": "Adjustment derived from Def 3P%",
+                                    "override": "Adjusted from Def 3P%",
                                     "value": 92.55261350228072,
                                   }
 
@@ -6643,7 +6645,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   off_adj_ppp: Object {
                                     "old_value": 120.3613605770025,
-                                    "override": "Adjustment derived from Off 3P%",
+                                    "override": "Adjusted from Off 3P%",
                                     "value": 120.3613605770025,
                                   }
 
@@ -6668,7 +6670,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   off_efg: Object {
                                     "old_value": 0.521978021978022,
-                                    "override": "Adjustment derived from Off 3P%",
+                                    "override": "Adjusted from Off 3P%",
                                     "value": 0.521978021978022,
                                   }
 
@@ -6679,7 +6681,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   off_ppp: Object {
                                     "old_value": 112.18274111675127,
-                                    "override": "Adjustment derived from Off 3P%",
+                                    "override": "Adjusted from Off 3P%",
                                     "value": 112.18274111675127,
                                   }
 
@@ -7660,6 +7662,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
     >
       <Col>
         <GenericTable
+          cellTooltipMode="none"
           tableCopyId="lineupStatsTable"
           tableData={
             Array [

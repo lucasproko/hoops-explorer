@@ -297,15 +297,15 @@ export class LuckUtils {
     // Offense - derived 4 factors and efficiency
 
     OverrideUtils.overrideMutableVal(mutableStats, "off_efg",
-      maybeDelta(offLuck?.deltaOffEfg), "Adjustment derived from Off 3P%"
+      maybeDelta(offLuck?.deltaOffEfg), "Adjusted from Off 3P%"
     );
 
     OverrideUtils.overrideMutableVal(mutableStats, "off_ppp",
-      maybeDelta(offLuck?.deltaOffPpp), "Adjustment derived from Off 3P%"
+      maybeDelta(offLuck?.deltaOffPpp), "Adjusted from Off 3P%"
     );
 
     OverrideUtils.overrideMutableVal(mutableStats, "off_adj_ppp",
-      maybeDelta(offLuck?.deltaOffAdjEff), "Adjustment derived from Off 3P%"
+      maybeDelta(offLuck?.deltaOffAdjEff), "Adjusted from Off 3P%"
     );
 
     // Defense - 3P
@@ -317,15 +317,15 @@ export class LuckUtils {
     // Defense - derived 4 factors and efficiency
 
     OverrideUtils.overrideMutableVal(mutableStats, "def_efg",
-      maybeDelta(defLuck?.deltaDefEfg), "Adjustment derived from Def 3P%"
+      maybeDelta(defLuck?.deltaDefEfg), "Adjusted from Def 3P%"
     );
 
     OverrideUtils.overrideMutableVal(mutableStats, "def_ppp",
-      maybeDelta(defLuck?.deltaDefPpp), "Adjustment derived from Def 3P%"
+      maybeDelta(defLuck?.deltaDefPpp), "Adjusted from Def 3P%"
     );
 
     OverrideUtils.overrideMutableVal(mutableStats, "def_adj_ppp",
-      maybeDelta(defLuck?.deltaDefAdjEff), "Adjustment derived from Def 3P%"
+      maybeDelta(defLuck?.deltaDefAdjEff), "Adjusted from Def 3P%"
     );
 
     // Player defense
