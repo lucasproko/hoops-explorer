@@ -8,6 +8,7 @@ import { NextPage } from 'next';
 import _ from "lodash";
 
 import "./GenericTable.css";
+import GroupedOverlayTrigger from "./shared/GroupedOverlayTrigger";
 
 // Bootstrap imports:
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -163,6 +164,8 @@ type Props = {
 }
 const GenericTable: React.FunctionComponent<Props> = ({responsive, tableFields, tableData, tableCopyId}) => {
 
+  const [ cellOverlayShowStates, setCellOverlayShowStates ] = useState({} as Record<string, boolean>);
+
   const tableId: string = tableCopyId || Math.random().toString(36).substring(8);
   const buttonId = tableId + "_copy";
   const toolTipId = tableId + "_toolTip";
@@ -221,7 +224,7 @@ const GenericTable: React.FunctionComponent<Props> = ({responsive, tableFields, 
           </OverlayTrigger>);
     });
   }
-  function renderTableRow(row: GenericTableDataRow) {
+  function renderTableRow(row: GenericTableDataRow, rowIndex: number) {
     return Object.entries(tableFields).map((keyVal, index) => {
         const key: string = keyVal[0];
         const colProp: GenericTableColProps = row.tableFieldsOverride?.[key] || keyVal[1];
@@ -241,8 +244,9 @@ const GenericTable: React.FunctionComponent<Props> = ({responsive, tableFields, 
         const hasTooltip = (cellVal: any) => {
           return cellVal?.override || cellVal?.extraInfo;
         }
+        const cellTooltipId = `tooltip_${index}_${actualKey}`;
         const cellTooltip = hasTooltip(tmpVal) ?
-          <Tooltip id={`tooltip_${index}_${key}`}>
+          <Tooltip id={cellTooltipId}>
             {tmpVal?.override ? <span>
               Original Value: {valBuilder({value: tmpVal?.old_value}) || colProp.missingData}<br/>
               {tmpVal?.override}
@@ -266,6 +270,8 @@ const GenericTable: React.FunctionComponent<Props> = ({responsive, tableFields, 
           );
         };
 
+//TODO: actually it's a touch more complex than this ... off/def..
+        const placement = (rowIndex % 2) == 0 ? "left" : "right";
         const cellMeta = row.cellMetaFn(key, val);
         const rowSpan = colProp.rowSpan(cellMeta);
         const className = colProp.className;
@@ -275,9 +281,14 @@ const GenericTable: React.FunctionComponent<Props> = ({responsive, tableFields, 
               rowSpan={rowSpan}
               key={"" + index} style={style}
             >{hasTooltip(tmpVal) ?
-              <OverlayTrigger placement="auto" overlay={cellTooltip}>
+              <GroupedOverlayTrigger
+                placement={placement}
+                show={cellOverlayShowStates[cellTooltipId]}
+                onShowOrHide={show => setCellOverlayShowStates({...cellOverlayShowStates, [cellTooltipId]: show})}
+                overlay={cellTooltip}
+              >
                 {addTooltipIndicator(val, tmpVal)}
-              </OverlayTrigger>
+              </GroupedOverlayTrigger>
               :
               (_.isString(val) ?
                 val.split('\n').map((l, index2) => <div key={"s" + `${index}_${index2}`}>{l}</div>) :
@@ -289,9 +300,11 @@ const GenericTable: React.FunctionComponent<Props> = ({responsive, tableFields, 
     });
   }
   function renderTableRows() {
+    var dataRowIndex = 0;
     return tableData.map((row, index) => {
       if (row instanceof GenericTableDataRow) {
-        return <tr key={"" + index}>{ renderTableRow(row) }</tr>;
+        dataRowIndex = dataRowIndex + 1;
+        return <tr key={"" + index}>{ renderTableRow(row, dataRowIndex) }</tr>;
       } else if (row instanceof GenericTableTextRow) {
         return <tr key={"" + index}><td colSpan={totalTableCols} className={row.className}>{row.text}</td></tr>;
       } else { //(separator, don't merge the cols because we don't have cell boundaries and that messes up spreadsheet)

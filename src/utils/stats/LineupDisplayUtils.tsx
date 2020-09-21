@@ -253,6 +253,7 @@ export class LineupDisplayUtils {
           stat.off_team_poss.extraInfo = paceBuilder(stat, true);
         }
         if (stat.off_team_poss_pct) {
+//TODO: expanded and poss % doesn't work          
           stat.off_team_poss_pct.extraInfo = paceBuilder(stat, true);
         }
       }
