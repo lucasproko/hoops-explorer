@@ -529,6 +529,9 @@ export const samplePlayerStatsResponse =
 									"off_team_poss": {
 										"value": 1802
 									},
+                  "duration_mins": {
+    		             "value": 900
+    		          },
 									"off_assist": {
 										"value": 0.2916666666666667
 									},
@@ -1049,6 +1052,9 @@ export const samplePlayerStatsResponse =
 									"off_team_poss": {
 										"value": 1499
 									},
+                  "duration_mins": {
+    		             "value": 800
+    		          },
 									"off_assist": {
 										"value": 0.10185185185185185
 									},
@@ -1559,6 +1565,9 @@ export const samplePlayerStatsResponse =
 									"off_team_poss": {
 										"value": 272
 									},
+                  "duration_mins": {
+    		             "value": 200
+    		          },
 									"off_assist": {
 										"value": 0.3230769230769231
 									},
@@ -2048,6 +2057,9 @@ export const samplePlayerStatsResponse =
 									"off_team_poss": {
 										"value": 38
 									},
+                  "duration_mins": {
+    		             "value": 30
+    		          },
 									"off_assist": {
 										"value": 0.16666666666666666
 									},
@@ -2566,6 +2578,9 @@ export const samplePlayerStatsResponse =
 									"off_team_poss": {
 										"value": 1530
 									},
+                  "duration_mins": {
+    		             "value": 500
+    		          },
 									"off_assist": {
 										"value": 0.2870159453302961
 									},
@@ -3076,6 +3091,9 @@ export const samplePlayerStatsResponse =
 									"off_team_poss": {
 										"value": 1220
 									},
+                  "duration_mins": {
+    		             "value": 450
+    		          },
 									"off_assist": {
 										"value": 0.09192200557103064
 									},

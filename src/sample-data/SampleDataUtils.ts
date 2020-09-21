@@ -3,8 +3,8 @@ import _ from "lodash";
 export class SampleDataUtils {
 
   /** For snapshot testing, provides a more useful output than a giant list of stats */
-  static summarizeEnrichedApiResponse(exampleRawResponse: Record<string, any>) {
-    const expectedFields = new Set(_.keys(exampleRawResponse));
+  static summarizeEnrichedApiResponse(exampleRawResponse: Record<string, any>, mutableSample: boolean = false) {
+    const expectedFields1 = mutableSample ? null : new Set(_.keys(exampleRawResponse));
 
     return {
       test: (val: any) => val && (val.off_efg ||
@@ -12,12 +12,13 @@ export class SampleDataUtils {
           val.hasOwnProperty("deltaOffPpp") || val.hasOwnProperty("deltaDefPpp")
         ),
         //(pick a field that all stat sets have - plus special case for: diagnostics)
-      print: (val: any, serialize: ((val: any) => string), indent: ((val: any) => string),) => {
+      print: (val: any, serialize: ((val: any) => string), indent: ((val: any) => string)) => {
+        const expectedFields = expectedFields1 || new Set(_.keys(exampleRawResponse));
         if (val.off_efg) {
           return "{\n" +
             _.chain(val).toPairs().filter(kv => {
               return !expectedFields.has(kv[0]) //derived field)
-                || (!kv[1]?.hasOwnProperty("value") && exampleRawResponse[kv[0]].hasOwnProperty("value")) //missing value
+                || (!kv[1]?.hasOwnProperty("value") && exampleRawResponse[kv[0]]?.hasOwnProperty("value")) //missing value
                 || (kv[1]?.hasOwnProperty("value") && _.keys(kv[1]).length > 1) //(has extra properties)
             }).sortBy(0).map(kv => {
               return indent(`${kv[0]}: ` + serialize(kv[1]))

@@ -336,3 +336,299 @@ exports[`LineupDisplayUtils buildDecoratedLineup - plain version 1`] = `
   </div>
 </span>
 `;
+
+exports[`LineupDisplayUtils injectPlayTypeInfo - lineups 1`] = `
+{
+  def_2pmidr: Object {
+    "extraInfo": <span>
+      23% assisted
+    </span>,
+    "value": 0.2997032640949555,
+  }
+
+  def_2primr: Object {
+    "extraInfo": <span>
+      45% assisted
+    </span>,
+    "value": 0.3056379821958457,
+  }
+
+  def_3pr: Object {
+    "extraInfo": <span>
+      88% assisted
+    </span>,
+    "value": 0.39465875370919884,
+  }
+
+  def_assist: Object {
+    "extraInfo": <span>
+      Assist breakdown:
+      <li>
+        37
+        % at the rim
+      </li>
+      <li>
+        10
+        % for mid-range
+      </li>
+      <li>
+        52
+        % for 3P
+      </li>
+    </span>,
+    "value": 0.5275590551181102,
+  }
+
+  def_ppp: Object {
+    "extraInfo": <span>
+      Play category breakdown:
+      <li>
+        8.3
+        % scramble:
+        <br />
+        +
+        9.3
+         pts/100
+      </li>
+      <li>
+        20.6
+        % transition:
+        <br />
+        +
+        6.9
+         pts/100
+      </li>
+    </span>,
+    "value": 93.29896907216495,
+  }
+
+  off_2pmidr: Object {
+    "extraInfo": <span>
+      21% assisted
+    </span>,
+    "value": 0.17956656346749225,
+  }
+
+  off_2primr: Object {
+    "extraInfo": <span>
+      43% assisted
+    </span>,
+    "value": 0.3653250773993808,
+  }
+
+  off_3pr: Object {
+    "extraInfo": <span>
+      78% assisted
+    </span>,
+    "value": 0.4551083591331269,
+  }
+
+  off_assist: Object {
+    "extraInfo": <span>
+      Assist breakdown:
+      <li>
+        49
+        % at the rim
+      </li>
+      <li>
+        4
+        % for mid-range
+      </li>
+      <li>
+        47
+        % for 3P
+      </li>
+    </span>,
+    "value": 0.5211267605633803,
+  }
+
+  off_poss: Object {
+    "extraInfo": <span>
+      71.7
+       ppg
+    </span>,
+    "value": 401,
+  }
+
+  off_ppp: Object {
+    "extraInfo": <span>
+      Play category breakdown:
+      <li>
+        9.6
+        % scramble:
+        <br />
+        +
+        8.1
+         pts/100
+      </li>
+      <li>
+        25.3
+        % transition:
+        <br />
+        +
+        16.6
+         pts/100
+      </li>
+    </span>,
+    "value": 117.2069825436409,
+  }}
+`;
+
+exports[`LineupDisplayUtils injectPlayTypeInfo - players (!expanded) 1`] = `
+{
+  def_2pmidr: <small
+    style={
+      Object {
+        "textShadow": "0px 0px 10px #add8e6",
+      }
+    }
+  >
+    <i>
+      0
+      %
+    </i>
+  </small>
+
+  def_2primr: <small
+    style={
+      Object {
+        "textShadow": "0px 0px 10px #e0f0f5",
+      }
+    }
+  >
+    <i>
+      26
+      %
+    </i>
+  </small>
+
+  def_3pr: <small
+    style={
+      Object {
+        "textShadow": "0px 0px 10px #ffa500",
+      }
+    }
+  >
+    <i>
+      63
+      %
+    </i>
+  </small>
+
+  off_2pmidr: Object {
+    "extraInfo": <span>
+      0% assisted
+    </span>,
+    "value": 0.18258426966292135,
+  }
+
+  off_2primr: Object {
+    "extraInfo": <span>
+      26% assisted
+    </span>,
+    "value": 0.32865168539325845,
+  }
+
+  off_3pr: Object {
+    "extraInfo": <span>
+      63% assisted
+    </span>,
+    "value": 0.4887640449438202,
+  }
+
+  off_assist: Object {
+    "extraInfo": <span>
+      Assist breakdown:
+      <li>
+        46
+        % at the rim
+      </li>
+      <li>
+        7
+        % for mid-range
+      </li>
+      <li>
+        48
+        % for 3P
+      </li>
+    </span>,
+    "value": 0.2916666666666667,
+  }
+
+  off_team_poss: Object {
+    "extraInfo": <span>
+      80.1
+       ppg
+    </span>,
+    "value": 1802,
+  }}
+`;
+
+exports[`LineupDisplayUtils injectPlayTypeInfo - players (expanded) 1`] = `
+{
+  def_2pmidr: <small
+    style={
+      Object {
+        "textShadow": "0px 0px 10px #add8e6",
+      }
+    }
+  >
+    <i>
+      0
+      %
+    </i>
+  </small>
+
+  def_2primr: <small
+    style={
+      Object {
+        "textShadow": "0px 0px 10px #e0f0f5",
+      }
+    }
+  >
+    <i>
+      26
+      %
+    </i>
+  </small>
+
+  def_3pr: <small
+    style={
+      Object {
+        "textShadow": "0px 0px 10px #ffa500",
+      }
+    }
+  >
+    <i>
+      63
+      %
+    </i>
+  </small>
+
+  off_assist: Object {
+    "extraInfo": <span>
+      Assist breakdown:
+      <li>
+        46
+        % at the rim
+      </li>
+      <li>
+        7
+        % for mid-range
+      </li>
+      <li>
+        48
+        % for 3P
+      </li>
+    </span>,
+    "value": 0.2916666666666667,
+  }
+
+  off_team_poss: Object {
+    "extraInfo": <span>
+      80.1
+       ppg
+    </span>,
+    "value": 1802,
+  }}
+`;

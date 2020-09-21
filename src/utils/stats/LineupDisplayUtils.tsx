@@ -202,6 +202,10 @@ export class LineupDisplayUtils {
       stat.off_assist.extraInfo = assistBuilder(stat, "off");
     }
 
+    const buildText = (stat: any) => {
+      return `${(100*(stat?.value || 0)).toFixed(0)}% assisted`
+    }
+
     // Handle adding and removing of extra info:
     if (expandedView) {
       if (stat.off_2primr) {
@@ -214,9 +218,6 @@ export class LineupDisplayUtils {
         delete stat.off_3pr.extraInfo;
       }
     } else {
-      const buildText = (stat: any) => {
-        return `${(100*(stat?.value || 0)).toFixed(0)}% assisted`
-      }
       if (stat.off_2primr) {
         stat.off_2primr.extraInfo = <span>{buildText(stat.off_2prim_ast)}</span>;
       }
@@ -226,40 +227,40 @@ export class LineupDisplayUtils {
       if (stat.off_3pr) {
         stat.off_3pr.extraInfo = <span>{buildText(stat.off_3p_ast)}</span>;
       }
-      if (!playerView) { // team/lineup views have both offense and defense
-        if (stat.off_ppp) {
+    }
+    if (!playerView) { // team/lineup views have both offense and defense
+      if (stat.off_ppp) {
 //TODO: now showing in lineup display
-          stat.off_ppp.extraInfo = playCategoryBuilder(stat, "off");
-        }
-        if (stat.def_ppp) {
-          stat.def_ppp.extraInfo = playCategoryBuilder(stat, "def");
-        }
-        if (stat.def_assist) {
-          stat.def_assist.extraInfo = assistBuilder(stat, "def");
-        }
-        if (stat.def_2primr) {
-          stat.def_2primr.extraInfo = <span>{buildText(stat.def_2prim_ast)}</span>;
-        }
-        if (stat.def_2pmidr) {
-          stat.def_2pmidr.extraInfo = <span>{buildText(stat.def_2pmid_ast)}</span>;
-        }
-        if (stat.def_3pr) {
-          stat.def_3pr.extraInfo = <span>{buildText(stat.def_3p_ast)}</span>;
-        }
-        if (stat.off_poss) {
-//TODO: poss count doesn't work for on/off
-          stat.off_poss.extraInfo = paceBuilder(stat, false);
-        }
-      } else {
-        if (stat.off_team_poss) {
-          stat.off_team_poss.extraInfo = paceBuilder(stat, true);
-        }
-        if (stat.off_team_poss_pct) {
-//TODO: expanded and poss % doesn't work
-          stat.off_team_poss_pct.extraInfo = paceBuilder(stat, true);
-        }
+        stat.off_ppp.extraInfo = playCategoryBuilder(stat, "off");
+      }
+      if (stat.def_ppp) {
+        stat.def_ppp.extraInfo = playCategoryBuilder(stat, "def");
+      }
+      if (stat.def_assist) {
+        stat.def_assist.extraInfo = assistBuilder(stat, "def");
+      }
+      if (stat.def_2primr) {
+        stat.def_2primr.extraInfo = <span>{buildText(stat.def_2prim_ast)}</span>;
+      }
+      if (stat.def_2pmidr) {
+        stat.def_2pmidr.extraInfo = <span>{buildText(stat.def_2pmid_ast)}</span>;
+      }
+      if (stat.def_3pr) {
+        stat.def_3pr.extraInfo = <span>{buildText(stat.def_3p_ast)}</span>;
+      }
+      if (stat.off_poss) {
+//TODO: poss count doesn't work for on/off report
+        stat.off_poss.extraInfo = paceBuilder(stat, false);
+      }
+    } else {
+      if (stat.off_team_poss) {
+        stat.off_team_poss.extraInfo = paceBuilder(stat, true);
+      }
+      if (stat.off_team_poss_pct) {
+        stat.off_team_poss_pct.extraInfo = paceBuilder(stat, true);
       }
     }
+    return stat;
   }
 
 }
