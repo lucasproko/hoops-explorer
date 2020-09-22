@@ -230,7 +230,7 @@ export class LineupDisplayUtils {
     }
     if (!playerView) { // team/lineup views have both offense and defense
       if (stat.off_ppp) {
-//TODO: now showing in lineup display
+//TODO: it's wrong for team report on/off
         stat.off_ppp.extraInfo = playCategoryBuilder(stat, "off");
       }
       if (stat.def_ppp) {
