@@ -300,6 +300,9 @@ export const sampleTeamStatsResponse =
 						"total_off_poss": {
 							"value": 2077
 						},
+						"duration_mins": {
+							 "value": 1000
+						},
 						"total_def_scramble_3p_made": {
 							"value": 15
 						},
@@ -1062,6 +1065,9 @@ export const sampleTeamStatsResponse =
 						"total_off_poss": {
 							"value": 475
 						},
+						"duration_mins": {
+							 "value": 250
+						},
 						"total_def_scramble_3p_made": {
 							"value": 5
 						},
@@ -1823,6 +1829,9 @@ export const sampleTeamStatsResponse =
 						},
 						"total_off_poss": {
 							"value": 1602
+						},
+						"duration_mins": {
+							 "value": 800
 						},
 						"total_def_scramble_3p_made": {
 							"value": 10

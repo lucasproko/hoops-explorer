@@ -200,6 +200,7 @@ export const commonAggregations = function(
           "script": "3*params.made3p + 2*params.made2p + params.ftm"
         }
       },
+      // See also duplicate code in LineupUtils.recalculatePlayTypePoss ... need to keep the two in sync
       [`total_${dstPrefix}_${typePrefix}poss`]: { //fgm + (approx-unrebounded) fgM + 0.475*fta + to
         "bucket_script": {
           "buckets_path": {

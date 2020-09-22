@@ -4,6 +4,8 @@ import _ from "lodash";
 import { TeamReportStatsModel } from "../../components/TeamReportStatsTable";
 import { LineupStatsModel } from "../../components/LineupStatsTable";
 
+//TODO: duration_mins and scramble/transition combos...
+
 /** Handles combining the statistics of different lineups */
 export class LineupUtils {
 
@@ -158,14 +160,49 @@ export class LineupUtils {
       //(replacement on/off vals:)
       offLineups: true, offLineupKeys: true, onLineup: true
      };
-  private static readonly sumFieldSet = { off_poss: true, def_poss: true };
+  private static readonly sumFieldSet = { off_poss: true, def_poss: true, duration_mins: true };
 
-  /** Updates lineup info */
+  /** Updates lineup info - this is just needed to determine if a player should be included in the list */
   private static updateLineupComposition(mutableTeammateInfo: any, player: string, lineupInfo: any) {
     if (mutableTeammateInfo) {
       mutableTeammateInfo.off_poss += lineupInfo.off_poss?.value || 0;
       mutableTeammateInfo.def_poss += lineupInfo.def_poss?.value || 0;
     }
+  }
+
+  /** For scramble and transition plays we recalculate the off/def poss from the totals
+   *  otherwise, because of the "complex ORB" term in commonLineupAggregations.`total_${dstPrefix}_${typePrefix}poss`
+   *  the numbers end up too different. The source of truth is considered to be commonLineupAggregations
+  */
+  private static recalculatePlayTypePoss(mutableStats: Record<string, any>) {
+    // Written this weird way to keep the code as similar as possible
+    [ [ "off", "def" ], [ "def", "off" ] ].forEach(offDef => {
+      const [ dstPrefix, oppoDstPrefix ] = offDef;
+      [ "trans_", "scramble_" ].forEach(typePrefix => {
+        const paramKeys = {
+          "fga": `total_${dstPrefix}_${typePrefix}fga`,
+          "fgm": `total_${dstPrefix}_${typePrefix}fgm`,
+          "fta": `total_${dstPrefix}_${typePrefix}fta`,
+          "to": `total_${dstPrefix}_${typePrefix}to`,
+
+          "var_orb": `total_${dstPrefix}_orb`,
+          "var_drb": `total_${oppoDstPrefix}_drb`,
+        }
+        const params =
+          _.chain(paramKeys).toPairs().map(kv => [ kv[0], mutableStats[kv[1]]?.value || 0 ]).fromPairs().value();
+
+        const fgM = params.fga - params.fgm;
+        const rebound_pct = (params.var_orb > 0) ? 1.0*params.var_orb/(params.var_orb + params.var_drb) : 0.0;
+        const poss = params.fgm + (1.0 - rebound_pct)*fgM + 0.475*params.fta + params.to;
+
+        mutableStats[`total_${dstPrefix}_${typePrefix}poss`] = {
+          value: poss
+        };
+        mutableStats[`${dstPrefix}_${typePrefix}ppp`] = {
+          value: 100*(mutableStats[`total_${dstPrefix}_${typePrefix}pts`]?.value || 0)/(poss || 1)
+        };
+      });
+    });
   }
 
   /** For diffs we'll regress the values by approx 1000 possessions */
@@ -195,7 +232,7 @@ export class LineupUtils {
       off_adj_opp: offRegress.poss + obj.def_poss?.value || defaultVal,
       def_adj_opp: defRegress.poss + obj.off_poss?.value || defaultVal,
       off_adj_ppp: offRegress.poss + obj.off_poss?.value || defaultVal,
-      def_adj_ppp: defRegress.poss + obj.def_poss?.value || defaultVal
+      def_adj_ppp: defRegress.poss + obj.def_poss?.value || defaultVal,
     };
     // all the shot type %s (not rates, which use FGA):
     // (see totalShotTypeKey below)
@@ -220,6 +257,7 @@ export class LineupUtils {
       off: offRegress.fga + obj.total_off_fga?.value || defaultVal,
       def: defRegress.fga + obj.total_def_fga?.value || defaultVal
     };
+    // For transition and scramble playes, just do ppp for now
     return {
       ppp_totals: ppp_totals,
       orb_totals: orb_totals,
@@ -280,6 +318,11 @@ export class LineupUtils {
         } else if (_.startsWith(key, "total_") || LineupUtils.sumFieldSet.hasOwnProperty(key)) {
           mutableAcc[key].value += val;
           //(no luck adjustment currently)
+          //(note includes total_X_(trans|scramble)_poss, which is recalc'd by recalculatePlayTypePoss)
+        } else if (_.startsWith(key, "off_trans_") || _.startsWith(key, "def_trans_")) {
+          // Ignore for now (ppp handled by recalculatePlayTypePoss)
+        } else if (_.startsWith(key, "off_scramble_") || _.startsWith(key, "def_scramble_")) {
+          // Ignore for now (ppp handled by recalculatePlayTypePoss)
         } else if (_.startsWith(key, "off_")) { // everything else if off/def FGA
           mutableAcc[key].value += val*weights.fga_totals.off;
           if (oldValOverride) {
@@ -300,7 +343,8 @@ export class LineupUtils {
   ) {
     const weights = LineupUtils.getSimpleWeights(mutableAcc, 1, regressDiffs);
 
-    //TODO: why are some of these completions harmonic dependent and some not?!
+    // Trans and scramble ppp handled differently"
+    if (!harmonicWeighting) LineupUtils.recalculatePlayTypePoss(mutableAcc);
 
     _.chain(mutableAcc).toPairs().forEach((keyVal) => {
       const key = keyVal[0];
@@ -335,6 +379,7 @@ export class LineupUtils {
           // (no luck adjustment for these stats)
         } else if (_.startsWith(key, "total_") || LineupUtils.sumFieldSet.hasOwnProperty(key)) {
           //(nothing to do)
+          //(note includes total_X_(trans|scramble)_poss, which is recalc'd by recalculatePlayTypePoss)
         } else if (key == "off_ftr") { // FTR are special case because you can have a FT but 0 FGA
           if (harmonicWeighting) {
             mutableAcc[key].value = 1.0*val/weights.fga_totals.off;
@@ -349,6 +394,10 @@ export class LineupUtils {
             mutableAcc[key].value = 1.0*(mutableAcc.total_def_fta?.value || 0.0)/weights.fga_totals.def;
           }
           // (no luck adjustment for these stats)
+        } else if (_.startsWith(key, "off_trans_") || _.startsWith(key, "def_trans_")) {
+          // Ignore for now (ppp handled by recalculatePlayTypePoss, above)
+        } else if (_.startsWith(key, "off_scramble_") || _.startsWith(key, "def_scramble_")) {
+          // Ignore for now (ppp handled by recalculatePlayTypePoss, above)
         } else if (_.startsWith(key, "off_")) { // everything else if off/def FGA
           mutableAcc[key].value = 1.0*val/weights.fga_totals.off;
           if (oldValOverride) {
