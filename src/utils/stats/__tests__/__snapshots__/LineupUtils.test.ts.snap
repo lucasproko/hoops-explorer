@@ -44,6 +44,9 @@ Array [
       "override": "Test override",
       "value": "91.222",
     },
+    "duration_mins": Object {
+      "value": "342.042",
+    },
     "key": "'On' Ayala, Eric",
     "off_adj_opp": Object {
       "value": "108.385",
@@ -62,11 +65,17 @@ Array [
       "override": "Test override",
       "value": "115.552",
     },
+    "off_scramble_ppp": Object {
+      "value": "113.458",
+    },
     "total_off_fga": Object {
       "value": "505.000",
     },
     "total_off_pts": Object {
       "value": "691.000",
+    },
+    "total_off_trans_poss": Object {
+      "value": "137.855",
     },
   },
   Object {
@@ -90,6 +99,9 @@ Array [
       "override": "Test override",
       "value": "84.038",
     },
+    "duration_mins": Object {
+      "value": "131.068",
+    },
     "key": "'Off' Ayala, Eric",
     "off_adj_opp": Object {
       "value": "109.452",
@@ -108,11 +120,17 @@ Array [
       "override": "Test override",
       "value": "107.109",
     },
+    "off_scramble_ppp": Object {
+      "value": "137.757",
+    },
     "total_off_fga": Object {
       "value": "174.000",
     },
     "total_off_pts": Object {
       "value": "226.000",
+    },
+    "total_off_trans_poss": Object {
+      "value": "54.259",
     },
   },
   Object {},
@@ -142,6 +160,9 @@ Array [
       "override": "Test override",
       "value": "91.222",
     },
+    "duration_mins": Object {
+      "value": "342.042",
+    },
     "key": "'On' Ayala, Eric",
     "off_adj_opp": Object {
       "value": "108.385",
@@ -160,11 +181,17 @@ Array [
       "override": "Test override",
       "value": "115.552",
     },
+    "off_scramble_ppp": Object {
+      "value": "113.458",
+    },
     "total_off_fga": Object {
       "value": "505.000",
     },
     "total_off_pts": Object {
       "value": "691.000",
+    },
+    "total_off_trans_poss": Object {
+      "value": "137.855",
     },
   },
   Object {
@@ -188,6 +215,9 @@ Array [
       "override": "Test override",
       "value": "84.038",
     },
+    "duration_mins": Object {
+      "value": "131.068",
+    },
     "key": "'Off' Ayala, Eric",
     "off_adj_opp": Object {
       "value": "109.452",
@@ -206,11 +236,17 @@ Array [
       "override": "Test override",
       "value": "107.109",
     },
+    "off_scramble_ppp": Object {
+      "value": "137.757",
+    },
     "total_off_fga": Object {
       "value": "174.000",
     },
     "total_off_pts": Object {
       "value": "226.000",
+    },
+    "total_off_trans_poss": Object {
+      "value": "54.259",
     },
   },
   Object {
@@ -234,6 +270,9 @@ Array [
       "override": "Test override",
       "value": "6.313",
     },
+    "duration_mins": Object {
+      "value": "79.905",
+    },
     "key": "'r:On-Off' Ayala, Eric",
     "off_adj_opp": Object {
       "value": "-1.014",
@@ -252,11 +291,17 @@ Array [
       "override": "Test override",
       "value": "7.652",
     },
+    "off_scramble_ppp": Object {
+      "value": "0.000",
+    },
     "total_off_fga": Object {
       "value": "404.075",
     },
     "total_off_pts": Object {
       "value": "528.702",
+    },
+    "total_off_trans_poss": Object {
+      "value": "114.193",
     },
   },
 ]
@@ -285,6 +330,9 @@ Array [
       "override": "Test override",
       "value": "91.222",
     },
+    "duration_mins": Object {
+      "value": "342.042",
+    },
     "key": "'On' Ayala, Eric",
     "off_adj_opp": Object {
       "value": "108.385",
@@ -303,11 +351,17 @@ Array [
       "override": "Test override",
       "value": "115.552",
     },
+    "off_scramble_ppp": Object {
+      "value": "113.458",
+    },
     "total_off_fga": Object {
       "value": "505.000",
     },
     "total_off_pts": Object {
       "value": "691.000",
+    },
+    "total_off_trans_poss": Object {
+      "value": "137.855",
     },
   },
   Object {
@@ -331,6 +385,9 @@ Array [
       "override": "Test override",
       "value": "84.038",
     },
+    "duration_mins": Object {
+      "value": "131.068",
+    },
     "key": "'Off' Ayala, Eric",
     "off_adj_opp": Object {
       "value": "109.452",
@@ -349,11 +406,17 @@ Array [
       "override": "Test override",
       "value": "107.109",
     },
+    "off_scramble_ppp": Object {
+      "value": "137.757",
+    },
     "total_off_fga": Object {
       "value": "174.000",
     },
     "total_off_pts": Object {
       "value": "226.000",
+    },
+    "total_off_trans_poss": Object {
+      "value": "54.259",
     },
   },
   Object {},
@@ -383,6 +446,9 @@ Array [
       "override": "Test override",
       "value": "91.222",
     },
+    "duration_mins": Object {
+      "value": "342.042",
+    },
     "key": "'On' Ayala, Eric",
     "off_adj_opp": Object {
       "value": "108.385",
@@ -401,11 +467,17 @@ Array [
       "override": "Test override",
       "value": "115.552",
     },
+    "off_scramble_ppp": Object {
+      "value": "113.458",
+    },
     "total_off_fga": Object {
       "value": "505.000",
     },
     "total_off_pts": Object {
       "value": "691.000",
+    },
+    "total_off_trans_poss": Object {
+      "value": "137.855",
     },
   },
   Object {
@@ -429,6 +501,9 @@ Array [
       "override": "Test override",
       "value": "84.038",
     },
+    "duration_mins": Object {
+      "value": "131.068",
+    },
     "key": "'Off' Ayala, Eric",
     "off_adj_opp": Object {
       "value": "109.452",
@@ -447,11 +522,17 @@ Array [
       "override": "Test override",
       "value": "107.109",
     },
+    "off_scramble_ppp": Object {
+      "value": "137.757",
+    },
     "total_off_fga": Object {
       "value": "174.000",
     },
     "total_off_pts": Object {
       "value": "226.000",
+    },
+    "total_off_trans_poss": Object {
+      "value": "54.259",
     },
   },
   Object {},
@@ -481,6 +562,9 @@ Array [
       "override": "Test override",
       "value": "91.222",
     },
+    "duration_mins": Object {
+      "value": "342.042",
+    },
     "key": "'On' Ayala, Eric",
     "off_adj_opp": Object {
       "value": "108.385",
@@ -499,11 +583,17 @@ Array [
       "override": "Test override",
       "value": "115.552",
     },
+    "off_scramble_ppp": Object {
+      "value": "113.458",
+    },
     "total_off_fga": Object {
       "value": "505.000",
     },
     "total_off_pts": Object {
       "value": "691.000",
+    },
+    "total_off_trans_poss": Object {
+      "value": "137.855",
     },
   },
   Object {
@@ -527,6 +617,9 @@ Array [
       "override": "Test override",
       "value": "84.038",
     },
+    "duration_mins": Object {
+      "value": "131.068",
+    },
     "key": "'Off' Ayala, Eric",
     "off_adj_opp": Object {
       "value": "109.452",
@@ -545,11 +638,17 @@ Array [
       "override": "Test override",
       "value": "107.109",
     },
+    "off_scramble_ppp": Object {
+      "value": "137.757",
+    },
     "total_off_fga": Object {
       "value": "174.000",
     },
     "total_off_pts": Object {
       "value": "226.000",
+    },
+    "total_off_trans_poss": Object {
+      "value": "54.259",
     },
   },
   Object {
@@ -573,6 +672,9 @@ Array [
       "override": "Test override",
       "value": "6.610",
     },
+    "duration_mins": Object {
+      "value": "79.905",
+    },
     "key": "'r:On-Off' Ayala, Eric",
     "off_adj_opp": Object {
       "value": "-1.056",
@@ -591,11 +693,17 @@ Array [
       "override": "Test override",
       "value": "7.966",
     },
+    "off_scramble_ppp": Object {
+      "value": "0.000",
+    },
     "total_off_fga": Object {
       "value": "404.075",
     },
     "total_off_pts": Object {
       "value": "528.702",
+    },
+    "total_off_trans_poss": Object {
+      "value": "114.193",
     },
   },
 ]
@@ -624,6 +732,9 @@ Array [
       "override": "Test override",
       "value": "91.222",
     },
+    "duration_mins": Object {
+      "value": "342.042",
+    },
     "key": "'On' Ayala, Eric",
     "off_adj_opp": Object {
       "value": "108.385",
@@ -642,11 +753,17 @@ Array [
       "override": "Test override",
       "value": "115.552",
     },
+    "off_scramble_ppp": Object {
+      "value": "113.458",
+    },
     "total_off_fga": Object {
       "value": "505.000",
     },
     "total_off_pts": Object {
       "value": "691.000",
+    },
+    "total_off_trans_poss": Object {
+      "value": "137.855",
     },
   },
   Object {
@@ -670,6 +787,9 @@ Array [
       "override": "Test override",
       "value": "84.038",
     },
+    "duration_mins": Object {
+      "value": "131.068",
+    },
     "key": "'Off' Ayala, Eric",
     "off_adj_opp": Object {
       "value": "109.452",
@@ -688,11 +808,17 @@ Array [
       "override": "Test override",
       "value": "107.109",
     },
+    "off_scramble_ppp": Object {
+      "value": "137.757",
+    },
     "total_off_fga": Object {
       "value": "174.000",
     },
     "total_off_pts": Object {
       "value": "226.000",
+    },
+    "total_off_trans_poss": Object {
+      "value": "54.259",
     },
   },
   Object {
@@ -716,6 +842,9 @@ Array [
       "override": "Test override",
       "value": "6.610",
     },
+    "duration_mins": Object {
+      "value": "79.905",
+    },
     "key": "'r:On-Off' Ayala, Eric",
     "off_adj_opp": Object {
       "value": "-1.056",
@@ -734,11 +863,17 @@ Array [
       "override": "Test override",
       "value": "7.966",
     },
+    "off_scramble_ppp": Object {
+      "value": "0.000",
+    },
     "total_off_fga": Object {
       "value": "404.075",
     },
     "total_off_pts": Object {
       "value": "528.702",
+    },
+    "total_off_trans_poss": Object {
+      "value": "114.193",
     },
   },
 ]
@@ -767,6 +902,9 @@ Array [
       "override": "Test override",
       "value": "91.222",
     },
+    "duration_mins": Object {
+      "value": "342.042",
+    },
     "key": "'On' Ayala, Eric",
     "off_adj_opp": Object {
       "value": "108.385",
@@ -785,11 +923,17 @@ Array [
       "override": "Test override",
       "value": "115.552",
     },
+    "off_scramble_ppp": Object {
+      "value": "113.458",
+    },
     "total_off_fga": Object {
       "value": "505.000",
     },
     "total_off_pts": Object {
       "value": "691.000",
+    },
+    "total_off_trans_poss": Object {
+      "value": "137.855",
     },
   },
   Object {
@@ -813,6 +957,9 @@ Array [
       "override": "Test override",
       "value": "84.038",
     },
+    "duration_mins": Object {
+      "value": "131.068",
+    },
     "key": "'Off' Ayala, Eric",
     "off_adj_opp": Object {
       "value": "109.452",
@@ -831,11 +978,17 @@ Array [
       "override": "Test override",
       "value": "107.109",
     },
+    "off_scramble_ppp": Object {
+      "value": "137.757",
+    },
     "total_off_fga": Object {
       "value": "174.000",
     },
     "total_off_pts": Object {
       "value": "226.000",
+    },
+    "total_off_trans_poss": Object {
+      "value": "54.259",
     },
   },
   Object {},
@@ -865,6 +1018,9 @@ Array [
       "override": "Test override",
       "value": "91.222",
     },
+    "duration_mins": Object {
+      "value": "342.042",
+    },
     "key": "'On' Ayala, Eric",
     "off_adj_opp": Object {
       "value": "108.385",
@@ -883,11 +1039,17 @@ Array [
       "override": "Test override",
       "value": "115.552",
     },
+    "off_scramble_ppp": Object {
+      "value": "113.458",
+    },
     "total_off_fga": Object {
       "value": "505.000",
     },
     "total_off_pts": Object {
       "value": "691.000",
+    },
+    "total_off_trans_poss": Object {
+      "value": "137.855",
     },
   },
   Object {
@@ -911,6 +1073,9 @@ Array [
       "override": "Test override",
       "value": "84.038",
     },
+    "duration_mins": Object {
+      "value": "131.068",
+    },
     "key": "'Off' Ayala, Eric",
     "off_adj_opp": Object {
       "value": "109.452",
@@ -929,11 +1094,17 @@ Array [
       "override": "Test override",
       "value": "107.109",
     },
+    "off_scramble_ppp": Object {
+      "value": "137.757",
+    },
     "total_off_fga": Object {
       "value": "174.000",
     },
     "total_off_pts": Object {
       "value": "226.000",
+    },
+    "total_off_trans_poss": Object {
+      "value": "54.259",
     },
   },
   Object {
@@ -957,6 +1128,9 @@ Array [
       "override": "Test override",
       "value": "6.313",
     },
+    "duration_mins": Object {
+      "value": "79.905",
+    },
     "key": "'r:On-Off' Ayala, Eric",
     "off_adj_opp": Object {
       "value": "-1.014",
@@ -975,11 +1149,17 @@ Array [
       "override": "Test override",
       "value": "7.652",
     },
+    "off_scramble_ppp": Object {
+      "value": "0.000",
+    },
     "total_off_fga": Object {
       "value": "404.075",
     },
     "total_off_pts": Object {
       "value": "528.702",
+    },
+    "total_off_trans_poss": Object {
+      "value": "114.193",
     },
   },
 ]
@@ -1008,6 +1188,9 @@ Array [
       "override": "Test override",
       "value": "91.222",
     },
+    "duration_mins": Object {
+      "value": "342.042",
+    },
     "key": "'On' Ayala, Eric",
     "off_adj_opp": Object {
       "value": "108.385",
@@ -1026,11 +1209,17 @@ Array [
       "override": "Test override",
       "value": "115.552",
     },
+    "off_scramble_ppp": Object {
+      "value": "113.458",
+    },
     "total_off_fga": Object {
       "value": "505.000",
     },
     "total_off_pts": Object {
       "value": "691.000",
+    },
+    "total_off_trans_poss": Object {
+      "value": "137.855",
     },
   },
   Object {
@@ -1054,6 +1243,9 @@ Array [
       "override": "Test override",
       "value": "84.038",
     },
+    "duration_mins": Object {
+      "value": "131.068",
+    },
     "key": "'Off' Ayala, Eric",
     "off_adj_opp": Object {
       "value": "109.452",
@@ -1072,11 +1264,17 @@ Array [
       "override": "Test override",
       "value": "107.109",
     },
+    "off_scramble_ppp": Object {
+      "value": "137.757",
+    },
     "total_off_fga": Object {
       "value": "174.000",
     },
     "total_off_pts": Object {
       "value": "226.000",
+    },
+    "total_off_trans_poss": Object {
+      "value": "54.259",
     },
   },
   Object {},
@@ -1106,6 +1304,9 @@ Array [
       "override": "Test override",
       "value": "91.222",
     },
+    "duration_mins": Object {
+      "value": "342.042",
+    },
     "key": "'On' Ayala, Eric",
     "off_adj_opp": Object {
       "value": "108.385",
@@ -1124,11 +1325,17 @@ Array [
       "override": "Test override",
       "value": "115.552",
     },
+    "off_scramble_ppp": Object {
+      "value": "113.458",
+    },
     "total_off_fga": Object {
       "value": "505.000",
     },
     "total_off_pts": Object {
       "value": "691.000",
+    },
+    "total_off_trans_poss": Object {
+      "value": "137.855",
     },
   },
   Object {
@@ -1152,6 +1359,9 @@ Array [
       "override": "Test override",
       "value": "84.038",
     },
+    "duration_mins": Object {
+      "value": "131.068",
+    },
     "key": "'Off' Ayala, Eric",
     "off_adj_opp": Object {
       "value": "109.452",
@@ -1170,11 +1380,17 @@ Array [
       "override": "Test override",
       "value": "107.109",
     },
+    "off_scramble_ppp": Object {
+      "value": "137.757",
+    },
     "total_off_fga": Object {
       "value": "174.000",
     },
     "total_off_pts": Object {
       "value": "226.000",
+    },
+    "total_off_trans_poss": Object {
+      "value": "54.259",
     },
   },
   Object {},
@@ -1204,6 +1420,9 @@ Array [
       "override": "Test override",
       "value": "91.222",
     },
+    "duration_mins": Object {
+      "value": "342.042",
+    },
     "key": "'On' Ayala, Eric",
     "off_adj_opp": Object {
       "value": "108.385",
@@ -1222,11 +1441,17 @@ Array [
       "override": "Test override",
       "value": "115.552",
     },
+    "off_scramble_ppp": Object {
+      "value": "113.458",
+    },
     "total_off_fga": Object {
       "value": "505.000",
     },
     "total_off_pts": Object {
       "value": "691.000",
+    },
+    "total_off_trans_poss": Object {
+      "value": "137.855",
     },
   },
   Object {
@@ -1250,6 +1475,9 @@ Array [
       "override": "Test override",
       "value": "84.038",
     },
+    "duration_mins": Object {
+      "value": "131.068",
+    },
     "key": "'Off' Ayala, Eric",
     "off_adj_opp": Object {
       "value": "109.452",
@@ -1268,11 +1496,17 @@ Array [
       "override": "Test override",
       "value": "107.109",
     },
+    "off_scramble_ppp": Object {
+      "value": "137.757",
+    },
     "total_off_fga": Object {
       "value": "174.000",
     },
     "total_off_pts": Object {
       "value": "226.000",
+    },
+    "total_off_trans_poss": Object {
+      "value": "54.259",
     },
   },
   Object {
@@ -1296,6 +1530,9 @@ Array [
       "override": "Test override",
       "value": "6.610",
     },
+    "duration_mins": Object {
+      "value": "79.905",
+    },
     "key": "'r:On-Off' Ayala, Eric",
     "off_adj_opp": Object {
       "value": "-1.056",
@@ -1314,11 +1551,17 @@ Array [
       "override": "Test override",
       "value": "7.966",
     },
+    "off_scramble_ppp": Object {
+      "value": "0.000",
+    },
     "total_off_fga": Object {
       "value": "404.075",
     },
     "total_off_pts": Object {
       "value": "528.702",
+    },
+    "total_off_trans_poss": Object {
+      "value": "114.193",
     },
   },
 ]
@@ -1347,6 +1590,9 @@ Array [
       "override": "Test override",
       "value": "91.222",
     },
+    "duration_mins": Object {
+      "value": "342.042",
+    },
     "key": "'On' Ayala, Eric",
     "off_adj_opp": Object {
       "value": "108.385",
@@ -1365,11 +1611,17 @@ Array [
       "override": "Test override",
       "value": "115.552",
     },
+    "off_scramble_ppp": Object {
+      "value": "113.458",
+    },
     "total_off_fga": Object {
       "value": "505.000",
     },
     "total_off_pts": Object {
       "value": "691.000",
+    },
+    "total_off_trans_poss": Object {
+      "value": "137.855",
     },
   },
   Object {
@@ -1393,6 +1645,9 @@ Array [
       "override": "Test override",
       "value": "84.038",
     },
+    "duration_mins": Object {
+      "value": "131.068",
+    },
     "key": "'Off' Ayala, Eric",
     "off_adj_opp": Object {
       "value": "109.452",
@@ -1411,11 +1666,17 @@ Array [
       "override": "Test override",
       "value": "107.109",
     },
+    "off_scramble_ppp": Object {
+      "value": "137.757",
+    },
     "total_off_fga": Object {
       "value": "174.000",
     },
     "total_off_pts": Object {
       "value": "226.000",
+    },
+    "total_off_trans_poss": Object {
+      "value": "54.259",
     },
   },
   Object {
@@ -1439,6 +1700,9 @@ Array [
       "override": "Test override",
       "value": "6.610",
     },
+    "duration_mins": Object {
+      "value": "79.905",
+    },
     "key": "'r:On-Off' Ayala, Eric",
     "off_adj_opp": Object {
       "value": "-1.056",
@@ -1457,11 +1721,17 @@ Array [
       "override": "Test override",
       "value": "7.966",
     },
+    "off_scramble_ppp": Object {
+      "value": "0.000",
+    },
     "total_off_fga": Object {
       "value": "404.075",
     },
     "total_off_pts": Object {
       "value": "528.702",
+    },
+    "total_off_trans_poss": Object {
+      "value": "114.193",
     },
   },
 ]

@@ -119,7 +119,9 @@ describe("LineupUtils", () => {
               //^(note FTR has a different implementation because you can have lineups with FTs but no FGAs
               // this is not currently tested here, except by inspection on real data)
               "total_off_fga",
-              "total_off_pts", "doc_count", "player_array" // (these are all ignored)
+              "total_off_pts", "doc_count", "player_array", // (these are all ignored)
+              "duration_mins", // should be summed
+              "total_off_trans_poss", "off_scramble_ppp" // special cases
             ]).mapValues(toFixed).value();
           }).value();
 
