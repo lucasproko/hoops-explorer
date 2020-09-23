@@ -36,19 +36,19 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (basic d
               "cellMetaFn": [Function],
               "dataObj": Object {
                 "pos_c": Object {
-                  "value": 2.2626131714146176e-8,
+                  "value": 1.1870453146996361e-8,
                 },
                 "pos_pf": Object {
-                  "value": 0.00030851044154688387,
+                  "value": 0.00025873437114051626,
                 },
                 "pos_pg": Object {
-                  "value": 0.7982973225292522,
+                  "value": 0.7573493221063862,
                 },
                 "pos_sf": Object {
-                  "value": 0.004383883727363923,
+                  "value": 0.004535396666879756,
                 },
                 "pos_sg": Object {
-                  "value": 0.19701026067570515,
+                  "value": 0.23785653498514026,
                 },
                 "title": "Scoring PG",
               },
@@ -159,7 +159,7 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
   <span>
     <b>
       Positional diagnostics for [
-      Wiggins, Aaron
+      Cowan, Anthony
       ]
     </b>
      
@@ -181,7 +181,7 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
       Rule used to categorize player: 
       <i>
         <b>
-          (Max[P] == SF) AND (P[PG] + P[SG] &gt;= P[PF] + P[C])
+          (P[PG] &gt;= 50%)
         </b>
       </i>
     </li>
@@ -199,21 +199,21 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
               "cellMetaFn": [Function],
               "dataObj": Object {
                 "pos_c": Object {
-                  "value": 0.0000033279697700022213,
+                  "value": 7.752418955526866e-9,
                 },
                 "pos_pf": Object {
-                  "value": 0.23164047510982508,
+                  "value": 0.00019043748354377016,
                 },
                 "pos_pg": Object {
-                  "value": 0.011469651859149974,
+                  "value": 0.7608816899806605,
                 },
                 "pos_sf": Object {
-                  "value": 0.4225736022943093,
+                  "value": 0.003893285388442086,
                 },
                 "pos_sg": Object {
-                  "value": 0.3343129427669457,
+                  "value": 0.23503457939493452,
                 },
-                "title": "Wing Guard",
+                "title": "Scoring PG",
               },
               "kind": "data-row",
               "prefixFn": [Function],
@@ -349,19 +349,19 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                     "value": -0.03291695250711689,
                   },
                   "contrib_pos_c": Object {
-                    "value": -1.2397817102657935,
+                    "value": -1.639683941800146,
                   },
                   "contrib_pos_pf": Object {
-                    "value": -0.12472377696351603,
+                    "value": -0.6287765086644861,
                   },
                   "contrib_pos_pg": Object {
-                    "value": -0.4252719684677178,
+                    "value": 0.20051441012627544,
                   },
                   "contrib_pos_sf": Object {
-                    "value": -0.06460606248217492,
+                    "value": -0.327008040395222,
                   },
                   "contrib_pos_sg": Object {
-                    "value": -0.0880346754359544,
+                    "value": 0.08303988716847305,
                   },
                   "feature": <OverlayTrigger
                     overlay={
@@ -411,19 +411,19 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                     "value": 0.0117932242,
                   },
                   "contrib_pos_c": Object {
-                    "value": 0.02055282235917441,
+                    "value": 0.0946805136448887,
                   },
                   "contrib_pos_pf": Object {
-                    "value": -0.00767041050758926,
+                    "value": -0.09124072882187498,
                   },
                   "contrib_pos_pg": Object {
-                    "value": -0.007126634957356659,
+                    "value": 0.0031657993712147707,
                   },
                   "contrib_pos_sf": Object {
-                    "value": -0.002313586014044136,
+                    "value": -0.04950928635690128,
                   },
                   "contrib_pos_sg": Object {
-                    "value": -0.0029298709819235128,
+                    "value": 0.00837255628950506,
                   },
                   "feature": <OverlayTrigger
                     overlay={
@@ -441,7 +441,7 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                     </b>
                   </OverlayTrigger>,
                   "player": Object {
-                    "value": 0.008571428571428572,
+                    "value": 0.021,
                   },
                   "pos_c": Object {
                     "value": 0.5964297,
@@ -482,19 +482,19 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                     "value": 0.1305019881,
                   },
                   "contrib_pos_c": Object {
-                    "value": -0.04254994813190524,
+                    "value": -0.2710580349045168,
                   },
                   "contrib_pos_pf": Object {
-                    "value": -0.005781096458690002,
+                    "value": -0.10027868120262678,
                   },
                   "contrib_pos_pg": Object {
-                    "value": -0.23721964732262882,
+                    "value": 0.06068783674115257,
                   },
                   "contrib_pos_sf": Object {
-                    "value": -0.0015966151306683757,
+                    "value": -0.12462433950102883,
                   },
                   "contrib_pos_sg": Object {
-                    "value": -0.008230804843136838,
+                    "value": 0.04066598851503013,
                   },
                   "feature": <OverlayTrigger
                     overlay={
@@ -512,7 +512,7 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                     </b>
                   </OverlayTrigger>,
                   "player": Object {
-                    "value": 0.0988235294117647,
+                    "value": 0.2870159453302961,
                   },
                   "pos_c": Object {
                     "value": -0.12142258,
@@ -553,19 +553,19 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                     "value": 0.1804530996,
                   },
                   "contrib_pos_c": Object {
-                    "value": -0.018806367374316065,
+                    "value": -0.018848768293540194,
                   },
                   "contrib_pos_pf": Object {
-                    "value": 0.005838647236366244,
+                    "value": 0.005873416875028927,
                   },
                   "contrib_pos_pg": Object {
-                    "value": 0.004337499021490447,
+                    "value": 0.0043436239660690065,
                   },
                   "contrib_pos_sf": Object {
-                    "value": 0.005028303968858877,
+                    "value": 0.005047427158025355,
                   },
                   "contrib_pos_sg": Object {
-                    "value": -0.001013752718898569,
+                    "value": -0.0010183894342471872,
                   },
                   "feature": <OverlayTrigger
                     overlay={
@@ -583,7 +583,7 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                     </b>
                   </OverlayTrigger>,
                   "player": Object {
-                    "value": 0.16076743404863644,
+                    "value": 0.16067739549593207,
                   },
                   "pos_c": Object {
                     "value": 0.04709196,
@@ -624,19 +624,19 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                     "value": 0.2421690841,
                   },
                   "contrib_pos_c": Object {
-                    "value": -0.0026418402171519265,
+                    "value": -0.09468140387136673,
                   },
                   "contrib_pos_pf": Object {
-                    "value": -0.0014109537807707037,
+                    "value": 0.051431412491612295,
                   },
                   "contrib_pos_pg": Object {
-                    "value": -0.05356486335768547,
+                    "value": -0.012386003759293766,
                   },
                   "contrib_pos_sf": Object {
-                    "value": -0.0029361476296814043,
+                    "value": 0.020825990548821567,
                   },
                   "contrib_pos_sg": Object {
-                    "value": 0.0030939243304664555,
+                    "value": -0.005927654216917716,
                   },
                   "feature": <OverlayTrigger
                     overlay={
@@ -654,7 +654,7 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                     </b>
                   </OverlayTrigger>,
                   "player": Object {
-                    "value": 0.14334470989761092,
+                    "value": 0.4315068493150685,
                   },
                   "pos_c": Object {
                     "value": -0.0319402,
@@ -704,19 +704,19 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                     "value": 0.49221919659999996,
                   },
                   "contrib_pos_c": Object {
-                    "value": -0.35365487019696884,
+                    "value": -0.31224600960975113,
                   },
                   "contrib_pos_pf": Object {
-                    "value": 0.0017964858943228072,
+                    "value": 0.0012808459111538892,
                   },
                   "contrib_pos_pg": Object {
-                    "value": 0.040932272198779034,
+                    "value": 0.023792081067823885,
                   },
                   "contrib_pos_sf": Object {
-                    "value": -0.006126396230199925,
+                    "value": -0.004715946924482035,
                   },
                   "contrib_pos_sg": Object {
-                    "value": 0.01400676408492278,
+                    "value": 0.0002035600080608562,
                   },
                   "feature": <OverlayTrigger
                     overlay={
@@ -734,7 +734,7 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                     </b>
                   </OverlayTrigger>,
                   "player": Object {
-                    "value": 0.5563139931740614,
+                    "value": 0.4931506849315068,
                   },
                   "pos_c": Object {
                     "value": -0.06555841,
@@ -775,19 +775,19 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                     "value": 0.245276034,
                   },
                   "contrib_pos_c": Object {
-                    "value": -0.06435122856661252,
+                    "value": -0.13257707947128314,
                   },
                   "contrib_pos_pf": Object {
-                    "value": 0.007759676784898341,
+                    "value": 0.05891546597560385,
                   },
                   "contrib_pos_pg": Object {
-                    "value": 0.000009286810847838384,
+                    "value": 0.0011308679974390769,
                   },
                   "contrib_pos_sf": Object {
-                    "value": 0.004531537804065611,
+                    "value": 0.020893757870454877,
                   },
                   "contrib_pos_sg": Object {
-                    "value": -0.0036854285949528584,
+                    "value": 0.006516720874400548,
                   },
                   "feature": <OverlayTrigger
                     overlay={
@@ -805,7 +805,7 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                     </b>
                   </OverlayTrigger>,
                   "player": Object {
-                    "value": 0.2832764505119454,
+                    "value": 0.1780821917808219,
                   },
                   "pos_c": Object {
                     "value": 0.06485701,
@@ -846,19 +846,19 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                     "value": 0.2614022775,
                   },
                   "contrib_pos_c": Object {
-                    "value": 0.06380501735392329,
+                    "value": 0.039232826395954226,
                   },
                   "contrib_pos_pf": Object {
-                    "value": 0.06171555509353169,
+                    "value": 0.009936831819886359,
                   },
                   "contrib_pos_pg": Object {
-                    "value": -0.02291636236662842,
+                    "value": 0.003107306519247493,
                   },
                   "contrib_pos_sf": Object {
-                    "value": 0.020830941491891887,
+                    "value": 0.006412344890835271,
                   },
                   "contrib_pos_sg": Object {
-                    "value": -0.015469883244374392,
+                    "value": 0.010318825821033054,
                   },
                   "feature": <OverlayTrigger
                     overlay={
@@ -876,7 +876,7 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                     </b>
                   </OverlayTrigger>,
                   "player": Object {
-                    "value": 0.16040955631399317,
+                    "value": 0.3287671232876712,
                   },
                   "pos_c": Object {
                     "value": -0.01459524,
@@ -917,19 +917,19 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                     "value": 0.3019707211,
                   },
                   "contrib_pos_c": Object {
-                    "value": -0.014477483109150563,
+                    "value": 0.004410427040926576,
                   },
                   "contrib_pos_pf": Object {
-                    "value": 0.01947008089218138,
+                    "value": -0.039420773860261465,
                   },
                   "contrib_pos_pg": Object {
-                    "value": -0.004922526569207038,
+                    "value": 0.005302952434018919,
                   },
                   "contrib_pos_sf": Object {
-                    "value": -0.0002131669318206816,
+                    "value": 0.0002115234662811464,
                   },
                   "contrib_pos_sg": Object {
-                    "value": -0.0008404183836990489,
+                    "value": 0.0023122464253149304,
                   },
                   "feature": <OverlayTrigger
                     overlay={
@@ -947,7 +947,7 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                     </b>
                   </OverlayTrigger>,
                   "player": Object {
-                    "value": 0.20136518771331058,
+                    "value": 0.5787671232876712,
                   },
                   "pos_c": Object {
                     "value": 0.00500472,
@@ -997,19 +997,19 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                     "value": 1.0332803494,
                   },
                   "contrib_pos_c": Object {
-                    "value": -0.3901460227920557,
+                    "value": -0.39431378786719307,
                   },
                   "contrib_pos_pf": Object {
-                    "value": -0.015880509923822374,
+                    "value": -0.014070579860366984,
                   },
                   "contrib_pos_pg": Object {
-                    "value": -0.0022328592143113913,
+                    "value": -0.0014950765661023262,
                   },
                   "contrib_pos_sf": Object {
-                    "value": 0.006258906343074945,
+                    "value": 0.007036921085779702,
                   },
                   "contrib_pos_sg": Object {
-                    "value": -0.000886222867899766,
+                    "value": -0.00008876786900812167,
                   },
                   "feature": <OverlayTrigger
                     overlay={
@@ -1027,7 +1027,7 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                     </b>
                   </OverlayTrigger>,
                   "player": Object {
-                    "value": 1.0223960590234225,
+                    "value": 1.032190132370638,
                   },
                   "pos_c": Object {
                     "value": -0.04255395,
@@ -1068,19 +1068,19 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                     "value": 0.6911712719,
                   },
                   "contrib_pos_c": Object {
-                    "value": 0.011835919041862826,
+                    "value": 0.028234511893753606,
                   },
                   "contrib_pos_pf": Object {
-                    "value": -0.019028233936777016,
+                    "value": -0.03143091300894121,
                   },
                   "contrib_pos_pg": Object {
-                    "value": -0.0026998566342604766,
+                    "value": -0.004455839184729959,
                   },
                   "contrib_pos_sf": Object {
-                    "value": -0.002233352971020884,
+                    "value": -0.004731108196824638,
                   },
                   "contrib_pos_sg": Object {
-                    "value": -0.0023107822651753096,
+                    "value": -0.004660362350734768,
                   },
                   "feature": <OverlayTrigger
                     overlay={
@@ -1098,7 +1098,7 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                     </b>
                   </OverlayTrigger>,
                   "player": Object {
-                    "value": 0.6299099744703721,
+                    "value": 0.5676201055262426,
                   },
                   "pos_c": Object {
                     "value": -0.02632626,
@@ -1139,19 +1139,19 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                     "value": 1.1553768733,
                   },
                   "contrib_pos_c": Object {
-                    "value": -0.1299756418118449,
+                    "value": 0.014043693594999768,
                   },
                   "contrib_pos_pf": Object {
-                    "value": 0.09610806750902244,
+                    "value": -0.021300723749735545,
                   },
                   "contrib_pos_pg": Object {
-                    "value": -0.04806935232455007,
+                    "value": -0.009263784166373456,
                   },
                   "contrib_pos_sf": Object {
-                    "value": 0.05266852415004661,
+                    "value": -0.008169209039521078,
                   },
                   "contrib_pos_sg": Object {
-                    "value": 0.03115061021909307,
+                    "value": 0.002262595147826038,
                   },
                   "feature": <OverlayTrigger
                     overlay={
@@ -1169,7 +1169,7 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                     </b>
                   </OverlayTrigger>,
                   "player": Object {
-                    "value": 1.5758917978327929,
+                    "value": 1.1859205776173285,
                   },
                   "pos_c": Object {
                     "value": -0.03693076,
@@ -1210,19 +1210,19 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                     "value": 0.6839666748000001,
                   },
                   "contrib_pos_c": Object {
-                    "value": -0.07644294880390745,
+                    "value": -0.08445966709576876,
                   },
                   "contrib_pos_pf": Object {
-                    "value": 0.0066351507359451575,
+                    "value": 0.008367933175796524,
                   },
                   "contrib_pos_pg": Object {
-                    "value": 0.0020374039607718385,
+                    "value": 0.00525527386765207,
                   },
                   "contrib_pos_sf": Object {
-                    "value": 0.0009463904600846488,
+                    "value": 0.0011985161869089603,
                   },
                   "contrib_pos_sg": Object {
-                    "value": 0.0030375346375808993,
+                    "value": 0.004813982158120084,
                   },
                   "feature": <OverlayTrigger
                     overlay={
@@ -1240,7 +1240,7 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                     </b>
                   </OverlayTrigger>,
                   "player": Object {
-                    "value": 0.6298515755218668,
+                    "value": 0.5982033326518095,
                   },
                   "pos_c": Object {
                     "value": 0.02533069,
@@ -1290,19 +1290,19 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                     "value": 0.0192994759,
                   },
                   "contrib_pos_c": Object {
-                    "value": -0.05625939645176135,
+                    "value": -0.06548545706517166,
                   },
                   "contrib_pos_pf": Object {
-                    "value": -0.027415834715708035,
+                    "value": -0.031947258811137205,
                   },
                   "contrib_pos_pg": Object {
-                    "value": -0.04913998976229669,
+                    "value": -0.043759823510891076,
                   },
                   "contrib_pos_sf": Object {
-                    "value": -0.000054332322908555066,
+                    "value": -0.00022505820653257046,
                   },
                   "contrib_pos_sg": Object {
-                    "value": -0.008366910541089062,
+                    "value": -0.004744303150177782,
                   },
                   "feature": <OverlayTrigger
                     overlay={
@@ -1320,7 +1320,7 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                     </b>
                   </OverlayTrigger>,
                   "player": Object {
-                    "value": 0.0177717019822283,
+                    "value": 0.018433179723502304,
                   },
                   "pos_c": Object {
                     "value": -1.39476509,
@@ -1361,19 +1361,19 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                     "value": 0.028636182899999998,
                   },
                   "contrib_pos_c": Object {
-                    "value": -0.24372653378014342,
+                    "value": -0.36918554117743285,
                   },
                   "contrib_pos_pf": Object {
-                    "value": -0.09316364444148886,
+                    "value": -0.17084641607948242,
                   },
                   "contrib_pos_pg": Object {
-                    "value": -0.06292242480553054,
+                    "value": 0.016770811325724003,
                   },
                   "contrib_pos_sf": Object {
-                    "value": -0.018647369079569723,
+                    "value": -0.04186207195709218,
                   },
                   "contrib_pos_sg": Object {
-                    "value": -0.03454590309920435,
+                    "value": 0.030337792696724743,
                   },
                   "feature": <OverlayTrigger
                     overlay={
@@ -1391,7 +1391,7 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                     </b>
                   </OverlayTrigger>,
                   "player": Object {
-                    "value": 0.044416243654822336,
+                    "value": 0.014778325123152709,
                   },
                   "pos_c": Object {
                     "value": 0.42330573,
@@ -1432,19 +1432,19 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                     "value": 0.1043093259,
                   },
                   "contrib_pos_c": Object {
-                    "value": -0.05478182526065703,
+                    "value": -0.12031647227400265,
                   },
                   "contrib_pos_pf": Object {
-                    "value": -0.09860761669436799,
+                    "value": -0.1901657682636271,
                   },
                   "contrib_pos_pg": Object {
-                    "value": -0.10926293776190135,
+                    "value": -0.008720164305849782,
                   },
                   "contrib_pos_sf": Object {
-                    "value": -0.01559953079501243,
+                    "value": -0.05971530295331893,
                   },
                   "contrib_pos_sg": Object {
-                    "value": -0.025620998089157767,
+                    "value": 0.007914036186037825,
                   },
                   "feature": <OverlayTrigger
                     overlay={
@@ -1462,7 +1462,7 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                     </b>
                   </OverlayTrigger>,
                   "player": Object {
-                    "value": 0.13658536585365855,
+                    "value": 0.09433962264150944,
                   },
                   "pos_c": Object {
                     "value": 0.15512722,
@@ -1503,19 +1503,19 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                     "value": 0.0079057473,
                   },
                   "contrib_pos_c": Object {
-                    "value": -0.21648261781394523,
+                    "value": -0.29021304005288573,
                   },
                   "contrib_pos_pf": Object {
-                    "value": -0.03910666776566876,
+                    "value": -0.06126637950570908,
                   },
                   "contrib_pos_pg": Object {
-                    "value": -0.03481052080331204,
+                    "value": -0.0039588866035992236,
                   },
                   "contrib_pos_sf": Object {
-                    "value": 0.0011742943257902995,
+                    "value": 0.011511808892575097,
                   },
                   "contrib_pos_sg": Object {
-                    "value": -0.019846421766713647,
+                    "value": 0.004386865990679732,
                   },
                   "feature": <OverlayTrigger
                     overlay={
@@ -1533,7 +1533,7 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                     </b>
                   </OverlayTrigger>,
                   "player": Object {
-                    "value": 0.016581632653061226,
+                    "value": 0.005988023952095809,
                   },
                   "pos_c": Object {
                     "value": 0.69598967,
@@ -1574,19 +1574,19 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                     "value": 0.0308755648,
                   },
                   "contrib_pos_c": Object {
-                    "value": -0.0913649990277252,
+                    "value": -0.08658690700514676,
                   },
                   "contrib_pos_pf": Object {
-                    "value": -0.050436895534892404,
+                    "value": -0.0470686143997966,
                   },
                   "contrib_pos_pg": Object {
-                    "value": 0.0077886129038357305,
+                    "value": 0.006486502416547128,
                   },
                   "contrib_pos_sf": Object {
-                    "value": 0.0029612822120819783,
+                    "value": 0.002691738773941172,
                   },
                   "contrib_pos_sg": Object {
-                    "value": 0.017340841195324377,
+                    "value": 0.014291146583942552,
                   },
                   "feature": <OverlayTrigger
                     overlay={
@@ -1604,7 +1604,7 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
                     </b>
                   </OverlayTrigger>,
                   "player": Object {
-                    "value": 0.02248803827751196,
+                    "value": 0.023963133640552994,
                   },
                   "pos_c": Object {
                     "value": 0.3239175,

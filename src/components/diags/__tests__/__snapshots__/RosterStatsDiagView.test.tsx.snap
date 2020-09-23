@@ -4,11 +4,11 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 1`] = 
 <span>
   ORtg = Points_Produced [
   <b>
-    508.9
+    518.4
   </b>
   ] / Adjusted_Possessions [
   <b>
-    450.3
+    457.1
   </b>
   ] (
   <a
@@ -39,7 +39,7 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 1`] = 
     <li>
       Points_Produced: [
       <b>
-        508.9
+        518.4
       </b>
       ] = PProd_From_ORB [
       <b>
@@ -47,19 +47,19 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 1`] = 
       </b>
       ] + [
       <b>
-        499.4
+        508.9
       </b>
       ] (PProd_From_FG [
       <b>
-        301.5
+        304.3
       </b>
       ] + FTM [
       <b>
-        166
+        172
       </b>
       ] + PProd_From_AST [
       <b>
-        81.1
+        82.9
       </b>
       ], less Team_ORB_Contrib% [
       <b>
@@ -68,7 +68,7 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 1`] = 
       </b>
       ]==[
       <b>
-        49.2
+        50.3
       </b>
       ])
     </li>
@@ -81,11 +81,11 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 1`] = 
           </b>
           ], pts=[
           <b>
-            497.0
+            506.0
           </b>
           ] (fg_pts=[
           <b>
-            331.0
+            334.0
           </b>
            = 
           <b>
@@ -93,7 +93,7 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 1`] = 
           </b>
           *
           <b>
-            55.0
+            56.0
           </b>
            + 
           <b>
@@ -101,19 +101,19 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 1`] = 
           </b>
           *(
           <b>
-            46.0
+            18.0
           </b>
            + 
           <b>
-            37.0
+            65.0
           </b>
           )] + ftm=[
           <b>
-            166.0
+            172.0
           </b>
           ]), assists=[
           <b>
-            144.0
+            147.0
           </b>
           ]
         </em>
@@ -122,19 +122,19 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 1`] = 
     <li>
       Adjusted_Possessions: [
       <b>
-        450.3
+        457.1
       </b>
       ] = Scoring_Possessions [
       <b>
-        236.5
+        240.7
       </b>
       ] + Missed_FG_Possessions [
       <b>
-        141.2
+        143.9
       </b>
       ] + Missed_FT_Possessions [
       <b>
-        3.7
+        3.6
       </b>
       ] + TO [
       <b>
@@ -147,27 +147,27 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 1`] = 
         <em>
           Compare raw stats: poss=[
           <b>
-            444.6
+            451.5
           </b>
           ] (fga=[
           <b>
-            351
+            356
           </b>
            = 
           <b>
-            171
+            174
           </b>
            + (
           <b>
-            107
+            65
           </b>
            + 
           <b>
-            73
+            117
           </b>
           )] + 0.475*fta=[
           <b>
-            97.8
+            100.7
           </b>
           ] + to=[
           <b>
@@ -175,7 +175,7 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 1`] = 
           </b>
           ] - orb=[
           <b>
-            73.2
+            74.2
           </b>
           ])
         </em>
@@ -187,7 +187,7 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 1`] = 
       </b>
       : [
       <b>
-        4.9
+        5.0
       </b>
       ] = 
       <em>
@@ -195,11 +195,11 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 1`] = 
       </em>
        [
       <b>
-        124.6
+        125.0
       </b>
       ] (Regressed_ORtg [
       <b>
-        114.0
+        114.4
       </b>
       ] + Usage_Bonus [
       <b>
@@ -211,18 +211,18 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 1`] = 
       </b>
       ] / Def_SOS [
       <b>
-        96.5
+        96.6
       </b>
       ])
     </li>
   </ul>
   DRtg = Team_DRtg [
   <b>
-    102.2
+    97.1
   </b>
   ] + Player_Delta [
   <b>
-    8.1
+    1.8
   </b>
   ]  (
   <a
@@ -237,15 +237,15 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 1`] = 
     <li>
       Team_DRtg: [
       <b>
-        102.2
+        97.1
       </b>
       ] = 100 * Opponent_Pts [
       <b>
-        1804
+        1738
       </b>
       ] / Opponent_Poss [
       <b>
-        1766
+        1790
       </b>
       ] 
       <em>
@@ -255,15 +255,15 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 1`] = 
     <li>
       Player_Delta: [
       <b>
-        8.1
+        1.8
       </b>
       ] = (Player_DRtg [
       <b>
-        142.8
+        105.9
       </b>
       ] - Team_DRtg [
       <b>
-        102.2
+        97.1
       </b>
       ]) / Team_Size [
       <b>
@@ -275,15 +275,15 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 1`] = 
       <li>
         Player_DRtg:  [
         <b>
-          142.8
+          105.9
         </b>
         ] = 100 * Pts_Per_Score [
         <b>
-          2.3
+          2.2
         </b>
         ] * Score_Conceded_By_Player% [
         <b>
-          63.4
+          48.9
           %
         </b>
         ]
@@ -295,7 +295,7 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 1`] = 
       </b>
       : [
       <b>
-        0.4
+        -1.7
       </b>
       ] = 
       <em>
@@ -303,11 +303,11 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 1`] = 
       </em>
        [
       <b>
-        102.0
+        91.5
       </b>
       ] (DRtg [
       <b>
-        110.3
+        98.8
       </b>
       ] * (Avg_Efficiency [
       <b>
@@ -315,7 +315,7 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 1`] = 
       </b>
       ] / Off_SOS [
       <b>
-        108.1
+        108.0
       </b>
       ]))
     </li>

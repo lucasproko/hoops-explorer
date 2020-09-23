@@ -1,5 +1,52 @@
-/** Manually built by copying the snapshot from src/utils/stats/__tests__/RatingUtils.test.ts */
-export const sampleOrtgDiagnostics =
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RatingUtils RatingUtils - buildDRtg 1`] = `
+{
+   "stl": 30,
+   "blk": 5,
+   "drb": 96,
+   "pfPct": 0.15789473684210525,
+   "playerRtg": 105.86789969595162,
+   "playerDelta": 1.7545855257825025,
+   "scPossConceded": 0.48933399202505,
+   "noShotCredit": 32.260450315336996,
+   "reboundCredit": 34.59731465653162,
+   "missFtCredit": 2.5382812499999994,
+   "stopsIndPct": 0.19384370453035926,
+   "stopsTeamPct": 0.3168223034445907,
+   "teamBlk": 108,
+   "oppoPts": 1738,
+   "oppoPoss": 1790,
+   "oppoFga": 1588,
+   "oppoFgm": 637,
+   "oppoFtm": 270,
+   "oppoFta": 384,
+   "oppoFtPoss": 182.39999999999998,
+   "oppoTov": 312,
+   "teamStl": 126,
+   "opponentOrbPct": 0.274,
+   "opponentFgPct": 0.40113350125944586,
+   "teamOrbCreditToDefender": 0.29122292191435767,
+   "teamOrbCreditToRebounder": 0.16408942065491183,
+   "teamDvsRebCredit": 0.6396113056611289,
+   "oppoFgMiss": 843,
+   "oppoNonStlTov": 186,
+   "teamMissWeight": 0.45209006306739913,
+   "oppoFtPct": 0.703125,
+   "oppoFtHitOnePlus": 166.32421874999997,
+   "oppoProbFtHitOnePlus": 0.911865234375,
+   "oppoScPoss": 803.32421875,
+   "oppoPtsPerScore": 2.163510024264409,
+   "teamRtg": 97.09497206703911,
+   "dRtg": 98.84955759282161,
+   "offSos": 108.03972067039106,
+   "avgEff": 100,
+   "adjDRtg": 91.49371821720374,
+   "adjDRtgPlus": -1.7012563565592531
+}
+`;
+
+exports[`RatingUtils RatingUtils - buildORtg 1`] = `
 {
    "rawFga": 356,
    "rawFgx": 217,
@@ -69,4 +116,5 @@ export const sampleOrtgDiagnostics =
    "Usage_Bonus": 6.3182938269647515,
    "adjORtg": 125.01163489494591,
    "adjORtgPlus": 5.002326978989183
-};
+}
+`;

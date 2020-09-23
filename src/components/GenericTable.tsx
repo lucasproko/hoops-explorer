@@ -7,6 +7,9 @@ import { NextPage } from 'next';
 // Lodash:
 import _ from "lodash";
 
+import "./GenericTable.css";
+import GroupedOverlayTrigger from "./shared/GroupedOverlayTrigger";
+
 // Bootstrap imports:
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Table from 'react-bootstrap/Table';
@@ -16,8 +19,11 @@ import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 
 // Libary imports
 import ClipboardJS from 'clipboard';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faClipboard } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faClipboard } from '@fortawesome/free-solid-svg-icons';
+import { faCircle } from '@fortawesome/free-solid-svg-icons';
+import { faArrowAltCircleRight } from '@fortawesome/free-solid-svg-icons';
+import { faArrowAltCircleDown } from '@fortawesome/free-solid-svg-icons';
 
 type GenericTableColorPickerFn =  (val: any, cellMeta: string) => string | undefined
 export class GenericTableColProps {
@@ -94,6 +100,13 @@ export class GenericTableOps {
         ((val.value as number)*100.0).toFixed(0) //(remove the .0 in the 100% case)
       : ((val.value as number)*100.0).toFixed(1); //(no % it's too ugly)
   }
+  static readonly percentOrHtmlFormatter = (val: any) => {
+    if (React.isValidElement(val)) {
+      return GenericTableOps.htmlFormatter(val as React.ReactNode);
+    } else {
+      return GenericTableOps.percentFormatter(val);
+    }
+  }
   static readonly pointsFormatter = (val: any) => (val.value as number).toFixed(1);
   static readonly defaultCellMeta = (key: string, value: any) => "";
   static readonly defaultColorPicker =  (val: any, cellMeta: string) => undefined;
@@ -146,13 +159,19 @@ export class GenericTableOps {
     return new GenericTableColProps("", "", width);
   }
 }
+type LockModes = "col" | "none" | "row" | "missing";
+const nextLockMode: Record<LockModes, LockModes> = { "none": "col", "col": "row", "row": "none", "missing": "missing" };
 type Props = {
   responsive?: boolean,
   tableFields: Record<string, GenericTableColProps>,
   tableData: Array<GenericTableRow>,
-  tableCopyId?: string
+  tableCopyId?: string,
+  cellTooltipMode?: LockModes
 }
-const GenericTable: React.FunctionComponent<Props> = ({responsive, tableFields, tableData, tableCopyId}) => {
+const GenericTable: React.FunctionComponent<Props> = ({responsive, tableFields, tableData, tableCopyId, cellTooltipMode}) => {
+
+  const [ lockMode, setLockMode ]= useState((cellTooltipMode || "missing") as LockModes);
+  const [ cellOverlayShowStates, setCellOverlayShowStates ] = useState({} as Record<string, boolean>);
 
   const tableId: string = tableCopyId || Math.random().toString(36).substring(8);
   const buttonId = tableId + "_copy";
@@ -193,6 +212,33 @@ const GenericTable: React.FunctionComponent<Props> = ({responsive, tableFields, 
           </OverlayTrigger>;
       }
     }
+    function insertTooltipLockMode() {
+      function getTooltipLockModeIcon() {
+        switch (lockMode) {
+          case "missing": return undefined;
+          case "none": return faCircle;
+          case "row": return faArrowAltCircleRight;
+          case "col": return faArrowAltCircleDown;
+        }
+      }
+      const lockIcon = getTooltipLockModeIcon();
+      if (lockIcon) {
+        const tooltip = (
+          <Tooltip id={`${toolTipId}-lock`}>Cell tooltip locking mode ({lockMode})</Tooltip>
+        );
+        return  <OverlayTrigger placement="top" overlay={tooltip}>
+            <Button
+              className="float-right" variant="outline-secondary" size="sm"
+              onClick={() => {
+                setLockMode(nextLockMode[lockMode] as LockModes);
+                setCellOverlayShowStates({}); //(clear it all out)
+              }}
+            >
+              <FontAwesomeIcon icon={lockIcon} />
+            </Button>
+          </OverlayTrigger>;
+      }
+    }
     return Object.values(tableFields).map((colProp, index) => {
         const style = getColStyle(colProp);
         const tooltip = (
@@ -202,6 +248,7 @@ const GenericTable: React.FunctionComponent<Props> = ({responsive, tableFields, 
           <th key={"" + index} style={style}>
               {colProp.colName}
               {insertCopyButton(index == 0)}
+              {index == 0 ? insertTooltipLockMode() : null}
           </th>
         );
         return (colProp.toolTip == "") ?
@@ -212,8 +259,15 @@ const GenericTable: React.FunctionComponent<Props> = ({responsive, tableFields, 
           </OverlayTrigger>);
     });
   }
-  function renderTableRow(row: GenericTableDataRow) {
+  function renderTableRow(row: GenericTableDataRow, mutableRowOffsetMap: Record<string, number>) {
+    var rowIndex = 0;
+    var tooltipColIndex = 0;
+    const prefixType = row.prefixFn("")
     return Object.entries(tableFields).map((keyVal, index) => {
+        if (0 == index) { // Update mutableRowOffsetMap
+          rowIndex = _.get(mutableRowOffsetMap, prefixType, 0);
+          _.set(mutableRowOffsetMap, prefixType, rowIndex + 1)
+        }
         const key: string = keyVal[0];
         const colProp: GenericTableColProps = row.tableFieldsOverride?.[key] || keyVal[1];
         const actualKey = row.prefixFn(key);
@@ -229,12 +283,43 @@ const GenericTable: React.FunctionComponent<Props> = ({responsive, tableFields, 
         //(the isNil handles separators)
         const val = _.isNil(tmpVal) ? "" : valBuilder(tmpVal) || "";
 
-        const overrideTooltip = tmpVal?.override ?
-          <Tooltip id={`tooltip_${index}_${key}`}>
-            Original Value: {valBuilder({value: tmpVal?.old_value}) || colProp.missingData}<br/>
-            {tmpVal?.override}
+        const hasTooltip = (cellVal: any) => {
+          return cellVal?.override || cellVal?.extraInfo;
+        }
+        tooltipColIndex = hasTooltip(tmpVal) ? tooltipColIndex + 1 : tooltipColIndex;
+        const cellTooltipId =
+          lockMode == "col" ? `tooltip_${index}_${actualKey}` : `tooltip_${rowIndex}_${prefixType}`;
+        const cellTooltip = hasTooltip(tmpVal) ?
+          <Tooltip id={cellTooltipId}>
+            {tmpVal?.override ? <span>
+              Original Value: {valBuilder({value: tmpVal?.old_value}) || colProp.missingData}<br/>
+              {tmpVal?.override}
+            </span> : null}
+            {tmpVal?.extraInfo && tmpVal?.override ? <br/> : null}
+            {tmpVal?.extraInfo ? <span>
+                {tmpVal?.extraInfo}
+            </span> : null}
           </Tooltip> : null;
 
+
+        const addTooltipIndicator = (viewVal: any, cellVal: any) => {
+          const addOverrideIndicator = (viewVal: any) => {
+            return cellVal?.override ? <u>{viewVal}</u> : viewVal;
+          };
+          const addExtraInfoIndicator = (viewVal: any) => {
+            return cellVal?.extraInfo ?
+              <div>{viewVal}<small><sup className="infoBadge"></sup></small></div> : viewVal;
+          };
+          return addExtraInfoIndicator(
+            addOverrideIndicator(viewVal)
+          );
+        };
+
+        const placement =
+          lockMode == "col" ?
+            ((rowIndex % 2) == 0 ? "left" : "right") :
+            ((tooltipColIndex % 2) == 0 ? "top" : "bottom")
+            ;
         const cellMeta = row.cellMetaFn(key, val);
         const rowSpan = colProp.rowSpan(cellMeta);
         const className = colProp.className;
@@ -243,11 +328,27 @@ const GenericTable: React.FunctionComponent<Props> = ({responsive, tableFields, 
               className={className}
               rowSpan={rowSpan}
               key={"" + index} style={style}
-            >{tmpVal?.override ?
-              <OverlayTrigger placement="auto" overlay={overrideTooltip}><u>{val}</u></OverlayTrigger>
-              : (_.isString(val) ?
-              val.split('\n').map((l, index2) => <div key={"s" + `${index}_${index2}`}>{l}</div>) :
-              //(if not string must be element)
+            >{hasTooltip(tmpVal) ?
+              ((lockMode == "row" || lockMode == "col") ?
+                <GroupedOverlayTrigger
+                  placement={placement}
+                  show={cellOverlayShowStates[cellTooltipId]}
+                  onShowOrHide={show => setCellOverlayShowStates({[cellTooltipId]: show})}
+                  overlay={cellTooltip}
+                >
+                  {addTooltipIndicator(val, tmpVal)}
+                </GroupedOverlayTrigger>
+                :
+                <OverlayTrigger
+                  placement="auto"
+                  overlay={cellTooltip}
+                >
+                  {addTooltipIndicator(val, tmpVal)}
+                </OverlayTrigger>
+              ) :
+              (_.isString(val) ?
+                val.split('\n').map((l, index2) => <div key={"s" + `${index}_${index2}`}>{l}</div>) :
+                //(if not string must be element)
               val)}
             </td>
           :
@@ -255,9 +356,10 @@ const GenericTable: React.FunctionComponent<Props> = ({responsive, tableFields, 
     });
   }
   function renderTableRows() {
+    var prefixAwareDataMap = {} as Record<string, number>;
     return tableData.map((row, index) => {
       if (row instanceof GenericTableDataRow) {
-        return <tr key={"" + index}>{ renderTableRow(row) }</tr>;
+        return <tr key={"" + index}>{ renderTableRow(row, prefixAwareDataMap) }</tr>;
       } else if (row instanceof GenericTableTextRow) {
         return <tr key={"" + index}><td colSpan={totalTableCols} className={row.className}>{row.text}</td></tr>;
       } else { //(separator, don't merge the cols because we don't have cell boundaries and that messes up spreadsheet)

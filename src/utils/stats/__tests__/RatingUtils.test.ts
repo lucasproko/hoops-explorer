@@ -9,19 +9,28 @@ import { sampleOrtgDiagnostics } from "../../../sample-data/sampleOrtgDiagnostic
 import { sampleDrtgDiagnostics } from "../../../sample-data/sampleDrtgDiagnostics";
 
 describe("RatingUtils", () => {
+
+  // Write the data objects out in pure JS format so we can store them
+  expect.addSnapshotSerializer({
+    test: (val: any) => true,
+    print: (val: any) => JSON.stringify(val, null, 3)
+  });
+
   test("RatingUtils - buildORtg", () => {
     const playerInfo = _.cloneDeep(
-      samplePlayerStatsResponse.aggregations.tri_filter.buckets.baseline.player.buckets[0]
+      samplePlayerStatsResponse.responses[0].aggregations.tri_filter.buckets.baseline.player.buckets[0]
     );
     const [ oRtg, adjORtg, rawORtg, rawAdjORtg, oRtgDiags ] = RatingUtils.buildORtg(
       playerInfo, 100, true, false
     );
-    const expORtg = {value:112.99672660419142};
-    const expORtgAdj = {value:4.916508627129151};
+    const expORtg = {value:113.40865079767507};
+    const expORtgAdj = {value:5.002326978989183};
     expect(oRtg).toEqual(expORtg);
     expect(adjORtg).toEqual(expORtgAdj);
     expect(rawORtg).toEqual(undefined);
     expect(rawAdjORtg).toEqual(undefined);
+    expect(oRtgDiags).toMatchSnapshot();
+    // Then can be copied into here:
     expect(oRtgDiags).toEqual(sampleOrtgDiagnostics);
 
     // Check with override:
@@ -32,8 +41,8 @@ describe("RatingUtils", () => {
     const [ oRtg2, adjORtg2, rawORtg2, rawAdjORtg2, oRtgDiags2 ] = RatingUtils.buildORtg(
       playerInfo, 100, true, true
     );
-    expect(oRtg2).toEqual({value:104.58916190012069});
-    expect(adjORtg2).toEqual({value:3.04109682502357});
+    expect(oRtg2).toEqual({value:104.9838324244601});
+    expect(adjORtg2).toEqual({value:3.123247651476328});
     expect(rawORtg2).toEqual(expORtg);
     expect(rawAdjORtg2).toEqual(expORtgAdj);
   });
@@ -98,17 +107,19 @@ describe("RatingUtils", () => {
 
   test("RatingUtils - buildDRtg", () => {
     const playerInfo = _.cloneDeep(
-      samplePlayerStatsResponse.aggregations.tri_filter.buckets.baseline.player.buckets[0]
+      samplePlayerStatsResponse.responses[0].aggregations.tri_filter.buckets.baseline.player.buckets[0]
     );
     const [ dRtg, adjDRtg, rawDRtg, rawAdjDRtg, dRtgDiags ] = RatingUtils.buildDRtg(
       playerInfo, 100, true, false
     );
-    const expDRtg = {value:110.2860531155855};
-    const expDRtgAdj = {value:0.4085659844387266};
+    const expDRtg = {value:98.84955759282161};
+    const expDRtgAdj = {value:-1.7012563565592531};
     expect(dRtg).toEqual(expDRtg);
     expect(adjDRtg).toEqual(expDRtgAdj);
-    expect(rawDRtg).toEqual(undefined)
-    expect(rawAdjDRtg).toEqual(undefined)
+    expect(rawDRtg).toEqual(undefined);
+    expect(rawAdjDRtg).toEqual(undefined);
+    expect(dRtgDiags).toMatchSnapshot();
+    // Then can be copied into here:
     expect(dRtgDiags).toEqual(sampleDrtgDiagnostics);
 
     // Check with override:
@@ -119,8 +130,8 @@ describe("RatingUtils", () => {
     const [ dRtg2, adjDRtg2, rawDRtg2, rawAdjDRtg2, dRtgDiags2 ] = RatingUtils.buildDRtg(
       playerInfo, 100, true, true
     );
-    expect(dRtg2).toEqual({value:102.47503482022093});
-    expect(adjDRtg2).toEqual({value:-1.0368722897874307});
+    expect(dRtg2).toEqual({value:89.6487161188261});
+    expect(adjDRtg2).toEqual({value:-3.404489466919759});
     expect(rawDRtg2).toEqual(expDRtg);
     expect(rawAdjDRtg2).toEqual(expDRtgAdj);
   });

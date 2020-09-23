@@ -1,6 +1,5 @@
 
 import { lineupStatsQuery } from "../lineupStatsQueryTemplate";
-import { sampleLineupQueryRequest } from "../../../sample-data/sampleLineupQueryRequest";
 
 describe("lineupStatsQuery", () => {
   test("lineupStatsQuery", () => {
@@ -13,7 +12,13 @@ describe("lineupStatsQuery", () => {
       "name1": "name1b"
     }, 100.0);
 
-    expect(test).toEqual(sampleLineupQueryRequest);
+    // Write the resulting object out in pure JS format in case we want to paste it into
+    // the ES console
+    expect.addSnapshotSerializer({
+      test: (val: any) => true,
+      print: (val: any) => JSON.stringify(val, null, 3)
+    });
+    expect(test).toMatchSnapshot();
 
   });
 });

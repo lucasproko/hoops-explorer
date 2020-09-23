@@ -105,16 +105,16 @@ describe("RapmUtils", () => {
        ],
        numPlayers: 8,
        numLineups: 5,
-       offLineupPoss: 559,
-       defLineupPoss: 550,
+       offLineupPoss: 959,
+       defLineupPoss: 944,
        unbiasWeight: 3
     };
     const expectedContext_removed = {
        avgEfficiency: 100.0,
        removalPct: 0.20,
        removedPlayers: {
-         "Data, Dummy": [ 0.09017132551848513, 0.09017132551848513],
-         "Player, Other": [ 0.27051397655545534, 0.18034265103697025 ]
+         "Data, Dummy": [ 0.05254860746190226, 0.05254860746190226],
+         "Player, Other": [ 0.1576458223857068, 0.1576458223857068 ]
        },
        playerToCol: _.omit(expectedContext_all.playerToCol, [
          "Data, Dummy", "Player, Other"
@@ -122,8 +122,8 @@ describe("RapmUtils", () => {
        colToPlayer: _.take(expectedContext_all.colToPlayer, 6),
        numPlayers: 6,
        numLineups: 3,
-       offLineupPoss: 409,
-       defLineupPoss: 400,
+       offLineupPoss: 809,
+       defLineupPoss: 794,
        unbiasWeight: 3
     };
 
@@ -135,7 +135,7 @@ describe("RapmUtils", () => {
       );
       expect(_.omit(results, ["filteredLineups", "teamInfo"])).toEqual(t2[0]);
       expect(results.filteredLineups.length).toEqual(t2[1] > 0.05 ? 3 : 5);
-      expect(results.teamInfo.off_poss.value).toEqual(t2[1] > 0.05 ? 409 : 559);
+      expect(results.teamInfo.off_poss.value).toEqual(t2[1] > 0.05 ? 809 : 959);
     });
   });
 
@@ -153,16 +153,16 @@ describe("RapmUtils", () => {
       };
 
       expect(tidyResults(results[0])).toEqual(_.filter([
-        [ "0.692", "0.692", "0.692", "0.692", "0.692", "0.000" ],
-        [ "0.521", "0.521", "0.521", "0.521", "0.000", "0.521" ],
-        [ "0.499", "0.499", "0.499", "0.000", "0.499", "0.499" ],
-        [ "2.000", "2.000", "2.000", "1.501", "1.457", "1.042" ], //(extra row if adding unbiasing obs)
+        [ "0.704", "0.704", "0.704", "0.704", "0.704", "0.000" ],
+        [ "0.511", "0.511", "0.511", "0.511", "0.000", "0.511" ],
+        [ "0.493", "0.493", "0.493", "0.000", "0.493", "0.493" ],
+        [ "2.000", "2.000", "2.000", "1.513", "1.478", "1.009" ], //(extra row if adding unbiasing obs)
       ], (r, i) => (unbiasWeight != 0) || i < 3));
       expect(tidyResults(results[1])).toEqual(_.filter([
-        [ "0.687", "0.687", "0.687", "0.687", "0.687", "0.000" ],
-        [ "0.534", "0.534", "0.534", "0.534", "0.000", "0.534" ],
-        [ "0.492", "0.492", "0.492", "0.000", "0.492", "0.492" ],
-        [ "2.000", "2.000", "2.000", "1.515", "1.430", "1.055" ], //(extra row if adding unbiasing obs)
+        [ "0.699", "0.699", "0.699", "0.699", "0.699", "0.000" ],
+        [ "0.518", "0.518", "0.518", "0.518", "0.000", "0.518" ],
+        [ "0.493", "0.493", "0.493", "0.000", "0.493", "0.493" ],
+        [ "2.000", "2.000", "2.000", "1.514", "1.463", "1.023" ], //(extra row if adding unbiasing obs)
       ], (r, i) => (unbiasWeight != 0) || i < 3));
     });
   });
@@ -182,16 +182,16 @@ describe("RapmUtils", () => {
         });
       };
       expect(tidyResults(results)).toEqual([
-        [ "11.23", "-1.97", "7.10" ].concat(unbiasWeight > 0 ? [ "20.60" ] : []),
-        [ "-9.98", "-13.09", "-12.08" ].concat(unbiasWeight > 0 ? [ "-39.60" ] : [])
+        [ "16.41", "8.27", "10.05" ].concat(unbiasWeight > 0 ? [ "41.47" ] : []),
+        [ "-8.48", "-10.69", "-8.83" ].concat(unbiasWeight > 0 ? [ "-31.64" ] : [])
          //(extra value if adding unbiasing obs)
       ]);
       const oldValResults = RapmUtils.calcLineupOutputs(
         "adj_ppp", 100.0, 100.0, context, true
       );
       expect(tidyResults(oldValResults)).toEqual([
-        [ "11.23", "-1.97", "7.10" ].concat(unbiasWeight > 0 ? [ "20.60" ] : []),
-        [ "-9.98", "-13.09", "-12.08" ].concat(unbiasWeight > 0 ? [ "-39.60" ] : [])
+        [ "16.41", "8.27", "10.05" ].concat(unbiasWeight > 0 ? [ "41.47" ] : []),
+        [ "-8.48", "-10.69", "-8.83" ].concat(unbiasWeight > 0 ? [ "-31.64" ] : [])
          //(extra value if adding unbiasing obs)
       ]);
     });

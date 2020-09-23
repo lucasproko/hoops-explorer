@@ -3,6 +3,7 @@ import React from 'react';
 import TeamReportStatsTable, { TeamReportStatsModel } from '../TeamReportStatsTable';
 import { LineupStatsModel } from '../LineupStatsTable';
 import { TeamReportFilterParams } from "../utils/FilterModels";
+import { SampleDataUtils } from "../../sample-data/SampleDataUtils";
 import { sampleLineupStatsResponse } from "../../sample-data/sampleLineupStatsResponse";
 import { sampleTeamStatsResponse } from "../../sample-data/sampleTeamStatsResponse";
 import { samplePlayerStatsResponse } from "../../sample-data/samplePlayerStatsResponse";
@@ -11,6 +12,12 @@ import toJson from 'enzyme-to-json';
 import _ from "lodash";
 
 describe("TeamReportStatsTable", () => {
+
+  // Tidy up snapshot rendering:
+  expect.addSnapshotSerializer(SampleDataUtils.summarizeEnrichedApiResponse(
+    sampleLineupStatsResponse.responses[0].aggregations.lineups.buckets[0]
+  ));
+
   test("TeamReportStatsTable - should create snapshot (no individual data)", () => {
     const testData = {
       lineups: sampleLineupStatsResponse.responses[0].aggregations.lineups.buckets
@@ -35,12 +42,12 @@ describe("TeamReportStatsTable", () => {
       lineups: sampleLineupStatsResponse.responses[0].aggregations.lineups.buckets
     };
     const teamData = _.assign(
-      sampleTeamStatsResponse.aggregations.tri_filter.buckets,
+      sampleTeamStatsResponse.responses[0].aggregations.tri_filter.buckets as { on: any, off: any, baseline: any },
       { global: {}, onOffMode: true }
     );
     const playerData = {
-      baseline: samplePlayerStatsResponse.aggregations.tri_filter.buckets.on.player.buckets,
-      global: samplePlayerStatsResponse.aggregations.tri_filter.buckets.baseline.player.buckets
+      baseline: samplePlayerStatsResponse.responses[0].aggregations.tri_filter.buckets.on.player.buckets,
+      global: samplePlayerStatsResponse.responses[0].aggregations.tri_filter.buckets.baseline.player.buckets
     };
     const dummyChangeStateCallback = (stats: TeamReportFilterParams) => {};
     const wrapper = shallow(
@@ -65,12 +72,12 @@ describe("TeamReportStatsTable", () => {
       lineups: sampleLineupStatsResponse.responses[0].aggregations.lineups.buckets
     };
     const teamData = _.assign(
-      sampleTeamStatsResponse.aggregations.tri_filter.buckets,
+      sampleTeamStatsResponse.responses[0].aggregations.tri_filter.buckets as { on: any, off: any, baseline: any },
       { global: {}, onOffMode: true }
     );
     const playerData = {
-      baseline: samplePlayerStatsResponse.aggregations.tri_filter.buckets.on.player.buckets,
-      global: samplePlayerStatsResponse.aggregations.tri_filter.buckets.baseline.player.buckets
+      baseline: samplePlayerStatsResponse.responses[0].aggregations.tri_filter.buckets.on.player.buckets,
+      global: samplePlayerStatsResponse.responses[0].aggregations.tri_filter.buckets.baseline.player.buckets
     };
     const dummyChangeStateCallback = (stats: TeamReportFilterParams) => {};
     const wrapper = shallow(
@@ -96,12 +103,12 @@ describe("TeamReportStatsTable", () => {
       lineups: sampleLineupStatsResponse.responses[0].aggregations.lineups.buckets
     };
     const teamData = _.assign(
-      sampleTeamStatsResponse.aggregations.tri_filter.buckets,
+      sampleTeamStatsResponse.responses[0].aggregations.tri_filter.buckets as { on: any, off: any, baseline: any },
       { global: {}, onOffMode: true }
     );
     const playerData = {
-      baseline: samplePlayerStatsResponse.aggregations.tri_filter.buckets.on.player.buckets,
-      global: samplePlayerStatsResponse.aggregations.tri_filter.buckets.baseline.player.buckets
+      baseline: samplePlayerStatsResponse.responses[0].aggregations.tri_filter.buckets.on.player.buckets,
+      global: samplePlayerStatsResponse.responses[0].aggregations.tri_filter.buckets.baseline.player.buckets
     };
     const dummyChangeStateCallback = (stats: TeamReportFilterParams) => {};
     const wrapper = shallow(
@@ -126,12 +133,12 @@ describe("TeamReportStatsTable", () => {
       lineups: sampleLineupStatsResponse.responses[0].aggregations.lineups.buckets
     };
     const teamData = _.assign(
-      sampleTeamStatsResponse.aggregations.tri_filter.buckets,
+      sampleTeamStatsResponse.responses[0].aggregations.tri_filter.buckets as { on: any, off: any, baseline: any },
       { global: {}, onOffMode: true }
     );
     const playerData = {
-      baseline: samplePlayerStatsResponse.aggregations.tri_filter.buckets.on.player.buckets,
-      global: samplePlayerStatsResponse.aggregations.tri_filter.buckets.baseline.player.buckets
+      baseline: samplePlayerStatsResponse.responses[0].aggregations.tri_filter.buckets.on.player.buckets,
+      global: samplePlayerStatsResponse.responses[0].aggregations.tri_filter.buckets.baseline.player.buckets
     };
     const dummyChangeStateCallback = (stats: TeamReportFilterParams) => {};
     const wrapper = shallow(
@@ -153,12 +160,12 @@ describe("TeamReportStatsTable", () => {
       lineups: sampleLineupStatsResponse.responses[0].aggregations.lineups.buckets
     };
     const teamData = _.assign(
-      sampleTeamStatsResponse.aggregations.tri_filter.buckets,
+      sampleTeamStatsResponse.responses[0].aggregations.tri_filter.buckets as { on: any, off: any, baseline: any },
       { global: {}, onOffMode: true }
     );
     const playerData = {
-      baseline: samplePlayerStatsResponse.aggregations.tri_filter.buckets.on.player.buckets,
-      global: samplePlayerStatsResponse.aggregations.tri_filter.buckets.baseline.player.buckets
+      baseline: samplePlayerStatsResponse.responses[0].aggregations.tri_filter.buckets.on.player.buckets,
+      global: samplePlayerStatsResponse.responses[0].aggregations.tri_filter.buckets.baseline.player.buckets
     };
     const dummyChangeStateCallback = (stats: TeamReportFilterParams) => {};
     const wrapper = shallow(

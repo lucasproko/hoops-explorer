@@ -27,6 +27,7 @@ import GenericTogglingMenu from "./shared/GenericTogglingMenu";
 import GenericTogglingMenuItem from "./shared/GenericTogglingMenuItem";
 import ToggleButtonGroup from "./shared/ToggleButtonGroup";
 import LuckAdjDiagView from "./diags/LuckAdjDiagView"
+import TeamPlayTypeDiagView from "./diags/TeamPlayTypeDiagView"
 
 // Util imports
 import { CbbColors } from "../utils/CbbColors"
@@ -34,6 +35,7 @@ import { GameFilterParams, ParamDefaults, LuckParams } from "../utils/FilterMode
 import { CommonTableDefs } from "../utils/CommonTableDefs"
 import { LuckUtils, OffLuckAdjustmentDiags, DefLuckAdjustmentDiags, LuckAdjustmentBaseline } from "../utils/stats/LuckUtils";
 import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
+import { LineupDisplayUtils } from "../utils/stats/LineupDisplayUtils";
 
 export type TeamStatsModel = {
   on: any,
@@ -73,6 +75,9 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
   const [ luckConfig, setLuckConfig ] = useState(_.isNil(gameFilterParams.luck) ?
     ParamDefaults.defaultLuckConfig : gameFilterParams.luck
   );
+
+  /** (placeholder for positional info)*/
+  const [ showPlayTypes, setShowPlayTypes ] = useState(false)
 
   /** Whether we are showing the luck config modal */
   const [ showLuckConfig, setShowLuckConfig ] = useState(false);
@@ -156,6 +161,10 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
   };
   const teamStatsBaseline = { off_title: "Baseline Offense", def_title: "Baseline Defense", ...teamStats.baseline };
 
+  ([ "on", "off", "baseline" ] as OnOffBase[]).forEach(k => {
+    LineupDisplayUtils.injectPlayTypeInfo(teamStats[k], false, false);
+  });
+
   const tableData = _.flatMap([
     (teamStats.on?.doc_count) ? _.flatten([
       [ GenericTableOps.buildDataRow(teamStatsOn, offPrefixFn, offCellMetaFn) ],
@@ -169,6 +178,10 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
           showHelp={showHelp}
         />, "small pt-2"
       ) ] : [] ,
+      showPlayTypes ?
+        [ GenericTableOps.buildTextRow(
+          <TeamPlayTypeDiagView lineupSet={teamStats.off} showHelp={showHelp}/>, "small"
+        ) ] : [],
       [ GenericTableOps.buildRowSeparator() ]
     ]) : [],
     (teamStats.off?.doc_count) ? _.flatten([
@@ -183,6 +196,10 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
           showHelp={showHelp}
         />, "small pt-2"
       ) ] : [] ,
+      showPlayTypes ?
+        [ GenericTableOps.buildTextRow(
+          <TeamPlayTypeDiagView lineupSet={teamStats.off} showHelp={showHelp}/>, "small"
+        ) ] : [],
       [ GenericTableOps.buildRowSeparator() ]
     ]) : [],
     _.flatten([
@@ -197,7 +214,11 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
           showHelp={showHelp}
         />, "small pt-2"
       ) ] : [] ,
-      [ GenericTableOps.buildRowSeparator() ]
+      showPlayTypes ?
+        [ GenericTableOps.buildTextRow(
+          <TeamPlayTypeDiagView lineupSet={teamStats.baseline} showHelp={showHelp}/>, "small"
+        ) ] : [],
+      [ GenericTableOps.buildRowSeparator() ],
     ]),
   ]);
 
@@ -238,7 +259,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
             }
           ]}/>
         </Form.Row>
-        </Col>        
+        </Col>
         <Form.Group as={Col} sm="1">
           <GenericTogglingMenu>
             <GenericTogglingMenuItem
@@ -264,7 +285,12 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
       </Form.Row>
       <Row className="mt-2">
         <Col>
-          <GenericTable tableCopyId="teamStatsTable" tableFields={CommonTableDefs.onOffTable} tableData={tableData}/>
+          <GenericTable
+            tableCopyId="teamStatsTable"
+            tableFields={CommonTableDefs.onOffTable}
+            tableData={tableData}
+            cellTooltipMode="none"
+          />
         </Col>
       </Row>
     </LoadingOverlay>

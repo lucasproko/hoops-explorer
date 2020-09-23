@@ -48,24 +48,7 @@ describe("LineupUtils", () => {
     const res = LineupUtils.calculateAggregatedLineupStats(lineupReport.lineups);
     expect(_.chain(res).pick([
       "off_poss", "def_poss", "off_adj_ppp", "def_adj_ppp"
-    ]).mapValues(toFixed).value()).toEqual({
-         "def_adj_ppp": {
-           "value": "82.085",
-           "old_value": "82.085",
-           "override": "Test override",
-         },
-         "def_poss": {
-           "value": "286.000",
-         },
-         "off_adj_ppp": {
-           "value": "115.540",
-           "old_value": "115.540",
-           "override": "Test override",
-         },
-         "off_poss": {
-           "value": "298.000",
-         }
-    });
+    ]).mapValues(toFixed).value()).toMatchSnapshot();
   });
   test("LineupUtils - lineupToTeamReport", () => {
 
@@ -136,7 +119,9 @@ describe("LineupUtils", () => {
               //^(note FTR has a different implementation because you can have lineups with FTs but no FGAs
               // this is not currently tested here, except by inspection on real data)
               "total_off_fga",
-              "total_off_pts", "doc_count", "player_array" // (these are all ignored)
+              "total_off_pts", "doc_count", "player_array", // (these are all ignored)
+              "duration_mins", // should be summed
+              "total_off_trans_poss", "off_scramble_ppp" // special cases
             ]).mapValues(toFixed).value();
           }).value();
 
@@ -172,66 +157,8 @@ describe("LineupUtils", () => {
           const offDrbAllowed = 90 + 43;
           const defOrbAllowed = 19 + 27;
           const defDrbAllowed = 68 + 36;
-          expect(someOnOffVals).toEqual([
-            _.mapValues(insertOldValues({
-              key: "'On' Ayala, Eric",
-              off_poss: { value: totalOffPoss }, def_poss: { value: totalDefPoss },
-              off_ppp: { value: 196.0/(totalOffPoss)*111.22448979591837 + 102.0/(totalOffPoss)*109.80392156862744 },
-              def_ppp: { value: 189.0/(totalDefPoss)*90.47619047619048 + 97.0/(totalDefPoss)*80.41237113402062 },
-              off_adj_opp: { value: 189.0/(totalDefPoss)*103.93650793650794 + 97.0/(totalDefPoss)*104.70927835051546 },
-              def_adj_opp: { value: 196.0/(totalOffPoss)* 95.56989795918368 + 102.0/(totalOffPoss)*93.46372549019607 },
+          expect(someOnOffVals).toMatchSnapshot(`diagMode=[${diagMode}] regressDiffs=[${regressDiffs}] incOnOff=[${incOnOff}]`);
 
-              def_2prim: { value: (40.0/(40 + 28))*0.575 + (28.0/(40 + 28))*0.5 },
-              def_2primr: { value: (158.0/totalDefFga)*0.25316455696202533 + (93.0/totalDefFga)*0.3010752688172043 },
-              off_orb: { value:
-                ((39.0 + 68)/(offOrbAllowed + defDrbAllowed))*0.3644859813084112 +
-                ((21.0 + 36)/(offOrbAllowed + defDrbAllowed))*0.3684210526315789
-              },
-              def_orb: { value:
-                ((90.0 + 19)/(offDrbAllowed + defOrbAllowed))*0.1743119266055046 +
-                ((43.0 + 27)/(offDrbAllowed + defOrbAllowed))*0.38571428571428573
-              },
-              off_ftr: { value: (167.0/totalOffFga)*0.49700598802395207 + (96.0/totalOffFga)*0.19791666666666666 },
-
-              total_off_fga: { value: totalOffFga },
-              total_off_pts: { value: 330.0 }
-            }), toFixed)
-            ,
-            _.mapValues(insertOldValues({
-              key: "'Off' Ayala, Eric",
-              off_poss: { value: 111 }, def_poss: { value: 114 },
-              off_ppp: { value: 89.1891891891892 },
-              def_ppp: { value: 77.19298245614036 },
-              off_adj_opp: { value: 106.32105263157895 },
-              def_adj_opp: { value: 93.37927927927929 },
-
-              def_2prim: { value: 0.5185185185185185 },
-              def_2primr: { value: 0.3176470588235294 },
-              off_orb: { value: 0.29508196721311475 },
-              def_orb: { value: 0.24561403508771928 },
-              off_ftr: { value: 0.5517241379310345 },
-
-              total_off_fga: { value: 87 },
-              total_off_pts: { value: 99.0 }
-            }), toFixed)
-            ,
-            incOnOff ? insertOldValues({ //(hand-chcked)
-              key: "'r:On-Off' Ayala, Eric",
-              "off_poss": { "value": "248.043" },
-              "def_poss": { "value": "247.033" },
-              "off_ppp": { "value": regressed(regressDiffs, "21.426", "15.270", "10.629") },
-              "def_ppp": { "value": regressed(regressDiffs, "9.013", "6.416", "4.453") },
-              "off_adj_opp": { "value": regressed(regressDiffs, "-2.057", "-1.464", "-1.018")  },
-              "def_adj_opp": { "value": regressed(regressDiffs, "1.288", "0.918", "0.638") },
-              "def_2prim": { "value": regressed(regressDiffs, "0.022", "0.015", "0.010") },
-              "def_2primr": { "value": regressed(regressDiffs, "-0.043", "-0.031", "-0.021") },
-              "off_orb": { "value": regressed(regressDiffs, "0.071", "0.055", "0.041") },
-              "def_orb": { "value": regressed(regressDiffs, "0.024", "0.019", "0.014") },
-              "off_ftr": { "value": regressed(regressDiffs, "-0.187", "-0.135", "-0.095") },
-              "total_off_fga": { "value": "205.680" },
-              "total_off_pts": { "value": "241.264" }
-            }) : {}
-          ]);
           // Check roster
 
           const lineupComp = _.chain(onOffReport.players).filter((p) => {
@@ -240,8 +167,8 @@ describe("LineupUtils", () => {
 
           expect(lineupComp).toEqual([
             { "Cowan, Anthony": {
-              on: { off_poss: 196 + 102, def_poss: 189 + 97 },
-              off: { off_poss: 111, def_poss: 114 }
+              on: { off_poss: 598, def_poss: 581 },
+              off: { off_poss: 211, def_poss: 213 }
             }}
           ]);
 

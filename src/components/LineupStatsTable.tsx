@@ -255,6 +255,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
   ] : [];
 
   const tableData = totalLineup.concat(filteredLineups).flatMap((lineup) => {
+
       const codesAndIds = lineup.players_array?.hits?.hits?.[0]?._source?.players || [];
 
       const sortedCodesAndIds = (lineup.key == totalLineupId) ? undefined :
@@ -273,6 +274,8 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
       if (lineup?.doc_count) {
         LuckUtils.injectLuck(lineup, luckAdj?.[0], luckAdj?.[1]);
       }
+      //(needs to go after the luck adjustment)
+      LineupDisplayUtils.injectPlayTypeInfo(lineup, false, false); //(inject assist numbers)
 
       const perLineupBaselinePlayerMap = _.fromPairs(codesAndIds.map((cid: { code: string, id: string }) => {
         return [  cid.id, baselinePlayerInfo[cid.id] || {} ];
@@ -283,6 +286,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
         ) : "Weighted Total";
 
       const stats = { off_title: title, def_title: "", ...lineup };
+
       return _.flatten([
         [ GenericTableOps.buildDataRow(stats, offPrefixFn, offCellMetaFn) ],
         [ GenericTableOps.buildDataRow(stats, defPrefixFn, defCellMetaFn) ],
@@ -524,7 +528,12 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
       </Form.Row>
       <Row className="mt-2">
         <Col>
-          <GenericTable tableCopyId="lineupStatsTable" tableFields={CommonTableDefs.lineupTable} tableData={tableData}/>
+          <GenericTable
+            tableCopyId="lineupStatsTable"
+            tableFields={CommonTableDefs.lineupTable}
+            tableData={tableData}
+            cellTooltipMode="none"
+          />
         </Col>
       </Row>
     </LoadingOverlay>

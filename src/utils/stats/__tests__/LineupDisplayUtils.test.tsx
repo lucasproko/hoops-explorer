@@ -1,8 +1,14 @@
 import renderer from 'react-test-renderer';
 import React from 'react';
 import { LineupDisplayUtils } from '../LineupDisplayUtils';
-import { shallow } from 'enzyme'
-import toJson from 'enzyme-to-json'
+import { shallow } from 'enzyme';
+import toJson from 'enzyme-to-json';
+import _ from "lodash";
+
+import { SampleDataUtils } from "../../../sample-data/SampleDataUtils";
+import { sampleLineupStatsResponse } from "../../../sample-data/sampleLineupStatsResponse";
+import { samplePlayerStatsResponse } from "../../../sample-data/samplePlayerStatsResponse";
+import { sampleTeamStatsResponse } from "../../../sample-data/sampleTeamStatsResponse";
 
 describe("LineupDisplayUtils", () => {
 
@@ -85,5 +91,46 @@ describe("LineupDisplayUtils", () => {
     );
     const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
+  });
+
+  // Mutate expect here for better display:
+
+  const sampleData = {} as Record<string, any>;
+  const injectData = (mutableIn: Record<string, any>, newSample: Record<string, any>) => {
+    const fields = _.keys(mutableIn);
+    fields.forEach(key => delete mutableIn[key]);
+    _.toPairs(newSample).forEach(kv => mutableIn[kv[0]] = kv[1]);
+  }
+
+  expect.addSnapshotSerializer(SampleDataUtils.summarizeEnrichedApiResponse(
+    sampleData, true
+  ));
+
+  test("injectPlayTypeInfo - lineups", () => {
+    injectData(sampleData, sampleLineupStatsResponse.responses[0].aggregations.lineups.buckets[1]);
+    expect(LineupDisplayUtils.injectPlayTypeInfo(
+      sampleLineupStatsResponse.responses[0].aggregations.lineups.buckets[0],
+      false, false
+    )).toMatchSnapshot();
+  });
+
+  test("injectPlayTypeInfo - players (!expanded)", () => {
+    injectData(sampleData,
+      samplePlayerStatsResponse.responses[0].aggregations.tri_filter.buckets.baseline.player.buckets[1]
+    );
+    expect(LineupDisplayUtils.injectPlayTypeInfo(
+      samplePlayerStatsResponse.responses[0].aggregations.tri_filter.buckets.baseline.player.buckets[0],
+      false, true
+    )).toMatchSnapshot();
+  });
+
+  test("injectPlayTypeInfo - players (expanded)", () => {
+    injectData(sampleData,
+      samplePlayerStatsResponse.responses[0].aggregations.tri_filter.buckets.baseline.player.buckets[1]
+    );
+    expect(LineupDisplayUtils.injectPlayTypeInfo(
+      samplePlayerStatsResponse.responses[0].aggregations.tri_filter.buckets.baseline.player.buckets[0],
+      true, true
+    )).toMatchSnapshot();
   });
 });

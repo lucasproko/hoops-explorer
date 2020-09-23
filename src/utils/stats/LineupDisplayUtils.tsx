@@ -11,6 +11,7 @@ import _ from "lodash";
 // Util imports
 import { CbbColors } from "../CbbColors";
 
+import { CommonTableDefs } from "../CommonTableDefs";
 import "./LineupDisplayUtils.css";
 
 /** Encapsulates some of the logic used to build decorated lineups in LineupStatsTable */
@@ -140,6 +141,124 @@ export class LineupDisplayUtils {
       {buildBadges(playerInfo)}</span>
       {finalPlayer ? null : <span style={{opacity: 0}}> ; </span> }
     </span>;
+  }
+
+  /** Inject various assist info into the table cell inputs */
+  static injectPlayTypeInfo(stat: Record<string, any>, expandedView: boolean, playerView: boolean) {
+    if (playerView) {
+      // Put assist %s as the row underneath shot types:
+      const buildInfoRow = (stat: any) =>
+        <small style={CommonTableDefs.getTextShadow(stat, CbbColors.fgr_offDef)}>
+          <i>{(100*(stat?.value || 0)).toFixed(0)}%</i>
+        </small>;
+      stat.def_2primr = buildInfoRow(stat.off_2prim_ast);
+      stat.def_2pmidr = buildInfoRow(stat.off_2pmid_ast);
+      stat.def_3pr = buildInfoRow(stat.off_3p_ast);
+    }
+    const assistBuilder = (stat: any, offDef: "off" | "def") => {
+      const rimPct = (100*(stat[`${offDef}_ast_rim`]?.value || 0)).toFixed(0);
+      const midPct = (100*(stat[`${offDef}_ast_mid`]?.value || 0)).toFixed(0);
+      const threePct = (100*(stat[`${offDef}_ast_3p`]?.value || 0)).toFixed(0);
+      return <span>
+        Assist breakdown:
+        <li>{rimPct}% at the rim</li>
+        <li>{midPct}% for mid-range</li>
+        <li>{threePct}% for 3P</li>
+      </span>;
+    }
+    const playCategoryBuilder = (stat: any, offDef: "off" | "def") => {
+      const totalPoss = stat[`total_${offDef}_poss`]?.value || 1;
+      const scramblePct = 100*(stat[`total_${offDef}_scramble_poss`]?.value || 0)/totalPoss;
+      const transPct = 100*(stat[`total_${offDef}_trans_poss`]?.value || 0)/totalPoss;
+      const totalPpp = (stat[`${offDef}_ppp`]?.value || 0); //TODO: depends on player vs team/lineup
+      const scramblePpp = (stat[`${offDef}_scramble_ppp`]?.value || 0) ;
+      const scramblePppDelta = scramblePpp - totalPpp;
+      const scramblePm = scramblePppDelta > 0 ? "+" : "";
+      const transPpp = (stat[`${offDef}_trans_ppp`]?.value || 0);
+      const transPppDelta = transPpp - totalPpp;
+      const transPm = transPppDelta > 0 ? "+" : "";
+
+      return <span>
+        Play category breakdown:
+        { scramblePct > 5 ?
+          <li>{scramblePct.toFixed(1)}% scramble:<br/>{scramblePm}{scramblePppDelta.toFixed(1)} pts/100</li> :
+          <li>{scramblePct.toFixed(1)}% scramble</li>
+        }
+        { transPct > 5 ?
+          <li>{transPct.toFixed(1)}% transition:<br/>{transPm}{transPppDelta.toFixed(1)} pts/100</li> :
+          <li>{transPct.toFixed(1)}% transition</li>
+        }
+      </span>;
+    };
+    const paceBuilder = (stat: any, isPlayer: boolean) => {
+      const totalOffPoss = (isPlayer ? stat[`off_team_poss`]?.value : stat[`off_poss`]?.value) || 0;
+      const totalDefPoss = (isPlayer ? totalOffPoss : stat[`def_poss`]?.value) || 0;
+      const totalTime = stat[`duration_mins`]?.value || 0;
+      const possPer40 = 0.5*(totalOffPoss + totalDefPoss) / (totalTime/40);
+      return totalTime > 0 ? <span>{possPer40.toFixed(1)} ppg</span> : undefined;
+    }
+
+    if (stat.off_assist) {
+      stat.off_assist.extraInfo = assistBuilder(stat, "off");
+    }
+
+    const buildText = (stat: any) => {
+      return `${(100*(stat?.value || 0)).toFixed(0)}% assisted`
+    }
+
+    // Handle adding and removing of extra info:
+    if (expandedView) {
+      if (stat.off_2primr) {
+        delete stat.off_2primr.extraInfo;
+      }
+      if (stat.off_2pmidr) {
+        delete stat.off_2pmidr.extraInfo;
+      }
+      if (stat.off_3pr) {
+        delete stat.off_3pr.extraInfo;
+      }
+    } else {
+      if (stat.off_2primr) {
+        stat.off_2primr.extraInfo = <span>{buildText(stat.off_2prim_ast)}</span>;
+      }
+      if (stat.off_2pmidr) {
+        stat.off_2pmidr.extraInfo = <span>{buildText(stat.off_2pmid_ast)}</span>;
+      }
+      if (stat.off_3pr) {
+        stat.off_3pr.extraInfo = <span>{buildText(stat.off_3p_ast)}</span>;
+      }
+    }
+    if (!playerView) { // team/lineup views have both offense and defense
+      if (stat.off_ppp) {
+        stat.off_ppp.extraInfo = playCategoryBuilder(stat, "off");
+      }
+      if (stat.def_ppp) {
+        stat.def_ppp.extraInfo = playCategoryBuilder(stat, "def");
+      }
+      if (stat.def_assist) {
+        stat.def_assist.extraInfo = assistBuilder(stat, "def");
+      }
+      if (stat.def_2primr) {
+        stat.def_2primr.extraInfo = <span>{buildText(stat.def_2prim_ast)}</span>;
+      }
+      if (stat.def_2pmidr) {
+        stat.def_2pmidr.extraInfo = <span>{buildText(stat.def_2pmid_ast)}</span>;
+      }
+      if (stat.def_3pr) {
+        stat.def_3pr.extraInfo = <span>{buildText(stat.def_3p_ast)}</span>;
+      }
+      if (stat.off_poss) {
+        stat.off_poss.extraInfo = paceBuilder(stat, false);
+      }
+    } else {
+      if (stat.off_team_poss) {
+        stat.off_team_poss.extraInfo = paceBuilder(stat, true);
+      }
+      if (stat.off_team_poss_pct) {
+        stat.off_team_poss_pct.extraInfo = paceBuilder(stat, true);
+      }
+    }
+    return stat;
   }
 
 }

@@ -19,25 +19,25 @@ describe("PositionUtils", () => {
     // Some hand-checked results:
 
     const [ realConfidences, realDiags ] = PositionUtils.buildPositionConfidences(
-      samplePlayerStatsResponse.aggregations.tri_filter.buckets.baseline.player.buckets[0]
+      samplePlayerStatsResponse.responses[0].aggregations.tri_filter.buckets.baseline.player.buckets[0]
     );
-    expect(_.values(tidyObj(realConfidences))).toEqual(["0.80", "0.20", "0.00", "0.00", "0.00", ]);
-    expect(_.values(tidyObj(realDiags.scores))).toEqual(["0.18","0.04","-0.34","-0.60","-1.56"]);
+    expect(_.values(tidyObj(realConfidences))).toEqual(["0.76", "0.24", "0.00", "0.00", "0.00", ]);
+    expect(_.values(tidyObj(realDiags.scores))).toEqual(["0.19","0.07","-0.33","-0.61","-1.61"]);
     expect(tidyObj(realDiags.calculated)).toEqual({
       "calc_assist_per_fga": "0.41",
-      "calc_ast_tov": "2.09",
-      "calc_ft_relative_inv": "0.59", // 47% eFG / (166/206)
-      "calc_mid_relative": "0.91",
-      "calc_rim_relative": "1.07",
-      "calc_three_relative": "1.02"
+      "calc_ast_tov": "2.13",
+      "calc_ft_relative_inv": "0.58", // 47% eFG / (166/206)
+      "calc_mid_relative": "0.59",
+      "calc_rim_relative": "1.18",
+      "calc_three_relative": "1.03"
     });
     expect(_.keys(realConfidences)).toEqual(PositionUtils.tradPosList)
     expect(_.keys(realDiags.scores)).toEqual(PositionUtils.tradPosList)
 
     const [ realConfidences2, realDiags2 ] = PositionUtils.buildPositionConfidences(
-      samplePlayerStatsResponse.aggregations.tri_filter.buckets.baseline.player.buckets[1]
+      samplePlayerStatsResponse.responses[0].aggregations.tri_filter.buckets.baseline.player.buckets[1]
     );
-    expect(_.values(tidyObj(realConfidences2))).toEqual(["0.01", "0.33", "0.42", "0.23", "0.00", ]);
+    expect(_.values(tidyObj(realConfidences2))).toEqual(["0.01", "0.37", "0.42", "0.19", "0.00", ]);
   });
   test("PositionUtils - buildPosition", () => {
     const sampleTeamSeason1 = "Men_Boston College_2019/20";

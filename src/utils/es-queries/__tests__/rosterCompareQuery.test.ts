@@ -1,6 +1,5 @@
 
 import { rosterCompareQuery } from "../rosterCompareQueryTemplate";
-import { sampleRosterCompareQueryRequest } from "../../../sample-data/sampleRosterCompareQueryRequest";
 
 describe("rosterCompareQuery", () => {
   test("rosterCompareQuery  ", () => {
@@ -12,6 +11,12 @@ describe("rosterCompareQuery", () => {
     }, 0, { "team": { "stats": 0 } }, {
       "name1": "name1b"
     });
-    expect(test).toEqual(sampleRosterCompareQueryRequest);
+    // Write the resulting object out in pure JS format in case we want to paste it into
+    // the ES console
+    expect.addSnapshotSerializer({
+      test: (val: any) => true,
+      print: (val: any) => JSON.stringify(test, null, 3)
+    });
+    expect(test).toMatchSnapshot();
   });
 });

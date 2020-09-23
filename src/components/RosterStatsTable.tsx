@@ -35,6 +35,7 @@ import LuckAdjDiagView from "./diags/LuckAdjDiagView"
 import LuckConfigModal from "./shared/LuckConfigModal";
 import ManualOverrideModal from "./shared/ManualOverrideModal";
 import ToggleButtonGroup from "./shared/ToggleButtonGroup";
+import PlayerPlayTypeDiagView from "./diags/PlayerPlayTypeDiagView"
 
 // Util imports
 import { CbbColors } from "../utils/CbbColors";
@@ -45,6 +46,7 @@ import { PositionUtils } from "../utils/stats/PositionUtils";
 import { LuckUtils } from "../utils/stats/LuckUtils";
 import { OverrideUtils } from "../utils/stats/OverrideUtils";
 import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
+import { LineupDisplayUtils } from "../utils/stats/LineupDisplayUtils";
 
 export type RosterStatsModel = {
   on?: Array<any>,
@@ -155,6 +157,9 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
   const [ luckConfig, setLuckConfig ] = useState(_.isNil(gameFilterParams.luck) ?
     ParamDefaults.defaultLuckConfig : gameFilterParams.luck
   );
+
+  /** (placeholder for positional info)*/
+  const [ showPlayTypes, setShowPlayTypes ] = useState(false)
 
   /** Whether we are showing the luck config modal */
   const [ showLuckConfig, setShowLuckConfig ] = useState(false);
@@ -370,10 +375,11 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
         })();
         // Set or unset derived stats:
         OverrideUtils.updateDerivedStats(stat, adjustmentReason);
+        stat.off_drb = stat.def_orb; //(just for display, all processing should use def_orb)
+        LineupDisplayUtils.injectPlayTypeInfo(stat, expandedView, true);
 
         // Ratings:
 
-        stat.off_drb = stat.def_orb; //(just for display, all processing should use def_orb)
         const [
           oRtg, adjORtg, rawORtg, rawAdjORtg, oRtgDiag
         ] = RatingUtils.buildORtg(stat, avgEfficiency, showDiagMode, adjustForLuck || overrodeOffFields);
@@ -488,6 +494,10 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
             showHelp={showHelp}
           />, "small pt-2"
         ) ] : [] ,
+        showPlayTypes ?
+          [ GenericTableOps.buildTextRow(
+            <PlayerPlayTypeDiagView player={p.baseline} teamSeason={teamSeasonLookup} showHelp={showHelp}/>, "small"
+          ) ] : [],
       ]),
       [ GenericTableOps.buildRowSeparator() ]
     ]);
@@ -600,7 +610,6 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
       <span>{data.label}</span>
     </div>
   );
-
   return <Container>
     <LoadingOverlay
       active={needToLoadQuery()}
@@ -743,7 +752,12 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
       </Form.Row>
       <Row className="mt-2">
         <Col>
-          <GenericTable tableCopyId="rosterStatsTable" tableFields={tableFields} tableData={tableData}/>
+          <GenericTable
+            tableCopyId="rosterStatsTable"
+            tableFields={tableFields}
+            tableData={tableData}
+            cellTooltipMode="none"
+          />
         </Col>
       </Row>
     </LoadingOverlay>

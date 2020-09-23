@@ -1,8 +1,45 @@
-import { commonAggregations } from "./commonLineupAggregations";
+import { commonAggregations, timeAnalysis } from "./commonLineupAggregations";
 
 import _ from "lodash";
 
 export const commonPlayerAggregations = function(publicEfficiency: any, lookup: any, avgEff: number) {
+
+  /** Build all the combos of assist networks */
+  const buildAssistNetworks = () => {
+    return _.fromPairs([ "3p", "mid", "rim" ].flatMap((key) => {
+        return [ "target", "source" ].map((loc) => {
+          return [ `off_ast_${key}_${loc}`, {
+            "scripted_metric": {
+              "init_script": "state.codes = [:]",
+              "map_script": `
+                def code_array = doc['player_stats.ast_${key}.${loc}.player_code.keyword'];
+                def count_array = doc['player_stats.ast_${key}.${loc}.count.total'];
+                for (def i = 0; i < code_array.length; ++i) {
+                  def code = code_array[i];
+                  def inc = count_array[i];
+                  def curr_val = state.codes[code];
+                  state.codes[code] = curr_val != null ? (curr_val + inc) : inc;
+                }
+              `,
+              "combine_script": "state.codes",
+              "reduce_script": `
+                def toCombine = states.size();
+                def end_state = toCombine > 0 ? states[0] : [:];
+                for (def i = 1; i < toCombine; ++i) {
+                  def state = states[i];
+                  for (code in state.keySet()) {
+                    def new_val = state[code];
+                    def curr_val = end_state[code];
+                    end_state[code] = curr_val != null ? (curr_val + new_val) : new_val;
+                  }
+                }
+                return end_state;
+              `
+            }
+          } ];
+        });
+    }));
+  };
 
   return {
     // Team based stats
@@ -48,7 +85,11 @@ export const commonPlayerAggregations = function(publicEfficiency: any, lookup: 
     ...(_.chain(
         commonAggregations("player_stats", "off", publicEfficiency, lookup, avgEff)
       ).omit(
-        [ "off_poss", "off_ppp", "off_to", "off_orb", "off_adj_ppp", "off_assist" ]
+        [ "off_poss", "off_ppp", "off_to", "off_orb", "off_adj_ppp", "off_assist",
+//TODO: handle scramble and transition breakdowns better
+          "total_off_trans_poss", "off_trans_ppp", "off_trans_to",
+          "total_off_scramble_poss", "off_scramble_ppp", "off_scramble_to"
+       ]
       ).mergeWith({
 
         // Offensive fields
@@ -167,7 +208,10 @@ export const commonPlayerAggregations = function(publicEfficiency: any, lookup: 
             },
             "script": "params.fg2pa > 0 ? 1.0*params.blk/params.fg2pa : 0.0"
           }
-        }
+        },
+
+        // Assist network building
+        ...buildAssistNetworks()
 
       }).value()
     ),
@@ -177,6 +221,8 @@ export const commonPlayerAggregations = function(publicEfficiency: any, lookup: 
       ).pick(
         [ "def_adj_opp" ]
       ).value()
-    )
+    ),
+    //(common time analysis)
+    ...timeAnalysis()
   };
 }
