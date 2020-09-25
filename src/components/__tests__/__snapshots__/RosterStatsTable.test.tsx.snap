@@ -4451,42 +4451,51 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
       </FormGroup>
     </FormRow>
     <FormRow>
-      <ToggleButtonGroup
-        items={
-          Array [
-            Object {
-              "label": "Expanded",
-              "onClick": [Function],
-              "toggled": false,
-              "tooltip": "Show expanded player stats",
-            },
-            Object {
-              "label": "Poss%",
-              "onClick": [Function],
-              "toggled": true,
-              "tooltip": "Show possessions as count",
-            },
-            Object {
-              "label": "Luck",
-              "onClick": [Function],
-              "toggled": false,
-              "tooltip": "Adjust statistics for luck",
-            },
-            Object {
-              "label": "Edit...",
-              "onClick": [Function],
-              "toggled": false,
-              "tooltip": "Launch player stats manual editor",
-            },
-          ]
-        }
-      />
+      <Col>
+        <ToggleButtonGroup
+          items={
+            Array [
+              Object {
+                "label": "Expanded",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show expanded player stats",
+              },
+              Object {
+                "label": "Poss%",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Show possessions as count",
+              },
+              Object {
+                "label": "Luck",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Adjust statistics for luck",
+              },
+              Object {
+                "label": "Edit...",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Launch player stats manual editor",
+              },
+            ]
+          }
+        />
+      </Col>
     </FormRow>
     <Row
       className="mt-2"
       noGutters={false}
     >
-      <Col>
+      <Col
+        style={
+          Object {
+            "paddingLeft": "5px",
+            "paddingRight": "5px",
+          }
+        }
+      >
         <GenericTable
           cellTooltipMode="none"
           tableCopyId="rosterStatsTable"
@@ -7488,42 +7497,51 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
       </FormGroup>
     </FormRow>
     <FormRow>
-      <ToggleButtonGroup
-        items={
-          Array [
-            Object {
-              "label": "Expanded",
-              "onClick": [Function],
-              "toggled": false,
-              "tooltip": "Show expanded player stats",
-            },
-            Object {
-              "label": "Poss%",
-              "onClick": [Function],
-              "toggled": true,
-              "tooltip": "Show possessions as count",
-            },
-            Object {
-              "label": "Luck",
-              "onClick": [Function],
-              "toggled": false,
-              "tooltip": "Adjust statistics for luck",
-            },
-            Object {
-              "label": "Edit...",
-              "onClick": [Function],
-              "toggled": false,
-              "tooltip": "Launch player stats manual editor",
-            },
-          ]
-        }
-      />
+      <Col>
+        <ToggleButtonGroup
+          items={
+            Array [
+              Object {
+                "label": "Expanded",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show expanded player stats",
+              },
+              Object {
+                "label": "Poss%",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Show possessions as count",
+              },
+              Object {
+                "label": "Luck",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Adjust statistics for luck",
+              },
+              Object {
+                "label": "Edit...",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Launch player stats manual editor",
+              },
+            ]
+          }
+        />
+      </Col>
     </FormRow>
     <Row
       className="mt-2"
       noGutters={false}
     >
-      <Col>
+      <Col
+        style={
+          Object {
+            "paddingLeft": "5px",
+            "paddingRight": "5px",
+          }
+        }
+      >
         <GenericTable
           cellTooltipMode="none"
           tableCopyId="rosterStatsTable"
@@ -9836,42 +9854,51 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
       </FormGroup>
     </FormRow>
     <FormRow>
-      <ToggleButtonGroup
-        items={
-          Array [
-            Object {
-              "label": "Expanded",
-              "onClick": [Function],
-              "toggled": true,
-              "tooltip": "Show single row of player stats",
-            },
-            Object {
-              "label": "Poss%",
-              "onClick": [Function],
-              "toggled": true,
-              "tooltip": "Show possessions as count",
-            },
-            Object {
-              "label": "Luck",
-              "onClick": [Function],
-              "toggled": false,
-              "tooltip": "Adjust statistics for luck",
-            },
-            Object {
-              "label": "Edit...",
-              "onClick": [Function],
-              "toggled": false,
-              "tooltip": "Launch player stats manual editor",
-            },
-          ]
-        }
-      />
+      <Col>
+        <ToggleButtonGroup
+          items={
+            Array [
+              Object {
+                "label": "Expanded",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Show single row of player stats",
+              },
+              Object {
+                "label": "Poss%",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Show possessions as count",
+              },
+              Object {
+                "label": "Luck",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Adjust statistics for luck",
+              },
+              Object {
+                "label": "Edit...",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Launch player stats manual editor",
+              },
+            ]
+          }
+        />
+      </Col>
     </FormRow>
     <Row
       className="mt-2"
       noGutters={false}
     >
-      <Col>
+      <Col
+        style={
+          Object {
+            "paddingLeft": "5px",
+            "paddingRight": "5px",
+          }
+        }
+      >
         <GenericTable
           cellTooltipMode="none"
           tableCopyId="rosterStatsTable"
@@ -14504,42 +14531,51 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
       </FormGroup>
     </FormRow>
     <FormRow>
-      <ToggleButtonGroup
-        items={
-          Array [
-            Object {
-              "label": "Expanded",
-              "onClick": [Function],
-              "toggled": true,
-              "tooltip": "Show single row of player stats",
-            },
-            Object {
-              "label": "Poss%",
-              "onClick": [Function],
-              "toggled": true,
-              "tooltip": "Show possessions as count",
-            },
-            Object {
-              "label": "Luck",
-              "onClick": [Function],
-              "toggled": false,
-              "tooltip": "Adjust statistics for luck",
-            },
-            Object {
-              "label": "Edit...",
-              "onClick": [Function],
-              "toggled": false,
-              "tooltip": "Launch player stats manual editor",
-            },
-          ]
-        }
-      />
+      <Col>
+        <ToggleButtonGroup
+          items={
+            Array [
+              Object {
+                "label": "Expanded",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Show single row of player stats",
+              },
+              Object {
+                "label": "Poss%",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Show possessions as count",
+              },
+              Object {
+                "label": "Luck",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Adjust statistics for luck",
+              },
+              Object {
+                "label": "Edit...",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Launch player stats manual editor",
+              },
+            ]
+          }
+        />
+      </Col>
     </FormRow>
     <Row
       className="mt-2"
       noGutters={false}
     >
-      <Col>
+      <Col
+        style={
+          Object {
+            "paddingLeft": "5px",
+            "paddingRight": "5px",
+          }
+        }
+      >
         <GenericTable
           cellTooltipMode="none"
           tableCopyId="rosterStatsTable"
@@ -21077,42 +21113,51 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
       </FormGroup>
     </FormRow>
     <FormRow>
-      <ToggleButtonGroup
-        items={
-          Array [
-            Object {
-              "label": "Expanded",
-              "onClick": [Function],
-              "toggled": false,
-              "tooltip": "Show expanded player stats",
-            },
-            Object {
-              "label": "Poss%",
-              "onClick": [Function],
-              "toggled": true,
-              "tooltip": "Show possessions as count",
-            },
-            Object {
-              "label": "Luck",
-              "onClick": [Function],
-              "toggled": true,
-              "tooltip": "Remove luck adjustments",
-            },
-            Object {
-              "label": "Edit...",
-              "onClick": [Function],
-              "toggled": false,
-              "tooltip": "Launch player stats manual editor",
-            },
-          ]
-        }
-      />
+      <Col>
+        <ToggleButtonGroup
+          items={
+            Array [
+              Object {
+                "label": "Expanded",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show expanded player stats",
+              },
+              Object {
+                "label": "Poss%",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Show possessions as count",
+              },
+              Object {
+                "label": "Luck",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Remove luck adjustments",
+              },
+              Object {
+                "label": "Edit...",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Launch player stats manual editor",
+              },
+            ]
+          }
+        />
+      </Col>
     </FormRow>
     <Row
       className="mt-2"
       noGutters={false}
     >
-      <Col>
+      <Col
+        style={
+          Object {
+            "paddingLeft": "5px",
+            "paddingRight": "5px",
+          }
+        }
+      >
         <GenericTable
           cellTooltipMode="none"
           tableCopyId="rosterStatsTable"
@@ -28377,42 +28422,51 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
       </FormGroup>
     </FormRow>
     <FormRow>
-      <ToggleButtonGroup
-        items={
-          Array [
-            Object {
-              "label": "Expanded",
-              "onClick": [Function],
-              "toggled": false,
-              "tooltip": "Show expanded player stats",
-            },
-            Object {
-              "label": "Poss%",
-              "onClick": [Function],
-              "toggled": true,
-              "tooltip": "Show possessions as count",
-            },
-            Object {
-              "label": "Luck",
-              "onClick": [Function],
-              "toggled": true,
-              "tooltip": "Remove luck adjustments",
-            },
-            Object {
-              "label": "Edit...",
-              "onClick": [Function],
-              "toggled": false,
-              "tooltip": "Launch player stats manual editor",
-            },
-          ]
-        }
-      />
+      <Col>
+        <ToggleButtonGroup
+          items={
+            Array [
+              Object {
+                "label": "Expanded",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show expanded player stats",
+              },
+              Object {
+                "label": "Poss%",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Show possessions as count",
+              },
+              Object {
+                "label": "Luck",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Remove luck adjustments",
+              },
+              Object {
+                "label": "Edit...",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Launch player stats manual editor",
+              },
+            ]
+          }
+        />
+      </Col>
     </FormRow>
     <Row
       className="mt-2"
       noGutters={false}
     >
-      <Col>
+      <Col
+        style={
+          Object {
+            "paddingLeft": "5px",
+            "paddingRight": "5px",
+          }
+        }
+      >
         <GenericTable
           cellTooltipMode="none"
           tableCopyId="rosterStatsTable"
@@ -35401,42 +35455,51 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
       </FormGroup>
     </FormRow>
     <FormRow>
-      <ToggleButtonGroup
-        items={
-          Array [
-            Object {
-              "label": "Expanded",
-              "onClick": [Function],
-              "toggled": false,
-              "tooltip": "Show expanded player stats",
-            },
-            Object {
-              "label": "Poss%",
-              "onClick": [Function],
-              "toggled": true,
-              "tooltip": "Show possessions as count",
-            },
-            Object {
-              "label": "Luck",
-              "onClick": [Function],
-              "toggled": false,
-              "tooltip": "Adjust statistics for luck",
-            },
-            Object {
-              "label": "Edit...",
-              "onClick": [Function],
-              "toggled": false,
-              "tooltip": "Launch player stats manual editor",
-            },
-          ]
-        }
-      />
+      <Col>
+        <ToggleButtonGroup
+          items={
+            Array [
+              Object {
+                "label": "Expanded",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show expanded player stats",
+              },
+              Object {
+                "label": "Poss%",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Show possessions as count",
+              },
+              Object {
+                "label": "Luck",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Adjust statistics for luck",
+              },
+              Object {
+                "label": "Edit...",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Launch player stats manual editor",
+              },
+            ]
+          }
+        />
+      </Col>
     </FormRow>
     <Row
       className="mt-2"
       noGutters={false}
     >
-      <Col>
+      <Col
+        style={
+          Object {
+            "paddingLeft": "5px",
+            "paddingRight": "5px",
+          }
+        }
+      >
         <GenericTable
           cellTooltipMode="none"
           tableCopyId="rosterStatsTable"

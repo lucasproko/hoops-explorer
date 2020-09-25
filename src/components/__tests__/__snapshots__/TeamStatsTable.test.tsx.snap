@@ -14,7 +14,11 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
         <div
           className="form-row"
         >
-          <div />
+          <div
+            className="col"
+          >
+            <div />
+          </div>
         </div>
       </div>
       <div
@@ -61,6 +65,12 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
     >
       <div
         className="col"
+        style={
+          Object {
+            "paddingLeft": "5px",
+            "paddingRight": "5px",
+          }
+        }
       >
         <div
           className="table-responsive"
@@ -3104,7 +3114,11 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
         <div
           className="form-row"
         >
-          <div />
+          <div
+            className="col"
+          >
+            <div />
+          </div>
         </div>
       </div>
       <div
@@ -3151,6 +3165,12 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
     >
       <div
         className="col"
+        style={
+          Object {
+            "paddingLeft": "5px",
+            "paddingRight": "5px",
+          }
+        }
       >
         <div
           className="table-responsive"

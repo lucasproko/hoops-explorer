@@ -162,12 +162,13 @@ export class GenericTableOps {
 type LockModes = "col" | "none" | "row" | "missing";
 const nextLockMode: Record<LockModes, LockModes> = { "none": "col", "col": "row", "row": "none", "missing": "missing" };
 type Props = {
+  responsive?: boolean,
   tableFields: Record<string, GenericTableColProps>,
   tableData: Array<GenericTableRow>,
   tableCopyId?: string,
   cellTooltipMode?: LockModes
 }
-const GenericTable: React.FunctionComponent<Props> = ({tableFields, tableData, tableCopyId, cellTooltipMode}) => {
+const GenericTable: React.FunctionComponent<Props> = ({responsive, tableFields, tableData, tableCopyId, cellTooltipMode}) => {
 
   const [ lockMode, setLockMode ]= useState((cellTooltipMode || "missing") as LockModes);
   const [ cellOverlayShowStates, setCellOverlayShowStates ] = useState({} as Record<string, boolean>);
@@ -394,8 +395,8 @@ const GenericTable: React.FunctionComponent<Props> = ({tableFields, tableData, t
       verticalAlign: "middle"
     };
   }
-
-  return <Table responsive={lockMode != "row"} id={tableId} size="sm">
+  const isResponsive = _.isNil(responsive) ? true : responsive;
+  return <Table responsive={isResponsive && (lockMode != "row")} id={tableId} size="sm">
     <thead>
       <tr>{ renderTableHeaders() }</tr>
     </thead>

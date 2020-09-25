@@ -176,7 +176,7 @@ const RapmGlobalDiagView: React.FunctionComponent<Props> = (({rapmInfo, players,
       </em></span>
       <Container>
         <Col xs={8}>
-          <GenericTable tableCopyId="correlDiags" tableFields={correlTableFields} tableData={correlTableData}/>
+          <GenericTable responsive={false} tableCopyId="correlDiags" tableFields={correlTableFields} tableData={correlTableData}/>
         </Col>
       </Container>
 
@@ -209,7 +209,7 @@ const RapmGlobalDiagView: React.FunctionComponent<Props> = (({rapmInfo, players,
       </em></span>
       <Container>
         <Col xs={8}>
-          <GenericTable tableCopyId="collinDiags" tableFields={collinTableFields} tableData={collinTableData}/>
+          <GenericTable responsive={false} tableCopyId="collinDiags" tableFields={collinTableFields} tableData={collinTableData}/>
         </Col>
       </Container>
       <span><em>

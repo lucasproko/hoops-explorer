@@ -723,35 +723,37 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
         </Form.Group>
       </Form.Row>
       <Form.Row>
-        <ToggleButtonGroup items={[
-          {
-            label: "Expanded",
-            tooltip: expandedView ? "Show single row of player stats" : "Show expanded player stats",
-            toggled: expandedView,
-            onClick: () => setExpandedView(!expandedView)
-          },
-          {
-            label: "Poss%",
-            tooltip: possAsPct ? "Show possessions as count" : "Show possessions as percentage",
-            toggled: possAsPct,
-            onClick: () => setPossAsPct(!possAsPct)
-          },
-          {
-            label: "Luck",
-            tooltip: adjustForLuck ? "Remove luck adjustments" : "Adjust statistics for luck",
-            toggled: adjustForLuck,
-            onClick: () => setAdjustForLuck(!adjustForLuck)
-          },
-          {
-            label: "Edit...",
-            tooltip: "Launch player stats manual editor",
-            toggled: false,
-            onClick: () => setShowManualOverrides(true)
-          },
-        ]}/>
+        <Col>
+          <ToggleButtonGroup items={[
+            {
+              label: "Expanded",
+              tooltip: expandedView ? "Show single row of player stats" : "Show expanded player stats",
+              toggled: expandedView,
+              onClick: () => setExpandedView(!expandedView)
+            },
+            {
+              label: "Poss%",
+              tooltip: possAsPct ? "Show possessions as count" : "Show possessions as percentage",
+              toggled: possAsPct,
+              onClick: () => setPossAsPct(!possAsPct)
+            },
+            {
+              label: "Luck",
+              tooltip: adjustForLuck ? "Remove luck adjustments" : "Adjust statistics for luck",
+              toggled: adjustForLuck,
+              onClick: () => setAdjustForLuck(!adjustForLuck)
+            },
+            {
+              label: "Edit...",
+              tooltip: "Launch player stats manual editor",
+              toggled: false,
+              onClick: () => setShowManualOverrides(true)
+            },
+          ]}/>
+        </Col>
       </Form.Row>
       <Row className="mt-2">
-        <Col>
+        <Col style={{paddingLeft: "5px", paddingRight: "5px"}}>
           <GenericTable
             tableCopyId="rosterStatsTable"
             tableFields={tableFields}

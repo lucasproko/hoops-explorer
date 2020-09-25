@@ -33,6 +33,7 @@ exports[`LineupAnalyzerPage LineupAnalyzerPage - should create snapshot 1`] = `
     noGutters={false}
   >
     <GenericCollapsibleCard
+      minimizeMargin={false}
       summary="Lineups: 2019/20  (M): query:'' (max:50, min-poss:5)"
       title="Team and Game Filter"
     >
@@ -48,6 +49,7 @@ exports[`LineupAnalyzerPage LineupAnalyzerPage - should create snapshot 1`] = `
   >
     <GenericCollapsibleCard
       helpLink="https://hoop-explorer.blogspot.com/2020/07/understanding-lineup-analyzer-page.html"
+      minimizeMargin={true}
       title="Lineup Analysis"
     >
       <LineupStatsTable

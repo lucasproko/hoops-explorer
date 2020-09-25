@@ -1337,42 +1337,51 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
         </FormGroup>
       </FormRow>
       <FormRow>
-        <ToggleButtonGroup
-          items={
-            Array [
-              Object {
-                "label": "On/Off",
-                "onClick": [Function],
-                "toggled": true,
-                "tooltip": "Hide Basic On/Off Stats",
-              },
-              Object {
-                "label": "Same-4",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Show Replacement ('Same-4') On-Off",
-              },
-              Object {
-                "label": "RAPM",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Show Player RAPM",
-              },
-              Object {
-                "label": "Luck",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Adjust statistics for luck",
-              },
-            ]
-          }
-        />
+        <Col>
+          <ToggleButtonGroup
+            items={
+              Array [
+                Object {
+                  "label": "On/Off",
+                  "onClick": [Function],
+                  "toggled": true,
+                  "tooltip": "Hide Basic On/Off Stats",
+                },
+                Object {
+                  "label": "Same-4",
+                  "onClick": [Function],
+                  "toggled": false,
+                  "tooltip": "Show Replacement ('Same-4') On-Off",
+                },
+                Object {
+                  "label": "RAPM",
+                  "onClick": [Function],
+                  "toggled": false,
+                  "tooltip": "Show Player RAPM",
+                },
+                Object {
+                  "label": "Luck",
+                  "onClick": [Function],
+                  "toggled": false,
+                  "tooltip": "Adjust statistics for luck",
+                },
+              ]
+            }
+          />
+        </Col>
       </FormRow>
       <Row
         className="mt-2"
         noGutters={false}
       >
-        <Col>
+        <Col
+          style={
+            Object {
+              "paddingLeft": "5px",
+              "paddingRight": "5px",
+            }
+          }
+        >
           <GenericTable
             cellTooltipMode="none"
             tableCopyId="teamReportStatsTable"
@@ -10434,42 +10443,51 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
         </FormGroup>
       </FormRow>
       <FormRow>
-        <ToggleButtonGroup
-          items={
-            Array [
-              Object {
-                "label": "On/Off",
-                "onClick": [Function],
-                "toggled": true,
-                "tooltip": "Hide Basic On/Off Stats",
-              },
-              Object {
-                "label": "Same-4",
-                "onClick": [Function],
-                "toggled": true,
-                "tooltip": "Hide Replacement ('Same-4') On-Off",
-              },
-              Object {
-                "label": "RAPM",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Show Player RAPM",
-              },
-              Object {
-                "label": "Luck",
-                "onClick": [Function],
-                "toggled": true,
-                "tooltip": "Remove luck adjustments",
-              },
-            ]
-          }
-        />
+        <Col>
+          <ToggleButtonGroup
+            items={
+              Array [
+                Object {
+                  "label": "On/Off",
+                  "onClick": [Function],
+                  "toggled": true,
+                  "tooltip": "Hide Basic On/Off Stats",
+                },
+                Object {
+                  "label": "Same-4",
+                  "onClick": [Function],
+                  "toggled": true,
+                  "tooltip": "Hide Replacement ('Same-4') On-Off",
+                },
+                Object {
+                  "label": "RAPM",
+                  "onClick": [Function],
+                  "toggled": false,
+                  "tooltip": "Show Player RAPM",
+                },
+                Object {
+                  "label": "Luck",
+                  "onClick": [Function],
+                  "toggled": true,
+                  "tooltip": "Remove luck adjustments",
+                },
+              ]
+            }
+          />
+        </Col>
       </FormRow>
       <Row
         className="mt-2"
         noGutters={false}
       >
-        <Col>
+        <Col
+          style={
+            Object {
+              "paddingLeft": "5px",
+              "paddingRight": "5px",
+            }
+          }
+        >
           <GenericTable
             cellTooltipMode="none"
             tableCopyId="teamReportStatsTable"
@@ -23875,42 +23893,51 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
         </FormGroup>
       </FormRow>
       <FormRow>
-        <ToggleButtonGroup
-          items={
-            Array [
-              Object {
-                "label": "On/Off",
-                "onClick": [Function],
-                "toggled": true,
-                "tooltip": "Hide Basic On/Off Stats",
-              },
-              Object {
-                "label": "Same-4",
-                "onClick": [Function],
-                "toggled": true,
-                "tooltip": "Hide Replacement ('Same-4') On-Off",
-              },
-              Object {
-                "label": "RAPM",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Show Player RAPM",
-              },
-              Object {
-                "label": "Luck",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Adjust statistics for luck",
-              },
-            ]
-          }
-        />
+        <Col>
+          <ToggleButtonGroup
+            items={
+              Array [
+                Object {
+                  "label": "On/Off",
+                  "onClick": [Function],
+                  "toggled": true,
+                  "tooltip": "Hide Basic On/Off Stats",
+                },
+                Object {
+                  "label": "Same-4",
+                  "onClick": [Function],
+                  "toggled": true,
+                  "tooltip": "Hide Replacement ('Same-4') On-Off",
+                },
+                Object {
+                  "label": "RAPM",
+                  "onClick": [Function],
+                  "toggled": false,
+                  "tooltip": "Show Player RAPM",
+                },
+                Object {
+                  "label": "Luck",
+                  "onClick": [Function],
+                  "toggled": false,
+                  "tooltip": "Adjust statistics for luck",
+                },
+              ]
+            }
+          />
+        </Col>
       </FormRow>
       <Row
         className="mt-2"
         noGutters={false}
       >
-        <Col>
+        <Col
+          style={
+            Object {
+              "paddingLeft": "5px",
+              "paddingRight": "5px",
+            }
+          }
+        >
           <GenericTable
             cellTooltipMode="none"
             tableCopyId="teamReportStatsTable"
@@ -36308,42 +36335,51 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
         </FormGroup>
       </FormRow>
       <FormRow>
-        <ToggleButtonGroup
-          items={
-            Array [
-              Object {
-                "label": "On/Off",
-                "onClick": [Function],
-                "toggled": true,
-                "tooltip": "Hide Basic On/Off Stats",
-              },
-              Object {
-                "label": "Same-4",
-                "onClick": [Function],
-                "toggled": true,
-                "tooltip": "Hide Replacement ('Same-4') On-Off",
-              },
-              Object {
-                "label": "RAPM",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Show Player RAPM",
-              },
-              Object {
-                "label": "Luck",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Adjust statistics for luck",
-              },
-            ]
-          }
-        />
+        <Col>
+          <ToggleButtonGroup
+            items={
+              Array [
+                Object {
+                  "label": "On/Off",
+                  "onClick": [Function],
+                  "toggled": true,
+                  "tooltip": "Hide Basic On/Off Stats",
+                },
+                Object {
+                  "label": "Same-4",
+                  "onClick": [Function],
+                  "toggled": true,
+                  "tooltip": "Hide Replacement ('Same-4') On-Off",
+                },
+                Object {
+                  "label": "RAPM",
+                  "onClick": [Function],
+                  "toggled": false,
+                  "tooltip": "Show Player RAPM",
+                },
+                Object {
+                  "label": "Luck",
+                  "onClick": [Function],
+                  "toggled": false,
+                  "tooltip": "Adjust statistics for luck",
+                },
+              ]
+            }
+          />
+        </Col>
       </FormRow>
       <Row
         className="mt-2"
         noGutters={false}
       >
-        <Col>
+        <Col
+          style={
+            Object {
+              "paddingLeft": "5px",
+              "paddingRight": "5px",
+            }
+          }
+        >
           <GenericTable
             cellTooltipMode="none"
             tableCopyId="teamReportStatsTable"
@@ -51723,42 +51759,51 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
         </FormGroup>
       </FormRow>
       <FormRow>
-        <ToggleButtonGroup
-          items={
-            Array [
-              Object {
-                "label": "On/Off",
-                "onClick": [Function],
-                "toggled": true,
-                "tooltip": "Hide Basic On/Off Stats",
-              },
-              Object {
-                "label": "Same-4",
-                "onClick": [Function],
-                "toggled": true,
-                "tooltip": "Hide Replacement ('Same-4') On-Off",
-              },
-              Object {
-                "label": "RAPM",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Show Player RAPM",
-              },
-              Object {
-                "label": "Luck",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Adjust statistics for luck",
-              },
-            ]
-          }
-        />
+        <Col>
+          <ToggleButtonGroup
+            items={
+              Array [
+                Object {
+                  "label": "On/Off",
+                  "onClick": [Function],
+                  "toggled": true,
+                  "tooltip": "Hide Basic On/Off Stats",
+                },
+                Object {
+                  "label": "Same-4",
+                  "onClick": [Function],
+                  "toggled": true,
+                  "tooltip": "Hide Replacement ('Same-4') On-Off",
+                },
+                Object {
+                  "label": "RAPM",
+                  "onClick": [Function],
+                  "toggled": false,
+                  "tooltip": "Show Player RAPM",
+                },
+                Object {
+                  "label": "Luck",
+                  "onClick": [Function],
+                  "toggled": false,
+                  "tooltip": "Adjust statistics for luck",
+                },
+              ]
+            }
+          />
+        </Col>
       </FormRow>
       <Row
         className="mt-2"
         noGutters={false}
       >
-        <Col>
+        <Col
+          style={
+            Object {
+              "paddingLeft": "5px",
+              "paddingRight": "5px",
+            }
+          }
+        >
           <GenericTable
             cellTooltipMode="none"
             tableCopyId="teamReportStatsTable"
@@ -55535,42 +55580,51 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
         </FormGroup>
       </FormRow>
       <FormRow>
-        <ToggleButtonGroup
-          items={
-            Array [
-              Object {
-                "label": "On/Off",
-                "onClick": [Function],
-                "toggled": true,
-                "tooltip": "Hide Basic On/Off Stats",
-              },
-              Object {
-                "label": "Same-4",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Show Replacement ('Same-4') On-Off",
-              },
-              Object {
-                "label": "RAPM",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Show Player RAPM",
-              },
-              Object {
-                "label": "Luck",
-                "onClick": [Function],
-                "toggled": false,
-                "tooltip": "Adjust statistics for luck",
-              },
-            ]
-          }
-        />
+        <Col>
+          <ToggleButtonGroup
+            items={
+              Array [
+                Object {
+                  "label": "On/Off",
+                  "onClick": [Function],
+                  "toggled": true,
+                  "tooltip": "Hide Basic On/Off Stats",
+                },
+                Object {
+                  "label": "Same-4",
+                  "onClick": [Function],
+                  "toggled": false,
+                  "tooltip": "Show Replacement ('Same-4') On-Off",
+                },
+                Object {
+                  "label": "RAPM",
+                  "onClick": [Function],
+                  "toggled": false,
+                  "tooltip": "Show Player RAPM",
+                },
+                Object {
+                  "label": "Luck",
+                  "onClick": [Function],
+                  "toggled": false,
+                  "tooltip": "Adjust statistics for luck",
+                },
+              ]
+            }
+          />
+        </Col>
       </FormRow>
       <Row
         className="mt-2"
         noGutters={false}
       >
-        <Col>
+        <Col
+          style={
+            Object {
+              "paddingLeft": "5px",
+              "paddingRight": "5px",
+            }
+          }
+        >
           <GenericTable
             cellTooltipMode="none"
             tableCopyId="teamReportStatsTable"

@@ -580,30 +580,39 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
       </FormGroup>
     </FormRow>
     <FormRow>
-      <ToggleButtonGroup
-        items={
-          Array [
-            Object {
-              "label": "Totals",
-              "onClick": [Function],
-              "toggled": false,
-              "tooltip": "Show Weighted Combo of All Lineups",
-            },
-            Object {
-              "label": "Luck",
-              "onClick": [Function],
-              "toggled": false,
-              "tooltip": "Adjust statistics for luck",
-            },
-          ]
-        }
-      />
+      <Col>
+        <ToggleButtonGroup
+          items={
+            Array [
+              Object {
+                "label": "Totals",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show Weighted Combo of All Lineups",
+              },
+              Object {
+                "label": "Luck",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Adjust statistics for luck",
+              },
+            ]
+          }
+        />
+      </Col>
     </FormRow>
     <Row
       className="mt-2"
       noGutters={false}
     >
-      <Col>
+      <Col
+        style={
+          Object {
+            "paddingLeft": "5px",
+            "paddingRight": "5px",
+          }
+        }
+      >
         <GenericTable
           cellTooltipMode="none"
           tableCopyId="lineupStatsTable"
@@ -5670,30 +5679,39 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
       </FormGroup>
     </FormRow>
     <FormRow>
-      <ToggleButtonGroup
-        items={
-          Array [
-            Object {
-              "label": "Totals",
-              "onClick": [Function],
-              "toggled": false,
-              "tooltip": "Show Weighted Combo of All Lineups",
-            },
-            Object {
-              "label": "Luck",
-              "onClick": [Function],
-              "toggled": true,
-              "tooltip": "Remove luck adjustments",
-            },
-          ]
-        }
-      />
+      <Col>
+        <ToggleButtonGroup
+          items={
+            Array [
+              Object {
+                "label": "Totals",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show Weighted Combo of All Lineups",
+              },
+              Object {
+                "label": "Luck",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Remove luck adjustments",
+              },
+            ]
+          }
+        />
+      </Col>
     </FormRow>
     <Row
       className="mt-2"
       noGutters={false}
     >
-      <Col>
+      <Col
+        style={
+          Object {
+            "paddingLeft": "5px",
+            "paddingRight": "5px",
+          }
+        }
+      >
         <GenericTable
           cellTooltipMode="none"
           tableCopyId="lineupStatsTable"
@@ -8177,30 +8195,39 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
       </FormGroup>
     </FormRow>
     <FormRow>
-      <ToggleButtonGroup
-        items={
-          Array [
-            Object {
-              "label": "Totals",
-              "onClick": [Function],
-              "toggled": false,
-              "tooltip": "Show Weighted Combo of All Lineups",
-            },
-            Object {
-              "label": "Luck",
-              "onClick": [Function],
-              "toggled": false,
-              "tooltip": "Adjust statistics for luck",
-            },
-          ]
-        }
-      />
+      <Col>
+        <ToggleButtonGroup
+          items={
+            Array [
+              Object {
+                "label": "Totals",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show Weighted Combo of All Lineups",
+              },
+              Object {
+                "label": "Luck",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Adjust statistics for luck",
+              },
+            ]
+          }
+        />
+      </Col>
     </FormRow>
     <Row
       className="mt-2"
       noGutters={false}
     >
-      <Col>
+      <Col
+        style={
+          Object {
+            "paddingLeft": "5px",
+            "paddingRight": "5px",
+          }
+        }
+      >
         <GenericTable
           cellTooltipMode="none"
           tableCopyId="lineupStatsTable"

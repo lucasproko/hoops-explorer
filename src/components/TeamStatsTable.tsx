@@ -249,16 +249,18 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
       />
       <Form.Row>
         <Col sm="11">
-        <Form.Row>
-          <ToggleButtonGroup items={[
-            {
-              label: "Luck",
-              tooltip: adjustForLuck ? "Remove luck adjustments" : "Adjust statistics for luck",
-              toggled: adjustForLuck,
-              onClick: () => setAdjustForLuck(!adjustForLuck)
-            }
-          ]}/>
-        </Form.Row>
+          <Form.Row>
+            <Col>
+              <ToggleButtonGroup items={[
+                {
+                  label: "Luck",
+                  tooltip: adjustForLuck ? "Remove luck adjustments" : "Adjust statistics for luck",
+                  toggled: adjustForLuck,
+                  onClick: () => setAdjustForLuck(!adjustForLuck)
+                }
+              ]}/>
+            </Col>
+          </Form.Row>
         </Col>
         <Form.Group as={Col} sm="1">
           <GenericTogglingMenu>
@@ -284,7 +286,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
         </Form.Group>
       </Form.Row>
       <Row className="mt-2">
-        <Col>
+        <Col style={{paddingLeft: "5px", paddingRight: "5px"}}>
           <GenericTable
             tableCopyId="teamStatsTable"
             tableFields={CommonTableDefs.onOffTable}

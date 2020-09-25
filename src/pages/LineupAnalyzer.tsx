@@ -118,6 +118,7 @@ const LineupAnalyzerPage: NextPage<{}> = () => {
     </Row>
     <Row>
       <GenericCollapsibleCard
+        minimizeMargin={false}
         title="Team and Game Filter"
         summary={HistoryManager.lineupFilterSummary(lineupFilterParams)}
       >
@@ -129,7 +130,7 @@ const LineupAnalyzerPage: NextPage<{}> = () => {
       </GenericCollapsibleCard>
     </Row>
     <Row>
-      <GenericCollapsibleCard title="Lineup Analysis" helpLink={maybeShowDocs()}>
+      <GenericCollapsibleCard minimizeMargin={true} title="Lineup Analysis" helpLink={maybeShowDocs()}>
         <LineupStatsTable
           startingState={lineupFilterParams}
           dataEvent={dataEvent}
