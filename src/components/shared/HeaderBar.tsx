@@ -17,6 +17,11 @@ import Col from 'react-bootstrap/Col';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Popover from 'react-bootstrap/Popover';
 import Tooltip from 'react-bootstrap/Tooltip';
+import Dropdown from 'react-bootstrap/Dropdown';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
+
 
 // Utils:
 import { getCommonFilterParams, ParamPrefixes, CommonFilterParams, GameFilterParams, LineupFilterParams, TeamReportFilterParams } from '../../utils/FilterModels';
@@ -28,6 +33,21 @@ type Props = {
   common: CommonFilterParams,
   override?: boolean //(for testing)
 };
+
+/** Dropdowns for controlling navigation */
+const StyledDropdown = React.forwardRef<HTMLAnchorElement>((props, ref) => (
+    <a
+      href=""
+      ref={ref}
+      onClick={(e) => {
+        e.preventDefault();
+        (props as any).onClick(e);
+      }}
+    >
+        {props.children}
+        &nbsp;&nbsp;<FontAwesomeIcon icon={faAngleDown} />
+    </a>
+));
 
 const HeaderBar: React.FunctionComponent<Props> = ({thisPage, common, override}) => {
 
@@ -70,19 +90,6 @@ const HeaderBar: React.FunctionComponent<Props> = ({thisPage, common, override})
     );
   }
 
-  function maybeShowBlog() {
-    if (!_.startsWith(server, "cbb-on-off-analyzer")) {
-      const blogTooltip = (
-        <Tooltip id="blogTooltip">Articles describing how to use the tool</Tooltip>
-      );
-      return <Col xs={1} className="small">
-        <OverlayTrigger placement="auto" overlay={blogTooltip}>
-          <a href="https://hoop-explorer.blogspot.com/p/blog-page.html" target="_new">Blog...</a>
-        </OverlayTrigger>
-      </Col>;
-    }
-  }
-
   const baseGameTooltip = (
     <Tooltip id="baseGameTooltip">Go to the On/Off Analysis page with the current baseline query</Tooltip>
   );
@@ -113,57 +120,93 @@ const HeaderBar: React.FunctionComponent<Props> = ({thisPage, common, override})
     }
   };
 
+  /** Builds a nice looking nav dropdown item */
+  const buildNavItem = (itemName: string, tooltip: React.ReactNode, url: string) => {
+    return <OverlayTrigger rootClose placement="left" overlay={tooltip}>
+      <span>
+        <Link href={url}>
+          <div>
+            <a className="text-center small" href={url} onClick={onNav}>{itemName}</a>
+          </div>
+        </Link>
+      </span>
+    </OverlayTrigger>
+  };
+
+  const dropdownStyle = {
+    width:"40px", left:"50%", marginLeft:"-20px"
+  };
+
+  /** Build a nice looking nav dropdown */
+  const buildNavDropdown = (
+      name: string,
+      baseTooltip: React.ReactNode, baseUrl: string,
+      lastTooltip: React.ReactNode, lastUrl: string
+  ) => {
+    //(mega grovelling with types required to get TS to compile with example from react bootstrap custom dropdown example code)
+    return <Dropdown
+    >
+        <Dropdown.Toggle id={baseUrl} as={StyledDropdown as unknown as undefined}>{name}</Dropdown.Toggle>
+        <Dropdown.Menu style={dropdownStyle}>
+          <Dropdown.Item>
+            {buildNavItem("Base", baseTooltip, baseUrl)}
+          </Dropdown.Item>
+          <Dropdown.Item>
+            {buildNavItem("Last", lastTooltip, lastUrl)}
+          </Dropdown.Item>
+        </Dropdown.Menu>
+      </Dropdown>;
+  };
+
+  /** Build a nice looking nav dropdown */
+  const buildChartDropdown = () => {
+    //(mega grovelling with types required to get TS to compile with example from react bootstrap custom dropdown example code)
+    return <Dropdown>
+        <Dropdown.Toggle id="chartDropDown" as={StyledDropdown as unknown as undefined}>Charts</Dropdown.Toggle>
+        <Dropdown.Menu style={dropdownStyle}>
+          <Dropdown.Item>
+            {buildNavItem("Player Positions", chartTooltip, "/Charts")}
+          </Dropdown.Item>
+        </Dropdown.Menu>
+      </Dropdown>;
+  };
+
+  /** Show blog if rendering external version of the page */
+  function maybeShowBlog() {
+    if (!_.startsWith(server, "cbb-on-off-analyzer")) {
+      const blogTooltip = (
+        <Tooltip id="blogTooltip">Articles describing how to use the tool</Tooltip>
+      );
+      return <Col xs={1} className="small">
+        <OverlayTrigger placement="auto" overlay={blogTooltip}>
+          <a href="https://hoop-explorer.blogspot.com/p/blog-page.html" target="_new">Blog...</a>
+        </OverlayTrigger>
+      </Col>;
+    }
+  }
+
   //(only render client-side - was running into cache issues of the Link href)
   return (override || (typeof window !== `undefined`)) ? <Container>
       <Row className="border-top">
         {(thisPage != ParamPrefixes.game) ?
             <Col className="text-center small">
-              <OverlayTrigger placement="auto" overlay={baseGameTooltip}>
-                <span><Link href={getBaseGameUrl()}><div><a href={getBaseGameUrl()} onClick={onNav}>On/Off: Base</a></div></Link></span>
-              </OverlayTrigger>
-            </Col> : null
-        }
-        {(thisPage != ParamPrefixes.game) ?
-            <Col className="text-center small">
-              <OverlayTrigger placement="auto" overlay={lastGameTooltip}>
-                <span><Link href={getLastGameUrl()}><div><a href={getLastGameUrl()} onClick={onNav}>On/Off: Last</a></div></Link></span>
-              </OverlayTrigger>
+              {buildNavDropdown("On/Off", baseGameTooltip, getBaseGameUrl(), lastGameTooltip, getLastGameUrl())}
             </Col> : null
         }
         {(thisPage != ParamPrefixes.lineup) ?
             <Col className="text-center small">
-              <OverlayTrigger placement="auto" overlay={baseLineupTooltip}>
-                <span><Link href={getBaseLineupUrl()}><div><a href={getBaseLineupUrl()} onClick={onNav}>Lineups: Base</a></div></Link></span>
-              </OverlayTrigger>
-            </Col> : null
-        }
-        {(thisPage != ParamPrefixes.lineup) ?
-            <Col className="text-center small">
-            <OverlayTrigger placement="auto" overlay={lastLineupTooltip}>
-                <span><Link href={getLastLineupUrl()}><div><a href={getLastLineupUrl()} onClick={onNav}>Lineups: Last</a></div></Link></span>
-              </OverlayTrigger>
+              {buildNavDropdown("Lineups", baseLineupTooltip, getBaseLineupUrl(), lastLineupTooltip, getLastLineupUrl())}
             </Col> : null
         }
         {(thisPage != ParamPrefixes.report) ?
-            <Col className="text-center small">
-            <OverlayTrigger placement="auto" overlay={baseReportTooltip}>
-                <span><Link href={getBaseReportUrl()}><div><a href={getBaseReportUrl()} onClick={onNav}>Report: Base</a></div></Link></span>
-            </OverlayTrigger>
-            </Col> : null
-        }
-        {(thisPage != ParamPrefixes.report) ?
-            <Col className="text-center small">
-              <OverlayTrigger placement="auto" overlay={lastReportTooltip}>
-                <span><Link href={getLastReportUrl()}><div><a href={getLastReportUrl()} onClick={onNav}>Report: Last</a></div></Link></span>
-              </OverlayTrigger>
-            </Col> : null
+          <Col className="text-center small">
+            {buildNavDropdown("Reports", baseReportTooltip, getBaseReportUrl(), lastReportTooltip, getLastReportUrl())}
+          </Col> : null
         }
         {(thisPage != "charts") ?
-            <Col className="text-center small">
-              <OverlayTrigger placement="auto" overlay={chartTooltip}>
-                <span><Link href={"/Charts"}><div><a href={"/Charts"} onClick={onNav}>Charts</a></div></Link></span>
-              </OverlayTrigger>
-            </Col> : null
+          <Col className="text-center small">
+            {buildChartDropdown()}
+          </Col> : null
         }
         {maybeShowBlog()}
       </Row>
