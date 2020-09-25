@@ -328,7 +328,7 @@ const GenericTable: React.FunctionComponent<Props> = ({responsive, tableFields, 
               className={className}
               rowSpan={rowSpan}
               key={"" + index} style={style}
-            >{hasTooltip(tmpVal) ?
+            >{(cellTooltip != null) ?
               ((lockMode == "row" || lockMode == "col") ?
                 <GroupedOverlayTrigger
                   placement={placement}
@@ -395,9 +395,8 @@ const GenericTable: React.FunctionComponent<Props> = ({responsive, tableFields, 
       verticalAlign: "middle"
     };
   }
-
-  // (tooltips don't work if table has `responsive` attribute, see popper.js #276)
-  return <Table responsive={responsive} id={tableId} size="sm">
+  const isResponsive = _.isNil(responsive) ? true : responsive;
+  return <Table responsive={isResponsive && (lockMode != "row")} id={tableId} size="sm">
     <thead>
       <tr>{ renderTableHeaders() }</tr>
     </thead>

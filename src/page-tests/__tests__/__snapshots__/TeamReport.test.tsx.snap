@@ -4,7 +4,7 @@ exports[`TeamReportPage TeamReportPage - should create snapshot 1`] = `
 <Container
   fluid={false}
 >
-  <ForwardRef
+  <Row
     noGutters={false}
   >
     <Col
@@ -20,19 +20,20 @@ exports[`TeamReportPage TeamReportPage - should create snapshot 1`] = `
         </span>
       </h3>
     </Col>
-  </ForwardRef>
-  <ForwardRef
+  </Row>
+  <Row
     noGutters={false}
   >
     <HeaderBar
       common={Object {}}
       thisPage="report-"
     />
-  </ForwardRef>
-  <ForwardRef
+  </Row>
+  <Row
     noGutters={false}
   >
     <GenericCollapsibleCard
+      minimizeMargin={false}
       summary="On/Off Report: 2019/20  (M): query:'' (sort:desc:off_poss, filter:'', show:[])"
       title="Team Report Filter"
     >
@@ -42,12 +43,13 @@ exports[`TeamReportPage TeamReportPage - should create snapshot 1`] = `
         startingState={Object {}}
       />
     </GenericCollapsibleCard>
-  </ForwardRef>
-  <ForwardRef
+  </Row>
+  <Row
     noGutters={false}
   >
     <GenericCollapsibleCard
       helpLink="https://hoop-explorer.blogspot.com/2020/03/understanding-team-report-onoff-page.html"
+      minimizeMargin={true}
       title="Team Analysis"
     >
       <TeamReportStatsTable
@@ -70,7 +72,7 @@ exports[`TeamReportPage TeamReportPage - should create snapshot 1`] = `
         startingState={Object {}}
       />
     </GenericCollapsibleCard>
-  </ForwardRef>
+  </Row>
   <Footer
     server="server"
   />

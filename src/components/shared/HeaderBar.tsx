@@ -121,7 +121,7 @@ const HeaderBar: React.FunctionComponent<Props> = ({thisPage, common, override})
   };
 
   /** Builds a nice looking nav dropdown item */
-  const buildNavItem = (itemName: string, tooltip: React.ReactNode, url: string) => {
+  const buildNavItem = (itemName: string, tooltip: React.ReactElement<any>, url: string) => {
     return <OverlayTrigger rootClose placement="left" overlay={tooltip}>
       <span>
         <Link href={url}>
@@ -140,8 +140,8 @@ const HeaderBar: React.FunctionComponent<Props> = ({thisPage, common, override})
   /** Build a nice looking nav dropdown */
   const buildNavDropdown = (
       name: string,
-      baseTooltip: React.ReactNode, baseUrl: string,
-      lastTooltip: React.ReactNode, lastUrl: string
+      baseTooltip: React.ReactElement<any>, baseUrl: string,
+      lastTooltip: React.ReactElement<any>, lastUrl: string
   ) => {
     //(mega grovelling with types required to get TS to compile with example from react bootstrap custom dropdown example code)
     return <Dropdown

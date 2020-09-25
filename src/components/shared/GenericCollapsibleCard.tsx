@@ -11,12 +11,14 @@ import Collapse from 'react-bootstrap/Collapse';
 import Container from 'react-bootstrap/Container';
 
 type Props = {
+  /** Much smaller margin => looks good for table-oriented displays */
+  readonly minimizeMargin: boolean,
   readonly title: string
   readonly summary?: string
   readonly helpLink?: string
 }
 
-const GenericCollapsibleCard: React.FunctionComponent<Props> = ({children, title, summary, helpLink}) => {
+const GenericCollapsibleCard: React.FunctionComponent<Props> = ({children, minimizeMargin, title, summary, helpLink}) => {
   const [ showTable, toggleShowTable ] = useState(true)
 
   const showSummaryIfHidden = () => {
@@ -30,9 +32,13 @@ const GenericCollapsibleCard: React.FunctionComponent<Props> = ({children, title
     }
   }
 
+  const cardBodyStyle = minimizeMargin ? {paddingLeft: "5px", paddingRight: "5px"} : {};
+  const containerStyle = minimizeMargin ? {paddingLeft: 0, paddingRight: 0} : {};
+  const titleStyle = minimizeMargin ? {paddingLeft: "15px", paddingRight: "15px"} : {};
+
   return <Card className="w-100">
-    <Card.Body>
-      <Card.Title>
+    <Card.Body style={cardBodyStyle}>
+      <Card.Title style={titleStyle}>
         <span><a href="#" onClick={() => { toggleShowTable(!showTable); return false } }>
           ({showTable ? "+" : "-"}) {title}
         </a></span>
@@ -40,7 +46,7 @@ const GenericCollapsibleCard: React.FunctionComponent<Props> = ({children, title
       </Card.Title>
       {showSummaryIfHidden()}
       <Collapse in={showTable}>
-        <Container>
+        <Container style={containerStyle}>
           {children}
         </Container>
       </Collapse>

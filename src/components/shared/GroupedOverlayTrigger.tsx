@@ -11,7 +11,7 @@ type Props = {
   placement: "auto" | "left" | "right" | "top" | "bottom",
   show: boolean,
   onShowOrHide: (show: boolean) => void,
-  overlay: React.ReactNode
+  overlay: React.ReactElement<any>
 }
 
 //(onMouseEnter / onMouseLeave don't work well, used a 3rd party lib which is OKish. The OverlayTrigger

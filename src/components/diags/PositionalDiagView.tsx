@@ -212,7 +212,7 @@ const PositionalDiagView: React.FunctionComponent<Props> = ({player, teamSeason,
       </ul>
       <Container>
         <Col xs={8}>
-          <GenericTable tableFields={simpleDiagTable} tableData={simpleDiagTableData}/>
+          <GenericTable responsive={false} tableFields={simpleDiagTable} tableData={simpleDiagTableData}/>
         </Col>
       </Container>
       (<a href="#" onClick={(event) => { event.preventDefault(); setShowComplexDiag(!showComplexDiag) }}>
@@ -226,7 +226,7 @@ const PositionalDiagView: React.FunctionComponent<Props> = ({player, teamSeason,
         </ul>
         <Container>
           <Col xs={11}>
-            <GenericTable tableCopyId="complexDiagTable" tableFields={complexDiagTable} tableData={complexDiagTableData}/>
+            <GenericTable responsive={false} tableCopyId="complexDiagTable" tableFields={complexDiagTable} tableData={complexDiagTableData}/>
           </Col>
         </Container>
         (<a href="#" onClick={(event) => {

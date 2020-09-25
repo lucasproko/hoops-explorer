@@ -119,6 +119,7 @@ const TeamReportPage: NextPage<{}> = () => {
     </Row>
     <Row>
       <GenericCollapsibleCard
+        minimizeMargin={false}
         title="Team Report Filter"
         summary={HistoryManager.teamReportFilterSummary(teamReportFilterParams)}
       >
@@ -130,7 +131,7 @@ const TeamReportPage: NextPage<{}> = () => {
       </GenericCollapsibleCard>
     </Row>
     <Row>
-      <GenericCollapsibleCard title="Team Analysis" helpLink={maybeShowDocs()}>
+      <GenericCollapsibleCard minimizeMargin={true} title="Team Analysis" helpLink={maybeShowDocs()}>
         <TeamReportStatsTable
           startingState={teamReportFilterParams}
           dataEvent={dataEvent}

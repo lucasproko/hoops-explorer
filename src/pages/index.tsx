@@ -82,7 +82,7 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
   const [ gameFilterParams, setGameFilterParams ] = useState(
     UrlRouting.removedSavedKeys(allParams) as GameFilterParams
   )
-  
+
   function getRootUrl(params: GameFilterParams) {
     return UrlRouting.getGameUrl(params, {});
   }
@@ -152,6 +152,7 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
     </Row>
     <Row>
       <GenericCollapsibleCard
+        minimizeMargin={false}
         title="Team and Game Filter"
         summary={HistoryManager.gameFilterSummary(gameFilterParams)}
       >
@@ -163,7 +164,7 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
       </GenericCollapsibleCard>
     </Row>
     <Row>
-      <GenericCollapsibleCard title="Team Analysis" helpLink={maybeShowDocs()}>
+      <GenericCollapsibleCard minimizeMargin={true} title="Team Analysis" helpLink={maybeShowDocs()}>
         <TeamStatsTable
           gameFilterParams={gameFilterParams}
           dataEvent={dataEvent}
@@ -172,7 +173,7 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
       </GenericCollapsibleCard>
     </Row>
     <Row>
-      <GenericCollapsibleCard title="Individual Analysis" helpLink={maybeShowDocs()}>
+      <GenericCollapsibleCard minimizeMargin={true} title="Individual Analysis" helpLink={maybeShowDocs()}>
         <RosterStatsTable
           gameFilterParams={gameFilterParams}
           dataEvent={dataEvent}
@@ -181,7 +182,7 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
       </GenericCollapsibleCard>
     </Row>
     <Row>
-      <GenericCollapsibleCard title="Lineup Comparison" helpLink={maybeShowDocs()}>
+      <GenericCollapsibleCard minimizeMargin={false} title="Lineup Comparison" helpLink={maybeShowDocs()}>
         <RosterCompareTable
           gameFilterParams={gameFilterParams}
           rosterCompareStats={rosterCompareStats}

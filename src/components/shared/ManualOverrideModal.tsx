@@ -300,7 +300,7 @@ const ManualOverrideModal: React.FunctionComponent<Props> = ({tableType, inStats
           <Container>
             <Row>
               <Col xs={12}>
-                <GenericTable responsive={true} tableCopyId="overrideEffectsTable" tableFields={statsTableFields} tableData={statsAsTable[currInStat] || []}/>
+                <GenericTable tableCopyId="overrideEffectsTable" tableFields={statsTableFields} tableData={statsAsTable[currInStat] || []}/>
               </Col>
             </Row>
           </Container>

@@ -30,6 +30,7 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (basic d
       xs={8}
     >
       <GenericTable
+        responsive={false}
         tableData={
           Array [
             GenericTableDataRow {
@@ -193,6 +194,7 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
       xs={8}
     >
       <GenericTable
+        responsive={false}
         tableData={
           Array [
             GenericTableDataRow {
@@ -327,6 +329,7 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
         xs={11}
       >
         <GenericTable
+          responsive={false}
           tableCopyId="complexDiagTable"
           tableData={
             Array [

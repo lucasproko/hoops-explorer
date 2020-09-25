@@ -707,35 +707,37 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({startingState, da
         </Form.Group>
       </Form.Row>
       <Form.Row>
-        <ToggleButtonGroup items={[
-          {
-            label: "On/Off",
-            tooltip: showOnOff ? "Hide Basic On/Off Stats" : "Show Basic On/Off Stats",
-            toggled: showOnOff,
-            onClick: () => setShowOnOff(!showOnOff)
-          },
-          {
-            label: "Same-4",
-            tooltip: incReplacementOnOff ? "Hide Replacement ('Same-4') On-Off" : "Show Replacement ('Same-4') On-Off",
-            toggled: incReplacementOnOff,
-            onClick: () => setIncReplacementOnOff(!incReplacementOnOff)
-          },
-          {
-            label: "RAPM",
-            tooltip: incRapm ? "Hide Player RAPM" : "Show Player RAPM",
-            toggled: incRapm,
-            onClick: () => setIncRapm(!incRapm)
-          },
-          {
-            label: "Luck",
-            tooltip: adjustForLuck ? "Remove luck adjustments" : "Adjust statistics for luck",
-            toggled: adjustForLuck,
-            onClick: () => setAdjustForLuck(!adjustForLuck)
-          }
-        ]}/>
+        <Col>
+          <ToggleButtonGroup items={[
+            {
+              label: "On/Off",
+              tooltip: showOnOff ? "Hide Basic On/Off Stats" : "Show Basic On/Off Stats",
+              toggled: showOnOff,
+              onClick: () => setShowOnOff(!showOnOff)
+            },
+            {
+              label: "Same-4",
+              tooltip: incReplacementOnOff ? "Hide Replacement ('Same-4') On-Off" : "Show Replacement ('Same-4') On-Off",
+              toggled: incReplacementOnOff,
+              onClick: () => setIncReplacementOnOff(!incReplacementOnOff)
+            },
+            {
+              label: "RAPM",
+              tooltip: incRapm ? "Hide Player RAPM" : "Show Player RAPM",
+              toggled: incRapm,
+              onClick: () => setIncRapm(!incRapm)
+            },
+            {
+              label: "Luck",
+              tooltip: adjustForLuck ? "Remove luck adjustments" : "Adjust statistics for luck",
+              toggled: adjustForLuck,
+              onClick: () => setAdjustForLuck(!adjustForLuck)
+            }
+          ]}/>
+        </Col>
       </Form.Row>
       <Row className="mt-2">
-        <Col>
+        <Col style={{paddingLeft: "5px", paddingRight: "5px"}}>
           <GenericTable
             tableCopyId="teamReportStatsTable"
             tableFields={CommonTableDefs.onOffReport}

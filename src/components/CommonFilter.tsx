@@ -133,8 +133,6 @@ const CommonFilter: CommonFilterI = ({
   const server = (typeof window === `undefined`) ? //(ensures SSR code still compiles)
     "server" : window.location.hostname
 
-  var historyOverlay: any= null; // (Gets overwritten by the history overlay trigger)
-
   // Utils
 
   const genderYear = `${gender}_${year}`;
@@ -152,7 +150,7 @@ const CommonFilter: CommonFilterI = ({
       }
     } else if (event.code == "Escape" || event.keyCode == 27) {
       if (!submitDisabled && allowKeypress()) {
-        if (historyOverlay) historyOverlay.hide();
+        document.body.click(); //closes any overlays (like history) that have rootClick
       }
     }
   };
@@ -400,7 +398,6 @@ const CommonFilter: CommonFilterI = ({
   const getHistoryButton = () => {
 
     return <OverlayTrigger
-      ref={(ref: any) => historyOverlay = ref}
       rootClose={true}
       trigger="click"
       key="left"

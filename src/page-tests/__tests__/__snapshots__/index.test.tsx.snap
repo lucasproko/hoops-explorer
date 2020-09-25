@@ -4,7 +4,7 @@ exports[`OnOffAnalyzerPage OnOffAnalyzerPage - should create snapshot 1`] = `
 <Container
   fluid={false}
 >
-  <ForwardRef
+  <Row
     noGutters={false}
   >
     <Col
@@ -20,19 +20,20 @@ exports[`OnOffAnalyzerPage OnOffAnalyzerPage - should create snapshot 1`] = `
         </span>
       </h3>
     </Col>
-  </ForwardRef>
-  <ForwardRef
+  </Row>
+  <Row
     noGutters={false}
   >
     <HeaderBar
       common={Object {}}
       thisPage="game-"
     />
-  </ForwardRef>
-  <ForwardRef
+  </Row>
+  <Row
     noGutters={false}
   >
     <GenericCollapsibleCard
+      minimizeMargin={false}
       summary="On/Off: 2019/20  (M): on:'', auto-off, base:''"
       title="Team and Game Filter"
     >
@@ -42,12 +43,13 @@ exports[`OnOffAnalyzerPage OnOffAnalyzerPage - should create snapshot 1`] = `
         startingState={Object {}}
       />
     </GenericCollapsibleCard>
-  </ForwardRef>
-  <ForwardRef
+  </Row>
+  <Row
     noGutters={false}
   >
     <GenericCollapsibleCard
       helpLink="https://hoop-explorer.blogspot.com/2019/11/fun-with-college-basketball-onoff.html"
+      minimizeMargin={true}
       title="Team Analysis"
     >
       <TeamStatsTable
@@ -69,12 +71,13 @@ exports[`OnOffAnalyzerPage OnOffAnalyzerPage - should create snapshot 1`] = `
         onChangeState={[Function]}
       />
     </GenericCollapsibleCard>
-  </ForwardRef>
-  <ForwardRef
+  </Row>
+  <Row
     noGutters={false}
   >
     <GenericCollapsibleCard
       helpLink="https://hoop-explorer.blogspot.com/2019/11/fun-with-college-basketball-onoff.html"
+      minimizeMargin={true}
       title="Individual Analysis"
     >
       <RosterStatsTable
@@ -96,12 +99,13 @@ exports[`OnOffAnalyzerPage OnOffAnalyzerPage - should create snapshot 1`] = `
         onChangeState={[Function]}
       />
     </GenericCollapsibleCard>
-  </ForwardRef>
-  <ForwardRef
+  </Row>
+  <Row
     noGutters={false}
   >
     <GenericCollapsibleCard
       helpLink="https://hoop-explorer.blogspot.com/2019/11/fun-with-college-basketball-onoff.html"
+      minimizeMargin={false}
       title="Lineup Comparison"
     >
       <RosterCompareTable
@@ -115,7 +119,7 @@ exports[`OnOffAnalyzerPage OnOffAnalyzerPage - should create snapshot 1`] = `
         }
       />
     </GenericCollapsibleCard>
-  </ForwardRef>
+  </Row>
   <Footer
     server="server"
   />
