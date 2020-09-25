@@ -4,7 +4,7 @@ exports[`ChartsPage ChartsPage - should create snapshot 1`] = `
 <Container
   fluid={false}
 >
-  <ForwardRef
+  <Row
     noGutters={false}
   >
     <Col
@@ -20,16 +20,16 @@ exports[`ChartsPage ChartsPage - should create snapshot 1`] = `
         </span>
       </h3>
     </Col>
-  </ForwardRef>
-  <ForwardRef
+  </Row>
+  <Row
     noGutters={false}
   >
     <HeaderBar
       common={Object {}}
       thisPage="charts"
     />
-  </ForwardRef>
-  <ForwardRef
+  </Row>
+  <Row
     className="border-top"
     noGutters={false}
   >
@@ -58,17 +58,17 @@ exports[`ChartsPage ChartsPage - should create snapshot 1`] = `
         </DropdownItem>
       </NavDropdown>
     </Nav>
-  </ForwardRef>
-  <ForwardRef
+  </Row>
+  <Row
     noGutters={false}
   >
     <TabContainer
       activeKey="high_major_positions"
     >
-      <ForwardRef
+      <Row
         noGutters={false}
       >
-        <Bootstrap(TabContent)>
+        <ForwardRef>
           <TabPane
             eventKey="high_major_positions"
           >
@@ -180,9 +180,9 @@ exports[`ChartsPage ChartsPage - should create snapshot 1`] = `
               </Alert>
             </div>
           </TabPane>
-        </Bootstrap(TabContent)>
-      </ForwardRef>
+        </ForwardRef>
+      </Row>
     </TabContainer>
-  </ForwardRef>
+  </Row>
 </Container>
 `;

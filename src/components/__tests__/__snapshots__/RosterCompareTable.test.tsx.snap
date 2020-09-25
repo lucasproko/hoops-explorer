@@ -19,791 +19,795 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
           >
             Baseline Roster
           </div>
-          <table
-            className="table table-sm"
-            id="rosterBaseTable"
+          <div
+            className="table-responsive"
           >
-            <thead>
-              <tr>
-                <th
-                  style={
-                    Object {
-                      "fontWeight": "bold",
-                      "textAlign": "right",
-                      "width": "64.0%",
+            <table
+              className="table table-sm"
+              id="rosterBaseTable"
+            >
+              <thead>
+                <tr>
+                  <th
+                    style={
+                      Object {
+                        "fontWeight": "bold",
+                        "textAlign": "right",
+                        "width": "64.0%",
+                      }
                     }
-                  }
-                >
-                  
-                  <div>
-                    <button
-                      className="float-left btn btn-outline-secondary btn-sm"
-                      disabled={false}
-                      id="rosterBaseTable_copy"
-                      type="button"
-                    >
-                      <svg
-                        aria-hidden="true"
-                        className="svg-inline--fa fa-clipboard fa-w-12 "
-                        data-icon="clipboard"
-                        data-prefix="fas"
-                        focusable="false"
-                        role="img"
-                        style={Object {}}
-                        viewBox="0 0 384 512"
-                        xmlns="http://www.w3.org/2000/svg"
+                  >
+                    
+                    <div>
+                      <button
+                        className="float-left btn btn-outline-secondary btn-sm"
+                        disabled={false}
+                        id="rosterBaseTable_copy"
+                        type="button"
                       >
-                        <path
-                          d="M384 112v352c0 26.51-21.49 48-48 48H48c-26.51 0-48-21.49-48-48V112c0-26.51 21.49-48 48-48h80c0-35.29 28.71-64 64-64s64 28.71 64 64h80c26.51 0 48 21.49 48 48zM192 40c-13.255 0-24 10.745-24 24s10.745 24 24 24 24-10.745 24-24-10.745-24-24-24m96 114v-20a6 6 0 0 0-6-6H102a6 6 0 0 0-6 6v20a6 6 0 0 0 6 6h180a6 6 0 0 0 6-6z"
-                          fill="currentColor"
+                        <svg
+                          aria-hidden="true"
+                          className="svg-inline--fa fa-clipboard fa-w-12 "
+                          data-icon="clipboard"
+                          data-prefix="fas"
+                          focusable="false"
+                          role="img"
                           style={Object {}}
-                        />
-                      </svg>
-                    </button>
-                  </div>
-                </th>
-                <th
-                  style={
-                    Object {
-                      "fontWeight": "bold",
-                      "textAlign": "center",
-                      "width": "4.0%",
-                    }
-                  }
-                >
-                  
-                </th>
-                <div>
+                          viewBox="0 0 384 512"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M384 112v352c0 26.51-21.49 48-48 48H48c-26.51 0-48-21.49-48-48V112c0-26.51 21.49-48 48-48h80c0-35.29 28.71-64 64-64s64 28.71 64 64h80c26.51 0 48 21.49 48 48zM192 40c-13.255 0-24 10.745-24 24s10.745 24 24 24 24-10.745 24-24-10.745-24-24-24m96 114v-20a6 6 0 0 0-6-6H102a6 6 0 0 0-6 6v20a6 6 0 0 0 6 6h180a6 6 0 0 0 6-6z"
+                            fill="currentColor"
+                            style={Object {}}
+                          />
+                        </svg>
+                      </button>
+                    </div>
+                  </th>
                   <th
                     style={
                       Object {
                         "fontWeight": "bold",
                         "textAlign": "center",
-                        "width": "16.0%",
+                        "width": "4.0%",
                       }
                     }
                   >
-                    %
+                    
                   </th>
-                </div>
-                <div>
-                  <th
+                  <div>
+                    <th
+                      style={
+                        Object {
+                          "fontWeight": "bold",
+                          "textAlign": "center",
+                          "width": "16.0%",
+                        }
+                      }
+                    >
+                      %
+                    </th>
+                  </div>
+                  <div>
+                    <th
+                      style={
+                        Object {
+                          "fontWeight": "bold",
+                          "textAlign": "center",
+                          "width": "16.0%",
+                        }
+                      }
+                    >
+                      Poss
+                    </th>
+                  </div>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td
+                    className=""
+                    rowSpan={1}
                     style={
                       Object {
+                        "backgroundColor": undefined,
                         "fontWeight": "bold",
+                        "textAlign": "right",
+                        "verticalAlign": "middle",
+                        "width": "64.0%",
+                      }
+                    }
+                  >
+                    <div>
+                      Cowan, Anthony
+                    </div>
+                  </td>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "normal",
                         "textAlign": "center",
+                        "verticalAlign": "middle",
+                        "width": "4.0%",
+                      }
+                    }
+                  >
+                    <div>
+                      
+                    </div>
+                  </td>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "normal",
+                        "textAlign": "center",
+                        "verticalAlign": "middle",
                         "width": "16.0%",
                       }
                     }
                   >
-                    Poss
-                  </th>
-                </div>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "bold",
-                      "textAlign": "right",
-                      "verticalAlign": "middle",
-                      "width": "64.0%",
+                    <div>
+                      100
+                    </div>
+                  </td>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "normal",
+                        "textAlign": "center",
+                        "verticalAlign": "middle",
+                        "width": "16.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    Cowan, Anthony
-                  </div>
-                </td>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "normal",
-                      "textAlign": "center",
-                      "verticalAlign": "middle",
-                      "width": "4.0%",
+                  >
+                    <div>
+                      1522
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "bold",
+                        "textAlign": "right",
+                        "verticalAlign": "middle",
+                        "width": "64.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    
-                  </div>
-                </td>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "normal",
-                      "textAlign": "center",
-                      "verticalAlign": "middle",
-                      "width": "16.0%",
+                  >
+                    <div>
+                      Fernando, Bruno
+                    </div>
+                  </td>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "normal",
+                        "textAlign": "center",
+                        "verticalAlign": "middle",
+                        "width": "4.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    100
-                  </div>
-                </td>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "normal",
-                      "textAlign": "center",
-                      "verticalAlign": "middle",
-                      "width": "16.0%",
+                  >
+                    <div>
+                      
+                    </div>
+                  </td>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "normal",
+                        "textAlign": "center",
+                        "verticalAlign": "middle",
+                        "width": "16.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    1522
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "bold",
-                      "textAlign": "right",
-                      "verticalAlign": "middle",
-                      "width": "64.0%",
+                  >
+                    <div>
+                      78.6
+                    </div>
+                  </td>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "normal",
+                        "textAlign": "center",
+                        "verticalAlign": "middle",
+                        "width": "16.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    Fernando, Bruno
-                  </div>
-                </td>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "normal",
-                      "textAlign": "center",
-                      "verticalAlign": "middle",
-                      "width": "4.0%",
+                  >
+                    <div>
+                      1197
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "bold",
+                        "textAlign": "right",
+                        "verticalAlign": "middle",
+                        "width": "64.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    
-                  </div>
-                </td>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "normal",
-                      "textAlign": "center",
-                      "verticalAlign": "middle",
-                      "width": "16.0%",
+                  >
+                    <div>
+                      Ayala, Eric
+                    </div>
+                  </td>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "normal",
+                        "textAlign": "center",
+                        "verticalAlign": "middle",
+                        "width": "4.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    78.6
-                  </div>
-                </td>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "normal",
-                      "textAlign": "center",
-                      "verticalAlign": "middle",
-                      "width": "16.0%",
+                  >
+                    <div>
+                      
+                    </div>
+                  </td>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "normal",
+                        "textAlign": "center",
+                        "verticalAlign": "middle",
+                        "width": "16.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    1197
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "bold",
-                      "textAlign": "right",
-                      "verticalAlign": "middle",
-                      "width": "64.0%",
+                  >
+                    <div>
+                      70.0
+                    </div>
+                  </td>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "normal",
+                        "textAlign": "center",
+                        "verticalAlign": "middle",
+                        "width": "16.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    Ayala, Eric
-                  </div>
-                </td>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "normal",
-                      "textAlign": "center",
-                      "verticalAlign": "middle",
-                      "width": "4.0%",
+                  >
+                    <div>
+                      1066
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "bold",
+                        "textAlign": "right",
+                        "verticalAlign": "middle",
+                        "width": "64.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    
-                  </div>
-                </td>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "normal",
-                      "textAlign": "center",
-                      "verticalAlign": "middle",
-                      "width": "16.0%",
+                  >
+                    <div>
+                      Morsell, Darryl
+                    </div>
+                  </td>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "normal",
+                        "textAlign": "center",
+                        "verticalAlign": "middle",
+                        "width": "4.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    70.0
-                  </div>
-                </td>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "normal",
-                      "textAlign": "center",
-                      "verticalAlign": "middle",
-                      "width": "16.0%",
+                  >
+                    <div>
+                      
+                    </div>
+                  </td>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "normal",
+                        "textAlign": "center",
+                        "verticalAlign": "middle",
+                        "width": "16.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    1066
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "bold",
-                      "textAlign": "right",
-                      "verticalAlign": "middle",
-                      "width": "64.0%",
+                  >
+                    <div>
+                      69.8
+                    </div>
+                  </td>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "normal",
+                        "textAlign": "center",
+                        "verticalAlign": "middle",
+                        "width": "16.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    Morsell, Darryl
-                  </div>
-                </td>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "normal",
-                      "textAlign": "center",
-                      "verticalAlign": "middle",
-                      "width": "4.0%",
+                  >
+                    <div>
+                      1062
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "bold",
+                        "textAlign": "right",
+                        "verticalAlign": "middle",
+                        "width": "64.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    
-                  </div>
-                </td>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "normal",
-                      "textAlign": "center",
-                      "verticalAlign": "middle",
-                      "width": "16.0%",
+                  >
+                    <div>
+                      Smith, Jalen
+                    </div>
+                  </td>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "normal",
+                        "textAlign": "center",
+                        "verticalAlign": "middle",
+                        "width": "4.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    69.8
-                  </div>
-                </td>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "normal",
-                      "textAlign": "center",
-                      "verticalAlign": "middle",
-                      "width": "16.0%",
+                  >
+                    <div>
+                      
+                    </div>
+                  </td>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "normal",
+                        "textAlign": "center",
+                        "verticalAlign": "middle",
+                        "width": "16.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    1062
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "bold",
-                      "textAlign": "right",
-                      "verticalAlign": "middle",
-                      "width": "64.0%",
+                  >
+                    <div>
+                      67.2
+                    </div>
+                  </td>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "normal",
+                        "textAlign": "center",
+                        "verticalAlign": "middle",
+                        "width": "16.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    Smith, Jalen
-                  </div>
-                </td>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "normal",
-                      "textAlign": "center",
-                      "verticalAlign": "middle",
-                      "width": "4.0%",
+                  >
+                    <div>
+                      1023
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "bold",
+                        "textAlign": "right",
+                        "verticalAlign": "middle",
+                        "width": "64.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    
-                  </div>
-                </td>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "normal",
-                      "textAlign": "center",
-                      "verticalAlign": "middle",
-                      "width": "16.0%",
+                  >
+                    <div>
+                      Wiggins, Aaron
+                    </div>
+                  </td>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "normal",
+                        "textAlign": "center",
+                        "verticalAlign": "middle",
+                        "width": "4.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    67.2
-                  </div>
-                </td>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "normal",
-                      "textAlign": "center",
-                      "verticalAlign": "middle",
-                      "width": "16.0%",
+                  >
+                    <div>
+                      
+                    </div>
+                  </td>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "normal",
+                        "textAlign": "center",
+                        "verticalAlign": "middle",
+                        "width": "16.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    1023
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "bold",
-                      "textAlign": "right",
-                      "verticalAlign": "middle",
-                      "width": "64.0%",
+                  >
+                    <div>
+                      52.4
+                    </div>
+                  </td>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "normal",
+                        "textAlign": "center",
+                        "verticalAlign": "middle",
+                        "width": "16.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    Wiggins, Aaron
-                  </div>
-                </td>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "normal",
-                      "textAlign": "center",
-                      "verticalAlign": "middle",
-                      "width": "4.0%",
+                  >
+                    <div>
+                      798
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "bold",
+                        "textAlign": "right",
+                        "verticalAlign": "middle",
+                        "width": "64.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    
-                  </div>
-                </td>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "normal",
-                      "textAlign": "center",
-                      "verticalAlign": "middle",
-                      "width": "16.0%",
+                  >
+                    <div>
+                      Lindo Jr., Ricky
+                    </div>
+                  </td>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "normal",
+                        "textAlign": "center",
+                        "verticalAlign": "middle",
+                        "width": "4.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    52.4
-                  </div>
-                </td>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "normal",
-                      "textAlign": "center",
-                      "verticalAlign": "middle",
-                      "width": "16.0%",
+                  >
+                    <div>
+                      
+                    </div>
+                  </td>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "normal",
+                        "textAlign": "center",
+                        "verticalAlign": "middle",
+                        "width": "16.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    798
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "bold",
-                      "textAlign": "right",
-                      "verticalAlign": "middle",
-                      "width": "64.0%",
+                  >
+                    <div>
+                      28.1
+                    </div>
+                  </td>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "normal",
+                        "textAlign": "center",
+                        "verticalAlign": "middle",
+                        "width": "16.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    Lindo Jr., Ricky
-                  </div>
-                </td>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "normal",
-                      "textAlign": "center",
-                      "verticalAlign": "middle",
-                      "width": "4.0%",
+                  >
+                    <div>
+                      427
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "bold",
+                        "textAlign": "right",
+                        "verticalAlign": "middle",
+                        "width": "64.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    
-                  </div>
-                </td>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "normal",
-                      "textAlign": "center",
-                      "verticalAlign": "middle",
-                      "width": "16.0%",
+                  >
+                    <div>
+                      Smith Jr., Serrel
+                    </div>
+                  </td>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "normal",
+                        "textAlign": "center",
+                        "verticalAlign": "middle",
+                        "width": "4.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    28.1
-                  </div>
-                </td>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "normal",
-                      "textAlign": "center",
-                      "verticalAlign": "middle",
-                      "width": "16.0%",
+                  >
+                    <div>
+                      
+                    </div>
+                  </td>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "normal",
+                        "textAlign": "center",
+                        "verticalAlign": "middle",
+                        "width": "16.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    427
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "bold",
-                      "textAlign": "right",
-                      "verticalAlign": "middle",
-                      "width": "64.0%",
+                  >
+                    <div>
+                      25.4
+                    </div>
+                  </td>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "normal",
+                        "textAlign": "center",
+                        "verticalAlign": "middle",
+                        "width": "16.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    Smith Jr., Serrel
-                  </div>
-                </td>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "normal",
-                      "textAlign": "center",
-                      "verticalAlign": "middle",
-                      "width": "4.0%",
+                  >
+                    <div>
+                      387
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "bold",
+                        "textAlign": "right",
+                        "verticalAlign": "middle",
+                        "width": "64.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    
-                  </div>
-                </td>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "normal",
-                      "textAlign": "center",
-                      "verticalAlign": "middle",
-                      "width": "16.0%",
+                  >
+                    <div>
+                      Bender, Ivan
+                    </div>
+                  </td>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "normal",
+                        "textAlign": "center",
+                        "verticalAlign": "middle",
+                        "width": "4.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    25.4
-                  </div>
-                </td>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "normal",
-                      "textAlign": "center",
-                      "verticalAlign": "middle",
-                      "width": "16.0%",
+                  >
+                    <div>
+                      
+                    </div>
+                  </td>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "normal",
+                        "textAlign": "center",
+                        "verticalAlign": "middle",
+                        "width": "16.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    387
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "bold",
-                      "textAlign": "right",
-                      "verticalAlign": "middle",
-                      "width": "64.0%",
+                  >
+                    <div>
+                      5.3
+                    </div>
+                  </td>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "normal",
+                        "textAlign": "center",
+                        "verticalAlign": "middle",
+                        "width": "16.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    Bender, Ivan
-                  </div>
-                </td>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "normal",
-                      "textAlign": "center",
-                      "verticalAlign": "middle",
-                      "width": "4.0%",
+                  >
+                    <div>
+                      81
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "bold",
+                        "textAlign": "right",
+                        "verticalAlign": "middle",
+                        "width": "64.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    
-                  </div>
-                </td>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "normal",
-                      "textAlign": "center",
-                      "verticalAlign": "middle",
-                      "width": "16.0%",
+                  >
+                    <div>
+                      Tomaic, Joshua
+                    </div>
+                  </td>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "normal",
+                        "textAlign": "center",
+                        "verticalAlign": "middle",
+                        "width": "4.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    5.3
-                  </div>
-                </td>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "normal",
-                      "textAlign": "center",
-                      "verticalAlign": "middle",
-                      "width": "16.0%",
+                  >
+                    <div>
+                      
+                    </div>
+                  </td>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "normal",
+                        "textAlign": "center",
+                        "verticalAlign": "middle",
+                        "width": "16.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    81
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "bold",
-                      "textAlign": "right",
-                      "verticalAlign": "middle",
-                      "width": "64.0%",
+                  >
+                    <div>
+                      3.1
+                    </div>
+                  </td>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "normal",
+                        "textAlign": "center",
+                        "verticalAlign": "middle",
+                        "width": "16.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    Tomaic, Joshua
-                  </div>
-                </td>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "normal",
-                      "textAlign": "center",
-                      "verticalAlign": "middle",
-                      "width": "4.0%",
-                    }
-                  }
-                >
-                  <div>
-                    
-                  </div>
-                </td>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "normal",
-                      "textAlign": "center",
-                      "verticalAlign": "middle",
-                      "width": "16.0%",
-                    }
-                  }
-                >
-                  <div>
-                    3.1
-                  </div>
-                </td>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "normal",
-                      "textAlign": "center",
-                      "verticalAlign": "middle",
-                      "width": "16.0%",
-                    }
-                  }
-                >
-                  <div>
-                    47
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+                  >
+                    <div>
+                      47
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
@@ -822,791 +826,795 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
             On ('A')
              Roster
           </div>
-          <table
-            className="table table-sm"
-            id="rosterOnTable"
+          <div
+            className="table-responsive"
           >
-            <thead>
-              <tr>
-                <th
-                  style={
-                    Object {
-                      "fontWeight": "bold",
-                      "textAlign": "right",
-                      "width": "64.0%",
+            <table
+              className="table table-sm"
+              id="rosterOnTable"
+            >
+              <thead>
+                <tr>
+                  <th
+                    style={
+                      Object {
+                        "fontWeight": "bold",
+                        "textAlign": "right",
+                        "width": "64.0%",
+                      }
                     }
-                  }
-                >
-                  
-                  <div>
-                    <button
-                      className="float-left btn btn-outline-secondary btn-sm"
-                      disabled={false}
-                      id="rosterOnTable_copy"
-                      type="button"
-                    >
-                      <svg
-                        aria-hidden="true"
-                        className="svg-inline--fa fa-clipboard fa-w-12 "
-                        data-icon="clipboard"
-                        data-prefix="fas"
-                        focusable="false"
-                        role="img"
-                        style={Object {}}
-                        viewBox="0 0 384 512"
-                        xmlns="http://www.w3.org/2000/svg"
+                  >
+                    
+                    <div>
+                      <button
+                        className="float-left btn btn-outline-secondary btn-sm"
+                        disabled={false}
+                        id="rosterOnTable_copy"
+                        type="button"
                       >
-                        <path
-                          d="M384 112v352c0 26.51-21.49 48-48 48H48c-26.51 0-48-21.49-48-48V112c0-26.51 21.49-48 48-48h80c0-35.29 28.71-64 64-64s64 28.71 64 64h80c26.51 0 48 21.49 48 48zM192 40c-13.255 0-24 10.745-24 24s10.745 24 24 24 24-10.745 24-24-10.745-24-24-24m96 114v-20a6 6 0 0 0-6-6H102a6 6 0 0 0-6 6v20a6 6 0 0 0 6 6h180a6 6 0 0 0 6-6z"
-                          fill="currentColor"
+                        <svg
+                          aria-hidden="true"
+                          className="svg-inline--fa fa-clipboard fa-w-12 "
+                          data-icon="clipboard"
+                          data-prefix="fas"
+                          focusable="false"
+                          role="img"
                           style={Object {}}
-                        />
-                      </svg>
-                    </button>
-                  </div>
-                </th>
-                <th
-                  style={
-                    Object {
-                      "fontWeight": "bold",
-                      "textAlign": "center",
-                      "width": "4.0%",
-                    }
-                  }
-                >
-                  
-                </th>
-                <div>
+                          viewBox="0 0 384 512"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M384 112v352c0 26.51-21.49 48-48 48H48c-26.51 0-48-21.49-48-48V112c0-26.51 21.49-48 48-48h80c0-35.29 28.71-64 64-64s64 28.71 64 64h80c26.51 0 48 21.49 48 48zM192 40c-13.255 0-24 10.745-24 24s10.745 24 24 24 24-10.745 24-24-10.745-24-24-24m96 114v-20a6 6 0 0 0-6-6H102a6 6 0 0 0-6 6v20a6 6 0 0 0 6 6h180a6 6 0 0 0 6-6z"
+                            fill="currentColor"
+                            style={Object {}}
+                          />
+                        </svg>
+                      </button>
+                    </div>
+                  </th>
                   <th
                     style={
                       Object {
                         "fontWeight": "bold",
                         "textAlign": "center",
-                        "width": "16.0%",
+                        "width": "4.0%",
                       }
                     }
                   >
-                    %
+                    
                   </th>
-                </div>
-                <div>
-                  <th
+                  <div>
+                    <th
+                      style={
+                        Object {
+                          "fontWeight": "bold",
+                          "textAlign": "center",
+                          "width": "16.0%",
+                        }
+                      }
+                    >
+                      %
+                    </th>
+                  </div>
+                  <div>
+                    <th
+                      style={
+                        Object {
+                          "fontWeight": "bold",
+                          "textAlign": "center",
+                          "width": "16.0%",
+                        }
+                      }
+                    >
+                      Poss
+                    </th>
+                  </div>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td
+                    className=""
+                    rowSpan={1}
                     style={
                       Object {
+                        "backgroundColor": undefined,
                         "fontWeight": "bold",
+                        "textAlign": "right",
+                        "verticalAlign": "middle",
+                        "width": "64.0%",
+                      }
+                    }
+                  >
+                    <div>
+                      Cowan, Anthony
+                    </div>
+                  </td>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "normal",
                         "textAlign": "center",
+                        "verticalAlign": "middle",
+                        "width": "4.0%",
+                      }
+                    }
+                  >
+                    <div>
+                      
+                    </div>
+                  </td>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "normal",
+                        "textAlign": "center",
+                        "verticalAlign": "middle",
                         "width": "16.0%",
                       }
                     }
                   >
-                    Poss
-                  </th>
-                </div>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "bold",
-                      "textAlign": "right",
-                      "verticalAlign": "middle",
-                      "width": "64.0%",
+                    <div>
+                      100
+                    </div>
+                  </td>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "normal",
+                        "textAlign": "center",
+                        "verticalAlign": "middle",
+                        "width": "16.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    Cowan, Anthony
-                  </div>
-                </td>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "normal",
-                      "textAlign": "center",
-                      "verticalAlign": "middle",
-                      "width": "4.0%",
+                  >
+                    <div>
+                      798
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "bold",
+                        "textAlign": "right",
+                        "verticalAlign": "middle",
+                        "width": "64.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    
-                  </div>
-                </td>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "normal",
-                      "textAlign": "center",
-                      "verticalAlign": "middle",
-                      "width": "16.0%",
+                  >
+                    <div>
+                      Wiggins, Aaron
+                    </div>
+                  </td>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "normal",
+                        "textAlign": "center",
+                        "verticalAlign": "middle",
+                        "width": "4.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    100
-                  </div>
-                </td>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "normal",
-                      "textAlign": "center",
-                      "verticalAlign": "middle",
-                      "width": "16.0%",
+                  >
+                    <div>
+                      
+                    </div>
+                  </td>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "normal",
+                        "textAlign": "center",
+                        "verticalAlign": "middle",
+                        "width": "16.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    798
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "bold",
-                      "textAlign": "right",
-                      "verticalAlign": "middle",
-                      "width": "64.0%",
+                  >
+                    <div>
+                      100
+                    </div>
+                  </td>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "normal",
+                        "textAlign": "center",
+                        "verticalAlign": "middle",
+                        "width": "16.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    Wiggins, Aaron
-                  </div>
-                </td>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "normal",
-                      "textAlign": "center",
-                      "verticalAlign": "middle",
-                      "width": "4.0%",
+                  >
+                    <div>
+                      798
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "bold",
+                        "textAlign": "right",
+                        "verticalAlign": "middle",
+                        "width": "64.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    
-                  </div>
-                </td>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "normal",
-                      "textAlign": "center",
-                      "verticalAlign": "middle",
-                      "width": "16.0%",
+                  >
+                    <div>
+                      Fernando, Bruno
+                    </div>
+                  </td>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "normal",
+                        "textAlign": "center",
+                        "verticalAlign": "middle",
+                        "width": "4.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    100
-                  </div>
-                </td>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "normal",
-                      "textAlign": "center",
-                      "verticalAlign": "middle",
-                      "width": "16.0%",
+                  >
+                    <div>
+                      
+                    </div>
+                  </td>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "normal",
+                        "textAlign": "center",
+                        "verticalAlign": "middle",
+                        "width": "16.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    798
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "bold",
-                      "textAlign": "right",
-                      "verticalAlign": "middle",
-                      "width": "64.0%",
+                  >
+                    <div>
+                      69.7
+                    </div>
+                  </td>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "normal",
+                        "textAlign": "center",
+                        "verticalAlign": "middle",
+                        "width": "16.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    Fernando, Bruno
-                  </div>
-                </td>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "normal",
-                      "textAlign": "center",
-                      "verticalAlign": "middle",
-                      "width": "4.0%",
+                  >
+                    <div>
+                      556
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "bold",
+                        "textAlign": "right",
+                        "verticalAlign": "middle",
+                        "width": "64.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    
-                  </div>
-                </td>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "normal",
-                      "textAlign": "center",
-                      "verticalAlign": "middle",
-                      "width": "16.0%",
+                  >
+                    <div>
+                      Smith, Jalen
+                    </div>
+                  </td>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "normal",
+                        "textAlign": "center",
+                        "verticalAlign": "middle",
+                        "width": "4.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    69.7
-                  </div>
-                </td>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "normal",
-                      "textAlign": "center",
-                      "verticalAlign": "middle",
-                      "width": "16.0%",
+                  >
+                    <div>
+                      
+                    </div>
+                  </td>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "normal",
+                        "textAlign": "center",
+                        "verticalAlign": "middle",
+                        "width": "16.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    556
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "bold",
-                      "textAlign": "right",
-                      "verticalAlign": "middle",
-                      "width": "64.0%",
+                  >
+                    <div>
+                      53.3
+                    </div>
+                  </td>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "normal",
+                        "textAlign": "center",
+                        "verticalAlign": "middle",
+                        "width": "16.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    Smith, Jalen
-                  </div>
-                </td>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "normal",
-                      "textAlign": "center",
-                      "verticalAlign": "middle",
-                      "width": "4.0%",
+                  >
+                    <div>
+                      425
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "bold",
+                        "textAlign": "right",
+                        "verticalAlign": "middle",
+                        "width": "64.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    
-                  </div>
-                </td>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "normal",
-                      "textAlign": "center",
-                      "verticalAlign": "middle",
-                      "width": "16.0%",
+                  >
+                    <div>
+                      Ayala, Eric
+                    </div>
+                  </td>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "normal",
+                        "textAlign": "center",
+                        "verticalAlign": "middle",
+                        "width": "4.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    53.3
-                  </div>
-                </td>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "normal",
-                      "textAlign": "center",
-                      "verticalAlign": "middle",
-                      "width": "16.0%",
+                  >
+                    <div>
+                      
+                    </div>
+                  </td>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "normal",
+                        "textAlign": "center",
+                        "verticalAlign": "middle",
+                        "width": "16.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    425
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "bold",
-                      "textAlign": "right",
-                      "verticalAlign": "middle",
-                      "width": "64.0%",
+                  >
+                    <div>
+                      50.4
+                    </div>
+                  </td>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "normal",
+                        "textAlign": "center",
+                        "verticalAlign": "middle",
+                        "width": "16.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    Ayala, Eric
-                  </div>
-                </td>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "normal",
-                      "textAlign": "center",
-                      "verticalAlign": "middle",
-                      "width": "4.0%",
+                  >
+                    <div>
+                      402
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "bold",
+                        "textAlign": "right",
+                        "verticalAlign": "middle",
+                        "width": "64.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    
-                  </div>
-                </td>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "normal",
-                      "textAlign": "center",
-                      "verticalAlign": "middle",
-                      "width": "16.0%",
+                  >
+                    <div>
+                      Morsell, Darryl
+                    </div>
+                  </td>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "normal",
+                        "textAlign": "center",
+                        "verticalAlign": "middle",
+                        "width": "4.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    50.4
-                  </div>
-                </td>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "normal",
-                      "textAlign": "center",
-                      "verticalAlign": "middle",
-                      "width": "16.0%",
+                  >
+                    <div>
+                      
+                    </div>
+                  </td>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "normal",
+                        "textAlign": "center",
+                        "verticalAlign": "middle",
+                        "width": "16.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    402
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "bold",
-                      "textAlign": "right",
-                      "verticalAlign": "middle",
-                      "width": "64.0%",
+                  >
+                    <div>
+                      44.1
+                    </div>
+                  </td>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "normal",
+                        "textAlign": "center",
+                        "verticalAlign": "middle",
+                        "width": "16.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    Morsell, Darryl
-                  </div>
-                </td>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "normal",
-                      "textAlign": "center",
-                      "verticalAlign": "middle",
-                      "width": "4.0%",
+                  >
+                    <div>
+                      352
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "bold",
+                        "textAlign": "right",
+                        "verticalAlign": "middle",
+                        "width": "64.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    
-                  </div>
-                </td>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "normal",
-                      "textAlign": "center",
-                      "verticalAlign": "middle",
-                      "width": "16.0%",
+                  >
+                    <div>
+                      Lindo Jr., Ricky
+                    </div>
+                  </td>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "normal",
+                        "textAlign": "center",
+                        "verticalAlign": "middle",
+                        "width": "4.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    44.1
-                  </div>
-                </td>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "normal",
-                      "textAlign": "center",
-                      "verticalAlign": "middle",
-                      "width": "16.0%",
+                  >
+                    <div>
+                      
+                    </div>
+                  </td>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "normal",
+                        "textAlign": "center",
+                        "verticalAlign": "middle",
+                        "width": "16.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    352
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "bold",
-                      "textAlign": "right",
-                      "verticalAlign": "middle",
-                      "width": "64.0%",
+                  >
+                    <div>
+                      37.0
+                    </div>
+                  </td>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "normal",
+                        "textAlign": "center",
+                        "verticalAlign": "middle",
+                        "width": "16.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    Lindo Jr., Ricky
-                  </div>
-                </td>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "normal",
-                      "textAlign": "center",
-                      "verticalAlign": "middle",
-                      "width": "4.0%",
+                  >
+                    <div>
+                      295
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "bold",
+                        "textAlign": "right",
+                        "verticalAlign": "middle",
+                        "width": "64.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    
-                  </div>
-                </td>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "normal",
-                      "textAlign": "center",
-                      "verticalAlign": "middle",
-                      "width": "16.0%",
+                  >
+                    <div>
+                      Smith Jr., Serrel
+                    </div>
+                  </td>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "normal",
+                        "textAlign": "center",
+                        "verticalAlign": "middle",
+                        "width": "4.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    37.0
-                  </div>
-                </td>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "normal",
-                      "textAlign": "center",
-                      "verticalAlign": "middle",
-                      "width": "16.0%",
+                  >
+                    <div>
+                      
+                    </div>
+                  </td>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "normal",
+                        "textAlign": "center",
+                        "verticalAlign": "middle",
+                        "width": "16.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    295
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "bold",
-                      "textAlign": "right",
-                      "verticalAlign": "middle",
-                      "width": "64.0%",
+                  >
+                    <div>
+                      34.3
+                    </div>
+                  </td>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "normal",
+                        "textAlign": "center",
+                        "verticalAlign": "middle",
+                        "width": "16.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    Smith Jr., Serrel
-                  </div>
-                </td>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "normal",
-                      "textAlign": "center",
-                      "verticalAlign": "middle",
-                      "width": "4.0%",
+                  >
+                    <div>
+                      274
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "bold",
+                        "textAlign": "right",
+                        "verticalAlign": "middle",
+                        "width": "64.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    
-                  </div>
-                </td>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "normal",
-                      "textAlign": "center",
-                      "verticalAlign": "middle",
-                      "width": "16.0%",
+                  >
+                    <div>
+                      Bender, Ivan
+                    </div>
+                  </td>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "normal",
+                        "textAlign": "center",
+                        "verticalAlign": "middle",
+                        "width": "4.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    34.3
-                  </div>
-                </td>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "normal",
-                      "textAlign": "center",
-                      "verticalAlign": "middle",
-                      "width": "16.0%",
+                  >
+                    <div>
+                      
+                    </div>
+                  </td>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "normal",
+                        "textAlign": "center",
+                        "verticalAlign": "middle",
+                        "width": "16.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    274
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "bold",
-                      "textAlign": "right",
-                      "verticalAlign": "middle",
-                      "width": "64.0%",
+                  >
+                    <div>
+                      6.8
+                    </div>
+                  </td>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "normal",
+                        "textAlign": "center",
+                        "verticalAlign": "middle",
+                        "width": "16.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    Bender, Ivan
-                  </div>
-                </td>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "normal",
-                      "textAlign": "center",
-                      "verticalAlign": "middle",
-                      "width": "4.0%",
+                  >
+                    <div>
+                      54
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "bold",
+                        "textAlign": "right",
+                        "verticalAlign": "middle",
+                        "width": "64.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    
-                  </div>
-                </td>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "normal",
-                      "textAlign": "center",
-                      "verticalAlign": "middle",
-                      "width": "16.0%",
+                  >
+                    <div>
+                      Tomaic, Joshua
+                    </div>
+                  </td>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "normal",
+                        "textAlign": "center",
+                        "verticalAlign": "middle",
+                        "width": "4.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    6.8
-                  </div>
-                </td>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "normal",
-                      "textAlign": "center",
-                      "verticalAlign": "middle",
-                      "width": "16.0%",
+                  >
+                    <div>
+                      
+                    </div>
+                  </td>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "normal",
+                        "textAlign": "center",
+                        "verticalAlign": "middle",
+                        "width": "16.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    54
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "bold",
-                      "textAlign": "right",
-                      "verticalAlign": "middle",
-                      "width": "64.0%",
+                  >
+                    <div>
+                      4.5
+                    </div>
+                  </td>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "normal",
+                        "textAlign": "center",
+                        "verticalAlign": "middle",
+                        "width": "16.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    Tomaic, Joshua
-                  </div>
-                </td>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "normal",
-                      "textAlign": "center",
-                      "verticalAlign": "middle",
-                      "width": "4.0%",
-                    }
-                  }
-                >
-                  <div>
-                    
-                  </div>
-                </td>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "normal",
-                      "textAlign": "center",
-                      "verticalAlign": "middle",
-                      "width": "16.0%",
-                    }
-                  }
-                >
-                  <div>
-                    4.5
-                  </div>
-                </td>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "normal",
-                      "textAlign": "center",
-                      "verticalAlign": "middle",
-                      "width": "16.0%",
-                    }
-                  }
-                >
-                  <div>
-                    36
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+                  >
+                    <div>
+                      36
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
@@ -1625,721 +1633,725 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
             Off ('B')
              Roster
           </div>
-          <table
-            className="table table-sm"
-            id="rosterOffTable"
+          <div
+            className="table-responsive"
           >
-            <thead>
-              <tr>
-                <th
-                  style={
-                    Object {
-                      "fontWeight": "bold",
-                      "textAlign": "right",
-                      "width": "64.0%",
+            <table
+              className="table table-sm"
+              id="rosterOffTable"
+            >
+              <thead>
+                <tr>
+                  <th
+                    style={
+                      Object {
+                        "fontWeight": "bold",
+                        "textAlign": "right",
+                        "width": "64.0%",
+                      }
                     }
-                  }
-                >
-                  
-                  <div>
-                    <button
-                      className="float-left btn btn-outline-secondary btn-sm"
-                      disabled={false}
-                      id="rosterOffTable_copy"
-                      type="button"
-                    >
-                      <svg
-                        aria-hidden="true"
-                        className="svg-inline--fa fa-clipboard fa-w-12 "
-                        data-icon="clipboard"
-                        data-prefix="fas"
-                        focusable="false"
-                        role="img"
-                        style={Object {}}
-                        viewBox="0 0 384 512"
-                        xmlns="http://www.w3.org/2000/svg"
+                  >
+                    
+                    <div>
+                      <button
+                        className="float-left btn btn-outline-secondary btn-sm"
+                        disabled={false}
+                        id="rosterOffTable_copy"
+                        type="button"
                       >
-                        <path
-                          d="M384 112v352c0 26.51-21.49 48-48 48H48c-26.51 0-48-21.49-48-48V112c0-26.51 21.49-48 48-48h80c0-35.29 28.71-64 64-64s64 28.71 64 64h80c26.51 0 48 21.49 48 48zM192 40c-13.255 0-24 10.745-24 24s10.745 24 24 24 24-10.745 24-24-10.745-24-24-24m96 114v-20a6 6 0 0 0-6-6H102a6 6 0 0 0-6 6v20a6 6 0 0 0 6 6h180a6 6 0 0 0 6-6z"
-                          fill="currentColor"
+                        <svg
+                          aria-hidden="true"
+                          className="svg-inline--fa fa-clipboard fa-w-12 "
+                          data-icon="clipboard"
+                          data-prefix="fas"
+                          focusable="false"
+                          role="img"
                           style={Object {}}
-                        />
-                      </svg>
-                    </button>
-                  </div>
-                </th>
-                <th
-                  style={
-                    Object {
-                      "fontWeight": "bold",
-                      "textAlign": "center",
-                      "width": "4.0%",
-                    }
-                  }
-                >
-                  
-                </th>
-                <div>
+                          viewBox="0 0 384 512"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M384 112v352c0 26.51-21.49 48-48 48H48c-26.51 0-48-21.49-48-48V112c0-26.51 21.49-48 48-48h80c0-35.29 28.71-64 64-64s64 28.71 64 64h80c26.51 0 48 21.49 48 48zM192 40c-13.255 0-24 10.745-24 24s10.745 24 24 24 24-10.745 24-24-10.745-24-24-24m96 114v-20a6 6 0 0 0-6-6H102a6 6 0 0 0-6 6v20a6 6 0 0 0 6 6h180a6 6 0 0 0 6-6z"
+                            fill="currentColor"
+                            style={Object {}}
+                          />
+                        </svg>
+                      </button>
+                    </div>
+                  </th>
                   <th
                     style={
                       Object {
                         "fontWeight": "bold",
                         "textAlign": "center",
-                        "width": "16.0%",
+                        "width": "4.0%",
                       }
                     }
                   >
-                    %
+                    
                   </th>
-                </div>
-                <div>
-                  <th
+                  <div>
+                    <th
+                      style={
+                        Object {
+                          "fontWeight": "bold",
+                          "textAlign": "center",
+                          "width": "16.0%",
+                        }
+                      }
+                    >
+                      %
+                    </th>
+                  </div>
+                  <div>
+                    <th
+                      style={
+                        Object {
+                          "fontWeight": "bold",
+                          "textAlign": "center",
+                          "width": "16.0%",
+                        }
+                      }
+                    >
+                      Poss
+                    </th>
+                  </div>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td
+                    className=""
+                    rowSpan={1}
                     style={
                       Object {
+                        "backgroundColor": undefined,
                         "fontWeight": "bold",
+                        "textAlign": "right",
+                        "verticalAlign": "middle",
+                        "width": "64.0%",
+                      }
+                    }
+                  >
+                    <div>
+                      Cowan, Anthony
+                    </div>
+                  </td>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "normal",
                         "textAlign": "center",
+                        "verticalAlign": "middle",
+                        "width": "4.0%",
+                      }
+                    }
+                  >
+                    <div>
+                      
+                    </div>
+                  </td>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "normal",
+                        "textAlign": "center",
+                        "verticalAlign": "middle",
                         "width": "16.0%",
                       }
                     }
                   >
-                    Poss
-                  </th>
-                </div>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "bold",
-                      "textAlign": "right",
-                      "verticalAlign": "middle",
-                      "width": "64.0%",
+                    <div>
+                      100
+                    </div>
+                  </td>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "normal",
+                        "textAlign": "center",
+                        "verticalAlign": "middle",
+                        "width": "16.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    Cowan, Anthony
-                  </div>
-                </td>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "normal",
-                      "textAlign": "center",
-                      "verticalAlign": "middle",
-                      "width": "4.0%",
+                  >
+                    <div>
+                      724
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "bold",
+                        "textAlign": "right",
+                        "verticalAlign": "middle",
+                        "width": "64.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    
-                  </div>
-                </td>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "normal",
-                      "textAlign": "center",
-                      "verticalAlign": "middle",
-                      "width": "16.0%",
+                  >
+                    <div>
+                      Morsell, Darryl
+                    </div>
+                  </td>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "normal",
+                        "textAlign": "center",
+                        "verticalAlign": "middle",
+                        "width": "4.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    100
-                  </div>
-                </td>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "normal",
-                      "textAlign": "center",
-                      "verticalAlign": "middle",
-                      "width": "16.0%",
+                  >
+                    <div>
+                      
+                    </div>
+                  </td>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "normal",
+                        "textAlign": "center",
+                        "verticalAlign": "middle",
+                        "width": "16.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    724
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "bold",
-                      "textAlign": "right",
-                      "verticalAlign": "middle",
-                      "width": "64.0%",
+                  >
+                    <div>
+                      98.1
+                    </div>
+                  </td>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "normal",
+                        "textAlign": "center",
+                        "verticalAlign": "middle",
+                        "width": "16.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    Morsell, Darryl
-                  </div>
-                </td>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "normal",
-                      "textAlign": "center",
-                      "verticalAlign": "middle",
-                      "width": "4.0%",
+                  >
+                    <div>
+                      710
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "bold",
+                        "textAlign": "right",
+                        "verticalAlign": "middle",
+                        "width": "64.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    
-                  </div>
-                </td>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "normal",
-                      "textAlign": "center",
-                      "verticalAlign": "middle",
-                      "width": "16.0%",
+                  >
+                    <div>
+                      Ayala, Eric
+                    </div>
+                  </td>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "normal",
+                        "textAlign": "center",
+                        "verticalAlign": "middle",
+                        "width": "4.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    98.1
-                  </div>
-                </td>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "normal",
-                      "textAlign": "center",
-                      "verticalAlign": "middle",
-                      "width": "16.0%",
+                  >
+                    <div>
+                      
+                    </div>
+                  </td>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "normal",
+                        "textAlign": "center",
+                        "verticalAlign": "middle",
+                        "width": "16.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    710
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "bold",
-                      "textAlign": "right",
-                      "verticalAlign": "middle",
-                      "width": "64.0%",
+                  >
+                    <div>
+                      91.7
+                    </div>
+                  </td>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "normal",
+                        "textAlign": "center",
+                        "verticalAlign": "middle",
+                        "width": "16.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    Ayala, Eric
-                  </div>
-                </td>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "normal",
-                      "textAlign": "center",
-                      "verticalAlign": "middle",
-                      "width": "4.0%",
+                  >
+                    <div>
+                      664
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "bold",
+                        "textAlign": "right",
+                        "verticalAlign": "middle",
+                        "width": "64.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    
-                  </div>
-                </td>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "normal",
-                      "textAlign": "center",
-                      "verticalAlign": "middle",
-                      "width": "16.0%",
+                  >
+                    <div>
+                      Fernando, Bruno
+                    </div>
+                  </td>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "normal",
+                        "textAlign": "center",
+                        "verticalAlign": "middle",
+                        "width": "4.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    91.7
-                  </div>
-                </td>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "normal",
-                      "textAlign": "center",
-                      "verticalAlign": "middle",
-                      "width": "16.0%",
+                  >
+                    <div>
+                      
+                    </div>
+                  </td>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "normal",
+                        "textAlign": "center",
+                        "verticalAlign": "middle",
+                        "width": "16.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    664
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "bold",
-                      "textAlign": "right",
-                      "verticalAlign": "middle",
-                      "width": "64.0%",
+                  >
+                    <div>
+                      88.5
+                    </div>
+                  </td>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "normal",
+                        "textAlign": "center",
+                        "verticalAlign": "middle",
+                        "width": "16.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    Fernando, Bruno
-                  </div>
-                </td>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "normal",
-                      "textAlign": "center",
-                      "verticalAlign": "middle",
-                      "width": "4.0%",
+                  >
+                    <div>
+                      641
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "bold",
+                        "textAlign": "right",
+                        "verticalAlign": "middle",
+                        "width": "64.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    
-                  </div>
-                </td>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "normal",
-                      "textAlign": "center",
-                      "verticalAlign": "middle",
-                      "width": "16.0%",
+                  >
+                    <div>
+                      Smith, Jalen
+                    </div>
+                  </td>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "normal",
+                        "textAlign": "center",
+                        "verticalAlign": "middle",
+                        "width": "4.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    88.5
-                  </div>
-                </td>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "normal",
-                      "textAlign": "center",
-                      "verticalAlign": "middle",
-                      "width": "16.0%",
+                  >
+                    <div>
+                      
+                    </div>
+                  </td>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "normal",
+                        "textAlign": "center",
+                        "verticalAlign": "middle",
+                        "width": "16.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    641
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "bold",
-                      "textAlign": "right",
-                      "verticalAlign": "middle",
-                      "width": "64.0%",
+                  >
+                    <div>
+                      82.6
+                    </div>
+                  </td>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "normal",
+                        "textAlign": "center",
+                        "verticalAlign": "middle",
+                        "width": "16.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    Smith, Jalen
-                  </div>
-                </td>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "normal",
-                      "textAlign": "center",
-                      "verticalAlign": "middle",
-                      "width": "4.0%",
+                  >
+                    <div>
+                      598
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "bold",
+                        "textAlign": "right",
+                        "verticalAlign": "middle",
+                        "width": "64.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    
-                  </div>
-                </td>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "normal",
-                      "textAlign": "center",
-                      "verticalAlign": "middle",
-                      "width": "16.0%",
+                  >
+                    <div>
+                      Lindo Jr., Ricky
+                    </div>
+                  </td>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "normal",
+                        "textAlign": "center",
+                        "verticalAlign": "middle",
+                        "width": "4.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    82.6
-                  </div>
-                </td>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "normal",
-                      "textAlign": "center",
-                      "verticalAlign": "middle",
-                      "width": "16.0%",
+                  >
+                    <div>
+                      
+                    </div>
+                  </td>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "normal",
+                        "textAlign": "center",
+                        "verticalAlign": "middle",
+                        "width": "16.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    598
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "bold",
-                      "textAlign": "right",
-                      "verticalAlign": "middle",
-                      "width": "64.0%",
+                  >
+                    <div>
+                      18.2
+                    </div>
+                  </td>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "normal",
+                        "textAlign": "center",
+                        "verticalAlign": "middle",
+                        "width": "16.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    Lindo Jr., Ricky
-                  </div>
-                </td>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "normal",
-                      "textAlign": "center",
-                      "verticalAlign": "middle",
-                      "width": "4.0%",
+                  >
+                    <div>
+                      132
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "bold",
+                        "textAlign": "right",
+                        "verticalAlign": "middle",
+                        "width": "64.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    
-                  </div>
-                </td>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "normal",
-                      "textAlign": "center",
-                      "verticalAlign": "middle",
-                      "width": "16.0%",
+                  >
+                    <div>
+                      Smith Jr., Serrel
+                    </div>
+                  </td>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "normal",
+                        "textAlign": "center",
+                        "verticalAlign": "middle",
+                        "width": "4.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    18.2
-                  </div>
-                </td>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "normal",
-                      "textAlign": "center",
-                      "verticalAlign": "middle",
-                      "width": "16.0%",
+                  >
+                    <div>
+                      
+                    </div>
+                  </td>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "normal",
+                        "textAlign": "center",
+                        "verticalAlign": "middle",
+                        "width": "16.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    132
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "bold",
-                      "textAlign": "right",
-                      "verticalAlign": "middle",
-                      "width": "64.0%",
+                  >
+                    <div>
+                      15.6
+                    </div>
+                  </td>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "normal",
+                        "textAlign": "center",
+                        "verticalAlign": "middle",
+                        "width": "16.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    Smith Jr., Serrel
-                  </div>
-                </td>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "normal",
-                      "textAlign": "center",
-                      "verticalAlign": "middle",
-                      "width": "4.0%",
+                  >
+                    <div>
+                      113
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "bold",
+                        "textAlign": "right",
+                        "verticalAlign": "middle",
+                        "width": "64.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    
-                  </div>
-                </td>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "normal",
-                      "textAlign": "center",
-                      "verticalAlign": "middle",
-                      "width": "16.0%",
+                  >
+                    <div>
+                      Bender, Ivan
+                    </div>
+                  </td>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "normal",
+                        "textAlign": "center",
+                        "verticalAlign": "middle",
+                        "width": "4.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    15.6
-                  </div>
-                </td>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "normal",
-                      "textAlign": "center",
-                      "verticalAlign": "middle",
-                      "width": "16.0%",
+                  >
+                    <div>
+                      
+                    </div>
+                  </td>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "normal",
+                        "textAlign": "center",
+                        "verticalAlign": "middle",
+                        "width": "16.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    113
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "bold",
-                      "textAlign": "right",
-                      "verticalAlign": "middle",
-                      "width": "64.0%",
+                  >
+                    <div>
+                      3.7
+                    </div>
+                  </td>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "normal",
+                        "textAlign": "center",
+                        "verticalAlign": "middle",
+                        "width": "16.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    Bender, Ivan
-                  </div>
-                </td>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "normal",
-                      "textAlign": "center",
-                      "verticalAlign": "middle",
-                      "width": "4.0%",
+                  >
+                    <div>
+                      27
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "bold",
+                        "textAlign": "right",
+                        "verticalAlign": "middle",
+                        "width": "64.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    
-                  </div>
-                </td>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "normal",
-                      "textAlign": "center",
-                      "verticalAlign": "middle",
-                      "width": "16.0%",
+                  >
+                    <div>
+                      Tomaic, Joshua
+                    </div>
+                  </td>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "normal",
+                        "textAlign": "center",
+                        "verticalAlign": "middle",
+                        "width": "4.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    3.7
-                  </div>
-                </td>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "normal",
-                      "textAlign": "center",
-                      "verticalAlign": "middle",
-                      "width": "16.0%",
+                  >
+                    <div>
+                      
+                    </div>
+                  </td>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "normal",
+                        "textAlign": "center",
+                        "verticalAlign": "middle",
+                        "width": "16.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    27
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "bold",
-                      "textAlign": "right",
-                      "verticalAlign": "middle",
-                      "width": "64.0%",
+                  >
+                    <div>
+                      1.5
+                    </div>
+                  </td>
+                  <td
+                    className=""
+                    rowSpan={1}
+                    style={
+                      Object {
+                        "backgroundColor": undefined,
+                        "fontWeight": "normal",
+                        "textAlign": "center",
+                        "verticalAlign": "middle",
+                        "width": "16.0%",
+                      }
                     }
-                  }
-                >
-                  <div>
-                    Tomaic, Joshua
-                  </div>
-                </td>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "normal",
-                      "textAlign": "center",
-                      "verticalAlign": "middle",
-                      "width": "4.0%",
-                    }
-                  }
-                >
-                  <div>
-                    
-                  </div>
-                </td>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "normal",
-                      "textAlign": "center",
-                      "verticalAlign": "middle",
-                      "width": "16.0%",
-                    }
-                  }
-                >
-                  <div>
-                    1.5
-                  </div>
-                </td>
-                <td
-                  className=""
-                  rowSpan={1}
-                  style={
-                    Object {
-                      "backgroundColor": undefined,
-                      "fontWeight": "normal",
-                      "textAlign": "center",
-                      "verticalAlign": "middle",
-                      "width": "16.0%",
-                    }
-                  }
-                >
-                  <div>
-                    11
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+                  >
+                    <div>
+                      11
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>

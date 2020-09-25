@@ -4,7 +4,7 @@ exports[`TeamReportPage TeamReportPage - should create snapshot 1`] = `
 <Container
   fluid={false}
 >
-  <ForwardRef
+  <Row
     noGutters={false}
   >
     <Col
@@ -20,16 +20,16 @@ exports[`TeamReportPage TeamReportPage - should create snapshot 1`] = `
         </span>
       </h3>
     </Col>
-  </ForwardRef>
-  <ForwardRef
+  </Row>
+  <Row
     noGutters={false}
   >
     <HeaderBar
       common={Object {}}
       thisPage="report-"
     />
-  </ForwardRef>
-  <ForwardRef
+  </Row>
+  <Row
     noGutters={false}
   >
     <GenericCollapsibleCard
@@ -42,8 +42,8 @@ exports[`TeamReportPage TeamReportPage - should create snapshot 1`] = `
         startingState={Object {}}
       />
     </GenericCollapsibleCard>
-  </ForwardRef>
-  <ForwardRef
+  </Row>
+  <Row
     noGutters={false}
   >
     <GenericCollapsibleCard
@@ -70,7 +70,7 @@ exports[`TeamReportPage TeamReportPage - should create snapshot 1`] = `
         startingState={Object {}}
       />
     </GenericCollapsibleCard>
-  </ForwardRef>
+  </Row>
   <Footer
     server="server"
   />

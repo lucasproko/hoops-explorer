@@ -4482,7 +4482,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
         }
       />
     </FormRow>
-    <ForwardRef
+    <Row
       className="mt-2"
       noGutters={false}
     >
@@ -5614,7 +5614,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
           }
         />
       </Col>
-    </ForwardRef>
+    </Row>
   </LoadingOverlay>
 </Container>
 `;
@@ -7519,7 +7519,7 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
         }
       />
     </FormRow>
-    <ForwardRef
+    <Row
       className="mt-2"
       noGutters={false}
     >
@@ -8208,7 +8208,7 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
           }
         />
       </Col>
-    </ForwardRef>
+    </Row>
   </LoadingOverlay>
 </Container>
 `;
@@ -9867,7 +9867,7 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
         }
       />
     </FormRow>
-    <ForwardRef
+    <Row
       className="mt-2"
       noGutters={false}
     >
@@ -10804,7 +10804,7 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
           }
         />
       </Col>
-    </ForwardRef>
+    </Row>
   </LoadingOverlay>
 </Container>
 `;
@@ -14535,7 +14535,7 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
         }
       />
     </FormRow>
-    <ForwardRef
+    <Row
       className="mt-2"
       noGutters={false}
     >
@@ -16183,7 +16183,7 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
           }
         />
       </Col>
-    </ForwardRef>
+    </Row>
   </LoadingOverlay>
 </Container>
 `;
@@ -21108,7 +21108,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
         }
       />
     </FormRow>
-    <ForwardRef
+    <Row
       className="mt-2"
       noGutters={false}
     >
@@ -23456,7 +23456,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
           }
         />
       </Col>
-    </ForwardRef>
+    </Row>
   </LoadingOverlay>
 </Container>
 `;
@@ -28408,7 +28408,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
         }
       />
     </FormRow>
-    <ForwardRef
+    <Row
       className="mt-2"
       noGutters={false}
     >
@@ -30756,7 +30756,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
           }
         />
       </Col>
-    </ForwardRef>
+    </Row>
   </LoadingOverlay>
 </Container>
 `;
@@ -35432,7 +35432,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
         }
       />
     </FormRow>
-    <ForwardRef
+    <Row
       className="mt-2"
       noGutters={false}
     >
@@ -37576,7 +37576,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
           }
         />
       </Col>
-    </ForwardRef>
+    </Row>
   </LoadingOverlay>
 </Container>
 `;

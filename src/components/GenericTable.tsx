@@ -395,7 +395,7 @@ const GenericTable: React.FunctionComponent<Props> = ({tableFields, tableData, t
     };
   }
 
-  return <Table responsive id={tableId} size="sm">
+  return <Table responsive={lockMode != "row"} id={tableId} size="sm">
     <thead>
       <tr>{ renderTableHeaders() }</tr>
     </thead>

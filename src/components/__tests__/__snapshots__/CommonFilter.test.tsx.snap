@@ -16,6 +16,7 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
           "defaultProps": Object {
             "noGutters": false,
           },
+          "displayName": "Row",
           "render": [Function],
         }
       }
@@ -548,8 +549,9 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
         <OverlayTrigger
           key="left"
           overlay={
-            <ForwardRef(render)
+            <ForwardRef
               id="popover-positioned-left"
+              placement="right"
               style={
                 Object {
                   "maxWidth": "600px",
@@ -566,7 +568,7 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
                   tablePrefix="game-"
                 />
               </ForwardRef>
-            </ForwardRef(render)>
+            </ForwardRef>
           }
           placement="left"
           rootClose={true}
@@ -578,7 +580,6 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
             disabled={false}
             id="historyButton"
             size="sm"
-            type="button"
             variant="outline-secondary"
           >
             <FontAwesomeIcon
@@ -636,7 +637,6 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
             disabled={false}
             id="copyLink_game-"
             size="sm"
-            type="button"
             variant="outline-secondary"
           >
             <FontAwesomeIcon
@@ -684,6 +684,7 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
           "defaultProps": Object {
             "noGutters": false,
           },
+          "displayName": "Row",
           "render": [Function],
         }
       }
@@ -733,7 +734,7 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
             navbar={false}
             variant="outline-secondary"
           >
-            <Bootstrap(DropdownToggle)
+            <DropdownToggle
               id="dropdown-basic"
               variant="outline-secondary"
             >
@@ -768,7 +769,7 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
                 title=""
                 transform={null}
               />
-            </Bootstrap(DropdownToggle)>
+            </DropdownToggle>
             <DropdownMenu
               alignRight={false}
               flip={true}
@@ -824,7 +825,6 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
                     "defaultProps": Object {
                       "active": false,
                       "disabled": false,
-                      "type": "button",
                       "variant": "primary",
                     },
                     "displayName": "Button",
@@ -862,6 +862,7 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
           "defaultProps": Object {
             "noGutters": false,
           },
+          "displayName": "Row",
           "render": [Function],
         }
       }
@@ -939,11 +940,7 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
           <div>
             <FormCheck
               checked={false}
-              disabled={false}
               id="excludeGarbage"
-              inline={false}
-              isInvalid={false}
-              isValid={false}
               label={
                 <span>
                   Filter Garbage
@@ -959,7 +956,6 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
                 </span>
               }
               onChange={[Function]}
-              title=""
               type="switch"
             />
           </div>
@@ -971,7 +967,6 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
         active={false}
         disabled={false}
         onClick={[Function]}
-        type="button"
         variant="primary"
       >
         Submit
@@ -989,7 +984,6 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
           active={false}
           disabled={false}
           onClick={[Function]}
-          type="button"
           variant="warning"
         >
           <b>
@@ -1020,6 +1014,7 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
           "defaultProps": Object {
             "noGutters": false,
           },
+          "displayName": "Row",
           "render": [Function],
         }
       }
@@ -1553,8 +1548,9 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
         <OverlayTrigger
           key="left"
           overlay={
-            <ForwardRef(render)
+            <ForwardRef
               id="popover-positioned-left"
+              placement="right"
               style={
                 Object {
                   "maxWidth": "600px",
@@ -1571,7 +1567,7 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
                   tablePrefix="lineup-"
                 />
               </ForwardRef>
-            </ForwardRef(render)>
+            </ForwardRef>
           }
           placement="left"
           rootClose={true}
@@ -1583,7 +1579,6 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
             disabled={false}
             id="historyButton"
             size="sm"
-            type="button"
             variant="outline-secondary"
           >
             <FontAwesomeIcon
@@ -1641,7 +1636,6 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
             disabled={false}
             id="copyLink_lineup-"
             size="sm"
-            type="button"
             variant="outline-secondary"
           >
             <FontAwesomeIcon
@@ -1689,6 +1683,7 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
           "defaultProps": Object {
             "noGutters": false,
           },
+          "displayName": "Row",
           "render": [Function],
         }
       }
@@ -1738,7 +1733,7 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
             navbar={false}
             variant="outline-secondary"
           >
-            <Bootstrap(DropdownToggle)
+            <DropdownToggle
               id="dropdown-basic"
               variant="outline-secondary"
             >
@@ -1773,7 +1768,7 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
                 title=""
                 transform={null}
               />
-            </Bootstrap(DropdownToggle)>
+            </DropdownToggle>
             <DropdownMenu
               alignRight={false}
               flip={true}
@@ -1829,7 +1824,6 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
                     "defaultProps": Object {
                       "active": false,
                       "disabled": false,
-                      "type": "button",
                       "variant": "primary",
                     },
                     "displayName": "Button",
@@ -1867,6 +1861,7 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
           "defaultProps": Object {
             "noGutters": false,
           },
+          "displayName": "Row",
           "render": [Function],
         }
       }
@@ -1944,11 +1939,7 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
           <div>
             <FormCheck
               checked={false}
-              disabled={false}
               id="excludeGarbage"
-              inline={false}
-              isInvalid={false}
-              isValid={false}
               label={
                 <span>
                   Filter Garbage
@@ -1964,7 +1955,6 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
                 </span>
               }
               onChange={[Function]}
-              title=""
               type="switch"
             />
           </div>
@@ -1976,7 +1966,6 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
         active={false}
         disabled={false}
         onClick={[Function]}
-        type="button"
         variant="primary"
       >
         Submit
@@ -1999,7 +1988,6 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
           id="clearQuery_lineup-"
           onClick={[Function]}
           size="sm"
-          type="button"
           variant="outline-secondary"
         >
           <FontAwesomeIcon

@@ -1368,7 +1368,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
           }
         />
       </FormRow>
-      <ForwardRef
+      <Row
         className="mt-2"
         noGutters={false}
       >
@@ -8707,7 +8707,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
             }
           />
         </Col>
-      </ForwardRef>
+      </Row>
     </LoadingOverlay>
   </div>
 </Container>
@@ -10465,7 +10465,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
           }
         />
       </FormRow>
-      <ForwardRef
+      <Row
         className="mt-2"
         noGutters={false}
       >
@@ -22148,7 +22148,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
             }
           />
         </Col>
-      </ForwardRef>
+      </Row>
     </LoadingOverlay>
   </div>
 </Container>
@@ -23906,7 +23906,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
           }
         />
       </FormRow>
-      <ForwardRef
+      <Row
         className="mt-2"
         noGutters={false}
       >
@@ -34581,7 +34581,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
             }
           />
         </Col>
-      </ForwardRef>
+      </Row>
     </LoadingOverlay>
   </div>
 </Container>
@@ -36339,7 +36339,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
           }
         />
       </FormRow>
-      <ForwardRef
+      <Row
         className="mt-2"
         noGutters={false}
       >
@@ -49996,7 +49996,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
             }
           />
         </Col>
-      </ForwardRef>
+      </Row>
     </LoadingOverlay>
   </div>
 </Container>
@@ -51754,7 +51754,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
           }
         />
       </FormRow>
-      <ForwardRef
+      <Row
         className="mt-2"
         noGutters={false}
       >
@@ -54192,7 +54192,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
             }
           />
         </Col>
-      </ForwardRef>
+      </Row>
     </LoadingOverlay>
   </div>
 </Container>
@@ -55566,7 +55566,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
           }
         />
       </FormRow>
-      <ForwardRef
+      <Row
         className="mt-2"
         noGutters={false}
       >
@@ -62905,7 +62905,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
             }
           />
         </Col>
-      </ForwardRef>
+      </Row>
     </LoadingOverlay>
   </div>
 </Container>
