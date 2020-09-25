@@ -670,17 +670,17 @@ export class RapmUtils {
       console.log(`q=[${q}], v=[${JSON.stringify(v, null ,3)}]`);
     }
 
-    const sortedQWithIndex = _.chain(q).zip(_.range(0, ctx.numPlayers)).sortBy([(zip) => zip[0]]).value();
+    const sortedQWithIndex = _.chain(q).zip(_.range(0, ctx.numPlayers)).sortBy([(zip) => zip[0]]).value() as Array<Array<number>>;
 
     if (debugMode) {
       console.log(`sort(q_i)=[${JSON.stringify(sortedQWithIndex)}]`);
     }
 
     // Ratio of largest singular value to all singular values
-    const largestEig = sortedQWithIndex[q.length - 1][0];
+    const largestEig = sortedQWithIndex[q.length - 1][0] || 0;
 
-    const condIndicesWithIndex = sortedQWithIndex.filter(zip => zip[0] > 0).map((zip: Array<number>) => {
-      return [ largestEig/zip[0], zip[1] ];
+    const condIndicesWithIndex = sortedQWithIndex.filter(zip => (zip[0] || 0) > 0).map((zip: Array<number>) => {
+      return [ largestEig/(zip[0] || 1), (zip[1] || 0) ];
     });
 
     if (debugMode) {
