@@ -254,7 +254,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
     })
   ] : [];
 
-  const tableData = totalLineup.concat(filteredLineups).flatMap((lineup) => {
+  const tableData = totalLineup.concat(filteredLineups).flatMap((lineup, lineupIndex) => {
 
       const codesAndIds = lineup.players_array?.hits?.hits?.[0]?._source?.players || [];
 
@@ -280,9 +280,11 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
       const perLineupBaselinePlayerMap = _.fromPairs(codesAndIds.map((cid: { code: string, id: string }) => {
         return [  cid.id, baselinePlayerInfo[cid.id] || {} ];
       })) as Record<string, Record<string, any>>;
+//      const lineupTitleKey = lineup.key;
+      const lineupTitleKey = "" + lineupIndex;
       const title = sortedCodesAndIds ?
         LineupDisplayUtils.buildDecoratedLineup(
-          lineup.key, sortedCodesAndIds, perLineupBaselinePlayerMap, positionFromPlayerKey, "off_adj_rtg", decorateLineups
+          lineupTitleKey, sortedCodesAndIds, perLineupBaselinePlayerMap, positionFromPlayerKey, "off_adj_rtg", decorateLineups
         ) : "Weighted Total";
 
       const stats = { off_title: title, def_title: "", ...lineup };

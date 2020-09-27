@@ -26,17 +26,17 @@ export class LineupDisplayUtils {
     colorField: string,
     decorateLineup: boolean
   ) {
-    const tooltip = LineupDisplayUtils.buildTooltipTexts(
-      key, sortedLineup, perLineupPlayerMap, positionFromPlayerKey
+    const tooltipBuilder = (pid: number) => LineupDisplayUtils.buildTooltipTexts(
+      key + pid, sortedLineup, perLineupPlayerMap, positionFromPlayerKey
     );
     if (decorateLineup) {
       return sortedLineup.map((cid: { code: string, id: string }, pid: number) => {
-        return <OverlayTrigger placement="auto" overlay={tooltip} key={"" + pid}>{
+        return <OverlayTrigger placement="auto" overlay={tooltipBuilder(pid)} key={"" + pid}>{
           LineupDisplayUtils.buildDecoratedPlayer(cid, perLineupPlayerMap, colorField, pid == 4)
         }</OverlayTrigger>;
       });
     } else {
-      return <OverlayTrigger placement="auto" overlay={tooltip}>
+      return <OverlayTrigger placement="auto" overlay={tooltipBuilder(0)}>
         <span><b>{sortedLineup.map((cid: { code: string, id: string}) => cid.code).join(" / ")}</b></span>
       </OverlayTrigger>;
     }
