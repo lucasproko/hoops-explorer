@@ -43,9 +43,6 @@ import { PositionUtils } from "../utils/stats/PositionUtils";
 import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
 import { LineupFilterParams, ParamDefaults, LuckParams } from '../utils/FilterModels';
 
-/**/
-import { renderToString } from 'react-dom/server'
-
 export type LineupStatsModel = {
   lineups?: Array<any>,
   error_code?: string

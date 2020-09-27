@@ -32,8 +32,9 @@ function marshallRequest(
   return body;
 }
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+async function calculateOnOffStats(req: NextApiRequest, res: NextApiResponse) {
   const url = require('url').parse(req.url);
 
   await CommonApiUtils.handleRequest(res, queryPrefix, url.query, marshallRequest);
 }
+export default calculateOnOffStats;
