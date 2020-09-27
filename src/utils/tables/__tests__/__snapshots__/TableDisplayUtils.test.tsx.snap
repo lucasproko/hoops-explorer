@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`LineupDisplayUtils buildDecoratedLineup - buildTooltipTexts 1`] = `
+exports[`TableDisplayUtils buildDecoratedLineup - buildTooltipTexts 1`] = `
 <span>
   <div
     className="tooltip bs-tooltip-right"
@@ -79,7 +79,7 @@ exports[`LineupDisplayUtils buildDecoratedLineup - buildTooltipTexts 1`] = `
 </span>
 `;
 
-exports[`LineupDisplayUtils buildDecoratedLineup - decorated version 1`] = `
+exports[`TableDisplayUtils buildDecoratedLineup - decorated version 1`] = `
 <span>
   <div>
     <span>
@@ -325,7 +325,7 @@ exports[`LineupDisplayUtils buildDecoratedLineup - decorated version 1`] = `
 </span>
 `;
 
-exports[`LineupDisplayUtils buildDecoratedLineup - plain version 1`] = `
+exports[`TableDisplayUtils buildDecoratedLineup - plain version 1`] = `
 <span>
   <div>
     <span>
@@ -337,7 +337,7 @@ exports[`LineupDisplayUtils buildDecoratedLineup - plain version 1`] = `
 </span>
 `;
 
-exports[`LineupDisplayUtils injectPlayTypeInfo - lineups 1`] = `
+exports[`TableDisplayUtils injectPlayTypeInfo - lineups 1`] = `
 {
   def_2pmidr: Object {
     "extraInfo": <span>
@@ -474,7 +474,7 @@ exports[`LineupDisplayUtils injectPlayTypeInfo - lineups 1`] = `
   }}
 `;
 
-exports[`LineupDisplayUtils injectPlayTypeInfo - players (!expanded) 1`] = `
+exports[`TableDisplayUtils injectPlayTypeInfo - players (!expanded) 1`] = `
 {
   def_2pmidr: <small
     style={
@@ -564,7 +564,7 @@ exports[`LineupDisplayUtils injectPlayTypeInfo - players (!expanded) 1`] = `
   }}
 `;
 
-exports[`LineupDisplayUtils injectPlayTypeInfo - players (expanded) 1`] = `
+exports[`TableDisplayUtils injectPlayTypeInfo - players (expanded) 1`] = `
 {
   def_2pmidr: <small
     style={

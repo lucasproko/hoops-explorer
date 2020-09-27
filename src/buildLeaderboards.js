@@ -41,7 +41,7 @@ async function main() {
 //  console.log("RECEIVED: " + JSON.stringify(lineupResponse.resultJson));
 }
 
-console.log("Start processing with args: " + process.argv);
+console.log("Start processing with args: " + _.drop(process.argv, 2));
 
 main().then(_ => {
   console.log("Processing Complete!")

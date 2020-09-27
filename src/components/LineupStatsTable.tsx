@@ -31,16 +31,20 @@ import GenericTogglingMenuItem from './shared/GenericTogglingMenuItem';
 import ToggleButtonGroup from "./shared/ToggleButtonGroup";
 import LuckAdjDiagView from './diags/LuckAdjDiagView';
 
+// Table building
+import { TableDisplayUtils } from "../utils/tables/TableDisplayUtils";
+import { LineupTableUtils } from "../utils/tables/LineupTableUtils";
+
 // Util imports
-import { LineupDisplayUtils } from "../utils/stats/LineupDisplayUtils";
-import { RatingUtils } from "../utils/stats/RatingUtils";
 import { LineupUtils } from "../utils/stats/LineupUtils";
 import { CbbColors } from "../utils/CbbColors";
 import { CommonTableDefs } from "../utils/CommonTableDefs";
 import { PositionUtils } from "../utils/stats/PositionUtils";
-import { LuckUtils, OffLuckAdjustmentDiags, DefLuckAdjustmentDiags, LuckAdjustmentBaseline } from "../utils/stats/LuckUtils";
 import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
 import { LineupFilterParams, ParamDefaults, LuckParams } from '../utils/FilterModels';
+
+/**/
+import { renderToString } from 'react-dom/server'
 
 export type LineupStatsModel = {
   lineups?: Array<any>,
@@ -110,10 +114,6 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
   const [ timeoutId, setTimeoutId ] = useState(-1);
   const [ tmpFilterStr, setTmpFilterStr ] = useState(filterStr);
 
-  const [
-    filterFragmentsPve, filterFragmentsNve, filterOnPosition
-  ] = PositionUtils.buildPositionalAwareFilter(filterStr);
-
   useEffect(() => { //(this ensures that the filter component is up to date with the union of these fields)
     const newState = {
       ...startingState,
@@ -141,62 +141,15 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
   const avgEfficiency = efficiencyAverages[genderYearLookup] || efficiencyAverages.fallback;
 
   /** Need baseline player info for tooltip view/lineup decoration */
-  const baselinePlayerInfo = _.fromPairs(
-    (rosterStats.baseline || []).map((mutableP: any) => {
-      // Add ORtg to lineup stats:
-      const playerAdjustForLuck = false; //TODO: longer term I think we will want to do this
-      const [ oRtg, adjORtg, rawORtg, rawAdjORtg, oRtgDiag ] = RatingUtils.buildORtg(
-        mutableP, avgEfficiency, false, playerAdjustForLuck
-      );
-      const [ dRtg, adjDRtg, rawDRtg, rawAdjDRtg, dRtgDiag ] = RatingUtils.buildDRtg(
-        mutableP, avgEfficiency, false, playerAdjustForLuck
-      );
-      mutableP.off_rtg = {
-        value: oRtg?.value, old_value: rawORtg?.value,
-        override: playerAdjustForLuck ? "Luck adjusted" : undefined
-      };
-      mutableP.off_adj_rtg = {
-        value: adjORtg?.value, old_value: rawAdjORtg?.value,
-        override: playerAdjustForLuck ? "Luck adjusted" : undefined
-      };
-      mutableP.def_rtg = {
-        value: dRtg?.value, old_value: rawDRtg?.value,
-        override: playerAdjustForLuck ? "Luck adjusted" : undefined
-      };
-      mutableP.def_adj_rtg = {
-        value: adjDRtg?.value, old_value: rawAdjDRtg?.value,
-        override: playerAdjustForLuck ? "Luck adjusted" : undefined
-      };
-
-      return [ mutableP.key, mutableP ];
-    })
+  const baselinePlayerInfo = LineupTableUtils.buildBaselinePlayerInfo(
+    rosterStats.baseline, avgEfficiency
   );
-
-  // The luck baseline can either be the user-selecteed baseline or the entire season
-  const [ baseOrSeasonTeamStats, baseOrSeason3PMap ] = (() => {
-    if (adjustForLuck) {
-      switch (luckConfig.base) {
-        case "baseline":
-          return [
-            teamStats.baseline, baselinePlayerInfo
-          ];
-        default: //("season")
-          return [
-            teamStats.global, _.fromPairs((rosterStats.global || []).map((p: any) => [ p.key, p ]))
-          ];
-      }
-    } else return [ {}, {} ]; //(not used)
-  })();
 
   // 3.1] Build individual info
 
   // 3.1.1] Positional info from the season stats
 
-  const positionFromPlayerKey = _.chain(rosterStats.global || []).map((player: any) => {
-    const [ posConfs, posConfsDiags ] = PositionUtils.buildPositionConfidences(player);
-    const [ pos, posDiags ] = PositionUtils.buildPosition(posConfs, player, teamSeasonLookup);
-    return [ player.key, { posConfidences: _.values(posConfs || {}), posClass: pos } ];
-  }).fromPairs().value();
+  const positionFromPlayerKey = LineupTableUtils.buildPositionPlayerMap(rosterStats.global, teamSeasonLookup);
 
   // 3.2] Table building
 
@@ -205,105 +158,58 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
   const defPrefixFn = (key: string) => "def_" + key;
   const defCellMetaFn = (key: string, val: any) => "def";
 
-  const sorter = (sortStr: string) => { // format: (asc|desc):(off_|def_|diff_)<field>
-    const sortComps = sortStr.split(":"); //asc/desc
-    const dir = (sortComps[0] == "desc") ? -1 : 1;
-    const fieldComps = _.split(sortComps[1], "_", 1); //off/def/diff
-    const fieldName = sortComps[1].substring(fieldComps[0].length + 1); //+1 for _
-    const field = (lineup: any) => {
-      switch(fieldComps[0]) {
-        case "diff": //(off-def)
-          return (lineup["off_" + fieldName]?.value || 0.0)
-                - (lineup["def_" + fieldName]?.value || 0.0);
-        default: return lineup[sortComps[1]]?.value; //(off or def)
-      }
-    };
-    return (lineup: any) => {
-      return dir*(field(lineup) || 0);
-    };
-  };
-
   const lineups = lineupStats?.lineups || [];
-  const filteredLineups = _.chain(lineups).filter((lineup) => {
-      const minPossInt = parseInt(minPoss);
-      const offPos = lineup.off_poss?.value || 0;
-      const defPos = lineup.def_poss?.value || 0;
-      return offPos >= minPossInt || defPos >= minPossInt; //(unclear which of || vs && is best...)
-    }).filter((lineup) => {
+  const filteredLineups = LineupTableUtils.buildFilteredLineups(
+    lineups,
+    filterStr, sortBy, minPoss, maxTableSize,
+    teamSeasonLookup, positionFromPlayerKey
+  );
 
-      const codesAndIds = lineup.players_array?.hits?.hits?.[0]?._source?.players || [];
-      const namesToTest = filterOnPosition ?
-        PositionUtils.orderLineup(codesAndIds, positionFromPlayerKey, teamSeasonLookup) : codesAndIds;
-
-      const playerFilter = PositionUtils.testPositionalAwareFilter(
-        namesToTest, filterFragmentsPve, filterFragmentsNve
-      );
-
-      return playerFilter && (lineup.key != ""); // (workaround for #53 pending fix)
-
-    }).sortBy(
-       [ sorter(sortBy) ]
-    ).take(
-      parseInt(maxTableSize)
-    ).value();
-
-  const totalLineupId = "TOTAL";
   const totalLineup = showTotals ? [
     _.assign(LineupUtils.calculateAggregatedLineupStats(filteredLineups), {
-      key: totalLineupId
+      key: LineupTableUtils.totalLineupId
     })
   ] : [];
 
-  const tableData = totalLineup.concat(filteredLineups).flatMap((lineup, lineupIndex) => {
+  const tableData = LineupTableUtils.buildEnrichedLineups(
+    filteredLineups,
+    teamStats.global, rosterStats.global, teamStats.baseline,
+    adjustForLuck, luckConfig.base, avgEfficiency,
+    totalLineup, teamSeasonLookup, positionFromPlayerKey, baselinePlayerInfo
+  ).flatMap((lineup, lineupIndex) => {
+    TableDisplayUtils.injectPlayTypeInfo(lineup, false, false); //(inject assist numbers)
 
-      const codesAndIds = lineup.players_array?.hits?.hits?.[0]?._source?.players || [];
+    const codesAndIds = LineupTableUtils.buildCodesAndIds(lineup);
+    const sortedCodesAndIds = (lineup.key == LineupTableUtils.totalLineupId) ? undefined :
+      PositionUtils.orderLineup(codesAndIds, positionFromPlayerKey, teamSeasonLookup);
 
-      const sortedCodesAndIds = (lineup.key == totalLineupId) ? undefined :
-        PositionUtils.orderLineup(codesAndIds, positionFromPlayerKey, teamSeasonLookup);
+    const perLineupBaselinePlayerMap = _.fromPairs(codesAndIds.map((cid: { code: string, id: string }) => {
+      return [  cid.id, baselinePlayerInfo[cid.id] || {} ];
+    })) as Record<string, Record<string, any>>;
 
-      const perLineupPlayerLuckMap = _.fromPairs(codesAndIds.map((cid: { code: string, id: string }) => {
-        return [  cid.id, baseOrSeason3PMap[cid.id] ];
-      }));
-      const luckAdj = (adjustForLuck && lineup?.doc_count) ? [
-        LuckUtils.calcOffTeamLuckAdj(
-          lineup, rosterStats.baseline || [], baseOrSeasonTeamStats, perLineupPlayerLuckMap, avgEfficiency
-        ),
-        LuckUtils.calcDefTeamLuckAdj(lineup, baseOrSeasonTeamStats, avgEfficiency),
-      ] as [OffLuckAdjustmentDiags, DefLuckAdjustmentDiags] : undefined;
+    const lineupTitleKey = "" + lineupIndex;
+    const title = sortedCodesAndIds ?
+      TableDisplayUtils.buildDecoratedLineup(
+        lineupTitleKey, sortedCodesAndIds, perLineupBaselinePlayerMap, positionFromPlayerKey, "off_adj_rtg", decorateLineups
+      ) : "Weighted Total";
 
-      if (lineup?.doc_count) {
-        LuckUtils.injectLuck(lineup, luckAdj?.[0], luckAdj?.[1]);
-      }
-      //(needs to go after the luck adjustment)
-      LineupDisplayUtils.injectPlayTypeInfo(lineup, false, false); //(inject assist numbers)
+    const stats = { off_title: title, def_title: "", ...lineup };
 
-      const perLineupBaselinePlayerMap = _.fromPairs(codesAndIds.map((cid: { code: string, id: string }) => {
-        return [  cid.id, baselinePlayerInfo[cid.id] || {} ];
-      })) as Record<string, Record<string, any>>;
-//      const lineupTitleKey = lineup.key;
-      const lineupTitleKey = "" + lineupIndex;
-      const title = sortedCodesAndIds ?
-        LineupDisplayUtils.buildDecoratedLineup(
-          lineupTitleKey, sortedCodesAndIds, perLineupBaselinePlayerMap, positionFromPlayerKey, "off_adj_rtg", decorateLineups
-        ) : "Weighted Total";
-
-      const stats = { off_title: title, def_title: "", ...lineup };
-
-      return _.flatten([
-        [ GenericTableOps.buildDataRow(stats, offPrefixFn, offCellMetaFn) ],
-        [ GenericTableOps.buildDataRow(stats, defPrefixFn, defCellMetaFn) ],
-        showLuckAdjDiags && luckAdj ? [ GenericTableOps.buildTextRow(
-          <LuckAdjDiagView
-            name="lineup"
-            offLuck={luckAdj[0]}
-            defLuck={luckAdj[1]}
-            baseline={luckConfig.base}
-            showHelp={showHelp}
-          />, "small pt-2"
-        ) ] : [] ,
-        [ GenericTableOps.buildRowSeparator() ]
-      ]);
-    });
+    return _.flatten([
+      [ GenericTableOps.buildDataRow(stats, offPrefixFn, offCellMetaFn) ],
+      [ GenericTableOps.buildDataRow(stats, defPrefixFn, defCellMetaFn) ],
+      showLuckAdjDiags && lineup.off_luck_diags ? [ GenericTableOps.buildTextRow(
+        <LuckAdjDiagView
+          name="lineup"
+          offLuck={lineup.off_luck_diags}
+          defLuck={lineup.def_luck_diags}
+          baseline={luckConfig.base}
+          showHelp={showHelp}
+        />, "small pt-2"
+      ) ] : [] ,
+      [ GenericTableOps.buildRowSeparator() ]
+    ]);
+  });
 
   // 3.2] Sorting utils
 

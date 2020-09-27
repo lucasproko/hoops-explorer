@@ -46,7 +46,7 @@ import { PositionUtils } from "../utils/stats/PositionUtils";
 import { LuckUtils } from "../utils/stats/LuckUtils";
 import { OverrideUtils } from "../utils/stats/OverrideUtils";
 import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
-import { LineupDisplayUtils } from "../utils/stats/LineupDisplayUtils";
+import { TableDisplayUtils } from "../utils/tables/TableDisplayUtils";
 
 export type RosterStatsModel = {
   on?: Array<any>,
@@ -376,7 +376,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
         // Set or unset derived stats:
         OverrideUtils.updateDerivedStats(stat, adjustmentReason);
         stat.off_drb = stat.def_orb; //(just for display, all processing should use def_orb)
-        LineupDisplayUtils.injectPlayTypeInfo(stat, expandedView, true);
+        TableDisplayUtils.injectPlayTypeInfo(stat, expandedView, true);
 
         // Ratings:
 

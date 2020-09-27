@@ -3,7 +3,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 
-import { OnOffReportDiagUtils } from '../../../utils/stats/OnOffReportDiagUtils';
+import { OnOffReportDiagUtils } from '../../../utils/tables/OnOffReportDiagUtils';
 import { CommonFilterParams } from "../../../utils/FilterModels";
 import { LineupUtils } from "../../../utils/stats/LineupUtils";
 import { LineupStatsModel } from '../../LineupStatsTable';

@@ -42,13 +42,13 @@ import { UrlRouting } from '../utils/UrlRouting';
 import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
 import { averageStatsInfo } from '../utils/internal-data/averageStatsInfo';
 import { CbbColors } from "../utils/CbbColors";
-import { OnOffReportDiagUtils } from "../utils/stats/OnOffReportDiagUtils";
+import { OnOffReportDiagUtils } from "../utils/tables/OnOffReportDiagUtils";
 import { CommonTableDefs } from "../utils/CommonTableDefs";
 import { LineupStatsModel } from '../components/LineupStatsTable';
 import { RosterStatsModel } from '../components/RosterStatsTable';
 import { TeamStatsModel } from '../components/TeamStatsTable';
 import { LuckUtils, OffLuckAdjustmentDiags, DefLuckAdjustmentDiags, LuckAdjustmentBaseline } from "../utils/stats/LuckUtils";
-import { LineupDisplayUtils } from "../utils/stats/LineupDisplayUtils";
+import { TableDisplayUtils } from "../utils/tables/TableDisplayUtils";
 
 /** Convert from LineupStatsModel into this */
 export type TeamReportStatsModel = {
@@ -370,8 +370,8 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({startingState, da
       <Tooltip id="playerOnOffTooltip">Open a tab with the on/off analysis for this player</Tooltip>;
 
     const tableData = _.chain(tableDataInputs).flatMap((player, index) => {
-      LineupDisplayUtils.injectPlayTypeInfo(player.on, false, false); //(inject assist numbers)
-      LineupDisplayUtils.injectPlayTypeInfo(player.off, false, false); //(inject assist numbers)
+      TableDisplayUtils.injectPlayTypeInfo(player.on, false, false); //(inject assist numbers)
+      TableDisplayUtils.injectPlayTypeInfo(player.off, false, false); //(inject assist numbers)
 
       const [ onMargin, offMargin ] = OnOffReportDiagUtils.getAdjEffMargins(player);
       const onSuffix =
