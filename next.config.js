@@ -13,17 +13,19 @@ const withCssConfig = {
 module.exports = compose([
   [withCSS, withCssConfig],
   {
-    webpack: (config) => {
-      return {
-        ...config,
-        entry() {
-          return config.entry().then(entry => {
-            return Object.assign({}, entry, {
-              buildLeaderboards: "./src/buildLeaderboards.ts"
+    webpack: (config, { isServer }) => {
+      if (isServer) {
+        return {
+          ...config,
+          entry() {
+            return config.entry().then(entry => {
+              return Object.assign({}, entry, {
+                buildLeaderboards: "./src/buildLeaderboards.ts"
+              });
             });
-          });
+          }
         }
-      }
+      } else return config;
     }
   }
 ]);

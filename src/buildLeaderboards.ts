@@ -6,6 +6,7 @@
 
 // System imports
 import { NextApiRequest, NextApiResponse } from 'next';
+import fs from 'fs';
 
 import _ from "lodash";
 
@@ -19,11 +20,15 @@ import { QueryUtils } from "./utils/QueryUtils";
 
 // Post processing
 import { efficiencyAverages } from './utils/public-data/efficiencyAverages';
+import { efficiencyInfo } from './utils/internal-data/efficiencyInfo';
 import { LineupTableUtils } from "./utils/tables/LineupTableUtils";
+import { AvailableTeams } from './utils/internal-data/AvailableTeams';
 
 //process.argv 2... are the command line args passed via "-- (args)"
 
-//const result = marshallLineupRequest
+const sleep = (milliseconds: number) => {
+  return new Promise(resolve => setTimeout(resolve, milliseconds))
+}
 
 class MutableAsyncResponse {
   statusCode: number;
@@ -46,81 +51,162 @@ class MutableAsyncResponse {
   }
 }
 
+const savedLineups = [];
+const savedConfOnlyLineups = [];
+const savedT100Lineups = [];
+
+//TODO: command line parameters:
+const inGender = "Men";
+const inYear = "2019/20";
+const teamFilter = new Set([ "Maryland", "Iowa", "Michigan", "Dayton", "Rutgers" ]);
+
 async function main() {
 
-  const globalRequest = {
-    gender: "Men",
-    minRank: "0",
-    maxRank: "400",
-    team: "Maryland",
-    year: "2019/20"
-  };
-  const globalRequestParams = QueryUtils.stringify(globalRequest);
+  const teams = _.chain(AvailableTeams.byName).values().flatten().filter(team => {
+    return team.gender == inGender && team.year == inYear && (!teamFilter || teamFilter.has(team.team))
+  }).map(team => team.team).value();
 
-  const lineupResponse = new MutableAsyncResponse();
-  const teamResponse = new MutableAsyncResponse();
-  const playerResponse = new MutableAsyncResponse();
-  await Promise.all([
-    calculateLineupStats(
-      { url: `https://hoop-explorer.com/?${globalRequestParams}` } as unknown as NextApiRequest,
-      lineupResponse as unknown as NextApiResponse
-    ),
-    calculateOnOffStats(
-      { url: `https://hoop-explorer.com/?${globalRequestParams}` } as unknown as NextApiRequest,
-      teamResponse as unknown as NextApiResponse
-    ),
-    calculateOnOffPlayerStats(
-      { url: `https://hoop-explorer.com/?${globalRequestParams}` } as unknown as NextApiRequest,
-      playerResponse as unknown as NextApiResponse
-    ),
-  ]);
+  await Promise.all(teams.map(async team => {
 
-  // Received all data, now do post-Processing
-  //TODO: Check for any errors:
+    console.log(`Processing ${inGender} ${team} ${inYear}`);
 
-  const teamSeasonLookup = `${globalRequest.gender}_${globalRequest.team}_${globalRequest.year}`;
-  const genderYearLookup = `${globalRequest.gender}_${globalRequest.year}`;
-  const avgEfficiency = efficiencyAverages[genderYearLookup] || efficiencyAverages.fallback;
+    const fullRequestModel = {
+      gender: inGender,
+      minRank: "0",
+      maxRank: "400",
+      team: team,
+      year: inYear
+    };
+    const requestModelConfOnly = {
+      ...fullRequestModel,
+      queryFilters: "Conf"
+    };
+    const requestModelT100 = {
+      ...fullRequestModel,
+      maxRank: "100"
+    };
 
-  const rosterBaseline =
-    playerResponse.getJsonResponse().aggregations?.tri_filter?.buckets?.baseline?.player?.buckets || [];
+    const teamSeasonLookup = `${fullRequestModel.gender}_${fullRequestModel.team}_${fullRequestModel.year}`;
+    const genderYearLookup = `${fullRequestModel.gender}_${fullRequestModel.year}`;
+    const avgEfficiency = efficiencyAverages[genderYearLookup] || efficiencyAverages.fallback;
 
-  const rosterGlobal = //TODO: will be different for other filters maybe?!
-    playerResponse.getJsonResponse().aggregations?.tri_filter?.buckets?.baseline?.player?.buckets || [];
+    // Snag conference from D1 metadata
+    const conference = efficiencyInfo?.[genderYearLookup]?.[0]?.[team]?.conf || "Unknown";
 
-  const lineups =
-    lineupResponse.getJsonResponse().aggregations?.lineups?.buckets || [];
+    await Promise.all([ [ "all", fullRequestModel], [ "conf", requestModelConfOnly ], [ "t100", requestModelT100 ] ].map(async ([label, requestModel]: [string, any]) => {
+      const requestParams = QueryUtils.stringify(requestModel);
 
-  const teamGlobal =
-    teamResponse.getJsonResponse().aggregations?.global?.only?.buckets?.team || {};
+      const lineupResponse = new MutableAsyncResponse();
+      const teamResponse = new MutableAsyncResponse();
+      const playerResponse = new MutableAsyncResponse();
+      await Promise.all([
+        calculateLineupStats(
+          { url: `https://hoop-explorer.com/?${requestParams}` } as unknown as NextApiRequest,
+          lineupResponse as unknown as NextApiResponse
+        ),
+        calculateOnOffStats(
+          { url: `https://hoop-explorer.com/?${requestParams}` } as unknown as NextApiRequest,
+          teamResponse as unknown as NextApiResponse
+        ),
+        calculateOnOffPlayerStats(
+          { url: `https://hoop-explorer.com/?${requestParams}` } as unknown as NextApiRequest,
+          playerResponse as unknown as NextApiResponse
+        ),
+      ]);
 
-  const teamBaseline =
-    teamResponse.getJsonResponse().aggregations?.global?.only?.buckets?.team || {};
+      // Check for errors:
 
-  const baselinePlayerInfo = LineupTableUtils.buildBaselinePlayerInfo(
-    rosterBaseline, avgEfficiency
-  );
-  const positionFromPlayerKey = LineupTableUtils.buildPositionPlayerMap(rosterGlobal, teamSeasonLookup);
+      if ((lineupResponse.statusCode >= 400) || (teamResponse.statusCode >= 400) || (playerResponse.statusCode >= 400)) {
+        console.log(`ERROR [${team} ${label}]: ${JSON.stringify(lineupResponse)} ${JSON.stringify(teamResponse)} ${JSON.stringify(playerResponse)}`);
+        process.exit(-1);
+      }
 
-  const filteredLineups = LineupTableUtils.buildFilteredLineups(
-    lineups,
-    "", "desc:off_poss", "150", "5", //TODO: take top 5 (sorted by off_pos) with min 150 poss
-    teamSeasonLookup, positionFromPlayerKey
-  );
-  const tableData = LineupTableUtils.buildEnrichedLineups(
-    filteredLineups,
-    teamGlobal, rosterGlobal, teamBaseline,
-    true, "season", avgEfficiency,
-    [], teamSeasonLookup, positionFromPlayerKey, baselinePlayerInfo
-  );
-  //TODO: inject required fields into the lineup... (can we remove stuff?!)
+      // Received all data, now do post-Processing:
 
-/**/
-//  console.log("RECEIVED: " + JSON.stringify(tableData, null, 3));
+      const rosterBaseline =
+        playerResponse.getJsonResponse().aggregations?.tri_filter?.buckets?.baseline?.player?.buckets || [];
+
+      const rosterGlobal = //(using "baseline" not "season" for luck adjustments, so don't need this)
+        playerResponse.getJsonResponse().aggregations?.tri_filter?.buckets?.baseline?.player?.buckets || [];
+
+      const lineups =
+        lineupResponse.getJsonResponse().aggregations?.lineups?.buckets || [];
+
+      const teamGlobal =
+        teamResponse.getJsonResponse().aggregations?.global?.only?.buckets?.team || {};
+
+      const teamBaseline =
+        teamResponse.getJsonResponse().aggregations?.global?.only?.buckets?.team || {};
+
+      const baselinePlayerInfo = LineupTableUtils.buildBaselinePlayerInfo(
+        rosterBaseline, avgEfficiency
+      );
+      const positionFromPlayerKey = LineupTableUtils.buildPositionPlayerMap(rosterGlobal, teamSeasonLookup);
+
+      const filteredLineups = LineupTableUtils.buildFilteredLineups(
+        lineups,
+        "", "desc:off_poss", "0", "5", //TODO: take top 5 (sorted by off_pos) with no min poss
+        teamSeasonLookup, positionFromPlayerKey
+      );
+
+      //TODO: filter again to remove anything that is <= 33% of max say
+      //(or maybe recalculate at the end vs an average?)
+
+      const tableData = LineupTableUtils.buildEnrichedLineups(
+        filteredLineups,
+        teamGlobal, rosterGlobal, teamBaseline,
+        true, "baseline", avgEfficiency,
+        [], teamSeasonLookup, positionFromPlayerKey, baselinePlayerInfo
+      ).map(lineup => {
+        // Add conference:
+        lineup.conf = conference;
+        lineup.team = team;
+        lineup.year = inYear;
+        lineup.gender = inGender;
+        // Add minimal player info:
+        const codesAndIds = LineupTableUtils.buildCodesAndIds(lineup);
+        lineup.player_info = _.fromPairs(codesAndIds.map((cid: { code: string, id: string }) => {
+          const playerSubset =  _.pick(baselinePlayerInfo[cid.id] || {}, [
+            //These are the fields required for lineup display enrichment
+            "off_rtg", "off_usage", "def_orb", "key",
+            "off_adj_rtg", "def_adj_rtg", "off_3pr",
+            "off_ftr", "off_assist"
+          ]);
+          return [
+            cid.id,
+            { ...playerSubset, code: cid.code, posClass: positionFromPlayerKey[playerSubset.key]?.posClass }
+          ];
+        }));
+        //(now don't need this:)
+        delete lineup.players_array;
+        return lineup;
+      });
+
+      switch (label) {
+        case "all": savedLineups.push(...tableData); break;
+        case "conf": savedConfOnlyLineups.push(...tableData); break;
+        case "t100": savedT100Lineups.push(...tableData); break;
+        default: console.log(`WARNING unexpected label: ${label}`);
+      }
+    })); //(end loop over leaderboards)
+
+    await sleep(250); //(just ensure we don't hammer ES too badly)
+
+  })); //(end loop over teams)
+  //  console.log("RECEIVED: " + JSON.stringify(tableData, null, 3));
 }
 
 console.log("Start processing with args: " + _.drop(process.argv, 2));
 
 main().then(_ => {
+
   console.log("Processing Complete!")
+
+  //TODO: sort the data by delta avg efficiency to get the default sort
+
+  // Write to file
+  console.log(`Example length: [${JSON.stringify(savedLineups).length}]`);
+  fs.writeFile(`lineups_all_${inYear.substring(0, 4)}.json`, JSON.stringify(savedLineups), err => {});
+
+  console.log("File creation Complete!")
 });
