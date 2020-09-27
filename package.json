@@ -7,7 +7,8 @@
     "dev": "next",
     "build": "next build",
     "start": "next start",
-    "test": "jest"
+    "test": "jest",
+    "build_lineup_leaderboard": "node .next/server/buildLeaderboards.js"
   },
   "repository": {
     "type": "git",
@@ -75,6 +76,7 @@
     "enzyme-to-json": "^3.5.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^24.9.0",
+    "next-compose": "0.0.2",
     "react-test-renderer": "^16.13.1",
     "ts-jest": "^24.3.0",
     "typescript": "^3.9.7"
