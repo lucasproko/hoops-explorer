@@ -7,6 +7,7 @@
 // System imports
 import { NextApiRequest, NextApiResponse } from 'next';
 import fs from 'fs';
+import zlib from 'zlib';
 
 import _ from "lodash";
 
@@ -149,9 +150,6 @@ async function main() {
         teamSeasonLookup, positionFromPlayerKey
       );
 
-      //TODO: filter again to remove anything that is <= 33% of max say
-      //(or maybe recalculate at the end vs an average?)
-
       const tableData = LineupTableUtils.buildEnrichedLineups(
         filteredLineups,
         teamGlobal, rosterGlobal, teamBaseline,
@@ -196,17 +194,52 @@ async function main() {
   //  console.log("RECEIVED: " + JSON.stringify(tableData, null, 3));
 }
 
+/** Adds some handy default sortings and removes possession outliers */
+function completeLineupLeaderboard(key: string, leaderboard: any[]) {
+  // Remove possession outliers
+  const sum = _.reduce(leaderboard, (acc, v) => {
+    const value = v.off_poss?.value || 0;
+    return acc + value;
+  }, 0);
+  const mean = sum/(leaderboard.length || 1);
+  const thresh = 0.6*mean;
+
+  const filteredLeaderboard = leaderboard.filter(lineup => (lineup.off_poss?.value || 0) >= thresh);
+
+  const removed = leaderboard.length - filteredLeaderboard.length;
+  console.log(`${key}: mean=[${mean}] thresh=[${thresh}] removed=[${removed}]`);
+
+  [ "off_adj_ppp", "def_adj_ppp" ].forEach((key) => {
+    _.sortBy(filteredLeaderboard, lineup => -1*(lineup[key]?.value || 0)).forEach((lineup, index) => {
+      lineup[`${key}_rank`] = index + 1;
+    });
+  });
+  return _.sortBy(
+    filteredLeaderboard, lineup => (lineup.def_adj_ppp?.value || 0) - (lineup.off_adj_ppp?.value || 0)
+  ).map((lineup, index) => {
+    lineup[`adj_margin_rank`] = index + 1;
+    return lineup;
+  });
+}
+
 console.log("Start processing with args: " + _.drop(process.argv, 2));
 
 main().then(_ => {
 
-  console.log("Processing Complete!")
+  console.log("Processing Complete!");
 
-  //TODO: sort the data by delta avg efficiency to get the default sort
+  [ [ "all", savedLineups ], [ "conf", savedConfOnlyLineups ], [ "t100", savedT100Lineups ] ].forEach(kv => {
+    const sortedLineups = completeLineupLeaderboard(...kv);
+    const sortedLineupsStr = JSON.stringify(sortedLineups);
 
-  // Write to file
-  console.log(`Example length: [${JSON.stringify(savedLineups).length}]`);
-  fs.writeFile(`lineups_all_${inYear.substring(0, 4)}.json`, JSON.stringify(savedLineups), err => {});
-
-  console.log("File creation Complete!")
+      // Write to file
+     console.log(`${kv[0]} length: [${sortedLineupsStr.length}]`);
+     zlib.gzip(sortedLineupsStr, (_, result) => {
+       fs.writeFile(
+         `./public/leaderboards/lineups/lineups_${kv[0]}_${inGender}_${inYear.substring(0, 4)}.json.gz`,
+         result, err => {}
+       );
+     });
+   });
+   console.log("File creation Complete!")
 });
