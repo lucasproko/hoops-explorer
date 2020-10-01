@@ -92,6 +92,20 @@ export type LineupFilterParams = {
   showLineupLuckDiags?: boolean,
 };
 
+export type LineupLeaderboardParams = {
+  [P in keyof CommonFilterParams]?: CommonFilterParams[P];
+} & {
+  conf?: string //(undefined ==> all conferences)
+  minPoss?: string,
+  maxTableSize?: string,
+  sortBy?: string,
+  //TODO: other params: query filters, table size, luck diags, table filter, sort order, etc
+  // Filtering:
+  filter?: string,
+  // Luck adjustments
+  showLineupLuckDiags?: boolean,
+};
+
 export type TeamReportFilterParams = {
   [P in keyof CommonFilterParams]?: CommonFilterParams[P];
 } & {

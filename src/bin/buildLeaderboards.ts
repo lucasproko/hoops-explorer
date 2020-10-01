@@ -12,18 +12,18 @@ import zlib from 'zlib';
 import _ from "lodash";
 
 // API calls
-import calculateLineupStats from "./pages/api/calculateLineupStats";
-import calculateOnOffStats from "./pages/api/calculateOnOffStats";
-import calculateOnOffPlayerStats from "./pages/api/calculateOnOffPlayerStats";
+import calculateLineupStats from "../pages/api/calculateLineupStats";
+import calculateOnOffStats from "../pages/api/calculateOnOffStats";
+import calculateOnOffPlayerStats from "../pages/api/calculateOnOffPlayerStats";
 
 // Pre processing
-import { QueryUtils } from "./utils/QueryUtils";
+import { QueryUtils } from "../utils/QueryUtils";
 
 // Post processing
-import { efficiencyAverages } from './utils/public-data/efficiencyAverages';
-import { efficiencyInfo } from './utils/internal-data/efficiencyInfo';
-import { LineupTableUtils } from "./utils/tables/LineupTableUtils";
-import { AvailableTeams } from './utils/internal-data/AvailableTeams';
+import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
+import { efficiencyInfo } from '../utils/internal-data/efficiencyInfo';
+import { LineupTableUtils } from "../utils/tables/LineupTableUtils";
+import { AvailableTeams } from '../utils/internal-data/AvailableTeams';
 
 //process.argv 2... are the command line args passed via "-- (args)"
 
@@ -61,6 +61,8 @@ const inGender = "Men";
 const inYear = "2019/20";
 const teamFilter = new Set([ "Maryland", "Iowa", "Michigan", "Dayton", "Rutgers" ]);
 
+const conferenceSet = new Set([]);
+
 async function main() {
 
   const teams = _.chain(AvailableTeams.byName).values().flatten().filter(team => {
@@ -93,6 +95,7 @@ async function main() {
 
     // Snag conference from D1 metadata
     const conference = efficiencyInfo?.[genderYearLookup]?.[0]?.[team]?.conf || "Unknown";
+    conferenceSet.add(conference);
 
     await Promise.all([ [ "all", fullRequestModel], [ "conf", requestModelConfOnly ], [ "t100", requestModelT100 ] ].map(async ([label, requestModel]: [string, any]) => {
       const requestParams = QueryUtils.stringify(requestModel);
@@ -155,7 +158,10 @@ async function main() {
         teamGlobal, rosterGlobal, teamBaseline,
         true, "baseline", avgEfficiency,
         [], teamSeasonLookup, positionFromPlayerKey, baselinePlayerInfo
-      ).map(lineup => {
+      ).map(tmpLineup => {
+        // (removes unused fields from the JSON, to save space)
+        const lineup =
+          _.chain(tmpLineup).toPairs().filter(kv => !_.startsWith(kv[0], "total_")).fromPairs().value();
         // Add conference:
         lineup.conf = conference;
         lineup.team = team;
@@ -203,7 +209,8 @@ function completeLineupLeaderboard(key: string, leaderboard: any[]) {
   }, 0);
   const mean = sum/(leaderboard.length || 1);
   const thresh = 0.6*mean;
-
+/**/
+//TODO: filter everything that isn't in the T400 in one of the 3 categories
   const filteredLeaderboard = leaderboard.filter(lineup => (lineup.off_poss?.value || 0) >= thresh);
 
   const removed = leaderboard.length - filteredLeaderboard.length;
@@ -230,16 +237,19 @@ main().then(_ => {
 
   [ [ "all", savedLineups ], [ "conf", savedConfOnlyLineups ], [ "t100", savedT100Lineups ] ].forEach(kv => {
     const sortedLineups = completeLineupLeaderboard(...kv);
-    const sortedLineupsStr = JSON.stringify(sortedLineups);
+    const sortedLineupsStr = JSON.stringify({
+      confs: Array.from(conferenceSet.values()),
+      lineups: sortedLineups
+    });
 
       // Write to file
      console.log(`${kv[0]} length: [${sortedLineupsStr.length}]`);
-     zlib.gzip(sortedLineupsStr, (_, result) => {
-       fs.writeFile(
-         `./public/leaderboards/lineups/lineups_${kv[0]}_${inGender}_${inYear.substring(0, 4)}.json.gz`,
-         result, err => {}
-       );
-     });
+     const filename = `./public/leaderboards/lineups/lineups_${kv[0]}_${inGender}_${inYear.substring(0, 4)}.json`;
+     fs.writeFile(`${filename}`,sortedLineupsStr, err => {});
+     //(don't zip, the server/browser does it for us, so it's mainly just "wasting GH space")
+     // zlib.gzip(sortedLineupsStr, (_, result) => {
+     //   fs.writeFile(`${filename}.gz`,result, err => {});
+     // });
    });
    console.log("File creation Complete!")
 });

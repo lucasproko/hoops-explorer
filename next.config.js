@@ -20,7 +20,7 @@ module.exports = compose([
           entry() {
             return config.entry().then(entry => {
               return Object.assign({}, entry, {
-                buildLeaderboards: "./src/buildLeaderboards.ts"
+                buildLeaderboards: "./src/bin/buildLeaderboards.ts"
               });
             });
           }

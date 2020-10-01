@@ -5,7 +5,7 @@ import _ from "lodash";
 import { QueryUtils } from "./QueryUtils";
 
 // Utils
-import { GameFilterParams, LineupFilterParams, TeamReportFilterParams } from '../utils/FilterModels';
+import { GameFilterParams, LineupFilterParams, LineupLeaderboardParams, TeamReportFilterParams } from '../utils/FilterModels';
 
 /** Url routing utils */
 export class UrlRouting {
@@ -47,6 +47,12 @@ export class UrlRouting {
     return `/LineupAnalyzer?${UrlRouting.getUrl({
       [UrlRouting.noSuffix]: params,
       [UrlRouting.savedGameSuffix]: gameParams
+    })}`;
+  }
+  /** The URL to use to view the "Lineup Leaderboard" page */
+  static getLineupLeaderboardUrl(params: LineupLeaderboardParams) {
+    return `/LineupLeaderboard?${UrlRouting.getUrl({
+      [UrlRouting.noSuffix]: params
     })}`;
   }
   /** The URL to use to view the "Team Report" page */

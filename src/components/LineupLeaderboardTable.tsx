@@ -15,11 +15,17 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Dropdown from 'react-bootstrap/Dropdown';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip';
+import Button from 'react-bootstrap/Button';
 
 // Additional components:
 // @ts-ignore
 import LoadingOverlay from 'react-loading-overlay';
 import Select, { components } from "react-select";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faLink } from '@fortawesome/free-solid-svg-icons'
+import ClipboardJS from 'clipboard';
 
 // Component imports
 import GenericTable, { GenericTableOps, GenericTableColProps } from "./GenericTable";
@@ -41,24 +47,26 @@ import { CbbColors } from "../utils/CbbColors";
 import { CommonTableDefs } from "../utils/CommonTableDefs";
 import { PositionUtils } from "../utils/stats/PositionUtils";
 import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
-import { LineupFilterParams, ParamDefaults, LuckParams } from '../utils/FilterModels';
+import { LineupLeaderboardParams, ParamDefaults, LuckParams } from '../utils/FilterModels';
+import { AvailableTeams } from '../utils/internal-data/AvailableTeams';
 
 export type LineupStatsModel = {
   lineups?: Array<any>,
+  confs?: Array<string>,
   error_code?: string
 }
 type Props = {
-  startingState: LineupFilterParams,
+  startingState: LineupLeaderboardParams,
   dataEvent: {
-    lineupStats: LineupStatsModel,
-    teamStats: TeamStatsModel,
-    rosterStats: RosterStatsModel,
+    all: LineupStatsModel,
+    t100: LineupStatsModel,
+    conf: LineupStatsModel,
   },
-  onChangeState: (newParams: LineupFilterParams) => void
+  onChangeState: (newParams: LineupLeaderboardParams) => void
 }
 
-const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEvent, onChangeState}) => {
-  const { lineupStats, teamStats, rosterStats } = dataEvent;
+const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, dataEvent, onChangeState}) => {
+  const modelInUse = dataEvent.all; //TODO
 
   const server = (typeof window === `undefined`) ? //(ensures SSR code still compiles)
     "server" : window.location.hostname
@@ -70,41 +78,28 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
 
   // 2] State
 
+  // Data source
+  const [ confs, setConfs ] = useState(startingState.confs || "");
+  const [ year, setYear ] = useState(startingState.year || ParamDefaults.defaultYear);
+  const [ gender, setGender ] = useState(startingState.gender || ParamDefaults.defaultGender);
+
   // Misc display
-
-  /** Whether to show the weighted combo of all visible lineups */
-  const [ showTotals, setShowTotals ] = useState(_.isNil(startingState.showTotal) ?
-    ParamDefaults.defaultLineupShowTotal : startingState.showTotal
-  );
-
-  const teamSeasonLookup = `${startingState.gender}_${startingState.team}_${startingState.year}`;
+/**/
+//TODO: change all these defaults
 
   const [ minPoss, setMinPoss ] = useState(startingState.minPoss || ParamDefaults.defaultLineupMinPos);
   const [ maxTableSize, setMaxTableSize ] = useState(startingState.maxTableSize || ParamDefaults.defaultLineupMaxTableSize);
   const [ sortBy, setSortBy ] = useState(startingState.sortBy || ParamDefaults.defaultLineupSortBy);
   const [ filterStr, setFilterStr ] = useState(startingState.filter || ParamDefaults.defaultLineupFilter);
 
+  const [ isT100, setIsT100 ] = useState(false);
+  const [ isConfOnly, setIsConfOnly ] = useState(false);
+
   // Luck:
 
-  /** Adjust for luck in all stats */
-  const [ adjustForLuck, setAdjustForLuck ] = useState(_.isNil(startingState.lineupLuck) ?
-    ParamDefaults.defaultLineupLuckAdjust : startingState.lineupLuck
-  );
   /** Whether to show the luck diagnostics */
   const [ showLuckAdjDiags, setShowLuckAdjDiags ] = useState(_.isNil(startingState.showLineupLuckDiags) ?
     ParamDefaults.defaultLineupLuckDiagMode : startingState.showLineupLuckDiags
-  );
-  /** The settings to use for luck adjustment */
-  const [ luckConfig, setLuckConfig ] = useState(_.isNil(startingState.luck) ?
-    ParamDefaults.defaultLuckConfig : startingState.luck
-  );
-
-  /** Whether we are showing the luck config modal */
-  const [ showLuckConfig, setShowLuckConfig ] = useState(false);
-
-  /** Whether to badge/colorize the lineups */
-  const [ decorateLineups, setDecorateLineups ] = useState(_.isNil(startingState.decorate) ?
-    ParamDefaults.defaultLineupDecorate : startingState.decorate
   );
 
   // (slight delay when typing into the filter to make it more responsive)
@@ -115,20 +110,15 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
     const newState = {
       ...startingState,
       // Luck
-      luck: luckConfig,
-      lineupLuck: adjustForLuck,
       showLineupLuckDiags: showLuckAdjDiags,
       // Misc filters
-      decorate: decorateLineups,
-      showTotal: showTotals,
       minPoss: minPoss,
       maxTableSize: maxTableSize,
       sortBy: sortBy,
       filter: filterStr
     };
     onChangeState(newState);
-  }, [ decorateLineups, showTotals, minPoss, maxTableSize, sortBy, filterStr,
-        luckConfig, adjustForLuck, showLuckAdjDiags ]);
+  }, [  minPoss, maxTableSize, sortBy, filterStr, showLuckAdjDiags ]);
 
   // 3] Utils
 
@@ -137,16 +127,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
   const genderYearLookup = `${startingState.gender}_${startingState.year}`;
   const avgEfficiency = efficiencyAverages[genderYearLookup] || efficiencyAverages.fallback;
 
-  /** Need baseline player info for tooltip view/lineup decoration */
-  const baselinePlayerInfo = LineupTableUtils.buildBaselinePlayerInfo(
-    rosterStats.baseline, avgEfficiency
-  );
-
   // 3.1] Build individual info
-
-  // 3.1.1] Positional info from the season stats
-
-  const positionFromPlayerKey = LineupTableUtils.buildPositionPlayerMap(rosterStats.global, teamSeasonLookup);
 
   // 3.2] Table building
 
@@ -155,40 +136,32 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
   const defPrefixFn = (key: string) => "def_" + key;
   const defCellMetaFn = (key: string, val: any) => "def";
 
-  const lineups = lineupStats?.lineups || [];
-  const filteredLineups = LineupTableUtils.buildFilteredLineups(
-    lineups,
-    filterStr, sortBy, minPoss, maxTableSize,
-    teamSeasonLookup, positionFromPlayerKey
-  );
+  const lineups = modelInUse?.lineups || [];
 
-  const totalLineup = showTotals ? [
-    _.assign(LineupUtils.calculateAggregatedLineupStats(filteredLineups), {
-      key: LineupTableUtils.totalLineupId
-    })
-  ] : [];
-
-  const tableData = LineupTableUtils.buildEnrichedLineups(
-    filteredLineups,
-    teamStats.global, rosterStats.global, teamStats.baseline,
-    adjustForLuck, luckConfig.base, avgEfficiency,
-    totalLineup, teamSeasonLookup, positionFromPlayerKey, baselinePlayerInfo
-  ).flatMap((lineup, lineupIndex) => {
+  const tableData = lineups.flatMap((lineup, lineupIndex) => {
     TableDisplayUtils.injectPlayTypeInfo(lineup, false, false); //(inject assist numbers)
 
-    const codesAndIds = LineupTableUtils.buildCodesAndIds(lineup);
-    const sortedCodesAndIds = (lineup.key == LineupTableUtils.totalLineupId) ? undefined :
-      PositionUtils.orderLineup(codesAndIds, positionFromPlayerKey, teamSeasonLookup);
+    const teamSeasonLookup = `${startingState.gender}_${lineup.team}_${startingState.year}`;
 
-    const perLineupBaselinePlayerMap = _.fromPairs(codesAndIds.map((cid: { code: string, id: string }) => {
-      return [  cid.id, baselinePlayerInfo[cid.id] || {} ];
-    })) as Record<string, Record<string, any>>;
+    const perLineupBaselinePlayerMap = lineup.player_info;
+    const positionFromPlayerKey = lineup.player_info;
+    const codesAndIds = _.toPairs(lineup.player_info).map(kv => { return { code: kv[1].code, id: kv[0] } });
+    const sortedCodesAndIds = PositionUtils.orderLineup(codesAndIds, positionFromPlayerKey, teamSeasonLookup);
 
     const lineupTitleKey = "" + lineupIndex;
-    const title = sortedCodesAndIds ?
+    const subTitle = sortedCodesAndIds ?
       TableDisplayUtils.buildDecoratedLineup(
-        lineupTitleKey, sortedCodesAndIds, perLineupBaselinePlayerMap, positionFromPlayerKey, "off_adj_rtg", decorateLineups
+        lineupTitleKey, sortedCodesAndIds, perLineupBaselinePlayerMap, positionFromPlayerKey, "off_adj_rtg", true
       ) : "Weighted Total";
+
+    const rankings = <span><b>#{lineup.adj_margin_rank}</b> <small>(#{lineup.off_adj_ppp_rank} / #{lineup.def_adj_ppp_rank})</small></span>;
+
+    const title = <div><span className="float-left">
+      {rankings}
+      &nbsp;<span><a href=""><b>{lineup.team}</b></a> (<a href="">{lineup.conf.substring(0, 3)}</a>)</span>
+      </span><br/>
+      {subTitle}
+    </div>
 
     const stats = { off_title: title, def_title: "", ...lineup };
 
@@ -200,7 +173,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
           name="lineup"
           offLuck={lineup.off_luck_diags}
           defLuck={lineup.def_luck_diags}
-          baseline={luckConfig.base}
+          baseline={"season"}
           showHelp={showHelp}
         />, "small pt-2"
       ) ] : [] ,
@@ -264,12 +237,15 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
   // 3] Utils
   /** Sticks an overlay on top of the table if no query has ever been loaded */
   function needToLoadQuery() {
-    return lineupStats.lineups === undefined;
+    return lineups.length == 0;
   }
 
   /** For use in selects */
-  function stringToOption(s: string) {
+  function sortStringToOption(s: string) {
     return sortOptionsByValue[s];
+  }
+  function stringToOption(s: string) {
+    return { label: s, value: s};
   }
 
   /** Handling filter change (/key presses to fix the select/delete on page load) */
@@ -281,26 +257,74 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
     }
     setTimeoutId(window.setTimeout(() => {
       setFilterStr(toSet);
-    }, 250));
+    }, 500));
   };
 
   // 4] View
 
+  /** Copy to clipboard button */
+  const getCopyLinkButton = () => {
+    const tooltip = (
+      <Tooltip id="copyLinkTooltip">Copies URL to clipboard)</Tooltip>
+    );
+    return  <OverlayTrigger placement="auto" overlay={tooltip}>
+        <Button className="float-left" id={`copyLink_lineupLeaderboard`} variant="outline-secondary" size="sm">
+          <FontAwesomeIcon icon={faLink} />
+        </Button>
+      </OverlayTrigger>;
+  };
+
+  function getCurrentConfsOrPlaceholder() {
+    return (confs == "") ? { label: 'All Available Conferences' } : stringToOption(confs);
+  }
+
   return <Container>
     <LoadingOverlay
       active={needToLoadQuery()}
-      text={lineupStats.error_code ?
-        `Query Error: ${lineupStats.error_code}` :
-        "Press 'Submit' to view results"
-      }
+      spinner
+      text={"Loading Lineup Leaderboard..."}
     >
-      <LuckConfigModal
-        show={showLuckConfig}
-        onHide={() => setShowLuckConfig(false)}
-        onSave={(l: LuckParams) => setLuckConfig(l)}
-        luck={luckConfig}
-        showHelp={showHelp}
-      />
+    <Form.Group as={Row}>
+      <Col xs={6} sm={6} md={3} lg={2}>
+        <Select
+          value={ stringToOption(gender) }
+          options={[ "Men" ].map(
+            (gender) => stringToOption(gender)
+          )}
+          isSearchable={false}
+          onChange={(option) => { if ((option as any)?.value) setGender((option as any).value) }}
+        />
+      </Col>
+      <Col xs={6} sm={6} md={3} lg={2}>
+        <Select
+          value={ stringToOption(year) }
+          options={[ "2019/20" ].map( /*TODO: also add 2018/9*/
+            (r) => stringToOption(r)
+          )}
+          isSearchable={false}
+          onChange={(option) => { if ((option as any)?.value) setYear((option as any).value) }}
+        />
+      </Col>
+      <Col className="w-100" bsPrefix="d-lg-none d-md-none"/>
+      <Col xs={12} sm={12} md={6} lg={6}>
+        <Select
+          isClearable={true}
+          styles={{ menu: base => ({ ...base, zIndex: 1000 }) }}
+          value={ getCurrentConfsOrPlaceholder() }
+          options={(modelInUse?.confs || []).map(
+            (r) => stringToOption(r)
+          )}
+          onChange={(option) => {
+            //TODO: move to multi-select
+            const selection = (option as any)?.value || "";
+            setConfs(selection);
+          }}
+        />
+      </Col>
+      <Col>
+        {getCopyLinkButton()}
+      </Col>
+    </Form.Group>
       <Form.Row>
         <Form.Group as={Col} sm="8">
           <InputGroup>
@@ -310,7 +334,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
             <Form.Control
               onKeyUp={onFilterChange}
               onChange={onFilterChange}
-              placeholder = "eg Player1Code=PG;Player2FirstName;-Player3Surname;Player4Name=4+5"
+              placeholder = "eg TeamA;-TeamB;Player1Code;Player2FirstName;-Player3Surname"
               value={tmpFilterStr}
             />
           </InputGroup>
@@ -319,26 +343,10 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
         <Form.Group as={Col} sm="1">
           <GenericTogglingMenu>
             <GenericTogglingMenuItem
-              text="Decorate Lineups"
-              truthVal={decorateLineups}
-              onSelect={() => setDecorateLineups(!decorateLineups)}
-            />
-            <GenericTogglingMenuItem
-              text="Show Weighted Combo of All Lineups"
-              truthVal={showTotals}
-              onSelect={() => setShowTotals(!showTotals)}
-            />
-            <GenericTogglingMenuItem
-              text="Adjust for Luck"
-              truthVal={adjustForLuck}
-              onSelect={() => setAdjustForLuck(!adjustForLuck)}
+              text={<i class="text-secondary">Adjust for Luck</i>}
+              truthVal={true}
+              onSelect={() => {}}
               helpLink={showHelp ? "https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html" : undefined}
-            />
-            <Dropdown.Divider />
-            <GenericTogglingMenuItem
-              text="Configure Luck Adjustments..."
-              truthVal={false}
-              onSelect={() => setShowLuckConfig(true)}
             />
             <Dropdown.Divider />
             <GenericTogglingMenuItem
@@ -389,7 +397,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
             </InputGroup.Prepend>
             <Select
               className="w-75"
-              value={ stringToOption(sortBy) }
+              value={ sortStringToOption(sortBy) }
               options={ groupedOptions }
               onChange={(option) => { if ((option as any)?.value)
                 setSortBy((option as any)?.value);
@@ -403,16 +411,26 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
         <Col>
           <ToggleButtonGroup items={[
             {
-              label: "Totals",
-              tooltip: showTotals ? "Hide Weighted Combo of All Lineups" : "Show Weighted Combo of All Lineups",
-              toggled: showTotals,
-              onClick: () => setShowTotals(!showTotals)
+              label: "Luck",
+              tooltip: "Statistics always adjusted for luck",
+              toggled: true,
+              onClick: () => {}
             },
             {
-              label: "Luck",
-              tooltip: adjustForLuck ? "Remove luck adjustments" : "Adjust statistics for luck",
-              toggled: adjustForLuck,
-              onClick: () => setAdjustForLuck(!adjustForLuck)
+              label: "T100",
+              tooltip: "Leaderboard of lineups vs T100 opposition",
+              toggled: isT100,
+              onClick: () => {
+                setIsT100(!isT100); setIsConfOnly(false);
+              }
+            },
+            {
+              label: "Conf",
+              tooltip: "Leaderboard of lineups vs conference opposition",
+              toggled: isConfOnly,
+              onClick: () => {
+                setIsT100(false); setIsConfOnly(!isConfOnly);
+              }
             }
           ]}/>
         </Col>
@@ -420,7 +438,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
       <Row className="mt-2">
         <Col style={{paddingLeft: "5px", paddingRight: "5px"}}>
           <GenericTable
-            tableCopyId="lineupStatsTable"
+            tableCopyId="lineupLeaderboardTable"
             tableFields={CommonTableDefs.lineupTable}
             tableData={tableData}
             cellTooltipMode="none"
@@ -431,4 +449,4 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
   </Container>;
 };
 
-export default LineupStatsTable;
+export default LineupLeaderboardTable;
