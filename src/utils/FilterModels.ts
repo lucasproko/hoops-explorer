@@ -104,6 +104,9 @@ export type LineupLeaderboardParams = {
   filter?: string,
   // Luck adjustments
   showLineupLuckDiags?: boolean,
+  // Query pre-sets
+  confOnly?: boolean,
+  t100?: boolean
 };
 
 export type TeamReportFilterParams = {
@@ -155,6 +158,12 @@ export class ParamDefaults {
   static readonly defaultLineupFilter = "";
   static readonly defaultLineupLuckAdjust = false;
   static readonly defaultLineupLuckDiagMode = false;
+  // Lineup leaderboard
+  static readonly defaultLineupLboardMinPos = "20";
+  static readonly defaultLineupLboardMaxTableSize = "100";
+  static readonly defaultLineupLboardSortBy = "desc:diff_adj_ppp";
+  static readonly defaultLineupLboardFilter = "";
+  static readonly defaultLineupLboardLuckDiagMode = false;
   // Report
   static readonly defaultTeamReportSortBy = "desc:off_poss:on";
   static readonly defaultTeamReportFilter = "";

@@ -14,7 +14,10 @@ export class LineupTableUtils {
 
   /** Handy accessor for picking the player codes out of the lineup */
   static buildCodesAndIds(lineup: any) {
-    return lineup.players_array?.hits?.hits?.[0]?._source?.players || [];
+    return lineup.players_array ?
+      (lineup.players_array?.hits?.hits?.[0]?._source?.players || []) :
+      _.toPairs(lineup.player_info).map(kv => { return { code: kv[1].code, id: kv[0] } }) //(leaderboard mode)
+      ;
   }
 
   /** Injects some advanced stats into players, returns an associative array vs player.key */
@@ -69,8 +72,8 @@ export class LineupTableUtils {
   /** Builds a filtered sorted list of lineups */
   static buildFilteredLineups(
     lineups: any[],
-    filterStr: string, sortBy: string, minPoss: string, maxTableSize: string,
-    teamSeasonLookup: string, positionFromPlayerKey: Record<string, any>,
+    filterStr: string, sortBy: string | undefined, minPoss: string, maxTableSize: string,
+    teamSeasonLookup: string | undefined, positionFromPlayerKey: Record<string, any> | undefined,
   ) {
     const [
       filterFragmentsPve, filterFragmentsNve, filterOnPosition
@@ -102,17 +105,22 @@ export class LineupTableUtils {
     }).filter((lineup) => {
 
       const codesAndIds = LineupTableUtils.buildCodesAndIds(lineup);
+
+      const lineupPosFromPlayerKey = positionFromPlayerKey || lineup.player_info; //(leaderboard version, calc from lineup)
+      const lineupTeamSeason = teamSeasonLookup ||
+        `${lineup.gender}_${lineup.team}_${lineup.year}`; //(leaderboard version, calc from lineup)
+
       const namesToTest = filterOnPosition ?
-        PositionUtils.orderLineup(codesAndIds, positionFromPlayerKey, teamSeasonLookup) : codesAndIds;
+        PositionUtils.orderLineup(codesAndIds, lineupPosFromPlayerKey, teamSeasonLookup) : codesAndIds;
+      const teamFilter = lineup.team ? [ { id: lineup.team, code: lineup.team } ] : []; //(leaderboard version)
 
       const playerFilter = PositionUtils.testPositionalAwareFilter(
-        namesToTest, filterFragmentsPve, filterFragmentsNve
+        namesToTest.concat(teamFilter), filterFragmentsPve, filterFragmentsNve
       );
 
-      return playerFilter && (lineup.key != ""); // (workaround for #53 pending fix)
-
+     return playerFilter && (lineup.key != ""); // (workaround for #53 pending fix)
     }).sortBy(
-       [ sorter(sortBy) ]
+       sortBy ? [ sorter(sortBy) ] : [] //(don't sort if sortBy not specified)
     ).take(
       parseInt(maxTableSize)
     ).value();

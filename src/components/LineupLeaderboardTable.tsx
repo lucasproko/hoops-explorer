@@ -42,6 +42,7 @@ import { TableDisplayUtils } from "../utils/tables/TableDisplayUtils";
 import { LineupTableUtils } from "../utils/tables/LineupTableUtils";
 
 // Util imports
+import { UrlRouting } from "../utils/UrlRouting";
 import { LineupUtils } from "../utils/stats/LineupUtils";
 import { CbbColors } from "../utils/CbbColors";
 import { CommonTableDefs } from "../utils/CommonTableDefs";
@@ -49,6 +50,9 @@ import { PositionUtils } from "../utils/stats/PositionUtils";
 import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
 import { LineupLeaderboardParams, ParamDefaults, LuckParams } from '../utils/FilterModels';
 import { AvailableTeams } from '../utils/internal-data/AvailableTeams';
+import { ConferenceToNickname, NicknameToConference, Power6Conferences } from '../utils/public-data/ConferenceInfo';
+
+import ReactDOMServer from 'react-dom/server'
 
 export type LineupStatsModel = {
   lineups?: Array<any>,
@@ -84,31 +88,30 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
   const [ gender, setGender ] = useState(startingState.gender || ParamDefaults.defaultGender);
 
   // Misc display
-/**/
-//TODO: change all these defaults
 
-  const [ minPoss, setMinPoss ] = useState(startingState.minPoss || ParamDefaults.defaultLineupMinPos);
-  const [ maxTableSize, setMaxTableSize ] = useState(startingState.maxTableSize || ParamDefaults.defaultLineupMaxTableSize);
-  const [ sortBy, setSortBy ] = useState(startingState.sortBy || ParamDefaults.defaultLineupSortBy);
-  const [ filterStr, setFilterStr ] = useState(startingState.filter || ParamDefaults.defaultLineupFilter);
+  const [ minPoss, setMinPoss ] = useState(startingState.minPoss || ParamDefaults.defaultLineupLboardMinPos);
+  const [ maxTableSize, setMaxTableSize ] = useState(startingState.maxTableSize || ParamDefaults.defaultLineupLboardMaxTableSize);
+  const [ sortBy, setSortBy ] = useState(startingState.sortBy || ParamDefaults.defaultLineupLboardSortBy);
+  const [ filterStr, setFilterStr ] = useState(startingState.filter || ParamDefaults.defaultLineupLboardFilter);
 
-  const [ isT100, setIsT100 ] = useState(false);
-  const [ isConfOnly, setIsConfOnly ] = useState(false);
+  const [ isT100, setIsT100 ] = useState(startingState.t100 || false);
+  const [ isConfOnly, setIsConfOnly ] = useState(startingState.confOnly || false);
 
   // Luck:
 
   /** Whether to show the luck diagnostics */
   const [ showLuckAdjDiags, setShowLuckAdjDiags ] = useState(_.isNil(startingState.showLineupLuckDiags) ?
-    ParamDefaults.defaultLineupLuckDiagMode : startingState.showLineupLuckDiags
+    ParamDefaults.defaultLineupLboardLuckDiagMode : startingState.showLineupLuckDiags
   );
 
   // (slight delay when typing into the filter to make it more responsive)
-  const [ timeoutId, setTimeoutId ] = useState(-1);
-  const [ tmpFilterStr, setTmpFilterStr ] = useState(filterStr);
+  var timeoutId = -1;
 
   useEffect(() => { //(this ensures that the filter component is up to date with the union of these fields)
     const newState = {
       ...startingState,
+      conf: confs, gender: gender, year: year,
+      t100: isT100, confOnly: isConfOnly,
       // Luck
       showLineupLuckDiags: showLuckAdjDiags,
       // Misc filters
@@ -118,7 +121,10 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       filter: filterStr
     };
     onChangeState(newState);
-  }, [  minPoss, maxTableSize, sortBy, filterStr, showLuckAdjDiags ]);
+  }, [ minPoss, maxTableSize, sortBy, filterStr,
+      showLuckAdjDiags,
+      isT100, isConfOnly,
+      confs, year, gender ]);
 
   // 3] Utils
 
@@ -136,7 +142,17 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
   const defPrefixFn = (key: string) => "def_" + key;
   const defCellMetaFn = (key: string, val: any) => "def";
 
-  const lineups = modelInUse?.lineups || [];
+  const confSet = confs ? new Set(
+    _.flatMap((confs || "").split(","), c => c == "P6" ? Power6Conferences : [ NicknameToConference[c] || c ])
+  ) : undefined;
+  const lineups = LineupTableUtils.buildFilteredLineups(
+    (modelInUse?.lineups || []).filter(lineup => {
+      return !confSet || confSet.has(lineup.conf || "Unknown");
+    }),
+    filterStr,
+    (sortBy == ParamDefaults.defaultLineupLboardSortBy) ? undefined : sortBy,
+    minPoss, maxTableSize, undefined, undefined //<-calc from lineup
+  );
 
   const tableData = lineups.flatMap((lineup, lineupIndex) => {
     TableDisplayUtils.injectPlayTypeInfo(lineup, false, false); //(inject assist numbers)
@@ -156,9 +172,24 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
 
     const rankings = <span><b>#{lineup.adj_margin_rank}</b> <small>(#{lineup.off_adj_ppp_rank} / #{lineup.def_adj_ppp_rank})</small></span>;
 
+    const confNickname = ConferenceToNickname[lineup.conf] || "???";
+
+    const teamTooltip = (
+      <Tooltip id={`team_${lineupIndex}`}>Open new tab with all lineups for this team</Tooltip>
+    );
+    const teamParams = {
+      team: lineup.team, gender: gender, year: year,
+      minRank: 0, maxRank: isT100 ? 100 : 400,
+      queryFilters: isConfOnly ? "Conf" : undefined,
+      lineupLuck: true
+    };
+    const teamEl = <OverlayTrigger placement="auto" overlay={teamTooltip}>
+      <a target="_new" href={UrlRouting.getLineupUrl(teamParams, {})}><b>{lineup.team}</b></a>
+    </OverlayTrigger>;
+
     const title = <div><span className="float-left">
       {rankings}
-      &nbsp;<span><a href=""><b>{lineup.team}</b></a> (<a href="">{lineup.conf.substring(0, 3)}</a>)</span>
+      &nbsp;<span>{teamEl} (<span>{confNickname}</span>)</span>
       </span><br/>
       {subTitle}
     </div>
@@ -211,10 +242,10 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
   );
   /** Put these options at the front */
   const mostUsefulSubset = [
-    "desc:off_poss",
     "desc:diff_adj_ppp",
     "desc:off_adj_ppp",
     "asc:def_adj_ppp",
+    "desc:off_poss",
   ];
   /** The two sub-headers for the dropdown */
   const groupedOptions = [
@@ -237,7 +268,7 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
   // 3] Utils
   /** Sticks an overlay on top of the table if no query has ever been loaded */
   function needToLoadQuery() {
-    return lineups.length == 0;
+    return (modelInUse?.lineups || []).length == 0;
   }
 
   /** For use in selects */
@@ -251,11 +282,10 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
   /** Handling filter change (/key presses to fix the select/delete on page load) */
   const onFilterChange = (ev: any) => {
     const toSet = ev.target.value;
-    setTmpFilterStr(toSet);
     if (timeoutId != -1) {
       window.clearTimeout(timeoutId);
     }
-    setTimeoutId(window.setTimeout(() => {
+    timeoutId = (window.setTimeout(() => {
       setFilterStr(toSet);
     }, 500));
   };
@@ -275,8 +305,28 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
   };
 
   function getCurrentConfsOrPlaceholder() {
-    return (confs == "") ? { label: 'All Available Conferences' } : stringToOption(confs);
+    return (confs == "") ?
+      { label: 'All Available Conferences' } :
+      confs.split(",").map(conf => stringToOption(NicknameToConference[conf] || conf));
   }
+
+  /** Slightly hacky code to render the conference nick names */
+  const ConferenceValueContainer = props => {
+    const oldText = props.children[0];
+    const fullConfname = oldText.props.children;
+    const newText = {
+      ...oldText,
+      props: {
+        ...oldText.props,
+        children: [ ConferenceToNickname[fullConfname] || fullConfname ]
+      }
+    }
+    const newProps = {
+      ...props,
+      children: [ newText, props.children[1] ]
+    }
+    return <components.MultiValueContainer {...newProps} />
+  };
 
   return <Container>
     <LoadingOverlay
@@ -298,7 +348,7 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       <Col xs={6} sm={6} md={3} lg={2}>
         <Select
           value={ stringToOption(year) }
-          options={[ "2019/20" ].map( /*TODO: also add 2018/9*/
+          options={[ "2018/9", "2019/20" ].map( /*TODO: also add 2018/9*/
             (r) => stringToOption(r)
           )}
           isSearchable={false}
@@ -310,14 +360,16 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
         <Select
           isClearable={true}
           styles={{ menu: base => ({ ...base, zIndex: 1000 }) }}
+          isMulti
+          components={{ MultiValueContainer: ConferenceValueContainer }}
           value={ getCurrentConfsOrPlaceholder() }
-          options={(modelInUse?.confs || []).map(
+          options={["Power 6 Conferences"].concat(modelInUse?.confs || []).map(
             (r) => stringToOption(r)
           )}
-          onChange={(option) => {
-            //TODO: move to multi-select
-            const selection = (option as any)?.value || "";
-            setConfs(selection);
+          onChange={(options) => {
+            const selection = (options ||  []).map(option => (option as any)?.value || "");
+            const confStr = selection.filter(t => t != "").map(c => ConferenceToNickname[c] || c).join(",")
+            setConfs(confStr);
           }}
         />
       </Col>
@@ -335,7 +387,6 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
               onKeyUp={onFilterChange}
               onChange={onFilterChange}
               placeholder = "eg TeamA;-TeamB;Player1Code;Player2FirstName;-Player3Surname"
-              value={tmpFilterStr}
             />
           </InputGroup>
         </Form.Group>
@@ -369,8 +420,8 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
                   setMaxTableSize(ev.target.value);
                 }
               }}
-              placeholder = "eg 50"
               value={maxTableSize}
+              placeholder = "eg 100"
             />
           </InputGroup>
         </Form.Group>
@@ -385,7 +436,7 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
                   setMinPoss(ev.target.value);
                 }
               }}
-              placeholder = "eg 5"
+              placeholder = "eg 20"
               value={minPoss}
             />
           </InputGroup>
@@ -432,7 +483,15 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
                 setIsT100(false); setIsConfOnly(!isConfOnly);
               }
             }
-          ]}/>
+          ].concat(showHelp ? [
+            {
+              label: <a href="https://hoop-explorer.blogspot.com/2020/07/understanding-lineup-analyzer-page.html" target="_new">?</a>,
+              tooltip: "Open a page that explains some of the elements of this table",
+              toggled: false,
+              onClick: () => {}
+            }
+          ] : [])
+          }/>
         </Col>
       </Form.Row>
       <Row className="mt-2">

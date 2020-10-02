@@ -19,10 +19,11 @@ import { dataLastUpdated } from '../../utils/internal-data/dataLastUpdated';
 type Props = {
   readonly server: string,
   readonly year?: string,
-  readonly gender?: string
+  readonly gender?: string,
+  readonly dateOverride?: number
 }
 
-const Footer: React.FunctionComponent<Props> = ({server, gender, year}) => {
+const Footer: React.FunctionComponent<Props> = ({server, gender, year, dateOverride}) => {
 
   const emailAddress = "bWFpbHRvOmhvb3AuZXhwbG9yZXJAZ21haWwuY29t";
   const twitterAddress = "aHR0cHM6Ly90d2l0dGVyLmNvbS9JdHNBVGVycF9DQkI=";
@@ -30,8 +31,8 @@ const Footer: React.FunctionComponent<Props> = ({server, gender, year}) => {
   const lastUpdated = _.flow([
     (maybeYear: string, maybeGender: string) => [ maybeYear || "", maybeGender || "" ],
     (yearGender: string) => dataLastUpdated[`${yearGender[1]}_${yearGender[0]}`],
-    (lastUpdate: string | undefined) => lastUpdate ?
-      new Date(parseInt(lastUpdate)*1000).toString() : "unknown",
+    (lastUpdate: string | undefined) => (lastUpdate || dateOverride) ?
+      new Date((dateOverride || parseInt(lastUpdate))*1000).toString() : "unknown",
       // Some browsers (cough firefox cough), show the timezone in full format which is annoyingly long
       // so turn the timezone into initials in that case
       (lastUpdate: string) => lastUpdate.replace(/[(]([A-Z][a-z][^)]*)+[)]/, (match: string, ...args: any[]) => {

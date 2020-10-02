@@ -20,7 +20,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 // App components:
-import { ParamPrefixes, LineupLeaderboardParams } from '../utils/FilterModels';
+import { ParamPrefixes, LineupLeaderboardParams, ParamDefaults } from '../utils/FilterModels';
 import { HistoryManager } from '../utils/HistoryManager';
 import LineupLeaderboardTable, { LineupLeaderboardModel } from '../components/LineupLeaderboardTable';
 import GenericCollapsibleCard from '../components/shared/GenericCollapsibleCard';
@@ -46,9 +46,9 @@ const LineupLeaderboardPage: NextPage<{}> = () => {
 
   const [ gaInited, setGaInited ] = useState(false);
   const [ dataEvent, setDataEvent ] = useState({
-    all: { lineups: [], confs: [] },
-    t100: { lineups: [], confs: [] },
-    conf: { lineups: [], confs: [] }
+    all: { lineups: [], confs: [], lastUpdated: 0 },
+    t100: { lineups: [], confs: [], lastUpdated: 0 },
+    conf: { lineups: [], confs: [], lastUpdated: 0 }
   });
 
   if (!dataEvent.all?.lineups?.length) {
@@ -59,6 +59,7 @@ const LineupLeaderboardPage: NextPage<{}> = () => {
       });
     });
   }
+  const dateOverride = dataEvent.all?.lastUpdated; //TODO: whichever one is selected
 
   // Game filter
 
@@ -77,8 +78,21 @@ const LineupLeaderboardPage: NextPage<{}> = () => {
   }
 
   const onLineupLeaderboardParamsChange = (rawParams: LineupLeaderboardParams) => {
-    if (!_.isEqual(rawParams, lineupLeaderboardParams)) { //(to avoid recursion)
-      const href = getRootUrl(rawParams);
+    const params = _.omit(rawParams, _.flatten([ // omit all defaults
+      (!rawParams.t100) ? [ 't100' ] : [],
+      (!rawParams.confOnly) ? [ 'confOnly' ] : [],
+      (!rawParams.filter) ? [ 'filter' ] : [],
+      (!rawParams.conf) ? [ 'conf' ] : [],
+
+      (rawParams.minPoss == ParamDefaults.defaultLineupLboardMinPos) ? [ 'minPoss' ] : [],
+      (rawParams.maxTableSize == ParamDefaults.defaultLineupLboardMaxTableSize) ? [ 'maxTableSize' ] : [],
+      (rawParams.sortBy == ParamDefaults.defaultLineupLboardSortBy) ? [ 'sortBy' ] : [],
+
+      (rawParams.showLineupLuckDiags == ParamDefaults.defaultLineupLboardLuckDiagMode) ? [ 'showLineupLuckDiags' ] : [],
+    ]));
+    
+    if (!_.isEqual(params, lineupLeaderboardParams)) { //(to avoid recursion)
+      const href = getRootUrl(params);
       const as = href;
       //TODO: this doesn't work if it's the same page (#91)
       // (plus adding the _current_ query to the history is a bit counter-intuitive)
@@ -86,7 +100,7 @@ const LineupLeaderboardPage: NextPage<{}> = () => {
       // (need to figure out how to detect inter-page)
       // (for now use use "replace" vs "push" to avoid stupidly long browser histories)
       Router.replace(href, as, { shallow: true });
-      setLineupLeaderboardParams(rawParams); // (to ensure the new params are included in links)
+      setLineupLeaderboardParams(params); // (to ensure the new params are included in links)
     }
   }
 
@@ -119,7 +133,7 @@ const LineupLeaderboardPage: NextPage<{}> = () => {
         onChangeState={onLineupLeaderboardParamsChange}
       />
     </Row>
-    <Footer year={lineupLeaderboardParams.year} gender={lineupLeaderboardParams.gender} server={server}/>
+    <Footer dateOverride={dateOverride} year={lineupLeaderboardParams.year} gender={lineupLeaderboardParams.gender} server={server}/>
   </Container>;
 }
 export default LineupLeaderboardPage;

@@ -24,11 +24,12 @@ import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
 import { efficiencyInfo } from '../utils/internal-data/efficiencyInfo';
 import { LineupTableUtils } from "../utils/tables/LineupTableUtils";
 import { AvailableTeams } from '../utils/internal-data/AvailableTeams';
+import { dataLastUpdated } from '../utils/internal-data/dataLastUpdated';
 
 //process.argv 2... are the command line args passed via "-- (args)"
 
 const sleep = (milliseconds: number) => {
-  return new Promise(resolve => setTimeout(resolve, milliseconds))
+  return new Promise(resolve => setTimeout(resolve, milliseconds));
 }
 
 class MutableAsyncResponse {
@@ -56,17 +57,22 @@ const savedLineups = [];
 const savedConfOnlyLineups = [];
 const savedT100Lineups = [];
 
-//TODO: command line parameters:
-const inGender = "Men";
-const inYear = "2019/20";
-const teamFilter = new Set([ "Maryland", "Iowa", "Michigan", "Dayton", "Rutgers" ]);
+console.log("Start processing with args: " + _.drop(process.argv, 2));
+
+const inGender = (_.find(process.argv, p => _.startsWith(p, "--gender=")) || "--gender=Men").substring(9);
+const inYear = (_.find(process.argv, p => _.startsWith(p, "--year=")) || "--year=2019/20").substring(7);
+console.log(`Args: gender=[${inGender}] year=[${inYear}]`);
+const teamFilter = (inYear == "2019/20") ? new Set([ "Maryland", "Iowa", "Michigan", "Dayton", "Rutgers" ]) : undefined;
+
+const genderYearLookup = `${inGender}_${inYear}`;
+const avgEfficiency = efficiencyAverages[genderYearLookup] || efficiencyAverages.fallback;
 
 const conferenceSet = new Set([]);
 
 async function main() {
 
   const teams = _.chain(AvailableTeams.byName).values().flatten().filter(team => {
-    return team.gender == inGender && team.year == inYear && (!teamFilter || teamFilter.has(team.team))
+    return team.gender == inGender && team.year == inYear && ((teamFilter == undefined) || teamFilter.has(team.team))
   }).map(team => team.team).value();
 
   await Promise.all(teams.map(async team => {
@@ -90,8 +96,6 @@ async function main() {
     };
 
     const teamSeasonLookup = `${fullRequestModel.gender}_${fullRequestModel.team}_${fullRequestModel.year}`;
-    const genderYearLookup = `${fullRequestModel.gender}_${fullRequestModel.year}`;
-    const avgEfficiency = efficiencyAverages[genderYearLookup] || efficiencyAverages.fallback;
 
     // Snag conference from D1 metadata
     const conference = efficiencyInfo?.[genderYearLookup]?.[0]?.[team]?.conf || "Unknown";
@@ -149,7 +153,7 @@ async function main() {
 
       const filteredLineups = LineupTableUtils.buildFilteredLineups(
         lineups,
-        "", "desc:off_poss", "0", "5", //TODO: take top 5 (sorted by off_pos) with no min poss
+        "", "desc:off_poss", "0", "5", //take top 5 (sorted by off_pos) with no min poss
         teamSeasonLookup, positionFromPlayerKey
       );
 
@@ -161,7 +165,13 @@ async function main() {
       ).map(tmpLineup => {
         // (removes unused fields from the JSON, to save space)
         const lineup =
-          _.chain(tmpLineup).toPairs().filter(kv => !_.startsWith(kv[0], "total_")).fromPairs().value();
+          _.chain(tmpLineup).toPairs().filter(kv => {
+            return (
+              !_.startsWith(kv[0], "total_")
+              || //(need to keep scramble and transition counts for now, used in the interim play category tooltips)
+              (_.endsWith(kv[0], "_poss") || _.endsWith(kv[0], "_ppp"))
+            );
+          }).fromPairs().value();
         // Add conference:
         lineup.conf = conference;
         lineup.team = team;
@@ -192,13 +202,16 @@ async function main() {
         case "t100": savedT100Lineups.push(...tableData); break;
         default: console.log(`WARNING unexpected label: ${label}`);
       }
-    })); //(end loop over leaderboards)
 
-    await sleep(250); //(just ensure we don't hammer ES too badly)
+      await sleep(500); //(just ensure we don't hammer ES too badly)
+
+    })); //(end loop over leaderboards)
 
   })); //(end loop over teams)
   //  console.log("RECEIVED: " + JSON.stringify(tableData, null, 3));
 }
+
+const topLineupSize = 400;
 
 /** Adds some handy default sortings and removes possession outliers */
 function completeLineupLeaderboard(key: string, leaderboard: any[]) {
@@ -208,28 +221,31 @@ function completeLineupLeaderboard(key: string, leaderboard: any[]) {
     return acc + value;
   }, 0);
   const mean = sum/(leaderboard.length || 1);
-  const thresh = 0.6*mean;
-/**/
-//TODO: filter everything that isn't in the T400 in one of the 3 categories
+  const thresh = Math.max(0.6*mean, 20);
   const filteredLeaderboard = leaderboard.filter(lineup => (lineup.off_poss?.value || 0) >= thresh);
-
-  const removed = leaderboard.length - filteredLeaderboard.length;
-  console.log(`${key}: mean=[${mean}] thresh=[${thresh}] removed=[${removed}]`);
+  const removedA = leaderboard.length - filteredLeaderboard.length;
 
   [ "off_adj_ppp", "def_adj_ppp" ].forEach((key) => {
     _.sortBy(filteredLeaderboard, lineup => -1*(lineup[key]?.value || 0)).forEach((lineup, index) => {
       lineup[`${key}_rank`] = index + 1;
     });
   });
-  return _.sortBy(
+  const rankedLineups = _.sortBy(
     filteredLeaderboard, lineup => (lineup.def_adj_ppp?.value || 0) - (lineup.off_adj_ppp?.value || 0)
   ).map((lineup, index) => {
     lineup[`adj_margin_rank`] = index + 1;
     return lineup;
   });
-}
 
-console.log("Start processing with args: " + _.drop(process.argv, 2));
+  const finalLineups = rankedLineups.filter((lineup, index) => { //get T400 in any of categories
+    return index < topLineupSize || (lineup.off_adj_ppp_rank <= topLineupSize) || (lineup.def_adj_ppp_rank <= topLineupSize);
+  });
+  const removedB = rankedLineups.length - finalLineups.length;
+
+  console.log(`${key}: mean=[${mean}] thresh=[${thresh}] removedA=[${removedA}] removedB=[${removedB}]`);
+
+  return finalLineups;
+}
 
 main().then(_ => {
 
@@ -238,6 +254,7 @@ main().then(_ => {
   [ [ "all", savedLineups ], [ "conf", savedConfOnlyLineups ], [ "t100", savedT100Lineups ] ].forEach(kv => {
     const sortedLineups = completeLineupLeaderboard(...kv);
     const sortedLineupsStr = JSON.stringify({
+      lastUpdated: dataLastUpdated[genderYearLookup] || new Date().getTime(),
       confs: Array.from(conferenceSet.values()),
       lineups: sortedLineups
     });
