@@ -32,7 +32,7 @@ const Footer: React.FunctionComponent<Props> = ({server, gender, year, dateOverr
     (maybeYear: string, maybeGender: string) => [ maybeYear || "", maybeGender || "" ],
     (yearGender: string) => dataLastUpdated[`${yearGender[1]}_${yearGender[0]}`],
     (lastUpdate: string | undefined) => (lastUpdate || dateOverride) ?
-      new Date((dateOverride || parseInt(lastUpdate))*1000).toString() : "unknown",
+      new Date((dateOverride || parseInt(lastUpdate || "0"))*1000).toString() : "unknown",
       // Some browsers (cough firefox cough), show the timezone in full format which is annoyingly long
       // so turn the timezone into initials in that case
       (lastUpdate: string) => lastUpdate.replace(/[(]([A-Z][a-z][^)]*)+[)]/, (match: string, ...args: any[]) => {

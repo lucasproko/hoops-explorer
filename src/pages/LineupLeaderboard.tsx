@@ -22,7 +22,7 @@ import Col from 'react-bootstrap/Col';
 // App components:
 import { ParamPrefixes, LineupLeaderboardParams, ParamDefaults } from '../utils/FilterModels';
 import { HistoryManager } from '../utils/HistoryManager';
-import LineupLeaderboardTable, { LineupLeaderboardModel } from '../components/LineupLeaderboardTable';
+import LineupLeaderboardTable, { LineupLeaderboardStatsModel } from '../components/LineupLeaderboardTable';
 import GenericCollapsibleCard from '../components/shared/GenericCollapsibleCard';
 import Footer from '../components/shared/Footer';
 import HeaderBar from '../components/shared/HeaderBar';
@@ -62,7 +62,7 @@ const LineupLeaderboardPage: NextPage<{}> = () => {
   // Game filter
 
   function getRootUrl(params: LineupLeaderboardParams) {
-    return UrlRouting.getLineupLeaderboardUrl(params, {});
+    return UrlRouting.getLineupLeaderboardUrl(params);
   }
 
   const [ lineupLeaderboardParams, setLineupLeaderboardParams ] = useState(
@@ -105,6 +105,7 @@ const LineupLeaderboardPage: NextPage<{}> = () => {
 
     if ((!dataEvent[dataSubEventKey]?.lineups?.length) || (currYear != year)) {
       setCurrYear(year);
+      setDataSubEvent({ lineups: [], confs: [], lastUpdated: 0 }); //(set the spinner off)
       fetch(`/leaderboards/lineups/lineups_${dataSubEventKey}_${gender}_${year}.json`)
         .then((response: fetch.IsomorphicResponse) => {
           return response.json().then((json: any) => {
@@ -112,12 +113,21 @@ const LineupLeaderboardPage: NextPage<{}> = () => {
             setDataSubEvent(json);
           });
         });
-    } else {
+    } else if (dataSubEvent != dataEvent[dataSubEventKey]) {
       setDataSubEvent(dataEvent[dataSubEventKey]);
     }
   }, [ lineupLeaderboardParams ]);
 
   // View
+
+  /** Only rebuild the table if the data changes */
+  const table = React.useMemo(() => {
+    return <LineupLeaderboardTable
+      startingState={lineupLeaderboardParams}
+      dataEvent={dataSubEvent}
+      onChangeState={onLineupLeaderboardParamsChange}
+    />
+  }, [dataSubEvent]);
 
   return <Container>
     <Row>
@@ -132,11 +142,7 @@ const LineupLeaderboardPage: NextPage<{}> = () => {
         />
     </Row>
     <Row className="mt-3">
-      <LineupLeaderboardTable
-        startingState={lineupLeaderboardParams}
-        dataEvent={dataSubEvent}
-        onChangeState={onLineupLeaderboardParamsChange}
-      />
+      {table}
     </Row>
     <Footer dateOverride={dataEvent.all?.lastUpdated} year={lineupLeaderboardParams.year} gender={lineupLeaderboardParams.gender} server={server}/>
   </Container>;

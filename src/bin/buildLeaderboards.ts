@@ -54,9 +54,9 @@ class MutableAsyncResponse {
   }
 }
 
-const savedLineups = [];
-const savedConfOnlyLineups = [];
-const savedT100Lineups = [];
+const savedLineups = [] as Array<any>;
+const savedConfOnlyLineups = [] as Array<any>;
+const savedT100Lineups = [] as Array<any>;
 
 console.log("Start processing with args: " + _.drop(process.argv, 2));
 
@@ -70,7 +70,7 @@ const teamFilter = (inYear == "2019/20") ? new Set([ "Maryland", "Iowa", "Michig
 const genderYearLookup = `${inGender}_${inYear}`;
 const avgEfficiency = efficiencyAverages[genderYearLookup] || efficiencyAverages.fallback;
 
-const conferenceSet = new Set([]);
+const conferenceSet = new Set() as Set<string>;
 
 async function main() {
 
@@ -78,8 +78,7 @@ async function main() {
     return team.gender == inGender && team.year == inYear && ((teamFilter == undefined) || teamFilter.has(team.team))
   }).map(team => team.team).value();
 
-  await Promise.all(teams.map(async team => {
-
+  for (const team of teams) {
     console.log(`Processing ${inGender} ${team} ${inYear}`);
 
     const fullRequestModel = {
@@ -104,12 +103,19 @@ async function main() {
     const conference = efficiencyInfo?.[genderYearLookup]?.[0]?.[team]?.conf || "Unknown";
     conferenceSet.add(conference);
 
-    await Promise.all([ [ "all", fullRequestModel], [ "conf", requestModelConfOnly ], [ "t100", requestModelT100 ] ].map(async ([label, requestModel]: [string, any]) => {
+    const inputCases: Array<[string, any]> =
+      [ [ "all", fullRequestModel], [ "conf", requestModelConfOnly ], [ "t100", requestModelT100 ] ];
+
+    await sleep(1000); //(just ensure we don't hammer ES too badly)
+    console.log("Asking Elasticsearch:")
+
+    const getAllDataPromise = Promise.all(inputCases.map(async ([label, requestModel]: [string, any]) => {
       const requestParams = QueryUtils.stringify(requestModel);
 
       const lineupResponse = new MutableAsyncResponse();
       const teamResponse = new MutableAsyncResponse();
       const playerResponse = new MutableAsyncResponse();
+
       await Promise.all([
         calculateLineupStats(
           { url: `https://hoop-explorer.com/?${requestParams}` } as unknown as NextApiRequest,
@@ -206,11 +212,10 @@ async function main() {
         default: console.log(`WARNING unexpected label: ${label}`);
       }
 
-      await sleep(500); //(just ensure we don't hammer ES too badly)
-
     })); //(end loop over leaderboards)
 
-  })); //(end loop over teams)
+    await getAllDataPromise;
+  }
   //  console.log("RECEIVED: " + JSON.stringify(tableData, null, 3));
 }
 
@@ -219,13 +224,17 @@ const topLineupSize = 400;
 /** Adds some handy default sortings and removes possession outliers */
 function completeLineupLeaderboard(key: string, leaderboard: any[]) {
   // Remove possession outliers
-  const sum = _.reduce(leaderboard, (acc, v) => {
+  const topByPoss = _.sortBy(leaderboard, lineup => -1*(lineup.off_poss?.value || 0));
+  const top100ByPoss = _.take(topByPoss, 100);
+  const sum = _.reduce(top100ByPoss, (acc, v) => {
     const value = v.off_poss?.value || 0;
     return acc + value;
   }, 0);
-  const mean = sum/(leaderboard.length || 1);
-  const thresh = Math.max(0.6*mean, 20);
-  const filteredLeaderboard = leaderboard.filter(lineup => (lineup.off_poss?.value || 0) >= thresh);
+  const mean = sum/(top100ByPoss.length || 1);
+  const thresh = Math.max(0.75*mean, 20); // Have to be within 75% of average value of top 100 by possession (or in T100)
+  const filteredLeaderboard = topByPoss.filter(
+    (lineup, lineupIndex) => (lineupIndex < 100) || ((lineup.off_poss?.value || 0) >= thresh)
+  );
   const removedA = leaderboard.length - filteredLeaderboard.length;
 
   [ "off_adj_ppp", "def_adj_ppp" ].forEach((key) => {
@@ -245,7 +254,7 @@ function completeLineupLeaderboard(key: string, leaderboard: any[]) {
   });
   const removedB = rankedLineups.length - finalLineups.length;
 
-  console.log(`${key}: mean=[${mean}] thresh=[${thresh}] removedA=[${removedA}] removedB=[${removedB}]`);
+  console.log(`${key}: length=[${finalLineups.length}] mean=[${mean}] thresh=[${thresh}] removedA=[${removedA}] removedB=[${removedB}]`);
 
   return finalLineups;
 }
@@ -254,8 +263,11 @@ main().then(_ => {
 
   console.log("Processing Complete!");
 
-  [ [ "all", savedLineups ], [ "conf", savedConfOnlyLineups ], [ "t100", savedT100Lineups ] ].forEach(kv => {
-    const sortedLineups = completeLineupLeaderboard(...kv);
+  const outputCases: Array<[string, Array<any>]> =
+    [ [ "all", savedLineups], [ "conf", savedConfOnlyLineups ], [ "t100", savedT100Lineups ] ];
+
+  outputCases.forEach(kv => {
+    const sortedLineups = completeLineupLeaderboard(kv[0], kv[1]);
     const sortedLineupsStr = JSON.stringify({
       lastUpdated: dataLastUpdated[genderYearLookup] || new Date().getTime(),
       confs: Array.from(conferenceSet.values()),

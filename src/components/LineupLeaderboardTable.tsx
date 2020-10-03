@@ -54,19 +54,67 @@ import { ConferenceToNickname, NicknameToConference, Power6Conferences } from '.
 
 import ReactDOMServer from 'react-dom/server'
 
-export type LineupStatsModel = {
+export type LineupLeaderboardStatsModel = {
   lineups?: Array<any>,
   confs?: Array<string>,
   error_code?: string
 }
 type Props = {
   startingState: LineupLeaderboardParams,
-  dataEvent: LineupStatsModel,
+  dataEvent: LineupLeaderboardStatsModel,
   onChangeState: (newParams: LineupLeaderboardParams) => void
 }
 
-const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, dataEvent, onChangeState}) => {
+// Some static methods
 
+const sortOptions: Array<any> = _.flatten(
+  _.toPairs(CommonTableDefs.lineupTable)
+    .filter(keycol => keycol[1].colName && keycol[1].colName != "")
+    .map(keycol => {
+      return [
+        ["desc","off"], ["asc","off"], ["desc","def"], ["asc","def"], ["desc","diff"], ["asc","diff"]
+      ].map(combo => {
+        const ascOrDesc = (s: string) => { switch(s) {
+          case "asc": return "Asc.";
+          case "desc": return "Desc.";
+        }}
+        const offOrDef = (s: string) => { switch(s) {
+          case "off": return "Offensive";
+          case "def": return "Defensive";
+          case "diff": return "Off-Def";
+        }}
+        return {
+          label: `${keycol[1].colName} (${ascOrDesc(combo[0])} / ${offOrDef(combo[1])})`,
+          value: `${combo[0]}:${combo[1]}_${keycol[0]}`
+        };
+      });
+    })
+);
+const sortOptionsByValue = _.fromPairs(
+  sortOptions.map(opt => [opt.value, opt])
+);
+/** Put these options at the front */
+const mostUsefulSubset = [
+  "desc:diff_adj_ppp",
+  "desc:off_adj_ppp",
+  "asc:def_adj_ppp",
+  "desc:off_poss",
+];
+/** The two sub-headers for the dropdown */
+const groupedOptions = [
+  {
+    label: "Most useful",
+    options: _.chain(sortOptionsByValue).pick(mostUsefulSubset).values().value()
+  },
+  {
+    label: "Other",
+    options: _.chain(sortOptionsByValue).omit(mostUsefulSubset).values().value()
+  }
+];
+
+// Functional component
+
+const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, dataEvent, onChangeState}) => {
   const server = (typeof window === `undefined`) ? //(ensures SSR code still compiles)
     "server" : window.location.hostname
 
@@ -78,7 +126,7 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
   // 2] State
 
   // Data source
-  const [ confs, setConfs ] = useState(startingState.confs || "");
+  const [ confs, setConfs ] = useState(startingState.conf || "");
   const [ year, setYear ] = useState(startingState.year || ParamDefaults.defaultYear);
   const [ gender, setGender ] = useState(startingState.gender || ParamDefaults.defaultGender);
 
@@ -137,122 +185,91 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
   const defPrefixFn = (key: string) => "def_" + key;
   const defCellMetaFn = (key: string, val: any) => "def";
 
-  const confSet = confs ? new Set(
-    _.flatMap((confs || "").split(","), c => c == "P6" ? Power6Conferences : [ NicknameToConference[c] || c ])
-  ) : undefined;
-  const lineups = LineupTableUtils.buildFilteredLineups(
-    (dataEvent?.lineups || []).filter(lineup => {
-      return !confSet || confSet.has(lineup.conf || "Unknown");
-    }),
-    filterStr,
-    (sortBy == ParamDefaults.defaultLineupLboardSortBy) ? undefined : sortBy,
-    minPoss, maxTableSize, undefined, undefined //<-calc from lineup
-  );
+  /** Only rebuild the expensive table if one of the parameters that controls it changes */
+  const table = React.useMemo(() => {
 
-  const tableData = lineups.flatMap((lineup, lineupIndex) => {
-    TableDisplayUtils.injectPlayTypeInfo(lineup, false, false); //(inject assist numbers)
-
-    const teamSeasonLookup = `${startingState.gender}_${lineup.team}_${startingState.year}`;
-
-    const perLineupBaselinePlayerMap = lineup.player_info;
-    const positionFromPlayerKey = lineup.player_info;
-    const codesAndIds = _.toPairs(lineup.player_info).map(kv => { return { code: kv[1].code, id: kv[0] } });
-    const sortedCodesAndIds = PositionUtils.orderLineup(codesAndIds, positionFromPlayerKey, teamSeasonLookup);
-
-    const lineupTitleKey = "" + lineupIndex;
-    const subTitle = sortedCodesAndIds ?
-      TableDisplayUtils.buildDecoratedLineup(
-        lineupTitleKey, sortedCodesAndIds, perLineupBaselinePlayerMap, positionFromPlayerKey, "off_adj_rtg", true
-      ) : "Weighted Total";
-
-    const rankings = <span><b>#{lineup.adj_margin_rank}</b> <small>(#{lineup.off_adj_ppp_rank} / #{lineup.def_adj_ppp_rank})</small></span>;
-
-    const confNickname = ConferenceToNickname[lineup.conf] || "???";
-
-    const teamTooltip = (
-      <Tooltip id={`team_${lineupIndex}`}>Open new tab with all lineups for this team</Tooltip>
+    const confSet = confs ? new Set(
+      _.flatMap((confs || "").split(","), c => c == "P6" ? Power6Conferences : [ NicknameToConference[c] || c ])
+    ) : undefined;
+    const lineups = LineupTableUtils.buildFilteredLineups(
+      (dataEvent?.lineups || []).filter(lineup => {
+        return !confSet || confSet.has(lineup.conf || "Unknown");
+      }),
+      filterStr,
+      (sortBy == ParamDefaults.defaultLineupLboardSortBy) ? undefined : sortBy,
+      minPoss, maxTableSize, undefined, undefined //<-calc from lineup
     );
-    const teamParams = {
-      team: lineup.team, gender: gender, year: year,
-      minRank: 0, maxRank: isT100 ? 100 : 400,
-      queryFilters: isConfOnly ? "Conf" : undefined,
-      lineupLuck: true
-    };
-    const teamEl = <OverlayTrigger placement="auto" overlay={teamTooltip}>
-      <a target="_new" href={UrlRouting.getLineupUrl(teamParams, {})}><b>{lineup.team}</b></a>
-    </OverlayTrigger>;
 
-    const title = <div><span className="float-left">
-      {rankings}
-      &nbsp;<span>{teamEl} (<span>{confNickname}</span>)</span>
-      </span><br/>
-      {subTitle}
-    </div>
+    const tableData = lineups.flatMap((lineup, lineupIndex) => {
+      TableDisplayUtils.injectPlayTypeInfo(lineup, false, false); //(inject assist numbers)
 
-    const stats = { off_title: title, def_title: "", ...lineup };
+      const teamSeasonLookup = `${startingState.gender}_${lineup.team}_${startingState.year}`;
 
-    return _.flatten([
-      [ GenericTableOps.buildDataRow(stats, offPrefixFn, offCellMetaFn) ],
-      [ GenericTableOps.buildDataRow(stats, defPrefixFn, defCellMetaFn) ],
-      showLuckAdjDiags && lineup.off_luck_diags ? [ GenericTableOps.buildTextRow(
-        <LuckAdjDiagView
-          name="lineup"
-          offLuck={lineup.off_luck_diags}
-          defLuck={lineup.def_luck_diags}
-          baseline={"season"}
-          showHelp={showHelp}
-        />, "small pt-2"
-      ) ] : [] ,
-      [ GenericTableOps.buildRowSeparator() ]
-    ]);
-  });
+      const perLineupBaselinePlayerMap = lineup.player_info;
+      const positionFromPlayerKey = lineup.player_info;
+      const codesAndIds = LineupTableUtils.buildCodesAndIds(lineup);
+      const sortedCodesAndIds = PositionUtils.orderLineup(codesAndIds, positionFromPlayerKey, teamSeasonLookup);
+
+      const lineupTitleKey = "" + lineupIndex;
+      const subTitle = sortedCodesAndIds ?
+        TableDisplayUtils.buildDecoratedLineup(
+          lineupTitleKey, sortedCodesAndIds, perLineupBaselinePlayerMap, positionFromPlayerKey, "off_adj_rtg", true
+        ) : "Weighted Total";
+
+      const rankings = <span><b>#{lineup.adj_margin_rank}</b> <small>(#{lineup.off_adj_ppp_rank} / #{lineup.def_adj_ppp_rank})</small></span>;
+
+      const confNickname = ConferenceToNickname[lineup.conf] || "???";
+
+      const teamTooltip = (
+        <Tooltip id={`team_${lineupIndex}`}>Open new tab with all lineups for this team</Tooltip>
+      );
+      const teamParams = {
+        team: lineup.team, gender: gender, year: year,
+        minRank: "0", maxRank: isT100 ? "100" : "400",
+        queryFilters: isConfOnly ? "Conf" : undefined,
+        lineupLuck: true
+      };
+      const teamEl = <OverlayTrigger placement="auto" overlay={teamTooltip}>
+        <a target="_new" href={UrlRouting.getLineupUrl(teamParams, {})}><b>{lineup.team}</b></a>
+      </OverlayTrigger>;
+
+      const title = <div><span className="float-left">
+        {rankings}
+        &nbsp;<span>{teamEl} (<span>{confNickname}</span>)</span>
+        </span><br/>
+        {subTitle}
+      </div>
+
+      const stats = { off_title: title, def_title: "", ...lineup };
+
+      return _.flatten([
+        [ GenericTableOps.buildDataRow(stats, offPrefixFn, offCellMetaFn) ],
+        [ GenericTableOps.buildDataRow(stats, defPrefixFn, defCellMetaFn) ],
+        showLuckAdjDiags && lineup.off_luck_diags ? [ GenericTableOps.buildTextRow(
+          <LuckAdjDiagView
+            name="lineup"
+            offLuck={lineup.off_luck_diags}
+            defLuck={lineup.def_luck_diags}
+            baseline={"season"}
+            showHelp={showHelp}
+          />, "small pt-2"
+        ) ] : [] ,
+        [ GenericTableOps.buildRowSeparator() ]
+      ]);
+    });
+    return <GenericTable
+      tableCopyId="lineupLeaderboardTable"
+      tableFields={CommonTableDefs.lineupTable}
+      tableData={tableData}
+      cellTooltipMode="none"
+    />
+
+  }, [ minPoss, maxTableSize, sortBy, filterStr,
+      showLuckAdjDiags, confs,
+      dataEvent ]);
 
   // 3.2] Sorting utils
 
-  const sortOptions: Array<any> = _.flatten(
-    _.toPairs(CommonTableDefs.lineupTable)
-      .filter(keycol => keycol[1].colName && keycol[1].colName != "")
-      .map(keycol => {
-        return [
-          ["desc","off"], ["asc","off"], ["desc","def"], ["asc","def"], ["desc","diff"], ["asc","diff"]
-        ].map(combo => {
-          const ascOrDesc = (s: string) => { switch(s) {
-            case "asc": return "Asc.";
-            case "desc": return "Desc.";
-          }}
-          const offOrDef = (s: string) => { switch(s) {
-            case "off": return "Offensive";
-            case "def": return "Defensive";
-            case "diff": return "Off-Def";
-          }}
-          return {
-            label: `${keycol[1].colName} (${ascOrDesc(combo[0])} / ${offOrDef(combo[1])})`,
-            value: `${combo[0]}:${combo[1]}_${keycol[0]}`
-          };
-        });
-      })
-  );
-  const sortOptionsByValue = _.fromPairs(
-    sortOptions.map(opt => [opt.value, opt])
-  );
-  /** Put these options at the front */
-  const mostUsefulSubset = [
-    "desc:diff_adj_ppp",
-    "desc:off_adj_ppp",
-    "asc:def_adj_ppp",
-    "desc:off_poss",
-  ];
-  /** The two sub-headers for the dropdown */
-  const groupedOptions = [
-    {
-      label: "Most useful",
-      options: _.chain(sortOptionsByValue).pick(mostUsefulSubset).values().value()
-    },
-    {
-      label: "Other",
-      options: _.chain(sortOptionsByValue).omit(mostUsefulSubset).values().value()
-    }
-  ];
   /** The sub-header builder */
   const formatGroupLabel = (data: any) => (
     <div>
@@ -302,11 +319,11 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
   function getCurrentConfsOrPlaceholder() {
     return (confs == "") ?
       { label: 'All Available Conferences' } :
-      confs.split(",").map(conf => stringToOption(NicknameToConference[conf] || conf));
+      confs.split(",").map((conf: string) => stringToOption(NicknameToConference[conf] || conf));
   }
 
   /** Slightly hacky code to render the conference nick names */
-  const ConferenceValueContainer = props => {
+  const ConferenceValueContainer = (props: any) => {
     const oldText = props.children[0];
     const fullConfname = oldText.props.children;
     const newText = {
@@ -361,9 +378,10 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
           options={["Power 6 Conferences"].concat(dataEvent?.confs || []).map(
             (r) => stringToOption(r)
           )}
-          onChange={(options) => {
-            const selection = (options ||  []).map(option => (option as any)?.value || "");
-            const confStr = selection.filter(t => t != "").map(c => ConferenceToNickname[c] || c).join(",")
+          onChange={(optionsIn) => {
+            const options = optionsIn as Array<any>;
+            const selection = (options || []).map(option => (option as any)?.value || "");
+            const confStr = selection.filter((t: string) => t != "").map((c: string) => ConferenceToNickname[c] || c).join(",")
             setConfs(confStr);
           }}
         />
@@ -389,7 +407,7 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
         <Form.Group as={Col} sm="1">
           <GenericTogglingMenu>
             <GenericTogglingMenuItem
-              text={<i class="text-secondary">Adjust for Luck</i>}
+              text={<i className="text-secondary">Adjust for Luck</i>}
               truthVal={true}
               onSelect={() => {}}
               helpLink={showHelp ? "https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html" : undefined}
@@ -455,7 +473,7 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       </Form.Row>
       <Form.Row>
         <Col>
-          <ToggleButtonGroup items={[
+          <ToggleButtonGroup items={([
             {
               label: "Luck",
               tooltip: "Statistics always adjusted for luck",
@@ -478,7 +496,7 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
                 setIsT100(false); setIsConfOnly(!isConfOnly);
               }
             }
-          ].concat(showHelp ? [
+          ] as Array<any>).concat(showHelp ? [
             {
               label: <a href="https://hoop-explorer.blogspot.com/2020/07/understanding-lineup-analyzer-page.html" target="_new">?</a>,
               tooltip: "Open a page that explains some of the elements of this table",
@@ -491,12 +509,7 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       </Form.Row>
       <Row className="mt-2">
         <Col style={{paddingLeft: "5px", paddingRight: "5px"}}>
-          <GenericTable
-            tableCopyId="lineupLeaderboardTable"
-            tableFields={CommonTableDefs.lineupTable}
-            tableData={tableData}
-            cellTooltipMode="none"
-          />
+          {table}
         </Col>
       </Row>
     </LoadingOverlay>

@@ -57,7 +57,7 @@ const HeaderBar: React.FunctionComponent<Props> = ({thisPage, common, override})
   // Leaderboard
   function getLineupLeaderboardUrl() {
     return UrlRouting.getLineupLeaderboardUrl(
-      getCommonFilterParams(common) as LineupLeaderboardParams, {}
+      getCommonFilterParams(common) as LineupLeaderboardParams
     );
   }
   // Last visited

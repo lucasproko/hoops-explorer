@@ -16,7 +16,7 @@ export class LineupTableUtils {
   static buildCodesAndIds(lineup: any) {
     return lineup.players_array ?
       (lineup.players_array?.hits?.hits?.[0]?._source?.players || []) :
-      _.toPairs(lineup.player_info).map(kv => { return { code: kv[1].code, id: kv[0] } }) //(leaderboard mode)
+      _.toPairs(lineup.player_info as Record<string, any>).map(kv => { return { code: kv[1].code, id: kv[0] } }) //(leaderboard mode)
       ;
   }
 
@@ -111,7 +111,7 @@ export class LineupTableUtils {
         `${lineup.gender}_${lineup.team}_${lineup.year}`; //(leaderboard version, calc from lineup)
 
       const namesToTest = filterOnPosition ?
-        PositionUtils.orderLineup(codesAndIds, lineupPosFromPlayerKey, teamSeasonLookup) : codesAndIds;
+        PositionUtils.orderLineup(codesAndIds, lineupPosFromPlayerKey, lineupTeamSeason) : codesAndIds;
       const teamFilter = lineup.team ? [ { id: lineup.team, code: lineup.team } ] : []; //(leaderboard version)
 
       const playerFilter = PositionUtils.testPositionalAwareFilter(
