@@ -82,245 +82,239 @@ exports[`TableDisplayUtils buildDecoratedLineup - buildTooltipTexts 1`] = `
 exports[`TableDisplayUtils buildDecoratedLineup - decorated version 1`] = `
 <span>
   <div>
-    <span>
-      <span
-        style={
-          Object {
-            "whiteSpace": "nowrap",
-          }
-        }
-      >
+    <div>
+      <span>
         <span
-          className="badge badge-light"
           style={
             Object {
-              "backgroundColor": "#f2f9f280",
+              "whiteSpace": "nowrap",
             }
           }
         >
           <span
+            className="badge badge-light"
             style={
               Object {
-                "fontSize": "small",
-                "fontWeight": 100,
+                "backgroundColor": "#f2f9f280",
               }
             }
           >
-            p1
+            <span
+              style={
+                Object {
+                  "fontSize": "small",
+                  "fontWeight": 100,
+                }
+              }
+            >
+              p1
+            </span>
+          </span>
+          <span
+            style={Object {}}
+          >
+            <sup
+              className="megaThreePointBadge"
+            />
+            <sup
+              className="assistBadge"
+            />
           </span>
         </span>
         <span
-          style={Object {}}
-        >
-          <sup
-            className="megaThreePointBadge"
-          />
-          <sup
-            className="assistBadge"
-          />
-        </span>
-      </span>
-      <span
-        style={
-          Object {
-            "opacity": 0,
-          }
-        }
-      >
-         ; 
-      </span>
-    </span>
-  </div>
-  <div>
-    <span>
-      <span
-        style={
-          Object {
-            "whiteSpace": "nowrap",
-          }
-        }
-      >
-        <span
-          className="badge badge-light"
           style={
             Object {
-              "backgroundColor": "#e5f2e580",
+              "opacity": 0,
+            }
+          }
+        >
+           ; 
+        </span>
+      </span>
+      <span>
+        <span
+          style={
+            Object {
+              "whiteSpace": "nowrap",
             }
           }
         >
           <span
+            className="badge badge-light"
             style={
               Object {
-                "fontSize": "small",
-                "fontWeight": 300,
+                "backgroundColor": "#e5f2e580",
               }
             }
           >
-            p2
+            <span
+              style={
+                Object {
+                  "fontSize": "small",
+                  "fontWeight": 300,
+                }
+              }
+            >
+              p2
+            </span>
+          </span>
+          <span
+            style={Object {}}
+          >
+            <sub
+              className="megaFreeThrowBadge"
+            />
+            <sup
+              className="megaAssistBadge"
+            />
           </span>
         </span>
         <span
-          style={Object {}}
-        >
-          <sub
-            className="megaFreeThrowBadge"
-          />
-          <sup
-            className="megaAssistBadge"
-          />
-        </span>
-      </span>
-      <span
-        style={
-          Object {
-            "opacity": 0,
-          }
-        }
-      >
-         ; 
-      </span>
-    </span>
-  </div>
-  <div>
-    <span>
-      <span
-        style={
-          Object {
-            "whiteSpace": "nowrap",
-          }
-        }
-      >
-        <span
-          className="badge badge-light"
           style={
             Object {
-              "backgroundColor": "#d9ecd980",
+              "opacity": 0,
+            }
+          }
+        >
+           ; 
+        </span>
+      </span>
+      <span>
+        <span
+          style={
+            Object {
+              "whiteSpace": "nowrap",
             }
           }
         >
           <span
+            className="badge badge-light"
             style={
               Object {
-                "fontSize": "small",
-                "fontWeight": 500,
+                "backgroundColor": "#d9ecd980",
               }
             }
           >
-            p3
+            <span
+              style={
+                Object {
+                  "fontSize": "small",
+                  "fontWeight": 500,
+                }
+              }
+            >
+              p3
+            </span>
+          </span>
+          <span
+            style={Object {}}
+          >
+            <sup
+              className="megaTwoPointBadge"
+            />
           </span>
         </span>
         <span
-          style={Object {}}
-        >
-          <sup
-            className="megaTwoPointBadge"
-          />
-        </span>
-      </span>
-      <span
-        style={
-          Object {
-            "opacity": 0,
-          }
-        }
-      >
-         ; 
-      </span>
-    </span>
-  </div>
-  <div>
-    <span>
-      <span
-        style={
-          Object {
-            "whiteSpace": "nowrap",
-          }
-        }
-      >
-        <span
-          className="badge badge-light"
           style={
             Object {
-              "backgroundColor": "#cce6cc80",
+              "opacity": 0,
+            }
+          }
+        >
+           ; 
+        </span>
+      </span>
+      <span>
+        <span
+          style={
+            Object {
+              "whiteSpace": "nowrap",
             }
           }
         >
           <span
+            className="badge badge-light"
             style={
               Object {
-                "fontSize": "small",
-                "fontWeight": 600,
+                "backgroundColor": "#cce6cc80",
               }
             }
           >
-            p4
+            <span
+              style={
+                Object {
+                  "fontSize": "small",
+                  "fontWeight": 600,
+                }
+              }
+            >
+              p4
+            </span>
+          </span>
+          <span
+            style={Object {}}
+          >
+            <sup
+              className="twoPointBadge"
+            />
+            <sub
+              className="freeThrowBadge"
+            />
           </span>
         </span>
         <span
-          style={Object {}}
-        >
-          <sup
-            className="twoPointBadge"
-          />
-          <sub
-            className="freeThrowBadge"
-          />
-        </span>
-      </span>
-      <span
-        style={
-          Object {
-            "opacity": 0,
-          }
-        }
-      >
-         ; 
-      </span>
-    </span>
-  </div>
-  <div>
-    <span>
-      <span
-        style={
-          Object {
-            "whiteSpace": "nowrap",
-          }
-        }
-      >
-        <span
-          className="badge badge-light"
           style={
             Object {
-              "backgroundColor": "#bfdfbf80",
+              "opacity": 0,
+            }
+          }
+        >
+           ; 
+        </span>
+      </span>
+      <span>
+        <span
+          style={
+            Object {
+              "whiteSpace": "nowrap",
             }
           }
         >
           <span
+            className="badge badge-light"
             style={
               Object {
-                "fontSize": "small",
-                "fontWeight": 700,
+                "backgroundColor": "#bfdfbf80",
               }
             }
           >
-            p5
+            <span
+              style={
+                Object {
+                  "fontSize": "small",
+                  "fontWeight": 700,
+                }
+              }
+            >
+              p5
+            </span>
+          </span>
+          <span
+            style={Object {}}
+          >
+            <sup
+              className="threePointBadge"
+            />
+            <sub
+              className="freeThrowBadge"
+            />
+            <sup
+              className="assistBadge"
+            />
           </span>
         </span>
-        <span
-          style={Object {}}
-        >
-          <sup
-            className="threePointBadge"
-          />
-          <sub
-            className="freeThrowBadge"
-          />
-          <sup
-            className="assistBadge"
-          />
-        </span>
       </span>
-    </span>
+    </div>
   </div>
 </span>
 `;
