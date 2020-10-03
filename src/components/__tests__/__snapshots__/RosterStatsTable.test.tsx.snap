@@ -3867,6 +3867,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
           <AsyncFormControl
             onChange={[Function]}
             placeholder="eg TeamA;-TeamB;Player1Code;Player2FirstName;-Player3Surname"
+            startingVal=""
             timeout={500}
           />
         </InputGroup>
@@ -6912,6 +6913,7 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
           <AsyncFormControl
             onChange={[Function]}
             placeholder="eg TeamA;-TeamB;Player1Code;Player2FirstName;-Player3Surname"
+            startingVal=""
             timeout={500}
           />
         </InputGroup>
@@ -9268,6 +9270,7 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
           <AsyncFormControl
             onChange={[Function]}
             placeholder="eg TeamA;-TeamB;Player1Code;Player2FirstName;-Player3Surname"
+            startingVal=""
             timeout={500}
           />
         </InputGroup>
@@ -13944,6 +13947,7 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
           <AsyncFormControl
             onChange={[Function]}
             placeholder="eg TeamA;-TeamB;Player1Code;Player2FirstName;-Player3Surname"
+            startingVal=""
             timeout={500}
           />
         </InputGroup>
@@ -20525,6 +20529,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
           <AsyncFormControl
             onChange={[Function]}
             placeholder="eg TeamA;-TeamB;Player1Code;Player2FirstName;-Player3Surname"
+            startingVal=""
             timeout={500}
           />
         </InputGroup>
@@ -27833,6 +27838,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
           <AsyncFormControl
             onChange={[Function]}
             placeholder="eg TeamA;-TeamB;Player1Code;Player2FirstName;-Player3Surname"
+            startingVal=""
             timeout={500}
           />
         </InputGroup>
@@ -34865,6 +34871,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
           <AsyncFormControl
             onChange={[Function]}
             placeholder="eg TeamA;-TeamB;Player1Code;Player2FirstName;-Player3Surname"
+            startingVal=""
             timeout={500}
           />
         </InputGroup>

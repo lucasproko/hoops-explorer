@@ -396,6 +396,7 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
               <InputGroup.Text id="filter">Filter</InputGroup.Text>
             </InputGroup.Prepend>
             <AsyncFormControl
+              startingVal={filterStr}
               onChange={(t: string) => setFilterStr(t)}
               timeout={500}
               placeholder = "eg TeamA;-TeamB;Player1Code;Player2FirstName;-Player3Surname"
