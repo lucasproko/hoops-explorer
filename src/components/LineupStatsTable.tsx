@@ -30,6 +30,7 @@ import GenericTogglingMenu from './shared/GenericTogglingMenu';
 import GenericTogglingMenuItem from './shared/GenericTogglingMenuItem';
 import ToggleButtonGroup from "./shared/ToggleButtonGroup";
 import LuckAdjDiagView from './diags/LuckAdjDiagView';
+import AsyncFormControl from './shared/AsyncFormControl';
 
 // Table building
 import { TableDisplayUtils } from "../utils/tables/TableDisplayUtils";
@@ -106,10 +107,6 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
   const [ decorateLineups, setDecorateLineups ] = useState(_.isNil(startingState.decorate) ?
     ParamDefaults.defaultLineupDecorate : startingState.decorate
   );
-
-  // (slight delay when typing into the filter to make it more responsive)
-  const [ timeoutId, setTimeoutId ] = useState(-1);
-  const [ tmpFilterStr, setTmpFilterStr ] = useState(filterStr);
 
   useEffect(() => { //(this ensures that the filter component is up to date with the union of these fields)
     const newState = {
@@ -272,18 +269,6 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
     return sortOptionsByValue[s];
   }
 
-  /** Handling filter change (/key presses to fix the select/delete on page load) */
-  const onFilterChange = (ev: any) => {
-    const toSet = ev.target.value;
-    setTmpFilterStr(toSet);
-    if (timeoutId != -1) {
-      window.clearTimeout(timeoutId);
-    }
-    setTimeoutId(window.setTimeout(() => {
-      setFilterStr(toSet);
-    }, 250));
-  };
-
   // 4] View
 
   return <Container>
@@ -307,11 +292,10 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
             <InputGroup.Prepend>
               <InputGroup.Text id="filter">Filter</InputGroup.Text>
             </InputGroup.Prepend>
-            <Form.Control
-              onKeyUp={onFilterChange}
-              onChange={onFilterChange}
-              placeholder = "eg Player1Code=PG;Player2FirstName;-Player3Surname;Player4Name=4+5"
-              value={tmpFilterStr}
+            <AsyncFormControl
+              onChange={(t: string) => setFilterStr(t)}
+              timeout={500}
+              placeholder = "eg TeamA;-TeamB;Player1Code;Player2FirstName;-Player3Surname"
             />
           </InputGroup>
         </Form.Group>
@@ -355,14 +339,12 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
             <InputGroup.Prepend>
               <InputGroup.Text id="maxLineups">Max Lineups</InputGroup.Text>
             </InputGroup.Prepend>
-            <Form.Control
-              onChange={(ev: any) => {
-                if (ev.target.value.match("^[0-9]*$") != null) {
-                  setMaxTableSize(ev.target.value);
-                }
-              }}
+            <AsyncFormControl
+              startingVal={maxTableSize}
+              validate={(t: string) => t.match("^[0-9]*$") != null}
+              onChange={(t: string) => setMaxTableSize(t)}
+              timeout={100}
               placeholder = "eg 50"
-              value={maxTableSize}
             />
           </InputGroup>
         </Form.Group>
@@ -371,14 +353,12 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
             <InputGroup.Prepend>
               <InputGroup.Text id="minPossessions">Min Poss #</InputGroup.Text>
             </InputGroup.Prepend>
-            <Form.Control
-              onChange={(ev: any) => {
-                if (ev.target.value.match("^[0-9]*$") != null) {
-                  setMinPoss(ev.target.value);
-                }
-              }}
-              placeholder = "eg 5"
-              value={minPoss}
+            <AsyncFormControl
+              startingVal={minPoss}
+              validate={(t: string) => t.match("^[0-9]*$") != null}
+              onChange={(t: string) => setMinPoss(t)}
+              timeout={100}
+              placeholder = "eg 20"
             />
           </InputGroup>
         </Form.Group>

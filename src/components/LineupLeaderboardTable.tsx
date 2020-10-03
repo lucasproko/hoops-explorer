@@ -36,6 +36,7 @@ import GenericTogglingMenu from './shared/GenericTogglingMenu';
 import GenericTogglingMenuItem from './shared/GenericTogglingMenuItem';
 import ToggleButtonGroup from "./shared/ToggleButtonGroup";
 import LuckAdjDiagView from './diags/LuckAdjDiagView';
+import AsyncFormControl from './shared/AsyncFormControl';
 
 // Table building
 import { TableDisplayUtils } from "../utils/tables/TableDisplayUtils";
@@ -147,9 +148,6 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
     ParamDefaults.defaultLineupLboardLuckDiagMode : startingState.showLineupLuckDiags
   );
 
-  // (slight delay when typing into the filter to make it more responsive)
-  var timeoutId = -1;
-
   useEffect(() => { //(this ensures that the filter component is up to date with the union of these fields)
     const newState = {
       ...startingState,
@@ -191,14 +189,25 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
     const confSet = confs ? new Set(
       _.flatMap((confs || "").split(","), c => c == "P6" ? Power6Conferences : [ NicknameToConference[c] || c ])
     ) : undefined;
+
+    const dataEventLineups = (dataEvent?.lineups || []);
+    const minPossNum = parseInt(minPoss) || 0;
+    const confDataEventLineups = dataEventLineups.filter(lineup => {
+      return (!confSet || confSet.has(lineup.conf || "Unknown")) && (lineup.off_poss?.value >= minPossNum);
+        //(we do the "spurious" minPossNum check so we can detect filter presence and use to add a ranking)
+    });
     const lineups = LineupTableUtils.buildFilteredLineups(
-      (dataEvent?.lineups || []).filter(lineup => {
-        return !confSet || confSet.has(lineup.conf || "Unknown");
-      }),
+      confDataEventLineups,
       filterStr,
       (sortBy == ParamDefaults.defaultLineupLboardSortBy) ? undefined : sortBy,
       minPoss, maxTableSize, undefined, undefined //<-calc from lineup
     );
+
+    /** Either the sort is not one of the 3 pre-calced, or there is a filter */
+    const isGeneralSortOrFilter = ((sortBy != ParamDefaults.defaultLineupLboardSortBy) &&
+      (sortBy != "desc:off_adj_ppp") && (sortBy != "asc:def_adj_ppp"))
+      ||
+      ((confDataEventLineups.length < dataEventLineups.length) || ((filterStr || "") != ""));
 
     const tableData = lineups.flatMap((lineup, lineupIndex) => {
       TableDisplayUtils.injectPlayTypeInfo(lineup, false, false); //(inject assist numbers)
@@ -216,7 +225,8 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
           lineupTitleKey, sortedCodesAndIds, perLineupBaselinePlayerMap, positionFromPlayerKey, "off_adj_rtg", true
         ) : "Weighted Total";
 
-      const rankings = <span><b>#{lineup.adj_margin_rank}</b> <small>(#{lineup.off_adj_ppp_rank} / #{lineup.def_adj_ppp_rank})</small></span>;
+      const generalRank = isGeneralSortOrFilter ? <span><i>(#{lineupIndex + 1})</i>&nbsp;</span> : null;
+      const rankings = <span>{generalRank}<b>#{lineup.adj_margin_rank}</b> <small>(#{lineup.off_adj_ppp_rank} / #{lineup.def_adj_ppp_rank})</small></span>;
 
       const confNickname = ConferenceToNickname[lineup.conf] || "???";
 
@@ -290,17 +300,6 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
   function stringToOption(s: string) {
     return { label: s, value: s};
   }
-
-  /** Handling filter change (/key presses to fix the select/delete on page load) */
-  const onFilterChange = (ev: any) => {
-    const toSet = ev.target.value;
-    if (timeoutId != -1) {
-      window.clearTimeout(timeoutId);
-    }
-    timeoutId = (window.setTimeout(() => {
-      setFilterStr(toSet);
-    }, 500));
-  };
 
   // 4] View
 
@@ -396,9 +395,9 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
             <InputGroup.Prepend>
               <InputGroup.Text id="filter">Filter</InputGroup.Text>
             </InputGroup.Prepend>
-            <Form.Control
-              onKeyUp={onFilterChange}
-              onChange={onFilterChange}
+            <AsyncFormControl
+              onChange={(t: string) => setFilterStr(t)}
+              timeout={500}
               placeholder = "eg TeamA;-TeamB;Player1Code;Player2FirstName;-Player3Surname"
             />
           </InputGroup>
@@ -427,13 +426,11 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
             <InputGroup.Prepend>
               <InputGroup.Text id="maxLineups">Max Lineups</InputGroup.Text>
             </InputGroup.Prepend>
-            <Form.Control
-              onChange={(ev: any) => {
-                if (ev.target.value.match("^[0-9]*$") != null) {
-                  setMaxTableSize(ev.target.value);
-                }
-              }}
-              value={maxTableSize}
+            <AsyncFormControl
+              startingVal={maxTableSize}
+              validate={(t: string) => t.match("^[0-9]*$") != null}
+              onChange={(t: string) => setMaxTableSize(t)}
+              timeout={200}
               placeholder = "eg 100"
             />
           </InputGroup>
@@ -443,14 +440,12 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
             <InputGroup.Prepend>
               <InputGroup.Text id="minPossessions">Min Poss #</InputGroup.Text>
             </InputGroup.Prepend>
-            <Form.Control
-              onChange={(ev: any) => {
-                if (ev.target.value.match("^[0-9]*$") != null) {
-                  setMinPoss(ev.target.value);
-                }
-              }}
+            <AsyncFormControl
+              startingVal={minPoss}
+              validate={(t: string) => t.match("^[0-9]*$") != null}
+              onChange={(t: string) => setMinPoss(t)}
+              timeout={200}
               placeholder = "eg 20"
-              value={minPoss}
             />
           </InputGroup>
         </Form.Group>

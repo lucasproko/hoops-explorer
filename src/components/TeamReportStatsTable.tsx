@@ -33,6 +33,7 @@ import RapmPlayerDiagView from "./diags/RapmPlayerDiagView";
 import RepOnOffDiagView from "./diags/RepOnOffDiagView";
 import ToggleButtonGroup from "./shared/ToggleButtonGroup";
 import LuckConfigModal from './shared/LuckConfigModal';
+import AsyncFormControl from './shared/AsyncFormControl';
 
 // Util imports
 import { getCommonFilterParams, TeamReportFilterParams, ParamDefaults, LuckParams } from '../utils/FilterModels';
@@ -85,10 +86,8 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({startingState, da
 
   const [ sortBy, setSortBy ] = useState(startingState.sortBy || ParamDefaults.defaultTeamReportSortBy);
   const [ filterStr, setFilterStr ] = useState(startingState.filter || ParamDefaults.defaultTeamReportFilter);
-
-  // (slight delay when typing into the filter to make it more responsive)
-  const [ timeoutId, setTimeoutId ] = useState(-1);
-  const [ tmpFilterStr, setTmpFilterStr ] = useState(filterStr);
+  //(used to be able to override values of filter str async control)
+  const [ overrideFilterStr, setOverrideFilterStr ] = useState(startingState.filter || ParamDefaults.defaultTeamReportFilter);
 
   // Luck:
 
@@ -441,7 +440,7 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({startingState, da
               playerMap={teamReport?.playerMap || {}}
               commonParams={commonParams}
               expandedMode={tableDataInputs.length == 1}
-              onExpand = {(playerId: string) => { setFilterStr(playerId); setTmpFilterStr(playerId) }}
+              onExpand = {(playerId: string) => { setFilterStr(playerId); setOverrideFilterStr(playerId); }}
               showHelp={showHelp}
             />, "small"
           )
@@ -581,18 +580,6 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({startingState, da
     return sortOptionsByValue[s];
   }
 
-  /** Handling filter change (/key presses to fix the select/delete on page load) */
-  const onFilterChange = (ev: any) => {
-    const toSet = ev.target.value;
-    setTmpFilterStr(toSet);
-    if (timeoutId != -1) {
-      window.clearTimeout(timeoutId);
-    }
-    setTimeoutId(window.setTimeout(() => {
-      setFilterStr(toSet);
-    }, 100));
-  };
-
   // 4] View
   return <Container><div ref={topRef}>
     <LoadingOverlay
@@ -615,11 +602,12 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({startingState, da
             <InputGroup.Prepend>
               <InputGroup.Text id="filter">Filter</InputGroup.Text>
             </InputGroup.Prepend>
-            <Form.Control
-              onKeyUp={onFilterChange}
-              onChange={onFilterChange}
-              placeholder = "eg Player1Surname,Player2FirstName,-Player3Name"
-              value={tmpFilterStr}
+            <AsyncFormControl
+              startingVal={overrideFilterStr}
+              validate={(t: string) => true}
+              onChange={(t: string) => setFilterStr(t)}
+              timeout={500}
+              placeholder = "eg TeamA;-TeamB;Player1Code;Player2FirstName;-Player3Surname"
             />
           </InputGroup>
         </Form.Group>

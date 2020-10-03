@@ -38,11 +38,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
               Filter
             </InputGroupText>
           </InputGroupPrepend>
-          <FormControl
+          <AsyncFormControl
             onChange={[Function]}
-            onKeyUp={[Function]}
-            placeholder="eg Player1Code=PG;Player2FirstName;-Player3Surname;Player4Name=4+5"
-            value=""
+            placeholder="eg TeamA;-TeamB;Player1Code;Player2FirstName;-Player3Surname"
+            timeout={500}
           />
         </InputGroup>
       </FormGroup>
@@ -114,10 +113,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
               Max Lineups
             </InputGroupText>
           </InputGroupPrepend>
-          <FormControl
+          <AsyncFormControl
             onChange={[Function]}
             placeholder="eg 50"
-            value="50"
+            startingVal="50"
+            timeout={100}
+            validate={[Function]}
           />
         </InputGroup>
       </FormGroup>
@@ -139,10 +140,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
               Min Poss #
             </InputGroupText>
           </InputGroupPrepend>
-          <FormControl
+          <AsyncFormControl
             onChange={[Function]}
-            placeholder="eg 5"
-            value="5"
+            placeholder="eg 20"
+            startingVal="5"
+            timeout={100}
+            validate={[Function]}
           />
         </InputGroup>
       </FormGroup>
@@ -3457,11 +3460,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
               Filter
             </InputGroupText>
           </InputGroupPrepend>
-          <FormControl
+          <AsyncFormControl
             onChange={[Function]}
-            onKeyUp={[Function]}
-            placeholder="eg Player1Code=PG;Player2FirstName;-Player3Surname;Player4Name=4+5"
-            value=""
+            placeholder="eg TeamA;-TeamB;Player1Code;Player2FirstName;-Player3Surname"
+            timeout={500}
           />
         </InputGroup>
       </FormGroup>
@@ -3533,10 +3535,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
               Max Lineups
             </InputGroupText>
           </InputGroupPrepend>
-          <FormControl
+          <AsyncFormControl
             onChange={[Function]}
             placeholder="eg 50"
-            value="50"
+            startingVal="50"
+            timeout={100}
+            validate={[Function]}
           />
         </InputGroup>
       </FormGroup>
@@ -3558,10 +3562,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
               Min Poss #
             </InputGroupText>
           </InputGroupPrepend>
-          <FormControl
+          <AsyncFormControl
             onChange={[Function]}
-            placeholder="eg 5"
-            value="5"
+            placeholder="eg 20"
+            startingVal="5"
+            timeout={100}
+            validate={[Function]}
           />
         </InputGroup>
       </FormGroup>
@@ -6045,11 +6051,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
               Filter
             </InputGroupText>
           </InputGroupPrepend>
-          <FormControl
+          <AsyncFormControl
             onChange={[Function]}
-            onKeyUp={[Function]}
-            placeholder="eg Player1Code=PG;Player2FirstName;-Player3Surname;Player4Name=4+5"
-            value=""
+            placeholder="eg TeamA;-TeamB;Player1Code;Player2FirstName;-Player3Surname"
+            timeout={500}
           />
         </InputGroup>
       </FormGroup>
@@ -6121,10 +6126,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
               Max Lineups
             </InputGroupText>
           </InputGroupPrepend>
-          <FormControl
+          <AsyncFormControl
             onChange={[Function]}
             placeholder="eg 50"
-            value="50"
+            startingVal="50"
+            timeout={100}
+            validate={[Function]}
           />
         </InputGroup>
       </FormGroup>
@@ -6146,10 +6153,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
               Min Poss #
             </InputGroupText>
           </InputGroupPrepend>
-          <FormControl
+          <AsyncFormControl
             onChange={[Function]}
-            placeholder="eg 5"
-            value="5"
+            placeholder="eg 20"
+            startingVal="5"
+            timeout={100}
+            validate={[Function]}
           />
         </InputGroup>
       </FormGroup>
