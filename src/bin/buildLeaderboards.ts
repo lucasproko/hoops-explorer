@@ -65,7 +65,8 @@ const inGender = (_.find(process.argv, p => _.startsWith(p, "--gender="))
 const inYear = (_.find(process.argv, p => _.startsWith(p, "--year="))
   || `--year=${ParamDefaults.defaultYear}`).substring(7);
 console.log(`Args: gender=[${inGender}] year=[${inYear}]`);
-const teamFilter = (inYear == "2019/20") ? new Set([ "Maryland", "Iowa", "Michigan", "Dayton", "Rutgers" ]) : undefined;
+const teamFilter = undefined as Set<string> | undefined;
+  //(inYear == "2019/20") ? new Set([ "Maryland", "Iowa", "Michigan", "Dayton", "Rutgers" ]) : undefined;
 
 const genderYearLookup = `${inGender}_${inYear}`;
 const avgEfficiency = efficiencyAverages[genderYearLookup] || efficiencyAverages.fallback;
@@ -219,44 +220,27 @@ async function main() {
   //  console.log("RECEIVED: " + JSON.stringify(tableData, null, 3));
 }
 
-const topLineupSize = 400;
+const topLineupSize = 300;
 
 /** Adds some handy default sortings and removes possession outliers */
 function completeLineupLeaderboard(key: string, leaderboard: any[]) {
-  // Remove possession outliers
-  const topByPoss = _.sortBy(leaderboard, lineup => -1*(lineup.off_poss?.value || 0));
-  const top100ByPoss = _.take(topByPoss, 100);
-  const sum = _.reduce(top100ByPoss, (acc, v) => {
-    const value = v.off_poss?.value || 0;
-    return acc + value;
-  }, 0);
-  const mean = sum/(top100ByPoss.length || 1);
-  const thresh = Math.max(0.75*mean, 20); // Have to be within 75% of average value of top 100 by possession (or in T100)
-  const filteredLeaderboard = topByPoss.filter(
-    (lineup, lineupIndex) => (lineupIndex < 100) || ((lineup.off_poss?.value || 0) >= thresh)
-  );
-  const removedA = leaderboard.length - filteredLeaderboard.length;
+  // Take T300 by possessions
+  const topByPoss =
+    _.chain(leaderboard).sortBy(lineup => -1*(lineup.off_poss?.value || 0)).take(topLineupSize).value();
 
-  [ "off_adj_ppp", "def_adj_ppp" ].forEach((key) => {
-    _.sortBy(filteredLeaderboard, lineup => -1*(lineup[key]?.value || 0)).forEach((lineup, index) => {
-      lineup[`${key}_rank`] = index + 1;
-    });
+  _.sortBy(topByPoss, lineup => -1*(lineup.off_adj_ppp?.value || 0)).forEach((lineup, index) => {
+    lineup[`off_adj_ppp_rank`] = index + 1;
+  });
+  _.sortBy(topByPoss, lineup => (lineup.def_adj_ppp?.value || 0)).forEach((lineup, index) => {
+    lineup[`def_adj_ppp_rank`] = index + 1;
   });
   const rankedLineups = _.sortBy(
-    filteredLeaderboard, lineup => (lineup.def_adj_ppp?.value || 0) - (lineup.off_adj_ppp?.value || 0)
+    topByPoss, lineup => (lineup.def_adj_ppp?.value || 0) - (lineup.off_adj_ppp?.value || 0)
   ).map((lineup, index) => {
     lineup[`adj_margin_rank`] = index + 1;
     return lineup;
   });
-
-  const finalLineups = rankedLineups.filter((lineup, index) => { //get T400 in any of categories
-    return index < topLineupSize || (lineup.off_adj_ppp_rank <= topLineupSize) || (lineup.def_adj_ppp_rank <= topLineupSize);
-  });
-  const removedB = rankedLineups.length - finalLineups.length;
-
-  console.log(`${key}: length=[${finalLineups.length}] mean=[${mean}] thresh=[${thresh}] removedA=[${removedA}] removedB=[${removedB}]`);
-
-  return finalLineups;
+  return rankedLineups;
 }
 
 main().then(_ => {

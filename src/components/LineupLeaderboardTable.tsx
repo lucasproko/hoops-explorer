@@ -210,7 +210,7 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       const codesAndIds = LineupTableUtils.buildCodesAndIds(lineup);
       const sortedCodesAndIds = PositionUtils.orderLineup(codesAndIds, positionFromPlayerKey, teamSeasonLookup);
 
-      const lineupTitleKey = "" + lineupIndex;
+      const lineupTitleKey = "" + lineupIndex + new Date().getTime();
       const subTitle = sortedCodesAndIds ?
         TableDisplayUtils.buildDecoratedLineup(
           lineupTitleKey, sortedCodesAndIds, perLineupBaselinePlayerMap, positionFromPlayerKey, "off_adj_rtg", true

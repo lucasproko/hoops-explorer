@@ -3554,7 +3554,7 @@ export const publicKenpomEfficiency2017_8: Record<string, any> = {
    },
    "DePaul": {
       "team_season.year": 2018,
-      "conf": "Summit League",
+      "conf": "Big East Conference",
       "stats.adj_off.rank": 217,
       "stats.adj_off.value": 102.6,
       "stats.adj_def.rank": 203,
