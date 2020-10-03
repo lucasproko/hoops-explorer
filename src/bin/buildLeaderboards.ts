@@ -18,6 +18,7 @@ import calculateOnOffPlayerStats from "../pages/api/calculateOnOffPlayerStats";
 
 // Pre processing
 import { QueryUtils } from "../utils/QueryUtils";
+import { ParamDefaults } from "../utils/FilterModels";
 
 // Post processing
 import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
@@ -59,8 +60,10 @@ const savedT100Lineups = [];
 
 console.log("Start processing with args: " + _.drop(process.argv, 2));
 
-const inGender = (_.find(process.argv, p => _.startsWith(p, "--gender=")) || "--gender=Men").substring(9);
-const inYear = (_.find(process.argv, p => _.startsWith(p, "--year=")) || "--year=2019/20").substring(7);
+const inGender = (_.find(process.argv, p => _.startsWith(p, "--gender="))
+  || `--gender=${ParamDefaults.defaultGender}`).substring(9);
+const inYear = (_.find(process.argv, p => _.startsWith(p, "--year="))
+  || `--year=${ParamDefaults.defaultYear}`).substring(7);
 console.log(`Args: gender=[${inGender}] year=[${inYear}]`);
 const teamFilter = (inYear == "2019/20") ? new Set([ "Maryland", "Iowa", "Michigan", "Dayton", "Rutgers" ]) : undefined;
 
@@ -81,8 +84,8 @@ async function main() {
 
     const fullRequestModel = {
       gender: inGender,
-      minRank: "0",
-      maxRank: "400",
+      minRank: ParamDefaults.defaultMinRank,
+      maxRank: ParamDefaults.defaultMaxRank,
       team: team,
       year: inYear
     };

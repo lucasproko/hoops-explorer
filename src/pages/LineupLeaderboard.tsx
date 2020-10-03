@@ -42,6 +42,12 @@ const LineupLeaderboardPage: NextPage<{}> = () => {
     }
   }); //(on any change to the DOM)
 
+  const allParams = (typeof window === `undefined`) ? //(ensures SSR code still compiles)
+    "" : window.location.search;
+
+  const server = (typeof window === `undefined`) ? //(ensures SSR code still compiles)
+    "server" : window.location.hostname
+
   // Team Stats interface
 
   const [ gaInited, setGaInited ] = useState(false);
@@ -50,32 +56,18 @@ const LineupLeaderboardPage: NextPage<{}> = () => {
     t100: { lineups: [], confs: [], lastUpdated: 0 },
     conf: { lineups: [], confs: [], lastUpdated: 0 }
   });
-
-  if (!dataEvent.all?.lineups?.length) {
-//TODO: others + use actual gender / year
-    fetch("/leaderboards/lineups/lineups_all_Men_2019.json").then((response: fetch.IsomorphicResponse) => {
-      return response.json().then((json: any) => {
-        setDataEvent({ all: json });
-      });
-    });
-  }
-  const dateOverride = dataEvent.all?.lastUpdated; //TODO: whichever one is selected
+  const [ dataSubEvent, setDataSubEvent ] = useState({ lineups: [], confs: [], lastUpdated: 0 });
+  const [ currYear, setCurrYear ] = useState("");
 
   // Game filter
-
-  const allParams = (typeof window === `undefined`) ? //(ensures SSR code still compiles)
-    "" : window.location.search;
-
-  const server = (typeof window === `undefined`) ? //(ensures SSR code still compiles)
-    "server" : window.location.hostname
-
-  const [ lineupLeaderboardParams, setLineupLeaderboardParams ] = useState(
-    UrlRouting.removedSavedKeys(allParams) as LineupLeaderboardParams
-  )
 
   function getRootUrl(params: LineupLeaderboardParams) {
     return UrlRouting.getLineupLeaderboardUrl(params, {});
   }
+
+  const [ lineupLeaderboardParams, setLineupLeaderboardParams ] = useState(
+    UrlRouting.removedSavedKeys(allParams) as LineupLeaderboardParams
+  )
 
   const onLineupLeaderboardParamsChange = (rawParams: LineupLeaderboardParams) => {
     const params = _.omit(rawParams, _.flatten([ // omit all defaults
@@ -90,7 +82,6 @@ const LineupLeaderboardPage: NextPage<{}> = () => {
 
       (rawParams.showLineupLuckDiags == ParamDefaults.defaultLineupLboardLuckDiagMode) ? [ 'showLineupLuckDiags' ] : [],
     ]));
-    
     if (!_.isEqual(params, lineupLeaderboardParams)) { //(to avoid recursion)
       const href = getRootUrl(params);
       const as = href;
@@ -104,15 +95,29 @@ const LineupLeaderboardPage: NextPage<{}> = () => {
     }
   }
 
-  // View
+  useEffect(() => { // Process data selection change
+    const paramObj = lineupLeaderboardParams;
+    const dataSubEventKey = paramObj.t100 ?
+      "t100" : (paramObj.confOnly ? "conf" : "all");
 
-  function maybeShowDocs() {
-    if (!_.startsWith(server, "cbb-on-off-analyzer")) {
-      return "https://hoop-explorer.blogspot.com/2020/07/understanding-lineup-analyzer-page.html";
+    const gender = paramObj.gender || ParamDefaults.defaultGender;
+    const year = (paramObj.year || ParamDefaults.defaultYear).substring(0, 4);
+
+    if ((!dataEvent[dataSubEventKey]?.lineups?.length) || (currYear != year)) {
+      setCurrYear(year);
+      fetch(`/leaderboards/lineups/lineups_${dataSubEventKey}_${gender}_${year}.json`)
+        .then((response: fetch.IsomorphicResponse) => {
+          return response.json().then((json: any) => {
+            setDataEvent({ ...dataEvent, [dataSubEventKey]: json });
+            setDataSubEvent(json);
+          });
+        });
     } else {
-      return undefined;
+      setDataSubEvent(dataEvent[dataSubEventKey]);
     }
-  }
+  }, [ lineupLeaderboardParams ]);
+
+  // View
 
   return <Container>
     <Row>
@@ -129,11 +134,11 @@ const LineupLeaderboardPage: NextPage<{}> = () => {
     <Row className="mt-3">
       <LineupLeaderboardTable
         startingState={lineupLeaderboardParams}
-        dataEvent={dataEvent}
+        dataEvent={dataSubEvent}
         onChangeState={onLineupLeaderboardParamsChange}
       />
     </Row>
-    <Footer dateOverride={dateOverride} year={lineupLeaderboardParams.year} gender={lineupLeaderboardParams.gender} server={server}/>
+    <Footer dateOverride={dataEvent.all?.lastUpdated} year={lineupLeaderboardParams.year} gender={lineupLeaderboardParams.gender} server={server}/>
   </Container>;
 }
 export default LineupLeaderboardPage;

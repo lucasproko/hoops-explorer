@@ -61,16 +61,11 @@ export type LineupStatsModel = {
 }
 type Props = {
   startingState: LineupLeaderboardParams,
-  dataEvent: {
-    all: LineupStatsModel,
-    t100: LineupStatsModel,
-    conf: LineupStatsModel,
-  },
+  dataEvent: LineupStatsModel,
   onChangeState: (newParams: LineupLeaderboardParams) => void
 }
 
 const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, dataEvent, onChangeState}) => {
-  const modelInUse = dataEvent.all; //TODO
 
   const server = (typeof window === `undefined`) ? //(ensures SSR code still compiles)
     "server" : window.location.hostname
@@ -146,7 +141,7 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
     _.flatMap((confs || "").split(","), c => c == "P6" ? Power6Conferences : [ NicknameToConference[c] || c ])
   ) : undefined;
   const lineups = LineupTableUtils.buildFilteredLineups(
-    (modelInUse?.lineups || []).filter(lineup => {
+    (dataEvent?.lineups || []).filter(lineup => {
       return !confSet || confSet.has(lineup.conf || "Unknown");
     }),
     filterStr,
@@ -268,7 +263,7 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
   // 3] Utils
   /** Sticks an overlay on top of the table if no query has ever been loaded */
   function needToLoadQuery() {
-    return (modelInUse?.lineups || []).length == 0;
+    return (dataEvent?.lineups || []).length == 0;
   }
 
   /** For use in selects */
@@ -363,7 +358,7 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
           isMulti
           components={{ MultiValueContainer: ConferenceValueContainer }}
           value={ getCurrentConfsOrPlaceholder() }
-          options={["Power 6 Conferences"].concat(modelInUse?.confs || []).map(
+          options={["Power 6 Conferences"].concat(dataEvent?.confs || []).map(
             (r) => stringToOption(r)
           )}
           onChange={(options) => {
