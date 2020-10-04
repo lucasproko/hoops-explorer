@@ -80,8 +80,10 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
 
   const teamSeasonLookup = `${startingState.gender}_${startingState.team}_${startingState.year}`;
 
-  const [ minPoss, setMinPoss ] = useState(startingState.minPoss || ParamDefaults.defaultLineupMinPos);
-  const [ maxTableSize, setMaxTableSize ] = useState(startingState.maxTableSize || ParamDefaults.defaultLineupMaxTableSize);
+  const startingMinPoss = startingState.minPoss || ParamDefaults.defaultLineupMinPos;
+  const [ minPoss, setMinPoss ] = useState(startingMinPoss);
+  const startingMaxTableSize = startingState.maxTableSize || ParamDefaults.defaultLineupMaxTableSize;
+  const [ maxTableSize, setMaxTableSize ] = useState(startingMaxTableSize);
   const [ sortBy, setSortBy ] = useState(startingState.sortBy || ParamDefaults.defaultLineupSortBy);
   const [ filterStr, setFilterStr ] = useState(startingState.filter || ParamDefaults.defaultLineupFilter);
 
@@ -341,10 +343,10 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
               <InputGroup.Text id="maxLineups">Max Lineups</InputGroup.Text>
             </InputGroup.Prepend>
             <AsyncFormControl
-              startingVal={maxTableSize}
+              startingVal={startingMaxTableSize}
               validate={(t: string) => t.match("^[0-9]*$") != null}
               onChange={(t: string) => setMaxTableSize(t)}
-              timeout={100}
+              timeout={200}
               placeholder = "eg 50"
             />
           </InputGroup>
@@ -355,10 +357,10 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
               <InputGroup.Text id="minPossessions">Min Poss #</InputGroup.Text>
             </InputGroup.Prepend>
             <AsyncFormControl
-              startingVal={minPoss}
+              startingVal={startingMinPoss}
               validate={(t: string) => t.match("^[0-9]*$") != null}
               onChange={(t: string) => setMinPoss(t)}
-              timeout={100}
+              timeout={200}
               placeholder = "eg 20"
             />
           </InputGroup>

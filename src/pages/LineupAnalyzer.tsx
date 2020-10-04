@@ -104,6 +104,17 @@ const LineupAnalyzerPage: NextPage<{}> = () => {
     }
   }
 
+  /** Only rebuild the table if the data changes */
+  const table = React.useMemo(() => {
+    return  <GenericCollapsibleCard minimizeMargin={true} title="Lineup Analysis" helpLink={maybeShowDocs()}>
+      <LineupStatsTable
+        startingState={lineupFilterParams}
+        dataEvent={dataEvent}
+        onChangeState={onLineupFilterParamsChange}
+      />
+    </GenericCollapsibleCard>
+  }, [ dataEvent ]);
+
   return <Container>
     <Row>
       <Col xs={12} className="text-center">
@@ -130,13 +141,7 @@ const LineupAnalyzerPage: NextPage<{}> = () => {
       </GenericCollapsibleCard>
     </Row>
     <Row>
-      <GenericCollapsibleCard minimizeMargin={true} title="Lineup Analysis" helpLink={maybeShowDocs()}>
-        <LineupStatsTable
-          startingState={lineupFilterParams}
-          dataEvent={dataEvent}
-          onChangeState={onLineupFilterParamsChange}
-        />
-      </GenericCollapsibleCard>
+      {table}
     </Row>
     <Footer year={lineupFilterParams.year} gender={lineupFilterParams.gender} server={server}/>
   </Container>;

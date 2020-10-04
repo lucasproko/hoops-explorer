@@ -118,7 +118,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
             onChange={[Function]}
             placeholder="eg 50"
             startingVal="50"
-            timeout={100}
+            timeout={200}
             validate={[Function]}
           />
         </InputGroup>
@@ -145,7 +145,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
             onChange={[Function]}
             placeholder="eg 20"
             startingVal="5"
-            timeout={100}
+            timeout={200}
             validate={[Function]}
           />
         </InputGroup>
@@ -3541,7 +3541,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
             onChange={[Function]}
             placeholder="eg 50"
             startingVal="50"
-            timeout={100}
+            timeout={200}
             validate={[Function]}
           />
         </InputGroup>
@@ -3568,7 +3568,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
             onChange={[Function]}
             placeholder="eg 20"
             startingVal="5"
-            timeout={100}
+            timeout={200}
             validate={[Function]}
           />
         </InputGroup>
@@ -6133,7 +6133,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
             onChange={[Function]}
             placeholder="eg 50"
             startingVal="50"
-            timeout={100}
+            timeout={200}
             validate={[Function]}
           />
         </InputGroup>
@@ -6160,7 +6160,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
             onChange={[Function]}
             placeholder="eg 20"
             startingVal="5"
-            timeout={100}
+            timeout={200}
             validate={[Function]}
           />
         </InputGroup>

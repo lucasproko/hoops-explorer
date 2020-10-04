@@ -133,8 +133,10 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
 
   // Misc display
 
-  const [ minPoss, setMinPoss ] = useState(startingState.minPoss || ParamDefaults.defaultLineupLboardMinPos);
-  const [ maxTableSize, setMaxTableSize ] = useState(startingState.maxTableSize || ParamDefaults.defaultLineupLboardMaxTableSize);
+  const startingMinPoss = startingState.minPoss || ParamDefaults.defaultLineupLboardMinPos;
+  const [ minPoss, setMinPoss ] = useState(startingMinPoss);
+  const startingMaxTableSize = startingState.maxTableSize || ParamDefaults.defaultLineupLboardMaxTableSize;
+  const [ maxTableSize, setMaxTableSize ] = useState(startingMaxTableSize);
   const [ sortBy, setSortBy ] = useState(startingState.sortBy || ParamDefaults.defaultLineupLboardSortBy);
   const [ filterStr, setFilterStr ] = useState(startingState.filter || ParamDefaults.defaultLineupLboardFilter);
 
@@ -428,10 +430,10 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
               <InputGroup.Text id="maxLineups">Max Lineups</InputGroup.Text>
             </InputGroup.Prepend>
             <AsyncFormControl
-              startingVal={maxTableSize}
+              startingVal={startingMaxTableSize}
               validate={(t: string) => t.match("^[0-9]*$") != null}
               onChange={(t: string) => setMaxTableSize(t)}
-              timeout={200}
+              timeout={400}
               placeholder = "eg 100"
             />
           </InputGroup>
@@ -442,10 +444,10 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
               <InputGroup.Text id="minPossessions">Min Poss #</InputGroup.Text>
             </InputGroup.Prepend>
             <AsyncFormControl
-              startingVal={minPoss}
+              startingVal={startingMinPoss}
               validate={(t: string) => t.match("^[0-9]*$") != null}
               onChange={(t: string) => setMinPoss(t)}
-              timeout={200}
+              timeout={400}
               placeholder = "eg 20"
             />
           </InputGroup>
