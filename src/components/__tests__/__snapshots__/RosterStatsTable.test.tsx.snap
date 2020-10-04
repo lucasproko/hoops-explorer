@@ -3864,11 +3864,11 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
               Filter
             </InputGroupText>
           </InputGroupPrepend>
-          <FormControl
+          <AsyncFormControl
             onChange={[Function]}
-            onKeyUp={[Function]}
-            placeholder="eg Player1Surname,Player2FirstName,-Player3Name"
-            value=""
+            placeholder="eg TeamA;-TeamB;Player1Code;Player2FirstName;-Player3Surname"
+            startingVal=""
+            timeout={500}
           />
         </InputGroup>
       </FormGroup>
@@ -6910,11 +6910,11 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
               Filter
             </InputGroupText>
           </InputGroupPrepend>
-          <FormControl
+          <AsyncFormControl
             onChange={[Function]}
-            onKeyUp={[Function]}
-            placeholder="eg Player1Surname,Player2FirstName,-Player3Name"
-            value=""
+            placeholder="eg TeamA;-TeamB;Player1Code;Player2FirstName;-Player3Surname"
+            startingVal=""
+            timeout={500}
           />
         </InputGroup>
       </FormGroup>
@@ -9267,11 +9267,11 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
               Filter
             </InputGroupText>
           </InputGroupPrepend>
-          <FormControl
+          <AsyncFormControl
             onChange={[Function]}
-            onKeyUp={[Function]}
-            placeholder="eg Player1Surname,Player2FirstName,-Player3Name"
-            value=""
+            placeholder="eg TeamA;-TeamB;Player1Code;Player2FirstName;-Player3Surname"
+            startingVal=""
+            timeout={500}
           />
         </InputGroup>
       </FormGroup>
@@ -13944,11 +13944,11 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
               Filter
             </InputGroupText>
           </InputGroupPrepend>
-          <FormControl
+          <AsyncFormControl
             onChange={[Function]}
-            onKeyUp={[Function]}
-            placeholder="eg Player1Surname,Player2FirstName,-Player3Name"
-            value=""
+            placeholder="eg TeamA;-TeamB;Player1Code;Player2FirstName;-Player3Surname"
+            startingVal=""
+            timeout={500}
           />
         </InputGroup>
       </FormGroup>
@@ -20526,11 +20526,11 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
               Filter
             </InputGroupText>
           </InputGroupPrepend>
-          <FormControl
+          <AsyncFormControl
             onChange={[Function]}
-            onKeyUp={[Function]}
-            placeholder="eg Player1Surname,Player2FirstName,-Player3Name"
-            value=""
+            placeholder="eg TeamA;-TeamB;Player1Code;Player2FirstName;-Player3Surname"
+            startingVal=""
+            timeout={500}
           />
         </InputGroup>
       </FormGroup>
@@ -27835,11 +27835,11 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
               Filter
             </InputGroupText>
           </InputGroupPrepend>
-          <FormControl
+          <AsyncFormControl
             onChange={[Function]}
-            onKeyUp={[Function]}
-            placeholder="eg Player1Surname,Player2FirstName,-Player3Name"
-            value=""
+            placeholder="eg TeamA;-TeamB;Player1Code;Player2FirstName;-Player3Surname"
+            startingVal=""
+            timeout={500}
           />
         </InputGroup>
       </FormGroup>
@@ -34868,11 +34868,11 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
               Filter
             </InputGroupText>
           </InputGroupPrepend>
-          <FormControl
+          <AsyncFormControl
             onChange={[Function]}
-            onKeyUp={[Function]}
-            placeholder="eg Player1Surname,Player2FirstName,-Player3Name"
-            value=""
+            placeholder="eg TeamA;-TeamB;Player1Code;Player2FirstName;-Player3Surname"
+            startingVal=""
+            timeout={500}
           />
         </InputGroup>
       </FormGroup>

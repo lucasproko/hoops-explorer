@@ -39,11 +39,12 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                 Filter
               </InputGroupText>
             </InputGroupPrepend>
-            <FormControl
+            <AsyncFormControl
               onChange={[Function]}
-              onKeyUp={[Function]}
-              placeholder="eg Player1Surname,Player2FirstName,-Player3Name"
-              value=""
+              placeholder="eg TeamA;-TeamB;Player1Code;Player2FirstName;-Player3Surname"
+              startingVal=""
+              timeout={500}
+              validate={[Function]}
             />
           </InputGroup>
         </FormGroup>
@@ -8761,11 +8762,12 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 Filter
               </InputGroupText>
             </InputGroupPrepend>
-            <FormControl
+            <AsyncFormControl
               onChange={[Function]}
-              onKeyUp={[Function]}
-              placeholder="eg Player1Surname,Player2FirstName,-Player3Name"
-              value=""
+              placeholder="eg TeamA;-TeamB;Player1Code;Player2FirstName;-Player3Surname"
+              startingVal=""
+              timeout={500}
+              validate={[Function]}
             />
           </InputGroup>
         </FormGroup>
@@ -22211,11 +22213,12 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 Filter
               </InputGroupText>
             </InputGroupPrepend>
-            <FormControl
+            <AsyncFormControl
               onChange={[Function]}
-              onKeyUp={[Function]}
-              placeholder="eg Player1Surname,Player2FirstName,-Player3Name"
-              value=""
+              placeholder="eg TeamA;-TeamB;Player1Code;Player2FirstName;-Player3Surname"
+              startingVal=""
+              timeout={500}
+              validate={[Function]}
             />
           </InputGroup>
         </FormGroup>
@@ -34653,11 +34656,12 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 Filter
               </InputGroupText>
             </InputGroupPrepend>
-            <FormControl
+            <AsyncFormControl
               onChange={[Function]}
-              onKeyUp={[Function]}
-              placeholder="eg Player1Surname,Player2FirstName,-Player3Name"
-              value=""
+              placeholder="eg TeamA;-TeamB;Player1Code;Player2FirstName;-Player3Surname"
+              startingVal=""
+              timeout={500}
+              validate={[Function]}
             />
           </InputGroup>
         </FormGroup>
@@ -50077,11 +50081,12 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 Filter
               </InputGroupText>
             </InputGroupPrepend>
-            <FormControl
+            <AsyncFormControl
               onChange={[Function]}
-              onKeyUp={[Function]}
-              placeholder="eg Player1Surname,Player2FirstName,-Player3Name"
-              value="AaWiggins"
+              placeholder="eg TeamA;-TeamB;Player1Code;Player2FirstName;-Player3Surname"
+              startingVal="AaWiggins"
+              timeout={500}
+              validate={[Function]}
             />
           </InputGroup>
         </FormGroup>
@@ -54282,11 +54287,12 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 Filter
               </InputGroupText>
             </InputGroupPrepend>
-            <FormControl
+            <AsyncFormControl
               onChange={[Function]}
-              onKeyUp={[Function]}
-              placeholder="eg Player1Surname,Player2FirstName,-Player3Name"
-              value=""
+              placeholder="eg TeamA;-TeamB;Player1Code;Player2FirstName;-Player3Surname"
+              startingVal=""
+              timeout={500}
+              validate={[Function]}
             />
           </InputGroup>
         </FormGroup>

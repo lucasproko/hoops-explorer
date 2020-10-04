@@ -12,7 +12,7 @@ import { NextPage } from 'next';
 import { mean, std } from "mathjs";
 
 // Utils
-import { OnOffReportDiagUtils } from "../../utils/stats/OnOffReportDiagUtils";
+import { OnOffReportDiagUtils } from "../../utils/tables/OnOffReportDiagUtils";
 import { CommonFilterParams } from "../../utils/FilterModels";
 import { QueryUtils } from "../../utils/QueryUtils";
 

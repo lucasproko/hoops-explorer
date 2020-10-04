@@ -24,7 +24,7 @@ import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 
 
 // Utils:
-import { getCommonFilterParams, ParamPrefixes, CommonFilterParams, GameFilterParams, LineupFilterParams, TeamReportFilterParams } from '../../utils/FilterModels';
+import { getCommonFilterParams, ParamPrefixes, CommonFilterParams, GameFilterParams, LineupFilterParams, TeamReportFilterParams, LineupLeaderboardParams } from '../../utils/FilterModels';
 import { UrlRouting } from "../../utils/UrlRouting";
 import { HistoryManager } from '../../utils/HistoryManager';
 
@@ -54,6 +54,12 @@ const HeaderBar: React.FunctionComponent<Props> = ({thisPage, common, override})
   const server = (typeof window === `undefined`) ? //(ensures SSR code still compiles)
     "server" : window.location.hostname;
 
+  // Leaderboard
+  function getLineupLeaderboardUrl() {
+    return UrlRouting.getLineupLeaderboardUrl(
+      getCommonFilterParams(common) as LineupLeaderboardParams
+    );
+  }
   // Last visited
   function getLastGameUrl() {
     return UrlRouting.getGameUrl(
@@ -90,6 +96,9 @@ const HeaderBar: React.FunctionComponent<Props> = ({thisPage, common, override})
     );
   }
 
+  const lineupLeaderboardTooltip = (
+    <Tooltip id="lineupLeaderboardTooltip">Go to the (luck adjusted) Lineup T400 Leaderboard page</Tooltip>
+  );
   const baseGameTooltip = (
     <Tooltip id="baseGameTooltip">Go to the On/Off Analysis page with the current baseline query</Tooltip>
   );
@@ -171,6 +180,19 @@ const HeaderBar: React.FunctionComponent<Props> = ({thisPage, common, override})
       </Dropdown>;
   };
 
+  /** Build a nice looking nav dropdown */
+  const buildLeaderboardDropdown = () => {
+    //(mega grovelling with types required to get TS to compile with example from react bootstrap custom dropdown example code)
+    return <Dropdown>
+        <Dropdown.Toggle id="chartDropDown" as={StyledDropdown as unknown as undefined}>Leaderboards</Dropdown.Toggle>
+        <Dropdown.Menu style={dropdownStyle}>
+          <Dropdown.Item>
+            {buildNavItem("Lineups", lineupLeaderboardTooltip, getLineupLeaderboardUrl())}
+          </Dropdown.Item>
+        </Dropdown.Menu>
+      </Dropdown>;
+  };
+
   /** Show blog if rendering external version of the page */
   function maybeShowBlog() {
     if (!_.startsWith(server, "cbb-on-off-analyzer")) {
@@ -188,6 +210,9 @@ const HeaderBar: React.FunctionComponent<Props> = ({thisPage, common, override})
   //(only render client-side - was running into cache issues of the Link href)
   return (override || (typeof window !== `undefined`)) ? <Container>
       <Row className="border-top">
+        <Col className="text-center small">
+          {buildLeaderboardDropdown()}
+        </Col>
         {(thisPage != ParamPrefixes.game) ?
             <Col className="text-center small">
               {buildNavDropdown("On/Off", baseGameTooltip, getBaseGameUrl(), lastGameTooltip, getLastGameUrl())}

@@ -1,6 +1,6 @@
 import renderer from 'react-test-renderer';
 import React from 'react';
-import { LineupDisplayUtils } from '../LineupDisplayUtils';
+import { TableDisplayUtils } from '../TableDisplayUtils';
 import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 import _ from "lodash";
@@ -10,7 +10,7 @@ import { sampleLineupStatsResponse } from "../../../sample-data/sampleLineupStat
 import { samplePlayerStatsResponse } from "../../../sample-data/samplePlayerStatsResponse";
 import { sampleTeamStatsResponse } from "../../../sample-data/sampleTeamStatsResponse";
 
-describe("LineupDisplayUtils", () => {
+describe("TableDisplayUtils", () => {
 
   const testLineup = [
     { code: "p1", id: "player1" },
@@ -62,7 +62,7 @@ describe("LineupDisplayUtils", () => {
   test("buildDecoratedLineup - plain version", () => {
     const component = renderer.create(
       <span>{
-        LineupDisplayUtils.buildDecoratedLineup(
+        TableDisplayUtils.buildDecoratedLineup(
           "p1_p2_p3_p4_p5", testLineup, perLineupPlayerMap, positionFromPlayerKey, "off_adj_rtg", false
         )
       }</span>
@@ -73,7 +73,7 @@ describe("LineupDisplayUtils", () => {
   test("buildDecoratedLineup - decorated version", () => {
     const component = renderer.create(
       <span>{
-        LineupDisplayUtils.buildDecoratedLineup(
+        TableDisplayUtils.buildDecoratedLineup(
           "p1_p2_p3_p4_p5", testLineup, perLineupPlayerMap, positionFromPlayerKey, "off_adj_rtg", true
         )
       }</span>
@@ -84,7 +84,7 @@ describe("LineupDisplayUtils", () => {
   test("buildDecoratedLineup - buildTooltipTexts", () => {
     const component = renderer.create(
       <span>{
-        LineupDisplayUtils.buildTooltipTexts(
+        TableDisplayUtils.buildTooltipTexts(
           "p1_p2_p3_p4_p5", testLineup, perLineupPlayerMap, positionFromPlayerKey
         )
       }</span>
@@ -108,7 +108,7 @@ describe("LineupDisplayUtils", () => {
 
   test("injectPlayTypeInfo - lineups", () => {
     injectData(sampleData, sampleLineupStatsResponse.responses[0].aggregations.lineups.buckets[1]);
-    expect(LineupDisplayUtils.injectPlayTypeInfo(
+    expect(TableDisplayUtils.injectPlayTypeInfo(
       sampleLineupStatsResponse.responses[0].aggregations.lineups.buckets[0],
       false, false
     )).toMatchSnapshot();
@@ -118,7 +118,7 @@ describe("LineupDisplayUtils", () => {
     injectData(sampleData,
       samplePlayerStatsResponse.responses[0].aggregations.tri_filter.buckets.baseline.player.buckets[1]
     );
-    expect(LineupDisplayUtils.injectPlayTypeInfo(
+    expect(TableDisplayUtils.injectPlayTypeInfo(
       samplePlayerStatsResponse.responses[0].aggregations.tri_filter.buckets.baseline.player.buckets[0],
       false, true
     )).toMatchSnapshot();
@@ -128,7 +128,7 @@ describe("LineupDisplayUtils", () => {
     injectData(sampleData,
       samplePlayerStatsResponse.responses[0].aggregations.tri_filter.buckets.baseline.player.buckets[1]
     );
-    expect(LineupDisplayUtils.injectPlayTypeInfo(
+    expect(TableDisplayUtils.injectPlayTypeInfo(
       samplePlayerStatsResponse.responses[0].aggregations.tri_filter.buckets.baseline.player.buckets[0],
       true, true
     )).toMatchSnapshot();

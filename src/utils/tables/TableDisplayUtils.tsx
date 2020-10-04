@@ -12,10 +12,10 @@ import _ from "lodash";
 import { CbbColors } from "../CbbColors";
 
 import { CommonTableDefs } from "../CommonTableDefs";
-import "./LineupDisplayUtils.css";
+import "./TableDisplayUtils.css";
 
 /** Encapsulates some of the logic used to build decorated lineups in LineupStatsTable */
-export class LineupDisplayUtils {
+export class TableDisplayUtils {
 
   /** Builds an information (over-)loaded lineup HTML */
   static buildDecoratedLineup(
@@ -26,15 +26,15 @@ export class LineupDisplayUtils {
     colorField: string,
     decorateLineup: boolean
   ) {
-    const tooltipBuilder = (pid: number) => LineupDisplayUtils.buildTooltipTexts(
+    const tooltipBuilder = (pid: number) => TableDisplayUtils.buildTooltipTexts(
       key + pid, sortedLineup, perLineupPlayerMap, positionFromPlayerKey
     );
     if (decorateLineup) {
-      return sortedLineup.map((cid: { code: string, id: string }, pid: number) => {
-        return <OverlayTrigger placement="auto" overlay={tooltipBuilder(pid)} key={"" + pid}>{
-          LineupDisplayUtils.buildDecoratedPlayer(cid, perLineupPlayerMap, colorField, pid == 4)
-        }</OverlayTrigger>;
-      });
+      return <OverlayTrigger placement="auto" overlay={tooltipBuilder(0)}>
+        <div>{sortedLineup.map((cid: { code: string, id: string }, pid: number) => {
+          return TableDisplayUtils.buildDecoratedPlayer(cid, perLineupPlayerMap, colorField, pid == 4)
+        })}</div>
+      </OverlayTrigger>;
     } else {
       return <OverlayTrigger placement="auto" overlay={tooltipBuilder(0)}>
         <span><b>{sortedLineup.map((cid: { code: string, id: string}) => cid.code).join(" / ")}</b></span>
@@ -50,7 +50,7 @@ export class LineupDisplayUtils {
     positionFromPlayerKey: Record<string, {posClass: string}>
   ) {
     const tooltipTexts = _.flatMap(sortedLineup, (cid: {id: string, code: string}) => {
-      return LineupDisplayUtils.buildTooltipText(cid, perLineupPlayerMap, positionFromPlayerKey);
+      return TableDisplayUtils.buildTooltipText(cid, perLineupPlayerMap, positionFromPlayerKey);
     });
     const tooltip = <Tooltip id={`${key}_info`}>{_.map(tooltipTexts,
       (t: string, i: number) => <span key={"" + i}>{t}<br/></span>

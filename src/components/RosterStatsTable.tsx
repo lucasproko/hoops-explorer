@@ -36,6 +36,7 @@ import LuckConfigModal from "./shared/LuckConfigModal";
 import ManualOverrideModal from "./shared/ManualOverrideModal";
 import ToggleButtonGroup from "./shared/ToggleButtonGroup";
 import PlayerPlayTypeDiagView from "./diags/PlayerPlayTypeDiagView"
+import AsyncFormControl from './shared/AsyncFormControl';
 
 // Util imports
 import { CbbColors } from "../utils/CbbColors";
@@ -46,7 +47,7 @@ import { PositionUtils } from "../utils/stats/PositionUtils";
 import { LuckUtils } from "../utils/stats/LuckUtils";
 import { OverrideUtils } from "../utils/stats/OverrideUtils";
 import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
-import { LineupDisplayUtils } from "../utils/stats/LineupDisplayUtils";
+import { TableDisplayUtils } from "../utils/tables/TableDisplayUtils";
 
 export type RosterStatsModel = {
   on?: Array<any>,
@@ -129,10 +130,6 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
   const [ showManualOverrides, setShowManualOverrides ] = useState(_.isNil(gameFilterParams.showPlayerManual) ?
     false : gameFilterParams.showPlayerManual
   );
-
-  // (slight delay when typing into the filter to make it more responsive)
-  const [ timeoutId, setTimeoutId ] = useState(-1);
-  const [ tmpFilterStr, setTmpFilterStr ] = useState(filterStr);
 
   const filterFragments =
     filterStr.split(",").map(fragment => _.trim(fragment)).filter(fragment => fragment ? true : false);
@@ -376,7 +373,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
         // Set or unset derived stats:
         OverrideUtils.updateDerivedStats(stat, adjustmentReason);
         stat.off_drb = stat.def_orb; //(just for display, all processing should use def_orb)
-        LineupDisplayUtils.injectPlayTypeInfo(stat, expandedView, true);
+        TableDisplayUtils.injectPlayTypeInfo(stat, expandedView, true);
 
         // Ratings:
 
@@ -525,18 +522,6 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
     }
   }
 
-  /** Handling filter change (/key presses to fix the select/delete on page load) */
-  const onFilterChange = (ev: any) => {
-    const toSet = ev.target.value;
-    setTmpFilterStr(toSet);
-    if (timeoutId != -1) {
-      window.clearTimeout(timeoutId);
-    }
-    setTimeoutId(window.setTimeout(() => {
-      setFilterStr(toSet);
-    }, 100));
-  };
-
   /** For use in selects */
   function stringToOption(s: string) {
     return sortOptionsByValue[s];
@@ -641,11 +626,11 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
             <InputGroup.Prepend>
               <InputGroup.Text id="filter">Filter</InputGroup.Text>
             </InputGroup.Prepend>
-            <Form.Control
-              onKeyUp={onFilterChange}
-              onChange={onFilterChange}
-              placeholder = "eg Player1Surname,Player2FirstName,-Player3Name"
-              value={tmpFilterStr}
+            <AsyncFormControl
+              startingVal={filterStr}
+              onChange={(t: string) => setFilterStr(t)}
+              timeout={500}
+              placeholder = "eg TeamA;-TeamB;Player1Code;Player2FirstName;-Player3Surname"
             />
           </InputGroup>
         </Form.Group>

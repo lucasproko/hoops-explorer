@@ -35,7 +35,7 @@ import { GameFilterParams, ParamDefaults, LuckParams } from "../utils/FilterMode
 import { CommonTableDefs } from "../utils/CommonTableDefs"
 import { LuckUtils, OffLuckAdjustmentDiags, DefLuckAdjustmentDiags, LuckAdjustmentBaseline } from "../utils/stats/LuckUtils";
 import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
-import { LineupDisplayUtils } from "../utils/stats/LineupDisplayUtils";
+import { TableDisplayUtils } from "../utils/tables/TableDisplayUtils";
 
 export type TeamStatsModel = {
   on: any,
@@ -162,7 +162,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
   const teamStatsBaseline = { off_title: "Baseline Offense", def_title: "Baseline Defense", ...teamStats.baseline };
 
   ([ "on", "off", "baseline" ] as OnOffBase[]).forEach(k => {
-    LineupDisplayUtils.injectPlayTypeInfo(teamStats[k], false, false);
+    TableDisplayUtils.injectPlayTypeInfo(teamStats[k], false, false);
   });
 
   const tableData = _.flatMap([

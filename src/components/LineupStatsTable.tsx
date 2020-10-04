@@ -30,15 +30,17 @@ import GenericTogglingMenu from './shared/GenericTogglingMenu';
 import GenericTogglingMenuItem from './shared/GenericTogglingMenuItem';
 import ToggleButtonGroup from "./shared/ToggleButtonGroup";
 import LuckAdjDiagView from './diags/LuckAdjDiagView';
+import AsyncFormControl from './shared/AsyncFormControl';
+
+// Table building
+import { TableDisplayUtils } from "../utils/tables/TableDisplayUtils";
+import { LineupTableUtils } from "../utils/tables/LineupTableUtils";
 
 // Util imports
-import { LineupDisplayUtils } from "../utils/stats/LineupDisplayUtils";
-import { RatingUtils } from "../utils/stats/RatingUtils";
 import { LineupUtils } from "../utils/stats/LineupUtils";
 import { CbbColors } from "../utils/CbbColors";
 import { CommonTableDefs } from "../utils/CommonTableDefs";
 import { PositionUtils } from "../utils/stats/PositionUtils";
-import { LuckUtils, OffLuckAdjustmentDiags, DefLuckAdjustmentDiags, LuckAdjustmentBaseline } from "../utils/stats/LuckUtils";
 import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
 import { LineupFilterParams, ParamDefaults, LuckParams } from '../utils/FilterModels';
 
@@ -71,6 +73,9 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
 
   // Misc display
 
+  /** Set this to be true on expensive operations */
+  const [ loadingOverride, setLoadingOverride ] = useState(false);
+
   /** Whether to show the weighted combo of all visible lineups */
   const [ showTotals, setShowTotals ] = useState(_.isNil(startingState.showTotal) ?
     ParamDefaults.defaultLineupShowTotal : startingState.showTotal
@@ -78,8 +83,10 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
 
   const teamSeasonLookup = `${startingState.gender}_${startingState.team}_${startingState.year}`;
 
-  const [ minPoss, setMinPoss ] = useState(startingState.minPoss || ParamDefaults.defaultLineupMinPos);
-  const [ maxTableSize, setMaxTableSize ] = useState(startingState.maxTableSize || ParamDefaults.defaultLineupMaxTableSize);
+  const startingMinPoss = startingState.minPoss || ParamDefaults.defaultLineupMinPos;
+  const [ minPoss, setMinPoss ] = useState(startingMinPoss);
+  const startingMaxTableSize = startingState.maxTableSize || ParamDefaults.defaultLineupMaxTableSize;
+  const [ maxTableSize, setMaxTableSize ] = useState(startingMaxTableSize);
   const [ sortBy, setSortBy ] = useState(startingState.sortBy || ParamDefaults.defaultLineupSortBy);
   const [ filterStr, setFilterStr ] = useState(startingState.filter || ParamDefaults.defaultLineupFilter);
 
@@ -105,14 +112,6 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
   const [ decorateLineups, setDecorateLineups ] = useState(_.isNil(startingState.decorate) ?
     ParamDefaults.defaultLineupDecorate : startingState.decorate
   );
-
-  // (slight delay when typing into the filter to make it more responsive)
-  const [ timeoutId, setTimeoutId ] = useState(-1);
-  const [ tmpFilterStr, setTmpFilterStr ] = useState(filterStr);
-
-  const [
-    filterFragmentsPve, filterFragmentsNve, filterOnPosition
-  ] = PositionUtils.buildPositionalAwareFilter(filterStr);
 
   useEffect(() => { //(this ensures that the filter component is up to date with the union of these fields)
     const newState = {
@@ -141,149 +140,59 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
   const avgEfficiency = efficiencyAverages[genderYearLookup] || efficiencyAverages.fallback;
 
   /** Need baseline player info for tooltip view/lineup decoration */
-  const baselinePlayerInfo = _.fromPairs(
-    (rosterStats.baseline || []).map((mutableP: any) => {
-      // Add ORtg to lineup stats:
-      const playerAdjustForLuck = false; //TODO: longer term I think we will want to do this
-      const [ oRtg, adjORtg, rawORtg, rawAdjORtg, oRtgDiag ] = RatingUtils.buildORtg(
-        mutableP, avgEfficiency, false, playerAdjustForLuck
-      );
-      const [ dRtg, adjDRtg, rawDRtg, rawAdjDRtg, dRtgDiag ] = RatingUtils.buildDRtg(
-        mutableP, avgEfficiency, false, playerAdjustForLuck
-      );
-      mutableP.off_rtg = {
-        value: oRtg?.value, old_value: rawORtg?.value,
-        override: playerAdjustForLuck ? "Luck adjusted" : undefined
-      };
-      mutableP.off_adj_rtg = {
-        value: adjORtg?.value, old_value: rawAdjORtg?.value,
-        override: playerAdjustForLuck ? "Luck adjusted" : undefined
-      };
-      mutableP.def_rtg = {
-        value: dRtg?.value, old_value: rawDRtg?.value,
-        override: playerAdjustForLuck ? "Luck adjusted" : undefined
-      };
-      mutableP.def_adj_rtg = {
-        value: adjDRtg?.value, old_value: rawAdjDRtg?.value,
-        override: playerAdjustForLuck ? "Luck adjusted" : undefined
-      };
-
-      return [ mutableP.key, mutableP ];
-    })
+  const baselinePlayerInfo = LineupTableUtils.buildBaselinePlayerInfo(
+    rosterStats.baseline, avgEfficiency
   );
-
-  // The luck baseline can either be the user-selecteed baseline or the entire season
-  const [ baseOrSeasonTeamStats, baseOrSeason3PMap ] = (() => {
-    if (adjustForLuck) {
-      switch (luckConfig.base) {
-        case "baseline":
-          return [
-            teamStats.baseline, baselinePlayerInfo
-          ];
-        default: //("season")
-          return [
-            teamStats.global, _.fromPairs((rosterStats.global || []).map((p: any) => [ p.key, p ]))
-          ];
-      }
-    } else return [ {}, {} ]; //(not used)
-  })();
 
   // 3.1] Build individual info
 
   // 3.1.1] Positional info from the season stats
 
-  const positionFromPlayerKey = _.chain(rosterStats.global || []).map((player: any) => {
-    const [ posConfs, posConfsDiags ] = PositionUtils.buildPositionConfidences(player);
-    const [ pos, posDiags ] = PositionUtils.buildPosition(posConfs, player, teamSeasonLookup);
-    return [ player.key, { posConfidences: _.values(posConfs || {}), posClass: pos } ];
-  }).fromPairs().value();
+  /** Only rebuild the expensive table if one of the parameters that controls it changes */
+  const table = React.useMemo(() => {
+    setLoadingOverride(false); //(rendering)
 
-  // 3.2] Table building
+    const positionFromPlayerKey = LineupTableUtils.buildPositionPlayerMap(rosterStats.global, teamSeasonLookup);
 
-  const offPrefixFn = (key: string) => "off_" + key;
-  const offCellMetaFn = (key: string, val: any) => "off";
-  const defPrefixFn = (key: string) => "def_" + key;
-  const defCellMetaFn = (key: string, val: any) => "def";
+    // 3.2] Table building
 
-  const sorter = (sortStr: string) => { // format: (asc|desc):(off_|def_|diff_)<field>
-    const sortComps = sortStr.split(":"); //asc/desc
-    const dir = (sortComps[0] == "desc") ? -1 : 1;
-    const fieldComps = _.split(sortComps[1], "_", 1); //off/def/diff
-    const fieldName = sortComps[1].substring(fieldComps[0].length + 1); //+1 for _
-    const field = (lineup: any) => {
-      switch(fieldComps[0]) {
-        case "diff": //(off-def)
-          return (lineup["off_" + fieldName]?.value || 0.0)
-                - (lineup["def_" + fieldName]?.value || 0.0);
-        default: return lineup[sortComps[1]]?.value; //(off or def)
-      }
-    };
-    return (lineup: any) => {
-      return dir*(field(lineup) || 0);
-    };
-  };
+    const offPrefixFn = (key: string) => "off_" + key;
+    const offCellMetaFn = (key: string, val: any) => "off";
+    const defPrefixFn = (key: string) => "def_" + key;
+    const defCellMetaFn = (key: string, val: any) => "def";
 
-  const lineups = lineupStats?.lineups || [];
-  const filteredLineups = _.chain(lineups).filter((lineup) => {
-      const minPossInt = parseInt(minPoss);
-      const offPos = lineup.off_poss?.value || 0;
-      const defPos = lineup.def_poss?.value || 0;
-      return offPos >= minPossInt || defPos >= minPossInt; //(unclear which of || vs && is best...)
-    }).filter((lineup) => {
+    const lineups = lineupStats?.lineups || [];
+    const filteredLineups = LineupTableUtils.buildFilteredLineups(
+      lineups,
+      filterStr, sortBy, minPoss, maxTableSize,
+      teamSeasonLookup, positionFromPlayerKey
+    );
 
-      const codesAndIds = lineup.players_array?.hits?.hits?.[0]?._source?.players || [];
-      const namesToTest = filterOnPosition ?
-        PositionUtils.orderLineup(codesAndIds, positionFromPlayerKey, teamSeasonLookup) : codesAndIds;
+    const totalLineup = showTotals ? [
+      _.assign(LineupUtils.calculateAggregatedLineupStats(filteredLineups), {
+        key: LineupTableUtils.totalLineupId
+      })
+    ] : [];
 
-      const playerFilter = PositionUtils.testPositionalAwareFilter(
-        namesToTest, filterFragmentsPve, filterFragmentsNve
-      );
+    const tableData = LineupTableUtils.buildEnrichedLineups(
+      filteredLineups,
+      teamStats.global, rosterStats.global, teamStats.baseline,
+      adjustForLuck, luckConfig.base, avgEfficiency,
+      totalLineup, teamSeasonLookup, positionFromPlayerKey, baselinePlayerInfo
+    ).flatMap((lineup, lineupIndex) => {
+      TableDisplayUtils.injectPlayTypeInfo(lineup, false, false); //(inject assist numbers)
 
-      return playerFilter && (lineup.key != ""); // (workaround for #53 pending fix)
-
-    }).sortBy(
-       [ sorter(sortBy) ]
-    ).take(
-      parseInt(maxTableSize)
-    ).value();
-
-  const totalLineupId = "TOTAL";
-  const totalLineup = showTotals ? [
-    _.assign(LineupUtils.calculateAggregatedLineupStats(filteredLineups), {
-      key: totalLineupId
-    })
-  ] : [];
-
-  const tableData = totalLineup.concat(filteredLineups).flatMap((lineup, lineupIndex) => {
-
-      const codesAndIds = lineup.players_array?.hits?.hits?.[0]?._source?.players || [];
-
-      const sortedCodesAndIds = (lineup.key == totalLineupId) ? undefined :
+      const codesAndIds = LineupTableUtils.buildCodesAndIds(lineup);
+      const sortedCodesAndIds = (lineup.key == LineupTableUtils.totalLineupId) ? undefined :
         PositionUtils.orderLineup(codesAndIds, positionFromPlayerKey, teamSeasonLookup);
-
-      const perLineupPlayerLuckMap = _.fromPairs(codesAndIds.map((cid: { code: string, id: string }) => {
-        return [  cid.id, baseOrSeason3PMap[cid.id] ];
-      }));
-      const luckAdj = (adjustForLuck && lineup?.doc_count) ? [
-        LuckUtils.calcOffTeamLuckAdj(
-          lineup, rosterStats.baseline || [], baseOrSeasonTeamStats, perLineupPlayerLuckMap, avgEfficiency
-        ),
-        LuckUtils.calcDefTeamLuckAdj(lineup, baseOrSeasonTeamStats, avgEfficiency),
-      ] as [OffLuckAdjustmentDiags, DefLuckAdjustmentDiags] : undefined;
-
-      if (lineup?.doc_count) {
-        LuckUtils.injectLuck(lineup, luckAdj?.[0], luckAdj?.[1]);
-      }
-      //(needs to go after the luck adjustment)
-      LineupDisplayUtils.injectPlayTypeInfo(lineup, false, false); //(inject assist numbers)
 
       const perLineupBaselinePlayerMap = _.fromPairs(codesAndIds.map((cid: { code: string, id: string }) => {
         return [  cid.id, baselinePlayerInfo[cid.id] || {} ];
       })) as Record<string, Record<string, any>>;
-//      const lineupTitleKey = lineup.key;
+
       const lineupTitleKey = "" + lineupIndex;
       const title = sortedCodesAndIds ?
-        LineupDisplayUtils.buildDecoratedLineup(
+        TableDisplayUtils.buildDecoratedLineup(
           lineupTitleKey, sortedCodesAndIds, perLineupBaselinePlayerMap, positionFromPlayerKey, "off_adj_rtg", decorateLineups
         ) : "Weighted Total";
 
@@ -292,11 +201,11 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
       return _.flatten([
         [ GenericTableOps.buildDataRow(stats, offPrefixFn, offCellMetaFn) ],
         [ GenericTableOps.buildDataRow(stats, defPrefixFn, defCellMetaFn) ],
-        showLuckAdjDiags && luckAdj ? [ GenericTableOps.buildTextRow(
+        (showLuckAdjDiags && lineup.off_luck_diags && sortedCodesAndIds) ? [ GenericTableOps.buildTextRow(
           <LuckAdjDiagView
             name="lineup"
-            offLuck={luckAdj[0]}
-            defLuck={luckAdj[1]}
+            offLuck={lineup.off_luck_diags}
+            defLuck={lineup.def_luck_diags}
             baseline={luckConfig.base}
             showHelp={showHelp}
           />, "small pt-2"
@@ -304,6 +213,16 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
         [ GenericTableOps.buildRowSeparator() ]
       ]);
     });
+    return <GenericTable
+      tableCopyId="lineupStatsTable"
+      tableFields={CommonTableDefs.lineupTable}
+      tableData={tableData}
+      cellTooltipMode="none"
+    />
+
+  }, [ decorateLineups, showTotals, minPoss, maxTableSize, sortBy, filterStr,
+      luckConfig, adjustForLuck, showLuckAdjDiags,
+      dataEvent ]);
 
   // 3.2] Sorting utils
 
@@ -359,25 +278,9 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
   );
 
   // 3] Utils
-  function picker(offScale: (val: number) => string, defScale: (val: number) => string) {
-    return (val: any, valMeta: string) => {
-      const num = val.value as number;
-      return _.isNil(num) ?
-        CbbColors.malformedDataColor : //(we'll use this color to indicate malformed data)
-        ("off" == valMeta) ? offScale(num) : defScale(num)
-        ;
-    };
-  }
   /** Sticks an overlay on top of the table if no query has ever been loaded */
   function needToLoadQuery() {
-    return lineupStats.lineups === undefined;
-  }
-  function rowSpanCalculator(cellMeta: string) {
-    switch(cellMeta) {
-      case "off": return 2;
-      case "def": return 0;
-      default: return 1;
-    }
+    return loadingOverride || (lineupStats.lineups === undefined);
   }
 
   /** For use in selects */
@@ -385,26 +288,24 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
     return sortOptionsByValue[s];
   }
 
-  /** Handling filter change (/key presses to fix the select/delete on page load) */
-  const onFilterChange = (ev: any) => {
-    const toSet = ev.target.value;
-    setTmpFilterStr(toSet);
-    if (timeoutId != -1) {
-      window.clearTimeout(timeoutId);
-    }
-    setTimeoutId(window.setTimeout(() => {
-      setFilterStr(toSet);
-    }, 250));
-  };
-
   // 4] View
+
+  /** At the expense of some time makes it easier to see when changes are happening */
+  const friendlyChange = (change: () => void, guard: boolean, timeout: number = 250) => {
+    if (guard) {
+      setLoadingOverride(true);
+      setTimeout(() => {
+        change()
+      }, timeout)
+    }
+  };
 
   return <Container>
     <LoadingOverlay
       active={needToLoadQuery()}
       text={lineupStats.error_code ?
         `Query Error: ${lineupStats.error_code}` :
-        "Press 'Submit' to view results"
+        loadingOverride ? "Recalculating table" : "Press 'Submit' to view results"
       }
     >
       <LuckConfigModal
@@ -420,11 +321,11 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
             <InputGroup.Prepend>
               <InputGroup.Text id="filter">Filter</InputGroup.Text>
             </InputGroup.Prepend>
-            <Form.Control
-              onKeyUp={onFilterChange}
-              onChange={onFilterChange}
-              placeholder = "eg Player1Code=PG;Player2FirstName;-Player3Surname;Player4Name=4+5"
-              value={tmpFilterStr}
+            <AsyncFormControl
+              startingVal={filterStr}
+              onChange={(t: string) => friendlyChange(() => setFilterStr(t), t != filterStr)}
+              timeout={500}
+              placeholder = "eg TeamA;-TeamB;Player1Code;Player2FirstName;-Player3Surname"
             />
           </InputGroup>
         </Form.Group>
@@ -434,17 +335,17 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
             <GenericTogglingMenuItem
               text="Decorate Lineups"
               truthVal={decorateLineups}
-              onSelect={() => setDecorateLineups(!decorateLineups)}
+              onSelect={() => friendlyChange(() => setDecorateLineups(!decorateLineups), true)}
             />
             <GenericTogglingMenuItem
               text="Show Weighted Combo of All Lineups"
               truthVal={showTotals}
-              onSelect={() => setShowTotals(!showTotals)}
+              onSelect={() => friendlyChange(() => setShowTotals(!showTotals), true)}
             />
             <GenericTogglingMenuItem
               text="Adjust for Luck"
               truthVal={adjustForLuck}
-              onSelect={() => setAdjustForLuck(!adjustForLuck)}
+              onSelect={() => friendlyChange(() => setAdjustForLuck(!adjustForLuck), true)}
               helpLink={showHelp ? "https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html" : undefined}
             />
             <Dropdown.Divider />
@@ -468,14 +369,12 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
             <InputGroup.Prepend>
               <InputGroup.Text id="maxLineups">Max Lineups</InputGroup.Text>
             </InputGroup.Prepend>
-            <Form.Control
-              onChange={(ev: any) => {
-                if (ev.target.value.match("^[0-9]*$") != null) {
-                  setMaxTableSize(ev.target.value);
-                }
-              }}
+            <AsyncFormControl
+              startingVal={startingMaxTableSize}
+              validate={(t: string) => t.match("^[0-9]*$") != null}
+              onChange={(t: string) => friendlyChange(() => setMaxTableSize(t), t != maxTableSize)}
+              timeout={200}
               placeholder = "eg 50"
-              value={maxTableSize}
             />
           </InputGroup>
         </Form.Group>
@@ -484,14 +383,12 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
             <InputGroup.Prepend>
               <InputGroup.Text id="minPossessions">Min Poss #</InputGroup.Text>
             </InputGroup.Prepend>
-            <Form.Control
-              onChange={(ev: any) => {
-                if (ev.target.value.match("^[0-9]*$") != null) {
-                  setMinPoss(ev.target.value);
-                }
-              }}
-              placeholder = "eg 5"
-              value={minPoss}
+            <AsyncFormControl
+              startingVal={startingMinPoss}
+              validate={(t: string) => t.match("^[0-9]*$") != null}
+              onChange={(t: string) => friendlyChange(() => setMinPoss(t), t != minPoss)}
+              timeout={200}
+              placeholder = "eg 20"
             />
           </InputGroup>
         </Form.Group>
@@ -504,9 +401,10 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
               className="w-75"
               value={ stringToOption(sortBy) }
               options={ groupedOptions }
-              onChange={(option) => { if ((option as any)?.value)
-                setSortBy((option as any)?.value);
-              }}
+              onChange={(option) => { if ((option as any)?.value) {
+                const newSortBy = (option as any)?.value;
+                friendlyChange(() => setSortBy(newSortBy), sortBy != newSortBy);
+              }}}
               formatGroupLabel={formatGroupLabel}
             />
           </InputGroup>
@@ -519,25 +417,20 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
               label: "Totals",
               tooltip: showTotals ? "Hide Weighted Combo of All Lineups" : "Show Weighted Combo of All Lineups",
               toggled: showTotals,
-              onClick: () => setShowTotals(!showTotals)
+              onClick: () => friendlyChange(() => setShowTotals(!showTotals), true)
             },
             {
               label: "Luck",
               tooltip: adjustForLuck ? "Remove luck adjustments" : "Adjust statistics for luck",
               toggled: adjustForLuck,
-              onClick: () => setAdjustForLuck(!adjustForLuck)
+              onClick: () => friendlyChange(() => setAdjustForLuck(!adjustForLuck), true)
             }
           ]}/>
         </Col>
       </Form.Row>
       <Row className="mt-2">
         <Col style={{paddingLeft: "5px", paddingRight: "5px"}}>
-          <GenericTable
-            tableCopyId="lineupStatsTable"
-            tableFields={CommonTableDefs.lineupTable}
-            tableData={tableData}
-            cellTooltipMode="none"
-          />
+          {table}
         </Col>
       </Row>
     </LoadingOverlay>

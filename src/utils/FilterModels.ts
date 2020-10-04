@@ -92,6 +92,23 @@ export type LineupFilterParams = {
   showLineupLuckDiags?: boolean,
 };
 
+export type LineupLeaderboardParams = {
+  [P in keyof CommonFilterParams]?: CommonFilterParams[P];
+} & {
+  conf?: string //(undefined ==> all conferences)
+  minPoss?: string,
+  maxTableSize?: string,
+  sortBy?: string,
+  //TODO: other params: query filters, table size, luck diags, table filter, sort order, etc
+  // Filtering:
+  filter?: string,
+  // Luck adjustments
+  showLineupLuckDiags?: boolean,
+  // Query pre-sets
+  confOnly?: boolean,
+  t100?: boolean
+};
+
 export type TeamReportFilterParams = {
   [P in keyof CommonFilterParams]?: CommonFilterParams[P];
 } & {
@@ -141,6 +158,12 @@ export class ParamDefaults {
   static readonly defaultLineupFilter = "";
   static readonly defaultLineupLuckAdjust = false;
   static readonly defaultLineupLuckDiagMode = false;
+  // Lineup leaderboard
+  static readonly defaultLineupLboardMinPos = "20";
+  static readonly defaultLineupLboardMaxTableSize = "100";
+  static readonly defaultLineupLboardSortBy = "desc:diff_adj_ppp";
+  static readonly defaultLineupLboardFilter = "";
+  static readonly defaultLineupLboardLuckDiagMode = false;
   // Report
   static readonly defaultTeamReportSortBy = "desc:off_poss:on";
   static readonly defaultTeamReportFilter = "";

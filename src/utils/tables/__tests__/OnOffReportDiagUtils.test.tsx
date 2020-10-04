@@ -2,7 +2,7 @@ import renderer from 'react-test-renderer';
 import React from 'react';
 import { OnOffReportDiagUtils } from '../OnOffReportDiagUtils';
 import { CommonFilterParams } from "../../FilterModels";
-import { LineupUtils } from "../LineupUtils";
+import { LineupUtils } from "../../stats/LineupUtils";
 import { CommonTableDefs } from "../../CommonTableDefs";
 import { LineupStatsModel } from '../../../components/LineupStatsTable';
 import GenericTable, { GenericTableOps, GenericTableColProps } from "../../../components/GenericTable";
