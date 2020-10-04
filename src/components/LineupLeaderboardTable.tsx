@@ -133,6 +133,9 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
 
   // Misc display
 
+  /** Set this to be true on expensive operations */
+  const [ loadingOverride, setLoadingOverride ] = useState(false);
+
   const startingMinPoss = startingState.minPoss || ParamDefaults.defaultLineupLboardMinPos;
   const [ minPoss, setMinPoss ] = useState(startingMinPoss);
   const startingMaxTableSize = startingState.maxTableSize || ParamDefaults.defaultLineupLboardMaxTableSize;
@@ -187,6 +190,7 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
 
   /** Only rebuild the expensive table if one of the parameters that controls it changes */
   const table = React.useMemo(() => {
+    setLoadingOverride(false); //(rendering)
 
     const confSet = confs ? new Set(
       _.flatMap((confs || "").split(","), c => c == "P6" ? Power6Conferences : [ NicknameToConference[c] || c ])
@@ -227,6 +231,8 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
           lineupTitleKey, sortedCodesAndIds, perLineupBaselinePlayerMap, positionFromPlayerKey, "off_adj_rtg", true
         ) : "Weighted Total";
 
+      const adjMargin = (lineup.off_adj_ppp?.value || 0) - (lineup.def_adj_ppp?.value || 0);
+      const adjMarginStr = `${(adjMargin > 0.0) ? "+" : ""}${adjMargin.toFixed(1)}`;
       const generalRank = isGeneralSortOrFilter ? <span><i>(#{lineupIndex + 1})</i>&nbsp;</span> : null;
       const rankings = <span>{generalRank}<b>#{lineup.adj_margin_rank}</b> <small>(#{lineup.off_adj_ppp_rank} / #{lineup.def_adj_ppp_rank})</small></span>;
 
@@ -247,7 +253,7 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
 
       const title = <div><span className="float-left">
         {rankings}
-        &nbsp;<span>{teamEl} (<span>{confNickname}</span>)</span>
+        &nbsp;<span>{teamEl} (<span>{confNickname}</span>) {adjMarginStr}</span>
         </span><br/>
         {subTitle}
       </div>
@@ -292,7 +298,7 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
   // 3] Utils
   /** Sticks an overlay on top of the table if no query has ever been loaded */
   function needToLoadQuery() {
-    return (dataEvent?.lineups || []).length == 0;
+    return loadingOverride || ((dataEvent?.lineups || []).length == 0);
   }
 
   /** For use in selects */
@@ -341,6 +347,16 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
     return <components.MultiValueContainer {...newProps} />
   };
 
+  /** At the expense of some time makes it easier to see when changes are happening */
+  const friendlyChange = (change: () => void, guard: boolean, timeout: number = 250) => {
+    if (guard) {
+      setLoadingOverride(true);
+      setTimeout(() => {
+        change()
+      }, timeout)
+    }
+  };
+
   return <Container>
     <LoadingOverlay
       active={needToLoadQuery()}
@@ -383,7 +399,7 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
             const options = optionsIn as Array<any>;
             const selection = (options || []).map(option => (option as any)?.value || "");
             const confStr = selection.filter((t: string) => t != "").map((c: string) => ConferenceToNickname[c] || c).join(",")
-            setConfs(confStr);
+            friendlyChange(() => setConfs(confStr), confs != confStr);
           }}
         />
       </Col>
@@ -399,7 +415,7 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
             </InputGroup.Prepend>
             <AsyncFormControl
               startingVal={filterStr}
-              onChange={(t: string) => setFilterStr(t)}
+              onChange={(t: string) => friendlyChange(() => setFilterStr(t), t != filterStr)}
               timeout={500}
               placeholder = "eg TeamA;-TeamB;Player1Code;Player2FirstName;-Player3Surname"
             />
@@ -432,7 +448,7 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
             <AsyncFormControl
               startingVal={startingMaxTableSize}
               validate={(t: string) => t.match("^[0-9]*$") != null}
-              onChange={(t: string) => setMaxTableSize(t)}
+              onChange={(t: string) => friendlyChange(() => setMaxTableSize(t), t != maxTableSize)}
               timeout={400}
               placeholder = "eg 100"
             />
@@ -446,7 +462,7 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
             <AsyncFormControl
               startingVal={startingMinPoss}
               validate={(t: string) => t.match("^[0-9]*$") != null}
-              onChange={(t: string) => setMinPoss(t)}
+              onChange={(t: string) => friendlyChange(() => setMinPoss(t), t != minPoss)}
               timeout={400}
               placeholder = "eg 20"
             />
@@ -461,9 +477,10 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
               className="w-75"
               value={ sortStringToOption(sortBy) }
               options={ groupedOptions }
-              onChange={(option) => { if ((option as any)?.value)
-                setSortBy((option as any)?.value);
-              }}
+              onChange={(option) => { if ((option as any)?.value) {
+                const newSortBy = (option as any)?.value;
+                friendlyChange(() => setSortBy(newSortBy), sortBy != newSortBy);
+              }}}
               formatGroupLabel={formatGroupLabel}
             />
           </InputGroup>
@@ -482,17 +499,13 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
               label: "T100",
               tooltip: "Leaderboard of lineups vs T100 opposition",
               toggled: isT100,
-              onClick: () => {
-                setIsT100(!isT100); setIsConfOnly(false);
-              }
+              onClick: () => friendlyChange(() => { setIsT100(!isT100); setIsConfOnly(false); }, true)
             },
             {
               label: "Conf",
               tooltip: "Leaderboard of lineups vs conference opposition",
               toggled: isConfOnly,
-              onClick: () => {
-                setIsT100(false); setIsConfOnly(!isConfOnly);
-              }
+              onClick: () => friendlyChange(() => { setIsT100(false); setIsConfOnly(!isConfOnly); }, true)
             }
           ] as Array<any>).concat(showHelp ? [
             {
