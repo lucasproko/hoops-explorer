@@ -4,6 +4,8 @@
 // ("npm run build" also works but takes longer)
 //
 
+// NOTE: test code is under src/__tests__
+
 // System imports
 import { NextApiRequest, NextApiResponse } from 'next';
 import fs from 'fs';
@@ -33,7 +35,7 @@ const sleep = (milliseconds: number) => {
   return new Promise(resolve => setTimeout(resolve, milliseconds));
 }
 
-class MutableAsyncResponse {
+export class MutableAsyncResponse {
   statusCode: number;
   resultJson: any;
 
@@ -54,17 +56,25 @@ class MutableAsyncResponse {
   }
 }
 
-const savedLineups = [] as Array<any>;
+/** Exported for test only */
+export const savedLineups = [] as Array<any>;
 const savedConfOnlyLineups = [] as Array<any>;
 const savedT100Lineups = [] as Array<any>;
 
-console.log("Start processing with args: " + _.drop(process.argv, 2));
+var commandLine = process?.argv || [];
+if (commandLine?.[1]?.endsWith("buildLeaderboards.js")) {
+  console.log("Start processing with args: " + _.drop(commandLine, 2));
+} else {
+  console.log("Unit test mode - just export methods [main, completeLineupLeaderboard]");
+  commandLine = [];
+}
+const testMode = commandLine.length == 0;
 
-const inGender = (_.find(process.argv, p => _.startsWith(p, "--gender="))
+const inGender = (_.find(commandLine, p => _.startsWith(p, "--gender="))
   || `--gender=${ParamDefaults.defaultGender}`).substring(9);
-const inYear = (_.find(process.argv, p => _.startsWith(p, "--year="))
+const inYear = (_.find(commandLine, p => _.startsWith(p, "--year="))
   || `--year=${ParamDefaults.defaultYear}`).substring(7);
-console.log(`Args: gender=[${inGender}] year=[${inYear}]`);
+if (!testMode) console.log(`Args: gender=[${inGender}] year=[${inYear}]`);
 const teamFilter = undefined as Set<string> | undefined;
   //(inYear == "2019/20") ? new Set([ "Maryland", "Iowa", "Michigan", "Dayton", "Rutgers" ]) : undefined;
 
@@ -73,14 +83,15 @@ const avgEfficiency = efficiencyAverages[genderYearLookup] || efficiencyAverages
 
 const conferenceSet = new Set() as Set<string>;
 
-async function main() {
+/** Request data from ES, duplicate table processing over each team to build leaderboard (export for testing only) */
+export async function main() {
 
   const teams = _.chain(AvailableTeams.byName).values().flatten().filter(team => {
     return team.gender == inGender && team.year == inYear && ((teamFilter == undefined) || teamFilter.has(team.team))
   }).map(team => team.team).value();
 
   for (const team of teams) {
-    console.log(`Processing ${inGender} ${team} ${inYear}`);
+    if (!testMode) console.log(`Processing ${inGender} ${team} ${inYear}`);
 
     const fullRequestModel = {
       gender: inGender,
@@ -107,8 +118,9 @@ async function main() {
     const inputCases: Array<[string, any]> =
       [ [ "all", fullRequestModel], [ "conf", requestModelConfOnly ], [ "t100", requestModelT100 ] ];
 
-    await sleep(1000); //(just ensure we don't hammer ES too badly)
-    console.log("Asking Elasticsearch:")
+    if (!testMode) await sleep(1000); //(just ensure we don't hammer ES too badly)
+
+    if (!testMode) console.log("Asking Elasticsearch:")
 
     const getAllDataPromise = Promise.all(inputCases.map(async ([label, requestModel]: [string, any]) => {
       const requestParams = QueryUtils.stringify(requestModel);
@@ -220,10 +232,8 @@ async function main() {
   //  console.log("RECEIVED: " + JSON.stringify(tableData, null, 3));
 }
 
-const topLineupSize = 300;
-
-/** Adds some handy default sortings and removes possession outliers */
-function completeLineupLeaderboard(key: string, leaderboard: any[]) {
+/** Adds some handy default sortings and removes possession outliers (export for test only) */
+export function completeLineupLeaderboard(key: string, leaderboard: any[], topLineupSize: number) {
   // Take T300 by possessions
   const topByPoss =
     _.chain(leaderboard).sortBy(lineup => -1*(lineup.off_poss?.value || 0)).take(topLineupSize).value();
@@ -243,7 +253,8 @@ function completeLineupLeaderboard(key: string, leaderboard: any[]) {
   return rankedLineups;
 }
 
-main().then(_ => {
+if (!testMode) main().then(_ => {
+  const topLineupSize = 300; //T300
 
   console.log("Processing Complete!");
 
@@ -251,7 +262,7 @@ main().then(_ => {
     [ [ "all", savedLineups], [ "conf", savedConfOnlyLineups ], [ "t100", savedT100Lineups ] ];
 
   outputCases.forEach(kv => {
-    const sortedLineups = completeLineupLeaderboard(kv[0], kv[1]);
+    const sortedLineups = completeLineupLeaderboard(kv[0], kv[1], topLineupSize);
     const sortedLineupsStr = JSON.stringify({
       lastUpdated: dataLastUpdated[genderYearLookup] || new Date().getTime(),
       confs: Array.from(conferenceSet.values()),
