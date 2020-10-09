@@ -169,7 +169,7 @@ export async function main() {
         teamResponse.getJsonResponse().aggregations?.global?.only?.buckets?.team || {};
 
       const baselinePlayerInfo = LineupTableUtils.buildBaselinePlayerInfo(
-        rosterBaseline, avgEfficiency
+        rosterBaseline, rosterGlobal.groupBy("key"), avgEfficiency
       );
       const positionFromPlayerKey = LineupTableUtils.buildPositionPlayerMap(rosterGlobal, teamSeasonLookup);
 

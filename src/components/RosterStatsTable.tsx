@@ -295,6 +295,9 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
   /** Need to be able to see the stats table for players in the manual override table */
   const mutableTableDisplayForOverrides = {} as Record<string, any[]>;
 
+  /** Largest sample of player stats, by player key - use for ORtg calcs */
+  const globalRosterStatsByKey = _.groupBy(rosterStats.global || [], "key");
+
   // (Always just use A/B here because it's too confusing to say
   // "On <Player name>" meaning ""<Player Name> when <Other other player> is on")
   const allPlayers = _.chain([
@@ -379,7 +382,10 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
 
         const [
           oRtg, adjORtg, rawORtg, rawAdjORtg, oRtgDiag
-        ] = RatingUtils.buildORtg(stat, avgEfficiency, showDiagMode, adjustForLuck || overrodeOffFields);
+        ] = RatingUtils.buildORtg(
+            stat, globalRosterStatsByKey,
+            avgEfficiency, showDiagMode, adjustForLuck || overrodeOffFields
+          );
         const [
           dRtg, adjDRtg, rawDRtg, rawAdjDRtg, dRtgDiag
         ] = RatingUtils.buildDRtg(stat, avgEfficiency, showDiagMode, adjustForLuck);

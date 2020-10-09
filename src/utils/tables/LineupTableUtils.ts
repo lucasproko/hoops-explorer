@@ -22,7 +22,7 @@ export class LineupTableUtils {
 
   /** Injects some advanced stats into players, returns an associative array vs player.key */
   static buildBaselinePlayerInfo(
-    players: any[] | undefined, avgEfficiency: number
+    players: any[] | undefined, globalRosterStats: Record<string, any>, avgEfficiency: number
   ) {
     const baselinePlayerInfo = _.fromPairs(
       (players || []).map((mutableP: any) => {

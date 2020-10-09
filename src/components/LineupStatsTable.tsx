@@ -141,7 +141,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
 
   /** Need baseline player info for tooltip view/lineup decoration */
   const baselinePlayerInfo = LineupTableUtils.buildBaselinePlayerInfo(
-    rosterStats.baseline, avgEfficiency
+    rosterStats.baseline, rosterStats.global.groupBy("key"), avgEfficiency
   );
 
   // 3.1] Build individual info
