@@ -108,16 +108,12 @@ const RosterStatsDiagView: React.FunctionComponent<Props> = ({ortgDiags, drtgDia
           <li>FG_Part: [<b>{o.fgPart.toFixed(1)}</b>] = FGM [<b>{o.rawFgm.toFixed(1)}</b>], less Team_Assist_Contrib% [<b>{(100*o.ppFgTeamAstPct).toFixed(1)}%</b>]: including averaging delta, gives: [<b>{(o.rawFgm-o.fgPart).toFixed(1)}</b>]</li>
           <ul>
             <li><em>(Team_Assist_Contrib% is described in the points section, above. Since it reduces the reward of a score, it also reduces the cost of the play)</em></li>
-            <li><em>(Classic) FG_Part: [<b>{(o.rawFgm*(1 - o.ppFgTeamAstPct_Classic)).toFixed(1)}</b>] = FGM [<b>{o.rawFgm.toFixed(1)}</b>], less Team_Assist_Contrib% [<b>{(100*o.ppFgTeamAstPct_Classic).toFixed(1)}%</b>]===[<b>{(o.rawFgm*o.ppFgTeamAstPct_Classic).toFixed(1)}</b>]</em></li>
           </ul>
           <li>FT_Part: [<b>{o.ftPart.toFixed(1)}</b>] = (1 - Missed_Both_FTs% [<b>{(100*o.missedBothFTs).toFixed(1)}%</b>]) * 0.475*FTA [<b>{o.ftPoss.toFixed(1)}</b>]</li>
           <ul>
             <li>Missed_Both_FTs%: [<b>{(100*o.missedBothFTs).toFixed(1)}%</b>] = (1 - FT% [<b>{(100*o.ftPct).toFixed(1)}%</b>])^2</li>
           </ul>
           <li>AST_Part: [<b>{o.astPart.toFixed(1)}</b>] = Sum(Shot Type)[Weighting ([<b>0.5</b>] * ShotType_eFG [<b>{(o.otherEfgInfo.join("/"))}</b>]%) * Player_Assists [<b>{o.rawAssistInfo.join("/")}</b>]]</li>
-          <ul>
-            <li><em>(Classic) AST_Part: [<b>{o.astPart_Classic.toFixed(1)}</b>] = Weighting ([<b>0.5</b>] * Team_Not_Player_eFG [<b>{(100*o.otherEfg).toFixed(1)}%</b>]) * AST [<b>{o.rawAssist}</b>]</em></li>
-          </ul>
           <li><em>(Team_ORB_Contrib% is described in the points section, above. Since it reduces the reward of a score, it also reduces the cost of the play)</em></li>
         </ul>
         <li>Missed_FG_Possessions: [<b>{o.fgxPoss.toFixed(1)}</b>] = Missed_FG [<b>{o.rawFgx.toFixed(1)}</b>], less Team_Rebound_Weight [<b>{(107*o.teamOrbPct).toFixed(1)}%</b>]==[<b>{(1.07*o.teamOrbPct*o.rawFgx).toFixed(1)}</b>]</li>
