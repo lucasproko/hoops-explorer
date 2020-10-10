@@ -37,22 +37,22 @@ const RosterStatsDiagView: React.FunctionComponent<Props> = ({ortgDiags, drtgDia
       {showMoreORtgPts ?
       <span><li><u>Points section</u></li>
       <ul>
-        <li>PProd_From_FG: [<b>{o.ppFg.toFixed(1)}</b>] = Raw_FG_Pts [<b>{o.ptsFgm.toFixed(1)}</b>], less Team_Assist_Contrib% [<b>{(100*o.ppFgTeamAstPct_Classic).toFixed(1)}%</b>]===[<b>{(o.ptsFgm-o.ppFg).toFixed(1)}</b>]</li>
+        <li>PProd_From_FG: [<b>{o.ppFg.toFixed(1)}</b>] = Raw_FG_Pts [<b>{o.ptsFgm.toFixed(1)}</b>], less Team_Assist_Contrib% [<b>{(100*o.ppFgTeamAstPct).toFixed(1)}%</b>]: including averaging delta, gives [<b>{(o.ptsFgm-o.ppFg).toFixed(1)}</b>])</li>
         <ul>
-          <li>TODO fgmAstPenalty=[<b>{(100*o.fgmAstPenalty).toFixed(1)}%</b>] Team_Assisted_eFG=[<b>{(100*o.teamAssistedEfg).toFixed(1)}%</b>]</li>
-          <li> TODO Team_Assist_Contrib=[<b>{(100*o.ppFgTeamAstPct).toFixed(1)}%</b>] Team_Assist_Rate=[<b>{(100*o.teamAssistRate).toFixed(1)}%</b>]</li>
           <li><em>(Team_Assist_Contrib%: In the same way that Player gets rewarded for assisting their team, they get slightly less rewarded when they scored off an assist):</em></li>
-          <li>Team_Assist_Contrib% [<b>{(100*o.ppFgTeamAstPct_Classic).toFixed(1)}%</b>] = Weighting ([<b>0.5</b>] * Player_eFG [<b>{(100*o.eFG).toFixed(1)}%</b>]) * Team_Assist_Rate [<b>{(100*o.teamAssistRate_Classic).toFixed(1)}%</b>]</li>
-          <li>TODO ^old</li>
+          <li>Team_Assist_Contrib% [<b>{(100*o.ppFgTeamAstPct).toFixed(1)}%</b>] = Weighting ([<b>0.5</b>] * Player_Assisted_eFG [<b>{(100*o.teamAssistedEfg).toFixed(1)}%</b>]) * Player_Assist_Rate [<b>{(100*o.teamAssistRate).toFixed(1)}%</b>] (averaged over shot types)</li>
           <ul>
             <li><em>(The theory behind the weighting is that easier shots are harder to assist, so the higher the eFG the more credit to the assist.)</em></li>
-            <li>Team_Assist_Rate: [<b>{(100*o.teamAssistRate_Classic).toFixed(1)}%</b>] = (Weighting [<b>1.14</b>] * (Others_AST [<b>{o.othersAssist.toFixed(1)}</b>] / Team_FGM [<b>{o.teamFgm.toFixed(1)}</b>])</li>
-            <li>TODO ^old</li>
+            <li><em>The above values are calculated using a player's assist networks vs shot type. The "classic" algorithm approximates from box scores:</em></li>
+            <ul>
+              <li><em>(Classic) Team_Assist_Contrib% [<b>{(100*o.ppFgTeamAstPct_Classic).toFixed(1)}%</b>] = Weighting ([<b>0.5</b>] * Player_eFG [<b>{(100*o.eFG).toFixed(1)}%</b>]) * Team_Assist_Rate [<b>{(100*o.teamAssistRate_Classic).toFixed(1)}%</b>]</em></li>
+              <li><em>(Classic) Team_Assist_Rate: [<b>{(100*o.teamAssistRate_Classic).toFixed(1)}%</b>] = (Weighting [<b>1.14</b>] * (Others_AST [<b>{o.othersAssist.toFixed(0)}</b>] / Team_FGM [<b>{o.teamFgm.toFixed(0)}</b>])</em></li>
+            </ul>
           </ul>
         </ul>
-        <li>PProd_From_AST: [<b>{o.ppAssist.toFixed(1)}</b>] = Weighting ([<b>0.5</b>] * Team_Not_Player_eFG [<b>{(100*o.otherEfg).toFixed(1)}%</b>]) * Team_Not_Player_Pts_Per_Made_Shot [<b>{o.otherPtsPerFgm.toFixed(1)}</b>] * Player_Assists [<b>{o.rawAssist.toFixed(1)}</b>]</li>
+        <li>PProd_From_AST: [<b>{o.ppAssist.toFixed(1)}</b>] = Sum(Shot Type)[Weighting ([<b>0.5</b>] * ShotType_eFG [<b>{(o.otherEfgInfo.join("/"))}</b>]%) * [<b>3/2/2</b>]pts * Player_Assists [<b>{o.rawAssistInfo.join("/")}</b>]]</li>
         <ul>
-          <li>TODO lots of other bits where this is wrong</li>
+          <li><em>(Classic) PProd_From_AST: [<b>{o.ppAssist_Classic.toFixed(1)}</b>] = Weighting ([<b>0.5</b>] * Team_Not_Player_eFG [<b>{(100*o.otherEfg).toFixed(1)}%</b>]) * Team_Not_Player_Pts_Per_Made_Shot [<b>{o.otherPtsPerFgm.toFixed(1)}</b>] * Player_Assists [<b>{o.rawAssist.toFixed(0)}</b>]</em></li>
         </ul>
         <li>PProd_From_ORB: [<b>{o.ppOrb.toFixed(1)}</b>] = Team_ORB_Weight [<b>{(100*o.teamOrbWeight).toFixed(1)}%</b>] * ORB [<b>{o.rawOrb.toFixed(1)}</b>] * % Plays_Team_Scored [<b>{(100*o.teamScoredPlayPct).toFixed(1)}%</b>] * Pts_Per_Scoring_Possession [<b>{o.teamPtsPerScore.toFixed(1)}</b>] </li>
         <ul>
@@ -81,6 +81,7 @@ const RosterStatsDiagView: React.FunctionComponent<Props> = ({ortgDiags, drtgDia
       </ul></span> : null }
       <li>Adjusted_Possessions: [<b>{o.adjPoss.toFixed(1)}</b>] = Scoring_Possessions [<b>{o.scoringPoss.toFixed(1)}</b>] + Missed_FG_Possessions [<b>{o.fgxPoss.toFixed(1)}</b>] + Missed_FT_Possessions [<b>{o.ftxPoss.toFixed(1)}</b>] + TO [<b>{o.rawTo}</b>]</li>
       <ul>
+        <li>(Gives adjusted usage = [<b>{(100*o.adjPoss/o.teamPoss).toFixed(1)}</b>])</li>
         <li><em>Compare raw stats: poss=[<b>{o.offPoss.toFixed(1)}</b>] (fga=[<b>{o.rawFga}</b> = <b>{o.raw3Fga}</b> + (<b>{o.raw2midFga}</b> + <b>{o.raw2rimFga}</b>)] + 0.475*fta=[<b>{o.ftPoss.toFixed(1)}</b>] + to=[<b>{o.rawTo}</b>] - orb=[<b>{o.offPlaysLessPoss.toFixed(1)}</b>])</em></li>
       </ul>
       {showMoreORtgPoss ?
@@ -104,17 +105,20 @@ const RosterStatsDiagView: React.FunctionComponent<Props> = ({ortgDiags, drtgDia
             <li>Team_Total_Plays: [<b>{o.teamPlays.toFixed(1)}</b>] = Team_FGA [<b>{o.teamFga}</b>] + (0.475*Team_FTA) [<b>{(0.475*o.teamFta).toFixed(1)}</b>] + Team_TOV [<b>{o.teamTo}</b>]</li>
             <li><em>(Team_ORB_Weight is described in the points section, above. The cost of the play is reduced like the reward of the score)</em></li>
           </ul>
-          <li>FG_Part: [<b>{o.fgPart.toFixed(1)}</b>] = FGM [<b>{o.rawFgm.toFixed(1)}</b>], less Team_Assist_Contrib% [<b>{(100*o.ppFgTeamAstPct_Classic).toFixed(1)}%</b>]===[<b>{(o.rawFgm*o.ppFgTeamAstPct_Classic).toFixed(1)}</b>]</li>
+          <li>FG_Part: [<b>{o.fgPart.toFixed(1)}</b>] = FGM [<b>{o.rawFgm.toFixed(1)}</b>], less Team_Assist_Contrib% [<b>{(100*o.ppFgTeamAstPct).toFixed(1)}%</b>]: including averaging delta, gives: [<b>{(o.rawFgm-o.fgPart).toFixed(1)}</b>]</li>
           <ul>
             <li><em>(Team_Assist_Contrib% is described in the points section, above. Since it reduces the reward of a score, it also reduces the cost of the play)</em></li>
+            <li><em>(Classic) FG_Part: [<b>{(o.rawFgm*(1 - o.ppFgTeamAstPct_Classic)).toFixed(1)}</b>] = FGM [<b>{o.rawFgm.toFixed(1)}</b>], less Team_Assist_Contrib% [<b>{(100*o.ppFgTeamAstPct_Classic).toFixed(1)}%</b>]===[<b>{(o.rawFgm*o.ppFgTeamAstPct_Classic).toFixed(1)}</b>]</em></li>
           </ul>
           <li>FT_Part: [<b>{o.ftPart.toFixed(1)}</b>] = (1 - Missed_Both_FTs% [<b>{(100*o.missedBothFTs).toFixed(1)}%</b>]) * 0.475*FTA [<b>{o.ftPoss.toFixed(1)}</b>]</li>
           <ul>
             <li>Missed_Both_FTs%: [<b>{(100*o.missedBothFTs).toFixed(1)}%</b>] = (1 - FT% [<b>{(100*o.ftPct).toFixed(1)}%</b>])^2</li>
           </ul>
-          <li>AST_Part: [<b>{o.astPart.toFixed(1)}</b>] = Weighting ([<b>0.5</b>] * Team_Not_Player_eFG [<b>{(100*o.otherEfg).toFixed(1)}%</b>]) * AST [<b>{o.rawAssist}</b>]</li>
+          <li>AST_Part: [<b>{o.astPart.toFixed(1)}</b>] = Sum(Shot Type)[Weighting ([<b>0.5</b>] * ShotType_eFG [<b>{(o.otherEfgInfo.join("/"))}</b>]%) * Player_Assists [<b>{o.rawAssistInfo.join("/")}</b>]]</li>
+          <ul>
+            <li><em>(Classic) AST_Part: [<b>{o.astPart_Classic.toFixed(1)}</b>] = Weighting ([<b>0.5</b>] * Team_Not_Player_eFG [<b>{(100*o.otherEfg).toFixed(1)}%</b>]) * AST [<b>{o.rawAssist}</b>]</em></li>
+          </ul>
           <li><em>(Team_ORB_Contrib% is described in the points section, above. Since it reduces the reward of a score, it also reduces the cost of the play)</em></li>
-          <li>TODO "Classic val" was [<b>{o.astPart_Classic.toFixed(1)}</b>]</li>
         </ul>
         <li>Missed_FG_Possessions: [<b>{o.fgxPoss.toFixed(1)}</b>] = Missed_FG [<b>{o.rawFgx.toFixed(1)}</b>], less Team_Rebound_Weight [<b>{(107*o.teamOrbPct).toFixed(1)}%</b>]==[<b>{(1.07*o.teamOrbPct*o.rawFgx).toFixed(1)}</b>]</li>
         <ul>

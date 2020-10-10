@@ -12,6 +12,7 @@ export type ORtgDiagnostics = {
   ptsFgm: number,
   rawFtm: number,
   rawAssist: number,
+  rawAssistInfo: string[],
   rawPts: number,
   rawOrb: number,
   rawTo: number,
@@ -31,6 +32,7 @@ export type ORtgDiagnostics = {
   teamFtPct: number,
   teamOrbPct: number,
   teamTo: number,
+  teamPoss: number,
 
   // 1] Points produced calcs:
 
@@ -46,6 +48,7 @@ export type ORtgDiagnostics = {
   teamOrbWeight: number,
   othersAssist: number,
   otherEfg: number,
+  otherEfgInfo: string[],
   otherPtsPerFgm: number,
   teamOrbContribPct: number,
   teamScoredPlayPct: number,
@@ -61,6 +64,7 @@ export type ORtgDiagnostics = {
   ptsProd: number,
   ppOrb: number,
   ppAssist: number,
+  ppAssist_Classic: number,
   ppFg: number,
 
   // 2] Possession Calcs:
@@ -210,6 +214,13 @@ export class RatingUtils {
   ] {
     if (!statSet) return [ undefined, undefined, undefined, undefined, undefined ];
 
+    /** version of _ . sumBy(..) which gives you the index as well as the value */
+    const sumBy = (aa: Array<number>, f: (number, number) => number) => {
+      return _.sum(aa.map((x, ii) => f(x, ii)));
+    }
+/**/
+//console.log(JSON.stringify(_.keys(statSet)));
+
     const overrides = overrideAdjusted ? RatingUtils.buildOffOverrides(statSet) : ({} as Record<string, any>);
     const statGet = (key: string) => {
       return !_.isNil(overrides[key]) ? overrides[key].value : statSet?.[key]?.value || 0;
@@ -217,6 +228,7 @@ export class RatingUtils {
     // New for assist calcs:
     const [ _Rim, _Mid, _3P ] = [ 0, 1, 2 ];
     const shotLocs = [ "2prim", "2pmid", "3p" ];
+    const shotLocToLoc = { "3p": "3p", "2prim": "rim", "2pmid": "mid" };
     const shotBonus = [ 2, 2, 3 ];
 
     // The formulate references (MP / (Team_MP / 5)) a fair bit
@@ -238,7 +250,8 @@ export class RatingUtils {
     const Made = shotLocs.map(l => statGet(`total_off_${l}_made`));
     const Attempts = shotLocs.map(l => statGet(`total_off_${l}_attempts`) || 1); //||1 because used as denom
     const AssistedPct = shotLocs.map(l => statGet(`off_${l}_ast`));
-    const Assists = shotLocs.map(l => [l, statGet(`off_ast_${l}_source`)]);
+    const AssistsTotals = shotLocs.map(l => statGet(`total_off_ast_${shotLocToLoc[l]!}`));
+    const Assists = shotLocs.map(l => [l, statGet(`off_ast_${shotLocToLoc[l]!}_target`)]);
       // array of [shotLoc, map[player -> count]]
 
     const Team_AST = statSet?.team_total_off_assist?.value || 0;
@@ -249,6 +262,7 @@ export class RatingUtils {
     const Team_PTS = statGet("team_total_off_pts");
     const Team_TOV = statGet("team_total_off_to");
     const Team_3PM = statGet("team_total_off_3p_made");
+    const Team_Poss = statGet("team_total_off_poss");
     // New for assist calcs:
     const Team_Made = shotLocs.map(l => statGet(`team_total_off_${l}_made`));
     const Team_Attempts = shotLocs.map(l => statGet(`team_total_off_${l}_attempts`));
@@ -264,7 +278,7 @@ export class RatingUtils {
     const Others_FGA = Team_FGA - FGA;
     const Others_FGM = Team_FGM - FGM;
     const Others_AST = Team_AST - AST;
-    const Others_eFG = Others_FGA > 0 ? (Team_PTS_FROM_FG - PTS_FROM_FG) / (3 * Others_FGA) : 0;
+    const Others_eFG = Others_FGA > 0 ? (Team_PTS_FROM_FG - PTS_FROM_FG) / (2 * Others_FGA) : 0;
 
     const FTA_to_Poss = 0.475;
 
@@ -275,30 +289,43 @@ export class RatingUtils {
     const AST_Part_Classic = Others_FGA > 0 ?
       0.5 * ((Team_PTS_FROM_FG - PTS_FROM_FG) / (2 * Others_FGA)) * AST : 0.0;
     // New for assist calcs:
-    const Unassisted_FGM_Part = Made.map((playerMade, index) => playerMade*(1 - AssistedPct[index]!));
-    const Assisted_FGM_Part = Made.map((playerMade, index) => { //(0.5*eFG)*(assisted FGs=FG*assisted)
+    const FGM_Minus_AssistPenalty = Made.map((playerMade, index) => { //(0.5*eFG)*(assisted FGs=FG*assisted)
       const playerEfg = (0.5*shotBonus[index]!)*(playerMade/Attempts[index]!);
-      return (0.5*playerEfg) * (playerMade*AssistedPct[index]!);
+/**/
+//console.log(`${statSet.key} : ${playerMade} ${Attempts[index]}: ${playerEfg} ${AssistedPct[index]}`);
+      return playerMade*(1 - (0.5*playerEfg)*AssistedPct[index]!);
     });
-    const FG_Part = _.sum(Unassisted_FGM_Part) - _.sum(Assisted_FGM_Part);
+    const FG_Part = _.sum(FGM_Minus_AssistPenalty);
+/**/
+//console.log(`${statSet.key} : ${_.sum(FGM_Minus_AssistPenalty)}  ... ${FGM}`)
     // We back-calculate these equivalents to the classic calcs just for approximate diags display
-    const qAST = FGM > 0 ? (FGM - _.sum(Unassisted_FGM_Part))/FGM : 0;
+    const qAST =
+      sumBy(Made, (playerMade, index) => AssistedPct[index]!*playerMade)/FGM;
     const Team_Assist_Contrib = FGM > 0 ? 1 - FG_Part/FGM : 0;
-    const Team_Assisted_eFG = qAST > 0 ? 2* (Team_Assist_Contrib / qAST) : 0;
+    const Team_Assisted_eFG = qAST > 0 ? 2 * (Team_Assist_Contrib / qAST) : 0;
 //TODO: similarly for player assist numbers
 
-    const AST_Part = Assists.map((locMap, index) => {
+    const Efg_By_ShotType = Assists.map((locMap, index) => {
       const shotLoc = locMap[0];
       const playerMap = locMap[1];
+/**/
+//console.log(`${statSet.key} ... ${shotLoc} ... ${JSON.stringify(playerMap)}`);
+      var totalEfgCount = AssistsTotals[index]!;
       const eFgPart1 = 0.5*shotBonus[index];
-      return _.chain(playerMap).reduce((acc, playerCount) => { //(0.5*eFG)*(assists)
-        const player = playerCount[0];
+      return _.sumBy(_.toPairs(playerMap), playerCount => { //(0.5*eFG)*(assists)
+        const playerCode = playerCount[0];
         const count = playerCount[1];
+
+/**/
+//console.log(`${playerCode} ${count} ${shotLoc} ${Others_eFG} ... ${JSON.stringify(rosterStats[playerCode])}`);
         const playerEfg =
-          eFgPart1*(rosterStats[player]?.[`off_${loc}`]?.value || (Others_eFG/eFgPart1));
+          eFgPart1*(rosterStats[playerCode]?.[`off_${shotLoc}`]?.value || (Others_eFG/eFgPart1));
             //(if we can't find the player, we just fallback to using team eFG for all phases)
-        return acc + (0.5*playerEfg)*count;
-      }).value();
+        return playerEfg*count;
+      })/totalEfgCount;
+    });
+    const AST_Part = Efg_By_ShotType.map((eFG, index) => {
+      return (0.5*eFG)*AssistsTotals[index]!;
     });
     //TODO: calculate the weighted eFG of assisted team-mates
 
@@ -337,14 +364,14 @@ export class RatingUtils {
 
     const PProd_FG_Part_Classic = PTS_FROM_FG * (1 - Team_Assist_Contrib_Classic);
     // New assist code:
-    const PProd_FG_Part = //(use the possession count but weighted by pts/scoring-poss)
-      _.sumBy(Unassisted_FGM_Part, (f, ii) => f*shotBonus[ii]!) - _.sumBy(Assisted_FGM_Part, (f, ii) => f*shotBonus[ii]!);
+    const PProd_FG_Part = sumBy(FGM_Minus_AssistPenalty, (f, ii) => f*shotBonus[ii]!);
+      //(use the possession count but weighted by pts/scoring-poss)
 
     const Other_eFG = Others_FGA > 0 ? (Team_FGM - FGM + 0.5 * (Team_3PM - FG3PM)) / Others_FGA : 0.0;
     const Other_Pts_Per_FGM = Others_FGM > 0 ? (Team_PTS_FROM_FG - PTS_FROM_FG) / Others_FGM : 0.0;
     const PProd_AST_Part_Classic = (0.5*Other_eFG) * AST * Other_Pts_Per_FGM;
     // New assist code:
-    const PProd_AST_Part = _.sumBy(AST_Part, (a, ii) => shotBonus[ii]!*a);
+    const PProd_AST_Part = sumBy(AST_Part, (a, ii) => shotBonus[ii]!*a);
 
     const Team_FTs_Hit_1plus = Team_FTA > 0 ? Team_Prob_Hit_1plus_FT * FTA_to_Poss * Team_FTA : 0.0;
     const Team_Pts_Per_Score = (Team_FGM + Team_FTs_Hit_1plus) > 0 ? Team_PTS / (Team_FGM + Team_FTs_Hit_1plus) : 0.0;
@@ -383,6 +410,7 @@ export class RatingUtils {
       ptsFgm: PTS_FROM_FG,
       rawFtm: FTM,
       rawAssist: AST,
+      rawAssistInfo: _.reverse(AssistsTotals.map(p => p.toFixed(0))), //(3p first)
       rawPts: PTS_FROM_FG + FTM,
       rawOrb: ORB,
       rawTo: TOV,
@@ -402,6 +430,7 @@ export class RatingUtils {
       teamFtPct: Team_FTA > 0 ? Team_FTM / Team_FTA : 0,
       teamOrbPct: Team_ORB_pct,
       teamTo: Team_TOV,
+      teamPoss: Team_Poss,
 
       // 1] Points produced calcs:
       // Advanced player numbers:
@@ -416,6 +445,7 @@ export class RatingUtils {
       teamOrbWeight: Team_ORB_Weight,
       othersAssist: Others_AST,
       otherEfg: Other_eFG,
+      otherEfgInfo: _.reverse(Efg_By_ShotType.map(efg => (100*efg).toFixed(1))), //(3p first)
       otherPtsPerFgm: Other_Pts_Per_FGM,
       teamOrbContribPct: Team_ORB_Contrib,
       teamScoredPlayPct: Team_Play_Pct,
@@ -423,15 +453,15 @@ export class RatingUtils {
       // Old school vs new assist%
       teamAssistRate_Classic: qAST_Classic,
       ppFgTeamAstPct_Classic: Team_Assist_Contrib_Classic,
-      teamAssistRate_Classic: qAST,
-      ppFgTeamAstPct_Classic: Team_Assist_Contrib,
-      fgmAstPenalty: Assisted_FGM_Part,
+      teamAssistRate: qAST,
+      ppFgTeamAstPct: Team_Assist_Contrib,
       teamAssistedEfg: Team_Assisted_eFG,
 
       // Pts produced:
       ptsProd: PProd,
       ppOrb: PProd_ORB_Part,
       ppAssist: PProd_AST_Part,
+      ppAssist_Classic: PProd_AST_Part_Classic,
       ppFg: PProd_FG_Part,
 
       // 2] Possession Calcs:
