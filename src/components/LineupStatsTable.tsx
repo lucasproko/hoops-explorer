@@ -139,9 +139,15 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
   const genderYearLookup = `${startingState.gender}_${startingState.year}`;
   const avgEfficiency = efficiencyAverages[genderYearLookup] || efficiencyAverages.fallback;
 
+  /** Largest sample of player stats, by player key - use for ORtg calcs */
+  const globalRosterStatsByCode =
+    _.chain(rosterStats.global || []).map(p => {
+      return [ p.player_array?.hits?.hits?.[0]?._source?.player?.code || p.key, p ];
+    }).fromPairs().value();
+
   /** Need baseline player info for tooltip view/lineup decoration */
   const baselinePlayerInfo = LineupTableUtils.buildBaselinePlayerInfo(
-    rosterStats.baseline, rosterStats.global.groupBy("key"), avgEfficiency
+    rosterStats.baseline, globalRosterStatsByCode, avgEfficiency
   );
 
   // 3.1] Build individual info
