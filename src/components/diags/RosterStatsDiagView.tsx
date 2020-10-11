@@ -43,7 +43,7 @@ const RosterStatsDiagView: React.FunctionComponent<Props> = ({ortgDiags, drtgDia
           <li>Team_Assist_Contrib% [<b>{(100*o.ppFgTeamAstPct).toFixed(1)}%</b>] = Weighting ([<b>0.5</b>] * Player_Assisted_eFG [<b>{(100*o.teamAssistedEfg).toFixed(1)}%</b>]) * Player_Assist_Rate [<b>{(100*o.teamAssistRate).toFixed(1)}%</b>] (averaged over shot types)</li>
           <ul>
             <li><em>(The theory behind the weighting is that easier shots are harder to assist, so the higher the eFG the more credit to the assist.)</em></li>
-            <li><em>The above values are calculated using a player's assist networks vs shot type. The "classic" algorithm approximates from box scores:</em></li>
+            <li><em>The above values are calculated using a player's assist networks vs shot type. The "classic" algorithm approximates from box scores, giving ORtg=[<b>{o.oRtg_Classic.toFixed(1)}</b>]:</em></li>
             <ul>
               <li><em>(Classic) Team_Assist_Contrib% [<b>{(100*o.ppFgTeamAstPct_Classic).toFixed(1)}%</b>] = Weighting ([<b>0.5</b>] * Player_eFG [<b>{(100*o.eFG).toFixed(1)}%</b>]) * Team_Assist_Rate [<b>{(100*o.teamAssistRate_Classic).toFixed(1)}%</b>]</em></li>
               <li><em>(Classic) Team_Assist_Rate: [<b>{(100*o.teamAssistRate_Classic).toFixed(1)}%</b>] = (Weighting [<b>1.14</b>] * (Others_AST [<b>{o.othersAssist.toFixed(0)}</b>] / Team_FGM [<b>{o.teamFgm.toFixed(0)}</b>])</em></li>
@@ -81,7 +81,7 @@ const RosterStatsDiagView: React.FunctionComponent<Props> = ({ortgDiags, drtgDia
       </ul></span> : null }
       <li>Adjusted_Possessions: [<b>{o.adjPoss.toFixed(1)}</b>] = Scoring_Possessions [<b>{o.scoringPoss.toFixed(1)}</b>] + Missed_FG_Possessions [<b>{o.fgxPoss.toFixed(1)}</b>] + Missed_FT_Possessions [<b>{o.ftxPoss.toFixed(1)}</b>] + TO [<b>{o.rawTo}</b>]</li>
       <ul>
-        <li>(Gives adjusted usage = [<b>{(100*o.adjPoss/o.teamPoss).toFixed(1)}</b>])</li>
+        <li>(Gives adjusted usage = [<b>{(100*o.adjPoss/o.teamPoss).toFixed(1)}%</b>])</li>
         <li><em>Compare raw stats: poss=[<b>{o.offPoss.toFixed(1)}</b>] (fga=[<b>{o.rawFga}</b> = <b>{o.raw3Fga}</b> + (<b>{o.raw2midFga}</b> + <b>{o.raw2rimFga}</b>)] + 0.475*fta=[<b>{o.ftPoss.toFixed(1)}</b>] + to=[<b>{o.rawTo}</b>] - orb=[<b>{o.offPlaysLessPoss.toFixed(1)}</b>])</em></li>
       </ul>
       {showMoreORtgPoss ?

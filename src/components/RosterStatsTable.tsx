@@ -296,7 +296,10 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
   const mutableTableDisplayForOverrides = {} as Record<string, any[]>;
 
   /** Largest sample of player stats, by player key - use for ORtg calcs */
-  const globalRosterStatsByKey = _.groupBy(rosterStats.global || [], "key");
+  const globalRosterStatsByCode =
+    _.chain(rosterStats.global || []).map(p => {
+      return [ p.player_array?.hits?.hits?.[0]?._source?.player?.code || p.key, p ];
+    }).fromPairs().value();
 
   // (Always just use A/B here because it's too confusing to say
   // "On <Player name>" meaning ""<Player Name> when <Other other player> is on")
@@ -383,7 +386,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
         const [
           oRtg, adjORtg, rawORtg, rawAdjORtg, oRtgDiag
         ] = RatingUtils.buildORtg(
-            stat, globalRosterStatsByKey,
+            stat, globalRosterStatsByCode,
             avgEfficiency, showDiagMode, adjustForLuck || overrodeOffFields
           );
         const [

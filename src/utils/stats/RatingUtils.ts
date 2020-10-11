@@ -89,6 +89,7 @@ export type ORtgDiagnostics = {
   ftxPoss: number,
   // Adjusted calcs:
   oRtg: number,
+  oRtg_Classic: number,
   defSos: number,
   avgEff: number,
   SD_at_Usage: number,
@@ -205,7 +206,7 @@ export class RatingUtils {
 
   /** From https://www.basketball-reference.com/about/ratings.html */
   static buildORtg(
-    statSet: Record<string, any>, rosterStats: Record<string, any>,
+    statSet: Record<string, any>, rosterStatsByCode: Record<string, any>,
     avgEfficiency: number, calcDiags: boolean, overrideAdjusted: boolean
   ): [
     { value: number } | undefined, { value: number } | undefined,
@@ -218,8 +219,6 @@ export class RatingUtils {
     const sumBy = (aa: Array<number>, f: (number, number) => number) => {
       return _.sum(aa.map((x, ii) => f(x, ii)));
     }
-/**/
-//console.log(JSON.stringify(_.keys(statSet)));
 
     const overrides = overrideAdjusted ? RatingUtils.buildOffOverrides(statSet) : ({} as Record<string, any>);
     const statGet = (key: string) => {
@@ -291,35 +290,25 @@ export class RatingUtils {
     // New for assist calcs:
     const FGM_Minus_AssistPenalty = Made.map((playerMade, index) => { //(0.5*eFG)*(assisted FGs=FG*assisted)
       const playerEfg = (0.5*shotBonus[index]!)*(playerMade/Attempts[index]!);
-/**/
-//console.log(`${statSet.key} : ${playerMade} ${Attempts[index]}: ${playerEfg} ${AssistedPct[index]}`);
       return playerMade*(1 - (0.5*playerEfg)*AssistedPct[index]!);
     });
     const FG_Part = _.sum(FGM_Minus_AssistPenalty);
-/**/
-//console.log(`${statSet.key} : ${_.sum(FGM_Minus_AssistPenalty)}  ... ${FGM}`)
     // We back-calculate these equivalents to the classic calcs just for approximate diags display
     const qAST =
       sumBy(Made, (playerMade, index) => AssistedPct[index]!*playerMade)/FGM;
     const Team_Assist_Contrib = FGM > 0 ? 1 - FG_Part/FGM : 0;
     const Team_Assisted_eFG = qAST > 0 ? 2 * (Team_Assist_Contrib / qAST) : 0;
-//TODO: similarly for player assist numbers
 
     const Efg_By_ShotType = Assists.map((locMap, index) => {
       const shotLoc = locMap[0];
       const playerMap = locMap[1];
-/**/
-//console.log(`${statSet.key} ... ${shotLoc} ... ${JSON.stringify(playerMap)}`);
-      var totalEfgCount = AssistsTotals[index]!;
+      var totalEfgCount = AssistsTotals[index]! || 1;
       const eFgPart1 = 0.5*shotBonus[index];
       return _.sumBy(_.toPairs(playerMap), playerCount => { //(0.5*eFG)*(assists)
         const playerCode = playerCount[0];
         const count = playerCount[1];
-
-/**/
-//console.log(`${playerCode} ${count} ${shotLoc} ${Others_eFG} ... ${JSON.stringify(rosterStats[playerCode])}`);
         const playerEfg =
-          eFgPart1*(rosterStats[playerCode]?.[`off_${shotLoc}`]?.value || (Others_eFG/eFgPart1));
+          eFgPart1*(rosterStatsByCode[playerCode]?.[`off_${shotLoc}`]?.value || (Others_eFG/eFgPart1));
             //(if we can't find the player, we just fallback to using team eFG for all phases)
         return playerEfg*count;
       })/totalEfgCount;
@@ -327,7 +316,6 @@ export class RatingUtils {
     const AST_Part = Efg_By_ShotType.map((eFG, index) => {
       return (0.5*eFG)*AssistsTotals[index]!;
     });
-    //TODO: calculate the weighted eFG of assisted team-mates
 
     const Prob_Miss_Both_FT = (1-(FTM/FTA))**2
     const FT_Part = FTA > 0 ? (1-Prob_Miss_Both_FT)*FTA_to_Poss*FTA : 0.0;
@@ -351,6 +339,8 @@ export class RatingUtils {
 
     // And then:
     const ScPoss = (FG_Part + _.sum(AST_Part) + FT_Part) * (1 - Team_ORB_Contrib) + ORB_Part;
+    //(legacy assist code)
+    const ScPoss_Classic = (FG_Part_Classic + AST_Part_Classic + FT_Part) * (1 - Team_ORB_Contrib) + ORB_Part;
 
     // Other factors:
 
@@ -380,6 +370,10 @@ export class RatingUtils {
     const PProd = (PProd_FG_Part + PProd_AST_Part + FTM) * (1 - Team_ORB_Contrib) + PProd_ORB_Part;
 
     const ORtg = TotPoss > 0 ? 100 * (PProd / TotPoss) : 0;
+    // Legacy assist algo:
+    const PProd_Classic = (PProd_FG_Part_Classic + PProd_AST_Part_Classic + FTM) * (1 - Team_ORB_Contrib) + PProd_ORB_Part;
+    const TotPoss_Classic = ScPoss_Classic + FGxPoss + FTxPoss + TOV;
+    const ORtg_Classic = TotPoss > 0 ? 100 * (PProd_Classic / TotPoss_Classic) : 0;
 
     // Adjusted efficiency
     // Adapted from: https://www.bigtengeeks.com/new-stat-porpagatu/
@@ -486,6 +480,7 @@ export class RatingUtils {
       ftxPoss: FTxPoss,
       // Adjusted calcs:
       oRtg: ORtg,
+      oRtg_Classic: ORtg_Classic,
       defSos: Def_SOS,
       avgEff: avgEfficiency,
       SD_at_Usage: SD_at_Usage,

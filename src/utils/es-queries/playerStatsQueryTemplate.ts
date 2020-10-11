@@ -23,7 +23,17 @@ export const playerStatsQuery = function(
                    "field": "player.id.keyword",
                    "size": 100
                 },
-                "aggregations": commonPlayerAggregations(publicEfficiency, lookup, avgEfficiency)
+                "aggregations": {
+                  ...commonPlayerAggregations(publicEfficiency, lookup, avgEfficiency),
+                  "player_array": {
+                     "top_hits": {
+                       "size": 1,
+                       "_source": {
+                         "includes": "player"
+                       }
+                     }
+                  }
+                }
               }
            }
         }
