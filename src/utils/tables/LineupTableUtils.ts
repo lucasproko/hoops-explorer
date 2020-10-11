@@ -29,7 +29,7 @@ export class LineupTableUtils {
         // Add ORtg to lineup stats:
         const playerAdjustForLuck = false; //TODO: longer term I think we will want to do this
         const [ oRtg, adjORtg, rawORtg, rawAdjORtg, oRtgDiag ] = RatingUtils.buildORtg(
-          mutableP, avgEfficiency, false, playerAdjustForLuck
+          mutableP, globalRosterStats, avgEfficiency, false, playerAdjustForLuck
         );
         const [ dRtg, adjDRtg, rawDRtg, rawAdjDRtg, dRtgDiag ] = RatingUtils.buildDRtg(
           mutableP, avgEfficiency, false, playerAdjustForLuck

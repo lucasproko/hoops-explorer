@@ -4,11 +4,11 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 1`] = 
 <span>
   ORtg = Points_Produced [
   <b>
-    518.4
+    519.2
   </b>
   ] / Adjusted_Possessions [
   <b>
-    457.1
+    456.4
   </b>
   ] (
   <a
@@ -39,7 +39,7 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 1`] = 
     <li>
       Points_Produced: [
       <b>
-        518.4
+        519.2
       </b>
       ] = PProd_From_ORB [
       <b>
@@ -47,11 +47,11 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 1`] = 
       </b>
       ] + [
       <b>
-        508.9
+        509.7
       </b>
       ] (PProd_From_FG [
       <b>
-        304.3
+        299.2
       </b>
       ] + FTM [
       <b>
@@ -59,7 +59,7 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 1`] = 
       </b>
       ] + PProd_From_AST [
       <b>
-        82.9
+        88.8
       </b>
       ], less Team_ORB_Contrib% [
       <b>
@@ -122,11 +122,11 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 1`] = 
     <li>
       Adjusted_Possessions: [
       <b>
-        457.1
+        456.4
       </b>
       ] = Scoring_Possessions [
       <b>
-        240.7
+        240.0
       </b>
       ] + Missed_FG_Possessions [
       <b>
@@ -143,6 +143,14 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 1`] = 
       ]
     </li>
     <ul>
+      <li>
+        (Gives adjusted usage = [
+        <b>
+          25.3
+          %
+        </b>
+        ])
+      </li>
       <li>
         <em>
           Compare raw stats: poss=[
@@ -187,7 +195,7 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 1`] = 
       </b>
       : [
       <b>
-        5.0
+        5.1
       </b>
       ] = 
       <em>
@@ -195,11 +203,11 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 1`] = 
       </em>
        [
       <b>
-        125.0
+        125.4
       </b>
       ] (Regressed_ORtg [
       <b>
-        114.4
+        114.8
       </b>
       ] + Usage_Bonus [
       <b>

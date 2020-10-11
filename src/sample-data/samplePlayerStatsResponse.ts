@@ -39,6 +39,29 @@ export const samplePlayerStatsResponse =
 								"buckets": [
                   {
 									"key": "Cowan, Anthony",
+                  "player_array": {
+                    "hits": {
+   		                "total": {
+   		                   "value": 72,
+   		                   "relation": "eq"
+   		                },
+   		                "max_score": 4.823819,
+   		                "hits": [
+   		                   {
+   		                      "_index": "bigten_2019_lpong",
+   		                      "_type": "_doc",
+   		                      "_id": "GdtArXQBjSGDKv5YlXqK",
+   		                      "_score": 4.823819,
+   		                      "_source": {
+   		                         "player":  {
+ 		                               "code": "AnCowan",
+ 		                               "id": "Cowan, Anthony"
+ 		                            },
+ 		                         }
+   		                   }
+   		                ]
+   		             }
+                  },
 									"doc_count": 486,
 									"total_off_fga": {
 										"value": 356
@@ -562,6 +585,29 @@ export const samplePlayerStatsResponse =
 								},
                   {
 									"key": "Wiggins, Aaron",
+                  "player_array": {
+                    "hits": {
+   		                "total": {
+   		                   "value": 72,
+   		                   "relation": "eq"
+   		                },
+   		                "max_score": 4.823819,
+   		                "hits": [
+   		                   {
+   		                      "_index": "bigten_2019_lpong",
+   		                      "_type": "_doc",
+   		                      "_id": "GdtArXQBjSGDKv5YlXqK",
+   		                      "_score": 4.823819,
+   		                      "_source": {
+   		                         "player":  {
+ 		                               "code": "AaWiggins",
+ 		                               "id": "Wiggins, Aaron"
+ 		                            },
+ 		                         }
+   		                   }
+   		                ]
+   		             }
+                  },
 									"doc_count": 421,
 									"total_off_fga": {
 										"value": 300
@@ -1091,6 +1137,29 @@ export const samplePlayerStatsResponse =
 								"buckets": [
                   {
 									"key": "Cowan, Anthony",
+                  "player_array": {
+                    "hits": {
+   		                "total": {
+   		                   "value": 72,
+   		                   "relation": "eq"
+   		                },
+   		                "max_score": 4.823819,
+   		                "hits": [
+   		                   {
+   		                      "_index": "bigten_2019_lpong",
+   		                      "_type": "_doc",
+   		                      "_id": "GdtArXQBjSGDKv5YlXqK",
+   		                      "_score": 4.823819,
+   		                      "_source": {
+   		                         "player":  {
+ 		                               "code": "AnCowan",
+ 		                               "id": "Cowan, Anthony"
+ 		                            },
+ 		                         }
+   		                   }
+   		                ]
+   		             }
+                  },
 									"doc_count": 110,
 									"total_off_fga": {
 										"value": 64
@@ -1598,6 +1667,29 @@ export const samplePlayerStatsResponse =
 								},
                   {
 									"key": "Mona, Reese",
+                  "player_array": {
+                    "hits": {
+   		                "total": {
+   		                   "value": 72,
+   		                   "relation": "eq"
+   		                },
+   		                "max_score": 4.823819,
+   		                "hits": [
+   		                   {
+   		                      "_index": "bigten_2019_lpong",
+   		                      "_type": "_doc",
+   		                      "_id": "GdtArXQBjSGDKv5YlXqK",
+   		                      "_score": 4.823819,
+   		                      "_source": {
+   		                         "player":  {
+ 		                               "code": "ReMona",
+ 		                               "id": "Mona, Reese"
+ 		                            },
+ 		                         }
+   		                   }
+   		                ]
+   		             }
+                  },
 									"doc_count": 17,
 									"total_off_fga": {
 										"value": 3
@@ -2095,6 +2187,29 @@ export const samplePlayerStatsResponse =
 							"player": {
 								"buckets": [{
 									"key": "Cowan, Anthony",
+                  "player_array": {
+                    "hits": {
+   		                "total": {
+   		                   "value": 72,
+   		                   "relation": "eq"
+   		                },
+   		                "max_score": 4.823819,
+   		                "hits": [
+   		                   {
+   		                      "_index": "bigten_2019_lpong",
+   		                      "_type": "_doc",
+   		                      "_id": "GdtArXQBjSGDKv5YlXqK",
+   		                      "_score": 4.823819,
+   		                      "_source": {
+   		                         "player":  {
+ 		                               "code": "AnCowan",
+ 		                               "id": "Cowan, Anthony"
+ 		                            },
+ 		                         }
+   		                   }
+   		                ]
+   		             }
+                  },
 									"doc_count": 376,
 									"total_off_fga": {
 										"value": 292
@@ -2611,6 +2726,29 @@ export const samplePlayerStatsResponse =
 								},
                   {
 									"key": "Wiggins, Aaron",
+                  "player_array": {
+                    "hits": {
+   		                "total": {
+   		                   "value": 72,
+   		                   "relation": "eq"
+   		                },
+   		                "max_score": 4.823819,
+   		                "hits": [
+   		                   {
+   		                      "_index": "bigten_2019_lpong",
+   		                      "_type": "_doc",
+   		                      "_id": "GdtArXQBjSGDKv5YlXqK",
+   		                      "_score": 4.823819,
+   		                      "_source": {
+   		                         "player":  {
+ 		                               "code": "AaWiggins",
+ 		                               "id": "Wiggins, Aaron"
+ 		                            },
+ 		                         }
+   		                   }
+   		                ]
+   		             }
+                  },
 									"doc_count": 311,
 									"total_off_fga": {
 										"value": 246

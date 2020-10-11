@@ -21,10 +21,10 @@ describe("RatingUtils", () => {
       samplePlayerStatsResponse.responses[0].aggregations.tri_filter.buckets.baseline.player.buckets[0]
     );
     const [ oRtg, adjORtg, rawORtg, rawAdjORtg, oRtgDiags ] = RatingUtils.buildORtg(
-      playerInfo, 100, true, false
+      playerInfo, {}, 100, true, false
     );
-    const expORtg = {value:113.40865079767507};
-    const expORtgAdj = {value:5.002326978989183};
+    const expORtg = {value:113.75697655733575};
+    const expORtgAdj = {value:5.080017880468976};
     expect(oRtg).toEqual(expORtg);
     expect(adjORtg).toEqual(expORtgAdj);
     expect(rawORtg).toEqual(undefined);
@@ -39,10 +39,10 @@ describe("RatingUtils", () => {
       old_value: playerInfo.off_3p.value
     };
     const [ oRtg2, adjORtg2, rawORtg2, rawAdjORtg2, oRtgDiags2 ] = RatingUtils.buildORtg(
-      playerInfo, 100, true, true
+      playerInfo, {}, 100, true, true
     );
-    expect(oRtg2).toEqual({value:104.9838324244601});
-    expect(adjORtg2).toEqual({value:3.123247651476328});
+    expect(oRtg2).toEqual({value:106.0793461361357});
+    expect(adjORtg2).toEqual({value:3.3675920488773756});
     expect(rawORtg2).toEqual(expORtg);
     expect(rawAdjORtg2).toEqual(expORtgAdj);
   });

@@ -459,7 +459,7 @@ Array [
         "off_adj_rtg": Object {
           "old_value": undefined,
           "override": undefined,
-          "value": 5.083047601518229,
+          "value": 5.164166059583579,
         },
         "off_assist": Object {
           "value": 0.2916666666666667,
@@ -470,7 +470,7 @@ Array [
         "off_rtg": Object {
           "old_value": undefined,
           "override": undefined,
-          "value": 113.40865079767507,
+          "value": 113.76381988749333,
         },
         "off_usage": Object {
           "value": 0.250546350615718,
@@ -506,7 +506,7 @@ Array [
         "off_adj_rtg": Object {
           "old_value": undefined,
           "override": undefined,
-          "value": 0.7160814908356031,
+          "value": 0.14310253441015278,
         },
         "off_assist": Object {
           "value": 0.10185185185185185,
@@ -517,7 +517,7 @@ Array [
         "off_rtg": Object {
           "old_value": undefined,
           "override": undefined,
-          "value": 99.1128793256364,
+          "value": 96.43875199501377,
         },
         "off_usage": Object {
           "value": 0.20864782871120427,
@@ -1007,7 +1007,7 @@ Array [
         "off_adj_rtg": Object {
           "old_value": undefined,
           "override": undefined,
-          "value": 5.083047601518229,
+          "value": 5.164166059583579,
         },
         "off_assist": Object {
           "value": 0.2916666666666667,
@@ -1018,7 +1018,7 @@ Array [
         "off_rtg": Object {
           "old_value": undefined,
           "override": undefined,
-          "value": 113.40865079767507,
+          "value": 113.76381988749333,
         },
         "off_usage": Object {
           "value": 0.250546350615718,
@@ -1050,7 +1050,7 @@ Array [
         "off_adj_rtg": Object {
           "old_value": undefined,
           "override": undefined,
-          "value": 0.7160814908356031,
+          "value": 0.14310253441015278,
         },
         "off_assist": Object {
           "value": 0.10185185185185185,
@@ -1061,7 +1061,7 @@ Array [
         "off_rtg": Object {
           "old_value": undefined,
           "override": undefined,
-          "value": 99.1128793256364,
+          "value": 96.43875199501377,
         },
         "off_usage": Object {
           "value": 0.20864782871120427,
@@ -1551,7 +1551,7 @@ Array [
         "off_adj_rtg": Object {
           "old_value": undefined,
           "override": undefined,
-          "value": 5.083047601518229,
+          "value": 5.164166059583579,
         },
         "off_assist": Object {
           "value": 0.2916666666666667,
@@ -1562,7 +1562,7 @@ Array [
         "off_rtg": Object {
           "old_value": undefined,
           "override": undefined,
-          "value": 113.40865079767507,
+          "value": 113.76381988749333,
         },
         "off_usage": Object {
           "value": 0.250546350615718,
@@ -1594,7 +1594,7 @@ Array [
         "off_adj_rtg": Object {
           "old_value": undefined,
           "override": undefined,
-          "value": 0.7160814908356031,
+          "value": 0.14310253441015278,
         },
         "off_assist": Object {
           "value": 0.10185185185185185,
@@ -1605,7 +1605,7 @@ Array [
         "off_rtg": Object {
           "old_value": undefined,
           "override": undefined,
-          "value": 99.1128793256364,
+          "value": 96.43875199501377,
         },
         "off_usage": Object {
           "value": 0.20864782871120427,
@@ -2100,7 +2100,7 @@ Array [
         "off_adj_rtg": Object {
           "old_value": undefined,
           "override": undefined,
-          "value": 5.083047601518229,
+          "value": 5.164166059583579,
         },
         "off_assist": Object {
           "value": 0.2916666666666667,
@@ -2111,7 +2111,7 @@ Array [
         "off_rtg": Object {
           "old_value": undefined,
           "override": undefined,
-          "value": 113.40865079767507,
+          "value": 113.76381988749333,
         },
         "off_usage": Object {
           "value": 0.250546350615718,
@@ -2143,7 +2143,7 @@ Array [
         "off_adj_rtg": Object {
           "old_value": undefined,
           "override": undefined,
-          "value": 0.7160814908356031,
+          "value": 0.14310253441015278,
         },
         "off_assist": Object {
           "value": 0.10185185185185185,
@@ -2154,7 +2154,7 @@ Array [
         "off_rtg": Object {
           "old_value": undefined,
           "override": undefined,
-          "value": 99.1128793256364,
+          "value": 96.43875199501377,
         },
         "off_usage": Object {
           "value": 0.20864782871120427,

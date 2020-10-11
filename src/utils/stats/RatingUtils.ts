@@ -56,9 +56,7 @@ export type ORtgDiagnostics = {
   ppFgTeamAstPct_Classic: number,
   teamAssistRate: number,
   ppFgTeamAstPct: number,
-  fgmAstPenalty: number,
   teamAssistedEfg: number,
-  ppFgTeamAstPct: number,
 
   // Pts produced:
   ptsProd: number,
@@ -216,7 +214,7 @@ export class RatingUtils {
     if (!statSet) return [ undefined, undefined, undefined, undefined, undefined ];
 
     /** version of _ . sumBy(..) which gives you the index as well as the value */
-    const sumBy = (aa: Array<number>, f: (number, number) => number) => {
+    const sumBy = (aa: Array<number>, f: (x: number, ii: number) => number) => {
       return _.sum(aa.map((x, ii) => f(x, ii)));
     }
 
@@ -227,7 +225,7 @@ export class RatingUtils {
     // New for assist calcs:
     const [ _Rim, _Mid, _3P ] = [ 0, 1, 2 ];
     const shotLocs = [ "2prim", "2pmid", "3p" ];
-    const shotLocToLoc = { "3p": "3p", "2prim": "rim", "2pmid": "mid" };
+    const shotLocToLoc: Record<string, string> = { "3p": "3p", "2prim": "rim", "2pmid": "mid" };
     const shotBonus = [ 2, 2, 3 ];
 
     // The formulate references (MP / (Team_MP / 5)) a fair bit
@@ -306,7 +304,7 @@ export class RatingUtils {
       const eFgPart1 = 0.5*shotBonus[index];
       return _.sumBy(_.toPairs(playerMap), playerCount => { //(0.5*eFG)*(assists)
         const playerCode = playerCount[0];
-        const count = playerCount[1];
+        const count = playerCount[1] as number;
         const playerEfg =
           eFgPart1*(rosterStatsByCode[playerCode]?.[`off_${shotLoc}`]?.value || (Others_eFG/eFgPart1));
             //(if we can't find the player, we just fallback to using team eFG for all phases)
@@ -389,7 +387,7 @@ export class RatingUtils {
 
     // If the values have been overridden then calculate the un-overridden values
     const [ rawORtg, rawAdjRating ] = overrideAdjusted ? RatingUtils.buildORtg(
-      statSet, avgEfficiency, false, false
+      statSet, rosterStatsByCode, avgEfficiency, false, false
     ) : [ undefined, undefined ];
 
     return [
