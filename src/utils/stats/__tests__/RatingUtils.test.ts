@@ -23,10 +23,8 @@ describe("RatingUtils", () => {
     const [ oRtg, adjORtg, rawORtg, rawAdjORtg, oRtgDiags ] = RatingUtils.buildORtg(
       playerInfo, {}, 100, true, false
     );
-    const expORtg = {value:113.75697655733575};
-    const expORtgAdj = {value:5.080017880468976};
-    expect(oRtg).toEqual(expORtg);
-    expect(adjORtg).toEqual(expORtgAdj);
+    const expORtg = {value:118.73462528379162};
+    const expORtgAdj = {value:6.190237283090301};
     expect(rawORtg).toEqual(undefined);
     expect(rawAdjORtg).toEqual(undefined);
     expect(oRtgDiags).toMatchSnapshot();
@@ -41,8 +39,17 @@ describe("RatingUtils", () => {
     const [ oRtg2, adjORtg2, rawORtg2, rawAdjORtg2, oRtgDiags2 ] = RatingUtils.buildORtg(
       playerInfo, {}, 100, true, true
     );
-    expect(oRtg2).toEqual({value:106.0793461361357});
-    expect(adjORtg2).toEqual({value:3.3675920488773756});
+    const expORtg2 = {value:110.91078234184495};
+    const expORtgAd2 = {value:4.445200074850868};
+
+    // Do the tests as clumped as possible
+    expect({
+      oRtg: oRtg, adjORtg: adjORtg,
+      oRtg2: oRtg2, adjORtg2: adjORtg2
+    }).toEqual({
+      oRtg: expORtg, adjORtg: expORtgAdj,
+      oRtg2: expORtg2, adjORtg2: expORtgAd2
+    });
     expect(rawORtg2).toEqual(expORtg);
     expect(rawAdjORtg2).toEqual(expORtgAdj);
   });

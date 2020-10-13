@@ -650,16 +650,16 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                     "extraInfo": <span>
                                       Assist breakdown:
                                       <li>
-                                        37
-                                        % at the rim
+                                        52
+                                        % for 3P
                                       </li>
                                       <li>
                                         10
                                         % for mid-range
                                       </li>
                                       <li>
-                                        52
-                                        % for 3P
+                                        37
+                                        % at the rim
                                       </li>
                                     </span>,
                                     "value": 0.5275590551181102,
@@ -717,16 +717,16 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                     "extraInfo": <span>
                                       Assist breakdown:
                                       <li>
-                                        49
-                                        % at the rim
+                                        47
+                                        % for 3P
                                       </li>
                                       <li>
                                         4
                                         % for mid-range
                                       </li>
                                       <li>
-                                        47
-                                        % for 3P
+                                        49
+                                        % at the rim
                                       </li>
                                     </span>,
                                     "value": 0.5211267605633803,
@@ -1071,16 +1071,16 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                     "extraInfo": <span>
                                       Assist breakdown:
                                       <li>
-                                        37
-                                        % at the rim
+                                        52
+                                        % for 3P
                                       </li>
                                       <li>
                                         10
                                         % for mid-range
                                       </li>
                                       <li>
-                                        52
-                                        % for 3P
+                                        37
+                                        % at the rim
                                       </li>
                                     </span>,
                                     "value": 0.5275590551181102,
@@ -1138,16 +1138,16 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                     "extraInfo": <span>
                                       Assist breakdown:
                                       <li>
-                                        49
-                                        % at the rim
+                                        47
+                                        % for 3P
                                       </li>
                                       <li>
                                         4
                                         % for mid-range
                                       </li>
                                       <li>
-                                        47
-                                        % for 3P
+                                        49
+                                        % at the rim
                                       </li>
                                     </span>,
                                     "value": 0.5211267605633803,
@@ -1495,16 +1495,16 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                     "extraInfo": <span>
                                       Assist breakdown:
                                       <li>
-                                        32
-                                        % at the rim
+                                        47
+                                        % for 3P
                                       </li>
                                       <li>
                                         21
                                         % for mid-range
                                       </li>
                                       <li>
-                                        47
-                                        % for 3P
+                                        32
+                                        % at the rim
                                       </li>
                                     </span>,
                                     "value": 0.5,
@@ -1562,16 +1562,16 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                     "extraInfo": <span>
                                       Assist breakdown:
                                       <li>
-                                        46
-                                        % at the rim
+                                        54
+                                        % for 3P
                                       </li>
                                       <li>
                                         0
                                         % for mid-range
                                       </li>
                                       <li>
-                                        54
-                                        % for 3P
+                                        46
+                                        % at the rim
                                       </li>
                                     </span>,
                                     "value": 0.5492957746478874,
@@ -1916,16 +1916,16 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                     "extraInfo": <span>
                                       Assist breakdown:
                                       <li>
-                                        32
-                                        % at the rim
+                                        47
+                                        % for 3P
                                       </li>
                                       <li>
                                         21
                                         % for mid-range
                                       </li>
                                       <li>
-                                        47
-                                        % for 3P
+                                        32
+                                        % at the rim
                                       </li>
                                     </span>,
                                     "value": 0.5,
@@ -1983,16 +1983,16 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                     "extraInfo": <span>
                                       Assist breakdown:
                                       <li>
-                                        46
-                                        % at the rim
+                                        54
+                                        % for 3P
                                       </li>
                                       <li>
                                         0
                                         % for mid-range
                                       </li>
                                       <li>
-                                        54
-                                        % for 3P
+                                        46
+                                        % at the rim
                                       </li>
                                     </span>,
                                     "value": 0.5492957746478874,
@@ -2340,16 +2340,16 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                     "extraInfo": <span>
                                       Assist breakdown:
                                       <li>
-                                        43
-                                        % at the rim
+                                        46
+                                        % for 3P
                                       </li>
                                       <li>
                                         11
                                         % for mid-range
                                       </li>
                                       <li>
-                                        46
-                                        % for 3P
+                                        43
+                                        % at the rim
                                       </li>
                                     </span>,
                                     "value": 0.5932203389830508,
@@ -2407,16 +2407,16 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                     "extraInfo": <span>
                                       Assist breakdown:
                                       <li>
-                                        37
-                                        % at the rim
+                                        56
+                                        % for 3P
                                       </li>
                                       <li>
                                         7
                                         % for mid-range
                                       </li>
                                       <li>
-                                        56
-                                        % for 3P
+                                        37
+                                        % at the rim
                                       </li>
                                     </span>,
                                     "value": 0.5308641975308642,
@@ -2761,16 +2761,16 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                     "extraInfo": <span>
                                       Assist breakdown:
                                       <li>
-                                        43
-                                        % at the rim
+                                        46
+                                        % for 3P
                                       </li>
                                       <li>
                                         11
                                         % for mid-range
                                       </li>
                                       <li>
-                                        46
-                                        % for 3P
+                                        43
+                                        % at the rim
                                       </li>
                                     </span>,
                                     "value": 0.5932203389830508,
@@ -2828,16 +2828,16 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                     "extraInfo": <span>
                                       Assist breakdown:
                                       <li>
-                                        37
-                                        % at the rim
+                                        56
+                                        % for 3P
                                       </li>
                                       <li>
                                         7
                                         % for mid-range
                                       </li>
                                       <li>
-                                        56
-                                        % for 3P
+                                        37
+                                        % at the rim
                                       </li>
                                     </span>,
                                     "value": 0.5308641975308642,
@@ -4085,16 +4085,16 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "extraInfo": <span>
                                       Assist breakdown:
                                       <li>
-                                        37
-                                        % at the rim
+                                        52
+                                        % for 3P
                                       </li>
                                       <li>
                                         10
                                         % for mid-range
                                       </li>
                                       <li>
-                                        52
-                                        % for 3P
+                                        37
+                                        % at the rim
                                       </li>
                                     </span>,
                                     "value": 0.5275590551181102,
@@ -4176,16 +4176,16 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "extraInfo": <span>
                                       Assist breakdown:
                                       <li>
-                                        49
-                                        % at the rim
+                                        47
+                                        % for 3P
                                       </li>
                                       <li>
                                         4
                                         % for mid-range
                                       </li>
                                       <li>
-                                        47
-                                        % for 3P
+                                        49
+                                        % at the rim
                                       </li>
                                     </span>,
                                     "value": 0.5211267605633803,
@@ -4247,7 +4247,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           <br />
                                         </span>
                                         <span>
-                                          ORtg 112 on 24%, DRB 9%
+                                          ORtg 115 on 24%, DRB 9%
                                           <br />
                                         </span>
                                         <span>
@@ -4259,7 +4259,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           <br />
                                         </span>
                                         <span>
-                                          ORtg 93 on 21%, DRB 15%
+                                          ORtg 96 on 21%, DRB 15%
                                           <br />
                                         </span>
                                         <span>
@@ -4356,16 +4356,16 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "extraInfo": <span>
                                       Assist breakdown:
                                       <li>
-                                        37
-                                        % at the rim
+                                        52
+                                        % for 3P
                                       </li>
                                       <li>
                                         10
                                         % for mid-range
                                       </li>
                                       <li>
-                                        52
-                                        % for 3P
+                                        37
+                                        % at the rim
                                       </li>
                                     </span>,
                                     "value": 0.5275590551181102,
@@ -4447,16 +4447,16 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "extraInfo": <span>
                                       Assist breakdown:
                                       <li>
-                                        49
-                                        % at the rim
+                                        47
+                                        % for 3P
                                       </li>
                                       <li>
                                         4
                                         % for mid-range
                                       </li>
                                       <li>
-                                        47
-                                        % for 3P
+                                        49
+                                        % at the rim
                                       </li>
                                     </span>,
                                     "value": 0.5211267605633803,
@@ -4518,7 +4518,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           <br />
                                         </span>
                                         <span>
-                                          ORtg 112 on 24%, DRB 9%
+                                          ORtg 115 on 24%, DRB 9%
                                           <br />
                                         </span>
                                         <span>
@@ -4530,7 +4530,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           <br />
                                         </span>
                                         <span>
-                                          ORtg 93 on 21%, DRB 15%
+                                          ORtg 96 on 21%, DRB 15%
                                           <br />
                                         </span>
                                         <span>
@@ -4653,16 +4653,16 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "extraInfo": <span>
                                       Assist breakdown:
                                       <li>
-                                        32
-                                        % at the rim
+                                        47
+                                        % for 3P
                                       </li>
                                       <li>
                                         21
                                         % for mid-range
                                       </li>
                                       <li>
-                                        47
-                                        % for 3P
+                                        32
+                                        % at the rim
                                       </li>
                                     </span>,
                                     "value": 0.5,
@@ -4744,16 +4744,16 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "extraInfo": <span>
                                       Assist breakdown:
                                       <li>
-                                        46
-                                        % at the rim
+                                        54
+                                        % for 3P
                                       </li>
                                       <li>
                                         0
                                         % for mid-range
                                       </li>
                                       <li>
-                                        54
-                                        % for 3P
+                                        46
+                                        % at the rim
                                       </li>
                                     </span>,
                                     "value": 0.5492957746478874,
@@ -4815,7 +4815,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           <br />
                                         </span>
                                         <span>
-                                          ORtg 112 on 24%, DRB 9%
+                                          ORtg 115 on 24%, DRB 9%
                                           <br />
                                         </span>
                                         <span>
@@ -4827,7 +4827,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           <br />
                                         </span>
                                         <span>
-                                          ORtg 93 on 21%, DRB 15%
+                                          ORtg 96 on 21%, DRB 15%
                                           <br />
                                         </span>
                                         <span>
@@ -4924,16 +4924,16 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "extraInfo": <span>
                                       Assist breakdown:
                                       <li>
-                                        32
-                                        % at the rim
+                                        47
+                                        % for 3P
                                       </li>
                                       <li>
                                         21
                                         % for mid-range
                                       </li>
                                       <li>
-                                        47
-                                        % for 3P
+                                        32
+                                        % at the rim
                                       </li>
                                     </span>,
                                     "value": 0.5,
@@ -5015,16 +5015,16 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "extraInfo": <span>
                                       Assist breakdown:
                                       <li>
-                                        46
-                                        % at the rim
+                                        54
+                                        % for 3P
                                       </li>
                                       <li>
                                         0
                                         % for mid-range
                                       </li>
                                       <li>
-                                        54
-                                        % for 3P
+                                        46
+                                        % at the rim
                                       </li>
                                     </span>,
                                     "value": 0.5492957746478874,
@@ -5086,7 +5086,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           <br />
                                         </span>
                                         <span>
-                                          ORtg 112 on 24%, DRB 9%
+                                          ORtg 115 on 24%, DRB 9%
                                           <br />
                                         </span>
                                         <span>
@@ -5098,7 +5098,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           <br />
                                         </span>
                                         <span>
-                                          ORtg 93 on 21%, DRB 15%
+                                          ORtg 96 on 21%, DRB 15%
                                           <br />
                                         </span>
                                         <span>
@@ -5221,16 +5221,16 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "extraInfo": <span>
                                       Assist breakdown:
                                       <li>
-                                        43
-                                        % at the rim
+                                        46
+                                        % for 3P
                                       </li>
                                       <li>
                                         11
                                         % for mid-range
                                       </li>
                                       <li>
-                                        46
-                                        % for 3P
+                                        43
+                                        % at the rim
                                       </li>
                                     </span>,
                                     "value": 0.5932203389830508,
@@ -5312,16 +5312,16 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "extraInfo": <span>
                                       Assist breakdown:
                                       <li>
-                                        37
-                                        % at the rim
+                                        56
+                                        % for 3P
                                       </li>
                                       <li>
                                         7
                                         % for mid-range
                                       </li>
                                       <li>
-                                        56
-                                        % for 3P
+                                        37
+                                        % at the rim
                                       </li>
                                     </span>,
                                     "value": 0.5308641975308642,
@@ -5383,7 +5383,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           <br />
                                         </span>
                                         <span>
-                                          ORtg 112 on 24%, DRB 9%
+                                          ORtg 115 on 24%, DRB 9%
                                           <br />
                                         </span>
                                         <span>
@@ -5395,7 +5395,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           <br />
                                         </span>
                                         <span>
-                                          ORtg 93 on 21%, DRB 15%
+                                          ORtg 96 on 21%, DRB 15%
                                           <br />
                                         </span>
                                         <span>
@@ -5492,16 +5492,16 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "extraInfo": <span>
                                       Assist breakdown:
                                       <li>
-                                        43
-                                        % at the rim
+                                        46
+                                        % for 3P
                                       </li>
                                       <li>
                                         11
                                         % for mid-range
                                       </li>
                                       <li>
-                                        46
-                                        % for 3P
+                                        43
+                                        % at the rim
                                       </li>
                                     </span>,
                                     "value": 0.5932203389830508,
@@ -5583,16 +5583,16 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "extraInfo": <span>
                                       Assist breakdown:
                                       <li>
-                                        37
-                                        % at the rim
+                                        56
+                                        % for 3P
                                       </li>
                                       <li>
                                         7
                                         % for mid-range
                                       </li>
                                       <li>
-                                        56
-                                        % for 3P
+                                        37
+                                        % at the rim
                                       </li>
                                     </span>,
                                     "value": 0.5308641975308642,
@@ -5654,7 +5654,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           <br />
                                         </span>
                                         <span>
-                                          ORtg 112 on 24%, DRB 9%
+                                          ORtg 115 on 24%, DRB 9%
                                           <br />
                                         </span>
                                         <span>
@@ -5666,7 +5666,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           <br />
                                         </span>
                                         <span>
-                                          ORtg 93 on 21%, DRB 15%
+                                          ORtg 96 on 21%, DRB 15%
                                           <br />
                                         </span>
                                         <span>
@@ -6665,16 +6665,16 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "extraInfo": <span>
                                       Assist breakdown:
                                       <li>
-                                        37
-                                        % at the rim
+                                        52
+                                        % for 3P
                                       </li>
                                       <li>
                                         10
                                         % for mid-range
                                       </li>
                                       <li>
-                                        52
-                                        % for 3P
+                                        37
+                                        % at the rim
                                       </li>
                                     </span>,
                                     "value": 0.5275590551181102,
@@ -6732,16 +6732,16 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "extraInfo": <span>
                                       Assist breakdown:
                                       <li>
-                                        49
-                                        % at the rim
+                                        47
+                                        % for 3P
                                       </li>
                                       <li>
                                         4
                                         % for mid-range
                                       </li>
                                       <li>
-                                        47
-                                        % for 3P
+                                        49
+                                        % at the rim
                                       </li>
                                     </span>,
                                     "value": 0.5211267605633803,
@@ -6791,7 +6791,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           <br />
                                         </span>
                                         <span>
-                                          ORtg 112 on 24%, DRB 9%
+                                          ORtg 115 on 24%, DRB 9%
                                           <br />
                                         </span>
                                         <span>
@@ -6803,7 +6803,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           <br />
                                         </span>
                                         <span>
-                                          ORtg 93 on 21%, DRB 15%
+                                          ORtg 96 on 21%, DRB 15%
                                           <br />
                                         </span>
                                         <span>
@@ -6863,7 +6863,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             pill={false}
                                             style={
                                               Object {
-                                                "backgroundColor": "#88c48880",
+                                                "backgroundColor": "#79bc7980",
                                               }
                                             }
                                             variant="light"
@@ -6915,7 +6915,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             pill={false}
                                             style={
                                               Object {
-                                                "backgroundColor": "#fff5f580",
+                                                "backgroundColor": "#fbfdfb80",
                                               }
                                             }
                                             variant="light"
@@ -7100,16 +7100,16 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "extraInfo": <span>
                                       Assist breakdown:
                                       <li>
-                                        37
-                                        % at the rim
+                                        52
+                                        % for 3P
                                       </li>
                                       <li>
                                         10
                                         % for mid-range
                                       </li>
                                       <li>
-                                        52
-                                        % for 3P
+                                        37
+                                        % at the rim
                                       </li>
                                     </span>,
                                     "value": 0.5275590551181102,
@@ -7167,16 +7167,16 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "extraInfo": <span>
                                       Assist breakdown:
                                       <li>
-                                        49
-                                        % at the rim
+                                        47
+                                        % for 3P
                                       </li>
                                       <li>
                                         4
                                         % for mid-range
                                       </li>
                                       <li>
-                                        47
-                                        % for 3P
+                                        49
+                                        % at the rim
                                       </li>
                                     </span>,
                                     "value": 0.5211267605633803,
@@ -7226,7 +7226,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           <br />
                                         </span>
                                         <span>
-                                          ORtg 112 on 24%, DRB 9%
+                                          ORtg 115 on 24%, DRB 9%
                                           <br />
                                         </span>
                                         <span>
@@ -7238,7 +7238,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           <br />
                                         </span>
                                         <span>
-                                          ORtg 93 on 21%, DRB 15%
+                                          ORtg 96 on 21%, DRB 15%
                                           <br />
                                         </span>
                                         <span>
@@ -7298,7 +7298,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             pill={false}
                                             style={
                                               Object {
-                                                "backgroundColor": "#88c48880",
+                                                "backgroundColor": "#79bc7980",
                                               }
                                             }
                                             variant="light"
@@ -7350,7 +7350,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             pill={false}
                                             style={
                                               Object {
-                                                "backgroundColor": "#fff5f580",
+                                                "backgroundColor": "#fbfdfb80",
                                               }
                                             }
                                             variant="light"
@@ -7538,16 +7538,16 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "extraInfo": <span>
                                       Assist breakdown:
                                       <li>
-                                        32
-                                        % at the rim
+                                        47
+                                        % for 3P
                                       </li>
                                       <li>
                                         21
                                         % for mid-range
                                       </li>
                                       <li>
-                                        47
-                                        % for 3P
+                                        32
+                                        % at the rim
                                       </li>
                                     </span>,
                                     "value": 0.5,
@@ -7605,16 +7605,16 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "extraInfo": <span>
                                       Assist breakdown:
                                       <li>
-                                        46
-                                        % at the rim
+                                        54
+                                        % for 3P
                                       </li>
                                       <li>
                                         0
                                         % for mid-range
                                       </li>
                                       <li>
-                                        54
-                                        % for 3P
+                                        46
+                                        % at the rim
                                       </li>
                                     </span>,
                                     "value": 0.5492957746478874,
@@ -7664,7 +7664,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           <br />
                                         </span>
                                         <span>
-                                          ORtg 112 on 24%, DRB 9%
+                                          ORtg 115 on 24%, DRB 9%
                                           <br />
                                         </span>
                                         <span>
@@ -7676,7 +7676,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           <br />
                                         </span>
                                         <span>
-                                          ORtg 93 on 21%, DRB 15%
+                                          ORtg 96 on 21%, DRB 15%
                                           <br />
                                         </span>
                                         <span>
@@ -7736,7 +7736,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             pill={false}
                                             style={
                                               Object {
-                                                "backgroundColor": "#88c48880",
+                                                "backgroundColor": "#79bc7980",
                                               }
                                             }
                                             variant="light"
@@ -7788,7 +7788,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             pill={false}
                                             style={
                                               Object {
-                                                "backgroundColor": "#fff5f580",
+                                                "backgroundColor": "#fbfdfb80",
                                               }
                                             }
                                             variant="light"
@@ -7973,16 +7973,16 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "extraInfo": <span>
                                       Assist breakdown:
                                       <li>
-                                        32
-                                        % at the rim
+                                        47
+                                        % for 3P
                                       </li>
                                       <li>
                                         21
                                         % for mid-range
                                       </li>
                                       <li>
-                                        47
-                                        % for 3P
+                                        32
+                                        % at the rim
                                       </li>
                                     </span>,
                                     "value": 0.5,
@@ -8040,16 +8040,16 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "extraInfo": <span>
                                       Assist breakdown:
                                       <li>
-                                        46
-                                        % at the rim
+                                        54
+                                        % for 3P
                                       </li>
                                       <li>
                                         0
                                         % for mid-range
                                       </li>
                                       <li>
-                                        54
-                                        % for 3P
+                                        46
+                                        % at the rim
                                       </li>
                                     </span>,
                                     "value": 0.5492957746478874,
@@ -8099,7 +8099,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           <br />
                                         </span>
                                         <span>
-                                          ORtg 112 on 24%, DRB 9%
+                                          ORtg 115 on 24%, DRB 9%
                                           <br />
                                         </span>
                                         <span>
@@ -8111,7 +8111,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           <br />
                                         </span>
                                         <span>
-                                          ORtg 93 on 21%, DRB 15%
+                                          ORtg 96 on 21%, DRB 15%
                                           <br />
                                         </span>
                                         <span>
@@ -8171,7 +8171,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             pill={false}
                                             style={
                                               Object {
-                                                "backgroundColor": "#88c48880",
+                                                "backgroundColor": "#79bc7980",
                                               }
                                             }
                                             variant="light"
@@ -8223,7 +8223,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             pill={false}
                                             style={
                                               Object {
-                                                "backgroundColor": "#fff5f580",
+                                                "backgroundColor": "#fbfdfb80",
                                               }
                                             }
                                             variant="light"
@@ -8411,16 +8411,16 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "extraInfo": <span>
                                       Assist breakdown:
                                       <li>
-                                        43
-                                        % at the rim
+                                        46
+                                        % for 3P
                                       </li>
                                       <li>
                                         11
                                         % for mid-range
                                       </li>
                                       <li>
-                                        46
-                                        % for 3P
+                                        43
+                                        % at the rim
                                       </li>
                                     </span>,
                                     "value": 0.5932203389830508,
@@ -8478,16 +8478,16 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "extraInfo": <span>
                                       Assist breakdown:
                                       <li>
-                                        37
-                                        % at the rim
+                                        56
+                                        % for 3P
                                       </li>
                                       <li>
                                         7
                                         % for mid-range
                                       </li>
                                       <li>
-                                        56
-                                        % for 3P
+                                        37
+                                        % at the rim
                                       </li>
                                     </span>,
                                     "value": 0.5308641975308642,
@@ -8537,7 +8537,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           <br />
                                         </span>
                                         <span>
-                                          ORtg 112 on 24%, DRB 9%
+                                          ORtg 115 on 24%, DRB 9%
                                           <br />
                                         </span>
                                         <span>
@@ -8549,7 +8549,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           <br />
                                         </span>
                                         <span>
-                                          ORtg 93 on 21%, DRB 15%
+                                          ORtg 96 on 21%, DRB 15%
                                           <br />
                                         </span>
                                         <span>
@@ -8609,7 +8609,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             pill={false}
                                             style={
                                               Object {
-                                                "backgroundColor": "#88c48880",
+                                                "backgroundColor": "#79bc7980",
                                               }
                                             }
                                             variant="light"
@@ -8661,7 +8661,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             pill={false}
                                             style={
                                               Object {
-                                                "backgroundColor": "#fff5f580",
+                                                "backgroundColor": "#fbfdfb80",
                                               }
                                             }
                                             variant="light"
@@ -8846,16 +8846,16 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "extraInfo": <span>
                                       Assist breakdown:
                                       <li>
-                                        43
-                                        % at the rim
+                                        46
+                                        % for 3P
                                       </li>
                                       <li>
                                         11
                                         % for mid-range
                                       </li>
                                       <li>
-                                        46
-                                        % for 3P
+                                        43
+                                        % at the rim
                                       </li>
                                     </span>,
                                     "value": 0.5932203389830508,
@@ -8913,16 +8913,16 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "extraInfo": <span>
                                       Assist breakdown:
                                       <li>
-                                        37
-                                        % at the rim
+                                        56
+                                        % for 3P
                                       </li>
                                       <li>
                                         7
                                         % for mid-range
                                       </li>
                                       <li>
-                                        56
-                                        % for 3P
+                                        37
+                                        % at the rim
                                       </li>
                                     </span>,
                                     "value": 0.5308641975308642,
@@ -8972,7 +8972,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           <br />
                                         </span>
                                         <span>
-                                          ORtg 112 on 24%, DRB 9%
+                                          ORtg 115 on 24%, DRB 9%
                                           <br />
                                         </span>
                                         <span>
@@ -8984,7 +8984,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           <br />
                                         </span>
                                         <span>
-                                          ORtg 93 on 21%, DRB 15%
+                                          ORtg 96 on 21%, DRB 15%
                                           <br />
                                         </span>
                                         <span>
@@ -9044,7 +9044,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             pill={false}
                                             style={
                                               Object {
-                                                "backgroundColor": "#88c48880",
+                                                "backgroundColor": "#79bc7980",
                                               }
                                             }
                                             variant="light"
@@ -9096,7 +9096,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             pill={false}
                                             style={
                                               Object {
-                                                "backgroundColor": "#fff5f580",
+                                                "backgroundColor": "#fbfdfb80",
                                               }
                                             }
                                             variant="light"

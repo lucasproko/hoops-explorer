@@ -358,16 +358,16 @@ exports[`TableDisplayUtils injectPlayTypeInfo - lineups 1`] = `
     "extraInfo": <span>
       Assist breakdown:
       <li>
-        37
-        % at the rim
+        52
+        % for 3P
       </li>
       <li>
         10
         % for mid-range
       </li>
       <li>
-        52
-        % for 3P
+        37
+        % at the rim
       </li>
     </span>,
     "value": 0.5275590551181102,
@@ -421,16 +421,16 @@ exports[`TableDisplayUtils injectPlayTypeInfo - lineups 1`] = `
     "extraInfo": <span>
       Assist breakdown:
       <li>
-        49
-        % at the rim
+        47
+        % for 3P
       </li>
       <li>
         4
         % for mid-range
       </li>
       <li>
-        47
-        % for 3P
+        49
+        % at the rim
       </li>
     </span>,
     "value": 0.5211267605633803,
@@ -534,16 +534,16 @@ exports[`TableDisplayUtils injectPlayTypeInfo - players (!expanded) 1`] = `
     "extraInfo": <span>
       Assist breakdown:
       <li>
-        46
-        % at the rim
+        48
+        % for 3P
       </li>
       <li>
         7
         % for mid-range
       </li>
       <li>
-        48
-        % for 3P
+        46
+        % at the rim
       </li>
     </span>,
     "value": 0.2916666666666667,
@@ -603,16 +603,16 @@ exports[`TableDisplayUtils injectPlayTypeInfo - players (expanded) 1`] = `
     "extraInfo": <span>
       Assist breakdown:
       <li>
-        46
-        % at the rim
+        48
+        % for 3P
       </li>
       <li>
         7
         % for mid-range
       </li>
       <li>
-        48
-        % for 3P
+        46
+        % at the rim
       </li>
     </span>,
     "value": 0.2916666666666667,

@@ -66,7 +66,7 @@ const RosterStatsDiagView: React.FunctionComponent<Props> = ({ortgDiags, drtgDia
         <li><em>(Team_ORB_Contrib%: In the same way a Player gets rewarded for an ORB, they get slightly less reward for a score that comes off someone else's rebound):</em></li>
         <li>Team_ORB_Contrib%: [<b>{(100*o.teamOrbContribPct).toFixed(1)}</b>%] = Team_ORB_Weight [<b>{(100*o.teamOrbWeight).toFixed(1)}%</b>] * % Team_Scoring_Plays_From_Rebound [<b>{(100*o.teamScoreFromReboundPct).toFixed(1)}%</b>]</li>
         <ul>
-          <li>% Team_Scoring_Plays_From_Rebound: [<b>{(100*o.teamScoreFromReboundPct).toFixed(1)}%</b>] = (Team_ORB [<b>{o.teamOrb}</b>] * % Plays_Team_Scored [<b>{(100*o.teamScoredPlayPct).toFixed(1)}%</b>]) / Scoring_Plays [<b>{o.teamScoringPoss.toFixed(1)}</b>] </li>
+          <li>% Team_Scoring_Plays_From_Rebound: [<b>{(100*o.teamScoreFromReboundPct).toFixed(1)}%</b>] = (~All_Players_ORB [<b>{o.rosterOrb.toFixed(1)}</b>] * % Plays_Team_Scored [<b>{(100*o.teamScoredPlayPct).toFixed(1)}%</b>]) / Scoring_Plays [<b>{o.teamScoringPoss.toFixed(1)}</b>] </li>
           <ul>
             <li><em>(% Plays_Team_Scored is described in the possessions section, below)</em></li>
           </ul>

@@ -42,6 +42,7 @@ export type ORtgDiagnostics = {
   teamPtsPerScore: number,
   teamFtHitOnePlus: number,
   teamProbFtHitOnePlus: number,
+  rosterOrb: number,
   teamOrbCreditToRebounder: number,
   teamOrbCreditToScorer: number,
   teamScoreFromReboundPct: number,
@@ -267,6 +268,12 @@ export class RatingUtils {
     // TODO: regress this to bigger samples
     const Team_ORB = statSet?.team_total_off_orb?.value || 0;
     const Opponent_DRB = statSet?.oppo_total_def_drb?.value || 0;
+    // Calculate an approximate number
+    const Sum_Players_ORB =
+      _.chain(rosterStatsByCode).values().sumBy(p => p.total_off_orb?.value || 0).value();
+    const Global_ORB =
+      _.chain(rosterStatsByCode).values().sumBy(p => p.team_total_off_orb?.value || 0).value()/5;
+    const Roster_ORB = Team_ORB * (Sum_Players_ORB/(Global_ORB || 1));
 
     // Useful base derived stats:
     const PTS_FROM_FG = 2*FG2PM + 3*FG3PM;
@@ -330,7 +337,7 @@ export class RatingUtils {
     const Team_ORB_Weight_Denom = Credit_To_Rebounder + Credit_To_Scorer;
     const Team_ORB_Weight = Team_ORB_Weight_Denom > 0 ?  Credit_To_Rebounder/ Team_ORB_Weight_Denom : 0.0;
     const Team_Score_Rebound_Pct =
-      Team_Scoring_Poss > 0 ? (Team_ORB * Team_Play_Pct) / Team_Scoring_Poss : 0.0;
+      Team_Scoring_Poss > 0 ? (Roster_ORB * Team_Play_Pct) / Team_Scoring_Poss : 0.0;
     const Team_ORB_Contrib = Team_ORB_Weight * Team_Score_Rebound_Pct;
 
     const ORB_Part = ORB * Team_ORB_Weight * Team_Play_Pct;
@@ -431,6 +438,7 @@ export class RatingUtils {
       teamPtsPerScore: Team_Pts_Per_Score,
       teamFtHitOnePlus: Team_FTs_Hit_1plus,
       teamProbFtHitOnePlus: Team_Prob_Hit_1plus_FT,
+      rosterOrb: Roster_ORB,
       teamOrbCreditToRebounder: Credit_To_Rebounder,
       teamOrbCreditToScorer: Credit_To_Scorer,
       teamScoreFromReboundPct: Team_Score_Rebound_Pct,
