@@ -161,9 +161,9 @@ export class TableDisplayUtils {
       const threePct = (100*(stat[`${offDef}_ast_3p`]?.value || 0)).toFixed(0);
       return <span>
         Assist breakdown:
-        <li>{rimPct}% at the rim</li>
-        <li>{midPct}% for mid-range</li>
         <li>{threePct}% for 3P</li>
+        <li>{midPct}% for mid-range</li>
+        <li>{rimPct}% at the rim</li>
       </span>;
     }
     const playCategoryBuilder = (stat: any, offDef: "off" | "def") => {

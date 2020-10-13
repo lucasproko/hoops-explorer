@@ -168,8 +168,14 @@ export async function main() {
       const teamBaseline =
         teamResponse.getJsonResponse().aggregations?.global?.only?.buckets?.team || {};
 
+      /** Largest sample of player stats, by player key - use for ORtg calcs */
+      const globalRosterStatsByCode =
+        _.chain(rosterGlobal).map(p => {
+          return [ p.player_array?.hits?.hits?.[0]?._source?.player?.code || p.key, p ];
+        }).fromPairs().value();
+
       const baselinePlayerInfo = LineupTableUtils.buildBaselinePlayerInfo(
-        rosterBaseline, avgEfficiency
+        rosterBaseline, globalRosterStatsByCode, avgEfficiency
       );
       const positionFromPlayerKey = LineupTableUtils.buildPositionPlayerMap(rosterGlobal, teamSeasonLookup);
 

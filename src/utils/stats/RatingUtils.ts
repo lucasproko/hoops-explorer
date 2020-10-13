@@ -12,6 +12,7 @@ export type ORtgDiagnostics = {
   ptsFgm: number,
   rawFtm: number,
   rawAssist: number,
+  rawAssistInfo: string[],
   rawPts: number,
   rawOrb: number,
   rawTo: number,
@@ -31,6 +32,7 @@ export type ORtgDiagnostics = {
   teamFtPct: number,
   teamOrbPct: number,
   teamTo: number,
+  teamPoss: number,
 
   // 1] Points produced calcs:
 
@@ -40,22 +42,28 @@ export type ORtgDiagnostics = {
   teamPtsPerScore: number,
   teamFtHitOnePlus: number,
   teamProbFtHitOnePlus: number,
+  rosterOrb: number,
   teamOrbCreditToRebounder: number,
   teamOrbCreditToScorer: number,
   teamScoreFromReboundPct: number,
   teamOrbWeight: number,
   othersAssist: number,
   otherEfg: number,
+  otherEfgInfo: string[],
   otherPtsPerFgm: number,
   teamOrbContribPct: number,
   teamScoredPlayPct: number,
+  teamAssistRate_Classic: number,
+  ppFgTeamAstPct_Classic: number,
   teamAssistRate: number,
   ppFgTeamAstPct: number,
+  teamAssistedEfg: number,
 
   // Pts produced:
   ptsProd: number,
   ppOrb: number,
   ppAssist: number,
+  ppAssist_Classic: number,
   ppFg: number,
 
   // 2] Possession Calcs:
@@ -67,6 +75,7 @@ export type ORtgDiagnostics = {
   offPlaysLessPoss: number,
   fgPart: number,
   ftPart: number,
+  astPart_Classic: number,
   astPart: number,
   orbPart: number,
   // Advanced team numbers:
@@ -79,6 +88,7 @@ export type ORtgDiagnostics = {
   ftxPoss: number,
   // Adjusted calcs:
   oRtg: number,
+  oRtg_Classic: number,
   defSos: number,
   avgEff: number,
   SD_at_Usage: number,
@@ -195,7 +205,8 @@ export class RatingUtils {
 
   /** From https://www.basketball-reference.com/about/ratings.html */
   static buildORtg(
-    statSet: Record<string, any>, avgEfficiency: number, calcDiags: boolean, overrideAdjusted: boolean
+    statSet: Record<string, any>, rosterStatsByCode: Record<string, any>,
+    avgEfficiency: number, calcDiags: boolean, overrideAdjusted: boolean
   ): [
     { value: number } | undefined, { value: number } | undefined,
     { value: number } | undefined, { value: number } | undefined, //< if overrridden these are the raw vals
@@ -203,10 +214,21 @@ export class RatingUtils {
   ] {
     if (!statSet) return [ undefined, undefined, undefined, undefined, undefined ];
 
+    /** version of _ . sumBy(..) which gives you the index as well as the value */
+    const sumBy = (aa: Array<number>, f: (x: number, ii: number) => number) => {
+      return _.sum(aa.map((x, ii) => f(x, ii)));
+    }
+
     const overrides = overrideAdjusted ? RatingUtils.buildOffOverrides(statSet) : ({} as Record<string, any>);
     const statGet = (key: string) => {
       return !_.isNil(overrides[key]) ? overrides[key].value : statSet?.[key]?.value || 0;
     };
+    // New for assist calcs:
+    const [ _Rim, _Mid, _3P ] = [ 0, 1, 2 ];
+    const shotLocs = [ "2prim", "2pmid", "3p" ];
+    const shotLocToLoc: Record<string, string> = { "3p": "3p", "2prim": "rim", "2pmid": "mid" };
+    const shotBonus = [ 2, 2, 3 ];
+
     // The formulate references (MP / (Team_MP / 5)) a fair bit
     // All our team numbers are when the player is on the floor, so we set to 1
 
@@ -222,6 +244,13 @@ export class RatingUtils {
     const offPoss = statGet("off_poss");
     const usage = 100*(statSet.off_usage?.value || 0);
     const Def_SOS = (statSet?.def_adj_opp?.value || avgEfficiency);
+    // New for assist calcs:
+    const Made = shotLocs.map(l => statGet(`total_off_${l}_made`));
+    const Attempts = shotLocs.map(l => statGet(`total_off_${l}_attempts`) || 1); //||1 because used as denom
+    const AssistedPct = shotLocs.map(l => statGet(`off_${l}_ast`));
+    const AssistsTotals = shotLocs.map(l => statGet(`total_off_ast_${shotLocToLoc[l]!}`));
+    const Assists = shotLocs.map(l => [l, statGet(`off_ast_${shotLocToLoc[l]!}_target`)]);
+      // array of [shotLoc, map[player -> count]]
 
     const Team_AST = statSet?.team_total_off_assist?.value || 0;
     const Team_FGM = statGet("team_total_off_fgm");
@@ -231,25 +260,67 @@ export class RatingUtils {
     const Team_PTS = statGet("team_total_off_pts");
     const Team_TOV = statGet("team_total_off_to");
     const Team_3PM = statGet("team_total_off_3p_made");
+    const Team_Poss = statGet("team_total_off_poss");
+    // New for assist calcs:
+    const Team_Made = shotLocs.map(l => statGet(`team_total_off_${l}_made`));
+    const Team_Attempts = shotLocs.map(l => statGet(`team_total_off_${l}_attempts`));
 
     // TODO: regress this to bigger samples
     const Team_ORB = statSet?.team_total_off_orb?.value || 0;
     const Opponent_DRB = statSet?.oppo_total_def_drb?.value || 0;
+    // Calculate an approximate number
+    const Sum_Players_ORB =
+      _.chain(rosterStatsByCode).values().sumBy(p => p.total_off_orb?.value || 0).value();
+    const Global_ORB =
+      _.chain(rosterStatsByCode).values().sumBy(p => p.team_total_off_orb?.value || 0).value()/5;
+    const Roster_ORB = Team_ORB * (Sum_Players_ORB/(Global_ORB || 1));
 
+    // Useful base derived stats:
     const PTS_FROM_FG = 2*FG2PM + 3*FG3PM;
+    const eFG = FGA > 0 ? PTS_FROM_FG / (2 * FGA) : 0.0;
     const Team_PTS_FROM_FG = Team_PTS - Team_FTM;
     const Others_FGA = Team_FGA - FGA;
     const Others_FGM = Team_FGM - FGM;
     const Others_AST = Team_AST - AST;
+    const Others_eFG = Others_FGA > 0 ? (Team_PTS_FROM_FG - PTS_FROM_FG) / (2 * Others_FGA) : 0;
 
     const FTA_to_Poss = 0.475;
 
     // This is much simplified because the stats are for the period the player was on the floor
-    const qAST = Team_FGM > 0 ? (1.14 * (Others_AST / Team_FGM)) : 0.0;
-    const FG_Part = FGA > 0 ? FGM * (1 - 0.5 * (PTS_FROM_FG / (2 * FGA)) * qAST) : 0.0;
-
-    const AST_Part = Others_FGA > 0 ?
+    const qAST_Classic = Team_FGM > 0 ? (1.14 * (Others_AST / Team_FGM)) : 0.0; //(estimate of what % of player's FGs were assisted)
+    const Team_Assist_Contrib_Classic = (0.5 * eFG) * qAST_Classic;
+    const FG_Part_Classic = FGM * (1 - Team_Assist_Contrib_Classic); //TAC = 1 - FG_Part/FGM
+    const AST_Part_Classic = Others_FGA > 0 ?
       0.5 * ((Team_PTS_FROM_FG - PTS_FROM_FG) / (2 * Others_FGA)) * AST : 0.0;
+    // New for assist calcs:
+    const FGM_Minus_AssistPenalty = Made.map((playerMade, index) => { //(0.5*eFG)*(assisted FGs=FG*assisted)
+      const playerEfg = (0.5*shotBonus[index]!)*(playerMade/Attempts[index]!);
+      return playerMade*(1 - (0.5*playerEfg)*AssistedPct[index]!);
+    });
+    const FG_Part = _.sum(FGM_Minus_AssistPenalty);
+    // We back-calculate these equivalents to the classic calcs just for approximate diags display
+    const qAST =
+      sumBy(Made, (playerMade, index) => AssistedPct[index]!*playerMade)/FGM;
+    const Team_Assist_Contrib = FGM > 0 ? 1 - FG_Part/FGM : 0;
+    const Team_Assisted_eFG = qAST > 0 ? 2 * (Team_Assist_Contrib / qAST) : 0;
+
+    const Efg_By_ShotType = Assists.map((locMap, index) => {
+      const shotLoc = locMap[0];
+      const playerMap = locMap[1];
+      var totalEfgCount = AssistsTotals[index]! || 1;
+      const eFgPart1 = 0.5*shotBonus[index];
+      return _.sumBy(_.toPairs(playerMap), playerCount => { //(0.5*eFG)*(assists)
+        const playerCode = playerCount[0];
+        const count = playerCount[1] as number;
+        const playerEfg =
+          eFgPart1*(rosterStatsByCode[playerCode]?.[`off_${shotLoc}`]?.value || (Others_eFG/eFgPart1));
+            //(if we can't find the player, we just fallback to using team eFG for all phases)
+        return playerEfg*count;
+      })/totalEfgCount;
+    });
+    const AST_Part = Efg_By_ShotType.map((eFG, index) => {
+      return (0.5*eFG)*AssistsTotals[index]!;
+    });
 
     const Prob_Miss_Both_FT = (1-(FTM/FTA))**2
     const FT_Part = FTA > 0 ? (1-Prob_Miss_Both_FT)*FTA_to_Poss*FTA : 0.0;
@@ -266,14 +337,15 @@ export class RatingUtils {
     const Team_ORB_Weight_Denom = Credit_To_Rebounder + Credit_To_Scorer;
     const Team_ORB_Weight = Team_ORB_Weight_Denom > 0 ?  Credit_To_Rebounder/ Team_ORB_Weight_Denom : 0.0;
     const Team_Score_Rebound_Pct =
-      Team_Scoring_Poss > 0 ? (Team_ORB * Team_Play_Pct) / Team_Scoring_Poss : 0.0;
+      Team_Scoring_Poss > 0 ? (Roster_ORB * Team_Play_Pct) / Team_Scoring_Poss : 0.0;
     const Team_ORB_Contrib = Team_ORB_Weight * Team_Score_Rebound_Pct;
 
     const ORB_Part = ORB * Team_ORB_Weight * Team_Play_Pct;
 
     // And then:
-    const ScPoss = Team_Scoring_Poss > 0 ? (FG_Part + AST_Part + FT_Part) *
-      (1 - Team_ORB_Contrib) + ORB_Part : 0;
+    const ScPoss = (FG_Part + _.sum(AST_Part) + FT_Part) * (1 - Team_ORB_Contrib) + ORB_Part;
+    //(legacy assist code)
+    const ScPoss_Classic = (FG_Part_Classic + AST_Part_Classic + FT_Part) * (1 - Team_ORB_Contrib) + ORB_Part;
 
     // Other factors:
 
@@ -285,13 +357,16 @@ export class RatingUtils {
 
     // Finally:
 
-    const eFG = FGA > 0 ? PTS_FROM_FG / (2 * FGA) : 0.0;
-    const Team_Assist_Contrib = (0.5 * eFG) * qAST;
-    const PProd_FG_Part = PTS_FROM_FG * (1 - Team_Assist_Contrib);
+    const PProd_FG_Part_Classic = PTS_FROM_FG * (1 - Team_Assist_Contrib_Classic);
+    // New assist code:
+    const PProd_FG_Part = sumBy(FGM_Minus_AssistPenalty, (f, ii) => f*shotBonus[ii]!);
+      //(use the possession count but weighted by pts/scoring-poss)
 
     const Other_eFG = Others_FGA > 0 ? (Team_FGM - FGM + 0.5 * (Team_3PM - FG3PM)) / Others_FGA : 0.0;
     const Other_Pts_Per_FGM = Others_FGM > 0 ? (Team_PTS_FROM_FG - PTS_FROM_FG) / Others_FGM : 0.0;
-    const PProd_AST_Part = (0.5*Other_eFG) * AST * Other_Pts_Per_FGM;
+    const PProd_AST_Part_Classic = (0.5*Other_eFG) * AST * Other_Pts_Per_FGM;
+    // New assist code:
+    const PProd_AST_Part = sumBy(AST_Part, (a, ii) => shotBonus[ii]!*a);
 
     const Team_FTs_Hit_1plus = Team_FTA > 0 ? Team_Prob_Hit_1plus_FT * FTA_to_Poss * Team_FTA : 0.0;
     const Team_Pts_Per_Score = (Team_FGM + Team_FTs_Hit_1plus) > 0 ? Team_PTS / (Team_FGM + Team_FTs_Hit_1plus) : 0.0;
@@ -300,6 +375,10 @@ export class RatingUtils {
     const PProd = (PProd_FG_Part + PProd_AST_Part + FTM) * (1 - Team_ORB_Contrib) + PProd_ORB_Part;
 
     const ORtg = TotPoss > 0 ? 100 * (PProd / TotPoss) : 0;
+    // Legacy assist algo:
+    const PProd_Classic = (PProd_FG_Part_Classic + PProd_AST_Part_Classic + FTM) * (1 - Team_ORB_Contrib) + PProd_ORB_Part;
+    const TotPoss_Classic = ScPoss_Classic + FGxPoss + FTxPoss + TOV;
+    const ORtg_Classic = TotPoss > 0 ? 100 * (PProd_Classic / TotPoss_Classic) : 0;
 
     // Adjusted efficiency
     // Adapted from: https://www.bigtengeeks.com/new-stat-porpagatu/
@@ -315,7 +394,7 @@ export class RatingUtils {
 
     // If the values have been overridden then calculate the un-overridden values
     const [ rawORtg, rawAdjRating ] = overrideAdjusted ? RatingUtils.buildORtg(
-      statSet, avgEfficiency, false, false
+      statSet, rosterStatsByCode, avgEfficiency, false, false
     ) : [ undefined, undefined ];
 
     return [
@@ -330,6 +409,7 @@ export class RatingUtils {
       ptsFgm: PTS_FROM_FG,
       rawFtm: FTM,
       rawAssist: AST,
+      rawAssistInfo: _.reverse(AssistsTotals.map(p => p.toFixed(0))), //(3p first)
       rawPts: PTS_FROM_FG + FTM,
       rawOrb: ORB,
       rawTo: TOV,
@@ -349,6 +429,7 @@ export class RatingUtils {
       teamFtPct: Team_FTA > 0 ? Team_FTM / Team_FTA : 0,
       teamOrbPct: Team_ORB_pct,
       teamTo: Team_TOV,
+      teamPoss: Team_Poss,
 
       // 1] Points produced calcs:
       // Advanced player numbers:
@@ -357,22 +438,30 @@ export class RatingUtils {
       teamPtsPerScore: Team_Pts_Per_Score,
       teamFtHitOnePlus: Team_FTs_Hit_1plus,
       teamProbFtHitOnePlus: Team_Prob_Hit_1plus_FT,
+      rosterOrb: Roster_ORB,
       teamOrbCreditToRebounder: Credit_To_Rebounder,
       teamOrbCreditToScorer: Credit_To_Scorer,
       teamScoreFromReboundPct: Team_Score_Rebound_Pct,
       teamOrbWeight: Team_ORB_Weight,
       othersAssist: Others_AST,
       otherEfg: Other_eFG,
+      otherEfgInfo: _.reverse(Efg_By_ShotType.map(efg => (100*efg).toFixed(1))), //(3p first)
       otherPtsPerFgm: Other_Pts_Per_FGM,
       teamOrbContribPct: Team_ORB_Contrib,
       teamScoredPlayPct: Team_Play_Pct,
+
+      // Old school vs new assist%
+      teamAssistRate_Classic: qAST_Classic,
+      ppFgTeamAstPct_Classic: Team_Assist_Contrib_Classic,
       teamAssistRate: qAST,
       ppFgTeamAstPct: Team_Assist_Contrib,
+      teamAssistedEfg: Team_Assisted_eFG,
 
       // Pts produced:
       ptsProd: PProd,
       ppOrb: PProd_ORB_Part,
       ppAssist: PProd_AST_Part,
+      ppAssist_Classic: PProd_AST_Part_Classic,
       ppFg: PProd_FG_Part,
 
       // 2] Possession Calcs:
@@ -384,7 +473,8 @@ export class RatingUtils {
       offPoss: offPoss,
       fgPart: FG_Part,
       ftPart: FT_Part,
-      astPart: AST_Part,
+      astPart: _.sum(AST_Part),
+      astPart_Classic: AST_Part_Classic,
       orbPart: ORB_Part,
       // Advanced team numbers:
       teamScoringPoss: Team_Scoring_Poss,
@@ -396,6 +486,7 @@ export class RatingUtils {
       ftxPoss: FTxPoss,
       // Adjusted calcs:
       oRtg: ORtg,
+      oRtg_Classic: ORtg_Classic,
       defSos: Def_SOS,
       avgEff: avgEfficiency,
       SD_at_Usage: SD_at_Usage,

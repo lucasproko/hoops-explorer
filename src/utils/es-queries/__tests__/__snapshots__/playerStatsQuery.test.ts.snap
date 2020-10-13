@@ -1154,6 +1154,14 @@ exports[`playerStatsQuery playerStatsQuery 1`] = `
                      "sum": {
                         "field": "duration_mins"
                      }
+                  },
+                  "player_array": {
+                     "top_hits": {
+                        "size": 1,
+                        "_source": {
+                           "includes": "player"
+                        }
+                     }
                   }
                }
             }

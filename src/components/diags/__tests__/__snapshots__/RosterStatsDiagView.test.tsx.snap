@@ -4,11 +4,11 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 1`] = 
 <span>
   ORtg = Points_Produced [
   <b>
-    518.4
+    569.5
   </b>
   ] / Adjusted_Possessions [
   <b>
-    457.1
+    479.7
   </b>
   ] (
   <a
@@ -39,7 +39,7 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 1`] = 
     <li>
       Points_Produced: [
       <b>
-        518.4
+        569.5
       </b>
       ] = PProd_From_ORB [
       <b>
@@ -47,11 +47,11 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 1`] = 
       </b>
       ] + [
       <b>
-        508.9
+        560.0
       </b>
       ] (PProd_From_FG [
       <b>
-        304.3
+        299.2
       </b>
       ] + FTM [
       <b>
@@ -59,16 +59,16 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 1`] = 
       </b>
       ] + PProd_From_AST [
       <b>
-        82.9
+        88.8
       </b>
       ], less Team_ORB_Contrib% [
       <b>
-        9.0
+        0.0
         %
       </b>
       ]==[
       <b>
-        50.3
+        0.0
       </b>
       ])
     </li>
@@ -122,11 +122,11 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 1`] = 
     <li>
       Adjusted_Possessions: [
       <b>
-        457.1
+        479.7
       </b>
       ] = Scoring_Possessions [
       <b>
-        240.7
+        263.2
       </b>
       ] + Missed_FG_Possessions [
       <b>
@@ -143,6 +143,14 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 1`] = 
       ]
     </li>
     <ul>
+      <li>
+        (Gives adjusted usage = [
+        <b>
+          26.6
+          %
+        </b>
+        ])
+      </li>
       <li>
         <em>
           Compare raw stats: poss=[
@@ -187,7 +195,7 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 1`] = 
       </b>
       : [
       <b>
-        5.0
+        6.2
       </b>
       ] = 
       <em>
@@ -195,11 +203,11 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 1`] = 
       </em>
        [
       <b>
-        125.0
+        131.0
       </b>
       ] (Regressed_ORtg [
       <b>
-        114.4
+        120.2
       </b>
       ] + Usage_Bonus [
       <b>

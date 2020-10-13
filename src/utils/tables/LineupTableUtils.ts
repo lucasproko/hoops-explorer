@@ -22,14 +22,14 @@ export class LineupTableUtils {
 
   /** Injects some advanced stats into players, returns an associative array vs player.key */
   static buildBaselinePlayerInfo(
-    players: any[] | undefined, avgEfficiency: number
+    players: any[] | undefined, globalRosterStats: Record<string, any>, avgEfficiency: number
   ) {
     const baselinePlayerInfo = _.fromPairs(
       (players || []).map((mutableP: any) => {
         // Add ORtg to lineup stats:
         const playerAdjustForLuck = false; //TODO: longer term I think we will want to do this
         const [ oRtg, adjORtg, rawORtg, rawAdjORtg, oRtgDiag ] = RatingUtils.buildORtg(
-          mutableP, avgEfficiency, false, playerAdjustForLuck
+          mutableP, globalRosterStats, avgEfficiency, false, playerAdjustForLuck
         );
         const [ dRtg, adjDRtg, rawDRtg, rawAdjDRtg, dRtgDiag ] = RatingUtils.buildDRtg(
           mutableP, avgEfficiency, false, playerAdjustForLuck
