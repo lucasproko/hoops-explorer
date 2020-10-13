@@ -476,18 +476,28 @@ Array [
           "value": 0.250546350615718,
         },
         "posClass": "s-PG",
+        "posConfidences": Array [
+          0.7573493221063862,
+          0.23785653498514026,
+          0.004535396666879756,
+          0.00025873437114051626,
+          1.1870453146996361e-8,
+        ],
       },
       "Morsell, Darryl": Object {
         "code": "DaMorsell",
         "posClass": undefined,
+        "posConfidences": undefined,
       },
       "Scott, Donta": Object {
         "code": "DoScott",
         "posClass": undefined,
+        "posConfidences": undefined,
       },
       "Smith, Jalen": Object {
         "code": "JaSmith",
         "posClass": undefined,
+        "posConfidences": undefined,
       },
       "Wiggins, Aaron": Object {
         "code": "AaWiggins",
@@ -523,6 +533,13 @@ Array [
           "value": 0.20864782871120427,
         },
         "posClass": "WG",
+        "posConfidences": Array [
+          0.01370144662544993,
+          0.37250889267731135,
+          0.421320486517115,
+          0.1924648271808755,
+          0.000004346999248142039,
+        ],
       },
     },
     "team": "Maryland",
@@ -989,6 +1006,7 @@ Array [
       "Ayala, Eric": Object {
         "code": "ErAyala",
         "posClass": undefined,
+        "posConfidences": undefined,
       },
       "Cowan, Anthony": Object {
         "code": "AnCowan",
@@ -1024,14 +1042,23 @@ Array [
           "value": 0.250546350615718,
         },
         "posClass": "s-PG",
+        "posConfidences": Array [
+          0.7573493221063862,
+          0.23785653498514026,
+          0.004535396666879756,
+          0.00025873437114051626,
+          1.1870453146996361e-8,
+        ],
       },
       "Morsell, Darryl": Object {
         "code": "DaMorsell",
         "posClass": undefined,
+        "posConfidences": undefined,
       },
       "Smith, Jalen": Object {
         "code": "JaSmith",
         "posClass": undefined,
+        "posConfidences": undefined,
       },
       "Wiggins, Aaron": Object {
         "code": "AaWiggins",
@@ -1067,6 +1094,13 @@ Array [
           "value": 0.20864782871120427,
         },
         "posClass": "WG",
+        "posConfidences": Array [
+          0.01370144662544993,
+          0.37250889267731135,
+          0.421320486517115,
+          0.1924648271808755,
+          0.000004346999248142039,
+        ],
       },
     },
     "team": "Maryland",
@@ -1533,6 +1567,7 @@ Array [
       "Ayala, Eric": Object {
         "code": "ErAyala",
         "posClass": undefined,
+        "posConfidences": undefined,
       },
       "Cowan, Anthony": Object {
         "code": "AnCowan",
@@ -1568,14 +1603,23 @@ Array [
           "value": 0.250546350615718,
         },
         "posClass": "s-PG",
+        "posConfidences": Array [
+          0.7573493221063862,
+          0.23785653498514026,
+          0.004535396666879756,
+          0.00025873437114051626,
+          1.1870453146996361e-8,
+        ],
       },
       "Scott, Donta": Object {
         "code": "DoScott",
         "posClass": undefined,
+        "posConfidences": undefined,
       },
       "Smith, Jalen": Object {
         "code": "JaSmith",
         "posClass": undefined,
+        "posConfidences": undefined,
       },
       "Wiggins, Aaron": Object {
         "code": "AaWiggins",
@@ -1611,6 +1655,13 @@ Array [
           "value": 0.20864782871120427,
         },
         "posClass": "WG",
+        "posConfidences": Array [
+          0.01370144662544993,
+          0.37250889267731135,
+          0.421320486517115,
+          0.1924648271808755,
+          0.000004346999248142039,
+        ],
       },
     },
     "team": "Maryland",
@@ -2082,6 +2133,7 @@ Array [
       "Ayala, Eric": Object {
         "code": "ErAyala",
         "posClass": undefined,
+        "posConfidences": undefined,
       },
       "Cowan, Anthony": Object {
         "code": "AnCowan",
@@ -2117,14 +2169,23 @@ Array [
           "value": 0.250546350615718,
         },
         "posClass": "s-PG",
+        "posConfidences": Array [
+          0.7573493221063862,
+          0.23785653498514026,
+          0.004535396666879756,
+          0.00025873437114051626,
+          1.1870453146996361e-8,
+        ],
       },
       "Morsell, Darryl": Object {
         "code": "DaMorsell",
         "posClass": undefined,
+        "posConfidences": undefined,
       },
       "Smith, Jalen": Object {
         "code": "JaSmith",
         "posClass": undefined,
+        "posConfidences": undefined,
       },
       "Wiggins, Aaron": Object {
         "code": "AaWiggins",
@@ -2160,6 +2221,13 @@ Array [
           "value": 0.20864782871120427,
         },
         "posClass": "WG",
+        "posConfidences": Array [
+          0.01370144662544993,
+          0.37250889267731135,
+          0.421320486517115,
+          0.1924648271808755,
+          0.000004346999248142039,
+        ],
       },
     },
     "team": "Maryland",

@@ -216,7 +216,11 @@ export async function main() {
           ]);
           return [
             cid.id,
-            { ...playerSubset, code: cid.code, posClass: positionFromPlayerKey[playerSubset.key]?.posClass }
+            { ...playerSubset, code: cid.code,
+              // Both these are needed to order the players within the lineup
+              posClass: positionFromPlayerKey[playerSubset.key]?.posClass,
+              posConfidences: positionFromPlayerKey[playerSubset.key]?.posConfidences,
+            }
           ];
         }));
         //(now don't need this:)
