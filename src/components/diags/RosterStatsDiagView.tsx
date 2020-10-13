@@ -28,7 +28,7 @@ const RosterStatsDiagView: React.FunctionComponent<Props> = ({ortgDiags, drtgDia
     <ul>
       <li>Points_Produced: [<b>{o.ptsProd.toFixed(1)}</b>] = PProd_From_ORB [<b>{o.ppOrb.toFixed(1)}</b>] +
       [<b>{((o.ppFg + o.ppAssist + o.rawFtm)*(1 - o.teamOrbContribPct)).toFixed(1)}</b>]
-      (PProd_From_FG [<b>{o.ppFg.toFixed(1)}</b>] + FTM [<b>{o.rawFtm}</b>] + PProd_From_AST [<b>{o.ppAssist.toFixed(1)}</b>],
+      (PProd_From_FG [<b>{o.ppFg.toFixed(1)}</b>] + FTM [<b>{o.rawFtm.toFixed(1)}</b>] + PProd_From_AST [<b>{o.ppAssist.toFixed(1)}</b>],
       less Team_ORB_Contrib% [<b>{(100*o.teamOrbContribPct).toFixed(1)}%</b>]==[<b>{((o.ppFg + o.ppAssist + o.rawFtm)*o.teamOrbContribPct).toFixed(1)}</b>])
       </li>
       <ul>
