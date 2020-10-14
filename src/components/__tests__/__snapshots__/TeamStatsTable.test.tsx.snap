@@ -579,7 +579,14 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                   }
                 >
                   <div>
-                    37.4
+                    <div>
+                      37.4
+                      <small>
+                        <sup
+                          className="infoBadge"
+                        />
+                      </small>
+                    </div>
                   </div>
                 </td>
                 <td
@@ -1014,7 +1021,14 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                   }
                 >
                   <div>
-                    24.6
+                    <div>
+                      24.6
+                      <small>
+                        <sup
+                          className="infoBadge"
+                        />
+                      </small>
+                    </div>
                   </div>
                 </td>
                 <td
@@ -1469,7 +1483,14 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                   }
                 >
                   <div>
-                    38.9
+                    <div>
+                      38.9
+                      <small>
+                        <sup
+                          className="infoBadge"
+                        />
+                      </small>
+                    </div>
                   </div>
                 </td>
                 <td
@@ -1904,7 +1925,14 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                   }
                 >
                   <div>
-                    23.0
+                    <div>
+                      23.0
+                      <small>
+                        <sup
+                          className="infoBadge"
+                        />
+                      </small>
+                    </div>
                   </div>
                 </td>
                 <td
@@ -2359,7 +2387,14 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                   }
                 >
                   <div>
-                    37.7
+                    <div>
+                      37.7
+                      <small>
+                        <sup
+                          className="infoBadge"
+                        />
+                      </small>
+                    </div>
                   </div>
                 </td>
                 <td
@@ -2794,7 +2829,14 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                   }
                 >
                   <div>
-                    24.2
+                    <div>
+                      24.2
+                      <small>
+                        <sup
+                          className="infoBadge"
+                        />
+                      </small>
+                    </div>
                   </div>
                 </td>
                 <td
@@ -3685,7 +3727,14 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                   }
                 >
                   <div>
-                    37.4
+                    <div>
+                      37.4
+                      <small>
+                        <sup
+                          className="infoBadge"
+                        />
+                      </small>
+                    </div>
                   </div>
                 </td>
                 <td
@@ -4128,7 +4177,14 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                   }
                 >
                   <div>
-                    24.6
+                    <div>
+                      24.6
+                      <small>
+                        <sup
+                          className="infoBadge"
+                        />
+                      </small>
+                    </div>
                   </div>
                 </td>
                 <td
@@ -4732,7 +4788,14 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                   }
                 >
                   <div>
-                    38.9
+                    <div>
+                      38.9
+                      <small>
+                        <sup
+                          className="infoBadge"
+                        />
+                      </small>
+                    </div>
                   </div>
                 </td>
                 <td
@@ -5175,7 +5238,14 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                   }
                 >
                   <div>
-                    23.0
+                    <div>
+                      23.0
+                      <small>
+                        <sup
+                          className="infoBadge"
+                        />
+                      </small>
+                    </div>
                   </div>
                 </td>
                 <td
@@ -5779,7 +5849,14 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                   }
                 >
                   <div>
-                    37.7
+                    <div>
+                      37.7
+                      <small>
+                        <sup
+                          className="infoBadge"
+                        />
+                      </small>
+                    </div>
                   </div>
                 </td>
                 <td
@@ -6222,7 +6299,14 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                   }
                 >
                   <div>
-                    24.2
+                    <div>
+                      24.2
+                      <small>
+                        <sup
+                          className="infoBadge"
+                        />
+                      </small>
+                    </div>
                   </div>
                 </td>
                 <td

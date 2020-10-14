@@ -665,6 +665,15 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                     "value": 0.5275590551181102,
                                   }
 
+                  def_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      74.7
+                                      %
+                                    </span>,
+                                    "value": 0.27002967359050445,
+                                  }
+
                   def_luck_diags: undefined
 
                   def_ppp: Object {
@@ -730,6 +739,15 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                       </li>
                                     </span>,
                                     "value": 0.5211267605633803,
+                                  }
+
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      76.6
+                                      %
+                                    </span>,
+                                    "value": 0.5696594427244582,
                                   }
 
                   off_luck_diags: undefined
@@ -1086,6 +1104,15 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                     "value": 0.5275590551181102,
                                   }
 
+                  def_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      74.7
+                                      %
+                                    </span>,
+                                    "value": 0.27002967359050445,
+                                  }
+
                   def_luck_diags: undefined
 
                   def_ppp: Object {
@@ -1151,6 +1178,15 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                       </li>
                                     </span>,
                                     "value": 0.5211267605633803,
+                                  }
+
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      76.6
+                                      %
+                                    </span>,
+                                    "value": 0.5696594427244582,
                                   }
 
                   off_luck_diags: undefined
@@ -1510,6 +1546,15 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                     "value": 0.5,
                                   }
 
+                  def_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      63.4
+                                      %
+                                    </span>,
+                                    "value": 0.22527472527472528,
+                                  }
+
                   def_luck_diags: undefined
 
                   def_ppp: Object {
@@ -1575,6 +1620,15 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                       </li>
                                     </span>,
                                     "value": 0.5492957746478874,
+                                  }
+
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      71.3
+                                      %
+                                    </span>,
+                                    "value": 0.5,
                                   }
 
                   off_luck_diags: undefined
@@ -1931,6 +1985,15 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                     "value": 0.5,
                                   }
 
+                  def_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      63.4
+                                      %
+                                    </span>,
+                                    "value": 0.22527472527472528,
+                                  }
+
                   def_luck_diags: undefined
 
                   def_ppp: Object {
@@ -1996,6 +2059,15 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                       </li>
                                     </span>,
                                     "value": 0.5492957746478874,
+                                  }
+
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      71.3
+                                      %
+                                    </span>,
+                                    "value": 0.5,
                                   }
 
                   off_luck_diags: undefined
@@ -2355,6 +2427,15 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                     "value": 0.5932203389830508,
                                   }
 
+                  def_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      59.3
+                                      %
+                                    </span>,
+                                    "value": 0.30337078651685395,
+                                  }
+
                   def_luck_diags: undefined
 
                   def_ppp: Object {
@@ -2420,6 +2501,15 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                       </li>
                                     </span>,
                                     "value": 0.5308641975308642,
+                                  }
+
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      75.6
+                                      %
+                                    </span>,
+                                    "value": 0.22527472527472528,
                                   }
 
                   off_luck_diags: undefined
@@ -2776,6 +2866,15 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                     "value": 0.5932203389830508,
                                   }
 
+                  def_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      59.3
+                                      %
+                                    </span>,
+                                    "value": 0.30337078651685395,
+                                  }
+
                   def_luck_diags: undefined
 
                   def_ppp: Object {
@@ -2841,6 +2940,15 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                       </li>
                                     </span>,
                                     "value": 0.5308641975308642,
+                                  }
+
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      75.6
+                                      %
+                                    </span>,
+                                    "value": 0.22527472527472528,
                                   }
 
                   off_luck_diags: undefined
@@ -4106,6 +4214,15 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 0.449929584569733,
                                   }
 
+                  def_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      74.7
+                                      %
+                                    </span>,
+                                    "value": 0.27002967359050445,
+                                  }
+
                   def_luck_diags: {
                      "deltaDefPpp": 2.186597731235298,
                      "deltaDefEfg": 0.013727804154302668,
@@ -4195,6 +4312,15 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "old_value": 0.5092879256965944,
                                     "override": "Adjusted from Off 3P%",
                                     "value": 0.5092879256965944,
+                                  }
+
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      76.6
+                                      %
+                                    </span>,
+                                    "value": 0.5696594427244582,
                                   }
 
                   off_luck_diags: {
@@ -4377,6 +4503,15 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 0.449929584569733,
                                   }
 
+                  def_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      74.7
+                                      %
+                                    </span>,
+                                    "value": 0.27002967359050445,
+                                  }
+
                   def_luck_diags: {
                      "deltaDefPpp": 2.186597731235298,
                      "deltaDefEfg": 0.013727804154302668,
@@ -4466,6 +4601,15 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "old_value": 0.5092879256965944,
                                     "override": "Adjusted from Off 3P%",
                                     "value": 0.5092879256965944,
+                                  }
+
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      76.6
+                                      %
+                                    </span>,
+                                    "value": 0.5696594427244582,
                                   }
 
                   off_luck_diags: {
@@ -4674,6 +4818,15 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 0.44037445054945057,
                                   }
 
+                  def_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      63.4
+                                      %
+                                    </span>,
+                                    "value": 0.22527472527472528,
+                                  }
+
                   def_luck_diags: {
                      "deltaDefPpp": 3.1130367002534265,
                      "deltaDefEfg": 0.020044780219780216,
@@ -4763,6 +4916,15 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "old_value": 0.47126436781609193,
                                     "override": "Adjusted from Off 3P%",
                                     "value": 0.47126436781609193,
+                                  }
+
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      71.3
+                                      %
+                                    </span>,
+                                    "value": 0.5,
                                   }
 
                   off_luck_diags: {
@@ -4945,6 +5107,15 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 0.44037445054945057,
                                   }
 
+                  def_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      63.4
+                                      %
+                                    </span>,
+                                    "value": 0.22527472527472528,
+                                  }
+
                   def_luck_diags: {
                      "deltaDefPpp": 3.1130367002534265,
                      "deltaDefEfg": 0.020044780219780216,
@@ -5034,6 +5205,15 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "old_value": 0.47126436781609193,
                                     "override": "Adjusted from Off 3P%",
                                     "value": 0.47126436781609193,
+                                  }
+
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      71.3
+                                      %
+                                    </span>,
+                                    "value": 0.5,
                                   }
 
                   off_luck_diags: {
@@ -5242,6 +5422,15 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 0.41545443820224714,
                                   }
 
+                  def_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      59.3
+                                      %
+                                    </span>,
+                                    "value": 0.30337078651685395,
+                                  }
+
                   def_luck_diags: {
                      "deltaDefPpp": 5.505981377928396,
                      "deltaDefEfg": 0.033431966292134824,
@@ -5331,6 +5520,15 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "old_value": 0.521978021978022,
                                     "override": "Adjusted from Off 3P%",
                                     "value": 0.521978021978022,
+                                  }
+
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      75.6
+                                      %
+                                    </span>,
+                                    "value": 0.22527472527472528,
                                   }
 
                   off_luck_diags: {
@@ -5513,6 +5711,15 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 0.41545443820224714,
                                   }
 
+                  def_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      59.3
+                                      %
+                                    </span>,
+                                    "value": 0.30337078651685395,
+                                  }
+
                   def_luck_diags: {
                      "deltaDefPpp": 5.505981377928396,
                      "deltaDefEfg": 0.033431966292134824,
@@ -5602,6 +5809,15 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "old_value": 0.521978021978022,
                                     "override": "Adjusted from Off 3P%",
                                     "value": 0.521978021978022,
+                                  }
+
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      75.6
+                                      %
+                                    </span>,
+                                    "value": 0.22527472527472528,
                                   }
 
                   off_luck_diags: {
@@ -6680,6 +6896,15 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 0.5275590551181102,
                                   }
 
+                  def_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      74.7
+                                      %
+                                    </span>,
+                                    "value": 0.27002967359050445,
+                                  }
+
                   def_luck_diags: undefined
 
                   def_ppp: Object {
@@ -6745,6 +6970,15 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                       </li>
                                     </span>,
                                     "value": 0.5211267605633803,
+                                  }
+
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      76.6
+                                      %
+                                    </span>,
+                                    "value": 0.5696594427244582,
                                   }
 
                   off_luck_diags: undefined
@@ -7115,6 +7349,15 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 0.5275590551181102,
                                   }
 
+                  def_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      74.7
+                                      %
+                                    </span>,
+                                    "value": 0.27002967359050445,
+                                  }
+
                   def_luck_diags: undefined
 
                   def_ppp: Object {
@@ -7180,6 +7423,15 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                       </li>
                                     </span>,
                                     "value": 0.5211267605633803,
+                                  }
+
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      76.6
+                                      %
+                                    </span>,
+                                    "value": 0.5696594427244582,
                                   }
 
                   off_luck_diags: undefined
@@ -7553,6 +7805,15 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 0.5,
                                   }
 
+                  def_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      63.4
+                                      %
+                                    </span>,
+                                    "value": 0.22527472527472528,
+                                  }
+
                   def_luck_diags: undefined
 
                   def_ppp: Object {
@@ -7618,6 +7879,15 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                       </li>
                                     </span>,
                                     "value": 0.5492957746478874,
+                                  }
+
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      71.3
+                                      %
+                                    </span>,
+                                    "value": 0.5,
                                   }
 
                   off_luck_diags: undefined
@@ -7988,6 +8258,15 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 0.5,
                                   }
 
+                  def_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      63.4
+                                      %
+                                    </span>,
+                                    "value": 0.22527472527472528,
+                                  }
+
                   def_luck_diags: undefined
 
                   def_ppp: Object {
@@ -8053,6 +8332,15 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                       </li>
                                     </span>,
                                     "value": 0.5492957746478874,
+                                  }
+
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      71.3
+                                      %
+                                    </span>,
+                                    "value": 0.5,
                                   }
 
                   off_luck_diags: undefined
@@ -8426,6 +8714,15 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 0.5932203389830508,
                                   }
 
+                  def_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      59.3
+                                      %
+                                    </span>,
+                                    "value": 0.30337078651685395,
+                                  }
+
                   def_luck_diags: undefined
 
                   def_ppp: Object {
@@ -8491,6 +8788,15 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                       </li>
                                     </span>,
                                     "value": 0.5308641975308642,
+                                  }
+
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      75.6
+                                      %
+                                    </span>,
+                                    "value": 0.22527472527472528,
                                   }
 
                   off_luck_diags: undefined
@@ -8861,6 +9167,15 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": 0.5932203389830508,
                                   }
 
+                  def_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      59.3
+                                      %
+                                    </span>,
+                                    "value": 0.30337078651685395,
+                                  }
+
                   def_luck_diags: undefined
 
                   def_ppp: Object {
@@ -8926,6 +9241,15 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                       </li>
                                     </span>,
                                     "value": 0.5308641975308642,
+                                  }
+
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      75.6
+                                      %
+                                    </span>,
+                                    "value": 0.22527472527472528,
                                   }
 
                   off_luck_diags: undefined

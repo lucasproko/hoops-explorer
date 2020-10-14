@@ -887,6 +887,15 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.459325470255899,
                                   }
 
+                  def_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      65.9
+                                      %
+                                    </span>,
+                                    "value": 0.23163841807909605,
+                                  }
+
                   def_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -970,6 +979,15 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "old_value": 0.5611111111111111,
                                     "override": "Adjusted from Off 3P%",
                                     "value": 0.5760250779154888,
+                                  }
+
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      73.1
+                                      %
+                                    </span>,
+                                    "value": 0.43333333333333335,
                                   }
 
                   off_poss: Object {
@@ -1423,6 +1441,15 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.459325470255899,
                                   }
 
+                  def_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      65.9
+                                      %
+                                    </span>,
+                                    "value": 0.23163841807909605,
+                                  }
+
                   def_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -1506,6 +1533,15 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "old_value": 0.5611111111111111,
                                     "override": "Adjusted from Off 3P%",
                                     "value": 0.5760250779154888,
+                                  }
+
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      73.1
+                                      %
+                                    </span>,
+                                    "value": 0.43333333333333335,
                                   }
 
                   off_poss: Object {
@@ -1962,6 +1998,15 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.484844172587864,
                                   }
 
+                  def_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      78.8
+                                      %
+                                    </span>,
+                                    "value": 0.33,
+                                  }
+
                   def_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -2045,6 +2090,15 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "old_value": 0.556910569105691,
                                     "override": "Adjusted from Off 3P%",
                                     "value": 0.5581249158822279,
+                                  }
+
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      75.0
+                                      %
+                                    </span>,
+                                    "value": 0.35772357723577236,
                                   }
 
                   off_poss: Object {
@@ -2488,6 +2542,15 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.484844172587864,
                                   }
 
+                  def_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      78.8
+                                      %
+                                    </span>,
+                                    "value": 0.33,
+                                  }
+
                   def_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -2571,6 +2634,15 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "old_value": 0.556910569105691,
                                     "override": "Adjusted from Off 3P%",
                                     "value": 0.5581249158822279,
+                                  }
+
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      75.0
+                                      %
+                                    </span>,
+                                    "value": 0.35772357723577236,
                                   }
 
                   off_poss: Object {
@@ -3017,6 +3089,15 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.48055069287918856,
                                   }
 
+                  def_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      53.7
+                                      %
+                                    </span>,
+                                    "value": 0.39805825242718446,
+                                  }
+
                   def_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -3100,6 +3181,15 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "old_value": 0.6741071428571429,
                                     "override": "Adjusted from Off 3P%",
                                     "value": 0.6338720180970662,
+                                  }
+
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      60.4
+                                      %
+                                    </span>,
+                                    "value": 0.4732142857142857,
                                   }
 
                   off_poss: Object {
@@ -3543,6 +3633,15 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.48055069287918856,
                                   }
 
+                  def_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      53.7
+                                      %
+                                    </span>,
+                                    "value": 0.39805825242718446,
+                                  }
+
                   def_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -3626,6 +3725,15 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "old_value": 0.6741071428571429,
                                     "override": "Adjusted from Off 3P%",
                                     "value": 0.6338720180970662,
+                                  }
+
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      60.4
+                                      %
+                                    </span>,
+                                    "value": 0.4732142857142857,
                                   }
 
                   off_poss: Object {
@@ -4072,6 +4180,15 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.4144244643049676,
                                   }
 
+                  def_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      73.3
+                                      %
+                                    </span>,
+                                    "value": 0.24193548387096775,
+                                  }
+
                   def_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -4151,6 +4268,15 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "old_value": 0.5141843971631206,
                                     "override": "Adjusted from Off 3P%",
                                     "value": 0.523092088363159,
+                                  }
+
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      80.0
+                                      %
+                                    </span>,
+                                    "value": 0.1773049645390071,
                                   }
 
                   off_poss: Object {
@@ -4604,6 +4730,15 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.4144244643049676,
                                   }
 
+                  def_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      73.3
+                                      %
+                                    </span>,
+                                    "value": 0.24193548387096775,
+                                  }
+
                   def_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -4683,6 +4818,15 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "old_value": 0.5141843971631206,
                                     "override": "Adjusted from Off 3P%",
                                     "value": 0.523092088363159,
+                                  }
+
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      80.0
+                                      %
+                                    </span>,
+                                    "value": 0.1773049645390071,
                                   }
 
                   off_poss: Object {
@@ -5139,6 +5283,15 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.43630211617681064,
                                   }
 
+                  def_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      62.5
+                                      %
+                                    </span>,
+                                    "value": 0.32432432432432434,
+                                  }
+
                   def_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -5222,6 +5375,15 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "old_value": 0.603225806451613,
                                     "override": "Adjusted from Off 3P%",
                                     "value": 0.5697893714438406,
+                                  }
+
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      73.7
+                                      %
+                                    </span>,
+                                    "value": 0.24516129032258063,
                                   }
 
                   off_poss: Object {
@@ -5665,6 +5827,15 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.43630211617681064,
                                   }
 
+                  def_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      62.5
+                                      %
+                                    </span>,
+                                    "value": 0.32432432432432434,
+                                  }
+
                   def_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -5748,6 +5919,15 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "old_value": 0.603225806451613,
                                     "override": "Adjusted from Off 3P%",
                                     "value": 0.5697893714438406,
+                                  }
+
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      73.7
+                                      %
+                                    </span>,
+                                    "value": 0.24516129032258063,
                                   }
 
                   off_poss: Object {
@@ -6194,6 +6374,15 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.4419482041892911,
                                   }
 
+                  def_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      85.7
+                                      %
+                                    </span>,
+                                    "value": 0.22826086956521738,
+                                  }
+
                   def_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -6277,6 +6466,15 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "old_value": 0.5777777777777777,
                                     "override": "Adjusted from Off 3P%",
                                     "value": 0.5866072111846946,
+                                  }
+
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      78.0
+                                      %
+                                    </span>,
+                                    "value": 0.6555555555555556,
                                   }
 
                   off_poss: Object {
@@ -6727,6 +6925,15 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.4419482041892911,
                                   }
 
+                  def_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      85.7
+                                      %
+                                    </span>,
+                                    "value": 0.22826086956521738,
+                                  }
+
                   def_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -6810,6 +7017,15 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "old_value": 0.5777777777777777,
                                     "override": "Adjusted from Off 3P%",
                                     "value": 0.5866072111846946,
+                                  }
+
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      78.0
+                                      %
+                                    </span>,
+                                    "value": 0.6555555555555556,
                                   }
 
                   off_poss: Object {
@@ -7263,6 +7479,15 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.4202490605481959,
                                   }
 
+                  def_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      65.7
+                                      %
+                                    </span>,
+                                    "value": 0.2777777777777778,
+                                  }
+
                   def_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -7346,6 +7571,15 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "old_value": 0.48936170212765956,
                                     "override": "Adjusted from Off 3P%",
                                     "value": 0.527483459747602,
+                                  }
+
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      83.7
+                                      %
+                                    </span>,
+                                    "value": 0.3475177304964539,
                                   }
 
                   off_poss: Object {
@@ -7791,6 +8025,15 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.4202490605481959,
                                   }
 
+                  def_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      65.7
+                                      %
+                                    </span>,
+                                    "value": 0.2777777777777778,
+                                  }
+
                   def_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -7874,6 +8117,15 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "old_value": 0.48936170212765956,
                                     "override": "Adjusted from Off 3P%",
                                     "value": 0.527483459747602,
+                                  }
+
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      83.7
+                                      %
+                                    </span>,
+                                    "value": 0.3475177304964539,
                                   }
 
                   off_poss: Object {
@@ -8322,6 +8574,15 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.4531207124386656,
                                   }
 
+                  def_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      70.3
+                                      %
+                                    </span>,
+                                    "value": 0.31092436974789917,
+                                  }
+
                   def_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -8405,6 +8666,15 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "old_value": 0.6228813559322034,
                                     "override": "Adjusted from Off 3P%",
                                     "value": 0.5823230571109227,
+                                  }
+
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      72.9
+                                      %
+                                    </span>,
+                                    "value": 0.5,
                                   }
 
                   off_poss: Object {
@@ -8845,6 +9115,15 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.4531207124386656,
                                   }
 
+                  def_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      70.3
+                                      %
+                                    </span>,
+                                    "value": 0.31092436974789917,
+                                  }
+
                   def_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -8928,6 +9207,15 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "old_value": 0.6228813559322034,
                                     "override": "Adjusted from Off 3P%",
                                     "value": 0.5823230571109227,
+                                  }
+
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      72.9
+                                      %
+                                    </span>,
+                                    "value": 0.5,
                                   }
 
                   off_poss: Object {
@@ -9371,6 +9659,15 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.4190464125630724,
                                   }
 
+                  def_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      61.5
+                                      %
+                                    </span>,
+                                    "value": 0.4105263157894737,
+                                  }
+
                   def_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -9454,6 +9751,15 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "old_value": 0.4770992366412214,
                                     "override": "Adjusted from Off 3P%",
                                     "value": 0.5053330544808116,
+                                  }
+
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      63.6
+                                      %
+                                    </span>,
+                                    "value": 0.25190839694656486,
                                   }
 
                   off_poss: Object {
@@ -9907,6 +10213,15 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.4190464125630724,
                                   }
 
+                  def_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      61.5
+                                      %
+                                    </span>,
+                                    "value": 0.4105263157894737,
+                                  }
+
                   def_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -9990,6 +10305,15 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "old_value": 0.4770992366412214,
                                     "override": "Adjusted from Off 3P%",
                                     "value": 0.5053330544808116,
+                                  }
+
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      63.6
+                                      %
+                                    </span>,
+                                    "value": 0.25190839694656486,
                                   }
 
                   off_poss: Object {
@@ -10446,6 +10770,15 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.4415150885811839,
                                   }
 
+                  def_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      58.0
+                                      %
+                                    </span>,
+                                    "value": 0.21204188481675393,
+                                  }
+
                   def_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -10529,6 +10862,15 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "old_value": 0.5767123287671233,
                                     "override": "Adjusted from Off 3P%",
                                     "value": 0.5608322926473132,
+                                  }
+
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      67.1
+                                      %
+                                    </span>,
+                                    "value": 0.3835616438356164,
                                   }
 
                   off_poss: Object {
@@ -10982,6 +11324,15 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.4415150885811839,
                                   }
 
+                  def_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      58.0
+                                      %
+                                    </span>,
+                                    "value": 0.21204188481675393,
+                                  }
+
                   def_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -11065,6 +11416,15 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "old_value": 0.5767123287671233,
                                     "override": "Adjusted from Off 3P%",
                                     "value": 0.5608322926473132,
+                                  }
+
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      67.1
+                                      %
+                                    </span>,
+                                    "value": 0.3835616438356164,
                                   }
 
                   off_poss: Object {
@@ -12613,6 +12973,15 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.459325470255899,
                                   }
 
+                  def_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      65.9
+                                      %
+                                    </span>,
+                                    "value": 0.23163841807909605,
+                                  }
+
                   def_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -12696,6 +13065,15 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "old_value": 0.5611111111111111,
                                     "override": "Adjusted from Off 3P%",
                                     "value": 0.5760250779154888,
+                                  }
+
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      73.1
+                                      %
+                                    </span>,
+                                    "value": 0.43333333333333335,
                                   }
 
                   off_poss: Object {
@@ -13149,6 +13527,15 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.459325470255899,
                                   }
 
+                  def_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      65.9
+                                      %
+                                    </span>,
+                                    "value": 0.23163841807909605,
+                                  }
+
                   def_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -13232,6 +13619,15 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "old_value": 0.5611111111111111,
                                     "override": "Adjusted from Off 3P%",
                                     "value": 0.5760250779154888,
+                                  }
+
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      73.1
+                                      %
+                                    </span>,
+                                    "value": 0.43333333333333335,
                                   }
 
                   off_poss: Object {
@@ -13711,6 +14107,15 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.484844172587864,
                                   }
 
+                  def_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      78.8
+                                      %
+                                    </span>,
+                                    "value": 0.33,
+                                  }
+
                   def_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -13794,6 +14199,15 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "old_value": 0.556910569105691,
                                     "override": "Adjusted from Off 3P%",
                                     "value": 0.5581249158822279,
+                                  }
+
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      75.0
+                                      %
+                                    </span>,
+                                    "value": 0.35772357723577236,
                                   }
 
                   off_poss: Object {
@@ -14237,6 +14651,15 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.484844172587864,
                                   }
 
+                  def_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      78.8
+                                      %
+                                    </span>,
+                                    "value": 0.33,
+                                  }
+
                   def_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -14320,6 +14743,15 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "old_value": 0.556910569105691,
                                     "override": "Adjusted from Off 3P%",
                                     "value": 0.5581249158822279,
+                                  }
+
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      75.0
+                                      %
+                                    </span>,
+                                    "value": 0.35772357723577236,
                                   }
 
                   off_poss: Object {
@@ -14789,6 +15221,15 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.48055069287918856,
                                   }
 
+                  def_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      53.7
+                                      %
+                                    </span>,
+                                    "value": 0.39805825242718446,
+                                  }
+
                   def_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -14872,6 +15313,15 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "old_value": 0.6741071428571429,
                                     "override": "Adjusted from Off 3P%",
                                     "value": 0.6338720180970662,
+                                  }
+
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      60.4
+                                      %
+                                    </span>,
+                                    "value": 0.4732142857142857,
                                   }
 
                   off_poss: Object {
@@ -15315,6 +15765,15 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.48055069287918856,
                                   }
 
+                  def_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      53.7
+                                      %
+                                    </span>,
+                                    "value": 0.39805825242718446,
+                                  }
+
                   def_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -15398,6 +15857,15 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "old_value": 0.6741071428571429,
                                     "override": "Adjusted from Off 3P%",
                                     "value": 0.6338720180970662,
+                                  }
+
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      60.4
+                                      %
+                                    </span>,
+                                    "value": 0.4732142857142857,
                                   }
 
                   off_poss: Object {
@@ -15867,6 +16335,15 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.4144244643049676,
                                   }
 
+                  def_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      73.3
+                                      %
+                                    </span>,
+                                    "value": 0.24193548387096775,
+                                  }
+
                   def_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -15946,6 +16423,15 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "old_value": 0.5141843971631206,
                                     "override": "Adjusted from Off 3P%",
                                     "value": 0.523092088363159,
+                                  }
+
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      80.0
+                                      %
+                                    </span>,
+                                    "value": 0.1773049645390071,
                                   }
 
                   off_poss: Object {
@@ -16399,6 +16885,15 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.4144244643049676,
                                   }
 
+                  def_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      73.3
+                                      %
+                                    </span>,
+                                    "value": 0.24193548387096775,
+                                  }
+
                   def_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -16478,6 +16973,15 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "old_value": 0.5141843971631206,
                                     "override": "Adjusted from Off 3P%",
                                     "value": 0.523092088363159,
+                                  }
+
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      80.0
+                                      %
+                                    </span>,
+                                    "value": 0.1773049645390071,
                                   }
 
                   off_poss: Object {
@@ -16957,6 +17461,15 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.43630211617681064,
                                   }
 
+                  def_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      62.5
+                                      %
+                                    </span>,
+                                    "value": 0.32432432432432434,
+                                  }
+
                   def_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -17040,6 +17553,15 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "old_value": 0.603225806451613,
                                     "override": "Adjusted from Off 3P%",
                                     "value": 0.5697893714438406,
+                                  }
+
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      73.7
+                                      %
+                                    </span>,
+                                    "value": 0.24516129032258063,
                                   }
 
                   off_poss: Object {
@@ -17483,6 +18005,15 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.43630211617681064,
                                   }
 
+                  def_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      62.5
+                                      %
+                                    </span>,
+                                    "value": 0.32432432432432434,
+                                  }
+
                   def_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -17566,6 +18097,15 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "old_value": 0.603225806451613,
                                     "override": "Adjusted from Off 3P%",
                                     "value": 0.5697893714438406,
+                                  }
+
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      73.7
+                                      %
+                                    </span>,
+                                    "value": 0.24516129032258063,
                                   }
 
                   off_poss: Object {
@@ -18035,6 +18575,15 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.4419482041892911,
                                   }
 
+                  def_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      85.7
+                                      %
+                                    </span>,
+                                    "value": 0.22826086956521738,
+                                  }
+
                   def_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -18118,6 +18667,15 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "old_value": 0.5777777777777777,
                                     "override": "Adjusted from Off 3P%",
                                     "value": 0.5866072111846946,
+                                  }
+
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      78.0
+                                      %
+                                    </span>,
+                                    "value": 0.6555555555555556,
                                   }
 
                   off_poss: Object {
@@ -18568,6 +19126,15 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.4419482041892911,
                                   }
 
+                  def_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      85.7
+                                      %
+                                    </span>,
+                                    "value": 0.22826086956521738,
+                                  }
+
                   def_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -18651,6 +19218,15 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "old_value": 0.5777777777777777,
                                     "override": "Adjusted from Off 3P%",
                                     "value": 0.5866072111846946,
+                                  }
+
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      78.0
+                                      %
+                                    </span>,
+                                    "value": 0.6555555555555556,
                                   }
 
                   off_poss: Object {
@@ -19127,6 +19703,15 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.4202490605481959,
                                   }
 
+                  def_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      65.7
+                                      %
+                                    </span>,
+                                    "value": 0.2777777777777778,
+                                  }
+
                   def_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -19210,6 +19795,15 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "old_value": 0.48936170212765956,
                                     "override": "Adjusted from Off 3P%",
                                     "value": 0.527483459747602,
+                                  }
+
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      83.7
+                                      %
+                                    </span>,
+                                    "value": 0.3475177304964539,
                                   }
 
                   off_poss: Object {
@@ -19655,6 +20249,15 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.4202490605481959,
                                   }
 
+                  def_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      65.7
+                                      %
+                                    </span>,
+                                    "value": 0.2777777777777778,
+                                  }
+
                   def_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -19738,6 +20341,15 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "old_value": 0.48936170212765956,
                                     "override": "Adjusted from Off 3P%",
                                     "value": 0.527483459747602,
+                                  }
+
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      83.7
+                                      %
+                                    </span>,
+                                    "value": 0.3475177304964539,
                                   }
 
                   off_poss: Object {
@@ -20209,6 +20821,15 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.4531207124386656,
                                   }
 
+                  def_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      70.3
+                                      %
+                                    </span>,
+                                    "value": 0.31092436974789917,
+                                  }
+
                   def_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -20292,6 +20913,15 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "old_value": 0.6228813559322034,
                                     "override": "Adjusted from Off 3P%",
                                     "value": 0.5823230571109227,
+                                  }
+
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      72.9
+                                      %
+                                    </span>,
+                                    "value": 0.5,
                                   }
 
                   off_poss: Object {
@@ -20732,6 +21362,15 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.4531207124386656,
                                   }
 
+                  def_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      70.3
+                                      %
+                                    </span>,
+                                    "value": 0.31092436974789917,
+                                  }
+
                   def_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -20815,6 +21454,15 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "old_value": 0.6228813559322034,
                                     "override": "Adjusted from Off 3P%",
                                     "value": 0.5823230571109227,
+                                  }
+
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      72.9
+                                      %
+                                    </span>,
+                                    "value": 0.5,
                                   }
 
                   off_poss: Object {
@@ -21281,6 +21929,15 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.4190464125630724,
                                   }
 
+                  def_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      61.5
+                                      %
+                                    </span>,
+                                    "value": 0.4105263157894737,
+                                  }
+
                   def_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -21364,6 +22021,15 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "old_value": 0.4770992366412214,
                                     "override": "Adjusted from Off 3P%",
                                     "value": 0.5053330544808116,
+                                  }
+
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      63.6
+                                      %
+                                    </span>,
+                                    "value": 0.25190839694656486,
                                   }
 
                   off_poss: Object {
@@ -21817,6 +22483,15 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.4190464125630724,
                                   }
 
+                  def_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      61.5
+                                      %
+                                    </span>,
+                                    "value": 0.4105263157894737,
+                                  }
+
                   def_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -21900,6 +22575,15 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "old_value": 0.4770992366412214,
                                     "override": "Adjusted from Off 3P%",
                                     "value": 0.5053330544808116,
+                                  }
+
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      63.6
+                                      %
+                                    </span>,
+                                    "value": 0.25190839694656486,
                                   }
 
                   off_poss: Object {
@@ -22379,6 +23063,15 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.4415150885811839,
                                   }
 
+                  def_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      58.0
+                                      %
+                                    </span>,
+                                    "value": 0.21204188481675393,
+                                  }
+
                   def_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -22462,6 +23155,15 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "old_value": 0.5767123287671233,
                                     "override": "Adjusted from Off 3P%",
                                     "value": 0.5608322926473132,
+                                  }
+
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      67.1
+                                      %
+                                    </span>,
+                                    "value": 0.3835616438356164,
                                   }
 
                   off_poss: Object {
@@ -22915,6 +23617,15 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.4415150885811839,
                                   }
 
+                  def_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      58.0
+                                      %
+                                    </span>,
+                                    "value": 0.21204188481675393,
+                                  }
+
                   def_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -22998,6 +23709,15 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "old_value": 0.5767123287671233,
                                     "override": "Adjusted from Off 3P%",
                                     "value": 0.5608322926473132,
+                                  }
+
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      67.1
+                                      %
+                                    </span>,
+                                    "value": 0.3835616438356164,
                                   }
 
                   off_poss: Object {

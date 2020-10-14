@@ -201,6 +201,10 @@ export class TableDisplayUtils {
     if (stat.off_assist) {
       stat.off_assist.extraInfo = assistBuilder(stat, "off");
     }
+    // Offensive FT%: team/lineup/player
+    if (stat.off_ftr) {
+      stat.off_ftr.extraInfo = <span>FT: {(100*(stat.off_ft?.value || 0)).toFixed(1)}%</span>;
+    }
 
     const buildText = (stat: any) => {
       return `${(100*(stat?.value || 0)).toFixed(0)}% assisted`
@@ -249,6 +253,10 @@ export class TableDisplayUtils {
       }
       if (stat.off_poss) {
         stat.off_poss.extraInfo = paceBuilder(stat, false);
+      }
+      // Defensive FT%: team/lineup/ only
+      if (stat.def_ftr) {
+        stat.def_ftr.extraInfo = <span>FT: {(100*(stat.def_ft?.value || 0)).toFixed(1)}%</span>;
       }
     } else {
       if (stat.off_team_poss) {

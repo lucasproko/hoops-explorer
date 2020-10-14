@@ -373,6 +373,15 @@ exports[`TableDisplayUtils injectPlayTypeInfo - lineups 1`] = `
     "value": 0.5275590551181102,
   }
 
+  def_ftr: Object {
+    "extraInfo": <span>
+      FT: 
+      74.7
+      %
+    </span>,
+    "value": 0.27002967359050445,
+  }
+
   def_ppp: Object {
     "extraInfo": <span>
       Play category breakdown:
@@ -434,6 +443,15 @@ exports[`TableDisplayUtils injectPlayTypeInfo - lineups 1`] = `
       </li>
     </span>,
     "value": 0.5211267605633803,
+  }
+
+  off_ftr: Object {
+    "extraInfo": <span>
+      FT: 
+      76.6
+      %
+    </span>,
+    "value": 0.5696594427244582,
   }
 
   off_poss: Object {
@@ -549,6 +567,15 @@ exports[`TableDisplayUtils injectPlayTypeInfo - players (!expanded) 1`] = `
     "value": 0.2916666666666667,
   }
 
+  off_ftr: Object {
+    "extraInfo": <span>
+      FT: 
+      81.1
+      %
+    </span>,
+    "value": 0.5955056179775281,
+  }
+
   off_team_poss: Object {
     "extraInfo": <span>
       80.1
@@ -616,6 +643,15 @@ exports[`TableDisplayUtils injectPlayTypeInfo - players (expanded) 1`] = `
       </li>
     </span>,
     "value": 0.2916666666666667,
+  }
+
+  off_ftr: Object {
+    "extraInfo": <span>
+      FT: 
+      81.1
+      %
+    </span>,
+    "value": 0.5955056179775281,
   }
 
   off_team_poss: Object {

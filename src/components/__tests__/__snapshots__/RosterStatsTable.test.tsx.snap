@@ -144,6 +144,15 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                         "value": 0.09433962264150944,
                       }
 
+            off_ftr: Object {
+                        "extraInfo": <span>
+                          FT: 
+                          79.3
+                          %
+                        </span>,
+                        "value": 0.5787671232876712,
+                      }
+
             off_luck: undefined
 
             off_rtg: Object {
@@ -349,6 +358,15 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
 
             off_drb: Object {
                         "value": 0.10526315789473684,
+                      }
+
+            off_ftr: Object {
+                        "extraInfo": <span>
+                          FT: 
+                          88.4
+                          %
+                        </span>,
+                        "value": 0.671875,
                       }
 
             off_luck: undefined
@@ -558,6 +576,15 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                         "value": 0.096,
                       }
 
+            off_ftr: Object {
+                        "extraInfo": <span>
+                          FT: 
+                          81.1
+                          %
+                        </span>,
+                        "value": 0.5955056179775281,
+                      }
+
             off_luck: undefined
 
             off_rtg: Object {
@@ -763,6 +790,15 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
 
             off_drb: Object {
                         "value": 0.14831130690161526,
+                      }
+
+            off_ftr: Object {
+                        "extraInfo": <span>
+                          FT: 
+                          72.5
+                          %
+                        </span>,
+                        "value": 0.2073170731707317,
                       }
 
             off_luck: undefined
@@ -972,6 +1008,15 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                         "value": 0.1380952380952381,
                       }
 
+            off_ftr: Object {
+                        "extraInfo": <span>
+                          FT: 
+                          71.7
+                          %
+                        </span>,
+                        "value": 0.2,
+                      }
+
             off_luck: undefined
 
             off_rtg: Object {
@@ -1177,6 +1222,15 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
 
             off_drb: Object {
                         "value": 0.06666666666666667,
+                      }
+
+            off_ftr: Object {
+                        "extraInfo": <span>
+                          FT: 
+                          100.0
+                          %
+                        </span>,
+                        "value": 0.6666666666666666,
                       }
 
             off_luck: undefined
@@ -1398,6 +1452,15 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                 "value": 0.096,
                               }
 
+                off_ftr: Object {
+                                "extraInfo": <span>
+                                  FT: 
+                                  81.1
+                                  %
+                                </span>,
+                                "value": 0.5955056179775281,
+                              }
+
                 off_luck: undefined
 
                 off_rtg: Object {
@@ -1609,6 +1672,15 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
 
                 off_drb: Object {
                                 "value": 0.096,
+                              }
+
+                off_ftr: Object {
+                                "extraInfo": <span>
+                                  FT: 
+                                  81.1
+                                  %
+                                </span>,
+                                "value": 0.5955056179775281,
                               }
 
                 off_luck: undefined
@@ -1826,6 +1898,15 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                 "value": 0.10526315789473684,
                               }
 
+                off_ftr: Object {
+                                "extraInfo": <span>
+                                  FT: 
+                                  88.4
+                                  %
+                                </span>,
+                                "value": 0.671875,
+                              }
+
                 off_luck: undefined
 
                 off_rtg: Object {
@@ -2037,6 +2118,15 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
 
                 off_drb: Object {
                                 "value": 0.10526315789473684,
+                              }
+
+                off_ftr: Object {
+                                "extraInfo": <span>
+                                  FT: 
+                                  88.4
+                                  %
+                                </span>,
+                                "value": 0.671875,
                               }
 
                 off_luck: undefined
@@ -2254,6 +2344,15 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                 "value": 0.09433962264150944,
                               }
 
+                off_ftr: Object {
+                                "extraInfo": <span>
+                                  FT: 
+                                  79.3
+                                  %
+                                </span>,
+                                "value": 0.5787671232876712,
+                              }
+
                 off_luck: undefined
 
                 off_rtg: Object {
@@ -2465,6 +2564,15 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
 
                 off_drb: Object {
                                 "value": 0.09433962264150944,
+                              }
+
+                off_ftr: Object {
+                                "extraInfo": <span>
+                                  FT: 
+                                  79.3
+                                  %
+                                </span>,
+                                "value": 0.5787671232876712,
                               }
 
                 off_luck: undefined
@@ -2682,6 +2790,15 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                 "value": 0.06666666666666667,
                               }
 
+                off_ftr: Object {
+                                "extraInfo": <span>
+                                  FT: 
+                                  100.0
+                                  %
+                                </span>,
+                                "value": 0.6666666666666666,
+                              }
+
                 off_luck: undefined
 
                 off_rtg: Object {
@@ -2893,6 +3010,15 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
 
                 off_drb: Object {
                                 "value": 0.06666666666666667,
+                              }
+
+                off_ftr: Object {
+                                "extraInfo": <span>
+                                  FT: 
+                                  100.0
+                                  %
+                                </span>,
+                                "value": 0.6666666666666666,
                               }
 
                 off_luck: undefined
@@ -3110,6 +3236,15 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                 "value": 0.1380952380952381,
                               }
 
+                off_ftr: Object {
+                                "extraInfo": <span>
+                                  FT: 
+                                  71.7
+                                  %
+                                </span>,
+                                "value": 0.2,
+                              }
+
                 off_luck: undefined
 
                 off_rtg: Object {
@@ -3321,6 +3456,15 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
 
                 off_drb: Object {
                                 "value": 0.1380952380952381,
+                              }
+
+                off_ftr: Object {
+                                "extraInfo": <span>
+                                  FT: 
+                                  71.7
+                                  %
+                                </span>,
+                                "value": 0.2,
                               }
 
                 off_luck: undefined
@@ -3538,6 +3682,15 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                 "value": 0.14831130690161526,
                               }
 
+                off_ftr: Object {
+                                "extraInfo": <span>
+                                  FT: 
+                                  72.5
+                                  %
+                                </span>,
+                                "value": 0.2073170731707317,
+                              }
+
                 off_luck: undefined
 
                 off_rtg: Object {
@@ -3749,6 +3902,15 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
 
                 off_drb: Object {
                                 "value": 0.14831130690161526,
+                              }
+
+                off_ftr: Object {
+                                "extraInfo": <span>
+                                  FT: 
+                                  72.5
+                                  %
+                                </span>,
+                                "value": 0.2073170731707317,
                               }
 
                 off_luck: undefined
@@ -4636,6 +4798,15 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                     "value": 0.09433962264150944,
                                   }
 
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      79.3
+                                      %
+                                    </span>,
+                                    "value": 0.5787671232876712,
+                                  }
+
                   off_luck: undefined
 
                   off_rtg: Object {
@@ -4847,6 +5018,15 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
 
                   off_drb: Object {
                                     "value": 0.10526315789473684,
+                                  }
+
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      88.4
+                                      %
+                                    </span>,
+                                    "value": 0.671875,
                                   }
 
                   off_luck: undefined
@@ -5065,6 +5245,15 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                     "value": 0.14831130690161526,
                                   }
 
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      72.5
+                                      %
+                                    </span>,
+                                    "value": 0.2073170731707317,
+                                  }
+
                   off_luck: undefined
 
                   off_rtg: Object {
@@ -5279,6 +5468,15 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
 
                   off_drb: Object {
                                     "value": 0.06666666666666667,
+                                  }
+
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      100.0
+                                      %
+                                    </span>,
+                                    "value": 0.6666666666666666,
                                   }
 
                   off_luck: undefined
@@ -5772,6 +5970,15 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
                         "value": 0.096,
                       }
 
+            off_ftr: Object {
+                        "extraInfo": <span>
+                          FT: 
+                          81.1
+                          %
+                        </span>,
+                        "value": 0.5955056179775281,
+                      }
+
             off_luck: undefined
 
             off_rtg: Object {
@@ -5970,6 +6177,15 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
 
             off_drb: Object {
                         "value": 0.1380952380952381,
+                      }
+
+            off_ftr: Object {
+                        "extraInfo": <span>
+                          FT: 
+                          71.7
+                          %
+                        </span>,
+                        "value": 0.2,
                       }
 
             off_luck: undefined
@@ -6184,6 +6400,15 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
                                 "value": 0.096,
                               }
 
+                off_ftr: Object {
+                                "extraInfo": <span>
+                                  FT: 
+                                  81.1
+                                  %
+                                </span>,
+                                "value": 0.5955056179775281,
+                              }
+
                 off_luck: undefined
 
                 off_rtg: Object {
@@ -6388,6 +6613,15 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
 
                 off_drb: Object {
                                 "value": 0.096,
+                              }
+
+                off_ftr: Object {
+                                "extraInfo": <span>
+                                  FT: 
+                                  81.1
+                                  %
+                                </span>,
+                                "value": 0.5955056179775281,
                               }
 
                 off_luck: undefined
@@ -6598,6 +6832,15 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
                                 "value": 0.1380952380952381,
                               }
 
+                off_ftr: Object {
+                                "extraInfo": <span>
+                                  FT: 
+                                  71.7
+                                  %
+                                </span>,
+                                "value": 0.2,
+                              }
+
                 off_luck: undefined
 
                 off_rtg: Object {
@@ -6802,6 +7045,15 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
 
                 off_drb: Object {
                                 "value": 0.1380952380952381,
+                              }
+
+                off_ftr: Object {
+                                "extraInfo": <span>
+                                  FT: 
+                                  71.7
+                                  %
+                                </span>,
+                                "value": 0.2,
                               }
 
                 off_luck: undefined
@@ -7682,6 +7934,15 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
                                     "value": 0.096,
                                   }
 
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      81.1
+                                      %
+                                    </span>,
+                                    "value": 0.5955056179775281,
+                                  }
+
                   off_luck: undefined
 
                   off_rtg: Object {
@@ -7889,6 +8150,15 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
 
                   off_drb: Object {
                                     "value": 0.1380952380952381,
+                                  }
+
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      71.7
+                                      %
+                                    </span>,
+                                    "value": 0.2,
                                   }
 
                   off_luck: undefined
@@ -8354,6 +8624,15 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                         "value": 0.096,
                       }
 
+            off_ftr: Object {
+                        "extraInfo": <span>
+                          FT: 
+                          81.1
+                          %
+                        </span>,
+                        "value": 0.5955056179775281,
+                      }
+
             off_luck: undefined
 
             off_rtg: Object {
@@ -8511,6 +8790,15 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
 
             off_drb: Object {
                         "value": 0.1380952380952381,
+                      }
+
+            off_ftr: Object {
+                        "extraInfo": <span>
+                          FT: 
+                          71.7
+                          %
+                        </span>,
+                        "value": 0.2,
                       }
 
             off_luck: undefined
@@ -8684,6 +8972,15 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                                 "value": 0.096,
                               }
 
+                off_ftr: Object {
+                                "extraInfo": <span>
+                                  FT: 
+                                  81.1
+                                  %
+                                </span>,
+                                "value": 0.5955056179775281,
+                              }
+
                 off_luck: undefined
 
                 off_rtg: Object {
@@ -8847,6 +9144,15 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
 
                 off_drb: Object {
                                 "value": 0.096,
+                              }
+
+                off_ftr: Object {
+                                "extraInfo": <span>
+                                  FT: 
+                                  81.1
+                                  %
+                                </span>,
+                                "value": 0.5955056179775281,
                               }
 
                 off_luck: undefined
@@ -9016,6 +9322,15 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                                 "value": 0.1380952380952381,
                               }
 
+                off_ftr: Object {
+                                "extraInfo": <span>
+                                  FT: 
+                                  71.7
+                                  %
+                                </span>,
+                                "value": 0.2,
+                              }
+
                 off_luck: undefined
 
                 off_rtg: Object {
@@ -9179,6 +9494,15 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
 
                 off_drb: Object {
                                 "value": 0.1380952380952381,
+                              }
+
+                off_ftr: Object {
+                                "extraInfo": <span>
+                                  FT: 
+                                  71.7
+                                  %
+                                </span>,
+                                "value": 0.2,
                               }
 
                 off_luck: undefined
@@ -10018,6 +10342,15 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                                     "value": 0.096,
                                   }
 
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      81.1
+                                      %
+                                    </span>,
+                                    "value": 0.5955056179775281,
+                                  }
+
                   off_luck: undefined
 
                   off_rtg: Object {
@@ -10181,6 +10514,15 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
 
                   off_drb: Object {
                                     "value": 0.096,
+                                  }
+
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      81.1
+                                      %
+                                    </span>,
+                                    "value": 0.5955056179775281,
                                   }
 
                   off_luck: undefined
@@ -10351,6 +10693,15 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                                     "value": 0.1380952380952381,
                                   }
 
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      71.7
+                                      %
+                                    </span>,
+                                    "value": 0.2,
+                                  }
+
                   off_luck: undefined
 
                   off_rtg: Object {
@@ -10514,6 +10865,15 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
 
                   off_drb: Object {
                                     "value": 0.1380952380952381,
+                                  }
+
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      71.7
+                                      %
+                                    </span>,
+                                    "value": 0.2,
                                   }
 
                   off_luck: undefined
@@ -10959,6 +11319,15 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                         "value": 0.09433962264150944,
                       }
 
+            off_ftr: Object {
+                        "extraInfo": <span>
+                          FT: 
+                          79.3
+                          %
+                        </span>,
+                        "value": 0.5787671232876712,
+                      }
+
             off_luck: undefined
 
             off_rtg: Object {
@@ -11122,6 +11491,15 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
 
             off_drb: Object {
                         "value": 0.10526315789473684,
+                      }
+
+            off_ftr: Object {
+                        "extraInfo": <span>
+                          FT: 
+                          88.4
+                          %
+                        </span>,
+                        "value": 0.671875,
                       }
 
             off_luck: undefined
@@ -11289,6 +11667,15 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                         "value": 0.096,
                       }
 
+            off_ftr: Object {
+                        "extraInfo": <span>
+                          FT: 
+                          81.1
+                          %
+                        </span>,
+                        "value": 0.5955056179775281,
+                      }
+
             off_luck: undefined
 
             off_rtg: Object {
@@ -11452,6 +11839,15 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
 
             off_drb: Object {
                         "value": 0.14831130690161526,
+                      }
+
+            off_ftr: Object {
+                        "extraInfo": <span>
+                          FT: 
+                          72.5
+                          %
+                        </span>,
+                        "value": 0.2073170731707317,
                       }
 
             off_luck: undefined
@@ -11619,6 +12015,15 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                         "value": 0.1380952380952381,
                       }
 
+            off_ftr: Object {
+                        "extraInfo": <span>
+                          FT: 
+                          71.7
+                          %
+                        </span>,
+                        "value": 0.2,
+                      }
+
             off_luck: undefined
 
             off_rtg: Object {
@@ -11782,6 +12187,15 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
 
             off_drb: Object {
                         "value": 0.06666666666666667,
+                      }
+
+            off_ftr: Object {
+                        "extraInfo": <span>
+                          FT: 
+                          100.0
+                          %
+                        </span>,
+                        "value": 0.6666666666666666,
                       }
 
             off_luck: undefined
@@ -11961,6 +12375,15 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                                 "value": 0.096,
                               }
 
+                off_ftr: Object {
+                                "extraInfo": <span>
+                                  FT: 
+                                  81.1
+                                  %
+                                </span>,
+                                "value": 0.5955056179775281,
+                              }
+
                 off_luck: undefined
 
                 off_rtg: Object {
@@ -12130,6 +12553,15 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
 
                 off_drb: Object {
                                 "value": 0.096,
+                              }
+
+                off_ftr: Object {
+                                "extraInfo": <span>
+                                  FT: 
+                                  81.1
+                                  %
+                                </span>,
+                                "value": 0.5955056179775281,
                               }
 
                 off_luck: undefined
@@ -12305,6 +12737,15 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                                 "value": 0.10526315789473684,
                               }
 
+                off_ftr: Object {
+                                "extraInfo": <span>
+                                  FT: 
+                                  88.4
+                                  %
+                                </span>,
+                                "value": 0.671875,
+                              }
+
                 off_luck: undefined
 
                 off_rtg: Object {
@@ -12474,6 +12915,15 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
 
                 off_drb: Object {
                                 "value": 0.10526315789473684,
+                              }
+
+                off_ftr: Object {
+                                "extraInfo": <span>
+                                  FT: 
+                                  88.4
+                                  %
+                                </span>,
+                                "value": 0.671875,
                               }
 
                 off_luck: undefined
@@ -12649,6 +13099,15 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                                 "value": 0.09433962264150944,
                               }
 
+                off_ftr: Object {
+                                "extraInfo": <span>
+                                  FT: 
+                                  79.3
+                                  %
+                                </span>,
+                                "value": 0.5787671232876712,
+                              }
+
                 off_luck: undefined
 
                 off_rtg: Object {
@@ -12818,6 +13277,15 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
 
                 off_drb: Object {
                                 "value": 0.09433962264150944,
+                              }
+
+                off_ftr: Object {
+                                "extraInfo": <span>
+                                  FT: 
+                                  79.3
+                                  %
+                                </span>,
+                                "value": 0.5787671232876712,
                               }
 
                 off_luck: undefined
@@ -12993,6 +13461,15 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                                 "value": 0.06666666666666667,
                               }
 
+                off_ftr: Object {
+                                "extraInfo": <span>
+                                  FT: 
+                                  100.0
+                                  %
+                                </span>,
+                                "value": 0.6666666666666666,
+                              }
+
                 off_luck: undefined
 
                 off_rtg: Object {
@@ -13162,6 +13639,15 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
 
                 off_drb: Object {
                                 "value": 0.06666666666666667,
+                              }
+
+                off_ftr: Object {
+                                "extraInfo": <span>
+                                  FT: 
+                                  100.0
+                                  %
+                                </span>,
+                                "value": 0.6666666666666666,
                               }
 
                 off_luck: undefined
@@ -13337,6 +13823,15 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                                 "value": 0.1380952380952381,
                               }
 
+                off_ftr: Object {
+                                "extraInfo": <span>
+                                  FT: 
+                                  71.7
+                                  %
+                                </span>,
+                                "value": 0.2,
+                              }
+
                 off_luck: undefined
 
                 off_rtg: Object {
@@ -13506,6 +14001,15 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
 
                 off_drb: Object {
                                 "value": 0.1380952380952381,
+                              }
+
+                off_ftr: Object {
+                                "extraInfo": <span>
+                                  FT: 
+                                  71.7
+                                  %
+                                </span>,
+                                "value": 0.2,
                               }
 
                 off_luck: undefined
@@ -13681,6 +14185,15 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                                 "value": 0.14831130690161526,
                               }
 
+                off_ftr: Object {
+                                "extraInfo": <span>
+                                  FT: 
+                                  72.5
+                                  %
+                                </span>,
+                                "value": 0.2073170731707317,
+                              }
+
                 off_luck: undefined
 
                 off_rtg: Object {
@@ -13850,6 +14363,15 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
 
                 off_drb: Object {
                                 "value": 0.14831130690161526,
+                              }
+
+                off_ftr: Object {
+                                "extraInfo": <span>
+                                  FT: 
+                                  72.5
+                                  %
+                                </span>,
+                                "value": 0.2073170731707317,
                               }
 
                 off_luck: undefined
@@ -14695,6 +15217,15 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                                     "value": 0.09433962264150944,
                                   }
 
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      79.3
+                                      %
+                                    </span>,
+                                    "value": 0.5787671232876712,
+                                  }
+
                   off_luck: undefined
 
                   off_rtg: Object {
@@ -14866,6 +15397,15 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                                     "value": 0.09433962264150944,
                                   }
 
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      79.3
+                                      %
+                                    </span>,
+                                    "value": 0.5787671232876712,
+                                  }
+
                   off_luck: undefined
 
                   off_rtg: Object {
@@ -15037,6 +15577,15 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                                     "value": 0.10526315789473684,
                                   }
 
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      88.4
+                                      %
+                                    </span>,
+                                    "value": 0.671875,
+                                  }
+
                   off_luck: undefined
 
                   off_rtg: Object {
@@ -15208,6 +15757,15 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                                     "value": 0.10526315789473684,
                                   }
 
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      88.4
+                                      %
+                                    </span>,
+                                    "value": 0.671875,
+                                  }
+
                   off_luck: undefined
 
                   off_rtg: Object {
@@ -15382,6 +15940,15 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                                     "value": 0.14831130690161526,
                                   }
 
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      72.5
+                                      %
+                                    </span>,
+                                    "value": 0.2073170731707317,
+                                  }
+
                   off_luck: undefined
 
                   off_rtg: Object {
@@ -15551,6 +16118,15 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
 
                   off_drb: Object {
                                     "value": 0.14831130690161526,
+                                  }
+
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      72.5
+                                      %
+                                    </span>,
+                                    "value": 0.2073170731707317,
                                   }
 
                   off_luck: undefined
@@ -15727,6 +16303,15 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                                     "value": 0.06666666666666667,
                                   }
 
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      100.0
+                                      %
+                                    </span>,
+                                    "value": 0.6666666666666666,
+                                  }
+
                   off_luck: undefined
 
                   off_rtg: Object {
@@ -15896,6 +16481,15 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
 
                   off_drb: Object {
                                     "value": 0.06666666666666667,
+                                  }
+
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      100.0
+                                      %
+                                    </span>,
+                                    "value": 0.6666666666666666,
                                   }
 
                   off_luck: undefined
@@ -16392,6 +16986,15 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                         "value": 0.4724735073662445,
                       }
 
+            off_ftr: Object {
+                        "extraInfo": <span>
+                          FT: 
+                          79.3
+                          %
+                        </span>,
+                        "value": 0.5787671232876712,
+                      }
+
             off_luck: {
                "deltaOffPpp": -0.28801187783583776,
                "deltaOffEfg": -0.001841561126906194,
@@ -16629,6 +17232,15 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                         "value": 0.4584099264705882,
                       }
 
+            off_ftr: Object {
+                        "extraInfo": <span>
+                          FT: 
+                          88.4
+                          %
+                        </span>,
+                        "value": 0.671875,
+                      }
+
             off_luck: {
                "deltaOffPpp": 2.1469735996329002,
                "deltaOffEfg": 0.013097426470588227,
@@ -16858,6 +17470,15 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
 
             off_drb: Object {
                         "value": 0.096,
+                      }
+
+            off_ftr: Object {
+                        "extraInfo": <span>
+                          FT: 
+                          81.1
+                          %
+                        </span>,
+                        "value": 0.5955056179775281,
                       }
 
             off_luck: {
@@ -17097,6 +17718,15 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                         "value": 0.4519512195121951,
                       }
 
+            off_ftr: Object {
+                        "extraInfo": <span>
+                          FT: 
+                          72.5
+                          %
+                        </span>,
+                        "value": 0.2073170731707317,
+                      }
+
             off_luck: {
                "deltaOffPpp": 2.0618034009287878,
                "deltaOffEfg": 0.010894308943089424,
@@ -17328,6 +17958,15 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                         "value": 0.1380952380952381,
                       }
 
+            off_ftr: Object {
+                        "extraInfo": <span>
+                          FT: 
+                          71.7
+                          %
+                        </span>,
+                        "value": 0.2,
+                      }
+
             off_luck: {
                "deltaOffPpp": 0,
                "deltaOffEfg": 0,
@@ -17547,6 +18186,15 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
 
             off_drb: Object {
                         "value": 0.06666666666666667,
+                      }
+
+            off_ftr: Object {
+                        "extraInfo": <span>
+                          FT: 
+                          100.0
+                          %
+                        </span>,
+                        "value": 0.6666666666666666,
                       }
 
             off_luck: undefined
@@ -17786,6 +18434,15 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                 "value": 0.096,
                               }
 
+                off_ftr: Object {
+                                "extraInfo": <span>
+                                  FT: 
+                                  81.1
+                                  %
+                                </span>,
+                                "value": 0.5955056179775281,
+                              }
+
                 off_luck: {
                    "deltaOffPpp": 0,
                    "deltaOffEfg": 0,
@@ -18021,6 +18678,15 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
 
                 off_drb: Object {
                                 "value": 0.096,
+                              }
+
+                off_ftr: Object {
+                                "extraInfo": <span>
+                                  FT: 
+                                  81.1
+                                  %
+                                </span>,
+                                "value": 0.5955056179775281,
                               }
 
                 off_luck: {
@@ -18268,6 +18934,15 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                 "value": 0.4584099264705882,
                               }
 
+                off_ftr: Object {
+                                "extraInfo": <span>
+                                  FT: 
+                                  88.4
+                                  %
+                                </span>,
+                                "value": 0.671875,
+                              }
+
                 off_luck: {
                    "deltaOffPpp": 2.1469735996329002,
                    "deltaOffEfg": 0.013097426470588227,
@@ -18509,6 +19184,15 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                 "old_value": 0.4453125,
                                 "override": "Derived from luck adjustments",
                                 "value": 0.4584099264705882,
+                              }
+
+                off_ftr: Object {
+                                "extraInfo": <span>
+                                  FT: 
+                                  88.4
+                                  %
+                                </span>,
+                                "value": 0.671875,
                               }
 
                 off_luck: {
@@ -18756,6 +19440,15 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                 "value": 0.4724735073662445,
                               }
 
+                off_ftr: Object {
+                                "extraInfo": <span>
+                                  FT: 
+                                  79.3
+                                  %
+                                </span>,
+                                "value": 0.5787671232876712,
+                              }
+
                 off_luck: {
                    "deltaOffPpp": -0.28801187783583776,
                    "deltaOffEfg": -0.001841561126906194,
@@ -18999,6 +19692,15 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                 "value": 0.4724735073662445,
                               }
 
+                off_ftr: Object {
+                                "extraInfo": <span>
+                                  FT: 
+                                  79.3
+                                  %
+                                </span>,
+                                "value": 0.5787671232876712,
+                              }
+
                 off_luck: {
                    "deltaOffPpp": -0.28801187783583776,
                    "deltaOffEfg": -0.001841561126906194,
@@ -19228,6 +19930,15 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                 "value": 0.06666666666666667,
                               }
 
+                off_ftr: Object {
+                                "extraInfo": <span>
+                                  FT: 
+                                  100.0
+                                  %
+                                </span>,
+                                "value": 0.6666666666666666,
+                              }
+
                 off_luck: undefined
 
                 off_rtg: Object {
@@ -19447,6 +20158,15 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
 
                 off_drb: Object {
                                 "value": 0.06666666666666667,
+                              }
+
+                off_ftr: Object {
+                                "extraInfo": <span>
+                                  FT: 
+                                  100.0
+                                  %
+                                </span>,
+                                "value": 0.6666666666666666,
                               }
 
                 off_luck: undefined
@@ -19680,6 +20400,15 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
 
                 off_drb: Object {
                                 "value": 0.1380952380952381,
+                              }
+
+                off_ftr: Object {
+                                "extraInfo": <span>
+                                  FT: 
+                                  71.7
+                                  %
+                                </span>,
+                                "value": 0.2,
                               }
 
                 off_luck: {
@@ -19917,6 +20646,15 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
 
                 off_drb: Object {
                                 "value": 0.1380952380952381,
+                              }
+
+                off_ftr: Object {
+                                "extraInfo": <span>
+                                  FT: 
+                                  71.7
+                                  %
+                                </span>,
+                                "value": 0.2,
                               }
 
                 off_luck: {
@@ -20164,6 +20902,15 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                 "value": 0.4519512195121951,
                               }
 
+                off_ftr: Object {
+                                "extraInfo": <span>
+                                  FT: 
+                                  72.5
+                                  %
+                                </span>,
+                                "value": 0.2073170731707317,
+                              }
+
                 off_luck: {
                    "deltaOffPpp": 2.0618034009287878,
                    "deltaOffEfg": 0.010894308943089424,
@@ -20405,6 +21152,15 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                 "old_value": 0.4410569105691057,
                                 "override": "Derived from luck adjustments",
                                 "value": 0.4519512195121951,
+                              }
+
+                off_ftr: Object {
+                                "extraInfo": <span>
+                                  FT: 
+                                  72.5
+                                  %
+                                </span>,
+                                "value": 0.2073170731707317,
                               }
 
                 off_luck: {
@@ -21322,6 +22078,15 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                     "value": 0.4724735073662445,
                                   }
 
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      79.3
+                                      %
+                                    </span>,
+                                    "value": 0.5787671232876712,
+                                  }
+
                   off_luck: {
                      "deltaOffPpp": -0.28801187783583776,
                      "deltaOffEfg": -0.001841561126906194,
@@ -21586,6 +22351,15 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                             "old_value": 0.4743150684931507,
                                             "override": "Derived from luck adjustments",
                                             "value": 0.4724735073662445,
+                                          }
+
+                      off_ftr: Object {
+                                            "extraInfo": <span>
+                                              FT: 
+                                              79.3
+                                              %
+                                            </span>,
+                                            "value": 0.5787671232876712,
                                           }
 
                       off_luck: {
@@ -21856,6 +22630,15 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                     "value": 0.4584099264705882,
                                   }
 
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      88.4
+                                      %
+                                    </span>,
+                                    "value": 0.671875,
+                                  }
+
                   off_luck: {
                      "deltaOffPpp": 2.1469735996329002,
                      "deltaOffEfg": 0.013097426470588227,
@@ -22120,6 +22903,15 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                             "old_value": 0.4453125,
                                             "override": "Derived from luck adjustments",
                                             "value": 0.4584099264705882,
+                                          }
+
+                      off_ftr: Object {
+                                            "extraInfo": <span>
+                                              FT: 
+                                              88.4
+                                              %
+                                            </span>,
+                                            "value": 0.671875,
                                           }
 
                       off_luck: {
@@ -22393,6 +23185,15 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                     "value": 0.4519512195121951,
                                   }
 
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      72.5
+                                      %
+                                    </span>,
+                                    "value": 0.2073170731707317,
+                                  }
+
                   off_luck: {
                      "deltaOffPpp": 2.0618034009287878,
                      "deltaOffEfg": 0.010894308943089424,
@@ -22659,6 +23460,15 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                             "value": 0.4519512195121951,
                                           }
 
+                      off_ftr: Object {
+                                            "extraInfo": <span>
+                                              FT: 
+                                              72.5
+                                              %
+                                            </span>,
+                                            "value": 0.2073170731707317,
+                                          }
+
                       off_luck: {
                          "deltaOffPpp": 2.0618034009287878,
                          "deltaOffEfg": 0.010894308943089424,
@@ -22914,6 +23724,15 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                     "value": 0.06666666666666667,
                                   }
 
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      100.0
+                                      %
+                                    </span>,
+                                    "value": 0.6666666666666666,
+                                  }
+
                   off_luck: undefined
 
                   off_rtg: Object {
@@ -23156,6 +23975,15 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
 
                       off_drb: Object {
                                             "value": 0.06666666666666667,
+                                          }
+
+                      off_ftr: Object {
+                                            "extraInfo": <span>
+                                              FT: 
+                                              100.0
+                                              %
+                                            </span>,
+                                            "value": 0.6666666666666666,
                                           }
 
                       off_luck: undefined
@@ -23674,6 +24502,15 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                         "value": 0.4724735073662445,
                       }
 
+            off_ftr: Object {
+                        "extraInfo": <span>
+                          FT: 
+                          79.3
+                          %
+                        </span>,
+                        "value": 0.5787671232876712,
+                      }
+
             off_luck: {
                "deltaOffPpp": -0.28801187783583776,
                "deltaOffEfg": -0.001841561126906194,
@@ -23909,6 +24746,15 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                         "old_value": 0.4453125,
                         "override": "Derived from luck adjustments",
                         "value": 0.4584099264705882,
+                      }
+
+            off_ftr: Object {
+                        "extraInfo": <span>
+                          FT: 
+                          88.4
+                          %
+                        </span>,
+                        "value": 0.671875,
                       }
 
             off_luck: {
@@ -24148,6 +24994,15 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                         "value": 0.5997191011235955,
                       }
 
+            off_ftr: Object {
+                        "extraInfo": <span>
+                          FT: 
+                          81.1
+                          %
+                        </span>,
+                        "value": 0.5955056179775281,
+                      }
+
             off_luck: {
                "deltaOffPpp": 0,
                "deltaOffEfg": 0,
@@ -24385,6 +25240,15 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                         "value": 0.4519512195121951,
                       }
 
+            off_ftr: Object {
+                        "extraInfo": <span>
+                          FT: 
+                          72.5
+                          %
+                        </span>,
+                        "value": 0.2073170731707317,
+                      }
+
             off_luck: {
                "deltaOffPpp": 2.0618034009287878,
                "deltaOffEfg": 0.010894308943089424,
@@ -24616,6 +25480,15 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                         "value": 0.1380952380952381,
                       }
 
+            off_ftr: Object {
+                        "extraInfo": <span>
+                          FT: 
+                          71.7
+                          %
+                        </span>,
+                        "value": 0.2,
+                      }
+
             off_luck: {
                "deltaOffPpp": 0,
                "deltaOffEfg": 0,
@@ -24835,6 +25708,15 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
 
             off_drb: Object {
                         "value": 0.06666666666666667,
+                      }
+
+            off_ftr: Object {
+                        "extraInfo": <span>
+                          FT: 
+                          100.0
+                          %
+                        </span>,
+                        "value": 0.6666666666666666,
                       }
 
             off_luck: undefined
@@ -25089,6 +25971,15 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                 "value": 0.5997191011235955,
                               }
 
+                off_ftr: Object {
+                                "extraInfo": <span>
+                                  FT: 
+                                  81.1
+                                  %
+                                </span>,
+                                "value": 0.5955056179775281,
+                              }
+
                 off_luck: {
                    "deltaOffPpp": 0,
                    "deltaOffEfg": 0,
@@ -25330,6 +26221,15 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                 "old_value": 0.4691011235955056,
                                 "override": "Derived from luck adjustments and manual overrides",
                                 "value": 0.5997191011235955,
+                              }
+
+                off_ftr: Object {
+                                "extraInfo": <span>
+                                  FT: 
+                                  81.1
+                                  %
+                                </span>,
+                                "value": 0.5955056179775281,
                               }
 
                 off_luck: {
@@ -25577,6 +26477,15 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                 "value": 0.4584099264705882,
                               }
 
+                off_ftr: Object {
+                                "extraInfo": <span>
+                                  FT: 
+                                  88.4
+                                  %
+                                </span>,
+                                "value": 0.671875,
+                              }
+
                 off_luck: {
                    "deltaOffPpp": 2.1469735996329002,
                    "deltaOffEfg": 0.013097426470588227,
@@ -25818,6 +26727,15 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                 "old_value": 0.4453125,
                                 "override": "Derived from luck adjustments",
                                 "value": 0.4584099264705882,
+                              }
+
+                off_ftr: Object {
+                                "extraInfo": <span>
+                                  FT: 
+                                  88.4
+                                  %
+                                </span>,
+                                "value": 0.671875,
                               }
 
                 off_luck: {
@@ -26065,6 +26983,15 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                 "value": 0.4724735073662445,
                               }
 
+                off_ftr: Object {
+                                "extraInfo": <span>
+                                  FT: 
+                                  79.3
+                                  %
+                                </span>,
+                                "value": 0.5787671232876712,
+                              }
+
                 off_luck: {
                    "deltaOffPpp": -0.28801187783583776,
                    "deltaOffEfg": -0.001841561126906194,
@@ -26308,6 +27235,15 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                 "value": 0.4724735073662445,
                               }
 
+                off_ftr: Object {
+                                "extraInfo": <span>
+                                  FT: 
+                                  79.3
+                                  %
+                                </span>,
+                                "value": 0.5787671232876712,
+                              }
+
                 off_luck: {
                    "deltaOffPpp": -0.28801187783583776,
                    "deltaOffEfg": -0.001841561126906194,
@@ -26537,6 +27473,15 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                 "value": 0.06666666666666667,
                               }
 
+                off_ftr: Object {
+                                "extraInfo": <span>
+                                  FT: 
+                                  100.0
+                                  %
+                                </span>,
+                                "value": 0.6666666666666666,
+                              }
+
                 off_luck: undefined
 
                 off_rtg: Object {
@@ -26756,6 +27701,15 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
 
                 off_drb: Object {
                                 "value": 0.06666666666666667,
+                              }
+
+                off_ftr: Object {
+                                "extraInfo": <span>
+                                  FT: 
+                                  100.0
+                                  %
+                                </span>,
+                                "value": 0.6666666666666666,
                               }
 
                 off_luck: undefined
@@ -26989,6 +27943,15 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
 
                 off_drb: Object {
                                 "value": 0.1380952380952381,
+                              }
+
+                off_ftr: Object {
+                                "extraInfo": <span>
+                                  FT: 
+                                  71.7
+                                  %
+                                </span>,
+                                "value": 0.2,
                               }
 
                 off_luck: {
@@ -27226,6 +28189,15 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
 
                 off_drb: Object {
                                 "value": 0.1380952380952381,
+                              }
+
+                off_ftr: Object {
+                                "extraInfo": <span>
+                                  FT: 
+                                  71.7
+                                  %
+                                </span>,
+                                "value": 0.2,
                               }
 
                 off_luck: {
@@ -27473,6 +28445,15 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                 "value": 0.4519512195121951,
                               }
 
+                off_ftr: Object {
+                                "extraInfo": <span>
+                                  FT: 
+                                  72.5
+                                  %
+                                </span>,
+                                "value": 0.2073170731707317,
+                              }
+
                 off_luck: {
                    "deltaOffPpp": 2.0618034009287878,
                    "deltaOffEfg": 0.010894308943089424,
@@ -27714,6 +28695,15 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                 "old_value": 0.4410569105691057,
                                 "override": "Derived from luck adjustments",
                                 "value": 0.4519512195121951,
+                              }
+
+                off_ftr: Object {
+                                "extraInfo": <span>
+                                  FT: 
+                                  72.5
+                                  %
+                                </span>,
+                                "value": 0.2073170731707317,
                               }
 
                 off_luck: {
@@ -28631,6 +29621,15 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                     "value": 0.4724735073662445,
                                   }
 
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      79.3
+                                      %
+                                    </span>,
+                                    "value": 0.5787671232876712,
+                                  }
+
                   off_luck: {
                      "deltaOffPpp": -0.28801187783583776,
                      "deltaOffEfg": -0.001841561126906194,
@@ -28895,6 +29894,15 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                             "old_value": 0.4743150684931507,
                                             "override": "Derived from luck adjustments",
                                             "value": 0.4724735073662445,
+                                          }
+
+                      off_ftr: Object {
+                                            "extraInfo": <span>
+                                              FT: 
+                                              79.3
+                                              %
+                                            </span>,
+                                            "value": 0.5787671232876712,
                                           }
 
                       off_luck: {
@@ -29165,6 +30173,15 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                     "value": 0.4584099264705882,
                                   }
 
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      88.4
+                                      %
+                                    </span>,
+                                    "value": 0.671875,
+                                  }
+
                   off_luck: {
                      "deltaOffPpp": 2.1469735996329002,
                      "deltaOffEfg": 0.013097426470588227,
@@ -29429,6 +30446,15 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                             "old_value": 0.4453125,
                                             "override": "Derived from luck adjustments",
                                             "value": 0.4584099264705882,
+                                          }
+
+                      off_ftr: Object {
+                                            "extraInfo": <span>
+                                              FT: 
+                                              88.4
+                                              %
+                                            </span>,
+                                            "value": 0.671875,
                                           }
 
                       off_luck: {
@@ -29702,6 +30728,15 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                     "value": 0.4519512195121951,
                                   }
 
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      72.5
+                                      %
+                                    </span>,
+                                    "value": 0.2073170731707317,
+                                  }
+
                   off_luck: {
                      "deltaOffPpp": 2.0618034009287878,
                      "deltaOffEfg": 0.010894308943089424,
@@ -29968,6 +31003,15 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                             "value": 0.4519512195121951,
                                           }
 
+                      off_ftr: Object {
+                                            "extraInfo": <span>
+                                              FT: 
+                                              72.5
+                                              %
+                                            </span>,
+                                            "value": 0.2073170731707317,
+                                          }
+
                       off_luck: {
                          "deltaOffPpp": 2.0618034009287878,
                          "deltaOffEfg": 0.010894308943089424,
@@ -30223,6 +31267,15 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                     "value": 0.06666666666666667,
                                   }
 
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      100.0
+                                      %
+                                    </span>,
+                                    "value": 0.6666666666666666,
+                                  }
+
                   off_luck: undefined
 
                   off_rtg: Object {
@@ -30465,6 +31518,15 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
 
                       off_drb: Object {
                                             "value": 0.06666666666666667,
+                                          }
+
+                      off_ftr: Object {
+                                            "extraInfo": <span>
+                                              FT: 
+                                              100.0
+                                              %
+                                            </span>,
+                                            "value": 0.6666666666666666,
                                           }
 
                       off_luck: undefined
@@ -30967,6 +32029,15 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                         "value": 0.09433962264150944,
                       }
 
+            off_ftr: Object {
+                        "extraInfo": <span>
+                          FT: 
+                          79.3
+                          %
+                        </span>,
+                        "value": 0.5787671232876712,
+                      }
+
             off_luck: undefined
 
             off_rtg: Object {
@@ -31180,6 +32251,15 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
 
             off_drb: Object {
                         "value": 0.10526315789473684,
+                      }
+
+            off_ftr: Object {
+                        "extraInfo": <span>
+                          FT: 
+                          88.4
+                          %
+                        </span>,
+                        "value": 0.671875,
                       }
 
             off_luck: undefined
@@ -31409,6 +32489,15 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                         "value": 0.5997191011235955,
                       }
 
+            off_ftr: Object {
+                        "extraInfo": <span>
+                          FT: 
+                          81.1
+                          %
+                        </span>,
+                        "value": 0.5955056179775281,
+                      }
+
             off_luck: undefined
 
             off_rtg: Object {
@@ -31622,6 +32711,15 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
 
             off_drb: Object {
                         "value": 0.14831130690161526,
+                      }
+
+            off_ftr: Object {
+                        "extraInfo": <span>
+                          FT: 
+                          72.5
+                          %
+                        </span>,
+                        "value": 0.2073170731707317,
                       }
 
             off_luck: undefined
@@ -31839,6 +32937,15 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                         "value": 0.1380952380952381,
                       }
 
+            off_ftr: Object {
+                        "extraInfo": <span>
+                          FT: 
+                          71.7
+                          %
+                        </span>,
+                        "value": 0.2,
+                      }
+
             off_luck: undefined
 
             off_rtg: Object {
@@ -32052,6 +33159,15 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
 
             off_drb: Object {
                         "value": 0.06666666666666667,
+                      }
+
+            off_ftr: Object {
+                        "extraInfo": <span>
+                          FT: 
+                          100.0
+                          %
+                        </span>,
+                        "value": 0.6666666666666666,
                       }
 
             off_luck: undefined
@@ -32302,6 +33418,15 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                 "value": 0.5997191011235955,
                               }
 
+                off_ftr: Object {
+                                "extraInfo": <span>
+                                  FT: 
+                                  81.1
+                                  %
+                                </span>,
+                                "value": 0.5955056179775281,
+                              }
+
                 off_luck: undefined
 
                 off_rtg: Object {
@@ -32535,6 +33660,15 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                 "value": 0.5997191011235955,
                               }
 
+                off_ftr: Object {
+                                "extraInfo": <span>
+                                  FT: 
+                                  81.1
+                                  %
+                                </span>,
+                                "value": 0.5955056179775281,
+                              }
+
                 off_luck: undefined
 
                 off_rtg: Object {
@@ -32758,6 +33892,15 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                 "value": 0.10526315789473684,
                               }
 
+                off_ftr: Object {
+                                "extraInfo": <span>
+                                  FT: 
+                                  88.4
+                                  %
+                                </span>,
+                                "value": 0.671875,
+                              }
+
                 off_luck: undefined
 
                 off_rtg: Object {
@@ -32977,6 +34120,15 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
 
                 off_drb: Object {
                                 "value": 0.10526315789473684,
+                              }
+
+                off_ftr: Object {
+                                "extraInfo": <span>
+                                  FT: 
+                                  88.4
+                                  %
+                                </span>,
+                                "value": 0.671875,
                               }
 
                 off_luck: undefined
@@ -33202,6 +34354,15 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                 "value": 0.09433962264150944,
                               }
 
+                off_ftr: Object {
+                                "extraInfo": <span>
+                                  FT: 
+                                  79.3
+                                  %
+                                </span>,
+                                "value": 0.5787671232876712,
+                              }
+
                 off_luck: undefined
 
                 off_rtg: Object {
@@ -33421,6 +34582,15 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
 
                 off_drb: Object {
                                 "value": 0.09433962264150944,
+                              }
+
+                off_ftr: Object {
+                                "extraInfo": <span>
+                                  FT: 
+                                  79.3
+                                  %
+                                </span>,
+                                "value": 0.5787671232876712,
                               }
 
                 off_luck: undefined
@@ -33646,6 +34816,15 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                 "value": 0.06666666666666667,
                               }
 
+                off_ftr: Object {
+                                "extraInfo": <span>
+                                  FT: 
+                                  100.0
+                                  %
+                                </span>,
+                                "value": 0.6666666666666666,
+                              }
+
                 off_luck: undefined
 
                 off_rtg: Object {
@@ -33865,6 +35044,15 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
 
                 off_drb: Object {
                                 "value": 0.06666666666666667,
+                              }
+
+                off_ftr: Object {
+                                "extraInfo": <span>
+                                  FT: 
+                                  100.0
+                                  %
+                                </span>,
+                                "value": 0.6666666666666666,
                               }
 
                 off_luck: undefined
@@ -34090,6 +35278,15 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                 "value": 0.1380952380952381,
                               }
 
+                off_ftr: Object {
+                                "extraInfo": <span>
+                                  FT: 
+                                  71.7
+                                  %
+                                </span>,
+                                "value": 0.2,
+                              }
+
                 off_luck: undefined
 
                 off_rtg: Object {
@@ -34309,6 +35506,15 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
 
                 off_drb: Object {
                                 "value": 0.1380952380952381,
+                              }
+
+                off_ftr: Object {
+                                "extraInfo": <span>
+                                  FT: 
+                                  71.7
+                                  %
+                                </span>,
+                                "value": 0.2,
                               }
 
                 off_luck: undefined
@@ -34534,6 +35740,15 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                 "value": 0.14831130690161526,
                               }
 
+                off_ftr: Object {
+                                "extraInfo": <span>
+                                  FT: 
+                                  72.5
+                                  %
+                                </span>,
+                                "value": 0.2073170731707317,
+                              }
+
                 off_luck: undefined
 
                 off_rtg: Object {
@@ -34753,6 +35968,15 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
 
                 off_drb: Object {
                                 "value": 0.14831130690161526,
+                              }
+
+                off_ftr: Object {
+                                "extraInfo": <span>
+                                  FT: 
+                                  72.5
+                                  %
+                                </span>,
+                                "value": 0.2073170731707317,
                               }
 
                 off_luck: undefined
@@ -35648,6 +36872,15 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                     "value": 0.09433962264150944,
                                   }
 
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      79.3
+                                      %
+                                    </span>,
+                                    "value": 0.5787671232876712,
+                                  }
+
                   off_luck: undefined
 
                   off_rtg: Object {
@@ -35892,6 +37125,15 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                             "value": 0.09433962264150944,
                                           }
 
+                      off_ftr: Object {
+                                            "extraInfo": <span>
+                                              FT: 
+                                              79.3
+                                              %
+                                            </span>,
+                                            "value": 0.5787671232876712,
+                                          }
+
                       off_luck: undefined
 
                       off_rtg: Object {
@@ -36112,6 +37354,15 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
 
                   off_drb: Object {
                                     "value": 0.10526315789473684,
+                                  }
+
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      88.4
+                                      %
+                                    </span>,
+                                    "value": 0.671875,
                                   }
 
                   off_luck: undefined
@@ -36358,6 +37609,15 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                             "value": 0.10526315789473684,
                                           }
 
+                      off_ftr: Object {
+                                            "extraInfo": <span>
+                                              FT: 
+                                              88.4
+                                              %
+                                            </span>,
+                                            "value": 0.671875,
+                                          }
+
                       off_luck: undefined
 
                       off_rtg: Object {
@@ -36581,6 +37841,15 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
 
                   off_drb: Object {
                                     "value": 0.14831130690161526,
+                                  }
+
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      72.5
+                                      %
+                                    </span>,
+                                    "value": 0.2073170731707317,
                                   }
 
                   off_luck: undefined
@@ -36827,6 +38096,15 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                             "value": 0.14831130690161526,
                                           }
 
+                      off_ftr: Object {
+                                            "extraInfo": <span>
+                                              FT: 
+                                              72.5
+                                              %
+                                            </span>,
+                                            "value": 0.2073170731707317,
+                                          }
+
                       off_luck: undefined
 
                       off_rtg: Object {
@@ -37050,6 +38328,15 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
 
                   off_drb: Object {
                                     "value": 0.06666666666666667,
+                                  }
+
+                  off_ftr: Object {
+                                    "extraInfo": <span>
+                                      FT: 
+                                      100.0
+                                      %
+                                    </span>,
+                                    "value": 0.6666666666666666,
                                   }
 
                   off_luck: undefined
@@ -37294,6 +38581,15 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
 
                       off_drb: Object {
                                             "value": 0.06666666666666667,
+                                          }
+
+                      off_ftr: Object {
+                                            "extraInfo": <span>
+                                              FT: 
+                                              100.0
+                                              %
+                                            </span>,
+                                            "value": 0.6666666666666666,
                                           }
 
                       off_luck: undefined
