@@ -639,7 +639,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
               startingVal={filterStr}
               onChange={(t: string) => setFilterStr(t)}
               timeout={500}
-              placeholder = "eg TeamA;-TeamB;Player1Code;Player2FirstName;-Player3Surname"
+              placeholder = "eg Player1Surname,Player2FirstName,-Player3Name"
             />
           </InputGroup>
         </Form.Group>

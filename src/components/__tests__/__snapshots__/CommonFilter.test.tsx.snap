@@ -570,7 +570,7 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
               </ForwardRef>
             </ForwardRef>
           }
-          placement="left"
+          placement="auto"
           rootClose={true}
           trigger="click"
         >
@@ -1569,7 +1569,7 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
               </ForwardRef>
             </ForwardRef>
           }
-          placement="left"
+          placement="auto"
           rootClose={true}
           trigger="click"
         >

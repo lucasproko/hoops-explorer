@@ -124,6 +124,8 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
 
   // 1] Data Model
 
+  const [ clipboard, setClipboard] = useState(null as null | ClipboardJS);
+
   // 2] State
 
   // Data source
@@ -152,6 +154,20 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
   const [ showLuckAdjDiags, setShowLuckAdjDiags ] = useState(_.isNil(startingState.showLineupLuckDiags) ?
     ParamDefaults.defaultLineupLboardLuckDiagMode : startingState.showLineupLuckDiags
   );
+
+  useEffect(() => { // Add and remove clipboard listener
+    initClipboard();
+    if (typeof document !== `undefined`) {
+      //(if we added a clipboard listener, then remove it on page close)
+      //(if we added a submitListener, then remove it on page close)
+      return () => {
+        if (clipboard) {
+          clipboard.destroy();
+          setClipboard(null);
+        }
+      };
+    }
+  });
 
   useEffect(() => { //(this ensures that the filter component is up to date with the union of these fields)
     const newState = {
@@ -322,6 +338,24 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
         </Button>
       </OverlayTrigger>;
   };
+  /** This grovelling is needed to ensure that clipboard is only loaded client side */
+  function initClipboard() {
+    if (null == clipboard) {
+      var newClipboard = new ClipboardJS(`#copyLink_lineupLeaderboard`, {
+        text: function(trigger) {
+          return window.location.href;
+        }
+      });
+      newClipboard.on('success', (event: ClipboardJS.Event) => {
+        //(unlike other tables, don't add to history)
+        // Clear the selection in some visually pleasing way
+        setTimeout(function() {
+          event.clearSelection();
+        }, 150);
+      });
+      setClipboard(newClipboard);
+    }
+  }
 
   function getCurrentConfsOrPlaceholder() {
     return (confs == "") ?

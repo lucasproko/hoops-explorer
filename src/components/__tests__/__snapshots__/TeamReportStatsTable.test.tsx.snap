@@ -41,7 +41,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
             </InputGroupPrepend>
             <AsyncFormControl
               onChange={[Function]}
-              placeholder="eg TeamA;-TeamB;Player1Code;Player2FirstName;-Player3Surname"
+              placeholder="eg Player1Surname,Player2FirstName,-Player3Name"
               startingVal=""
               timeout={500}
               validate={[Function]}
@@ -9196,7 +9196,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
             </InputGroupPrepend>
             <AsyncFormControl
               onChange={[Function]}
-              placeholder="eg TeamA;-TeamB;Player1Code;Player2FirstName;-Player3Surname"
+              placeholder="eg Player1Surname,Player2FirstName,-Player3Name"
               startingVal=""
               timeout={500}
               validate={[Function]}
@@ -23079,7 +23079,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
             </InputGroupPrepend>
             <AsyncFormControl
               onChange={[Function]}
-              placeholder="eg TeamA;-TeamB;Player1Code;Player2FirstName;-Player3Surname"
+              placeholder="eg Player1Surname,Player2FirstName,-Player3Name"
               startingVal=""
               timeout={500}
               validate={[Function]}
@@ -35954,7 +35954,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
             </InputGroupPrepend>
             <AsyncFormControl
               onChange={[Function]}
-              placeholder="eg TeamA;-TeamB;Player1Code;Player2FirstName;-Player3Surname"
+              placeholder="eg Player1Surname,Player2FirstName,-Player3Name"
               startingVal=""
               timeout={500}
               validate={[Function]}
@@ -52027,7 +52027,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
             </InputGroupPrepend>
             <AsyncFormControl
               onChange={[Function]}
-              placeholder="eg TeamA;-TeamB;Player1Code;Player2FirstName;-Player3Surname"
+              placeholder="eg Player1Surname,Player2FirstName,-Player3Name"
               startingVal="AaWiggins"
               timeout={500}
               validate={[Function]}
@@ -56341,7 +56341,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
             </InputGroupPrepend>
             <AsyncFormControl
               onChange={[Function]}
-              placeholder="eg TeamA;-TeamB;Player1Code;Player2FirstName;-Player3Surname"
+              placeholder="eg Player1Surname,Player2FirstName,-Player3Name"
               startingVal=""
               timeout={500}
               validate={[Function]}

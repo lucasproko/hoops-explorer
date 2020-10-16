@@ -40,7 +40,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
           </InputGroupPrepend>
           <AsyncFormControl
             onChange={[Function]}
-            placeholder="eg TeamA;-TeamB;Player1Code;Player2FirstName;-Player3Surname"
+            placeholder="eg Player1Code=PG;Player2FirstName;-Player3Surname;Player4Name=4+5"
             startingVal=""
             timeout={500}
           />
@@ -3571,7 +3571,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
           </InputGroupPrepend>
           <AsyncFormControl
             onChange={[Function]}
-            placeholder="eg TeamA;-TeamB;Player1Code;Player2FirstName;-Player3Surname"
+            placeholder="eg Player1Code=PG;Player2FirstName;-Player3Surname;Player4Name=4+5"
             startingVal=""
             timeout={500}
           />
@@ -6271,7 +6271,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
           </InputGroupPrepend>
           <AsyncFormControl
             onChange={[Function]}
-            placeholder="eg TeamA;-TeamB;Player1Code;Player2FirstName;-Player3Surname"
+            placeholder="eg Player1Code=PG;Player2FirstName;-Player3Surname;Player4Name=4+5"
             startingVal=""
             timeout={500}
           />

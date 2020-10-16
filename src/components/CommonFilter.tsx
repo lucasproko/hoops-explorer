@@ -397,11 +397,12 @@ const CommonFilter: CommonFilterI = ({
   /** Add button to allow users to access their analysis history easily */
   const getHistoryButton = () => {
 
+    // I actually want placement=left but it doesn't work on mobile
     return <OverlayTrigger
       rootClose={true}
       trigger="click"
       key="left"
-      placement="left"
+      placement="auto"
       overlay={
         <Popover id="popover-positioned-left" style={{ maxWidth: historySelectContainerWidth }}>
           <Popover.Title as="h3">{`History`}</Popover.Title>

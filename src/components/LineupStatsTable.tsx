@@ -331,7 +331,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
               startingVal={filterStr}
               onChange={(t: string) => friendlyChange(() => setFilterStr(t), t != filterStr)}
               timeout={500}
-              placeholder = "eg TeamA;-TeamB;Player1Code;Player2FirstName;-Player3Surname"
+                placeholder = "eg Player1Code=PG;Player2FirstName;-Player3Surname;Player4Name=4+5"
             />
           </InputGroup>
         </Form.Group>
