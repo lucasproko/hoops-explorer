@@ -15,6 +15,7 @@ import Tooltip from 'react-bootstrap/Tooltip';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 
 // Utils
+import { PlayTypeUtils } from "../../utils/stats/PlayTypeUtils";
 import { PositionUtils } from "../../utils/stats/PositionUtils";
 import { CommonTableDefs } from "../../utils/CommonTableDefs";
 import { CbbColors } from "../../utils/CbbColors";
@@ -62,21 +63,65 @@ const complexDiagTable = {
 };
 */
 
+const tidyNumbers = (k: string, v: any) => {
+  if (_.isNumber(v)) {
+    const numStr = v.toFixed(3);
+    if (_.endsWith(numStr, ".000")) {
+      return v;
+    } else {
+      return parseFloat(numStr);
+    }
+  } else {
+    return v;
+  }
+}
+
 type Props = {
   player: Record<string, any>,
+  rosterStatsByCode: Record<string, any>,
   teamSeason: string,
   showHelp: boolean,
   showDetailsOverride?: boolean
 };
-const PlayerPlayTypeDiagView: React.FunctionComponent<Props> = ({player, teamSeason, showHelp, showDetailsOverride}) => {
+const PlayerPlayTypeDiagView: React.FunctionComponent<Props> = ({player, rosterStatsByCode, teamSeason, showHelp, showDetailsOverride}) => {
 
   return <span>
       <span>
-        <b>Play Type Breakdown for [{player.key}]</b>
+        <b>Half-Court Play Type Breakdown for [{player.key}]</b>
       </span>
       <br/>
-      {[ "3p", "mid", "rim" ].flatMap((key) => {
-          return [ "target", "source" ].map((loc) => {
+      {[ "target", "source" ].flatMap((loc) => {
+          return [ "3p", "mid", "rim", "" ].map((key) => {
+            if (key == "") return <br key={key+loc}/>;
+            const allAssistNetwork = player[`off_ast_${key}_${loc}`]?.value || {};
+            const statsPerPosFamily = PlayTypeUtils.simplifyAssistNetwork(
+              allAssistNetwork, rosterStatsByCode, key, loc == "target"
+            );
+            return <span key={key+loc}>
+                <span>{key} {loc} ballhandler {JSON.stringify(
+                  statsPerPosFamily.ballhandler, tidyNumbers
+                )}</span>
+                <br/>
+                <span>{key} {loc} wing {JSON.stringify(
+                  statsPerPosFamily.wing, tidyNumbers
+                )}</span>
+                <br/>
+                <span>{key} {loc} big {JSON.stringify(
+                  statsPerPosFamily.big, tidyNumbers
+                )}</span>
+                <br/>
+              </span>;
+          });
+        })
+      }
+      <br/>
+      <span>
+        <b>Raw Assist Networks for [{player.key}]</b>
+      </span>
+      <br/>
+      {[ "target", "source" ].flatMap((loc) => {
+        return [ "3p", "mid", "rim", "" ].map((key) => {
+          if (key == "") return <br key={key+loc}/>;
             return <span key={key+loc}>
                 <span>{key} {loc} {JSON.stringify(
                   player[`off_ast_${key}_${loc}`]?.value || {}, null, 3
