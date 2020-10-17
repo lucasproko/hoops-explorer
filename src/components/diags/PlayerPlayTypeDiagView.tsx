@@ -67,7 +67,7 @@ const tidyNumbers = (k: string, v: any) => {
   if (_.isNumber(v)) {
     const numStr = v.toFixed(3);
     if (_.endsWith(numStr, ".000")) {
-      return v;
+      return numStr.split(".")[0];
     } else {
       return parseFloat(numStr);
     }
@@ -85,18 +85,43 @@ type Props = {
 };
 const PlayerPlayTypeDiagView: React.FunctionComponent<Props> = ({player, rosterStatsByCode, teamSeason, showHelp, showDetailsOverride}) => {
 
+  const [targetAssistNetworks, sourceAssistNetworks] = [ "target", "source" ].map((loc) => {
+    const targetNotSource = loc == "target";
+    return _.fromPairs([ "3p", "mid", "rim" ].map((key) => {
+      const allAssistNetwork = player[`off_ast_${key}_${loc}`]?.value || {};
+      const statsPerPosFamily = PlayTypeUtils.simplifyAssistNetwork(
+        allAssistNetwork,
+        targetNotSource ? rosterStatsByCode : player,
+        key, targetNotSource
+      );
+      return [ key, statsPerPosFamily ];
+    }));
+  });
+
   return <span>
       <span>
         <b>Half-Court Play Type Breakdown for [{player.key}]</b>
       </span>
       <br/>
+      {PlayTypeUtils.buildPlayTypes(
+          player, targetAssistNetworks, sourceAssistNetworks
+        ).map(kv => {
+          return <div key={kv[0]}>
+            <b>{kv[0]}</b><br/>
+            {JSON.stringify(kv[1], tidyNumbers)}
+          </div>;
+        })
+      }
+      <span>
+        <b>Diags ... Half-Court Play Type Breakdown for [{player.key}]</b>
+      </span>
+      <br/>
       {[ "target", "source" ].flatMap((loc) => {
+          const targetNotSource = loc == "target";
           return [ "3p", "mid", "rim", "" ].map((key) => {
             if (key == "") return <br key={key+loc}/>;
-            const allAssistNetwork = player[`off_ast_${key}_${loc}`]?.value || {};
-            const statsPerPosFamily = PlayTypeUtils.simplifyAssistNetwork(
-              allAssistNetwork, rosterStatsByCode, key, loc == "target"
-            );
+            const statsPerPosFamily = targetNotSource ? targetAssistNetworks[key] : sourceAssistNetworks[key];
+
             return <span key={key+loc}>
                 <span>{key} {loc} ballhandler {JSON.stringify(
                   statsPerPosFamily.ballhandler, tidyNumbers

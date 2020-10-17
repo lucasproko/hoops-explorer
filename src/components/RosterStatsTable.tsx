@@ -527,7 +527,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
         showPlayTypes ?
           [ GenericTableOps.buildTextRow(
             <PlayerPlayTypeDiagView
-              player={p.baseline}
+              player={{...p.baseline, posClass: p.global.posClass}}
               rosterStatsByCode={globalRosterStatsByCode}
               teamSeason={teamSeasonLookup} showHelp={showHelp}/>, "small"
           ) ] : [],
