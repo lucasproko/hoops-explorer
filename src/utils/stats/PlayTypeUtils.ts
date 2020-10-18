@@ -82,7 +82,7 @@ export class PlayTypeUtils {
     //TODO: dole out FT credit to play types (based on %s of: rims, unassisted mid)
 
     const mutableResultArray = [] as Array<[string, PlayTypeInfo]>;
-    const mutableTotalsArray = playInfo0;
+    const mutableTotalsArray = { ... playInfo0 };
 
     // Build player family:
     const playerFamily = PlayTypeUtils.buildPosFamily(playerStats.posClass);
@@ -92,8 +92,9 @@ export class PlayTypeUtils {
       const posFamilyName = PosFamilyNames[familyIndex]!;
 
       // Turns my assists into play info:
+      // Note that for target, you swap the key round ie <<assisted>>_shotType_<<shotTaker>>
       const flatTargetNetwork = _.chain(targetAssistNetworks).toPairs().flatMap(kv => {
-        return _.toPairs(kv[1]).map(kv2 => [`${kv[0]}_${kv2[0]}`, kv2[1]]);
+        return _.toPairs(kv[1]).map(kv2 => [`${kv2[0]}_${kv[0]}`, kv2[1]]);
       }).value();
       const targetPlayTypes = flatTargetNetwork.map(kv => {
         const shotTypeFrom = kv[0];
@@ -109,7 +110,7 @@ export class PlayTypeUtils {
         mutableTotalsArray.passPossPct += toAdd.passPossPct;
         mutableTotalsArray.assistPossPct += toAdd.assistPossPct;
 
-        return [`${posFamilyName}_${shotTypeFrom}`, toAdd];
+        return [`${shotTypeFrom}_${posFamilyName}`, toAdd];
       });
 
       // Turns assists to me into play info:
@@ -169,11 +170,35 @@ export class PlayTypeUtils {
       });
       return sourcePlayTypes.concat(targetPlayTypes);
     });
-    return playTypes;
+
+    const completePlayTypes = (vals: Array<PlayTypeInfo>) => {
+      const merged = _.transform(vals, (acc, v) => {
+        acc.shotLikePossPct += v.shotLikePossPct;
+        acc.scoringPossPct += v.scoringPossPct;
+        acc.passPossPct += v.passPossPct;
+        acc.assistPossPct += v.assistPossPct;
+        acc.targetEfg += v.targetEfg;
+      },  { ...playInfo0 });
+      return { ...merged,
+        totalPossPct: merged.shotLikePossPct + merged.passPossPct,
+        targetEfg: merged.assistPossPct > 0 ? merged.targetEfg/merged.assistPossPct : 0
+      };
+    };
+
+    return _.chain(playTypes).groupBy(kv =>
+      PlayTypeUtils.playTypesByFamily[kv[0]!]!
+    ).toPairs().map(keyVals => {
+      const key = keyVals[0]!;
+      const vals = keyVals[1]!;
+      return [ key, completePlayTypes(vals.map(kv => kv[1])) ];
+    }).filter(kv => kv[1].totalPossPct >= 5).value();
   }
 
+//TODO: these descs don't work well because eg Cowan: to Stix for 3 shows as "3P Assisted by a ballhandler"
+// not: "Ballhandler to big: for 3"
+
   /** PlayerFamily_ShotType_([source|target]_AssisterFamily)? */
-  private static playTypes = {
+  private static playTypesByFamily = {
     // 1] Ball handler:
 
     // 1.1] 3P
