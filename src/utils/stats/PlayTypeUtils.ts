@@ -10,6 +10,7 @@ export type PlayTypeRawInfo = { scoringPoss: number, eFG: number, fg: number, ap
 const playRawInfo0: PlayTypeRawInfo = { scoringPoss: 0, eFG: 0, fg: 0, approxPoss: 0 };
 
 export type PlayTypeInfo = {
+  type: "target" | "source" | "sum",
   totalPossPct: number,
   shotLikePossPct: number,
   scoringPossPct: number,
@@ -17,7 +18,9 @@ export type PlayTypeInfo = {
   assistPossPct: number,
   targetEfg: number,
 };
-const playInfo0 = { totalPossPct: 0, shotLikePossPct: 0, scoringPossPct: 0, passPossPct: 0, assistPossPct: 0, targetEfg: 0 };
+const playInfo0 = {
+  type: "sum", totalPossPct: 0, shotLikePossPct: 0, scoringPossPct: 0, passPossPct: 0, assistPossPct: 0, targetEfg: 0
+};
 
 
 /** Utilities for guessing different play types based on box scorer info */
@@ -100,6 +103,7 @@ export class PlayTypeUtils {
         const shotTypeFrom = kv[0];
         const targetInfo = kv[1] as PlayTypeRawInfo;
         const toAdd = {
+          type: "target",
           totalPossPct: 0,
           shotLikePossPct: 0,
           scoringPossPct: 0,
@@ -157,6 +161,7 @@ export class PlayTypeUtils {
         const shotTypeFrom = kv[0];
         const sourceInfo = kv[1] as PlayTypeRawInfo;
         const toAdd = {
+          type: "source",
           totalPossPct: 0,
           shotLikePossPct: sourceInfo.approxPoss*familyPct,
           scoringPossPct: sourceInfo.scoringPoss*familyPct,
@@ -185,9 +190,11 @@ export class PlayTypeUtils {
       };
     };
 
-    return _.chain(playTypes).groupBy(kv =>
-      PlayTypeUtils.playTypesByFamily[kv[0]!]!
-    ).toPairs().map(keyVals => {
+    return _.chain(playTypes).groupBy(kv => {
+      const key = kv[0]!;
+      const subKey = kv[1]!.type;
+      return PlayTypeUtils.playTypesByFamily[key]!.[subKey]!;
+    }).toPairs().map(keyVals => {
       const key = keyVals[0]!;
       const vals = keyVals[1]!;
       return [ key, completePlayTypes(vals.map(kv => kv[1])) ];
@@ -195,7 +202,7 @@ export class PlayTypeUtils {
   }
 
 //TODO: these descs don't work well because eg Cowan: to Stix for 3 shows as "3P Assisted by a ballhandler"
-// not: "Ballhandler to big: for 3"
+// not: "Ballhandler to big: for 3" (target: ballhandler_3p_big)
 
   /** PlayerFamily_ShotType_([source|target]_AssisterFamily)? */
   private static playTypesByFamily = {
@@ -203,106 +210,205 @@ export class PlayTypeUtils {
 
     // 1.1] 3P
 
-    "ballhandler_3p":
-      "3P Unassisted: eg off ball-screen, ISO, dribble jumper off misc action",
-    "ballhandler_3p_ballhandler":
-      "3P Assisted by a ballhandler: eg drive-and-kick, hockey assist after defense collapses inside, misc action",
-    "ballhandler_3p_wing":
-      "3P Assisted by a wing: eg slash-and-kick, hockey assist after defense collapses inside, misc action",
-    "ballhandler_3p_big":
-      "3P Assisted by frontcourt: eg kick-out after an ORB, pass out of a post-up",
+    "ballhandler_3p": {
+      source: "3P Unassisted",
+      examples: [ "off ball-screen", "ISO", "dribble jumper off misc action" ]
+    },
+    "ballhandler_3p_ballhandler": {
+      source: "3P Assisted by a ballhandler",
+      target: "Pass to ballhandler for 3P",
+      examples: [ "drive-and-kick", "hockey assist after defense collapses inside", "misc action" ]
+    },
+    "ballhandler_3p_wing": {
+      source: "3P Assisted by a wing",
+      target: "Pass to ballhandler for 3P",
+      examples: [ "slash-and-kick", "hockey assist after defense collapses inside", "misc action" ]
+    },
+    "ballhandler_3p_big": {
+      source: "3P Assisted by frontcourt",
+      target: "Pass to ballhandler for 3P",
+      examples: [ "kick-out after an ORB", "pass out of a post-up" ]
+    },
 
     // 1.2] mid
 
-    "ballhandler_mid":
-      "Mid Range Unassisted: eg drive and pull-up off ball-screen or ISO, misc action",
-    "ballhandler_mid_ballhandler":
-      "Mid Range Assisted by ballhandler: eg spread offense, misc action",
-    "ballhandler_mid_wing":
-      "Mid Range Assisted by wing: eg spread offense, misc action",
-    "ballhandler_mid_big":
-      "Mid Range Assisted from frontcourt: eg (usually sub-optimal) pass out of a post-up",
+    "ballhandler_mid": {
+      source: "Mid Range Unassisted",
+      examples: [ "drive and pull-up off ball-screen or ISO", "misc action" ]
+    },
+    "ballhandler_mid_ballhandler": {
+      source: "Mid Range Assisted by ballhandler",
+      target: "Pass to ballhandler for mid-range",
+      examples: [ "spread offense", "misc action" ]
+    },
+    "ballhandler_mid_wing": {
+      source: "Mid Range Assisted by wing",
+      target: "Pass to ballhandler for mid-range",
+      examples: [ "spread offense, misc action" ]
+    },
+    "ballhandler_mid_big": {
+      source: "Mid Range Assisted from frontcourt",
+      target: "Pass to ballhandler for mid-range",
+      examples: [ "(usually sub-optimal) pass out of a post-up" ]
+    },
 
     // 1.3] rim
 
-    "ballhandler_rim":
-      "Drive Unassisted: eg attacks the rim off pick-and-roll, ISO",
-    "ballhandler_rim_ballhandler":
-      "Layup Assisted by ballhandler: eg cut",
-    "ballhandler_rim_wing":
-      "Layup Assisted by wing: eg cut",
-    "ballhandler_rim_big":
-      "Layup Assisted by frontcourt: eg cut",
+    "ballhandler_rim": {
+      source: "Drive Unassisted",
+      examples: [ "attacks the rim off pick-and-roll", "ISO" ]
+    },
+    "ballhandler_rim_ballhandler": {
+      source: "Layup Assisted by ballhandler",
+      target: "Pass to ballhandler for a layup",
+      examples: [ "cut" ]
+    },
+    "ballhandler_rim_wing": {
+      source: "Layup Assisted by wing",
+      target: "Pass to ballhandler for a layup",
+      examples: [ "cut" ]
+    },
+    "ballhandler_rim_big": {
+      source: "Layup Assisted by frontcourt",
+      target: "Pass to ballhandler for a layup",
+      examples: [ "cut" ]
+    },
 
     // 2] Wing:
 
     // 2.1] 3P
 
-    "wing_3p":
-      "3P Unassisted: eg off ball-screen, ISO, dribble jumper off misc action",
-    "wing_3p_ballhandler":
-      "3P Assisted by a ballhandler: eg drive-and-kick, hockey assist after defense collapses inside, misc action",
-    "wing_3p_wing":
-      "3P Assisted by a wing: eg slash-and-kick, hockey assist after defense collapses inside, misc action",
-    "wing_3p_big":
-      "3P Assisted by frontcourt: eg kick-out after an ORB, pass out of a post-up",
+    "wing_3p": {
+      source: "3P Unassisted",
+      examples: [ "off ball-screen", "ISO", "dribble jumper off misc action" ]
+    },
+    "wing_3p_ballhandler": {
+      source: "3P Assisted by a ballhandler",
+      target: "Pass to wing for 3P",
+      examples: [ "drive-and-kick", "hockey assist after defense collapses inside", "misc action" ]
+    },
+    "wing_3p_wing": {
+      source: "3P Assisted by a wing",
+      target: "Pass to wing for 3P",
+      examples: [ "slash-and-kick", "hockey assist after defense collapses inside", "misc action" ]
+    },
+    "wing_3p_big": {
+      source: "3P Assisted by frontcourt",
+      target: "Pass to wing for 3P",
+      examples: [ "kick-out after an ORB", "pass out of a post-up" ]
+    },
 
     // 2.2] mid
 
-    "wing_mid":
-      "Mid Range Unassisted: eg drive and pull-up off ball-screen or ISO, misc action",
-    "wing_mid_ballhandler":
-      "Mid Range Assisted by ballhandler: eg spread offense, misc action, zone buster",
-    "wing_mid_wing":
-      "Mid Range Assisted by wing: eg spread offense, misc action, zone buster",
-    "wing_mid_big":
-      "Mid Range Assisted from frontcourt: eg (usually sub-optimal) pass out of a post-up",
+    "wing_mid": {
+      source: "Mid Range Unassisted",
+      examples: [ "drive and pull-up off ball-screen or ISO", "misc action" ]
+    },
+    "wing_mid_ballhandler": {
+      source: "Mid Range Assisted by ballhandler",
+      target: "Pass to wing for mid-range",
+      examples: [ "spread offense", "misc action", "zone buster" ]
+    },
+    "wing_mid_wing": {
+      source: "Mid Range Assisted by wing",
+      target: "Pass to wing for mid-range",
+      examples: [ "spread offense, misc action", "zone buster" ]
+    },
+    "wing_mid_big": {
+      source: "Mid Range Assisted from frontcourt",
+      target: "Pass to wing for mid-range",
+      examples: [ "(usually sub-optimal) pass out of a post-up" ]
+    },
 
     // 2.3] rim
 
-    "wing_rim":
-      "Drive Unassisted: eg attacks the rim off pick-and-roll, ISO",
-    "wing_rim_ballhandler":
-      "Layup Assisted by ballhandler: eg cut",
-    "wing_rim_wing":
-      "Layup Assisted by wing: eg cut",
-    "wing_rim_big":
-      "Layup Assisted by frontcourt: eg cut",
+    "wing_rim": {
+      source: "Drive Unassisted",
+      examples: [ "attacks the rim off pick-and-roll", "ISO" ]
+    },
+    "wing_rim_ballhandler": {
+      source: "Layup Assisted by ballhandler",
+      target: "Pass to wing for a layup",
+      examples: [ "cut" ]
+    },
+    "wing_rim_wing": {
+      source: "Layup Assisted by wing",
+      target: "Pass to wing for a layup",
+      examples: [ "cut" ]
+    },
+    "wing_rim_big": {
+      source: "Layup Assisted by frontcourt",
+      target: "Pass to wing for a layup",
+      examples: [ "cut" ]
+    },
 
     // 3] Frontcourt:
 
     // 3.1] 3P
 
-    "big_3p":
-      "3P Unassisted: eg off ball-screen, ISO, dribble jumper off misc action",
-    "big_3p_ballhandler":
-      "3P Assisted by a ballhandler: eg pick-and-pop, misc action",
-    "big_3p_wing":
-      "3P Assisted by a wing: eg pick-and-pop, misc action",
-    "big_3p_big":
-      "3P Assisted by frontcourt: eg kick-out after an ORB, pass out of a post-up",
+    "big_3p": {
+      source: "3P Unassisted",
+      examples: [ "off ball-screen", "ISO", "dribble jumper off misc action" ]
+    },
+    "big_3p_ballhandler": {
+      source: "3P Assisted by a ballhandler",
+      target: "Pass to frontcourt for 3P",
+      examples: [ "pick-and-pop", "misc action" ]
+    },
+    "big_3p_wing": {
+      source: "3P Assisted by a wing",
+      target: "Pass to frontcourt for 3P",
+      examples: [ "pick-and-pop", "misc action" ]
+    },
+    "big_3p_big": {
+      source: "3P Assisted by frontcourt",
+      target: "Pass to frontcourt for 3P",
+      examples: [ "kick-out after an ORB", "pass out of a post-up" ]
+    },
 
     // 3.2] mid
 
-    "big_mid":
-      "Mid Range Unassisted: eg deep post-up, ISO, misc action",
-    "big_mid_ballhandler":
-      "Mid Range Assisted by ballhandler: eg deep post-up, spread offense, misc action",
-    "big_mid_wing":
-      "Mid Range Assisted by wing: eg deep post-up, spread offense, misc action",
-    "big_mid_big":
-      "Mid Range Assisted from frontcourt: eg high-low action",
+    "big_mid": {
+      source: "Mid Range Unassisted",
+      exammples: [ "eg deep post-up", "ISO", "misc action" ]
+    },
+    "big_mid_ballhandler": {
+      source: "Mid Range Assisted by ballhandler",
+      target: "Pass to frontcourt for mid-range",
+      examples: [ "deep post-up", "spread offense", "misc action" ]
+    },
+    "big_mid_wing": {
+      source: "Mid Range Assisted by wing",
+      target: "Pass to frontcourt for mid-range",
+      examples: [ "deep post-up", "spread offense", "misc action" ]
+    },
+    "big_mid_big": {
+      source: "Mid Range Assisted from frontcourt",
+      target: "Pass to frontcourt for mid-range",
+      examples: [ "high-low action" ]
+    },
 
     // 3.3] rim
 
-    "big_rim":
-      "Drive Unassisted: post-up",
-    "big_rim_ballhandler":
-      "Layup Assisted by ballhandler: eg roll or cut, sometimes post-up",
-    "big_rim_wing":
-      "Layup Assisted by wing: eg roll or cut, sometimes post-up",
-    "big_rim_big":
-      "Layup Assisted by frontcourt: eg roll or cut, sometimes post-up",
+    "big_rim": {
+      source: "Layup Unassisted",
+      examples: [ "post-up", "ISO" ]
+    },
+    "big_rim_ballhandler": {
+      source: "Layup Assisted by ballhandler",
+      target: "Pass to frontcourt for layup",
+      examples: [ "roll or cut" , "sometimes post-up" ]
+    },
+    "big_rim_wing": {
+      source: "Layup Assisted by wing",
+      target: "Pass to frontcourt for layup",
+      examples: [ "roll or cut", "sometimes post-up" ]
+    },
+    "big_rim_big": {
+      source: "Layup Assisted by frontcourt",
+      target: "Pass to frontcourt for layup",
+      examples: [ "roll or cut", "sometimes post-up" ]
+    }
   };
 
 }
