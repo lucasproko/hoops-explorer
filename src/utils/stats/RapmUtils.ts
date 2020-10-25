@@ -13,6 +13,13 @@ import { SVD } from 'svd-js'
 // @ts-ignore
 import { add, apply, diag, identity, inv, matrix, mean, multiply, resize, row, sum, transpose, variance, zeros } from 'mathjs';
 
+/** Contains the prior info for individuals (strong priors dominate RAPM, weak priors are dominated)*/
+export type RapmPriorInfo = {
+  includeStrong: Record<string, boolean>; //(only need to set if unbiasWeight>0, else unused - TODO planning to remove unbiasWeight)
+  playersStrong: Array<Record<string, number>>;
+  playersWeak: Array<Record<string, number>>;
+};
+
 /** Useful intermediate results */
 export type RapmPlayerContext = {
   /** If true, then adds an additional row with the desired final result */
@@ -27,17 +34,18 @@ export type RapmPlayerContext = {
   /** The player name in each column */
   colToPlayer: Array<string>;
   /** A shallow copy of the lineups, minus ones with removed player or no off/def possessions */
-  filteredLineups: Array<any>,
+  filteredLineups: Array<any>;
   /** An aggregated view of filteredLineups */
-  teamInfo: Record<string, any>,
+  teamInfo: Record<string, any>;
   /** The D1 average efficiency */
-  avgEfficiency: number,
+  avgEfficiency: number;
   // Handy counts:
   numPlayers: number;
   numLineups: number;
   offLineupPoss: number;
   defLineupPoss: number;
-//TODO: add prior info in here  
+  // Prios:
+  priorInfo: RapmPriorInfo;
 };
 
 /** Holds the multi-collinearity info */
@@ -50,7 +58,7 @@ export type RapmPreProcDiagnostics = {
 export type RapmProcessingInputs = {
   solnMatrix: any | null,
   ridgeLambda: number,
-  //TODO: add weakPriorFactor into here for use in diags
+  rapmAdjPpp: Array<number>,
   prevAttempts: Array<any> //TODO make this list of diag objects typed
 };
 
@@ -64,66 +72,44 @@ export type RapmInfo = {
   defInputs: RapmProcessingInputs
 };
 
-
-/**/
-const priorInfo = {
-  includeStrong: {},
-  playersStrong: [ {}, {}, {}, {}, {}, {}, {}, {}, {} ],
-  playersWeak: [
-    {
-      "key": "Cowan",
-      "off_adj_ppp": 5.5,
-      "def_adj_ppp": -1.7,
-    },
-    {
-      "key": "Stix",
-      "off_adj_ppp": 6.1,
-      "def_adj_ppp": -4.2,
-    },
-    {
-      "key": "Wiggins",
-      "off_adj_ppp": 0.3,
-      "def_adj_ppp": -3.0,
-    },
-    {
-      "key": "Morsell",
-      "off_adj_ppp": 0.0,
-      "def_adj_ppp": -2.0,
-    },
-    {
-      "key": "Ayala",
-      "off_adj_ppp": 0.3,
-      "def_adj_ppp": -1.6,
-    },
-    {
-      "key": "Scott",
-      "off_adj_ppp": 1.7,
-      "def_adj_ppp": -2.7,
-    },
-    {
-      "key": "Lindo",
-      "off_adj_ppp": 1.9,
-      "def_adj_ppp": -2.1,
-    },
-    {
-      "key": "Serrel",
-      "off_adj_ppp": -6.9,
-      "def_adj_ppp": 0.0,
-    },
-    {
-      "key": "Mitchell",
-      "off_adj_ppp": -3.1,
-      "def_adj_ppp": -3.9,
-    },
-  ]
-};
-
-
+/** Handy util for display */
+const tidyNumbers = (k: string, v: any) => {
+  if (_.isNumber(v)) {
+    const numStr = v.toFixed(3);
+    if (_.endsWith(numStr, ".000")) {
+      return numStr.split(".")[0];
+    } else {
+      return parseFloat(numStr);
+    }
+  } else {
+    return v;
+  }
+}
 
 /** Wrapper for some math to calculate RAPM and its various artefacts */
 export class RapmUtils {
 
   // 1] INITIALIZATION LOGIC
+
+  /** Builds priors for all the supported fields for all players */
+  static buildPriors(
+    playersBaseline: Record<string, any>,
+    colToPlayer: Array<string>,
+  ): RapmPriorInfo {
+    return {
+      includeStrong: {}, //(see RapmPriorInfo type definition, not needed unless unbiasWeight > 0)
+      playersStrong: colToPlayer.map(player => { return {}; }), //(not doing this at all)
+      playersWeak: colToPlayer.map(player => {
+        const stats = playersBaseline[player] || {};
+        if (stats) {
+          return {
+            off_adj_ppp: stats.adj_off_rtg?.value || 0,
+            def_adj_ppp: stats.adj_def_rtg?.value || 0,
+          }
+        } else return {};
+      }),
+    };
+  }
 
   /**
   * Builds a context object with functionality required by further processing
@@ -132,7 +118,10 @@ export class RapmUtils {
   */
   static buildPlayerContext(
     players: Array<any>,
-    lineups: Array<any>,
+    lineups: Array<any>
+    ,
+    playersBaseline: Record<string, any> //(used for building priors)
+    ,
     avgEfficiency: number
     ,
     removalPct: number = 0.06,
@@ -222,6 +211,10 @@ export class RapmUtils {
       numLineups: currFilteredLineupSet.length,
       offLineupPoss: teamInfo.off_poss?.value || 0,
       defLineupPoss: teamInfo.def_poss?.value || 0
+      ,
+      priorInfo: RapmUtils.buildPriors(
+        playersBaseline, sortedPlayers, avgEfficiency
+      )
     };
   }
 
@@ -299,7 +292,7 @@ export class RapmUtils {
         inPlayers.forEach((player: any) => {
           const playerIndex = ctx.playerToCol[player.id];
           if (playerIndex >= 0) {
-            priorOffset += priorInfo.playersStrong[playerIndex][`${prefix}_${field}`] || 0;
+            priorOffset += ctx.priorInfo.playersStrong[playerIndex]![`${prefix}_${field}`] || 0;
           } //(else this player is filtered out so ignore - exception case I think)
         });
 
@@ -311,13 +304,13 @@ export class RapmUtils {
     return [
       calculateVector("off").concat(
         extra ?
-        (priorInfo.includeStrong.off_adj_ppp ?
+        (ctx.priorInfo.includeStrong[`off_${field}`] ?
           [ 0 ] : [ ctx.unbiasWeight*(getVal(ctx.teamInfo[`off_${field}`])  - offOffset) ])
           : []
       ),
       calculateVector("def").concat(
         extra ?
-        (priorInfo.includeStrong.def_adj_ppp ?
+        (ctx.priorInfo.includeStrong[`def_${field}`] ?
           [ 0 ] : [ ctx.unbiasWeight*(getVal(ctx.teamInfo[`def_${field}`])  - defOffset) ])
           : []
       )
@@ -399,7 +392,12 @@ export class RapmUtils {
           const resultsPrePrior: number[] = RapmUtils.calculateRapm(
             rapmInput[offOrDef].solnMatrix, vals[offOrDef]
           );
-          const results: number[] = priorInfo.playersStrong.map((stat, index) => (stat[`${offOrDef}_${partialField}`] || 0) + resultsPrePrior[index]!);
+          const results = partialField == "adj_ppp" ?
+            rapmInput[offOrDef].rapmAdjPpp :
+            ctx.priorInfo.playersStrong.map(
+              (stat, index) => (stat[`${offOrDef}_${partialField}`] || 0) + resultsPrePrior[index]!
+            );
+
           return [ field, results ];
         }).value(); //(ie [ ON, OFF ] where ON/OFF = [ (on|off)_field, [ results ] ] )
 
@@ -425,6 +423,28 @@ export class RapmUtils {
     } //(else do nothing)
   }
 
+  /** Use of ridge regression depresses the numbers towards 0. The weak priors let
+      us "fill" the error with the prior stats
+  */
+  static applyWeakPriors(
+    field: string,
+    playerPossPcts: Array<number>,
+    priorInfo: RapmPriorInfo
+  ) {
+    const priorSum =
+      _.chain(priorInfo.playersWeak).map((p, ii) => p[field]!*playerPossPcts[ii]!).sum().value();
+    return (error: number, baseResults: Array<number>) => {
+      if (Math.abs(priorSum) < 0.2) {
+        return baseResults; //error is small, do nothing
+      } else {
+        const priorSumInv = 1/priorSum;
+        return baseResults.map((r, ii) => {
+          return r - error*priorSumInv!*(priorInfo.playersWeak[ii]![field] || 0);
+        });
+      }
+    };
+  }
+
   /**
   * Select a good ridge regression factor to use
   * If diagMode is enabled then add info about each possible regression value
@@ -441,8 +461,12 @@ export class RapmUtils {
         o?.value || 0;
     };
 
-    const offDefDebugMode = { off: true, def: false };
+    const offDefDebugMode = { off: false, def: false };
     const generateTestCases = false;
+
+    if (offDefDebugMode.off || offDefDebugMode.def) {
+      console.log(`RAPM Priors = [${JSON.stringify(ctx.priorInfo, tidyNumbers)}]`);
+    }
 
     const weights = {
       off: offWeights,
@@ -497,6 +521,10 @@ export class RapmUtils {
         def: buildUsageVector("def") as number[]
       };
     })();
+    const useWeakPriorsToFixErrors = {
+      off: RapmUtils.applyWeakPriors(`off_adj_ppp`, pctByPlayer.off, ctx.priorInfo),
+      def: RapmUtils.applyWeakPriors(`def_adj_ppp`, pctByPlayer.def, ctx.priorInfo)
+    };
 
     if (offDefDebugMode.off) console.log(`(Off) Player Poss = [${pctByPlayer.off.map((p: number) => p.toFixed(2))}]`);
 
@@ -507,22 +535,6 @@ export class RapmUtils {
       off: offAdjPoss,
       def: defAdjPoss
     };
-
-    const weakPriorSums = {
-      off: _.chain(priorInfo.playersWeak).map((p, ii) => p.off_adj_ppp*pctByPlayer.off[ii]!).sum().value(),
-      def: _.chain(priorInfo.playersWeak).map((p, ii) => p.def_adj_ppp*pctByPlayer.def[ii]!).sum().value(),
-    }
-    const useWeakPriorsToFixErrors = (res: number[], error: number, offOrDef: "off" | "def") => {
-      const priorSum = weakPriorSums[offOrDef];
-      if (Math.abs(priorSum) < 0.2) {
-        return res; //error is small, do nothing
-      } else {
-        const priorSumInv = 1/priorSum;
-        return res.map((r, ii) => {
-          return r - error*priorSumInv!*priorInfo.playersWeak[ii]![`${offOrDef}_adj_ppp`];
-        });
-      }
-    }
 
     const pickRidgeThresh = { off: 0.061, def: 0.091 }; //(more confident in offensive priors)
     const lambdaRange = [ 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.25, 2.5, 2.75, 3, 3.25, 3.5, 3.75, 4.0 ];
@@ -540,21 +552,22 @@ export class RapmUtils {
           const combinedAdjEffPrePrior = _.sum(_.zip(pctByPlayer[offOrDef], resultsPrePrior).map((zip: Array<number|undefined>) => {
             return (zip[0] || 0)*(zip[1] || 0);
           }));
-          const adjEffErrPrePrior = Math.abs(combinedAdjEffPrePrior - actualEff[offOrDef]);
+          const adjEffErrPrePrior = combinedAdjEffPrePrior - actualEff[offOrDef];
+          const adjEffAbsErrPrePrior = Math.abs(adjEffErrPrePrior);
 
-          const results = useWeakPriorsToFixErrors(resultsPrePrior, combinedAdjEffPrePrior - actualEff[offOrDef], offOrDef);
+          const results = useWeakPriorsToFixErrors[offOrDef](adjEffErrPrePrior, resultsPrePrior);
+
           const combinedAdjEff = _.sum(_.zip(pctByPlayer[offOrDef], results).map((zip: Array<number|undefined>) => {
             return (zip[0] || 0)*(zip[1] || 0);
           }));
           const adjEffErr = Math.abs(combinedAdjEff - actualEff[offOrDef]);
 
-
           if (debugMode) console.log(ctx.colToPlayer);
-          if (debugMode) console.log("rapm[PREE]: " + resultsPrePrior.map((p: number) => p.toFixed(3)));
+          if (debugMode) console.log("rapm[PRE]: " + resultsPrePrior.map((p: number) => p.toFixed(3)));
           if (debugMode) console.log("rapm[POST]: " + results.map((p: number) => p.toFixed(3)));
           if (debugMode) console.log(
             `combinedRapm[PRE] = [${combinedAdjEffPrePrior.toFixed(1)}] vs actualEff = [${actualEff[offOrDef].toFixed(1)}] ... ` +
-            `Err[PRE] = [${adjEffErrPrePrior.toFixed(1)}] Err[POST]=[${adjEffErr.toFixed(1)}]`
+            `Err[PRE] = [${adjEffAbsErrPrePrior.toFixed(1)}] Err[POST]=[${adjEffErr.toFixed(1)}]`
           );
 
           const residuals = RapmUtils.calculatePredictedOut(weights[offOrDef], results, ctx);
@@ -591,6 +604,7 @@ export class RapmUtils {
 
             //(^ since we'll keep going in diag mode, ensure we don't change the actual processing flow)
             acc.output.ridgeLambda = ridgeLambda;
+            acc.output.rapmAdjPpp = results;
             acc.output.solnMatrix = solver;
             if ((adjEffErr >= 1.05) && notFirstStep) {
               if (debugMode) console.log(`-!!!!!!!!!!- DONE PICK PREVIOUS [${acc.lastAttempt.ridgeLambda.toFixed(2)}]`);
@@ -620,6 +634,7 @@ export class RapmUtils {
         // The return vals we care about
         output: {
           ridgeLambda: -1,
+          rapmAdjPpp: [],
           solnMatrix: null,
           prevAttempts: [] as Array<Record<string, any>>
         } as RapmProcessingInputs,

@@ -38,6 +38,7 @@ import AsyncFormControl from './shared/AsyncFormControl';
 // Util imports
 import { getCommonFilterParams, TeamReportFilterParams, ParamDefaults, LuckParams } from '../utils/FilterModels';
 import { LineupUtils } from '../utils/stats/LineupUtils';
+import { RatingUtils } from '../utils/stats/RatingUtils';
 import { RapmInfo, RapmUtils } from '../utils/stats/RapmUtils';
 import { UrlRouting } from '../utils/UrlRouting';
 import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
@@ -240,8 +241,43 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({startingState, da
       );
       if (incRapm) {
         try {
+          // Do some prep on the individual stats we'll use for the prior:
+          const globalRosterStatsByCode =
+            _.chain(rosterStats.global || []).map(p => {
+              return [ p.player_array?.hits?.hits?.[0]?._source?.player?.code || p.key, p ];
+            }).fromPairs().value();
+          const insertExtraInfo = (playersTmp: Array<any>) => {
+            if (playersTmp) {
+              const players = _.cloneDeep(playersTmp);
+              players.forEach((stat) => {
+                // Only regress luck - basically the 3P shooting vs the on-off sample
+                const defLuckAdj = LuckUtils.calcDefPlayerLuckAdj(
+                  stat, stat, avgEfficiency
+                );
+                if (stat.doc_count) {
+                  LuckUtils.injectLuck(stat, undefined, defLuckAdj);
+                }
+                const [
+                  oRtg, adjORtg, rawORtg, rawAdjORtg, oRtgDiag
+                ] = RatingUtils.buildORtg(
+                    stat, globalRosterStatsByCode,
+                    avgEfficiency, false, false
+                  );
+                const [
+                  dRtg, adjDRtg, rawDRtg, rawAdjDRtg, dRtgDiag
+                ] = RatingUtils.buildDRtg(stat, avgEfficiency, false, true);
+                stat.adj_off_rtg = adjORtg;
+                stat.adj_def_rtg = adjDRtg;
+              });
+              return _.keyBy(players, "key");
+            } else return {};
+          }
+          const rapmPriorsBaseline = insertExtraInfo(rosterStats.baseline);
+
+          // Now do all the RAPM work
           const rapmContext = RapmUtils.buildPlayerContext(
             tempTeamReport.players || [], lineupStats.lineups || [],
+            rapmPriorsBaseline,
             avgEfficiency
           );
           const [ offRapmWeights, defRapmWeights ] = RapmUtils.calcPlayerWeights(rapmContext);
@@ -293,7 +329,7 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({startingState, da
       setTimeout(() => { //(ensures that the "processing" element is returned _before_ the processing starts)
         onDataChangeProcessing(lineupStats, teamStats, rosterStats);
         setInBrowserRepOnOffPxing(inBrowserRepOnOffPxing - 1);
-      }, 1);
+      }, 250);
     }
   }, [ inBrowserRepOnOffPxing ] );
 
@@ -352,18 +388,21 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({startingState, da
   /** Only show help for diagnstic on/off on main page */
   const showHelp = !_.startsWith(server, "cbb-on-off-analyzer");
 
-  const tableDataInputs = _.chain(playersWithAdjEff).filter((player) => {
-      const strToTest = player.playerId + " " + player.playerCode;
-      return(
-        (filterFragmentsPve.length == 0) ||
-          (_.find(filterFragmentsPve, (fragment) => strToTest.indexOf(fragment) >= 0) ? true : false))
-        &&
-        ((filterFragmentsNve.length == 0) ||
-          (_.find(filterFragmentsNve, (fragment) => strToTest.indexOf(fragment) >= 0) ? false : true))
-        ;
-    }).sortBy(
-       [ sorter(sortBy) ]
-    ).value();
+  /** Only rebuild the expensive table if one of the parameters that controls it changes */
+  const tableBuilder = () => {
+
+    const tableDataInputs = _.chain(playersWithAdjEff).filter((player) => {
+        const strToTest = player.playerId + " " + player.playerCode;
+        return(
+          (filterFragmentsPve.length == 0) ||
+            (_.find(filterFragmentsPve, (fragment) => strToTest.indexOf(fragment) >= 0) ? true : false))
+          &&
+          ((filterFragmentsNve.length == 0) ||
+            (_.find(filterFragmentsNve, (fragment) => strToTest.indexOf(fragment) >= 0) ? false : true))
+          ;
+      }).sortBy(
+         [ sorter(sortBy) ]
+      ).value();
 
     const playerOnOffTooltip =
       <Tooltip id="playerOnOffTooltip">Open a tab with the on/off analysis for this player</Tooltip>;
@@ -482,6 +521,18 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({startingState, da
           ) : [],
       ]);
     }).value();
+
+    return <GenericTable
+      tableCopyId="teamReportStatsTable"
+      tableFields={CommonTableDefs.onOffReport}
+      tableData={tableData}
+      cellTooltipMode="none"
+    />;
+  };
+  const table = testMode ? tableBuilder() : React.useMemo(tableBuilder, [
+    teamReport, playersWithAdjEff,
+    sortBy, filterStr, showOnOff, showLineupCompositions, repOnOffDiagMode, rapmDiagMode
+  ]);
 
   // 3.2] Sorting utils
 
@@ -726,12 +777,7 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({startingState, da
       </Form.Row>
       <Row className="mt-2">
         <Col style={{paddingLeft: "5px", paddingRight: "5px"}}>
-          <GenericTable
-            tableCopyId="teamReportStatsTable"
-            tableFields={CommonTableDefs.onOffReport}
-            tableData={tableData}
-            cellTooltipMode="none"
-          />
+          {table}
         </Col>
       </Row>
       {
