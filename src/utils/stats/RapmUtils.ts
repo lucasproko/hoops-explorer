@@ -103,10 +103,10 @@ export class RapmUtils {
         const stats = playersBaseline[player] || {};
         if (stats) {
           return {
-            off_adj_ppp: stats.adj_off_rtg?.value || 0,
-            def_adj_ppp: stats.adj_def_rtg?.value || 0,
-          }
-        } else return {};
+            off_adj_ppp: stats.off_adj_rtg?.value || 0,
+            def_adj_ppp: stats.off_adj_rtg?.value || 0,
+          } as Record<string, number>;
+        } else return {} as Record<string, number>;
       }),
     };
   }
@@ -213,7 +213,7 @@ export class RapmUtils {
       defLineupPoss: teamInfo.def_poss?.value || 0
       ,
       priorInfo: RapmUtils.buildPriors(
-        playersBaseline, sortedPlayers, avgEfficiency
+        playersBaseline, sortedPlayers
       )
     };
   }
@@ -439,7 +439,7 @@ export class RapmUtils {
       } else {
         const priorSumInv = 1/priorSum;
         return baseResults.map((r, ii) => {
-          return r - error*priorSumInv!*(priorInfo.playersWeak[ii]![field] || 0);
+          return r - error*priorSumInv*(priorInfo.playersWeak[ii]![field] || 0);
         });
       }
     };

@@ -266,13 +266,13 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({startingState, da
                 const [
                   dRtg, adjDRtg, rawDRtg, rawAdjDRtg, dRtgDiag
                 ] = RatingUtils.buildDRtg(stat, avgEfficiency, false, true);
-                stat.adj_off_rtg = adjORtg;
-                stat.adj_def_rtg = adjDRtg;
+                stat.off_adj_rtg = adjORtg;
+                stat.def_adj_rtg = adjDRtg;
               });
               return _.keyBy(players, "key");
             } else return {};
           }
-          const rapmPriorsBaseline = insertExtraInfo(rosterStats.baseline);
+          const rapmPriorsBaseline = insertExtraInfo(rosterStats.baseline || []);
 
           // Now do all the RAPM work
           const rapmContext = RapmUtils.buildPlayerContext(
