@@ -179,12 +179,14 @@ describe("RapmUtils", () => {
         [ { l: "1.10", ex: "2.21" }, { l: "1.32", ex: "2.25" }, { l: "1.54", ex: "2.29" } ]
       );
       expect(offResults.ridgeLambda.toFixed(3)).toEqual("1.536");
+      expect(offResults.rapmAdjPpp.map(n => n.toFixed(2))[0]).toEqual("2.29");
       expect(defResults.prevAttempts.map((o: any) => {
         return { l: o?.ridgeLambda?.toFixed(2), ex: o?.results?.[0]?.toFixed(2) }
       })).toEqual( // 4 iterations
         [ { l: "1.10", ex: "-5.86" }, { l: "1.32", ex: "-5.73" }, { l: "1.54", ex: "-5.64" } ]
       );
       expect(defResults.ridgeLambda.toFixed(3)).toEqual("1.536");
+      expect(defResults.rapmAdjPpp.map(n => n.toFixed(2))[0]).toEqual("-5.64");
     });
   });
 
