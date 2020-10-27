@@ -41,11 +41,11 @@ Object {
     ],
     "playersWeak": Array [
       Object {
-        "def_adj_ppp": 4.5,
+        "def_adj_ppp": -4.5,
         "off_adj_ppp": 4.5,
       },
       Object {
-        "def_adj_ppp": 5,
+        "def_adj_ppp": -5,
         "off_adj_ppp": 5,
       },
       Object {
@@ -115,11 +115,11 @@ Object {
     ],
     "playersWeak": Array [
       Object {
-        "def_adj_ppp": 4.5,
+        "def_adj_ppp": -4.5,
         "off_adj_ppp": 4.5,
       },
       Object {
-        "def_adj_ppp": 5,
+        "def_adj_ppp": -5,
         "off_adj_ppp": 5,
       },
       Object {
@@ -153,29 +153,4 @@ Object {
   },
   "unbiasWeight": 0,
 }
-`;
-
-exports[`RapmUtils RapmUtils - recalcNoUnbiasWeightingRapmForDiag 1`] = `
-Array [
-  Array [
-    "2.38",
-    "2.52",
-    "2.64",
-    "2.11",
-    "2.32",
-    "0.45",
-    "0.28",
-    "-0.09",
-  ],
-  Array [
-    "-3.46",
-    "-2.21",
-    "-3.15",
-    "-1.72",
-    "-1.35",
-    "-2.03",
-    "-0.15",
-    "-1.11",
-  ],
-]
 `;

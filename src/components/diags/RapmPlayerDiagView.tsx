@@ -33,56 +33,56 @@ const RapmPlayerDiagView: React.FunctionComponent<Props> = (({rapmInfo, player, 
 
     const rapmOff = (player.rapm?.off_adj_ppp?.value || 0);
     const rapmDef = (player.rapm?.def_adj_ppp?.value || 0);
-    const calcPriorDiags = () => {
-      if (ctx.unbiasWeight > 0) {
-        const totalOffPoss = ctx.teamInfo?.off_poss?.value;
-        const teamOffAdj = ((ctx.teamInfo.off_adj_ppp?.value || ctx.avgEfficiency) - ctx.avgEfficiency);
-        const teamDefAdj = ((ctx.teamInfo.def_adj_ppp?.value || ctx.avgEfficiency) - ctx.avgEfficiency);
 
-        const col = ctx.playerToCol[player.playerId];
-        const offPossPcts = offWeights[ctx.numLineups]; //(use as approx for def also)
-        const offPossPctStr = (100.0*(offPossPcts[col]/ctx.unbiasWeight)).toFixed(0);
+    const col = ctx.playerToCol[player.playerId];
 
-        const [ sigmaRapmOff, sigmaRapmDef ] = rapmInfo?.noUnbiasWeightsDiags?.map((vec) =>
-          _.reduce(vec, (acc, n: number, i: number) => acc + n*offPossPcts[i]/ctx.unbiasWeight) || 0
-        ) || [0, 0];
-        const offPriorTotalDiff = teamOffAdj - sigmaRapmOff;
-        const defPriorTotalDiff = teamDefAdj - sigmaRapmDef;
+    const totalOffPoss = ctx.teamInfo?.off_poss?.value;
+    const teamOffAdj = ((ctx.teamInfo.off_adj_ppp?.value || ctx.avgEfficiency) - ctx.avgEfficiency);
+    const teamDefAdj = ((ctx.teamInfo.def_adj_ppp?.value || ctx.avgEfficiency) - ctx.avgEfficiency);
 
-        const [ offUnbiasRapm, defUnbiasRapm ] = rapmInfo?.noUnbiasWeightsDiags?.map((vec) => vec[col]) || [0, 0];
-        const offPrior = rapmOff - offUnbiasRapm;
-        const defPrior = rapmDef - defUnbiasRapm;
+    const offPossPctStr = (100.0*(offInputs.playerPossPcts[col]!)).toFixed(0);
 
-        return [
-          offPrior, defPrior,
-          <ul>
-            <li>We calculate the total team priors (off=[<b>{offPriorTotalDiff.toFixed(2)}</b>] def=[<b>{defPriorTotalDiff.toFixed(2)}</b>]) from
-            the reduction in the team adjusted efficiency due to the regression factor, eg compare <em>observed</em> (off=[<b>{teamOffAdj.toFixed(2)}</b>] def=[<b>{teamDefAdj.toFixed(2)}</b>])
-            vs <em>derived from RAPM</em> (off=[<b>{sigmaRapmOff.toFixed(2)}</b>] def=[<b>{sigmaRapmDef.toFixed(2)}</b>]).
-            </li>
-            <li>Then we calculate a player's contribution to the team prior - currently this is mostly based on their % on floor, [<b>{offPossPctStr}%</b>] (of [<b>{totalOffPoss}</b>] poss);
-            eg for the offense approximately [<b>{offPossPctStr}%</b>] * (1/5) * [<b>{offPriorTotalDiff.toFixed(2)}</b>] = [<b>{(0.2*offPossPcts[col]*offPriorTotalDiff/ctx.unbiasWeight).toFixed(2)}</b>],
-            plus some smaller lineup adjustments.
-            </li>
-          </ul>
-        ];
+    // Prior (luck adjusted o/drtg)
+    const offPrior = ctx.priorInfo.playersWeak?.[col]?.off_adj_ppp || 0;
+    const defPrior = ctx.priorInfo.playersWeak?.[col]?.def_adj_ppp || 0;
 
-      } else {
-        return [ 0, 0, <ul><li>Not currently supported</li></ul> ]; //(not currently supported)
-      }
+    const offUnbiasRapm = offInputs.rapmRawAdjPpp[col];
+    const defUnbiasRapm = defInputs.rapmRawAdjPpp[col];
+
+    const buildPrior = (input: RapmProcessingInputs) => {
+      const vec = input.rapmRawAdjPpp;
+      return _.reduce(vec, (acc, n: number, i: number) => acc + n*input.playerPossPcts[i]!) || 0
     };
-    const [ priorOff, priorDef, priorDiagListEl ] = calcPriorDiags() as [ number, number, Element ];
-    const totalPrior = priorOff - priorDef;
-    const rawRapmOff = rapmOff - priorOff;
-    const rawRapmDef = rapmDef - priorDef;
-    const totalRawRapm = rawRapmOff - rawRapmDef;
+    const [ sigmaRapmOff, sigmaRapmDef ]  = [ buildPrior(offInputs), buildPrior(defInputs) ];
+    const offPriorTotalDiff = teamOffAdj - sigmaRapmOff;
+    const defPriorTotalDiff = teamDefAdj - sigmaRapmDef;
+    const offPriorContrib = rapmOff - offUnbiasRapm;
+    const defPriorContrib = rapmDef - defUnbiasRapm;
+
+    const detailedInfo = <ul>
+      <li>We calculate the total team priors (off=[<b>{offPriorTotalDiff.toFixed(2)}</b>] def=[<b>{defPriorTotalDiff.toFixed(2)}</b>]) from
+      the reduction in the team adjusted efficiency due to the regression factor, eg compare <em>observed</em> (off=[<b>{teamOffAdj.toFixed(2)}</b>] def=[<b>{teamDefAdj.toFixed(2)}</b>])
+      vs <em>derived solely from RAPM</em> (off=[<b>{sigmaRapmOff.toFixed(2)}</b>] def=[<b>{sigmaRapmDef.toFixed(2)}</b>]).
+      </li>
+      <li>Then we calculate a player's contribution to the team prior - currently this is based off
+      "Adj Rtg+" ("adjusted production above D1 average"; off=[<b>{offPrior.toFixed(2)}</b>] def=[<b>{defPrior.toFixed(2)}</b>]), ...
+      <li>
+      ... Taken in a proportion (incorporating the % on floor [<b>{offPossPctStr}%</b>] (of [<b>{totalOffPoss}</b>] poss) that minimizes the overall difference between actual adjusted efficiency and what RAPM would predict,
+      giving: off=[<b>{offPriorContrib.toFixed(2)}</b>], def=[<b>{defPriorContrib.toFixed(2)}</b>]
+        <em>(again: from the "total team pool" of off=[<b>{offPriorTotalDiff.toFixed(2)}</b>] def=[<b>{defPriorTotalDiff.toFixed(2)}</b>])</em>
+      </li>
+      </li>
+    </ul>;
+
+    const totalPrior = offPriorContrib - defPriorContrib;
+    const totalRawRapm = offUnbiasRapm - defUnbiasRapm;
 
     return <span>
         <b>RAPM diagnostics for [{player.playerId}]:</b> adj_off=[<b>{rapmOff.toFixed(2)}</b>], adj_def=[<b>{rapmDef.toFixed(2)}</b>]
         <ul>
-          <li>RAPM contribution: off=[<b>{rawRapmOff.toFixed(2)}</b>], def=[<b>{rawRapmDef.toFixed(2)}</b>], total=[<b>{totalRawRapm.toFixed(2)}</b>]</li>
-          <li>Priors contribution: off=[<b>{priorOff.toFixed(2)}</b>], def=[<b>{priorDef.toFixed(2)}</b>], total=[<b>{totalPrior.toFixed(2)}</b>]</li>
-            {priorDiagListEl}
+          <li>RAPM contribution: off=[<b>{offUnbiasRapm.toFixed(2)}</b>], def=[<b>{defUnbiasRapm.toFixed(2)}</b>], total=[<b>{totalRawRapm.toFixed(2)}</b>]</li>
+          <li>Plus priors' contribution: off=[<b>{offPriorContrib.toFixed(2)}</b>], def=[<b>{defPriorContrib.toFixed(2)}</b>], total=[<b>{totalPrior.toFixed(2)}</b>]</li>
+            {detailedInfo}
         </ul>
         (<b>More player diagnostics to come...</b>)<br/>(<a href="#" onClick={(event) => { event.preventDefault(); gotoGlobalDiags() }}>Scroll to global RAPM diagnostics</a>)
       </span>;

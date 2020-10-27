@@ -173,20 +173,25 @@ describe("RapmUtils", () => {
 
       // Hand checked results, just checking nothing's broken with changes!
 
+      expect(offResults.playerPossPcts.map(n => n.toFixed(2))).toEqual(["0.97", "0.93", "0.82", "0.74", "0.73", "0.54", "0.15", "0.12"]);
+      expect(defResults.playerPossPcts.map(n => n.toFixed(2))).toEqual(["0.97", "0.92", "0.82", "0.74", "0.73", "0.54", "0.15", "0.13"]);
+
       expect(offResults.prevAttempts.map((o: any) => {
         return { l: o?.ridgeLambda?.toFixed(2), ex: o?.results?.[0]?.toFixed(2) }
       })).toEqual( // 4 iterations
         [ { l: "1.10", ex: "2.21" }, { l: "1.32", ex: "2.25" }, { l: "1.54", ex: "2.29" } ]
       );
       expect(offResults.ridgeLambda.toFixed(3)).toEqual("1.536");
-      expect(offResults.rapmAdjPpp.map(n => n.toFixed(2))[0]).toEqual("2.29");
+      expect(_.take(offResults.rapmAdjPpp.map(n => n.toFixed(2)), 3)).toEqual(["2.29", "2.43", "2.57"]);
+      expect(_.take(offResults.rapmRawAdjPpp.map(n => n.toFixed(2)), 3)).toEqual(["2.31", "2.46", "2.59"]);
       expect(defResults.prevAttempts.map((o: any) => {
         return { l: o?.ridgeLambda?.toFixed(2), ex: o?.results?.[0]?.toFixed(2) }
       })).toEqual( // 4 iterations
         [ { l: "1.10", ex: "-5.86" }, { l: "1.32", ex: "-5.73" }, { l: "1.54", ex: "-5.64" } ]
       );
       expect(defResults.ridgeLambda.toFixed(3)).toEqual("1.536");
-      expect(defResults.rapmAdjPpp.map(n => n.toFixed(2))[0]).toEqual("-5.64");
+      expect(_.take(defResults.rapmAdjPpp.map(n => n.toFixed(2)), 3)).toEqual(["-5.64", "-4.22", "-4.94"]);
+      expect(_.take(defResults.rapmRawAdjPpp.map(n => n.toFixed(2)), 3)).toEqual(["-5.06", "-3.70", "-4.48"]);
     });
   });
 
@@ -234,20 +239,6 @@ describe("RapmUtils", () => {
            },
       ]);
     });
-  });
-
-  test("RapmUtils - recalcNoUnbiasWeightingRapmForDiag", () => {
-
-    const [ offResults, defResults ] = RapmUtils.pickRidgeRegression(
-      semiRealRapmResults.testOffWeights, semiRealRapmResults.testDefWeights, semiRealRapmResults.testContext, false
-    );
-
-    const results = RapmUtils.recalcNoUnbiasWeightingRapmForDiag(
-      semiRealRapmResults.testOffWeights, semiRealRapmResults.testDefWeights,
-      offResults, defResults, semiRealRapmResults.testContext
-    );
-
-    expect(results.map((row: number[]) => row.map((n: number) => n.toFixed(2)))).toMatchSnapshot();
   });
 
   test("RapmUtils - calcCollinearityDiag", () => {

@@ -59,13 +59,14 @@ export type RapmProcessingInputs = {
   solnMatrix: any | null,
   ridgeLambda: number,
   rapmAdjPpp: Array<number>,
+  rapmRawAdjPpp: Array<number>, //(no priors)
+  playerPossPcts: Array<number>,
   prevAttempts: Array<any> //TODO make this list of diag objects typed
 };
 
 export type RapmInfo = {
   ctx: RapmPlayerContext,
   preProcDiags?: RapmPreProcDiagnostics,
-  noUnbiasWeightsDiags?: [ number[], number[] ],
   offWeights: any,
   defWeights: any,
   offInputs: RapmProcessingInputs,
@@ -104,7 +105,7 @@ export class RapmUtils {
         if (stats) {
           return {
             off_adj_ppp: stats.off_adj_rtg?.value || 0,
-            def_adj_ppp: stats.off_adj_rtg?.value || 0,
+            def_adj_ppp: stats.def_adj_rtg?.value || 0,
           } as Record<string, number>;
         } else return {} as Record<string, number>;
       }),
@@ -605,6 +606,7 @@ export class RapmUtils {
             //(^ since we'll keep going in diag mode, ensure we don't change the actual processing flow)
             acc.output.ridgeLambda = ridgeLambda;
             acc.output.rapmAdjPpp = results;
+            acc.output.rapmRawAdjPpp = resultsPrePrior;
             acc.output.solnMatrix = solver;
             if ((adjEffErr >= 1.05) && notFirstStep) {
               if (debugMode) console.log(`-!!!!!!!!!!- DONE PICK PREVIOUS [${acc.lastAttempt.ridgeLambda.toFixed(2)}]`);
@@ -635,7 +637,9 @@ export class RapmUtils {
         output: {
           ridgeLambda: -1,
           rapmAdjPpp: [],
+          rapmRawAdjPpp: [],
           solnMatrix: null,
+          playerPossPcts: pctByPlayer[offOrDef],
           prevAttempts: [] as Array<Record<string, any>>
         } as RapmProcessingInputs,
 
@@ -650,48 +654,6 @@ export class RapmUtils {
   }
 
   // 3] ERROR VALIDATION
-
-  /** When using unbiased weights method, calc RAPM without that for diag purposes */
-  static recalcNoUnbiasWeightingRapmForDiag(
-    offWeights: any, defWeights: any,
-    offRapmInput: RapmProcessingInputs, defRapmInput: RapmProcessingInputs,
-    ctx: RapmPlayerContext
-
-  ): [ number[], number[] ] {
-    // (see pickRidgeRegression for context)
-
-    const ctxNoWeights = _.assign(_.clone(ctx), {
-      unbiasWeight: 0
-    });
-    const [ offAdjPoss, defAdjPoss ] = RapmUtils.calcLineupOutputs(
-      "adj_ppp", ctxNoWeights.avgEfficiency, ctxNoWeights.avgEfficiency, ctxNoWeights
-    );
-    const adjPoss = {
-      off: offAdjPoss,
-      def: defAdjPoss
-    };
-    const weights = {
-      off: offWeights,
-      def: defWeights
-    };
-    const lambda = {
-      off: offRapmInput.ridgeLambda,
-      def: defRapmInput.ridgeLambda,
-    };
-    const [ offTestResults, defTestResults ] = ([ "off", "def" ] as Array<"off" | "def">).map((offOrDef: "off" | "def") => {
-      const ridgeLambda = lambda[offOrDef];
-
-      const solver = RapmUtils.slowRegression(
-        resize(weights[offOrDef], [ctx.numLineups, ctx.numPlayers]), ridgeLambda, ctxNoWeights
-      );
-      const results: number[] = RapmUtils.calculateRapm(solver, adjPoss[offOrDef]);
-
-      return results;
-    });
-    return [offTestResults, defTestResults];
-  }
-
-
 
   private static calcSlowPseudoInverse(
     playerWeightMatrix: any,
