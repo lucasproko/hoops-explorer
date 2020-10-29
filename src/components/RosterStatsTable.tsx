@@ -433,7 +433,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
     return player;
   }).value();
 
-  const tableData = _.chain(allPlayers).filter((player) => {
+  const filteredPlayers = allPlayers.filter((player) => {
     const strToTest = (player.on?.key || player.off?.key || player.baseline?.key || "");
 
     return(
@@ -443,7 +443,8 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
       ((filterFragmentsNve.length == 0) ||
         (_.find(filterFragmentsNve, (fragment) => strToTest.indexOf(fragment) >= 0) ? false : true))
       ;
-  }).sortBy(
+  });
+  const tableData = _.chain(filteredPlayers).sortBy(
     [ sorter(sortBy) , (p) => { p.baseline?.off_team_poss?.value || 0 } ]
   ).flatMap((p) => {
     return _.flatten([
@@ -614,6 +615,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
     >
       <ManualOverrideModal
         tableType={ParamPrefixes.player}
+        filteredPlayers={filterStr ? new Set(filteredPlayers.map(p => p.baseline?.key || "")) : undefined }
         inStats={playersAsList}
         statsAsTable={mutableTableDisplayForOverrides}
         overrides={manualOverrides}

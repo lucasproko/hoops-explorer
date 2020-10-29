@@ -30,6 +30,7 @@ import { OverrideUtils } from "../../utils/stats/OverrideUtils";
 type Props = {
   tableType: ParamPrefixesType,
   inStats: any[],
+  filteredPlayers?: Set<string>,
   statsAsTable: Record<string, any[]>,
   show: boolean,
   onHide: () => void,
@@ -38,7 +39,9 @@ type Props = {
   showHelp: boolean,
   startOverride?: ManualOverride //(just for testing)
 };
-const ManualOverrideModal: React.FunctionComponent<Props> = ({tableType, inStats, statsAsTable, onSave, overrides, showHelp, startOverride, ...props}) => {
+const ManualOverrideModal: React.FunctionComponent<Props> = (
+  {tableType, filteredPlayers, inStats, statsAsTable, onSave, overrides, showHelp, startOverride, ...props}
+) => {
 
   //(TODO: lots of work to make this more generic and not just per player)
 
@@ -193,6 +196,26 @@ const ManualOverrideModal: React.FunctionComponent<Props> = ({tableType, inStats
     }
   }).value();
 
+  // Grouping for the player selector list:
+
+  /** The two sub-headers for the dropdown */
+  const groupedOptions = filteredPlayers ? [
+    {
+      label: "Filtered",
+      options: _.flatMap(inStats, stat => filteredPlayers.has(stat.key) ? statToOption(stat) : [])
+    },
+    {
+      label: "All Players",
+      options: _.flatMap(inStats, stat => !filteredPlayers.has(stat.key) ? statToOption(stat) : [])
+    }
+  ] : _.flatMap(inStats, stat => statToOption(stat));
+  /** The sub-header builder */
+  const formatGroupLabel = (data: any) => (
+    <div>
+      <span>{data.label}</span>
+    </div>
+  );
+
   // View
 
   const statsTableFields = CommonTableDefs.onOffIndividualTable(true, false); //(expanded view, abs poss count)
@@ -217,7 +240,7 @@ const ManualOverrideModal: React.FunctionComponent<Props> = ({tableType, inStats
                   <Select
                     className="w-75"
                     value={statToOption(valueToStatMap[currInStat])}
-                    options={_.flatMap(inStats, stat => statToOption(stat))}
+                    options={groupedOptions}
                     onChange={(option) => {
                       const val = (option as any)?.value;
                       if (val) {
@@ -225,6 +248,7 @@ const ManualOverrideModal: React.FunctionComponent<Props> = ({tableType, inStats
                         updateValues(val, currStatName);
                       }
                     }}
+                    formatGroupLabel={filteredPlayers ? formatGroupLabel : undefined}
                   />
                 </InputGroup>
               </Form.Group>
