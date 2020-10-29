@@ -8,6 +8,7 @@ import { apply, transpose, matrix, zeros } from 'mathjs'
 
 // For creating test data:
 import { sampleLineupStatsResponse } from "../../../sample-data/sampleLineupStatsResponse";
+import { samplePlayerStatsResponse } from "../../../sample-data/samplePlayerStatsResponse";
 import { LineupUtils } from "../LineupUtils";
 
 // Some handy data:
@@ -25,7 +26,12 @@ export const semiRealRapmResults = {
 
   testContext: {"unbiasWeight":2,"removalPct":0.1,
   "removedPlayers":{"Mitchell, Makhel":[0.210, 0.01],"Tomaic, Joshua":[0.149, 0.02],"Marial, Chol":[0.0208,0.0208],"Mona, Reese":[0.042,0.042],"Hart, Hakim":[0.237,0.0237],"Mitchell, Makhi":[0.264, 0.0264]} as Record<string, [number, number]>,
-  "playerToCol":{"Smith, Jalen":0,"Cowan, Anthony":1,"Wiggins, Aaron":2,"Morsell, Darryl":3,"Ayala, Eric":4,"Scott, Donta":5,"Lindo Jr., Ricky":6,"Smith Jr., Serrel":7},"colToPlayer":["Smith, Jalen","Cowan, Anthony","Wiggins, Aaron","Morsell, Darryl","Ayala, Eric","Scott, Donta","Lindo Jr., Ricky","Smith Jr., Serrel"],"avgEfficiency":102.4,"numPlayers":8,"numLineups":31,"offLineupPoss":1351,"defLineupPoss":1349
+  "playerToCol":{"Smith, Jalen":0,"Cowan, Anthony":1,"Wiggins, Aaron":2,"Morsell, Darryl":3,"Ayala, Eric":4,"Scott, Donta":5,"Lindo Jr., Ricky":6,"Smith Jr., Serrel":7},"colToPlayer":["Smith, Jalen","Cowan, Anthony","Wiggins, Aaron","Morsell, Darryl","Ayala, Eric","Scott, Donta","Lindo Jr., Ricky","Smith Jr., Serrel"],"avgEfficiency":102.4,"numPlayers":8,"numLineups":31,"offLineupPoss":1351,"defLineupPoss":1349,
+  priorInfo:{
+    includeStrong: {},
+    playersStrong: [ {}, {}, {}, {}, {}, {}, {}, {}  ],
+    playersWeak: [ { off_adj_ppp: 5.0, def_adj_ppp: -5.0 }, { off_adj_ppp: 4.5, def_adj_ppp: -4.5 }, { off_adj_ppp: 4.0, def_adj_ppp: -4.0 }, { off_adj_ppp: 3.5, def_adj_ppp: -3.5 }, { off_adj_ppp: 3.0, def_adj_ppp: -3.0 }, { off_adj_ppp: 2.5, def_adj_ppp: -2.5 }, { off_adj_ppp: 2.0, def_adj_ppp: -2.0 }, { off_adj_ppp: 1.5, def_adj_ppp: -1.5 } ]
+  }
   ,
   // Extra fields:
   filteredLineups: reducedFilteredLineups,
@@ -57,6 +63,14 @@ describe("RapmUtils", () => {
     error_code: "test"
   };
 
+  const playersInfoByKey = _.chain(
+    samplePlayerStatsResponse.responses[0].aggregations.tri_filter.buckets.baseline.player.buckets
+  ).map((p, ii) => {
+    return { ...p,
+      off_adj_rtg: { value: 5.0 - 0.5*ii }, def_adj_rtg: { value: -5.0 + ii*0.5 }
+    };
+  }).keyBy("key").value();
+
   test("RapmUtils - buildPlayerContext", () => {
 
     // Build some dummy data with 2 extra players, one who we'll filter out
@@ -79,63 +93,15 @@ describe("RapmUtils", () => {
     };
 
     const onOffReport = LineupUtils.lineupToTeamReport(lineupReportWithExtra);
-    const expectedContext_all = {
-       avgEfficiency: 100.0,
-       removalPct: 0.0,
-       removedPlayers: {},
-       playerToCol: {
-         "Ayala, Eric": 4,
-         "Cowan, Anthony": 1,
-         "Data, Dummy": 7,
-         "Morsell, Darryl": 3,
-         "Player, Other": 6,
-         "Scott, Donta": 5,
-         "Smith, Jalen": 2,
-         "Wiggins, Aaron": 0,
-       },
-       colToPlayer: [
-         "Wiggins, Aaron",
-         "Cowan, Anthony",
-         "Smith, Jalen",
-         "Morsell, Darryl",
-         "Ayala, Eric",
-         "Scott, Donta",
-         "Player, Other",
-         "Data, Dummy",
-       ],
-       numPlayers: 8,
-       numLineups: 5,
-       offLineupPoss: 959,
-       defLineupPoss: 944,
-       unbiasWeight: 3
-    };
-    const expectedContext_removed = {
-       avgEfficiency: 100.0,
-       removalPct: 0.20,
-       removedPlayers: {
-         "Data, Dummy": [ 0.05254860746190226, 0.05254860746190226],
-         "Player, Other": [ 0.1576458223857068, 0.1576458223857068 ]
-       },
-       playerToCol: _.omit(expectedContext_all.playerToCol, [
-         "Data, Dummy", "Player, Other"
-       ]),
-       colToPlayer: _.take(expectedContext_all.colToPlayer, 6),
-       numPlayers: 6,
-       numLineups: 3,
-       offLineupPoss: 809,
-       defLineupPoss: 794,
-       unbiasWeight: 3
-    };
 
-    [ [expectedContext_all, 0.0], [expectedContext_removed, 0.20] ].forEach((t2) => {
-      const threshold = t2[1] as number;
+    [ 0.0, 0.20 ].forEach((threshold) => {
       const results = RapmUtils.buildPlayerContext(
-        onOffReport.players || [], lineupReportWithExtra.lineups || [], 100.0,
-        threshold, 3.0
+        onOffReport.players || [], lineupReportWithExtra.lineups || [], playersInfoByKey, 100.0,
+        threshold, 0.0
       );
-      expect(_.omit(results, ["filteredLineups", "teamInfo"])).toEqual(t2[0]);
-      expect(results.filteredLineups.length).toEqual(t2[1] > 0.05 ? 3 : 5);
-      expect(results.teamInfo.off_poss.value).toEqual(t2[1] > 0.05 ? 809 : 959);
+      expect(_.omit(results, ["filteredLineups", "teamInfo"])).toMatchSnapshot();
+      expect(results.filteredLineups.length).toEqual(threshold > 0.05 ? 3 : 5);
+      expect(results.teamInfo.off_poss.value).toEqual(threshold > 0.05 ? 809 : 959);
     });
   });
 
@@ -144,7 +110,7 @@ describe("RapmUtils", () => {
     [ 0.0, 2.0 ].forEach((unbiasWeight) => {
       const onOffReport = LineupUtils.lineupToTeamReport(lineupReport);
       const context = RapmUtils.buildPlayerContext(
-        onOffReport.players || [], lineupReport.lineups || [], 100.0, 0.0, unbiasWeight
+        onOffReport.players || [], lineupReport.lineups || [], playersInfoByKey, 100.0, 0.0, unbiasWeight
       );
       const results = RapmUtils.calcPlayerWeights(context);
 
@@ -171,7 +137,7 @@ describe("RapmUtils", () => {
     [ 0.0, 2.0 ].forEach((unbiasWeight) => {
       const onOffReport = LineupUtils.lineupToTeamReport(lineupReport);
       const context = RapmUtils.buildPlayerContext(
-        onOffReport.players || [], lineupReport.lineups || [], 100.0, 0.0, unbiasWeight
+        onOffReport.players || [], lineupReport.lineups || [], playersInfoByKey, 100.0, 0.0, unbiasWeight
       );
       const results = RapmUtils.calcLineupOutputs(
         "adj_ppp", 100.0, 100.0, context
@@ -207,18 +173,25 @@ describe("RapmUtils", () => {
 
       // Hand checked results, just checking nothing's broken with changes!
 
+      expect(offResults.playerPossPcts.map(n => n.toFixed(2))).toEqual(["0.97", "0.93", "0.82", "0.74", "0.73", "0.54", "0.15", "0.12"]);
+      expect(defResults.playerPossPcts.map(n => n.toFixed(2))).toEqual(["0.97", "0.92", "0.82", "0.74", "0.73", "0.54", "0.15", "0.13"]);
+
       expect(offResults.prevAttempts.map((o: any) => {
         return { l: o?.ridgeLambda?.toFixed(2), ex: o?.results?.[0]?.toFixed(2) }
       })).toEqual( // 4 iterations
-        [ { l: "0.44", ex: "2.00" }, { l: "0.66", ex: "2.17" }, { l: "0.88", ex: "2.25" }, { l: "1.10", ex: "2.29" } ]
+        [ { l: "1.10", ex: "2.21" }, { l: "1.32", ex: "2.25" }, { l: "1.54", ex: "2.29" } ]
       );
-      expect(offResults.ridgeLambda.toFixed(3)).toEqual("1.097");
+      expect(offResults.ridgeLambda.toFixed(3)).toEqual("1.536");
+      expect(_.take(offResults.rapmAdjPpp.map(n => n.toFixed(2)), 3)).toEqual(["2.29", "2.43", "2.57"]);
+      expect(_.take(offResults.rapmRawAdjPpp.map(n => n.toFixed(2)), 3)).toEqual(["2.31", "2.46", "2.59"]);
       expect(defResults.prevAttempts.map((o: any) => {
         return { l: o?.ridgeLambda?.toFixed(2), ex: o?.results?.[0]?.toFixed(2) }
       })).toEqual( // 4 iterations
-        [ { l: "0.44", ex: "-6.61" }, { l: "0.66", ex: "-5.97" } ]
+        [ { l: "1.10", ex: "-5.86" }, { l: "1.32", ex: "-5.73" }, { l: "1.54", ex: "-5.64" } ]
       );
-      expect(defResults.ridgeLambda.toFixed(3)).toEqual("0.439");
+      expect(defResults.ridgeLambda.toFixed(3)).toEqual("1.536");
+      expect(_.take(defResults.rapmAdjPpp.map(n => n.toFixed(2)), 3)).toEqual(["-5.64", "-4.22", "-4.94"]);
+      expect(_.take(defResults.rapmRawAdjPpp.map(n => n.toFixed(2)), 3)).toEqual(["-5.06", "-3.70", "-4.48"]);
     });
   });
 
@@ -256,42 +229,16 @@ describe("RapmUtils", () => {
              "noRapm": true,
            },
            {
-             "def_adj_ppp": "-5.91",
+             "def_adj_ppp": "-4.94",
              "def_poss": luckAdjusted ? "0.00" : "99.00", //(these don't get an old_value)
-             "def_to": luckAdjusted ? "0.00" : "0.02",
+             "def_to": luckAdjusted ? "0.00" : "0.01",
              "key": "RAPM Wiggins, Aaron",
-             "off_adj_ppp": "2.78",
+             "off_adj_ppp": "2.57",
              "off_poss": luckAdjusted ? "0.00" : "101.00",
              "off_to": "0.00",
            },
       ]);
     });
-  });
-
-  test("RapmUtils - recalcNoUnbiasWeightingRapmForDiag", () => {
-
-    const [ offResults, defResults ] = RapmUtils.pickRidgeRegression(
-      semiRealRapmResults.testOffWeights, semiRealRapmResults.testDefWeights, semiRealRapmResults.testContext, false
-    );
-
-    const results = RapmUtils.recalcNoUnbiasWeightingRapmForDiag(
-      semiRealRapmResults.testOffWeights, semiRealRapmResults.testDefWeights,
-      offResults, defResults, semiRealRapmResults.testContext
-    );
-
-    expect(results.map((row: number[]) => row.map((n: number) => n.toFixed(2)))).toEqual([
-      [
-        '2.53', '2.75',
-        '2.98', '2.32',
-        '2.60', '0.28',
-        '0.27', '-0.19'
-      ],[
-        '-5.50', '-1.73',
-        '-5.00', '-1.48',
-        '-0.53', '-3.04',
-        '0.31',  '-2.64'
-      ]
-    ]);
   });
 
   test("RapmUtils - calcCollinearityDiag", () => {
@@ -315,7 +262,8 @@ describe("RapmUtils", () => {
       numLineups: 4,
       offLineupPoss: 10,
       defLineupPoss: 9,
-      unbiasWeight: 0
+      unbiasWeight: 0,
+      priorInfo: { includeStrong: {}, playersWeak: [], playersStrong: [] }
     };
 
     const results = RapmUtils.calcCollinearityDiag(test, dummyContext);
@@ -360,7 +308,7 @@ describe("RapmUtils", () => {
     };
     const onOffReport = LineupUtils.lineupToTeamReport(lineupReportFake);
     const context = RapmUtils.buildPlayerContext(
-      onOffReport.players || [], lineupReportFake.lineups || [], 100.0,
+      onOffReport.players || [], lineupReportFake.lineups || [], playersInfoByKey, 100.0,
     );
     const weights = RapmUtils.calcPlayerWeights(context);
     const results = RapmUtils.calcCollinearityDiag(weights[0], context);
