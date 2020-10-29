@@ -189,7 +189,7 @@ export async function main() {
         filteredLineups,
         teamGlobal, rosterGlobal, teamBaseline,
         true, "baseline", avgEfficiency,
-        [], teamSeasonLookup, positionFromPlayerKey, baselinePlayerInfo
+        false, teamSeasonLookup, positionFromPlayerKey, baselinePlayerInfo
       ).map(tmpLineup => {
         // (removes unused fields from the JSON, to save space)
         const lineup =

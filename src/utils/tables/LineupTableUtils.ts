@@ -4,6 +4,7 @@ import _ from "lodash";
 // Util imports
 import { RatingUtils } from "../stats/RatingUtils";
 import { PositionUtils } from "../stats/PositionUtils";
+import { LineupUtils } from "../stats/LineupUtils";
 import { LuckUtils, OffLuckAdjustmentDiags, DefLuckAdjustmentDiags, LuckAdjustmentBaseline } from "../stats/LuckUtils";
 
 /** Object marshalling logic for lineup tables */
@@ -136,7 +137,7 @@ export class LineupTableUtils {
     // Table control:
     adjustForLuck: boolean, luckConfigBase: "baseline" | "season", avgEfficiency: number,
     // Derived objects:
-    initialLineups: any[], teamSeasonLookup: string,
+    showTotalLineups: boolean, teamSeasonLookup: string,
     positionFromPlayerKey: Record<string, any>, baselinePlayerInfo: Record<string, any>
   ) {
     // The luck baseline can either be the user-selecteed baseline or the entire season
@@ -155,7 +156,8 @@ export class LineupTableUtils {
       } else return [ {}, {} ]; //(not used)
     })();
 
-    const enrichedLineups = initialLineups.concat(filteredLineups).map(lineup => {
+    /** Perform enrichment on each lineup, including luck adjustment */
+    const enrichLineup = (lineup: Record<string, any>) => {
       const codesAndIds = LineupTableUtils.buildCodesAndIds(lineup);
 
       const sortedCodesAndIds = (lineup.key == LineupTableUtils.totalLineupId) ? undefined :
@@ -177,7 +179,16 @@ export class LineupTableUtils {
         lineup.def_luck_diags = luckAdj?.[1];
       }
       return lineup;
-    });
-    return enrichedLineups;
+    };
+
+    const enrichedLineups = filteredLineups.map(lineup => enrichLineup(lineup));
+    const totalLineup = showTotalLineups ? [
+      // Have to do this last in order to get the luck-mutated lineups
+      enrichLineup(_.assign(LineupUtils.calculateAggregatedLineupStats(filteredLineups), {
+        key: LineupTableUtils.totalLineupId
+      }))
+    ] : [];
+
+    return totalLineup.concat(enrichedLineups);
   }
 }

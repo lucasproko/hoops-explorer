@@ -37,7 +37,6 @@ import { TableDisplayUtils } from "../utils/tables/TableDisplayUtils";
 import { LineupTableUtils } from "../utils/tables/LineupTableUtils";
 
 // Util imports
-import { LineupUtils } from "../utils/stats/LineupUtils";
 import { CbbColors } from "../utils/CbbColors";
 import { CommonTableDefs } from "../utils/CommonTableDefs";
 import { PositionUtils } from "../utils/stats/PositionUtils";
@@ -174,17 +173,11 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
       teamSeasonLookup, positionFromPlayerKey
     );
 
-    const totalLineup = showTotals ? [
-      _.assign(LineupUtils.calculateAggregatedLineupStats(filteredLineups), {
-        key: LineupTableUtils.totalLineupId
-      })
-    ] : [];
-
     const tableData = LineupTableUtils.buildEnrichedLineups(
       filteredLineups,
       teamStats.global, rosterStats.global, teamStats.baseline,
       adjustForLuck, luckConfig.base, avgEfficiency,
-      totalLineup, teamSeasonLookup, positionFromPlayerKey, baselinePlayerInfo
+      showTotals, teamSeasonLookup, positionFromPlayerKey, baselinePlayerInfo
     ).flatMap((lineup, lineupIndex) => {
       TableDisplayUtils.injectPlayTypeInfo(lineup, false, false); //(inject assist numbers)
 
