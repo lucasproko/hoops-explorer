@@ -24,7 +24,7 @@ import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 
 
 // Utils:
-import { getCommonFilterParams, ParamPrefixes, CommonFilterParams, GameFilterParams, LineupFilterParams, TeamReportFilterParams, LineupLeaderboardParams } from '../../utils/FilterModels';
+import { getCommonFilterParams, ParamPrefixes, CommonFilterParams, GameFilterParams, LineupFilterParams, TeamReportFilterParams, LineupLeaderboardParams, PlayerLeaderboardParams } from '../../utils/FilterModels';
 import { UrlRouting } from "../../utils/UrlRouting";
 import { HistoryManager } from '../../utils/HistoryManager';
 
@@ -54,10 +54,16 @@ const HeaderBar: React.FunctionComponent<Props> = ({thisPage, common, override})
   const server = (typeof window === `undefined`) ? //(ensures SSR code still compiles)
     "server" : window.location.hostname;
 
-  // Leaderboard
+  // Lineup Leaderboard
   function getLineupLeaderboardUrl() {
     return UrlRouting.getLineupLeaderboardUrl(
       getCommonFilterParams(common) as LineupLeaderboardParams
+    );
+  }
+  // Player Leaderboard
+  function getPlayerLeaderboardUrl() {
+    return UrlRouting.getPlayerLeaderboardUrl(
+      getCommonFilterParams(common) as PlayerLeaderboardParams
     );
   }
   // Last visited
@@ -98,6 +104,9 @@ const HeaderBar: React.FunctionComponent<Props> = ({thisPage, common, override})
 
   const lineupLeaderboardTooltip = (
     <Tooltip id="lineupLeaderboardTooltip">Go to the (luck adjusted) Lineup T400 Leaderboard page</Tooltip>
+  );
+  const playerLeaderboardTooltip = (
+    <Tooltip id="playerLeaderboardTooltip">Go to the (luck adjusted) Player Leaderboard page</Tooltip>
   );
   const baseGameTooltip = (
     <Tooltip id="baseGameTooltip">Go to the On/Off Analysis page with the current baseline query</Tooltip>
@@ -188,6 +197,9 @@ const HeaderBar: React.FunctionComponent<Props> = ({thisPage, common, override})
         <Dropdown.Menu style={dropdownStyle}>
           <Dropdown.Item>
             {buildNavItem("Lineups", lineupLeaderboardTooltip, getLineupLeaderboardUrl())}
+          </Dropdown.Item>
+          <Dropdown.Item>
+            {buildNavItem("Players", playerLeaderboardTooltip, getPlayerLeaderboardUrl())}
           </Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>;

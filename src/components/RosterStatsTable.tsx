@@ -253,15 +253,6 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
     }
   };
 
-  /** Adds a tooltip to the code */
-  const buildPositionTooltip = (pos: string, type: "on" | "off" | "baseline") => {
-    const fullPos = PositionUtils.idToPosition[pos] || "Unknown"
-    return <Tooltip id={pos + "Tooltip"}>
-      {fullPos}<br/><br/>
-      Algorithmically assigned via stats from {onOffBaseToPhrase(type)} lineups.
-      See "Show Positional diagnostics" (gear icon on right) for more details.
-    </Tooltip>;
-  }
 
 
   /** Utility function to build the title for the player stats */
@@ -271,12 +262,12 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
     const sub = onOffBaseToPhrase(type);
 
     const posIfNotExpanded1 = expandedView ? null :
-      <OverlayTrigger placement="auto" overlay={buildPositionTooltip(pos, type)}>
+      <OverlayTrigger placement="auto" overlay={TableDisplayUtils.buildPositionTooltip(pos, sub)}>
           <sup>{pos}</sup>
       </OverlayTrigger>;
 
     const posIfNotExpanded2 = expandedView ? null :
-      <OverlayTrigger placement="auto" overlay={buildPositionTooltip(pos, type)}>
+      <OverlayTrigger placement="auto" overlay={TableDisplayUtils.buildPositionTooltip(pos, sub)}>
           <small>{pos} - </small>
       </OverlayTrigger>;
 
@@ -415,7 +406,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
 
         const [ posConfs, posConfsDiags ] = PositionUtils.buildPositionConfidences(stat);
         const [ pos, posDiags ] = PositionUtils.buildPosition(posConfs, stat, teamSeasonLookup);
-        stat.def_usage = <OverlayTrigger placement="auto" overlay={buildPositionTooltip(pos, key)}>
+        stat.def_usage = <OverlayTrigger placement="auto" overlay={TableDisplayUtils.buildPositionTooltip(pos, onOffBaseToPhrase(key))}>
           <small>{pos}</small>
         </OverlayTrigger>;
 

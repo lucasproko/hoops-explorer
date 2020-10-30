@@ -75,6 +75,26 @@ export class LineupTableUtils {
     return baselinePlayerInfo;
   }
 
+  /** Handy util for sorting JSON blobs of fields */
+  static sorter(sortStr: string) { // format: (asc|desc):(off_|def_|diff_)<field>
+    const sortComps = sortStr.split(":"); //asc/desc
+    const dir = (sortComps[0] == "desc") ? -1 : 1;
+    const fieldComps = _.split(sortComps[1], "_", 1); //off/def/diff
+    const fieldName = sortComps[1].substring(fieldComps[0].length + 1); //+1 for _
+    const field = (stat: any) => {
+      switch(fieldComps[0]) {
+        case "diff": //(off-def)
+          return (stat["off_" + fieldName]?.value || 0.0)
+                - (stat["def_" + fieldName]?.value || 0.0);
+        default: return stat[sortComps[1]]?.value; //(off or def)
+      }
+    };
+    return (stat: any) => {
+      return dir*(field(stat) || 0);
+    };
+  };
+
+
   /** Builds positional info vs player key */
   static buildPositionPlayerMap(
     players: any[] | undefined, teamSeasonLookup: string
@@ -97,24 +117,6 @@ export class LineupTableUtils {
     const [
       filterFragmentsPve, filterFragmentsNve, filterOnPosition
     ] = PositionUtils.buildPositionalAwareFilter(filterStr);
-
-    const sorter = (sortStr: string) => { // format: (asc|desc):(off_|def_|diff_)<field>
-      const sortComps = sortStr.split(":"); //asc/desc
-      const dir = (sortComps[0] == "desc") ? -1 : 1;
-      const fieldComps = _.split(sortComps[1], "_", 1); //off/def/diff
-      const fieldName = sortComps[1].substring(fieldComps[0].length + 1); //+1 for _
-      const field = (lineup: any) => {
-        switch(fieldComps[0]) {
-          case "diff": //(off-def)
-            return (lineup["off_" + fieldName]?.value || 0.0)
-                  - (lineup["def_" + fieldName]?.value || 0.0);
-          default: return lineup[sortComps[1]]?.value; //(off or def)
-        }
-      };
-      return (lineup: any) => {
-        return dir*(field(lineup) || 0);
-      };
-    };
 
     const filteredLineups = _.chain(lineups).filter((lineup) => {
       const minPossInt = parseInt(minPoss);
@@ -139,7 +141,7 @@ export class LineupTableUtils {
 
      return playerFilter && (lineup.key != ""); // (workaround for #53 pending fix)
     }).sortBy(
-       sortBy ? [ sorter(sortBy) ] : [] //(don't sort if sortBy not specified)
+       sortBy ? [ LineupTableUtils.sorter(sortBy) ] : [] //(don't sort if sortBy not specified)
     ).take(
       parseInt(maxTableSize)
     ).value();

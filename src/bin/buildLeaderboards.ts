@@ -35,6 +35,22 @@ const sleep = (milliseconds: number) => {
   return new Promise(resolve => setTimeout(resolve, milliseconds));
 }
 
+/** Handy util for reducing  */
+const reduceNumberSize = (k: string, v: any) => {
+  if (_.isNumber(v)) {
+    const rawNumStr = "" + v;
+    const numStr = v.toFixed(4);
+    if (numStr.length >= rawNumStr.length) { //made it worse
+      return v;
+    } else {
+      return parseFloat(numStr);
+    }
+  } else {
+    return v;
+  }
+}
+
+
 export class MutableAsyncResponse {
   statusCode: number;
   resultJson: any;
@@ -196,10 +212,16 @@ export async function main() {
       }).map(kv => {
         const posInfo = positionFromPlayerKey[kv[0]] || {};
         return {
+          conf: conference,
           ...posInfo,
           ...(_.chain(kv[1]).toPairs().filter(t2 => //Reduce down to the field we'll actually need
-              !_.startsWith(t2[0], "off_team_") && !_.startsWith(t2[0], "def_team_") &&
-              !_.startsWith(t2[0], "total_")
+              (t2[0] == "off_team_poss")
+              || (
+                !_.startsWith(t2[0], "off_team_") && !_.startsWith(t2[0], "def_team_") &&
+                !_.startsWith(t2[0], "off_oppo_") && !_.startsWith(t2[0], "def_oppo_") &&
+                !_.startsWith(t2[0], "team_") && !_.startsWith(t2[0], "oppo_") &&
+                !_.startsWith(t2[0], "total_")
+              )
             ).fromPairs().value()
           )
         };
@@ -314,13 +336,13 @@ if (!testMode) main().then(_ => {
       lastUpdated: dataLastUpdated[genderYearLookup] || new Date().getTime(),
       confs: Array.from(conferenceSet.values()),
       lineups: sortedLineups
-    });
+    }, reduceNumberSize);
     const players = completePlayerLeaderboard(kv[0], kv[2]);
     const playersStr = JSON.stringify({
       lastUpdated: dataLastUpdated[genderYearLookup] || new Date().getTime(),
       confs: Array.from(conferenceSet.values()),
-      lineups: players
-    });
+      players: players
+    }, reduceNumberSize);
 
     // Write to file
     console.log(`${kv[0]} lineup length: [${sortedLineupsStr.length}]`);
