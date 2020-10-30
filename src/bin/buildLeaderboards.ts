@@ -61,6 +61,11 @@ export const savedLineups = [] as Array<any>;
 const savedConfOnlyLineups = [] as Array<any>;
 const savedT100Lineups = [] as Array<any>;
 
+/** Exported for test only */
+export const savedPlayers = [] as Array<any>;
+const savedConfOnlyPlayers = [] as Array<any>;
+const savedT100Players = [] as Array<any>;
+
 var commandLine = process?.argv || [];
 if (commandLine?.[1]?.endsWith("buildLeaderboards.js")) {
   console.log("Start processing with args: " + _.drop(commandLine, 2));
@@ -175,7 +180,7 @@ export async function main() {
         }).fromPairs().value();
 
       const baselinePlayerInfo = LineupTableUtils.buildBaselinePlayerInfo(
-        rosterBaseline, globalRosterStatsByCode, avgEfficiency
+        rosterBaseline, globalRosterStatsByCode, teamBaseline, avgEfficiency
       );
       const positionFromPlayerKey = LineupTableUtils.buildPositionPlayerMap(rosterGlobal, teamSeasonLookup);
 
@@ -184,6 +189,21 @@ export async function main() {
         "", "desc:off_poss", "0", "5", //take top 5 (sorted by off_pos) with no min poss
         teamSeasonLookup, positionFromPlayerKey
       );
+
+      // Merge ratings and position, and filter based on offensive possessions played
+      const enrichedAndFilteredPlayers = _.toPairs(baselinePlayerInfo).filter(kv => {
+        return kv[1].off_team_poss_pct!.value! > 0.37; //(~15mpg min)
+      }).map(kv => {
+        const posInfo = positionFromPlayerKey[kv[0]] || {};
+        return {
+          ...posInfo,
+          ...(_.chain(kv[1]).toPairs().filter(t2 => //Reduce down to the field we'll actually need
+              !_.startsWith(t2[0], "off_team_") && !_.startsWith(t2[0], "def_team_") &&
+              !_.startsWith(t2[0], "total_")
+            ).fromPairs().value()
+          )
+        };
+      });
 
       const tableData = LineupTableUtils.buildEnrichedLineups(
         filteredLineups,
@@ -229,9 +249,19 @@ export async function main() {
       });
 
       switch (label) {
-        case "all": savedLineups.push(...tableData); break;
-        case "conf": savedConfOnlyLineups.push(...tableData); break;
-        case "t100": savedT100Lineups.push(...tableData); break;
+        case "all":
+          savedLineups.push(...tableData);
+          savedPlayers.push(...enrichedAndFilteredPlayers);
+          break;
+        case "conf":
+          savedConfOnlyLineups.push(...tableData);
+          savedConfOnlyPlayers.push(...enrichedAndFilteredPlayers);
+          break;
+        case "t100":
+          savedT100Lineups.push(...tableData);
+          savedT100Players.push(...enrichedAndFilteredPlayers);
+          break;
+
         default: console.log(`WARNING unexpected label: ${label}`);
       }
 
@@ -240,6 +270,11 @@ export async function main() {
     await getAllDataPromise;
   }
   //  console.log("RECEIVED: " + JSON.stringify(tableData, null, 3));
+}
+/** Adds some handy default sortings */
+export function completePlayerLeaderboard(key: string, leaderboard: any[]) {
+  //TODO:
+  return leaderboard;
 }
 
 /** Adds some handy default sortings and removes possession outliers (export for test only) */
@@ -268,8 +303,10 @@ if (!testMode) main().then(_ => {
 
   console.log("Processing Complete!");
 
-  const outputCases: Array<[string, Array<any>]> =
-    [ [ "all", savedLineups], [ "conf", savedConfOnlyLineups ], [ "t100", savedT100Lineups ] ];
+  const outputCases: Array<[string, Array<any>, Array<any>]> =
+    [ [ "all", savedLineups, savedPlayers ],
+      [ "conf", savedConfOnlyLineups, savedConfOnlyPlayers ],
+      [ "t100", savedT100Lineups, savedT100Players ] ];
 
   outputCases.forEach(kv => {
     const sortedLineups = completeLineupLeaderboard(kv[0], kv[1], topLineupSize);
@@ -278,15 +315,25 @@ if (!testMode) main().then(_ => {
       confs: Array.from(conferenceSet.values()),
       lineups: sortedLineups
     });
+    const players = completePlayerLeaderboard(kv[0], kv[2]);
+    const playersStr = JSON.stringify({
+      lastUpdated: dataLastUpdated[genderYearLookup] || new Date().getTime(),
+      confs: Array.from(conferenceSet.values()),
+      lineups: players
+    });
 
-      // Write to file
-     console.log(`${kv[0]} length: [${sortedLineupsStr.length}]`);
-     const filename = `./public/leaderboards/lineups/lineups_${kv[0]}_${inGender}_${inYear.substring(0, 4)}.json`;
-     fs.writeFile(`${filename}`,sortedLineupsStr, err => {});
-     //(don't zip, the server/browser does it for us, so it's mainly just "wasting GH space")
-     // zlib.gzip(sortedLineupsStr, (_, result) => {
-     //   fs.writeFile(`${filename}.gz`,result, err => {});
-     // });
-   });
-   console.log("File creation Complete!")
+    // Write to file
+    console.log(`${kv[0]} lineup length: [${sortedLineupsStr.length}]`);
+    const lineupFilename = `./public/leaderboards/lineups/lineups_${kv[0]}_${inGender}_${inYear.substring(0, 4)}.json`;
+    fs.writeFile(`${lineupFilename}`,sortedLineupsStr, err => {});
+    console.log(`${kv[0]} player length: [${playersStr.length}]`);
+    const playersFilename = `./public/leaderboards/lineups/players_${kv[0]}_${inGender}_${inYear.substring(0, 4)}.json`;
+    fs.writeFile(`${playersFilename}`,playersStr, err => {});
+
+   //(don't zip, the server/browser does it for us, so it's mainly just "wasting GH space")
+   // zlib.gzip(sortedLineupsStr, (_, result) => {
+   //   fs.writeFile(`${filename}.gz`,result, err => {});
+   // });
+ });
+ console.log("File creation Complete!")
 });

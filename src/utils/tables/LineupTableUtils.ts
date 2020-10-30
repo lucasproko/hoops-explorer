@@ -23,33 +23,51 @@ export class LineupTableUtils {
 
   /** Injects some advanced stats into players, returns an associative array vs player.key */
   static buildBaselinePlayerInfo(
-    players: any[] | undefined, globalRosterStats: Record<string, any>, avgEfficiency: number
+    players: any[] | undefined,
+    globalRosterStats: Record<string, any>, teamStat: Record<string, any>,
+    avgEfficiency: number
   ) {
     const baselinePlayerInfo = _.fromPairs(
       (players || []).map((mutableP: any) => {
+        const playerAdjustForLuckOff = false; //(for now, no offensive luck calcs, see also below when time to set for true)
+        const playerAdjustForLuckDef = true; //(make player defense a little more stable)
+
+        // Possession %
+        mutableP.off_team_poss_pct = { value: _.min([(mutableP.off_team_poss.value || 0)
+            / (teamStat.off_poss?.value || 1), 1 ]) };
+        mutableP.def_team_poss_pct = { value: _.min([(mutableP.def_team_poss.value || 0)
+            / (teamStat.def_poss?.value || 1), 1 ]) };
+
+        if (mutableP?.doc_count) {
+          // Calculate luck for defense - over the baseline query, but will regress to opponent SoS
+          const defLuckAdj = LuckUtils.calcDefPlayerLuckAdj(
+            mutableP, mutableP, avgEfficiency
+          );
+          LuckUtils.injectLuck(mutableP, undefined, defLuckAdj);
+        }
+
         // Add ORtg to lineup stats:
-        const playerAdjustForLuck = false; //TODO: longer term I think we will want to do this
         const [ oRtg, adjORtg, rawORtg, rawAdjORtg, oRtgDiag ] = RatingUtils.buildORtg(
-          mutableP, globalRosterStats, avgEfficiency, false, playerAdjustForLuck
+          mutableP, globalRosterStats, avgEfficiency, false, playerAdjustForLuckOff
         );
         const [ dRtg, adjDRtg, rawDRtg, rawAdjDRtg, dRtgDiag ] = RatingUtils.buildDRtg(
-          mutableP, avgEfficiency, false, playerAdjustForLuck
+          mutableP, avgEfficiency, false, playerAdjustForLuckDef
         );
         mutableP.off_rtg = {
           value: oRtg?.value, old_value: rawORtg?.value,
-          override: playerAdjustForLuck ? "Luck adjusted" : undefined
+          override: playerAdjustForLuckOff ? "Luck adjusted" : undefined
         };
         mutableP.off_adj_rtg = {
           value: adjORtg?.value, old_value: rawAdjORtg?.value,
-          override: playerAdjustForLuck ? "Luck adjusted" : undefined
+          override: playerAdjustForLuckOff ? "Luck adjusted" : undefined
         };
         mutableP.def_rtg = {
           value: dRtg?.value, old_value: rawDRtg?.value,
-          override: playerAdjustForLuck ? "Luck adjusted" : undefined
+          override: playerAdjustForLuckDef ? "Luck adjusted" : undefined
         };
         mutableP.def_adj_rtg = {
           value: adjDRtg?.value, old_value: rawAdjDRtg?.value,
-          override: playerAdjustForLuck ? "Luck adjusted" : undefined
+          override: playerAdjustForLuckDef ? "Luck adjusted" : undefined
         };
         return [ mutableP.key, mutableP ];
       })

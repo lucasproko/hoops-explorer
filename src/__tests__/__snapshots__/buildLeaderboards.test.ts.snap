@@ -445,9 +445,9 @@ Array [
       "Cowan, Anthony": Object {
         "code": "AnCowan",
         "def_adj_rtg": Object {
-          "old_value": undefined,
-          "override": undefined,
-          "value": -1.7420865091166775,
+          "old_value": -1.7420865091166775,
+          "override": "Luck adjusted",
+          "value": -1.640924063296302,
         },
         "def_orb": Object {
           "value": 0.096,
@@ -502,9 +502,9 @@ Array [
       "Wiggins, Aaron": Object {
         "code": "AaWiggins",
         "def_adj_rtg": Object {
-          "old_value": undefined,
-          "override": undefined,
-          "value": -3.021823252114291,
+          "old_value": -3.021823252114291,
+          "override": "Luck adjusted",
+          "value": -2.7062941842124077,
         },
         "def_orb": Object {
           "value": 0.1380952380952381,
@@ -1011,9 +1011,9 @@ Array [
       "Cowan, Anthony": Object {
         "code": "AnCowan",
         "def_adj_rtg": Object {
-          "old_value": undefined,
-          "override": undefined,
-          "value": -1.7420865091166775,
+          "old_value": -1.7420865091166775,
+          "override": "Luck adjusted",
+          "value": -1.640924063296302,
         },
         "def_orb": Object {
           "value": 0.096,
@@ -1063,9 +1063,9 @@ Array [
       "Wiggins, Aaron": Object {
         "code": "AaWiggins",
         "def_adj_rtg": Object {
-          "old_value": undefined,
-          "override": undefined,
-          "value": -3.021823252114291,
+          "old_value": -3.021823252114291,
+          "override": "Luck adjusted",
+          "value": -2.7062941842124077,
         },
         "def_orb": Object {
           "value": 0.1380952380952381,
@@ -1572,9 +1572,9 @@ Array [
       "Cowan, Anthony": Object {
         "code": "AnCowan",
         "def_adj_rtg": Object {
-          "old_value": undefined,
-          "override": undefined,
-          "value": -1.7420865091166775,
+          "old_value": -1.7420865091166775,
+          "override": "Luck adjusted",
+          "value": -1.640924063296302,
         },
         "def_orb": Object {
           "value": 0.096,
@@ -1624,9 +1624,9 @@ Array [
       "Wiggins, Aaron": Object {
         "code": "AaWiggins",
         "def_adj_rtg": Object {
-          "old_value": undefined,
-          "override": undefined,
-          "value": -3.021823252114291,
+          "old_value": -3.021823252114291,
+          "override": "Luck adjusted",
+          "value": -2.7062941842124077,
         },
         "def_orb": Object {
           "value": 0.1380952380952381,
@@ -2138,9 +2138,9 @@ Array [
       "Cowan, Anthony": Object {
         "code": "AnCowan",
         "def_adj_rtg": Object {
-          "old_value": undefined,
-          "override": undefined,
-          "value": -1.7420865091166775,
+          "old_value": -1.7420865091166775,
+          "override": "Luck adjusted",
+          "value": -1.640924063296302,
         },
         "def_orb": Object {
           "value": 0.096,
@@ -2190,9 +2190,9 @@ Array [
       "Wiggins, Aaron": Object {
         "code": "AaWiggins",
         "def_adj_rtg": Object {
-          "old_value": undefined,
-          "override": undefined,
-          "value": -3.021823252114291,
+          "old_value": -3.021823252114291,
+          "override": "Luck adjusted",
+          "value": -2.7062941842124077,
         },
         "def_orb": Object {
           "value": 0.1380952380952381,
