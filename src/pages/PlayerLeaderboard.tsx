@@ -76,9 +76,12 @@ const PlayLeaderboardPage: NextPage<{}> = () => {
       (!rawParams.filter) ? [ 'filter' ] : [],
       (!rawParams.conf) ? [ 'conf' ] : [],
 
+      (rawParams.factorMins == ParamDefaults.defaultPlayerLboardFactorMins) ? [ 'factorMins' ] : [],
+      (rawParams.possAsPct == ParamDefaults.defaultPlayerLboardPossAsPct) ? [ 'possAsPct' ] : [],
+
       (rawParams.minPoss == ParamDefaults.defaultPlayerLboardMinPos) ? [ 'minPoss' ] : [],
       (rawParams.maxTableSize == ParamDefaults.defaultPlayerLboardMaxTableSize) ? [ 'maxTableSize' ] : [],
-      (rawParams.sortBy == ParamDefaults.defaultPlayerLboardSortBy) ? [ 'sortBy' ] : []
+      (rawParams.sortBy == ParamDefaults.defaultPlayerLboardSortBy(rawParams.factorMins)) ? [ 'sortBy' ] : []
     ]));
     if (!_.isEqual(params, playerLeaderboardParams)) { //(to avoid recursion)
       const href = getRootUrl(params);

@@ -96,8 +96,9 @@ const inGender = (_.find(commandLine, p => _.startsWith(p, "--gender="))
 const inYear = (_.find(commandLine, p => _.startsWith(p, "--year="))
   || `--year=${ParamDefaults.defaultYear}`).substring(7);
 if (!testMode) console.log(`Args: gender=[${inGender}] year=[${inYear}]`);
+
 const teamFilter = undefined as Set<string> | undefined;
-  //(inYear == "2019/20") ? new Set([ "Maryland", "Iowa", "Michigan", "Dayton", "Rutgers" ]) : undefined;
+//  (inYear == "2019/20") ? new Set([ "Maryland", "Iowa", "Michigan", "Dayton", "Rutgers" ]) : undefined;
 
 const genderYearLookup = `${inGender}_${inYear}`;
 const avgEfficiency = efficiencyAverages[genderYearLookup] || efficiencyAverages.fallback;
@@ -187,7 +188,7 @@ export async function main() {
         teamResponse.getJsonResponse().aggregations?.global?.only?.buckets?.team || {};
 
       const teamBaseline =
-        teamResponse.getJsonResponse().aggregations?.global?.only?.buckets?.team || {};
+        teamResponse.getJsonResponse().aggregations?.tri_filter?.buckets?.baseline || {};
 
       /** Largest sample of player stats, by player key - use for ORtg calcs */
       const globalRosterStatsByCode =
@@ -213,14 +214,28 @@ export async function main() {
         const posInfo = positionFromPlayerKey[kv[0]] || {};
         return {
           conf: conference,
+          team: team,
+          year: inYear,
+          off_adj_prod: {
+            value: kv[1].off_adj_rtg.value*kv[1].off_team_poss_pct.value
+          },
+          def_adj_prod: {
+            value: kv[1].def_adj_rtg.value*kv[1].def_team_poss_pct.value,
+            old_value: kv[1].def_adj_rtg.old_value*kv[1].def_team_poss_pct.value,
+            override: kv[1].def_adj_rtg.override
+          },
           ...posInfo,
           ...(_.chain(kv[1]).toPairs().filter(t2 => //Reduce down to the field we'll actually need
-              (t2[0] == "off_team_poss")
-              || (
+              (
+                (t2[0] == "off_team_poss") || (t2[0] == "off_team_poss_pct") ||
+                (t2[0] == "def_team_poss") || (t2[0] == "def_team_poss_pct")
+              ) || (
                 !_.startsWith(t2[0], "off_team_") && !_.startsWith(t2[0], "def_team_") &&
                 !_.startsWith(t2[0], "off_oppo_") && !_.startsWith(t2[0], "def_oppo_") &&
                 !_.startsWith(t2[0], "team_") && !_.startsWith(t2[0], "oppo_") &&
-                !_.startsWith(t2[0], "total_")
+                !_.startsWith(t2[0], "total_") &&
+                !_.endsWith(t2[0], "_target") && !_.endsWith(t2[0], "_source") &&
+                !(t2[0] == "players_array")
               )
             ).fromPairs().value()
           )
@@ -246,7 +261,6 @@ export async function main() {
         lineup.conf = conference;
         lineup.team = team;
         lineup.year = inYear;
-        lineup.gender = inGender;
         // Add minimal player info:
         const codesAndIds = LineupTableUtils.buildCodesAndIds(lineup);
         lineup.player_info = _.fromPairs(codesAndIds.map((cid: { code: string, id: string }) => {
@@ -295,8 +309,33 @@ export async function main() {
 }
 /** Adds some handy default sortings */
 export function completePlayerLeaderboard(key: string, leaderboard: any[]) {
-  //TODO:
-  return leaderboard;
+  //TODO: RAPM
+
+  _.sortBy(
+    leaderboard, player => (player.def_adj_rtg?.value || 0) - (player.off_adj_rtg?.value || 0)
+  ).map((player, index) => {
+    player[`adj_rtg_margin_rank`] = index + 1;
+  });
+  _.sortBy(
+    leaderboard, player => (player.def_adj_prod?.value || 0) - (player.off_adj_prod?.value || 0)
+  ).map((player, index) => {
+    player[`adj_prod_margin_rank`] = index + 1;
+  });
+  _.sortBy(leaderboard, player => (player.def_adj_rtg?.value || 0)).forEach((player, index) => {
+    player[`def_adj_rtg_rank`] = index + 1;
+  });
+  _.sortBy(leaderboard, player => (player.def_adj_prod?.value || 0)).forEach((player, index) => {
+    player[`def_adj_prod_rank`] = index + 1;
+  });
+  _.sortBy(leaderboard, player => -1*(player.off_adj_prod?.value || 0)).map((player, index) => {
+    player[`off_adj_prod_rank`] = index + 1;
+    return player;
+  });
+  const sortedLeaderboard = _.sortBy(leaderboard, player => -1*(player.off_adj_rtg?.value || 0)).map((player, index) => {
+    player[`off_adj_rtg_rank`] = index + 1;
+    return player;
+  });
+  return sortedLeaderboard;
 }
 
 /** Adds some handy default sortings and removes possession outliers (export for test only) */

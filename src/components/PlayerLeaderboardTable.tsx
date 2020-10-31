@@ -94,24 +94,58 @@ const sortOptions: Array<any> = _.flatten(
 const sortOptionsByValue = _.fromPairs(
   sortOptions.map(opt => [opt.value, opt])
 );
-/** Put these options at the front */
-const mostUsefulSubset = [
-  "desc:diff_adj_ppp",
-  "desc:off_adj_ppp",
-  "asc:def_adj_ppp",
-  "desc:off_poss",
+
+// Info required for the positional filter
+
+const positionClasses = [
+  "Pure PG",
+  "Scoring PG",
+  "Combo Guard",
+  "(All Ballhandlers)",
+  "Wing Guard",
+  "(All Guards)",
+  "Wing Forward",
+  "(All Wings)",
+  "Stretch PF",
+  "Power Forward/Center",
+  "(All PFs)",
+  "Center",
+  "(All Post Players)",
+  "(All Frontcourt)",
 ];
-/** The two sub-headers for the dropdown */
-const groupedOptions = [
-  {
-    label: "Most useful",
-    options: _.chain(sortOptionsByValue).pick(mostUsefulSubset).values().value()
-  },
-  {
-    label: "Other",
-    options: _.chain(sortOptionsByValue).omit(mostUsefulSubset).values().value()
-  }
-];
+const posClassToNickname = {
+  "Pure PG": "PG",
+  "Scoring PG": "s-PG",
+  "Combo Guard": "CG",
+  "(All Ballhandlers)": "BH*",
+  "Wing Guard": "WG",
+  "(All Guards)": "*G",
+  "Wing Forward": "WF",
+  "(All Wings)": "W*",
+  "Stretch PF": "S-PF",
+  "Power Forward/Center": "PF/C",
+  "(All PFs)": "PF+",
+  "Center": "C",
+  "(All Post Players)": "C+",
+  "(All Frontcourt)": "4/5",
+}
+const nicknameToPosClass = {
+  ...PositionUtils.idToPosition,
+  "BH*": "(All Ballhandlers)",
+  "*G": "(All Guards)",
+  "W*": "(All Wings)",
+  "PF+": "(All PFs)",
+  "C+": "(All Post Players)",
+  "4/5": "(All Frontcourt)",
+};
+const expandedPosClasses = {
+  "BH*": [ "PG", "s-PG", "CG" ],
+  "*G": [ "PG", "s-PG", "CG", "WG" ],
+  "W*": [ "WG", "WF" ],
+  "PF+": [ "WF", "S-PF", "PF/C" ],
+  "C+": [ "PF/C", "C" ],
+  "4/5": [ "WF", "S-PF", "PF/C", "C" ],
+};
 
 // Functional component
 
@@ -135,6 +169,13 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
 
   // Misc display
 
+  const [ posClasses, setPosClasses ] = useState(startingState.posClasses || "");
+
+  /** Show the number of possessions as a % of total team count */
+  const [ factorMins, setFactorMins ] = useState(_.isNil(startingState.factorMins) ?
+    ParamDefaults.defaultPlayerLboardFactorMins : startingState.factorMins
+  );
+
   /** Set this to be true on expensive operations */
   const [ loadingOverride, setLoadingOverride ] = useState(false);
 
@@ -142,11 +183,46 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
   const [ minPoss, setMinPoss ] = useState(startingMinPoss);
   const startingMaxTableSize = startingState.maxTableSize || ParamDefaults.defaultPlayerLboardMaxTableSize;
   const [ maxTableSize, setMaxTableSize ] = useState(startingMaxTableSize);
-  const [ sortBy, setSortBy ] = useState(startingState.sortBy || ParamDefaults.defaultPlayerLboardSortBy);
+  const [ sortBy, setSortBy ] = useState(startingState.sortBy || ParamDefaults.defaultPlayerLboardSortBy(factorMins));
   const [ filterStr, setFilterStr ] = useState(startingState.filter || ParamDefaults.defaultPlayerLboardFilter);
 
   const [ isT100, setIsT100 ] = useState(startingState.t100 || false);
   const [ isConfOnly, setIsConfOnly ] = useState(startingState.confOnly || false);
+
+  /** Show the number of possessions as a % of total team count */
+  const [ possAsPct, setPossAsPct ] = useState(_.isNil(startingState.possAsPct) ?
+    ParamDefaults.defaultPlayerLboardPossAsPct : startingState.possAsPct
+  );
+
+  /** When switching between rating and prod, also switch common sort bys over */
+  const toggleFactorMins = () => {
+    const newSortBy = factorMins ? sortBy.replace("_prod", "_rtg") : sortBy.replace("_rtg", "_prod");
+    if (newSortBy != sortBy) {
+      setSortBy(newSortBy);
+    }
+    setFactorMins(!factorMins);
+  };
+  /** Put these options at the front */
+  const mostUsefulSubset = factorMins ? [
+    "desc:diff_adj_prod",
+    "desc:off_adj_prod",
+    "asc:def_adj_prod"
+  ] : [
+    "desc:diff_adj_rtg",
+    "desc:off_adj_rtg",
+    "asc:def_adj_rtg"
+  ];
+  /** The two sub-headers for the dropdown */
+  const groupedOptions = [
+    {
+      label: "Most useful",
+      options: _.chain(sortOptionsByValue).pick(mostUsefulSubset).values().value()
+    },
+    {
+      label: "Other",
+      options: _.chain(sortOptionsByValue).omit(mostUsefulSubset).values().value()
+    }
+  ];
 
   useEffect(() => { // Add and remove clipboard listener
     initClipboard();
@@ -167,6 +243,10 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       ...startingState,
       conf: confs, gender: gender, year: year,
       t100: isT100, confOnly: isConfOnly,
+      // Player filters/settings:
+      posClasses: posClasses,
+      possAsPct: possAsPct,
+      factorMins: factorMins,
       // Misc filters
       minPoss: minPoss,
       maxTableSize: maxTableSize,
@@ -175,7 +255,8 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
     };
     onChangeState(newState);
   }, [ minPoss, maxTableSize, sortBy, filterStr,
-      isT100, isConfOnly,
+      isT100, isConfOnly, possAsPct, factorMins,
+      posClasses,
       confs, year, gender ]);
 
   // 3] Utils
@@ -209,19 +290,24 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       _.flatMap((confs || "").split(","), c => c == "P6" ? Power6Conferences : [ NicknameToConference[c] || c ])
     ) : undefined;
 
+    const posClassSet = posClasses ? new Set(
+      _.flatMap((posClasses || "").split(","), c => expandedPosClasses[c] || [ c ])
+    ) : undefined;
     const dataEventPlayers = (dataEvent?.players || []);
-//TODO: make this a % or an int?
 
+//TODO: make this a % or an int?
     // Filter and limit players part 1/2
     const minPossNum = parseInt(minPoss) || 0;
     const confDataEventPlayers = dataEventPlayers.filter(player => {
-      return (!confSet || confSet.has(player.conf || "Unknown")) && (player.off_poss?.value >= minPossNum);
+      return (!confSet || confSet.has(player.conf || "Unknown")) &&
+              (!posClassSet || posClassSet.has(player.posClass || "Unknown")) &&
+                (player.off_team_poss?.value >= minPossNum);
         //(we do the "spurious" minPossNum check so we can detect filter presence and use to add a ranking)
     });
 
     // Filter, sort, and limit players part 2/2
     const players = _.chain(confDataEventPlayers).filter(player => {
-      const strToTest = (player.on?.key || player.off?.key || player.baseline?.key || "");
+      const strToTest = `${(player.key || "")} ${player.team || ""}`;
 
       return(
         (filterFragmentsPve.length == 0) ||
@@ -231,15 +317,21 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
           (_.find(filterFragmentsNve, (fragment) => strToTest.indexOf(fragment) >= 0) ? false : true))
         ;
     }).sortBy(
-//TODO: don't need to sort if using default
-      [ LineupTableUtils.sorter(sortBy) , (p) => { p.baseline?.off_team_poss?.value || 0 } ]
+      (sortBy == ParamDefaults.defaultPlayerLboardSortBy(false)) ? [] : //(can save on a sort if using the generated sort-order)
+        [ LineupTableUtils.sorter(sortBy) , (p) => { p.baseline?.off_team_poss?.value || 0 } ]
     ).take(maxTableSize).value();
 
+    const usefulSortCombo =
+      factorMins ?
+        (sortBy != "desc:diff_adj_prod") && (sortBy != "desc:off_adj_prod") && (sortBy != "asc:def_adj_prod") :
+        (sortBy != "desc:diff_adj_rtg") && (sortBy != "desc:off_adj_rtg") && (sortBy != "asc:def_adj_rtg")
+
     /** Either the sort is not one of the 3 pre-calced, or there is a filter */
-    const isGeneralSortOrFilter = ((sortBy != ParamDefaults.defaultPlayerLboardSortBy) &&
-      (sortBy != "desc:off_adj_ppp") && (sortBy != "asc:def_adj_ppp"))
+    const isGeneralSortOrFilter = (
+      usefulSortCombo
       ||
-      ((confDataEventPlayers.length < dataEventPlayers.length) || ((filterStr || "") != ""));
+      ((confDataEventPlayers.length < dataEventPlayers.length) || ((filterStr || "") != ""))
+    );
 
     const tableData = players.flatMap((player, playerIndex) => {
       player.def_usage = <OverlayTrigger placement="auto" overlay={TableDisplayUtils.buildPositionTooltip(player.posClass, "Base")}>
@@ -247,6 +339,35 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       </OverlayTrigger>;
 
       const confNickname = ConferenceToNickname[player.conf] || "???";
+
+      const generalRank = isGeneralSortOrFilter ? <span><i>(#{playerIndex + 1})</i>&nbsp;</span> : null;
+      const rankingsTooltip = (
+        <Tooltip id={`rankings_${playerIndex}`}>
+          Ranks:<br/>
+          {isGeneralSortOrFilter ? "[filtered/sorted subset] " : ""}{isGeneralSortOrFilter ? <br/> : null}
+          [Adj Net Rating+]<br/>[Adj Offensive Rating+]<br/>[Adj Defensive Rating+]
+        </Tooltip>
+      );
+
+      const getRankings = () => {
+        if (factorMins) {
+          const marginRank = (sortBy == "desc:diff_adj_prod") ? <b><big>#{player.adj_prod_margin_rank}</big></b> : `#${player.adj_prod_margin_rank}`;
+          const offRank = (sortBy == "desc:off_adj_prod") ? <b><big>#{player.off_adj_prod_rank}</big></b> : `#${player.off_adj_prod_rank}`;
+          const defRank = (sortBy == "asc:def_adj_prod") ? <b><big>#{player.def_adj_prod_rank}</big></b> : `#${player.def_adj_prod_rank}`;
+          return <OverlayTrigger placement="auto" overlay={rankingsTooltip}>
+            <span>{generalRank}<small>{marginRank} ({offRank} / {defRank})</small></span>
+          </OverlayTrigger>;
+        } else {
+          const marginRank = (sortBy == "desc:diff_adj_rtg") ? <b><big>#{player.adj_rtg_margin_rank}</big></b> : `#${player.adj_rtg_margin_rank}`;
+          const offRank = (sortBy == "desc:off_adj_rtg") ? <b><big>#{player.off_adj_rtg_rank}</big></b> : `#${player.off_adj_rtg_rank}`;
+          const defRank = (sortBy == "asc:def_adj_rtg") ? <b><big>#{player.def_adj_rtg_rank}</big></b> : `#${player.def_adj_rtg_rank}`;
+          return <OverlayTrigger placement="auto" overlay={rankingsTooltip}>
+            <span>{generalRank}<small>{marginRank} ({offRank} / {defRank})</small></span>
+          </OverlayTrigger>;
+        }
+      };
+      const rankings = getRankings();
+
 
       const teamTooltip = (
         <Tooltip id={`team_${playerIndex}`}>Open new tab with all players for this team</Tooltip>
@@ -261,13 +382,16 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
         <a target="_new" href={UrlRouting.getGameUrl(teamParams, {})}><b>{player.team}</b></a>
       </OverlayTrigger>;
 
-      const rankings = "#TBD";  //TODO work needed here:
-      const adjMarginStr = "+0.0";
+      const adjMargin = (player.off_adj_rtg?.value || 0) - (player.def_adj_rtg?.value || 0);
+      const adjMarginStr = `${(adjMargin > 0.0) ? "+" : ""}${adjMargin.toFixed(1)}`;
+
       player.off_title = <div>
-        {player.key}<br/>
-        <span className="float-left">
+      <span className="float-left">
         {rankings}
-        &nbsp;<span>{teamEl} (<span>{confNickname}</span>) {adjMarginStr}</span>
+      </span>&nbsp;<b>{player.key}</b>
+        <br/>
+        <span className="float-left">
+          <span>{teamEl}&nbsp;(<span>{confNickname}</span>)&nbsp;[<b>{adjMarginStr}</b>]</span>
         </span>
       </div>;
 
@@ -282,13 +406,14 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
     });
     return <GenericTable
       tableCopyId="playerLeaderboardTable"
-      tableFields={CommonTableDefs.onOffIndividualTableAllFields(true)}
+      tableFields={CommonTableDefs.onOffIndividualTable(true, possAsPct, factorMins)}
       tableData={tableData}
       cellTooltipMode="none"
     />
 
   }, [ minPoss, maxTableSize, sortBy, filterStr,
-      confs,
+      possAsPct, factorMins,
+      confs, posClasses,
       dataEvent ]);
 
   // 3.2] Sorting utils
@@ -346,6 +471,8 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
     }
   }
 
+  // Conference filter
+
   function getCurrentConfsOrPlaceholder() {
     return (confs == "") ?
       { label: 'All Available Conferences' } :
@@ -361,6 +488,32 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       props: {
         ...oldText.props,
         children: [ ConferenceToNickname[fullConfname] || fullConfname ]
+      }
+    }
+    const newProps = {
+      ...props,
+      children: [ newText, props.children[1] ]
+    }
+    return <components.MultiValueContainer {...newProps} />
+  };
+
+  // Position filter
+
+  function getCurrentPositionsOrPlaceholder() {
+    return (posClasses == "") ?
+      { label: 'All Positions' } :
+      posClasses.split(",").map((posClass: string) => stringToOption(nicknameToPosClass[posClass] || posClass));
+  }
+
+  /** Slightly hacky code to render the position abbreviations */
+  const PositionValueContainer = (props: any) => {
+    const oldText = props.children[0];
+    const fullPosition = oldText.props.children;
+    const newText = {
+      ...oldText,
+      props: {
+        ...oldText.props,
+        children: [ posClassToNickname[fullPosition] || fullPosition ]
       }
     }
     const newProps = {
@@ -400,7 +553,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       <Col xs={6} sm={6} md={3} lg={2}>
         <Select
           value={ stringToOption(year) }
-          options={[ "2018/9", "2019/20" ].map( /*TODO: also add 2018/9*/
+          options={[ "2018/9", "2019/20" ].map(
             (r) => stringToOption(r)
           )}
           isSearchable={false}
@@ -426,12 +579,12 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
           }}
         />
       </Col>
-      <Col>
+      <Col lg={1}>
         {getCopyLinkButton()}
       </Col>
     </Form.Group>
       <Form.Row>
-        <Form.Group as={Col} sm="8">
+        <Form.Group as={Col} sm="7">
           <InputGroup>
             <InputGroup.Prepend>
               <InputGroup.Text id="filter">Filter</InputGroup.Text>
@@ -444,17 +597,24 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
             />
           </InputGroup>
         </Form.Group>
-        <Col sm="3"/>
-        <Form.Group as={Col} sm="1">
-          <GenericTogglingMenu>
-            <GenericTogglingMenuItem
-              text={<i className="text-secondary">Adjust for Luck</i>}
-              truthVal={true}
-              onSelect={() => {}}
-              helpLink={showHelp ? "https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html" : undefined}
-            />
-          </GenericTogglingMenu>
-        </Form.Group>
+        <Col xs={12} sm={12} md={4} lg={4}>
+          <Select
+            isClearable={true}
+            styles={{ menu: base => ({ ...base, zIndex: 1000 }) }}
+            isMulti
+            components={{ MultiValueContainer: PositionValueContainer }}
+            value={ getCurrentPositionsOrPlaceholder() }
+            options={(positionClasses || []).map(
+              (r) => stringToOption(r)
+            )}
+            onChange={(optionsIn) => {
+              const options = optionsIn as Array<any>;
+              const selection = (options || []).map(option => (option as any)?.value || "");
+              const posClassStr = selection.filter((t: string) => t != "").map((c: string) => posClassToNickname[c] || c).join(",")
+              friendlyChange(() => setPosClasses(posClassStr), posClasses != posClassStr);
+            }}
+          />
+        </Col>
       </Form.Row>
       <Form.Row>
         <Form.Group as={Col} sm="3">
@@ -471,7 +631,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
             />
           </InputGroup>
         </Form.Group>
-        <Form.Group as={Col} sm="3">
+        {false ? <Form.Group as={Col} sm="3">
           <InputGroup>
             <InputGroup.Prepend>
               <InputGroup.Text id="minPossessions">Min Poss #</InputGroup.Text>
@@ -484,7 +644,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
               placeholder = "eg 20"
             />
           </InputGroup>
-        </Form.Group>
+        </Form.Group> : null}
         <Form.Group as={Col} sm="6">
           <InputGroup>
             <InputGroup.Prepend>
@@ -501,6 +661,30 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
               formatGroupLabel={formatGroupLabel}
             />
           </InputGroup>
+        </Form.Group>
+        <Col sm="2"/>
+        <Form.Group as={Col} sm="1">
+          <GenericTogglingMenu>
+            <GenericTogglingMenuItem
+              text={<i className="text-secondary">Adjust for Luck</i>}
+              truthVal={true}
+              onSelect={() => {}}
+              helpLink={showHelp ? "https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html" : undefined}
+            />
+            <GenericTogglingMenuItem
+              text={<span>Factor minutes % into Adjusted Rating+</span>}
+              truthVal={factorMins}
+              onSelect={() => friendlyChange(() => toggleFactorMins(), true)}
+            />
+            <Dropdown.Divider />
+            <GenericTogglingMenuItem
+              text={<span>{possAsPct ?
+                "Show possessions as count" : "Show possessions as % of team"
+              }</span>}
+              truthVal={false}
+              onSelect={() => friendlyChange(() => setPossAsPct(!possAsPct), true)}
+            />
+          </GenericTogglingMenu>
         </Form.Group>
       </Form.Row>
       <Form.Row>
@@ -523,7 +707,19 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
               tooltip: "Leaderboard of players vs conference opposition",
               toggled: isConfOnly,
               onClick: () => friendlyChange(() => { setIsT100(false); setIsConfOnly(!isConfOnly); }, true)
-            }
+            },
+            {
+              label: "Poss%",
+              tooltip: possAsPct ? "Show possessions as count" : "Show possessions as percentage",
+              toggled: possAsPct,
+              onClick: () => friendlyChange(() => setPossAsPct(!possAsPct), true)
+            },
+            {
+              label: "* Mins%",
+              tooltip: "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
+              toggled: factorMins,
+              onClick: () => friendlyChange(() => toggleFactorMins(), true)
+            },
           ] as Array<any>).concat(showHelp ? [
             //TODO: what to show here?
             // {

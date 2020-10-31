@@ -103,10 +103,22 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
       ParamDefaults.defaultPlayerPosDiagMode : gameFilterParams.showPosDiag
   );
 
-  /** Show a diagnostics mode explaining the off/def ratings */
+  /** Show the number of possessions as a % of total team count */
   const [ possAsPct, setPossAsPct ] = useState(_.isNil(gameFilterParams.possAsPct) ?
     ParamDefaults.defaultPlayerPossAsPct : gameFilterParams.possAsPct
   );
+  /** Show the number of possessions as a % of total team count */
+  const [ factorMins, setFactorMins ] = useState(_.isNil(gameFilterParams.factorMins) ?
+    ParamDefaults.defaultPlayerFactorMins : gameFilterParams.factorMins
+  );
+  /** When switching between rating and prod, also switch common sort bys over */
+  const toggleFactorMins = () => {
+    const newSortBy = factorMins ? sortBy.replace("_prod", "_rtg") : sortBy.replace("_rtg", "_prod");
+    if (newSortBy != sortBy) {
+      setSortBy(newSortBy);
+    }
+    setFactorMins(!factorMins);
+  };
 
   /** Incorporates SoS into rating calcs "Adj [Eq] Rtg" */
   const [ adjORtgForSos, setAdjORtgForSos ] = useState(false);
@@ -199,7 +211,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
   // 2] Data Model
 
   const allTableFields = CommonTableDefs.onOffIndividualTableAllFields(expandedView);
-  const tableFields = CommonTableDefs.onOffIndividualTable(expandedView, possAsPct);
+  const tableFields = CommonTableDefs.onOffIndividualTable(expandedView, possAsPct, factorMins);
 
   // 3] Utils
 
@@ -391,13 +403,24 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
           value: adjORtg?.value, old_value: rawAdjORtg?.value,
           override: adjustmentReason
         };
+        stat.off_adj_prod = {
+          value: adjORtg?.value*stat.off_team_poss_pct.value!,
+          old_value: rawAdjORtg?.value*stat.off_team_poss_pct.value!,
+          override: adjustmentReason
+        };
         stat.diag_off_rtg = oRtgDiag;
         stat.def_rtg = {
           value: dRtg?.value, old_value: rawDRtg?.value,
           override: adjustForLuck ? "Derived from luck adjustments" : undefined
         };
         stat.def_adj_rtg = {
-          value: adjDRtg?.value, old_value: rawAdjDRtg?.value,
+          value: adjDRtg?.value,
+          old_value: rawAdjDRtg?.value,
+          override: adjustForLuck ? "Derived from luck adjustments" : undefined
+        };
+        stat.def_adj_prod = {
+          value: adjDRtg?.value*stat.def_team_poss_pct.value!,
+          old_value: rawAdjDRtg?.value*stat.def_team_poss_pct.value!,
           override: adjustForLuck ? "Derived from luck adjustments" : undefined
         };
         stat.diag_def_rtg = dRtgDiag;
@@ -574,7 +597,14 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
       "desc:off_team_poss_pct:baseline", "desc:off_team_poss_pct:on", "desc:off_team_poss_pct:off",
       "desc:off_rtg:baseline", "desc:off_rtg:on", "desc:off_rtg:off",
       "desc:off_usage:baseline", "desc:off_usage:on", "desc:off_usage:off",
-    ]
+    ],
+    factorMins ?
+      [ "desc:off_adj_prod:baseline", "desc:off_adj_prod:on", "desc:off_adj_prod:off",
+        "asc:def_adj_prod:baseline", "asc:def_adj_prod:on",  "asc:def_adj_prod:off",
+      ] : [
+        "desc:off_adj_rtg:baseline", "desc:off_adj_rtg:on", "desc:off_adj_rtg:off",
+        "asc:def_adj_rtg:baseline", "asc:def_adj_rtg:on", "asc:def_adj_rtg:off",
+      ]
   ]);
   /** The two sub-headers for the dropdown */
   const groupedOptions = [
@@ -673,6 +703,11 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
             />
             <Dropdown.Divider />
             <GenericTogglingMenuItem
+              text={<span>Factor minutes % into Adjusted Rating+</span>}
+              truthVal={factorMins}
+              onSelect={() => toggleFactorMins()}
+            />
+            <GenericTogglingMenuItem
               text="Adjust for Luck"
               truthVal={adjustForLuck}
               onSelect={() => setAdjustForLuck(!adjustForLuck)}
@@ -723,6 +758,12 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
               tooltip: possAsPct ? "Show possessions as count" : "Show possessions as percentage",
               toggled: possAsPct,
               onClick: () => setPossAsPct(!possAsPct)
+            },
+            {
+              label: "* Mins%",
+              tooltip: "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
+              toggled: factorMins,
+              onClick: () => toggleFactorMins()
             },
             {
               label: "Luck",

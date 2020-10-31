@@ -70,6 +70,7 @@ export type GameFilterParams = {
   showExpanded?: boolean,
   showDiag?: boolean
   possAsPct?: boolean,
+  factorMins?: boolean,
   showPosDiag?: boolean
 };
 
@@ -115,8 +116,10 @@ export type PlayerLeaderboardParams = {
   minPoss?: string,
   maxTableSize?: string,
   sortBy?: string,
-  // Luck adjustments
-  showPositionalDiags?: boolean,
+  // Player settings
+  posClasses?: string, //(undefined => all positions)
+  possAsPct?: boolean,
+  factorMins?: boolean,
   // Filtering:
   filter?: string,
   // Query pre-sets
@@ -163,6 +166,7 @@ export class ParamDefaults {
   static readonly defaultPlayerShowBase = false;
   static readonly defaultPlayerShowExpanded = false;
   static readonly defaultPlayerPossAsPct = true;
+  static readonly defaultPlayerFactorMins = false;
   static readonly defaultPlayerPosDiagMode = false;
   // Lineup
   static readonly defaultLineupShowTotal = false;
@@ -182,8 +186,10 @@ export class ParamDefaults {
   // Player leaderboard
   static readonly defaultPlayerLboardMinPos = "20";
   static readonly defaultPlayerLboardMaxTableSize = "100";
-  static readonly defaultPlayerLboardSortBy = "desc:diff_adj_ppp";
+  static defaultPlayerLboardSortBy(factorMins?: boolean) { return factorMins ? "desc:off_adj_prod" : "desc:off_adj_rtg"; }
   static readonly defaultPlayerLboardFilter = "";
+  static readonly defaultPlayerLboardFactorMins = false;
+  static readonly defaultPlayerLboardPossAsPct = true;
   // Report
   static readonly defaultTeamReportSortBy = "desc:off_poss:on";
   static readonly defaultTeamReportFilter = "";

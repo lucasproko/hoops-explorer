@@ -250,7 +250,20 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       const adjMargin = (lineup.off_adj_ppp?.value || 0) - (lineup.def_adj_ppp?.value || 0);
       const adjMarginStr = `${(adjMargin > 0.0) ? "+" : ""}${adjMargin.toFixed(1)}`;
       const generalRank = isGeneralSortOrFilter ? <span><i>(#{lineupIndex + 1})</i>&nbsp;</span> : null;
-      const rankings = <span>{generalRank}<b>#{lineup.adj_margin_rank}</b> <small>(#{lineup.off_adj_ppp_rank} / #{lineup.def_adj_ppp_rank})</small></span>;
+
+      const rankingsTooltip = (
+        <Tooltip id={`rankings_${lineupIndex}`}>
+          Ranks:<br/>
+          {isGeneralSortOrFilter ? "[filtered/sorted subset] " : ""}{isGeneralSortOrFilter ? <br/> : null}
+          [Adj Net Efficiency]<br/>[Adj Offensive Efficiency]<br/>[Adj Defensive Efficiency]
+        </Tooltip>
+      );
+      const marginRank = (sortBy == "desc:diff_adj_ppp") ? <b><big>#{lineup.adj_margin_rank}</big></b> : `#${lineup.adj_margin_rank}`;
+      const offRank = (sortBy == "desc:off_adj_ppp") ? <b><big>#{lineup.off_adj_ppp_rank}</big></b> : `#${lineup.off_adj_ppp_rank}`;
+      const defRank = (sortBy == "asc:def_adj_ppp") ? <b><big>#{lineup.def_adj_ppp_rank}</big></b> : `#${lineup.def_adj_ppp_rank}`;
+      const rankings = <OverlayTrigger placement="auto" overlay={rankingsTooltip}>
+        <span>{generalRank}<small>{marginRank} ({offRank} / {defRank})</small></span>
+      </OverlayTrigger>;
 
       const confNickname = ConferenceToNickname[lineup.conf] || "???";
 
@@ -269,7 +282,7 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
 
       const title = <div><span className="float-left">
         {rankings}
-        &nbsp;<span>{teamEl} (<span>{confNickname}</span>) {adjMarginStr}</span>
+        &nbsp;<span>{teamEl} (<span>{confNickname}</span>)&nbsp;[<b>{adjMarginStr}</b>]</span>
         </span><br/>
         {subTitle}
       </div>
@@ -411,7 +424,7 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       <Col xs={6} sm={6} md={3} lg={2}>
         <Select
           value={ stringToOption(year) }
-          options={[ "2018/9", "2019/20" ].map( /*TODO: also add 2018/9*/
+          options={[ "2018/9", "2019/20" ].map(
             (r) => stringToOption(r)
           )}
           isSearchable={false}
