@@ -133,7 +133,7 @@ const PlayLeaderboardPage: NextPage<{}> = () => {
   return <Container>
     <Row>
       <Col xs={12} className="text-center">
-        <h3>CBB Player Leaderboard <span className="badge badge-pill badge-info">BETA!</span></h3>
+        <h3>CBB T700 Player Leaderboard <span className="badge badge-pill badge-info">BETA!</span></h3>
       </Col>
     </Row>
     <Row className="border-bottom">

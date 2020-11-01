@@ -1184,13 +1184,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_0"
                                               placement="right"
                                             >
-                                              Open new tab with all players for this team
+                                              Open new tab with the on/off analysis for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/?gender=Men&lineupLuck=true&maxRank=400&minRank=0&team=Marquette&year=2019%2F20&"
+                                            href="/?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Howard%2C%20Markus%22&onQuery=%22Howard%2C%20Markus%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Marquette&year=2019%2F20&"
                                             target="_new"
                                           >
                                             <b>
@@ -1203,9 +1203,26 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           BE
                                         </span>
                                         ) [
-                                        <b>
-                                          +10.4
-                                        </b>
+                                        <OverlayTrigger
+                                          overlay={
+                                            <ForwardRef
+                                              id="player_0"
+                                              placement="right"
+                                            >
+                                              Open new tab showing the off/def rating diagnostics for this player
+                                            </ForwardRef>
+                                          }
+                                          placement="auto"
+                                        >
+                                          <a
+                                            href="/?factorMins=false&filter=MaHoward&gender=Men&maxRank=400&minRank=0&possAsPct=true&showDiag=true&showExpanded=true&showPosDiag=true&team=Marquette&year=2019%2F20&"
+                                            target="_new"
+                                          >
+                                            <b>
+                                              +10.4
+                                            </b>
+                                          </a>
+                                        </OverlayTrigger>
                                         ]
                                       </span>
                                     </span>
@@ -1397,13 +1414,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_0"
                                               placement="right"
                                             >
-                                              Open new tab with all players for this team
+                                              Open new tab with the on/off analysis for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/?gender=Men&lineupLuck=true&maxRank=400&minRank=0&team=Marquette&year=2019%2F20&"
+                                            href="/?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Howard%2C%20Markus%22&onQuery=%22Howard%2C%20Markus%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Marquette&year=2019%2F20&"
                                             target="_new"
                                           >
                                             <b>
@@ -1416,9 +1433,26 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           BE
                                         </span>
                                         ) [
-                                        <b>
-                                          +10.4
-                                        </b>
+                                        <OverlayTrigger
+                                          overlay={
+                                            <ForwardRef
+                                              id="player_0"
+                                              placement="right"
+                                            >
+                                              Open new tab showing the off/def rating diagnostics for this player
+                                            </ForwardRef>
+                                          }
+                                          placement="auto"
+                                        >
+                                          <a
+                                            href="/?factorMins=false&filter=MaHoward&gender=Men&maxRank=400&minRank=0&possAsPct=true&showDiag=true&showExpanded=true&showPosDiag=true&team=Marquette&year=2019%2F20&"
+                                            target="_new"
+                                          >
+                                            <b>
+                                              +10.4
+                                            </b>
+                                          </a>
+                                        </OverlayTrigger>
                                         ]
                                       </span>
                                     </span>
@@ -1613,13 +1647,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_1"
                                               placement="right"
                                             >
-                                              Open new tab with all players for this team
+                                              Open new tab with the on/off analysis for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/?gender=Men&lineupLuck=true&maxRank=400&minRank=0&team=Iowa&year=2019%2F20&"
+                                            href="/?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Garza%2C%20Luka%22&onQuery=%22Garza%2C%20Luka%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Iowa&year=2019%2F20&"
                                             target="_new"
                                           >
                                             <b>
@@ -1632,9 +1666,26 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           B1G
                                         </span>
                                         ) [
-                                        <b>
-                                          +11.2
-                                        </b>
+                                        <OverlayTrigger
+                                          overlay={
+                                            <ForwardRef
+                                              id="player_1"
+                                              placement="right"
+                                            >
+                                              Open new tab showing the off/def rating diagnostics for this player
+                                            </ForwardRef>
+                                          }
+                                          placement="auto"
+                                        >
+                                          <a
+                                            href="/?factorMins=false&filter=LuGarza&gender=Men&maxRank=400&minRank=0&possAsPct=true&showDiag=true&showExpanded=true&showPosDiag=true&team=Iowa&year=2019%2F20&"
+                                            target="_new"
+                                          >
+                                            <b>
+                                              +11.2
+                                            </b>
+                                          </a>
+                                        </OverlayTrigger>
                                         ]
                                       </span>
                                     </span>
@@ -1826,13 +1877,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_1"
                                               placement="right"
                                             >
-                                              Open new tab with all players for this team
+                                              Open new tab with the on/off analysis for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/?gender=Men&lineupLuck=true&maxRank=400&minRank=0&team=Iowa&year=2019%2F20&"
+                                            href="/?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Garza%2C%20Luka%22&onQuery=%22Garza%2C%20Luka%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Iowa&year=2019%2F20&"
                                             target="_new"
                                           >
                                             <b>
@@ -1845,9 +1896,26 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           B1G
                                         </span>
                                         ) [
-                                        <b>
-                                          +11.2
-                                        </b>
+                                        <OverlayTrigger
+                                          overlay={
+                                            <ForwardRef
+                                              id="player_1"
+                                              placement="right"
+                                            >
+                                              Open new tab showing the off/def rating diagnostics for this player
+                                            </ForwardRef>
+                                          }
+                                          placement="auto"
+                                        >
+                                          <a
+                                            href="/?factorMins=false&filter=LuGarza&gender=Men&maxRank=400&minRank=0&possAsPct=true&showDiag=true&showExpanded=true&showPosDiag=true&team=Iowa&year=2019%2F20&"
+                                            target="_new"
+                                          >
+                                            <b>
+                                              +11.2
+                                            </b>
+                                          </a>
+                                        </OverlayTrigger>
                                         ]
                                       </span>
                                     </span>
@@ -2042,13 +2110,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_2"
                                               placement="right"
                                             >
-                                              Open new tab with all players for this team
+                                              Open new tab with the on/off analysis for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/?gender=Men&lineupLuck=true&maxRank=400&minRank=0&team=Oregon&year=2019%2F20&"
+                                            href="/?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Pritchard%2C%20Payton%22&onQuery=%22Pritchard%2C%20Payton%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Oregon&year=2019%2F20&"
                                             target="_new"
                                           >
                                             <b>
@@ -2061,9 +2129,26 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           P12
                                         </span>
                                         ) [
-                                        <b>
-                                          +9.2
-                                        </b>
+                                        <OverlayTrigger
+                                          overlay={
+                                            <ForwardRef
+                                              id="player_2"
+                                              placement="right"
+                                            >
+                                              Open new tab showing the off/def rating diagnostics for this player
+                                            </ForwardRef>
+                                          }
+                                          placement="auto"
+                                        >
+                                          <a
+                                            href="/?factorMins=false&filter=PaPritchard&gender=Men&maxRank=400&minRank=0&possAsPct=true&showDiag=true&showExpanded=true&showPosDiag=true&team=Oregon&year=2019%2F20&"
+                                            target="_new"
+                                          >
+                                            <b>
+                                              +9.2
+                                            </b>
+                                          </a>
+                                        </OverlayTrigger>
                                         ]
                                       </span>
                                     </span>
@@ -2255,13 +2340,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_2"
                                               placement="right"
                                             >
-                                              Open new tab with all players for this team
+                                              Open new tab with the on/off analysis for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/?gender=Men&lineupLuck=true&maxRank=400&minRank=0&team=Oregon&year=2019%2F20&"
+                                            href="/?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Pritchard%2C%20Payton%22&onQuery=%22Pritchard%2C%20Payton%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Oregon&year=2019%2F20&"
                                             target="_new"
                                           >
                                             <b>
@@ -2274,9 +2359,26 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           P12
                                         </span>
                                         ) [
-                                        <b>
-                                          +9.2
-                                        </b>
+                                        <OverlayTrigger
+                                          overlay={
+                                            <ForwardRef
+                                              id="player_2"
+                                              placement="right"
+                                            >
+                                              Open new tab showing the off/def rating diagnostics for this player
+                                            </ForwardRef>
+                                          }
+                                          placement="auto"
+                                        >
+                                          <a
+                                            href="/?factorMins=false&filter=PaPritchard&gender=Men&maxRank=400&minRank=0&possAsPct=true&showDiag=true&showExpanded=true&showPosDiag=true&team=Oregon&year=2019%2F20&"
+                                            target="_new"
+                                          >
+                                            <b>
+                                              +9.2
+                                            </b>
+                                          </a>
+                                        </OverlayTrigger>
                                         ]
                                       </span>
                                     </span>
@@ -2471,13 +2573,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_3"
                                               placement="right"
                                             >
-                                              Open new tab with all players for this team
+                                              Open new tab with the on/off analysis for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/?gender=Men&lineupLuck=true&maxRank=400&minRank=0&team=Duke&year=2019%2F20&"
+                                            href="/?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Carey%2C%20Vernon%22&onQuery=%22Carey%2C%20Vernon%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Duke&year=2019%2F20&"
                                             target="_new"
                                           >
                                             <b>
@@ -2490,9 +2592,26 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           ACC
                                         </span>
                                         ) [
-                                        <b>
-                                          +11.4
-                                        </b>
+                                        <OverlayTrigger
+                                          overlay={
+                                            <ForwardRef
+                                              id="player_3"
+                                              placement="right"
+                                            >
+                                              Open new tab showing the off/def rating diagnostics for this player
+                                            </ForwardRef>
+                                          }
+                                          placement="auto"
+                                        >
+                                          <a
+                                            href="/?factorMins=false&filter=VeCarey&gender=Men&maxRank=400&minRank=0&possAsPct=true&showDiag=true&showExpanded=true&showPosDiag=true&team=Duke&year=2019%2F20&"
+                                            target="_new"
+                                          >
+                                            <b>
+                                              +11.4
+                                            </b>
+                                          </a>
+                                        </OverlayTrigger>
                                         ]
                                       </span>
                                     </span>
@@ -2684,13 +2803,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_3"
                                               placement="right"
                                             >
-                                              Open new tab with all players for this team
+                                              Open new tab with the on/off analysis for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/?gender=Men&lineupLuck=true&maxRank=400&minRank=0&team=Duke&year=2019%2F20&"
+                                            href="/?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Carey%2C%20Vernon%22&onQuery=%22Carey%2C%20Vernon%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Duke&year=2019%2F20&"
                                             target="_new"
                                           >
                                             <b>
@@ -2703,9 +2822,26 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           ACC
                                         </span>
                                         ) [
-                                        <b>
-                                          +11.4
-                                        </b>
+                                        <OverlayTrigger
+                                          overlay={
+                                            <ForwardRef
+                                              id="player_3"
+                                              placement="right"
+                                            >
+                                              Open new tab showing the off/def rating diagnostics for this player
+                                            </ForwardRef>
+                                          }
+                                          placement="auto"
+                                        >
+                                          <a
+                                            href="/?factorMins=false&filter=VeCarey&gender=Men&maxRank=400&minRank=0&possAsPct=true&showDiag=true&showExpanded=true&showPosDiag=true&team=Duke&year=2019%2F20&"
+                                            target="_new"
+                                          >
+                                            <b>
+                                              +11.4
+                                            </b>
+                                          </a>
+                                        </OverlayTrigger>
                                         ]
                                       </span>
                                     </span>
@@ -2900,13 +3036,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_4"
                                               placement="right"
                                             >
-                                              Open new tab with all players for this team
+                                              Open new tab with the on/off analysis for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/?gender=Men&lineupLuck=true&maxRank=400&minRank=0&team=BYU&year=2019%2F20&"
+                                            href="/?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Childs%2C%20Yoeli%22&onQuery=%22Childs%2C%20Yoeli%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=BYU&year=2019%2F20&"
                                             target="_new"
                                           >
                                             <b>
@@ -2919,9 +3055,26 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           WCC
                                         </span>
                                         ) [
-                                        <b>
-                                          +10.6
-                                        </b>
+                                        <OverlayTrigger
+                                          overlay={
+                                            <ForwardRef
+                                              id="player_4"
+                                              placement="right"
+                                            >
+                                              Open new tab showing the off/def rating diagnostics for this player
+                                            </ForwardRef>
+                                          }
+                                          placement="auto"
+                                        >
+                                          <a
+                                            href="/?factorMins=false&filter=YoChilds&gender=Men&maxRank=400&minRank=0&possAsPct=true&showDiag=true&showExpanded=true&showPosDiag=true&team=BYU&year=2019%2F20&"
+                                            target="_new"
+                                          >
+                                            <b>
+                                              +10.6
+                                            </b>
+                                          </a>
+                                        </OverlayTrigger>
                                         ]
                                       </span>
                                     </span>
@@ -3113,13 +3266,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_4"
                                               placement="right"
                                             >
-                                              Open new tab with all players for this team
+                                              Open new tab with the on/off analysis for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/?gender=Men&lineupLuck=true&maxRank=400&minRank=0&team=BYU&year=2019%2F20&"
+                                            href="/?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Childs%2C%20Yoeli%22&onQuery=%22Childs%2C%20Yoeli%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=BYU&year=2019%2F20&"
                                             target="_new"
                                           >
                                             <b>
@@ -3132,9 +3285,26 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           WCC
                                         </span>
                                         ) [
-                                        <b>
-                                          +10.6
-                                        </b>
+                                        <OverlayTrigger
+                                          overlay={
+                                            <ForwardRef
+                                              id="player_4"
+                                              placement="right"
+                                            >
+                                              Open new tab showing the off/def rating diagnostics for this player
+                                            </ForwardRef>
+                                          }
+                                          placement="auto"
+                                        >
+                                          <a
+                                            href="/?factorMins=false&filter=YoChilds&gender=Men&maxRank=400&minRank=0&possAsPct=true&showDiag=true&showExpanded=true&showPosDiag=true&team=BYU&year=2019%2F20&"
+                                            target="_new"
+                                          >
+                                            <b>
+                                              +10.6
+                                            </b>
+                                          </a>
+                                        </OverlayTrigger>
                                         ]
                                       </span>
                                     </span>
@@ -3329,13 +3499,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_5"
                                               placement="right"
                                             >
-                                              Open new tab with all players for this team
+                                              Open new tab with the on/off analysis for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/?gender=Men&lineupLuck=true&maxRank=400&minRank=0&team=Dayton&year=2019%2F20&"
+                                            href="/?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Toppin%2C%20Obi%22&onQuery=%22Toppin%2C%20Obi%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Dayton&year=2019%2F20&"
                                             target="_new"
                                           >
                                             <b>
@@ -3348,9 +3518,26 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           A10
                                         </span>
                                         ) [
-                                        <b>
-                                          +9.7
-                                        </b>
+                                        <OverlayTrigger
+                                          overlay={
+                                            <ForwardRef
+                                              id="player_5"
+                                              placement="right"
+                                            >
+                                              Open new tab showing the off/def rating diagnostics for this player
+                                            </ForwardRef>
+                                          }
+                                          placement="auto"
+                                        >
+                                          <a
+                                            href="/?factorMins=false&filter=ObToppin&gender=Men&maxRank=400&minRank=0&possAsPct=true&showDiag=true&showExpanded=true&showPosDiag=true&team=Dayton&year=2019%2F20&"
+                                            target="_new"
+                                          >
+                                            <b>
+                                              +9.7
+                                            </b>
+                                          </a>
+                                        </OverlayTrigger>
                                         ]
                                       </span>
                                     </span>
@@ -3542,13 +3729,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_5"
                                               placement="right"
                                             >
-                                              Open new tab with all players for this team
+                                              Open new tab with the on/off analysis for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/?gender=Men&lineupLuck=true&maxRank=400&minRank=0&team=Dayton&year=2019%2F20&"
+                                            href="/?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Toppin%2C%20Obi%22&onQuery=%22Toppin%2C%20Obi%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Dayton&year=2019%2F20&"
                                             target="_new"
                                           >
                                             <b>
@@ -3561,9 +3748,26 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           A10
                                         </span>
                                         ) [
-                                        <b>
-                                          +9.7
-                                        </b>
+                                        <OverlayTrigger
+                                          overlay={
+                                            <ForwardRef
+                                              id="player_5"
+                                              placement="right"
+                                            >
+                                              Open new tab showing the off/def rating diagnostics for this player
+                                            </ForwardRef>
+                                          }
+                                          placement="auto"
+                                        >
+                                          <a
+                                            href="/?factorMins=false&filter=ObToppin&gender=Men&maxRank=400&minRank=0&possAsPct=true&showDiag=true&showExpanded=true&showPosDiag=true&team=Dayton&year=2019%2F20&"
+                                            target="_new"
+                                          >
+                                            <b>
+                                              +9.7
+                                            </b>
+                                          </a>
+                                        </OverlayTrigger>
                                         ]
                                       </span>
                                     </span>
@@ -3758,13 +3962,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_6"
                                               placement="right"
                                             >
-                                              Open new tab with all players for this team
+                                              Open new tab with the on/off analysis for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/?gender=Men&lineupLuck=true&maxRank=400&minRank=0&team=Saint%20Mary%27s%20%28CA%29&year=2019%2F20&"
+                                            href="/?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Ford%2C%20Jordan%22&onQuery=%22Ford%2C%20Jordan%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Saint%20Mary%27s%20%28CA%29&year=2019%2F20&"
                                             target="_new"
                                           >
                                             <b>
@@ -3777,9 +3981,26 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           WCC
                                         </span>
                                         ) [
-                                        <b>
-                                          +7.3
-                                        </b>
+                                        <OverlayTrigger
+                                          overlay={
+                                            <ForwardRef
+                                              id="player_6"
+                                              placement="right"
+                                            >
+                                              Open new tab showing the off/def rating diagnostics for this player
+                                            </ForwardRef>
+                                          }
+                                          placement="auto"
+                                        >
+                                          <a
+                                            href="/?factorMins=false&filter=JoFord&gender=Men&maxRank=400&minRank=0&possAsPct=true&showDiag=true&showExpanded=true&showPosDiag=true&team=Saint%20Mary%27s%20%28CA%29&year=2019%2F20&"
+                                            target="_new"
+                                          >
+                                            <b>
+                                              +7.3
+                                            </b>
+                                          </a>
+                                        </OverlayTrigger>
                                         ]
                                       </span>
                                     </span>
@@ -3971,13 +4192,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_6"
                                               placement="right"
                                             >
-                                              Open new tab with all players for this team
+                                              Open new tab with the on/off analysis for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/?gender=Men&lineupLuck=true&maxRank=400&minRank=0&team=Saint%20Mary%27s%20%28CA%29&year=2019%2F20&"
+                                            href="/?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Ford%2C%20Jordan%22&onQuery=%22Ford%2C%20Jordan%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Saint%20Mary%27s%20%28CA%29&year=2019%2F20&"
                                             target="_new"
                                           >
                                             <b>
@@ -3990,9 +4211,26 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           WCC
                                         </span>
                                         ) [
-                                        <b>
-                                          +7.3
-                                        </b>
+                                        <OverlayTrigger
+                                          overlay={
+                                            <ForwardRef
+                                              id="player_6"
+                                              placement="right"
+                                            >
+                                              Open new tab showing the off/def rating diagnostics for this player
+                                            </ForwardRef>
+                                          }
+                                          placement="auto"
+                                        >
+                                          <a
+                                            href="/?factorMins=false&filter=JoFord&gender=Men&maxRank=400&minRank=0&possAsPct=true&showDiag=true&showExpanded=true&showPosDiag=true&team=Saint%20Mary%27s%20%28CA%29&year=2019%2F20&"
+                                            target="_new"
+                                          >
+                                            <b>
+                                              +7.3
+                                            </b>
+                                          </a>
+                                        </OverlayTrigger>
                                         ]
                                       </span>
                                     </span>
@@ -4187,13 +4425,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_7"
                                               placement="right"
                                             >
-                                              Open new tab with all players for this team
+                                              Open new tab with the on/off analysis for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/?gender=Men&lineupLuck=true&maxRank=400&minRank=0&team=Illinois&year=2019%2F20&"
+                                            href="/?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Griffin%2C%20Alan%22&onQuery=%22Griffin%2C%20Alan%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Illinois&year=2019%2F20&"
                                             target="_new"
                                           >
                                             <b>
@@ -4206,9 +4444,26 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           B1G
                                         </span>
                                         ) [
-                                        <b>
-                                          +9.1
-                                        </b>
+                                        <OverlayTrigger
+                                          overlay={
+                                            <ForwardRef
+                                              id="player_7"
+                                              placement="right"
+                                            >
+                                              Open new tab showing the off/def rating diagnostics for this player
+                                            </ForwardRef>
+                                          }
+                                          placement="auto"
+                                        >
+                                          <a
+                                            href="/?factorMins=false&filter=AlGriffin&gender=Men&maxRank=400&minRank=0&possAsPct=true&showDiag=true&showExpanded=true&showPosDiag=true&team=Illinois&year=2019%2F20&"
+                                            target="_new"
+                                          >
+                                            <b>
+                                              +9.1
+                                            </b>
+                                          </a>
+                                        </OverlayTrigger>
                                         ]
                                       </span>
                                     </span>
@@ -4400,13 +4655,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_7"
                                               placement="right"
                                             >
-                                              Open new tab with all players for this team
+                                              Open new tab with the on/off analysis for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/?gender=Men&lineupLuck=true&maxRank=400&minRank=0&team=Illinois&year=2019%2F20&"
+                                            href="/?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Griffin%2C%20Alan%22&onQuery=%22Griffin%2C%20Alan%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Illinois&year=2019%2F20&"
                                             target="_new"
                                           >
                                             <b>
@@ -4419,9 +4674,26 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           B1G
                                         </span>
                                         ) [
-                                        <b>
-                                          +9.1
-                                        </b>
+                                        <OverlayTrigger
+                                          overlay={
+                                            <ForwardRef
+                                              id="player_7"
+                                              placement="right"
+                                            >
+                                              Open new tab showing the off/def rating diagnostics for this player
+                                            </ForwardRef>
+                                          }
+                                          placement="auto"
+                                        >
+                                          <a
+                                            href="/?factorMins=false&filter=AlGriffin&gender=Men&maxRank=400&minRank=0&possAsPct=true&showDiag=true&showExpanded=true&showPosDiag=true&team=Illinois&year=2019%2F20&"
+                                            target="_new"
+                                          >
+                                            <b>
+                                              +9.1
+                                            </b>
+                                          </a>
+                                        </OverlayTrigger>
                                         ]
                                       </span>
                                     </span>
@@ -4616,13 +4888,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_8"
                                               placement="right"
                                             >
-                                              Open new tab with all players for this team
+                                              Open new tab with the on/off analysis for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/?gender=Men&lineupLuck=true&maxRank=400&minRank=0&team=Kansas&year=2019%2F20&"
+                                            href="/?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Dotson%2C%20Devon%22&onQuery=%22Dotson%2C%20Devon%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Kansas&year=2019%2F20&"
                                             target="_new"
                                           >
                                             <b>
@@ -4635,9 +4907,26 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           B12
                                         </span>
                                         ) [
-                                        <b>
-                                          +9.9
-                                        </b>
+                                        <OverlayTrigger
+                                          overlay={
+                                            <ForwardRef
+                                              id="player_8"
+                                              placement="right"
+                                            >
+                                              Open new tab showing the off/def rating diagnostics for this player
+                                            </ForwardRef>
+                                          }
+                                          placement="auto"
+                                        >
+                                          <a
+                                            href="/?factorMins=false&filter=DeDotson&gender=Men&maxRank=400&minRank=0&possAsPct=true&showDiag=true&showExpanded=true&showPosDiag=true&team=Kansas&year=2019%2F20&"
+                                            target="_new"
+                                          >
+                                            <b>
+                                              +9.9
+                                            </b>
+                                          </a>
+                                        </OverlayTrigger>
                                         ]
                                       </span>
                                     </span>
@@ -4829,13 +5118,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_8"
                                               placement="right"
                                             >
-                                              Open new tab with all players for this team
+                                              Open new tab with the on/off analysis for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/?gender=Men&lineupLuck=true&maxRank=400&minRank=0&team=Kansas&year=2019%2F20&"
+                                            href="/?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Dotson%2C%20Devon%22&onQuery=%22Dotson%2C%20Devon%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Kansas&year=2019%2F20&"
                                             target="_new"
                                           >
                                             <b>
@@ -4848,9 +5137,26 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           B12
                                         </span>
                                         ) [
-                                        <b>
-                                          +9.9
-                                        </b>
+                                        <OverlayTrigger
+                                          overlay={
+                                            <ForwardRef
+                                              id="player_8"
+                                              placement="right"
+                                            >
+                                              Open new tab showing the off/def rating diagnostics for this player
+                                            </ForwardRef>
+                                          }
+                                          placement="auto"
+                                        >
+                                          <a
+                                            href="/?factorMins=false&filter=DeDotson&gender=Men&maxRank=400&minRank=0&possAsPct=true&showDiag=true&showExpanded=true&showPosDiag=true&team=Kansas&year=2019%2F20&"
+                                            target="_new"
+                                          >
+                                            <b>
+                                              +9.9
+                                            </b>
+                                          </a>
+                                        </OverlayTrigger>
                                         ]
                                       </span>
                                     </span>
@@ -5045,13 +5351,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_9"
                                               placement="right"
                                             >
-                                              Open new tab with all players for this team
+                                              Open new tab with the on/off analysis for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/?gender=Men&lineupLuck=true&maxRank=400&minRank=0&team=Utah%20St.&year=2019%2F20&"
+                                            href="/?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Merrill%2C%20Sam%22&onQuery=%22Merrill%2C%20Sam%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Utah%20St.&year=2019%2F20&"
                                             target="_new"
                                           >
                                             <b>
@@ -5064,9 +5370,26 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           MWC
                                         </span>
                                         ) [
-                                        <b>
-                                          +8.3
-                                        </b>
+                                        <OverlayTrigger
+                                          overlay={
+                                            <ForwardRef
+                                              id="player_9"
+                                              placement="right"
+                                            >
+                                              Open new tab showing the off/def rating diagnostics for this player
+                                            </ForwardRef>
+                                          }
+                                          placement="auto"
+                                        >
+                                          <a
+                                            href="/?factorMins=false&filter=SaMerrill&gender=Men&maxRank=400&minRank=0&possAsPct=true&showDiag=true&showExpanded=true&showPosDiag=true&team=Utah%20St.&year=2019%2F20&"
+                                            target="_new"
+                                          >
+                                            <b>
+                                              +8.3
+                                            </b>
+                                          </a>
+                                        </OverlayTrigger>
                                         ]
                                       </span>
                                     </span>
@@ -5258,13 +5581,13 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                               id="team_9"
                                               placement="right"
                                             >
-                                              Open new tab with all players for this team
+                                              Open new tab with the on/off analysis for this player/team
                                             </ForwardRef>
                                           }
                                           placement="auto"
                                         >
                                           <a
-                                            href="/?gender=Men&lineupLuck=true&maxRank=400&minRank=0&team=Utah%20St.&year=2019%2F20&"
+                                            href="/?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Merrill%2C%20Sam%22&onQuery=%22Merrill%2C%20Sam%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Utah%20St.&year=2019%2F20&"
                                             target="_new"
                                           >
                                             <b>
@@ -5277,9 +5600,26 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                           MWC
                                         </span>
                                         ) [
-                                        <b>
-                                          +8.3
-                                        </b>
+                                        <OverlayTrigger
+                                          overlay={
+                                            <ForwardRef
+                                              id="player_9"
+                                              placement="right"
+                                            >
+                                              Open new tab showing the off/def rating diagnostics for this player
+                                            </ForwardRef>
+                                          }
+                                          placement="auto"
+                                        >
+                                          <a
+                                            href="/?factorMins=false&filter=SaMerrill&gender=Men&maxRank=400&minRank=0&possAsPct=true&showDiag=true&showExpanded=true&showPosDiag=true&team=Utah%20St.&year=2019%2F20&"
+                                            target="_new"
+                                          >
+                                            <b>
+                                              +8.3
+                                            </b>
+                                          </a>
+                                        </OverlayTrigger>
                                         ]
                                       </span>
                                     </span>

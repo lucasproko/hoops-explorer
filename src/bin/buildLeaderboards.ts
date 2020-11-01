@@ -235,7 +235,7 @@ export async function main() {
                 !_.startsWith(t2[0], "team_") && !_.startsWith(t2[0], "oppo_") &&
                 !_.startsWith(t2[0], "total_") &&
                 !_.endsWith(t2[0], "_target") && !_.endsWith(t2[0], "_source") &&
-                !(t2[0] == "players_array")
+                (t2[0] != "player_array")
               )
             ).fromPairs().value()
           )
@@ -308,30 +308,33 @@ export async function main() {
   //  console.log("RECEIVED: " + JSON.stringify(tableData, null, 3));
 }
 /** Adds some handy default sortings */
-export function completePlayerLeaderboard(key: string, leaderboard: any[]) {
+export function completePlayerLeaderboard(key: string, leaderboard: any[], topTableSize: number) {
   //TODO: RAPM
+  // Take T300 by possessions
+  const topByPoss =
+    _.chain(leaderboard).sortBy(player => -1*(player.off_team_poss?.value || 0)).take(topTableSize).value();
 
   _.sortBy(
-    leaderboard, player => (player.def_adj_rtg?.value || 0) - (player.off_adj_rtg?.value || 0)
+    topByPoss, player => (player.def_adj_rtg?.value || 0) - (player.off_adj_rtg?.value || 0)
   ).map((player, index) => {
     player[`adj_rtg_margin_rank`] = index + 1;
   });
   _.sortBy(
-    leaderboard, player => (player.def_adj_prod?.value || 0) - (player.off_adj_prod?.value || 0)
+    topByPoss, player => (player.def_adj_prod?.value || 0) - (player.off_adj_prod?.value || 0)
   ).map((player, index) => {
     player[`adj_prod_margin_rank`] = index + 1;
   });
-  _.sortBy(leaderboard, player => (player.def_adj_rtg?.value || 0)).forEach((player, index) => {
+  _.sortBy(topByPoss, player => (player.def_adj_rtg?.value || 0)).forEach((player, index) => {
     player[`def_adj_rtg_rank`] = index + 1;
   });
-  _.sortBy(leaderboard, player => (player.def_adj_prod?.value || 0)).forEach((player, index) => {
+  _.sortBy(topByPoss, player => (player.def_adj_prod?.value || 0)).forEach((player, index) => {
     player[`def_adj_prod_rank`] = index + 1;
   });
-  _.sortBy(leaderboard, player => -1*(player.off_adj_prod?.value || 0)).map((player, index) => {
+  _.sortBy(topByPoss, player => -1*(player.off_adj_prod?.value || 0)).map((player, index) => {
     player[`off_adj_prod_rank`] = index + 1;
     return player;
   });
-  const sortedLeaderboard = _.sortBy(leaderboard, player => -1*(player.off_adj_rtg?.value || 0)).map((player, index) => {
+  const sortedLeaderboard = _.sortBy(topByPoss, player => -1*(player.off_adj_rtg?.value || 0)).map((player, index) => {
     player[`off_adj_rtg_rank`] = index + 1;
     return player;
   });
@@ -376,7 +379,7 @@ if (!testMode) main().then(_ => {
       confs: Array.from(conferenceSet.values()),
       lineups: sortedLineups
     }, reduceNumberSize);
-    const players = completePlayerLeaderboard(kv[0], kv[2]);
+    const players = completePlayerLeaderboard(kv[0], kv[2], 700); //T700
     const playersStr = JSON.stringify({
       lastUpdated: dataLastUpdated[genderYearLookup] || new Date().getTime(),
       confs: Array.from(conferenceSet.values()),

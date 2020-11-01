@@ -69,6 +69,7 @@ export class LineupTableUtils {
           value: adjDRtg?.value, old_value: rawAdjDRtg?.value,
           override: playerAdjustForLuckDef ? "Luck adjusted" : undefined
         };
+        mutableP.code = mutableP.player_array?.hits?.hits?.[0]?._source?.player?.code || mutableP.key;
         return [ mutableP.key, mutableP ];
       })
     );

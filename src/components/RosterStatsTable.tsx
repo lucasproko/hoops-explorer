@@ -448,7 +448,8 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
   }).value();
 
   const filteredPlayers = allPlayers.filter((player) => {
-    const strToTest = (player.on?.key || player.off?.key || player.baseline?.key || "");
+    const strToTest = (player.on?.key || player.off?.key || player.baseline?.key || "") +
+      " " + (player.baseline?.player_array?.hits?.hits?.[0]?._source?.player?.code || "");
 
     return(
       (filterFragmentsPve.length == 0) ||

@@ -372,20 +372,39 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
 
 
       const teamTooltip = (
-        <Tooltip id={`team_${playerIndex}`}>Open new tab with all players for this team</Tooltip>
+        <Tooltip id={`team_${playerIndex}`}>Open new tab with the on/off analysis for this player/team</Tooltip>
       );
       const teamParams = {
         team: player.team, gender: gender, year: year,
         minRank: "0", maxRank: isT100 ? "100" : "400",
         queryFilters: isConfOnly ? "Conf" : undefined,
-        lineupLuck: true
+        factorMins: factorMins, possAsPct: possAsPct,
+        showExpanded: true, sortBy: "desc:off_team_poss_pct:on",
+        onQuery: `"${player.key}"`, offQuery: `NOT "${player.key}"`, autoOffQuery: true,
       };
       const teamEl = <OverlayTrigger placement="auto" overlay={teamTooltip}>
         <a target="_new" href={UrlRouting.getGameUrl(teamParams, {})}><b>{player.team}</b></a>
       </OverlayTrigger>;
 
+      const playerAnalysisParams = {
+        team: player.team, gender: gender, year: year,
+        minRank: "0", maxRank: isT100 ? "100" : "400",
+        queryFilters: isConfOnly ? "Conf" : undefined,
+        factorMins: factorMins, possAsPct: possAsPct,
+        showExpanded: true,
+        showDiag: true, showPosDiag: true,
+        filter: player.code || player.key
+      };
+      const playerTooltip = (
+        <Tooltip id={`player_${playerIndex}`}>Open new tab showing the off/def rating diagnostics for this player</Tooltip>
+      );
+
       const adjMargin = (player.off_adj_rtg?.value || 0) - (player.def_adj_rtg?.value || 0);
-      const adjMarginStr = `${(adjMargin > 0.0) ? "+" : ""}${adjMargin.toFixed(1)}`;
+      const adjMarginStr = <OverlayTrigger placement="auto" overlay={playerTooltip}>
+        <a target="_new" href={UrlRouting.getGameUrl(playerAnalysisParams, {})}><b>
+          {`${(adjMargin > 0.0) ? "+" : ""}${adjMargin.toFixed(1)}`}
+        </b></a>
+        </OverlayTrigger>;
 
       player.off_title = <div>
       <span className="float-left">
@@ -393,7 +412,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       </span>&nbsp;<b>{player.key}</b>
         <br/>
         <span className="float-left">
-          <span>{teamEl}&nbsp;(<span>{confNickname}</span>)&nbsp;[<b>{adjMarginStr}</b>]</span>
+          <span>{teamEl}&nbsp;(<span>{confNickname}</span>)&nbsp;[{adjMarginStr}]</span>
         </span>
       </div>;
 
