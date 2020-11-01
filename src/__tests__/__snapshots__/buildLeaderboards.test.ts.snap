@@ -223,7 +223,6 @@ Array [
     "duration_mins": Object {
       "value": 131.06833333333333,
     },
-    "gender": "Men",
     "key": "AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith",
     "off_2p": Object {
       "value": 0.4803921568627451,
@@ -784,7 +783,6 @@ Array [
     "duration_mins": Object {
       "value": 220.22333333333333,
     },
-    "gender": "Men",
     "key": "AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith",
     "off_2p": Object {
       "value": 0.5511363636363636,
@@ -1345,7 +1343,6 @@ Array [
     "duration_mins": Object {
       "value": 121.81833333333336,
     },
-    "gender": "Men",
     "key": "AaWiggins_AnCowan_DoScott_ErAyala_JaSmith",
     "off_2p": Object {
       "value": 0.5353535353535354,
@@ -1911,7 +1908,6 @@ Array [
     "duration_mins": Object {
       "value": 220.22333333333333,
     },
-    "gender": "Men",
     "key": "AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith",
     "off_2p": Object {
       "value": 0.5511363636363636,

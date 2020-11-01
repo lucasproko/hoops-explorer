@@ -404,8 +404,8 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
           override: adjustmentReason
         };
         stat.off_adj_prod = {
-          value: adjORtg?.value*stat.off_team_poss_pct.value!,
-          old_value: rawAdjORtg?.value*stat.off_team_poss_pct.value!,
+          value: (adjORtg?.value || 0)*stat.off_team_poss_pct.value!,
+          old_value: (rawAdjORtg?.value || 0)*stat.off_team_poss_pct.value!,
           override: adjustmentReason
         };
         stat.diag_off_rtg = oRtgDiag;
@@ -419,8 +419,8 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
           override: adjustForLuck ? "Derived from luck adjustments" : undefined
         };
         stat.def_adj_prod = {
-          value: adjDRtg?.value*stat.def_team_poss_pct.value!,
-          old_value: rawAdjDRtg?.value*stat.def_team_poss_pct.value!,
+          value: (adjDRtg?.value || 0)*stat.def_team_poss_pct.value!,
+          old_value: (rawAdjDRtg?.value || 0)*stat.def_team_poss_pct.value!,
           override: adjustForLuck ? "Derived from luck adjustments" : undefined
         };
         stat.diag_def_rtg = dRtgDiag;

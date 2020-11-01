@@ -128,7 +128,8 @@ const posClassToNickname = {
   "Center": "C",
   "(All Post Players)": "C+",
   "(All Frontcourt)": "4/5",
-}
+} as Record<string, string>;
+
 const nicknameToPosClass = {
   ...PositionUtils.idToPosition,
   "BH*": "(All Ballhandlers)",
@@ -137,7 +138,8 @@ const nicknameToPosClass = {
   "PF+": "(All PFs)",
   "C+": "(All Post Players)",
   "4/5": "(All Frontcourt)",
-};
+} as Record<string, string>;
+
 const expandedPosClasses = {
   "BH*": [ "PG", "s-PG", "CG" ],
   "*G": [ "PG", "s-PG", "CG", "WG" ],
@@ -145,7 +147,7 @@ const expandedPosClasses = {
   "PF+": [ "WF", "S-PF", "PF/C" ],
   "C+": [ "PF/C", "C" ],
   "4/5": [ "WF", "S-PF", "PF/C", "C" ],
-};
+} as Record<string, string[]>;
 
 // Functional component
 
@@ -319,7 +321,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
     }).sortBy(
       (sortBy == ParamDefaults.defaultPlayerLboardSortBy(false)) ? [] : //(can save on a sort if using the generated sort-order)
         [ LineupTableUtils.sorter(sortBy) , (p) => { p.baseline?.off_team_poss?.value || 0 } ]
-    ).take(maxTableSize).value();
+    ).take(parseInt(maxTableSize)).value();
 
     const usefulSortCombo =
       factorMins ?
