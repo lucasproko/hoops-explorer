@@ -396,10 +396,12 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
         filter: player.code || player.key
       };
       const playerTooltip = (
-        <Tooltip id={`player_${playerIndex}`}>Open new tab showing the off/def rating diagnostics for this player</Tooltip>
+        <Tooltip id={`player_${playerIndex}`}>{factorMins ? "Production" : "Rating"} margin: click to open new tab showing the off/def rating diagnostics for this player</Tooltip>
       );
 
-      const adjMargin = (player.off_adj_rtg?.value || 0) - (player.def_adj_rtg?.value || 0);
+      const adjMargin = factorMins ?
+        (player.off_adj_prod?.value || 0) - (player.def_adj_prod?.value || 0) :
+        (player.off_adj_rtg?.value || 0) - (player.def_adj_rtg?.value || 0);
       const adjMarginStr = <OverlayTrigger placement="auto" overlay={playerTooltip}>
         <a target="_new" href={UrlRouting.getGameUrl(playerAnalysisParams, {})}><b>
           {`${(adjMargin > 0.0) ? "+" : ""}${adjMargin.toFixed(1)}`}

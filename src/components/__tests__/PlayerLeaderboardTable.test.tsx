@@ -33,4 +33,15 @@ describe("PlayerLeaderboardTable", () => {
     );
     expect(toJson(wrapper)).toMatchSnapshot();
   });
+  test("PlayerLeaderboardTable - should create snapshot (prod not /100)", () => {
+    const dummyChangeStateCallback = (stats: PlayerLeaderboardParams) => {};
+    const wrapper = shallow(
+      <PlayerLeaderboardTable
+        startingState={{factorMins: true}}
+        dataEvent={sampleData}
+        onChangeState={dummyChangeStateCallback}
+      />
+    );
+    expect(toJson(wrapper)).toMatchSnapshot();
+  });
 });
