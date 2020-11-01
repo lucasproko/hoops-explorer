@@ -70,6 +70,7 @@ export type GameFilterParams = {
   showExpanded?: boolean,
   showDiag?: boolean
   possAsPct?: boolean,
+  factorMins?: boolean,
   showPosDiag?: boolean
 };
 
@@ -99,11 +100,28 @@ export type LineupLeaderboardParams = {
   minPoss?: string,
   maxTableSize?: string,
   sortBy?: string,
-  //TODO: other params: query filters, table size, luck diags, table filter, sort order, etc
   // Filtering:
   filter?: string,
   // Luck adjustments
   showLineupLuckDiags?: boolean,
+  // Query pre-sets
+  confOnly?: boolean,
+  t100?: boolean
+};
+
+export type PlayerLeaderboardParams = {
+  [P in keyof CommonFilterParams]?: CommonFilterParams[P];
+} & {
+  conf?: string //(undefined ==> all conferences)
+  minPoss?: string,
+  maxTableSize?: string,
+  sortBy?: string,
+  // Player settings
+  posClasses?: string, //(undefined => all positions)
+  possAsPct?: boolean,
+  factorMins?: boolean,
+  // Filtering:
+  filter?: string,
   // Query pre-sets
   confOnly?: boolean,
   t100?: boolean
@@ -148,6 +166,7 @@ export class ParamDefaults {
   static readonly defaultPlayerShowBase = false;
   static readonly defaultPlayerShowExpanded = false;
   static readonly defaultPlayerPossAsPct = true;
+  static readonly defaultPlayerFactorMins = false;
   static readonly defaultPlayerPosDiagMode = false;
   // Lineup
   static readonly defaultLineupShowTotal = false;
@@ -164,6 +183,13 @@ export class ParamDefaults {
   static readonly defaultLineupLboardSortBy = "desc:diff_adj_ppp";
   static readonly defaultLineupLboardFilter = "";
   static readonly defaultLineupLboardLuckDiagMode = false;
+  // Player leaderboard
+  static readonly defaultPlayerLboardMinPos = "20";
+  static readonly defaultPlayerLboardMaxTableSize = "100";
+  static defaultPlayerLboardSortBy(factorMins?: boolean) { return factorMins ? "desc:off_adj_prod" : "desc:off_adj_rtg"; }
+  static readonly defaultPlayerLboardFilter = "";
+  static readonly defaultPlayerLboardFactorMins = false;
+  static readonly defaultPlayerLboardPossAsPct = true;
   // Report
   static readonly defaultTeamReportSortBy = "desc:off_poss:on";
   static readonly defaultTeamReportFilter = "";

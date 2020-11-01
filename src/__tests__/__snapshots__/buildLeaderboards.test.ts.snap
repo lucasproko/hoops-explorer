@@ -1,6 +1,733 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`buildLeaderboards buildLeaderboards - main / completeLineupLeaderboard 1`] = `
+exports[`buildLeaderboards buildLeaderboards - main / completeLineupLeaderboard / completePlayerLeaderboard 1`] = `
+Array [
+  Object {
+    "adj_prod_margin_rank": 1,
+    "adj_rtg_margin_rank": 1,
+    "code": "AnCowan",
+    "conf": "Big Ten Conference",
+    "def_2prim": Object {
+      "value": 0.005065856129685917,
+    },
+    "def_adj_opp": Object {
+      "value": 96.60184357541898,
+    },
+    "def_adj_prod": Object {
+      "old_value": -1.4984790251412075,
+      "override": "Luck adjusted",
+      "value": -1.4114627935129171,
+    },
+    "def_adj_prod_rank": 2,
+    "def_adj_rtg": Object {
+      "old_value": -1.7420865091166775,
+      "override": "Luck adjusted",
+      "value": -1.640924063296302,
+    },
+    "def_adj_rtg_rank": 2,
+    "def_ftr": Object {
+      "value": 0.024636871508379884,
+    },
+    "def_orb": Object {
+      "value": 0.096,
+    },
+    "def_rtg": Object {
+      "old_value": 98.84955759282161,
+      "override": "Luck adjusted",
+      "value": 99.38322763133561,
+    },
+    "def_team_poss": Object {
+      "value": 1790,
+    },
+    "def_team_poss_pct": Object {
+      "value": 0.8601633829889476,
+    },
+    "def_to": Object {
+      "value": 0.01675977653631285,
+    },
+    "doc_count": 486,
+    "duration_mins": Object {
+      "value": 900,
+    },
+    "key": "Cowan, Anthony",
+    "off_2p": Object {
+      "value": 0.45604395604395603,
+    },
+    "off_2p_ast": Object {
+      "value": 0,
+    },
+    "off_2pmid": Object {
+      "value": 0.27692307692307694,
+    },
+    "off_2pmid_ast": Object {
+      "value": 0,
+    },
+    "off_2pmidr": Object {
+      "value": 0.18258426966292135,
+    },
+    "off_2prim": Object {
+      "value": 0.5555555555555556,
+    },
+    "off_2prim_ast": Object {
+      "value": 0.26153846153846155,
+    },
+    "off_2primr": Object {
+      "value": 0.32865168539325845,
+    },
+    "off_3p": Object {
+      "value": 0.3218390804597701,
+    },
+    "off_3p_ast": Object {
+      "value": 0.625,
+    },
+    "off_3pr": Object {
+      "value": 0.4887640449438202,
+    },
+    "off_adj_opp": Object {
+      "value": 108.03972067039106,
+    },
+    "off_adj_prod": Object {
+      "value": 5.028034872055713,
+    },
+    "off_adj_prod_rank": 1,
+    "off_adj_rtg": Object {
+      "old_value": undefined,
+      "override": undefined,
+      "value": 5.795354289267323,
+    },
+    "off_adj_rtg_rank": 1,
+    "off_assist": Object {
+      "value": 0.2916666666666667,
+    },
+    "off_ast_3p": Object {
+      "value": 0.47619047619047616,
+    },
+    "off_ast_mid": Object {
+      "value": 0.06802721088435375,
+    },
+    "off_ast_rim": Object {
+      "value": 0.4557823129251701,
+    },
+    "off_efg": Object {
+      "value": 0.4691011235955056,
+    },
+    "off_ft": Object {
+      "value": 0.8113207547169812,
+    },
+    "off_ftr": Object {
+      "value": 0.5955056179775281,
+    },
+    "off_orb": Object {
+      "value": 0.017276422764227643,
+    },
+    "off_poss": Object {
+      "value": 451.4845238095238,
+    },
+    "off_rtg": Object {
+      "old_value": undefined,
+      "override": undefined,
+      "value": 116.5274146893099,
+    },
+    "off_scramble_2p": Object {
+      "value": 0.5555555555555556,
+    },
+    "off_scramble_2p_ast": Object {
+      "value": 0,
+    },
+    "off_scramble_2pmid": Object {
+      "value": 0.25,
+    },
+    "off_scramble_2pmid_ast": Object {
+      "value": 0,
+    },
+    "off_scramble_2pmidr": Object {
+      "value": 0.18181818181818182,
+    },
+    "off_scramble_2prim": Object {
+      "value": 0.8,
+    },
+    "off_scramble_2prim_ast": Object {
+      "value": 0,
+    },
+    "off_scramble_2primr": Object {
+      "value": 0.22727272727272727,
+    },
+    "off_scramble_3p": Object {
+      "value": 0.46153846153846156,
+    },
+    "off_scramble_3p_ast": Object {
+      "value": 0.8333333333333334,
+    },
+    "off_scramble_3pr": Object {
+      "value": 0.5909090909090909,
+    },
+    "off_scramble_assist": Object {
+      "value": 0.9090909090909091,
+    },
+    "off_scramble_efg": Object {
+      "value": 0.6363636363636364,
+    },
+    "off_scramble_ft": Object {
+      "value": 0.9166666666666666,
+    },
+    "off_scramble_ftr": Object {
+      "value": 0.5454545454545454,
+    },
+    "off_team_poss": Object {
+      "value": 1802,
+    },
+    "off_team_poss_pct": Object {
+      "value": 0.8675974963890226,
+    },
+    "off_to": Object {
+      "value": 0.1528291588331615,
+    },
+    "off_trans_2p": Object {
+      "value": 0.5625,
+    },
+    "off_trans_2p_ast": Object {
+      "value": 0,
+    },
+    "off_trans_2pmid": Object {
+      "value": 0.5,
+    },
+    "off_trans_2pmid_ast": Object {
+      "value": 0,
+    },
+    "off_trans_2pmidr": Object {
+      "value": 0.03636363636363636,
+    },
+    "off_trans_2prim": Object {
+      "value": 0.5666666666666667,
+    },
+    "off_trans_2prim_ast": Object {
+      "value": 0.29411764705882354,
+    },
+    "off_trans_2primr": Object {
+      "value": 0.5454545454545454,
+    },
+    "off_trans_3p": Object {
+      "value": 0.34782608695652173,
+    },
+    "off_trans_3p_ast": Object {
+      "value": 0.625,
+    },
+    "off_trans_3pr": Object {
+      "value": 0.41818181818181815,
+    },
+    "off_trans_assist": Object {
+      "value": 1.4615384615384615,
+    },
+    "off_trans_efg": Object {
+      "value": 0.5454545454545454,
+    },
+    "off_trans_ft": Object {
+      "value": 0.8235294117647058,
+    },
+    "off_trans_ftr": Object {
+      "value": 1.5454545454545454,
+    },
+    "off_usage": Object {
+      "value": 0.250546350615718,
+    },
+    "posClass": "s-PG",
+    "posConfidences": Array [
+      0.7573493221063862,
+      0.23785653498514026,
+      0.004535396666879756,
+      0.00025873437114051626,
+      1.1870453146996361e-8,
+    ],
+    "team": "Maryland",
+    "year": "2019/20",
+  },
+  Object {
+    "adj_prod_margin_rank": 2,
+    "adj_rtg_margin_rank": 2,
+    "code": "AaWiggins",
+    "conf": "Big Ten Conference",
+    "def_2prim": Object {
+      "value": 0.016290726817042606,
+    },
+    "def_adj_opp": Object {
+      "value": 96.76946308724833,
+    },
+    "def_adj_prod": Object {
+      "old_value": -2.163631256919891,
+      "override": "Luck adjusted",
+      "value": -1.937711837807058,
+    },
+    "def_adj_prod_rank": 1,
+    "def_adj_rtg": Object {
+      "old_value": -3.021823252114291,
+      "override": "Luck adjusted",
+      "value": -2.7062941842124077,
+    },
+    "def_adj_rtg_rank": 1,
+    "def_ftr": Object {
+      "value": 0.022550335570469794,
+    },
+    "def_orb": Object {
+      "value": 0.1380952380952381,
+    },
+    "def_rtg": Object {
+      "old_value": 91.88787789273368,
+      "override": "Luck adjusted",
+      "value": 93.54860666651514,
+    },
+    "def_team_poss": Object {
+      "value": 1490,
+    },
+    "def_team_poss_pct": Object {
+      "value": 0.7160019221528111,
+    },
+    "def_to": Object {
+      "value": 0.0174496644295302,
+    },
+    "doc_count": 421,
+    "duration_mins": Object {
+      "value": 800,
+    },
+    "key": "Wiggins, Aaron",
+    "off_2p": Object {
+      "value": 0.45112781954887216,
+    },
+    "off_2p_ast": Object {
+      "value": 0,
+    },
+    "off_2pmid": Object {
+      "value": 0.24324324324324326,
+    },
+    "off_2pmid_ast": Object {
+      "value": 0.3333333333333333,
+    },
+    "off_2pmidr": Object {
+      "value": 0.24666666666666667,
+    },
+    "off_2prim": Object {
+      "value": 0.711864406779661,
+    },
+    "off_2prim_ast": Object {
+      "value": 0.4523809523809524,
+    },
+    "off_2primr": Object {
+      "value": 0.19666666666666666,
+    },
+    "off_3p": Object {
+      "value": 0.31736526946107785,
+    },
+    "off_3p_ast": Object {
+      "value": 0.9245283018867925,
+    },
+    "off_3pr": Object {
+      "value": 0.5566666666666666,
+    },
+    "off_adj_opp": Object {
+      "value": 107.7926845637584,
+    },
+    "off_adj_prod": Object {
+      "value": 0.5295981196643196,
+    },
+    "off_adj_prod_rank": 2,
+    "off_adj_rtg": Object {
+      "old_value": undefined,
+      "override": undefined,
+      "value": 0.7338060670732433,
+    },
+    "off_adj_rtg_rank": 2,
+    "off_assist": Object {
+      "value": 0.10185185185185185,
+    },
+    "off_ast_3p": Object {
+      "value": 0.5,
+    },
+    "off_ast_mid": Object {
+      "value": 0.09090909090909091,
+    },
+    "off_ast_rim": Object {
+      "value": 0.4090909090909091,
+    },
+    "off_efg": Object {
+      "value": 0.465,
+    },
+    "off_ft": Object {
+      "value": 0.7166666666666667,
+    },
+    "off_ftr": Object {
+      "value": 0.2,
+    },
+    "off_orb": Object {
+      "value": 0.043532338308457715,
+    },
+    "off_poss": Object {
+      "value": 312.7630952380952,
+    },
+    "off_rtg": Object {
+      "old_value": undefined,
+      "override": undefined,
+      "value": 99.19560099143102,
+    },
+    "off_scramble_2p": Object {
+      "value": 0.5294117647058824,
+    },
+    "off_scramble_2p_ast": Object {
+      "value": 0,
+    },
+    "off_scramble_2pmid": Object {
+      "value": 0.2,
+    },
+    "off_scramble_2pmid_ast": Object {
+      "value": 1,
+    },
+    "off_scramble_2pmidr": Object {
+      "value": 0.19230769230769232,
+    },
+    "off_scramble_2prim": Object {
+      "value": 0.6666666666666666,
+    },
+    "off_scramble_2prim_ast": Object {
+      "value": 0.25,
+    },
+    "off_scramble_2primr": Object {
+      "value": 0.46153846153846156,
+    },
+    "off_scramble_3p": Object {
+      "value": 0.2222222222222222,
+    },
+    "off_scramble_3p_ast": Object {
+      "value": 1,
+    },
+    "off_scramble_3pr": Object {
+      "value": 0.34615384615384615,
+    },
+    "off_scramble_assist": Object {
+      "value": 0.09090909090909091,
+    },
+    "off_scramble_efg": Object {
+      "value": 0.46153846153846156,
+    },
+    "off_scramble_ft": Object {
+      "value": 0.6,
+    },
+    "off_scramble_ftr": Object {
+      "value": 0.19230769230769232,
+    },
+    "off_team_poss": Object {
+      "value": 1499,
+    },
+    "off_team_poss_pct": Object {
+      "value": 0.7217140105922003,
+    },
+    "off_to": Object {
+      "value": 0.15986540855127684,
+    },
+    "off_trans_2p": Object {
+      "value": 0.6538461538461539,
+    },
+    "off_trans_2p_ast": Object {
+      "value": 0,
+    },
+    "off_trans_2pmid": Object {
+      "value": 0.5,
+    },
+    "off_trans_2pmid_ast": Object {
+      "value": 0.25,
+    },
+    "off_trans_2pmidr": Object {
+      "value": 0.1095890410958904,
+    },
+    "off_trans_2prim": Object {
+      "value": 0.7222222222222222,
+    },
+    "off_trans_2prim_ast": Object {
+      "value": 0.6153846153846154,
+    },
+    "off_trans_2primr": Object {
+      "value": 0.2465753424657534,
+    },
+    "off_trans_3p": Object {
+      "value": 0.2765957446808511,
+    },
+    "off_trans_3p_ast": Object {
+      "value": 0.9230769230769231,
+    },
+    "off_trans_3pr": Object {
+      "value": 0.6438356164383562,
+    },
+    "off_trans_assist": Object {
+      "value": 0.36666666666666664,
+    },
+    "off_trans_efg": Object {
+      "value": 0.5,
+    },
+    "off_trans_ft": Object {
+      "value": 0.7916666666666666,
+    },
+    "off_trans_ftr": Object {
+      "value": 0.3287671232876712,
+    },
+    "off_usage": Object {
+      "value": 0.20864782871120427,
+    },
+    "posClass": "WG",
+    "posConfidences": Array [
+      0.01370144662544993,
+      0.37250889267731135,
+      0.421320486517115,
+      0.1924648271808755,
+      0.000004346999248142039,
+    ],
+    "team": "Maryland",
+    "year": "2019/20",
+  },
+]
+`;
+
+exports[`buildLeaderboards buildLeaderboards - main / completeLineupLeaderboard / completePlayerLeaderboard 2`] = `
+Array [
+  Object {
+    "adj_prod_margin_rank": 1,
+    "adj_rtg_margin_rank": 1,
+    "code": "AnCowan",
+    "conf": "Big Ten Conference",
+    "def_2prim": Object {
+      "value": 0.005065856129685917,
+    },
+    "def_adj_opp": Object {
+      "value": 96.60184357541898,
+    },
+    "def_adj_prod": Object {
+      "old_value": -1.4984790251412075,
+      "override": "Luck adjusted",
+      "value": -1.4114627935129171,
+    },
+    "def_adj_prod_rank": 1,
+    "def_adj_rtg": Object {
+      "old_value": -1.7420865091166775,
+      "override": "Luck adjusted",
+      "value": -1.640924063296302,
+    },
+    "def_adj_rtg_rank": 1,
+    "def_ftr": Object {
+      "value": 0.024636871508379884,
+    },
+    "def_orb": Object {
+      "value": 0.096,
+    },
+    "def_rtg": Object {
+      "old_value": 98.84955759282161,
+      "override": "Luck adjusted",
+      "value": 99.38322763133561,
+    },
+    "def_team_poss": Object {
+      "value": 1790,
+    },
+    "def_team_poss_pct": Object {
+      "value": 0.8601633829889476,
+    },
+    "def_to": Object {
+      "value": 0.01675977653631285,
+    },
+    "doc_count": 486,
+    "duration_mins": Object {
+      "value": 900,
+    },
+    "key": "Cowan, Anthony",
+    "off_2p": Object {
+      "value": 0.45604395604395603,
+    },
+    "off_2p_ast": Object {
+      "value": 0,
+    },
+    "off_2pmid": Object {
+      "value": 0.27692307692307694,
+    },
+    "off_2pmid_ast": Object {
+      "value": 0,
+    },
+    "off_2pmidr": Object {
+      "value": 0.18258426966292135,
+    },
+    "off_2prim": Object {
+      "value": 0.5555555555555556,
+    },
+    "off_2prim_ast": Object {
+      "value": 0.26153846153846155,
+    },
+    "off_2primr": Object {
+      "value": 0.32865168539325845,
+    },
+    "off_3p": Object {
+      "value": 0.3218390804597701,
+    },
+    "off_3p_ast": Object {
+      "value": 0.625,
+    },
+    "off_3pr": Object {
+      "value": 0.4887640449438202,
+    },
+    "off_adj_opp": Object {
+      "value": 108.03972067039106,
+    },
+    "off_adj_prod": Object {
+      "value": 5.028034872055713,
+    },
+    "off_adj_prod_rank": 1,
+    "off_adj_rtg": Object {
+      "old_value": undefined,
+      "override": undefined,
+      "value": 5.795354289267323,
+    },
+    "off_adj_rtg_rank": 1,
+    "off_assist": Object {
+      "value": 0.2916666666666667,
+    },
+    "off_ast_3p": Object {
+      "value": 0.47619047619047616,
+    },
+    "off_ast_mid": Object {
+      "value": 0.06802721088435375,
+    },
+    "off_ast_rim": Object {
+      "value": 0.4557823129251701,
+    },
+    "off_efg": Object {
+      "value": 0.4691011235955056,
+    },
+    "off_ft": Object {
+      "value": 0.8113207547169812,
+    },
+    "off_ftr": Object {
+      "value": 0.5955056179775281,
+    },
+    "off_orb": Object {
+      "value": 0.017276422764227643,
+    },
+    "off_poss": Object {
+      "value": 451.4845238095238,
+    },
+    "off_rtg": Object {
+      "old_value": undefined,
+      "override": undefined,
+      "value": 116.5274146893099,
+    },
+    "off_scramble_2p": Object {
+      "value": 0.5555555555555556,
+    },
+    "off_scramble_2p_ast": Object {
+      "value": 0,
+    },
+    "off_scramble_2pmid": Object {
+      "value": 0.25,
+    },
+    "off_scramble_2pmid_ast": Object {
+      "value": 0,
+    },
+    "off_scramble_2pmidr": Object {
+      "value": 0.18181818181818182,
+    },
+    "off_scramble_2prim": Object {
+      "value": 0.8,
+    },
+    "off_scramble_2prim_ast": Object {
+      "value": 0,
+    },
+    "off_scramble_2primr": Object {
+      "value": 0.22727272727272727,
+    },
+    "off_scramble_3p": Object {
+      "value": 0.46153846153846156,
+    },
+    "off_scramble_3p_ast": Object {
+      "value": 0.8333333333333334,
+    },
+    "off_scramble_3pr": Object {
+      "value": 0.5909090909090909,
+    },
+    "off_scramble_assist": Object {
+      "value": 0.9090909090909091,
+    },
+    "off_scramble_efg": Object {
+      "value": 0.6363636363636364,
+    },
+    "off_scramble_ft": Object {
+      "value": 0.9166666666666666,
+    },
+    "off_scramble_ftr": Object {
+      "value": 0.5454545454545454,
+    },
+    "off_team_poss": Object {
+      "value": 1802,
+    },
+    "off_team_poss_pct": Object {
+      "value": 0.8675974963890226,
+    },
+    "off_to": Object {
+      "value": 0.1528291588331615,
+    },
+    "off_trans_2p": Object {
+      "value": 0.5625,
+    },
+    "off_trans_2p_ast": Object {
+      "value": 0,
+    },
+    "off_trans_2pmid": Object {
+      "value": 0.5,
+    },
+    "off_trans_2pmid_ast": Object {
+      "value": 0,
+    },
+    "off_trans_2pmidr": Object {
+      "value": 0.03636363636363636,
+    },
+    "off_trans_2prim": Object {
+      "value": 0.5666666666666667,
+    },
+    "off_trans_2prim_ast": Object {
+      "value": 0.29411764705882354,
+    },
+    "off_trans_2primr": Object {
+      "value": 0.5454545454545454,
+    },
+    "off_trans_3p": Object {
+      "value": 0.34782608695652173,
+    },
+    "off_trans_3p_ast": Object {
+      "value": 0.625,
+    },
+    "off_trans_3pr": Object {
+      "value": 0.41818181818181815,
+    },
+    "off_trans_assist": Object {
+      "value": 1.4615384615384615,
+    },
+    "off_trans_efg": Object {
+      "value": 0.5454545454545454,
+    },
+    "off_trans_ft": Object {
+      "value": 0.8235294117647058,
+    },
+    "off_trans_ftr": Object {
+      "value": 1.5454545454545454,
+    },
+    "off_usage": Object {
+      "value": 0.250546350615718,
+    },
+    "posClass": "s-PG",
+    "posConfidences": Array [
+      0.7573493221063862,
+      0.23785653498514026,
+      0.004535396666879756,
+      0.00025873437114051626,
+      1.1870453146996361e-8,
+    ],
+    "team": "Maryland",
+    "year": "2019/20",
+  },
+]
+`;
+
+exports[`buildLeaderboards buildLeaderboards - main / completeLineupLeaderboard / completePlayerLeaderboard 3`] = `
 Array [
   Object {
     "adj_margin_rank": 1,
@@ -223,7 +950,6 @@ Array [
     "duration_mins": Object {
       "value": 131.06833333333333,
     },
-    "gender": "Men",
     "key": "AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith",
     "off_2p": Object {
       "value": 0.4803921568627451,
@@ -445,9 +1171,9 @@ Array [
       "Cowan, Anthony": Object {
         "code": "AnCowan",
         "def_adj_rtg": Object {
-          "old_value": undefined,
-          "override": undefined,
-          "value": -1.7420865091166775,
+          "old_value": -1.7420865091166775,
+          "override": "Luck adjusted",
+          "value": -1.640924063296302,
         },
         "def_orb": Object {
           "value": 0.096,
@@ -502,9 +1228,9 @@ Array [
       "Wiggins, Aaron": Object {
         "code": "AaWiggins",
         "def_adj_rtg": Object {
-          "old_value": undefined,
-          "override": undefined,
-          "value": -3.021823252114291,
+          "old_value": -3.021823252114291,
+          "override": "Luck adjusted",
+          "value": -2.7062941842124077,
         },
         "def_orb": Object {
           "value": 0.1380952380952381,
@@ -784,7 +1510,6 @@ Array [
     "duration_mins": Object {
       "value": 220.22333333333333,
     },
-    "gender": "Men",
     "key": "AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith",
     "off_2p": Object {
       "value": 0.5511363636363636,
@@ -1011,9 +1736,9 @@ Array [
       "Cowan, Anthony": Object {
         "code": "AnCowan",
         "def_adj_rtg": Object {
-          "old_value": undefined,
-          "override": undefined,
-          "value": -1.7420865091166775,
+          "old_value": -1.7420865091166775,
+          "override": "Luck adjusted",
+          "value": -1.640924063296302,
         },
         "def_orb": Object {
           "value": 0.096,
@@ -1063,9 +1788,9 @@ Array [
       "Wiggins, Aaron": Object {
         "code": "AaWiggins",
         "def_adj_rtg": Object {
-          "old_value": undefined,
-          "override": undefined,
-          "value": -3.021823252114291,
+          "old_value": -3.021823252114291,
+          "override": "Luck adjusted",
+          "value": -2.7062941842124077,
         },
         "def_orb": Object {
           "value": 0.1380952380952381,
@@ -1345,7 +2070,6 @@ Array [
     "duration_mins": Object {
       "value": 121.81833333333336,
     },
-    "gender": "Men",
     "key": "AaWiggins_AnCowan_DoScott_ErAyala_JaSmith",
     "off_2p": Object {
       "value": 0.5353535353535354,
@@ -1572,9 +2296,9 @@ Array [
       "Cowan, Anthony": Object {
         "code": "AnCowan",
         "def_adj_rtg": Object {
-          "old_value": undefined,
-          "override": undefined,
-          "value": -1.7420865091166775,
+          "old_value": -1.7420865091166775,
+          "override": "Luck adjusted",
+          "value": -1.640924063296302,
         },
         "def_orb": Object {
           "value": 0.096,
@@ -1624,9 +2348,9 @@ Array [
       "Wiggins, Aaron": Object {
         "code": "AaWiggins",
         "def_adj_rtg": Object {
-          "old_value": undefined,
-          "override": undefined,
-          "value": -3.021823252114291,
+          "old_value": -3.021823252114291,
+          "override": "Luck adjusted",
+          "value": -2.7062941842124077,
         },
         "def_orb": Object {
           "value": 0.1380952380952381,
@@ -1688,7 +2412,7 @@ Array [
 ]
 `;
 
-exports[`buildLeaderboards buildLeaderboards - main / completeLineupLeaderboard 2`] = `
+exports[`buildLeaderboards buildLeaderboards - main / completeLineupLeaderboard / completePlayerLeaderboard 4`] = `
 Array [
   Object {
     "adj_margin_rank": 1,
@@ -1911,7 +2635,6 @@ Array [
     "duration_mins": Object {
       "value": 220.22333333333333,
     },
-    "gender": "Men",
     "key": "AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith",
     "off_2p": Object {
       "value": 0.5511363636363636,
@@ -2138,9 +2861,9 @@ Array [
       "Cowan, Anthony": Object {
         "code": "AnCowan",
         "def_adj_rtg": Object {
-          "old_value": undefined,
-          "override": undefined,
-          "value": -1.7420865091166775,
+          "old_value": -1.7420865091166775,
+          "override": "Luck adjusted",
+          "value": -1.640924063296302,
         },
         "def_orb": Object {
           "value": 0.096,
@@ -2190,9 +2913,9 @@ Array [
       "Wiggins, Aaron": Object {
         "code": "AaWiggins",
         "def_adj_rtg": Object {
-          "old_value": undefined,
-          "override": undefined,
-          "value": -3.021823252114291,
+          "old_value": -3.021823252114291,
+          "override": "Luck adjusted",
+          "value": -2.7062941842124077,
         },
         "def_orb": Object {
           "value": 0.1380952380952381,

@@ -23,39 +23,78 @@ export class LineupTableUtils {
 
   /** Injects some advanced stats into players, returns an associative array vs player.key */
   static buildBaselinePlayerInfo(
-    players: any[] | undefined, globalRosterStats: Record<string, any>, avgEfficiency: number
+    players: any[] | undefined,
+    globalRosterStats: Record<string, any>, teamStat: Record<string, any>,
+    avgEfficiency: number
   ) {
     const baselinePlayerInfo = _.fromPairs(
       (players || []).map((mutableP: any) => {
+        const playerAdjustForLuckOff = false; //(for now, no offensive luck calcs, see also below when time to set for true)
+        const playerAdjustForLuckDef = true; //(make player defense a little more stable)
+
+        // Possession %
+        mutableP.off_team_poss_pct = { value: _.min([(mutableP.off_team_poss.value || 0)
+            / (teamStat.off_poss?.value || 1), 1 ]) };
+        mutableP.def_team_poss_pct = { value: _.min([(mutableP.def_team_poss.value || 0)
+            / (teamStat.def_poss?.value || 1), 1 ]) };
+
+        if (mutableP?.doc_count) {
+          // Calculate luck for defense - over the baseline query, but will regress to opponent SoS
+          const defLuckAdj = LuckUtils.calcDefPlayerLuckAdj(
+            mutableP, mutableP, avgEfficiency
+          );
+          LuckUtils.injectLuck(mutableP, undefined, defLuckAdj);
+        }
+
         // Add ORtg to lineup stats:
-        const playerAdjustForLuck = false; //TODO: longer term I think we will want to do this
         const [ oRtg, adjORtg, rawORtg, rawAdjORtg, oRtgDiag ] = RatingUtils.buildORtg(
-          mutableP, globalRosterStats, avgEfficiency, false, playerAdjustForLuck
+          mutableP, globalRosterStats, avgEfficiency, false, playerAdjustForLuckOff
         );
         const [ dRtg, adjDRtg, rawDRtg, rawAdjDRtg, dRtgDiag ] = RatingUtils.buildDRtg(
-          mutableP, avgEfficiency, false, playerAdjustForLuck
+          mutableP, avgEfficiency, false, playerAdjustForLuckDef
         );
         mutableP.off_rtg = {
           value: oRtg?.value, old_value: rawORtg?.value,
-          override: playerAdjustForLuck ? "Luck adjusted" : undefined
+          override: playerAdjustForLuckOff ? "Luck adjusted" : undefined
         };
         mutableP.off_adj_rtg = {
           value: adjORtg?.value, old_value: rawAdjORtg?.value,
-          override: playerAdjustForLuck ? "Luck adjusted" : undefined
+          override: playerAdjustForLuckOff ? "Luck adjusted" : undefined
         };
         mutableP.def_rtg = {
           value: dRtg?.value, old_value: rawDRtg?.value,
-          override: playerAdjustForLuck ? "Luck adjusted" : undefined
+          override: playerAdjustForLuckDef ? "Luck adjusted" : undefined
         };
         mutableP.def_adj_rtg = {
           value: adjDRtg?.value, old_value: rawAdjDRtg?.value,
-          override: playerAdjustForLuck ? "Luck adjusted" : undefined
+          override: playerAdjustForLuckDef ? "Luck adjusted" : undefined
         };
+        mutableP.code = mutableP.player_array?.hits?.hits?.[0]?._source?.player?.code || mutableP.key;
         return [ mutableP.key, mutableP ];
       })
     );
     return baselinePlayerInfo;
   }
+
+  /** Handy util for sorting JSON blobs of fields */
+  static sorter(sortStr: string) { // format: (asc|desc):(off_|def_|diff_)<field>
+    const sortComps = sortStr.split(":"); //asc/desc
+    const dir = (sortComps[0] == "desc") ? -1 : 1;
+    const fieldComps = _.split(sortComps[1], "_", 1); //off/def/diff
+    const fieldName = sortComps[1].substring(fieldComps[0].length + 1); //+1 for _
+    const field = (stat: any) => {
+      switch(fieldComps[0]) {
+        case "diff": //(off-def)
+          return (stat["off_" + fieldName]?.value || 0.0)
+                - (stat["def_" + fieldName]?.value || 0.0);
+        default: return stat[sortComps[1]]?.value; //(off or def)
+      }
+    };
+    return (stat: any) => {
+      return dir*(field(stat) || 0);
+    };
+  };
+
 
   /** Builds positional info vs player key */
   static buildPositionPlayerMap(
@@ -80,24 +119,6 @@ export class LineupTableUtils {
       filterFragmentsPve, filterFragmentsNve, filterOnPosition
     ] = PositionUtils.buildPositionalAwareFilter(filterStr);
 
-    const sorter = (sortStr: string) => { // format: (asc|desc):(off_|def_|diff_)<field>
-      const sortComps = sortStr.split(":"); //asc/desc
-      const dir = (sortComps[0] == "desc") ? -1 : 1;
-      const fieldComps = _.split(sortComps[1], "_", 1); //off/def/diff
-      const fieldName = sortComps[1].substring(fieldComps[0].length + 1); //+1 for _
-      const field = (lineup: any) => {
-        switch(fieldComps[0]) {
-          case "diff": //(off-def)
-            return (lineup["off_" + fieldName]?.value || 0.0)
-                  - (lineup["def_" + fieldName]?.value || 0.0);
-          default: return lineup[sortComps[1]]?.value; //(off or def)
-        }
-      };
-      return (lineup: any) => {
-        return dir*(field(lineup) || 0);
-      };
-    };
-
     const filteredLineups = _.chain(lineups).filter((lineup) => {
       const minPossInt = parseInt(minPoss);
       const offPos = lineup.off_poss?.value || 0;
@@ -121,7 +142,7 @@ export class LineupTableUtils {
 
      return playerFilter && (lineup.key != ""); // (workaround for #53 pending fix)
     }).sortBy(
-       sortBy ? [ sorter(sortBy) ] : [] //(don't sort if sortBy not specified)
+       sortBy ? [ LineupTableUtils.sorter(sortBy) ] : [] //(don't sort if sortBy not specified)
     ).take(
       parseInt(maxTableSize)
     ).value();

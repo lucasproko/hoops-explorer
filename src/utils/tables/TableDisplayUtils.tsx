@@ -10,12 +10,24 @@ import _ from "lodash";
 
 // Util imports
 import { CbbColors } from "../CbbColors";
+import { PositionUtils } from "../stats/PositionUtils";
 
 import { CommonTableDefs } from "../CommonTableDefs";
 import "./TableDisplayUtils.css";
 
 /** Encapsulates some of the logic used to build decorated lineups in LineupStatsTable */
 export class TableDisplayUtils {
+
+
+  /** Adds a tooltip to the position code */
+  static buildPositionTooltip(pos: string, typeStr: string) {
+    const fullPos = PositionUtils.idToPosition[pos] || "Unknown"
+    return <Tooltip id={pos + "Tooltip"}>
+      {fullPos}<br/><br/>
+      Algorithmically assigned via stats from {typeStr} lineups.
+      See "Show Positional diagnostics" (gear icon on right) for more details.
+    </Tooltip>;
+  }
 
   /** Builds an information (over-)loaded lineup HTML */
   static buildDecoratedLineup(

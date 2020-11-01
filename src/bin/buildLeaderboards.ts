@@ -35,6 +35,22 @@ const sleep = (milliseconds: number) => {
   return new Promise(resolve => setTimeout(resolve, milliseconds));
 }
 
+/** Handy util for reducing  */
+const reduceNumberSize = (k: string, v: any) => {
+  if (_.isNumber(v)) {
+    const rawNumStr = "" + v;
+    const numStr = v.toFixed(4);
+    if (numStr.length >= rawNumStr.length) { //made it worse
+      return v;
+    } else {
+      return parseFloat(numStr);
+    }
+  } else {
+    return v;
+  }
+}
+
+
 export class MutableAsyncResponse {
   statusCode: number;
   resultJson: any;
@@ -61,6 +77,11 @@ export const savedLineups = [] as Array<any>;
 const savedConfOnlyLineups = [] as Array<any>;
 const savedT100Lineups = [] as Array<any>;
 
+/** Exported for test only */
+export const savedPlayers = [] as Array<any>;
+const savedConfOnlyPlayers = [] as Array<any>;
+const savedT100Players = [] as Array<any>;
+
 var commandLine = process?.argv || [];
 if (commandLine?.[1]?.endsWith("buildLeaderboards.js")) {
   console.log("Start processing with args: " + _.drop(commandLine, 2));
@@ -75,8 +96,9 @@ const inGender = (_.find(commandLine, p => _.startsWith(p, "--gender="))
 const inYear = (_.find(commandLine, p => _.startsWith(p, "--year="))
   || `--year=${ParamDefaults.defaultYear}`).substring(7);
 if (!testMode) console.log(`Args: gender=[${inGender}] year=[${inYear}]`);
+
 const teamFilter = undefined as Set<string> | undefined;
-  //(inYear == "2019/20") ? new Set([ "Maryland", "Iowa", "Michigan", "Dayton", "Rutgers" ]) : undefined;
+//  (inYear == "2019/20") ? new Set([ "Maryland", "Iowa", "Michigan", "Dayton", "Rutgers" ]) : undefined;
 
 const genderYearLookup = `${inGender}_${inYear}`;
 const avgEfficiency = efficiencyAverages[genderYearLookup] || efficiencyAverages.fallback;
@@ -166,7 +188,7 @@ export async function main() {
         teamResponse.getJsonResponse().aggregations?.global?.only?.buckets?.team || {};
 
       const teamBaseline =
-        teamResponse.getJsonResponse().aggregations?.global?.only?.buckets?.team || {};
+        teamResponse.getJsonResponse().aggregations?.tri_filter?.buckets?.baseline || {};
 
       /** Largest sample of player stats, by player key - use for ORtg calcs */
       const globalRosterStatsByCode =
@@ -175,7 +197,7 @@ export async function main() {
         }).fromPairs().value();
 
       const baselinePlayerInfo = LineupTableUtils.buildBaselinePlayerInfo(
-        rosterBaseline, globalRosterStatsByCode, avgEfficiency
+        rosterBaseline, globalRosterStatsByCode, teamBaseline, avgEfficiency
       );
       const positionFromPlayerKey = LineupTableUtils.buildPositionPlayerMap(rosterGlobal, teamSeasonLookup);
 
@@ -184,6 +206,41 @@ export async function main() {
         "", "desc:off_poss", "0", "5", //take top 5 (sorted by off_pos) with no min poss
         teamSeasonLookup, positionFromPlayerKey
       );
+
+      // Merge ratings and position, and filter based on offensive possessions played
+      const enrichedAndFilteredPlayers = _.toPairs(baselinePlayerInfo).filter(kv => {
+        return kv[1].off_team_poss_pct!.value! > 0.37; //(~15mpg min)
+      }).map(kv => {
+        const posInfo = positionFromPlayerKey[kv[0]] || {};
+        return {
+          conf: conference,
+          team: team,
+          year: inYear,
+          off_adj_prod: {
+            value: kv[1].off_adj_rtg.value*kv[1].off_team_poss_pct.value
+          },
+          def_adj_prod: {
+            value: kv[1].def_adj_rtg.value*kv[1].def_team_poss_pct.value,
+            old_value: kv[1].def_adj_rtg.old_value*kv[1].def_team_poss_pct.value,
+            override: kv[1].def_adj_rtg.override
+          },
+          ...posInfo,
+          ...(_.chain(kv[1]).toPairs().filter(t2 => //Reduce down to the field we'll actually need
+              (
+                (t2[0] == "off_team_poss") || (t2[0] == "off_team_poss_pct") ||
+                (t2[0] == "def_team_poss") || (t2[0] == "def_team_poss_pct")
+              ) || (
+                !_.startsWith(t2[0], "off_team_") && !_.startsWith(t2[0], "def_team_") &&
+                !_.startsWith(t2[0], "off_oppo_") && !_.startsWith(t2[0], "def_oppo_") &&
+                !_.startsWith(t2[0], "team_") && !_.startsWith(t2[0], "oppo_") &&
+                !_.startsWith(t2[0], "total_") &&
+                !_.endsWith(t2[0], "_target") && !_.endsWith(t2[0], "_source") &&
+                (t2[0] != "player_array")
+              )
+            ).fromPairs().value()
+          )
+        };
+      });
 
       const tableData = LineupTableUtils.buildEnrichedLineups(
         filteredLineups,
@@ -204,7 +261,6 @@ export async function main() {
         lineup.conf = conference;
         lineup.team = team;
         lineup.year = inYear;
-        lineup.gender = inGender;
         // Add minimal player info:
         const codesAndIds = LineupTableUtils.buildCodesAndIds(lineup);
         lineup.player_info = _.fromPairs(codesAndIds.map((cid: { code: string, id: string }) => {
@@ -229,9 +285,19 @@ export async function main() {
       });
 
       switch (label) {
-        case "all": savedLineups.push(...tableData); break;
-        case "conf": savedConfOnlyLineups.push(...tableData); break;
-        case "t100": savedT100Lineups.push(...tableData); break;
+        case "all":
+          savedLineups.push(...tableData);
+          savedPlayers.push(...enrichedAndFilteredPlayers);
+          break;
+        case "conf":
+          savedConfOnlyLineups.push(...tableData);
+          savedConfOnlyPlayers.push(...enrichedAndFilteredPlayers);
+          break;
+        case "t100":
+          savedT100Lineups.push(...tableData);
+          savedT100Players.push(...enrichedAndFilteredPlayers);
+          break;
+
         default: console.log(`WARNING unexpected label: ${label}`);
       }
 
@@ -240,6 +306,39 @@ export async function main() {
     await getAllDataPromise;
   }
   //  console.log("RECEIVED: " + JSON.stringify(tableData, null, 3));
+}
+/** Adds some handy default sortings */
+export function completePlayerLeaderboard(key: string, leaderboard: any[], topTableSize: number) {
+  //TODO: RAPM
+  // Take T300 by possessions
+  const topByPoss =
+    _.chain(leaderboard).sortBy(player => -1*(player.off_team_poss?.value || 0)).take(topTableSize).value();
+
+  _.sortBy(
+    topByPoss, player => (player.def_adj_rtg?.value || 0) - (player.off_adj_rtg?.value || 0)
+  ).map((player, index) => {
+    player[`adj_rtg_margin_rank`] = index + 1;
+  });
+  _.sortBy(
+    topByPoss, player => (player.def_adj_prod?.value || 0) - (player.off_adj_prod?.value || 0)
+  ).map((player, index) => {
+    player[`adj_prod_margin_rank`] = index + 1;
+  });
+  _.sortBy(topByPoss, player => (player.def_adj_rtg?.value || 0)).forEach((player, index) => {
+    player[`def_adj_rtg_rank`] = index + 1;
+  });
+  _.sortBy(topByPoss, player => (player.def_adj_prod?.value || 0)).forEach((player, index) => {
+    player[`def_adj_prod_rank`] = index + 1;
+  });
+  _.sortBy(topByPoss, player => -1*(player.off_adj_prod?.value || 0)).map((player, index) => {
+    player[`off_adj_prod_rank`] = index + 1;
+    return player;
+  });
+  const sortedLeaderboard = _.sortBy(topByPoss, player => -1*(player.off_adj_rtg?.value || 0)).map((player, index) => {
+    player[`off_adj_rtg_rank`] = index + 1;
+    return player;
+  });
+  return sortedLeaderboard;
 }
 
 /** Adds some handy default sortings and removes possession outliers (export for test only) */
@@ -268,8 +367,10 @@ if (!testMode) main().then(_ => {
 
   console.log("Processing Complete!");
 
-  const outputCases: Array<[string, Array<any>]> =
-    [ [ "all", savedLineups], [ "conf", savedConfOnlyLineups ], [ "t100", savedT100Lineups ] ];
+  const outputCases: Array<[string, Array<any>, Array<any>]> =
+    [ [ "all", savedLineups, savedPlayers ],
+      [ "conf", savedConfOnlyLineups, savedConfOnlyPlayers ],
+      [ "t100", savedT100Lineups, savedT100Players ] ];
 
   outputCases.forEach(kv => {
     const sortedLineups = completeLineupLeaderboard(kv[0], kv[1], topLineupSize);
@@ -277,16 +378,26 @@ if (!testMode) main().then(_ => {
       lastUpdated: dataLastUpdated[genderYearLookup] || new Date().getTime(),
       confs: Array.from(conferenceSet.values()),
       lineups: sortedLineups
-    });
+    }, reduceNumberSize);
+    const players = completePlayerLeaderboard(kv[0], kv[2], 700); //T700
+    const playersStr = JSON.stringify({
+      lastUpdated: dataLastUpdated[genderYearLookup] || new Date().getTime(),
+      confs: Array.from(conferenceSet.values()),
+      players: players
+    }, reduceNumberSize);
 
-      // Write to file
-     console.log(`${kv[0]} length: [${sortedLineupsStr.length}]`);
-     const filename = `./public/leaderboards/lineups/lineups_${kv[0]}_${inGender}_${inYear.substring(0, 4)}.json`;
-     fs.writeFile(`${filename}`,sortedLineupsStr, err => {});
-     //(don't zip, the server/browser does it for us, so it's mainly just "wasting GH space")
-     // zlib.gzip(sortedLineupsStr, (_, result) => {
-     //   fs.writeFile(`${filename}.gz`,result, err => {});
-     // });
-   });
-   console.log("File creation Complete!")
+    // Write to file
+    console.log(`${kv[0]} lineup length: [${sortedLineupsStr.length}]`);
+    const lineupFilename = `./public/leaderboards/lineups/lineups_${kv[0]}_${inGender}_${inYear.substring(0, 4)}.json`;
+    fs.writeFile(`${lineupFilename}`,sortedLineupsStr, err => {});
+    console.log(`${kv[0]} player length: [${playersStr.length}]`);
+    const playersFilename = `./public/leaderboards/lineups/players_${kv[0]}_${inGender}_${inYear.substring(0, 4)}.json`;
+    fs.writeFile(`${playersFilename}`,playersStr, err => {});
+
+   //(don't zip, the server/browser does it for us, so it's mainly just "wasting GH space")
+   // zlib.gzip(sortedLineupsStr, (_, result) => {
+   //   fs.writeFile(`${filename}.gz`,result, err => {});
+   // });
+ });
+ console.log("File creation Complete!")
 });

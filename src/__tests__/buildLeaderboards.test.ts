@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 
 import _ from "lodash";
 
-import { main, completeLineupLeaderboard, savedLineups, MutableAsyncResponse } from "../bin/buildLeaderboards";
+import { main, completeLineupLeaderboard, completePlayerLeaderboard, savedLineups, savedPlayers, MutableAsyncResponse } from "../bin/buildLeaderboards";
 
 import { sampleLineupStatsResponse } from "../sample-data/sampleLineupStatsResponse";
 import { sampleTeamStatsResponse } from "../sample-data/sampleTeamStatsResponse";
@@ -50,9 +50,12 @@ jest.mock("../pages/api/calculateOnOffPlayerStats", () =>
 );
 
 describe("buildLeaderboards", () => {
-  test("buildLeaderboards - main / completeLineupLeaderboard", async () => {
+  test("buildLeaderboards - main / completeLineupLeaderboard / completePlayerLeaderboard", async () => {
 
     await main();
+
+    expect(completePlayerLeaderboard("test", savedPlayers, 700)).toMatchSnapshot();
+    expect(completePlayerLeaderboard("test", savedPlayers, 1)).toMatchSnapshot();
 
     expect(completeLineupLeaderboard("test", savedLineups, 300)).toMatchSnapshot();
     expect(completeLineupLeaderboard("test", savedLineups, 1)).toMatchSnapshot();
