@@ -435,10 +435,11 @@ export class RapmUtils {
     const priorSum =
       _.chain(priorInfo.playersWeak).map((p, ii) => p[field]!*playerPossPcts[ii]!).sum().value();
     return (error: number, baseResults: Array<number>) => {
-      if (Math.abs(priorSum) < 0.2) {
+      if (Math.abs(priorSum) < 1) { // can only take a <100% chunk of the priors
         return baseResults; //error is small, do nothing
       } else {
-        const priorSumInv = 1/priorSum;
+        const priorSumInv = _.startsWith(field, "off_") ? Math.max(0, 1/priorSum) : Math.min(0, 1/priorSum);
+          //(stop double -ves)
         return baseResults.map((r, ii) => {
           return r - error*priorSumInv*(priorInfo.playersWeak[ii]![field] || 0);
         });

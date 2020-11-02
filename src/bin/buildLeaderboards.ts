@@ -21,9 +21,12 @@ import calculateOnOffPlayerStats from "../pages/api/calculateOnOffPlayerStats";
 // Pre processing
 import { QueryUtils } from "../utils/QueryUtils";
 import { ParamDefaults } from "../utils/FilterModels";
+import { RapmUtils } from "../utils/stats/RapmUtils";
+import { LineupUtils } from "../utils/stats/LineupUtils";
 
 // Post processing
 import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
+import { averageStatsInfo } from '../utils/internal-data/averageStatsInfo';
 import { efficiencyInfo } from '../utils/internal-data/efficiencyInfo';
 import { LineupTableUtils } from "../utils/tables/LineupTableUtils";
 import { AvailableTeams } from '../utils/internal-data/AvailableTeams';
@@ -96,12 +99,13 @@ const inGender = (_.find(commandLine, p => _.startsWith(p, "--gender="))
 const inYear = (_.find(commandLine, p => _.startsWith(p, "--year="))
   || `--year=${ParamDefaults.defaultYear}`).substring(7);
 if (!testMode) console.log(`Args: gender=[${inGender}] year=[${inYear}]`);
-
+/**/
 const teamFilter = undefined as Set<string> | undefined;
 //  (inYear == "2019/20") ? new Set([ "Maryland", "Iowa", "Michigan", "Dayton", "Rutgers" ]) : undefined;
 
 const genderYearLookup = `${inGender}_${inYear}`;
 const avgEfficiency = efficiencyAverages[genderYearLookup] || efficiencyAverages.fallback;
+const statsAverages = averageStatsInfo[genderYearLookup] || {};
 
 const conferenceSet = new Set() as Set<string>;
 
@@ -201,9 +205,9 @@ export async function main() {
       );
       const positionFromPlayerKey = LineupTableUtils.buildPositionPlayerMap(rosterGlobal, teamSeasonLookup);
 
-      const filteredLineups = LineupTableUtils.buildFilteredLineups(
+      const sortedLineups = LineupTableUtils.buildFilteredLineups(
         lineups,
-        "", "desc:off_poss", "0", "5", //take top 5 (sorted by off_pos) with no min poss
+        "", "desc:off_poss", "0", "500", //take all lineuos (sorted by off_pos) with no min poss - will filter later
         teamSeasonLookup, positionFromPlayerKey
       );
 
@@ -216,12 +220,13 @@ export async function main() {
           conf: conference,
           team: team,
           year: inYear,
+          // Rating production
           off_adj_prod: {
-            value: kv[1].off_adj_rtg.value*kv[1].off_team_poss_pct.value
+            value: kv[1].off_adj_rtg.value * kv[1].off_team_poss_pct.value
           },
           def_adj_prod: {
-            value: kv[1].def_adj_rtg.value*kv[1].def_team_poss_pct.value,
-            old_value: kv[1].def_adj_rtg.old_value*kv[1].def_team_poss_pct.value,
+            value: kv[1].def_adj_rtg.value * kv[1].def_team_poss_pct.value,
+            old_value: kv[1].def_adj_rtg.old_value * kv[1].def_team_poss_pct.value,
             override: kv[1].def_adj_rtg.override
           },
           ...posInfo,
@@ -242,12 +247,62 @@ export async function main() {
         };
       });
 
-      const tableData = LineupTableUtils.buildEnrichedLineups(
-        filteredLineups,
+      const preRapmTableData = LineupTableUtils.buildEnrichedLineups(
+        sortedLineups,
         teamGlobal, rosterGlobal, teamBaseline,
         true, "baseline", avgEfficiency,
         false, teamSeasonLookup, positionFromPlayerKey, baselinePlayerInfo
-      ).map(tmpLineup => {
+      );
+
+      // Now do all the RAPM work (after luck has been adjusted)
+      const tempTeamReport = LineupUtils.lineupToTeamReport({
+        lineups: preRapmTableData
+      });
+      const rapmContext = RapmUtils.buildPlayerContext(
+        tempTeamReport.players || [], preRapmTableData,
+        baselinePlayerInfo,
+        avgEfficiency
+      );
+      const [ offRapmWeights, defRapmWeights ] = RapmUtils.calcPlayerWeights(rapmContext);
+      const [ offRapmInputs, defRapmInputs ] = RapmUtils.pickRidgeRegression(
+        offRapmWeights, defRapmWeights, rapmContext, false
+      );
+      RapmUtils.injectRapmIntoPlayers(
+        tempTeamReport.players || [], offRapmInputs, defRapmInputs, statsAverages, rapmContext
+      );
+      const alwaysAdjustForLuck = true;
+      if (alwaysAdjustForLuck) { // (Calculate RAPM without luck, for display purposes)
+        const [ offNoLuckRapmInputs, defNoLuckRapmInputs ] = RapmUtils.pickRidgeRegression(
+          offRapmWeights, defRapmWeights, rapmContext, false,
+          true //<- uses old_value (ie pre-luck-adjusted)
+        );
+        RapmUtils.injectRapmIntoPlayers(
+          tempTeamReport.players, offNoLuckRapmInputs, defNoLuckRapmInputs, statsAverages, rapmContext,
+          true //<- only applies RAPM to old_values
+        );
+      }
+      const enrichedAndFilteredPlayersMap = _.fromPairs(
+        enrichedAndFilteredPlayers.map(p => [ p.key, p ])
+      );
+      (tempTeamReport.players || []).forEach((rapmP, index) => {
+        const player = enrichedAndFilteredPlayersMap[rapmP.playerId];
+        // RAPM (rating + productions)
+        if (player && rapmP.rapm) {
+          player.off_adj_rapm = rapmP.rapm?.off_adj_ppp;
+          player.off_adj_rapm_prod = {
+            value: rapmP.rapm!.off_adj_ppp!.value! * player.off_team_poss_pct!.value!
+          };
+          player.def_adj_rapm = rapmP.rapm?.def_adj_ppp;
+          player.def_adj_rapm_prod = {
+            value: rapmP.rapm!.def_adj_ppp!.value! * player.def_team_poss_pct!.value!,
+            old_value: (rapmP.rapm?.def_adj_ppp?.old_value || 0) * player.def_team_poss_pct!.value!,
+            override: rapmP.rapm?.def_adj_ppp?.override
+          };
+        }
+      });
+      //(end RAPM)
+
+      const tableData = _.take(preRapmTableData, 5).map(tmpLineup => {
         // (removes unused fields from the JSON, to save space)
         const lineup =
           _.chain(tmpLineup).toPairs().filter(kv => {
@@ -284,6 +339,7 @@ export async function main() {
         return lineup;
       });
 
+
       switch (label) {
         case "all":
           savedLineups.push(...tableData);
@@ -314,30 +370,20 @@ export function completePlayerLeaderboard(key: string, leaderboard: any[], topTa
   const topByPoss =
     _.chain(leaderboard).sortBy(player => -1*(player.off_team_poss?.value || 0)).take(topTableSize).value();
 
-  _.sortBy(
-    topByPoss, player => (player.def_adj_rtg?.value || 0) - (player.off_adj_rtg?.value || 0)
-  ).map((player, index) => {
-    player[`adj_rtg_margin_rank`] = index + 1;
+  [ "rtg", "prod", "rapm", "rapm_prod"  ].forEach(subKey => {
+    _.sortBy(
+      topByPoss, player => (player[`def_adj_${subKey}`]?.value || 0) - (player[`off_adj_${subKey}`]?.value || 0)
+    ).map((player, index) => {
+      player[`adj_${subKey}_margin_rank`] = index + 1;
+    });
+    _.sortBy(topByPoss, player => (player[`def_adj_${subKey}`]?.value || 0)).forEach((player, index) => {
+      player[`def_adj_${subKey}_rank`] = index + 1;
+    });
+    _.sortBy(topByPoss, player => -1*(player[`off_adj_${subKey}`]?.value || 0)).forEach((player, index) => {
+      player[`off_adj_${subKey}_rank`] = index + 1;
+    });
   });
-  _.sortBy(
-    topByPoss, player => (player.def_adj_prod?.value || 0) - (player.off_adj_prod?.value || 0)
-  ).map((player, index) => {
-    player[`adj_prod_margin_rank`] = index + 1;
-  });
-  _.sortBy(topByPoss, player => (player.def_adj_rtg?.value || 0)).forEach((player, index) => {
-    player[`def_adj_rtg_rank`] = index + 1;
-  });
-  _.sortBy(topByPoss, player => (player.def_adj_prod?.value || 0)).forEach((player, index) => {
-    player[`def_adj_prod_rank`] = index + 1;
-  });
-  _.sortBy(topByPoss, player => -1*(player.off_adj_prod?.value || 0)).map((player, index) => {
-    player[`off_adj_prod_rank`] = index + 1;
-    return player;
-  });
-  const sortedLeaderboard = _.sortBy(topByPoss, player => -1*(player.off_adj_rtg?.value || 0)).map((player, index) => {
-    player[`off_adj_rtg_rank`] = index + 1;
-    return player;
-  });
+  const sortedLeaderboard = _.sortBy(topByPoss, player => player.off_adj_rtg_rank);
   return sortedLeaderboard;
 }
 
