@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 
 import _ from "lodash";
 
-import { main, completeLineupLeaderboard, completePlayerLeaderboard, savedLineups, savedPlayers, MutableAsyncResponse } from "../bin/buildLeaderboards";
+import { main, completeLineupLeaderboard, completePlayerLeaderboard, savedLineups, savedPlayers, MutableAsyncResponse, setTestModeOn } from "../bin/buildLeaderboards";
 
 import { sampleLineupStatsResponse } from "../sample-data/sampleLineupStatsResponse";
 import { sampleTeamStatsResponse } from "../sample-data/sampleTeamStatsResponse";
@@ -13,6 +13,8 @@ const mockSampleTeamStatsResponse = sampleTeamStatsResponse;
 const mockSamplePlayerStatsResponse = samplePlayerStatsResponse;
 
 // Mock the API requests to return the sample data where available, else just an empty list
+
+setTestModeOn(); //(dataset not big enough to calc RAPM off it)
 
 jest.mock("../pages/api/calculateLineupStats", () =>
   jest.fn().mockImplementation((req: NextApiRequest, res: NextApiResponse) => {

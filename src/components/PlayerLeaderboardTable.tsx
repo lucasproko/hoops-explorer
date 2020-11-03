@@ -178,6 +178,10 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
     ParamDefaults.defaultPlayerLboardFactorMins : startingState.factorMins
   );
 
+  const [ useRapm, setUseRapm ] = useState(_.isNil(startingState.useRapm) ?
+    ParamDefaults.defaultPlayerLboardUseRapm : startingState.useRapm
+  );
+
   /** Set this to be true on expensive operations */
   const [ loadingOverride, setLoadingOverride ] = useState(false);
 
@@ -196,6 +200,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
     ParamDefaults.defaultPlayerLboardPossAsPct : startingState.possAsPct
   );
 
+//TODO
   /** When switching between rating and prod, also switch common sort bys over */
   const toggleFactorMins = () => {
     const newSortBy = factorMins ? sortBy.replace("_prod", "_rtg") : sortBy.replace("_rtg", "_prod");
@@ -204,15 +209,30 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
     }
     setFactorMins(!factorMins);
   };
+  /** When switching between RAPM and rtg, also switch common sort bys over */
+  const toggleUseRapm = () => {
+    const newSortBy = factorMins ? sortBy.replace("_prod", "_rtg") : sortBy.replace("_rtg", "_prod");
+    if (newSortBy != sortBy) {
+      setSortBy(newSortBy);
+    }
+    setFactorMins(!factorMins);
+  };
+//TODO
   /** Put these options at the front */
   const mostUsefulSubset = factorMins ? [
     "desc:diff_adj_prod",
+    "desc:diff_adj_rapm_prod",
     "desc:off_adj_prod",
-    "asc:def_adj_prod"
+    "desc:off_adj_rapm_prod",
+    "asc:def_adj_prod",
+    "asc:def_adj_rapm_prod"
   ] : [
     "desc:diff_adj_rtg",
+    "desc:diff_adj_rapm",
     "desc:off_adj_rtg",
-    "asc:def_adj_rtg"
+    "desc:off_adj_rapm",
+    "asc:def_adj_rtg",
+    "asc:def_adj_rapm"
   ];
   /** The two sub-headers for the dropdown */
   const groupedOptions = [
@@ -258,6 +278,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
     onChangeState(newState);
   }, [ minPoss, maxTableSize, sortBy, filterStr,
       isT100, isConfOnly, possAsPct, factorMins,
+      useRapm,
       posClasses,
       confs, year, gender ]);
 
@@ -429,13 +450,14 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
     });
     return <GenericTable
       tableCopyId="playerLeaderboardTable"
-      tableFields={CommonTableDefs.onOffIndividualTable(true, possAsPct, factorMins)}
+      tableFields={CommonTableDefs.onOffIndividualTable(true, possAsPct, factorMins, true)}
       tableData={tableData}
       cellTooltipMode="none"
     />
 
   }, [ minPoss, maxTableSize, sortBy, filterStr,
       possAsPct, factorMins,
+      useRapm,
       confs, posClasses,
       dataEvent ]);
 
@@ -699,6 +721,12 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
               truthVal={factorMins}
               onSelect={() => friendlyChange(() => toggleFactorMins(), true)}
             />
+            <GenericTogglingMenuItem
+              text={<span>Use RAPM (vs Adj Rtg) when displaying rankings</span>}
+              truthVal={useRapm}
+              onSelect={() => friendlyChange(() => toggleUseRapm(), true)}
+              helpLink={showHelp ? "https://hoop-explorer.blogspot.com/2020/03/understanding-team-report-onoff-page.html#RAPM" : undefined}
+            />
             <Dropdown.Divider />
             <GenericTogglingMenuItem
               text={<span>{possAsPct ?
@@ -742,6 +770,12 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
               tooltip: "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
               toggled: factorMins,
               onClick: () => friendlyChange(() => toggleFactorMins(), true)
+            },
+            {
+              label: "RAPM",
+              tooltip: "Use RAPM (vs Adj Rtg) when displaying rankings",
+              toggled: useRapm,
+              onClick: () => friendlyChange(() => toggleUseRapm(), true)
             },
           ] as Array<any>).concat(showHelp ? [
             //TODO: what to show here?

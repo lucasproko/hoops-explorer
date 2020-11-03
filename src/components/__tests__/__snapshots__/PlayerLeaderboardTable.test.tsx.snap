@@ -401,12 +401,24 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                       "value": "desc:diff_adj_prod",
                     },
                     Object {
+                      "label": "RAPM Prod (Desc. / Off-Def)",
+                      "value": "desc:diff_adj_rapm_prod",
+                    },
+                    Object {
                       "label": "Adj+ Prod (Desc. / Offensive)",
                       "value": "desc:off_adj_prod",
                     },
                     Object {
+                      "label": "RAPM Prod (Desc. / Offensive)",
+                      "value": "desc:off_adj_rapm_prod",
+                    },
+                    Object {
                       "label": "Adj+ Prod (Asc. / Defensive)",
                       "value": "asc:def_adj_prod",
+                    },
+                    Object {
+                      "label": "RAPM Prod (Asc. / Defensive)",
+                      "value": "asc:def_adj_rapm_prod",
                     },
                   ],
                 },
@@ -496,6 +508,42 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                     Object {
                       "label": "Adj+ Prod (Asc. / Off-Def)",
                       "value": "asc:diff_adj_prod",
+                    },
+                    Object {
+                      "label": "RAPM (Desc. / Offensive)",
+                      "value": "desc:off_adj_rapm",
+                    },
+                    Object {
+                      "label": "RAPM (Asc. / Offensive)",
+                      "value": "asc:off_adj_rapm",
+                    },
+                    Object {
+                      "label": "RAPM (Desc. / Defensive)",
+                      "value": "desc:def_adj_rapm",
+                    },
+                    Object {
+                      "label": "RAPM (Asc. / Defensive)",
+                      "value": "asc:def_adj_rapm",
+                    },
+                    Object {
+                      "label": "RAPM (Desc. / Off-Def)",
+                      "value": "desc:diff_adj_rapm",
+                    },
+                    Object {
+                      "label": "RAPM (Asc. / Off-Def)",
+                      "value": "asc:diff_adj_rapm",
+                    },
+                    Object {
+                      "label": "RAPM Prod (Asc. / Offensive)",
+                      "value": "asc:off_adj_rapm_prod",
+                    },
+                    Object {
+                      "label": "RAPM Prod (Desc. / Defensive)",
+                      "value": "desc:def_adj_rapm_prod",
+                    },
+                    Object {
+                      "label": "RAPM Prod (Asc. / Off-Def)",
+                      "value": "asc:diff_adj_rapm_prod",
                     },
                     Object {
                       "label": "eFG% (Desc. / Offensive)",
@@ -929,6 +977,16 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
             }
             truthVal={true}
           />
+          <GenericTogglingMenuItem
+            helpLink="https://hoop-explorer.blogspot.com/2020/03/understanding-team-report-onoff-page.html#RAPM"
+            onSelect={[Function]}
+            text={
+              <span>
+                Use RAPM (vs Adj Rtg) when displaying rankings
+              </span>
+            }
+            truthVal={true}
+          />
           <DropdownDivider
             role="separator"
           />
@@ -978,6 +1036,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 "onClick": [Function],
                 "toggled": true,
                 "tooltip": "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
+              },
+              Object {
+                "label": "RAPM",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Use RAPM (vs Adj Rtg) when displaying rankings",
               },
             ]
           }
@@ -1049,6 +1113,18 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -0.4018,
                                   }
 
+                  def_adj_rapm: Object {
+                                    "old_value": -0.6657,
+                                    "override": "Adjusted from Def 3P%",
+                                    "value": -0.3386,
+                                  }
+
+                  def_adj_rapm_prod: Object {
+                                    "old_value": -0.5279,
+                                    "override": "Adjusted from Def 3P%",
+                                    "value": -0.2685,
+                                  }
+
                   def_adj_rtg: Object {
                                     "old_value": -0.7307,
                                     "override": "Luck adjusted",
@@ -1081,6 +1157,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       s-PG
                                     </small>
                                   </OverlayTrigger>
+
+                  off_adj_rapm: Object {
+                                    "old_value": 6.9876,
+                                    "override": "Adjusted from Off 3P%",
+                                    "value": 7.1211,
+                                  }
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -1280,6 +1362,18 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -0.4018,
                                   }
 
+                  def_adj_rapm: Object {
+                                    "old_value": -0.6657,
+                                    "override": "Adjusted from Def 3P%",
+                                    "value": -0.3386,
+                                  }
+
+                  def_adj_rapm_prod: Object {
+                                    "old_value": -0.5279,
+                                    "override": "Adjusted from Def 3P%",
+                                    "value": -0.2685,
+                                  }
+
                   def_adj_rtg: Object {
                                     "old_value": -0.7307,
                                     "override": "Luck adjusted",
@@ -1312,6 +1406,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       s-PG
                                     </small>
                                   </OverlayTrigger>
+
+                  off_adj_rapm: Object {
+                                    "old_value": 6.9876,
+                                    "override": "Adjusted from Off 3P%",
+                                    "value": 7.1211,
+                                  }
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -1514,6 +1614,18 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -1.5203,
                                   }
 
+                  def_adj_rapm: Object {
+                                    "old_value": -1.8207,
+                                    "override": "Adjusted from Def 3P%",
+                                    "value": -1.6366,
+                                  }
+
+                  def_adj_rapm_prod: Object {
+                                    "old_value": -1.4676,
+                                    "override": "Adjusted from Def 3P%",
+                                    "value": -1.3192,
+                                  }
+
                   def_adj_rtg: Object {
                                     "old_value": -1.9736,
                                     "override": "Luck adjusted",
@@ -1546,6 +1658,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       PF/C
                                     </small>
                                   </OverlayTrigger>
+
+                  off_adj_rapm: Object {
+                                    "old_value": 7.167,
+                                    "override": "Adjusted from Off 3P%",
+                                    "value": 7.1263,
+                                  }
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -1745,6 +1863,18 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -1.5203,
                                   }
 
+                  def_adj_rapm: Object {
+                                    "old_value": -1.8207,
+                                    "override": "Adjusted from Def 3P%",
+                                    "value": -1.6366,
+                                  }
+
+                  def_adj_rapm_prod: Object {
+                                    "old_value": -1.4676,
+                                    "override": "Adjusted from Def 3P%",
+                                    "value": -1.3192,
+                                  }
+
                   def_adj_rtg: Object {
                                     "old_value": -1.9736,
                                     "override": "Luck adjusted",
@@ -1777,6 +1907,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       PF/C
                                     </small>
                                   </OverlayTrigger>
+
+                  off_adj_rapm: Object {
+                                    "old_value": 7.167,
+                                    "override": "Adjusted from Off 3P%",
+                                    "value": 7.1263,
+                                  }
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -1979,6 +2115,18 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -1.0413,
                                   }
 
+                  def_adj_rapm: Object {
+                                    "old_value": -2.1248,
+                                    "override": "Adjusted from Def 3P%",
+                                    "value": -1.9322,
+                                  }
+
+                  def_adj_rapm_prod: Object {
+                                    "old_value": -1.8667,
+                                    "override": "Adjusted from Def 3P%",
+                                    "value": -1.6975,
+                                  }
+
                   def_adj_rtg: Object {
                                     "old_value": -1.3145,
                                     "override": "Luck adjusted",
@@ -2011,6 +2159,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       s-PG
                                     </small>
                                   </OverlayTrigger>
+
+                  off_adj_rapm: Object {
+                                    "old_value": 6.149,
+                                    "override": "Adjusted from Off 3P%",
+                                    "value": 6.2363,
+                                  }
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -2210,6 +2364,18 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -1.0413,
                                   }
 
+                  def_adj_rapm: Object {
+                                    "old_value": -2.1248,
+                                    "override": "Adjusted from Def 3P%",
+                                    "value": -1.9322,
+                                  }
+
+                  def_adj_rapm_prod: Object {
+                                    "old_value": -1.8667,
+                                    "override": "Adjusted from Def 3P%",
+                                    "value": -1.6975,
+                                  }
+
                   def_adj_rtg: Object {
                                     "old_value": -1.3145,
                                     "override": "Luck adjusted",
@@ -2242,6 +2408,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       s-PG
                                     </small>
                                   </OverlayTrigger>
+
+                  off_adj_rapm: Object {
+                                    "old_value": 6.149,
+                                    "override": "Adjusted from Off 3P%",
+                                    "value": 6.2363,
+                                  }
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -2444,6 +2616,18 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -0.2784,
                                   }
 
+                  def_adj_rapm: Object {
+                                    "old_value": -0.7423,
+                                    "override": "Adjusted from Def 3P%",
+                                    "value": -0.1297,
+                                  }
+
+                  def_adj_rapm_prod: Object {
+                                    "old_value": -0.6916,
+                                    "override": "Adjusted from Def 3P%",
+                                    "value": -0.1208,
+                                  }
+
                   def_adj_rtg: Object {
                                     "old_value": -0.4473,
                                     "override": "Luck adjusted",
@@ -2476,6 +2660,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       CG
                                     </small>
                                   </OverlayTrigger>
+
+                  off_adj_rapm: Object {
+                                    "old_value": 4.4251,
+                                    "override": "Adjusted from Off 3P%",
+                                    "value": 4.9532,
+                                  }
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -2675,6 +2865,18 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -0.2784,
                                   }
 
+                  def_adj_rapm: Object {
+                                    "old_value": -0.7423,
+                                    "override": "Adjusted from Def 3P%",
+                                    "value": -0.1297,
+                                  }
+
+                  def_adj_rapm_prod: Object {
+                                    "old_value": -0.6916,
+                                    "override": "Adjusted from Def 3P%",
+                                    "value": -0.1208,
+                                  }
+
                   def_adj_rtg: Object {
                                     "old_value": -0.4473,
                                     "override": "Luck adjusted",
@@ -2707,6 +2909,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       CG
                                     </small>
                                   </OverlayTrigger>
+
+                  off_adj_rapm: Object {
+                                    "old_value": 4.4251,
+                                    "override": "Adjusted from Off 3P%",
+                                    "value": 4.9532,
+                                  }
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -2909,6 +3117,18 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -1.3116,
                                   }
 
+                  def_adj_rapm: Object {
+                                    "old_value": -2.2621,
+                                    "override": "Adjusted from Def 3P%",
+                                    "value": -2.0917,
+                                  }
+
+                  def_adj_rapm_prod: Object {
+                                    "old_value": -1.9523,
+                                    "override": "Adjusted from Def 3P%",
+                                    "value": -1.8052,
+                                  }
+
                   def_adj_rtg: Object {
                                     "old_value": -1.6955,
                                     "override": "Luck adjusted",
@@ -2941,6 +3161,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       s-PG
                                     </small>
                                   </OverlayTrigger>
+
+                  off_adj_rapm: Object {
+                                    "old_value": 4.6175,
+                                    "override": "Adjusted from Off 3P%",
+                                    "value": 5.1754,
+                                  }
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -3140,6 +3366,18 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -1.3116,
                                   }
 
+                  def_adj_rapm: Object {
+                                    "old_value": -2.2621,
+                                    "override": "Adjusted from Def 3P%",
+                                    "value": -2.0917,
+                                  }
+
+                  def_adj_rapm_prod: Object {
+                                    "old_value": -1.9523,
+                                    "override": "Adjusted from Def 3P%",
+                                    "value": -1.8052,
+                                  }
+
                   def_adj_rtg: Object {
                                     "old_value": -1.6955,
                                     "override": "Luck adjusted",
@@ -3172,6 +3410,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       s-PG
                                     </small>
                                   </OverlayTrigger>
+
+                  off_adj_rapm: Object {
+                                    "old_value": 4.6175,
+                                    "override": "Adjusted from Off 3P%",
+                                    "value": 5.1754,
+                                  }
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -3374,6 +3618,18 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -2.5637,
                                   }
 
+                  def_adj_rapm: Object {
+                                    "old_value": -3.7527,
+                                    "override": "Adjusted from Def 3P%",
+                                    "value": -3.1119,
+                                  }
+
+                  def_adj_rapm_prod: Object {
+                                    "old_value": -3.1711,
+                                    "override": "Adjusted from Def 3P%",
+                                    "value": -2.6296,
+                                  }
+
                   def_adj_rtg: Object {
                                     "old_value": -3.5273,
                                     "override": "Luck adjusted",
@@ -3406,6 +3662,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       s-PG
                                     </small>
                                   </OverlayTrigger>
+
+                  off_adj_rapm: Object {
+                                    "old_value": 5.4384,
+                                    "override": "Adjusted from Off 3P%",
+                                    "value": 5.4201,
+                                  }
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -3605,6 +3867,18 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -2.5637,
                                   }
 
+                  def_adj_rapm: Object {
+                                    "old_value": -3.7527,
+                                    "override": "Adjusted from Def 3P%",
+                                    "value": -3.1119,
+                                  }
+
+                  def_adj_rapm_prod: Object {
+                                    "old_value": -3.1711,
+                                    "override": "Adjusted from Def 3P%",
+                                    "value": -2.6296,
+                                  }
+
                   def_adj_rtg: Object {
                                     "old_value": -3.5273,
                                     "override": "Luck adjusted",
@@ -3637,6 +3911,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       s-PG
                                     </small>
                                   </OverlayTrigger>
+
+                  off_adj_rapm: Object {
+                                    "old_value": 5.4384,
+                                    "override": "Adjusted from Off 3P%",
+                                    "value": 5.4201,
+                                  }
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -3839,6 +4119,18 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -2.0485,
                                   }
 
+                  def_adj_rapm: Object {
+                                    "old_value": -1.2886,
+                                    "override": "Adjusted from Def 3P%",
+                                    "value": -1.0724,
+                                  }
+
+                  def_adj_rapm_prod: Object {
+                                    "old_value": -1.0015,
+                                    "override": "Adjusted from Def 3P%",
+                                    "value": -0.8335,
+                                  }
+
                   def_adj_rtg: Object {
                                     "old_value": -2.7636,
                                     "override": "Luck adjusted",
@@ -3871,6 +4163,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       WF
                                     </small>
                                   </OverlayTrigger>
+
+                  off_adj_rapm: Object {
+                                    "old_value": 4.9678,
+                                    "override": "Adjusted from Off 3P%",
+                                    "value": 5.7078,
+                                  }
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -4070,6 +4368,18 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -2.0485,
                                   }
 
+                  def_adj_rapm: Object {
+                                    "old_value": -1.2886,
+                                    "override": "Adjusted from Def 3P%",
+                                    "value": -1.0724,
+                                  }
+
+                  def_adj_rapm_prod: Object {
+                                    "old_value": -1.0015,
+                                    "override": "Adjusted from Def 3P%",
+                                    "value": -0.8335,
+                                  }
+
                   def_adj_rtg: Object {
                                     "old_value": -2.7636,
                                     "override": "Luck adjusted",
@@ -4102,6 +4412,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       WF
                                     </small>
                                   </OverlayTrigger>
+
+                  off_adj_rapm: Object {
+                                    "old_value": 4.9678,
+                                    "override": "Adjusted from Off 3P%",
+                                    "value": 5.7078,
+                                  }
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -4304,6 +4620,18 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -2.2279,
                                   }
 
+                  def_adj_rapm: Object {
+                                    "old_value": -3.3069,
+                                    "override": "Adjusted from Def 3P%",
+                                    "value": -3.8148,
+                                  }
+
+                  def_adj_rapm_prod: Object {
+                                    "old_value": -2.0112,
+                                    "override": "Adjusted from Def 3P%",
+                                    "value": -2.3201,
+                                  }
+
                   def_adj_rtg: Object {
                                     "old_value": -3.6976,
                                     "override": "Luck adjusted",
@@ -4336,6 +4664,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       PF/C
                                     </small>
                                   </OverlayTrigger>
+
+                  off_adj_rapm: Object {
+                                    "old_value": 5.9351,
+                                    "override": "Adjusted from Off 3P%",
+                                    "value": 5.6408,
+                                  }
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -4535,6 +4869,18 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -2.2279,
                                   }
 
+                  def_adj_rapm: Object {
+                                    "old_value": -3.3069,
+                                    "override": "Adjusted from Def 3P%",
+                                    "value": -3.8148,
+                                  }
+
+                  def_adj_rapm_prod: Object {
+                                    "old_value": -2.0112,
+                                    "override": "Adjusted from Def 3P%",
+                                    "value": -2.3201,
+                                  }
+
                   def_adj_rtg: Object {
                                     "old_value": -3.6976,
                                     "override": "Luck adjusted",
@@ -4567,6 +4913,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       PF/C
                                     </small>
                                   </OverlayTrigger>
+
+                  off_adj_rapm: Object {
+                                    "old_value": 5.9351,
+                                    "override": "Adjusted from Off 3P%",
+                                    "value": 5.6408,
+                                  }
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -4769,6 +5121,18 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -1.3502,
                                   }
 
+                  def_adj_rapm: Object {
+                                    "old_value": -4.0257,
+                                    "override": "Adjusted from Def 3P%",
+                                    "value": -2.7224,
+                                  }
+
+                  def_adj_rapm_prod: Object {
+                                    "old_value": -1.7732,
+                                    "override": "Adjusted from Def 3P%",
+                                    "value": -1.1991,
+                                  }
+
                   def_adj_rtg: Object {
                                     "old_value": -3.9647,
                                     "override": "Luck adjusted",
@@ -4801,6 +5165,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       PF/C
                                     </small>
                                   </OverlayTrigger>
+
+                  off_adj_rapm: Object {
+                                    "old_value": 4.4139,
+                                    "override": "Adjusted from Off 3P%",
+                                    "value": 4.094,
+                                  }
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -5000,6 +5370,18 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -1.3502,
                                   }
 
+                  def_adj_rapm: Object {
+                                    "old_value": -4.0257,
+                                    "override": "Adjusted from Def 3P%",
+                                    "value": -2.7224,
+                                  }
+
+                  def_adj_rapm_prod: Object {
+                                    "old_value": -1.7732,
+                                    "override": "Adjusted from Def 3P%",
+                                    "value": -1.1991,
+                                  }
+
                   def_adj_rtg: Object {
                                     "old_value": -3.9647,
                                     "override": "Luck adjusted",
@@ -5032,6 +5414,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       PF/C
                                     </small>
                                   </OverlayTrigger>
+
+                  off_adj_rapm: Object {
+                                    "old_value": 4.4139,
+                                    "override": "Adjusted from Off 3P%",
+                                    "value": 4.094,
+                                  }
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -5234,6 +5622,18 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -0.9568,
                                   }
 
+                  def_adj_rapm: Object {
+                                    "old_value": -1.6881,
+                                    "override": "Adjusted from Def 3P%",
+                                    "value": -2.2665,
+                                  }
+
+                  def_adj_rapm_prod: Object {
+                                    "old_value": -0.7252,
+                                    "override": "Adjusted from Def 3P%",
+                                    "value": -0.9736,
+                                  }
+
                   def_adj_rtg: Object {
                                     "old_value": -1.9825,
                                     "override": "Luck adjusted",
@@ -5266,6 +5666,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       S-PF
                                     </small>
                                   </OverlayTrigger>
+
+                  off_adj_rapm: Object {
+                                    "old_value": 5.3167,
+                                    "override": "Adjusted from Off 3P%",
+                                    "value": 4.9191,
+                                  }
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -5465,6 +5871,18 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -0.9568,
                                   }
 
+                  def_adj_rapm: Object {
+                                    "old_value": -1.6881,
+                                    "override": "Adjusted from Def 3P%",
+                                    "value": -2.2665,
+                                  }
+
+                  def_adj_rapm_prod: Object {
+                                    "old_value": -0.7252,
+                                    "override": "Adjusted from Def 3P%",
+                                    "value": -0.9736,
+                                  }
+
                   def_adj_rtg: Object {
                                     "old_value": -1.9825,
                                     "override": "Luck adjusted",
@@ -5497,6 +5915,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       S-PF
                                     </small>
                                   </OverlayTrigger>
+
+                  off_adj_rapm: Object {
+                                    "old_value": 5.3167,
+                                    "override": "Adjusted from Off 3P%",
+                                    "value": 4.9191,
+                                  }
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -5752,6 +6176,17 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 "missingData": undefined,
                 "rowSpan": [Function],
                 "toolTip": "Offensive/Defensive production (ratings * mins%) vs average in selected lineups adjusted for SoS and (for ORtg) the player's usage",
+                "widthUnits": 2,
+              },
+              "adj_rapm_prod": GenericTableColProps {
+                "className": "",
+                "colName": "RAPM Prod",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "Adjusted Plus-Minus production (pts/100 * mins%) vs D1 average",
                 "widthUnits": 2,
               },
               "assist": GenericTableColProps {
@@ -6318,12 +6753,24 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                       "value": "desc:diff_adj_rtg",
                     },
                     Object {
+                      "label": "RAPM (Desc. / Off-Def)",
+                      "value": "desc:diff_adj_rapm",
+                    },
+                    Object {
                       "label": "Adj+ Rtg (Desc. / Offensive)",
                       "value": "desc:off_adj_rtg",
                     },
                     Object {
+                      "label": "RAPM (Desc. / Offensive)",
+                      "value": "desc:off_adj_rapm",
+                    },
+                    Object {
                       "label": "Adj+ Rtg (Asc. / Defensive)",
                       "value": "asc:def_adj_rtg",
+                    },
+                    Object {
+                      "label": "RAPM (Asc. / Defensive)",
+                      "value": "asc:def_adj_rapm",
                     },
                   ],
                 },
@@ -6413,6 +6860,42 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                     Object {
                       "label": "Adj+ Prod (Asc. / Off-Def)",
                       "value": "asc:diff_adj_prod",
+                    },
+                    Object {
+                      "label": "RAPM (Asc. / Offensive)",
+                      "value": "asc:off_adj_rapm",
+                    },
+                    Object {
+                      "label": "RAPM (Desc. / Defensive)",
+                      "value": "desc:def_adj_rapm",
+                    },
+                    Object {
+                      "label": "RAPM (Asc. / Off-Def)",
+                      "value": "asc:diff_adj_rapm",
+                    },
+                    Object {
+                      "label": "RAPM Prod (Desc. / Offensive)",
+                      "value": "desc:off_adj_rapm_prod",
+                    },
+                    Object {
+                      "label": "RAPM Prod (Asc. / Offensive)",
+                      "value": "asc:off_adj_rapm_prod",
+                    },
+                    Object {
+                      "label": "RAPM Prod (Desc. / Defensive)",
+                      "value": "desc:def_adj_rapm_prod",
+                    },
+                    Object {
+                      "label": "RAPM Prod (Asc. / Defensive)",
+                      "value": "asc:def_adj_rapm_prod",
+                    },
+                    Object {
+                      "label": "RAPM Prod (Desc. / Off-Def)",
+                      "value": "desc:diff_adj_rapm_prod",
+                    },
+                    Object {
+                      "label": "RAPM Prod (Asc. / Off-Def)",
+                      "value": "asc:diff_adj_rapm_prod",
                     },
                     Object {
                       "label": "eFG% (Desc. / Offensive)",
@@ -6846,6 +7329,16 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
             }
             truthVal={false}
           />
+          <GenericTogglingMenuItem
+            helpLink="https://hoop-explorer.blogspot.com/2020/03/understanding-team-report-onoff-page.html#RAPM"
+            onSelect={[Function]}
+            text={
+              <span>
+                Use RAPM (vs Adj Rtg) when displaying rankings
+              </span>
+            }
+            truthVal={true}
+          />
           <DropdownDivider
             role="separator"
           />
@@ -6895,6 +7388,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 "onClick": [Function],
                 "toggled": false,
                 "tooltip": "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
+              },
+              Object {
+                "label": "RAPM",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Use RAPM (vs Adj Rtg) when displaying rankings",
               },
             ]
           }
@@ -6966,6 +7465,18 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -0.4018,
                                   }
 
+                  def_adj_rapm: Object {
+                                    "old_value": -0.6657,
+                                    "override": "Adjusted from Def 3P%",
+                                    "value": -0.3386,
+                                  }
+
+                  def_adj_rapm_prod: Object {
+                                    "old_value": -0.5279,
+                                    "override": "Adjusted from Def 3P%",
+                                    "value": -0.2685,
+                                  }
+
                   def_adj_rtg: Object {
                                     "old_value": -0.7307,
                                     "override": "Luck adjusted",
@@ -6998,6 +7509,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       s-PG
                                     </small>
                                   </OverlayTrigger>
+
+                  off_adj_rapm: Object {
+                                    "old_value": 6.9876,
+                                    "override": "Adjusted from Off 3P%",
+                                    "value": 7.1211,
+                                  }
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -7197,6 +7714,18 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -0.4018,
                                   }
 
+                  def_adj_rapm: Object {
+                                    "old_value": -0.6657,
+                                    "override": "Adjusted from Def 3P%",
+                                    "value": -0.3386,
+                                  }
+
+                  def_adj_rapm_prod: Object {
+                                    "old_value": -0.5279,
+                                    "override": "Adjusted from Def 3P%",
+                                    "value": -0.2685,
+                                  }
+
                   def_adj_rtg: Object {
                                     "old_value": -0.7307,
                                     "override": "Luck adjusted",
@@ -7229,6 +7758,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       s-PG
                                     </small>
                                   </OverlayTrigger>
+
+                  off_adj_rapm: Object {
+                                    "old_value": 6.9876,
+                                    "override": "Adjusted from Off 3P%",
+                                    "value": 7.1211,
+                                  }
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -7431,6 +7966,18 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -1.5203,
                                   }
 
+                  def_adj_rapm: Object {
+                                    "old_value": -1.8207,
+                                    "override": "Adjusted from Def 3P%",
+                                    "value": -1.6366,
+                                  }
+
+                  def_adj_rapm_prod: Object {
+                                    "old_value": -1.4676,
+                                    "override": "Adjusted from Def 3P%",
+                                    "value": -1.3192,
+                                  }
+
                   def_adj_rtg: Object {
                                     "old_value": -1.9736,
                                     "override": "Luck adjusted",
@@ -7463,6 +8010,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       PF/C
                                     </small>
                                   </OverlayTrigger>
+
+                  off_adj_rapm: Object {
+                                    "old_value": 7.167,
+                                    "override": "Adjusted from Off 3P%",
+                                    "value": 7.1263,
+                                  }
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -7662,6 +8215,18 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -1.5203,
                                   }
 
+                  def_adj_rapm: Object {
+                                    "old_value": -1.8207,
+                                    "override": "Adjusted from Def 3P%",
+                                    "value": -1.6366,
+                                  }
+
+                  def_adj_rapm_prod: Object {
+                                    "old_value": -1.4676,
+                                    "override": "Adjusted from Def 3P%",
+                                    "value": -1.3192,
+                                  }
+
                   def_adj_rtg: Object {
                                     "old_value": -1.9736,
                                     "override": "Luck adjusted",
@@ -7694,6 +8259,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       PF/C
                                     </small>
                                   </OverlayTrigger>
+
+                  off_adj_rapm: Object {
+                                    "old_value": 7.167,
+                                    "override": "Adjusted from Off 3P%",
+                                    "value": 7.1263,
+                                  }
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -7896,6 +8467,18 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -1.0413,
                                   }
 
+                  def_adj_rapm: Object {
+                                    "old_value": -2.1248,
+                                    "override": "Adjusted from Def 3P%",
+                                    "value": -1.9322,
+                                  }
+
+                  def_adj_rapm_prod: Object {
+                                    "old_value": -1.8667,
+                                    "override": "Adjusted from Def 3P%",
+                                    "value": -1.6975,
+                                  }
+
                   def_adj_rtg: Object {
                                     "old_value": -1.3145,
                                     "override": "Luck adjusted",
@@ -7928,6 +8511,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       s-PG
                                     </small>
                                   </OverlayTrigger>
+
+                  off_adj_rapm: Object {
+                                    "old_value": 6.149,
+                                    "override": "Adjusted from Off 3P%",
+                                    "value": 6.2363,
+                                  }
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -8127,6 +8716,18 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -1.0413,
                                   }
 
+                  def_adj_rapm: Object {
+                                    "old_value": -2.1248,
+                                    "override": "Adjusted from Def 3P%",
+                                    "value": -1.9322,
+                                  }
+
+                  def_adj_rapm_prod: Object {
+                                    "old_value": -1.8667,
+                                    "override": "Adjusted from Def 3P%",
+                                    "value": -1.6975,
+                                  }
+
                   def_adj_rtg: Object {
                                     "old_value": -1.3145,
                                     "override": "Luck adjusted",
@@ -8159,6 +8760,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       s-PG
                                     </small>
                                   </OverlayTrigger>
+
+                  off_adj_rapm: Object {
+                                    "old_value": 6.149,
+                                    "override": "Adjusted from Off 3P%",
+                                    "value": 6.2363,
+                                  }
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -8361,6 +8968,18 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -2.2279,
                                   }
 
+                  def_adj_rapm: Object {
+                                    "old_value": -3.3069,
+                                    "override": "Adjusted from Def 3P%",
+                                    "value": -3.8148,
+                                  }
+
+                  def_adj_rapm_prod: Object {
+                                    "old_value": -2.0112,
+                                    "override": "Adjusted from Def 3P%",
+                                    "value": -2.3201,
+                                  }
+
                   def_adj_rtg: Object {
                                     "old_value": -3.6976,
                                     "override": "Luck adjusted",
@@ -8393,6 +9012,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       PF/C
                                     </small>
                                   </OverlayTrigger>
+
+                  off_adj_rapm: Object {
+                                    "old_value": 5.9351,
+                                    "override": "Adjusted from Off 3P%",
+                                    "value": 5.6408,
+                                  }
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -8592,6 +9217,18 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -2.2279,
                                   }
 
+                  def_adj_rapm: Object {
+                                    "old_value": -3.3069,
+                                    "override": "Adjusted from Def 3P%",
+                                    "value": -3.8148,
+                                  }
+
+                  def_adj_rapm_prod: Object {
+                                    "old_value": -2.0112,
+                                    "override": "Adjusted from Def 3P%",
+                                    "value": -2.3201,
+                                  }
+
                   def_adj_rtg: Object {
                                     "old_value": -3.6976,
                                     "override": "Luck adjusted",
@@ -8624,6 +9261,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       PF/C
                                     </small>
                                   </OverlayTrigger>
+
+                  off_adj_rapm: Object {
+                                    "old_value": 5.9351,
+                                    "override": "Adjusted from Off 3P%",
+                                    "value": 5.6408,
+                                  }
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -8826,6 +9469,18 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -1.3502,
                                   }
 
+                  def_adj_rapm: Object {
+                                    "old_value": -4.0257,
+                                    "override": "Adjusted from Def 3P%",
+                                    "value": -2.7224,
+                                  }
+
+                  def_adj_rapm_prod: Object {
+                                    "old_value": -1.7732,
+                                    "override": "Adjusted from Def 3P%",
+                                    "value": -1.1991,
+                                  }
+
                   def_adj_rtg: Object {
                                     "old_value": -3.9647,
                                     "override": "Luck adjusted",
@@ -8858,6 +9513,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       PF/C
                                     </small>
                                   </OverlayTrigger>
+
+                  off_adj_rapm: Object {
+                                    "old_value": 4.4139,
+                                    "override": "Adjusted from Off 3P%",
+                                    "value": 4.094,
+                                  }
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -9057,6 +9718,18 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -1.3502,
                                   }
 
+                  def_adj_rapm: Object {
+                                    "old_value": -4.0257,
+                                    "override": "Adjusted from Def 3P%",
+                                    "value": -2.7224,
+                                  }
+
+                  def_adj_rapm_prod: Object {
+                                    "old_value": -1.7732,
+                                    "override": "Adjusted from Def 3P%",
+                                    "value": -1.1991,
+                                  }
+
                   def_adj_rtg: Object {
                                     "old_value": -3.9647,
                                     "override": "Luck adjusted",
@@ -9089,6 +9762,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       PF/C
                                     </small>
                                   </OverlayTrigger>
+
+                  off_adj_rapm: Object {
+                                    "old_value": 4.4139,
+                                    "override": "Adjusted from Off 3P%",
+                                    "value": 4.094,
+                                  }
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -9291,6 +9970,18 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -2.0485,
                                   }
 
+                  def_adj_rapm: Object {
+                                    "old_value": -1.2886,
+                                    "override": "Adjusted from Def 3P%",
+                                    "value": -1.0724,
+                                  }
+
+                  def_adj_rapm_prod: Object {
+                                    "old_value": -1.0015,
+                                    "override": "Adjusted from Def 3P%",
+                                    "value": -0.8335,
+                                  }
+
                   def_adj_rtg: Object {
                                     "old_value": -2.7636,
                                     "override": "Luck adjusted",
@@ -9323,6 +10014,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       WF
                                     </small>
                                   </OverlayTrigger>
+
+                  off_adj_rapm: Object {
+                                    "old_value": 4.9678,
+                                    "override": "Adjusted from Off 3P%",
+                                    "value": 5.7078,
+                                  }
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -9522,6 +10219,18 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -2.0485,
                                   }
 
+                  def_adj_rapm: Object {
+                                    "old_value": -1.2886,
+                                    "override": "Adjusted from Def 3P%",
+                                    "value": -1.0724,
+                                  }
+
+                  def_adj_rapm_prod: Object {
+                                    "old_value": -1.0015,
+                                    "override": "Adjusted from Def 3P%",
+                                    "value": -0.8335,
+                                  }
+
                   def_adj_rtg: Object {
                                     "old_value": -2.7636,
                                     "override": "Luck adjusted",
@@ -9554,6 +10263,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       WF
                                     </small>
                                   </OverlayTrigger>
+
+                  off_adj_rapm: Object {
+                                    "old_value": 4.9678,
+                                    "override": "Adjusted from Off 3P%",
+                                    "value": 5.7078,
+                                  }
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -9756,6 +10471,18 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -0.2784,
                                   }
 
+                  def_adj_rapm: Object {
+                                    "old_value": -0.7423,
+                                    "override": "Adjusted from Def 3P%",
+                                    "value": -0.1297,
+                                  }
+
+                  def_adj_rapm_prod: Object {
+                                    "old_value": -0.6916,
+                                    "override": "Adjusted from Def 3P%",
+                                    "value": -0.1208,
+                                  }
+
                   def_adj_rtg: Object {
                                     "old_value": -0.4473,
                                     "override": "Luck adjusted",
@@ -9788,6 +10515,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       CG
                                     </small>
                                   </OverlayTrigger>
+
+                  off_adj_rapm: Object {
+                                    "old_value": 4.4251,
+                                    "override": "Adjusted from Off 3P%",
+                                    "value": 4.9532,
+                                  }
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -9987,6 +10720,18 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -0.2784,
                                   }
 
+                  def_adj_rapm: Object {
+                                    "old_value": -0.7423,
+                                    "override": "Adjusted from Def 3P%",
+                                    "value": -0.1297,
+                                  }
+
+                  def_adj_rapm_prod: Object {
+                                    "old_value": -0.6916,
+                                    "override": "Adjusted from Def 3P%",
+                                    "value": -0.1208,
+                                  }
+
                   def_adj_rtg: Object {
                                     "old_value": -0.4473,
                                     "override": "Luck adjusted",
@@ -10019,6 +10764,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       CG
                                     </small>
                                   </OverlayTrigger>
+
+                  off_adj_rapm: Object {
+                                    "old_value": 4.4251,
+                                    "override": "Adjusted from Off 3P%",
+                                    "value": 4.9532,
+                                  }
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -10221,6 +10972,18 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -0.9568,
                                   }
 
+                  def_adj_rapm: Object {
+                                    "old_value": -1.6881,
+                                    "override": "Adjusted from Def 3P%",
+                                    "value": -2.2665,
+                                  }
+
+                  def_adj_rapm_prod: Object {
+                                    "old_value": -0.7252,
+                                    "override": "Adjusted from Def 3P%",
+                                    "value": -0.9736,
+                                  }
+
                   def_adj_rtg: Object {
                                     "old_value": -1.9825,
                                     "override": "Luck adjusted",
@@ -10253,6 +11016,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       S-PF
                                     </small>
                                   </OverlayTrigger>
+
+                  off_adj_rapm: Object {
+                                    "old_value": 5.3167,
+                                    "override": "Adjusted from Off 3P%",
+                                    "value": 4.9191,
+                                  }
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -10452,6 +11221,18 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -0.9568,
                                   }
 
+                  def_adj_rapm: Object {
+                                    "old_value": -1.6881,
+                                    "override": "Adjusted from Def 3P%",
+                                    "value": -2.2665,
+                                  }
+
+                  def_adj_rapm_prod: Object {
+                                    "old_value": -0.7252,
+                                    "override": "Adjusted from Def 3P%",
+                                    "value": -0.9736,
+                                  }
+
                   def_adj_rtg: Object {
                                     "old_value": -1.9825,
                                     "override": "Luck adjusted",
@@ -10484,6 +11265,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       S-PF
                                     </small>
                                   </OverlayTrigger>
+
+                  off_adj_rapm: Object {
+                                    "old_value": 5.3167,
+                                    "override": "Adjusted from Off 3P%",
+                                    "value": 4.9191,
+                                  }
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -10686,6 +11473,18 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -2.5637,
                                   }
 
+                  def_adj_rapm: Object {
+                                    "old_value": -3.7527,
+                                    "override": "Adjusted from Def 3P%",
+                                    "value": -3.1119,
+                                  }
+
+                  def_adj_rapm_prod: Object {
+                                    "old_value": -3.1711,
+                                    "override": "Adjusted from Def 3P%",
+                                    "value": -2.6296,
+                                  }
+
                   def_adj_rtg: Object {
                                     "old_value": -3.5273,
                                     "override": "Luck adjusted",
@@ -10718,6 +11517,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       s-PG
                                     </small>
                                   </OverlayTrigger>
+
+                  off_adj_rapm: Object {
+                                    "old_value": 5.4384,
+                                    "override": "Adjusted from Off 3P%",
+                                    "value": 5.4201,
+                                  }
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -10917,6 +11722,18 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -2.5637,
                                   }
 
+                  def_adj_rapm: Object {
+                                    "old_value": -3.7527,
+                                    "override": "Adjusted from Def 3P%",
+                                    "value": -3.1119,
+                                  }
+
+                  def_adj_rapm_prod: Object {
+                                    "old_value": -3.1711,
+                                    "override": "Adjusted from Def 3P%",
+                                    "value": -2.6296,
+                                  }
+
                   def_adj_rtg: Object {
                                     "old_value": -3.5273,
                                     "override": "Luck adjusted",
@@ -10949,6 +11766,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       s-PG
                                     </small>
                                   </OverlayTrigger>
+
+                  off_adj_rapm: Object {
+                                    "old_value": 5.4384,
+                                    "override": "Adjusted from Off 3P%",
+                                    "value": 5.4201,
+                                  }
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -11151,6 +11974,18 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -1.3116,
                                   }
 
+                  def_adj_rapm: Object {
+                                    "old_value": -2.2621,
+                                    "override": "Adjusted from Def 3P%",
+                                    "value": -2.0917,
+                                  }
+
+                  def_adj_rapm_prod: Object {
+                                    "old_value": -1.9523,
+                                    "override": "Adjusted from Def 3P%",
+                                    "value": -1.8052,
+                                  }
+
                   def_adj_rtg: Object {
                                     "old_value": -1.6955,
                                     "override": "Luck adjusted",
@@ -11183,6 +12018,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       s-PG
                                     </small>
                                   </OverlayTrigger>
+
+                  off_adj_rapm: Object {
+                                    "old_value": 4.6175,
+                                    "override": "Adjusted from Off 3P%",
+                                    "value": 5.1754,
+                                  }
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -11382,6 +12223,18 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -1.3116,
                                   }
 
+                  def_adj_rapm: Object {
+                                    "old_value": -2.2621,
+                                    "override": "Adjusted from Def 3P%",
+                                    "value": -2.0917,
+                                  }
+
+                  def_adj_rapm_prod: Object {
+                                    "old_value": -1.9523,
+                                    "override": "Adjusted from Def 3P%",
+                                    "value": -1.8052,
+                                  }
+
                   def_adj_rtg: Object {
                                     "old_value": -1.6955,
                                     "override": "Luck adjusted",
@@ -11414,6 +12267,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       s-PG
                                     </small>
                                   </OverlayTrigger>
+
+                  off_adj_rapm: Object {
+                                    "old_value": 4.6175,
+                                    "override": "Adjusted from Off 3P%",
+                                    "value": 5.1754,
+                                  }
 
                   off_assist: Object {
                                     "extraInfo": <span>
@@ -11658,6 +12517,17 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 "missingData": undefined,
                 "rowSpan": [Function],
                 "toolTip": "Weighted average of the offensive or defensive efficiencies of the player's opponents",
+                "widthUnits": 2,
+              },
+              "adj_rapm": GenericTableColProps {
+                "className": "",
+                "colName": "RAPM",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "Adjusted Plus-Minus vs D1 average",
                 "widthUnits": 2,
               },
               "adj_rtg": GenericTableColProps {

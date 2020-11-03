@@ -211,7 +211,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
   // 2] Data Model
 
   const allTableFields = CommonTableDefs.onOffIndividualTableAllFields(expandedView);
-  const tableFields = CommonTableDefs.onOffIndividualTable(expandedView, possAsPct, factorMins);
+  const tableFields = CommonTableDefs.onOffIndividualTable(expandedView, possAsPct, factorMins, false);
 
   // 3] Utils
 

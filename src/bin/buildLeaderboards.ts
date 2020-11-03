@@ -75,6 +75,13 @@ export class MutableAsyncResponse {
   }
 }
 
+/** Have to disable RAPM in test mode */
+export const setTestModeOn = () => {
+  ignoreRapm = true;
+}
+/** Have to disable RAPM in test mode */
+var ignoreRapm = false;
+
 /** Exported for test only */
 export const savedLineups = [] as Array<any>;
 const savedConfOnlyLineups = [] as Array<any>;
@@ -255,52 +262,53 @@ export async function main() {
       );
 
       // Now do all the RAPM work (after luck has been adjusted)
-      const tempTeamReport = LineupUtils.lineupToTeamReport({
-        lineups: preRapmTableData
-      });
-      const rapmContext = RapmUtils.buildPlayerContext(
-        tempTeamReport.players || [], preRapmTableData,
-        baselinePlayerInfo,
-        avgEfficiency
-      );
-      const [ offRapmWeights, defRapmWeights ] = RapmUtils.calcPlayerWeights(rapmContext);
-      const [ offRapmInputs, defRapmInputs ] = RapmUtils.pickRidgeRegression(
-        offRapmWeights, defRapmWeights, rapmContext, false
-      );
-      RapmUtils.injectRapmIntoPlayers(
-        tempTeamReport.players || [], offRapmInputs, defRapmInputs, statsAverages, rapmContext
-      );
-      const alwaysAdjustForLuck = true;
-      if (alwaysAdjustForLuck) { // (Calculate RAPM without luck, for display purposes)
-        const [ offNoLuckRapmInputs, defNoLuckRapmInputs ] = RapmUtils.pickRidgeRegression(
-          offRapmWeights, defRapmWeights, rapmContext, false,
-          true //<- uses old_value (ie pre-luck-adjusted)
+      if (!ignoreRapm) { //(TODO: test data isn't big enough to calc RAPM so ignore for now in unit test)
+        const tempTeamReport = LineupUtils.lineupToTeamReport({
+          lineups: preRapmTableData
+        });
+        const rapmContext = RapmUtils.buildPlayerContext(
+          tempTeamReport.players || [], preRapmTableData,
+          baselinePlayerInfo,
+          avgEfficiency
+        );
+        const [ offRapmWeights, defRapmWeights ] = RapmUtils.calcPlayerWeights(rapmContext);
+        const [ offRapmInputs, defRapmInputs ] = RapmUtils.pickRidgeRegression(
+          offRapmWeights, defRapmWeights, rapmContext, false
         );
         RapmUtils.injectRapmIntoPlayers(
-          tempTeamReport.players || [], offNoLuckRapmInputs, defNoLuckRapmInputs, statsAverages, rapmContext,
-          true //<- only applies RAPM to old_values
+          tempTeamReport.players || [], offRapmInputs, defRapmInputs, statsAverages, rapmContext
         );
-      }
-      const enrichedAndFilteredPlayersMap = _.fromPairs(
-        enrichedAndFilteredPlayers.map(p => [ p.key, p ])
-      );
-      (tempTeamReport.players || []).forEach((rapmP, index) => {
-        const player = enrichedAndFilteredPlayersMap[rapmP.playerId];
-        // RAPM (rating + productions)
-        if (player && rapmP.rapm) {
-          player.off_adj_rapm = rapmP.rapm?.off_adj_ppp;
-          player.off_adj_rapm_prod = {
-            value: rapmP.rapm!.off_adj_ppp!.value! * player.off_team_poss_pct!.value!
-          };
-          player.def_adj_rapm = rapmP.rapm?.def_adj_ppp;
-          player.def_adj_rapm_prod = {
-            value: rapmP.rapm!.def_adj_ppp!.value! * player.def_team_poss_pct!.value!,
-            old_value: (rapmP.rapm?.def_adj_ppp?.old_value || 0) * player.def_team_poss_pct!.value!,
-            override: rapmP.rapm?.def_adj_ppp?.override
-          };
+        const alwaysAdjustForLuck = true;
+        if (alwaysAdjustForLuck) { // (Calculate RAPM without luck, for display purposes)
+          const [ offNoLuckRapmInputs, defNoLuckRapmInputs ] = RapmUtils.pickRidgeRegression(
+            offRapmWeights, defRapmWeights, rapmContext, false,
+            true //<- uses old_value (ie pre-luck-adjusted)
+          );
+          RapmUtils.injectRapmIntoPlayers(
+            tempTeamReport.players || [], offNoLuckRapmInputs, defNoLuckRapmInputs, statsAverages, rapmContext,
+            true //<- only applies RAPM to old_values
+          );
         }
-      });
-      //(end RAPM)
+        const enrichedAndFilteredPlayersMap = _.fromPairs(
+          enrichedAndFilteredPlayers.map(p => [ p.key, p ])
+        );
+        (tempTeamReport.players || []).forEach((rapmP, index) => {
+          const player = enrichedAndFilteredPlayersMap[rapmP.playerId];
+          // RAPM (rating + productions)
+          if (player && rapmP.rapm) {
+            player.off_adj_rapm = rapmP.rapm?.off_adj_ppp;
+            player.off_adj_rapm_prod = {
+              value: rapmP.rapm!.off_adj_ppp!.value! * player.off_team_poss_pct!.value!
+            };
+            player.def_adj_rapm = rapmP.rapm?.def_adj_ppp;
+            player.def_adj_rapm_prod = {
+              value: rapmP.rapm!.def_adj_ppp!.value! * player.def_team_poss_pct!.value!,
+              old_value: (rapmP.rapm?.def_adj_ppp?.old_value || 0) * player.def_team_poss_pct!.value!,
+              override: rapmP.rapm?.def_adj_ppp?.override
+            };
+          }
+        });
+      } //(end RAPM)
 
       const tableData = _.take(preRapmTableData, 5).map(tmpLineup => {
         // (removes unused fields from the JSON, to save space)

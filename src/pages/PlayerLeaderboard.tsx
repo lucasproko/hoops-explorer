@@ -76,6 +76,7 @@ const PlayLeaderboardPage: NextPage<{}> = () => {
       (!rawParams.filter) ? [ 'filter' ] : [],
       (!rawParams.conf) ? [ 'conf' ] : [],
 
+      (rawParams.useRapm == ParamDefaults.defaultPlayerLboardUseRapm) ? [ 'useRapm' ] : [],
       (rawParams.factorMins == ParamDefaults.defaultPlayerLboardFactorMins) ? [ 'factorMins' ] : [],
       (rawParams.possAsPct == ParamDefaults.defaultPlayerLboardPossAsPct) ? [ 'possAsPct' ] : [],
 

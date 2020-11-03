@@ -120,6 +120,7 @@ export type PlayerLeaderboardParams = {
   posClasses?: string, //(undefined => all positions)
   possAsPct?: boolean,
   factorMins?: boolean,
+  useRapm?: boolean,
   // Filtering:
   filter?: string,
   // Query pre-sets
@@ -190,6 +191,7 @@ export class ParamDefaults {
   static readonly defaultPlayerLboardFilter = "";
   static readonly defaultPlayerLboardFactorMins = false;
   static readonly defaultPlayerLboardPossAsPct = true;
+  static readonly defaultPlayerLboardUseRapm = true;
   // Report
   static readonly defaultTeamReportSortBy = "desc:off_poss:on";
   static readonly defaultTeamReportFilter = "";
