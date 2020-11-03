@@ -277,7 +277,7 @@ export async function main() {
           true //<- uses old_value (ie pre-luck-adjusted)
         );
         RapmUtils.injectRapmIntoPlayers(
-          tempTeamReport.players, offNoLuckRapmInputs, defNoLuckRapmInputs, statsAverages, rapmContext,
+          tempTeamReport.players || [], offNoLuckRapmInputs, defNoLuckRapmInputs, statsAverages, rapmContext,
           true //<- only applies RAPM to old_values
         );
       }
