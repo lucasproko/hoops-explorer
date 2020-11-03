@@ -189,7 +189,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
   const [ minPoss, setMinPoss ] = useState(startingMinPoss);
   const startingMaxTableSize = startingState.maxTableSize || ParamDefaults.defaultPlayerLboardMaxTableSize;
   const [ maxTableSize, setMaxTableSize ] = useState(startingMaxTableSize);
-  const [ sortBy, setSortBy ] = useState(startingState.sortBy || ParamDefaults.defaultPlayerLboardSortBy(factorMins));
+  const [ sortBy, setSortBy ] = useState(startingState.sortBy || ParamDefaults.defaultPlayerLboardSortBy(useRapm, factorMins));
   const [ filterStr, setFilterStr ] = useState(startingState.filter || ParamDefaults.defaultPlayerLboardFilter);
 
   const [ isT100, setIsT100 ] = useState(startingState.t100 || false);
@@ -200,10 +200,11 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
     ParamDefaults.defaultPlayerLboardPossAsPct : startingState.possAsPct
   );
 
-//TODO
   /** When switching between rating and prod, also switch common sort bys over */
   const toggleFactorMins = () => {
-    const newSortBy = factorMins ? sortBy.replace("_prod", "_rtg") : sortBy.replace("_rtg", "_prod");
+    const newSortBy = factorMins ?
+      sortBy.replace("_rapm_prod", "_rapm").replace("_prod", "_rtg") :
+      sortBy.replace("_rapm", "_rapm_prod").replace("_rtg", "_prod");
     if (newSortBy != sortBy) {
       setSortBy(newSortBy);
     }
@@ -211,13 +212,14 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
   };
   /** When switching between RAPM and rtg, also switch common sort bys over */
   const toggleUseRapm = () => {
-    const newSortBy = factorMins ? sortBy.replace("_prod", "_rtg") : sortBy.replace("_rtg", "_prod");
+    const newSortBy = useRapm ?
+      sortBy.replace("_rapm_prod", "_prod").replace("_rapm", "_rtg") :
+      sortBy.replace("_rtg", "_rapm").replace("adj_prod", "adj_rapm_prod");
     if (newSortBy != sortBy) {
       setSortBy(newSortBy);
     }
-    setFactorMins(!factorMins);
+    setUseRapm(!useRapm);
   };
-//TODO
   /** Put these options at the front */
   const mostUsefulSubset = factorMins ? [
     "desc:diff_adj_prod",
@@ -340,14 +342,19 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
           (_.find(filterFragmentsNve, (fragment) => strToTest.indexOf(fragment) >= 0) ? false : true))
         ;
     }).sortBy(
-      (sortBy == ParamDefaults.defaultPlayerLboardSortBy(false)) ? [] : //(can save on a sort if using the generated sort-order)
+      (sortBy == ParamDefaults.defaultPlayerLboardSortBy(
+        ParamDefaults.defaultPlayerLboardUseRapm, ParamDefaults.defaultPlayerLboardFactorMins
+      )) ? [] : //(can save on a sort if using the generated sort-order)
         [ LineupTableUtils.sorter(sortBy) , (p) => { p.baseline?.off_team_poss?.value || 0 } ]
     ).take(parseInt(maxTableSize)).value();
 
-    const usefulSortCombo =
-      factorMins ?
+    const usefulSortCombo =  useRapm ?
+      (factorMins ?
+        (sortBy != "desc:diff_adj_rapm_prod") && (sortBy != "desc:off_adj_rapm_prod") && (sortBy != "asc:def_adj_rapm_prod") :
+        (sortBy != "desc:diff_adj_rapm") && (sortBy != "desc:off_adj_rapm") && (sortBy != "asc:def_adj_rapm")) :
+      (factorMins ?
         (sortBy != "desc:diff_adj_prod") && (sortBy != "desc:off_adj_prod") && (sortBy != "asc:def_adj_prod") :
-        (sortBy != "desc:diff_adj_rtg") && (sortBy != "desc:off_adj_rtg") && (sortBy != "asc:def_adj_rtg")
+        (sortBy != "desc:diff_adj_rtg") && (sortBy != "desc:off_adj_rtg") && (sortBy != "asc:def_adj_rtg"));
 
     /** Either the sort is not one of the 3 pre-calced, or there is a filter */
     const isGeneralSortOrFilter = (
@@ -366,31 +373,27 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       const generalRank = isGeneralSortOrFilter ? <span><i>(#{playerIndex + 1})</i>&nbsp;</span> : null;
       const rankingsTooltip = (
         <Tooltip id={`rankings_${playerIndex}`}>
-          Ranks:<br/>
+          {factorMins ? "Production " : "Rating "}Ranks:<br/>
           {isGeneralSortOrFilter ? "[filtered/sorted subset] " : ""}{isGeneralSortOrFilter ? <br/> : null}
-          [Adj Net Rating+]<br/>[Adj Offensive Rating+]<br/>[Adj Defensive Rating+]
+          [{useRapm ? "Net RAPM" : "Adj Net Rating+"}]<br/>
+          [{useRapm ? "Offensive RAPM" : "Adj Offensive Rating+"}]<br/>
+          [{useRapm ? "Defensive RAPM" : "Adj Defensive Rating+"}]
         </Tooltip>
       );
 
       const getRankings = () => {
-        if (factorMins) {
-          const marginRank = (sortBy == "desc:diff_adj_prod") ? <b><big>#{player.adj_prod_margin_rank}</big></b> : `#${player.adj_prod_margin_rank}`;
-          const offRank = (sortBy == "desc:off_adj_prod") ? <b><big>#{player.off_adj_prod_rank}</big></b> : `#${player.off_adj_prod_rank}`;
-          const defRank = (sortBy == "asc:def_adj_prod") ? <b><big>#{player.def_adj_prod_rank}</big></b> : `#${player.def_adj_prod_rank}`;
+        const rtg = useRapm ?
+          (factorMins ? "rapm_prod" : "rapm") :
+          (factorMins ? "prod" : "rtg");
+
+          const marginRank = (sortBy == `desc:diff_adj_${rtg}`) ? <b><big>#{player[`adj_${rtg}_margin_rank`]}</big></b> : `#${player[`adj_${rtg}_margin_rank`]}`;
+          const offRank = (sortBy == `desc:off_adj_${rtg}`) ? <b><big>#{player[`off_adj_${rtg}_rank`]}</big></b> : `#${player[`off_adj_${rtg}_rank`]}`;
+          const defRank = (sortBy == `asc:def_adj_${rtg}`) ? <b><big>#{player[`def_adj_${rtg}_rank`]}</big></b> : `#${player[`def_adj_${rtg}_rank`]}`;
           return <OverlayTrigger placement="auto" overlay={rankingsTooltip}>
             <span>{generalRank}<small>{marginRank} ({offRank} / {defRank})</small></span>
           </OverlayTrigger>;
-        } else {
-          const marginRank = (sortBy == "desc:diff_adj_rtg") ? <b><big>#{player.adj_rtg_margin_rank}</big></b> : `#${player.adj_rtg_margin_rank}`;
-          const offRank = (sortBy == "desc:off_adj_rtg") ? <b><big>#{player.off_adj_rtg_rank}</big></b> : `#${player.off_adj_rtg_rank}`;
-          const defRank = (sortBy == "asc:def_adj_rtg") ? <b><big>#{player.def_adj_rtg_rank}</big></b> : `#${player.def_adj_rtg_rank}`;
-          return <OverlayTrigger placement="auto" overlay={rankingsTooltip}>
-            <span>{generalRank}<small>{marginRank} ({offRank} / {defRank})</small></span>
-          </OverlayTrigger>;
-        }
       };
       const rankings = getRankings();
-
 
       const teamTooltip = (
         <Tooltip id={`team_${playerIndex}`}>Open new tab with the on/off analysis for this player/team</Tooltip>
@@ -416,15 +419,37 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
         showDiag: true, showPosDiag: true,
         filter: player.code || player.key
       };
+      const rapmAnalysisParams = {
+        team: player.team, gender: gender, year: year,
+        minRank: "0", maxRank: isT100 ? "100" : "400",
+        filter: player.code || player.key
+        //TODO: heh need to add queryFilters to lineup and team report qurey box
+        ,
+        showOnOff: false, showComps: false, incRapm: true,
+        teamLuck: true, rapmDiagMode: "base"
+      };
+      const rapmTooltip = (
+        <Tooltip id={`rapm_${playerIndex}`}>RAPM {factorMins ? "Production" : "Rating"} margin: click to open new tab showing the RAPM diagnostics for this player</Tooltip>
+      );
       const playerTooltip = (
         <Tooltip id={`player_${playerIndex}`}>{factorMins ? "Production" : "Rating"} margin: click to open new tab showing the off/def rating diagnostics for this player</Tooltip>
       );
 
-      const adjMargin = factorMins ?
-        (player.off_adj_prod?.value || 0) - (player.def_adj_prod?.value || 0) :
-        (player.off_adj_rtg?.value || 0) - (player.def_adj_rtg?.value || 0);
-      const adjMarginStr = <OverlayTrigger placement="auto" overlay={playerTooltip}>
-        <a target="_new" href={UrlRouting.getGameUrl(playerAnalysisParams, {})}><b>
+      const adjMargin = useRapm ?
+        (factorMins ?
+          (player.off_adj_rapm_prod?.value || 0) - (player.def_adj_rapm_prod?.value || 0) :
+          (player.off_adj_rapm?.value || 0) - (player.def_adj_rapm?.value || 0))
+        :
+        (factorMins ?
+          (player.off_adj_prod?.value || 0) - (player.def_adj_prod?.value || 0) :
+          (player.off_adj_rtg?.value || 0) - (player.def_adj_rtg?.value || 0))
+          ;
+      const adjMarginStr = <OverlayTrigger placement="auto" overlay={useRapm ? rapmTooltip : playerTooltip}>
+        <a target="_new" href={
+          useRapm ?
+            UrlRouting.getTeamReportUrl(rapmAnalysisParams) :
+            UrlRouting.getGameUrl(playerAnalysisParams, {})
+        }><b>
           {`${(adjMargin > 0.0) ? "+" : ""}${adjMargin.toFixed(1)}`}
         </b></a>
         </OverlayTrigger>;
