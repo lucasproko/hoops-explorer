@@ -4394,6 +4394,54 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                       "value": "asc:off_adj_prod:off",
                     },
                     Object {
+                      "label": "Base RAPM (Desc. / Offensive)",
+                      "value": "desc:off_adj_rapm:baseline",
+                    },
+                    Object {
+                      "label": "'On' RAPM (Desc. / Offensive)",
+                      "value": "desc:off_adj_rapm:on",
+                    },
+                    Object {
+                      "label": "'Off' RAPM (Desc. / Offensive)",
+                      "value": "desc:off_adj_rapm:off",
+                    },
+                    Object {
+                      "label": "Base RAPM (Asc. / Offensive)",
+                      "value": "asc:off_adj_rapm:baseline",
+                    },
+                    Object {
+                      "label": "'On' RAPM (Asc. / Offensive)",
+                      "value": "asc:off_adj_rapm:on",
+                    },
+                    Object {
+                      "label": "'Off' RAPM (Asc. / Offensive)",
+                      "value": "asc:off_adj_rapm:off",
+                    },
+                    Object {
+                      "label": "Base RAPM Prod (Desc. / Offensive)",
+                      "value": "desc:off_adj_rapm_prod:baseline",
+                    },
+                    Object {
+                      "label": "'On' RAPM Prod (Desc. / Offensive)",
+                      "value": "desc:off_adj_rapm_prod:on",
+                    },
+                    Object {
+                      "label": "'Off' RAPM Prod (Desc. / Offensive)",
+                      "value": "desc:off_adj_rapm_prod:off",
+                    },
+                    Object {
+                      "label": "Base RAPM Prod (Asc. / Offensive)",
+                      "value": "asc:off_adj_rapm_prod:baseline",
+                    },
+                    Object {
+                      "label": "'On' RAPM Prod (Asc. / Offensive)",
+                      "value": "asc:off_adj_rapm_prod:on",
+                    },
+                    Object {
+                      "label": "'Off' RAPM Prod (Asc. / Offensive)",
+                      "value": "asc:off_adj_rapm_prod:off",
+                    },
+                    Object {
                       "label": "Base eFG% (Desc. / Offensive)",
                       "value": "desc:off_efg:baseline",
                     },
@@ -7689,6 +7737,54 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
                       "value": "asc:off_adj_prod:off",
                     },
                     Object {
+                      "label": "Base RAPM (Desc. / Offensive)",
+                      "value": "desc:off_adj_rapm:baseline",
+                    },
+                    Object {
+                      "label": "'On' RAPM (Desc. / Offensive)",
+                      "value": "desc:off_adj_rapm:on",
+                    },
+                    Object {
+                      "label": "'Off' RAPM (Desc. / Offensive)",
+                      "value": "desc:off_adj_rapm:off",
+                    },
+                    Object {
+                      "label": "Base RAPM (Asc. / Offensive)",
+                      "value": "asc:off_adj_rapm:baseline",
+                    },
+                    Object {
+                      "label": "'On' RAPM (Asc. / Offensive)",
+                      "value": "asc:off_adj_rapm:on",
+                    },
+                    Object {
+                      "label": "'Off' RAPM (Asc. / Offensive)",
+                      "value": "asc:off_adj_rapm:off",
+                    },
+                    Object {
+                      "label": "Base RAPM Prod (Desc. / Offensive)",
+                      "value": "desc:off_adj_rapm_prod:baseline",
+                    },
+                    Object {
+                      "label": "'On' RAPM Prod (Desc. / Offensive)",
+                      "value": "desc:off_adj_rapm_prod:on",
+                    },
+                    Object {
+                      "label": "'Off' RAPM Prod (Desc. / Offensive)",
+                      "value": "desc:off_adj_rapm_prod:off",
+                    },
+                    Object {
+                      "label": "Base RAPM Prod (Asc. / Offensive)",
+                      "value": "asc:off_adj_rapm_prod:baseline",
+                    },
+                    Object {
+                      "label": "'On' RAPM Prod (Asc. / Offensive)",
+                      "value": "asc:off_adj_rapm_prod:on",
+                    },
+                    Object {
+                      "label": "'Off' RAPM Prod (Asc. / Offensive)",
+                      "value": "asc:off_adj_rapm_prod:off",
+                    },
+                    Object {
                       "label": "Base eFG% (Desc. / Offensive)",
                       "value": "desc:off_efg:baseline",
                     },
@@ -10251,6 +10347,54 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                     Object {
                       "label": "'Off' Adj+ Prod (Asc. / Offensive)",
                       "value": "asc:off_adj_prod:off",
+                    },
+                    Object {
+                      "label": "Base RAPM (Desc. / Offensive)",
+                      "value": "desc:off_adj_rapm:baseline",
+                    },
+                    Object {
+                      "label": "'On' RAPM (Desc. / Offensive)",
+                      "value": "desc:off_adj_rapm:on",
+                    },
+                    Object {
+                      "label": "'Off' RAPM (Desc. / Offensive)",
+                      "value": "desc:off_adj_rapm:off",
+                    },
+                    Object {
+                      "label": "Base RAPM (Asc. / Offensive)",
+                      "value": "asc:off_adj_rapm:baseline",
+                    },
+                    Object {
+                      "label": "'On' RAPM (Asc. / Offensive)",
+                      "value": "asc:off_adj_rapm:on",
+                    },
+                    Object {
+                      "label": "'Off' RAPM (Asc. / Offensive)",
+                      "value": "asc:off_adj_rapm:off",
+                    },
+                    Object {
+                      "label": "Base RAPM Prod (Desc. / Offensive)",
+                      "value": "desc:off_adj_rapm_prod:baseline",
+                    },
+                    Object {
+                      "label": "'On' RAPM Prod (Desc. / Offensive)",
+                      "value": "desc:off_adj_rapm_prod:on",
+                    },
+                    Object {
+                      "label": "'Off' RAPM Prod (Desc. / Offensive)",
+                      "value": "desc:off_adj_rapm_prod:off",
+                    },
+                    Object {
+                      "label": "Base RAPM Prod (Asc. / Offensive)",
+                      "value": "asc:off_adj_rapm_prod:baseline",
+                    },
+                    Object {
+                      "label": "'On' RAPM Prod (Asc. / Offensive)",
+                      "value": "asc:off_adj_rapm_prod:on",
+                    },
+                    Object {
+                      "label": "'Off' RAPM Prod (Asc. / Offensive)",
+                      "value": "asc:off_adj_rapm_prod:off",
                     },
                     Object {
                       "label": "Base eFG% (Desc. / Offensive)",
@@ -15429,6 +15573,54 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                     Object {
                       "label": "'Off' Adj+ Prod (Asc. / Offensive)",
                       "value": "asc:off_adj_prod:off",
+                    },
+                    Object {
+                      "label": "Base RAPM (Desc. / Offensive)",
+                      "value": "desc:off_adj_rapm:baseline",
+                    },
+                    Object {
+                      "label": "'On' RAPM (Desc. / Offensive)",
+                      "value": "desc:off_adj_rapm:on",
+                    },
+                    Object {
+                      "label": "'Off' RAPM (Desc. / Offensive)",
+                      "value": "desc:off_adj_rapm:off",
+                    },
+                    Object {
+                      "label": "Base RAPM (Asc. / Offensive)",
+                      "value": "asc:off_adj_rapm:baseline",
+                    },
+                    Object {
+                      "label": "'On' RAPM (Asc. / Offensive)",
+                      "value": "asc:off_adj_rapm:on",
+                    },
+                    Object {
+                      "label": "'Off' RAPM (Asc. / Offensive)",
+                      "value": "asc:off_adj_rapm:off",
+                    },
+                    Object {
+                      "label": "Base RAPM Prod (Desc. / Offensive)",
+                      "value": "desc:off_adj_rapm_prod:baseline",
+                    },
+                    Object {
+                      "label": "'On' RAPM Prod (Desc. / Offensive)",
+                      "value": "desc:off_adj_rapm_prod:on",
+                    },
+                    Object {
+                      "label": "'Off' RAPM Prod (Desc. / Offensive)",
+                      "value": "desc:off_adj_rapm_prod:off",
+                    },
+                    Object {
+                      "label": "Base RAPM Prod (Asc. / Offensive)",
+                      "value": "asc:off_adj_rapm_prod:baseline",
+                    },
+                    Object {
+                      "label": "'On' RAPM Prod (Asc. / Offensive)",
+                      "value": "asc:off_adj_rapm_prod:on",
+                    },
+                    Object {
+                      "label": "'Off' RAPM Prod (Asc. / Offensive)",
+                      "value": "asc:off_adj_rapm_prod:off",
                     },
                     Object {
                       "label": "Base eFG% (Desc. / Offensive)",
@@ -22596,6 +22788,54 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                     Object {
                       "label": "'Off' Adj+ Prod (Asc. / Offensive)",
                       "value": "asc:off_adj_prod:off",
+                    },
+                    Object {
+                      "label": "Base RAPM (Desc. / Offensive)",
+                      "value": "desc:off_adj_rapm:baseline",
+                    },
+                    Object {
+                      "label": "'On' RAPM (Desc. / Offensive)",
+                      "value": "desc:off_adj_rapm:on",
+                    },
+                    Object {
+                      "label": "'Off' RAPM (Desc. / Offensive)",
+                      "value": "desc:off_adj_rapm:off",
+                    },
+                    Object {
+                      "label": "Base RAPM (Asc. / Offensive)",
+                      "value": "asc:off_adj_rapm:baseline",
+                    },
+                    Object {
+                      "label": "'On' RAPM (Asc. / Offensive)",
+                      "value": "asc:off_adj_rapm:on",
+                    },
+                    Object {
+                      "label": "'Off' RAPM (Asc. / Offensive)",
+                      "value": "asc:off_adj_rapm:off",
+                    },
+                    Object {
+                      "label": "Base RAPM Prod (Desc. / Offensive)",
+                      "value": "desc:off_adj_rapm_prod:baseline",
+                    },
+                    Object {
+                      "label": "'On' RAPM Prod (Desc. / Offensive)",
+                      "value": "desc:off_adj_rapm_prod:on",
+                    },
+                    Object {
+                      "label": "'Off' RAPM Prod (Desc. / Offensive)",
+                      "value": "desc:off_adj_rapm_prod:off",
+                    },
+                    Object {
+                      "label": "Base RAPM Prod (Asc. / Offensive)",
+                      "value": "asc:off_adj_rapm_prod:baseline",
+                    },
+                    Object {
+                      "label": "'On' RAPM Prod (Asc. / Offensive)",
+                      "value": "asc:off_adj_rapm_prod:on",
+                    },
+                    Object {
+                      "label": "'Off' RAPM Prod (Asc. / Offensive)",
+                      "value": "asc:off_adj_rapm_prod:off",
                     },
                     Object {
                       "label": "Base eFG% (Desc. / Offensive)",
@@ -30492,6 +30732,54 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                       "value": "asc:off_adj_prod:off",
                     },
                     Object {
+                      "label": "Base RAPM (Desc. / Offensive)",
+                      "value": "desc:off_adj_rapm:baseline",
+                    },
+                    Object {
+                      "label": "'On' RAPM (Desc. / Offensive)",
+                      "value": "desc:off_adj_rapm:on",
+                    },
+                    Object {
+                      "label": "'Off' RAPM (Desc. / Offensive)",
+                      "value": "desc:off_adj_rapm:off",
+                    },
+                    Object {
+                      "label": "Base RAPM (Asc. / Offensive)",
+                      "value": "asc:off_adj_rapm:baseline",
+                    },
+                    Object {
+                      "label": "'On' RAPM (Asc. / Offensive)",
+                      "value": "asc:off_adj_rapm:on",
+                    },
+                    Object {
+                      "label": "'Off' RAPM (Asc. / Offensive)",
+                      "value": "asc:off_adj_rapm:off",
+                    },
+                    Object {
+                      "label": "Base RAPM Prod (Desc. / Offensive)",
+                      "value": "desc:off_adj_rapm_prod:baseline",
+                    },
+                    Object {
+                      "label": "'On' RAPM Prod (Desc. / Offensive)",
+                      "value": "desc:off_adj_rapm_prod:on",
+                    },
+                    Object {
+                      "label": "'Off' RAPM Prod (Desc. / Offensive)",
+                      "value": "desc:off_adj_rapm_prod:off",
+                    },
+                    Object {
+                      "label": "Base RAPM Prod (Asc. / Offensive)",
+                      "value": "asc:off_adj_rapm_prod:baseline",
+                    },
+                    Object {
+                      "label": "'On' RAPM Prod (Asc. / Offensive)",
+                      "value": "asc:off_adj_rapm_prod:on",
+                    },
+                    Object {
+                      "label": "'Off' RAPM Prod (Asc. / Offensive)",
+                      "value": "asc:off_adj_rapm_prod:off",
+                    },
+                    Object {
                       "label": "Base eFG% (Desc. / Offensive)",
                       "value": "desc:off_efg:baseline",
                     },
@@ -38108,6 +38396,54 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                     Object {
                       "label": "'Off' Adj+ Prod (Asc. / Offensive)",
                       "value": "asc:off_adj_prod:off",
+                    },
+                    Object {
+                      "label": "Base RAPM (Desc. / Offensive)",
+                      "value": "desc:off_adj_rapm:baseline",
+                    },
+                    Object {
+                      "label": "'On' RAPM (Desc. / Offensive)",
+                      "value": "desc:off_adj_rapm:on",
+                    },
+                    Object {
+                      "label": "'Off' RAPM (Desc. / Offensive)",
+                      "value": "desc:off_adj_rapm:off",
+                    },
+                    Object {
+                      "label": "Base RAPM (Asc. / Offensive)",
+                      "value": "asc:off_adj_rapm:baseline",
+                    },
+                    Object {
+                      "label": "'On' RAPM (Asc. / Offensive)",
+                      "value": "asc:off_adj_rapm:on",
+                    },
+                    Object {
+                      "label": "'Off' RAPM (Asc. / Offensive)",
+                      "value": "asc:off_adj_rapm:off",
+                    },
+                    Object {
+                      "label": "Base RAPM Prod (Desc. / Offensive)",
+                      "value": "desc:off_adj_rapm_prod:baseline",
+                    },
+                    Object {
+                      "label": "'On' RAPM Prod (Desc. / Offensive)",
+                      "value": "desc:off_adj_rapm_prod:on",
+                    },
+                    Object {
+                      "label": "'Off' RAPM Prod (Desc. / Offensive)",
+                      "value": "desc:off_adj_rapm_prod:off",
+                    },
+                    Object {
+                      "label": "Base RAPM Prod (Asc. / Offensive)",
+                      "value": "asc:off_adj_rapm_prod:baseline",
+                    },
+                    Object {
+                      "label": "'On' RAPM Prod (Asc. / Offensive)",
+                      "value": "asc:off_adj_rapm_prod:on",
+                    },
+                    Object {
+                      "label": "'Off' RAPM Prod (Asc. / Offensive)",
+                      "value": "asc:off_adj_rapm_prod:off",
                     },
                     Object {
                       "label": "Base eFG% (Desc. / Offensive)",

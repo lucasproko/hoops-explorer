@@ -120,6 +120,7 @@ export type PlayerLeaderboardParams = {
   posClasses?: string, //(undefined => all positions)
   possAsPct?: boolean,
   factorMins?: boolean,
+  useRapm?: boolean,
   // Filtering:
   filter?: string,
   // Query pre-sets
@@ -186,10 +187,13 @@ export class ParamDefaults {
   // Player leaderboard
   static readonly defaultPlayerLboardMinPos = "20";
   static readonly defaultPlayerLboardMaxTableSize = "100";
-  static defaultPlayerLboardSortBy(factorMins?: boolean) { return factorMins ? "desc:off_adj_prod" : "desc:off_adj_rtg"; }
+  static defaultPlayerLboardSortBy(useRapm: boolean, factorMins: boolean) {
+    return useRapm ? (factorMins ? "desc:off_adj_rapm_prod" : "desc:off_adj_rapm") : (factorMins ? "desc:off_adj_prod" : "desc:off_adj_rtg"); 
+  }
   static readonly defaultPlayerLboardFilter = "";
   static readonly defaultPlayerLboardFactorMins = false;
   static readonly defaultPlayerLboardPossAsPct = true;
+  static readonly defaultPlayerLboardUseRapm = true;
   // Report
   static readonly defaultTeamReportSortBy = "desc:off_poss:on";
   static readonly defaultTeamReportFilter = "";

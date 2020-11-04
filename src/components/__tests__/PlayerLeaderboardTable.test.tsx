@@ -26,7 +26,7 @@ describe("PlayerLeaderboardTable", () => {
     const dummyChangeStateCallback = (stats: PlayerLeaderboardParams) => {};
     const wrapper = shallow(
       <PlayerLeaderboardTable
-        startingState={{}}
+        startingState={{useRapm: false}}
         dataEvent={sampleData}
         onChangeState={dummyChangeStateCallback}
       />
@@ -34,6 +34,29 @@ describe("PlayerLeaderboardTable", () => {
     expect(toJson(wrapper)).toMatchSnapshot();
   });
   test("PlayerLeaderboardTable - should create snapshot (prod not /100)", () => {
+    const dummyChangeStateCallback = (stats: PlayerLeaderboardParams) => {};
+    const wrapper = shallow(
+      <PlayerLeaderboardTable
+        startingState={{factorMins: true, useRapm: false}}
+        dataEvent={sampleData}
+        onChangeState={dummyChangeStateCallback}
+      />
+    );
+    expect(toJson(wrapper)).toMatchSnapshot();
+  });
+
+  test("PlayerLeaderboardTable - should create snapshot (RAPM)", () => {
+    const dummyChangeStateCallback = (stats: PlayerLeaderboardParams) => {};
+    const wrapper = shallow(
+      <PlayerLeaderboardTable
+        startingState={{}}
+        dataEvent={sampleData}
+        onChangeState={dummyChangeStateCallback}
+      />
+    );
+    expect(toJson(wrapper)).toMatchSnapshot();
+  });
+  test("PlayerLeaderboardTable - should create snapshot (RAPM, prod not /100)", () => {
     const dummyChangeStateCallback = (stats: PlayerLeaderboardParams) => {};
     const wrapper = shallow(
       <PlayerLeaderboardTable

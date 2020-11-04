@@ -4,6 +4,8 @@ exports[`buildLeaderboards buildLeaderboards - main / completeLineupLeaderboard 
 Array [
   Object {
     "adj_prod_margin_rank": 1,
+    "adj_rapm_margin_rank": 1,
+    "adj_rapm_prod_margin_rank": 1,
     "adj_rtg_margin_rank": 1,
     "code": "AnCowan",
     "conf": "Big Ten Conference",
@@ -19,6 +21,8 @@ Array [
       "value": -1.4114627935129171,
     },
     "def_adj_prod_rank": 2,
+    "def_adj_rapm_prod_rank": 1,
+    "def_adj_rapm_rank": 1,
     "def_adj_rtg": Object {
       "old_value": -1.7420865091166775,
       "override": "Luck adjusted",
@@ -90,6 +94,8 @@ Array [
       "value": 5.028034872055713,
     },
     "off_adj_prod_rank": 1,
+    "off_adj_rapm_prod_rank": 1,
+    "off_adj_rapm_rank": 1,
     "off_adj_rtg": Object {
       "old_value": undefined,
       "override": undefined,
@@ -243,6 +249,8 @@ Array [
   },
   Object {
     "adj_prod_margin_rank": 2,
+    "adj_rapm_margin_rank": 2,
+    "adj_rapm_prod_margin_rank": 2,
     "adj_rtg_margin_rank": 2,
     "code": "AaWiggins",
     "conf": "Big Ten Conference",
@@ -258,6 +266,8 @@ Array [
       "value": -1.937711837807058,
     },
     "def_adj_prod_rank": 1,
+    "def_adj_rapm_prod_rank": 2,
+    "def_adj_rapm_rank": 2,
     "def_adj_rtg": Object {
       "old_value": -3.021823252114291,
       "override": "Luck adjusted",
@@ -329,6 +339,8 @@ Array [
       "value": 0.5295981196643196,
     },
     "off_adj_prod_rank": 2,
+    "off_adj_rapm_prod_rank": 2,
+    "off_adj_rapm_rank": 2,
     "off_adj_rtg": Object {
       "old_value": undefined,
       "override": undefined,
@@ -487,6 +499,8 @@ exports[`buildLeaderboards buildLeaderboards - main / completeLineupLeaderboard 
 Array [
   Object {
     "adj_prod_margin_rank": 1,
+    "adj_rapm_margin_rank": 1,
+    "adj_rapm_prod_margin_rank": 1,
     "adj_rtg_margin_rank": 1,
     "code": "AnCowan",
     "conf": "Big Ten Conference",
@@ -502,6 +516,8 @@ Array [
       "value": -1.4114627935129171,
     },
     "def_adj_prod_rank": 1,
+    "def_adj_rapm_prod_rank": 1,
+    "def_adj_rapm_rank": 1,
     "def_adj_rtg": Object {
       "old_value": -1.7420865091166775,
       "override": "Luck adjusted",
@@ -573,6 +589,8 @@ Array [
       "value": 5.028034872055713,
     },
     "off_adj_prod_rank": 1,
+    "off_adj_rapm_prod_rank": 1,
+    "off_adj_rapm_rank": 1,
     "off_adj_rtg": Object {
       "old_value": undefined,
       "override": undefined,

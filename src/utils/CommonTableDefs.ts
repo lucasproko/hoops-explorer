@@ -122,6 +122,8 @@ export class CommonTableDefs {
       CbbColors.offOnlyPicker(...CbbColors.usg), GenericTableOps.percentOrHtmlFormatter), //TODO needs to be steeper
     "adj_rtg": GenericTableOps.addPtsCol("Adj+ Rtg", "Offensive/Defensive rating vs average in selected lineups adjusted for SoS and (for ORtg) the player's usage", CbbColors.picker(...CbbColors.diff10_p100_redGreen)),
     "adj_prod": GenericTableOps.addPtsCol("Adj+ Prod", "Offensive/Defensive production (ratings * mins%) vs average in selected lineups adjusted for SoS and (for ORtg) the player's usage", CbbColors.picker(...CbbColors.diff10_p100_redGreen)),
+    "adj_rapm": GenericTableOps.addPtsCol("RAPM", "Adjusted Plus-Minus vs D1 average", CbbColors.picker(...CbbColors.diff10_p100_redGreen)),
+    "adj_rapm_prod": GenericTableOps.addPtsCol("RAPM Prod", "Adjusted Plus-Minus production (pts/100 * mins%) vs D1 average", CbbColors.picker(...CbbColors.diff10_p100_redGreen)),
     "sep1": GenericTableOps.addColSeparator(),
     "efg": GenericTableOps.addPctCol("eFG%", "Effective field goal% (3 pointers count 1.5x as much) in selected lineups", CbbColors.picker(...CbbColors.eFG)),
     "assist": GenericTableOps.addPctCol("A%", "Assist % for player in selected lineups", CbbColors.picker(...CbbColors.p_ast)),
@@ -163,14 +165,16 @@ export class CommonTableDefs {
   }; };
 
   /** Specific fields required for an instance of a roster stats table */
-  static readonly onOffIndividualTable = (expandedView: boolean, possAsPct: boolean, factorMins: boolean) => {
+  static readonly onOffIndividualTable = (expandedView: boolean, possAsPct: boolean, factorMins: boolean, includeRapm: boolean) => {
     return _.omit(CommonTableDefs.onOffIndividualTableAllFields(expandedView),
-      [
-        expandedView ?  "drb"  : "adj_opp",
-        possAsPct ? "team_poss" : "team_poss_pct",
-        factorMins ? "adj_rtg" : "adj_prod"
-      ]
-    );
+      _.flatten([
+        [ expandedView ?  "drb"  : "adj_opp" ],
+        [ possAsPct ? "team_poss" : "team_poss_pct" ],
+        [ factorMins ? "adj_rtg" : "adj_prod" ],
+        includeRapm ?
+          [ factorMins ? "adj_rapm" : "adj_rapm_prod" ] : [ "adj_rapm", "adj_rapm_prod" ]
+      ])
+    ) as Record<string, GenericTableColProps>;
   };
 
   // LINEUP:
