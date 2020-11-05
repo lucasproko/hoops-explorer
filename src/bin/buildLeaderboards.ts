@@ -106,7 +106,7 @@ const inGender = (_.find(commandLine, p => _.startsWith(p, "--gender="))
 const inYear = (_.find(commandLine, p => _.startsWith(p, "--year="))
   || `--year=${ParamDefaults.defaultYear}`).substring(7);
 if (!testMode) console.log(`Args: gender=[${inGender}] year=[${inYear}]`);
-/**/
+
 const teamFilter = undefined as Set<string> | undefined;
 //  (inYear == "2019/20") ? new Set([ "Maryland", "Iowa", "Michigan", "Dayton", "Rutgers" ]) : undefined;
 

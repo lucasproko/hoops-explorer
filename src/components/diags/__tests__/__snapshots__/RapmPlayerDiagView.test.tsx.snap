@@ -9,7 +9,7 @@ exports[`RapmPlayerDiagView RapmPlayerDiagView - should create snapshot 1`] = `
   </b>
    adj_off=[
   <b>
-    2.57
+    2.59
   </b>
   ], adj_def=[
   <b>
@@ -35,7 +35,7 @@ exports[`RapmPlayerDiagView RapmPlayerDiagView - should create snapshot 1`] = `
     <li>
        + Priors' contribution: off=[
       <b>
-        -0.02
+        0.00
       </b>
       ], def=[
       <b>
@@ -43,7 +43,7 @@ exports[`RapmPlayerDiagView RapmPlayerDiagView - should create snapshot 1`] = `
       </b>
       ], total=[
       <b>
-        0.45
+        0.47
       </b>
       ]
     </li>
@@ -96,7 +96,7 @@ exports[`RapmPlayerDiagView RapmPlayerDiagView - should create snapshot 1`] = `
         <li>
           chosen so that a minutes-weighted average of the ratings sums to the team prior: off=[
           <b>
-            -0.02
+            0.00
           </b>
           ], def=[
           <b>
@@ -117,7 +117,7 @@ exports[`RapmPlayerDiagView RapmPlayerDiagView - should create snapshot 1`] = `
                 </b>
                 ] poss, this is an off=[
                 <b>
-                  -0.02
+                  0.00
                 </b>
                 ] def=[
                 <b>

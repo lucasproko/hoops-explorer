@@ -176,18 +176,18 @@ describe("RapmUtils", () => {
       expect(offResults.playerPossPcts.map(n => n.toFixed(2))).toEqual(["0.97", "0.93", "0.82", "0.74", "0.73", "0.54", "0.15", "0.12"]);
       expect(defResults.playerPossPcts.map(n => n.toFixed(2))).toEqual(["0.97", "0.92", "0.82", "0.74", "0.73", "0.54", "0.15", "0.13"]);
 
-      expect(offResults.prevAttempts.map((o: any) => {
+      expect([luckAdjusted, offResults.prevAttempts.map((o: any) => {
         return { l: o?.ridgeLambda?.toFixed(2), ex: o?.results?.[0]?.toFixed(2) }
-      })).toEqual( // 4 iterations
-        [ { l: "1.10", ex: "2.21" }, { l: "1.32", ex: "2.25" }, { l: "1.54", ex: "2.29" } ]
+      })]).toEqual( // 4 iterations
+        [ luckAdjusted, [ { l: "1.10", ex: "2.29" }, { l: "1.32", ex: "2.31" }, { l: "1.54", ex: "2.31" } ] ]
       );
       expect(offResults.ridgeLambda.toFixed(3)).toEqual("1.536");
-      expect(_.take(offResults.rapmAdjPpp.map(n => n.toFixed(2)), 3)).toEqual(["2.29", "2.43", "2.57"]);
+      expect(_.take(offResults.rapmAdjPpp.map(n => n.toFixed(2)), 3)).toEqual(["2.31", "2.46", "2.59"]);
       expect(_.take(offResults.rapmRawAdjPpp.map(n => n.toFixed(2)), 3)).toEqual(["2.31", "2.46", "2.59"]);
-      expect(defResults.prevAttempts.map((o: any) => {
+      expect([luckAdjusted, defResults.prevAttempts.map((o: any) => {
         return { l: o?.ridgeLambda?.toFixed(2), ex: o?.results?.[0]?.toFixed(2) }
-      })).toEqual( // 4 iterations
-        [ { l: "1.10", ex: "-5.86" }, { l: "1.32", ex: "-5.73" }, { l: "1.54", ex: "-5.64" } ]
+      })]).toEqual( // 4 iterations
+        [ luckAdjusted, [ { l: "1.10", ex: "-5.86" }, { l: "1.32", ex: "-5.73" }, { l: "1.54", ex: "-5.64" } ] ]
       );
       expect(defResults.ridgeLambda.toFixed(3)).toEqual("1.536");
       expect(_.take(defResults.rapmAdjPpp.map(n => n.toFixed(2)), 3)).toEqual(["-5.64", "-4.22", "-4.94"]);
@@ -233,7 +233,7 @@ describe("RapmUtils", () => {
              "def_poss": luckAdjusted ? "0.00" : "99.00", //(these don't get an old_value)
              "def_to": luckAdjusted ? "0.00" : "0.01",
              "key": "RAPM Wiggins, Aaron",
-             "off_adj_ppp": "2.57",
+             "off_adj_ppp": "2.59",
              "off_poss": luckAdjusted ? "0.00" : "101.00",
              "off_to": "0.00",
            },

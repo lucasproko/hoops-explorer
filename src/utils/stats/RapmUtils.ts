@@ -434,19 +434,25 @@ export class RapmUtils {
   ) {
     const priorSum =
       _.chain(priorInfo.playersWeak).map((p, ii) => p[field]!*playerPossPcts[ii]!).sum().value();
+
     return (error: number, baseResults: Array<number>) => {
-      if (Math.abs(priorSum) < 1) { // can only take a <100% chunk of the priors
+      const priorSumInv = priorSum != 0 ? 1/priorSum: 0;
+      const errorTimesSumInv = error*(error < 0 ? Math.max(0, priorSumInv) : Math.min(0, priorSumInv));
+      //(if the error is -ve, the actual eff is > RAPM, so need to add to RAPM, hence errorTimesSumInv must be -ve, else ignore)
+      //(if the error is +ve. the actual eff is < RAPM, so need to reduce RAPM, hence errorsTimesSunInv must be +ve, else ignore)
+      //(because it's -error*errorTimesSumInv below)
+
+      if (Math.abs(errorTimesSumInv) > 1) { // can only take a <100% chunk of the priors
         return baseResults; //error is small, do nothing
       } else {
-        const priorSumInv = _.startsWith(field, "off_") ? Math.max(0, 1/priorSum) : Math.min(0, 1/priorSum);
           //(stop double -ves)
         return baseResults.map((r, ii) => {
-          return r - error*priorSumInv*(priorInfo.playersWeak[ii]![field] || 0);
+          return r - errorTimesSumInv*(priorInfo.playersWeak[ii]![field] || 0);
         });
       }
     };
   }
-  
+
   /**
   * Select a good ridge regression factor to use
   * If diagMode is enabled then add info about each possible regression value
@@ -540,9 +546,10 @@ export class RapmUtils {
 
     const pickRidgeThresh = { off: 0.061, def: 0.091 }; //(more confident in offensive priors)
     const lambdaRange = [ 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.25, 2.5, 2.75, 3, 3.25, 3.5, 3.75, 4.0 ];
+    const usedLambdaRange = _.drop(lambdaRange, diagMode ? 0 : 3)
     const testResults = ([ "off", "def" ] as Array<"off" | "def">).map((offOrDef: "off" | "def") =>
-      _.transform(_.drop(lambdaRange, diagMode ? 0 : 3), (acc, lambda) => {
-        const notFirstStep = lambda > lambdaRange[0];
+      _.transform(usedLambdaRange, (acc, lambda) => {
+        const notFirstStep = lambda > usedLambdaRange[0];
         if (!acc.foundLambda || diagMode) {
           const debugMode = offDefDebugMode[offOrDef];
           const ridgeLambda = lambda*avgEigenVal; //(scale lambda according to the scale of the weight matrix)
@@ -562,14 +569,15 @@ export class RapmUtils {
           const combinedAdjEff = _.sum(_.zip(pctByPlayer[offOrDef], results).map((zip: Array<number|undefined>) => {
             return (zip[0] || 0)*(zip[1] || 0);
           }));
-          const adjEffErr = Math.abs(combinedAdjEff - actualEff[offOrDef]);
+          const adjNonAbsEffErr = combinedAdjEff - actualEff[offOrDef];
+          const adjEffErr = Math.abs(adjNonAbsEffErr);
 
           if (debugMode) console.log(ctx.colToPlayer);
           if (debugMode) console.log("rapm[PRE]: " + resultsPrePrior.map((p: number) => p.toFixed(3)));
           if (debugMode) console.log("rapm[POST]: " + results.map((p: number) => p.toFixed(3)));
           if (debugMode) console.log(
             `combinedRapm[PRE] = [${combinedAdjEffPrePrior.toFixed(1)}] vs actualEff = [${actualEff[offOrDef].toFixed(1)}] ... ` +
-            `Err[PRE] = [${adjEffAbsErrPrePrior.toFixed(1)}] Err[POST]=[${adjEffErr.toFixed(1)}]`
+            `Err[PRE] = [${adjEffErrPrePrior.toFixed(1)}] Err[POST] = [${adjNonAbsEffErr.toFixed(1)}]`
           );
 
           const residuals = RapmUtils.calculatePredictedOut(weights[offOrDef], results, ctx);
@@ -610,7 +618,7 @@ export class RapmUtils {
             acc.output.rapmRawAdjPpp = resultsPrePrior;
             acc.output.solnMatrix = solver;
             if ((adjEffErr >= 1.05) && notFirstStep) {
-              if (debugMode) console.log(`-!!!!!!!!!!- DONE PICK PREVIOUS [${acc.lastAttempt.ridgeLambda.toFixed(2)}]`);
+              if (debugMode) console.log(`-!!!!!!!!!!- DONE PICK PREVIOUS [${acc.lastAttempt?.ridgeLambda?.toFixed(2)}]`);
               acc.foundLambda = true;
               // Roll back to previous
               acc.output.solnMatrix = acc.lastAttempt.solnMatrix;
