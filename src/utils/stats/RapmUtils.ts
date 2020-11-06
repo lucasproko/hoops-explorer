@@ -437,19 +437,20 @@ export class RapmUtils {
 
     return (error: number, baseResults: Array<number>) => {
       const priorSumInv = priorSum != 0 ? 1/priorSum: 0;
-      const errorTimesSumInv = error*(error < 0 ? Math.max(0, priorSumInv) : Math.min(0, priorSumInv));
-      //(if the error is -ve, the actual eff is > RAPM, so need to add to RAPM, hence errorTimesSumInv must be -ve, else ignore)
-      //(if the error is +ve. the actual eff is < RAPM, so need to reduce RAPM, hence errorsTimesSunInv must be +ve, else ignore)
-      //(because it's -error*errorTimesSumInv below)
+      const errorTimesSumInv = Math.min(0, Math.max(-0.5, error*priorSumInv));
+      //(if the error is -ve, the actual eff is > RAPM, so need to add to RAPM (ie more +ve), hence errorTimesSumInv must be -ve, else ignore)
+      //(if the error is +ve. the actual eff is < RAPM, so need to reduce RAPM (ie move -ve), hence errorsTimesSunInv must be
+      // .... still -ve ...! Because of priorInv factor (which will on average same sign as priorSumInv)
+      //(because it's -error*errorTimesSumInv*prior[player] below)
 
-      if (Math.abs(errorTimesSumInv) > 1) { // can only take a <100% chunk of the priors
-        return baseResults; //error is small, do nothing
-      } else {
-          //(stop double -ves)
-        return baseResults.map((r, ii) => {
-          return r - errorTimesSumInv*(priorInfo.playersWeak[ii]![field] || 0);
-        });
-      }
+      // ... And then also can only take a <50% chunk of the priors
+
+      //USEFUL DEBUG:
+      //console.log(`prior=[${priorSum}] error=[${error}] tot=[${error*priorSumInv}] => [${errorTimesSumInv}]`);
+
+      return baseResults.map((r, ii) => {
+        return r - errorTimesSumInv*(priorInfo.playersWeak[ii]![field] || 0);
+      });
     };
   }
 

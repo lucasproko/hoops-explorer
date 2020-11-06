@@ -391,7 +391,7 @@ export function completePlayerLeaderboard(key: string, leaderboard: any[], topTa
       player[`off_adj_${subKey}_rank`] = index + 1;
     });
   });
-  const sortedLeaderboard = _.sortBy(topByPoss, player => player.off_adj_rtg_rank);
+  const sortedLeaderboard = _.sortBy(topByPoss, player => player.adj_rapm_margin_rank); 
   return sortedLeaderboard;
 }
 
