@@ -332,7 +332,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
 
     // Filter, sort, and limit players part 2/2
     const players = _.chain(confDataEventPlayers).filter(player => {
-      const strToTest = `${(player.key || "")} ${player.team || ""}`;
+      const strToTest = `${(player.key || "")} ${player.team || ""} ${player.code || ""}`;
 
       return(
         (filterFragmentsPve.length == 0) ||
