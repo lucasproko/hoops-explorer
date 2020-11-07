@@ -24,7 +24,7 @@ import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 
 
 // Utils:
-import { getCommonFilterParams, ParamPrefixes, CommonFilterParams, GameFilterParams, LineupFilterParams, TeamReportFilterParams, LineupLeaderboardParams, PlayerLeaderboardParams } from '../../utils/FilterModels';
+import { getCommonFilterParams, getCommonLboardFilterParams, ParamPrefixes, CommonFilterParams, GameFilterParams, LineupFilterParams, TeamReportFilterParams, LineupLeaderboardParams, PlayerLeaderboardParams } from '../../utils/FilterModels';
 import { UrlRouting } from "../../utils/UrlRouting";
 import { HistoryManager } from '../../utils/HistoryManager';
 
@@ -57,13 +57,13 @@ const HeaderBar: React.FunctionComponent<Props> = ({thisPage, common, override})
   // Lineup Leaderboard
   function getLineupLeaderboardUrl() {
     return UrlRouting.getLineupLeaderboardUrl(
-      getCommonFilterParams(common) as LineupLeaderboardParams
+      getCommonLboardFilterParams(common) as LineupLeaderboardParams
     );
   }
   // Player Leaderboard
   function getPlayerLeaderboardUrl() {
     return UrlRouting.getPlayerLeaderboardUrl(
-      getCommonFilterParams(common) as PlayerLeaderboardParams
+      getCommonLboardFilterParams(common) as PlayerLeaderboardParams
     );
   }
   // Last visited

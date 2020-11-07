@@ -47,6 +47,14 @@ export function getCommonFilterParams(p: CommonFilterParams) {
   };
 }
 
+/** Extracts the common leaderboard params from a superset */
+export function getCommonLboardFilterParams(p: CommonFilterParams) {
+  return {
+    year: p.year,
+    gender: p.gender,
+  };
+}
+
 /** Combined params for game filtering */
 export type GameFilterParams = {
   [P in keyof CommonFilterParams]?: CommonFilterParams[P];
@@ -188,7 +196,7 @@ export class ParamDefaults {
   static readonly defaultPlayerLboardMinPos = "20";
   static readonly defaultPlayerLboardMaxTableSize = "100";
   static defaultPlayerLboardSortBy(useRapm: boolean, factorMins: boolean) {
-    return useRapm ? (factorMins ? "desc:diff_adj_rapm_prod" : "desc:diff_adj_rapm") : (factorMins ? "desc:off_adj_prod" : "desc:off_adj_rtg"); 
+    return useRapm ? (factorMins ? "desc:diff_adj_rapm_prod" : "desc:diff_adj_rapm") : (factorMins ? "desc:off_adj_prod" : "desc:off_adj_rtg");
   }
   static readonly defaultPlayerLboardFilter = "";
   static readonly defaultPlayerLboardFactorMins = false;
