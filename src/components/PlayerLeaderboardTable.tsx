@@ -403,7 +403,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
         onQuery: `"${player.key}"`, offQuery: `NOT "${player.key}"`, autoOffQuery: true,
       };
       const teamEl = <OverlayTrigger placement="auto" overlay={teamTooltip}>
-        <a target="_new" href={UrlRouting.getGameUrl(teamParams, {})}><b>{player.team}</b></a>
+        <a target="_blank" href={UrlRouting.getGameUrl(teamParams, {})}><b>{player.team}</b></a>
       </OverlayTrigger>;
 
       const playerAnalysisParams = {
@@ -441,7 +441,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
           (player.off_adj_rtg?.value || 0) - (player.def_adj_rtg?.value || 0))
           ;
       const adjMarginStr = <OverlayTrigger placement="auto" overlay={useRapm ? rapmTooltip : playerTooltip}>
-        <a target="_new" href={
+        <a target="_blank" href={
           useRapm ?
             UrlRouting.getTeamReportUrl(rapmAnalysisParams) :
             UrlRouting.getGameUrl(playerAnalysisParams, {})
@@ -803,7 +803,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
           ] as Array<any>).concat(showHelp ? [
             //TODO: what to show here?
             // {
-            //   label: <a href="https://hoop-explorer.blogspot.com/2020/07/understanding-lineup-analyzer-page.html" target="_new">?</a>,
+            //   label: <a href="https://hoop-explorer.blogspot.com/2020/07/understanding-lineup-analyzer-page.html" target="_blank">?</a>,
             //   tooltip: "Open a page that explains some of the elements of this table",
             //   toggled: false,
             //   onClick: () => {}

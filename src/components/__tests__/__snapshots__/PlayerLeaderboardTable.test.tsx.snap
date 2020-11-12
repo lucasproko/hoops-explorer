@@ -1285,7 +1285,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Azubuike%2C%20Udoka%22&onQuery=%22Azubuike%2C%20Udoka%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Kansas&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Kansas
@@ -1312,7 +1312,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/TeamReport?filter=UdAzubuike&gender=Men&incRapm=true&maxRank=400&minRank=0&rapmDiagMode=base&showComps=false&showOnOff=false&team=Kansas&teamLuck=true&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               +10.4
@@ -1543,7 +1543,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Azubuike%2C%20Udoka%22&onQuery=%22Azubuike%2C%20Udoka%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Kansas&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Kansas
@@ -1570,7 +1570,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/TeamReport?filter=UdAzubuike&gender=Men&incRapm=true&maxRank=400&minRank=0&rapmDiagMode=base&showComps=false&showOnOff=false&team=Kansas&teamLuck=true&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               +10.4
@@ -1804,7 +1804,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Tillman%2C%20Xavier%22&onQuery=%22Tillman%2C%20Xavier%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Michigan%20St.&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Michigan St.
@@ -1831,7 +1831,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/TeamReport?filter=XaTillman&gender=Men&incRapm=true&maxRank=400&minRank=0&rapmDiagMode=base&showComps=false&showOnOff=false&team=Michigan%20St.&teamLuck=true&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               +9.8
@@ -2062,7 +2062,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Tillman%2C%20Xavier%22&onQuery=%22Tillman%2C%20Xavier%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Michigan%20St.&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Michigan St.
@@ -2089,7 +2089,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/TeamReport?filter=XaTillman&gender=Men&incRapm=true&maxRank=400&minRank=0&rapmDiagMode=base&showComps=false&showOnOff=false&team=Michigan%20St.&teamLuck=true&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               +9.8
@@ -2323,7 +2323,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Carey%2C%20Vernon%22&onQuery=%22Carey%2C%20Vernon%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Duke&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Duke
@@ -2350,7 +2350,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/TeamReport?filter=VeCarey&gender=Men&incRapm=true&maxRank=400&minRank=0&rapmDiagMode=base&showComps=false&showOnOff=false&team=Duke&teamLuck=true&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               +9.5
@@ -2581,7 +2581,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Carey%2C%20Vernon%22&onQuery=%22Carey%2C%20Vernon%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Duke&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Duke
@@ -2608,7 +2608,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/TeamReport?filter=VeCarey&gender=Men&incRapm=true&maxRank=400&minRank=0&rapmDiagMode=base&showComps=false&showOnOff=false&team=Duke&teamLuck=true&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               +9.5
@@ -2842,7 +2842,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Flynn%2C%20Malachi%22&onQuery=%22Flynn%2C%20Malachi%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=San%20Diego%20St.&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               San Diego St.
@@ -2869,7 +2869,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/TeamReport?filter=MaFlynn&gender=Men&incRapm=true&maxRank=400&minRank=0&rapmDiagMode=base&showComps=false&showOnOff=false&team=San%20Diego%20St.&teamLuck=true&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               +9.1
@@ -3100,7 +3100,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Flynn%2C%20Malachi%22&onQuery=%22Flynn%2C%20Malachi%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=San%20Diego%20St.&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               San Diego St.
@@ -3127,7 +3127,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/TeamReport?filter=MaFlynn&gender=Men&incRapm=true&maxRank=400&minRank=0&rapmDiagMode=base&showComps=false&showOnOff=false&team=San%20Diego%20St.&teamLuck=true&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               +9.1
@@ -3361,7 +3361,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Garza%2C%20Luka%22&onQuery=%22Garza%2C%20Luka%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Iowa&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Iowa
@@ -3388,7 +3388,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/TeamReport?filter=LuGarza&gender=Men&incRapm=true&maxRank=400&minRank=0&rapmDiagMode=base&showComps=false&showOnOff=false&team=Iowa&teamLuck=true&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               +8.8
@@ -3619,7 +3619,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Garza%2C%20Luka%22&onQuery=%22Garza%2C%20Luka%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Iowa&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Iowa
@@ -3646,7 +3646,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/TeamReport?filter=LuGarza&gender=Men&incRapm=true&maxRank=400&minRank=0&rapmDiagMode=base&showComps=false&showOnOff=false&team=Iowa&teamLuck=true&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               +8.8
@@ -3880,7 +3880,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Winston%2C%20Cassius%22&onQuery=%22Winston%2C%20Cassius%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Michigan%20St.&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Michigan St.
@@ -3907,7 +3907,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/TeamReport?filter=CaWinston&gender=Men&incRapm=true&maxRank=400&minRank=0&rapmDiagMode=base&showComps=false&showOnOff=false&team=Michigan%20St.&teamLuck=true&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               +8.6
@@ -4138,7 +4138,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Winston%2C%20Cassius%22&onQuery=%22Winston%2C%20Cassius%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Michigan%20St.&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Michigan St.
@@ -4165,7 +4165,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/TeamReport?filter=CaWinston&gender=Men&incRapm=true&maxRank=400&minRank=0&rapmDiagMode=base&showComps=false&showOnOff=false&team=Michigan%20St.&teamLuck=true&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               +8.6
@@ -4399,7 +4399,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Dotson%2C%20Devon%22&onQuery=%22Dotson%2C%20Devon%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Kansas&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Kansas
@@ -4426,7 +4426,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/TeamReport?filter=DeDotson&gender=Men&incRapm=true&maxRank=400&minRank=0&rapmDiagMode=base&showComps=false&showOnOff=false&team=Kansas&teamLuck=true&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               +8.5
@@ -4657,7 +4657,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Dotson%2C%20Devon%22&onQuery=%22Dotson%2C%20Devon%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Kansas&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Kansas
@@ -4684,7 +4684,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/TeamReport?filter=DeDotson&gender=Men&incRapm=true&maxRank=400&minRank=0&rapmDiagMode=base&showComps=false&showOnOff=false&team=Kansas&teamLuck=true&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               +8.5
@@ -4918,7 +4918,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Vassell%2C%20Devin%22&onQuery=%22Vassell%2C%20Devin%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Florida%20St.&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Florida St.
@@ -4945,7 +4945,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/TeamReport?filter=DeVassell&gender=Men&incRapm=true&maxRank=400&minRank=0&rapmDiagMode=base&showComps=false&showOnOff=false&team=Florida%20St.&teamLuck=true&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               +8.5
@@ -5176,7 +5176,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Vassell%2C%20Devin%22&onQuery=%22Vassell%2C%20Devin%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Florida%20St.&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Florida St.
@@ -5203,7 +5203,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/TeamReport?filter=DeVassell&gender=Men&incRapm=true&maxRank=400&minRank=0&rapmDiagMode=base&showComps=false&showOnOff=false&team=Florida%20St.&teamLuck=true&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               +8.5
@@ -5437,7 +5437,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Wright%2C%20McKinley%22&onQuery=%22Wright%2C%20McKinley%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Colorado&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Colorado
@@ -5464,7 +5464,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/TeamReport?filter=McWright&gender=Men&incRapm=true&maxRank=400&minRank=0&rapmDiagMode=base&showComps=false&showOnOff=false&team=Colorado&teamLuck=true&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               +8.4
@@ -5695,7 +5695,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Wright%2C%20McKinley%22&onQuery=%22Wright%2C%20McKinley%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Colorado&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Colorado
@@ -5722,7 +5722,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/TeamReport?filter=McWright&gender=Men&incRapm=true&maxRank=400&minRank=0&rapmDiagMode=base&showComps=false&showOnOff=false&team=Colorado&teamLuck=true&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               +8.4
@@ -5956,7 +5956,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Pritchard%2C%20Payton%22&onQuery=%22Pritchard%2C%20Payton%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Oregon&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Oregon
@@ -5983,7 +5983,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/TeamReport?filter=PaPritchard&gender=Men&incRapm=true&maxRank=400&minRank=0&rapmDiagMode=base&showComps=false&showOnOff=false&team=Oregon&teamLuck=true&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               +8.2
@@ -6214,7 +6214,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Pritchard%2C%20Payton%22&onQuery=%22Pritchard%2C%20Payton%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Oregon&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Oregon
@@ -6241,7 +6241,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/TeamReport?filter=PaPritchard&gender=Men&incRapm=true&maxRank=400&minRank=0&rapmDiagMode=base&showComps=false&showOnOff=false&team=Oregon&teamLuck=true&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               +8.2
@@ -7821,7 +7821,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?autoOffQuery=true&factorMins=true&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Tillman%2C%20Xavier%22&onQuery=%22Tillman%2C%20Xavier%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Michigan%20St.&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Michigan St.
@@ -7848,7 +7848,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/TeamReport?filter=XaTillman&gender=Men&incRapm=true&maxRank=400&minRank=0&rapmDiagMode=base&showComps=false&showOnOff=false&team=Michigan%20St.&teamLuck=true&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               +7.8
@@ -8079,7 +8079,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?autoOffQuery=true&factorMins=true&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Tillman%2C%20Xavier%22&onQuery=%22Tillman%2C%20Xavier%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Michigan%20St.&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Michigan St.
@@ -8106,7 +8106,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/TeamReport?filter=XaTillman&gender=Men&incRapm=true&maxRank=400&minRank=0&rapmDiagMode=base&showComps=false&showOnOff=false&team=Michigan%20St.&teamLuck=true&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               +7.8
@@ -8340,7 +8340,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?autoOffQuery=true&factorMins=true&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Flynn%2C%20Malachi%22&onQuery=%22Flynn%2C%20Malachi%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=San%20Diego%20St.&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               San Diego St.
@@ -8367,7 +8367,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/TeamReport?filter=MaFlynn&gender=Men&incRapm=true&maxRank=400&minRank=0&rapmDiagMode=base&showComps=false&showOnOff=false&team=San%20Diego%20St.&teamLuck=true&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               +7.7
@@ -8598,7 +8598,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?autoOffQuery=true&factorMins=true&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Flynn%2C%20Malachi%22&onQuery=%22Flynn%2C%20Malachi%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=San%20Diego%20St.&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               San Diego St.
@@ -8625,7 +8625,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/TeamReport?filter=MaFlynn&gender=Men&incRapm=true&maxRank=400&minRank=0&rapmDiagMode=base&showComps=false&showOnOff=false&team=San%20Diego%20St.&teamLuck=true&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               +7.7
@@ -8859,7 +8859,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?autoOffQuery=true&factorMins=true&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Pritchard%2C%20Payton%22&onQuery=%22Pritchard%2C%20Payton%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Oregon&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Oregon
@@ -8886,7 +8886,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/TeamReport?filter=PaPritchard&gender=Men&incRapm=true&maxRank=400&minRank=0&rapmDiagMode=base&showComps=false&showOnOff=false&team=Oregon&teamLuck=true&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               +7.2
@@ -9117,7 +9117,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?autoOffQuery=true&factorMins=true&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Pritchard%2C%20Payton%22&onQuery=%22Pritchard%2C%20Payton%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Oregon&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Oregon
@@ -9144,7 +9144,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/TeamReport?filter=PaPritchard&gender=Men&incRapm=true&maxRank=400&minRank=0&rapmDiagMode=base&showComps=false&showOnOff=false&team=Oregon&teamLuck=true&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               +7.2
@@ -9378,7 +9378,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?autoOffQuery=true&factorMins=true&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Dotson%2C%20Devon%22&onQuery=%22Dotson%2C%20Devon%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Kansas&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Kansas
@@ -9405,7 +9405,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/TeamReport?filter=DeDotson&gender=Men&incRapm=true&maxRank=400&minRank=0&rapmDiagMode=base&showComps=false&showOnOff=false&team=Kansas&teamLuck=true&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               +7.2
@@ -9636,7 +9636,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?autoOffQuery=true&factorMins=true&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Dotson%2C%20Devon%22&onQuery=%22Dotson%2C%20Devon%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Kansas&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Kansas
@@ -9663,7 +9663,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/TeamReport?filter=DeDotson&gender=Men&incRapm=true&maxRank=400&minRank=0&rapmDiagMode=base&showComps=false&showOnOff=false&team=Kansas&teamLuck=true&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               +7.2
@@ -9897,7 +9897,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?autoOffQuery=true&factorMins=true&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Wright%2C%20McKinley%22&onQuery=%22Wright%2C%20McKinley%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Colorado&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Colorado
@@ -9924,7 +9924,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/TeamReport?filter=McWright&gender=Men&incRapm=true&maxRank=400&minRank=0&rapmDiagMode=base&showComps=false&showOnOff=false&team=Colorado&teamLuck=true&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               +7.2
@@ -10155,7 +10155,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?autoOffQuery=true&factorMins=true&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Wright%2C%20McKinley%22&onQuery=%22Wright%2C%20McKinley%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Colorado&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Colorado
@@ -10182,7 +10182,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/TeamReport?filter=McWright&gender=Men&incRapm=true&maxRank=400&minRank=0&rapmDiagMode=base&showComps=false&showOnOff=false&team=Colorado&teamLuck=true&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               +7.2
@@ -10416,7 +10416,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?autoOffQuery=true&factorMins=true&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Garza%2C%20Luka%22&onQuery=%22Garza%2C%20Luka%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Iowa&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Iowa
@@ -10443,7 +10443,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/TeamReport?filter=LuGarza&gender=Men&incRapm=true&maxRank=400&minRank=0&rapmDiagMode=base&showComps=false&showOnOff=false&team=Iowa&teamLuck=true&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               +7.1
@@ -10674,7 +10674,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?autoOffQuery=true&factorMins=true&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Garza%2C%20Luka%22&onQuery=%22Garza%2C%20Luka%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Iowa&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Iowa
@@ -10701,7 +10701,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/TeamReport?filter=LuGarza&gender=Men&incRapm=true&maxRank=400&minRank=0&rapmDiagMode=base&showComps=false&showOnOff=false&team=Iowa&teamLuck=true&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               +7.1
@@ -10935,7 +10935,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?autoOffQuery=true&factorMins=true&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Azubuike%2C%20Udoka%22&onQuery=%22Azubuike%2C%20Udoka%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Kansas&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Kansas
@@ -10962,7 +10962,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/TeamReport?filter=UdAzubuike&gender=Men&incRapm=true&maxRank=400&minRank=0&rapmDiagMode=base&showComps=false&showOnOff=false&team=Kansas&teamLuck=true&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               +7.1
@@ -11193,7 +11193,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?autoOffQuery=true&factorMins=true&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Azubuike%2C%20Udoka%22&onQuery=%22Azubuike%2C%20Udoka%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Kansas&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Kansas
@@ -11220,7 +11220,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/TeamReport?filter=UdAzubuike&gender=Men&incRapm=true&maxRank=400&minRank=0&rapmDiagMode=base&showComps=false&showOnOff=false&team=Kansas&teamLuck=true&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               +7.1
@@ -11454,7 +11454,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?autoOffQuery=true&factorMins=true&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Winston%2C%20Cassius%22&onQuery=%22Winston%2C%20Cassius%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Michigan%20St.&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Michigan St.
@@ -11481,7 +11481,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/TeamReport?filter=CaWinston&gender=Men&incRapm=true&maxRank=400&minRank=0&rapmDiagMode=base&showComps=false&showOnOff=false&team=Michigan%20St.&teamLuck=true&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               +6.8
@@ -11712,7 +11712,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?autoOffQuery=true&factorMins=true&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Winston%2C%20Cassius%22&onQuery=%22Winston%2C%20Cassius%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Michigan%20St.&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Michigan St.
@@ -11739,7 +11739,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/TeamReport?filter=CaWinston&gender=Men&incRapm=true&maxRank=400&minRank=0&rapmDiagMode=base&showComps=false&showOnOff=false&team=Michigan%20St.&teamLuck=true&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               +6.8
@@ -11973,7 +11973,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?autoOffQuery=true&factorMins=true&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Vassell%2C%20Devin%22&onQuery=%22Vassell%2C%20Devin%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Florida%20St.&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Florida St.
@@ -12000,7 +12000,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/TeamReport?filter=DeVassell&gender=Men&incRapm=true&maxRank=400&minRank=0&rapmDiagMode=base&showComps=false&showOnOff=false&team=Florida%20St.&teamLuck=true&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               +6.3
@@ -12231,7 +12231,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?autoOffQuery=true&factorMins=true&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Vassell%2C%20Devin%22&onQuery=%22Vassell%2C%20Devin%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Florida%20St.&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Florida St.
@@ -12258,7 +12258,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/TeamReport?filter=DeVassell&gender=Men&incRapm=true&maxRank=400&minRank=0&rapmDiagMode=base&showComps=false&showOnOff=false&team=Florida%20St.&teamLuck=true&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               +6.3
@@ -12492,7 +12492,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?autoOffQuery=true&factorMins=true&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Carey%2C%20Vernon%22&onQuery=%22Carey%2C%20Vernon%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Duke&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Duke
@@ -12519,7 +12519,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/TeamReport?filter=VeCarey&gender=Men&incRapm=true&maxRank=400&minRank=0&rapmDiagMode=base&showComps=false&showOnOff=false&team=Duke&teamLuck=true&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               +5.9
@@ -12750,7 +12750,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?autoOffQuery=true&factorMins=true&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Carey%2C%20Vernon%22&onQuery=%22Carey%2C%20Vernon%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Duke&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Duke
@@ -12777,7 +12777,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/TeamReport?filter=VeCarey&gender=Men&incRapm=true&maxRank=400&minRank=0&rapmDiagMode=base&showComps=false&showOnOff=false&team=Duke&teamLuck=true&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               +5.9
@@ -14357,7 +14357,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?autoOffQuery=true&factorMins=true&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Garza%2C%20Luka%22&onQuery=%22Garza%2C%20Luka%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Iowa&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Iowa
@@ -14383,7 +14383,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?factorMins=true&filter=LuGarza&gender=Men&maxRank=400&minRank=0&possAsPct=true&showDiag=true&showExpanded=true&showPosDiag=true&team=Iowa&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               +9.1
@@ -14614,7 +14614,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?autoOffQuery=true&factorMins=true&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Garza%2C%20Luka%22&onQuery=%22Garza%2C%20Luka%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Iowa&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Iowa
@@ -14640,7 +14640,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?factorMins=true&filter=LuGarza&gender=Men&maxRank=400&minRank=0&possAsPct=true&showDiag=true&showExpanded=true&showPosDiag=true&team=Iowa&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               +9.1
@@ -14874,7 +14874,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?autoOffQuery=true&factorMins=true&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Pritchard%2C%20Payton%22&onQuery=%22Pritchard%2C%20Payton%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Oregon&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Oregon
@@ -14900,7 +14900,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?factorMins=true&filter=PaPritchard&gender=Men&maxRank=400&minRank=0&possAsPct=true&showDiag=true&showExpanded=true&showPosDiag=true&team=Oregon&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               +8.2
@@ -15131,7 +15131,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?autoOffQuery=true&factorMins=true&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Pritchard%2C%20Payton%22&onQuery=%22Pritchard%2C%20Payton%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Oregon&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Oregon
@@ -15157,7 +15157,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?factorMins=true&filter=PaPritchard&gender=Men&maxRank=400&minRank=0&possAsPct=true&showDiag=true&showExpanded=true&showPosDiag=true&team=Oregon&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               +8.2
@@ -15391,7 +15391,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?autoOffQuery=true&factorMins=true&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Dotson%2C%20Devon%22&onQuery=%22Dotson%2C%20Devon%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Kansas&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Kansas
@@ -15417,7 +15417,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?factorMins=true&filter=DeDotson&gender=Men&maxRank=400&minRank=0&possAsPct=true&showDiag=true&showExpanded=true&showPosDiag=true&team=Kansas&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               +8.4
@@ -15648,7 +15648,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?autoOffQuery=true&factorMins=true&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Dotson%2C%20Devon%22&onQuery=%22Dotson%2C%20Devon%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Kansas&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Kansas
@@ -15674,7 +15674,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?factorMins=true&filter=DeDotson&gender=Men&maxRank=400&minRank=0&possAsPct=true&showDiag=true&showExpanded=true&showPosDiag=true&team=Kansas&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               +8.4
@@ -15908,7 +15908,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?autoOffQuery=true&factorMins=true&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Flynn%2C%20Malachi%22&onQuery=%22Flynn%2C%20Malachi%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=San%20Diego%20St.&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               San Diego St.
@@ -15934,7 +15934,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?factorMins=true&filter=MaFlynn&gender=Men&maxRank=400&minRank=0&possAsPct=true&showDiag=true&showExpanded=true&showPosDiag=true&team=San%20Diego%20St.&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               +8.1
@@ -16165,7 +16165,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?autoOffQuery=true&factorMins=true&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Flynn%2C%20Malachi%22&onQuery=%22Flynn%2C%20Malachi%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=San%20Diego%20St.&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               San Diego St.
@@ -16191,7 +16191,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?factorMins=true&filter=MaFlynn&gender=Men&maxRank=400&minRank=0&possAsPct=true&showDiag=true&showExpanded=true&showPosDiag=true&team=San%20Diego%20St.&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               +8.1
@@ -16425,7 +16425,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?autoOffQuery=true&factorMins=true&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Winston%2C%20Cassius%22&onQuery=%22Winston%2C%20Cassius%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Michigan%20St.&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Michigan St.
@@ -16451,7 +16451,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?factorMins=true&filter=CaWinston&gender=Men&maxRank=400&minRank=0&possAsPct=true&showDiag=true&showExpanded=true&showPosDiag=true&team=Michigan%20St.&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               +6.6
@@ -16682,7 +16682,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?autoOffQuery=true&factorMins=true&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Winston%2C%20Cassius%22&onQuery=%22Winston%2C%20Cassius%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Michigan%20St.&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Michigan St.
@@ -16708,7 +16708,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?factorMins=true&filter=CaWinston&gender=Men&maxRank=400&minRank=0&possAsPct=true&showDiag=true&showExpanded=true&showPosDiag=true&team=Michigan%20St.&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               +6.6
@@ -16942,7 +16942,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?autoOffQuery=true&factorMins=true&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Carey%2C%20Vernon%22&onQuery=%22Carey%2C%20Vernon%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Duke&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Duke
@@ -16968,7 +16968,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?factorMins=true&filter=VeCarey&gender=Men&maxRank=400&minRank=0&possAsPct=true&showDiag=true&showExpanded=true&showPosDiag=true&team=Duke&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               +7.1
@@ -17199,7 +17199,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?autoOffQuery=true&factorMins=true&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Carey%2C%20Vernon%22&onQuery=%22Carey%2C%20Vernon%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Duke&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Duke
@@ -17225,7 +17225,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?factorMins=true&filter=VeCarey&gender=Men&maxRank=400&minRank=0&possAsPct=true&showDiag=true&showExpanded=true&showPosDiag=true&team=Duke&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               +7.1
@@ -17459,7 +17459,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?autoOffQuery=true&factorMins=true&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Vassell%2C%20Devin%22&onQuery=%22Vassell%2C%20Devin%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Florida%20St.&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Florida St.
@@ -17485,7 +17485,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?factorMins=true&filter=DeVassell&gender=Men&maxRank=400&minRank=0&possAsPct=true&showDiag=true&showExpanded=true&showPosDiag=true&team=Florida%20St.&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               +6.2
@@ -17716,7 +17716,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?autoOffQuery=true&factorMins=true&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Vassell%2C%20Devin%22&onQuery=%22Vassell%2C%20Devin%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Florida%20St.&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Florida St.
@@ -17742,7 +17742,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?factorMins=true&filter=DeVassell&gender=Men&maxRank=400&minRank=0&possAsPct=true&showDiag=true&showExpanded=true&showPosDiag=true&team=Florida%20St.&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               +6.2
@@ -17976,7 +17976,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?autoOffQuery=true&factorMins=true&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Tillman%2C%20Xavier%22&onQuery=%22Tillman%2C%20Xavier%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Michigan%20St.&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Michigan St.
@@ -18002,7 +18002,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?factorMins=true&filter=XaTillman&gender=Men&maxRank=400&minRank=0&possAsPct=true&showDiag=true&showExpanded=true&showPosDiag=true&team=Michigan%20St.&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               +7.6
@@ -18233,7 +18233,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?autoOffQuery=true&factorMins=true&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Tillman%2C%20Xavier%22&onQuery=%22Tillman%2C%20Xavier%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Michigan%20St.&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Michigan St.
@@ -18259,7 +18259,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?factorMins=true&filter=XaTillman&gender=Men&maxRank=400&minRank=0&possAsPct=true&showDiag=true&showExpanded=true&showPosDiag=true&team=Michigan%20St.&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               +7.6
@@ -18493,7 +18493,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?autoOffQuery=true&factorMins=true&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Azubuike%2C%20Udoka%22&onQuery=%22Azubuike%2C%20Udoka%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Kansas&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Kansas
@@ -18519,7 +18519,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?factorMins=true&filter=UdAzubuike&gender=Men&maxRank=400&minRank=0&possAsPct=true&showDiag=true&showExpanded=true&showPosDiag=true&team=Kansas&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               +7.5
@@ -18750,7 +18750,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?autoOffQuery=true&factorMins=true&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Azubuike%2C%20Udoka%22&onQuery=%22Azubuike%2C%20Udoka%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Kansas&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Kansas
@@ -18776,7 +18776,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?factorMins=true&filter=UdAzubuike&gender=Men&maxRank=400&minRank=0&possAsPct=true&showDiag=true&showExpanded=true&showPosDiag=true&team=Kansas&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               +7.5
@@ -19010,7 +19010,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?autoOffQuery=true&factorMins=true&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Wright%2C%20McKinley%22&onQuery=%22Wright%2C%20McKinley%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Colorado&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Colorado
@@ -19036,7 +19036,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?factorMins=true&filter=McWright&gender=Men&maxRank=400&minRank=0&possAsPct=true&showDiag=true&showExpanded=true&showPosDiag=true&team=Colorado&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               +6.2
@@ -19267,7 +19267,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?autoOffQuery=true&factorMins=true&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Wright%2C%20McKinley%22&onQuery=%22Wright%2C%20McKinley%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Colorado&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Colorado
@@ -19293,7 +19293,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?factorMins=true&filter=McWright&gender=Men&maxRank=400&minRank=0&possAsPct=true&showDiag=true&showExpanded=true&showPosDiag=true&team=Colorado&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               +6.2
@@ -20873,7 +20873,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Garza%2C%20Luka%22&onQuery=%22Garza%2C%20Luka%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Iowa&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Iowa
@@ -20899,7 +20899,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?factorMins=false&filter=LuGarza&gender=Men&maxRank=400&minRank=0&possAsPct=true&showDiag=true&showExpanded=true&showPosDiag=true&team=Iowa&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               +11.2
@@ -21130,7 +21130,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Garza%2C%20Luka%22&onQuery=%22Garza%2C%20Luka%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Iowa&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Iowa
@@ -21156,7 +21156,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?factorMins=false&filter=LuGarza&gender=Men&maxRank=400&minRank=0&possAsPct=true&showDiag=true&showExpanded=true&showPosDiag=true&team=Iowa&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               +11.2
@@ -21390,7 +21390,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Pritchard%2C%20Payton%22&onQuery=%22Pritchard%2C%20Payton%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Oregon&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Oregon
@@ -21416,7 +21416,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?factorMins=false&filter=PaPritchard&gender=Men&maxRank=400&minRank=0&possAsPct=true&showDiag=true&showExpanded=true&showPosDiag=true&team=Oregon&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               +9.2
@@ -21647,7 +21647,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Pritchard%2C%20Payton%22&onQuery=%22Pritchard%2C%20Payton%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Oregon&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Oregon
@@ -21673,7 +21673,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?factorMins=false&filter=PaPritchard&gender=Men&maxRank=400&minRank=0&possAsPct=true&showDiag=true&showExpanded=true&showPosDiag=true&team=Oregon&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               +9.2
@@ -21907,7 +21907,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Carey%2C%20Vernon%22&onQuery=%22Carey%2C%20Vernon%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Duke&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Duke
@@ -21933,7 +21933,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?factorMins=false&filter=VeCarey&gender=Men&maxRank=400&minRank=0&possAsPct=true&showDiag=true&showExpanded=true&showPosDiag=true&team=Duke&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               +11.4
@@ -22164,7 +22164,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Carey%2C%20Vernon%22&onQuery=%22Carey%2C%20Vernon%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Duke&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Duke
@@ -22190,7 +22190,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?factorMins=false&filter=VeCarey&gender=Men&maxRank=400&minRank=0&possAsPct=true&showDiag=true&showExpanded=true&showPosDiag=true&team=Duke&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               +11.4
@@ -22424,7 +22424,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Dotson%2C%20Devon%22&onQuery=%22Dotson%2C%20Devon%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Kansas&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Kansas
@@ -22450,7 +22450,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?factorMins=false&filter=DeDotson&gender=Men&maxRank=400&minRank=0&possAsPct=true&showDiag=true&showExpanded=true&showPosDiag=true&team=Kansas&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               +9.9
@@ -22681,7 +22681,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Dotson%2C%20Devon%22&onQuery=%22Dotson%2C%20Devon%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Kansas&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Kansas
@@ -22707,7 +22707,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?factorMins=false&filter=DeDotson&gender=Men&maxRank=400&minRank=0&possAsPct=true&showDiag=true&showExpanded=true&showPosDiag=true&team=Kansas&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               +9.9
@@ -22941,7 +22941,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Flynn%2C%20Malachi%22&onQuery=%22Flynn%2C%20Malachi%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=San%20Diego%20St.&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               San Diego St.
@@ -22967,7 +22967,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?factorMins=false&filter=MaFlynn&gender=Men&maxRank=400&minRank=0&possAsPct=true&showDiag=true&showExpanded=true&showPosDiag=true&team=San%20Diego%20St.&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               +9.6
@@ -23198,7 +23198,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Flynn%2C%20Malachi%22&onQuery=%22Flynn%2C%20Malachi%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=San%20Diego%20St.&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               San Diego St.
@@ -23224,7 +23224,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?factorMins=false&filter=MaFlynn&gender=Men&maxRank=400&minRank=0&possAsPct=true&showDiag=true&showExpanded=true&showPosDiag=true&team=San%20Diego%20St.&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               +9.6
@@ -23458,7 +23458,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Winston%2C%20Cassius%22&onQuery=%22Winston%2C%20Cassius%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Michigan%20St.&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Michigan St.
@@ -23484,7 +23484,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?factorMins=false&filter=CaWinston&gender=Men&maxRank=400&minRank=0&possAsPct=true&showDiag=true&showExpanded=true&showPosDiag=true&team=Michigan%20St.&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               +8.4
@@ -23715,7 +23715,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Winston%2C%20Cassius%22&onQuery=%22Winston%2C%20Cassius%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Michigan%20St.&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Michigan St.
@@ -23741,7 +23741,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?factorMins=false&filter=CaWinston&gender=Men&maxRank=400&minRank=0&possAsPct=true&showDiag=true&showExpanded=true&showPosDiag=true&team=Michigan%20St.&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               +8.4
@@ -23975,7 +23975,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Azubuike%2C%20Udoka%22&onQuery=%22Azubuike%2C%20Udoka%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Kansas&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Kansas
@@ -24001,7 +24001,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?factorMins=false&filter=UdAzubuike&gender=Men&maxRank=400&minRank=0&possAsPct=true&showDiag=true&showExpanded=true&showPosDiag=true&team=Kansas&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               +11.0
@@ -24232,7 +24232,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Azubuike%2C%20Udoka%22&onQuery=%22Azubuike%2C%20Udoka%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Kansas&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Kansas
@@ -24258,7 +24258,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?factorMins=false&filter=UdAzubuike&gender=Men&maxRank=400&minRank=0&possAsPct=true&showDiag=true&showExpanded=true&showPosDiag=true&team=Kansas&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               +11.0
@@ -24492,7 +24492,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Vassell%2C%20Devin%22&onQuery=%22Vassell%2C%20Devin%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Florida%20St.&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Florida St.
@@ -24518,7 +24518,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?factorMins=false&filter=DeVassell&gender=Men&maxRank=400&minRank=0&possAsPct=true&showDiag=true&showExpanded=true&showPosDiag=true&team=Florida%20St.&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               +8.4
@@ -24749,7 +24749,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Vassell%2C%20Devin%22&onQuery=%22Vassell%2C%20Devin%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Florida%20St.&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Florida St.
@@ -24775,7 +24775,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?factorMins=false&filter=DeVassell&gender=Men&maxRank=400&minRank=0&possAsPct=true&showDiag=true&showExpanded=true&showPosDiag=true&team=Florida%20St.&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               +8.4
@@ -25009,7 +25009,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Tillman%2C%20Xavier%22&onQuery=%22Tillman%2C%20Xavier%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Michigan%20St.&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Michigan St.
@@ -25035,7 +25035,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?factorMins=false&filter=XaTillman&gender=Men&maxRank=400&minRank=0&possAsPct=true&showDiag=true&showExpanded=true&showPosDiag=true&team=Michigan%20St.&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               +9.5
@@ -25266,7 +25266,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Tillman%2C%20Xavier%22&onQuery=%22Tillman%2C%20Xavier%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Michigan%20St.&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Michigan St.
@@ -25292,7 +25292,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?factorMins=false&filter=XaTillman&gender=Men&maxRank=400&minRank=0&possAsPct=true&showDiag=true&showExpanded=true&showPosDiag=true&team=Michigan%20St.&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               +9.5
@@ -25526,7 +25526,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Wright%2C%20McKinley%22&onQuery=%22Wright%2C%20McKinley%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Colorado&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Colorado
@@ -25552,7 +25552,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?factorMins=false&filter=McWright&gender=Men&maxRank=400&minRank=0&possAsPct=true&showDiag=true&showExpanded=true&showPosDiag=true&team=Colorado&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               +7.2
@@ -25783,7 +25783,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?autoOffQuery=true&factorMins=false&gender=Men&maxRank=400&minRank=0&offQuery=NOT%20%22Wright%2C%20McKinley%22&onQuery=%22Wright%2C%20McKinley%22&possAsPct=true&showExpanded=true&sortBy=desc%3Aoff_team_poss_pct%3Aon&team=Colorado&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Colorado
@@ -25809,7 +25809,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/?factorMins=false&filter=McWright&gender=Men&maxRank=400&minRank=0&possAsPct=true&showDiag=true&showExpanded=true&showPosDiag=true&team=Colorado&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               +7.2

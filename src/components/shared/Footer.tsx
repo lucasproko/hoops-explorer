@@ -58,7 +58,7 @@ const Footer: React.FunctionComponent<Props> = ({server, gender, year, dateOverr
       <Col>
         <span className="float-right">
           <i><small>
-          PbP events from <a href="https://stats.ncaa.org" target="_new">stats.ncaa.org</a>
+          PbP events from <a href="https://stats.ncaa.org" target="_blank">stats.ncaa.org</a>
           </small></i>
         </span>
       </Col>
@@ -66,12 +66,12 @@ const Footer: React.FunctionComponent<Props> = ({server, gender, year, dateOverr
     <Row>
       <Col>
         <i><small>It's a beta, so let me know if you see anything weird:&nbsp;
-        {publicSite ? <span><a href={twitterAddress} target="_new"
+        {publicSite ? <span><a href={twitterAddress} target="_blank"
           onMouseOver={onMouseOver(twitterAddress)}
         >
         twitter
         </a>&nbsp;/&nbsp;</span> : null}
-        <a href={emailAddress} target="_new"
+        <a href={emailAddress} target="_blank"
           onMouseOver={onMouseOver(emailAddress)}
         >
         email
@@ -80,7 +80,7 @@ const Footer: React.FunctionComponent<Props> = ({server, gender, year, dateOverr
       <Col>
         <span className="float-right">
           <i><small>
-          SoS stats with kind permission from <a href="https://kenpom.com" target="_new">kenpom.com</a> and <a href="https://herhoopstats.com" target="_new">herhoopstats.com</a>
+          SoS stats with kind permission from <a href="https://kenpom.com" target="_blank">kenpom.com</a> and <a href="https://herhoopstats.com" target="_blank">herhoopstats.com</a>
           </small></i>
         </span>
       </Col>

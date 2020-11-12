@@ -279,7 +279,7 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       };
       const maybeYrStr = isMultiYr ? ` '${lineup.year.substring(2, 4)}+` : ``;
       const teamEl = <OverlayTrigger placement="auto" overlay={teamTooltip}>
-        <a target="_new" href={UrlRouting.getLineupUrl(teamParams, {})}><b>{lineup.team}{maybeYrStr}</b></a>
+        <a target="_blank" href={UrlRouting.getLineupUrl(teamParams, {})}><b>{lineup.team}{maybeYrStr}</b></a>
       </OverlayTrigger>;
 
       const title = <div><span className="float-left">
@@ -558,7 +558,7 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
             }
           ] as Array<any>).concat(showHelp ? [
             {
-              label: <a href="https://hoop-explorer.blogspot.com/2020/07/understanding-lineup-analyzer-page.html" target="_new">?</a>,
+              label: <a href="https://hoop-explorer.blogspot.com/2020/07/understanding-lineup-analyzer-page.html" target="_blank">?</a>,
               tooltip: "Open a page that explains some of the elements of this table",
               toggled: false,
               onClick: () => {}

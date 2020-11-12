@@ -800,7 +800,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
               Object {
                 "label": <a
                   href="https://hoop-explorer.blogspot.com/2020/07/understanding-lineup-analyzer-page.html"
-                  target="_new"
+                  target="_blank"
                 >
                   ?
                 </a>,
@@ -1080,7 +1080,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/LineupAnalyzer?gender=Men&lineupLuck=true&maxRank=400&minRank=0&team=Kansas&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Kansas
@@ -1658,7 +1658,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/LineupAnalyzer?gender=Men&lineupLuck=true&maxRank=400&minRank=0&team=Kansas&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Kansas
@@ -2239,7 +2239,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/LineupAnalyzer?gender=Men&lineupLuck=true&maxRank=400&minRank=0&team=Louisville&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Louisville
@@ -2807,7 +2807,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/LineupAnalyzer?gender=Men&lineupLuck=true&maxRank=400&minRank=0&team=Louisville&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Louisville
@@ -3378,7 +3378,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/LineupAnalyzer?gender=Men&lineupLuck=true&maxRank=400&minRank=0&team=Dayton&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Dayton
@@ -3946,7 +3946,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/LineupAnalyzer?gender=Men&lineupLuck=true&maxRank=400&minRank=0&team=Dayton&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Dayton
@@ -4513,7 +4513,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/LineupAnalyzer?gender=Men&lineupLuck=true&maxRank=400&minRank=0&team=Baylor&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Baylor
@@ -5087,7 +5087,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/LineupAnalyzer?gender=Men&lineupLuck=true&maxRank=400&minRank=0&team=Baylor&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Baylor
@@ -5668,7 +5668,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/LineupAnalyzer?gender=Men&lineupLuck=true&maxRank=400&minRank=0&team=Michigan%20St.&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Michigan St.
@@ -6236,7 +6236,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/LineupAnalyzer?gender=Men&lineupLuck=true&maxRank=400&minRank=0&team=Michigan%20St.&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Michigan St.
@@ -6807,7 +6807,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/LineupAnalyzer?gender=Men&lineupLuck=true&maxRank=400&minRank=0&team=Tulsa&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Tulsa
@@ -7382,7 +7382,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/LineupAnalyzer?gender=Men&lineupLuck=true&maxRank=400&minRank=0&team=Tulsa&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Tulsa
@@ -7960,7 +7960,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/LineupAnalyzer?gender=Men&lineupLuck=true&maxRank=400&minRank=0&team=Cincinnati&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Cincinnati
@@ -8530,7 +8530,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/LineupAnalyzer?gender=Men&lineupLuck=true&maxRank=400&minRank=0&team=Cincinnati&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Cincinnati
@@ -9103,7 +9103,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/LineupAnalyzer?gender=Men&lineupLuck=true&maxRank=400&minRank=0&team=Louisville&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Louisville
@@ -9668,7 +9668,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/LineupAnalyzer?gender=Men&lineupLuck=true&maxRank=400&minRank=0&team=Louisville&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Louisville
@@ -10236,7 +10236,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/LineupAnalyzer?gender=Men&lineupLuck=true&maxRank=400&minRank=0&team=Kansas%20St.&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Kansas St.
@@ -10814,7 +10814,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/LineupAnalyzer?gender=Men&lineupLuck=true&maxRank=400&minRank=0&team=Kansas%20St.&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Kansas St.
@@ -11395,7 +11395,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/LineupAnalyzer?gender=Men&lineupLuck=true&maxRank=400&minRank=0&team=Kansas&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Kansas
@@ -11973,7 +11973,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/LineupAnalyzer?gender=Men&lineupLuck=true&maxRank=400&minRank=0&team=Kansas&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Kansas
@@ -13370,7 +13370,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
               Object {
                 "label": <a
                   href="https://hoop-explorer.blogspot.com/2020/07/understanding-lineup-analyzer-page.html"
-                  target="_new"
+                  target="_blank"
                 >
                   ?
                 </a>,
@@ -13650,7 +13650,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/LineupAnalyzer?gender=Men&lineupLuck=true&maxRank=400&minRank=0&team=Kansas&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Kansas
@@ -14228,7 +14228,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/LineupAnalyzer?gender=Men&lineupLuck=true&maxRank=400&minRank=0&team=Kansas&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Kansas
@@ -14832,7 +14832,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/LineupAnalyzer?gender=Men&lineupLuck=true&maxRank=400&minRank=0&team=Louisville&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Louisville
@@ -15400,7 +15400,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/LineupAnalyzer?gender=Men&lineupLuck=true&maxRank=400&minRank=0&team=Louisville&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Louisville
@@ -15994,7 +15994,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/LineupAnalyzer?gender=Men&lineupLuck=true&maxRank=400&minRank=0&team=Dayton&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Dayton
@@ -16562,7 +16562,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/LineupAnalyzer?gender=Men&lineupLuck=true&maxRank=400&minRank=0&team=Dayton&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Dayton
@@ -17152,7 +17152,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/LineupAnalyzer?gender=Men&lineupLuck=true&maxRank=400&minRank=0&team=Baylor&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Baylor
@@ -17726,7 +17726,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/LineupAnalyzer?gender=Men&lineupLuck=true&maxRank=400&minRank=0&team=Baylor&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Baylor
@@ -18330,7 +18330,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/LineupAnalyzer?gender=Men&lineupLuck=true&maxRank=400&minRank=0&team=Michigan%20St.&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Michigan St.
@@ -18898,7 +18898,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/LineupAnalyzer?gender=Men&lineupLuck=true&maxRank=400&minRank=0&team=Michigan%20St.&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Michigan St.
@@ -19492,7 +19492,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/LineupAnalyzer?gender=Men&lineupLuck=true&maxRank=400&minRank=0&team=Tulsa&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Tulsa
@@ -20067,7 +20067,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/LineupAnalyzer?gender=Men&lineupLuck=true&maxRank=400&minRank=0&team=Tulsa&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Tulsa
@@ -20668,7 +20668,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/LineupAnalyzer?gender=Men&lineupLuck=true&maxRank=400&minRank=0&team=Cincinnati&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Cincinnati
@@ -21238,7 +21238,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/LineupAnalyzer?gender=Men&lineupLuck=true&maxRank=400&minRank=0&team=Cincinnati&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Cincinnati
@@ -21834,7 +21834,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/LineupAnalyzer?gender=Men&lineupLuck=true&maxRank=400&minRank=0&team=Louisville&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Louisville
@@ -22399,7 +22399,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/LineupAnalyzer?gender=Men&lineupLuck=true&maxRank=400&minRank=0&team=Louisville&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Louisville
@@ -22990,7 +22990,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/LineupAnalyzer?gender=Men&lineupLuck=true&maxRank=400&minRank=0&team=Kansas%20St.&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Kansas St.
@@ -23568,7 +23568,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/LineupAnalyzer?gender=Men&lineupLuck=true&maxRank=400&minRank=0&team=Kansas%20St.&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Kansas St.
@@ -24172,7 +24172,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/LineupAnalyzer?gender=Men&lineupLuck=true&maxRank=400&minRank=0&team=Kansas&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Kansas
@@ -24750,7 +24750,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                         >
                                           <a
                                             href="/LineupAnalyzer?gender=Men&lineupLuck=true&maxRank=400&minRank=0&team=Kansas&year=2019%2F20&"
-                                            target="_new"
+                                            target="_blank"
                                           >
                                             <b>
                                               Kansas

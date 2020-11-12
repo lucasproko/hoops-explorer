@@ -88,7 +88,7 @@ export class OnOffReportDiagUtils {
   static getTitle(player: Record<string, any>, showHelp: boolean, advanced: boolean = false) {
     return <span>
         <b>Replacement 'On-Off' {advanced ? "Advanced " : ""}Diagnostics For [{player.playerId}]</b> {
-          showHelp ? <a href="https://hoop-explorer.blogspot.com/2020/03/diagnostics-mode-for-replacement-onoff.html" target="_new">(?)</a> : null
+          showHelp ? <a href="https://hoop-explorer.blogspot.com/2020/03/diagnostics-mode-for-replacement-onoff.html" target="_blank">(?)</a> : null
         }
       </span>;
   }

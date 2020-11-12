@@ -145,7 +145,7 @@ exports[`HeaderBar HeaderBar - should create snapshot (game) 1`] = `
       <div>
         <a
           href="https://hoop-explorer.blogspot.com/p/blog-page.html"
-          target="_new"
+          target="_blank"
         >
           Blog...
         </a>
@@ -300,7 +300,7 @@ exports[`HeaderBar HeaderBar - should create snapshot (lineup) 1`] = `
       <div>
         <a
           href="https://hoop-explorer.blogspot.com/p/blog-page.html"
-          target="_new"
+          target="_blank"
         >
           Blog...
         </a>
@@ -455,7 +455,7 @@ exports[`HeaderBar HeaderBar - should create snapshot (report) 1`] = `
       <div>
         <a
           href="https://hoop-explorer.blogspot.com/p/blog-page.html"
-          target="_new"
+          target="_blank"
         >
           Blog...
         </a>

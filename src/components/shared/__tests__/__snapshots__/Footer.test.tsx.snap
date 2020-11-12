@@ -29,7 +29,7 @@ exports[`Footer Footer - should create snapshot 1`] = `
             PbP events from 
             <a
               href="https://stats.ncaa.org"
-              target="_new"
+              target="_blank"
             >
               stats.ncaa.org
             </a>
@@ -51,7 +51,7 @@ exports[`Footer Footer - should create snapshot 1`] = `
             <a
               href="aHR0cHM6Ly90d2l0dGVyLmNvbS9JdHNBVGVycF9DQkI="
               onMouseOver={[Function]}
-              target="_new"
+              target="_blank"
             >
               twitter
             </a>
@@ -60,7 +60,7 @@ exports[`Footer Footer - should create snapshot 1`] = `
           <a
             href="bWFpbHRvOmhvb3AuZXhwbG9yZXJAZ21haWwuY29t"
             onMouseOver={[Function]}
-            target="_new"
+            target="_blank"
           >
             email
           </a>
@@ -78,14 +78,14 @@ exports[`Footer Footer - should create snapshot 1`] = `
             SoS stats with kind permission from 
             <a
               href="https://kenpom.com"
-              target="_new"
+              target="_blank"
             >
               kenpom.com
             </a>
              and 
             <a
               href="https://herhoopstats.com"
-              target="_new"
+              target="_blank"
             >
               herhoopstats.com
             </a>

@@ -200,7 +200,7 @@ const PositionalDiagView: React.FunctionComponent<Props> = ({player, teamSeason,
   return <span ref={topRef}>
       <span>
         <b>Positional diagnostics for [{player.key}]</b> {
-          showHelp ? <a href="https://hoop-explorer.blogspot.com/2020/05/classifying-college-basketball.html" target="_new">(?)</a> : null
+          showHelp ? <a href="https://hoop-explorer.blogspot.com/2020/05/classifying-college-basketball.html" target="_blank">(?)</a> : null
         }
       </span>
       <ul>
