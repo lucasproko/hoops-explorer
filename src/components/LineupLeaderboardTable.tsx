@@ -132,6 +132,7 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
   const [ confs, setConfs ] = useState(startingState.conf || "");
   const [ year, setYear ] = useState(startingState.year || ParamDefaults.defaultYear);
   const [ gender, setGender ] = useState(startingState.gender || ParamDefaults.defaultGender);
+  const isMultiYr = year.indexOf("Extr") >= 0; //TODO: also handle multi-year
 
   // Misc display
 
@@ -276,8 +277,9 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
         queryFilters: isConfOnly ? "Conf" : undefined,
         lineupLuck: true
       };
+      const maybeYrStr = isMultiYr ? ` '${lineup.year.substring(2, 4)}+` : ``;
       const teamEl = <OverlayTrigger placement="auto" overlay={teamTooltip}>
-        <a target="_new" href={UrlRouting.getLineupUrl(teamParams, {})}><b>{lineup.team}</b></a>
+        <a target="_new" href={UrlRouting.getLineupUrl(teamParams, {})}><b>{lineup.team}{maybeYrStr}</b></a>
       </OverlayTrigger>;
 
       const title = <div><span className="float-left">
@@ -424,7 +426,7 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       <Col xs={6} sm={6} md={3} lg={2}>
         <Select
           value={ stringToOption(year) }
-          options={[ "2018/9", "2019/20" ].map(
+          options={[ "2018/9", "2019/20", "Extra" ].map(
             (r) => stringToOption(r)
           )}
           isSearchable={false}

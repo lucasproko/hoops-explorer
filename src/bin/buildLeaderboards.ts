@@ -110,28 +110,36 @@ if (!testMode) console.log(`Args: gender=[${inGender}] year=[${inYear}]`);
 const teamFilter = undefined as Set<string> | undefined;
 //  (inYear == "2019/20") ? new Set([ "Maryland", "Iowa", "Michigan", "Dayton", "Rutgers" ]) : undefined;
 
-const genderYearLookup = `${inGender}_${inYear}`;
-const avgEfficiency = efficiencyAverages[genderYearLookup] || efficiencyAverages.fallback;
-const statsAverages = averageStatsInfo[genderYearLookup] || {};
-
 const conferenceSet = new Set() as Set<string>;
 
 /** Request data from ES, duplicate table processing over each team to build leaderboard (export for testing only) */
 export async function main() {
 
-  const teams = _.chain(AvailableTeams.byName).values().flatten().filter(team => {
-    return team.gender == inGender && team.year == inYear && ((teamFilter == undefined) || teamFilter.has(team.team))
-  }).map(team => team.team).value();
+  const teamListChain = (inYear == "Extra") ?
+    _.chain(AvailableTeams.extraTeamsBase) :
+    _.chain(AvailableTeams.byName).values().flatten();
 
-  for (const team of teams) {
-    if (!testMode) console.log(`Processing ${inGender} ${team} ${inYear}`);
+  const teams = teamListChain.filter(team => {
+    return team.gender == inGender &&
+      ((inYear == "Extra") || (team.year == inYear)) &&
+        ((teamFilter == undefined) || teamFilter.has(team.team))
+  }).value();
+
+  for (const teamObj of teams) {
+    const team = teamObj.team;
+    const teamYear = teamObj.year;
+    const genderYearLookup = `${inGender}_${teamYear}`;
+    const avgEfficiency = efficiencyAverages[genderYearLookup] || efficiencyAverages.fallback;
+    const statsAverages = averageStatsInfo[genderYearLookup] || {};
+
+    if (!testMode) console.log(`Processing ${inGender} ${team} ${teamYear}`);
 
     const fullRequestModel = {
       gender: inGender,
       minRank: ParamDefaults.defaultMinRank,
       maxRank: ParamDefaults.defaultMaxRank,
       team: team,
-      year: inYear
+      year: teamYear
     };
     const requestModelConfOnly = {
       ...fullRequestModel,
@@ -226,7 +234,7 @@ export async function main() {
         return {
           conf: conference,
           team: team,
-          year: inYear,
+          year: teamYear,
           // Rating production
           off_adj_prod: {
             value: kv[1].off_adj_rtg.value * kv[1].off_team_poss_pct.value
@@ -323,7 +331,7 @@ export async function main() {
         // Add conference:
         lineup.conf = conference;
         lineup.team = team;
-        lineup.year = inYear;
+        lineup.year = teamYear;
         // Add minimal player info:
         const codesAndIds = LineupTableUtils.buildCodesAndIds(lineup);
         lineup.player_info = _.fromPairs(codesAndIds.map((cid: { code: string, id: string }) => {
@@ -391,7 +399,7 @@ export function completePlayerLeaderboard(key: string, leaderboard: any[], topTa
       player[`off_adj_${subKey}_rank`] = index + 1;
     });
   });
-  const sortedLeaderboard = _.sortBy(topByPoss, player => player.adj_rapm_margin_rank); 
+  const sortedLeaderboard = _.sortBy(topByPoss, player => player.adj_rapm_margin_rank);
   return sortedLeaderboard;
 }
 
@@ -416,7 +424,7 @@ export function completeLineupLeaderboard(key: string, leaderboard: any[], topLi
   return rankedLineups;
 }
 
-if (!testMode) main().then(_ => {
+if (!testMode) main().then(dummy => {
   const topLineupSize = 300; //T300
 
   console.log("Processing Complete!");
@@ -426,16 +434,19 @@ if (!testMode) main().then(_ => {
       [ "conf", savedConfOnlyLineups, savedConfOnlyPlayers ],
       [ "t100", savedT100Lineups, savedT100Players ] ];
 
+  const lastUpdated =  //(will be new now for curr year + "Extra")
+    dataLastUpdated[`${inGender}_${inYear}`] || new Date().getTime();
+
   outputCases.forEach(kv => {
     const sortedLineups = completeLineupLeaderboard(kv[0], kv[1], topLineupSize);
     const sortedLineupsStr = JSON.stringify({
-      lastUpdated: dataLastUpdated[genderYearLookup] || new Date().getTime(),
+      lastUpdated: lastUpdated,
       confs: Array.from(conferenceSet.values()),
       lineups: sortedLineups
     }, reduceNumberSize);
     const players = completePlayerLeaderboard(kv[0], kv[2], 700); //T700
     const playersStr = JSON.stringify({
-      lastUpdated: dataLastUpdated[genderYearLookup] || new Date().getTime(),
+      lastUpdated: lastUpdated,
       confs: Array.from(conferenceSet.values()),
       players: players
     }, reduceNumberSize);

@@ -682,12 +682,13 @@ export class AvailableTeams {
   }
 
   /** These are extra teams I've added for specific years */
-  static readonly extraTeams = [
+  static readonly extraTeamsBase = [
     { team: "Maryland", year: "2014/5", gender: "Men", index_template: "misc_conf" },
     { team: "Maryland", year: "2015/6", gender: "Men", index_template: "misc_conf" },
     { team: "Maryland", year: "2016/7", gender: "Men", index_template: "misc_conf" },
     { team: "Maryland", year: "2017/8", gender: "Men", index_template: "misc_conf" },
-  ].map((t: AvailableTeamMeta) => {
+  ];
+  static readonly extraTeams = AvailableTeams.extraTeamsBase.map((t: AvailableTeamMeta) => {
     return { ...t, team: t.team + ` ${t.year}`};
   });
 

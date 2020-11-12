@@ -168,6 +168,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
   const [ confs, setConfs ] = useState(startingState.conf || "");
   const [ year, setYear ] = useState(startingState.year || ParamDefaults.defaultYear);
   const [ gender, setGender ] = useState(startingState.gender || ParamDefaults.defaultGender);
+  const isMultiYr = year.indexOf("Extr") >= 0; //TODO: also handle multi-year
 
   // Misc display
 
@@ -286,11 +287,6 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
 
   // 3] Utils
 
-  // 3.0] Luck calculations:
-
-  const genderYearLookup = `${startingState.gender}_${startingState.year}`;
-  const avgEfficiency = efficiencyAverages[genderYearLookup] || efficiencyAverages.fallback;
-
   // 3.1] Build individual info
 
   const filterFragments =
@@ -399,7 +395,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
         <Tooltip id={`team_${playerIndex}`}>Open new tab with the on/off analysis for this player/team</Tooltip>
       );
       const teamParams = {
-        team: player.team, gender: gender, year: year,
+        team: player.team, gender: gender, year: player.year || year,
         minRank: "0", maxRank: isT100 ? "100" : "400",
         queryFilters: isConfOnly ? "Conf" : undefined,
         factorMins: factorMins, possAsPct: possAsPct,
@@ -411,7 +407,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       </OverlayTrigger>;
 
       const playerAnalysisParams = {
-        team: player.team, gender: gender, year: year,
+        team: player.team, gender: gender, year: player.year || year,
         minRank: "0", maxRank: isT100 ? "100" : "400",
         queryFilters: isConfOnly ? "Conf" : undefined,
         factorMins: factorMins, possAsPct: possAsPct,
@@ -420,10 +416,10 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
         filter: player.code || player.key
       };
       const rapmAnalysisParams = {
-        team: player.team, gender: gender, year: year,
+        team: player.team, gender: gender, year: player.year || year,
         minRank: "0", maxRank: isT100 ? "100" : "400",
         filter: player.code || player.key
-        //TODO: heh need to add queryFilters to lineup and team report qurey box
+        //TODO: heh need to add queryFilters to lineup and team report query box
         ,
         showOnOff: false, showComps: false, incRapm: true,
         teamLuck: true, rapmDiagMode: "base"
@@ -454,15 +450,17 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
         </b></a>
         </OverlayTrigger>;
 
+      const maybeYrStr = isMultiYr ? ` '${player.year.substring(2, 4)}+` : ``;
+
       player.off_title = <div>
-      <span className="float-left">
-        {rankings}
-      </span>&nbsp;<b>{player.key}</b>
-        <br/>
         <span className="float-left">
-          <span>{teamEl}&nbsp;(<span>{confNickname}</span>)&nbsp;[{adjMarginStr}]</span>
-        </span>
-      </div>;
+          {rankings}
+        </span>&nbsp;<b>{player.key}{maybeYrStr}</b>
+          <br/>
+          <span className="float-left">
+            <span>{teamEl}&nbsp;(<span>{confNickname}</span>)&nbsp;[{adjMarginStr}]</span>
+          </span>
+        </div>;
 
       player.off_drb = player.def_orb; //(just for display, all processing should use def_orb)
       TableDisplayUtils.injectPlayTypeInfo(player, true, true);
@@ -623,7 +621,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       <Col xs={6} sm={6} md={3} lg={2}>
         <Select
           value={ stringToOption(year) }
-          options={[ "2018/9", "2019/20" ].map(
+          options={[ "2018/9", "2019/20", "Extra" ].map(
             (r) => stringToOption(r)
           )}
           isSearchable={false}
