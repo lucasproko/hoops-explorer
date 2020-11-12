@@ -31,16 +31,18 @@ const AsyncFormControl: React.FunctionComponent<Props> = ({startingVal, validate
       onChange(toSet);
     }, timeout));
   };
+  const internalValidateAndChange = (ev: any) => {
+    const newVal = ev.target.value;
+    if (validate && validate(newVal)) {
+      internalOnChange(ev);
+      setInternalVal(newVal);
+    }
+  };
 
   return validate ?
     <Form.Control
-      onChange={(ev: any) => {
-        const newVal = ev.target.value;
-        if (validate(newVal)) {
-          internalOnChange(ev);
-          setInternalVal(newVal);
-        }
-      }}
+      onKeyUp={internalValidateAndChange}
+      onChange={internalValidateAndChange}
       value={internalVal}
       placeholder={placeholder}
       {...props}
