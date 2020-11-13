@@ -58,7 +58,7 @@ import ReactDOMServer from 'react-dom/server'
 export type PlayerLeaderboardStatsModel = {
   players?: Array<any>,
   confs?: Array<string>,
-  error_code?: string
+  lastUpdated?: number
 }
 type Props = {
   startingState: PlayerLeaderboardParams,
@@ -149,6 +149,9 @@ const expandedPosClasses = {
   "4/5": [ "WF", "S-PF", "PF/C", "C" ],
 } as Record<string, string[]>;
 
+/** When showing across multiple data sets, don't show intra-year rankings unless it's a full data set */
+const fullDataSetSeasons = new Set(["2018/9", "2019/20"]);
+
 // Functional component
 
 const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, dataEvent, onChangeState}) => {
@@ -168,7 +171,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
   const [ confs, setConfs ] = useState(startingState.conf || "");
   const [ year, setYear ] = useState(startingState.year || ParamDefaults.defaultYear);
   const [ gender, setGender ] = useState(startingState.gender || ParamDefaults.defaultGender);
-  const isMultiYr = year.indexOf("Extr") >= 0; //TODO: also handle multi-year
+  const isMultiYr = (year == "Extra") || (year == "All");
 
   // Misc display
 
@@ -328,7 +331,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
 
     // Filter, sort, and limit players part 2/2
     const players = _.chain(confDataEventPlayers).filter(player => {
-      const strToTest = `${(player.key || "")} ${player.team || ""} ${player.code || ""}`;
+      const strToTest = `${(player.key || "")} ${player.team || ""}_${player.year || ""} ${player.code || ""}`;
 
       return(
         (filterFragmentsPve.length == 0) ||
@@ -338,7 +341,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
           (_.find(filterFragmentsNve, (fragment) => strToTest.indexOf(fragment) >= 0) ? false : true))
         ;
     }).sortBy(
-      (sortBy == ParamDefaults.defaultPlayerLboardSortBy(
+      (year != "All") && (sortBy == ParamDefaults.defaultPlayerLboardSortBy(
         ParamDefaults.defaultPlayerLboardUseRapm, ParamDefaults.defaultPlayerLboardFactorMins
       )) ? [] : //(can save on a sort if using the generated sort-order)
         [ LineupTableUtils.sorter(sortBy) , (p) => { p.baseline?.off_team_poss?.value || 0 } ]
@@ -357,6 +360,8 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       usefulSortCombo
       ||
       ((confDataEventPlayers.length < dataEventPlayers.length) || ((filterStr || "") != ""))
+      ||
+      (year == "All")
     );
 
     const tableData = players.flatMap((player, playerIndex) => {
@@ -385,9 +390,14 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
           const marginRank = (sortBy == `desc:diff_adj_${rtg}`) ? <b><big>#{player[`adj_${rtg}_margin_rank`]}</big></b> : `#${player[`adj_${rtg}_margin_rank`]}`;
           const offRank = (sortBy == `desc:off_adj_${rtg}`) ? <b><big>#{player[`off_adj_${rtg}_rank`]}</big></b> : `#${player[`off_adj_${rtg}_rank`]}`;
           const defRank = (sortBy == `asc:def_adj_${rtg}`) ? <b><big>#{player[`def_adj_${rtg}_rank`]}</big></b> : `#${player[`def_adj_${rtg}_rank`]}`;
-          return <OverlayTrigger placement="auto" overlay={rankingsTooltip}>
-            <span>{generalRank}<small>{marginRank} ({offRank} / {defRank})</small></span>
-          </OverlayTrigger>;
+          return (year == "All") && !fullDataSetSeasons.has(player.year) ?
+            <OverlayTrigger placement="auto" overlay={rankingsTooltip}>
+              <span>{generalRank}<small>(no ranking)</small></span>
+            </OverlayTrigger>
+            :
+            <OverlayTrigger placement="auto" overlay={rankingsTooltip}>
+              <span>{generalRank}<small>{marginRank} ({offRank} / {defRank})</small></span>
+            </OverlayTrigger>;
       };
       const rankings = getRankings();
 
@@ -621,7 +631,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       <Col xs={6} sm={6} md={3} lg={2}>
         <Select
           value={ stringToOption(year) }
-          options={[ "2018/9", "2019/20", "Extra" ].map(
+          options={[ "2018/9", "2019/20", "All", "Extra" ].map(
             (r) => stringToOption(r)
           )}
           isSearchable={false}
@@ -661,7 +671,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
               startingVal={filterStr}
               onChange={(t: string) => friendlyChange(() => setFilterStr(t), t != filterStr)}
               timeout={500}
-              placeholder = "eg TeamA;-TeamB;Player1Code;Player2FirstName;-Player3Surname"
+              placeholder = "eg Year;TeamA_Year;TeamB;Player1Code;Player2FirstName;-Player3Surname"
             />
           </InputGroup>
         </Form.Group>

@@ -67,4 +67,26 @@ describe("PlayerLeaderboardTable", () => {
     );
     expect(toJson(wrapper)).toMatchSnapshot();
   });
+
+  const sampleDataMore = JSON.parse(
+    fs.readFileSync("./public/leaderboards/lineups/players_all_Men_2018.json", { encoding: "UTF-8"})
+  );
+  const sampleDataExtra = JSON.parse(
+    fs.readFileSync("./public/leaderboards/lineups/players_all_Men_Extr.json", { encoding: "UTF-8"})
+  );
+  sampleDataMore.players = _.take(sampleData.players, 5).concat(_.take(sampleDataMore.players, 5)).concat(_.take(sampleDataExtra.players, 5)); 
+
+  test("PlayerLeaderboardTable - should create snapshot (multi year)", () => {
+    const dummyChangeStateCallback = (stats: PlayerLeaderboardParams) => {};
+    const wrapper = shallow(
+      <PlayerLeaderboardTable
+        startingState={{year: "All", useRapm: false}}
+        dataEvent={sampleDataMore}
+        onChangeState={dummyChangeStateCallback}
+      />
+    );
+    expect(toJson(wrapper)).toMatchSnapshot();
+  });
+
+
 });
