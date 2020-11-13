@@ -134,7 +134,7 @@ export class LineupTableUtils {
 
       const namesToTest = filterOnPosition ?
         PositionUtils.orderLineup(codesAndIds, lineupPosFromPlayerKey, lineupTeamSeason) : codesAndIds;
-      const teamFilter = lineup.team ? [ { id: lineup.team, code: lineup.team } ] : []; //(leaderboard version)
+      const teamFilter = lineup.team ? [ { id: `${lineup.team}_${lineup.year}`, code: lineup.team } ] : []; //(leaderboard version)
 
       const playerFilter = PositionUtils.testPositionalAwareFilter(
         namesToTest.concat(teamFilter), filterFragmentsPve, filterFragmentsNve

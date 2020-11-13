@@ -56,7 +56,7 @@ const LineupLeaderboardPage: NextPage<{}> = () => {
     t100: { lineups: [], confs: [], lastUpdated: 0 },
     conf: { lineups: [], confs: [], lastUpdated: 0 }
   });
-  const [ dataSubEvent, setDataSubEvent ] = useState({ lineups: [], confs: [], lastUpdated: 0 });
+  const [ dataSubEvent, setDataSubEvent ] = useState({ lineups: [], confs: [], lastUpdated: 0 } as LineupLeaderboardStatsModel);
   const [ currYear, setCurrYear ] = useState("");
 
   // Game filter
@@ -103,18 +103,36 @@ const LineupLeaderboardPage: NextPage<{}> = () => {
     const gender = paramObj.gender || ParamDefaults.defaultGender;
     const year = (paramObj.year || ParamDefaults.defaultYear).substring(0, 4);
 
-    if ((!dataEvent[dataSubEventKey]?.lineups?.length) || (currYear != year)) {
-      setCurrYear(year);
-      setDataSubEvent({ lineups: [], confs: [], lastUpdated: 0 }); //(set the spinner off)
-      fetch(`/leaderboards/lineups/lineups_${dataSubEventKey}_${gender}_${year}.json`)
-        .then((response: fetch.IsomorphicResponse) => {
-          return response.json().then((json: any) => {
-            setDataEvent({ ...dataEvent, [dataSubEventKey]: json });
-            setDataSubEvent(json);
+    if (year == "All") { //TODO: tidy this up
+
+      const years = [ "2018/9", "2019/20", "Extra" ];
+      const fetchAll = Promise.all(years.map(tmpYear => tmpYear.substring(0, 4)).map((subYear) => {
+        return fetch(`/leaderboards/lineups/lineups_${dataSubEventKey}_${gender}_${subYear}.json`)
+          .then((response: fetch.IsomorphicResponse) => {
+            return response.json();
           });
+      }));
+      fetchAll.then((jsons: any[]) => {
+        setDataSubEvent({
+          lineups: _.chain(jsons).map(d => d.lineups || []).flatten().value(),
+          confs: _.chain(jsons).map(d => d.players || []).flatten().value(),
+          lastUpdated: 0 //TODO use max?
         });
-    } else if (dataSubEvent != dataEvent[dataSubEventKey]) {
-      setDataSubEvent(dataEvent[dataSubEventKey]);
+      })
+    } else {
+      if ((!dataEvent[dataSubEventKey]?.lineups?.length) || (currYear != year)) {
+        setCurrYear(year);
+        setDataSubEvent({ lineups: [], confs: [], lastUpdated: 0 }); //(set the spinner off)
+        fetch(`/leaderboards/lineups/lineups_${dataSubEventKey}_${gender}_${year}.json`)
+          .then((response: fetch.IsomorphicResponse) => {
+            return response.json().then((json: any) => {
+              setDataEvent({ ...dataEvent, [dataSubEventKey]: json });
+              setDataSubEvent(json);
+            });
+          });
+      } else if (dataSubEvent != dataEvent[dataSubEventKey]) {
+        setDataSubEvent(dataEvent[dataSubEventKey]);
+      }
     }
   }, [ lineupLeaderboardParams ]);
 

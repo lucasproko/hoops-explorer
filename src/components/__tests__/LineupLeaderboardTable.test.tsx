@@ -44,4 +44,25 @@ describe("LineupLeaderboardTable", () => {
     );
     expect(toJson(wrapper)).toMatchSnapshot();
   });
+
+
+  const sampleDataMore = JSON.parse(
+    fs.readFileSync("./public/leaderboards/lineups/lineups_all_Men_2018.json", { encoding: "UTF-8"})
+  );
+  const sampleDataExtra = JSON.parse(
+    fs.readFileSync("./public/leaderboards/lineups/lineups_all_Men_Extr.json", { encoding: "UTF-8"})
+  );
+  sampleDataMore.lineups = _.take(sampleData.lineups, 5).concat(_.take(sampleDataMore.lineups, 5)).concat(_.take(sampleDataExtra.lineups, 5));
+
+  test("LineupLeaderboardTable - should create snapshot (luck diags disabled, multi year)", () => {
+    const dummyChangeStateCallback = (stats: LineupLeaderboardParams) => {};
+    const wrapper = shallow(
+      <LineupLeaderboardTable
+        startingState={{year: "All"}}
+        dataEvent={sampleDataMore}
+        onChangeState={dummyChangeStateCallback}
+      />
+    );
+    expect(toJson(wrapper)).toMatchSnapshot();
+  });
 });
