@@ -4939,7 +4939,10 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                 "tooltip": "Adjust statistics for luck",
               },
               Object {
-                "label": "Edit...",
+                "label": <span>
+                  Edit...
+                  
+                </span>,
                 "onClick": [Function],
                 "toggled": false,
                 "tooltip": "Launch player stats manual editor",
@@ -8282,7 +8285,10 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
                 "tooltip": "Adjust statistics for luck",
               },
               Object {
-                "label": "Edit...",
+                "label": <span>
+                  Edit...
+                  
+                </span>,
                 "onClick": [Function],
                 "toggled": false,
                 "tooltip": "Launch player stats manual editor",
@@ -10894,7 +10900,10 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                 "tooltip": "Adjust statistics for luck",
               },
               Object {
-                "label": "Edit...",
+                "label": <span>
+                  Edit...
+                  
+                </span>,
                 "onClick": [Function],
                 "toggled": false,
                 "tooltip": "Launch player stats manual editor",
@@ -16120,7 +16129,10 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                 "tooltip": "Adjust statistics for luck",
               },
               Object {
-                "label": "Edit...",
+                "label": <span>
+                  Edit...
+                  
+                </span>,
                 "onClick": [Function],
                 "toggled": false,
                 "tooltip": "Launch player stats manual editor",
@@ -23335,7 +23347,10 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                 "tooltip": "Remove luck adjustments",
               },
               Object {
-                "label": "Edit...",
+                "label": <span>
+                  Edit...
+                  
+                </span>,
                 "onClick": [Function],
                 "toggled": false,
                 "tooltip": "Launch player stats manual editor",
@@ -31277,7 +31292,18 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                 "tooltip": "Remove luck adjustments",
               },
               Object {
-                "label": "Edit...",
+                "label": <span>
+                  Edit...
+                   
+                  <small>
+                    <ForwardRef
+                      pill={false}
+                      variant="dark"
+                    >
+                      1
+                    </ForwardRef>
+                  </small>
+                </span>,
                 "onClick": [Function],
                 "toggled": false,
                 "tooltip": "Launch player stats manual editor",
@@ -38943,7 +38969,18 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                 "tooltip": "Adjust statistics for luck",
               },
               Object {
-                "label": "Edit...",
+                "label": <span>
+                  Edit...
+                   
+                  <small>
+                    <ForwardRef
+                      pill={false}
+                      variant="dark"
+                    >
+                      1
+                    </ForwardRef>
+                  </small>
+                </span>,
                 "onClick": [Function],
                 "toggled": false,
                 "tooltip": "Launch player stats manual editor",

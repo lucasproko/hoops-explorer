@@ -11,7 +11,7 @@ import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
 
 export type ToggleButtonItem = {
-  label: string,
+  label: string | React.ReactNode,
   tooltip: string,
   toggled: boolean,
   onClick: () => void

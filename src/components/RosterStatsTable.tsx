@@ -16,6 +16,7 @@ import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Button from 'react-bootstrap/Button';
+import Badge from 'react-bootstrap/Badge';
 import Tooltip from 'react-bootstrap/Tooltip';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 
@@ -773,7 +774,10 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
               onClick: () => setAdjustForLuck(!adjustForLuck)
             },
             {
-              label: "Edit...",
+              label: <span>Edit...{!_.isEmpty(manualOverrides) ? " " : ""}{!_.isEmpty(manualOverrides) ?
+                <small><Badge variant="dark">{(manualOverrides || []).length}</Badge></small>  : null
+              }</span>
+              ,
               tooltip: "Launch player stats manual editor",
               toggled: false,
               onClick: () => setShowManualOverrides(true)
