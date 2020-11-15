@@ -88,6 +88,9 @@ const RapmPlayerDiagView: React.FunctionComponent<Props> = (({rapmInfo, player, 
         <b>RAPM diagnostics for [{player.playerId}]:</b> adj_off=[<b>{rapmOff.toFixed(2)}</b>], adj_def=[<b>{rapmDef.toFixed(2)}</b>] =
         <ul>
           <li>Raw RAPM contribution: off=[<b>{offUnbiasRapm.toFixed(2)}</b>], def=[<b>{defUnbiasRapm.toFixed(2)}</b>], total=[<b>{totalRawRapm.toFixed(2)}</b>]</li>
+          <ul>
+            <li>TODO = off=[<b>{(0.5*offPrior).toFixed(2)}</b>] + [<b>{(offUnbiasRapm - 0.5*offPrior).toFixed(2)}</b>]</li>
+          </ul>
           <li>&nbsp;+ Priors' contribution: off=[<b>{offPriorContrib.toFixed(2)}</b>], def=[<b>{defPriorContrib.toFixed(2)}</b>], total=[<b>{totalPrior.toFixed(2)}</b>]</li>
             {detailedInfo}
         </ul>
