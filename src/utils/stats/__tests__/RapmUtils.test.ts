@@ -168,7 +168,7 @@ describe("RapmUtils", () => {
 
     [ true, false ].forEach((luckAdjusted) => {
       const [ offResults, defResults ] = RapmUtils.pickRidgeRegression(
-        semiRealRapmResults.testOffWeights, semiRealRapmResults.testDefWeights, semiRealRapmResults.testContext, false,
+        semiRealRapmResults.testOffWeights, semiRealRapmResults.testDefWeights, semiRealRapmResults.testContext, undefined, false,
         luckAdjusted
       );
 
@@ -201,7 +201,7 @@ describe("RapmUtils", () => {
   test("RapmUtils - injectRapmIntoPlayers", () => {
     [ true, false ].forEach((luckAdjusted) => {
       const [ offResults, defResults ] = RapmUtils.pickRidgeRegression(
-        semiRealRapmResults.testOffWeights, semiRealRapmResults.testDefWeights, semiRealRapmResults.testContext, false,
+        semiRealRapmResults.testOffWeights, semiRealRapmResults.testDefWeights, semiRealRapmResults.testContext, undefined, false,
         luckAdjusted
       );
       const onOffReport = LineupUtils.lineupToTeamReport(lineupReport);

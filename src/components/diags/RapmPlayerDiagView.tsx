@@ -61,6 +61,8 @@ const RapmPlayerDiagView: React.FunctionComponent<Props> = (({rapmInfo, player, 
     const offPriorContrib = rapmOff - offUnbiasRapm;
     const defPriorContrib = rapmDef - defUnbiasRapm;
 
+    const adaptiveWeight = rapmInfo?.preProcDiags?.adaptiveCorrelWeights?.[col] || ctx.priorInfo.strongWeight;
+
     const detailedInfo = <ul>
       <li>We calculate the total team prior (off=[<b>{offPriorTotalDiff.toFixed(2)}</b>] def=[<b>{defPriorTotalDiff.toFixed(2)}</b>]) from
       the delta between total adjusted efficiency and RAPM, due to the regression factor: eg compare <em>observed</em> (off=[<b>{teamOffAdj.toFixed(2)}</b>] def=[<b>{teamDefAdj.toFixed(2)}</b>])
@@ -89,7 +91,7 @@ const RapmPlayerDiagView: React.FunctionComponent<Props> = (({rapmInfo, player, 
         <ul>
           <li>Raw RAPM contribution: off=[<b>{offUnbiasRapm.toFixed(2)}</b>], def=[<b>{defUnbiasRapm.toFixed(2)}</b>], total=[<b>{totalRawRapm.toFixed(2)}</b>]</li>
           <ul>
-            <li>TODO = off=[<b>{(0.5*offPrior).toFixed(2)}</b>] + [<b>{(offUnbiasRapm - 0.5*offPrior).toFixed(2)}</b>]</li>
+            <li>Off: TODO = WeightedPrior=[<b>{(adaptiveWeight*offPrior).toFixed(2)}</b>] + RawRapm=[<b>{(offUnbiasRapm - adaptiveWeight*offPrior).toFixed(2)}</b>] (AdaptiveWeight=[<b>{(adaptiveWeight).toFixed(2)}</b>], RawPrior=[<b>{(offPrior).toFixed(2)}</b>])</li>
           </ul>
           <li>&nbsp;+ Priors' contribution: off=[<b>{offPriorContrib.toFixed(2)}</b>], def=[<b>{defPriorContrib.toFixed(2)}</b>], total=[<b>{totalPrior.toFixed(2)}</b>]</li>
             {detailedInfo}

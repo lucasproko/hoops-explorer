@@ -53,7 +53,9 @@ export type RapmPlayerContext = {
 export type RapmPreProcDiagnostics = {
   lineupCombos: Array<number>;
   playerCombos: Record<string, Array<number>>,
-  correlMatrix: any
+  correlMatrix: any,
+  possCorrelMatrix: any,
+  adaptiveCorrelWeights: number[]
 };
 
 export type RapmProcessingInputs = {
@@ -278,6 +280,7 @@ export class RapmUtils {
     field: string,
     offOffset: number, defOffset: number,
     ctx: RapmPlayerContext,
+    adaptiveCorrelWeights: number[] | undefined,
     useOldValIfPossible: boolean = false
   ) {
     const getVal = (o: any) => {
@@ -302,7 +305,8 @@ export class RapmUtils {
         inPlayers.forEach((player: any) => {
           const playerIndex = ctx.playerToCol[player.id];
           if (playerIndex >= 0) {
-            priorOffset += ctx.priorInfo.strongWeight*ctx.priorInfo.playersStrong[playerIndex]![`${prefix}_${field}`] || 0;
+            const strongWeight = adaptiveCorrelWeights?.[playerIndex] || ctx.priorInfo.strongWeight;
+            priorOffset += strongWeight*ctx.priorInfo.playersStrong[playerIndex]![`${prefix}_${field}`] || 0;
           } //(else this player is filtered out so ignore - exception case I think)
         });
         return (val - priorOffset)*possCountWeight;
@@ -391,7 +395,7 @@ export class RapmUtils {
           statsAverages[`def_${partialField}`]?.value || getVal(ctx.teamInfo[`def_${partialField}`])
         ];
         const [ offVal, defVal ] = RapmUtils.calcLineupOutputs(
-          partialField, offOffset, defOffset, ctx, useOldVals
+          partialField, offOffset, defOffset, ctx, undefined, useOldVals //TODO: adaptive weight here
         );
         const vals = {
           off: offVal, def: defVal
@@ -469,6 +473,7 @@ export class RapmUtils {
   static pickRidgeRegression(
     offWeights: any, defWeights: any,
     ctx: RapmPlayerContext,
+    adaptiveCorrelWeights: number[],
     diagMode: boolean,
     useOldValIfPossible: boolean = false
   ) {
@@ -483,6 +488,7 @@ export class RapmUtils {
 
     if (offDefDebugMode.off || offDefDebugMode.def) {
       console.log(`RAPM Priors = [${JSON.stringify(ctx.priorInfo, tidyNumbers)}]`);
+      if (adaptiveCorrelWeights) console.log(`Adaptive weights = [${JSON.stringify(adaptiveCorrelWeights, tidyNumbers)}]`);
     }
 
     const weights = {
@@ -546,7 +552,7 @@ export class RapmUtils {
     if (offDefDebugMode.off) console.log(`(Off) Player Poss = [${pctByPlayer.off.map((p: number) => p.toFixed(2))}]`);
 
     const [ offAdjPoss, defAdjPoss ] = RapmUtils.calcLineupOutputs(
-      "adj_ppp", ctx.avgEfficiency, ctx.avgEfficiency, ctx, useOldValIfPossible
+      "adj_ppp", ctx.avgEfficiency, ctx.avgEfficiency, ctx, adaptiveCorrelWeights, useOldValIfPossible
     );
     const adjPoss = {
       off: offAdjPoss,
@@ -570,7 +576,10 @@ export class RapmUtils {
 
           // Apply strong prior if present:
           const resultsPrePrior = ctx.priorInfo.playersStrong.map(
-            (stat, index) => ctx.priorInfo.strongWeight*(stat[`${offOrDef}_adj_ppp`] || 0) + resultsPrePrePrior[index]!
+            (stat, index) => {
+              const strongWeight = adaptiveCorrelWeights?.[index] || ctx.priorInfo.strongWeight;
+              return strongWeight*(stat[`${offOrDef}_adj_ppp`] || 0) + resultsPrePrePrior[index]!;
+            }
           );
 
           const combinedAdjEffPrePrior = _.sum(_.zip(pctByPlayer[offOrDef], resultsPrePrior).map((zip: Array<number|undefined>) => {
@@ -835,6 +844,19 @@ export class RapmUtils {
     // player[0]: [  VDP_RAW[s(0), 0], ..., VDP_RAW[s(N), 0] ]
 
     const condIndicesSortedIndex = condIndicesWithIndex.map((zip) => zip[1]);
+
+    // Now build the correlation matrix and use to build some
+    const offPossCorrel = multiply(transpose(weightMatrix), weightMatrix);
+
+    const correlMatrix = RapmUtils.calcPlayerCorrelations(weightMatrix, ctx);
+    const tmpCorrelMatrix = correlMatrix.valueOf();
+    const adaptiveCorrelRow = offPossCorrel.valueOf().map((row: number[], i: number) => {
+      const selfPct = row[i]!;
+      const weight = selfPct > 0 ? 0.25/selfPct : 0;
+      const weightedAbsCorrel = weight*
+        _.chain(row).map((val: number, j: number) => (i != j) ? Math.abs(tmpCorrelMatrix[i]![j]! as number)*val : 0).sum().value();
+      return weightedAbsCorrel;
+    });
     return {
       lineupCombos: condIndicesWithIndex.map((zip) => zip[0]),
       playerCombos: _.chain(ctx.colToPlayer).map((player, playerIndex) => {
@@ -842,7 +864,9 @@ export class RapmUtils {
           return vdpRaw[lineupComboIndex][playerIndex];
         })]
       }).fromPairs().value(),
-      correlMatrix: RapmUtils.calcPlayerCorrelations(weightMatrix, ctx)
+      correlMatrix: correlMatrix,
+      possCorrelMatrix: offPossCorrel,
+      adaptiveCorrelWeights: adaptiveCorrelRow
     };
   }
 

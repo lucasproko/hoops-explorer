@@ -281,15 +281,16 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({startingState, da
             avgEfficiency
           );
           const [ offRapmWeights, defRapmWeights ] = RapmUtils.calcPlayerWeights(rapmContext);
+          const preProcDiags = RapmUtils.calcCollinearityDiag(offRapmWeights, rapmContext);
           const [ offRapmInputs, defRapmInputs ] = RapmUtils.pickRidgeRegression(
-            offRapmWeights, defRapmWeights, rapmContext, (rapmDiagMode != "")
+            offRapmWeights, defRapmWeights, rapmContext, preProcDiags.adaptiveCorrelWeights, (rapmDiagMode != "")
           );
           RapmUtils.injectRapmIntoPlayers(
             tempTeamReport.players || [], offRapmInputs, defRapmInputs, statsAverages, rapmContext
           );
           if (adjustForLuck) { // (Calculate RAPM without luck, for display purposes)
             const [ offNoLuckRapmInputs, defNoLuckRapmInputs ] = RapmUtils.pickRidgeRegression(
-              offRapmWeights, defRapmWeights, rapmContext, (rapmDiagMode != ""),
+              offRapmWeights, defRapmWeights, rapmContext, preProcDiags.adaptiveCorrelWeights, (rapmDiagMode != ""),
               true //<- uses old_value (ie pre-luck-adjusted)
             );
             RapmUtils.injectRapmIntoPlayers(
@@ -299,9 +300,7 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({startingState, da
           }
           setRapmInfo({
             ctx: rapmContext,
-            preProcDiags: (rapmDiagMode != "") ?
-              RapmUtils.calcCollinearityDiag(offRapmWeights, rapmContext) : undefined
-            ,
+            preProcDiags: preProcDiags,
             offWeights: offRapmWeights,
             defWeights: defRapmWeights,
             offInputs: offRapmInputs,
