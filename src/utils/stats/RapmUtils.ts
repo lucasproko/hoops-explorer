@@ -15,6 +15,7 @@ import { add, apply, diag, identity, inv, matrix, mean, multiply, resize, row, s
 
 /** Contains the prior info for individuals (strong priors dominate RAPM, weak priors are dominated)*/
 export type RapmPriorInfo = {
+  strongWeight: number,
   includeStrong: Record<string, boolean>; //(only need to set if unbiasWeight>0, else unused - TODO planning to remove unbiasWeight)
   playersStrong: Array<Record<string, number>>;
   playersWeak: Array<Record<string, number>>;
@@ -99,13 +100,21 @@ export class RapmUtils {
   ): RapmPriorInfo {
     return {
       includeStrong: {}, //(see RapmPriorInfo type definition, not needed unless unbiasWeight > 0)
-      playersStrong: colToPlayer.map(player => { return {}; }), //(not doing this at all)
+      strongWeight: 0.5, //(how much of a lineup is attributed to RAPM, and how much to the prior)
       playersWeak: colToPlayer.map(player => {
         const stats = playersBaseline[player] || {};
         if (stats) {
           return {
             off_adj_ppp: stats.off_adj_rtg?.value || 0,
             def_adj_ppp: stats.def_adj_rtg?.value || 0,
+          } as Record<string, number>;
+        } else return {} as Record<string, number>;
+      }),
+      playersStrong: colToPlayer.map(player => {
+        const stats = playersBaseline[player] || {};
+        if (stats) {
+          return {
+            off_adj_ppp: stats.off_adj_rtg?.value || 0,
           } as Record<string, number>;
         } else return {} as Record<string, number>;
       }),
@@ -293,10 +302,9 @@ export class RapmUtils {
         inPlayers.forEach((player: any) => {
           const playerIndex = ctx.playerToCol[player.id];
           if (playerIndex >= 0) {
-            priorOffset += ctx.priorInfo.playersStrong[playerIndex]![`${prefix}_${field}`] || 0;
+            priorOffset += ctx.priorInfo.strongWeight*ctx.priorInfo.playersStrong[playerIndex]![`${prefix}_${field}`] || 0;
           } //(else this player is filtered out so ignore - exception case I think)
         });
-
         return (val - priorOffset)*possCountWeight;
       });
     };
@@ -393,10 +401,10 @@ export class RapmUtils {
           const resultsPrePrior: number[] = RapmUtils.calculateRapm(
             rapmInput[offOrDef].solnMatrix, vals[offOrDef]
           );
-          const results = partialField == "adj_ppp" ?
+          const results = (partialField == "adj_ppp") ?
             rapmInput[offOrDef].rapmAdjPpp :
             ctx.priorInfo.playersStrong.map(
-              (stat, index) => (stat[`${offOrDef}_${partialField}`] || 0) + resultsPrePrior[index]!
+              (stat, index) => ctx.priorInfo.strongWeight*(stat[`${offOrDef}_${partialField}`] || 0) + resultsPrePrior[index]!
             );
 
           return [ field, results ];
@@ -433,7 +441,7 @@ export class RapmUtils {
     priorInfo: RapmPriorInfo
   ) {
     const priorSum =
-      _.chain(priorInfo.playersWeak).map((p, ii) => p[field]!*playerPossPcts[ii]!).sum().value();
+      _.chain(priorInfo.playersWeak).map((p, ii) => (p[field] || 0)*playerPossPcts[ii]!).sum().value();
 
     return (error: number, baseResults: Array<number>) => {
       const priorSumInv = priorSum != 0 ? 1/priorSum: 0;
@@ -558,7 +566,13 @@ export class RapmUtils {
           if (debugMode) console.log(`********* [${offOrDef}] RAPM WITH LAMBDA ` + ridgeLambda.toFixed(3) + " / " + lambda);
 
           const solver = RapmUtils.slowRegression(weights[offOrDef], ridgeLambda, ctx);
-          const resultsPrePrior: number[] = RapmUtils.calculateRapm(solver, adjPoss[offOrDef]);
+          const resultsPrePrePrior: number[] = RapmUtils.calculateRapm(solver, adjPoss[offOrDef]);
+
+          // Apply strong prior if present:
+          const resultsPrePrior = ctx.priorInfo.playersStrong.map(
+            (stat, index) => ctx.priorInfo.strongWeight*(stat[`${offOrDef}_adj_ppp`] || 0) + resultsPrePrePrior[index]!
+          );
+
           const combinedAdjEffPrePrior = _.sum(_.zip(pctByPlayer[offOrDef], resultsPrePrior).map((zip: Array<number|undefined>) => {
             return (zip[0] || 0)*(zip[1] || 0);
           }));
@@ -574,6 +588,7 @@ export class RapmUtils {
           const adjEffErr = Math.abs(adjNonAbsEffErr);
 
           if (debugMode) console.log(ctx.colToPlayer);
+          if (debugMode) console.log("rapm[PREPRE]: " + resultsPrePrePrior.map((p: number) => p.toFixed(3)));
           if (debugMode) console.log("rapm[PRE]: " + resultsPrePrior.map((p: number) => p.toFixed(3)));
           if (debugMode) console.log("rapm[POST]: " + results.map((p: number) => p.toFixed(3)));
           if (debugMode) console.log(

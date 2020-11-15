@@ -30,14 +30,30 @@ Object {
   "priorInfo": Object {
     "includeStrong": Object {},
     "playersStrong": Array [
-      Object {},
-      Object {},
-      Object {},
-      Object {},
-      Object {},
-      Object {},
-      Object {},
-      Object {},
+      Object {
+        "off_adj_ppp": 4.5,
+      },
+      Object {
+        "off_adj_ppp": 5,
+      },
+      Object {
+        "off_adj_ppp": 0,
+      },
+      Object {
+        "off_adj_ppp": 0,
+      },
+      Object {
+        "off_adj_ppp": 0,
+      },
+      Object {
+        "off_adj_ppp": 0,
+      },
+      Object {
+        "off_adj_ppp": 0,
+      },
+      Object {
+        "off_adj_ppp": 0,
+      },
     ],
     "playersWeak": Array [
       Object {
@@ -73,6 +89,7 @@ Object {
         "off_adj_ppp": 0,
       },
     ],
+    "strongWeight": 0.5,
   },
   "removalPct": 0,
   "removedPlayers": Object {},
@@ -106,12 +123,24 @@ Object {
   "priorInfo": Object {
     "includeStrong": Object {},
     "playersStrong": Array [
-      Object {},
-      Object {},
-      Object {},
-      Object {},
-      Object {},
-      Object {},
+      Object {
+        "off_adj_ppp": 4.5,
+      },
+      Object {
+        "off_adj_ppp": 5,
+      },
+      Object {
+        "off_adj_ppp": 0,
+      },
+      Object {
+        "off_adj_ppp": 0,
+      },
+      Object {
+        "off_adj_ppp": 0,
+      },
+      Object {
+        "off_adj_ppp": 0,
+      },
     ],
     "playersWeak": Array [
       Object {
@@ -139,6 +168,7 @@ Object {
         "off_adj_ppp": 0,
       },
     ],
+    "strongWeight": 0.5,
   },
   "removalPct": 0.2,
   "removedPlayers": Object {
