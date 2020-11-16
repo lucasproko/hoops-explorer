@@ -1,4 +1,71 @@
 
+//////////////////////////////////////////////////////////////////////////////////////////
+
+// RAPM module description
+
+// The core idea of RAPM is that each player has a single "offensive|defensive effiency above D1 average" number
+// which they contribute to whichever lineup they play in (independent to team-mates)
+// (You can also apply RAPM to any of the individual mettrics - 3P%, TO, FTR etc)
+
+// (Full RAPM involves lineup vs lineup across all games. To make it tractable I just do lineup vs team
+//  and ignore the -unquantified- inaccuracy of certain lineups facing strong/weaker opposing lineups)
+
+// 1] In an ideal world you could just solve a big linear equation of all the lineups BUT
+//    it turns out that the matrix is full of collinearities which makes it very sensitive to
+//    the (large amounts of) noise
+
+// 2] Ridge regression is a technique to come up with sane solutions to such linear equation sets
+//    It adds a diagonal of a given size to the inverse component, making it much more stable.
+//    The bigger the size ("lambda") the more stable; but the technique has the following negative effects:
+//    2.1] The solution tends towards zero as the lambda gets larger
+//         Viewed in the context of (eg) "the of(de)fensive efficiency of each player", this means
+//         The % of the team's overall efficiency "explained" by adding the minutes-weighted player RAPMs
+//         decreases. Eg for a typical lambda (see below)
+//    2.2] The higher the % of lineups 2 players share, the more RAPM just shares the efficiency between them
+//         (regardless of their peripherals)
+//         For example, calculate the RAPM for query "A and B": A and B will have the same "raw RAPM"
+//         This is particularly problematic for college teams (cf NBA) since the 6-8 top players log almost all the minutes
+//         and the starters play 80% of minutes each (and coaches often seem to try to clump minutes)
+
+// 3] Interlude: There's lots of Clever Math to help you pick the optimal lambda, given an understanding of the distribution
+//    of the variable being fitted. Instead I just try a bunch of lambdas for off and def adjusted efficiency
+//    and pick the smallest number where the average delta goes below a threshold. Then I use the same (off, def) lambda pairs
+//    For all the off and def variables
+
+// 4] OK back to the limitations described in 2]. I use a few different techniques to offset them:
+//    4.1] Originally I added a separate constraint (row to matrix/vector) that was:
+//         "the minutes-adjusted sum of the players' <metrics> sums to the team's season average", weighted by *2
+//         This was nice and easy but essentially filled in the otherwise-lost efficiency by sharing it out
+//         between the players as a not-quite-linear proportion of minutes played
+//         So now I now longer do this, and it's only there until I have time to pull out all the code
+//
+//    4.2] Then I imported the individuals stats and calculated their "Adj+ Rtg" (SoS+usage weighted efficiency above average)
+//         And use it in two ways:
+//         4.2.1] (so called "Weak Prior") For a given lambda, calculate the RAPM, calculate the minutes-weighted sum,
+//                and compare with the actual efficiency. I take a % of each player's efficiency to get as close
+//                as possible to the actual efficiency (max 50% - otherwise if the team efficiency is close to 0 you get ugliness)
+//                This fixes 2.1` nicely
+//
+//         4.2.2] (so called "Strong Prior") Take a given % of the player metrics (eg rating), and:
+//                 - subtract it each lineup player's number from the input vector (ie each lineup's adj efficiency)
+//                 - add it back again to the calculated RAPM
+//
+//         4.2.3] I experimented with different "Strong Prior" weights - 100% seemed to match "Adj Rtg+" too much
+//                50% worked nice, but seemed arbitrary. 0% tended to share too much of strong player's impact
+//                among statistically inferior team-mates who happened to play lots of mins together (Myles Powell and Cale)
+//                One way of getting ~50% that seems less arbitrary is to calculate a weighted sum of their (Pearson) correlation
+//                with other players - eg Powell has 43%, Cowan/Stix have 75%, some bench players have way less
+//                This is called "adaptiveCorrelWeights" in the code below
+//
+//        4.2.4] A "final" alternative(?) to 4.2.3 I'm thinking about is to take each player's delta from their "Adj+ Rtg"
+//               (not sure yet how it would work with other metrics) compared to each team-mate
+//               and decompose how much of that is "shared RAPM" vs "difference due to on/off analysis"
+//               and then replace the shared component in proportion of the relative "Adj Rtg+"s
+//               Haven't figured out how/if that works yet!
+//
+
+//////////////////////////////////////////////////////////////////////////////////////////
+
 // Lodash:
 import _ from "lodash";
 
