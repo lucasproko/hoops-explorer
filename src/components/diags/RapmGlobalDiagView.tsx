@@ -206,6 +206,14 @@ const RapmGlobalDiagView: React.FunctionComponent<Props> = (({rapmInfo, players,
           <GenericTable responsive={false} tableCopyId="correlDiags" tableFields={correlTableFields} tableData={correlTableData}/>
         </Col>
       </Container>
+      <span><em>
+        <ul>
+        <li>The "Adaptive correlation weight" is simply the minutes-weighted average of each player's correlation with his teammates.
+        It is used to determine a prior in the offensive RAPM calculations (see under player diagnostics above), ie replacing a sane % of "pure RAPM" with
+        a production value determined from the player's box score metrics.
+        </li>
+        </ul>
+      </em></span>
 
       <h5>Filtered-out player diagnostics</h5>
       <ul>

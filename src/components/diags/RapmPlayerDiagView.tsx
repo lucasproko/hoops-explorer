@@ -63,24 +63,36 @@ const RapmPlayerDiagView: React.FunctionComponent<Props> = (({rapmInfo, player, 
 
     const adaptiveWeight = rapmInfo?.preProcDiags?.adaptiveCorrelWeights?.[col] || ctx.priorInfo.strongWeight;
 
-    const detailedInfo = <ul>
-      <li>We calculate the total team prior (off=[<b>{offPriorTotalDiff.toFixed(2)}</b>] def=[<b>{defPriorTotalDiff.toFixed(2)}</b>]) from
-      the delta between total adjusted efficiency and RAPM, due to the regression factor: eg compare <em>observed</em> (off=[<b>{teamOffAdj.toFixed(2)}</b>] def=[<b>{teamDefAdj.toFixed(2)}</b>])
+    const detailedInfoPost = <ul>
+      <li>We calculate a team adjustment (off=[<b>{offPriorTotalDiff.toFixed(2)}</b>] def=[<b>{defPriorTotalDiff.toFixed(2)}</b>]) to reduce/remove the
+      the delta between total adjusted efficiency and RAPM (due to the regression factor): eg compare <em>observed</em> (off=[<b>{teamOffAdj.toFixed(2)}</b>] def=[<b>{teamDefAdj.toFixed(2)}</b>])
       vs <em>derived solely from RAPM</em> (off=[<b>{sigmaRapmOff.toFixed(2)}</b>] def=[<b>{sigmaRapmDef.toFixed(2)}</b>]).
       </li>
-      <li>Then we calculate a player's contribution to the team prior - currently this is a multiple of
-      "Adj Rtg+" ("adjusted production above D1 average"; off=[<b>{offPrior.toFixed(2)}</b>] def=[<b>{defPrior.toFixed(2)}</b>]),
+      <li>Then we calculate a player's contribution to this team total - currently this is a fraction of
+      "Adj Rtg+": off=[<b>{offPrior.toFixed(2)}</b>] def=[<b>{defPrior.toFixed(2)}</b>]), ...
       <li>
-      chosen so that a minutes-weighted average of the ratings sums to the team prior: off=[<b>{offPriorContrib.toFixed(2)}</b>], def=[<b>{defPriorContrib.toFixed(2)}</b>]
+      ... chosen so that a minutes-weighted average of the ratings sums to the team value: off=[<b>{offPriorContrib.toFixed(2)}</b>], def=[<b>{defPriorContrib.toFixed(2)}</b>]
         <ul>
         <li>
         <em> (eg incorporating the % on floor [<b>{offPossPctStr}%</b>] (of [<b>{totalOffPoss}</b>] poss,
            this is an off=[<b>{(offPriorContrib*offPoss).toFixed(2)}</b>] def=[<b>{(defPriorContrib*defPoss).toFixed(2)}</b>]
-          "slice" of the team prior of off=[<b>{offPriorTotalDiff.toFixed(2)}</b>] def=[<b>{defPriorTotalDiff.toFixed(2)}</b>])</em>
+          "slice" of the team total of off=[<b>{offPriorTotalDiff.toFixed(2)}</b>] def=[<b>{defPriorTotalDiff.toFixed(2)}</b>])</em>
         </li>
         </ul>
       </li>
       </li>
+    </ul>;
+
+    const detailedInfoPre = <ul>
+      <li>To combat the tendency of RAPM to over-share the contribution of the strongest players amongst their typical team-mates,
+      we take the weighted average player correlation (see "Player correlation table" in the Global Diagnostics below) [<b>{(adaptiveWeight).toFixed(2)}</b>], ...
+      </li>
+      <li>... and use that % of the player's "Adj Rating+" ([<b>{(adaptiveWeight).toFixed(2)}</b>]*[<b>{(offPrior).toFixed(2)}</b>]) = [<b>{(adaptiveWeight*offPrior).toFixed(2)}</b>] as a prior in the RAPM calculation.
+      </li>
+      <ul>
+        <li><i>(Currently we only do this for offense because ORtg is a much more reliable individual stat than DRtg)</i></li>
+      </ul>
+      <li>ie Off RAPM [<b>{offUnbiasRapm.toFixed(2)}</b>] = Raw RAPM [<b>{(offUnbiasRapm - adaptiveWeight*offPrior).toFixed(2)}</b>] + Prior [<b>{(adaptiveWeight*offPrior).toFixed(2)}</b>]</li>
     </ul>;
 
     const totalPrior = offPriorContrib - defPriorContrib;
@@ -89,12 +101,10 @@ const RapmPlayerDiagView: React.FunctionComponent<Props> = (({rapmInfo, player, 
     return <span>
         <b>RAPM diagnostics for [{player.playerId}]:</b> adj_off=[<b>{rapmOff.toFixed(2)}</b>], adj_def=[<b>{rapmDef.toFixed(2)}</b>] =
         <ul>
-          <li>Raw RAPM contribution: off=[<b>{offUnbiasRapm.toFixed(2)}</b>], def=[<b>{defUnbiasRapm.toFixed(2)}</b>], total=[<b>{totalRawRapm.toFixed(2)}</b>]</li>
-          <ul>
-            <li>Off: TODO = WeightedPrior=[<b>{(adaptiveWeight*offPrior).toFixed(2)}</b>] + RawRapm=[<b>{(offUnbiasRapm - adaptiveWeight*offPrior).toFixed(2)}</b>] (AdaptiveWeight=[<b>{(adaptiveWeight).toFixed(2)}</b>], RawPrior=[<b>{(offPrior).toFixed(2)}</b>])</li>
-          </ul>
-          <li>&nbsp;+ Priors' contribution: off=[<b>{offPriorContrib.toFixed(2)}</b>], def=[<b>{defPriorContrib.toFixed(2)}</b>], total=[<b>{totalPrior.toFixed(2)}</b>]</li>
-            {detailedInfo}
+          <li>RAPM contribution: off=[<b>{offUnbiasRapm.toFixed(2)}</b>], def=[<b>{defUnbiasRapm.toFixed(2)}</b>], total=[<b>{totalRawRapm.toFixed(2)}</b>]</li>
+            {detailedInfoPre}
+          <li>&nbsp;+ POST RAPM adjustment: off=[<b>{offPriorContrib.toFixed(2)}</b>], def=[<b>{defPriorContrib.toFixed(2)}</b>], total=[<b>{totalPrior.toFixed(2)}</b>]</li>
+            {detailedInfoPost}
         </ul>
         (<b>More player diagnostics to come...</b>)<br/>(<a href="#" onClick={(event) => { event.preventDefault(); gotoGlobalDiags() }}>Scroll to global RAPM diagnostics</a>)
       </span>;
