@@ -183,7 +183,6 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({startingState, da
   const [ rapmInfo, setRapmInfo ] = useState(undefined as RapmInfo | undefined);
 
   useEffect(() => { //(this ensures that the filter component is up to date with the union of these fields)
-
     // We just set this flag to make the processing async so that we can give some indication that
     // we're processing (vs just being unresponsive)
     setInBrowserRepOnOffPxing(inBrowserRepOnOffPxing + 1);
@@ -196,7 +195,6 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({startingState, da
     inLineupStats: LineupStatsModel, inTeamStats: TeamStatsModel, inRosterStats: RosterStatsModel
   ) => {
     try {
-
       // Luck
 
       // The luck baseline can either be the user-selecteed baseline or the entire season
@@ -278,7 +276,7 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({startingState, da
           const rapmContext = RapmUtils.buildPlayerContext(
             tempTeamReport.players || [], lineupStats.lineups || [],
             rapmPriorsBaseline,
-            avgEfficiency
+            avgEfficiency, undefined, parseFloat(startingState.rapmPriorMode || ParamDefaults.defaultTeamReportRapmPriorMode)
           );
           const [ offRapmWeights, defRapmWeights ] = RapmUtils.calcPlayerWeights(rapmContext);
           const preProcDiags = RapmUtils.calcCollinearityDiag(offRapmWeights, rapmContext);
@@ -286,7 +284,7 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({startingState, da
             offRapmWeights, defRapmWeights, rapmContext, preProcDiags.adaptiveCorrelWeights, (rapmDiagMode != "")
           );
           RapmUtils.injectRapmIntoPlayers(
-            tempTeamReport.players || [], offRapmInputs, defRapmInputs, statsAverages, rapmContext
+            tempTeamReport.players || [], offRapmInputs, defRapmInputs, statsAverages, rapmContext, preProcDiags.adaptiveCorrelWeights
           );
           if (adjustForLuck) { // (Calculate RAPM without luck, for display purposes)
             const [ offNoLuckRapmInputs, defNoLuckRapmInputs ] = RapmUtils.pickRidgeRegression(
@@ -294,7 +292,7 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({startingState, da
               true //<- uses old_value (ie pre-luck-adjusted)
             );
             RapmUtils.injectRapmIntoPlayers(
-              tempTeamReport.players || [], offNoLuckRapmInputs, defNoLuckRapmInputs, statsAverages, rapmContext,
+              tempTeamReport.players || [], offNoLuckRapmInputs, defNoLuckRapmInputs, statsAverages, rapmContext, preProcDiags.adaptiveCorrelWeights,
               true //<- only applies RAPM to old_values
             );
           }
@@ -320,7 +318,9 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({startingState, da
   React.useEffect(() => {
     if (inBrowserRepOnOffPxing > 0) {
       setTimeout(() => { //(ensures that the "processing" element is returned _before_ the processing starts)
-        onDataChangeProcessing(lineupStats, teamStats, rosterStats);
+        if (inBrowserRepOnOffPxing == 1) { //(only perform expensive calcs once we're out of requests)
+          onDataChangeProcessing(lineupStats, teamStats, rosterStats);
+        }
         setInBrowserRepOnOffPxing(inBrowserRepOnOffPxing - 1);
       }, 250);
     }

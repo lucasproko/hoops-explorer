@@ -1572,10 +1572,191 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
               </div>
             </td>
           </tr>
+          <tr>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": undefined,
+                  "fontWeight": "bold",
+                  "textAlign": "right",
+                  "verticalAlign": "middle",
+                  "width": "32.7%",
+                }
+              }
+            >
+              <div>
+                Adaptive correlation weight
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": undefined,
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "verticalAlign": "middle",
+                  "width": "2.0%",
+                }
+              }
+            >
+              <div>
+                
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#ffad17",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "verticalAlign": "middle",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                95.5
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#ffa602",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "verticalAlign": "middle",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                99.5
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#ffa500",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "verticalAlign": "middle",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                109
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#ffa500",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "verticalAlign": "middle",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                119
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#ffa500",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "verticalAlign": "middle",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                120
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#ffa500",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "verticalAlign": "middle",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                146
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#ffa500",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "verticalAlign": "middle",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                193
+              </div>
+            </td>
+            <td
+              className=""
+              rowSpan={1}
+              style={
+                Object {
+                  "backgroundColor": "#ffa500",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "verticalAlign": "middle",
+                  "width": "8.2%",
+                }
+              }
+            >
+              <div>
+                176
+              </div>
+            </td>
+          </tr>
         </tbody>
       </table>
     </div>
   </div>
+  <span>
+    <em>
+      <ul>
+        <li>
+          The "Adaptive correlation weight" is simply the minutes-weighted average of each player's correlation with his teammates. It is used to determine a prior in the offensive RAPM calculations (see under player diagnostics above), ie replacing a sane % of "pure RAPM" with a production value determined from the player's box score metrics.
+        </li>
+      </ul>
+    </em>
+  </span>
   <h5>
     Filtered-out player diagnostics
   </h5>
@@ -9378,7 +9559,7 @@ Object {
         "off_adj_ppp": 0,
       },
     ],
-    "strongWeight": 0.5,
+    "strongWeight": -1,
   },
   "removalPct": 0,
   "removedPlayers": Object {},
@@ -9457,7 +9638,7 @@ Object {
         "off_adj_ppp": 0,
       },
     ],
-    "strongWeight": 0.5,
+    "strongWeight": -1,
   },
   "removalPct": 0.2,
   "removedPlayers": Object {

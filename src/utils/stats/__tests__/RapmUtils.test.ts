@@ -98,7 +98,7 @@ describe("RapmUtils", () => {
     [ 0.0, 0.20 ].forEach((threshold) => {
       const results = RapmUtils.buildPlayerContext(
         onOffReport.players || [], lineupReportWithExtra.lineups || [], playersInfoByKey, 100.0,
-        threshold, 0.0
+        threshold,
       );
       expect(_.omit(results, ["filteredLineups", "teamInfo"])).toMatchSnapshot();
       expect(results.filteredLineups.length).toEqual(threshold > 0.05 ? 3 : 5);
@@ -108,11 +108,12 @@ describe("RapmUtils", () => {
 
   test("RapmUtils - calcPlayerWeights", () => {
 
-    [ 0.0, 2.0 ].forEach((unbiasWeight) => {
+    [ 0.0, 2.0 ].forEach((unbiasWeight) => { //(we don't really support unbiasWeight any more but keept his test for now)
       const onOffReport = LineupUtils.lineupToTeamReport(lineupReport);
-      const context = RapmUtils.buildPlayerContext(
-        onOffReport.players || [], lineupReport.lineups || [], playersInfoByKey, 100.0, 0.0, unbiasWeight
+      var context = RapmUtils.buildPlayerContext(
+        onOffReport.players || [], lineupReport.lineups || [], playersInfoByKey, 100.0, 0.0
       );
+      context.unbiasWeight = unbiasWeight;
       const results = RapmUtils.calcPlayerWeights(context);
 
       const tidyResults = (resMatrix: any) => {
@@ -135,13 +136,14 @@ describe("RapmUtils", () => {
   });
 
   test("RapmUtils - calcLineupOutputs", () => {
-    [ 0.0, 2.0 ].forEach((unbiasWeight) => {
+    [ -1, 0.5 ].forEach((strongWeight) => {
       const onOffReport = LineupUtils.lineupToTeamReport(lineupReport);
       const context = RapmUtils.buildPlayerContext(
-        onOffReport.players || [], lineupReport.lineups || [], playersInfoByKey, 100.0, 0.0, unbiasWeight
+        onOffReport.players || [], lineupReport.lineups || [], playersInfoByKey, 100.0, 0.0, strongWeight
       );
+      const adapativeWeights = (onOffReport.players || []).map(p => 0.5);
       const results = RapmUtils.calcLineupOutputs(
-        "adj_ppp", 100.0, 100.0, context
+        "adj_ppp", 100.0, 100.0, context, strongWeight < 0 ? adapativeWeights : undefined
       );
       const tidyResults = (resMatrix: Array<Array<number>>) => {
         return resMatrix.map((arr) => {
@@ -149,28 +151,44 @@ describe("RapmUtils", () => {
         });
       };
       expect(tidyResults(results)).toEqual([
-        [ "13.07", "5.84", "7.70" ].concat(unbiasWeight > 0 ? [ "41.47" ] : []),
-        [ "-8.48", "-10.69", "-8.83" ].concat(unbiasWeight > 0 ? [ "-31.64" ] : [])
-         //(extra value if adding unbiasing obs)
+        strongWeight ? [ "13.07", "5.84", "7.70" ] : [],
+        strongWeight ? [ "-8.48", "-10.69", "-8.83" ] : []
       ]);
       const oldValResults = RapmUtils.calcLineupOutputs(
-        "adj_ppp", 100.0, 100.0, context, true
+        "adj_ppp", 100.0, 100.0, context, strongWeight < 0 ? adapativeWeights : undefined, true
       );
       expect(tidyResults(oldValResults)).toEqual([
-        [ "13.07", "5.84", "7.70" ].concat(unbiasWeight > 0 ? [ "41.47" ] : []),
-        [ "-8.48", "-10.69", "-8.83" ].concat(unbiasWeight > 0 ? [ "-31.64" ] : [])
-         //(extra value if adding unbiasing obs)
+        strongWeight ? [ "13.07", "5.84", "7.70" ] : [],
+        strongWeight ? [ "-8.48", "-10.69", "-8.83" ] : []
       ]);
     });
   });
 
   test("RapmUtils - pickRidgeRegression", () => {
 
+    const adapativeWeights1 = (semiRealRapmResults.testContext.colToPlayer || []).map(p => 0.5);
+    const adapativeWeights2 = (semiRealRapmResults.testContext.colToPlayer || []).map(p => 0.2);
     [ true, false ].forEach((luckAdjusted) => {
       const [ offResults, defResults ] = RapmUtils.pickRidgeRegression(
         semiRealRapmResults.testOffWeights, semiRealRapmResults.testDefWeights, semiRealRapmResults.testContext, undefined, false,
         luckAdjusted
       );
+      var testContext1 = _.cloneDeep(semiRealRapmResults.testContext);
+      testContext1.priorInfo.strongWeight = -1;
+      const [ offResults1, defResults1 ] = RapmUtils.pickRidgeRegression(
+        semiRealRapmResults.testOffWeights, semiRealRapmResults.testDefWeights, testContext1, adapativeWeights1, false,
+        luckAdjusted
+      );
+      var testContext2 = _.cloneDeep(semiRealRapmResults.testContext);
+      testContext2.priorInfo.strongWeight = -1;
+      const [ offResults2, defResults2 ] = RapmUtils.pickRidgeRegression(
+        semiRealRapmResults.testOffWeights, semiRealRapmResults.testDefWeights, testContext2, adapativeWeights2, false,
+        luckAdjusted
+      );
+      expect(offResults1).toEqual(offResults); //(same adaptive weights)
+      expect(offResults2).not.toEqual(offResults); //(same adaptive weights)
+      expect(defResults1).toEqual(defResults); //(adaptive weights not used)
+      expect(defResults2).toEqual(defResults); //(adaptive weights not used)
 
       // Hand checked results, just checking nothing's broken with changes!
 
@@ -201,8 +219,9 @@ describe("RapmUtils", () => {
   test("RapmUtils - injectRapmIntoPlayers", () => {
     [ true, false ].forEach((luckAdjusted) => {
       const [ offResults, defResults ] = RapmUtils.pickRidgeRegression(
-        semiRealRapmResults.testOffWeights, semiRealRapmResults.testDefWeights, semiRealRapmResults.testContext, undefined, false,
-        luckAdjusted
+        semiRealRapmResults.testOffWeights, semiRealRapmResults.testDefWeights, semiRealRapmResults.testContext, undefined,
+        false, luckAdjusted
+        //^(note diag=true|false gives a different answer because the data is malformed so picks a really early lambda)
       );
       const onOffReport = LineupUtils.lineupToTeamReport(lineupReport);
 
@@ -210,11 +229,11 @@ describe("RapmUtils", () => {
       const players = [ { playerId: "Mitchell, Makhel" } as Record<string, any> ].concat(onOffReport.players || []);
       if (luckAdjusted) {  //(needs to be run in normal mode first)
         RapmUtils.injectRapmIntoPlayers(
-          players, offResults, defResults, {}, semiRealRapmResults.testContext, false
+          players, offResults, defResults, {}, semiRealRapmResults.testContext, undefined, false
         );
       }
       RapmUtils.injectRapmIntoPlayers(
-        players, offResults, defResults, {}, semiRealRapmResults.testContext, luckAdjusted
+        players, offResults, defResults, {}, semiRealRapmResults.testContext, undefined, luckAdjusted
       );
 
       const keyToCheck = luckAdjusted ? "old_value" : "value";
@@ -279,7 +298,8 @@ describe("RapmUtils", () => {
         }).value(),
         correlMatrix: t.correlMatrix.valueOf().map((row: number[]) => {
           return row.map((n: number) => n.toFixed(4));
-        })
+        }),
+        adaptiveCorrelWeights: t.adaptiveCorrelWeights.map((val) => val.toFixed(2))
       }
     };
 
@@ -299,7 +319,8 @@ describe("RapmUtils", () => {
         ["1.0000", "0.6865", "0.5429"],
         ["0.6865", "1.0000", "-0.2041"],
         ["0.5429", "-0.2041", "1.0000"],
-      ]
+      ],
+      adaptiveCorrelWeights: [ "0.25", "0.07", "0.06" ]
     });
 
   });

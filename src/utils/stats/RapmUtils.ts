@@ -87,6 +87,14 @@ export type RapmPriorInfo = {
   playersStrong: Array<Record<string, number>>;
   playersWeak: Array<Record<string, number>>;
 };
+/** Handy util to */
+const getStrongWeight = (prior: RapmPriorInfo, maybeAdaptiveFallback: number | undefined) => {
+  if (prior.strongWeight >= 0) {
+    return prior.strongWeight;
+  } else {
+    return maybeAdaptiveFallback || 0.0;
+  }
+};
 
 /** Useful intermediate results */
 export type RapmPlayerContext = {
@@ -166,10 +174,11 @@ export class RapmUtils {
   static buildPriors(
     playersBaseline: Record<string, any>,
     colToPlayer: Array<string>,
+    priorMode: number //(-1 for adaptive mode)
   ): RapmPriorInfo {
     return {
       includeStrong: {}, //(see RapmPriorInfo type definition, not needed unless unbiasWeight > 0)
-      strongWeight: 0.5, //(how much of a lineup is attributed to RAPM, and how much to the prior)
+      strongWeight: priorMode, //(how much of a lineup is attributed to RAPM, and how much to the prior)
       playersWeak: colToPlayer.map(player => {
         const stats = playersBaseline[player] || {};
         if (stats) {
@@ -204,8 +213,12 @@ export class RapmUtils {
     avgEfficiency: number
     ,
     removalPct: number = 0.06,
-    unbiasWeight: number = 0.0, //TODO; with the new prior code, don't use this (used to be 2.0)
+    priorMode: number = -1, //(or 0-1 for fixed strong prior)
+    // REMOVED CODE:
+//    unbiasWeight: number = 0.0, //TODO; with the new prior code, don't use this (used to be 2.0)
   ): RapmPlayerContext {
+    const unbiasWeight = 0.0; //(see above)
+
     // The static threshold for removing players
     // (who do more harm than good)
     // (2x to approximate checking both offense and defense)
@@ -292,7 +305,7 @@ export class RapmUtils {
       defLineupPoss: teamInfo.def_poss?.value || 0
       ,
       priorInfo: RapmUtils.buildPriors(
-        playersBaseline, sortedPlayers
+        playersBaseline, sortedPlayers, priorMode
       )
     };
   }
@@ -372,7 +385,7 @@ export class RapmUtils {
         inPlayers.forEach((player: any) => {
           const playerIndex = ctx.playerToCol[player.id];
           if (playerIndex >= 0) {
-            const strongWeight = adaptiveCorrelWeights?.[playerIndex] || ctx.priorInfo.strongWeight;
+            const strongWeight = getStrongWeight(ctx.priorInfo, adaptiveCorrelWeights?.[playerIndex]);
             priorOffset += strongWeight*ctx.priorInfo.playersStrong[playerIndex]![`${prefix}_${field}`] || 0;
           } //(else this player is filtered out so ignore - exception case I think)
         });
@@ -435,6 +448,7 @@ export class RapmUtils {
     offRapmInput: RapmProcessingInputs, defRapmInput: RapmProcessingInputs,
     statsAverages: Record<string, any>,
     ctx: RapmPlayerContext,
+    adaptiveCorrelWeights: number[] | undefined,
     useOldVals: boolean = false
   ) {
     const getVal = (o: any) => { //(in practice we're going to discard fields without old_value anyway)
@@ -462,7 +476,7 @@ export class RapmUtils {
           statsAverages[`def_${partialField}`]?.value || getVal(ctx.teamInfo[`def_${partialField}`])
         ];
         const [ offVal, defVal ] = RapmUtils.calcLineupOutputs(
-          partialField, offOffset, defOffset, ctx, undefined, useOldVals //TODO: adaptive weight here
+          partialField, offOffset, defOffset, ctx, adaptiveCorrelWeights, useOldVals //TODO: adaptive weight here
         );
         const vals = {
           off: offVal, def: defVal
@@ -474,9 +488,10 @@ export class RapmUtils {
           );
           const results = (partialField == "adj_ppp") ?
             rapmInput[offOrDef].rapmAdjPpp :
-            ctx.priorInfo.playersStrong.map(
-              (stat, index) => ctx.priorInfo.strongWeight*(stat[`${offOrDef}_${partialField}`] || 0) + resultsPrePrior[index]!
-            );
+            ctx.priorInfo.playersStrong.map((stat, index) => {
+              const strongWeight = getStrongWeight(ctx.priorInfo, adaptiveCorrelWeights?.[index]);
+              return strongWeight*(stat[`${offOrDef}_${partialField}`] || 0) + resultsPrePrior[index]!;
+            });
 
           return [ field, results ];
         }).value(); //(ie [ ON, OFF ] where ON/OFF = [ (on|off)_field, [ results ] ] )
@@ -540,7 +555,7 @@ export class RapmUtils {
   static pickRidgeRegression(
     offWeights: any, defWeights: any,
     ctx: RapmPlayerContext,
-    adaptiveCorrelWeights: number[],
+    adaptiveCorrelWeights: number[] | undefined,
     diagMode: boolean,
     useOldValIfPossible: boolean = false
   ) {
@@ -644,7 +659,7 @@ export class RapmUtils {
           // Apply strong prior if present:
           const resultsPrePrior = ctx.priorInfo.playersStrong.map(
             (stat, index) => {
-              const strongWeight = adaptiveCorrelWeights?.[index] || ctx.priorInfo.strongWeight;
+              const strongWeight = getStrongWeight(ctx.priorInfo, adaptiveCorrelWeights?.[index]);
               return strongWeight*(stat[`${offOrDef}_adj_ppp`] || 0) + resultsPrePrePrior[index]!;
             }
           );

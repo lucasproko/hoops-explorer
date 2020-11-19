@@ -89,7 +89,7 @@ Object {
         "off_adj_ppp": 0,
       },
     ],
-    "strongWeight": 0.5,
+    "strongWeight": -1,
   },
   "removalPct": 0,
   "removedPlayers": Object {},
@@ -168,7 +168,7 @@ Object {
         "off_adj_ppp": 0,
       },
     ],
-    "strongWeight": 0.5,
+    "strongWeight": -1,
   },
   "removalPct": 0.2,
   "removedPlayers": Object {

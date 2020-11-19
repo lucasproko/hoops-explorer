@@ -61,7 +61,7 @@ const RapmPlayerDiagView: React.FunctionComponent<Props> = (({rapmInfo, player, 
     const offPriorContrib = rapmOff - offUnbiasRapm;
     const defPriorContrib = rapmDef - defUnbiasRapm;
 
-    const adaptiveWeight = rapmInfo?.preProcDiags?.adaptiveCorrelWeights?.[col] || ctx.priorInfo.strongWeight;
+    const maybeAdaptiveWeight = rapmInfo?.preProcDiags?.adaptiveCorrelWeights?.[col] || 0.0;
 
     const detailedInfoPost = <ul>
       <li>We calculate a team adjustment (off=[<b>{offPriorTotalDiff.toFixed(2)}</b>] def=[<b>{defPriorTotalDiff.toFixed(2)}</b>]) to reduce/remove the
@@ -70,22 +70,26 @@ const RapmPlayerDiagView: React.FunctionComponent<Props> = (({rapmInfo, player, 
       </li>
       <li>Then we calculate a player's contribution to this team total - currently this is a fraction of
       "Adj Rtg+": off=[<b>{offPrior.toFixed(2)}</b>] def=[<b>{defPrior.toFixed(2)}</b>]), ...
+      </li>
       <li>
       ... chosen so that a minutes-weighted average of the ratings sums to the team value: off=[<b>{offPriorContrib.toFixed(2)}</b>], def=[<b>{defPriorContrib.toFixed(2)}</b>]
         <ul>
-        <li>
-        <em> (eg incorporating the % on floor [<b>{offPossPctStr}%</b>] (of [<b>{totalOffPoss}</b>] poss,
-           this is an off=[<b>{(offPriorContrib*offPoss).toFixed(2)}</b>] def=[<b>{(defPriorContrib*defPoss).toFixed(2)}</b>]
-          "slice" of the team total of off=[<b>{offPriorTotalDiff.toFixed(2)}</b>] def=[<b>{defPriorTotalDiff.toFixed(2)}</b>])</em>
-        </li>
+          <li>
+          <em> (eg incorporating the % on floor [<b>{offPossPctStr}%</b>] (of [<b>{totalOffPoss}</b>] poss,
+             this is an off=[<b>{(offPriorContrib*offPoss).toFixed(2)}</b>] def=[<b>{(defPriorContrib*defPoss).toFixed(2)}</b>]
+            "slice" of the team total of off=[<b>{offPriorTotalDiff.toFixed(2)}</b>] def=[<b>{defPriorTotalDiff.toFixed(2)}</b>])</em>
+          </li>
         </ul>
       </li>
-      </li>
     </ul>;
+    
+    const adaptiveWeight = ctx.priorInfo.strongWeight >= 0 ? ctx.priorInfo.strongWeight : maybeAdaptiveWeight;
+    const rapmPriorOverrideInfo = ctx.priorInfo.strongWeight >= 0 ?
+      <span> (hand-overwritten to <b>{(adaptiveWeight).toFixed(2)}</b>)</span> : null;
 
     const detailedInfoPre = <ul>
       <li>To combat the tendency of RAPM to over-share the contribution of the strongest players amongst their typical team-mates,
-      we take the weighted average player correlation (see "Player correlation table" in the Global Diagnostics below) [<b>{(adaptiveWeight).toFixed(2)}</b>], ...
+      we take the weighted average player correlation (see "Player correlation table" in the Global Diagnostics below) [<b>{(maybeAdaptiveWeight).toFixed(2)}</b>]{rapmPriorOverrideInfo}, ...
       </li>
       <li>... and use that % of the player's "Adj Rating+" ([<b>{(adaptiveWeight).toFixed(2)}</b>]*[<b>{(offPrior).toFixed(2)}</b>]) = [<b>{(adaptiveWeight*offPrior).toFixed(2)}</b>] as a prior in the RAPM calculation.
       </li>

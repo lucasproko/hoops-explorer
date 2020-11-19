@@ -285,7 +285,7 @@ export async function main() {
           offRapmWeights, defRapmWeights, rapmContext, preProcDiags.adaptiveCorrelWeights, false
         );
         RapmUtils.injectRapmIntoPlayers(
-          tempTeamReport.players || [], offRapmInputs, defRapmInputs, statsAverages, rapmContext
+          tempTeamReport.players || [], offRapmInputs, defRapmInputs, statsAverages, rapmContext, preProcDiags.adaptiveCorrelWeights
         );
         const alwaysAdjustForLuck = true;
         if (alwaysAdjustForLuck) { // (Calculate RAPM without luck, for display purposes)
@@ -294,7 +294,7 @@ export async function main() {
             true //<- uses old_value (ie pre-luck-adjusted)
           );
           RapmUtils.injectRapmIntoPlayers(
-            tempTeamReport.players || [], offNoLuckRapmInputs, defNoLuckRapmInputs, statsAverages, rapmContext,
+            tempTeamReport.players || [], offNoLuckRapmInputs, defNoLuckRapmInputs, statsAverages, rapmContext, preProcDiags.adaptiveCorrelWeights,
             true //<- only applies RAPM to old_values
           );
         }

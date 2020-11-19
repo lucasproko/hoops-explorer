@@ -18,7 +18,7 @@ exports[`RapmPlayerDiagView RapmPlayerDiagView - should create snapshot 1`] = `
   ] =
   <ul>
     <li>
-      Raw RAPM contribution: off=[
+      RAPM contribution: off=[
       <b>
         5.15
       </b>
@@ -32,8 +32,62 @@ exports[`RapmPlayerDiagView RapmPlayerDiagView - should create snapshot 1`] = `
       </b>
       ]
     </li>
+    <ul>
+      <li>
+        To combat the tendency of RAPM to over-share the contribution of the strongest players amongst their typical team-mates, we take the weighted average player correlation (see "Player correlation table" in the Global Diagnostics below) [
+        <b>
+          1.09
+        </b>
+        ]
+        <span>
+           (hand-overwritten to 
+          <b>
+            0.50
+          </b>
+          )
+        </span>
+        , ...
+      </li>
+      <li>
+        ... and use that % of the player's "Adj Rating+" ([
+        <b>
+          0.50
+        </b>
+        ]*[
+        <b>
+          4.00
+        </b>
+        ]) = [
+        <b>
+          2.00
+        </b>
+        ] as a prior in the RAPM calculation.
+      </li>
+      <ul>
+        <li>
+          <i>
+            (Currently we only do this for offense because ORtg is a much more reliable individual stat than DRtg)
+          </i>
+        </li>
+      </ul>
+      <li>
+        ie Off RAPM [
+        <b>
+          5.15
+        </b>
+        ] = Raw RAPM [
+        <b>
+          3.15
+        </b>
+        ] + Prior [
+        <b>
+          2.00
+        </b>
+        ]
+      </li>
+    </ul>
     <li>
-       + Priors' contribution: off=[
+       + POST RAPM adjustment: off=[
       <b>
         0.00
       </b>
@@ -49,7 +103,7 @@ exports[`RapmPlayerDiagView RapmPlayerDiagView - should create snapshot 1`] = `
     </li>
     <ul>
       <li>
-        We calculate the total team prior (off=[
+        We calculate a team adjustment (off=[
         <b>
           -10.15
         </b>
@@ -57,7 +111,7 @@ exports[`RapmPlayerDiagView RapmPlayerDiagView - should create snapshot 1`] = `
         <b>
           -2.07
         </b>
-        ]) from the delta between total adjusted efficiency and RAPM, due to the regression factor: eg compare 
+        ]) to reduce/remove the the delta between total adjusted efficiency and RAPM (due to the regression factor): eg compare 
         <em>
           observed
         </em>
@@ -84,7 +138,7 @@ exports[`RapmPlayerDiagView RapmPlayerDiagView - should create snapshot 1`] = `
         ]).
       </li>
       <li>
-        Then we calculate a player's contribution to the team prior - currently this is a multiple of "Adj Rtg+" ("adjusted production above D1 average"; off=[
+        Then we calculate a player's contribution to this team total - currently this is a fraction of "Adj Rtg+": off=[
         <b>
           4.00
         </b>
@@ -92,50 +146,50 @@ exports[`RapmPlayerDiagView RapmPlayerDiagView - should create snapshot 1`] = `
         <b>
           -4.00
         </b>
-        ]),
-        <li>
-          chosen so that a minutes-weighted average of the ratings sums to the team prior: off=[
-          <b>
-            0.00
-          </b>
-          ], def=[
-          <b>
-            -0.47
-          </b>
-          ]
-          <ul>
-            <li>
-              <em>
-                 (eg incorporating the % on floor [
-                <b>
-                  82
-                  %
-                </b>
-                ] (of [
-                <b>
-                  101
-                </b>
-                ] poss, this is an off=[
-                <b>
-                  0.00
-                </b>
-                ] def=[
-                <b>
-                  -0.38
-                </b>
-                ] "slice" of the team prior of off=[
-                <b>
-                  -10.15
-                </b>
-                ] def=[
-                <b>
-                  -2.07
-                </b>
-                ])
-              </em>
-            </li>
-          </ul>
-        </li>
+        ]), ...
+      </li>
+      <li>
+        ... chosen so that a minutes-weighted average of the ratings sums to the team value: off=[
+        <b>
+          0.00
+        </b>
+        ], def=[
+        <b>
+          -0.47
+        </b>
+        ]
+        <ul>
+          <li>
+            <em>
+               (eg incorporating the % on floor [
+              <b>
+                82
+                %
+              </b>
+              ] (of [
+              <b>
+                101
+              </b>
+              ] poss, this is an off=[
+              <b>
+                0.00
+              </b>
+              ] def=[
+              <b>
+                -0.38
+              </b>
+              ] "slice" of the team total of off=[
+              <b>
+                -10.15
+              </b>
+              ] def=[
+              <b>
+                -2.07
+              </b>
+              ])
+            </em>
+          </li>
+        </ul>
       </li>
     </ul>
   </ul>
@@ -245,7 +299,7 @@ Object {
         "off_adj_ppp": 0,
       },
     ],
-    "strongWeight": 0.5,
+    "strongWeight": -1,
   },
   "removalPct": 0,
   "removedPlayers": Object {},
@@ -324,7 +378,7 @@ Object {
         "off_adj_ppp": 0,
       },
     ],
-    "strongWeight": 0.5,
+    "strongWeight": -1,
   },
   "removalPct": 0.2,
   "removedPlayers": Object {
