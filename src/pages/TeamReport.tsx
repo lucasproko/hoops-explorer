@@ -76,8 +76,9 @@ const TeamReportPage: NextPage<{}> = () => {
   const onTeamReportFilterParamsChange = (rawParams: TeamReportFilterParams) => {
     const params = _.omit(rawParams, _.flatten([ // omit all defaults
       (rawParams.showComps == ParamDefaults.defaultShowComps) ? [ 'showComps' ] : [],
-      (rawParams.repOnOffDiagMode == "0") ? [ 'repOnOffDiagMode' ] : [],
-      (rawParams.rapmDiagMode == "") ? [ 'rapmDiagMode' ] : [],
+      (rawParams.repOnOffDiagMode == ParamDefaults.defaultTeamReportRepOnOffDiagMode) ? [ 'repOnOffDiagMode' ] : [],
+      (rawParams.rapmDiagMode == ParamDefaults.defaultTeamReportRapmDiagMode) ? [ 'rapmDiagMode' ] : [],
+      (rawParams.rapmPriorMode == ParamDefaults.defaultTeamReportRapmPriorMode) ? [ 'rapmPriorMode' ] : [],
       _.isEqual(rawParams.luck, ParamDefaults.defaultLuckConfig) ? [ 'luck' ] : [],
       !rawParams.teamLuck ? [ 'teamLuck' ] : [],
     ]));
@@ -94,6 +95,15 @@ const TeamReportPage: NextPage<{}> = () => {
       setTeamReportFilterParams(params); // (to ensure the new params are included in links)
     }
   }
+
+  /** Only rebuild the table if the data changes */
+  const table = React.useMemo(() => {
+    return <TeamReportStatsTable
+      startingState={teamReportFilterParams}
+      dataEvent={dataEvent}
+      onChangeState={onTeamReportFilterParamsChange}
+    />
+  }, [dataEvent]);
 
   // View
 
@@ -132,11 +142,7 @@ const TeamReportPage: NextPage<{}> = () => {
     </Row>
     <Row>
       <GenericCollapsibleCard minimizeMargin={true} title="Team Analysis" helpLink={maybeShowDocs()}>
-        <TeamReportStatsTable
-          startingState={teamReportFilterParams}
-          dataEvent={dataEvent}
-          onChangeState={onTeamReportFilterParamsChange}
-        />
+        {table}
       </GenericCollapsibleCard>
     </Row>
     <Footer year={teamReportFilterParams.year} gender={teamReportFilterParams.gender} server={server}/>

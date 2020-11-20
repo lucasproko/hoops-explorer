@@ -21,6 +21,25 @@ import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, Legend, Referenc
 import { RapmInfo, RapmPlayerContext, RapmPreProcDiagnostics, RapmProcessingInputs, RapmUtils } from "../../utils/stats/RapmUtils";
 import { CbbColors } from "../../utils/CbbColors";
 
+//TODO
+const tidyNumbers = (k: string, v: any) => {
+  if (_.isNumber(v)) {
+    const numStr = v.toFixed(3);
+    if (_.endsWith(numStr, ".000")) {
+      return numStr.split(".")[0];
+    } else {
+      return parseFloat(numStr);
+    }
+  } else {
+    return v;
+  }
+}
+const showMatrix = (m: any) => {
+  (m as any[]).map((row, index) => {
+    return (index + ": " + JSON.stringify(row, tidyNumbers));
+  });
+}
+
 type Props = {
   rapmInfo: RapmInfo
   players: Array<Record<string, any>>,
@@ -64,6 +83,7 @@ const RapmGlobalDiagView: React.FunctionComponent<Props> = (({rapmInfo, players,
     };
     // Table data:
     const tmpCorrelMatrix = rapmInfo.preProcDiags.correlMatrix.valueOf();
+
     const correlTableData = ctx.colToPlayer.map((p: string, i: number) => {
       return GenericTableOps.buildDataRow({
         title: p,
@@ -73,7 +93,14 @@ const RapmGlobalDiagView: React.FunctionComponent<Props> = (({rapmInfo, players,
           ]: [ "", 0 ]).filter((kv: [string, number]) => kv[1] != 0))
         )
       }, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta);
-    });
+    }).concat([GenericTableOps.buildDataRow({
+      title: "Adaptive correlation weight",
+      ...(
+        _.fromPairs(rapmInfo.preProcDiags.adaptiveCorrelWeights.map((n: number, j: number) => [
+          playerInitials(ctx.colToPlayer[j]), { value: n }
+        ]))
+      )
+    }, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta)]);
 
     // Player removal
 
@@ -179,6 +206,14 @@ const RapmGlobalDiagView: React.FunctionComponent<Props> = (({rapmInfo, players,
           <GenericTable responsive={false} tableCopyId="correlDiags" tableFields={correlTableFields} tableData={correlTableData}/>
         </Col>
       </Container>
+      <span><em>
+        <ul>
+        <li>The "Adaptive correlation weight" is simply the minutes-weighted average of each player's correlation with his teammates.
+        It is used to determine a prior in the offensive RAPM calculations (see under player diagnostics above), ie replacing a sane % of "pure RAPM" with
+        a production value determined from the player's box score metrics.
+        </li>
+        </ul>
+      </em></span>
 
       <h5>Filtered-out player diagnostics</h5>
       <ul>

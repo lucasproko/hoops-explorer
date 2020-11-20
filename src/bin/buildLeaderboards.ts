@@ -280,20 +280,21 @@ export async function main() {
           avgEfficiency
         );
         const [ offRapmWeights, defRapmWeights ] = RapmUtils.calcPlayerWeights(rapmContext);
+        const preProcDiags = RapmUtils.calcCollinearityDiag(offRapmWeights, rapmContext);
         const [ offRapmInputs, defRapmInputs ] = RapmUtils.pickRidgeRegression(
-          offRapmWeights, defRapmWeights, rapmContext, false
+          offRapmWeights, defRapmWeights, rapmContext, preProcDiags.adaptiveCorrelWeights, false
         );
         RapmUtils.injectRapmIntoPlayers(
-          tempTeamReport.players || [], offRapmInputs, defRapmInputs, statsAverages, rapmContext
+          tempTeamReport.players || [], offRapmInputs, defRapmInputs, statsAverages, rapmContext, preProcDiags.adaptiveCorrelWeights
         );
         const alwaysAdjustForLuck = true;
         if (alwaysAdjustForLuck) { // (Calculate RAPM without luck, for display purposes)
           const [ offNoLuckRapmInputs, defNoLuckRapmInputs ] = RapmUtils.pickRidgeRegression(
-            offRapmWeights, defRapmWeights, rapmContext, false,
+            offRapmWeights, defRapmWeights, rapmContext, preProcDiags.adaptiveCorrelWeights, false,
             true //<- uses old_value (ie pre-luck-adjusted)
           );
           RapmUtils.injectRapmIntoPlayers(
-            tempTeamReport.players || [], offNoLuckRapmInputs, defNoLuckRapmInputs, statsAverages, rapmContext,
+            tempTeamReport.players || [], offNoLuckRapmInputs, defNoLuckRapmInputs, statsAverages, rapmContext, preProcDiags.adaptiveCorrelWeights,
             true //<- only applies RAPM to old_values
           );
         }

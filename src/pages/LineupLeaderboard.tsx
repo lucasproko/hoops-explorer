@@ -50,12 +50,14 @@ const LineupLeaderboardPage: NextPage<{}> = () => {
 
   // Team Stats interface
 
+  const dataEventInit = {
+    all: { lineups: [] as any[], confs: [] as string[], lastUpdated: 0 },
+    t100: { lineups: [] as any[], confs: [] as string[], lastUpdated: 0 },
+    conf: { lineups: [] as any[], confs: [] as string[], lastUpdated: 0 }
+  };
+
   const [ gaInited, setGaInited ] = useState(false);
-  const [ dataEvent, setDataEvent ] = useState({
-    all: { lineups: [], confs: [], lastUpdated: 0 },
-    t100: { lineups: [], confs: [], lastUpdated: 0 },
-    conf: { lineups: [], confs: [], lastUpdated: 0 }
-  });
+  const [ dataEvent, setDataEvent ] = useState(dataEventInit);
   const [ dataSubEvent, setDataSubEvent ] = useState({ lineups: [], confs: [], lastUpdated: 0 } as LineupLeaderboardStatsModel);
   const [ currYear, setCurrYear ] = useState("");
 
@@ -104,6 +106,7 @@ const LineupLeaderboardPage: NextPage<{}> = () => {
     const year = (paramObj.year || ParamDefaults.defaultYear).substring(0, 4);
 
     if (year == "All") { //TODO: tidy this up
+      setDataEvent(dataEventInit);
 
       const years = [ "2018/9", "2019/20", "Extra" ];
       const fetchAll = Promise.all(years.map(tmpYear => tmpYear.substring(0, 4)).map((subYear) => {
@@ -121,12 +124,14 @@ const LineupLeaderboardPage: NextPage<{}> = () => {
       })
     } else {
       if ((!dataEvent[dataSubEventKey]?.lineups?.length) || (currYear != year)) {
+        const oldCurrYear = currYear;
         setCurrYear(year);
         setDataSubEvent({ lineups: [], confs: [], lastUpdated: 0 }); //(set the spinner off)
         fetch(`/leaderboards/lineups/lineups_${dataSubEventKey}_${gender}_${year}.json`)
           .then((response: fetch.IsomorphicResponse) => {
             return response.json().then((json: any) => {
-              setDataEvent({ ...dataEvent, [dataSubEventKey]: json });
+              //(if year has changed then clear saved data events)
+              setDataEvent({ ...(oldCurrYear != year ? dataEventInit : dataEvent), [dataSubEventKey]: json });
               setDataSubEvent(json);
             });
           });

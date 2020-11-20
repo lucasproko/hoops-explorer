@@ -1,4 +1,71 @@
 
+//////////////////////////////////////////////////////////////////////////////////////////
+
+// RAPM module description
+
+// The core idea of RAPM is that each player has a single "offensive|defensive effiency above D1 average" number
+// which they contribute to whichever lineup they play in (independent to team-mates)
+// (You can also apply RAPM to any of the individual mettrics - 3P%, TO, FTR etc)
+
+// (Full RAPM involves lineup vs lineup across all games. To make it tractable I just do lineup vs team
+//  and ignore the -unquantified- inaccuracy of certain lineups facing strong/weaker opposing lineups)
+
+// 1] In an ideal world you could just solve a big linear equation of all the lineups BUT
+//    it turns out that the matrix is full of collinearities which makes it very sensitive to
+//    the (large amounts of) noise
+
+// 2] Ridge regression is a technique to come up with sane solutions to such linear equation sets
+//    It adds a diagonal of a given size to the inverse component, making it much more stable.
+//    The bigger the size ("lambda") the more stable; but the technique has the following negative effects:
+//    2.1] The solution tends towards zero as the lambda gets larger
+//         Viewed in the context of (eg) "the of(de)fensive efficiency of each player", this means
+//         The % of the team's overall efficiency "explained" by adding the minutes-weighted player RAPMs
+//         decreases. Eg for a typical lambda (see below)
+//    2.2] The higher the % of lineups 2 players share, the more RAPM just shares the efficiency between them
+//         (regardless of their peripherals)
+//         For example, calculate the RAPM for query "A and B": A and B will have the same "raw RAPM"
+//         This is particularly problematic for college teams (cf NBA) since the 6-8 top players log almost all the minutes
+//         and the starters play 80% of minutes each (and coaches often seem to try to clump minutes)
+
+// 3] Interlude: There's lots of Clever Math to help you pick the optimal lambda, given an understanding of the distribution
+//    of the variable being fitted. Instead I just try a bunch of lambdas for off and def adjusted efficiency
+//    and pick the smallest number where the average delta goes below a threshold. Then I use the same (off, def) lambda pairs
+//    For all the off and def variables
+
+// 4] OK back to the limitations described in 2]. I use a few different techniques to offset them:
+//    4.1] Originally I added a separate constraint (row to matrix/vector) that was:
+//         "the minutes-adjusted sum of the players' <metrics> sums to the team's season average", weighted by *2
+//         This was nice and easy but essentially filled in the otherwise-lost efficiency by sharing it out
+//         between the players as a not-quite-linear proportion of minutes played
+//         So now I now longer do this, and it's only there until I have time to pull out all the code
+//
+//    4.2] Then I imported the individuals stats and calculated their "Adj+ Rtg" (SoS+usage weighted efficiency above average)
+//         And use it in two ways:
+//         4.2.1] (so called "Weak Prior") For a given lambda, calculate the RAPM, calculate the minutes-weighted sum,
+//                and compare with the actual efficiency. I take a % of each player's efficiency to get as close
+//                as possible to the actual efficiency (max 50% - otherwise if the team efficiency is close to 0 you get ugliness)
+//                This fixes 2.1` nicely
+//
+//         4.2.2] (so called "Strong Prior") Take a given % of the player metrics (eg rating), and:
+//                 - subtract it each lineup player's number from the input vector (ie each lineup's adj efficiency)
+//                 - add it back again to the calculated RAPM
+//
+//         4.2.3] I experimented with different "Strong Prior" weights - 100% seemed to match "Adj Rtg+" too much
+//                50% worked nice, but seemed arbitrary. 0% tended to share too much of strong player's impact
+//                among statistically inferior team-mates who happened to play lots of mins together (Myles Powell and Cale)
+//                One way of getting ~50% that seems less arbitrary is to calculate a weighted sum of their (Pearson) correlation
+//                with other players - eg Powell has 43%, Cowan/Stix have 75%, some bench players have way less
+//                This is called "adaptiveCorrelWeights" in the code below
+//
+//        4.2.4] A "final" alternative(?) to 4.2.3 I'm thinking about is to take each player's delta from their "Adj+ Rtg"
+//               (not sure yet how it would work with other metrics) compared to each team-mate
+//               and decompose how much of that is "shared RAPM" vs "difference due to on/off analysis"
+//               and then replace the shared component in proportion of the relative "Adj Rtg+"s
+//               Haven't figured out how/if that works yet!
+//
+
+//////////////////////////////////////////////////////////////////////////////////////////
+
 // Lodash:
 import _ from "lodash";
 
@@ -15,9 +82,18 @@ import { add, apply, diag, identity, inv, matrix, mean, multiply, resize, row, s
 
 /** Contains the prior info for individuals (strong priors dominate RAPM, weak priors are dominated)*/
 export type RapmPriorInfo = {
+  strongWeight: number,
   includeStrong: Record<string, boolean>; //(only need to set if unbiasWeight>0, else unused - TODO planning to remove unbiasWeight)
   playersStrong: Array<Record<string, number>>;
   playersWeak: Array<Record<string, number>>;
+};
+/** Handy util to */
+const getStrongWeight = (prior: RapmPriorInfo, maybeAdaptiveFallback: number | undefined) => {
+  if (prior.strongWeight >= 0) {
+    return prior.strongWeight;
+  } else {
+    return maybeAdaptiveFallback || 0.0;
+  }
 };
 
 /** Useful intermediate results */
@@ -52,7 +128,9 @@ export type RapmPlayerContext = {
 export type RapmPreProcDiagnostics = {
   lineupCombos: Array<number>;
   playerCombos: Record<string, Array<number>>,
-  correlMatrix: any
+  correlMatrix: any,
+  possCorrelMatrix: any,
+  adaptiveCorrelWeights: number[]
 };
 
 export type RapmProcessingInputs = {
@@ -96,16 +174,25 @@ export class RapmUtils {
   static buildPriors(
     playersBaseline: Record<string, any>,
     colToPlayer: Array<string>,
+    priorMode: number //(-1 for adaptive mode)
   ): RapmPriorInfo {
     return {
       includeStrong: {}, //(see RapmPriorInfo type definition, not needed unless unbiasWeight > 0)
-      playersStrong: colToPlayer.map(player => { return {}; }), //(not doing this at all)
+      strongWeight: priorMode, //(how much of a lineup is attributed to RAPM, and how much to the prior)
       playersWeak: colToPlayer.map(player => {
         const stats = playersBaseline[player] || {};
         if (stats) {
           return {
             off_adj_ppp: stats.off_adj_rtg?.value || 0,
             def_adj_ppp: stats.def_adj_rtg?.value || 0,
+          } as Record<string, number>;
+        } else return {} as Record<string, number>;
+      }),
+      playersStrong: colToPlayer.map(player => {
+        const stats = playersBaseline[player] || {};
+        if (stats) {
+          return {
+            off_adj_ppp: stats.off_adj_rtg?.value || 0,
           } as Record<string, number>;
         } else return {} as Record<string, number>;
       }),
@@ -126,8 +213,12 @@ export class RapmUtils {
     avgEfficiency: number
     ,
     removalPct: number = 0.06,
-    unbiasWeight: number = 0.0, //TODO; with the new prior code, don't use this (used to be 2.0)
+    priorMode: number = -1, //(or 0-1 for fixed strong prior)
+    // REMOVED CODE:
+//    unbiasWeight: number = 0.0, //TODO; with the new prior code, don't use this (used to be 2.0)
   ): RapmPlayerContext {
+    const unbiasWeight = 0.0; //(see above)
+
     // The static threshold for removing players
     // (who do more harm than good)
     // (2x to approximate checking both offense and defense)
@@ -214,7 +305,7 @@ export class RapmUtils {
       defLineupPoss: teamInfo.def_poss?.value || 0
       ,
       priorInfo: RapmUtils.buildPriors(
-        playersBaseline, sortedPlayers
+        playersBaseline, sortedPlayers, priorMode
       )
     };
   }
@@ -269,6 +360,7 @@ export class RapmUtils {
     field: string,
     offOffset: number, defOffset: number,
     ctx: RapmPlayerContext,
+    adaptiveCorrelWeights: number[] | undefined,
     useOldValIfPossible: boolean = false
   ) {
     const getVal = (o: any) => {
@@ -293,10 +385,10 @@ export class RapmUtils {
         inPlayers.forEach((player: any) => {
           const playerIndex = ctx.playerToCol[player.id];
           if (playerIndex >= 0) {
-            priorOffset += ctx.priorInfo.playersStrong[playerIndex]![`${prefix}_${field}`] || 0;
+            const strongWeight = getStrongWeight(ctx.priorInfo, adaptiveCorrelWeights?.[playerIndex]);
+            priorOffset += strongWeight*ctx.priorInfo.playersStrong[playerIndex]![`${prefix}_${field}`] || 0;
           } //(else this player is filtered out so ignore - exception case I think)
         });
-
         return (val - priorOffset)*possCountWeight;
       });
     };
@@ -356,6 +448,7 @@ export class RapmUtils {
     offRapmInput: RapmProcessingInputs, defRapmInput: RapmProcessingInputs,
     statsAverages: Record<string, any>,
     ctx: RapmPlayerContext,
+    adaptiveCorrelWeights: number[] | undefined,
     useOldVals: boolean = false
   ) {
     const getVal = (o: any) => { //(in practice we're going to discard fields without old_value anyway)
@@ -383,7 +476,7 @@ export class RapmUtils {
           statsAverages[`def_${partialField}`]?.value || getVal(ctx.teamInfo[`def_${partialField}`])
         ];
         const [ offVal, defVal ] = RapmUtils.calcLineupOutputs(
-          partialField, offOffset, defOffset, ctx, useOldVals
+          partialField, offOffset, defOffset, ctx, adaptiveCorrelWeights, useOldVals //TODO: adaptive weight here
         );
         const vals = {
           off: offVal, def: defVal
@@ -393,11 +486,12 @@ export class RapmUtils {
           const resultsPrePrior: number[] = RapmUtils.calculateRapm(
             rapmInput[offOrDef].solnMatrix, vals[offOrDef]
           );
-          const results = partialField == "adj_ppp" ?
+          const results = (partialField == "adj_ppp") ?
             rapmInput[offOrDef].rapmAdjPpp :
-            ctx.priorInfo.playersStrong.map(
-              (stat, index) => (stat[`${offOrDef}_${partialField}`] || 0) + resultsPrePrior[index]!
-            );
+            ctx.priorInfo.playersStrong.map((stat, index) => {
+              const strongWeight = getStrongWeight(ctx.priorInfo, adaptiveCorrelWeights?.[index]);
+              return strongWeight*(stat[`${offOrDef}_${partialField}`] || 0) + resultsPrePrior[index]!;
+            });
 
           return [ field, results ];
         }).value(); //(ie [ ON, OFF ] where ON/OFF = [ (on|off)_field, [ results ] ] )
@@ -433,7 +527,7 @@ export class RapmUtils {
     priorInfo: RapmPriorInfo
   ) {
     const priorSum =
-      _.chain(priorInfo.playersWeak).map((p, ii) => p[field]!*playerPossPcts[ii]!).sum().value();
+      _.chain(priorInfo.playersWeak).map((p, ii) => (p[field] || 0)*playerPossPcts[ii]!).sum().value();
 
     return (error: number, baseResults: Array<number>) => {
       const priorSumInv = priorSum != 0 ? 1/priorSum: 0;
@@ -461,6 +555,7 @@ export class RapmUtils {
   static pickRidgeRegression(
     offWeights: any, defWeights: any,
     ctx: RapmPlayerContext,
+    adaptiveCorrelWeights: number[] | undefined,
     diagMode: boolean,
     useOldValIfPossible: boolean = false
   ) {
@@ -475,6 +570,7 @@ export class RapmUtils {
 
     if (offDefDebugMode.off || offDefDebugMode.def) {
       console.log(`RAPM Priors = [${JSON.stringify(ctx.priorInfo, tidyNumbers)}]`);
+      if (adaptiveCorrelWeights) console.log(`Adaptive weights = [${JSON.stringify(adaptiveCorrelWeights, tidyNumbers)}]`);
     }
 
     const weights = {
@@ -538,7 +634,7 @@ export class RapmUtils {
     if (offDefDebugMode.off) console.log(`(Off) Player Poss = [${pctByPlayer.off.map((p: number) => p.toFixed(2))}]`);
 
     const [ offAdjPoss, defAdjPoss ] = RapmUtils.calcLineupOutputs(
-      "adj_ppp", ctx.avgEfficiency, ctx.avgEfficiency, ctx, useOldValIfPossible
+      "adj_ppp", ctx.avgEfficiency, ctx.avgEfficiency, ctx, adaptiveCorrelWeights, useOldValIfPossible
     );
     const adjPoss = {
       off: offAdjPoss,
@@ -558,7 +654,16 @@ export class RapmUtils {
           if (debugMode) console.log(`********* [${offOrDef}] RAPM WITH LAMBDA ` + ridgeLambda.toFixed(3) + " / " + lambda);
 
           const solver = RapmUtils.slowRegression(weights[offOrDef], ridgeLambda, ctx);
-          const resultsPrePrior: number[] = RapmUtils.calculateRapm(solver, adjPoss[offOrDef]);
+          const resultsPrePrePrior: number[] = RapmUtils.calculateRapm(solver, adjPoss[offOrDef]);
+
+          // Apply strong prior if present:
+          const resultsPrePrior = ctx.priorInfo.playersStrong.map(
+            (stat, index) => {
+              const strongWeight = getStrongWeight(ctx.priorInfo, adaptiveCorrelWeights?.[index]);
+              return strongWeight*(stat[`${offOrDef}_adj_ppp`] || 0) + resultsPrePrePrior[index]!;
+            }
+          );
+
           const combinedAdjEffPrePrior = _.sum(_.zip(pctByPlayer[offOrDef], resultsPrePrior).map((zip: Array<number|undefined>) => {
             return (zip[0] || 0)*(zip[1] || 0);
           }));
@@ -574,6 +679,7 @@ export class RapmUtils {
           const adjEffErr = Math.abs(adjNonAbsEffErr);
 
           if (debugMode) console.log(ctx.colToPlayer);
+          if (debugMode) console.log("rapm[PREPRE]: " + resultsPrePrePrior.map((p: number) => p.toFixed(3)));
           if (debugMode) console.log("rapm[PRE]: " + resultsPrePrior.map((p: number) => p.toFixed(3)));
           if (debugMode) console.log("rapm[POST]: " + results.map((p: number) => p.toFixed(3)));
           if (debugMode) console.log(
@@ -820,6 +926,19 @@ export class RapmUtils {
     // player[0]: [  VDP_RAW[s(0), 0], ..., VDP_RAW[s(N), 0] ]
 
     const condIndicesSortedIndex = condIndicesWithIndex.map((zip) => zip[1]);
+
+    // Now build the correlation matrix and use to build some
+    const offPossCorrel = multiply(transpose(weightMatrix), weightMatrix);
+
+    const correlMatrix = RapmUtils.calcPlayerCorrelations(weightMatrix, ctx);
+    const tmpCorrelMatrix = correlMatrix.valueOf();
+    const adaptiveCorrelRow = offPossCorrel.valueOf().map((row: number[], i: number) => {
+      const selfPct = row[i]!;
+      const weight = selfPct > 0 ? 0.25/selfPct : 0;
+      const weightedAbsCorrel = weight*
+        _.chain(row).map((val: number, j: number) => (i != j) ? Math.abs(tmpCorrelMatrix[i]![j]! as number)*val : 0).sum().value();
+      return weightedAbsCorrel;
+    });
     return {
       lineupCombos: condIndicesWithIndex.map((zip) => zip[0]),
       playerCombos: _.chain(ctx.colToPlayer).map((player, playerIndex) => {
@@ -827,7 +946,9 @@ export class RapmUtils {
           return vdpRaw[lineupComboIndex][playerIndex];
         })]
       }).fromPairs().value(),
-      correlMatrix: RapmUtils.calcPlayerCorrelations(weightMatrix, ctx)
+      correlMatrix: correlMatrix,
+      possCorrelMatrix: offPossCorrel,
+      adaptiveCorrelWeights: adaptiveCorrelRow
     };
   }
 

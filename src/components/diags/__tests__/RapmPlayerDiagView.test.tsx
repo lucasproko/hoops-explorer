@@ -19,12 +19,12 @@ describe("RapmPlayerDiagView", () => {
 
   test("RapmPlayerDiagView - should create snapshot", () => {
     const [ offResults, defResults ] = RapmUtils.pickRidgeRegression(
-      semiRealRapmResults.testOffWeights, semiRealRapmResults.testDefWeights, semiRealRapmResults.testContext, true
+      semiRealRapmResults.testOffWeights, semiRealRapmResults.testDefWeights, semiRealRapmResults.testContext, undefined, true
     );
     const onOffReport = LineupUtils.lineupToTeamReport(lineupReport);
 
     RapmUtils.injectRapmIntoPlayers(
-      onOffReport.players || [], offResults, defResults, {}, semiRealRapmResults.testContext
+      onOffReport.players || [], offResults, defResults, {}, semiRealRapmResults.testContext, undefined
     );
     const rapmInfo = {
       ctx: semiRealRapmResults.testContext,

@@ -9,6 +9,8 @@ import { ClientRequestCache } from "./ClientRequestCache";
 // Library imports:
 import fetch from 'isomorphic-unfetch';
 
+const debugLogResponses = false;
+
 /** Some pages require different requests.
     Eg get me lineups but also individual/team requests with and without the filter
     We're going to keep this simple by treating them as separate API calls
@@ -59,7 +61,11 @@ export class RequestUtils {
               // Cache result locally:
               if (isDebug) {
                 console.log(`CACHE_KEY[${index}]=[${req.context}${newParamsStr}]`);
-                console.log(`CACHE_VAL[${index}]=[${JSON.stringify(json)}]`);
+                if (debugLogResponses) {
+                  console.log(`CACHE_VAL[${index}]=[${JSON.stringify(json)}]`);
+                } else {
+                  console.log(`CACHE_VAL[${index}]=[${JSON.stringify(json).length}]B`);
+                }
                 const totalTimeMs = new Date().getTime() - startTimeMs;
                 console.log(`TOOK[${index}]=[${totalTimeMs}]ms`);
               }
