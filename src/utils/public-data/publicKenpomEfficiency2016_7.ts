@@ -3093,7 +3093,7 @@ export const publicKenpomEfficiency2016_7: Record<string, any> = {
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Denver": {
+   "DePaul": {
       "team_season.year": 2017,
       "conf": "Big East Conference",
       "stats.adj_off.rank": 190,
@@ -3195,9 +3195,9 @@ export const publicKenpomEfficiency2016_7: Record<string, any> = {
       "is_high_major": 0,
       "good_md_comp": 1
    },
-   "DePaul": {
+   "Denver": {
       "team_season.year": 2017,
-      "conf": "Big East Conference",
+      "conf": "Summit League",
       "stats.adj_off.rank": 112,
       "stats.adj_off.value": 107.7,
       "stats.adj_def.rank": 261,

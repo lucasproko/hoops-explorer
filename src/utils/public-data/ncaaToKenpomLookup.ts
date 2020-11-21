@@ -54,12 +54,6 @@ export const ncaaToKenpomLookup_2019_20 = {
    "CSUN": {
       "pbp_kp_team": "Cal St. Northridge"
    },
-   "Denver": {
-      "pbp_kp_team": "DePaul"
-   },
-   "DePaul": {
-      "pbp_kp_team": "Denver"
-   },
    "Detroit Mercy": {
       "pbp_kp_team": "Detroit"
    },
