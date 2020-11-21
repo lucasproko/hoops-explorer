@@ -64,9 +64,22 @@ const RapmGlobalDiagView: React.FunctionComponent<Props> = (({rapmInfo, players,
     // Player correlation matrix
 
     // Table defs:
+    var currInitialsMap = {} as Record<string, string>;
+    var currInitialsCountMap = {} as Record<string, number>;
     const playerInitials = (player: string) => {
-      const tmp = player.replace(/[^A-Z]/g, "")
-      return tmp[tmp.length - 1] + tmp[0];
+      if (currInitialsMap[player]) {
+        return currInitialsMap[player];
+      } else {
+        const tmp = player.replace(/[^A-Z]/g, "")
+        const initials = tmp[tmp.length - 1] + tmp[0];
+
+        const num = currInitialsCountMap[initials] || 1;
+        currInitialsCountMap[initials] = num + 1
+
+        const fullInitials = initials + ((num > 1) ? num : "");
+        currInitialsMap[player] = fullInitials;
+        return fullInitials;
+      }
     };
     const correlTableFields = {
       "title": GenericTableOps.addTitle("", ""),
