@@ -34,7 +34,7 @@ exports[`LineupAnalyzerPage LineupAnalyzerPage - should create snapshot 1`] = `
   >
     <GenericCollapsibleCard
       minimizeMargin={false}
-      summary="Lineups: 2019/20  (M): query:'' (max:50, min-poss:5)"
+      summary="Lineups: 2020/21  (M): query:'' (max:50, min-poss:5)"
       title="Team and Game Filter"
     >
       <LineupFilter

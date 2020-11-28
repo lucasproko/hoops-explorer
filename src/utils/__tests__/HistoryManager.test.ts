@@ -36,12 +36,13 @@ describe("HistoryManager", () => {
   test("HistoryManager - gameFilterSummary", () => {
     const game1: GameFilterParams = {
       team: "test",
+      year: "2019/20",
       sortBy: "desc:off_team_poss_pct:baseline",
     };
     expect(HistoryManager.gameFilterSummary(game1)).toBe(
       `On/Off: 2019/20 test (M): on:'', auto-off, base:''`
     );
-    const game1b: GameFilterParams = {
+    const game1b: GameFilterParams = { //(need to change this every season)
       team: "test",
       showOnOffLuckDiags: true,
       filter: "test-fil",
@@ -53,7 +54,7 @@ describe("HistoryManager", () => {
       possAsPct: false
     };
     expect(HistoryManager.gameFilterSummary(game1b)).toBe(
-      `On/Off: 2019/20 test (M): on:'', auto-off, base:'', team:[show-on-off-luck-diags], players:[sort:test-sort,filter:test-fil,show-base,show-def,show-rtg-diags,show-pos-diags,poss-#]`
+      `On/Off: 2020/21 test (M): on:'', auto-off, base:'', team:[show-on-off-luck-diags], players:[sort:test-sort,filter:test-fil,show-base,show-def,show-rtg-diags,show-pos-diags,poss-#]`
     );
     const game2: GameFilterParams = {
       team: "test",
@@ -70,11 +71,11 @@ describe("HistoryManager", () => {
       `On/Off: 2019/20 test (M) [1:150] [!garbage] [+Conf]: on:'testOn', off:'testOff', base:'testBase', luck:[baseline], [overrides], team:[on-off-luck]`
     );
   });
-  test("HistoryManager - lineupFilterSummary", () => {
+  test("HistoryManager - lineupFilterSummary", () => { //(need to change this every season)
     const lineup1: LineupFilterParams = {
     };
     expect(HistoryManager.lineupFilterSummary(lineup1)).toBe(
-      `Lineups: 2019/20  (M): query:'' (max:50, min-poss:5)`
+      `Lineups: 2020/21  (M): query:'' (max:50, min-poss:5)`
     );
     const lineup2: LineupFilterParams = {
       team: "team2",
@@ -106,10 +107,10 @@ describe("HistoryManager", () => {
     );
   });
   test("HistoryManager - teamReportFilterSummary", () => {
-    const report1: TeamReportFilterParams = {
+    const report1: TeamReportFilterParams = { //(need to change this every season)
     };
     expect(HistoryManager.teamReportFilterSummary(report1)).toBe(
-      `On/Off Report: 2019/20  (M): query:'' (sort:desc:off_poss, filter:'', show:[])`
+      `On/Off Report: 2020/21  (M): query:'' (sort:desc:off_poss, filter:'', show:[])`
     );
     const report2: TeamReportFilterParams = {
       team: "team3",

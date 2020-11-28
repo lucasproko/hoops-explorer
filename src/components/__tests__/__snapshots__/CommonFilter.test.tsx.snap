@@ -39,10 +39,6 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
                 "label": "Men",
                 "value": "Men",
               },
-              Object {
-                "label": "Women",
-                "value": "Women",
-              },
             ]
           }
           value={
@@ -76,6 +72,10 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
                 "value": "2019/20",
               },
               Object {
+                "label": "2020/21",
+                "value": "2020/21",
+              },
+              Object {
                 "label": "Extra",
                 "value": "Extra",
               },
@@ -83,8 +83,8 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
           }
           value={
             Object {
-              "label": "2019/20",
-              "value": "2019/20",
+              "label": "2020/21",
+              "value": "2020/21",
             }
           }
         />
@@ -718,7 +718,7 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
               placeholder="eg 'Player1 AND NOT (WalkOn1 OR WalkOn2)'"
               readOnly={false}
               team=""
-              year="2019/20"
+              year="2020/21"
             />
           </div>
           <Dropdown
@@ -1072,6 +1072,10 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
               Object {
                 "label": "2019/20",
                 "value": "2019/20",
+              },
+              Object {
+                "label": "2020/21",
+                "value": "2020/21",
               },
               Object {
                 "label": "Extra",

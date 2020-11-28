@@ -26,7 +26,7 @@ describe("PlayerLeaderboardTable", () => {
     const dummyChangeStateCallback = (stats: PlayerLeaderboardParams) => {};
     const wrapper = shallow(
       <PlayerLeaderboardTable
-        startingState={{useRapm: false}}
+        startingState={{ year: "2019/20" , useRapm: false}}
         dataEvent={sampleData}
         onChangeState={dummyChangeStateCallback}
       />
@@ -37,7 +37,7 @@ describe("PlayerLeaderboardTable", () => {
     const dummyChangeStateCallback = (stats: PlayerLeaderboardParams) => {};
     const wrapper = shallow(
       <PlayerLeaderboardTable
-        startingState={{factorMins: true, useRapm: false}}
+        startingState={{ year: "2019/20" , factorMins: true, useRapm: false}}
         dataEvent={sampleData}
         onChangeState={dummyChangeStateCallback}
       />
@@ -49,7 +49,7 @@ describe("PlayerLeaderboardTable", () => {
     const dummyChangeStateCallback = (stats: PlayerLeaderboardParams) => {};
     const wrapper = shallow(
       <PlayerLeaderboardTable
-        startingState={{}}
+        startingState={{ year: "2019/20" }}
         dataEvent={sampleData}
         onChangeState={dummyChangeStateCallback}
       />
@@ -60,7 +60,7 @@ describe("PlayerLeaderboardTable", () => {
     const dummyChangeStateCallback = (stats: PlayerLeaderboardParams) => {};
     const wrapper = shallow(
       <PlayerLeaderboardTable
-        startingState={{factorMins: true}}
+        startingState={{ year: "2019/20" , factorMins: true}}
         dataEvent={sampleData}
         onChangeState={dummyChangeStateCallback}
       />
@@ -74,7 +74,7 @@ describe("PlayerLeaderboardTable", () => {
   const sampleDataExtra = JSON.parse(
     fs.readFileSync("./public/leaderboards/lineups/players_all_Men_Extr.json", { encoding: "UTF-8"})
   );
-  sampleDataMore.players = _.take(sampleData.players, 5).concat(_.take(sampleDataMore.players, 5)).concat(_.take(sampleDataExtra.players, 5)); 
+  sampleDataMore.players = _.take(sampleData.players, 5).concat(_.take(sampleDataMore.players, 5)).concat(_.take(sampleDataExtra.players, 5));
 
   test("PlayerLeaderboardTable - should create snapshot (multi year)", () => {
     const dummyChangeStateCallback = (stats: PlayerLeaderboardParams) => {};

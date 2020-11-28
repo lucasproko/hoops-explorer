@@ -72,6 +72,10 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                 "value": "2019/20",
               },
               Object {
+                "label": "2020/21",
+                "value": "2020/21",
+              },
+              Object {
                 "label": "All",
                 "value": "All",
               },
@@ -2228,7 +2232,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                                (
                                               #2
                                                / 
-                                              #82
+                                              #83
                                               )
                                             </span>
                                           </small>
@@ -2798,7 +2802,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                                (
                                               #2
                                                / 
-                                              #82
+                                              #83
                                               )
                                             </span>
                                           </small>
@@ -3371,7 +3375,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                                (
                                               #3
                                                / 
-                                              #60
+                                              #61
                                               )
                                             </span>
                                           </small>
@@ -3941,7 +3945,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                                (
                                               #3
                                                / 
-                                              #60
+                                              #61
                                               )
                                             </span>
                                           </small>
@@ -7967,7 +7971,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                                 </big>
                                               </b>
                                                (
-                                              #11
+                                              #12
                                                / 
                                               #35
                                               )
@@ -8539,7 +8543,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                                 </big>
                                               </b>
                                                (
-                                              #11
+                                              #12
                                                / 
                                               #35
                                               )
@@ -9116,7 +9120,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                                (
                                               #5
                                                / 
-                                              #103
+                                              #105
                                               )
                                             </span>
                                           </small>
@@ -9683,7 +9687,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                                (
                                               #5
                                                / 
-                                              #103
+                                              #105
                                               )
                                             </span>
                                           </small>
@@ -11414,7 +11418,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                                 </big>
                                               </b>
                                                (
-                                              #27
+                                              #28
                                                / 
                                               #28
                                               )
@@ -11994,7 +11998,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                                 </big>
                                               </b>
                                                (
-                                              #27
+                                              #28
                                                / 
                                               #28
                                               )
@@ -12684,6 +12688,10 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
               Object {
                 "label": "2019/20",
                 "value": "2019/20",
+              },
+              Object {
+                "label": "2020/21",
+                "value": "2020/21",
               },
               Object {
                 "label": "All",
@@ -17193,7 +17201,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                                (
                                               #2
                                                / 
-                                              #82
+                                              #83
                                               )
                                             </span>
                                           </small>
@@ -17772,7 +17780,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                                (
                                               #2
                                                / 
-                                              #82
+                                              #83
                                               )
                                             </span>
                                           </small>
@@ -18354,7 +18362,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                                (
                                               #3
                                                / 
-                                              #60
+                                              #61
                                               )
                                             </span>
                                           </small>
@@ -18933,7 +18941,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                                (
                                               #3
                                                / 
-                                              #60
+                                              #61
                                               )
                                             </span>
                                           </small>
@@ -23016,7 +23024,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                                (
                                               #10
                                                / 
-                                              #65
+                                              #66
                                               )
                                             </span>
                                           </small>
@@ -23602,7 +23610,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                                (
                                               #10
                                                / 
-                                              #65
+                                              #66
                                               )
                                             </span>
                                           </small>
@@ -23971,7 +23979,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                   def_3p: Object {
                                     "old_value": 0.2909,
                                     "override": "Luck adjusted",
-                                    "value": 0.3319,
+                                    "value": 0.3317,
                                   }
 
                   def_3pr: Object {
@@ -23984,7 +23992,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                   def_adj_ppp: Object {
                                     "old_value": 90.7621,
                                     "override": "Adjusted from Def 3P%",
-                                    "value": 94.7027,
+                                    "value": 94.6886,
                                   }
 
                   def_assist: Object {
@@ -24009,7 +24017,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                   def_efg: Object {
                                     "old_value": 0.4656,
                                     "override": "Adjusted from Def 3P%",
-                                    "value": 0.4914,
+                                    "value": 0.4913,
                                   }
 
                   def_ftr: Object {
@@ -24043,7 +24051,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     </span>,
                                     "old_value": 95.4545,
                                     "override": "Adjusted from Def 3P%",
-                                    "value": 99.573,
+                                    "value": 99.5582,
                                   }
 
                   def_title: ""
@@ -24315,7 +24323,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               pill={false}
                                               style={
                                                 Object {
-                                                  "backgroundColor": "#a1d0a180",
+                                                  "backgroundColor": "#a2d1a280",
                                                 }
                                               }
                                               variant="light"
@@ -24364,7 +24372,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               pill={false}
                                               style={
                                                 Object {
-                                                  "backgroundColor": "#83c18380",
+                                                  "backgroundColor": "#84c28480",
                                                 }
                                               }
                                               variant="light"
@@ -24410,7 +24418,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               pill={false}
                                               style={
                                                 Object {
-                                                  "backgroundColor": "#bddebd80",
+                                                  "backgroundColor": "#bfdfbf80",
                                                 }
                                               }
                                               variant="light"
@@ -24456,7 +24464,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               pill={false}
                                               style={
                                                 Object {
-                                                  "backgroundColor": "#4aa54a80",
+                                                  "backgroundColor": "#4ba54b80",
                                                 }
                                               }
                                               variant="light"
@@ -24505,7 +24513,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               pill={false}
                                               style={
                                                 Object {
-                                                  "backgroundColor": "#1c8e1c80",
+                                                  "backgroundColor": "#1d8f1d80",
                                                 }
                                               }
                                               variant="light"
@@ -24560,7 +24568,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                   def_3p: Object {
                                     "old_value": 0.2909,
                                     "override": "Luck adjusted",
-                                    "value": 0.3319,
+                                    "value": 0.3317,
                                   }
 
                   def_3pr: Object {
@@ -24573,7 +24581,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                   def_adj_ppp: Object {
                                     "old_value": 90.7621,
                                     "override": "Adjusted from Def 3P%",
-                                    "value": 94.7027,
+                                    "value": 94.6886,
                                   }
 
                   def_assist: Object {
@@ -24598,7 +24606,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                   def_efg: Object {
                                     "old_value": 0.4656,
                                     "override": "Adjusted from Def 3P%",
-                                    "value": 0.4914,
+                                    "value": 0.4913,
                                   }
 
                   def_ftr: Object {
@@ -24632,7 +24640,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     </span>,
                                     "old_value": 95.4545,
                                     "override": "Adjusted from Def 3P%",
-                                    "value": 99.573,
+                                    "value": 99.5582,
                                   }
 
                   def_title: ""
@@ -24904,7 +24912,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               pill={false}
                                               style={
                                                 Object {
-                                                  "backgroundColor": "#a1d0a180",
+                                                  "backgroundColor": "#a2d1a280",
                                                 }
                                               }
                                               variant="light"
@@ -24953,7 +24961,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               pill={false}
                                               style={
                                                 Object {
-                                                  "backgroundColor": "#83c18380",
+                                                  "backgroundColor": "#84c28480",
                                                 }
                                               }
                                               variant="light"
@@ -24999,7 +25007,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               pill={false}
                                               style={
                                                 Object {
-                                                  "backgroundColor": "#bddebd80",
+                                                  "backgroundColor": "#bfdfbf80",
                                                 }
                                               }
                                               variant="light"
@@ -25045,7 +25053,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               pill={false}
                                               style={
                                                 Object {
-                                                  "backgroundColor": "#4aa54a80",
+                                                  "backgroundColor": "#4ba54b80",
                                                 }
                                               }
                                               variant="light"
@@ -25094,7 +25102,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                               pill={false}
                                               style={
                                                 Object {
-                                                  "backgroundColor": "#1c8e1c80",
+                                                  "backgroundColor": "#1d8f1d80",
                                                 }
                                               }
                                               variant="light"
@@ -31247,6 +31255,10 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                 "value": "2019/20",
               },
               Object {
+                "label": "2020/21",
+                "value": "2020/21",
+              },
+              Object {
                 "label": "All",
                 "value": "All",
               },
@@ -33426,7 +33438,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                                (
                                               #2
                                                / 
-                                              #82
+                                              #83
                                               )
                                             </span>
                                           </small>
@@ -33996,7 +34008,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                                (
                                               #2
                                                / 
-                                              #82
+                                              #83
                                               )
                                             </span>
                                           </small>
@@ -34592,7 +34604,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                                (
                                               #3
                                                / 
-                                              #60
+                                              #61
                                               )
                                             </span>
                                           </small>
@@ -35162,7 +35174,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                                (
                                               #3
                                                / 
-                                              #60
+                                              #61
                                               )
                                             </span>
                                           </small>
@@ -39280,7 +39292,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                                 </big>
                                               </b>
                                                (
-                                              #11
+                                              #12
                                                / 
                                               #35
                                               )
@@ -39852,7 +39864,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                                 </big>
                                               </b>
                                                (
-                                              #11
+                                              #12
                                                / 
                                               #35
                                               )
@@ -40452,7 +40464,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                                (
                                               #5
                                                / 
-                                              #103
+                                              #105
                                               )
                                             </span>
                                           </small>
@@ -41019,7 +41031,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                                (
                                               #5
                                                / 
-                                              #103
+                                              #105
                                               )
                                             </span>
                                           </small>
@@ -42796,7 +42808,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                                 </big>
                                               </b>
                                                (
-                                              #27
+                                              #28
                                                / 
                                               #28
                                               )
@@ -43376,7 +43388,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                                 </big>
                                               </b>
                                                (
-                                              #27
+                                              #28
                                                / 
                                               #28
                                               )

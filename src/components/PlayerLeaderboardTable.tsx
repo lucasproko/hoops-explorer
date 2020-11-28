@@ -150,7 +150,7 @@ const expandedPosClasses = {
 } as Record<string, string[]>;
 
 /** When showing across multiple data sets, don't show intra-year rankings unless it's a full data set */
-const fullDataSetSeasons = new Set(["2018/9", "2019/20"]);
+const fullDataSetSeasons = new Set(["2018/9", "2019/20", "2020/21"]);
 
 // Functional component
 
@@ -631,7 +631,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       <Col xs={6} sm={6} md={3} lg={2}>
         <Select
           value={ stringToOption(year) }
-          options={[ "2018/9", "2019/20", "All", "Extra" ].map(
+          options={[ "2018/9", "2019/20", "2020/21", "All", "Extra" ].map(
             (r) => stringToOption(r)
           )}
           isSearchable={false}

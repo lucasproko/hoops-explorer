@@ -26,7 +26,7 @@ describe("LineupLeaderboardTable", () => {
     const dummyChangeStateCallback = (stats: LineupLeaderboardParams) => {};
     const wrapper = shallow(
       <LineupLeaderboardTable
-        startingState={{}}
+        startingState={{ year: "2019/20" }}
         dataEvent={sampleData}
         onChangeState={dummyChangeStateCallback}
       />
@@ -37,7 +37,7 @@ describe("LineupLeaderboardTable", () => {
     const dummyChangeStateCallback = (stats: LineupLeaderboardParams) => {};
     const wrapper = shallow(
       <LineupLeaderboardTable
-        startingState={{ showLineupLuckDiags: true }}
+        startingState={{  year: "2019/20" , showLineupLuckDiags: true }}
         dataEvent={sampleData}
         onChangeState={dummyChangeStateCallback}
       />
