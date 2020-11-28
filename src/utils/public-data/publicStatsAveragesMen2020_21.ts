@@ -1,5 +1,5 @@
-// See cbb-explorer/artefacts/elasticsearch-scripts/build_stats_averages.json (XXXX=2019)
-export const publicStatsAveragesMen2019_20: Record<string, any> =  {
+// See cbb-explorer/artefacts/elasticsearch-scripts/build_stats_averages.json (XXXX=2020)
+export const publicStatsAveragesMen2020_21: Record<string, any> =  {
           "off_2p" : {
             "value" : 0.4991094432156142
           },

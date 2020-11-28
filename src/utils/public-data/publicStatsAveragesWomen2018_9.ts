@@ -1,4 +1,4 @@
-
+// See cbb-explorer/artefacts/elasticsearch-scripts/build_stats_averages.json (women_2018)
 export const publicStatsAveragesWomen2018_9: Record<string, any> =   {
           "off_2p" : {
             "value" : 0.46449724349904864

@@ -11,6 +11,8 @@ import { publicKenpomEfficiency2018_9 } from "../../utils/public-data/publicKenp
 // @ts-ignore
 import { publicKenpomEfficiency2019_20 } from "../../utils/public-data/publicKenpomEfficiency2019_20";
 // @ts-ignore
+import { publicKenpomEfficiency2020_21 } from "../../utils/public-data/publicKenpomEfficiency2020_21";
+// @ts-ignore
 import { publicHerhoopstatsEfficiency2018_9 } from "../../utils/public-data/publicHerhoopstatsEfficiency2018_9";
 // @ts-ignore
 import { publicHerhoopstatsEfficiency2019_20 } from "../../utils/public-data/publicHerhoopstatsEfficiency2019_20";
@@ -22,6 +24,7 @@ export const efficiencyInfo: Record<string, [ Record<string, any>, Record<string
   "Men_2017/8": [ publicKenpomEfficiency2017_8, {} ],
   "Men_2018/9": [ publicKenpomEfficiency2018_9, {} ],
   "Men_2019/20": [ publicKenpomEfficiency2019_20, {} ],
+  "Men_2020/21": [ publicKenpomEfficiency2020_21, {} ],
   "Women_2018/9": [ publicHerhoopstatsEfficiency2018_9, {} ], //(herhoopstats uses NCAA team names)
   "Women_2019/20": [ publicHerhoopstatsEfficiency2019_20, {} ]
 };
