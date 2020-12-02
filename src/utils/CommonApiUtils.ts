@@ -2,6 +2,7 @@
 // System imports
 import { NextApiRequest, NextApiResponse } from 'next';
 import fetch from 'isomorphic-unfetch';
+import _ from 'lodash';
 
 // Application imports
 import { teamStatsQuery } from "./es-queries/teamStatsQueryTemplate";
@@ -12,7 +13,7 @@ import { efficiencyInfo } from './internal-data/efficiencyInfo';
 import { efficiencyAverages } from './public-data/efficiencyAverages';
 import { ServerRequestCache } from './ServerRequestCache';
 import { dataLastUpdated } from './internal-data/dataLastUpdated';
-import { ParamPrefixes, ParamDefaults, GameFilterParams } from './FilterModels';
+import { ParamPrefixes, ParamDefaults, GameFilterParams, CommonFilterParams } from './FilterModels';
 import { QueryUtils } from "./QueryUtils";
 
 const pxIsDebug = (process.env.NODE_ENV !== 'production');
@@ -25,6 +26,14 @@ if (pxIsDebug) {
 }
 
 export class CommonApiUtils {
+
+  static getHca(params: CommonFilterParams) {
+    if (_.startsWith(params.year, "2020")) {
+      return 1.0; //no crowds so nerfing 2020/21 HCA
+    } else {
+      return 1.5;
+    }
+  }
 
   /** Return a cached response to the front-end */
   static commonOnCacheHit(

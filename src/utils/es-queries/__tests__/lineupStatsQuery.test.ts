@@ -10,7 +10,7 @@ describe("lineupStatsQuery", () => {
       baseQuery: "base",
     }, 0, { "team": { "stats": 0 } }, {
       "name1": "name1b"
-    }, 100.0);
+    }, 100.0, 1.0);
 
     // Write the resulting object out in pure JS format in case we want to paste it into
     // the ES console

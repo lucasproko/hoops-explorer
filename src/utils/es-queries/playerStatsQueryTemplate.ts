@@ -6,7 +6,7 @@ import { GameFilterParams } from "../FilterModels";
 
 export const playerStatsQuery = function(
   params: GameFilterParams,
-  lastDate: number, publicEfficiency: any, lookup: any, avgEfficiency: number
+  lastDate: number, publicEfficiency: any, lookup: any, avgEfficiency: number, hca: number
 ) {
   return {
      "_source": {
@@ -24,7 +24,7 @@ export const playerStatsQuery = function(
                    "size": 100
                 },
                 "aggregations": {
-                  ...commonPlayerAggregations(publicEfficiency, lookup, avgEfficiency),
+                  ...commonPlayerAggregations(publicEfficiency, lookup, avgEfficiency, hca),
                   "player_array": {
                      "top_hits": {
                        "size": 1,

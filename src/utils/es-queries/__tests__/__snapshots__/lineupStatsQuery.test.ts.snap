@@ -901,8 +901,8 @@ exports[`lineupStatsQuery lineupStatsQuery 1`] = `
                                  "stats": 0
                               }
                            },
-                           "off_hca": 1.5,
-                           "def_hca": -1.5
+                           "off_hca": 1,
+                           "def_hca": -1
                         }
                      }
                   }
@@ -927,8 +927,8 @@ exports[`lineupStatsQuery lineupStatsQuery 1`] = `
                                  "stats": 0
                               }
                            },
-                           "off_hca": 1.5,
-                           "def_hca": -1.5
+                           "off_hca": 1,
+                           "def_hca": -1
                         }
                      }
                   }
@@ -1825,8 +1825,8 @@ exports[`lineupStatsQuery lineupStatsQuery 1`] = `
                                  "stats": 0
                               }
                            },
-                           "off_hca": 1.5,
-                           "def_hca": -1.5
+                           "off_hca": 1,
+                           "def_hca": -1
                         }
                      }
                   }
@@ -1874,8 +1874,8 @@ exports[`lineupStatsQuery lineupStatsQuery 1`] = `
                                  "stats": 0
                               }
                            },
-                           "off_hca": 1.5,
-                           "def_hca": -1.5
+                           "off_hca": 1,
+                           "def_hca": -1
                         }
                      }
                   }

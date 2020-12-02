@@ -7,7 +7,7 @@ import { CommonApiUtils } from "../../utils/CommonApiUtils";
 import { teamStatsQuery } from "../../utils/es-queries/teamStatsQueryTemplate";
 import { rosterCompareQuery } from "../../utils/es-queries/rosterCompareQueryTemplate";
 import { playerStatsQuery } from "../../utils/es-queries/playerStatsQueryTemplate";
-import { ParamPrefixes } from '../../utils/FilterModels';
+import { ParamPrefixes, CommonFilterParams } from '../../utils/FilterModels';
 
 const queryPrefix = ParamPrefixes.player;
 
@@ -19,7 +19,9 @@ function marshallRequest(
   const body = [
     JSON.stringify({ index: `player_events_${genderPrefix}${index}` }),
     JSON.stringify(
-      playerStatsQuery(params, currentJsonEpoch, efficiency, lookup, avgEfficiency),
+      playerStatsQuery(params, currentJsonEpoch, efficiency, lookup, avgEfficiency,
+        CommonApiUtils.getHca(params as CommonFilterParams)
+      ),
       CommonApiUtils.efficiencyReplacer()
     ),
   ].join('\n') + "\n";

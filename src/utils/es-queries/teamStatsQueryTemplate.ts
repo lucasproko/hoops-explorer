@@ -8,7 +8,7 @@ import { GameFilterParams } from "../FilterModels";
 
 export const teamStatsQuery = function(
   params: GameFilterParams,
-  lastDate: number, publicEfficiency: any, lookup: any, avgEfficiency: number
+  lastDate: number, publicEfficiency: any, lookup: any, avgEfficiency: number, hca: number
 ) {
   return {
      "_source": {
@@ -32,11 +32,11 @@ export const teamStatsQuery = function(
              },
              "aggregations": {
                ...(_.pick(
-                 commonAggregations("team_stats", "off", publicEfficiency, lookup, avgEfficiency),
+                 commonAggregations("team_stats", "off", publicEfficiency, lookup, avgEfficiency, hca),
                  [ "total_off_3p_attempts" ]
               )),
                ...(_.pick(
-                 commonAggregations("opponent_stats", "def", publicEfficiency, lookup, avgEfficiency),
+                 commonAggregations("opponent_stats", "def", publicEfficiency, lookup, avgEfficiency, hca),
                  [ "def_3p", "def_poss", "total_def_poss", "total_def_3p_attempts", "total_def_3p_made", "def_3p_opp" ]
               ))
             }
@@ -44,7 +44,7 @@ export const teamStatsQuery = function(
          }
        },
        "tri_filter": {
-           "aggregations": commonLineupAggregations(publicEfficiency, lookup, avgEfficiency),
+           "aggregations": commonLineupAggregations(publicEfficiency, lookup, avgEfficiency, hca),
            "filters": commonOnOffBaseQuery(params)
        }
      },

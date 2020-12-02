@@ -4,7 +4,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 // Application imports
 import { CommonApiUtils } from "../../utils/CommonApiUtils";
 import { lineupStatsQuery } from "../../utils/es-queries/lineupStatsQueryTemplate";
-import { ParamPrefixes } from '../../utils/FilterModels';
+import { ParamPrefixes, CommonFilterParams } from '../../utils/FilterModels';
 
 const queryPrefix = ParamPrefixes.lineup;
 
@@ -16,7 +16,9 @@ function marshallRequest(
   const body = [
     JSON.stringify({ index: index }),
     JSON.stringify(
-      lineupStatsQuery(params, currentJsonEpoch, efficiency, lookup, avgEfficiency),
+      lineupStatsQuery(params, currentJsonEpoch, efficiency, lookup, avgEfficiency,
+        CommonApiUtils.getHca(params as CommonFilterParams)
+      ),
       CommonApiUtils.efficiencyReplacer()
     )
   ].join('\n') + "\n";

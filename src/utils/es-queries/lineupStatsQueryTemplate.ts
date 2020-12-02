@@ -6,7 +6,7 @@ import { LineupFilterParams } from "../FilterModels";
 
 export const lineupStatsQuery = function(
   params: LineupFilterParams,
-  lastDate: number, publicEfficiency: any, lookup: any, avgEfficiency: number
+  lastDate: number, publicEfficiency: any, lookup: any, avgEfficiency: number, hca: number
 ) {
   return {
      "_source": {
@@ -17,7 +17,7 @@ export const lineupStatsQuery = function(
      "aggregations": {
         "lineups": {
            "aggregations": {
-             ...commonLineupAggregations(publicEfficiency, lookup, avgEfficiency),
+             ...commonLineupAggregations(publicEfficiency, lookup, avgEfficiency, hca),
              "players_array": {
                 "top_hits": {
                   "size": 1,

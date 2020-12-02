@@ -2,7 +2,7 @@ import { commonAggregations, timeAnalysis } from "./commonLineupAggregations";
 
 import _ from "lodash";
 
-export const commonPlayerAggregations = function(publicEfficiency: any, lookup: any, avgEff: number) {
+export const commonPlayerAggregations = function(publicEfficiency: any, lookup: any, avgEff: number, hca: number) {
 
   /** Build all the combos of assist networks */
   const buildAssistNetworks = () => {
@@ -44,7 +44,7 @@ export const commonPlayerAggregations = function(publicEfficiency: any, lookup: 
   return {
     // Team based stats
     ...(_.chain(
-        commonAggregations("team_stats", "off", publicEfficiency, lookup, avgEff)
+        commonAggregations("team_stats", "off", publicEfficiency, lookup, avgEff, hca)
       ).pick(
         [ "total_off_poss", "total_off_to",
           "total_off_fgm", "total_off_fga", "total_off_3p_made",
@@ -63,7 +63,7 @@ export const commonPlayerAggregations = function(publicEfficiency: any, lookup: 
       }).value()
     ),
     ...(_.chain(
-        commonAggregations("opponent_stats", "def", publicEfficiency, lookup, avgEff)
+        commonAggregations("opponent_stats", "def", publicEfficiency, lookup, avgEff, hca)
       ).pick(
         [ "total_def_poss", "total_def_2p_attempts",
           "total_def_drb", "total_def_orb",
@@ -83,7 +83,7 @@ export const commonPlayerAggregations = function(publicEfficiency: any, lookup: 
     // Player based stats
     // The bulk are offensive:
     ...(_.chain(
-        commonAggregations("player_stats", "off", publicEfficiency, lookup, avgEff)
+        commonAggregations("player_stats", "off", publicEfficiency, lookup, avgEff, hca)
       ).omit(
         [ "off_poss", "off_ppp", "off_to", "off_orb", "off_adj_ppp", "off_assist",
 //TODO: handle scramble and transition breakdowns better
@@ -217,7 +217,7 @@ export const commonPlayerAggregations = function(publicEfficiency: any, lookup: 
     ),
     // Plus a few defensive ones
     ...(_.chain(
-        commonAggregations("player_stats", "def", publicEfficiency, lookup, avgEff)
+        commonAggregations("player_stats", "def", publicEfficiency, lookup, avgEff, hca)
       ).pick(
         [ "def_adj_opp" ]
       ).value()

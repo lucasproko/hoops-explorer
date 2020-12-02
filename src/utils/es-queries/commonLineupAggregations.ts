@@ -124,7 +124,7 @@ export const timeAnalysis = function() {
 /** srcPrefix is "team_stats", "opponent_stats", dstPrefix is "off", "def" */
 export const commonAggregations = function(
   srcPrefix: string, dstPrefix: "off" | "def",
-  publicEfficiency: any, lookup: any, avgEff: number
+  publicEfficiency: any, lookup: any, avgEff: number, hca: number
 ) {
   const oppoDstPrefix = (dstPrefix == "off") ? "def" : "off"; //(swivels)
   const bestPossCount =
@@ -270,8 +270,8 @@ export const commonAggregations = function(
                     "avgEff": avgEff,
                     "pbp_to_kp": lookup,
                     [`kp_${dstPrefix}`]: publicEfficiency,
-                    "off_hca": 1.5, //(this should be derived from year/gender at some point?)
-                    "def_hca": -1.5
+                    "off_hca": hca, //(this should be derived from year/gender at some point?)
+                    "def_hca": -hca
                  }
               }
            }
@@ -315,8 +315,8 @@ export const commonAggregations = function(
                      "avgEff": avgEff,
                      "pbp_to_kp": lookup,
                      [`kp_${oppoDstPrefix}`]: publicEfficiency,
-                     "off_hca": 1.5, //(this should be derived from year/gender at some point?)
-                     "def_hca": -1.5
+                     "off_hca": hca, //(this should be derived from year/gender at some point?)
+                     "def_hca": -hca
                   }
                }
             }
@@ -343,11 +343,11 @@ export const commonAggregations = function(
   };
 }
 
-export const commonLineupAggregations = function(publicEfficiency: any, lookup: any, avgEff: number) {
+export const commonLineupAggregations = function(publicEfficiency: any, lookup: any, avgEff: number, hca: number) {
   return {
     // Derived
-    ...commonAggregations("team_stats", "off", publicEfficiency, lookup, avgEff),
-    ...commonAggregations("opponent_stats", "def", publicEfficiency, lookup, avgEff),
+    ...commonAggregations("team_stats", "off", publicEfficiency, lookup, avgEff, hca),
+    ...commonAggregations("opponent_stats", "def", publicEfficiency, lookup, avgEff, hca),
     ...timeAnalysis()
    };
 }
