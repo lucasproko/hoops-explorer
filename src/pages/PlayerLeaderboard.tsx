@@ -114,7 +114,7 @@ const PlayLeaderboardPage: NextPage<{}> = () => {
     if (year == "All") { //TODO: tidy this up
       setDataEvent(dataEventInit); //(clear saved sub-events)
 
-      const years = [ "2018/9", "2019/20", "Extra" ];
+      const years = [ "2018/9", "2019/20", "2020/21", "Extra" ];
       const fetchAll = Promise.all(years.map(tmpYear => tmpYear.substring(0, 4)).map((subYear) => {
         return fetch(`/leaderboards/lineups/players_${dataSubEventKey}_${gender}_${subYear}.json`)
           .then((response: fetch.IsomorphicResponse) => {
