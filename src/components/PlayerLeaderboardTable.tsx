@@ -52,6 +52,7 @@ import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
 import { PlayerLeaderboardParams, ParamDefaults, LuckParams } from '../utils/FilterModels';
 import { AvailableTeams } from '../utils/internal-data/AvailableTeams';
 import { ConferenceToNickname, NicknameToConference, Power6Conferences } from '../utils/public-data/ConferenceInfo';
+import { PlayerLeaderboardTracking } from '../utils/internal-data/LeaderboardTrackingLists';
 
 import ReactDOMServer from 'react-dom/server'
 
@@ -194,7 +195,9 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
   const startingMaxTableSize = startingState.maxTableSize || ParamDefaults.defaultPlayerLboardMaxTableSize;
   const [ maxTableSize, setMaxTableSize ] = useState(startingMaxTableSize);
   const [ sortBy, setSortBy ] = useState(startingState.sortBy || ParamDefaults.defaultPlayerLboardSortBy(useRapm, factorMins));
-  const [ filterStr, setFilterStr ] = useState(startingState.filter || ParamDefaults.defaultPlayerLboardFilter);
+  const [ filterStr, setFilterStr ] = useState(
+    PlayerLeaderboardTracking[startingState.filter || ""] || startingState.filter || ParamDefaults.defaultPlayerLboardFilter
+  );
 
   const [ isT100, setIsT100 ] = useState(startingState.t100 || false);
   const [ isConfOnly, setIsConfOnly ] = useState(startingState.confOnly || false);

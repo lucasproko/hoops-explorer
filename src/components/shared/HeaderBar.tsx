@@ -51,6 +51,8 @@ const StyledDropdown = React.forwardRef<HTMLAnchorElement>((props, ref) => (
 
 const HeaderBar: React.FunctionComponent<Props> = ({thisPage, common, override}) => {
 
+  const isLeaderboard = _.endsWith(thisPage, "_leaderboard");
+
   const server = (typeof window === `undefined`) ? //(ensures SSR code still compiles)
     "server" : window.location.hostname;
 
@@ -64,6 +66,14 @@ const HeaderBar: React.FunctionComponent<Props> = ({thisPage, common, override})
   function getPlayerLeaderboardUrl() {
     return UrlRouting.getPlayerLeaderboardUrl(
       getCommonLboardFilterParams(common) as PlayerLeaderboardParams
+    );
+  }
+  function getPlayerLeaderboardTrackingUrl(trackingList: string) {
+    return UrlRouting.getPlayerLeaderboardUrl(
+      {
+        ...(getCommonLboardFilterParams(common) as PlayerLeaderboardParams),
+        filter: trackingList
+      }
     );
   }
   // Last visited
@@ -108,6 +118,9 @@ const HeaderBar: React.FunctionComponent<Props> = ({thisPage, common, override})
   const playerLeaderboardTooltip = (
     <Tooltip id="playerLeaderboardTooltip">Go to the (luck adjusted) Player Leaderboard page</Tooltip>
   );
+  const playerLeaderboardTooltipMdVa2017 = (
+    <Tooltip id="playerLeaderboardTooltipMdVa2017">Go to the (luck adjusted) Player Leaderboard page, filtered for DC/Maryland/Virginia players class of 2017+</Tooltip>
+  );
   const baseGameTooltip = (
     <Tooltip id="baseGameTooltip">Go to the On/Off Analysis page with the current baseline query</Tooltip>
   );
@@ -137,18 +150,27 @@ const HeaderBar: React.FunctionComponent<Props> = ({thisPage, common, override})
       HistoryManager.addParamsToHistory(key, thisPage);
     }
   };
+  const onForce = (url: string) => (e: any) => {
+    // (can't force a full client refresh using Router - this is an ugly alternative)
+    window.location.href = url;
+  };
 
   /** Builds a nice looking nav dropdown item */
-  const buildNavItem = (itemName: string, tooltip: React.ReactElement<any>, url: string) => {
-    return <OverlayTrigger rootClose placement="left" overlay={tooltip}>
-      <span>
-        <Link href={url}>
-          <div>
-            <a className="text-center small" href={url} onClick={onNav}>{itemName}</a>
-          </div>
-        </Link>
-      </span>
-    </OverlayTrigger>
+  const buildNavItem = (itemName: string, tooltip: React.ReactElement<any>, url: string, toLeaderboard: boolean = false) => {
+    return isLeaderboard && toLeaderboard ?
+      <OverlayTrigger rootClose placement="left" overlay={tooltip}>
+        <a className="text-center small" href={url} onClick={onForce(url)}>{itemName}</a>
+      </OverlayTrigger>
+      :
+      <OverlayTrigger rootClose placement="left" overlay={tooltip}>
+        <span>
+          <Link href={url}>
+            <div>
+              <a className="text-center small" href={url} onClick={onNav}>{itemName}</a>
+            </div>
+          </Link>
+        </span>
+      </OverlayTrigger>
   };
 
   const dropdownStyle = {
@@ -196,10 +218,14 @@ const HeaderBar: React.FunctionComponent<Props> = ({thisPage, common, override})
         <Dropdown.Toggle id="chartDropDown" as={StyledDropdown as unknown as undefined}>Leaderboards</Dropdown.Toggle>
         <Dropdown.Menu style={dropdownStyle}>
           <Dropdown.Item>
-            {buildNavItem("Lineups", lineupLeaderboardTooltip, getLineupLeaderboardUrl())}
+            {buildNavItem("Lineups", lineupLeaderboardTooltip, getLineupLeaderboardUrl(), true)}
           </Dropdown.Item>
           <Dropdown.Item>
-            {buildNavItem("Players", playerLeaderboardTooltip, getPlayerLeaderboardUrl())}
+            {buildNavItem("Players", playerLeaderboardTooltip, getPlayerLeaderboardUrl(), true)}
+          </Dropdown.Item>
+          <Dropdown.Divider/>
+          <Dropdown.Item>
+            {buildNavItem("DC/Md/Va players (HS 2017+)", playerLeaderboardTooltipMdVa2017, getPlayerLeaderboardTrackingUrl("__DMV_2017__"), true)}
           </Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>;
