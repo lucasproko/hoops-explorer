@@ -118,8 +118,8 @@ const HeaderBar: React.FunctionComponent<Props> = ({thisPage, common, override})
   const playerLeaderboardTooltip = (
     <Tooltip id="playerLeaderboardTooltip">Go to the (luck adjusted) Player Leaderboard page</Tooltip>
   );
-  const playerLeaderboardTooltipMdVa2017 = (
-    <Tooltip id="playerLeaderboardTooltipMdVa2017">Go to the (luck adjusted) Player Leaderboard page, filtered for DC/Maryland/Virginia players class of 2017+</Tooltip>
+  const playerLeaderboardTooltipMdDmv2017 = (
+    <Tooltip id="playerLeaderboardTooltipMdDmv2017">Go to the (luck adjusted) Player Leaderboard page, filtered for Md/DMV-area players class of 2017+</Tooltip>
   );
   const baseGameTooltip = (
     <Tooltip id="baseGameTooltip">Go to the On/Off Analysis page with the current baseline query</Tooltip>
@@ -225,7 +225,7 @@ const HeaderBar: React.FunctionComponent<Props> = ({thisPage, common, override})
           </Dropdown.Item>
           <Dropdown.Divider/>
           <Dropdown.Item>
-            {buildNavItem("DC/Md/Va players (HS 2017+)", playerLeaderboardTooltipMdVa2017, getPlayerLeaderboardTrackingUrl("__DMV_2017__"), true)}
+            {buildNavItem("Md/DMV-area players (HS 2017+)", playerLeaderboardTooltipMdDmv2017, getPlayerLeaderboardTrackingUrl("__DMV_2017__"), true)}
           </Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>;
