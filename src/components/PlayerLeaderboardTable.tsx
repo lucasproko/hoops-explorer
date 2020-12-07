@@ -278,6 +278,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       posClasses: posClasses,
       possAsPct: possAsPct,
       factorMins: factorMins,
+      useRapm: useRapm,
       // Misc filters
       minPoss: minPoss,
       maxTableSize: maxTableSize,
