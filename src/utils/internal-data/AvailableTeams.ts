@@ -22,6 +22,7 @@ export class AvailableTeams {
 
       { team: "Maryland", year: "2018/9", gender: "Women", index_template: "women_bigten" },
       { team: "Maryland", year: "2019/20", gender: "Women", index_template: "women_bigten" },
+      { team: "Maryland", year: "2020/21", gender: "Women", index_template: "women_bigten" },
     ],
     // ACC
     "Clemson": [
@@ -372,6 +373,7 @@ export class AvailableTeams {
 
       { team: "Indiana", year: "2018/9", gender: "Women", index_template: "women_bigten" },
       { team: "Indiana", year: "2019/20", gender: "Women", index_template: "women_bigten" },
+      { team: "Indiana", year: "2020/21", gender: "Women", index_template: "women_bigten" },
     ],
     "Nebraska": [
       { team: "Nebraska", year: "2018/9", gender: "Men", index_template: "bigten" },
@@ -380,6 +382,7 @@ export class AvailableTeams {
 
       { team: "Nebraska", year: "2018/9", gender: "Women", index_template: "women_bigten" },
       { team: "Nebraska", year: "2019/20", gender: "Women", index_template: "women_bigten" },
+      { team: "Nebraska", year: "2020/21", gender: "Women", index_template: "women_bigten" },
     ],
     "Wisconsin": [
       { team: "Wisconsin", year: "2018/9", gender: "Men", index_template: "bigten" },
@@ -388,6 +391,7 @@ export class AvailableTeams {
 
       { team: "Wisconsin", year: "2018/9", gender: "Women", index_template: "women_bigten" },
       { team: "Wisconsin", year: "2019/20", gender: "Women", index_template: "women_bigten" },
+      { team: "Wisconsin", year: "2020/21", gender: "Women", index_template: "women_bigten" },
     ],
     "Ohio St.": [
       { team: "Ohio St.", year: "2018/9", gender: "Men", index_template: "bigten" },
@@ -396,6 +400,7 @@ export class AvailableTeams {
 
       { team: "Ohio St.", year: "2018/9", gender: "Women", index_template: "women_bigten" },
       { team: "Ohio St.", year: "2019/20", gender: "Women", index_template: "women_bigten" },
+      { team: "Ohio St.", year: "2020/21", gender: "Women", index_template: "women_bigten" },
     ],
     "Michigan St.": [
       { team: "Michigan St.", year: "2018/9", gender: "Men", index_template: "bigten" },
@@ -404,6 +409,7 @@ export class AvailableTeams {
 
       { team: "Michigan St.", year: "2018/9", gender: "Women", index_template: "women_bigten" },
       { team: "Michigan St.", year: "2019/20", gender: "Women", index_template: "women_bigten" },
+      { team: "Michigan St.", year: "2020/21", gender: "Women", index_template: "women_bigten" },
     ],
     "Iowa": [
       { team: "Iowa", year: "2018/9", gender: "Men", index_template: "bigten" },
@@ -412,6 +418,7 @@ export class AvailableTeams {
 
       { team: "Iowa", year: "2018/9", gender: "Women", index_template: "women_bigten" },
       { team: "Iowa", year: "2019/20", gender: "Women", index_template: "women_bigten" },
+      { team: "Iowa", year: "2020/21", gender: "Women", index_template: "women_bigten" },
     ],
     "Michigan": [
       { team: "Michigan", year: "2018/9", gender: "Men", index_template: "bigten" },
@@ -420,6 +427,7 @@ export class AvailableTeams {
 
       { team: "Michigan", year: "2018/9", gender: "Women", index_template: "women_bigten" },
       { team: "Michigan", year: "2019/20", gender: "Women", index_template: "women_bigten" },
+      { team: "Michigan", year: "2020/21", gender: "Women", index_template: "women_bigten" },
     ],
     "Purdue": [
       { team: "Purdue", year: "2018/9", gender: "Men", index_template: "bigten" },
@@ -428,6 +436,7 @@ export class AvailableTeams {
 
       { team: "Purdue", year: "2018/9", gender: "Women", index_template: "women_bigten" },
       { team: "Purdue", year: "2019/20", gender: "Women", index_template: "women_bigten" },
+      { team: "Purdue", year: "2020/21", gender: "Women", index_template: "women_bigten" },
     ],
     "Illinois": [
       { team: "Illinois", year: "2018/9", gender: "Men", index_template: "bigten" },
@@ -436,6 +445,7 @@ export class AvailableTeams {
 
       { team: "Illinois", year: "2018/9", gender: "Women", index_template: "women_bigten" },
       { team: "Illinois", year: "2019/20", gender: "Women", index_template: "women_bigten" },
+      { team: "Illinois", year: "2020/21", gender: "Women", index_template: "women_bigten" },
     ],
     "Penn St.": [
       { team: "Penn St.", year: "2018/9", gender: "Men", index_template: "bigten" },
@@ -444,6 +454,7 @@ export class AvailableTeams {
 
       { team: "Penn St.", year: "2018/9", gender: "Women", index_template: "women_bigten" },
       { team: "Penn St.", year: "2019/20", gender: "Women", index_template: "women_bigten" },
+      { team: "Penn St.", year: "2020/21", gender: "Women", index_template: "women_bigten" },
     ],
     "Northwestern": [
       { team: "Northwestern", year: "2018/9", gender: "Men", index_template: "bigten" },
@@ -452,6 +463,7 @@ export class AvailableTeams {
 
       { team: "Northwestern", year: "2018/9", gender: "Women", index_template: "women_bigten" },
       { team: "Northwestern", year: "2019/20", gender: "Women", index_template: "women_bigten" },
+      { team: "Northwestern", year: "2020/21", gender: "Women", index_template: "women_bigten" },
     ],
     "Rutgers": [
       { team: "Rutgers", year: "2018/9", gender: "Men", index_template: "bigten" },
@@ -460,6 +472,7 @@ export class AvailableTeams {
 
       { team: "Rutgers", year: "2018/9", gender: "Women", index_template: "women_bigten" },
       { team: "Rutgers", year: "2019/20", gender: "Women", index_template: "women_bigten" },
+      { team: "Rutgers", year: "2020/21", gender: "Women", index_template: "women_bigten" },
     ],
     "Minnesota": [
       { team: "Minnesota", year: "2018/9", gender: "Men", index_template: "bigten" },
@@ -468,6 +481,7 @@ export class AvailableTeams {
 
       { team: "Minnesota", year: "2018/9", gender: "Women", index_template: "women_bigten" },
       { team: "Minnesota", year: "2019/20", gender: "Women", index_template: "women_bigten" },
+      { team: "Minnesota", year: "2020/21", gender: "Women", index_template: "women_bigten" },
     ],
     // BIG 12
     "Texas Tech": [

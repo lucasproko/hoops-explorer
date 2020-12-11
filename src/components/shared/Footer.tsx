@@ -50,6 +50,10 @@ const Footer: React.FunctionComponent<Props> = ({server, gender, year, dateOverr
 
   const publicSite = !_.startsWith(server, "cbb-on-off-analyzer");
 
+  const womenStatsSource = (_.startsWith(year, "2018") || _.startsWith(year, "2019"))
+    ? <a href="https://herhoopstats.com" target="_blank">herhoopstats.com</a>
+    : <a href="https://masseyratings.com/cbw/ncaa-d1/ratings" target="_blank">masseyratings.com</a>
+
   // (only display twitter on public site, for analytics purposes)
   return <Container><Row>
       <Col>
@@ -80,7 +84,7 @@ const Footer: React.FunctionComponent<Props> = ({server, gender, year, dateOverr
       <Col>
         <span className="float-right">
           <i><small>
-          SoS stats with kind permission from <a href="https://kenpom.com" target="_blank">kenpom.com</a> and <a href="https://herhoopstats.com" target="_blank">herhoopstats.com</a>
+          SoS stats with kind permission from <a href="https://kenpom.com" target="_blank">kenpom.com</a> and {womenStatsSource}
           </small></i>
         </span>
       </Col>

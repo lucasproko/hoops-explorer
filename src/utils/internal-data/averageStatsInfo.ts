@@ -18,5 +18,6 @@ export const averageStatsInfo: Record<string, Record<string, any>> = {
   "Men_2019/20": publicStatsAveragesMen2019_20,
   "Men_2020/21": publicStatsAveragesMen2020_21,
   "Women_2018/9": publicStatsAveragesWomen2018_9,
-  "Women_2019/20": publicStatsAveragesWomen2019_20
+  "Women_2019/20": publicStatsAveragesWomen2019_20,
+  "Women_2020/21": {}
 };

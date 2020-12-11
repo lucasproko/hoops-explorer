@@ -16,6 +16,8 @@ import { publicKenpomEfficiency2020_21 } from "../../utils/public-data/publicKen
 import { publicHerhoopstatsEfficiency2018_9 } from "../../utils/public-data/publicHerhoopstatsEfficiency2018_9";
 // @ts-ignore
 import { publicHerhoopstatsEfficiency2019_20 } from "../../utils/public-data/publicHerhoopstatsEfficiency2019_20";
+// @ts-ignore
+import { publicNcaawMassey2020_21 } from "../../utils/public-data/publicNcaawMassey2020_21";
 
 export const efficiencyInfo: Record<string, [ Record<string, any>, Record<string, any> ]> = {
   "Men_2014/5": [ publicKenpomEfficiency2014_5, {} ], //(kenpom, convert the names at source)
@@ -26,5 +28,6 @@ export const efficiencyInfo: Record<string, [ Record<string, any>, Record<string
   "Men_2019/20": [ publicKenpomEfficiency2019_20, {} ],
   "Men_2020/21": [ publicKenpomEfficiency2020_21, {} ],
   "Women_2018/9": [ publicHerhoopstatsEfficiency2018_9, {} ], //(herhoopstats uses NCAA team names)
-  "Women_2019/20": [ publicHerhoopstatsEfficiency2019_20, {} ]
+  "Women_2019/20": [ publicHerhoopstatsEfficiency2019_20, {} ],
+  "Women_2020/21": [ publicNcaawMassey2020_21, {} ],  //(Massey, convert the names at source)
 };
