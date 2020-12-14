@@ -8,6 +8,8 @@ import { publicStatsAveragesMen2020_21 } from "../../utils/public-data/publicSta
 import { publicStatsAveragesWomen2018_9 } from "../../utils/public-data/publicStatsAveragesWomen2018_9";
 // @ts-ignore
 import { publicStatsAveragesWomen2019_20 } from "../../utils/public-data/publicStatsAveragesWomen2019_20";
+// @ts-ignore
+import { publicStatsAveragesWomen2020_21 } from "../../utils/public-data/publicStatsAveragesWomen2020_21";
 
 export const averageStatsInfo: Record<string, Record<string, any>> = {
   "Men_2014/5": {},
@@ -19,5 +21,5 @@ export const averageStatsInfo: Record<string, Record<string, any>> = {
   "Men_2020/21": publicStatsAveragesMen2020_21,
   "Women_2018/9": publicStatsAveragesWomen2018_9,
   "Women_2019/20": publicStatsAveragesWomen2019_20,
-  "Women_2020/21": {}
+  "Women_2020/21": publicStatsAveragesWomen2020_21,
 };

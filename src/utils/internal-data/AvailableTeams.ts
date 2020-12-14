@@ -32,6 +32,7 @@ export class AvailableTeams {
 
       { team: "Clemson", year: "2018/9", gender: "Women", index_template: "women_acc" },
       { team: "Clemson", year: "2019/20", gender: "Women", index_template: "women_acc" },
+      { team: "Clemson", year: "2020/21", gender: "Women", index_template: "women_acc" },
     ],
     "Georgia Tech": [
       { team: "Georgia Tech", year: "2018/9", gender: "Men", index_template: "acc" },
@@ -40,6 +41,7 @@ export class AvailableTeams {
 
       { team: "Georgia Tech", year: "2018/9", gender: "Women", index_template: "women_acc" },
       { team: "Georgia Tech", year: "2019/20", gender: "Women", index_template: "women_acc" },
+      { team: "Georgia Tech", year: "2020/21", gender: "Women", index_template: "women_acc" },
     ],
     "Florida St.": [
       { team: "Florida St.", year: "2018/9", gender: "Men", index_template: "acc" },
@@ -48,6 +50,7 @@ export class AvailableTeams {
 
       { team: "Florida St.", year: "2018/9", gender: "Women", index_template: "women_acc" },
       { team: "Florida St.", year: "2019/20", gender: "Women", index_template: "women_acc" },
+      { team: "Florida St.", year: "2020/21", gender: "Women", index_template: "women_acc" },
     ],
     "Boston College": [
       { team: "Boston College", year: "2018/9", gender: "Men", index_template: "acc" },
@@ -56,6 +59,7 @@ export class AvailableTeams {
 
       { team: "Boston College", year: "2018/9", gender: "Women", index_template: "women_acc" },
       { team: "Boston College", year: "2019/20", gender: "Women", index_template: "women_acc" },
+      { team: "Boston College", year: "2020/21", gender: "Women", index_template: "women_acc" },
     ],
     "Wake Forest": [
       { team: "Wake Forest", year: "2018/9", gender: "Men", index_template: "acc" },
@@ -64,6 +68,7 @@ export class AvailableTeams {
 
       { team: "Wake Forest", year: "2018/9", gender: "Women", index_template: "women_acc" },
       { team: "Wake Forest", year: "2019/20", gender: "Women", index_template: "women_acc" },
+      { team: "Wake Forest", year: "2020/21", gender: "Women", index_template: "women_acc" },
     ],
     "North Carolina": [
       { team: "North Carolina", year: "2018/9", gender: "Men", index_template: "acc" },
@@ -72,6 +77,7 @@ export class AvailableTeams {
 
       { team: "North Carolina", year: "2018/9", gender: "Women", index_template: "women_acc" },
       { team: "North Carolina", year: "2019/20", gender: "Women", index_template: "women_acc" },
+      { team: "North Carolina", year: "2020/21", gender: "Women", index_template: "women_acc" },
     ],
     "Virginia": [
       { team: "Virginia", year: "2018/9", gender: "Men", index_template: "acc" },
@@ -80,6 +86,7 @@ export class AvailableTeams {
 
       { team: "Virginia", year: "2018/9", gender: "Women", index_template: "women_acc" },
       { team: "Virginia", year: "2019/20", gender: "Women", index_template: "women_acc" },
+      { team: "Virginia", year: "2020/21", gender: "Women", index_template: "women_acc" },
     ],
     "Syracuse": [
       { team: "Syracuse", year: "2018/9", gender: "Men", index_template: "acc" },
@@ -88,6 +95,7 @@ export class AvailableTeams {
 
       { team: "Syracuse", year: "2018/9", gender: "Women", index_template: "women_acc" },
       { team: "Syracuse", year: "2019/20", gender: "Women", index_template: "women_acc" },
+      { team: "Syracuse", year: "2020/21", gender: "Women", index_template: "women_acc" },
     ],
     "Virginia Tech": [
       { team: "Virginia Tech", year: "2018/9", gender: "Men", index_template: "acc" },
@@ -96,6 +104,7 @@ export class AvailableTeams {
 
       { team: "Virginia Tech", year: "2018/9", gender: "Women", index_template: "women_acc" },
       { team: "Virginia Tech", year: "2019/20", gender: "Women", index_template: "women_acc" },
+      { team: "Virginia Tech", year: "2020/21", gender: "Women", index_template: "women_acc" },
     ],
     "Duke": [
       { team: "Duke", year: "2018/9", gender: "Men", index_template: "acc" },
@@ -104,6 +113,7 @@ export class AvailableTeams {
 
       { team: "Duke", year: "2018/9", gender: "Women", index_template: "women_acc" },
       { team: "Duke", year: "2019/20", gender: "Women", index_template: "women_acc" },
+      { team: "Duke", year: "2020/21", gender: "Women", index_template: "women_acc" },
     ],
     "Notre Dame": [
       { team: "Notre Dame", year: "2018/9", gender: "Men", index_template: "acc" },
@@ -112,6 +122,7 @@ export class AvailableTeams {
 
       { team: "Notre Dame", year: "2018/9", gender: "Women", index_template: "women_acc" },
       { team: "Notre Dame", year: "2019/20", gender: "Women", index_template: "women_acc" },
+      { team: "Notre Dame", year: "2020/21", gender: "Women", index_template: "women_acc" },
     ],
     "Louisville": [
       { team: "Louisville", year: "2018/9", gender: "Men", index_template: "acc" },
@@ -120,6 +131,7 @@ export class AvailableTeams {
 
       { team: "Louisville", year: "2018/9", gender: "Women", index_template: "women_acc" },
       { team: "Louisville", year: "2019/20", gender: "Women", index_template: "women_acc" },
+      { team: "Louisville", year: "2020/21", gender: "Women", index_template: "women_acc" },
     ],
     "NC State": [
       { team: "NC State", year: "2018/9", gender: "Men", index_template: "acc" },
@@ -128,6 +140,7 @@ export class AvailableTeams {
 
       { team: "NC State", year: "2018/9", gender: "Women", index_template: "women_acc" },
       { team: "NC State", year: "2019/20", gender: "Women", index_template: "women_acc" },
+      { team: "NC State", year: "2020/21", gender: "Women", index_template: "women_acc" },
     ],
     "Miami (FL)": [
       { team: "Miami (FL)", year: "2018/9", gender: "Men", index_template: "acc" },
@@ -136,6 +149,7 @@ export class AvailableTeams {
 
       { team: "Miami (FL)", year: "2018/9", gender: "Women", index_template: "women_acc" },
       { team: "Miami (FL)", year: "2019/20", gender: "Women", index_template: "women_acc" },
+      { team: "Miami (FL)", year: "2020/21", gender: "Women", index_template: "women_acc" },
     ],
     "Pittsburgh": [
       { team: "Pittsburgh", year: "2018/9", gender: "Men", index_template: "acc" },
@@ -144,6 +158,7 @@ export class AvailableTeams {
 
       { team: "Pittsburgh", year: "2018/9", gender: "Women", index_template: "women_acc" },
       { team: "Pittsburgh", year: "2019/20", gender: "Women", index_template: "women_acc" },
+      { team: "Pittsburgh", year: "2020/21", gender: "Women", index_template: "women_acc" },
     ],
     // American
     "Tulsa": [
@@ -153,6 +168,7 @@ export class AvailableTeams {
 
       { team: "Tulsa", year: "2018/9", gender: "Women", index_template: "women_american" },
       { team: "Tulsa", year: "2019/20", gender: "Women", index_template: "women_american" },
+      { team: "Tulsa", year: "2020/21", gender: "Women", index_template: "women_american" },
     ],
     "South Fla.": [
       { team: "South Fla.", year: "2018/9", gender: "Men", index_template: "american" },
@@ -161,6 +177,7 @@ export class AvailableTeams {
 
       { team: "South Fla.", year: "2018/9", gender: "Women", index_template: "women_american" },
       { team: "South Fla.", year: "2019/20", gender: "Women", index_template: "women_american" },
+      { team: "South Fla.", year: "2020/21", gender: "Women", index_template: "women_american" },
     ],
     "Houston": [
       { team: "Houston", year: "2018/9", gender: "Men", index_template: "american" },
@@ -169,6 +186,7 @@ export class AvailableTeams {
 
       { team: "Houston", year: "2018/9", gender: "Women", index_template: "women_american" },
       { team: "Houston", year: "2019/20", gender: "Women", index_template: "women_american" },
+      { team: "Houston", year: "2020/21", gender: "Women", index_template: "women_american" },
     ],
     "UCF": [
       { team: "UCF", year: "2018/9", gender: "Men", index_template: "american" },
@@ -177,6 +195,7 @@ export class AvailableTeams {
 
       { team: "UCF", year: "2018/9", gender: "Women", index_template: "women_american" },
       { team: "UCF", year: "2019/20", gender: "Women", index_template: "women_american" },
+      { team: "UCF", year: "2020/21", gender: "Women", index_template: "women_american" },
     ],
     "Cincinnati": [
       { team: "Cincinnati", year: "2018/9", gender: "Men", index_template: "american" },
@@ -185,6 +204,7 @@ export class AvailableTeams {
 
       { team: "Cincinnati", year: "2018/9", gender: "Women", index_template: "women_american" },
       { team: "Cincinnati", year: "2019/20", gender: "Women", index_template: "women_american" },
+      { team: "Cincinnati", year: "2020/21", gender: "Women", index_template: "women_american" },
     ],
     "Wichita St.": [
       { team: "Wichita St.", year: "2018/9", gender: "Men", index_template: "american" },
@@ -193,6 +213,7 @@ export class AvailableTeams {
 
       { team: "Wichita St.", year: "2018/9", gender: "Women", index_template: "women_american" },
       { team: "Wichita St.", year: "2019/20", gender: "Women", index_template: "women_american" },
+      { team: "Wichita St.", year: "2020/21", gender: "Women", index_template: "women_american" },
     ],
     "Memphis": [
       { team: "Memphis", year: "2018/9", gender: "Men", index_template: "american" },
@@ -201,6 +222,7 @@ export class AvailableTeams {
 
       { team: "Memphis", year: "2018/9", gender: "Women", index_template: "women_american" },
       { team: "Memphis", year: "2019/20", gender: "Women", index_template: "women_american" },
+      { team: "Memphis", year: "2020/21", gender: "Women", index_template: "women_american" },
     ],
     "East Carolina": [
       { team: "East Carolina", year: "2018/9", gender: "Men", index_template: "american" },
@@ -209,6 +231,7 @@ export class AvailableTeams {
 
       { team: "East Carolina", year: "2018/9", gender: "Women", index_template: "women_american" },
       { team: "East Carolina", year: "2019/20", gender: "Women", index_template: "women_american" },
+      { team: "East Carolina", year: "2020/21", gender: "Women", index_template: "women_american" },
     ],
     "Tulane": [
       { team: "Tulane", year: "2018/9", gender: "Men", index_template: "american" },
@@ -217,6 +240,7 @@ export class AvailableTeams {
 
       { team: "Tulane", year: "2018/9", gender: "Women", index_template: "women_american" },
       { team: "Tulane", year: "2019/20", gender: "Women", index_template: "women_american" },
+      { team: "Tulane", year: "2020/21", gender: "Women", index_template: "women_american" },
     ],
     "Temple": [
       { team: "Temple", year: "2018/9", gender: "Men", index_template: "american" },
@@ -225,6 +249,7 @@ export class AvailableTeams {
 
       { team: "Temple", year: "2018/9", gender: "Women", index_template: "women_american" },
       { team: "Temple", year: "2019/20", gender: "Women", index_template: "women_american" },
+      { team: "Temple", year: "2020/21", gender: "Women", index_template: "women_american" },
     ],
     "SMU": [
       { team: "SMU", year: "2018/9", gender: "Men", index_template: "american" },
@@ -233,6 +258,7 @@ export class AvailableTeams {
 
       { team: "SMU", year: "2018/9", gender: "Women", index_template: "women_american" },
       { team: "SMU", year: "2019/20", gender: "Women", index_template: "women_american" },
+      { team: "SMU", year: "2020/21", gender: "Women", index_template: "women_american" },
     ],
     "UConn": [
       { team: "UConn", year: "2018/9", gender: "Men", index_template: "american" },
@@ -242,6 +268,8 @@ export class AvailableTeams {
 
       { team: "UConn", year: "2018/9", gender: "Women", index_template: "women_american" },
       { team: "UConn", year: "2019/20", gender: "Women", index_template: "women_american" },
+      // Moved to Big East
+      { team: "UConn", year: "2020/21", gender: "Women", index_template: "women_bigeast" },
     ],
     // Atlantic-10
     "Richmond": [
@@ -319,51 +347,71 @@ export class AvailableTeams {
       { team: "Providence", year: "2018/9", gender: "Men", index_template: "bigeast" },
       { team: "Providence", year: "2019/20", gender: "Men", index_template: "bigeast" },
       { team: "Providence", year: "2020/21", gender: "Men", index_template: "bigeast" },
+
+      { team: "Providence", year: "2020/21", gender: "Women", index_template: "women_bigeast" },
     ],
     "Villanova": [
       { team: "Villanova", year: "2018/9", gender: "Men", index_template: "bigeast" },
       { team: "Villanova", year: "2019/20", gender: "Men", index_template: "bigeast" },
       { team: "Villanova", year: "2020/21", gender: "Men", index_template: "bigeast" },
+
+      { team: "Villanova", year: "2020/21", gender: "Women", index_template: "women_bigeast" },
     ],
     "Marquette": [
       { team: "Marquette", year: "2018/9", gender: "Men", index_template: "bigeast" },
       { team: "Marquette", year: "2019/20", gender: "Men", index_template: "bigeast" },
       { team: "Marquette", year: "2020/21", gender: "Men", index_template: "bigeast" },
+
+      { team: "Marquette", year: "2020/21", gender: "Women", index_template: "women_bigeast" },
     ],
     "DePaul": [
       { team: "DePaul", year: "2018/9", gender: "Men", index_template: "bigeast" },
       { team: "DePaul", year: "2019/20", gender: "Men", index_template: "bigeast" },
       { team: "DePaul", year: "2020/21", gender: "Men", index_template: "bigeast" },
+
+      { team: "DePaul", year: "2020/21", gender: "Women", index_template: "women_bigeast" },
     ],
     "Seton Hall": [
       { team: "Seton Hall", year: "2018/9", gender: "Men", index_template: "bigeast" },
       { team: "Seton Hall", year: "2019/20", gender: "Men", index_template: "bigeast" },
       { team: "Seton Hall", year: "2020/21", gender: "Men", index_template: "bigeast" },
+
+      { team: "Seton Hall", year: "2020/21", gender: "Women", index_template: "women_bigeast" },
     ],
     "Xavier": [
       { team: "Xavier", year: "2018/9", gender: "Men", index_template: "bigeast" },
       { team: "Xavier", year: "2019/20", gender: "Men", index_template: "bigeast" },
       { team: "Xavier", year: "2020/21", gender: "Men", index_template: "bigeast" },
+
+      { team: "Xavier", year: "2020/21", gender: "Women", index_template: "women_bigeast" },
     ],
     "Butler": [
       { team: "Butler", year: "2018/9", gender: "Men", index_template: "bigeast" },
       { team: "Butler", year: "2019/20", gender: "Men", index_template: "bigeast" },
       { team: "Butler", year: "2020/21", gender: "Men", index_template: "bigeast" },
+
+      { team: "Butler", year: "2020/21", gender: "Women", index_template: "women_bigeast" },
     ],
     "St. John's (NY)": [
       { team: "St. John's (NY)", year: "2018/9", gender: "Men", index_template: "bigeast" },
       { team: "St. John's (NY)", year: "2019/20", gender: "Men", index_template: "bigeast" },
       { team: "St. John's (NY)", year: "2020/21", gender: "Men", index_template: "bigeast" },
+
+      { team: "St. John's (NY)", year: "2020/21", gender: "Women", index_template: "women_bigeast" },
     ],
     "Georgetown": [
       { team: "Georgetown", year: "2018/9", gender: "Men", index_template: "bigeast" },
       { team: "Georgetown", year: "2019/20", gender: "Men", index_template: "bigeast" },
       { team: "Georgetown", year: "2020/21", gender: "Men", index_template: "bigeast" },
+
+      { team: "Georgetown", year: "2020/21", gender: "Women", index_template: "women_bigeast" },
     ],
     "Creighton": [
       { team: "Creighton", year: "2018/9", gender: "Men", index_template: "bigeast" },
       { team: "Creighton", year: "2019/20", gender: "Men", index_template: "bigeast" },
       { team: "Creighton", year: "2020/21", gender: "Men", index_template: "bigeast" },
+
+      { team: "Creighton", year: "2020/21", gender: "Women", index_template: "women_bigeast" },
     ],
     // BIG (minus Maryland)
     "Indiana": [
@@ -491,6 +539,7 @@ export class AvailableTeams {
 
       { team: "Texas Tech", year: "2018/9", gender: "Women", index_template: "women_bigtwelve" },
       { team: "Texas Tech", year: "2019/20", gender: "Women", index_template: "women_bigtwelve" },
+      { team: "Texas Tech", year: "2020/21", gender: "Women", index_template: "women_bigtwelve" },
     ],
     "Iowa St.": [
       { team: "Iowa St.", year: "2018/9", gender: "Men", index_template: "bigtwelve" },
@@ -499,6 +548,7 @@ export class AvailableTeams {
 
       { team: "Iowa St.", year: "2018/9", gender: "Women", index_template: "women_bigtwelve" },
       { team: "Iowa St.", year: "2019/20", gender: "Women", index_template: "women_bigtwelve" },
+      { team: "Iowa St.", year: "2020/21", gender: "Women", index_template: "women_bigtwelve" },
     ],
     "Texas": [
       { team: "Texas", year: "2018/9", gender: "Men", index_template: "bigtwelve" },
@@ -507,6 +557,7 @@ export class AvailableTeams {
 
       { team: "Texas", year: "2018/9", gender: "Women", index_template: "women_bigtwelve" },
       { team: "Texas", year: "2019/20", gender: "Women", index_template: "women_bigtwelve" },
+      { team: "Texas", year: "2020/21", gender: "Women", index_template: "women_bigtwelve" },
     ],
     "TCU": [
       { team: "TCU", year: "2018/9", gender: "Men", index_template: "bigtwelve" },
@@ -515,6 +566,7 @@ export class AvailableTeams {
 
       { team: "TCU", year: "2018/9", gender: "Women", index_template: "women_bigtwelve" },
       { team: "TCU", year: "2019/20", gender: "Women", index_template: "women_bigtwelve" },
+      { team: "TCU", year: "2020/21", gender: "Women", index_template: "women_bigtwelve" },
     ],
     "Oklahoma": [
       { team: "Oklahoma", year: "2018/9", gender: "Men", index_template: "bigtwelve" },
@@ -523,6 +575,7 @@ export class AvailableTeams {
 
       { team: "Oklahoma", year: "2018/9", gender: "Women", index_template: "women_bigtwelve" },
       { team: "Oklahoma", year: "2019/20", gender: "Women", index_template: "women_bigtwelve" },
+      { team: "Oklahoma", year: "2020/21", gender: "Women", index_template: "women_bigtwelve" },
     ],
     "Baylor": [
       { team: "Baylor", year: "2018/9", gender: "Men", index_template: "bigtwelve" },
@@ -531,6 +584,7 @@ export class AvailableTeams {
 
       { team: "Baylor", year: "2018/9", gender: "Women", index_template: "women_bigtwelve" },
       { team: "Baylor", year: "2019/20", gender: "Women", index_template: "women_bigtwelve" },
+      { team: "Baylor", year: "2020/21", gender: "Women", index_template: "women_bigtwelve" },
     ],
     "Kansas St.": [
       { team: "Kansas St.", year: "2018/9", gender: "Men", index_template: "bigtwelve" },
@@ -539,6 +593,7 @@ export class AvailableTeams {
 
       { team: "Kansas St.", year: "2018/9", gender: "Women", index_template: "women_bigtwelve" },
       { team: "Kansas St.", year: "2019/20", gender: "Women", index_template: "women_bigtwelve" },
+      { team: "Kansas St.", year: "2020/21", gender: "Women", index_template: "women_bigtwelve" },
     ],
     "West Virginia": [
       { team: "West Virginia", year: "2018/9", gender: "Men", index_template: "bigtwelve" },
@@ -547,6 +602,7 @@ export class AvailableTeams {
 
       { team: "West Virginia", year: "2018/9", gender: "Women", index_template: "women_bigtwelve" },
       { team: "West Virginia", year: "2019/20", gender: "Women", index_template: "women_bigtwelve" },
+      { team: "West Virginia", year: "2020/21", gender: "Women", index_template: "women_bigtwelve" },
     ],
     "Kansas": [
       { team: "Kansas", year: "2018/9", gender: "Men", index_template: "bigtwelve" },
@@ -555,6 +611,7 @@ export class AvailableTeams {
 
       { team: "Kansas", year: "2018/9", gender: "Women", index_template: "women_bigtwelve" },
       { team: "Kansas", year: "2019/20", gender: "Women", index_template: "women_bigtwelve" },
+      { team: "Kansas", year: "2020/21", gender: "Women", index_template: "women_bigtwelve" },
     ],
     "Oklahoma St.": [
       { team: "Oklahoma St.", year: "2018/9", gender: "Men", index_template: "bigtwelve" },
@@ -563,6 +620,7 @@ export class AvailableTeams {
 
       { team: "Oklahoma St.", year: "2018/9", gender: "Women", index_template: "women_bigtwelve" },
       { team: "Oklahoma St.", year: "2019/20", gender: "Women", index_template: "women_bigtwelve" },
+      { team: "Oklahoma St.", year: "2020/21", gender: "Women", index_template: "women_bigtwelve" },
     ],
     // PAC-12
     "California": [
@@ -572,6 +630,7 @@ export class AvailableTeams {
 
       { team: "California", year: "2018/9", gender: "Women", index_template: "women_pactwelve" },
       { team: "California", year: "2019/20", gender: "Women", index_template: "women_pactwelve" },
+      { team: "California", year: "2020/21", gender: "Women", index_template: "women_pactwelve" },
     ],
     "Oregon St.": [
       { team: "Oregon St.", year: "2018/9", gender: "Men", index_template: "pactwelve" },
@@ -580,6 +639,7 @@ export class AvailableTeams {
 
       { team: "Oregon St.", year: "2018/9", gender: "Women", index_template: "women_pactwelve" },
       { team: "Oregon St.", year: "2019/20", gender: "Women", index_template: "women_pactwelve" },
+      { team: "Oregon St.", year: "2020/21", gender: "Women", index_template: "women_pactwelve" },
     ],
     "Washington": [
       { team: "Washington", year: "2018/9", gender: "Men", index_template: "pactwelve" },
@@ -588,6 +648,7 @@ export class AvailableTeams {
 
       { team: "Washington", year: "2018/9", gender: "Women", index_template: "women_pactwelve" },
       { team: "Washington", year: "2019/20", gender: "Women", index_template: "women_pactwelve" },
+      { team: "Washington", year: "2020/21", gender: "Women", index_template: "women_pactwelve" },
     ],
     "Arizona St.": [
       { team: "Arizona St.", year: "2018/9", gender: "Men", index_template: "pactwelve" },
@@ -596,6 +657,7 @@ export class AvailableTeams {
 
       { team: "Arizona St.", year: "2018/9", gender: "Women", index_template: "women_pactwelve" },
       { team: "Arizona St.", year: "2019/20", gender: "Women", index_template: "women_pactwelve" },
+      { team: "Arizona St.", year: "2020/21", gender: "Women", index_template: "women_pactwelve" },
     ],
     "UCLA": [
       { team: "UCLA", year: "2018/9", gender: "Men", index_template: "pactwelve" },
@@ -604,6 +666,7 @@ export class AvailableTeams {
 
       { team: "UCLA", year: "2018/9", gender: "Women", index_template: "women_pactwelve" },
       { team: "UCLA", year: "2019/20", gender: "Women", index_template: "women_pactwelve" },
+      { team: "UCLA", year: "2020/21", gender: "Women", index_template: "women_pactwelve" },
     ],
     "Southern California": [
       { team: "Southern California", year: "2018/9", gender: "Men", index_template: "pactwelve" },
@@ -612,6 +675,7 @@ export class AvailableTeams {
 
       { team: "Southern California", year: "2018/9", gender: "Women", index_template: "women_pactwelve" },
       { team: "Southern California", year: "2019/20", gender: "Women", index_template: "women_pactwelve" },
+      { team: "Southern California", year: "2020/21", gender: "Women", index_template: "women_pactwelve" },
     ],
     "Utah": [
       { team: "Utah", year: "2018/9", gender: "Men", index_template: "pactwelve" },
@@ -620,6 +684,7 @@ export class AvailableTeams {
 
       { team: "Utah", year: "2018/9", gender: "Women", index_template: "women_pactwelve" },
       { team: "Utah", year: "2019/20", gender: "Women", index_template: "women_pactwelve" },
+      { team: "Utah", year: "2020/21", gender: "Women", index_template: "women_pactwelve" },
     ],
     "Washington St.": [
       { team: "Washington St.", year: "2018/9", gender: "Men", index_template: "pactwelve" },
@@ -628,6 +693,7 @@ export class AvailableTeams {
 
       { team: "Washington St.", year: "2018/9", gender: "Women", index_template: "women_pactwelve" },
       { team: "Washington St.", year: "2019/20", gender: "Women", index_template: "women_pactwelve" },
+      { team: "Washington St.", year: "2020/21", gender: "Women", index_template: "women_pactwelve" },
     ],
     "Stanford": [
       { team: "Stanford", year: "2018/9", gender: "Men", index_template: "pactwelve" },
@@ -636,6 +702,7 @@ export class AvailableTeams {
 
       { team: "Stanford", year: "2018/9", gender: "Women", index_template: "women_pactwelve" },
       { team: "Stanford", year: "2019/20", gender: "Women", index_template: "women_pactwelve" },
+      { team: "Stanford", year: "2020/21", gender: "Women", index_template: "women_pactwelve" },
     ],
     "Arizona": [
       { team: "Arizona", year: "2018/9", gender: "Men", index_template: "pactwelve" },
@@ -644,6 +711,7 @@ export class AvailableTeams {
 
       { team: "Arizona", year: "2018/9", gender: "Women", index_template: "women_pactwelve" },
       { team: "Arizona", year: "2019/20", gender: "Women", index_template: "women_pactwelve" },
+      { team: "Arizona", year: "2020/21", gender: "Women", index_template: "women_pactwelve" },
     ],
     "Colorado": [
       { team: "Colorado", year: "2018/9", gender: "Men", index_template: "pactwelve" },
@@ -652,6 +720,7 @@ export class AvailableTeams {
 
       { team: "Colorado", year: "2018/9", gender: "Women", index_template: "women_pactwelve" },
       { team: "Colorado", year: "2019/20", gender: "Women", index_template: "women_pactwelve" },
+      { team: "Colorado", year: "2020/21", gender: "Women", index_template: "women_pactwelve" },
     ],
     "Oregon": [
       { team: "Oregon", year: "2018/9", gender: "Men", index_template: "pactwelve" },
@@ -660,6 +729,7 @@ export class AvailableTeams {
 
       { team: "Oregon", year: "2018/9", gender: "Women", index_template: "women_pactwelve" },
       { team: "Oregon", year: "2019/20", gender: "Women", index_template: "women_pactwelve" },
+      { team: "Oregon", year: "2020/21", gender: "Women", index_template: "women_pactwelve" },
     ],
     // SEC
     "Texas A&M": [
@@ -669,6 +739,7 @@ export class AvailableTeams {
 
       { team: "Texas A&M", year: "2018/9", gender: "Women", index_template: "women_sec" },
       { team: "Texas A&M", year: "2019/20", gender: "Women", index_template: "women_sec" },
+      { team: "Texas A&M", year: "2020/21", gender: "Women", index_template: "women_sec" },
     ],
     "Auburn": [
       { team: "Auburn", year: "2018/9", gender: "Men", index_template: "sec" },
@@ -677,6 +748,7 @@ export class AvailableTeams {
 
       { team: "Auburn", year: "2018/9", gender: "Women", index_template: "women_sec" },
       { team: "Auburn", year: "2019/20", gender: "Women", index_template: "women_sec" },
+      { team: "Auburn", year: "2020/21", gender: "Women", index_template: "women_sec" },
     ],
     "Ole Miss": [
       { team: "Ole Miss", year: "2018/9", gender: "Men", index_template: "sec" },
@@ -685,6 +757,7 @@ export class AvailableTeams {
 
       { team: "Ole Miss", year: "2018/9", gender: "Women", index_template: "women_sec" },
       { team: "Ole Miss", year: "2019/20", gender: "Women", index_template: "women_sec" },
+      { team: "Ole Miss", year: "2020/21", gender: "Women", index_template: "women_sec" },
     ],
     "Florida": [
       { team: "Florida", year: "2018/9", gender: "Men", index_template: "sec" },
@@ -693,6 +766,7 @@ export class AvailableTeams {
 
       { team: "Florida", year: "2018/9", gender: "Women", index_template: "women_sec" },
       { team: "Florida", year: "2019/20", gender: "Women", index_template: "women_sec" },
+      { team: "Florida", year: "2020/21", gender: "Women", index_template: "women_sec" },
     ],
     "South Carolina": [
       { team: "South Carolina", year: "2018/9", gender: "Men", index_template: "sec" },
@@ -701,6 +775,7 @@ export class AvailableTeams {
 
       { team: "South Carolina", year: "2018/9", gender: "Women", index_template: "women_sec" },
       { team: "South Carolina", year: "2019/20", gender: "Women", index_template: "women_sec" },
+      { team: "South Carolina", year: "2020/21", gender: "Women", index_template: "women_sec" },
     ],
     "Arkansas": [
       { team: "Arkansas", year: "2018/9", gender: "Men", index_template: "sec" },
@@ -709,6 +784,7 @@ export class AvailableTeams {
 
       { team: "Arkansas", year: "2018/9", gender: "Women", index_template: "women_sec" },
       { team: "Arkansas", year: "2019/20", gender: "Women", index_template: "women_sec" },
+      { team: "Arkansas", year: "2020/21", gender: "Women", index_template: "women_sec" },
     ],
     "Tennessee": [
       { team: "Tennessee", year: "2018/9", gender: "Men", index_template: "sec" },
@@ -717,6 +793,7 @@ export class AvailableTeams {
 
       { team: "Tennessee", year: "2018/9", gender: "Women", index_template: "women_sec" },
       { team: "Tennessee", year: "2019/20", gender: "Women", index_template: "women_sec" },
+      { team: "Tennessee", year: "2020/21", gender: "Women", index_template: "women_sec" },
     ],
     "Georgia": [
       { team: "Georgia", year: "2018/9", gender: "Men", index_template: "sec" },
@@ -725,6 +802,7 @@ export class AvailableTeams {
 
       { team: "Georgia", year: "2018/9", gender: "Women", index_template: "women_sec" },
       { team: "Georgia", year: "2019/20", gender: "Women", index_template: "women_sec" },
+      { team: "Georgia", year: "2020/21", gender: "Women", index_template: "women_sec" },
     ],
     "Missouri": [
       { team: "Missouri", year: "2018/9", gender: "Men", index_template: "sec" },
@@ -733,6 +811,7 @@ export class AvailableTeams {
 
       { team: "Missouri", year: "2018/9", gender: "Women", index_template: "women_sec" },
       { team: "Missouri", year: "2019/20", gender: "Women", index_template: "women_sec" },
+      { team: "Missouri", year: "2020/21", gender: "Women", index_template: "women_sec" },
     ],
     "LSU": [
       { team: "LSU", year: "2018/9", gender: "Men", index_template: "sec" },
@@ -741,6 +820,7 @@ export class AvailableTeams {
 
       { team: "LSU", year: "2018/9", gender: "Women", index_template: "women_sec" },
       { team: "LSU", year: "2019/20", gender: "Women", index_template: "women_sec" },
+      { team: "LSU", year: "2020/21", gender: "Women", index_template: "women_sec" },
     ],
     "Alabama": [
       { team: "Alabama", year: "2018/9", gender: "Men", index_template: "sec" },
@@ -749,6 +829,7 @@ export class AvailableTeams {
 
       { team: "Alabama", year: "2018/9", gender: "Women", index_template: "women_sec" },
       { team: "Alabama", year: "2019/20", gender: "Women", index_template: "women_sec" },
+      { team: "Alabama", year: "2020/21", gender: "Women", index_template: "women_sec" },
     ],
     "Vanderbilt": [
       { team: "Vanderbilt", year: "2018/9", gender: "Men", index_template: "sec" },
@@ -757,6 +838,7 @@ export class AvailableTeams {
 
       { team: "Vanderbilt", year: "2018/9", gender: "Women", index_template: "women_sec" },
       { team: "Vanderbilt", year: "2019/20", gender: "Women", index_template: "women_sec" },
+      { team: "Vanderbilt", year: "2020/21", gender: "Women", index_template: "women_sec" },
     ],
     "Kentucky": [
       { team: "Kentucky", year: "2018/9", gender: "Men", index_template: "sec" },
@@ -765,6 +847,7 @@ export class AvailableTeams {
 
       { team: "Kentucky", year: "2018/9", gender: "Women", index_template: "women_sec" },
       { team: "Kentucky", year: "2019/20", gender: "Women", index_template: "women_sec" },
+      { team: "Kentucky", year: "2020/21", gender: "Women", index_template: "women_sec" },
     ],
     "Mississippi St.": [
       { team: "Mississippi St.", year: "2018/9", gender: "Men", index_template: "sec" },
@@ -773,6 +856,7 @@ export class AvailableTeams {
 
       { team: "Mississippi St.", year: "2018/9", gender: "Women", index_template: "women_sec" },
       { team: "Mississippi St.", year: "2019/20", gender: "Women", index_template: "women_sec" },
+      { team: "Mississippi St.", year: "2020/21", gender: "Women", index_template: "women_sec" },
     ],
     // Misc
     "Saint Mary's (CA)": [
