@@ -72,6 +72,7 @@ const HeaderBar: React.FunctionComponent<Props> = ({thisPage, common, override})
     return UrlRouting.getPlayerLeaderboardUrl(
       {
         ...(getCommonLboardFilterParams(common) as PlayerLeaderboardParams),
+        gender: "Men",
         filter: trackingList
       }
     );

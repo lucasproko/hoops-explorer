@@ -60,6 +60,7 @@ const PlayLeaderboardPage: NextPage<{}> = () => {
   const [ dataEvent, setDataEvent ] = useState(dataEventInit);
   const [ dataSubEvent, setDataSubEvent ] = useState({ players: [], confs: [], lastUpdated: 0 } as PlayerLeaderboardStatsModel);
   const [ currYear, setCurrYear ] = useState("");
+  const [ currGender, setCurrGender ] = useState("");
 
   // Game filter
 
@@ -129,9 +130,11 @@ const PlayLeaderboardPage: NextPage<{}> = () => {
         });
       })
     } else {
-      if ((!dataEvent[dataSubEventKey]?.players?.length) || (currYear != year)) {
+      if ((!dataEvent[dataSubEventKey]?.players?.length) || (currYear != year) || (currGender != gender)) {
         const oldCurrYear = currYear;
+        const oldCurrGender = currGender;
         setCurrYear(year);
+        setCurrGender(gender)
         setDataSubEvent({ players: [], confs: [], lastUpdated: 0 }); //(set the spinner off)
         fetch(`/leaderboards/lineups/players_${dataSubEventKey}_${gender}_${year}.json`)
           .then((response: fetch.IsomorphicResponse) => {

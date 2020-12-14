@@ -60,6 +60,7 @@ const LineupLeaderboardPage: NextPage<{}> = () => {
   const [ dataEvent, setDataEvent ] = useState(dataEventInit);
   const [ dataSubEvent, setDataSubEvent ] = useState({ lineups: [], confs: [], lastUpdated: 0 } as LineupLeaderboardStatsModel);
   const [ currYear, setCurrYear ] = useState("");
+  const [ currGender, setCurrGender ] = useState("");
 
   // Game filter
 
@@ -123,9 +124,11 @@ const LineupLeaderboardPage: NextPage<{}> = () => {
         });
       })
     } else {
-      if ((!dataEvent[dataSubEventKey]?.lineups?.length) || (currYear != year)) {
+      if ((!dataEvent[dataSubEventKey]?.lineups?.length) || (currYear != year) || (currGender != gender)) {
         const oldCurrYear = currYear;
+        const oldCurrGender = currGender;
         setCurrYear(year);
+        setCurrGender(gender)
         setDataSubEvent({ lineups: [], confs: [], lastUpdated: 0 }); //(set the spinner off)
         fetch(`/leaderboards/lineups/lineups_${dataSubEventKey}_${gender}_${year}.json`)
           .then((response: fetch.IsomorphicResponse) => {

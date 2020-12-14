@@ -423,7 +423,7 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       <Col xs={6} sm={6} md={3} lg={2}>
         <Select
           value={ stringToOption(gender) }
-          options={[ "Men" ].map(
+          options={[ "Men", "Women" ].map(
             (gender) => stringToOption(gender)
           )}
           isSearchable={false}
