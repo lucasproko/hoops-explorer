@@ -859,6 +859,7 @@ export class AvailableTeams {
       { team: "Mississippi St.", year: "2020/21", gender: "Women", index_template: "women_sec" },
     ],
     // Misc
+    // Men
     "Saint Mary's (CA)": [
       { team: "Saint Mary's (CA)", year: "2018/9", gender: "Men", index_template: "misc_conf" },
       { team: "Saint Mary's (CA)", year: "2019/20", gender: "Men", index_template: "misc_conf" },
@@ -883,6 +884,12 @@ export class AvailableTeams {
       { team: "Utah St.", year: "2018/9", gender: "Men", index_template: "misc_conf" },
       { team: "Utah St.", year: "2019/20", gender: "Men", index_template: "misc_conf" },
       { team: "Utah St.", year: "2020/21", gender: "Men", index_template: "misc_conf" },
+    ],
+    // Women:
+    "South Dakota St.": [
+      { team: "South Dakota St.", year: "2018/9", gender: "Women", index_template: "women_misc_conf" },
+      { team: "South Dakota St.", year: "2019/20", gender: "Women", index_template: "women_misc_conf" },
+      { team: "South Dakota St.", year: "2020/21", gender: "Women", index_template: "women_misc_conf" },
     ],
   }
 
