@@ -143,7 +143,7 @@ export class HistoryManager {
     const luckParams = (showLuckArray.length > 0) ?
       `, luck:[${_.join(showLuckArray, ",")}]` : "";
 
-    const manualParams = p.manual ? `, [overrides]`: "";
+    const manualParams = !_.isEmpty(p.manual || []) ? `, [overrides]`: "";
 
     // Team view params
 
