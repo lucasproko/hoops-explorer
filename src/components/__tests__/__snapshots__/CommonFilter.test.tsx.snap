@@ -39,6 +39,10 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
                 "label": "Men",
                 "value": "Men",
               },
+              Object {
+                "label": "Women",
+                "value": "Women",
+              },
             ]
           }
           value={
@@ -100,6 +104,11 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
         xs={12}
       >
         <StateManager
+          components={
+            Object {
+              "MenuList": [Function],
+            }
+          }
           defaultInputValue=""
           defaultMenuIsOpen={false}
           defaultValue={null}
@@ -520,6 +529,10 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
                 "value": "Gonzaga",
               },
               Object {
+                "label": "San Francisco",
+                "value": "San Francisco",
+              },
+              Object {
                 "label": "BYU",
                 "value": "BYU",
               },
@@ -528,8 +541,20 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
                 "value": "San Diego St.",
               },
               Object {
+                "label": "Nevada",
+                "value": "Nevada",
+              },
+              Object {
                 "label": "Utah St.",
                 "value": "Utah St.",
+              },
+              Object {
+                "label": "Furman",
+                "value": "Furman",
+              },
+              Object {
+                "label": "ETSU",
+                "value": "ETSU",
               },
             ]
           }
@@ -1102,6 +1127,11 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
         xs={12}
       >
         <StateManager
+          components={
+            Object {
+              "MenuList": [Function],
+            }
+          }
           defaultInputValue=""
           defaultMenuIsOpen={false}
           defaultValue={null}

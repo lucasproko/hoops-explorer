@@ -863,30 +863,39 @@ export class AvailableTeams {
     "Saint Mary's (CA)": [
       { team: "Saint Mary's (CA)", year: "2018/9", gender: "Men", index_template: "misc_conf" },
       { team: "Saint Mary's (CA)", year: "2019/20", gender: "Men", index_template: "misc_conf" },
-      { team: "Saint Mary's (CA)", year: "2020/21", gender: "Men", index_template: "misc_conf" },
+      { team: "Saint Mary's (CA)", year: "2020/21", gender: "Men", index_template: "wcc" },
     ],
     "Gonzaga": [
       { team: "Gonzaga", year: "2018/9", gender: "Men", index_template: "misc_conf" },
       { team: "Gonzaga", year: "2019/20", gender: "Men", index_template: "misc_conf" },
-      { team: "Gonzaga", year: "2020/21", gender: "Men", index_template: "misc_conf" },
+      { team: "Gonzaga", year: "2020/21", gender: "Men", index_template: "wcc" },
+    ],
+    "San Francisco": [
+      { team: "San Francisco", year: "2020/21", gender: "Men", index_template: "wcc" },
     ],
     "BYU": [
       { team: "BYU", year: "2018/9", gender: "Men", index_template: "misc_conf" },
       { team: "BYU", year: "2019/20", gender: "Men", index_template: "misc_conf" },
-      { team: "BYU", year: "2020/21", gender: "Men", index_template: "misc_conf" },
+      { team: "BYU", year: "2020/21", gender: "Men", index_template: "wcc" },
     ],
     "San Diego St.": [
       { team: "San Diego St.", year: "2018/9", gender: "Men", index_template: "misc_conf" },
       { team: "San Diego St.", year: "2019/20", gender: "Men", index_template: "misc_conf" },
-      { team: "San Diego St.", year: "2020/21", gender: "Men", index_template: "misc_conf" },
+      { team: "San Diego St.", year: "2020/21", gender: "Men", index_template: "mountainwest" },
+    ],
+    "Nevada": [
+      { team: "Nevada", year: "2020/21", gender: "Men", index_template: "mountainwest" },
     ],
     "Utah St.": [
       { team: "Utah St.", year: "2018/9", gender: "Men", index_template: "misc_conf" },
       { team: "Utah St.", year: "2019/20", gender: "Men", index_template: "misc_conf" },
-      { team: "Utah St.", year: "2020/21", gender: "Men", index_template: "misc_conf" },
+      { team: "Utah St.", year: "2020/21", gender: "Men", index_template: "mountainwest" },
+    ],
+    "Furman": [
+      { team: "Furman", year: "2020/21", gender: "Men", index_template: "socon" },
     ],
     "ETSU": [
-      { team: "ETSU", year: "2020/21", gender: "Men", index_template: "misc_conf" },
+      { team: "ETSU", year: "2020/21", gender: "Men", index_template: "socon" },
     ],
     // Women:
     "South Dakota St.": [

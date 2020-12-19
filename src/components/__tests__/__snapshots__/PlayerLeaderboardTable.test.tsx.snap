@@ -39,6 +39,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 "label": "Men",
                 "value": "Men",
               },
+              Object {
+                "label": "Women",
+                "value": "Women",
+              },
             ]
           }
           value={
@@ -6583,6 +6587,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 "label": "Men",
                 "value": "Men",
               },
+              Object {
+                "label": "Women",
+                "value": "Women",
+              },
             ]
           }
           value={
@@ -13126,6 +13134,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               Object {
                 "label": "Men",
                 "value": "Men",
+              },
+              Object {
+                "label": "Women",
+                "value": "Women",
               },
             ]
           }
@@ -22406,6 +22418,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 "label": "Men",
                 "value": "Men",
               },
+              Object {
+                "label": "Women",
+                "value": "Women",
+              },
             ]
           }
           value={
@@ -28929,6 +28945,10 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               Object {
                 "label": "Men",
                 "value": "Men",
+              },
+              Object {
+                "label": "Women",
+                "value": "Women",
               },
             ]
           }
