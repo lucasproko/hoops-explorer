@@ -174,7 +174,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
           }
           value={
             Object {
-              "label": "All Available Conferences",
+              "label": "High/High-Mid Conferences",
             }
           }
         />
@@ -12796,7 +12796,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
           }
           value={
             Object {
-              "label": "All Available Conferences",
+              "label": "High/High-Mid Conferences",
             }
           }
         />
@@ -31365,7 +31365,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
           }
           value={
             Object {
-              "label": "All Available Conferences",
+              "label": "High/High-Mid Conferences",
             }
           }
         />

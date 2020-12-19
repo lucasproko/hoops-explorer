@@ -117,9 +117,11 @@ export async function main() {
 
   const teamListChain = (inYear == "Extra") ?
     _.chain(AvailableTeams.extraTeamsBase) :
-    _.chain(AvailableTeams.byName).values().flatten().filter(t => t.category == "high" || t.category == "midhigh");
+    _.chain(AvailableTeams.byName).values().flatten();
 
-  const teams = teamListChain.filter(team => {
+  const teams = teamListChain.filter(
+    team => team.category == "high" || team.category == "midhigh"
+  ).filter(team => {
     return team.gender == inGender &&
       ((inYear == "Extra") || (team.year == inYear)) &&
         ((teamFilter == undefined) || teamFilter.has(team.team))
