@@ -885,6 +885,9 @@ export class AvailableTeams {
       { team: "Utah St.", year: "2019/20", gender: "Men", index_template: "misc_conf" },
       { team: "Utah St.", year: "2020/21", gender: "Men", index_template: "misc_conf" },
     ],
+    "ETSU": [
+      { team: "ETSU", year: "2020/21", gender: "Men", index_template: "misc_conf" },
+    ],
     // Women:
     "South Dakota St.": [
       { team: "South Dakota St.", year: "2018/9", gender: "Women", index_template: "women_misc_conf" },
