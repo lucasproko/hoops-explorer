@@ -228,6 +228,9 @@ const HeaderBar: React.FunctionComponent<Props> = ({thisPage, common, override})
           <Dropdown.Item>
             {buildNavItem("Md/DMV-area players (HS 2017+)", playerLeaderboardTooltipMdDmv2017, getPlayerLeaderboardTrackingUrl("__DMV_2017__"), true)}
           </Dropdown.Item>
+          <Dropdown.Item>
+            {buildNavItem("NY/NJ-area players (HS 2017+)", playerLeaderboardTooltipMdDmv2017, getPlayerLeaderboardTrackingUrl("__NYNJ_2017__"), true)}
+          </Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>;
   };
