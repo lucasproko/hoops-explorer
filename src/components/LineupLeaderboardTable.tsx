@@ -381,7 +381,7 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
 
   function getCurrentConfsOrPlaceholder() {
     return (confs == "") ?
-      { label: 'All Available Conferences' } :
+      { label: 'High/High-Mid Conferences' } :
       confs.split(",").map((conf: string) => stringToOption(NicknameToConference[conf] || conf));
   }
 

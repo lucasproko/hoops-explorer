@@ -117,7 +117,7 @@ export async function main() {
 
   const teamListChain = (inYear == "Extra") ?
     _.chain(AvailableTeams.extraTeamsBase) :
-    _.chain(AvailableTeams.byName).values().flatten();
+    _.chain(AvailableTeams.byName).values().flatten().filter(t => t.category == "high" || t.category == "midhigh");
 
   const teams = teamListChain.filter(team => {
     return team.gender == inGender &&
@@ -457,9 +457,11 @@ if (!testMode) main().then(dummy => {
     }, reduceNumberSize);
 
     // Write to file
+    console.log(`${kv[0]} lineup count: [${sortedLineups.length}] ([${kv[1].length}])`);
     console.log(`${kv[0]} lineup length: [${sortedLineupsStr.length}]`);
     const lineupFilename = `./public/leaderboards/lineups/lineups_${kv[0]}_${inGender}_${inYear.substring(0, 4)}.json`;
     fs.writeFile(`${lineupFilename}`,sortedLineupsStr, err => {});
+    console.log(`${kv[0]} player count: [${players.length}] ([${kv[2].length}])`);
     console.log(`${kv[0]} player length: [${playersStr.length}]`);
     const playersFilename = `./public/leaderboards/lineups/players_${kv[0]}_${inGender}_${inYear.substring(0, 4)}.json`;
     fs.writeFile(`${playersFilename}`,playersStr, err => {});
