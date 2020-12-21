@@ -112,592 +112,40 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
           options={
             Array [
               Object {
-                "label": "Boston College",
-                "value": "Boston College",
-              },
-              Object {
-                "label": "Clemson",
-                "value": "Clemson",
-              },
-              Object {
-                "label": "Duke",
-                "value": "Duke",
-              },
-              Object {
-                "label": "Florida St.",
-                "value": "Florida St.",
-              },
-              Object {
-                "label": "Georgia Tech",
-                "value": "Georgia Tech",
-              },
-              Object {
-                "label": "Louisville",
-                "value": "Louisville",
-              },
-              Object {
-                "label": "Miami (FL)",
-                "value": "Miami (FL)",
-              },
-              Object {
-                "label": "NC State",
-                "value": "NC State",
-              },
-              Object {
-                "label": "North Carolina",
-                "value": "North Carolina",
-              },
-              Object {
-                "label": "Notre Dame",
-                "value": "Notre Dame",
-              },
-              Object {
-                "label": "Pittsburgh",
-                "value": "Pittsburgh",
-              },
-              Object {
-                "label": "Syracuse",
-                "value": "Syracuse",
-              },
-              Object {
-                "label": "Virginia",
-                "value": "Virginia",
-              },
-              Object {
-                "label": "Virginia Tech",
-                "value": "Virginia Tech",
-              },
-              Object {
-                "label": "Wake Forest",
-                "value": "Wake Forest",
-              },
-              Object {
-                "label": "Cincinnati",
-                "value": "Cincinnati",
-              },
-              Object {
-                "label": "East Carolina",
-                "value": "East Carolina",
-              },
-              Object {
-                "label": "Houston",
-                "value": "Houston",
-              },
-              Object {
-                "label": "Memphis",
-                "value": "Memphis",
-              },
-              Object {
-                "label": "SMU",
-                "value": "SMU",
-              },
-              Object {
-                "label": "South Fla.",
-                "value": "South Fla.",
-              },
-              Object {
-                "label": "Temple",
-                "value": "Temple",
-              },
-              Object {
-                "label": "Tulane",
-                "value": "Tulane",
-              },
-              Object {
-                "label": "Tulsa",
-                "value": "Tulsa",
-              },
-              Object {
-                "label": "UCF",
-                "value": "UCF",
-              },
-              Object {
-                "label": "UConn",
-                "value": "UConn",
-              },
-              Object {
-                "label": "Wichita St.",
-                "value": "Wichita St.",
-              },
-              Object {
-                "label": "Davidson",
-                "value": "Davidson",
-              },
-              Object {
-                "label": "Dayton",
-                "value": "Dayton",
-              },
-              Object {
-                "label": "Duquesne",
-                "value": "Duquesne",
-              },
-              Object {
-                "label": "Fordham",
-                "value": "Fordham",
-              },
-              Object {
-                "label": "George Mason",
-                "value": "George Mason",
-              },
-              Object {
-                "label": "George Washington",
-                "value": "George Washington",
-              },
-              Object {
-                "label": "La Salle",
-                "value": "La Salle",
-              },
-              Object {
-                "label": "Massachusetts",
-                "value": "Massachusetts",
-              },
-              Object {
-                "label": "Rhode Island",
-                "value": "Rhode Island",
-              },
-              Object {
-                "label": "Richmond",
-                "value": "Richmond",
-              },
-              Object {
-                "label": "Saint Joseph's",
-                "value": "Saint Joseph's",
-              },
-              Object {
-                "label": "Saint Louis",
-                "value": "Saint Louis",
-              },
-              Object {
-                "label": "St. Bonaventure",
-                "value": "St. Bonaventure",
-              },
-              Object {
-                "label": "VCU",
-                "value": "VCU",
-              },
-              Object {
-                "label": "Butler",
-                "value": "Butler",
-              },
-              Object {
-                "label": "Creighton",
-                "value": "Creighton",
-              },
-              Object {
-                "label": "DePaul",
-                "value": "DePaul",
-              },
-              Object {
-                "label": "Georgetown",
-                "value": "Georgetown",
-              },
-              Object {
-                "label": "Marquette",
-                "value": "Marquette",
-              },
-              Object {
-                "label": "Providence",
-                "value": "Providence",
-              },
-              Object {
-                "label": "Seton Hall",
-                "value": "Seton Hall",
-              },
-              Object {
-                "label": "St. John's (NY)",
-                "value": "St. John's (NY)",
-              },
-              Object {
-                "label": "Villanova",
-                "value": "Villanova",
-              },
-              Object {
-                "label": "Xavier",
-                "value": "Xavier",
-              },
-              Object {
-                "label": "Eastern Wash.",
-                "value": "Eastern Wash.",
-              },
-              Object {
-                "label": "Idaho",
-                "value": "Idaho",
-              },
-              Object {
-                "label": "Idaho St.",
-                "value": "Idaho St.",
-              },
-              Object {
-                "label": "Montana",
-                "value": "Montana",
-              },
-              Object {
-                "label": "Montana St.",
-                "value": "Montana St.",
-              },
-              Object {
-                "label": "Northern Ariz.",
-                "value": "Northern Ariz.",
-              },
-              Object {
-                "label": "Northern Colo.",
-                "value": "Northern Colo.",
-              },
-              Object {
-                "label": "Portland St.",
-                "value": "Portland St.",
-              },
-              Object {
-                "label": "Sacramento St.",
-                "value": "Sacramento St.",
-              },
-              Object {
-                "label": "Southern Utah",
-                "value": "Southern Utah",
-              },
-              Object {
-                "label": "Weber St.",
-                "value": "Weber St.",
-              },
-              Object {
-                "label": "Illinois",
-                "value": "Illinois",
-              },
-              Object {
-                "label": "Indiana",
-                "value": "Indiana",
-              },
-              Object {
-                "label": "Iowa",
-                "value": "Iowa",
-              },
-              Object {
                 "label": "Maryland",
                 "value": "Maryland",
               },
               Object {
-                "label": "Michigan",
-                "value": "Michigan",
+                "label": "A&M-Corpus Christi",
+                "value": "A&M-Corpus Christi",
               },
               Object {
-                "label": "Michigan St.",
-                "value": "Michigan St.",
-              },
-              Object {
-                "label": "Minnesota",
-                "value": "Minnesota",
-              },
-              Object {
-                "label": "Nebraska",
-                "value": "Nebraska",
-              },
-              Object {
-                "label": "Northwestern",
-                "value": "Northwestern",
-              },
-              Object {
-                "label": "Ohio St.",
-                "value": "Ohio St.",
-              },
-              Object {
-                "label": "Penn St.",
-                "value": "Penn St.",
-              },
-              Object {
-                "label": "Purdue",
-                "value": "Purdue",
-              },
-              Object {
-                "label": "Rutgers",
-                "value": "Rutgers",
-              },
-              Object {
-                "label": "Wisconsin",
-                "value": "Wisconsin",
-              },
-              Object {
-                "label": "Baylor",
-                "value": "Baylor",
-              },
-              Object {
-                "label": "Iowa St.",
-                "value": "Iowa St.",
-              },
-              Object {
-                "label": "Kansas",
-                "value": "Kansas",
-              },
-              Object {
-                "label": "Kansas St.",
-                "value": "Kansas St.",
-              },
-              Object {
-                "label": "Oklahoma",
-                "value": "Oklahoma",
-              },
-              Object {
-                "label": "Oklahoma St.",
-                "value": "Oklahoma St.",
-              },
-              Object {
-                "label": "TCU",
-                "value": "TCU",
-              },
-              Object {
-                "label": "Texas",
-                "value": "Texas",
-              },
-              Object {
-                "label": "Texas Tech",
-                "value": "Texas Tech",
-              },
-              Object {
-                "label": "West Virginia",
-                "value": "West Virginia",
-              },
-              Object {
-                "label": "Col. of Charleston",
-                "value": "Col. of Charleston",
-              },
-              Object {
-                "label": "Delaware",
-                "value": "Delaware",
-              },
-              Object {
-                "label": "Drexel",
-                "value": "Drexel",
-              },
-              Object {
-                "label": "Elon",
-                "value": "Elon",
-              },
-              Object {
-                "label": "Hofstra",
-                "value": "Hofstra",
-              },
-              Object {
-                "label": "James Madison",
-                "value": "James Madison",
-              },
-              Object {
-                "label": "Northeastern",
-                "value": "Northeastern",
-              },
-              Object {
-                "label": "Towson",
-                "value": "Towson",
-              },
-              Object {
-                "label": "UNCW",
-                "value": "UNCW",
-              },
-              Object {
-                "label": "William & Mary",
-                "value": "William & Mary",
-              },
-              Object {
-                "label": "Charlotte",
-                "value": "Charlotte",
-              },
-              Object {
-                "label": "FIU",
-                "value": "FIU",
-              },
-              Object {
-                "label": "Fla. Atlantic",
-                "value": "Fla. Atlantic",
-              },
-              Object {
-                "label": "Louisiana Tech",
-                "value": "Louisiana Tech",
-              },
-              Object {
-                "label": "Marshall",
-                "value": "Marshall",
-              },
-              Object {
-                "label": "Middle Tenn.",
-                "value": "Middle Tenn.",
-              },
-              Object {
-                "label": "North Texas",
-                "value": "North Texas",
-              },
-              Object {
-                "label": "Old Dominion",
-                "value": "Old Dominion",
-              },
-              Object {
-                "label": "Rice",
-                "value": "Rice",
-              },
-              Object {
-                "label": "Southern Miss.",
-                "value": "Southern Miss.",
-              },
-              Object {
-                "label": "UAB",
-                "value": "UAB",
-              },
-              Object {
-                "label": "UTEP",
-                "value": "UTEP",
-              },
-              Object {
-                "label": "UTSA",
-                "value": "UTSA",
-              },
-              Object {
-                "label": "Western Ky.",
-                "value": "Western Ky.",
-              },
-              Object {
-                "label": "Akron",
-                "value": "Akron",
-              },
-              Object {
-                "label": "Ball St.",
-                "value": "Ball St.",
-              },
-              Object {
-                "label": "Bowling Green",
-                "value": "Bowling Green",
-              },
-              Object {
-                "label": "Buffalo",
-                "value": "Buffalo",
-              },
-              Object {
-                "label": "Central Mich.",
-                "value": "Central Mich.",
-              },
-              Object {
-                "label": "Eastern Mich.",
-                "value": "Eastern Mich.",
-              },
-              Object {
-                "label": "Kent St.",
-                "value": "Kent St.",
-              },
-              Object {
-                "label": "Miami (OH)",
-                "value": "Miami (OH)",
-              },
-              Object {
-                "label": "Northern Ill.",
-                "value": "Northern Ill.",
-              },
-              Object {
-                "label": "Ohio",
-                "value": "Ohio",
-              },
-              Object {
-                "label": "Toledo",
-                "value": "Toledo",
-              },
-              Object {
-                "label": "Western Mich.",
-                "value": "Western Mich.",
-              },
-              Object {
-                "label": "BYU",
-                "value": "BYU",
-              },
-              Object {
-                "label": "ETSU",
-                "value": "ETSU",
-              },
-              Object {
-                "label": "Gonzaga",
-                "value": "Gonzaga",
-              },
-              Object {
-                "label": "Saint Mary's (CA)",
-                "value": "Saint Mary's (CA)",
-              },
-              Object {
-                "label": "San Diego St.",
-                "value": "San Diego St.",
-              },
-              Object {
-                "label": "Utah St.",
-                "value": "Utah St.",
+                "label": "Abilene Christian",
+                "value": "Abilene Christian",
               },
               Object {
                 "label": "Air Force",
                 "value": "Air Force",
               },
               Object {
-                "label": "Boise St.",
-                "value": "Boise St.",
+                "label": "Akron",
+                "value": "Akron",
               },
               Object {
-                "label": "Colorado St.",
-                "value": "Colorado St.",
+                "label": "Alabama",
+                "value": "Alabama",
               },
               Object {
-                "label": "Fresno St.",
-                "value": "Fresno St.",
+                "label": "Alabama A&M",
+                "value": "Alabama A&M",
               },
               Object {
-                "label": "Nevada",
-                "value": "Nevada",
+                "label": "Alcorn",
+                "value": "Alcorn",
               },
               Object {
-                "label": "New Mexico",
-                "value": "New Mexico",
-              },
-              Object {
-                "label": "San Jose St.",
-                "value": "San Jose St.",
-              },
-              Object {
-                "label": "UNLV",
-                "value": "UNLV",
-              },
-              Object {
-                "label": "Wyoming",
-                "value": "Wyoming",
-              },
-              Object {
-                "label": "Bradley",
-                "value": "Bradley",
-              },
-              Object {
-                "label": "Drake",
-                "value": "Drake",
-              },
-              Object {
-                "label": "Evansville",
-                "value": "Evansville",
-              },
-              Object {
-                "label": "Illinois St.",
-                "value": "Illinois St.",
-              },
-              Object {
-                "label": "Indiana St.",
-                "value": "Indiana St.",
-              },
-              Object {
-                "label": "Loyola Chicago",
-                "value": "Loyola Chicago",
-              },
-              Object {
-                "label": "Missouri St.",
-                "value": "Missouri St.",
-              },
-              Object {
-                "label": "Southern Ill.",
-                "value": "Southern Ill.",
-              },
-              Object {
-                "label": "UNI",
-                "value": "UNI",
-              },
-              Object {
-                "label": "Valparaiso",
-                "value": "Valparaiso",
+                "label": "App State",
+                "value": "App State",
               },
               Object {
                 "label": "Arizona",
@@ -708,144 +156,664 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
                 "value": "Arizona St.",
               },
               Object {
-                "label": "California",
-                "value": "California",
-              },
-              Object {
-                "label": "Colorado",
-                "value": "Colorado",
-              },
-              Object {
-                "label": "Oregon",
-                "value": "Oregon",
-              },
-              Object {
-                "label": "Oregon St.",
-                "value": "Oregon St.",
-              },
-              Object {
-                "label": "Southern California",
-                "value": "Southern California",
-              },
-              Object {
-                "label": "Stanford",
-                "value": "Stanford",
-              },
-              Object {
-                "label": "UCLA",
-                "value": "UCLA",
-              },
-              Object {
-                "label": "Utah",
-                "value": "Utah",
-              },
-              Object {
-                "label": "Washington",
-                "value": "Washington",
-              },
-              Object {
-                "label": "Washington St.",
-                "value": "Washington St.",
-              },
-              Object {
-                "label": "Alabama",
-                "value": "Alabama",
+                "label": "Ark.-Pine Bluff",
+                "value": "Ark.-Pine Bluff",
               },
               Object {
                 "label": "Arkansas",
                 "value": "Arkansas",
               },
               Object {
+                "label": "Arkansas St.",
+                "value": "Arkansas St.",
+              },
+              Object {
+                "label": "Army West Point",
+                "value": "Army West Point",
+              },
+              Object {
                 "label": "Auburn",
                 "value": "Auburn",
               },
               Object {
-                "label": "Florida",
-                "value": "Florida",
+                "label": "Austin Peay",
+                "value": "Austin Peay",
               },
               Object {
-                "label": "Georgia",
-                "value": "Georgia",
+                "label": "BYU",
+                "value": "BYU",
               },
               Object {
-                "label": "Kentucky",
-                "value": "Kentucky",
+                "label": "Ball St.",
+                "value": "Ball St.",
               },
               Object {
-                "label": "LSU",
-                "value": "LSU",
+                "label": "Baylor",
+                "value": "Baylor",
               },
               Object {
-                "label": "Mississippi St.",
-                "value": "Mississippi St.",
+                "label": "Belmont",
+                "value": "Belmont",
               },
               Object {
-                "label": "Missouri",
-                "value": "Missouri",
+                "label": "Binghamton",
+                "value": "Binghamton",
               },
               Object {
-                "label": "Ole Miss",
-                "value": "Ole Miss",
+                "label": "Boise St.",
+                "value": "Boise St.",
               },
               Object {
-                "label": "South Carolina",
-                "value": "South Carolina",
+                "label": "Boston College",
+                "value": "Boston College",
               },
               Object {
-                "label": "Tennessee",
-                "value": "Tennessee",
+                "label": "Bowling Green",
+                "value": "Bowling Green",
               },
               Object {
-                "label": "Texas A&M",
-                "value": "Texas A&M",
+                "label": "Bradley",
+                "value": "Bradley",
               },
               Object {
-                "label": "Vanderbilt",
-                "value": "Vanderbilt",
+                "label": "Bryant",
+                "value": "Bryant",
+              },
+              Object {
+                "label": "Buffalo",
+                "value": "Buffalo",
+              },
+              Object {
+                "label": "Butler",
+                "value": "Butler",
+              },
+              Object {
+                "label": "CSU Bakersfield",
+                "value": "CSU Bakersfield",
+              },
+              Object {
+                "label": "CSUN",
+                "value": "CSUN",
+              },
+              Object {
+                "label": "Cal Poly",
+                "value": "Cal Poly",
+              },
+              Object {
+                "label": "Cal St. Fullerton",
+                "value": "Cal St. Fullerton",
+              },
+              Object {
+                "label": "California",
+                "value": "California",
+              },
+              Object {
+                "label": "Campbell",
+                "value": "Campbell",
+              },
+              Object {
+                "label": "Canisius",
+                "value": "Canisius",
+              },
+              Object {
+                "label": "Central Ark.",
+                "value": "Central Ark.",
+              },
+              Object {
+                "label": "Central Conn. St.",
+                "value": "Central Conn. St.",
+              },
+              Object {
+                "label": "Central Mich.",
+                "value": "Central Mich.",
+              },
+              Object {
+                "label": "Charleston So.",
+                "value": "Charleston So.",
+              },
+              Object {
+                "label": "Charlotte",
+                "value": "Charlotte",
               },
               Object {
                 "label": "Chattanooga",
                 "value": "Chattanooga",
               },
               Object {
-                "label": "Furman",
-                "value": "Furman",
+                "label": "Chicago St.",
+                "value": "Chicago St.",
               },
               Object {
-                "label": "Mercer",
-                "value": "Mercer",
+                "label": "Cincinnati",
+                "value": "Cincinnati",
               },
               Object {
-                "label": "Samford",
-                "value": "Samford",
+                "label": "Clemson",
+                "value": "Clemson",
               },
               Object {
-                "label": "The Citadel",
-                "value": "The Citadel",
+                "label": "Cleveland St.",
+                "value": "Cleveland St.",
               },
               Object {
-                "label": "UNC Greensboro",
-                "value": "UNC Greensboro",
+                "label": "Coastal Carolina",
+                "value": "Coastal Carolina",
               },
               Object {
-                "label": "VMI",
-                "value": "VMI",
+                "label": "Col. of Charleston",
+                "value": "Col. of Charleston",
               },
               Object {
-                "label": "Western Caro.",
-                "value": "Western Caro.",
+                "label": "Colorado",
+                "value": "Colorado",
               },
               Object {
-                "label": "Wofford",
-                "value": "Wofford",
+                "label": "Colorado St.",
+                "value": "Colorado St.",
+              },
+              Object {
+                "label": "Coppin St.",
+                "value": "Coppin St.",
+              },
+              Object {
+                "label": "Creighton",
+                "value": "Creighton",
+              },
+              Object {
+                "label": "Davidson",
+                "value": "Davidson",
+              },
+              Object {
+                "label": "Dayton",
+                "value": "Dayton",
+              },
+              Object {
+                "label": "DePaul",
+                "value": "DePaul",
+              },
+              Object {
+                "label": "Delaware",
+                "value": "Delaware",
+              },
+              Object {
+                "label": "Delaware St.",
+                "value": "Delaware St.",
               },
               Object {
                 "label": "Denver",
                 "value": "Denver",
               },
               Object {
+                "label": "Detroit Mercy",
+                "value": "Detroit Mercy",
+              },
+              Object {
+                "label": "Drake",
+                "value": "Drake",
+              },
+              Object {
+                "label": "Drexel",
+                "value": "Drexel",
+              },
+              Object {
+                "label": "Duke",
+                "value": "Duke",
+              },
+              Object {
+                "label": "Duquesne",
+                "value": "Duquesne",
+              },
+              Object {
+                "label": "ETSU",
+                "value": "ETSU",
+              },
+              Object {
+                "label": "East Carolina",
+                "value": "East Carolina",
+              },
+              Object {
+                "label": "Eastern Ill.",
+                "value": "Eastern Ill.",
+              },
+              Object {
+                "label": "Eastern Ky.",
+                "value": "Eastern Ky.",
+              },
+              Object {
+                "label": "Eastern Mich.",
+                "value": "Eastern Mich.",
+              },
+              Object {
+                "label": "Eastern Wash.",
+                "value": "Eastern Wash.",
+              },
+              Object {
+                "label": "Elon",
+                "value": "Elon",
+              },
+              Object {
+                "label": "Evansville",
+                "value": "Evansville",
+              },
+              Object {
+                "label": "FGCU",
+                "value": "FGCU",
+              },
+              Object {
+                "label": "FIU",
+                "value": "FIU",
+              },
+              Object {
+                "label": "Fairfield",
+                "value": "Fairfield",
+              },
+              Object {
+                "label": "Fairleigh Dickinson",
+                "value": "Fairleigh Dickinson",
+              },
+              Object {
+                "label": "Fla. Atlantic",
+                "value": "Fla. Atlantic",
+              },
+              Object {
+                "label": "Florida",
+                "value": "Florida",
+              },
+              Object {
+                "label": "Florida A&M",
+                "value": "Florida A&M",
+              },
+              Object {
+                "label": "Florida St.",
+                "value": "Florida St.",
+              },
+              Object {
+                "label": "Fordham",
+                "value": "Fordham",
+              },
+              Object {
+                "label": "Fresno St.",
+                "value": "Fresno St.",
+              },
+              Object {
+                "label": "Furman",
+                "value": "Furman",
+              },
+              Object {
+                "label": "Ga. Southern",
+                "value": "Ga. Southern",
+              },
+              Object {
+                "label": "Gardner-Webb",
+                "value": "Gardner-Webb",
+              },
+              Object {
+                "label": "George Mason",
+                "value": "George Mason",
+              },
+              Object {
+                "label": "George Washington",
+                "value": "George Washington",
+              },
+              Object {
+                "label": "Georgetown",
+                "value": "Georgetown",
+              },
+              Object {
+                "label": "Georgia",
+                "value": "Georgia",
+              },
+              Object {
+                "label": "Georgia St.",
+                "value": "Georgia St.",
+              },
+              Object {
+                "label": "Georgia Tech",
+                "value": "Georgia Tech",
+              },
+              Object {
+                "label": "Gonzaga",
+                "value": "Gonzaga",
+              },
+              Object {
+                "label": "Grambling",
+                "value": "Grambling",
+              },
+              Object {
+                "label": "Grand Canyon",
+                "value": "Grand Canyon",
+              },
+              Object {
+                "label": "Green Bay",
+                "value": "Green Bay",
+              },
+              Object {
+                "label": "Hampton",
+                "value": "Hampton",
+              },
+              Object {
+                "label": "Hartford",
+                "value": "Hartford",
+              },
+              Object {
+                "label": "Hawaii",
+                "value": "Hawaii",
+              },
+              Object {
+                "label": "High Point",
+                "value": "High Point",
+              },
+              Object {
+                "label": "Hofstra",
+                "value": "Hofstra",
+              },
+              Object {
+                "label": "Houston",
+                "value": "Houston",
+              },
+              Object {
+                "label": "Houston Baptist",
+                "value": "Houston Baptist",
+              },
+              Object {
+                "label": "Howard",
+                "value": "Howard",
+              },
+              Object {
+                "label": "IUPUI",
+                "value": "IUPUI",
+              },
+              Object {
+                "label": "Idaho",
+                "value": "Idaho",
+              },
+              Object {
+                "label": "Idaho St.",
+                "value": "Idaho St.",
+              },
+              Object {
+                "label": "Illinois",
+                "value": "Illinois",
+              },
+              Object {
+                "label": "Illinois St.",
+                "value": "Illinois St.",
+              },
+              Object {
+                "label": "Indiana",
+                "value": "Indiana",
+              },
+              Object {
+                "label": "Indiana St.",
+                "value": "Indiana St.",
+              },
+              Object {
+                "label": "Iona",
+                "value": "Iona",
+              },
+              Object {
+                "label": "Iowa",
+                "value": "Iowa",
+              },
+              Object {
+                "label": "Iowa St.",
+                "value": "Iowa St.",
+              },
+              Object {
+                "label": "Jackson St.",
+                "value": "Jackson St.",
+              },
+              Object {
+                "label": "Jacksonville",
+                "value": "Jacksonville",
+              },
+              Object {
+                "label": "Jacksonville St.",
+                "value": "Jacksonville St.",
+              },
+              Object {
+                "label": "James Madison",
+                "value": "James Madison",
+              },
+              Object {
+                "label": "Kansas",
+                "value": "Kansas",
+              },
+              Object {
                 "label": "Kansas City",
                 "value": "Kansas City",
+              },
+              Object {
+                "label": "Kansas St.",
+                "value": "Kansas St.",
+              },
+              Object {
+                "label": "Kennesaw St.",
+                "value": "Kennesaw St.",
+              },
+              Object {
+                "label": "Kent St.",
+                "value": "Kent St.",
+              },
+              Object {
+                "label": "Kentucky",
+                "value": "Kentucky",
+              },
+              Object {
+                "label": "LIU",
+                "value": "LIU",
+              },
+              Object {
+                "label": "LMU (CA)",
+                "value": "LMU (CA)",
+              },
+              Object {
+                "label": "LSU",
+                "value": "LSU",
+              },
+              Object {
+                "label": "La Salle",
+                "value": "La Salle",
+              },
+              Object {
+                "label": "Lamar University",
+                "value": "Lamar University",
+              },
+              Object {
+                "label": "Liberty",
+                "value": "Liberty",
+              },
+              Object {
+                "label": "Lipscomb",
+                "value": "Lipscomb",
+              },
+              Object {
+                "label": "Little Rock",
+                "value": "Little Rock",
+              },
+              Object {
+                "label": "Long Beach St.",
+                "value": "Long Beach St.",
+              },
+              Object {
+                "label": "Longwood",
+                "value": "Longwood",
+              },
+              Object {
+                "label": "Louisiana",
+                "value": "Louisiana",
+              },
+              Object {
+                "label": "Louisiana Tech",
+                "value": "Louisiana Tech",
+              },
+              Object {
+                "label": "Louisville",
+                "value": "Louisville",
+              },
+              Object {
+                "label": "Loyola Chicago",
+                "value": "Loyola Chicago",
+              },
+              Object {
+                "label": "Manhattan",
+                "value": "Manhattan",
+              },
+              Object {
+                "label": "Marist",
+                "value": "Marist",
+              },
+              Object {
+                "label": "Marquette",
+                "value": "Marquette",
+              },
+              Object {
+                "label": "Marshall",
+                "value": "Marshall",
+              },
+              Object {
+                "label": "Massachusetts",
+                "value": "Massachusetts",
+              },
+              Object {
+                "label": "McNeese",
+                "value": "McNeese",
+              },
+              Object {
+                "label": "Memphis",
+                "value": "Memphis",
+              },
+              Object {
+                "label": "Mercer",
+                "value": "Mercer",
+              },
+              Object {
+                "label": "Miami (FL)",
+                "value": "Miami (FL)",
+              },
+              Object {
+                "label": "Miami (OH)",
+                "value": "Miami (OH)",
+              },
+              Object {
+                "label": "Michigan",
+                "value": "Michigan",
+              },
+              Object {
+                "label": "Michigan St.",
+                "value": "Michigan St.",
+              },
+              Object {
+                "label": "Middle Tenn.",
+                "value": "Middle Tenn.",
+              },
+              Object {
+                "label": "Milwaukee",
+                "value": "Milwaukee",
+              },
+              Object {
+                "label": "Minnesota",
+                "value": "Minnesota",
+              },
+              Object {
+                "label": "Mississippi St.",
+                "value": "Mississippi St.",
+              },
+              Object {
+                "label": "Mississippi Val.",
+                "value": "Mississippi Val.",
+              },
+              Object {
+                "label": "Missouri",
+                "value": "Missouri",
+              },
+              Object {
+                "label": "Missouri St.",
+                "value": "Missouri St.",
+              },
+              Object {
+                "label": "Monmouth",
+                "value": "Monmouth",
+              },
+              Object {
+                "label": "Montana",
+                "value": "Montana",
+              },
+              Object {
+                "label": "Montana St.",
+                "value": "Montana St.",
+              },
+              Object {
+                "label": "Morehead St.",
+                "value": "Morehead St.",
+              },
+              Object {
+                "label": "Morgan St.",
+                "value": "Morgan St.",
+              },
+              Object {
+                "label": "Mount St. Mary's",
+                "value": "Mount St. Mary's",
+              },
+              Object {
+                "label": "Murray St.",
+                "value": "Murray St.",
+              },
+              Object {
+                "label": "N.C. A&T",
+                "value": "N.C. A&T",
+              },
+              Object {
+                "label": "N.C. Central",
+                "value": "N.C. Central",
+              },
+              Object {
+                "label": "NC State",
+                "value": "NC State",
+              },
+              Object {
+                "label": "Navy",
+                "value": "Navy",
+              },
+              Object {
+                "label": "Nebraska",
+                "value": "Nebraska",
+              },
+              Object {
+                "label": "Nevada",
+                "value": "Nevada",
+              },
+              Object {
+                "label": "New Hampshire",
+                "value": "New Hampshire",
+              },
+              Object {
+                "label": "New Mexico",
+                "value": "New Mexico",
+              },
+              Object {
+                "label": "New Mexico St.",
+                "value": "New Mexico St.",
+              },
+              Object {
+                "label": "New Orleans",
+                "value": "New Orleans",
+              },
+              Object {
+                "label": "Niagara",
+                "value": "Niagara",
+              },
+              Object {
+                "label": "Nicholls St.",
+                "value": "Nicholls St.",
+              },
+              Object {
+                "label": "Norfolk St.",
+                "value": "Norfolk St.",
+              },
+              Object {
+                "label": "North Carolina",
+                "value": "North Carolina",
               },
               Object {
                 "label": "North Dakota",
@@ -856,12 +824,252 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
                 "value": "North Dakota St.",
               },
               Object {
+                "label": "North Florida",
+                "value": "North Florida",
+              },
+              Object {
+                "label": "North Texas",
+                "value": "North Texas",
+              },
+              Object {
+                "label": "Northeastern",
+                "value": "Northeastern",
+              },
+              Object {
+                "label": "Northern Ariz.",
+                "value": "Northern Ariz.",
+              },
+              Object {
+                "label": "Northern Colo.",
+                "value": "Northern Colo.",
+              },
+              Object {
+                "label": "Northern Ill.",
+                "value": "Northern Ill.",
+              },
+              Object {
+                "label": "Northern Ky.",
+                "value": "Northern Ky.",
+              },
+              Object {
+                "label": "Northwestern",
+                "value": "Northwestern",
+              },
+              Object {
+                "label": "Northwestern St.",
+                "value": "Northwestern St.",
+              },
+              Object {
+                "label": "Notre Dame",
+                "value": "Notre Dame",
+              },
+              Object {
+                "label": "Oakland",
+                "value": "Oakland",
+              },
+              Object {
+                "label": "Ohio",
+                "value": "Ohio",
+              },
+              Object {
+                "label": "Ohio St.",
+                "value": "Ohio St.",
+              },
+              Object {
+                "label": "Oklahoma",
+                "value": "Oklahoma",
+              },
+              Object {
+                "label": "Oklahoma St.",
+                "value": "Oklahoma St.",
+              },
+              Object {
+                "label": "Old Dominion",
+                "value": "Old Dominion",
+              },
+              Object {
+                "label": "Ole Miss",
+                "value": "Ole Miss",
+              },
+              Object {
                 "label": "Omaha",
                 "value": "Omaha",
               },
               Object {
                 "label": "Oral Roberts",
                 "value": "Oral Roberts",
+              },
+              Object {
+                "label": "Oregon",
+                "value": "Oregon",
+              },
+              Object {
+                "label": "Oregon St.",
+                "value": "Oregon St.",
+              },
+              Object {
+                "label": "Pacific",
+                "value": "Pacific",
+              },
+              Object {
+                "label": "Penn St.",
+                "value": "Penn St.",
+              },
+              Object {
+                "label": "Pepperdine",
+                "value": "Pepperdine",
+              },
+              Object {
+                "label": "Pittsburgh",
+                "value": "Pittsburgh",
+              },
+              Object {
+                "label": "Portland",
+                "value": "Portland",
+              },
+              Object {
+                "label": "Portland St.",
+                "value": "Portland St.",
+              },
+              Object {
+                "label": "Prairie View",
+                "value": "Prairie View",
+              },
+              Object {
+                "label": "Presbyterian",
+                "value": "Presbyterian",
+              },
+              Object {
+                "label": "Providence",
+                "value": "Providence",
+              },
+              Object {
+                "label": "Purdue",
+                "value": "Purdue",
+              },
+              Object {
+                "label": "Purdue Fort Wayne",
+                "value": "Purdue Fort Wayne",
+              },
+              Object {
+                "label": "Quinnipiac",
+                "value": "Quinnipiac",
+              },
+              Object {
+                "label": "Radford",
+                "value": "Radford",
+              },
+              Object {
+                "label": "Rhode Island",
+                "value": "Rhode Island",
+              },
+              Object {
+                "label": "Rice",
+                "value": "Rice",
+              },
+              Object {
+                "label": "Richmond",
+                "value": "Richmond",
+              },
+              Object {
+                "label": "Rider",
+                "value": "Rider",
+              },
+              Object {
+                "label": "Robert Morris",
+                "value": "Robert Morris",
+              },
+              Object {
+                "label": "Rutgers",
+                "value": "Rutgers",
+              },
+              Object {
+                "label": "SFA",
+                "value": "SFA",
+              },
+              Object {
+                "label": "SIUE",
+                "value": "SIUE",
+              },
+              Object {
+                "label": "SMU",
+                "value": "SMU",
+              },
+              Object {
+                "label": "Sacramento St.",
+                "value": "Sacramento St.",
+              },
+              Object {
+                "label": "Sacred Heart",
+                "value": "Sacred Heart",
+              },
+              Object {
+                "label": "Saint Francis (PA)",
+                "value": "Saint Francis (PA)",
+              },
+              Object {
+                "label": "Saint Joseph's",
+                "value": "Saint Joseph's",
+              },
+              Object {
+                "label": "Saint Louis",
+                "value": "Saint Louis",
+              },
+              Object {
+                "label": "Saint Mary's (CA)",
+                "value": "Saint Mary's (CA)",
+              },
+              Object {
+                "label": "Saint Peter's",
+                "value": "Saint Peter's",
+              },
+              Object {
+                "label": "Sam Houston St.",
+                "value": "Sam Houston St.",
+              },
+              Object {
+                "label": "Samford",
+                "value": "Samford",
+              },
+              Object {
+                "label": "San Diego",
+                "value": "San Diego",
+              },
+              Object {
+                "label": "San Diego St.",
+                "value": "San Diego St.",
+              },
+              Object {
+                "label": "San Francisco",
+                "value": "San Francisco",
+              },
+              Object {
+                "label": "San Jose St.",
+                "value": "San Jose St.",
+              },
+              Object {
+                "label": "Santa Clara",
+                "value": "Santa Clara",
+              },
+              Object {
+                "label": "Seattle U",
+                "value": "Seattle U",
+              },
+              Object {
+                "label": "Seton Hall",
+                "value": "Seton Hall",
+              },
+              Object {
+                "label": "South Alabama",
+                "value": "South Alabama",
+              },
+              Object {
+                "label": "South Carolina",
+                "value": "South Carolina",
+              },
+              Object {
+                "label": "South Carolina St.",
+                "value": "South Carolina St.",
               },
               Object {
                 "label": "South Dakota",
@@ -872,84 +1080,340 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
                 "value": "South Dakota St.",
               },
               Object {
-                "label": "Western Ill.",
-                "value": "Western Ill.",
+                "label": "South Fla.",
+                "value": "South Fla.",
               },
               Object {
-                "label": "App State",
-                "value": "App State",
+                "label": "Southeast Mo. St.",
+                "value": "Southeast Mo. St.",
               },
               Object {
-                "label": "Arkansas St.",
-                "value": "Arkansas St.",
+                "label": "Southeastern La.",
+                "value": "Southeastern La.",
               },
               Object {
-                "label": "Coastal Carolina",
-                "value": "Coastal Carolina",
+                "label": "Southern California",
+                "value": "Southern California",
               },
               Object {
-                "label": "Ga. Southern",
-                "value": "Ga. Southern",
+                "label": "Southern Ill.",
+                "value": "Southern Ill.",
               },
               Object {
-                "label": "Georgia St.",
-                "value": "Georgia St.",
+                "label": "Southern Miss.",
+                "value": "Southern Miss.",
               },
               Object {
-                "label": "Little Rock",
-                "value": "Little Rock",
+                "label": "Southern U.",
+                "value": "Southern U.",
               },
               Object {
-                "label": "Louisiana",
-                "value": "Louisiana",
+                "label": "Southern Utah",
+                "value": "Southern Utah",
               },
               Object {
-                "label": "South Alabama",
-                "value": "South Alabama",
+                "label": "St. Bonaventure",
+                "value": "St. Bonaventure",
+              },
+              Object {
+                "label": "St. Francis Brooklyn",
+                "value": "St. Francis Brooklyn",
+              },
+              Object {
+                "label": "St. John's (NY)",
+                "value": "St. John's (NY)",
+              },
+              Object {
+                "label": "Stanford",
+                "value": "Stanford",
+              },
+              Object {
+                "label": "Stetson",
+                "value": "Stetson",
+              },
+              Object {
+                "label": "Stony Brook",
+                "value": "Stony Brook",
+              },
+              Object {
+                "label": "Syracuse",
+                "value": "Syracuse",
+              },
+              Object {
+                "label": "TCU",
+                "value": "TCU",
+              },
+              Object {
+                "label": "Temple",
+                "value": "Temple",
+              },
+              Object {
+                "label": "Tennessee",
+                "value": "Tennessee",
+              },
+              Object {
+                "label": "Tennessee St.",
+                "value": "Tennessee St.",
+              },
+              Object {
+                "label": "Tennessee Tech",
+                "value": "Tennessee Tech",
+              },
+              Object {
+                "label": "Texas",
+                "value": "Texas",
+              },
+              Object {
+                "label": "Texas A&M",
+                "value": "Texas A&M",
+              },
+              Object {
+                "label": "Texas Southern",
+                "value": "Texas Southern",
               },
               Object {
                 "label": "Texas St.",
                 "value": "Texas St.",
               },
               Object {
+                "label": "Texas Tech",
+                "value": "Texas Tech",
+              },
+              Object {
+                "label": "The Citadel",
+                "value": "The Citadel",
+              },
+              Object {
+                "label": "Toledo",
+                "value": "Toledo",
+              },
+              Object {
+                "label": "Towson",
+                "value": "Towson",
+              },
+              Object {
                 "label": "Troy",
                 "value": "Troy",
+              },
+              Object {
+                "label": "Tulane",
+                "value": "Tulane",
+              },
+              Object {
+                "label": "Tulsa",
+                "value": "Tulsa",
+              },
+              Object {
+                "label": "UAB",
+                "value": "UAB",
+              },
+              Object {
+                "label": "UC Davis",
+                "value": "UC Davis",
+              },
+              Object {
+                "label": "UC Irvine",
+                "value": "UC Irvine",
+              },
+              Object {
+                "label": "UC Riverside",
+                "value": "UC Riverside",
+              },
+              Object {
+                "label": "UC Santa Barbara",
+                "value": "UC Santa Barbara",
+              },
+              Object {
+                "label": "UCF",
+                "value": "UCF",
+              },
+              Object {
+                "label": "UCLA",
+                "value": "UCLA",
+              },
+              Object {
+                "label": "UConn",
+                "value": "UConn",
+              },
+              Object {
+                "label": "UIC",
+                "value": "UIC",
+              },
+              Object {
+                "label": "UIW",
+                "value": "UIW",
               },
               Object {
                 "label": "ULM",
                 "value": "ULM",
               },
               Object {
+                "label": "UMBC",
+                "value": "UMBC",
+              },
+              Object {
+                "label": "UMass Lowell",
+                "value": "UMass Lowell",
+              },
+              Object {
+                "label": "UNC Asheville",
+                "value": "UNC Asheville",
+              },
+              Object {
+                "label": "UNC Greensboro",
+                "value": "UNC Greensboro",
+              },
+              Object {
+                "label": "UNCW",
+                "value": "UNCW",
+              },
+              Object {
+                "label": "UNI",
+                "value": "UNI",
+              },
+              Object {
+                "label": "UNLV",
+                "value": "UNLV",
+              },
+              Object {
+                "label": "USC Upstate",
+                "value": "USC Upstate",
+              },
+              Object {
                 "label": "UT Arlington",
                 "value": "UT Arlington",
               },
               Object {
-                "label": "LMU (CA)",
-                "value": "LMU (CA)",
+                "label": "UT Martin",
+                "value": "UT Martin",
               },
               Object {
-                "label": "Pacific",
-                "value": "Pacific",
+                "label": "UTEP",
+                "value": "UTEP",
               },
               Object {
-                "label": "Pepperdine",
-                "value": "Pepperdine",
+                "label": "UTRGV",
+                "value": "UTRGV",
               },
               Object {
-                "label": "Portland",
-                "value": "Portland",
+                "label": "UTSA",
+                "value": "UTSA",
               },
               Object {
-                "label": "San Diego",
-                "value": "San Diego",
+                "label": "Utah",
+                "value": "Utah",
               },
               Object {
-                "label": "San Francisco",
-                "value": "San Francisco",
+                "label": "Utah St.",
+                "value": "Utah St.",
               },
               Object {
-                "label": "Santa Clara",
-                "value": "Santa Clara",
+                "label": "Utah Valley",
+                "value": "Utah Valley",
+              },
+              Object {
+                "label": "VCU",
+                "value": "VCU",
+              },
+              Object {
+                "label": "VMI",
+                "value": "VMI",
+              },
+              Object {
+                "label": "Valparaiso",
+                "value": "Valparaiso",
+              },
+              Object {
+                "label": "Vanderbilt",
+                "value": "Vanderbilt",
+              },
+              Object {
+                "label": "Villanova",
+                "value": "Villanova",
+              },
+              Object {
+                "label": "Virginia",
+                "value": "Virginia",
+              },
+              Object {
+                "label": "Virginia Tech",
+                "value": "Virginia Tech",
+              },
+              Object {
+                "label": "Wagner",
+                "value": "Wagner",
+              },
+              Object {
+                "label": "Wake Forest",
+                "value": "Wake Forest",
+              },
+              Object {
+                "label": "Washington",
+                "value": "Washington",
+              },
+              Object {
+                "label": "Washington St.",
+                "value": "Washington St.",
+              },
+              Object {
+                "label": "Weber St.",
+                "value": "Weber St.",
+              },
+              Object {
+                "label": "West Virginia",
+                "value": "West Virginia",
+              },
+              Object {
+                "label": "Western Caro.",
+                "value": "Western Caro.",
+              },
+              Object {
+                "label": "Western Ill.",
+                "value": "Western Ill.",
+              },
+              Object {
+                "label": "Western Ky.",
+                "value": "Western Ky.",
+              },
+              Object {
+                "label": "Western Mich.",
+                "value": "Western Mich.",
+              },
+              Object {
+                "label": "Wichita St.",
+                "value": "Wichita St.",
+              },
+              Object {
+                "label": "William & Mary",
+                "value": "William & Mary",
+              },
+              Object {
+                "label": "Winthrop",
+                "value": "Winthrop",
+              },
+              Object {
+                "label": "Wisconsin",
+                "value": "Wisconsin",
+              },
+              Object {
+                "label": "Wofford",
+                "value": "Wofford",
+              },
+              Object {
+                "label": "Wright St.",
+                "value": "Wright St.",
+              },
+              Object {
+                "label": "Wyoming",
+                "value": "Wyoming",
+              },
+              Object {
+                "label": "Xavier",
+                "value": "Xavier",
+              },
+              Object {
+                "label": "Youngstown St.",
+                "value": "Youngstown St.",
               },
             ]
           }
@@ -1535,112 +1999,60 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
           options={
             Array [
               Object {
+                "label": "Maryland",
+                "value": "Maryland",
+              },
+              Object {
+                "label": "Alabama",
+                "value": "Alabama",
+              },
+              Object {
+                "label": "Arizona",
+                "value": "Arizona",
+              },
+              Object {
+                "label": "Arizona St.",
+                "value": "Arizona St.",
+              },
+              Object {
+                "label": "Arkansas",
+                "value": "Arkansas",
+              },
+              Object {
+                "label": "Auburn",
+                "value": "Auburn",
+              },
+              Object {
+                "label": "Baylor",
+                "value": "Baylor",
+              },
+              Object {
                 "label": "Boston College",
                 "value": "Boston College",
               },
               Object {
-                "label": "Clemson",
-                "value": "Clemson",
+                "label": "Butler",
+                "value": "Butler",
               },
               Object {
-                "label": "Duke",
-                "value": "Duke",
-              },
-              Object {
-                "label": "Florida St.",
-                "value": "Florida St.",
-              },
-              Object {
-                "label": "Georgia Tech",
-                "value": "Georgia Tech",
-              },
-              Object {
-                "label": "Louisville",
-                "value": "Louisville",
-              },
-              Object {
-                "label": "Miami (FL)",
-                "value": "Miami (FL)",
-              },
-              Object {
-                "label": "NC State",
-                "value": "NC State",
-              },
-              Object {
-                "label": "North Carolina",
-                "value": "North Carolina",
-              },
-              Object {
-                "label": "Notre Dame",
-                "value": "Notre Dame",
-              },
-              Object {
-                "label": "Pittsburgh",
-                "value": "Pittsburgh",
-              },
-              Object {
-                "label": "Syracuse",
-                "value": "Syracuse",
-              },
-              Object {
-                "label": "Virginia",
-                "value": "Virginia",
-              },
-              Object {
-                "label": "Virginia Tech",
-                "value": "Virginia Tech",
-              },
-              Object {
-                "label": "Wake Forest",
-                "value": "Wake Forest",
+                "label": "California",
+                "value": "California",
               },
               Object {
                 "label": "Cincinnati",
                 "value": "Cincinnati",
               },
               Object {
-                "label": "East Carolina",
-                "value": "East Carolina",
+                "label": "Clemson",
+                "value": "Clemson",
               },
               Object {
-                "label": "Houston",
-                "value": "Houston",
+                "label": "Colorado",
+                "value": "Colorado",
               },
               Object {
-                "label": "Memphis",
-                "value": "Memphis",
-              },
-              Object {
-                "label": "SMU",
-                "value": "SMU",
-              },
-              Object {
-                "label": "South Fla.",
-                "value": "South Fla.",
-              },
-              Object {
-                "label": "Temple",
-                "value": "Temple",
-              },
-              Object {
-                "label": "Tulane",
-                "value": "Tulane",
-              },
-              Object {
-                "label": "Tulsa",
-                "value": "Tulsa",
-              },
-              Object {
-                "label": "UCF",
-                "value": "UCF",
-              },
-              Object {
-                "label": "UConn",
-                "value": "UConn",
-              },
-              Object {
-                "label": "Wichita St.",
-                "value": "Wichita St.",
+                "label": "Creighton",
+                "value": "Creighton",
               },
               Object {
                 "label": "Davidson",
@@ -1651,8 +2063,28 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
                 "value": "Dayton",
               },
               Object {
+                "label": "DePaul",
+                "value": "DePaul",
+              },
+              Object {
+                "label": "Duke",
+                "value": "Duke",
+              },
+              Object {
                 "label": "Duquesne",
                 "value": "Duquesne",
+              },
+              Object {
+                "label": "East Carolina",
+                "value": "East Carolina",
+              },
+              Object {
+                "label": "Florida",
+                "value": "Florida",
+              },
+              Object {
+                "label": "Florida St.",
+                "value": "Florida St.",
               },
               Object {
                 "label": "Fordham",
@@ -1667,76 +2099,20 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
                 "value": "George Washington",
               },
               Object {
-                "label": "La Salle",
-                "value": "La Salle",
-              },
-              Object {
-                "label": "Massachusetts",
-                "value": "Massachusetts",
-              },
-              Object {
-                "label": "Rhode Island",
-                "value": "Rhode Island",
-              },
-              Object {
-                "label": "Richmond",
-                "value": "Richmond",
-              },
-              Object {
-                "label": "Saint Joseph's",
-                "value": "Saint Joseph's",
-              },
-              Object {
-                "label": "Saint Louis",
-                "value": "Saint Louis",
-              },
-              Object {
-                "label": "St. Bonaventure",
-                "value": "St. Bonaventure",
-              },
-              Object {
-                "label": "VCU",
-                "value": "VCU",
-              },
-              Object {
-                "label": "Butler",
-                "value": "Butler",
-              },
-              Object {
-                "label": "Creighton",
-                "value": "Creighton",
-              },
-              Object {
-                "label": "DePaul",
-                "value": "DePaul",
-              },
-              Object {
                 "label": "Georgetown",
                 "value": "Georgetown",
               },
               Object {
-                "label": "Marquette",
-                "value": "Marquette",
+                "label": "Georgia",
+                "value": "Georgia",
               },
               Object {
-                "label": "Providence",
-                "value": "Providence",
+                "label": "Georgia Tech",
+                "value": "Georgia Tech",
               },
               Object {
-                "label": "Seton Hall",
-                "value": "Seton Hall",
-              },
-              Object {
-                "label": "St. John's (NY)",
-                "value": "St. John's (NY)",
-              },
-              Object {
-                "label": "Villanova",
-                "value": "Villanova",
-              },
-              Object {
-                "label": "Xavier",
-                "value": "Xavier",
+                "label": "Houston",
+                "value": "Houston",
               },
               Object {
                 "label": "Illinois",
@@ -1751,8 +2127,48 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
                 "value": "Iowa",
               },
               Object {
-                "label": "Maryland",
-                "value": "Maryland",
+                "label": "Iowa St.",
+                "value": "Iowa St.",
+              },
+              Object {
+                "label": "Kansas",
+                "value": "Kansas",
+              },
+              Object {
+                "label": "Kansas St.",
+                "value": "Kansas St.",
+              },
+              Object {
+                "label": "Kentucky",
+                "value": "Kentucky",
+              },
+              Object {
+                "label": "LSU",
+                "value": "LSU",
+              },
+              Object {
+                "label": "La Salle",
+                "value": "La Salle",
+              },
+              Object {
+                "label": "Louisville",
+                "value": "Louisville",
+              },
+              Object {
+                "label": "Marquette",
+                "value": "Marquette",
+              },
+              Object {
+                "label": "Massachusetts",
+                "value": "Massachusetts",
+              },
+              Object {
+                "label": "Memphis",
+                "value": "Memphis",
+              },
+              Object {
+                "label": "Miami (FL)",
+                "value": "Miami (FL)",
               },
               Object {
                 "label": "Michigan",
@@ -1767,48 +2183,36 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
                 "value": "Minnesota",
               },
               Object {
+                "label": "Mississippi St.",
+                "value": "Mississippi St.",
+              },
+              Object {
+                "label": "Missouri",
+                "value": "Missouri",
+              },
+              Object {
+                "label": "NC State",
+                "value": "NC State",
+              },
+              Object {
                 "label": "Nebraska",
                 "value": "Nebraska",
+              },
+              Object {
+                "label": "North Carolina",
+                "value": "North Carolina",
               },
               Object {
                 "label": "Northwestern",
                 "value": "Northwestern",
               },
               Object {
+                "label": "Notre Dame",
+                "value": "Notre Dame",
+              },
+              Object {
                 "label": "Ohio St.",
                 "value": "Ohio St.",
-              },
-              Object {
-                "label": "Penn St.",
-                "value": "Penn St.",
-              },
-              Object {
-                "label": "Purdue",
-                "value": "Purdue",
-              },
-              Object {
-                "label": "Rutgers",
-                "value": "Rutgers",
-              },
-              Object {
-                "label": "Wisconsin",
-                "value": "Wisconsin",
-              },
-              Object {
-                "label": "Baylor",
-                "value": "Baylor",
-              },
-              Object {
-                "label": "Iowa St.",
-                "value": "Iowa St.",
-              },
-              Object {
-                "label": "Kansas",
-                "value": "Kansas",
-              },
-              Object {
-                "label": "Kansas St.",
-                "value": "Kansas St.",
               },
               Object {
                 "label": "Oklahoma",
@@ -1819,56 +2223,8 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
                 "value": "Oklahoma St.",
               },
               Object {
-                "label": "TCU",
-                "value": "TCU",
-              },
-              Object {
-                "label": "Texas",
-                "value": "Texas",
-              },
-              Object {
-                "label": "Texas Tech",
-                "value": "Texas Tech",
-              },
-              Object {
-                "label": "West Virginia",
-                "value": "West Virginia",
-              },
-              Object {
-                "label": "BYU",
-                "value": "BYU",
-              },
-              Object {
-                "label": "Gonzaga",
-                "value": "Gonzaga",
-              },
-              Object {
-                "label": "Saint Mary's (CA)",
-                "value": "Saint Mary's (CA)",
-              },
-              Object {
-                "label": "San Diego St.",
-                "value": "San Diego St.",
-              },
-              Object {
-                "label": "Utah St.",
-                "value": "Utah St.",
-              },
-              Object {
-                "label": "Arizona",
-                "value": "Arizona",
-              },
-              Object {
-                "label": "Arizona St.",
-                "value": "Arizona St.",
-              },
-              Object {
-                "label": "California",
-                "value": "California",
-              },
-              Object {
-                "label": "Colorado",
-                "value": "Colorado",
+                "label": "Ole Miss",
+                "value": "Ole Miss",
               },
               Object {
                 "label": "Oregon",
@@ -1879,20 +2235,148 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
                 "value": "Oregon St.",
               },
               Object {
+                "label": "Penn St.",
+                "value": "Penn St.",
+              },
+              Object {
+                "label": "Pittsburgh",
+                "value": "Pittsburgh",
+              },
+              Object {
+                "label": "Providence",
+                "value": "Providence",
+              },
+              Object {
+                "label": "Purdue",
+                "value": "Purdue",
+              },
+              Object {
+                "label": "Rhode Island",
+                "value": "Rhode Island",
+              },
+              Object {
+                "label": "Richmond",
+                "value": "Richmond",
+              },
+              Object {
+                "label": "Rutgers",
+                "value": "Rutgers",
+              },
+              Object {
+                "label": "SMU",
+                "value": "SMU",
+              },
+              Object {
+                "label": "Saint Joseph's",
+                "value": "Saint Joseph's",
+              },
+              Object {
+                "label": "Saint Louis",
+                "value": "Saint Louis",
+              },
+              Object {
+                "label": "Seton Hall",
+                "value": "Seton Hall",
+              },
+              Object {
+                "label": "South Carolina",
+                "value": "South Carolina",
+              },
+              Object {
+                "label": "South Fla.",
+                "value": "South Fla.",
+              },
+              Object {
                 "label": "Southern California",
                 "value": "Southern California",
+              },
+              Object {
+                "label": "St. Bonaventure",
+                "value": "St. Bonaventure",
+              },
+              Object {
+                "label": "St. John's (NY)",
+                "value": "St. John's (NY)",
               },
               Object {
                 "label": "Stanford",
                 "value": "Stanford",
               },
               Object {
+                "label": "Syracuse",
+                "value": "Syracuse",
+              },
+              Object {
+                "label": "TCU",
+                "value": "TCU",
+              },
+              Object {
+                "label": "Temple",
+                "value": "Temple",
+              },
+              Object {
+                "label": "Tennessee",
+                "value": "Tennessee",
+              },
+              Object {
+                "label": "Texas",
+                "value": "Texas",
+              },
+              Object {
+                "label": "Texas A&M",
+                "value": "Texas A&M",
+              },
+              Object {
+                "label": "Texas Tech",
+                "value": "Texas Tech",
+              },
+              Object {
+                "label": "Tulane",
+                "value": "Tulane",
+              },
+              Object {
+                "label": "Tulsa",
+                "value": "Tulsa",
+              },
+              Object {
+                "label": "UCF",
+                "value": "UCF",
+              },
+              Object {
                 "label": "UCLA",
                 "value": "UCLA",
               },
               Object {
+                "label": "UConn",
+                "value": "UConn",
+              },
+              Object {
                 "label": "Utah",
                 "value": "Utah",
+              },
+              Object {
+                "label": "VCU",
+                "value": "VCU",
+              },
+              Object {
+                "label": "Vanderbilt",
+                "value": "Vanderbilt",
+              },
+              Object {
+                "label": "Villanova",
+                "value": "Villanova",
+              },
+              Object {
+                "label": "Virginia",
+                "value": "Virginia",
+              },
+              Object {
+                "label": "Virginia Tech",
+                "value": "Virginia Tech",
+              },
+              Object {
+                "label": "Wake Forest",
+                "value": "Wake Forest",
               },
               Object {
                 "label": "Washington",
@@ -1903,60 +2387,20 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
                 "value": "Washington St.",
               },
               Object {
-                "label": "Alabama",
-                "value": "Alabama",
+                "label": "West Virginia",
+                "value": "West Virginia",
               },
               Object {
-                "label": "Arkansas",
-                "value": "Arkansas",
+                "label": "Wichita St.",
+                "value": "Wichita St.",
               },
               Object {
-                "label": "Auburn",
-                "value": "Auburn",
+                "label": "Wisconsin",
+                "value": "Wisconsin",
               },
               Object {
-                "label": "Florida",
-                "value": "Florida",
-              },
-              Object {
-                "label": "Georgia",
-                "value": "Georgia",
-              },
-              Object {
-                "label": "Kentucky",
-                "value": "Kentucky",
-              },
-              Object {
-                "label": "LSU",
-                "value": "LSU",
-              },
-              Object {
-                "label": "Mississippi St.",
-                "value": "Mississippi St.",
-              },
-              Object {
-                "label": "Missouri",
-                "value": "Missouri",
-              },
-              Object {
-                "label": "Ole Miss",
-                "value": "Ole Miss",
-              },
-              Object {
-                "label": "South Carolina",
-                "value": "South Carolina",
-              },
-              Object {
-                "label": "Tennessee",
-                "value": "Tennessee",
-              },
-              Object {
-                "label": "Texas A&M",
-                "value": "Texas A&M",
-              },
-              Object {
-                "label": "Vanderbilt",
-                "value": "Vanderbilt",
+                "label": "Xavier",
+                "value": "Xavier",
               },
             ]
           }

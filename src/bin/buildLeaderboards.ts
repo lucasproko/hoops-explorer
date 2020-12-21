@@ -119,13 +119,23 @@ export async function main() {
     _.chain(AvailableTeams.extraTeamsBase) :
     _.chain(AvailableTeams.byName).values().flatten();
 
-  const teams = teamListChain.filter(
-    team => team.category == "high" || team.category == "midhigh"
-  ).filter(team => {
+  const teams = teamListChain.filter(team => {
+    //(some test code)
+    // const rank = efficiencyInfo?.[`${inGender}_${team.year}`]?.[0]?.[team.team]?.["stats.adj_margin.rank"] || 400;
+    // return team.category == "high" || (rank <= 120)
+    //midhigh or mid rank <=240
+    //other
+    return team.category == "high" || team.category == "midhigh";
+  }).filter(team => {
     return team.gender == inGender &&
       ((inYear == "Extra") || (team.year == inYear)) &&
         ((teamFilter == undefined) || teamFilter.has(team.team))
   }).value();
+
+/**/
+//Test code:
+//console.log("Number of teams = " + teams.length);
+//throw "done";
 
   for (const teamObj of teams) {
     const team = teamObj.team;

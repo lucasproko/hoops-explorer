@@ -114,16 +114,16 @@ const HeaderBar: React.FunctionComponent<Props> = ({thisPage, common, override})
   }
 
   const lineupLeaderboardTooltip = (
-    <Tooltip id="lineupLeaderboardTooltip">Go to the (luck adjusted) Lineup T400 Leaderboard page</Tooltip>
+    <Tooltip id="lineupLeaderboardTooltip">Go to the (luck adjusted) Lineup T300 Leaderboard page (high/high-mid conferences)</Tooltip>
   );
   const playerLeaderboardTooltip = (
-    <Tooltip id="playerLeaderboardTooltip">Go to the (luck adjusted) Player Leaderboard page</Tooltip>
+    <Tooltip id="playerLeaderboardTooltip">Go to the (luck adjusted) Player Leaderboard T700 page (high/high-mid conferences)</Tooltip>
   );
   const playerLeaderboardTooltipMdDmv2017 = (
-    <Tooltip id="playerLeaderboardTooltipMdDmv2017">Go to the (luck adjusted) Player Leaderboard page, filtered for Md/DMV-area players class of 2017+</Tooltip>
+    <Tooltip id="playerLeaderboardTooltipMdDmv2017">Go to the (luck adjusted) Player Leaderboard page (Men, 'high' tier), filtered for Md/DMV-area players class of 2017+</Tooltip>
   );
   const playerLeaderboardTooltipNyNj2017 = (
-    <Tooltip id="playerLeaderboardTooltipNyNj2017">Go to the (luck adjusted) Player Leaderboard page, filtered for NY/NJ-area players class of 2017+ (h/t jules99b from reddit)</Tooltip>
+    <Tooltip id="playerLeaderboardTooltipNyNj2017">Go to the (luck adjusted) Player Leaderboard page (Men, 'high' tier), filtered for NY/NJ-area players class of 2017+ (h/t jules99b from reddit)</Tooltip>
   );
   const baseGameTooltip = (
     <Tooltip id="baseGameTooltip">Go to the On/Off Analysis page with the current baseline query</Tooltip>
@@ -222,10 +222,10 @@ const HeaderBar: React.FunctionComponent<Props> = ({thisPage, common, override})
         <Dropdown.Toggle id="chartDropDown" as={StyledDropdown as unknown as undefined}>Leaderboards</Dropdown.Toggle>
         <Dropdown.Menu style={dropdownStyle}>
           <Dropdown.Item>
-            {buildNavItem("Lineups", lineupLeaderboardTooltip, getLineupLeaderboardUrl(), true)}
+            {buildNavItem("Lineups - 'high' tier", lineupLeaderboardTooltip, getLineupLeaderboardUrl(), true)}
           </Dropdown.Item>
           <Dropdown.Item>
-            {buildNavItem("Players", playerLeaderboardTooltip, getPlayerLeaderboardUrl(), true)}
+            {buildNavItem("Players - 'high' tier", playerLeaderboardTooltip, getPlayerLeaderboardUrl(), true)}
           </Dropdown.Item>
           <Dropdown.Divider/>
           <Dropdown.Item>
