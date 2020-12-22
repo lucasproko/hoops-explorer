@@ -9,6 +9,11 @@ export const absolutePositionFixes: Record<string, Record<string, AbsolutePositi
     "Popovic, Nik": {
       position: "PF/C"
     }
+  },
+  "Men_Clemson_2020/21": {
+    "Simms, Aamir": {
+      position: "WF"
+    }
   }
 };
 

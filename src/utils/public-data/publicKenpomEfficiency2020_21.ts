@@ -3039,7 +3039,7 @@ export const publicKenpomEfficiency2020_21: Record<string, any> = {
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "Appalachian St.": {
+   "App State": {
       "team_season.year": 2021,
       "conf": "Sun Belt Conference",
       "stats.adj_off.rank": 220,
@@ -4559,7 +4559,7 @@ export const publicKenpomEfficiency2020_21: Record<string, any> = {
       "is_high_major": 0,
       "good_md_comp": 0
    },
-   "La.-Monroe": {
+   "ULM": {
       "team_season.year": 2021,
       "conf": "Sun Belt Conference",
       "stats.adj_off.rank": 308,

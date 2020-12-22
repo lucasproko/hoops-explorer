@@ -56,16 +56,18 @@ const HeaderBar: React.FunctionComponent<Props> = ({thisPage, common, override})
   const server = (typeof window === `undefined`) ? //(ensures SSR code still compiles)
     "server" : window.location.hostname;
 
+  const hasMidMajors = (!common.year || _.startsWith(common.year, "2020"));
+
   // Lineup Leaderboard
-  function getLineupLeaderboardUrl() {
+  function getLineupLeaderboardUrl(tier: "High" | "Medium" | "Low") {
     return UrlRouting.getLineupLeaderboardUrl(
-      getCommonLboardFilterParams(common) as LineupLeaderboardParams
+      getCommonLboardFilterParams(common, tier) as LineupLeaderboardParams
     );
   }
   // Player Leaderboard
-  function getPlayerLeaderboardUrl() {
+  function getPlayerLeaderboardUrl(tier: "High" | "Medium" | "Low") {
     return UrlRouting.getPlayerLeaderboardUrl(
-      getCommonLboardFilterParams(common) as PlayerLeaderboardParams
+      getCommonLboardFilterParams(common, tier) as PlayerLeaderboardParams
     );
   }
   function getPlayerLeaderboardTrackingUrl(trackingList: string) {
@@ -113,12 +115,22 @@ const HeaderBar: React.FunctionComponent<Props> = ({thisPage, common, override})
     );
   }
 
-  const lineupLeaderboardTooltip = (
-    <Tooltip id="lineupLeaderboardTooltip">Go to the (luck adjusted) Lineup T300 Leaderboard page (high/high-mid conferences)</Tooltip>
-  );
-  const playerLeaderboardTooltip = (
-    <Tooltip id="playerLeaderboardTooltip">Go to the (luck adjusted) Player Leaderboard T700 page (high/high-mid conferences)</Tooltip>
-  );
+//TODO sort all these out
+
+  const describeConfs = (tier: "High" | "Medium" | "Low") => {
+    switch (tier) {
+      case "High": return "P6 and friends, or any T150-better team";
+      case "Medium": return "Mid majors, must be T275-better team"
+      case "Low": return "Bottom 7 conferences, or any T250-worse team";
+    }
+    return "";
+  };
+  const lineupLeaderboardTooltip = (tier: "High" | "Medium" | "Low") => {
+    return <Tooltip id={"lineupLeaderboardTooltip" + tier}>Go to the (luck adjusted) Lineup T400 Leaderboard page ({describeConfs(tier)})</Tooltip>
+  };
+  const playerLeaderboardTooltip = (tier: "High" | "Medium" | "Low") => {
+    return <Tooltip id={"playerLeaderboardTooltip" + tier}>Go to the (luck adjusted) Player Leaderboard T900 page ({describeConfs(tier)})</Tooltip>
+  };
   const playerLeaderboardTooltipMdDmv2017 = (
     <Tooltip id="playerLeaderboardTooltipMdDmv2017">Go to the (luck adjusted) Player Leaderboard page (Men, 'high' tier), filtered for Md/DMV-area players class of 2017+</Tooltip>
   );
@@ -162,11 +174,11 @@ const HeaderBar: React.FunctionComponent<Props> = ({thisPage, common, override})
   /** Builds a nice looking nav dropdown item */
   const buildNavItem = (itemName: string, tooltip: React.ReactElement<any>, url: string, toLeaderboard: boolean = false) => {
     return isLeaderboard && toLeaderboard ?
-      <OverlayTrigger rootClose placement="left" overlay={tooltip}>
+      <OverlayTrigger rootClose placement="auto" overlay={tooltip}>
         <a className="text-center small" href={url} onClick={onForce(url)}>{itemName}</a>
       </OverlayTrigger>
       :
-      <OverlayTrigger rootClose placement="left" overlay={tooltip}>
+      <OverlayTrigger rootClose placement="auto" overlay={tooltip}>
         <span>
           <Link href={url}>
             <div>
@@ -217,24 +229,57 @@ const HeaderBar: React.FunctionComponent<Props> = ({thisPage, common, override})
 
   /** Build a nice looking nav dropdown */
   const buildLeaderboardDropdown = () => {
+
     //(mega grovelling with types required to get TS to compile with example from react bootstrap custom dropdown example code)
     return <Dropdown>
         <Dropdown.Toggle id="chartDropDown" as={StyledDropdown as unknown as undefined}>Leaderboards</Dropdown.Toggle>
-        <Dropdown.Menu style={dropdownStyle}>
-          <Dropdown.Item>
-            {buildNavItem("Lineups - 'high' tier", lineupLeaderboardTooltip, getLineupLeaderboardUrl(), true)}
-          </Dropdown.Item>
-          <Dropdown.Item>
-            {buildNavItem("Players - 'high' tier", playerLeaderboardTooltip, getPlayerLeaderboardUrl(), true)}
-          </Dropdown.Item>
-          <Dropdown.Divider/>
-          <Dropdown.Item>
-            {buildNavItem("Md/DMV-area players (HS 2017+)", playerLeaderboardTooltipMdDmv2017, getPlayerLeaderboardTrackingUrl("__DMV_2017__"), true)}
-          </Dropdown.Item>
-          <Dropdown.Item>
-            {buildNavItem("NY/NJ-area players (HS 2017+)", playerLeaderboardTooltipNyNj2017, getPlayerLeaderboardTrackingUrl("__NYNJ_2017__"), true)}
-          </Dropdown.Item>
-        </Dropdown.Menu>
+        {hasMidMajors ?
+          <Dropdown.Menu style={dropdownStyle}>
+            <Dropdown.Item>
+              {buildNavItem("Players - 'high' tier", playerLeaderboardTooltip("High"), getPlayerLeaderboardUrl("High"), true)}
+            </Dropdown.Item>
+            <Dropdown.Item>
+              {buildNavItem("Lineups - 'high' tier", lineupLeaderboardTooltip("High"), getLineupLeaderboardUrl("High"), true)}
+            </Dropdown.Item>
+            <Dropdown.Divider/>
+            <Dropdown.Item>
+              {buildNavItem("Players - 'medium' tier", playerLeaderboardTooltip("Medium"), getPlayerLeaderboardUrl("Medium"), true)}
+            </Dropdown.Item>
+            <Dropdown.Item>
+              {buildNavItem("Lineups - 'medium' tier", lineupLeaderboardTooltip("Medium"), getLineupLeaderboardUrl("Medium"), true)}
+            </Dropdown.Item>
+            <Dropdown.Divider/>
+            <Dropdown.Item>
+              {buildNavItem("Players - 'low' tier", playerLeaderboardTooltip("Low"), getPlayerLeaderboardUrl("Low"), true)}
+            </Dropdown.Item>
+            <Dropdown.Item>
+              {buildNavItem("Lineups - 'low' tier", lineupLeaderboardTooltip("Low"), getLineupLeaderboardUrl("Low"), true)}
+            </Dropdown.Item>
+            <Dropdown.Divider/>
+            <Dropdown.Item>
+              {buildNavItem("Md/DMV-area players (HS 2017+)", playerLeaderboardTooltipMdDmv2017, getPlayerLeaderboardTrackingUrl("__DMV_2017__"), true)}
+            </Dropdown.Item>
+            <Dropdown.Item>
+              {buildNavItem("NY/NJ-area players (HS 2017+)", playerLeaderboardTooltipNyNj2017, getPlayerLeaderboardTrackingUrl("__NYNJ_2017__"), true)}
+            </Dropdown.Item>
+          </Dropdown.Menu>
+          :
+          <Dropdown.Menu style={dropdownStyle}>
+            <Dropdown.Item>
+              {buildNavItem("Lineups - 'high' tier", lineupLeaderboardTooltip("High"), getLineupLeaderboardUrl("High"), true)}
+            </Dropdown.Item>
+            <Dropdown.Item>
+              {buildNavItem("Players - 'high' tier", playerLeaderboardTooltip("High"), getPlayerLeaderboardUrl("High"), true)}
+            </Dropdown.Item>
+            <Dropdown.Divider/>
+            <Dropdown.Item>
+              {buildNavItem("Md/DMV-area players (HS 2017+)", playerLeaderboardTooltipMdDmv2017, getPlayerLeaderboardTrackingUrl("__DMV_2017__"), true)}
+            </Dropdown.Item>
+            <Dropdown.Item>
+              {buildNavItem("NY/NJ-area players (HS 2017+)", playerLeaderboardTooltipNyNj2017, getPlayerLeaderboardTrackingUrl("__NYNJ_2017__"), true)}
+            </Dropdown.Item>
+          </Dropdown.Menu>
+        }
       </Dropdown>;
   };
 
