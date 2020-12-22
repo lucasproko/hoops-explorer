@@ -121,7 +121,7 @@ const LineupLeaderboardPage: NextPage<{}> = () => {
       fetchAll.then((jsons: any[]) => {
         setDataSubEvent({
           lineups: _.chain(jsons).map(d => d.lineups || []).flatten().value(),
-          confs: _.chain(jsons).map(d => d.players || []).flatten().value(),
+          confs: _.chain(jsons).map(d => d.confs || []).flatten().uniq().value(),
           lastUpdated: 0 //TODO use max?
         });
       })

@@ -127,7 +127,7 @@ const PlayLeaderboardPage: NextPage<{}> = () => {
       fetchAll.then((jsons: any[]) => {
         setDataSubEvent({
           players: _.chain(jsons).map(d => d.players || []).flatten().value(),
-          confs: _.chain(jsons).map(d => d.players || []).flatten().value(),
+          confs: _.chain(jsons).map(d => d.confs || []).flatten().uniq().value(),
           lastUpdated: 0 //TODO use max?
         });
       })
