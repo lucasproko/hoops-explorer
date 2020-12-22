@@ -174,11 +174,11 @@ const HeaderBar: React.FunctionComponent<Props> = ({thisPage, common, override})
   /** Builds a nice looking nav dropdown item */
   const buildNavItem = (itemName: string, tooltip: React.ReactElement<any>, url: string, toLeaderboard: boolean = false) => {
     return isLeaderboard && toLeaderboard ?
-      <OverlayTrigger rootClose placement="left" overlay={tooltip}>
+      <OverlayTrigger rootClose placement="auto" overlay={tooltip}>
         <a className="text-center small" href={url} onClick={onForce(url)}>{itemName}</a>
       </OverlayTrigger>
       :
-      <OverlayTrigger rootClose placement="left" overlay={tooltip}>
+      <OverlayTrigger rootClose placement="auto" overlay={tooltip}>
         <span>
           <Link href={url}>
             <div>

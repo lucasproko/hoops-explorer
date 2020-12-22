@@ -546,7 +546,7 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
         </Form.Group>
       </Form.Row>
       <Form.Row>
-        <Col>
+      <Col xs={12} sm={12} md={12} lg={8}>
           <ToggleButtonGroup items={([
             {
               label: "Luck",
@@ -576,7 +576,7 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
           ] : [])
           }/>
         </Col>
-        <Col>
+        <Col xs={12} sm={12} md={12} lg={4}>
           <div className="float-right"><small>(Qualifying lineups in tier: <b>{dataEvent?.lineups?.length || 0}</b>)</small></div>
         </Col>
       </Form.Row>

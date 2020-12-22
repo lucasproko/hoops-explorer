@@ -1019,7 +1019,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
       </FormGroup>
     </FormRow>
     <FormRow>
-      <Col>
+      <Col
+        lg={8}
+        md={12}
+        sm={12}
+        xs={12}
+      >
         <ToggleButtonGroup
           items={
             Array [
@@ -1063,7 +1068,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
           }
         />
       </Col>
-      <Col>
+      <Col
+        lg={4}
+        md={12}
+        sm={12}
+        xs={12}
+      >
         <div
           className="float-right"
         >
@@ -7580,7 +7590,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
       </FormGroup>
     </FormRow>
     <FormRow>
-      <Col>
+      <Col
+        lg={8}
+        md={12}
+        sm={12}
+        xs={12}
+      >
         <ToggleButtonGroup
           items={
             Array [
@@ -7624,7 +7639,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
           }
         />
       </Col>
-      <Col>
+      <Col
+        lg={4}
+        md={12}
+        sm={12}
+        xs={12}
+      >
         <div
           className="float-right"
         >
@@ -14141,7 +14161,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
       </FormGroup>
     </FormRow>
     <FormRow>
-      <Col>
+      <Col
+        lg={8}
+        md={12}
+        sm={12}
+        xs={12}
+      >
         <ToggleButtonGroup
           items={
             Array [
@@ -14185,7 +14210,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
           }
         />
       </Col>
-      <Col>
+      <Col
+        lg={4}
+        md={12}
+        sm={12}
+        xs={12}
+      >
         <div
           className="float-right"
         >
@@ -23437,7 +23467,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
       </FormGroup>
     </FormRow>
     <FormRow>
-      <Col>
+      <Col
+        lg={8}
+        md={12}
+        sm={12}
+        xs={12}
+      >
         <ToggleButtonGroup
           items={
             Array [
@@ -23481,7 +23516,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
           }
         />
       </Col>
-      <Col>
+      <Col
+        lg={4}
+        md={12}
+        sm={12}
+        xs={12}
+      >
         <div
           className="float-right"
         >
@@ -29978,7 +30018,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
       </FormGroup>
     </FormRow>
     <FormRow>
-      <Col>
+      <Col
+        lg={8}
+        md={12}
+        sm={12}
+        xs={12}
+      >
         <ToggleButtonGroup
           items={
             Array [
@@ -30022,7 +30067,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
           }
         />
       </Col>
-      <Col>
+      <Col
+        lg={4}
+        md={12}
+        sm={12}
+        xs={12}
+      >
         <div
           className="float-right"
         >
