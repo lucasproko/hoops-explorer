@@ -435,7 +435,7 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       <Col xs={6} sm={6} md={3} lg={2}>
         <Select
           value={ stringToOption(year) }
-          options={[ "2018/9", "2019/20", "2020/21", "All", "Extra" ].map(
+          options={[ "2018/9", "2019/20", "2020/21" ].concat(tier == "High" ? [ "All", "Extra" ] : []).map(
             (r) => stringToOption(r)
           )}
           isSearchable={false}
@@ -450,7 +450,7 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
           isMulti
           components={{ MultiValueContainer: ConferenceValueContainer }}
           value={ getCurrentConfsOrPlaceholder() }
-          options={["Power 6 Conferences"].concat(dataEvent?.confs || []).map(
+          options={(tier == "High" ? ["Power 6 Conferences"] : []).concat(_.sortBy(dataEvent?.confs || [])).map(
             (r) => stringToOption(r)
           )}
           onChange={(optionsIn) => {
@@ -576,7 +576,7 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
           }/>
         </Col>
         <Col>
-          <div className="float-right"><small>(Total number of lineups in <b><u>tier</u></b>: <b>{dataEvent?.lineups?.length || 0}</b>)</small></div>
+          <div className="float-right"><small>(Qualifying lineups in tier: <b>{dataEvent?.lineups?.length || 0}</b>)</small></div>
         </Col>
       </Form.Row>
       <Row className="mt-2">

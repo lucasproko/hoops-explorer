@@ -48,8 +48,9 @@ export function getCommonFilterParams(p: CommonFilterParams) {
 }
 
 /** Extracts the common leaderboard params from a superset */
-export function getCommonLboardFilterParams(p: CommonFilterParams) {
+export function getCommonLboardFilterParams(p: CommonFilterParams, tier?: string) {
   return {
+    tier: tier,
     year: p.year,
     gender: p.gender,
   };
