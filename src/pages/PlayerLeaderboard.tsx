@@ -110,7 +110,8 @@ const PlayLeaderboardPage: NextPage<{}> = () => {
       "t100" : (paramObj.confOnly ? "conf" : "all");
 
     const gender = paramObj.gender || ParamDefaults.defaultGender;
-    const year = (paramObj.year || ParamDefaults.defaultYear).substring(0, 4);
+    const fullYear = (paramObj.year || ParamDefaults.defaultYear);
+    const year = fullYear.substring(0, 4);
     const tier = (paramObj.tier || ParamDefaults.defaultTier);
 
     if (year == "All") { //TODO: tidy this up
@@ -120,7 +121,7 @@ const PlayLeaderboardPage: NextPage<{}> = () => {
       const fetchAll = Promise.all(years.map(tmpYear => tmpYear.substring(0, 4)).map((subYear) => {
         return fetch(`/leaderboards/lineups/players_${dataSubEventKey}_${gender}_${subYear}_${tier}.json`)
           .then((response: fetch.IsomorphicResponse) => {
-            return response.json();
+            return response.ok ? response.json() : Promise.resolve({ error: "No data available" });
           });
       }));
       fetchAll.then((jsons: any[]) => {
@@ -131,15 +132,15 @@ const PlayLeaderboardPage: NextPage<{}> = () => {
         });
       })
     } else {
-      if ((!dataEvent[dataSubEventKey]?.players?.length) || (currYear != year) || (currGender != gender)) {
+      if ((!dataEvent[dataSubEventKey]?.players?.length) || (currYear != fullYear) || (currGender != gender)) {
         const oldCurrYear = currYear;
         const oldCurrGender = currGender;
-        setCurrYear(year);
+        setCurrYear(fullYear);
         setCurrGender(gender)
         setDataSubEvent({ players: [], confs: [], lastUpdated: 0 }); //(set the spinner off)
         fetch(`/leaderboards/lineups/players_${dataSubEventKey}_${gender}_${year}_${tier}.json`)
           .then((response: fetch.IsomorphicResponse) => {
-            return response.json().then((json: any) => {
+            return (response.ok ? response.json() : Promise.resolve({ error: "No data available" })).then((json: any) => {
               //(if year has changed then clear saved data events)
               setDataEvent({ ...(oldCurrYear != year ? dataEventInit : dataEvent), [dataSubEventKey]: json });
               setDataSubEvent(json);

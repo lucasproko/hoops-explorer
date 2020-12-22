@@ -1,34 +1,44 @@
 
+import _ from "lodash";
+
+/** Note these use the KenPom naming conventions */
 export const ConferenceToNickname: Record<string, string> = {
   "Power 6 Conferences": "P6",
-  "Big Ten Conference": "B1G",
-  "Atlantic Coast Conference": "ACC",
   "American Athletic Conference": "AAC",
+  "America East Conference": "AE",
+  "Atlantic Coast Conference": "ACC",
+  "ASUN Conference": "ASUN",
   "Atlantic 10 Conference": "A10",
   "Big East Conference": "BE",
-  "Summit League": "SUM",
-  "Southern Conference": "SOCON",
+  "Big Sky Conference": "BSKY",
+  "Big South Conference": "BSO",
+  "Big Ten Conference": "B1G",
   "Big 12 Conference": "B12",
+  "Big West Conference": "BW",
+  "Colonial Athletic Association": "CAA",
+  "Conference USA": "CUSA",
+  "Horizon League": "HOR",
+  "Ivy League": "IVY",
+  "Mid American Conference": "MAC",
+  "Metro Atlantic Athletic Conference": "MAAC",
+  "Mid-Eastern Athletic Conference": "MEAC",
+  "Mountain West Conference": "MWC",
+  "Missouri Valley Conference": "MVC",
+  "Northeast Conference": "NEC",
+  "Ohio Valley Conference": "OVC",
   "Pac 12 Conference": "P12",
+  "Patriot League": "PAT",
   "Southeastern Conference": "SEC",
+  "Southern Conference": "SOCON",
+  "Southland Conference": "SLND",
+  "Summit League": "SUM",
+  "Sun Belt Conference": "SBLT",
+  "Southwestern Athletic Conference": "SWAC",
+  "Western Athletic Conference": "WAC",
   "West Coast Conference": "WCC",
-  "Mountain West Conference": "MWC"
 };
 
-export const NicknameToConference: Record<string, string> = {
-  "P6": "Power 6 Conferences",
-  "B1G": "Big Ten Conference",
-  "ACC": "Atlantic Coast Conference",
-  "AAC": "American Athletic Conference",
-  "A10": "Atlantic 10 Conference",
-  "BE": "Big East Conference",
-  "SUM": "Summit League",
-  "SOCON": "Southern Conference",
-  "B12": "Big 12 Conference",
-  "P12": "Pac 12 Conference",
-  "SEC": "Southeastern Conference",
-  "WCC": "West Coast Conference",
-  "MWC": "Mountain West Conference"
-};
+export const NicknameToConference: Record<string, string> =
+  _.chain(ConferenceToNickname).toPairs().map(kv => [ kv[1], kv[0] ]).fromPairs().value();
 
 export const Power6Conferences = [ "B1G", "ACC", "BE", "B12", "P12", "SEC" ].map(c => NicknameToConference[c] || c);

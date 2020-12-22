@@ -12,7 +12,7 @@ exports[`PlayerLeaderboardPage PlayerLeaderboardPage - should create snapshot 1`
       xs={12}
     >
       <h3>
-        CBB T700 Player Leaderboard 
+        CBB Player Leaderboard 
         <span
           className="badge badge-pill badge-info"
         >
@@ -26,7 +26,12 @@ exports[`PlayerLeaderboardPage PlayerLeaderboardPage - should create snapshot 1`
     noGutters={false}
   >
     <HeaderBar
-      common={Object {}}
+      common={
+        Object {
+          "gender": "",
+          "year": "",
+        }
+      }
       thisPage="player-_leaderboard"
     />
   </Row>

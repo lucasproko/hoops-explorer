@@ -59,7 +59,8 @@ import ReactDOMServer from 'react-dom/server'
 export type PlayerLeaderboardStatsModel = {
   players?: Array<any>,
   confs?: Array<string>,
-  lastUpdated?: number
+  lastUpdated?: number,
+  error?: string
 }
 type Props = {
   startingState: PlayerLeaderboardParams,
@@ -512,7 +513,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
   // 3] Utils
   /** Sticks an overlay on top of the table if no query has ever been loaded */
   function needToLoadQuery() {
-    return loadingOverride || ((dataEvent?.players || []).length == 0);
+    return !dataEvent.error && (loadingOverride || ((dataEvent?.players || []).length == 0));
   }
 
   /** For use in selects */

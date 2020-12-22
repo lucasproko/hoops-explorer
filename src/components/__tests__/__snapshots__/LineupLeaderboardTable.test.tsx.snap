@@ -126,14 +126,6 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                 "value": "Power 6 Conferences",
               },
               Object {
-                "label": "Big Ten Conference",
-                "value": "Big Ten Conference",
-              },
-              Object {
-                "label": "Atlantic Coast Conference",
-                "value": "Atlantic Coast Conference",
-              },
-              Object {
                 "label": "American Athletic Conference",
                 "value": "American Athletic Conference",
               },
@@ -142,12 +134,24 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                 "value": "Atlantic 10 Conference",
               },
               Object {
-                "label": "Big East Conference",
-                "value": "Big East Conference",
+                "label": "Atlantic Coast Conference",
+                "value": "Atlantic Coast Conference",
               },
               Object {
                 "label": "Big 12 Conference",
                 "value": "Big 12 Conference",
+              },
+              Object {
+                "label": "Big East Conference",
+                "value": "Big East Conference",
+              },
+              Object {
+                "label": "Big Ten Conference",
+                "value": "Big Ten Conference",
+              },
+              Object {
+                "label": "Mountain West Conference",
+                "value": "Mountain West Conference",
               },
               Object {
                 "label": "Pac 12 Conference",
@@ -161,10 +165,6 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                 "label": "West Coast Conference",
                 "value": "West Coast Conference",
               },
-              Object {
-                "label": "Mountain West Conference",
-                "value": "Mountain West Conference",
-              },
             ]
           }
           styles={
@@ -174,7 +174,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
           }
           value={
             Object {
-              "label": "High/High-Mid Conferences",
+              "label": "All Teams in High Tier",
             }
           }
         />
@@ -823,6 +823,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
             ]
           }
         />
+      </Col>
+      <Col>
+        <div
+          className="float-right"
+        >
+          <small>
+            (Qualifying lineups in tier: 
+            <b>
+              10
+            </b>
+            )
+          </small>
+        </div>
       </Col>
     </FormRow>
     <Row
@@ -12748,14 +12761,6 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                 "value": "Power 6 Conferences",
               },
               Object {
-                "label": "Big Ten Conference",
-                "value": "Big Ten Conference",
-              },
-              Object {
-                "label": "Atlantic Coast Conference",
-                "value": "Atlantic Coast Conference",
-              },
-              Object {
                 "label": "American Athletic Conference",
                 "value": "American Athletic Conference",
               },
@@ -12764,12 +12769,24 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                 "value": "Atlantic 10 Conference",
               },
               Object {
-                "label": "Big East Conference",
-                "value": "Big East Conference",
+                "label": "Atlantic Coast Conference",
+                "value": "Atlantic Coast Conference",
               },
               Object {
                 "label": "Big 12 Conference",
                 "value": "Big 12 Conference",
+              },
+              Object {
+                "label": "Big East Conference",
+                "value": "Big East Conference",
+              },
+              Object {
+                "label": "Big Ten Conference",
+                "value": "Big Ten Conference",
+              },
+              Object {
+                "label": "Mountain West Conference",
+                "value": "Mountain West Conference",
               },
               Object {
                 "label": "Pac 12 Conference",
@@ -12783,10 +12800,6 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                 "label": "West Coast Conference",
                 "value": "West Coast Conference",
               },
-              Object {
-                "label": "Mountain West Conference",
-                "value": "Mountain West Conference",
-              },
             ]
           }
           styles={
@@ -12796,7 +12809,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
           }
           value={
             Object {
-              "label": "High/High-Mid Conferences",
+              "label": "All Teams in High Tier",
             }
           }
         />
@@ -13445,6 +13458,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
             ]
           }
         />
+      </Col>
+      <Col>
+        <div
+          className="float-right"
+        >
+          <small>
+            (Qualifying lineups in tier: 
+            <b>
+              15
+            </b>
+            )
+          </small>
+        </div>
       </Col>
     </FormRow>
     <Row
@@ -31317,14 +31343,6 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                 "value": "Power 6 Conferences",
               },
               Object {
-                "label": "Big Ten Conference",
-                "value": "Big Ten Conference",
-              },
-              Object {
-                "label": "Atlantic Coast Conference",
-                "value": "Atlantic Coast Conference",
-              },
-              Object {
                 "label": "American Athletic Conference",
                 "value": "American Athletic Conference",
               },
@@ -31333,12 +31351,24 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                 "value": "Atlantic 10 Conference",
               },
               Object {
-                "label": "Big East Conference",
-                "value": "Big East Conference",
+                "label": "Atlantic Coast Conference",
+                "value": "Atlantic Coast Conference",
               },
               Object {
                 "label": "Big 12 Conference",
                 "value": "Big 12 Conference",
+              },
+              Object {
+                "label": "Big East Conference",
+                "value": "Big East Conference",
+              },
+              Object {
+                "label": "Big Ten Conference",
+                "value": "Big Ten Conference",
+              },
+              Object {
+                "label": "Mountain West Conference",
+                "value": "Mountain West Conference",
               },
               Object {
                 "label": "Pac 12 Conference",
@@ -31352,10 +31382,6 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                 "label": "West Coast Conference",
                 "value": "West Coast Conference",
               },
-              Object {
-                "label": "Mountain West Conference",
-                "value": "Mountain West Conference",
-              },
             ]
           }
           styles={
@@ -31365,7 +31391,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
           }
           value={
             Object {
-              "label": "High/High-Mid Conferences",
+              "label": "All Teams in High Tier",
             }
           }
         />
@@ -32014,6 +32040,19 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
             ]
           }
         />
+      </Col>
+      <Col>
+        <div
+          className="float-right"
+        >
+          <small>
+            (Qualifying lineups in tier: 
+            <b>
+              10
+            </b>
+            )
+          </small>
+        </div>
       </Col>
     </FormRow>
     <Row

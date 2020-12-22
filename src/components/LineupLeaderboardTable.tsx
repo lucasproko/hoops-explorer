@@ -58,7 +58,8 @@ import ReactDOMServer from 'react-dom/server'
 export type LineupLeaderboardStatsModel = {
   lineups?: Array<any>,
   confs?: Array<string>,
-  lastUpdated?: number
+  lastUpdated?: number,
+  error?: string
 }
 type Props = {
   startingState: LineupLeaderboardParams,
@@ -338,7 +339,7 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
   // 3] Utils
   /** Sticks an overlay on top of the table if no query has ever been loaded */
   function needToLoadQuery() {
-    return loadingOverride || ((dataEvent?.lineups || []).length == 0);
+    return !dataEvent.error && (loadingOverride || ((dataEvent?.lineups || []).length == 0));
   }
 
   /** For use in selects */
