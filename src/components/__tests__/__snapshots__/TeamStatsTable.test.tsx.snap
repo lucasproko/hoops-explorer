@@ -835,14 +835,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                   }
                 >
                   <div>
-                    <div>
-                      1602
-                      <small>
-                        <sup
-                          className="infoBadge"
-                        />
-                      </small>
-                    </div>
+                    1602
                   </div>
                 </td>
                 <td
@@ -1739,14 +1732,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                   }
                 >
                   <div>
-                    <div>
-                      475
-                      <small>
-                        <sup
-                          className="infoBadge"
-                        />
-                      </small>
-                    </div>
+                    475
                   </div>
                 </td>
                 <td
@@ -2643,14 +2629,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                   }
                 >
                   <div>
-                    <div>
-                      2077
-                      <small>
-                        <sup
-                          className="infoBadge"
-                        />
-                      </small>
-                    </div>
+                    2077
                   </div>
                 </td>
                 <td
@@ -3985,14 +3964,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                   }
                 >
                   <div>
-                    <div>
-                      1602
-                      <small>
-                        <sup
-                          className="infoBadge"
-                        />
-                      </small>
-                    </div>
+                    1602
                   </div>
                 </td>
                 <td
@@ -5046,14 +5018,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                   }
                 >
                   <div>
-                    <div>
-                      475
-                      <small>
-                        <sup
-                          className="infoBadge"
-                        />
-                      </small>
-                    </div>
+                    475
                   </div>
                 </td>
                 <td
@@ -6107,14 +6072,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                   }
                 >
                   <div>
-                    <div>
-                      2077
-                      <small>
-                        <sup
-                          className="infoBadge"
-                        />
-                      </small>
-                    </div>
+                    2077
                   </div>
                 </td>
                 <td

@@ -1235,22 +1235,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.6111,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      66.0
-                                       ppg
-                                    </span>,
-                                    "value": 1387,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      66.0
-                                       ppg
-                                    </span>,
-                                    "value": 0.687,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -1493,22 +1477,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.6111,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      66.0
-                                       ppg
-                                    </span>,
-                                    "value": 1387,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      66.0
-                                       ppg
-                                    </span>,
-                                    "value": 0.687,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -1754,22 +1722,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.3679,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      70.5
-                                       ppg
-                                    </span>,
-                                    "value": 1748,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      70.5
-                                       ppg
-                                    </span>,
-                                    "value": 0.8168,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -2012,22 +1964,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.3679,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      70.5
-                                       ppg
-                                    </span>,
-                                    "value": 1748,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      70.5
-                                       ppg
-                                    </span>,
-                                    "value": 0.8168,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -2273,22 +2209,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.6319,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      74.3
-                                       ppg
-                                    </span>,
-                                    "value": 1431,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      74.3
-                                       ppg
-                                    </span>,
-                                    "value": 0.6287,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -2531,22 +2451,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.6319,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      74.3
-                                       ppg
-                                    </span>,
-                                    "value": 1431,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      74.3
-                                       ppg
-                                    </span>,
-                                    "value": 0.6287,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -2792,22 +2696,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.3317,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      65.6
-                                       ppg
-                                    </span>,
-                                    "value": 1724,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      65.6
-                                       ppg
-                                    </span>,
-                                    "value": 0.848,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -3050,22 +2938,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.3317,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      65.6
-                                       ppg
-                                    </span>,
-                                    "value": 1724,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      65.6
-                                       ppg
-                                    </span>,
-                                    "value": 0.848,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -3311,22 +3183,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.41,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      68.2
-                                       ppg
-                                    </span>,
-                                    "value": 1700,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      68.2
-                                       ppg
-                                    </span>,
-                                    "value": 0.8,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -3569,22 +3425,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.41,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      68.2
-                                       ppg
-                                    </span>,
-                                    "value": 1700,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      68.2
-                                       ppg
-                                    </span>,
-                                    "value": 0.8,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -3830,22 +3670,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.4446,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      71.4
-                                       ppg
-                                    </span>,
-                                    "value": 1716,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      71.4
-                                       ppg
-                                    </span>,
-                                    "value": 0.803,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -4088,22 +3912,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.4446,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      71.4
-                                       ppg
-                                    </span>,
-                                    "value": 1716,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      71.4
-                                       ppg
-                                    </span>,
-                                    "value": 0.803,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -4349,22 +4157,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.322,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      68.5
-                                       ppg
-                                    </span>,
-                                    "value": 1680,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      68.5
-                                       ppg
-                                    </span>,
-                                    "value": 0.7906,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -4607,22 +4399,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.322,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      68.5
-                                       ppg
-                                    </span>,
-                                    "value": 1680,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      68.5
-                                       ppg
-                                    </span>,
-                                    "value": 0.7906,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -4868,22 +4644,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.6611,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      70.4
-                                       ppg
-                                    </span>,
-                                    "value": 1840,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      70.4
-                                       ppg
-                                    </span>,
-                                    "value": 0.8021,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -5126,22 +4886,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.6611,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      70.4
-                                       ppg
-                                    </span>,
-                                    "value": 1840,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      70.4
-                                       ppg
-                                    </span>,
-                                    "value": 0.8021,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -5387,22 +5131,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.4483,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      67.5
-                                       ppg
-                                    </span>,
-                                    "value": 1714,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      67.5
-                                       ppg
-                                    </span>,
-                                    "value": 0.8489,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -5643,22 +5371,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       %
                                     </span>,
                                     "value": 0.4483,
-                                  }
-
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      67.5
-                                       ppg
-                                    </span>,
-                                    "value": 1714,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      67.5
-                                       ppg
-                                    </span>,
-                                    "value": 0.8489,
                                   }
 
                   off_title: <div>
@@ -5906,22 +5618,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.303,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      65.2
-                                       ppg
-                                    </span>,
-                                    "value": 1847,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      65.2
-                                       ppg
-                                    </span>,
-                                    "value": 0.8901,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -6162,22 +5858,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       %
                                     </span>,
                                     "value": 0.303,
-                                  }
-
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      65.2
-                                       ppg
-                                    </span>,
-                                    "value": 1847,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      65.2
-                                       ppg
-                                    </span>,
-                                    "value": 0.8901,
                                   }
 
                   off_title: <div>
@@ -7806,22 +7486,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.3679,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      70.5
-                                       ppg
-                                    </span>,
-                                    "value": 1748,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      70.5
-                                       ppg
-                                    </span>,
-                                    "value": 0.8168,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -8064,22 +7728,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.3679,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      70.5
-                                       ppg
-                                    </span>,
-                                    "value": 1748,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      70.5
-                                       ppg
-                                    </span>,
-                                    "value": 0.8168,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -8325,22 +7973,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.3317,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      65.6
-                                       ppg
-                                    </span>,
-                                    "value": 1724,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      65.6
-                                       ppg
-                                    </span>,
-                                    "value": 0.848,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -8583,22 +8215,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.3317,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      65.6
-                                       ppg
-                                    </span>,
-                                    "value": 1724,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      65.6
-                                       ppg
-                                    </span>,
-                                    "value": 0.848,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -8844,22 +8460,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.303,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      65.2
-                                       ppg
-                                    </span>,
-                                    "value": 1847,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      65.2
-                                       ppg
-                                    </span>,
-                                    "value": 0.8901,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -9102,22 +8702,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.303,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      65.2
-                                       ppg
-                                    </span>,
-                                    "value": 1847,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      65.2
-                                       ppg
-                                    </span>,
-                                    "value": 0.8901,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -9363,22 +8947,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.4483,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      67.5
-                                       ppg
-                                    </span>,
-                                    "value": 1714,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      67.5
-                                       ppg
-                                    </span>,
-                                    "value": 0.8489,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -9621,22 +9189,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.4483,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      67.5
-                                       ppg
-                                    </span>,
-                                    "value": 1714,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      67.5
-                                       ppg
-                                    </span>,
-                                    "value": 0.8489,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -9882,22 +9434,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.41,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      68.2
-                                       ppg
-                                    </span>,
-                                    "value": 1700,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      68.2
-                                       ppg
-                                    </span>,
-                                    "value": 0.8,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -10140,22 +9676,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.41,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      68.2
-                                       ppg
-                                    </span>,
-                                    "value": 1700,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      68.2
-                                       ppg
-                                    </span>,
-                                    "value": 0.8,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -10401,22 +9921,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.4446,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      71.4
-                                       ppg
-                                    </span>,
-                                    "value": 1716,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      71.4
-                                       ppg
-                                    </span>,
-                                    "value": 0.803,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -10659,22 +10163,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.4446,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      71.4
-                                       ppg
-                                    </span>,
-                                    "value": 1716,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      71.4
-                                       ppg
-                                    </span>,
-                                    "value": 0.803,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -10920,22 +10408,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.6111,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      66.0
-                                       ppg
-                                    </span>,
-                                    "value": 1387,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      66.0
-                                       ppg
-                                    </span>,
-                                    "value": 0.687,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -11178,22 +10650,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.6111,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      66.0
-                                       ppg
-                                    </span>,
-                                    "value": 1387,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      66.0
-                                       ppg
-                                    </span>,
-                                    "value": 0.687,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -11439,22 +10895,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.6611,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      70.4
-                                       ppg
-                                    </span>,
-                                    "value": 1840,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      70.4
-                                       ppg
-                                    </span>,
-                                    "value": 0.8021,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -11697,22 +11137,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.6611,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      70.4
-                                       ppg
-                                    </span>,
-                                    "value": 1840,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      70.4
-                                       ppg
-                                    </span>,
-                                    "value": 0.8021,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -11958,22 +11382,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.322,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      68.5
-                                       ppg
-                                    </span>,
-                                    "value": 1680,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      68.5
-                                       ppg
-                                    </span>,
-                                    "value": 0.7906,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -12214,22 +11622,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       %
                                     </span>,
                                     "value": 0.322,
-                                  }
-
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      68.5
-                                       ppg
-                                    </span>,
-                                    "value": 1680,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      68.5
-                                       ppg
-                                    </span>,
-                                    "value": 0.7906,
                                   }
 
                   off_title: <div>
@@ -12477,22 +11869,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.6319,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      74.3
-                                       ppg
-                                    </span>,
-                                    "value": 1431,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      74.3
-                                       ppg
-                                    </span>,
-                                    "value": 0.6287,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -12733,22 +12109,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       %
                                     </span>,
                                     "value": 0.6319,
-                                  }
-
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      74.3
-                                       ppg
-                                    </span>,
-                                    "value": 1431,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      74.3
-                                       ppg
-                                    </span>,
-                                    "value": 0.6287,
                                   }
 
                   off_title: <div>
@@ -14377,22 +13737,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.4667,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      72.6
-                                       ppg
-                                    </span>,
-                                    "value": 1795,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      72.6
-                                       ppg
-                                    </span>,
-                                    "value": 0.6693,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -14643,22 +13987,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.4667,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      72.6
-                                       ppg
-                                    </span>,
-                                    "value": 1795,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      72.6
-                                       ppg
-                                    </span>,
-                                    "value": 0.6693,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -14912,22 +14240,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.3679,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      70.5
-                                       ppg
-                                    </span>,
-                                    "value": 1748,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      70.5
-                                       ppg
-                                    </span>,
-                                    "value": 0.8168,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -15178,22 +14490,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.3679,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      70.5
-                                       ppg
-                                    </span>,
-                                    "value": 1748,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      70.5
-                                       ppg
-                                    </span>,
-                                    "value": 0.8168,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -15447,22 +14743,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.4121,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      70.7
-                                       ppg
-                                    </span>,
-                                    "value": 1820,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      70.7
-                                       ppg
-                                    </span>,
-                                    "value": 0.7339,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -15713,22 +14993,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.4121,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      70.7
-                                       ppg
-                                    </span>,
-                                    "value": 1820,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      70.7
-                                       ppg
-                                    </span>,
-                                    "value": 0.7339,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -15982,22 +15246,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.637,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      68.6
-                                       ppg
-                                    </span>,
-                                    "value": 1975,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      68.6
-                                       ppg
-                                    </span>,
-                                    "value": 0.7903,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -16248,22 +15496,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.637,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      68.6
-                                       ppg
-                                    </span>,
-                                    "value": 1975,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      68.6
-                                       ppg
-                                    </span>,
-                                    "value": 0.7903,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -16517,22 +15749,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.3674,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      67.2
-                                       ppg
-                                    </span>,
-                                    "value": 2198,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      67.2
-                                       ppg
-                                    </span>,
-                                    "value": 0.8373,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -16783,22 +15999,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.3674,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      67.2
-                                       ppg
-                                    </span>,
-                                    "value": 2198,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      67.2
-                                       ppg
-                                    </span>,
-                                    "value": 0.8373,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -17052,22 +16252,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.2015,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      73.8
-                                       ppg
-                                    </span>,
-                                    "value": 1235,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      73.8
-                                       ppg
-                                    </span>,
-                                    "value": 0.754,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -17318,22 +16502,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.2015,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      73.8
-                                       ppg
-                                    </span>,
-                                    "value": 1235,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      73.8
-                                       ppg
-                                    </span>,
-                                    "value": 0.754,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -17587,22 +16755,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.6319,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      74.3
-                                       ppg
-                                    </span>,
-                                    "value": 1431,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      74.3
-                                       ppg
-                                    </span>,
-                                    "value": 0.6287,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -17853,22 +17005,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.6319,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      74.3
-                                       ppg
-                                    </span>,
-                                    "value": 1431,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      74.3
-                                       ppg
-                                    </span>,
-                                    "value": 0.6287,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -18122,22 +17258,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.3317,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      65.6
-                                       ppg
-                                    </span>,
-                                    "value": 1724,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      65.6
-                                       ppg
-                                    </span>,
-                                    "value": 0.848,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -18388,22 +17508,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.3317,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      65.6
-                                       ppg
-                                    </span>,
-                                    "value": 1724,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      65.6
-                                       ppg
-                                    </span>,
-                                    "value": 0.848,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -18657,22 +17761,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.6111,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      66.0
-                                       ppg
-                                    </span>,
-                                    "value": 1387,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      66.0
-                                       ppg
-                                    </span>,
-                                    "value": 0.687,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -18923,22 +18011,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.6111,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      66.0
-                                       ppg
-                                    </span>,
-                                    "value": 1387,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      66.0
-                                       ppg
-                                    </span>,
-                                    "value": 0.687,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -19192,22 +18264,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.7024,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      64.5
-                                       ppg
-                                    </span>,
-                                    "value": 1910,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      64.5
-                                       ppg
-                                    </span>,
-                                    "value": 0.8463,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -19448,22 +18504,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.7024,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      64.5
-                                       ppg
-                                    </span>,
-                                    "value": 1910,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      64.5
-                                       ppg
-                                    </span>,
-                                    "value": 0.8463,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -19707,22 +18747,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.41,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      68.2
-                                       ppg
-                                    </span>,
-                                    "value": 1700,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      68.2
-                                       ppg
-                                    </span>,
-                                    "value": 0.8,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -19973,22 +18997,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.41,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      68.2
-                                       ppg
-                                    </span>,
-                                    "value": 1700,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      68.2
-                                       ppg
-                                    </span>,
-                                    "value": 0.8,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -20242,22 +19250,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.4661,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      67.0
-                                       ppg
-                                    </span>,
-                                    "value": 1951,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      67.0
-                                       ppg
-                                    </span>,
-                                    "value": 0.8373,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -20498,22 +19490,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.4661,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      67.0
-                                       ppg
-                                    </span>,
-                                    "value": 1951,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      67.0
-                                       ppg
-                                    </span>,
-                                    "value": 0.8373,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -20757,22 +19733,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.5675,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      66.4
-                                       ppg
-                                    </span>,
-                                    "value": 1925,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      66.4
-                                       ppg
-                                    </span>,
-                                    "value": 0.9582,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -21013,22 +19973,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.5675,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      66.4
-                                       ppg
-                                    </span>,
-                                    "value": 1925,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      66.4
-                                       ppg
-                                    </span>,
-                                    "value": 0.9582,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -21272,22 +20216,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.3257,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      67.8
-                                       ppg
-                                    </span>,
-                                    "value": 1581,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      67.8
-                                       ppg
-                                    </span>,
-                                    "value": 0.6785,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -21526,22 +20454,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       %
                                     </span>,
                                     "value": 0.3257,
-                                  }
-
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      67.8
-                                       ppg
-                                    </span>,
-                                    "value": 1581,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      67.8
-                                       ppg
-                                    </span>,
-                                    "value": 0.6785,
                                   }
 
                   off_title: <div>
@@ -21787,22 +20699,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.3099,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      66.3
-                                       ppg
-                                    </span>,
-                                    "value": 1781,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      66.3
-                                       ppg
-                                    </span>,
-                                    "value": 0.8865,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -22041,22 +20937,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       %
                                     </span>,
                                     "value": 0.3099,
-                                  }
-
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      66.3
-                                       ppg
-                                    </span>,
-                                    "value": 1781,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      66.3
-                                       ppg
-                                    </span>,
-                                    "value": 0.8865,
                                   }
 
                   off_title: <div>
@@ -23683,22 +22563,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.4446,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      71.4
-                                       ppg
-                                    </span>,
-                                    "value": 1716,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      71.4
-                                       ppg
-                                    </span>,
-                                    "value": 0.803,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -23940,22 +22804,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.4446,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      71.4
-                                       ppg
-                                    </span>,
-                                    "value": 1716,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      71.4
-                                       ppg
-                                    </span>,
-                                    "value": 0.803,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -24200,22 +23048,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.3679,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      70.5
-                                       ppg
-                                    </span>,
-                                    "value": 1748,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      70.5
-                                       ppg
-                                    </span>,
-                                    "value": 0.8168,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -24457,22 +23289,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.3679,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      70.5
-                                       ppg
-                                    </span>,
-                                    "value": 1748,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      70.5
-                                       ppg
-                                    </span>,
-                                    "value": 0.8168,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -24717,22 +23533,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.303,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      65.2
-                                       ppg
-                                    </span>,
-                                    "value": 1847,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      65.2
-                                       ppg
-                                    </span>,
-                                    "value": 0.8901,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -24974,22 +23774,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.303,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      65.2
-                                       ppg
-                                    </span>,
-                                    "value": 1847,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      65.2
-                                       ppg
-                                    </span>,
-                                    "value": 0.8901,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -25234,22 +24018,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.4483,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      67.5
-                                       ppg
-                                    </span>,
-                                    "value": 1714,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      67.5
-                                       ppg
-                                    </span>,
-                                    "value": 0.8489,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -25491,22 +24259,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.4483,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      67.5
-                                       ppg
-                                    </span>,
-                                    "value": 1714,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      67.5
-                                       ppg
-                                    </span>,
-                                    "value": 0.8489,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -25751,22 +24503,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.3317,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      65.6
-                                       ppg
-                                    </span>,
-                                    "value": 1724,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      65.6
-                                       ppg
-                                    </span>,
-                                    "value": 0.848,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -26008,22 +24744,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.3317,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      65.6
-                                       ppg
-                                    </span>,
-                                    "value": 1724,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      65.6
-                                       ppg
-                                    </span>,
-                                    "value": 0.848,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -26268,22 +24988,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.6611,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      70.4
-                                       ppg
-                                    </span>,
-                                    "value": 1840,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      70.4
-                                       ppg
-                                    </span>,
-                                    "value": 0.8021,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -26525,22 +25229,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.6611,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      70.4
-                                       ppg
-                                    </span>,
-                                    "value": 1840,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      70.4
-                                       ppg
-                                    </span>,
-                                    "value": 0.8021,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -26785,22 +25473,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.322,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      68.5
-                                       ppg
-                                    </span>,
-                                    "value": 1680,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      68.5
-                                       ppg
-                                    </span>,
-                                    "value": 0.7906,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -27042,22 +25714,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.322,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      68.5
-                                       ppg
-                                    </span>,
-                                    "value": 1680,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      68.5
-                                       ppg
-                                    </span>,
-                                    "value": 0.7906,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -27302,22 +25958,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.6319,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      74.3
-                                       ppg
-                                    </span>,
-                                    "value": 1431,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      74.3
-                                       ppg
-                                    </span>,
-                                    "value": 0.6287,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -27559,22 +26199,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.6319,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      74.3
-                                       ppg
-                                    </span>,
-                                    "value": 1431,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      74.3
-                                       ppg
-                                    </span>,
-                                    "value": 0.6287,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -27819,22 +26443,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.41,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      68.2
-                                       ppg
-                                    </span>,
-                                    "value": 1700,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      68.2
-                                       ppg
-                                    </span>,
-                                    "value": 0.8,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -28074,22 +26682,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       %
                                     </span>,
                                     "value": 0.41,
-                                  }
-
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      68.2
-                                       ppg
-                                    </span>,
-                                    "value": 1700,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      68.2
-                                       ppg
-                                    </span>,
-                                    "value": 0.8,
                                   }
 
                   off_title: <div>
@@ -28336,22 +26928,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.6111,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      66.0
-                                       ppg
-                                    </span>,
-                                    "value": 1387,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      66.0
-                                       ppg
-                                    </span>,
-                                    "value": 0.687,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -28591,22 +27167,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       %
                                     </span>,
                                     "value": 0.6111,
-                                  }
-
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      66.0
-                                       ppg
-                                    </span>,
-                                    "value": 1387,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      66.0
-                                       ppg
-                                    </span>,
-                                    "value": 0.687,
                                   }
 
                   off_title: <div>
@@ -30234,22 +28794,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.4446,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      71.4
-                                       ppg
-                                    </span>,
-                                    "value": 1716,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      71.4
-                                       ppg
-                                    </span>,
-                                    "value": 0.803,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -30491,22 +29035,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.4446,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      71.4
-                                       ppg
-                                    </span>,
-                                    "value": 1716,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      71.4
-                                       ppg
-                                    </span>,
-                                    "value": 0.803,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -30751,22 +29279,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.3679,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      70.5
-                                       ppg
-                                    </span>,
-                                    "value": 1748,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      70.5
-                                       ppg
-                                    </span>,
-                                    "value": 0.8168,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -31008,22 +29520,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.3679,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      70.5
-                                       ppg
-                                    </span>,
-                                    "value": 1748,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      70.5
-                                       ppg
-                                    </span>,
-                                    "value": 0.8168,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -31268,22 +29764,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.303,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      65.2
-                                       ppg
-                                    </span>,
-                                    "value": 1847,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      65.2
-                                       ppg
-                                    </span>,
-                                    "value": 0.8901,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -31525,22 +30005,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.303,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      65.2
-                                       ppg
-                                    </span>,
-                                    "value": 1847,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      65.2
-                                       ppg
-                                    </span>,
-                                    "value": 0.8901,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -31785,22 +30249,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.6319,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      74.3
-                                       ppg
-                                    </span>,
-                                    "value": 1431,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      74.3
-                                       ppg
-                                    </span>,
-                                    "value": 0.6287,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -32042,22 +30490,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.6319,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      74.3
-                                       ppg
-                                    </span>,
-                                    "value": 1431,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      74.3
-                                       ppg
-                                    </span>,
-                                    "value": 0.6287,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -32302,22 +30734,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.4483,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      67.5
-                                       ppg
-                                    </span>,
-                                    "value": 1714,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      67.5
-                                       ppg
-                                    </span>,
-                                    "value": 0.8489,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -32559,22 +30975,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.4483,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      67.5
-                                       ppg
-                                    </span>,
-                                    "value": 1714,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      67.5
-                                       ppg
-                                    </span>,
-                                    "value": 0.8489,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -32819,22 +31219,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.3317,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      65.6
-                                       ppg
-                                    </span>,
-                                    "value": 1724,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      65.6
-                                       ppg
-                                    </span>,
-                                    "value": 0.848,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -33076,22 +31460,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.3317,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      65.6
-                                       ppg
-                                    </span>,
-                                    "value": 1724,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      65.6
-                                       ppg
-                                    </span>,
-                                    "value": 0.848,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -33336,22 +31704,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.322,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      68.5
-                                       ppg
-                                    </span>,
-                                    "value": 1680,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      68.5
-                                       ppg
-                                    </span>,
-                                    "value": 0.7906,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -33593,22 +31945,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.322,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      68.5
-                                       ppg
-                                    </span>,
-                                    "value": 1680,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      68.5
-                                       ppg
-                                    </span>,
-                                    "value": 0.7906,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -33853,22 +32189,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.6611,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      70.4
-                                       ppg
-                                    </span>,
-                                    "value": 1840,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      70.4
-                                       ppg
-                                    </span>,
-                                    "value": 0.8021,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -34110,22 +32430,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.6611,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      70.4
-                                       ppg
-                                    </span>,
-                                    "value": 1840,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      70.4
-                                       ppg
-                                    </span>,
-                                    "value": 0.8021,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -34370,22 +32674,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.6111,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      66.0
-                                       ppg
-                                    </span>,
-                                    "value": 1387,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      66.0
-                                       ppg
-                                    </span>,
-                                    "value": 0.687,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -34625,22 +32913,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       %
                                     </span>,
                                     "value": 0.6111,
-                                  }
-
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      66.0
-                                       ppg
-                                    </span>,
-                                    "value": 1387,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      66.0
-                                       ppg
-                                    </span>,
-                                    "value": 0.687,
                                   }
 
                   off_title: <div>
@@ -34887,22 +33159,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": 0.41,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      68.2
-                                       ppg
-                                    </span>,
-                                    "value": 1700,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      68.2
-                                       ppg
-                                    </span>,
-                                    "value": 0.8,
-                                  }
-
                   off_title: <div>
                                     <span
                                       className="float-left"
@@ -35142,22 +33398,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       %
                                     </span>,
                                     "value": 0.41,
-                                  }
-
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      68.2
-                                       ppg
-                                    </span>,
-                                    "value": 1700,
-                                  }
-
-                  off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      68.2
-                                       ppg
-                                    </span>,
-                                    "value": 0.8,
                                   }
 
                   off_title: <div>

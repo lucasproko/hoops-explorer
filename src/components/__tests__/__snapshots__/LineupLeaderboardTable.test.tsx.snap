@@ -1029,14 +1029,6 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.4333,
                                   }
 
-                  off_poss: Object {
-                                    "extraInfo": <span>
-                                      64.5
-                                       ppg
-                                    </span>,
-                                    "value": 202,
-                                  }
-
                   off_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -1609,14 +1601,6 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.4333,
                                   }
 
-                  off_poss: Object {
-                                    "extraInfo": <span>
-                                      64.5
-                                       ppg
-                                    </span>,
-                                    "value": 202,
-                                  }
-
                   off_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -2192,14 +2176,6 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.3577,
                                   }
 
-                  off_poss: Object {
-                                    "extraInfo": <span>
-                                      69.2
-                                       ppg
-                                    </span>,
-                                    "value": 129,
-                                  }
-
                   off_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -2762,14 +2738,6 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.3577,
                                   }
 
-                  off_poss: Object {
-                                    "extraInfo": <span>
-                                      69.2
-                                       ppg
-                                    </span>,
-                                    "value": 129,
-                                  }
-
                   off_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -3335,14 +3303,6 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.4732,
                                   }
 
-                  off_poss: Object {
-                                    "extraInfo": <span>
-                                      67.5
-                                       ppg
-                                    </span>,
-                                    "value": 135,
-                                  }
-
                   off_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -3905,14 +3865,6 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.4732,
                                   }
 
-                  off_poss: Object {
-                                    "extraInfo": <span>
-                                      67.5
-                                       ppg
-                                    </span>,
-                                    "value": 135,
-                                  }
-
                   off_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -4474,14 +4426,6 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.1773,
                                   }
 
-                  off_poss: Object {
-                                    "extraInfo": <span>
-                                      63.8
-                                       ppg
-                                    </span>,
-                                    "value": 139,
-                                  }
-
                   off_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -5050,14 +4994,6 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.1773,
                                   }
 
-                  off_poss: Object {
-                                    "extraInfo": <span>
-                                      63.8
-                                       ppg
-                                    </span>,
-                                    "value": 139,
-                                  }
-
                   off_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -5633,14 +5569,6 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.2452,
                                   }
 
-                  off_poss: Object {
-                                    "extraInfo": <span>
-                                      65.0
-                                       ppg
-                                    </span>,
-                                    "value": 173,
-                                  }
-
                   off_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -6203,14 +6131,6 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.2452,
                                   }
 
-                  off_poss: Object {
-                                    "extraInfo": <span>
-                                      65.0
-                                       ppg
-                                    </span>,
-                                    "value": 173,
-                                  }
-
                   off_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -6776,14 +6696,6 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.6556,
                                   }
 
-                  off_poss: Object {
-                                    "extraInfo": <span>
-                                      63.6
-                                       ppg
-                                    </span>,
-                                    "value": 120,
-                                  }
-
                   off_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -7353,14 +7265,6 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.6556,
                                   }
 
-                  off_poss: Object {
-                                    "extraInfo": <span>
-                                      63.6
-                                       ppg
-                                    </span>,
-                                    "value": 120,
-                                  }
-
                   off_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -7933,14 +7837,6 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.3475,
                                   }
 
-                  off_poss: Object {
-                                    "extraInfo": <span>
-                                      69.9
-                                       ppg
-                                    </span>,
-                                    "value": 156,
-                                  }
-
                   off_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -8503,14 +8399,6 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                       %
                                     </span>,
                                     "value": 0.3475,
-                                  }
-
-                  off_poss: Object {
-                                    "extraInfo": <span>
-                                      69.9
-                                       ppg
-                                    </span>,
-                                    "value": 156,
                                   }
 
                   off_ppp: Object {
@@ -9080,14 +8968,6 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.5,
                                   }
 
-                  off_poss: Object {
-                                    "extraInfo": <span>
-                                      64.0
-                                       ppg
-                                    </span>,
-                                    "value": 142,
-                                  }
-
                   off_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -9645,14 +9525,6 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                       %
                                     </span>,
                                     "value": 0.5,
-                                  }
-
-                  off_poss: Object {
-                                    "extraInfo": <span>
-                                      64.0
-                                       ppg
-                                    </span>,
-                                    "value": 142,
                                   }
 
                   off_ppp: Object {
@@ -10215,14 +10087,6 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                       %
                                     </span>,
                                     "value": 0.2519,
-                                  }
-
-                  off_poss: Object {
-                                    "extraInfo": <span>
-                                      66.6
-                                       ppg
-                                    </span>,
-                                    "value": 136,
                                   }
 
                   off_ppp: Object {
@@ -10795,14 +10659,6 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                       %
                                     </span>,
                                     "value": 0.2519,
-                                  }
-
-                  off_poss: Object {
-                                    "extraInfo": <span>
-                                      66.6
-                                       ppg
-                                    </span>,
-                                    "value": 136,
                                   }
 
                   off_ppp: Object {
@@ -11378,14 +11234,6 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                       %
                                     </span>,
                                     "value": 0.3836,
-                                  }
-
-                  off_poss: Object {
-                                    "extraInfo": <span>
-                                      66.5
-                                       ppg
-                                    </span>,
-                                    "value": 444,
                                   }
 
                   off_ppp: Object {
@@ -11958,14 +11806,6 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                       %
                                     </span>,
                                     "value": 0.3836,
-                                  }
-
-                  off_poss: Object {
-                                    "extraInfo": <span>
-                                      66.5
-                                       ppg
-                                    </span>,
-                                    "value": 444,
                                   }
 
                   off_ppp: Object {
@@ -13674,14 +13514,6 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.4333,
                                   }
 
-                  off_poss: Object {
-                                    "extraInfo": <span>
-                                      64.5
-                                       ppg
-                                    </span>,
-                                    "value": 202,
-                                  }
-
                   off_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -14263,14 +14095,6 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.4333,
                                   }
 
-                  off_poss: Object {
-                                    "extraInfo": <span>
-                                      64.5
-                                       ppg
-                                    </span>,
-                                    "value": 202,
-                                  }
-
                   off_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -14855,14 +14679,6 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.2733,
                                   }
 
-                  off_poss: Object {
-                                    "extraInfo": <span>
-                                      59.1
-                                       ppg
-                                    </span>,
-                                    "value": 346,
-                                  }
-
                   off_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -15438,14 +15254,6 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.2733,
                                   }
 
-                  off_poss: Object {
-                                    "extraInfo": <span>
-                                      59.1
-                                       ppg
-                                    </span>,
-                                    "value": 346,
-                                  }
-
                   off_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -16024,14 +15832,6 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.2775,
                                   }
 
-                  off_poss: Object {
-                                    "extraInfo": <span>
-                                      66.9
-                                       ppg
-                                    </span>,
-                                    "value": 220,
-                                  }
-
                   off_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -16600,14 +16400,6 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.2775,
                                   }
 
-                  off_poss: Object {
-                                    "extraInfo": <span>
-                                      66.9
-                                       ppg
-                                    </span>,
-                                    "value": 220,
-                                  }
-
                   off_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -17179,14 +16971,6 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.3577,
                                   }
 
-                  off_poss: Object {
-                                    "extraInfo": <span>
-                                      69.2
-                                       ppg
-                                    </span>,
-                                    "value": 129,
-                                  }
-
                   off_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -17758,14 +17542,6 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.3577,
                                   }
 
-                  off_poss: Object {
-                                    "extraInfo": <span>
-                                      69.2
-                                       ppg
-                                    </span>,
-                                    "value": 129,
-                                  }
-
                   off_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -18340,14 +18116,6 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.4732,
                                   }
 
-                  off_poss: Object {
-                                    "extraInfo": <span>
-                                      67.5
-                                       ppg
-                                    </span>,
-                                    "value": 135,
-                                  }
-
                   off_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -18919,14 +18687,6 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.4732,
                                   }
 
-                  off_poss: Object {
-                                    "extraInfo": <span>
-                                      67.5
-                                       ppg
-                                    </span>,
-                                    "value": 135,
-                                  }
-
                   off_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -19497,14 +19257,6 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.1773,
                                   }
 
-                  off_poss: Object {
-                                    "extraInfo": <span>
-                                      63.8
-                                       ppg
-                                    </span>,
-                                    "value": 139,
-                                  }
-
                   off_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -20082,14 +19834,6 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.1773,
                                   }
 
-                  off_poss: Object {
-                                    "extraInfo": <span>
-                                      63.8
-                                       ppg
-                                    </span>,
-                                    "value": 139,
-                                  }
-
                   off_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -20674,14 +20418,6 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.3409,
                                   }
 
-                  off_poss: Object {
-                                    "extraInfo": <span>
-                                      67.9
-                                       ppg
-                                    </span>,
-                                    "value": 242,
-                                  }
-
                   off_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -21256,14 +20992,6 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.3409,
                                   }
 
-                  off_poss: Object {
-                                    "extraInfo": <span>
-                                      67.9
-                                       ppg
-                                    </span>,
-                                    "value": 242,
-                                  }
-
                   off_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -21841,14 +21569,6 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.2452,
                                   }
 
-                  off_poss: Object {
-                                    "extraInfo": <span>
-                                      65.0
-                                       ppg
-                                    </span>,
-                                    "value": 173,
-                                  }
-
                   off_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -22420,14 +22140,6 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.2452,
                                   }
 
-                  off_poss: Object {
-                                    "extraInfo": <span>
-                                      65.0
-                                       ppg
-                                    </span>,
-                                    "value": 173,
-                                  }
-
                   off_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -23002,14 +22714,6 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.3321,
                                   }
 
-                  off_poss: Object {
-                                    "extraInfo": <span>
-                                      62.5
-                                       ppg
-                                    </span>,
-                                    "value": 609,
-                                  }
-
                   off_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -23588,14 +23292,6 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.3321,
                                   }
 
-                  off_poss: Object {
-                                    "extraInfo": <span>
-                                      62.5
-                                       ppg
-                                    </span>,
-                                    "value": 609,
-                                  }
-
                   off_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -24177,14 +23873,6 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.4386,
                                   }
 
-                  off_poss: Object {
-                                    "extraInfo": <span>
-                                      67.3
-                                       ppg
-                                    </span>,
-                                    "value": 144,
-                                  }
-
                   off_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -24766,14 +24454,6 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.4386,
                                   }
 
-                  off_poss: Object {
-                                    "extraInfo": <span>
-                                      67.3
-                                       ppg
-                                    </span>,
-                                    "value": 144,
-                                  }
-
                   off_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -25358,14 +25038,6 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.4559,
                                   }
 
-                  off_poss: Object {
-                                    "extraInfo": <span>
-                                      66.3
-                                       ppg
-                                    </span>,
-                                    "value": 88,
-                                  }
-
                   off_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -25934,14 +25606,6 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.4559,
                                   }
 
-                  off_poss: Object {
-                                    "extraInfo": <span>
-                                      66.3
-                                       ppg
-                                    </span>,
-                                    "value": 88,
-                                  }
-
                   off_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -26513,14 +26177,6 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 1.0606,
                                   }
 
-                  off_poss: Object {
-                                    "extraInfo": <span>
-                                      72.0
-                                       ppg
-                                    </span>,
-                                    "value": 103,
-                                  }
-
                   off_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -27093,14 +26749,6 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 1.0606,
                                   }
 
-                  off_poss: Object {
-                                    "extraInfo": <span>
-                                      72.0
-                                       ppg
-                                    </span>,
-                                    "value": 103,
-                                  }
-
                   off_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -27676,14 +27324,6 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.5,
                                   }
 
-                  off_poss: Object {
-                                    "extraInfo": <span>
-                                      71.1
-                                       ppg
-                                    </span>,
-                                    "value": 94,
-                                  }
-
                   off_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -28252,14 +27892,6 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.5,
                                   }
 
-                  off_poss: Object {
-                                    "extraInfo": <span>
-                                      71.1
-                                       ppg
-                                    </span>,
-                                    "value": 94,
-                                  }
-
                   off_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -28831,14 +28463,6 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.3906,
                                   }
 
-                  off_poss: Object {
-                                    "extraInfo": <span>
-                                      62.3
-                                       ppg
-                                    </span>,
-                                    "value": 84,
-                                  }
-
                   off_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -29402,14 +29026,6 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                       %
                                     </span>,
                                     "value": 0.3906,
-                                  }
-
-                  off_poss: Object {
-                                    "extraInfo": <span>
-                                      62.3
-                                       ppg
-                                    </span>,
-                                    "value": 84,
                                   }
 
                   off_ppp: Object {
@@ -29980,14 +29596,6 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.2882,
                                   }
 
-                  off_poss: Object {
-                                    "extraInfo": <span>
-                                      68.2
-                                       ppg
-                                    </span>,
-                                    "value": 607,
-                                  }
-
                   off_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -30554,14 +30162,6 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                       %
                                     </span>,
                                     "value": 0.2882,
-                                  }
-
-                  off_poss: Object {
-                                    "extraInfo": <span>
-                                      68.2
-                                       ppg
-                                    </span>,
-                                    "value": 607,
                                   }
 
                   off_ppp: Object {
@@ -32266,14 +31866,6 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.4333,
                                   }
 
-                  off_poss: Object {
-                                    "extraInfo": <span>
-                                      64.5
-                                       ppg
-                                    </span>,
-                                    "value": 202,
-                                  }
-
                   off_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -32844,14 +32436,6 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                       %
                                     </span>,
                                     "value": 0.4333,
-                                  }
-
-                  off_poss: Object {
-                                    "extraInfo": <span>
-                                      64.5
-                                       ppg
-                                    </span>,
-                                    "value": 202,
                                   }
 
                   off_ppp: Object {
@@ -33452,14 +33036,6 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.3577,
                                   }
 
-                  off_poss: Object {
-                                    "extraInfo": <span>
-                                      69.2
-                                       ppg
-                                    </span>,
-                                    "value": 129,
-                                  }
-
                   off_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -34020,14 +33596,6 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                       %
                                     </span>,
                                     "value": 0.3577,
-                                  }
-
-                  off_poss: Object {
-                                    "extraInfo": <span>
-                                      69.2
-                                       ppg
-                                    </span>,
-                                    "value": 129,
                                   }
 
                   off_ppp: Object {
@@ -34618,14 +34186,6 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.4732,
                                   }
 
-                  off_poss: Object {
-                                    "extraInfo": <span>
-                                      67.5
-                                       ppg
-                                    </span>,
-                                    "value": 135,
-                                  }
-
                   off_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -35186,14 +34746,6 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                       %
                                     </span>,
                                     "value": 0.4732,
-                                  }
-
-                  off_poss: Object {
-                                    "extraInfo": <span>
-                                      67.5
-                                       ppg
-                                    </span>,
-                                    "value": 135,
                                   }
 
                   off_ppp: Object {
@@ -35780,14 +35332,6 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.1773,
                                   }
 
-                  off_poss: Object {
-                                    "extraInfo": <span>
-                                      63.8
-                                       ppg
-                                    </span>,
-                                    "value": 139,
-                                  }
-
                   off_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -36354,14 +35898,6 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                       %
                                     </span>,
                                     "value": 0.1773,
-                                  }
-
-                  off_poss: Object {
-                                    "extraInfo": <span>
-                                      63.8
-                                       ppg
-                                    </span>,
-                                    "value": 139,
                                   }
 
                   off_ppp: Object {
@@ -36962,14 +36498,6 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.2452,
                                   }
 
-                  off_poss: Object {
-                                    "extraInfo": <span>
-                                      65.0
-                                       ppg
-                                    </span>,
-                                    "value": 173,
-                                  }
-
                   off_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -37530,14 +37058,6 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                       %
                                     </span>,
                                     "value": 0.2452,
-                                  }
-
-                  off_poss: Object {
-                                    "extraInfo": <span>
-                                      65.0
-                                       ppg
-                                    </span>,
-                                    "value": 173,
                                   }
 
                   off_ppp: Object {
@@ -38128,14 +37648,6 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.6556,
                                   }
 
-                  off_poss: Object {
-                                    "extraInfo": <span>
-                                      63.6
-                                       ppg
-                                    </span>,
-                                    "value": 120,
-                                  }
-
                   off_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -38703,14 +38215,6 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                       %
                                     </span>,
                                     "value": 0.6556,
-                                  }
-
-                  off_poss: Object {
-                                    "extraInfo": <span>
-                                      63.6
-                                       ppg
-                                    </span>,
-                                    "value": 120,
                                   }
 
                   off_ppp: Object {
@@ -39308,14 +38812,6 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.3475,
                                   }
 
-                  off_poss: Object {
-                                    "extraInfo": <span>
-                                      69.9
-                                       ppg
-                                    </span>,
-                                    "value": 156,
-                                  }
-
                   off_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -39878,14 +39374,6 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                       %
                                     </span>,
                                     "value": 0.3475,
-                                  }
-
-                  off_poss: Object {
-                                    "extraInfo": <span>
-                                      69.9
-                                       ppg
-                                    </span>,
-                                    "value": 156,
                                   }
 
                   off_ppp: Object {
@@ -40478,14 +39966,6 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.5,
                                   }
 
-                  off_poss: Object {
-                                    "extraInfo": <span>
-                                      64.0
-                                       ppg
-                                    </span>,
-                                    "value": 142,
-                                  }
-
                   off_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -41043,14 +40523,6 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                       %
                                     </span>,
                                     "value": 0.5,
-                                  }
-
-                  off_poss: Object {
-                                    "extraInfo": <span>
-                                      64.0
-                                       ppg
-                                    </span>,
-                                    "value": 142,
                                   }
 
                   off_ppp: Object {
@@ -41638,14 +41110,6 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.2519,
                                   }
 
-                  off_poss: Object {
-                                    "extraInfo": <span>
-                                      66.6
-                                       ppg
-                                    </span>,
-                                    "value": 136,
-                                  }
-
                   off_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -42216,14 +41680,6 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                       %
                                     </span>,
                                     "value": 0.2519,
-                                  }
-
-                  off_poss: Object {
-                                    "extraInfo": <span>
-                                      66.6
-                                       ppg
-                                    </span>,
-                                    "value": 136,
                                   }
 
                   off_ppp: Object {
@@ -42824,14 +42280,6 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                     "value": 0.3836,
                                   }
 
-                  off_poss: Object {
-                                    "extraInfo": <span>
-                                      66.5
-                                       ppg
-                                    </span>,
-                                    "value": 444,
-                                  }
-
                   off_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -43402,14 +42850,6 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                                       %
                                     </span>,
                                     "value": 0.3836,
-                                  }
-
-                  off_poss: Object {
-                                    "extraInfo": <span>
-                                      66.5
-                                       ppg
-                                    </span>,
-                                    "value": 444,
                                   }
 
                   off_ppp: Object {

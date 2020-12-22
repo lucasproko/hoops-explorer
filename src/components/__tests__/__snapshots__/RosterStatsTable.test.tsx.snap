@@ -173,19 +173,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                         "value": 115.14861945063792,
                       }
 
-            off_team_poss: Object {
-                        "extraInfo": <span>
-                          122.4
-                           ppg
-                        </span>,
-                        "value": 1530,
-                      }
-
             off_team_poss_pct: Object {
-                        "extraInfo": <span>
-                          122.4
-                           ppg
-                        </span>,
                         "value": 1,
                       }
 
@@ -401,19 +389,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                         "value": 123.44797809632072,
                       }
 
-            off_team_poss: Object {
-                        "extraInfo": <span>
-                          54.4
-                           ppg
-                        </span>,
-                        "value": 272,
-                      }
-
             off_team_poss_pct: Object {
-                        "extraInfo": <span>
-                          54.4
-                           ppg
-                        </span>,
                         "value": 1,
                       }
 
@@ -629,19 +605,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                         "value": 116.5274146893099,
                       }
 
-            off_team_poss: Object {
-                        "extraInfo": <span>
-                          80.1
-                           ppg
-                        </span>,
-                        "value": 1802,
-                      }
-
             off_team_poss_pct: Object {
-                        "extraInfo": <span>
-                          80.1
-                           ppg
-                        </span>,
                         "value": 1,
                       }
 
@@ -857,19 +821,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                         "value": 95.63630687934848,
                       }
 
-            off_team_poss: Object {
-                        "extraInfo": <span>
-                          108.4
-                           ppg
-                        </span>,
-                        "value": 1220,
-                      }
-
             off_team_poss_pct: Object {
-                        "extraInfo": <span>
-                          108.4
-                           ppg
-                        </span>,
                         "value": 1,
                       }
 
@@ -1085,19 +1037,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                         "value": 99.19560099143102,
                       }
 
-            off_team_poss: Object {
-                        "extraInfo": <span>
-                          75.0
-                           ppg
-                        </span>,
-                        "value": 1499,
-                      }
-
             off_team_poss_pct: Object {
-                        "extraInfo": <span>
-                          75.0
-                           ppg
-                        </span>,
                         "value": 1,
                       }
 
@@ -1313,19 +1253,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                         "value": 166.28994757735532,
                       }
 
-            off_team_poss: Object {
-                        "extraInfo": <span>
-                          50.7
-                           ppg
-                        </span>,
-                        "value": 38,
-                      }
-
             off_team_poss_pct: Object {
-                        "extraInfo": <span>
-                          50.7
-                           ppg
-                        </span>,
                         "value": 1,
                       }
 
@@ -1553,19 +1481,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                 "value": 116.5274146893099,
                               }
 
-                off_team_poss: Object {
-                                "extraInfo": <span>
-                                  80.1
-                                   ppg
-                                </span>,
-                                "value": 1802,
-                              }
-
                 off_team_poss_pct: Object {
-                                "extraInfo": <span>
-                                  80.1
-                                   ppg
-                                </span>,
                                 "value": 1,
                               }
 
@@ -1787,19 +1703,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                 "value": 116.5274146893099,
                               }
 
-                off_team_poss: Object {
-                                "extraInfo": <span>
-                                  80.1
-                                   ppg
-                                </span>,
-                                "value": 1802,
-                              }
-
                 off_team_poss_pct: Object {
-                                "extraInfo": <span>
-                                  80.1
-                                   ppg
-                                </span>,
                                 "value": 1,
                               }
 
@@ -2023,19 +1927,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                 "value": 123.44797809632072,
                               }
 
-                off_team_poss: Object {
-                                "extraInfo": <span>
-                                  54.4
-                                   ppg
-                                </span>,
-                                "value": 272,
-                              }
-
                 off_team_poss_pct: Object {
-                                "extraInfo": <span>
-                                  54.4
-                                   ppg
-                                </span>,
                                 "value": 1,
                               }
 
@@ -2257,19 +2149,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                 "value": 123.44797809632072,
                               }
 
-                off_team_poss: Object {
-                                "extraInfo": <span>
-                                  54.4
-                                   ppg
-                                </span>,
-                                "value": 272,
-                              }
-
                 off_team_poss_pct: Object {
-                                "extraInfo": <span>
-                                  54.4
-                                   ppg
-                                </span>,
                                 "value": 1,
                               }
 
@@ -2493,19 +2373,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                 "value": 115.14861945063792,
                               }
 
-                off_team_poss: Object {
-                                "extraInfo": <span>
-                                  122.4
-                                   ppg
-                                </span>,
-                                "value": 1530,
-                              }
-
                 off_team_poss_pct: Object {
-                                "extraInfo": <span>
-                                  122.4
-                                   ppg
-                                </span>,
                                 "value": 1,
                               }
 
@@ -2727,19 +2595,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                 "value": 115.14861945063792,
                               }
 
-                off_team_poss: Object {
-                                "extraInfo": <span>
-                                  122.4
-                                   ppg
-                                </span>,
-                                "value": 1530,
-                              }
-
                 off_team_poss_pct: Object {
-                                "extraInfo": <span>
-                                  122.4
-                                   ppg
-                                </span>,
                                 "value": 1,
                               }
 
@@ -2963,19 +2819,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                 "value": 166.28994757735532,
                               }
 
-                off_team_poss: Object {
-                                "extraInfo": <span>
-                                  50.7
-                                   ppg
-                                </span>,
-                                "value": 38,
-                              }
-
                 off_team_poss_pct: Object {
-                                "extraInfo": <span>
-                                  50.7
-                                   ppg
-                                </span>,
                                 "value": 1,
                               }
 
@@ -3197,19 +3041,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                 "value": 166.28994757735532,
                               }
 
-                off_team_poss: Object {
-                                "extraInfo": <span>
-                                  50.7
-                                   ppg
-                                </span>,
-                                "value": 38,
-                              }
-
                 off_team_poss_pct: Object {
-                                "extraInfo": <span>
-                                  50.7
-                                   ppg
-                                </span>,
                                 "value": 1,
                               }
 
@@ -3433,19 +3265,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                 "value": 99.19560099143102,
                               }
 
-                off_team_poss: Object {
-                                "extraInfo": <span>
-                                  75.0
-                                   ppg
-                                </span>,
-                                "value": 1499,
-                              }
-
                 off_team_poss_pct: Object {
-                                "extraInfo": <span>
-                                  75.0
-                                   ppg
-                                </span>,
                                 "value": 1,
                               }
 
@@ -3667,19 +3487,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                 "value": 99.19560099143102,
                               }
 
-                off_team_poss: Object {
-                                "extraInfo": <span>
-                                  75.0
-                                   ppg
-                                </span>,
-                                "value": 1499,
-                              }
-
                 off_team_poss_pct: Object {
-                                "extraInfo": <span>
-                                  75.0
-                                   ppg
-                                </span>,
                                 "value": 1,
                               }
 
@@ -3903,19 +3711,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                 "value": 95.63630687934848,
                               }
 
-                off_team_poss: Object {
-                                "extraInfo": <span>
-                                  108.4
-                                   ppg
-                                </span>,
-                                "value": 1220,
-                              }
-
                 off_team_poss_pct: Object {
-                                "extraInfo": <span>
-                                  108.4
-                                   ppg
-                                </span>,
                                 "value": 1,
                               }
 
@@ -4137,19 +3933,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                 "value": 95.63630687934848,
                               }
 
-                off_team_poss: Object {
-                                "extraInfo": <span>
-                                  108.4
-                                   ppg
-                                </span>,
-                                "value": 1220,
-                              }
-
                 off_team_poss_pct: Object {
-                                "extraInfo": <span>
-                                  108.4
-                                   ppg
-                                </span>,
                                 "value": 1,
                               }
 
@@ -5133,19 +4917,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                     "value": 115.14861945063792,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      122.4
-                                       ppg
-                                    </span>,
-                                    "value": 1530,
-                                  }
-
                   off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      122.4
-                                       ppg
-                                    </span>,
                                     "value": 1,
                                   }
 
@@ -5367,19 +5139,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                     "value": 123.44797809632072,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      54.4
-                                       ppg
-                                    </span>,
-                                    "value": 272,
-                                  }
-
                   off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      54.4
-                                       ppg
-                                    </span>,
                                     "value": 1,
                                   }
 
@@ -5604,19 +5364,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                     "value": 95.63630687934848,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      108.4
-                                       ppg
-                                    </span>,
-                                    "value": 1220,
-                                  }
-
                   off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      108.4
-                                       ppg
-                                    </span>,
                                     "value": 1,
                                   }
 
@@ -5841,19 +5589,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                     "value": 166.28994757735532,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      50.7
-                                       ppg
-                                    </span>,
-                                    "value": 38,
-                                  }
-
                   off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      50.7
-                                       ppg
-                                    </span>,
                                     "value": 1,
                                   }
 
@@ -6353,19 +6089,7 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
                         "value": 116.5274146893099,
                       }
 
-            off_team_poss: Object {
-                        "extraInfo": <span>
-                          80.1
-                           ppg
-                        </span>,
-                        "value": 1802,
-                      }
-
             off_team_poss_pct: Object {
-                        "extraInfo": <span>
-                          80.1
-                           ppg
-                        </span>,
                         "value": 1,
                       }
 
@@ -6574,19 +6298,7 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
                         "value": 99.19560099143102,
                       }
 
-            off_team_poss: Object {
-                        "extraInfo": <span>
-                          75.0
-                           ppg
-                        </span>,
-                        "value": 1499,
-                      }
-
             off_team_poss_pct: Object {
-                        "extraInfo": <span>
-                          75.0
-                           ppg
-                        </span>,
                         "value": 1,
                       }
 
@@ -6807,19 +6519,7 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
                                 "value": 116.5274146893099,
                               }
 
-                off_team_poss: Object {
-                                "extraInfo": <span>
-                                  80.1
-                                   ppg
-                                </span>,
-                                "value": 1802,
-                              }
-
                 off_team_poss_pct: Object {
-                                "extraInfo": <span>
-                                  80.1
-                                   ppg
-                                </span>,
                                 "value": 1,
                               }
 
@@ -7034,19 +6734,7 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
                                 "value": 116.5274146893099,
                               }
 
-                off_team_poss: Object {
-                                "extraInfo": <span>
-                                  80.1
-                                   ppg
-                                </span>,
-                                "value": 1802,
-                              }
-
                 off_team_poss_pct: Object {
-                                "extraInfo": <span>
-                                  80.1
-                                   ppg
-                                </span>,
                                 "value": 1,
                               }
 
@@ -7263,19 +6951,7 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
                                 "value": 99.19560099143102,
                               }
 
-                off_team_poss: Object {
-                                "extraInfo": <span>
-                                  75.0
-                                   ppg
-                                </span>,
-                                "value": 1499,
-                              }
-
                 off_team_poss_pct: Object {
-                                "extraInfo": <span>
-                                  75.0
-                                   ppg
-                                </span>,
                                 "value": 1,
                               }
 
@@ -7490,19 +7166,7 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
                                 "value": 99.19560099143102,
                               }
 
-                off_team_poss: Object {
-                                "extraInfo": <span>
-                                  75.0
-                                   ppg
-                                </span>,
-                                "value": 1499,
-                              }
-
                 off_team_poss_pct: Object {
-                                "extraInfo": <span>
-                                  75.0
-                                   ppg
-                                </span>,
                                 "value": 1,
                               }
 
@@ -8479,19 +8143,7 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
                                     "value": 116.5274146893099,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      80.1
-                                       ppg
-                                    </span>,
-                                    "value": 1802,
-                                  }
-
                   off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      80.1
-                                       ppg
-                                    </span>,
                                     "value": 1,
                                   }
 
@@ -8709,19 +8361,7 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
                                     "value": 99.19560099143102,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      75.0
-                                       ppg
-                                    </span>,
-                                    "value": 1499,
-                                  }
-
                   off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      75.0
-                                       ppg
-                                    </span>,
                                     "value": 1,
                                   }
 
@@ -9193,19 +8833,7 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                         "value": 116.5274146893099,
                       }
 
-            off_team_poss: Object {
-                        "extraInfo": <span>
-                          80.1
-                           ppg
-                        </span>,
-                        "value": 1802,
-                      }
-
             off_team_poss_pct: Object {
-                        "extraInfo": <span>
-                          80.1
-                           ppg
-                        </span>,
                         "value": 1,
                       }
 
@@ -9373,19 +9001,7 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                         "value": 99.19560099143102,
                       }
 
-            off_team_poss: Object {
-                        "extraInfo": <span>
-                          75.0
-                           ppg
-                        </span>,
-                        "value": 1499,
-                      }
-
             off_team_poss_pct: Object {
-                        "extraInfo": <span>
-                          75.0
-                           ppg
-                        </span>,
                         "value": 1,
                       }
 
@@ -9565,19 +9181,7 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                                 "value": 116.5274146893099,
                               }
 
-                off_team_poss: Object {
-                                "extraInfo": <span>
-                                  80.1
-                                   ppg
-                                </span>,
-                                "value": 1802,
-                              }
-
                 off_team_poss_pct: Object {
-                                "extraInfo": <span>
-                                  80.1
-                                   ppg
-                                </span>,
                                 "value": 1,
                               }
 
@@ -9751,19 +9355,7 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                                 "value": 116.5274146893099,
                               }
 
-                off_team_poss: Object {
-                                "extraInfo": <span>
-                                  80.1
-                                   ppg
-                                </span>,
-                                "value": 1802,
-                              }
-
                 off_team_poss_pct: Object {
-                                "extraInfo": <span>
-                                  80.1
-                                   ppg
-                                </span>,
                                 "value": 1,
                               }
 
@@ -9939,19 +9531,7 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                                 "value": 99.19560099143102,
                               }
 
-                off_team_poss: Object {
-                                "extraInfo": <span>
-                                  75.0
-                                   ppg
-                                </span>,
-                                "value": 1499,
-                              }
-
                 off_team_poss_pct: Object {
-                                "extraInfo": <span>
-                                  75.0
-                                   ppg
-                                </span>,
                                 "value": 1,
                               }
 
@@ -10125,19 +9705,7 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                                 "value": 99.19560099143102,
                               }
 
-                off_team_poss: Object {
-                                "extraInfo": <span>
-                                  75.0
-                                   ppg
-                                </span>,
-                                "value": 1499,
-                              }
-
                 off_team_poss_pct: Object {
-                                "extraInfo": <span>
-                                  75.0
-                                   ppg
-                                </span>,
                                 "value": 1,
                               }
 
@@ -11073,19 +10641,7 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                                     "value": 116.5274146893099,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      80.1
-                                       ppg
-                                    </span>,
-                                    "value": 1802,
-                                  }
-
                   off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      80.1
-                                       ppg
-                                    </span>,
                                     "value": 1,
                                   }
 
@@ -11259,19 +10815,7 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                                     "value": 116.5274146893099,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      80.1
-                                       ppg
-                                    </span>,
-                                    "value": 1802,
-                                  }
-
                   off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      80.1
-                                       ppg
-                                    </span>,
                                     "value": 1,
                                   }
 
@@ -11448,19 +10992,7 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                                     "value": 99.19560099143102,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      75.0
-                                       ppg
-                                    </span>,
-                                    "value": 1499,
-                                  }
-
                   off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      75.0
-                                       ppg
-                                    </span>,
                                     "value": 1,
                                   }
 
@@ -11634,19 +11166,7 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                                     "value": 99.19560099143102,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      75.0
-                                       ppg
-                                    </span>,
-                                    "value": 1499,
-                                  }
-
                   off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      75.0
-                                       ppg
-                                    </span>,
                                     "value": 1,
                                   }
 
@@ -12098,19 +11618,7 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                         "value": 115.14861945063792,
                       }
 
-            off_team_poss: Object {
-                        "extraInfo": <span>
-                          122.4
-                           ppg
-                        </span>,
-                        "value": 1530,
-                      }
-
             off_team_poss_pct: Object {
-                        "extraInfo": <span>
-                          122.4
-                           ppg
-                        </span>,
                         "value": 1,
                       }
 
@@ -12284,19 +11792,7 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                         "value": 123.44797809632072,
                       }
 
-            off_team_poss: Object {
-                        "extraInfo": <span>
-                          54.4
-                           ppg
-                        </span>,
-                        "value": 272,
-                      }
-
             off_team_poss_pct: Object {
-                        "extraInfo": <span>
-                          54.4
-                           ppg
-                        </span>,
                         "value": 1,
                       }
 
@@ -12470,19 +11966,7 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                         "value": 116.5274146893099,
                       }
 
-            off_team_poss: Object {
-                        "extraInfo": <span>
-                          80.1
-                           ppg
-                        </span>,
-                        "value": 1802,
-                      }
-
             off_team_poss_pct: Object {
-                        "extraInfo": <span>
-                          80.1
-                           ppg
-                        </span>,
                         "value": 1,
                       }
 
@@ -12656,19 +12140,7 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                         "value": 95.63630687934848,
                       }
 
-            off_team_poss: Object {
-                        "extraInfo": <span>
-                          108.4
-                           ppg
-                        </span>,
-                        "value": 1220,
-                      }
-
             off_team_poss_pct: Object {
-                        "extraInfo": <span>
-                          108.4
-                           ppg
-                        </span>,
                         "value": 1,
                       }
 
@@ -12842,19 +12314,7 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                         "value": 99.19560099143102,
                       }
 
-            off_team_poss: Object {
-                        "extraInfo": <span>
-                          75.0
-                           ppg
-                        </span>,
-                        "value": 1499,
-                      }
-
             off_team_poss_pct: Object {
-                        "extraInfo": <span>
-                          75.0
-                           ppg
-                        </span>,
                         "value": 1,
                       }
 
@@ -13028,19 +12488,7 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                         "value": 166.28994757735532,
                       }
 
-            off_team_poss: Object {
-                        "extraInfo": <span>
-                          50.7
-                           ppg
-                        </span>,
-                        "value": 38,
-                      }
-
             off_team_poss_pct: Object {
-                        "extraInfo": <span>
-                          50.7
-                           ppg
-                        </span>,
                         "value": 1,
                       }
 
@@ -13226,19 +12674,7 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                                 "value": 116.5274146893099,
                               }
 
-                off_team_poss: Object {
-                                "extraInfo": <span>
-                                  80.1
-                                   ppg
-                                </span>,
-                                "value": 1802,
-                              }
-
                 off_team_poss_pct: Object {
-                                "extraInfo": <span>
-                                  80.1
-                                   ppg
-                                </span>,
                                 "value": 1,
                               }
 
@@ -13418,19 +12854,7 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                                 "value": 116.5274146893099,
                               }
 
-                off_team_poss: Object {
-                                "extraInfo": <span>
-                                  80.1
-                                   ppg
-                                </span>,
-                                "value": 1802,
-                              }
-
                 off_team_poss_pct: Object {
-                                "extraInfo": <span>
-                                  80.1
-                                   ppg
-                                </span>,
                                 "value": 1,
                               }
 
@@ -13612,19 +13036,7 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                                 "value": 123.44797809632072,
                               }
 
-                off_team_poss: Object {
-                                "extraInfo": <span>
-                                  54.4
-                                   ppg
-                                </span>,
-                                "value": 272,
-                              }
-
                 off_team_poss_pct: Object {
-                                "extraInfo": <span>
-                                  54.4
-                                   ppg
-                                </span>,
                                 "value": 1,
                               }
 
@@ -13804,19 +13216,7 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                                 "value": 123.44797809632072,
                               }
 
-                off_team_poss: Object {
-                                "extraInfo": <span>
-                                  54.4
-                                   ppg
-                                </span>,
-                                "value": 272,
-                              }
-
                 off_team_poss_pct: Object {
-                                "extraInfo": <span>
-                                  54.4
-                                   ppg
-                                </span>,
                                 "value": 1,
                               }
 
@@ -13998,19 +13398,7 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                                 "value": 115.14861945063792,
                               }
 
-                off_team_poss: Object {
-                                "extraInfo": <span>
-                                  122.4
-                                   ppg
-                                </span>,
-                                "value": 1530,
-                              }
-
                 off_team_poss_pct: Object {
-                                "extraInfo": <span>
-                                  122.4
-                                   ppg
-                                </span>,
                                 "value": 1,
                               }
 
@@ -14190,19 +13578,7 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                                 "value": 115.14861945063792,
                               }
 
-                off_team_poss: Object {
-                                "extraInfo": <span>
-                                  122.4
-                                   ppg
-                                </span>,
-                                "value": 1530,
-                              }
-
                 off_team_poss_pct: Object {
-                                "extraInfo": <span>
-                                  122.4
-                                   ppg
-                                </span>,
                                 "value": 1,
                               }
 
@@ -14384,19 +13760,7 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                                 "value": 166.28994757735532,
                               }
 
-                off_team_poss: Object {
-                                "extraInfo": <span>
-                                  50.7
-                                   ppg
-                                </span>,
-                                "value": 38,
-                              }
-
                 off_team_poss_pct: Object {
-                                "extraInfo": <span>
-                                  50.7
-                                   ppg
-                                </span>,
                                 "value": 1,
                               }
 
@@ -14576,19 +13940,7 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                                 "value": 166.28994757735532,
                               }
 
-                off_team_poss: Object {
-                                "extraInfo": <span>
-                                  50.7
-                                   ppg
-                                </span>,
-                                "value": 38,
-                              }
-
                 off_team_poss_pct: Object {
-                                "extraInfo": <span>
-                                  50.7
-                                   ppg
-                                </span>,
                                 "value": 1,
                               }
 
@@ -14770,19 +14122,7 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                                 "value": 99.19560099143102,
                               }
 
-                off_team_poss: Object {
-                                "extraInfo": <span>
-                                  75.0
-                                   ppg
-                                </span>,
-                                "value": 1499,
-                              }
-
                 off_team_poss_pct: Object {
-                                "extraInfo": <span>
-                                  75.0
-                                   ppg
-                                </span>,
                                 "value": 1,
                               }
 
@@ -14962,19 +14302,7 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                                 "value": 99.19560099143102,
                               }
 
-                off_team_poss: Object {
-                                "extraInfo": <span>
-                                  75.0
-                                   ppg
-                                </span>,
-                                "value": 1499,
-                              }
-
                 off_team_poss_pct: Object {
-                                "extraInfo": <span>
-                                  75.0
-                                   ppg
-                                </span>,
                                 "value": 1,
                               }
 
@@ -15156,19 +14484,7 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                                 "value": 95.63630687934848,
                               }
 
-                off_team_poss: Object {
-                                "extraInfo": <span>
-                                  108.4
-                                   ppg
-                                </span>,
-                                "value": 1220,
-                              }
-
                 off_team_poss_pct: Object {
-                                "extraInfo": <span>
-                                  108.4
-                                   ppg
-                                </span>,
                                 "value": 1,
                               }
 
@@ -15348,19 +14664,7 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                                 "value": 95.63630687934848,
                               }
 
-                off_team_poss: Object {
-                                "extraInfo": <span>
-                                  108.4
-                                   ppg
-                                </span>,
-                                "value": 1220,
-                              }
-
                 off_team_poss_pct: Object {
-                                "extraInfo": <span>
-                                  108.4
-                                   ppg
-                                </span>,
                                 "value": 1,
                               }
 
@@ -16302,19 +15606,7 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                                     "value": 115.14861945063792,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      122.4
-                                       ppg
-                                    </span>,
-                                    "value": 1530,
-                                  }
-
                   off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      122.4
-                                       ppg
-                                    </span>,
                                     "value": 1,
                                   }
 
@@ -16494,19 +15786,7 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                                     "value": 115.14861945063792,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      122.4
-                                       ppg
-                                    </span>,
-                                    "value": 1530,
-                                  }
-
                   off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      122.4
-                                       ppg
-                                    </span>,
                                     "value": 1,
                                   }
 
@@ -16686,19 +15966,7 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                                     "value": 123.44797809632072,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      54.4
-                                       ppg
-                                    </span>,
-                                    "value": 272,
-                                  }
-
                   off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      54.4
-                                       ppg
-                                    </span>,
                                     "value": 1,
                                   }
 
@@ -16878,19 +16146,7 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                                     "value": 123.44797809632072,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      54.4
-                                       ppg
-                                    </span>,
-                                    "value": 272,
-                                  }
-
                   off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      54.4
-                                       ppg
-                                    </span>,
                                     "value": 1,
                                   }
 
@@ -17073,19 +16329,7 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                                     "value": 95.63630687934848,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      108.4
-                                       ppg
-                                    </span>,
-                                    "value": 1220,
-                                  }
-
                   off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      108.4
-                                       ppg
-                                    </span>,
                                     "value": 1,
                                   }
 
@@ -17265,19 +16509,7 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                                     "value": 95.63630687934848,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      108.4
-                                       ppg
-                                    </span>,
-                                    "value": 1220,
-                                  }
-
                   off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      108.4
-                                       ppg
-                                    </span>,
                                     "value": 1,
                                   }
 
@@ -17460,19 +16692,7 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                                     "value": 166.28994757735532,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      50.7
-                                       ppg
-                                    </span>,
-                                    "value": 38,
-                                  }
-
                   off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      50.7
-                                       ppg
-                                    </span>,
                                     "value": 1,
                                   }
 
@@ -17652,19 +16872,7 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                                     "value": 166.28994757735532,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      50.7
-                                       ppg
-                                    </span>,
-                                    "value": 38,
-                                  }
-
                   off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      50.7
-                                       ppg
-                                    </span>,
                                     "value": 1,
                                   }
 
@@ -18171,19 +17379,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                         "value": 114.9629311832013,
                       }
 
-            off_team_poss: Object {
-                        "extraInfo": <span>
-                          122.4
-                           ppg
-                        </span>,
-                        "value": 1530,
-                      }
-
             off_team_poss_pct: Object {
-                        "extraInfo": <span>
-                          122.4
-                           ppg
-                        </span>,
                         "value": 1,
                       }
 
@@ -18429,19 +17625,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                         "value": 124.80556539565255,
                       }
 
-            off_team_poss: Object {
-                        "extraInfo": <span>
-                          54.4
-                           ppg
-                        </span>,
-                        "value": 272,
-                      }
-
             off_team_poss_pct: Object {
-                        "extraInfo": <span>
-                          54.4
-                           ppg
-                        </span>,
                         "value": 1,
                       }
 
@@ -18681,19 +17865,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                         "value": 116.5274146893099,
                       }
 
-            off_team_poss: Object {
-                        "extraInfo": <span>
-                          80.1
-                           ppg
-                        </span>,
-                        "value": 1802,
-                      }
-
             off_team_poss_pct: Object {
-                        "extraInfo": <span>
-                          80.1
-                           ppg
-                        </span>,
                         "value": 1,
                       }
 
@@ -18939,19 +18111,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                         "value": 96.90451956787636,
                       }
 
-            off_team_poss: Object {
-                        "extraInfo": <span>
-                          108.4
-                           ppg
-                        </span>,
-                        "value": 1220,
-                      }
-
             off_team_poss_pct: Object {
-                        "extraInfo": <span>
-                          108.4
-                           ppg
-                        </span>,
                         "value": 1,
                       }
 
@@ -19191,19 +18351,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                         "value": 99.19560099143102,
                       }
 
-            off_team_poss: Object {
-                        "extraInfo": <span>
-                          75.0
-                           ppg
-                        </span>,
-                        "value": 1499,
-                      }
-
             off_team_poss_pct: Object {
-                        "extraInfo": <span>
-                          75.0
-                           ppg
-                        </span>,
                         "value": 1,
                       }
 
@@ -19429,19 +18577,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                         "value": 166.28994757735532,
                       }
 
-            off_team_poss: Object {
-                        "extraInfo": <span>
-                          50.7
-                           ppg
-                        </span>,
-                        "value": 38,
-                      }
-
             off_team_poss_pct: Object {
-                        "extraInfo": <span>
-                          50.7
-                           ppg
-                        </span>,
                         "value": 1,
                       }
 
@@ -19691,19 +18827,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                 "value": 116.5274146893099,
                               }
 
-                off_team_poss: Object {
-                                "extraInfo": <span>
-                                  80.1
-                                   ppg
-                                </span>,
-                                "value": 1802,
-                              }
-
                 off_team_poss_pct: Object {
-                                "extraInfo": <span>
-                                  80.1
-                                   ppg
-                                </span>,
                                 "value": 1,
                               }
 
@@ -19949,19 +19073,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                 "value": 116.5274146893099,
                               }
 
-                off_team_poss: Object {
-                                "extraInfo": <span>
-                                  80.1
-                                   ppg
-                                </span>,
-                                "value": 1802,
-                              }
-
                 off_team_poss_pct: Object {
-                                "extraInfo": <span>
-                                  80.1
-                                   ppg
-                                </span>,
                                 "value": 1,
                               }
 
@@ -20215,19 +19327,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                 "value": 124.80556539565255,
                               }
 
-                off_team_poss: Object {
-                                "extraInfo": <span>
-                                  54.4
-                                   ppg
-                                </span>,
-                                "value": 272,
-                              }
-
                 off_team_poss_pct: Object {
-                                "extraInfo": <span>
-                                  54.4
-                                   ppg
-                                </span>,
                                 "value": 1,
                               }
 
@@ -20479,19 +19579,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                 "value": 124.80556539565255,
                               }
 
-                off_team_poss: Object {
-                                "extraInfo": <span>
-                                  54.4
-                                   ppg
-                                </span>,
-                                "value": 272,
-                              }
-
                 off_team_poss_pct: Object {
-                                "extraInfo": <span>
-                                  54.4
-                                   ppg
-                                </span>,
                                 "value": 1,
                               }
 
@@ -20745,19 +19833,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                 "value": 114.9629311832013,
                               }
 
-                off_team_poss: Object {
-                                "extraInfo": <span>
-                                  122.4
-                                   ppg
-                                </span>,
-                                "value": 1530,
-                              }
-
                 off_team_poss_pct: Object {
-                                "extraInfo": <span>
-                                  122.4
-                                   ppg
-                                </span>,
                                 "value": 1,
                               }
 
@@ -21009,19 +20085,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                 "value": 114.9629311832013,
                               }
 
-                off_team_poss: Object {
-                                "extraInfo": <span>
-                                  122.4
-                                   ppg
-                                </span>,
-                                "value": 1530,
-                              }
-
                 off_team_poss_pct: Object {
-                                "extraInfo": <span>
-                                  122.4
-                                   ppg
-                                </span>,
                                 "value": 1,
                               }
 
@@ -21255,19 +20319,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                 "value": 166.28994757735532,
                               }
 
-                off_team_poss: Object {
-                                "extraInfo": <span>
-                                  50.7
-                                   ppg
-                                </span>,
-                                "value": 38,
-                              }
-
                 off_team_poss_pct: Object {
-                                "extraInfo": <span>
-                                  50.7
-                                   ppg
-                                </span>,
                                 "value": 1,
                               }
 
@@ -21497,19 +20549,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                 "value": 166.28994757735532,
                               }
 
-                off_team_poss: Object {
-                                "extraInfo": <span>
-                                  50.7
-                                   ppg
-                                </span>,
-                                "value": 38,
-                              }
-
                 off_team_poss_pct: Object {
-                                "extraInfo": <span>
-                                  50.7
-                                   ppg
-                                </span>,
                                 "value": 1,
                               }
 
@@ -21755,19 +20795,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                 "value": 99.19560099143102,
                               }
 
-                off_team_poss: Object {
-                                "extraInfo": <span>
-                                  75.0
-                                   ppg
-                                </span>,
-                                "value": 1499,
-                              }
-
                 off_team_poss_pct: Object {
-                                "extraInfo": <span>
-                                  75.0
-                                   ppg
-                                </span>,
                                 "value": 1,
                               }
 
@@ -22013,19 +21041,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                 "value": 99.19560099143102,
                               }
 
-                off_team_poss: Object {
-                                "extraInfo": <span>
-                                  75.0
-                                   ppg
-                                </span>,
-                                "value": 1499,
-                              }
-
                 off_team_poss_pct: Object {
-                                "extraInfo": <span>
-                                  75.0
-                                   ppg
-                                </span>,
                                 "value": 1,
                               }
 
@@ -22279,19 +21295,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                 "value": 96.90451956787636,
                               }
 
-                off_team_poss: Object {
-                                "extraInfo": <span>
-                                  108.4
-                                   ppg
-                                </span>,
-                                "value": 1220,
-                              }
-
                 off_team_poss_pct: Object {
-                                "extraInfo": <span>
-                                  108.4
-                                   ppg
-                                </span>,
                                 "value": 1,
                               }
 
@@ -22543,19 +21547,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                 "value": 96.90451956787636,
                               }
 
-                off_team_poss: Object {
-                                "extraInfo": <span>
-                                  108.4
-                                   ppg
-                                </span>,
-                                "value": 1220,
-                              }
-
                 off_team_poss_pct: Object {
-                                "extraInfo": <span>
-                                  108.4
-                                   ppg
-                                </span>,
                                 "value": 1,
                               }
 
@@ -23569,19 +22561,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                     "value": 114.9629311832013,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      122.4
-                                       ppg
-                                    </span>,
-                                    "value": 1530,
-                                  }
-
                   off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      122.4
-                                       ppg
-                                    </span>,
                                     "value": 1,
                                   }
 
@@ -23856,19 +22836,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                             "value": 114.9629311832013,
                                           }
 
-                      off_team_poss: Object {
-                                            "extraInfo": <span>
-                                              122.4
-                                               ppg
-                                            </span>,
-                                            "value": 1530,
-                                          }
-
                       off_team_poss_pct: Object {
-                                            "extraInfo": <span>
-                                              122.4
-                                               ppg
-                                            </span>,
                                             "value": 1,
                                           }
 
@@ -24145,19 +23113,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                     "value": 124.80556539565255,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      54.4
-                                       ppg
-                                    </span>,
-                                    "value": 272,
-                                  }
-
                   off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      54.4
-                                       ppg
-                                    </span>,
                                     "value": 1,
                                   }
 
@@ -24432,19 +23388,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                             "value": 124.80556539565255,
                                           }
 
-                      off_team_poss: Object {
-                                            "extraInfo": <span>
-                                              54.4
-                                               ppg
-                                            </span>,
-                                            "value": 272,
-                                          }
-
                       off_team_poss_pct: Object {
-                                            "extraInfo": <span>
-                                              54.4
-                                               ppg
-                                            </span>,
                                             "value": 1,
                                           }
 
@@ -24724,19 +23668,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                     "value": 96.90451956787636,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      108.4
-                                       ppg
-                                    </span>,
-                                    "value": 1220,
-                                  }
-
                   off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      108.4
-                                       ppg
-                                    </span>,
                                     "value": 1,
                                   }
 
@@ -25011,19 +23943,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                             "value": 96.90451956787636,
                                           }
 
-                      off_team_poss: Object {
-                                            "extraInfo": <span>
-                                              108.4
-                                               ppg
-                                            </span>,
-                                            "value": 1220,
-                                          }
-
                       off_team_poss_pct: Object {
-                                            "extraInfo": <span>
-                                              108.4
-                                               ppg
-                                            </span>,
                                             "value": 1,
                                           }
 
@@ -25283,19 +24203,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                     "value": 166.28994757735532,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      50.7
-                                       ppg
-                                    </span>,
-                                    "value": 38,
-                                  }
-
                   off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      50.7
-                                       ppg
-                                    </span>,
                                     "value": 1,
                                   }
 
@@ -25548,19 +24456,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                             "value": 166.28994757735532,
                                           }
 
-                      off_team_poss: Object {
-                                            "extraInfo": <span>
-                                              50.7
-                                               ppg
-                                            </span>,
-                                            "value": 38,
-                                          }
-
                       off_team_poss_pct: Object {
-                                            "extraInfo": <span>
-                                              50.7
-                                               ppg
-                                            </span>,
                                             "value": 1,
                                           }
 
@@ -26089,19 +24985,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                         "value": 114.9629311832013,
                       }
 
-            off_team_poss: Object {
-                        "extraInfo": <span>
-                          122.4
-                           ppg
-                        </span>,
-                        "value": 1530,
-                      }
-
             off_team_poss_pct: Object {
-                        "extraInfo": <span>
-                          122.4
-                           ppg
-                        </span>,
                         "value": 1,
                       }
 
@@ -26347,19 +25231,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                         "value": 124.80556539565255,
                       }
 
-            off_team_poss: Object {
-                        "extraInfo": <span>
-                          54.4
-                           ppg
-                        </span>,
-                        "value": 272,
-                      }
-
             off_team_poss_pct: Object {
-                        "extraInfo": <span>
-                          54.4
-                           ppg
-                        </span>,
                         "value": 1,
                       }
 
@@ -26605,19 +25477,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                         "value": 128.86041035519776,
                       }
 
-            off_team_poss: Object {
-                        "extraInfo": <span>
-                          80.1
-                           ppg
-                        </span>,
-                        "value": 1802,
-                      }
-
             off_team_poss_pct: Object {
-                        "extraInfo": <span>
-                          80.1
-                           ppg
-                        </span>,
                         "value": 1,
                       }
 
@@ -26863,19 +25723,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                         "value": 97.70932563855112,
                       }
 
-            off_team_poss: Object {
-                        "extraInfo": <span>
-                          108.4
-                           ppg
-                        </span>,
-                        "value": 1220,
-                      }
-
             off_team_poss_pct: Object {
-                        "extraInfo": <span>
-                          108.4
-                           ppg
-                        </span>,
                         "value": 1,
                       }
 
@@ -27115,19 +25963,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                         "value": 99.93926666309852,
                       }
 
-            off_team_poss: Object {
-                        "extraInfo": <span>
-                          75.0
-                           ppg
-                        </span>,
-                        "value": 1499,
-                      }
-
             off_team_poss_pct: Object {
-                        "extraInfo": <span>
-                          75.0
-                           ppg
-                        </span>,
                         "value": 1,
                       }
 
@@ -27353,19 +26189,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                         "value": 166.28994757735532,
                       }
 
-            off_team_poss: Object {
-                        "extraInfo": <span>
-                          50.7
-                           ppg
-                        </span>,
-                        "value": 38,
-                      }
-
             off_team_poss_pct: Object {
-                        "extraInfo": <span>
-                          50.7
-                           ppg
-                        </span>,
                         "value": 1,
                       }
 
@@ -27630,19 +26454,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                 "value": 128.86041035519776,
                               }
 
-                off_team_poss: Object {
-                                "extraInfo": <span>
-                                  80.1
-                                   ppg
-                                </span>,
-                                "value": 1802,
-                              }
-
                 off_team_poss_pct: Object {
-                                "extraInfo": <span>
-                                  80.1
-                                   ppg
-                                </span>,
                                 "value": 1,
                               }
 
@@ -27894,19 +26706,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                 "value": 128.86041035519776,
                               }
 
-                off_team_poss: Object {
-                                "extraInfo": <span>
-                                  80.1
-                                   ppg
-                                </span>,
-                                "value": 1802,
-                              }
-
                 off_team_poss_pct: Object {
-                                "extraInfo": <span>
-                                  80.1
-                                   ppg
-                                </span>,
                                 "value": 1,
                               }
 
@@ -28160,19 +26960,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                 "value": 124.80556539565255,
                               }
 
-                off_team_poss: Object {
-                                "extraInfo": <span>
-                                  54.4
-                                   ppg
-                                </span>,
-                                "value": 272,
-                              }
-
                 off_team_poss_pct: Object {
-                                "extraInfo": <span>
-                                  54.4
-                                   ppg
-                                </span>,
                                 "value": 1,
                               }
 
@@ -28424,19 +27212,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                 "value": 124.80556539565255,
                               }
 
-                off_team_poss: Object {
-                                "extraInfo": <span>
-                                  54.4
-                                   ppg
-                                </span>,
-                                "value": 272,
-                              }
-
                 off_team_poss_pct: Object {
-                                "extraInfo": <span>
-                                  54.4
-                                   ppg
-                                </span>,
                                 "value": 1,
                               }
 
@@ -28690,19 +27466,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                 "value": 114.9629311832013,
                               }
 
-                off_team_poss: Object {
-                                "extraInfo": <span>
-                                  122.4
-                                   ppg
-                                </span>,
-                                "value": 1530,
-                              }
-
                 off_team_poss_pct: Object {
-                                "extraInfo": <span>
-                                  122.4
-                                   ppg
-                                </span>,
                                 "value": 1,
                               }
 
@@ -28954,19 +27718,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                 "value": 114.9629311832013,
                               }
 
-                off_team_poss: Object {
-                                "extraInfo": <span>
-                                  122.4
-                                   ppg
-                                </span>,
-                                "value": 1530,
-                              }
-
                 off_team_poss_pct: Object {
-                                "extraInfo": <span>
-                                  122.4
-                                   ppg
-                                </span>,
                                 "value": 1,
                               }
 
@@ -29200,19 +27952,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                 "value": 166.28994757735532,
                               }
 
-                off_team_poss: Object {
-                                "extraInfo": <span>
-                                  50.7
-                                   ppg
-                                </span>,
-                                "value": 38,
-                              }
-
                 off_team_poss_pct: Object {
-                                "extraInfo": <span>
-                                  50.7
-                                   ppg
-                                </span>,
                                 "value": 1,
                               }
 
@@ -29442,19 +28182,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                 "value": 166.28994757735532,
                               }
 
-                off_team_poss: Object {
-                                "extraInfo": <span>
-                                  50.7
-                                   ppg
-                                </span>,
-                                "value": 38,
-                              }
-
                 off_team_poss_pct: Object {
-                                "extraInfo": <span>
-                                  50.7
-                                   ppg
-                                </span>,
                                 "value": 1,
                               }
 
@@ -29700,19 +28428,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                 "value": 99.93926666309852,
                               }
 
-                off_team_poss: Object {
-                                "extraInfo": <span>
-                                  75.0
-                                   ppg
-                                </span>,
-                                "value": 1499,
-                              }
-
                 off_team_poss_pct: Object {
-                                "extraInfo": <span>
-                                  75.0
-                                   ppg
-                                </span>,
                                 "value": 1,
                               }
 
@@ -29958,19 +28674,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                 "value": 99.93926666309852,
                               }
 
-                off_team_poss: Object {
-                                "extraInfo": <span>
-                                  75.0
-                                   ppg
-                                </span>,
-                                "value": 1499,
-                              }
-
                 off_team_poss_pct: Object {
-                                "extraInfo": <span>
-                                  75.0
-                                   ppg
-                                </span>,
                                 "value": 1,
                               }
 
@@ -30224,19 +28928,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                 "value": 97.70932563855112,
                               }
 
-                off_team_poss: Object {
-                                "extraInfo": <span>
-                                  108.4
-                                   ppg
-                                </span>,
-                                "value": 1220,
-                              }
-
                 off_team_poss_pct: Object {
-                                "extraInfo": <span>
-                                  108.4
-                                   ppg
-                                </span>,
                                 "value": 1,
                               }
 
@@ -30488,19 +29180,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                 "value": 97.70932563855112,
                               }
 
-                off_team_poss: Object {
-                                "extraInfo": <span>
-                                  108.4
-                                   ppg
-                                </span>,
-                                "value": 1220,
-                              }
-
                 off_team_poss_pct: Object {
-                                "extraInfo": <span>
-                                  108.4
-                                   ppg
-                                </span>,
                                 "value": 1,
                               }
 
@@ -31522,19 +30202,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                     "value": 114.9629311832013,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      122.4
-                                       ppg
-                                    </span>,
-                                    "value": 1530,
-                                  }
-
                   off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      122.4
-                                       ppg
-                                    </span>,
                                     "value": 1,
                                   }
 
@@ -31809,19 +30477,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                             "value": 114.9629311832013,
                                           }
 
-                      off_team_poss: Object {
-                                            "extraInfo": <span>
-                                              122.4
-                                               ppg
-                                            </span>,
-                                            "value": 1530,
-                                          }
-
                       off_team_poss_pct: Object {
-                                            "extraInfo": <span>
-                                              122.4
-                                               ppg
-                                            </span>,
                                             "value": 1,
                                           }
 
@@ -32098,19 +30754,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                     "value": 124.80556539565255,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      54.4
-                                       ppg
-                                    </span>,
-                                    "value": 272,
-                                  }
-
                   off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      54.4
-                                       ppg
-                                    </span>,
                                     "value": 1,
                                   }
 
@@ -32385,19 +31029,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                             "value": 124.80556539565255,
                                           }
 
-                      off_team_poss: Object {
-                                            "extraInfo": <span>
-                                              54.4
-                                               ppg
-                                            </span>,
-                                            "value": 272,
-                                          }
-
                       off_team_poss_pct: Object {
-                                            "extraInfo": <span>
-                                              54.4
-                                               ppg
-                                            </span>,
                                             "value": 1,
                                           }
 
@@ -32677,19 +31309,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                     "value": 97.70932563855112,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      108.4
-                                       ppg
-                                    </span>,
-                                    "value": 1220,
-                                  }
-
                   off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      108.4
-                                       ppg
-                                    </span>,
                                     "value": 1,
                                   }
 
@@ -32964,19 +31584,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                             "value": 97.70932563855112,
                                           }
 
-                      off_team_poss: Object {
-                                            "extraInfo": <span>
-                                              108.4
-                                               ppg
-                                            </span>,
-                                            "value": 1220,
-                                          }
-
                       off_team_poss_pct: Object {
-                                            "extraInfo": <span>
-                                              108.4
-                                               ppg
-                                            </span>,
                                             "value": 1,
                                           }
 
@@ -33236,19 +31844,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                     "value": 166.28994757735532,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      50.7
-                                       ppg
-                                    </span>,
-                                    "value": 38,
-                                  }
-
                   off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      50.7
-                                       ppg
-                                    </span>,
                                     "value": 1,
                                   }
 
@@ -33501,19 +32097,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                             "value": 166.28994757735532,
                                           }
 
-                      off_team_poss: Object {
-                                            "extraInfo": <span>
-                                              50.7
-                                               ppg
-                                            </span>,
-                                            "value": 38,
-                                          }
-
                       off_team_poss_pct: Object {
-                                            "extraInfo": <span>
-                                              50.7
-                                               ppg
-                                            </span>,
                                             "value": 1,
                                           }
 
@@ -34022,19 +32606,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                         "value": 115.14861945063792,
                       }
 
-            off_team_poss: Object {
-                        "extraInfo": <span>
-                          122.4
-                           ppg
-                        </span>,
-                        "value": 1530,
-                      }
-
             off_team_poss_pct: Object {
-                        "extraInfo": <span>
-                          122.4
-                           ppg
-                        </span>,
                         "value": 1,
                       }
 
@@ -34258,19 +32830,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                         "value": 123.44797809632072,
                       }
 
-            off_team_poss: Object {
-                        "extraInfo": <span>
-                          54.4
-                           ppg
-                        </span>,
-                        "value": 272,
-                      }
-
             off_team_poss_pct: Object {
-                        "extraInfo": <span>
-                          54.4
-                           ppg
-                        </span>,
                         "value": 1,
                       }
 
@@ -34506,19 +33066,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                         "value": 128.86041035519776,
                       }
 
-            off_team_poss: Object {
-                        "extraInfo": <span>
-                          80.1
-                           ppg
-                        </span>,
-                        "value": 1802,
-                      }
-
             off_team_poss_pct: Object {
-                        "extraInfo": <span>
-                          80.1
-                           ppg
-                        </span>,
                         "value": 1,
                       }
 
@@ -34742,19 +33290,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                         "value": 95.63630687934848,
                       }
 
-            off_team_poss: Object {
-                        "extraInfo": <span>
-                          108.4
-                           ppg
-                        </span>,
-                        "value": 1220,
-                      }
-
             off_team_poss_pct: Object {
-                        "extraInfo": <span>
-                          108.4
-                           ppg
-                        </span>,
                         "value": 1,
                       }
 
@@ -34978,19 +33514,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                         "value": 99.19560099143102,
                       }
 
-            off_team_poss: Object {
-                        "extraInfo": <span>
-                          75.0
-                           ppg
-                        </span>,
-                        "value": 1499,
-                      }
-
             off_team_poss_pct: Object {
-                        "extraInfo": <span>
-                          75.0
-                           ppg
-                        </span>,
                         "value": 1,
                       }
 
@@ -35214,19 +33738,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                         "value": 166.28994757735532,
                       }
 
-            off_team_poss: Object {
-                        "extraInfo": <span>
-                          50.7
-                           ppg
-                        </span>,
-                        "value": 38,
-                      }
-
             off_team_poss_pct: Object {
-                        "extraInfo": <span>
-                          50.7
-                           ppg
-                        </span>,
                         "value": 1,
                       }
 
@@ -35483,19 +33995,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                 "value": 128.86041035519776,
                               }
 
-                off_team_poss: Object {
-                                "extraInfo": <span>
-                                  80.1
-                                   ppg
-                                </span>,
-                                "value": 1802,
-                              }
-
                 off_team_poss_pct: Object {
-                                "extraInfo": <span>
-                                  80.1
-                                   ppg
-                                </span>,
                                 "value": 1,
                               }
 
@@ -35737,19 +34237,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                 "value": 128.86041035519776,
                               }
 
-                off_team_poss: Object {
-                                "extraInfo": <span>
-                                  80.1
-                                   ppg
-                                </span>,
-                                "value": 1802,
-                              }
-
                 off_team_poss_pct: Object {
-                                "extraInfo": <span>
-                                  80.1
-                                   ppg
-                                </span>,
                                 "value": 1,
                               }
 
@@ -35981,19 +34469,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                 "value": 123.44797809632072,
                               }
 
-                off_team_poss: Object {
-                                "extraInfo": <span>
-                                  54.4
-                                   ppg
-                                </span>,
-                                "value": 272,
-                              }
-
                 off_team_poss_pct: Object {
-                                "extraInfo": <span>
-                                  54.4
-                                   ppg
-                                </span>,
                                 "value": 1,
                               }
 
@@ -36223,19 +34699,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                 "value": 123.44797809632072,
                               }
 
-                off_team_poss: Object {
-                                "extraInfo": <span>
-                                  54.4
-                                   ppg
-                                </span>,
-                                "value": 272,
-                              }
-
                 off_team_poss_pct: Object {
-                                "extraInfo": <span>
-                                  54.4
-                                   ppg
-                                </span>,
                                 "value": 1,
                               }
 
@@ -36467,19 +34931,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                 "value": 115.14861945063792,
                               }
 
-                off_team_poss: Object {
-                                "extraInfo": <span>
-                                  122.4
-                                   ppg
-                                </span>,
-                                "value": 1530,
-                              }
-
                 off_team_poss_pct: Object {
-                                "extraInfo": <span>
-                                  122.4
-                                   ppg
-                                </span>,
                                 "value": 1,
                               }
 
@@ -36709,19 +35161,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                 "value": 115.14861945063792,
                               }
 
-                off_team_poss: Object {
-                                "extraInfo": <span>
-                                  122.4
-                                   ppg
-                                </span>,
-                                "value": 1530,
-                              }
-
                 off_team_poss_pct: Object {
-                                "extraInfo": <span>
-                                  122.4
-                                   ppg
-                                </span>,
                                 "value": 1,
                               }
 
@@ -36953,19 +35393,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                 "value": 166.28994757735532,
                               }
 
-                off_team_poss: Object {
-                                "extraInfo": <span>
-                                  50.7
-                                   ppg
-                                </span>,
-                                "value": 38,
-                              }
-
                 off_team_poss_pct: Object {
-                                "extraInfo": <span>
-                                  50.7
-                                   ppg
-                                </span>,
                                 "value": 1,
                               }
 
@@ -37195,19 +35623,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                 "value": 166.28994757735532,
                               }
 
-                off_team_poss: Object {
-                                "extraInfo": <span>
-                                  50.7
-                                   ppg
-                                </span>,
-                                "value": 38,
-                              }
-
                 off_team_poss_pct: Object {
-                                "extraInfo": <span>
-                                  50.7
-                                   ppg
-                                </span>,
                                 "value": 1,
                               }
 
@@ -37439,19 +35855,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                 "value": 99.19560099143102,
                               }
 
-                off_team_poss: Object {
-                                "extraInfo": <span>
-                                  75.0
-                                   ppg
-                                </span>,
-                                "value": 1499,
-                              }
-
                 off_team_poss_pct: Object {
-                                "extraInfo": <span>
-                                  75.0
-                                   ppg
-                                </span>,
                                 "value": 1,
                               }
 
@@ -37681,19 +36085,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                 "value": 99.19560099143102,
                               }
 
-                off_team_poss: Object {
-                                "extraInfo": <span>
-                                  75.0
-                                   ppg
-                                </span>,
-                                "value": 1499,
-                              }
-
                 off_team_poss_pct: Object {
-                                "extraInfo": <span>
-                                  75.0
-                                   ppg
-                                </span>,
                                 "value": 1,
                               }
 
@@ -37925,19 +36317,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                 "value": 95.63630687934848,
                               }
 
-                off_team_poss: Object {
-                                "extraInfo": <span>
-                                  108.4
-                                   ppg
-                                </span>,
-                                "value": 1220,
-                              }
-
                 off_team_poss_pct: Object {
-                                "extraInfo": <span>
-                                  108.4
-                                   ppg
-                                </span>,
                                 "value": 1,
                               }
 
@@ -38167,19 +36547,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                 "value": 95.63630687934848,
                               }
 
-                off_team_poss: Object {
-                                "extraInfo": <span>
-                                  108.4
-                                   ppg
-                                </span>,
-                                "value": 1220,
-                              }
-
                 off_team_poss_pct: Object {
-                                "extraInfo": <span>
-                                  108.4
-                                   ppg
-                                </span>,
                                 "value": 1,
                               }
 
@@ -39179,19 +37547,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                     "value": 115.14861945063792,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      122.4
-                                       ppg
-                                    </span>,
-                                    "value": 1530,
-                                  }
-
                   off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      122.4
-                                       ppg
-                                    </span>,
                                     "value": 1,
                                   }
 
@@ -39444,19 +37800,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                             "value": 115.14861945063792,
                                           }
 
-                      off_team_poss: Object {
-                                            "extraInfo": <span>
-                                              122.4
-                                               ppg
-                                            </span>,
-                                            "value": 1530,
-                                          }
-
                       off_team_poss_pct: Object {
-                                            "extraInfo": <span>
-                                              122.4
-                                               ppg
-                                            </span>,
                                             "value": 1,
                                           }
 
@@ -39687,19 +38031,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                     "value": 123.44797809632072,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      54.4
-                                       ppg
-                                    </span>,
-                                    "value": 272,
-                                  }
-
                   off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      54.4
-                                       ppg
-                                    </span>,
                                     "value": 1,
                                   }
 
@@ -39952,19 +38284,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                             "value": 123.44797809632072,
                                           }
 
-                      off_team_poss: Object {
-                                            "extraInfo": <span>
-                                              54.4
-                                               ppg
-                                            </span>,
-                                            "value": 272,
-                                          }
-
                       off_team_poss_pct: Object {
-                                            "extraInfo": <span>
-                                              54.4
-                                               ppg
-                                            </span>,
                                             "value": 1,
                                           }
 
@@ -40198,19 +38518,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                     "value": 95.63630687934848,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      108.4
-                                       ppg
-                                    </span>,
-                                    "value": 1220,
-                                  }
-
                   off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      108.4
-                                       ppg
-                                    </span>,
                                     "value": 1,
                                   }
 
@@ -40463,19 +38771,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                             "value": 95.63630687934848,
                                           }
 
-                      off_team_poss: Object {
-                                            "extraInfo": <span>
-                                              108.4
-                                               ppg
-                                            </span>,
-                                            "value": 1220,
-                                          }
-
                       off_team_poss_pct: Object {
-                                            "extraInfo": <span>
-                                              108.4
-                                               ppg
-                                            </span>,
                                             "value": 1,
                                           }
 
@@ -40709,19 +39005,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                     "value": 166.28994757735532,
                                   }
 
-                  off_team_poss: Object {
-                                    "extraInfo": <span>
-                                      50.7
-                                       ppg
-                                    </span>,
-                                    "value": 38,
-                                  }
-
                   off_team_poss_pct: Object {
-                                    "extraInfo": <span>
-                                      50.7
-                                       ppg
-                                    </span>,
                                     "value": 1,
                                   }
 
@@ -40974,19 +39258,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                             "value": 166.28994757735532,
                                           }
 
-                      off_team_poss: Object {
-                                            "extraInfo": <span>
-                                              50.7
-                                               ppg
-                                            </span>,
-                                            "value": 38,
-                                          }
-
                       off_team_poss_pct: Object {
-                                            "extraInfo": <span>
-                                              50.7
-                                               ppg
-                                            </span>,
                                             "value": 1,
                                           }
 

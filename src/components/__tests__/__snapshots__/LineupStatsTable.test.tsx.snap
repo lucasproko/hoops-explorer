@@ -752,14 +752,6 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
 
                   off_luck_diags: undefined
 
-                  off_poss: Object {
-                                    "extraInfo": <span>
-                                      71.7
-                                       ppg
-                                    </span>,
-                                    "value": 401,
-                                  }
-
                   off_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -1191,14 +1183,6 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
 
                   off_luck_diags: undefined
 
-                  off_poss: Object {
-                                    "extraInfo": <span>
-                                      71.7
-                                       ppg
-                                    </span>,
-                                    "value": 401,
-                                  }
-
                   off_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -1633,14 +1617,6 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
 
                   off_luck_diags: undefined
 
-                  off_poss: Object {
-                                    "extraInfo": <span>
-                                      64.7
-                                       ppg
-                                    </span>,
-                                    "value": 211,
-                                  }
-
                   off_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -2071,14 +2047,6 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                   }
 
                   off_luck_diags: undefined
-
-                  off_poss: Object {
-                                    "extraInfo": <span>
-                                      64.7
-                                       ppg
-                                    </span>,
-                                    "value": 211,
-                                  }
 
                   off_ppp: Object {
                                     "extraInfo": <span>
@@ -2514,14 +2482,6 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
 
                   off_luck_diags: undefined
 
-                  off_poss: Object {
-                                    "extraInfo": <span>
-                                      64.0
-                                       ppg
-                                    </span>,
-                                    "value": 197,
-                                  }
-
                   off_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -2952,14 +2912,6 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                   }
 
                   off_luck_diags: undefined
-
-                  off_poss: Object {
-                                    "extraInfo": <span>
-                                      64.0
-                                       ppg
-                                    </span>,
-                                    "value": 197,
-                                  }
 
                   off_ppp: Object {
                                     "extraInfo": <span>
@@ -4329,14 +4281,6 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                      "deltaOffAdjEff": 0
                   }
 
-                  off_poss: Object {
-                                    "extraInfo": <span>
-                                      71.7
-                                       ppg
-                                    </span>,
-                                    "value": 401,
-                                  }
-
                   off_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -4617,14 +4561,6 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                      "deltaOffEfg": 0,
                      "deltaOffAdjEff": 0
                   }
-
-                  off_poss: Object {
-                                    "extraInfo": <span>
-                                      71.7
-                                       ppg
-                                    </span>,
-                                    "value": 401,
-                                  }
 
                   off_ppp: Object {
                                     "extraInfo": <span>
@@ -4933,14 +4869,6 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                      "deltaOffAdjEff": 0
                   }
 
-                  off_poss: Object {
-                                    "extraInfo": <span>
-                                      64.7
-                                       ppg
-                                    </span>,
-                                    "value": 211,
-                                  }
-
                   off_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -5221,14 +5149,6 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                      "deltaOffEfg": 0,
                      "deltaOffAdjEff": 0
                   }
-
-                  off_poss: Object {
-                                    "extraInfo": <span>
-                                      64.7
-                                       ppg
-                                    </span>,
-                                    "value": 211,
-                                  }
 
                   off_ppp: Object {
                                     "extraInfo": <span>
@@ -5537,14 +5457,6 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                      "deltaOffAdjEff": 0
                   }
 
-                  off_poss: Object {
-                                    "extraInfo": <span>
-                                      64.0
-                                       ppg
-                                    </span>,
-                                    "value": 197,
-                                  }
-
                   off_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -5825,14 +5737,6 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                      "deltaOffEfg": 0,
                      "deltaOffAdjEff": 0
                   }
-
-                  off_poss: Object {
-                                    "extraInfo": <span>
-                                      64.0
-                                       ppg
-                                    </span>,
-                                    "value": 197,
-                                  }
 
                   off_ppp: Object {
                                     "extraInfo": <span>
@@ -6983,14 +6887,6 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   off_luck_diags: undefined
 
-                  off_poss: Object {
-                                    "extraInfo": <span>
-                                      71.7
-                                       ppg
-                                    </span>,
-                                    "value": 401,
-                                  }
-
                   off_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -7436,14 +7332,6 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   off_luck_diags: undefined
 
-                  off_poss: Object {
-                                    "extraInfo": <span>
-                                      71.7
-                                       ppg
-                                    </span>,
-                                    "value": 401,
-                                  }
-
                   off_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -7892,14 +7780,6 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   off_luck_diags: undefined
 
-                  off_poss: Object {
-                                    "extraInfo": <span>
-                                      64.7
-                                       ppg
-                                    </span>,
-                                    "value": 211,
-                                  }
-
                   off_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -8344,14 +8224,6 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   off_luck_diags: undefined
-
-                  off_poss: Object {
-                                    "extraInfo": <span>
-                                      64.7
-                                       ppg
-                                    </span>,
-                                    "value": 211,
-                                  }
 
                   off_ppp: Object {
                                     "extraInfo": <span>
@@ -8801,14 +8673,6 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   off_luck_diags: undefined
 
-                  off_poss: Object {
-                                    "extraInfo": <span>
-                                      64.0
-                                       ppg
-                                    </span>,
-                                    "value": 197,
-                                  }
-
                   off_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -9253,14 +9117,6 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   off_luck_diags: undefined
-
-                  off_poss: Object {
-                                    "extraInfo": <span>
-                                      64.0
-                                       ppg
-                                    </span>,
-                                    "value": 197,
-                                  }
 
                   off_ppp: Object {
                                     "extraInfo": <span>
