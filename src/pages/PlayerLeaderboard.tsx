@@ -111,13 +111,14 @@ const PlayLeaderboardPage: NextPage<{}> = () => {
 
     const gender = paramObj.gender || ParamDefaults.defaultGender;
     const year = (paramObj.year || ParamDefaults.defaultYear).substring(0, 4);
+    const tier = (paramObj.tier || ParamDefaults.defaultTier);
 
     if (year == "All") { //TODO: tidy this up
       setDataEvent(dataEventInit); //(clear saved sub-events)
 
       const years = [ "2018/9", "2019/20", "2020/21", "Extra" ];
       const fetchAll = Promise.all(years.map(tmpYear => tmpYear.substring(0, 4)).map((subYear) => {
-        return fetch(`/leaderboards/lineups/players_${dataSubEventKey}_${gender}_${subYear}.json`)
+        return fetch(`/leaderboards/lineups/players_${dataSubEventKey}_${gender}_${subYear}_${tier}.json`)
           .then((response: fetch.IsomorphicResponse) => {
             return response.json();
           });
@@ -136,7 +137,7 @@ const PlayLeaderboardPage: NextPage<{}> = () => {
         setCurrYear(year);
         setCurrGender(gender)
         setDataSubEvent({ players: [], confs: [], lastUpdated: 0 }); //(set the spinner off)
-        fetch(`/leaderboards/lineups/players_${dataSubEventKey}_${gender}_${year}.json`)
+        fetch(`/leaderboards/lineups/players_${dataSubEventKey}_${gender}_${year}_${tier}.json`)
           .then((response: fetch.IsomorphicResponse) => {
             return response.json().then((json: any) => {
               //(if year has changed then clear saved data events)
@@ -164,12 +165,12 @@ const PlayLeaderboardPage: NextPage<{}> = () => {
   return <Container>
     <Row>
       <Col xs={12} className="text-center">
-        <h3>CBB T700 Player Leaderboard <span className="badge badge-pill badge-info">BETA!</span></h3>
+        <h3>CBB Player Leaderboard <span className="badge badge-pill badge-info">BETA!</span></h3>
       </Col>
     </Row>
     <Row className="border-bottom">
       <HeaderBar
-        common={{}}
+        common={{ gender: currGender, year: (currYear == "All") ? undefined : currYear }}
         thisPage={`${ParamPrefixes.player}_leaderboard`}
         />
     </Row>

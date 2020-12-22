@@ -101,16 +101,31 @@ if (commandLine?.[1]?.endsWith("buildLeaderboards.js")) {
 }
 const testMode = commandLine.length == 0;
 
+const inTier = (_.find(commandLine, p => _.startsWith(p, "--tier="))
+  || `--tier=${ParamDefaults.defaultTier}`).substring(7); //High, Medium, Low
+
 const inGender = (_.find(commandLine, p => _.startsWith(p, "--gender="))
   || `--gender=${ParamDefaults.defaultGender}`).substring(9);
 const inYear = (_.find(commandLine, p => _.startsWith(p, "--year="))
   || `--year=${ParamDefaults.defaultYear}`).substring(7);
 if (!testMode) console.log(`Args: gender=[${inGender}] year=[${inYear}]`);
 
+const onlyHasTopConferences = (inGender != "Men") || (parseInt(inYear.substring(0, 4)) < 2020);
+
 const teamFilter = undefined as Set<string> | undefined;
 //  (inYear == "2019/20") ? new Set([ "Maryland", "Iowa", "Michigan", "Dayton", "Rutgers" ]) : undefined;
 
 const conferenceSet = new Set() as Set<string>;
+
+const effectivelyHighMajor = new Set([
+  "Gonzaga", "BYU", "Saint Mary's (CA)",
+  "Memphis", "Wichita St.", "UConn", "Cincinnati", "Houston",
+  "Utah St.", "Nevada"
+]);
+const excludeFromMidMajor = new Set([
+  "Gonzaga",
+  "Memphis", "Wichita St.", "UConn", "Cincinnati",
+]);
 
 /** Request data from ES, duplicate table processing over each team to build leaderboard (export for testing only) */
 export async function main() {
@@ -120,12 +135,21 @@ export async function main() {
     _.chain(AvailableTeams.byName).values().flatten();
 
   const teams = teamListChain.filter(team => {
-    //(some test code)
-    // const rank = efficiencyInfo?.[`${inGender}_${team.year}`]?.[0]?.[team.team]?.["stats.adj_margin.rank"] || 400;
-    // return team.category == "high" || (rank <= 120)
-    //midhigh or mid rank <=240
-    //other
-    return team.category == "high" || team.category == "midhigh";
+    // For years with lots of conferences, split into tiers:
+    if (onlyHasTopConferences) {
+      return true;
+    } else {
+      const rank = efficiencyInfo?.[`${inGender}_${team.year}`]?.[0]?.[team.team]?.["stats.adj_margin.rank"] || 400;
+      if (inTier == "High") {
+        return team.category == "high" || (rank <= 150) || effectivelyHighMajor.has(team.team);
+      } else if (inTier == "Medium") {
+        return (team.category != "high") && (team.category != "low") && (rank < 275) && !excludeFromMidMajor.has(team.team);
+      } else if (inTier == "Low") {
+        return team.category == "low" || team.category == "midlow" || ((team.category != "high") && (rank > 250));
+      } else {
+        throw `Tier not supported: ${inTier}`;
+      }
+    }
   }).filter(team => {
     return team.gender == inGender &&
       ((inYear == "Extra") || (team.year == inYear)) &&
@@ -442,7 +466,8 @@ export function completeLineupLeaderboard(key: string, leaderboard: any[], topLi
 }
 
 if (!testMode) main().then(dummy => {
-  const topLineupSize = 300; //T300
+  const topLineupSize = onlyHasTopConferences ? 300 : 400;
+  const topPlayersSize = onlyHasTopConferences ? 700 : 900;
 
   console.log("Processing Complete!");
 
@@ -461,7 +486,7 @@ if (!testMode) main().then(dummy => {
       confs: Array.from(conferenceSet.values()),
       lineups: sortedLineups
     }, reduceNumberSize);
-    const players = completePlayerLeaderboard(kv[0], kv[2], 700); //T700
+    const players = completePlayerLeaderboard(kv[0], kv[2], topPlayersSize);
     const playersStr = JSON.stringify({
       lastUpdated: lastUpdated,
       confs: Array.from(conferenceSet.values()),
@@ -471,11 +496,11 @@ if (!testMode) main().then(dummy => {
     // Write to file
     console.log(`${kv[0]} lineup count: [${sortedLineups.length}] ([${kv[1].length}])`);
     console.log(`${kv[0]} lineup length: [${sortedLineupsStr.length}]`);
-    const lineupFilename = `./public/leaderboards/lineups/lineups_${kv[0]}_${inGender}_${inYear.substring(0, 4)}.json`;
+    const lineupFilename = `./public/leaderboards/lineups/lineups_${kv[0]}_${inGender}_${inYear.substring(0, 4)}_${inTier}.json`;
     fs.writeFile(`${lineupFilename}`,sortedLineupsStr, err => {});
     console.log(`${kv[0]} player count: [${players.length}] ([${kv[2].length}])`);
     console.log(`${kv[0]} player length: [${playersStr.length}]`);
-    const playersFilename = `./public/leaderboards/lineups/players_${kv[0]}_${inGender}_${inYear.substring(0, 4)}.json`;
+    const playersFilename = `./public/leaderboards/lineups/players_${kv[0]}_${inGender}_${inYear.substring(0, 4)}_${inTier}.json`;
     fs.writeFile(`${playersFilename}`,playersStr, err => {});
 
    //(don't zip, the server/browser does it for us, so it's mainly just "wasting GH space")

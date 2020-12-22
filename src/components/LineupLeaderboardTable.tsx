@@ -136,6 +136,8 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
   const [ gender, setGender ] = useState(startingState.gender || ParamDefaults.defaultGender);
   const isMultiYr = (year == "Extra") || (year == "All");
 
+  const [ tier, setTier ] = useState(startingState.tier || ParamDefaults.defaultTier);
+
   // Misc display
 
   /** Set this to be true on expensive operations */
@@ -381,7 +383,7 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
 
   function getCurrentConfsOrPlaceholder() {
     return (confs == "") ?
-      { label: 'High/High-Mid Conferences' } :
+      { label: `All Teams in ${tier} Tier` } :
       confs.split(",").map((conf: string) => stringToOption(NicknameToConference[conf] || conf));
   }
 
@@ -572,6 +574,9 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
             }
           ] : [])
           }/>
+        </Col>
+        <Col>
+          <div className="float-right"><small>(Total number of lineups in <b><u>tier</u></b>: <b>{dataEvent?.lineups?.length || 0}</b>)</small></div>
         </Col>
       </Form.Row>
       <Row className="mt-2">

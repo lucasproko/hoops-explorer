@@ -104,7 +104,8 @@ export type LineupFilterParams = {
 export type LineupLeaderboardParams = {
   [P in keyof CommonFilterParams]?: CommonFilterParams[P];
 } & {
-  conf?: string //(undefined ==> all conferences)
+  tier?: string, //High, Medium, Low
+  conf?: string, //(undefined ==> all conferences)
   minPoss?: string,
   maxTableSize?: string,
   sortBy?: string,
@@ -120,7 +121,8 @@ export type LineupLeaderboardParams = {
 export type PlayerLeaderboardParams = {
   [P in keyof CommonFilterParams]?: CommonFilterParams[P];
 } & {
-  conf?: string //(undefined ==> all conferences)
+  tier?: string,  //High, Medium, Low
+  conf?: string, //(undefined ==> all conferences)
   minPoss?: string,
   maxTableSize?: string,
   sortBy?: string,
@@ -187,6 +189,8 @@ export class ParamDefaults {
   static readonly defaultLineupFilter = "";
   static readonly defaultLineupLuckAdjust = false;
   static readonly defaultLineupLuckDiagMode = false;
+  // leaderboards
+  static readonly defaultTier = "High";
   // Lineup leaderboard
   static readonly defaultLineupLboardMinPos = "20";
   static readonly defaultLineupLboardMaxTableSize = "100";

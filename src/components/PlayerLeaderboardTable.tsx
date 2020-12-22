@@ -174,6 +174,8 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
   const [ gender, setGender ] = useState(startingState.gender || ParamDefaults.defaultGender);
   const isMultiYr = (year == "Extra") || (year == "All");
 
+  const [ tier, setTier ] = useState(startingState.tier || ParamDefaults.defaultTier);
+
   // Misc display
 
   const [ posClasses, setPosClasses ] = useState(startingState.posClasses || "");
@@ -557,7 +559,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
 
   function getCurrentConfsOrPlaceholder() {
     return (confs == "") ?
-      { label: 'High/High-Mid Conferences' } :
+      { label: `All Teams in ${tier} Tier` } :
       confs.split(",").map((conf: string) => stringToOption(NicknameToConference[conf] || conf));
   }
 
@@ -824,6 +826,9 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
             // }
           ] : [])
           }/>
+        </Col>
+        <Col>
+          <div className="float-right"><small>(Total number of players in <b><u>tier</u></b>: <b>{dataEvent?.players?.length || 0}</b>)</small></div>
         </Col>
       </Form.Row>
       <Row className="mt-2">
