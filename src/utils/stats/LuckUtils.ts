@@ -160,7 +160,8 @@ export class LuckUtils {
     // Calculate effects similarly to calcDefTeamLuckAdj
     const sampleOff3PRate = get(sampleTeam?.off_3pr, 0);
     const sampleOffFGA = get(sampleTeam?.total_off_2p_attempts, 0) + get(sampleTeam?.total_off_3p_attempts, 0);
-    const sampleOffOrb = get(sampleTeam?.off_orb, 0);
+    const rawSampleOffOrb = get(sampleTeam?.off_orb, 0);
+    const sampleOffOrb = rawSampleOffOrb > 0.66 ? 0.66 : rawSampleOffOrb;
 
     const sampleOffEfg = get(sampleTeam?.off_efg, 0);
     const sampleOffPpp = get(sampleTeam?.off_ppp, 0);
@@ -245,7 +246,8 @@ export class LuckUtils {
 
     const sampleDef3PRate = get(sample?.def_3pr, 0);
     const sampleDefFGA = get(sample?.total_def_2p_attempts, 0) + get(sample?.total_def_3p_attempts, 0);
-    const sampleDefOrb = get(sample?.def_orb, 0);
+    const rawSampleDefOrb = get(sample?.def_orb, 0);
+    const sampleDefOrb = rawSampleDefOrb > 0.66 ? 0.66 : rawSampleDefOrb;
     //
     // const threePointRate = sampleDef3PA/((sampleDef3PA + sampleDef2PA) || 1)
     const delta3P = adjDef3P - sampleDef3P;
