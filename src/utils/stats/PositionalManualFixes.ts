@@ -14,6 +14,11 @@ export const absolutePositionFixes: Record<string, Record<string, AbsolutePositi
     "Simms, Aamir": {
       position: "WF"
     }
+  },
+  "Men_Maryland_2020/21": {
+    "Smart, Aquan": {
+      position: "s-PG"
+    }
   }
 };
 
@@ -67,5 +72,13 @@ export const relativePositionFixes: Record<string, RelativePositionFixRule[]> = 
       { code: "RiLindo", id: "Lindo Jr., Ricky" },
       { code: "JaSmith", id: "Smith, Jalen" }
     ]
-  }])
+  }]),
+  // 22/12/2020: Hamilton plays the 5 alongside Scott
+  "Men_Maryland_2020/21": [{
+    key: [ undefined, undefined, undefined, "JsHamilton", "DoScott" ],
+    rule: [ undefined, undefined, undefined,
+      { code: "DoScott", id: "Scott, Donta" },
+      { code: "JsHamilton", id: "Hamilton, Jairus" }
+    ]
+  }]
 };
