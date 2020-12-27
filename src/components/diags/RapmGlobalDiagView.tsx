@@ -20,6 +20,7 @@ import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, Legend, Referenc
 // Utils
 import { RapmInfo, RapmPlayerContext, RapmPreProcDiagnostics, RapmProcessingInputs, RapmUtils } from "../../utils/stats/RapmUtils";
 import { CbbColors } from "../../utils/CbbColors";
+import { LineupUtils } from "../../utils/stats/LineupUtils";
 
 //TODO
 const tidyNumbers = (k: string, v: any) => {
@@ -66,21 +67,7 @@ const RapmGlobalDiagView: React.FunctionComponent<Props> = (({rapmInfo, players,
     // Table defs:
     var currInitialsMap = {} as Record<string, string>;
     var currInitialsCountMap = {} as Record<string, number>;
-    const playerInitials = (player: string) => {
-      if (currInitialsMap[player]) {
-        return currInitialsMap[player];
-      } else {
-        const tmp = player.replace(/[^A-Z]/g, "")
-        const initials = tmp[tmp.length - 1] + tmp[0];
-
-        const num = currInitialsCountMap[initials] || 1;
-        currInitialsCountMap[initials] = num + 1
-
-        const fullInitials = initials + ((num > 1) ? num : "");
-        currInitialsMap[player] = fullInitials;
-        return fullInitials;
-      }
-    };
+    const playerInitials = (p: string) => LineupUtils.getOrBuildPlayerIdToInitials(p, currInitialsMap, currInitialsCountMap);
     const correlTableFields = {
       "title": GenericTableOps.addTitle("", ""),
       "sep0": GenericTableOps.addColSeparator(),

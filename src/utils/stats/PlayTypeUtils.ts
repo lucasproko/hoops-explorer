@@ -26,6 +26,18 @@ const playInfo0 = {
 /** Utilities for guessing different play types based on box scorer info */
 export class PlayTypeUtils {
 
+  /** Gives % of ball-handler /  wing / big vs position name */
+  private static posToFamilyScore = {
+    "PG": [ 1.0, 0, 0],
+    "s-PG": [ 1.0, 0, 0],
+    "CG": [ 0.8, 0.2, 0 ],
+    "WG": [ 0, 1.0, 0 ],
+    "WF": [ 0, 1.0, 0 ],
+    "S-PF": [ 0, 0.5, 0.5 ],
+    "C": [ 0, 0, 1.0 ],
+    "G?": [ 0.75, 0.25, 0 ],
+    "F/C?": [ 0, 0.25, 0.75 ]
+  } as Record<string, [ number, number, number ]>;
   private static posClassToFamilyScore = [
     [ 1.00, 0.66, 0.15, 0.00, 0.00 ], // ballhandler
     [ 0.00, 0.34, 0.85, 0.66, 0.00 ], // wing
@@ -33,10 +45,13 @@ export class PlayTypeUtils {
   ];
 
   /** Goes from all 5 position classes to a smaller/simple position family */
-  static buildPosFamily(posClass: number[]): [ number, number, number ] {
-    return PlayTypeUtils.posClassToFamilyScore.map((scores: number[]) => {
-      return _.sumBy(_.zip(scores, posClass), xy => xy[0]!*xy[1]!);
-    });
+  static buildPosFamily(pos: string, posClass: number[]): [ number, number, number ] {
+    return PlayTypeUtils.posToFamilyScore[pos] || [ 0, 1.0, 0 ];
+    //TODO: this uses the raw numbers, which empiricially didn't work particularly well
+    // eg for centers it tended to
+    // return PlayTypeUtils.posClassToFamilyScore.map((scores: number[]) => {
+    //   return _.sumBy(_.zip(scores, posClass), xy => xy[0]!*xy[1]!);
+    // });
   }
 
   /** Simplifies assist networks by mapping them from individuals to position families (shotType: "rim", "mid", "3p")*/
@@ -51,7 +66,8 @@ export class PlayTypeUtils {
     return _.chain(assistNetwork).transform(
       (acc, assistVal, key) => {
         const playerStats = (calcTargetStats ? rosterStatsByCode[key] : rosterStatsByCode) || {};
-        const familyStats = PlayTypeUtils.buildPosFamily(playerStats.posClass || [ 0, 0, 0, 0, 0]);
+
+        const familyStats = PlayTypeUtils.buildPosFamily(playerStats.role, playerStats.posClass || [ 0, 0, 0, 0, 0]);
         const playerFg = playerStats[`off_${actualShotType}`]?.value || 0;
         _.map(acc, (familyVal, posFamily) => {
           return [
@@ -67,8 +83,7 @@ export class PlayTypeUtils {
       const fg = v.fg/(v.scoringPoss || 1);
       return [ PosFamilyNames[ii]!, {
         scoringPoss: v.scoringPoss,
-        fg: fg,
-        eFG: fg*shotBonus,
+        fg: fg, eFG: fg*shotBonus,
         approxPoss: fg > 0 ? v.scoringPoss/fg : fg
       } ];
     }).fromPairs().value();
@@ -88,7 +103,7 @@ export class PlayTypeUtils {
     const mutableTotalsArray = { ... playInfo0 };
 
     // Build player family:
-    const playerFamily = PlayTypeUtils.buildPosFamily(playerStats.posClass);
+    const playerFamily = PlayTypeUtils.buildPosFamily(playerStats.role, playerStats.posClass);
 
     // Nasty mutable nested loop for expediency
     const playTypes = playerFamily.filter(pct => pct > 0).flatMap((familyPct, familyIndex) => {
@@ -99,11 +114,11 @@ export class PlayTypeUtils {
       const flatTargetNetwork = _.chain(targetAssistNetworks).toPairs().flatMap(kv => {
         return _.toPairs(kv[1]).map(kv2 => [`${kv2[0]}_${kv[0]}`, kv2[1]]);
       }).value();
-      const targetPlayTypes = flatTargetNetwork.map(kv => {
+      const targetPlayTypes: Array<[string, PlayTypeInfo]> = flatTargetNetwork.map(kv => {
         const shotTypeFrom = kv[0];
         const targetInfo = kv[1] as PlayTypeRawInfo;
         const toAdd = {
-          type: "target",
+          type: "target" as "target",
           totalPossPct: 0,
           shotLikePossPct: 0,
           scoringPossPct: 0,
@@ -152,16 +167,17 @@ export class PlayTypeUtils {
             shotType, {
               approxPoss: attempts,
               scoringPoss: made,
+              fg: (attempts > 0 ? made/attempts : 0),
               eFG: (attempts > 0 ? made/attempts : 0)*(shotType == "3p" ? 1.5 : 1)
             }
           ];
         })
       );
-      const sourcePlayTypes = flatSourceNetwork.map(kv => {
+      const sourcePlayTypes: Array<[string, PlayTypeInfo]> = flatSourceNetwork.map(kv => {
         const shotTypeFrom = kv[0];
         const sourceInfo = kv[1] as PlayTypeRawInfo;
         const toAdd = {
-          type: "source",
+          type: "source" as "source",
           totalPossPct: 0,
           shotLikePossPct: sourceInfo.approxPoss*familyPct,
           scoringPossPct: sourceInfo.scoringPoss*familyPct,
@@ -187,17 +203,18 @@ export class PlayTypeUtils {
       return { ...merged,
         totalPossPct: merged.shotLikePossPct + merged.passPossPct,
         targetEfg: merged.assistPossPct > 0 ? merged.targetEfg/merged.assistPossPct : 0
-      };
+      } as PlayTypeInfo;
     };
 
     return _.chain(playTypes).groupBy(kv => {
       const key = kv[0]!;
       const subKey = kv[1]!.type;
-      return PlayTypeUtils.playTypesByFamily[key]!.[subKey]!;
+      return PlayTypeUtils.playTypesByFamily[key]![subKey]!;
     }).toPairs().map(keyVals => {
       const key = keyVals[0]!;
       const vals = keyVals[1]!;
-      return [ key, completePlayTypes(vals.map(kv => kv[1])) ];
+      const retVal: [ string, PlayTypeInfo ] = [ key, completePlayTypes(vals.map(kv => kv[1])) ];
+      return retVal;
     }).filter(kv => kv[1].totalPossPct >= 5).value();
   }
 
@@ -409,6 +426,6 @@ export class PlayTypeUtils {
       target: "Pass to frontcourt for layup",
       examples: [ "roll or cut", "sometimes post-up" ]
     }
-  };
+  } as Record<string, any>;
 
 }
