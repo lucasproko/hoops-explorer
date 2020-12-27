@@ -571,4 +571,24 @@ export class LineupUtils {
     LineupUtils.completeWeightedAvg(mutableReplacementObj, true, regressDiffs);
   }
 
+  /** Converts player names to 2/3 char code (digit used to disambigurate */
+  static getOrBuildPlayerIdToInitials(
+    playerId: string,
+    mutableInitials: Record<string, string>, mutableInitialsCounts: Record<string, number>
+  ): string {
+    if (mutableInitials[playerId]) {
+      return mutableInitials[playerId];
+    } else {
+      const tmp = playerId.replace(/[^A-Z]/g, "");
+      const initials = ((tmp.length > 1) ? tmp[tmp.length - 1] : "") + tmp[0];
+
+      const num = mutableInitialsCounts[initials] || 1;
+      mutableInitialsCounts[initials] = num + 1
+
+      const fullInitials = initials + ((num > 1) ? num : "");
+      mutableInitials[playerId] = fullInitials;
+      return fullInitials;
+    }
+  }
+
 };

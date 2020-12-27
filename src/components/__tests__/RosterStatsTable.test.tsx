@@ -153,7 +153,8 @@ describe("RosterStatsTable", () => {
 
     const wrapper = shallow(
     <RosterStatsTable
-      gameFilterParams={{onOffLuck: true, showPlayerOnOffLuckDiags: true, showDiag: true, showPosDiag: true,
+      gameFilterParams={{onOffLuck: true,
+        showPlayerOnOffLuckDiags: true, showDiag: true, showPosDiag: true, showPlayerPlayTypes: true,
         manual: [
           { rowId: "Cowan, Anthony / Baseline", newVal: 0.5, statName: "off_3p", use: true },
         ],

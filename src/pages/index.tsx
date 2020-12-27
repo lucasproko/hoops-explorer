@@ -113,6 +113,7 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
       (rawParams.possAsPct == ParamDefaults.defaultPlayerPossAsPct) ? [ 'possAsPct' ] : [],
       (rawParams.factorMins == ParamDefaults.defaultPlayerFactorMins) ? [ 'factorMins' ] : [],
       (rawParams.showPosDiag == ParamDefaults.defaultPlayerPosDiagMode) ? [ 'showPosDiag' ] : [],
+      (rawParams.showPlayerPlayTypes == ParamDefaults.defaultPlayerShowPlayTypes) ? [ 'showPlayerPlayTypes' ] : [],
       (rawParams.showPlayerManual == false) ? [ 'showPlayerManual' ] : [],
     ]));
 

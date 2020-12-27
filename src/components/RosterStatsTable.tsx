@@ -169,7 +169,9 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
   );
 
   /** (placeholder for positional info)*/
-  const [ showPlayTypes, setShowPlayTypes ] = useState(false)
+  const [ showPlayTypes, setShowPlayTypes ] = useState(_.isNil(gameFilterParams.showPlayerPlayTypes) ?
+    ParamDefaults.defaultPlayerShowPlayTypes : gameFilterParams.showPlayerPlayTypes
+  );
 
   /** Whether we are showing the luck config modal */
   const [ showLuckConfig, setShowLuckConfig ] = useState(false);
@@ -195,6 +197,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
       showDiag: showDiagMode,
       possAsPct: possAsPct,
       showPosDiag: showPositionDiags,
+      showPlayerPlayTypes: showPlayTypes,
       // Overrides:
       manual: manualOverrides,
       // Luck:
@@ -206,7 +209,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
     onChangeState(newState);
 
   }, [ sortBy, filterStr, showDiagMode, alwaysShowBaseline, expandedView, possAsPct, showPositionDiags,
-      luckConfig, adjustForLuck, showLuckAdjDiags, showManualOverrides, manualOverrides
+      showPlayTypes, luckConfig, adjustForLuck, showLuckAdjDiags, showManualOverrides, manualOverrides
     ]);
 
   // 2] Data Model
@@ -302,6 +305,15 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
   /** Largest sample of player stats, by player key - use for ORtg calcs */
   const globalRosterStatsByCode =
     _.chain(rosterStats.global || []).map(p => {
+
+      //TODO: do I want this one, or the baseline or ???
+      if (showPlayTypes) {
+        const [ posConfs, posConfsDiags ] = PositionUtils.buildPositionConfidences(p);
+        const [ pos, posDiags ] = PositionUtils.buildPosition(posConfs, p, teamSeasonLookup);
+        p.posClass = _.values(posConfs);
+        p.role = pos;
+      }
+
       return [ p.player_array?.hits?.hits?.[0]?._source?.player?.code || p.key, p ];
     }).fromPairs().value();
 
@@ -426,13 +438,16 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
         };
         stat.diag_def_rtg = dRtgDiag;
 
-        // Positional info:
+        // Positional info (NOTE - no dependencies on other processing like ORtg):
 
         const [ posConfs, posConfsDiags ] = PositionUtils.buildPositionConfidences(stat);
         const [ pos, posDiags ] = PositionUtils.buildPosition(posConfs, stat, teamSeasonLookup);
         stat.def_usage = <OverlayTrigger placement="auto" overlay={TableDisplayUtils.buildPositionTooltip(pos, onOffBaseToPhrase(key))}>
           <small>{pos}</small>
         </OverlayTrigger>;
+        if (showPlayTypes) {
+          stat.role = pos;
+        }
 
         // Now we have the position we can build the titles:
         stat.off_title = insertTitle(stat.key, key, pos);
@@ -481,6 +496,13 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
             showHelp={showHelp}
           />, "small pt-2"
         ) ] : [] ,
+        showPlayTypes ?
+          [ GenericTableOps.buildTextRow(
+            <PlayerPlayTypeDiagView
+              player={{...p.on, posClass: p.global?.posClass || "??"}}
+              rosterStatsByCode={globalRosterStatsByCode}
+              teamSeason={teamSeasonLookup} showHelp={showHelp}/>, "small"
+          ) ] : [],
       ]),
       _.isNil(p.off?.off_title) ? [ ] : _.flatten([
         [ GenericTableOps.buildDataRow(p.off, offPrefixFn, offCellMetaFn) ],
@@ -499,6 +521,13 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
             showHelp={showHelp}
           />, "small pt-2"
         ) ] : [] ,
+        showPlayTypes ?
+          [ GenericTableOps.buildTextRow(
+            <PlayerPlayTypeDiagView
+              player={{...p.off, posClass: p.global?.posClass || "??"}}
+              rosterStatsByCode={globalRosterStatsByCode}
+              teamSeason={teamSeasonLookup} showHelp={showHelp}/>, "small"
+          ) ] : [],
       ]),
       (skipBaseline || _.isNil(p.baseline?.off_title)) ? [ ] : _.flatten([
         [ GenericTableOps.buildDataRow(p.baseline, offPrefixFn, offCellMetaFn) ],
@@ -519,7 +548,10 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
         ) ] : [] ,
         showPlayTypes ?
           [ GenericTableOps.buildTextRow(
-            <PlayerPlayTypeDiagView player={p.baseline} teamSeason={teamSeasonLookup} showHelp={showHelp}/>, "small"
+            <PlayerPlayTypeDiagView
+              player={{...p.baseline, posClass: p.global?.posClass || "??"}}
+              rosterStatsByCode={globalRosterStatsByCode}
+              teamSeason={teamSeasonLookup} showHelp={showHelp}/>, "small"
           ) ] : [],
       ]),
       [ GenericTableOps.buildRowSeparator() ]
@@ -728,6 +760,11 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
             />
             <Dropdown.Divider />
             <GenericTogglingMenuItem
+              text="Show Play Style Breakdowns"
+              truthVal={showPlayTypes}
+              onSelect={() => setShowPlayTypes(!showPlayTypes)}
+            />
+            <GenericTogglingMenuItem
               text="Show Off/Def Rating diagnostics"
               truthVal={showDiagMode}
               onSelect={() => setShowDiagMode(!showDiagMode)}
@@ -781,6 +818,12 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
               tooltip: "Launch player stats manual editor",
               toggled: false,
               onClick: () => setShowManualOverrides(true)
+            },
+            {
+              label: "Style",
+              tooltip: showPlayTypes ? "Hide play style breakdowns" : "Show play style breakdowns",
+              toggled: showPlayTypes,
+              onClick: () => setShowPlayTypes(!showPlayTypes)
             },
           ]}/>
         </Col>

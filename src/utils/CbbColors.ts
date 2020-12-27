@@ -38,8 +38,10 @@ export class CbbColors {
   private static readonly redToGreen = chroma.scale(["red", "#ffFFff", "green"]);
   private static readonly greenToRed = chroma.scale(["green", "#ffFFff", "red"]);
   private static readonly blueToOrange = chroma.scale(["lightblue", "#ffFFff", "orange"]);
+  private static readonly whiteToOrange = chroma.scale(["#ffFFff", "orange"]);
 
   public static readonly alwaysWhite = (val: number) => CbbColors.background;
+  public static readonly alwaysBlack = (val: number) => "#000000";
 
   // Pts/100
   private static readonly pp100Domain = [ 80, 100, 120 ];
@@ -116,6 +118,8 @@ export class CbbColors {
   private static readonly p_astDomain = [ 0.0, 0.15, 0.35 ];
   public static readonly p_ast_offDef = (val: number) => CbbColors.blueToOrange.domain(CbbColors.p_astDomain)(val).toString();
   public static readonly p_ast: CbbColorTuple = [ CbbColors.p_ast_offDef, CbbColors.p_ast_offDef ];
+  private static readonly p_astBreakdownDomain = [ 0.0, 0.30 ];
+  public static readonly p_ast_breakdown = (val: number) => CbbColors.whiteToOrange.domain(CbbColors.p_astBreakdownDomain)(val).toString();
   // Usage rate:
   private static readonly usgDomain = [ 0.10, 0.20, 0.30 ];
   public static readonly usg_offDef = (val: number) => CbbColors.blueToOrange.domain(CbbColors.usgDomain)(val).toString();
