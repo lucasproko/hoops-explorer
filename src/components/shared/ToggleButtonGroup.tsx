@@ -14,7 +14,8 @@ export type ToggleButtonItem = {
   label: string | React.ReactNode,
   tooltip: string,
   toggled: boolean,
-  onClick: () => void
+  onClick: () => void,
+  isLabelOnly?: boolean
 }
 
 type Props = {
@@ -32,7 +33,10 @@ const ToggleButtonGroup: React.FunctionComponent<Props> = ({items, override}) =>
       items.map((item, index) => {
           return <span key={"divtog" + index}>
             <OverlayTrigger placement="auto" overlay={tooltip(item.tooltip, index)}>
-              <Button onClick={item.onClick} size="sm" key={"tog" + index} variant={item.toggled ? "dark" : "outline-secondary"}>{item.label}</Button>
+              {(item.isLabelOnly) ?
+                <small>{item.label}</small> :
+                <Button onClick={item.onClick} size="sm" key={"tog" + index} variant={item.toggled ? "dark" : "outline-secondary"}>{item.label}</Button>
+              }
             </OverlayTrigger>
             &nbsp;&nbsp;
           </span>

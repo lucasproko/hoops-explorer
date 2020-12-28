@@ -78,7 +78,8 @@ const LineupAnalyzerPage: NextPage<{}> = () => {
       (rawParams.showTotal == ParamDefaults.defaultLineupShowTotal) ? [ 'showTotal' ] : [],
       _.isEqual(rawParams.luck, ParamDefaults.defaultLuckConfig) ? [ 'luck' ] : [],
       !rawParams.lineupLuck ? [ 'lineupLuck' ] : [],
-      (rawParams.showLineupLuckDiags == ParamDefaults.defaultOnOffLuckDiagMode) ? [ 'showLineupLuckDiags' ] : []
+      (rawParams.showLineupLuckDiags == ParamDefaults.defaultOnOffLuckDiagMode) ? [ 'showLineupLuckDiags' ] : [],
+      (rawParams.aggByPos == ParamDefaults.defaultLineupAggByPos) ? [ 'aggByPos' ] : [],
     ]));
 
     if (!_.isEqual(params, lineupFilterParams)) { //(to avoid recursion)

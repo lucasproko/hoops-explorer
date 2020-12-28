@@ -38,6 +38,7 @@ const LineupFilter: React.FunctionComponent<Props> = ({onStats, startingState, o
     // Luck stats:
     luck: startLuck,
     lineupLuck: startLineupLuck, showLineupLuckDiags: startShowLineupLuckDiags,
+    aggByPos: startAggByPos,
     // Filters etc
     decorate: startDecorate,
     showTotal: startShowTotal,
@@ -75,6 +76,7 @@ const LineupFilter: React.FunctionComponent<Props> = ({onStats, startingState, o
           // Luck stats:
           luck: startLuck,
           lineupLuck: startLineupLuck, showLineupLuckDiags: startShowLineupLuckDiags,
+          aggByPos: startAggByPos,
           // Filters etc
           decorate: startDecorate,
           showTotal: startShowTotal,

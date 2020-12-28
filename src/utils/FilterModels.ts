@@ -101,6 +101,7 @@ export type LineupFilterParams = {
   luck?: LuckParams, //(missing iff default)
   lineupLuck?: boolean,
   showLineupLuckDiags?: boolean,
+  aggByPos?: string
 };
 
 export type LineupLeaderboardParams = {
@@ -192,6 +193,7 @@ export class ParamDefaults {
   static readonly defaultLineupFilter = "";
   static readonly defaultLineupLuckAdjust = false;
   static readonly defaultLineupLuckDiagMode = false;
+  static readonly defaultLineupAggByPos = "";
   // leaderboards
   static readonly defaultTier = "High";
   // Lineup leaderboard

@@ -40,6 +40,7 @@ import { LineupTableUtils } from "../utils/tables/LineupTableUtils";
 import { CbbColors } from "../utils/CbbColors";
 import { CommonTableDefs } from "../utils/CommonTableDefs";
 import { PositionUtils } from "../utils/stats/PositionUtils";
+import { LineupUtils } from "../utils/stats/LineupUtils";
 import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
 import { LineupFilterParams, ParamDefaults, LuckParams } from '../utils/FilterModels';
 
@@ -112,6 +113,10 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
     ParamDefaults.defaultLineupDecorate : startingState.decorate
   );
 
+  const [ aggregateByPos, setAggregateByPos ] = useState(_.isNil(startingState.aggByPos) ?
+    ParamDefaults.defaultLineupAggByPos : startingState.aggByPos
+  );
+
   useEffect(() => { //(this ensures that the filter component is up to date with the union of these fields)
     const newState = {
       ...startingState,
@@ -119,6 +124,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
       luck: luckConfig,
       lineupLuck: adjustForLuck,
       showLineupLuckDiags: showLuckAdjDiags,
+      aggByPos: aggregateByPos,
       // Misc filters
       decorate: decorateLineups,
       showTotal: showTotals,
@@ -129,7 +135,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
     };
     onChangeState(newState);
   }, [ decorateLineups, showTotals, minPoss, maxTableSize, sortBy, filterStr,
-        luckConfig, adjustForLuck, showLuckAdjDiags ]);
+        luckConfig, adjustForLuck, showLuckAdjDiags, aggregateByPos ]);
 
   // 3] Utils
 
@@ -167,60 +173,140 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
     const defCellMetaFn = (key: string, val: any) => "def";
 
     const lineups = lineupStats?.lineups || [];
-    const filteredLineups = LineupTableUtils.buildFilteredLineups(
-      lineups,
-      filterStr, sortBy, minPoss, maxTableSize,
-      teamSeasonLookup, positionFromPlayerKey
-    );
 
-    const tableData = LineupTableUtils.buildEnrichedLineups(
-      filteredLineups,
-      teamStats.global, rosterStats.global, teamStats.baseline,
-      adjustForLuck, luckConfig.base, avgEfficiency,
-      showTotals, teamSeasonLookup, positionFromPlayerKey, baselinePlayerInfo
-    ).flatMap((lineup, lineupIndex) => {
-      TableDisplayUtils.injectPlayTypeInfo(lineup, false, false); //(inject assist numbers)
+    if (aggregateByPos == "") {
+      const filteredLineups = LineupTableUtils.buildFilteredLineups(
+        lineups,
+        filterStr, sortBy, minPoss, maxTableSize,
+        teamSeasonLookup, positionFromPlayerKey
+      );
 
-      const codesAndIds = LineupTableUtils.buildCodesAndIds(lineup);
-      const sortedCodesAndIds = (lineup.key == LineupTableUtils.totalLineupId) ? undefined :
-        PositionUtils.orderLineup(codesAndIds, positionFromPlayerKey, teamSeasonLookup);
+      const tableData = LineupTableUtils.buildEnrichedLineups(
+        filteredLineups,
+        teamStats.global, rosterStats.global, teamStats.baseline,
+        adjustForLuck, luckConfig.base, avgEfficiency,
+        showTotals, teamSeasonLookup, positionFromPlayerKey, baselinePlayerInfo
+      ).flatMap((lineup, lineupIndex) => {
+        TableDisplayUtils.injectPlayTypeInfo(lineup, false, false); //(inject assist numbers)
 
-      const perLineupBaselinePlayerMap = _.fromPairs(codesAndIds.map((cid: { code: string, id: string }) => {
-        return [  cid.id, baselinePlayerInfo[cid.id] || {} ];
-      })) as Record<string, Record<string, any>>;
+        const codesAndIds = LineupTableUtils.buildCodesAndIds(lineup);
+        const sortedCodesAndIds = (lineup.key == LineupTableUtils.totalLineupId) ? undefined :
+          PositionUtils.orderLineup(codesAndIds, positionFromPlayerKey, teamSeasonLookup);
 
-      const lineupTitleKey = "" + lineupIndex;
-      const title = sortedCodesAndIds ?
-        TableDisplayUtils.buildDecoratedLineup(
-          lineupTitleKey, sortedCodesAndIds, perLineupBaselinePlayerMap, positionFromPlayerKey, "off_adj_rtg", decorateLineups
-        ) : "Weighted Total";
+        const perLineupBaselinePlayerMap = _.fromPairs(codesAndIds.map((cid: { code: string, id: string }) => {
+          return [  cid.id, baselinePlayerInfo[cid.id] || {} ];
+        })) as Record<string, Record<string, any>>;
 
-      const stats = { off_title: title, def_title: "", ...lineup };
+        const lineupTitleKey = "" + lineupIndex;
+        const title = sortedCodesAndIds ?
+          TableDisplayUtils.buildDecoratedLineup(
+            lineupTitleKey, sortedCodesAndIds, perLineupBaselinePlayerMap, positionFromPlayerKey, "off_adj_rtg", decorateLineups
+          ) : "Weighted Total";
 
-      return _.flatten([
-        [ GenericTableOps.buildDataRow(stats, offPrefixFn, offCellMetaFn) ],
-        [ GenericTableOps.buildDataRow(stats, defPrefixFn, defCellMetaFn) ],
-        (showLuckAdjDiags && lineup.off_luck_diags && sortedCodesAndIds) ? [ GenericTableOps.buildTextRow(
-          <LuckAdjDiagView
-            name="lineup"
-            offLuck={lineup.off_luck_diags}
-            defLuck={lineup.def_luck_diags}
-            baseline={luckConfig.base}
-            showHelp={showHelp}
-          />, "small pt-2"
-        ) ] : [] ,
-        [ GenericTableOps.buildRowSeparator() ]
-      ]);
-    });
-    return <GenericTable
-      tableCopyId="lineupStatsTable"
-      tableFields={CommonTableDefs.lineupTable}
-      tableData={tableData}
-      cellTooltipMode="none"
-    />
+        const stats = { off_title: title, def_title: "", ...lineup };
+
+        return _.flatten([
+          [ GenericTableOps.buildDataRow(stats, offPrefixFn, offCellMetaFn) ],
+          [ GenericTableOps.buildDataRow(stats, defPrefixFn, defCellMetaFn) ],
+          (showLuckAdjDiags && lineup.off_luck_diags && sortedCodesAndIds) ? [ GenericTableOps.buildTextRow(
+            <LuckAdjDiagView
+              name="lineup"
+              offLuck={lineup.off_luck_diags}
+              defLuck={lineup.def_luck_diags}
+              baseline={luckConfig.base}
+              showHelp={showHelp}
+            />, "small pt-2"
+          ) ] : [] ,
+          [ GenericTableOps.buildRowSeparator() ]
+        ]);
+      });
+      return <GenericTable
+        tableCopyId="lineupStatsTable"
+        tableFields={CommonTableDefs.lineupTable}
+        tableData={tableData}
+        cellTooltipMode="none"
+      />
+    } else {
+      const filteredLineups = LineupTableUtils.buildFilteredLineups(
+        lineups,
+        filterStr, sortBy, "0", "1000",
+        teamSeasonLookup, positionFromPlayerKey
+      );
+
+      const enrichedLineups = _.chain(LineupTableUtils.buildEnrichedLineups(
+        filteredLineups,
+        teamStats.global, rosterStats.global, teamStats.baseline,
+        adjustForLuck, luckConfig.base, avgEfficiency,
+        showTotals, teamSeasonLookup, positionFromPlayerKey, baselinePlayerInfo
+      )).map((lineup, lineupIndex) => {
+        TableDisplayUtils.injectPlayTypeInfo(lineup, false, false); //(inject assist numbers)
+
+        const codesAndIds = LineupTableUtils.buildCodesAndIds(lineup);
+        const sortedCodesAndIds = (lineup.key == LineupTableUtils.totalLineupId) ? undefined :
+          PositionUtils.orderLineup(codesAndIds, positionFromPlayerKey, teamSeasonLookup);
+
+        const perLineupBaselinePlayerMap = _.fromPairs(codesAndIds.map((cid: { code: string, id: string }) => {
+          return [  cid.id, baselinePlayerInfo[cid.id] || {} ];
+        })) as Record<string, Record<string, any>>;
+
+        const lineupTitleKey = "" + lineupIndex;
+        const title = sortedCodesAndIds ?
+          TableDisplayUtils.buildDecoratedLineup(
+            lineupTitleKey, sortedCodesAndIds, perLineupBaselinePlayerMap, positionFromPlayerKey, "off_adj_rtg", decorateLineups
+          ) : "Weighted Total";
+
+        const getKey = () => { if (lineup.key != LineupTableUtils.totalLineupId)
+          switch (aggregateByPos) {
+            case "PG": return sortedCodesAndIds?.[0]?.id || "Unknown";
+            case "Backcourt": return _.take(sortedCodesAndIds || [], 3).map(p => p.id).join(" / ");
+            case "Frontcourt": return _.chain(sortedCodesAndIds || []).drop(3).map(p => p.id).value().join(" / ");
+            case "C": return sortedCodesAndIds?.[4]?.id || "Unknown";
+            default: return "Unknown";
+          } else return LineupTableUtils.totalLineupId; };
+
+        const stats = { off_title: title, def_title: "", ...lineup, posKey: getKey() };
+        return stats;
+      }).groupBy(l => l.posKey).mapValues(lineups => {
+        const key = lineups?.[0].posKey;
+        const maybeLineBreak = (aggregateByPos.indexOf("court") > 0) ? <br/> : null;
+        return key == LineupTableUtils.totalLineupId ? lineups[0] : {
+          ...(LineupUtils.calculateAggregatedLineupStats(lineups)),
+          off_title: <div>Lineups with [<b>{aggregateByPos}</b>]: {maybeLineBreak}<b>{key}</b></div>,
+          def_title: undefined
+        }
+      }).value();
+
+      const maybeTotal = enrichedLineups?.[LineupTableUtils.totalLineupId];
+      const otherLineups = _.chain(enrichedLineups).omit([ LineupTableUtils.totalLineupId ]).values().value();
+      const refilteredLineups = (maybeTotal ? [ maybeTotal as any ] : []).concat(LineupTableUtils.buildFilteredLineups(
+        otherLineups,
+        "", sortBy, minPoss, maxTableSize,
+        teamSeasonLookup, positionFromPlayerKey
+      ));
+
+      const tableData = refilteredLineups.flatMap(stats => {
+        // Re-enrich if not total
+        if (stats.posKey != LineupTableUtils.totalLineupId) {
+          TableDisplayUtils.injectPlayTypeInfo(stats, false, false); //(inject assist numbers)
+        }
+
+        return _.flatten([
+          [ GenericTableOps.buildDataRow(stats, offPrefixFn, offCellMetaFn) ],
+          [ GenericTableOps.buildDataRow(stats, defPrefixFn, defCellMetaFn) ],
+          [ GenericTableOps.buildRowSeparator() ]
+        ]);
+      });
+
+      return <GenericTable
+        tableCopyId="lineupStatsTable"
+        tableFields={CommonTableDefs.lineupTable}
+        tableData={tableData}
+        cellTooltipMode="none"
+      />
+    }
 
   }, [ decorateLineups, showTotals, minPoss, maxTableSize, sortBy, filterStr,
-      luckConfig, adjustForLuck, showLuckAdjDiags,
+      luckConfig, adjustForLuck, showLuckAdjDiags, aggregateByPos,
       dataEvent ]);
 
   // 3.2] Sorting utils
@@ -423,7 +509,38 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
               tooltip: adjustForLuck ? "Remove luck adjustments" : "Adjust statistics for luck",
               toggled: adjustForLuck,
               onClick: () => friendlyChange(() => setAdjustForLuck(!adjustForLuck), true)
-            }
+            },
+            {
+              label: "| Combos: ",
+              tooltip: "Aggregate lineups over the specified position/position group combos",
+              toggled: true,
+              onClick: () => {},
+              isLabelOnly: true
+            },
+            {
+              label: "PG",
+              tooltip: aggregateByPos == "PG" ? "Clear combo aggregation" : "Aggregate lineups by different PG combos",
+              toggled: aggregateByPos == "PG",
+              onClick: () => friendlyChange(() => setAggregateByPos(aggregateByPos == "PG" ? "" : "PG"), true)
+            },
+            {
+              label: "Backcourt",
+              tooltip: aggregateByPos == "Backcourt" ? "Clear combo aggregation" : "Aggregate lineups by different Backcourt combos",
+              toggled: aggregateByPos == "Backcourt",
+              onClick: () => friendlyChange(() => setAggregateByPos(aggregateByPos == "Backcourt" ? "" : "Backcourt"), true)
+            },
+            {
+              label: "Frontcourt",
+              tooltip: aggregateByPos == "Frontcourt" ? "Clear combo aggregation" : "Aggregate lineups by different Frontcourt combos",
+              toggled: aggregateByPos == "Frontcourt",
+              onClick: () => friendlyChange(() => setAggregateByPos(aggregateByPos == "Frontcourt" ? "" : "Frontcourt"), true)
+            },
+            {
+              label: "C",
+              tooltip: aggregateByPos == "C" ? "Clear combo aggregation" : "Aggregate lineups by different C combos",
+              toggled: aggregateByPos == "C",
+              onClick: () => friendlyChange(() => setAggregateByPos(aggregateByPos == "C" ? "" : "C"), true)
+            },
           ]}/>
         </Col>
       </Form.Row>
