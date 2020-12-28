@@ -221,6 +221,7 @@ export class HistoryManager {
       p.showTotal ? [ `show-total` ] : [],
       p.sortBy && (p.sortBy != ParamDefaults.defaultLineupSortBy) ? [ `sort:${p.sortBy || ParamDefaults.defaultLineupSortBy}` ] : [],
       p.filter ? [ `filter:'${tidyQuery(p.filter)}'` ] : [],
+      p.aggByPos ? [ `agg-by-${p.aggByPos.toLowerCase()}` ] : []
     ]);
     const otherParamsFromArray = (otherParamArray.length > 0) ?
       `, ${_.join(otherParamArray, ", ")}` : "";

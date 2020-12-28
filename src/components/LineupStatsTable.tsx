@@ -113,7 +113,9 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
     ParamDefaults.defaultLineupDecorate : startingState.decorate
   );
 
-  const [ aggregateByPos, setAggregateByPos ] = useState("" as string); //PG, Backcourt, Frontcourt, PF, C
+  const [ aggregateByPos, setAggregateByPos ] = useState(_.isNil(startingState.aggByPos) ?
+    ParamDefaults.defaultLineupAggByPos : startingState.aggByPos
+  );
 
   useEffect(() => { //(this ensures that the filter component is up to date with the union of these fields)
     const newState = {
@@ -122,6 +124,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
       luck: luckConfig,
       lineupLuck: adjustForLuck,
       showLineupLuckDiags: showLuckAdjDiags,
+      aggByPos: aggregateByPos,
       // Misc filters
       decorate: decorateLineups,
       showTotal: showTotals,
@@ -132,7 +135,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
     };
     onChangeState(newState);
   }, [ decorateLineups, showTotals, minPoss, maxTableSize, sortBy, filterStr,
-        luckConfig, adjustForLuck, showLuckAdjDiags ]);
+        luckConfig, adjustForLuck, showLuckAdjDiags, aggregateByPos ]);
 
   // 3] Utils
 
@@ -226,7 +229,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
     } else {
       const filteredLineups = LineupTableUtils.buildFilteredLineups(
         lineups,
-        filterStr, sortBy, 0, 1000,
+        filterStr, sortBy, "0", "1000",
         teamSeasonLookup, positionFromPlayerKey
       );
 
@@ -254,10 +257,10 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
 
         const getKey = () => { if (lineup.key != LineupTableUtils.totalLineupId)
           switch (aggregateByPos) {
-            case "PG": return sortedCodesAndIds[0].id;
-            case "Backcourt": return _.take(sortedCodesAndIds, 3).map(p => p.id).join(" / ");
-            case "Frontcourt": return _.chain(sortedCodesAndIds).drop(3).map(p => p.id).value().join(" / ");
-            case "C": return sortedCodesAndIds[4].id;
+            case "PG": return sortedCodesAndIds?.[0]?.id || "Unknown";
+            case "Backcourt": return _.take(sortedCodesAndIds || [], 3).map(p => p.id).join(" / ");
+            case "Frontcourt": return _.chain(sortedCodesAndIds || []).drop(3).map(p => p.id).value().join(" / ");
+            case "C": return sortedCodesAndIds?.[4]?.id || "Unknown";
             default: return "Unknown";
           } else return LineupTableUtils.totalLineupId; };
 
@@ -275,13 +278,12 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
 
       const maybeTotal = enrichedLineups?.[LineupTableUtils.totalLineupId];
       const otherLineups = _.chain(enrichedLineups).omit([ LineupTableUtils.totalLineupId ]).values().value();
-      const refilteredLineups = (maybeTotal ? [ maybeTotal ] : []).concat(LineupTableUtils.buildFilteredLineups(
+      const refilteredLineups = (maybeTotal ? [ maybeTotal as any ] : []).concat(LineupTableUtils.buildFilteredLineups(
         otherLineups,
         "", sortBy, minPoss, maxTableSize,
         teamSeasonLookup, positionFromPlayerKey
       ));
 
-      //TODO: resort and refilter
       const tableData = refilteredLineups.flatMap(stats => {
         // Re-enrich if not total
         if (stats.posKey != LineupTableUtils.totalLineupId) {
@@ -511,7 +513,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
             {
               label: "| Combos: ",
               tooltip: "Aggregate lineups over the specified position/position group combos",
-              togged: true,
+              toggled: true,
               onClick: () => {},
               isLabelOnly: true
             },
