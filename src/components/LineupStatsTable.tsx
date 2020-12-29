@@ -58,6 +58,15 @@ type Props = {
   onChangeState: (newParams: LineupFilterParams) => void
 }
 
+/** Recursive util method to get all pairwise lineup combos */
+function getPairs(ids: Array<string>): Array<string> {
+  if (ids.length < 2) { return []; }
+  const first = _.first(ids);
+  const rest = _.drop(ids, 1);
+  const pairs = _.map(rest, x => `${first} / ${x}`);
+  return  pairs.concat(getPairs(rest));
+};
+
 const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEvent, onChangeState}) => {
   const { lineupStats, teamStats, rosterStats } = dataEvent;
 
@@ -238,7 +247,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
         teamStats.global, rosterStats.global, teamStats.baseline,
         adjustForLuck, luckConfig.base, avgEfficiency,
         showTotals, teamSeasonLookup, positionFromPlayerKey, baselinePlayerInfo
-      )).map((lineup, lineupIndex) => {
+      )).flatMap((lineup, lineupIndex) => {
         TableDisplayUtils.injectPlayTypeInfo(lineup, false, false); //(inject assist numbers)
 
         const codesAndIds = LineupTableUtils.buildCodesAndIds(lineup);
@@ -255,20 +264,23 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
             lineupTitleKey, sortedCodesAndIds, perLineupBaselinePlayerMap, positionFromPlayerKey, "off_adj_rtg", decorateLineups
           ) : "Weighted Total";
 
-        const getKey = () => { if (lineup.key != LineupTableUtils.totalLineupId)
+        const getKeys = () => { if (lineup.key != LineupTableUtils.totalLineupId)
           switch (aggregateByPos) {
-            case "PG": return sortedCodesAndIds?.[0]?.id || "Unknown";
-            case "Backcourt": return _.take(sortedCodesAndIds || [], 3).map(p => p.id).join(" / ");
-            case "Frontcourt": return _.chain(sortedCodesAndIds || []).drop(3).map(p => p.id).value().join(" / ");
-            case "C": return sortedCodesAndIds?.[4]?.id || "Unknown";
-            default: return "Unknown";
-          } else return LineupTableUtils.totalLineupId; };
+            case "PG": return [ sortedCodesAndIds?.[0]?.id || "Unknown" ];
+            case "Backcourt": return [ _.take(sortedCodesAndIds || [], 3).map(p => p.id).join(" / ") ];
+            case "Frontcourt": return [ _.chain(sortedCodesAndIds || []).drop(3).map(p => p.id).value().join(" / ") ];
+            case "C": return [ sortedCodesAndIds?.[4]?.id || "Unknown" ];
+            case "Pairs": return getPairs((sortedCodesAndIds || []).map(p => p.id));
+            default: return [];
+          } else return [ LineupTableUtils.totalLineupId ]; };
 
-        const stats = { off_title: title, def_title: "", ...lineup, posKey: getKey() };
-        return stats;
+        return getKeys().map(key => {
+          const stats = { off_title: title, def_title: "", ...lineup, posKey: key };
+          return stats;
+        });
       }).groupBy(l => l.posKey).mapValues(lineups => {
         const key = lineups?.[0].posKey;
-        const maybeLineBreak = (aggregateByPos.indexOf("court") > 0) ? <br/> : null;
+        const maybeLineBreak = (aggregateByPos.length> 2) ? <br/> : null;
         return key == LineupTableUtils.totalLineupId ? lineups[0] : {
           ...(LineupUtils.calculateAggregatedLineupStats(lineups)),
           off_title: <div>Lineups with [<b>{aggregateByPos}</b>]: {maybeLineBreak}<b>{key}</b></div>,
@@ -540,6 +552,12 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
               tooltip: aggregateByPos == "C" ? "Clear combo aggregation" : "Aggregate lineups by different C combos",
               toggled: aggregateByPos == "C",
               onClick: () => friendlyChange(() => setAggregateByPos(aggregateByPos == "C" ? "" : "C"), true)
+            },
+            {
+              label: "Pairs",
+              tooltip: aggregateByPos == "2-player" ? "Clear combo aggregation" : "Aggregate lineups by different 2-player combos",
+              toggled: aggregateByPos == "Pairs",
+              onClick: () => friendlyChange(() => setAggregateByPos(aggregateByPos == "Pairs" ? "" : "Pairs"), true)
             },
           ]}/>
         </Col>

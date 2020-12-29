@@ -631,6 +631,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                 "toggled": false,
                 "tooltip": "Aggregate lineups by different C combos",
               },
+              Object {
+                "label": "Pairs",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Aggregate lineups by different 2-player combos",
+              },
             ]
           }
         />
@@ -4145,6 +4151,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                 "toggled": false,
                 "tooltip": "Aggregate lineups by different C combos",
               },
+              Object {
+                "label": "Pairs",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Aggregate lineups by different 2-player combos",
+              },
             ]
           }
         />
@@ -6827,6 +6839,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                 "onClick": [Function],
                 "toggled": false,
                 "tooltip": "Aggregate lineups by different C combos",
+              },
+              Object {
+                "label": "Pairs",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Aggregate lineups by different 2-player combos",
               },
             ]
           }
@@ -10425,6 +10443,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                 "onClick": [Function],
                 "toggled": false,
                 "tooltip": "Aggregate lineups by different C combos",
+              },
+              Object {
+                "label": "Pairs",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Aggregate lineups by different 2-player combos",
               },
             ]
           }
