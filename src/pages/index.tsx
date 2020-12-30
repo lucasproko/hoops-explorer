@@ -82,7 +82,7 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
   const [ gameFilterParams, setGameFilterParams ] = useState(
     UrlRouting.removedSavedKeys(allParams) as GameFilterParams
   )
-  const gameFilterParamsRef = useRef();
+  const gameFilterParamsRef = useRef<GameFilterParams>();
   gameFilterParamsRef.current = gameFilterParams;
 
   function getRootUrl(params: GameFilterParams) {
@@ -101,7 +101,7 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
     const params = _.omit(rawParams, _.flatten([ // omit all defaults
       // TeamStatsTable
       //(manual overrides is an array so is always missing if empty, but we do reset it if the year/team/gender changes)
-      yearTeamGenderChange(rawParams, gameFilterParamsRef.current) ? [ 'manual' ] : [],
+      yearTeamGenderChange(rawParams, gameFilterParamsRef.current || {}) ? [ 'manual' ] : [],
       _.isEqual(rawParams.luck, ParamDefaults.defaultLuckConfig) ? [ 'luck' ] : [],
       !rawParams.onOffLuck ? [ 'onOffLuck' ] : [],
       (rawParams.showPlayerOnOffLuckDiags == ParamDefaults.defaultOnOffLuckDiagMode) ? [ 'showPlayerOnOffLuckDiags' ] : [],

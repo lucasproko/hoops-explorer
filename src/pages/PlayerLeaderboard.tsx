@@ -71,7 +71,7 @@ const PlayLeaderboardPage: NextPage<{}> = () => {
   const [ playerLeaderboardParams, setPlayerLeaderboardParams ] = useState(
     UrlRouting.removedSavedKeys(allParams) as PlayerLeaderboardParams
   )
-  const playerLeaderboardParamsRef = useRef();
+  const playerLeaderboardParamsRef = useRef<PlayerLeaderboardParams>();
   playerLeaderboardParamsRef.current = playerLeaderboardParams;
 
   const onPlayerLeaderboardParamsChange = (rawParams: PlayerLeaderboardParams) => {
@@ -159,7 +159,7 @@ const PlayLeaderboardPage: NextPage<{}> = () => {
   /** Only rebuild the table if the data changes */
   const table = React.useMemo(() => {
     return <PlayerLeaderboardTable
-      startingState={playerLeaderboardParamsRef.current}
+      startingState={playerLeaderboardParamsRef.current || {}}
       dataEvent={dataSubEvent}
       onChangeState={onPlayerLeaderboardParamsChange}
     />

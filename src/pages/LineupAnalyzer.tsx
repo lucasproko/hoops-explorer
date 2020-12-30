@@ -68,7 +68,7 @@ const LineupAnalyzerPage: NextPage<{}> = () => {
   const [ lineupFilterParams, setLineupFilterParams ] = useState(
     UrlRouting.removedSavedKeys(allParams) as LineupFilterParams
   )
-  const lineupFilterParamsRef = useRef();
+  const lineupFilterParamsRef = useRef<LineupFilterParams>();
   lineupFilterParamsRef.current = lineupFilterParams;
 
   function getRootUrl(params: LineupFilterParams) {
@@ -117,7 +117,7 @@ const LineupAnalyzerPage: NextPage<{}> = () => {
   const table = React.useMemo(() => {
     return  <GenericCollapsibleCard minimizeMargin={true} title="Lineup Analysis" helpLink={maybeShowDocs()}>
       <LineupStatsTable
-        startingState={lineupFilterParamsRef.current}
+        startingState={lineupFilterParamsRef.current || {}}
         dataEvent={dataEvent}
         onChangeState={onLineupFilterParamsChange}
       />

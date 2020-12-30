@@ -71,7 +71,7 @@ const LineupLeaderboardPage: NextPage<{}> = () => {
   const [ lineupLeaderboardParams, setLineupLeaderboardParams ] = useState(
     UrlRouting.removedSavedKeys(allParams) as LineupLeaderboardParams
   )
-  const lineupLeaderboardParamsRef = useRef();
+  const lineupLeaderboardParamsRef = useRef<LineupLeaderboardParams>();
   lineupLeaderboardParamsRef.current = lineupLeaderboardParams;
 
   const onLineupLeaderboardParamsChange = (rawParams: LineupLeaderboardParams) => {
@@ -153,7 +153,7 @@ const LineupLeaderboardPage: NextPage<{}> = () => {
   /** Only rebuild the table if the data changes */
   const table = React.useMemo(() => {
     return <LineupLeaderboardTable
-      startingState={lineupLeaderboardParamsRef.current}
+      startingState={lineupLeaderboardParamsRef.current || {}}
       dataEvent={dataSubEvent}
       onChangeState={onLineupLeaderboardParamsChange}
     />

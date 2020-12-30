@@ -69,7 +69,7 @@ const TeamReportPage: NextPage<{}> = () => {
   const [ teamReportFilterParams, setTeamReportFilterParams ] = useState(
     UrlRouting.removedSavedKeys(allParams) as TeamReportFilterParams
   )
-  const teamReportFilterParamsRef = useRef();
+  const teamReportFilterParamsRef = useRef<TeamReportFilterParams>();
   teamReportFilterParamsRef.current = teamReportFilterParams;
 
   function getRootUrl(params: TeamReportFilterParams) {
@@ -102,7 +102,7 @@ const TeamReportPage: NextPage<{}> = () => {
   /** Only rebuild the table if the data changes */
   const table = React.useMemo(() => {
     return <TeamReportStatsTable
-      startingState={teamReportFilterParamsRef.current}
+      startingState={teamReportFilterParamsRef.current || {}}
       dataEvent={dataEvent}
       onChangeState={onTeamReportFilterParamsChange}
     />

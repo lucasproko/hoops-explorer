@@ -233,7 +233,7 @@ const CommonFilter: CommonFilterI = ({
     const forceReload = forceReload1Up && (forceReload1Up != currForceReload1Up);
     if (pageJustLoaded || forceReload) {
       if (forceReload) {
-        setCurrForceload1up(forceReload1Up);
+        setCurrForceload1up(forceReload1Up || 0);
       }
       setPageJustLoaded(false); //(ensures this code only gets called once)
       // Load the data if it's cached
