@@ -2,7 +2,7 @@
 import { initGA, logPageView } from '../utils/GoogleAnalytics';
 
 // React imports:
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Router, { useRouter } from 'next/router';
 import Link from 'next/link';
 
@@ -69,6 +69,9 @@ const TeamReportPage: NextPage<{}> = () => {
   const [ teamReportFilterParams, setTeamReportFilterParams ] = useState(
     UrlRouting.removedSavedKeys(allParams) as TeamReportFilterParams
   )
+  const teamReportFilterParamsRef = useRef();
+  teamReportFilterParamsRef.current = teamReportFilterParams;
+
   function getRootUrl(params: TeamReportFilterParams) {
     return UrlRouting.getTeamReportUrl(params);
   }
@@ -83,7 +86,7 @@ const TeamReportPage: NextPage<{}> = () => {
       !rawParams.teamLuck ? [ 'teamLuck' ] : [],
     ]));
 
-    if (!_.isEqual(params, teamReportFilterParams)) { //(to avoid recursion)
+    if (!_.isEqual(params, teamReportFilterParamsRef.current)) { //(to avoid recursion)
       const href = getRootUrl(params);
       const as = href;
       //TODO: this doesn't work if it's the same page (#91)
@@ -99,7 +102,7 @@ const TeamReportPage: NextPage<{}> = () => {
   /** Only rebuild the table if the data changes */
   const table = React.useMemo(() => {
     return <TeamReportStatsTable
-      startingState={teamReportFilterParams}
+      startingState={teamReportFilterParamsRef.current}
       dataEvent={dataEvent}
       onChangeState={onTeamReportFilterParamsChange}
     />

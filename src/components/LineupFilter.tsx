@@ -27,9 +27,10 @@ type Props = {
   onStats: (lineupStats: LineupStatsModel, teamStats: TeamStatsModel, rosterStats: RosterStatsModel) => void;
   startingState: LineupFilterParams;
   onChangeState: (newParams: LineupFilterParams) => void;
+  forceReload1Up?: number;
 }
 
-const LineupFilter: React.FunctionComponent<Props> = ({onStats, startingState, onChangeState}) => {
+const LineupFilter: React.FunctionComponent<Props> = ({onStats, startingState, onChangeState, forceReload1Up}) => {
   //console.log("Loading LineupFilter " + JSON.stringify(startingState));
 
   // Data model
@@ -85,7 +86,7 @@ const LineupFilter: React.FunctionComponent<Props> = ({onStats, startingState, o
           sortBy: startSortBy,
           filter: startFilter
       }) : {
-        ...commonParams
+        ...commonParams,
       };
     //(another ugly hack to be fixed - remove default optional fields)
     QueryUtils.cleanseQuery(primaryRequest);
@@ -146,6 +147,7 @@ const LineupFilter: React.FunctionComponent<Props> = ({onStats, startingState, o
       tablePrefix = {cacheKeyPrefix}
       buildParamsFromState={buildParamsFromState}
       childHandleResponse={handleResponse}
+      forceReload1Up={forceReload1Up}
     />
     ;
 }

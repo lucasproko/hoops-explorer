@@ -2,7 +2,7 @@
 import { initGA, logPageView } from '../utils/GoogleAnalytics';
 
 // React imports:
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Router, { useRouter } from 'next/router';
 import Link from 'next/link';
 
@@ -71,6 +71,8 @@ const PlayLeaderboardPage: NextPage<{}> = () => {
   const [ playerLeaderboardParams, setPlayerLeaderboardParams ] = useState(
     UrlRouting.removedSavedKeys(allParams) as PlayerLeaderboardParams
   )
+  const playerLeaderboardParamsRef = useRef();
+  playerLeaderboardParamsRef.current = playerLeaderboardParams;
 
   const onPlayerLeaderboardParamsChange = (rawParams: PlayerLeaderboardParams) => {
     const params = _.omit(rawParams, _.flatten([ // omit all defaults
@@ -91,7 +93,7 @@ const PlayLeaderboardPage: NextPage<{}> = () => {
         _.isNil(rawParams.factorMins) ? ParamDefaults.defaultPlayerLboardFactorMins : rawParams.factorMins
       )) ? [ 'sortBy' ] : []
     ]));
-    if (!_.isEqual(params, playerLeaderboardParams)) { //(to avoid recursion)
+    if (!_.isEqual(params, playerLeaderboardParamsRef.current)) { //(to avoid recursion)
       const href = getRootUrl(params);
       const as = href;
       //TODO: this doesn't work if it's the same page (#91)
@@ -157,7 +159,7 @@ const PlayLeaderboardPage: NextPage<{}> = () => {
   /** Only rebuild the table if the data changes */
   const table = React.useMemo(() => {
     return <PlayerLeaderboardTable
-      startingState={playerLeaderboardParams}
+      startingState={playerLeaderboardParamsRef.current}
       dataEvent={dataSubEvent}
       onChangeState={onPlayerLeaderboardParamsChange}
     />

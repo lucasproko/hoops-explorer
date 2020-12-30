@@ -2,7 +2,7 @@
 import { initGA, logPageView } from '../utils/GoogleAnalytics';
 
 // React imports:
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Router, { useRouter } from 'next/router';
 import Link from 'next/link';
 
@@ -82,6 +82,8 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
   const [ gameFilterParams, setGameFilterParams ] = useState(
     UrlRouting.removedSavedKeys(allParams) as GameFilterParams
   )
+  const gameFilterParamsRef = useRef();
+  gameFilterParamsRef.current = gameFilterParams;
 
   function getRootUrl(params: GameFilterParams) {
     return UrlRouting.getGameUrl(params, {});
@@ -99,7 +101,7 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
     const params = _.omit(rawParams, _.flatten([ // omit all defaults
       // TeamStatsTable
       //(manual overrides is an array so is always missing if empty, but we do reset it if the year/team/gender changes)
-      yearTeamGenderChange(rawParams, gameFilterParams) ? [ 'manual' ] : [],
+      yearTeamGenderChange(rawParams, gameFilterParamsRef.current) ? [ 'manual' ] : [],
       _.isEqual(rawParams.luck, ParamDefaults.defaultLuckConfig) ? [ 'luck' ] : [],
       !rawParams.onOffLuck ? [ 'onOffLuck' ] : [],
       (rawParams.showPlayerOnOffLuckDiags == ParamDefaults.defaultOnOffLuckDiagMode) ? [ 'showPlayerOnOffLuckDiags' ] : [],
@@ -117,7 +119,7 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
       (rawParams.showPlayerManual == false) ? [ 'showPlayerManual' ] : [],
     ]));
 
-    if (!_.isEqual(params, gameFilterParams)) { //(to avoid recursion)
+    if (!_.isEqual(params, gameFilterParamsRef.current)) { //(to avoid recursion)
       const href = getRootUrl(params);
       const as = href;
       //TODO: this doesn't work if it's the same page (#91)

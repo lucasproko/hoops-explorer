@@ -2,7 +2,7 @@
 import { initGA, logPageView } from '../utils/GoogleAnalytics';
 
 // React imports:
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Router, { useRouter } from 'next/router';
 import Link from 'next/link';
 
@@ -68,9 +68,13 @@ const LineupAnalyzerPage: NextPage<{}> = () => {
   const [ lineupFilterParams, setLineupFilterParams ] = useState(
     UrlRouting.removedSavedKeys(allParams) as LineupFilterParams
   )
+  const lineupFilterParamsRef = useRef();
+  lineupFilterParamsRef.current = lineupFilterParams;
+
   function getRootUrl(params: LineupFilterParams) {
     return UrlRouting.getLineupUrl(params, {});
   }
+  const [ shouldForceReload, setShouldForceReload ] = useState(0 as number);
 
   const onLineupFilterParamsChange = (rawParams: LineupFilterParams) => {
     const params = _.omit(rawParams, _.flatten([ // omit all defaults
@@ -81,8 +85,12 @@ const LineupAnalyzerPage: NextPage<{}> = () => {
       (rawParams.showLineupLuckDiags == ParamDefaults.defaultOnOffLuckDiagMode) ? [ 'showLineupLuckDiags' ] : [],
       (rawParams.aggByPos == ParamDefaults.defaultLineupAggByPos) ? [ 'aggByPos' ] : [],
     ]));
+    if (!_.isEqual(params, lineupFilterParamsRef.current)) { //(to avoid recursion)
 
-    if (!_.isEqual(params, lineupFilterParams)) { //(to avoid recursion)
+      //TODO: example code:
+      // if (params.lineupLuck != lineupFilterParamsRef.current.lineupLuck) {
+      //   setShouldForceReload(t => t + 1);
+      // }
       const href = getRootUrl(params);
       const as = href;
       //TODO: this doesn't work if it's the same page (#91)
@@ -109,7 +117,7 @@ const LineupAnalyzerPage: NextPage<{}> = () => {
   const table = React.useMemo(() => {
     return  <GenericCollapsibleCard minimizeMargin={true} title="Lineup Analysis" helpLink={maybeShowDocs()}>
       <LineupStatsTable
-        startingState={lineupFilterParams}
+        startingState={lineupFilterParamsRef.current}
         dataEvent={dataEvent}
         onChangeState={onLineupFilterParamsChange}
       />
@@ -138,6 +146,7 @@ const LineupAnalyzerPage: NextPage<{}> = () => {
           onStats={injectStats}
           startingState={lineupFilterParams}
           onChangeState={onLineupFilterParamsChange}
+          forceReload1Up={shouldForceReload}
         />
       </GenericCollapsibleCard>
     </Row>

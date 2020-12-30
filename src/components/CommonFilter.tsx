@@ -66,6 +66,7 @@ interface Props<PARAMS> {
   buildParamsFromState: (includeFilterParams: Boolean) => [ PARAMS, FilterRequestInfo[] ];
   childHandleResponse: (json: any, wasError: Boolean) => void;
   majorParamsDisabled?: boolean; //(not currently used but would allow you to block changing team/seeason/gender)
+  forceReload1Up?: number; //force submits a new set of parameters if true
 }
 
 /** Used to pass the submitListener to child components */
@@ -78,7 +79,8 @@ const CommonFilter: CommonFilterI = ({
     children,
     startingState, onChangeState, onChangeCommonState,
     tablePrefix, buildParamsFromState, childHandleResponse,
-    majorParamsDisabled
+    majorParamsDisabled,
+    forceReload1Up
 }) => {
   //console.log("Loading CommonFilter " + JSON.stringify(startingState));
 
@@ -88,6 +90,7 @@ const CommonFilter: CommonFilterI = ({
   const [ queryIsLoading, setQueryIsLoading ] = useState(false);
   const [ atLeastOneQueryMade, setAtLeastOneQueryMade ] = useState(false);
   const [ pageJustLoaded, setPageJustLoaded ] = useState(true);
+  const [ currForceReload1Up, setCurrForceload1up ] = useState(0);
   const [ currState, setCurrState ] = useState(startingState);
 
   const [ clipboard, setClipboard] = useState(null as null | ClipboardJS);
@@ -227,9 +230,12 @@ const CommonFilter: CommonFilterI = ({
     }
 
     // Cached response and pre-load handling:
-    if (pageJustLoaded) {
+    const forceReload = forceReload1Up && (forceReload1Up != currForceReload1Up);
+    if (pageJustLoaded || forceReload) {
+      if (forceReload) {
+        setCurrForceload1up(forceReload1Up);
+      }
       setPageJustLoaded(false); //(ensures this code only gets called once)
-
       // Load the data if it's cached
       requestHandlingLogic(true);
     }
