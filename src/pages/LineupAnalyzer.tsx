@@ -84,13 +84,14 @@ const LineupAnalyzerPage: NextPage<{}> = () => {
       !rawParams.lineupLuck ? [ 'lineupLuck' ] : [],
       (rawParams.showLineupLuckDiags == ParamDefaults.defaultOnOffLuckDiagMode) ? [ 'showLineupLuckDiags' ] : [],
       (rawParams.aggByPos == ParamDefaults.defaultLineupAggByPos) ? [ 'aggByPos' ] : [],
+      (rawParams.showGameInfo == ParamDefaults.defaultLineupShowGameInfo) ? [ 'showGameInfo' ] : [],
     ]));
     if (!_.isEqual(params, lineupFilterParamsRef.current)) { //(to avoid recursion)
 
-      //TODO: example code:
-      // if (params.lineupLuck != lineupFilterParamsRef.current.lineupLuck) {
-      //   setShouldForceReload(t => t + 1);
-      // }
+      // Currently: game info requires an extra possibly expensive query component so we make it on demand only
+      if (params.showGameInfo != lineupFilterParamsRef.current.showGameInfo) {
+        setShouldForceReload(t => t + 1);
+      }
       const href = getRootUrl(params);
       const as = href;
       //TODO: this doesn't work if it's the same page (#91)

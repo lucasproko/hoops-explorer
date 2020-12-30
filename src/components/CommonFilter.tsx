@@ -231,13 +231,13 @@ const CommonFilter: CommonFilterI = ({
 
     // Cached response and pre-load handling:
     const forceReload = forceReload1Up && (forceReload1Up != currForceReload1Up);
-    if (pageJustLoaded || forceReload) {
-      if (forceReload) {
-        setCurrForceload1up(forceReload1Up || 0);
-      }
+    if (pageJustLoaded) {
       setPageJustLoaded(false); //(ensures this code only gets called once)
       // Load the data if it's cached
       requestHandlingLogic(true);
+    } else if (forceReload) { // simulate user pressing "submit button"
+      setCurrForceload1up(forceReload1Up || 0);
+      onSubmit();
     }
     if (typeof document !== `undefined`) {
       //(if we added a clipboard listener, then remove it on page close)

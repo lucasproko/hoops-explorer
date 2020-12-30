@@ -40,6 +40,7 @@ const LineupFilter: React.FunctionComponent<Props> = ({onStats, startingState, o
     luck: startLuck,
     lineupLuck: startLineupLuck, showLineupLuckDiags: startShowLineupLuckDiags,
     aggByPos: startAggByPos,
+    showGameInfo: startShowGameInfo,
     // Filters etc
     decorate: startDecorate,
     showTotal: startShowTotal,
@@ -87,6 +88,8 @@ const LineupFilter: React.FunctionComponent<Props> = ({onStats, startingState, o
           filter: startFilter
       }) : {
         ...commonParams,
+        // Special case: this determines the query set sent to the server:
+        showGameInfo: startShowGameInfo,
       };
     //(another ugly hack to be fixed - remove default optional fields)
     QueryUtils.cleanseQuery(primaryRequest);

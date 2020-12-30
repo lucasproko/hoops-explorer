@@ -126,6 +126,10 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
     ParamDefaults.defaultLineupAggByPos : startingState.aggByPos
   );
 
+  const [ showGameInfo, setShowGameInfo ] = useState(_.isNil(startingState.showGameInfo) ?
+    ParamDefaults.defaultLineupShowGameInfo : startingState.showGameInfo
+  );
+
   useEffect(() => { //(this ensures that the filter component is up to date with the union of these fields)
     const newState = {
       ...startingState,
@@ -134,6 +138,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
       lineupLuck: adjustForLuck,
       showLineupLuckDiags: showLuckAdjDiags,
       aggByPos: aggregateByPos,
+      showGameInfo: showGameInfo,
       // Misc filters
       decorate: decorateLineups,
       showTotal: showTotals,
@@ -144,7 +149,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
     };
     onChangeState(newState);
   }, [ decorateLineups, showTotals, minPoss, maxTableSize, sortBy, filterStr,
-        luckConfig, adjustForLuck, showLuckAdjDiags, aggregateByPos ]);
+        luckConfig, adjustForLuck, showLuckAdjDiags, aggregateByPos, showGameInfo ]);
 
   // 3] Utils
 
@@ -217,6 +222,9 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
         return _.flatten([
           [ GenericTableOps.buildDataRow(stats, offPrefixFn, offCellMetaFn) ],
           [ GenericTableOps.buildDataRow(stats, defPrefixFn, defCellMetaFn) ],
+          (showGameInfo && (lineup.key != LineupTableUtils.totalLineupId)) ? [  GenericTableOps.buildTextRow(
+            <small>Game info here</small>
+          )] : [],
           (showLuckAdjDiags && lineup.off_luck_diags && sortedCodesAndIds) ? [ GenericTableOps.buildTextRow(
             <LuckAdjDiagView
               name="lineup"
@@ -318,7 +326,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
     }
 
   }, [ decorateLineups, showTotals, minPoss, maxTableSize, sortBy, filterStr,
-      luckConfig, adjustForLuck, showLuckAdjDiags, aggregateByPos,
+      luckConfig, adjustForLuck, showLuckAdjDiags, aggregateByPos, showGameInfo,
       dataEvent ]);
 
   // 3.2] Sorting utils
@@ -445,6 +453,11 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
               onSelect={() => friendlyChange(() => setAdjustForLuck(!adjustForLuck), true)}
               helpLink={showHelp ? "https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html" : undefined}
             />
+            <GenericTogglingMenuItem
+              text="Show Minimal Game Info for All Lineups"
+              truthVal={showGameInfo}
+              onSelect={() => friendlyChange(() => setShowGameInfo(!showGameInfo), true)}
+            />
             <Dropdown.Divider />
             <GenericTogglingMenuItem
               text="Configure Luck Adjustments..."
@@ -521,6 +534,12 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
               tooltip: adjustForLuck ? "Remove luck adjustments" : "Adjust statistics for luck",
               toggled: adjustForLuck,
               onClick: () => friendlyChange(() => setAdjustForLuck(!adjustForLuck), true)
+            },
+            {
+              label: "Games",
+              tooltip: showGameInfo ? "Hide per-lineup game info" : "Show per-lineup game info",
+              toggled: showGameInfo,
+              onClick: () => friendlyChange(() => setShowGameInfo(!showGameInfo), true)
             },
             {
               label: "| Combos: ",
