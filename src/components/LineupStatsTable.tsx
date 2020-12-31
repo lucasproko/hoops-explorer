@@ -176,7 +176,14 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
 
   /** Only rebuild the expensive table if one of the parameters that controls it changes */
   const table = React.useMemo(() => {
-    setLoadingOverride(false); //(rendering)
+    const lineups = lineupStats?.lineups || [];
+
+    if (showGameInfo) {
+      const haveGameInfo: boolean = lineups?.[0]?.game_info;
+      setLoadingOverride(!haveGameInfo); //(special case ... don't remove overlay until we have game info)
+    } else {
+      setLoadingOverride(false); //(rendering)
+    }
 
     const positionFromPlayerKey = LineupTableUtils.buildPositionPlayerMap(rosterStats.global, teamSeasonLookup);
 
@@ -187,7 +194,6 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
     const defPrefixFn = (key: string) => "def_" + key;
     const defCellMetaFn = (key: string, val: any) => "def";
 
-    const lineups = lineupStats?.lineups || [];
 
     // Build a list of all the opponents:
     const mutableOppoList = {} as Record<string, any>;
