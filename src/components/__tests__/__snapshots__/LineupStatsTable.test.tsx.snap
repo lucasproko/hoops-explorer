@@ -631,6 +631,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                 "tooltip": "Aggregate lineups by different Backcourt combos",
               },
               Object {
+                "label": "PG+C",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Aggregate lineups by different PG/C pairs",
+              },
+              Object {
                 "label": "Frontcourt",
                 "onClick": [Function],
                 "toggled": false,
@@ -4162,6 +4168,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                 "tooltip": "Aggregate lineups by different Backcourt combos",
               },
               Object {
+                "label": "PG+C",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Aggregate lineups by different PG/C pairs",
+              },
+              Object {
                 "label": "Frontcourt",
                 "onClick": [Function],
                 "toggled": false,
@@ -6860,6 +6872,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                 "onClick": [Function],
                 "toggled": false,
                 "tooltip": "Aggregate lineups by different Backcourt combos",
+              },
+              Object {
+                "label": "PG+C",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Aggregate lineups by different PG/C pairs",
               },
               Object {
                 "label": "Frontcourt",
@@ -10475,6 +10493,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                 "onClick": [Function],
                 "toggled": false,
                 "tooltip": "Aggregate lineups by different Backcourt combos",
+              },
+              Object {
+                "label": "PG+C",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Aggregate lineups by different PG/C pairs",
               },
               Object {
                 "label": "Frontcourt",

@@ -270,7 +270,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
         tableData={tableData}
         cellTooltipMode="none"
       />
-    } else {
+    } else { // First we aggregate the lineups into common position groups, then render that
       const filteredLineups = LineupTableUtils.buildFilteredLineups(
         lineups,
         filterStr, sortBy, "0", "1000",
@@ -289,20 +289,11 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
         const sortedCodesAndIds = (lineup.key == LineupTableUtils.totalLineupId) ? undefined :
           PositionUtils.orderLineup(codesAndIds, positionFromPlayerKey, teamSeasonLookup);
 
-        const perLineupBaselinePlayerMap = _.fromPairs(codesAndIds.map((cid: { code: string, id: string }) => {
-          return [  cid.id, baselinePlayerInfo[cid.id] || {} ];
-        })) as Record<string, Record<string, any>>;
-
-        const lineupTitleKey = "" + lineupIndex;
-        const title = sortedCodesAndIds ?
-          TableDisplayUtils.buildDecoratedLineup(
-            lineupTitleKey, sortedCodesAndIds, perLineupBaselinePlayerMap, positionFromPlayerKey, "off_adj_rtg", decorateLineups
-          ) : "Weighted Total";
-
         const getKeys = () => { if (lineup.key != LineupTableUtils.totalLineupId)
           switch (aggregateByPos) {
             case "PG": return [ sortedCodesAndIds?.[0]?.id || "Unknown" ];
             case "Backcourt": return [ _.take(sortedCodesAndIds || [], 3).map(p => p.id).join(" / ") ];
+            case "PG+C": return [ `${(sortedCodesAndIds?.[0]?.id || "Unknown")} / ${(sortedCodesAndIds?.[4]?.id || "Unknown")}` ];
             case "Frontcourt": return [ _.chain(sortedCodesAndIds || []).drop(3).map(p => p.id).value().join(" / ") ];
             case "C": return [ sortedCodesAndIds?.[4]?.id || "Unknown" ];
             case "Pairs": return getPairs((sortedCodesAndIds || []).map(p => p.id));
@@ -310,15 +301,33 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
           } else return [ LineupTableUtils.totalLineupId ]; };
 
         return getKeys().map(key => {
-          const stats = { off_title: title, def_title: "", ...lineup, posKey: key };
+          const comboCodeAndIds = key.split(" / ").flatMap(keyPos => (sortedCodesAndIds || []).filter(codeId => codeId.id == keyPos));
+
+          const stats = { ...lineup, posKey: key, codesAndIds: comboCodeAndIds };
           return stats;
         });
       }).groupBy(l => l.posKey).mapValues(lineups => {
         const key = lineups?.[0].posKey;
-        const maybeLineBreak = (aggregateByPos.length> 2) ? <br/> : null;
-        return key == LineupTableUtils.totalLineupId ? lineups[0] : {
+        const codesAndIds = lineups?.[0].codesAndIds || [];
+
+        const perLineupBaselinePlayerMap = _.fromPairs(codesAndIds.map((cid: { code: string, id: string }) => {
+          return [  cid.id, baselinePlayerInfo[cid.id] || {} ];
+        })) as Record<string, Record<string, any>>;
+
+        const lineupTitleKey = "" + key;
+        const title =
+          TableDisplayUtils.buildDecoratedLineup(
+            lineupTitleKey, codesAndIds, perLineupBaselinePlayerMap, positionFromPlayerKey, "off_adj_rtg", decorateLineups
+          );
+
+        const maybeLineBreak = (aggregateByPos.length > 2) ? <br/> : null;
+        return key == LineupTableUtils.totalLineupId ? {
+          ...lineups[0],
+          off_title: "Weighted Total",
+          def_title: undefined
+        }: {
           ...(LineupUtils.calculateAggregatedLineupStats(lineups)),
-          off_title: <div>Lineups with [<b>{aggregateByPos}</b>]: {maybeLineBreak}<b>{key}</b></div>,
+          off_title: <div>Lineups with [<b>{aggregateByPos}</b>]: {maybeLineBreak}<b>{title}</b></div>,
           def_title: undefined
         }
       }).value();
@@ -586,6 +595,12 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
               tooltip: aggregateByPos == "Backcourt" ? "Clear combo aggregation" : "Aggregate lineups by different Backcourt combos",
               toggled: aggregateByPos == "Backcourt",
               onClick: () => friendlyChange(() => setAggregateByPos(aggregateByPos == "Backcourt" ? "" : "Backcourt"), true)
+            },
+            {
+              label: "PG+C",
+              tooltip: aggregateByPos == "PG+C" ? "Clear combo aggregation" : "Aggregate lineups by different PG/C pairs",
+              toggled: aggregateByPos == "PG+C",
+              onClick: () => friendlyChange(() => setAggregateByPos(aggregateByPos == "PG+C" ? "" : "PG+C"), true)
             },
             {
               label: "Frontcourt",
