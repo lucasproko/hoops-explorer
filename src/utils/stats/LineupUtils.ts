@@ -35,8 +35,11 @@ export class LineupUtils {
   }
 
   /** Parses the terms/histogram aggregation giving a bit of info about each lineup's game */
-  static getGameInfo(gameInfo: Record<string, any>, mutableOpponents?: Record<string, any>): Array<Record<string, any>> {
-    return _.sortBy((gameInfo?.buckets || []).flatMap((bb: any) => {
+  static getGameInfo(
+    gameInfo: Record<string, any>, mutableOpponents?: Record<string, any>, maxOffPoss?: number
+  ): [ Array<Record<string, any>>, number ] {
+    var tmpVarMaxOffPoss = maxOffPoss || 0;
+    return [ _.sortBy((gameInfo?.buckets || []).flatMap((bb: any) => {
       const opponent = _.drop(bb?.key || "unknown", 2);
       return (bb?.game_info?.buckets || []).map((b: any) => {
         const opponent = bb?.key || "?:Unknown";
@@ -46,16 +49,18 @@ export class LineupUtils {
           date: date,
           num_off_poss: 0, num_def_poss: 0, num_pts_for: 0, num_pts_against: 0
         };
+        const offPoss = b?.num_off_poss?.value;
+        if (offPoss > tmpVarMaxOffPoss) tmpVarMaxOffPoss = offPoss;
         return {
           opponent: opponent,
           date: date,
-          num_off_poss: b?.num_off_poss?.value || 0,
+          num_off_poss: offPoss || 0,
           num_def_poss: b?.num_def_poss?.value || 0,
           num_pts_for: b?.num_pts_for?.value || 0,
           num_pts_against: b?.num_pts_against?.value || 0,
-        }
+        };
       });
-    }), [ "date" ]);
+    }), [ "date" ]), tmpVarMaxOffPoss ];
   }
 
   /** Builds on/off info out of lineups */

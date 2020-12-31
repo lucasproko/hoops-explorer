@@ -197,8 +197,12 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
 
     // Build a list of all the opponents:
     const mutableOppoList = {} as Record<string, any>;
+    var varGlobalMaxPoss = 0;
     if (showGameInfo) {
-      lineups.forEach((l) => { LineupUtils.getGameInfo(l.game_info, mutableOppoList) });
+      lineups.forEach((l) => {
+        const [ dummy, maxPoss ] = LineupUtils.getGameInfo(l.game_info, mutableOppoList, varGlobalMaxPoss);
+        varGlobalMaxPoss = maxPoss;
+      });
     }
     const orderedMutableOppoList = {} as Record<string, any>;
     _.chain(mutableOppoList).keys().sort().each((key) => {
@@ -242,9 +246,10 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
           [ GenericTableOps.buildDataRow(stats, defPrefixFn, defCellMetaFn) ],
           (showGameInfo && (lineup.key != LineupTableUtils.totalLineupId)) ? [ GenericTableOps.buildTextRow(
             <GameInfoDiagView
-              oppoList={LineupUtils.getGameInfo(lineup.game_info)}
+              oppoList={LineupUtils.getGameInfo(lineup.game_info)[0]}
               orderedOppoList={_.clone(orderedMutableOppoList)}
               params={startingState}
+              maxOffPoss={varGlobalMaxPoss}
             />, "small"
           )] : [],
           (showLuckAdjDiags && lineup.off_luck_diags && sortedCodesAndIds) ? [ GenericTableOps.buildTextRow(

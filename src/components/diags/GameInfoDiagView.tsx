@@ -24,7 +24,7 @@ import { ResponsiveContainer, LineChart, Line, CartesianGrid, XAxis, YAxis, Tool
 type CustomTooltipProps = {
   active?: boolean,
   payload?: any,
-  label?: string
+  label?: string,
 };
 const CustomTooltip: React.FunctionComponent<CustomTooltipProps> = ({ active, payload, label }) => {
   if (active) {
@@ -49,9 +49,12 @@ const CustomTooltip: React.FunctionComponent<CustomTooltipProps> = ({ active, pa
 type Props = {
   oppoList: Array<any>,
   orderedOppoList: Record<string, any>,
-  params: Record<string, any>
+  params: Record<string, any>,
+  maxOffPoss: number
 };
-const GameInfoDiagView: React.FunctionComponent<Props> = ({oppoList, orderedOppoList, params}) => {
+const GameInfoDiagView: React.FunctionComponent<Props> = ({oppoList, orderedOppoList, params, maxOffPoss}) => {
+
+  const [ zoomIn, setZoomIn ] = useState(false as boolean);
 
   // Merge with the ordered oppo list
   oppoList.forEach((oppo) => {
@@ -71,7 +74,7 @@ const GameInfoDiagView: React.FunctionComponent<Props> = ({oppoList, orderedOppo
       >
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="opponent" />
-        <YAxis>
+        <YAxis domain={[0, zoomIn ? 'auto' : (maxOffPoss + 1)]}>
           <Label angle={-90} value='# possessions' position='insideLeft' style={{textAnchor: 'middle'}} />
         </YAxis>
         <Tooltip
@@ -90,6 +93,7 @@ const GameInfoDiagView: React.FunctionComponent<Props> = ({oppoList, orderedOppo
     </ResponsiveContainer>
     <div style={{display: 'flex', justifyContent: 'center'}}>
       <b>Game breakdown for above lineup</b>
+      &nbsp;(<a href="#" onClick={(event) => { event.preventDefault(); setZoomIn(!zoomIn) }}>{zoomIn ? "zoom out" : "zoom in"}</a>)
     </div>
   </div>;
 };
