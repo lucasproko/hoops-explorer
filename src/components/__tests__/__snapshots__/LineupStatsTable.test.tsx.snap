@@ -76,6 +76,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
             text="Adjust for Luck"
             truthVal={false}
           />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show Minimal Game Info for All Lineups"
+            truthVal={false}
+          />
           <DropdownDivider
             role="separator"
           />
@@ -599,6 +604,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                 "onClick": [Function],
                 "toggled": false,
                 "tooltip": "Adjust statistics for luck",
+              },
+              Object {
+                "label": "Games",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show per-lineup game info",
               },
               Object {
                 "isLabelOnly": true,
@@ -3596,6 +3607,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
             text="Adjust for Luck"
             truthVal={true}
           />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show Minimal Game Info for All Lineups"
+            truthVal={false}
+          />
           <DropdownDivider
             role="separator"
           />
@@ -4119,6 +4135,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                 "onClick": [Function],
                 "toggled": true,
                 "tooltip": "Remove luck adjustments",
+              },
+              Object {
+                "label": "Games",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show per-lineup game info",
               },
               Object {
                 "isLabelOnly": true,
@@ -6285,6 +6307,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
             text="Adjust for Luck"
             truthVal={false}
           />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show Minimal Game Info for All Lineups"
+            truthVal={false}
+          />
           <DropdownDivider
             role="separator"
           />
@@ -6808,6 +6835,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                 "onClick": [Function],
                 "toggled": false,
                 "tooltip": "Adjust statistics for luck",
+              },
+              Object {
+                "label": "Games",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show per-lineup game info",
               },
               Object {
                 "isLabelOnly": true,
@@ -9889,6 +9922,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
             text="Adjust for Luck"
             truthVal={false}
           />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text="Show Minimal Game Info for All Lineups"
+            truthVal={false}
+          />
           <DropdownDivider
             role="separator"
           />
@@ -10412,6 +10450,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                 "onClick": [Function],
                 "toggled": false,
                 "tooltip": "Adjust statistics for luck",
+              },
+              Object {
+                "label": "Games",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show per-lineup game info",
               },
               Object {
                 "isLabelOnly": true,

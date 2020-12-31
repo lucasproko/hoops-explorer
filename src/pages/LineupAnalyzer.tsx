@@ -89,7 +89,7 @@ const LineupAnalyzerPage: NextPage<{}> = () => {
     if (!_.isEqual(params, lineupFilterParamsRef.current)) { //(to avoid recursion)
 
       // Currently: game info requires an extra possibly expensive query component so we make it on demand only
-      if (params.showGameInfo != lineupFilterParamsRef.current.showGameInfo) {
+      if (params.showGameInfo != lineupFilterParamsRef.current?.showGameInfo) {
         setShouldForceReload(t => t + 1);
       }
       const href = getRootUrl(params);

@@ -34,6 +34,30 @@ export class LineupUtils {
     return teamInfo;
   }
 
+  /** Parses the terms/histogram aggregation giving a bit of info about each lineup's game */
+  static getGameInfo(gameInfo: Record<string, any>, mutableOpponents?: Record<string, any>): Array<Record<string, any>> {
+    return _.sortBy((gameInfo?.buckets || []).flatMap((bb: any) => {
+      const opponent = _.drop(bb?.key || "unknown", 2);
+      return (bb?.game_info?.buckets || []).map((b: any) => {
+        const opponent = bb?.key || "?:Unknown";
+        const date = (b?.key_as_string || "????-??-??").substring(0, 10);
+        if (mutableOpponents) mutableOpponents[`${date} ${opponent}`] = {
+          opponent: opponent,
+          date: date,
+          num_off_poss: 0, num_def_poss: 0, num_pts_for: 0, num_pts_against: 0
+        };
+        return {
+          opponent: opponent,
+          date: date,
+          num_off_poss: b?.num_off_poss?.value || 0,
+          num_def_poss: b?.num_def_poss?.value || 0,
+          num_pts_for: b?.num_pts_for?.value || 0,
+          num_pts_against: b?.num_pts_against?.value || 0,
+        }
+      });
+    }), [ "date" ]);
+  }
+
   /** Builds on/off info out of lineups */
   static lineupToTeamReport(
     lineupReport: LineupStatsModel, incReplacement: boolean = false,

@@ -87,9 +87,7 @@ const LineupFilter: React.FunctionComponent<Props> = ({onStats, startingState, o
           sortBy: startSortBy,
           filter: startFilter
       }) : {
-        ...commonParams,
-        // Special case: this determines the query set sent to the server:
-        showGameInfo: startShowGameInfo,
+        ...commonParams
       };
     //(another ugly hack to be fixed - remove default optional fields)
     QueryUtils.cleanseQuery(primaryRequest);
@@ -105,6 +103,10 @@ const LineupFilter: React.FunctionComponent<Props> = ({onStats, startingState, o
       baseQuery: "", onQuery: "", offQuery: ""
     };
 
+    if (startShowGameInfo) { // mutate primary request to inject param only if non-default
+      // Special case: this determines the query set sent to the server:
+      primaryRequest.showGameInfo = true;
+    }
     return [ primaryRequest, [{
         context: ParamPrefixes.game as ParamPrefixesType, paramsObj: secondaryRequest
       }, {

@@ -30,6 +30,7 @@ import GenericTogglingMenu from './shared/GenericTogglingMenu';
 import GenericTogglingMenuItem from './shared/GenericTogglingMenuItem';
 import ToggleButtonGroup from "./shared/ToggleButtonGroup";
 import LuckAdjDiagView from './diags/LuckAdjDiagView';
+import GameInfoDiagView from './diags/GameInfoDiagView';
 import AsyncFormControl from './shared/AsyncFormControl';
 
 // Table building
@@ -188,6 +189,17 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
 
     const lineups = lineupStats?.lineups || [];
 
+    // Build a list of all the opponents:
+    const mutableOppoList = {} as Record<string, any>;
+    if (showGameInfo) {
+      lineups.forEach((l) => { LineupUtils.getGameInfo(l.game_info, mutableOppoList) });
+    }
+    const orderedMutableOppoList = {} as Record<string, any>;
+    _.chain(mutableOppoList).keys().sort().each((key) => {
+      orderedMutableOppoList[key] = mutableOppoList[key];
+    }).value();
+    // (ordered list of opponents built!)
+
     if (aggregateByPos == "") {
       const filteredLineups = LineupTableUtils.buildFilteredLineups(
         lineups,
@@ -222,8 +234,12 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
         return _.flatten([
           [ GenericTableOps.buildDataRow(stats, offPrefixFn, offCellMetaFn) ],
           [ GenericTableOps.buildDataRow(stats, defPrefixFn, defCellMetaFn) ],
-          (showGameInfo && (lineup.key != LineupTableUtils.totalLineupId)) ? [  GenericTableOps.buildTextRow(
-            <small>Game info here</small>
+          (showGameInfo && (lineup.key != LineupTableUtils.totalLineupId)) ? [ GenericTableOps.buildTextRow(
+            <GameInfoDiagView
+              oppoList={LineupUtils.getGameInfo(lineup.game_info)}
+              orderedOppoList={_.clone(orderedMutableOppoList)}
+              params={startingState}
+            />, "small"
           )] : [],
           (showLuckAdjDiags && lineup.off_luck_diags && sortedCodesAndIds) ? [ GenericTableOps.buildTextRow(
             <LuckAdjDiagView
