@@ -2,7 +2,7 @@
 import { initGA, logPageView } from '../utils/GoogleAnalytics';
 
 // React imports:
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Router, { useRouter } from 'next/router';
 import Link from 'next/link';
 
@@ -71,6 +71,8 @@ const LineupLeaderboardPage: NextPage<{}> = () => {
   const [ lineupLeaderboardParams, setLineupLeaderboardParams ] = useState(
     UrlRouting.removedSavedKeys(allParams) as LineupLeaderboardParams
   )
+  const lineupLeaderboardParamsRef = useRef<LineupLeaderboardParams>();
+  lineupLeaderboardParamsRef.current = lineupLeaderboardParams;
 
   const onLineupLeaderboardParamsChange = (rawParams: LineupLeaderboardParams) => {
     const params = _.omit(rawParams, _.flatten([ // omit all defaults
@@ -85,7 +87,7 @@ const LineupLeaderboardPage: NextPage<{}> = () => {
 
       (rawParams.showLineupLuckDiags == ParamDefaults.defaultLineupLboardLuckDiagMode) ? [ 'showLineupLuckDiags' ] : [],
     ]));
-    if (!_.isEqual(params, lineupLeaderboardParams)) { //(to avoid recursion)
+    if (!_.isEqual(params, lineupLeaderboardParamsRef.current)) { //(to avoid recursion)
       const href = getRootUrl(params);
       const as = href;
       //TODO: this doesn't work if it's the same page (#91)
@@ -151,7 +153,7 @@ const LineupLeaderboardPage: NextPage<{}> = () => {
   /** Only rebuild the table if the data changes */
   const table = React.useMemo(() => {
     return <LineupLeaderboardTable
-      startingState={lineupLeaderboardParams}
+      startingState={lineupLeaderboardParamsRef.current || {}}
       dataEvent={dataSubEvent}
       onChangeState={onLineupLeaderboardParamsChange}
     />

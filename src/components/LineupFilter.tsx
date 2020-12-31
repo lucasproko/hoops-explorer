@@ -27,9 +27,10 @@ type Props = {
   onStats: (lineupStats: LineupStatsModel, teamStats: TeamStatsModel, rosterStats: RosterStatsModel) => void;
   startingState: LineupFilterParams;
   onChangeState: (newParams: LineupFilterParams) => void;
+  forceReload1Up?: number;
 }
 
-const LineupFilter: React.FunctionComponent<Props> = ({onStats, startingState, onChangeState}) => {
+const LineupFilter: React.FunctionComponent<Props> = ({onStats, startingState, onChangeState, forceReload1Up}) => {
   //console.log("Loading LineupFilter " + JSON.stringify(startingState));
 
   // Data model
@@ -39,6 +40,7 @@ const LineupFilter: React.FunctionComponent<Props> = ({onStats, startingState, o
     luck: startLuck,
     lineupLuck: startLineupLuck, showLineupLuckDiags: startShowLineupLuckDiags,
     aggByPos: startAggByPos,
+    showGameInfo: startShowGameInfo,
     // Filters etc
     decorate: startDecorate,
     showTotal: startShowTotal,
@@ -101,6 +103,10 @@ const LineupFilter: React.FunctionComponent<Props> = ({onStats, startingState, o
       baseQuery: "", onQuery: "", offQuery: ""
     };
 
+    if (startShowGameInfo) { // mutate primary request to inject param only if non-default
+      // Special case: this determines the query set sent to the server:
+      primaryRequest.showGameInfo = true;
+    }
     return [ primaryRequest, [{
         context: ParamPrefixes.game as ParamPrefixesType, paramsObj: secondaryRequest
       }, {
@@ -146,6 +152,7 @@ const LineupFilter: React.FunctionComponent<Props> = ({onStats, startingState, o
       tablePrefix = {cacheKeyPrefix}
       buildParamsFromState={buildParamsFromState}
       childHandleResponse={handleResponse}
+      forceReload1Up={forceReload1Up}
     />
     ;
 }
