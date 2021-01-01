@@ -66,6 +66,7 @@ interface Props<PARAMS> {
   buildParamsFromState: (includeFilterParams: Boolean) => [ PARAMS, FilterRequestInfo[] ];
   childHandleResponse: (json: any, wasError: Boolean) => void;
   majorParamsDisabled?: boolean; //(not currently used but would allow you to block changing team/seeason/gender)
+  /** Note there needs to be an intermediate 1-up in the parent filter, see LineupFilter for an example */
   forceReload1Up?: number; //force submits a new set of parameters if true
 }
 
@@ -121,6 +122,7 @@ const CommonFilter: CommonFilterI = ({
   // Automatically update child state when any current param is changed:
   // (Note this doesn't trigger a change to the URL unless submit is pressed)
   useEffect(() => {
+    //(note: this is duplicated in the force reload logic)
     onChangeCommonState({
       team: team, year: year, gender: gender, minRank: minRankFilter, maxRank: maxRankFilter,
       baseQuery: baseQuery, filterGarbage: garbageTimeFiltered,
@@ -237,6 +239,11 @@ const CommonFilter: CommonFilterI = ({
       requestHandlingLogic(true);
     } else if (forceReload) { // simulate user pressing "submit button"
       setCurrForceload1up(forceReload1Up || 0);
+      onChangeCommonState({ // THIS TAKE PLACE AFTER THE SUBMIT SO WILL RESET EVERYTHING BACK AGAIN, UGH
+        team: team, year: year, gender: gender, minRank: minRankFilter, maxRank: maxRankFilter,
+        baseQuery: baseQuery, filterGarbage: garbageTimeFiltered,
+        queryFilters: _.join(queryFilters || [], ",")
+      });
       onSubmit();
     }
     if (typeof document !== `undefined`) {

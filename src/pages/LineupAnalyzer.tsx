@@ -20,7 +20,7 @@ import Col from 'react-bootstrap/Col';
 
 // App components:
 import LineupFilter from '../components/LineupFilter';
-import { ParamPrefixes, GameFilterParams, LineupFilterParams, ParamDefaults } from '../utils/FilterModels';
+import { getCommonFilterParams, ParamPrefixes, GameFilterParams, LineupFilterParams, ParamDefaults } from '../utils/FilterModels';
 import { HistoryManager } from '../utils/HistoryManager';
 import LineupStatsTable, { LineupStatsModel } from '../components/LineupStatsTable';
 import { RosterStatsModel } from '../components/RosterStatsTable';
@@ -90,7 +90,7 @@ const LineupAnalyzerPage: NextPage<{}> = () => {
 
       // Currently: game info requires an extra possibly expensive query component so we make it on demand only
       if (params.showGameInfo != lineupFilterParamsRef.current?.showGameInfo) {
-        setShouldForceReload(t => t + 1);
+        setShouldForceReload(t => t + 1); //(note this sets an intermediate param, NOT the one in CommonFilter)
       }
       const href = getRootUrl(params);
       const as = href;

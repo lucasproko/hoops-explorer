@@ -27,7 +27,7 @@ type Props = {
   onStats: (lineupStats: LineupStatsModel, teamStats: TeamStatsModel, rosterStats: RosterStatsModel) => void;
   startingState: LineupFilterParams;
   onChangeState: (newParams: LineupFilterParams) => void;
-  forceReload1Up?: number;
+  forceReload1Up: number;
 }
 
 const LineupFilter: React.FunctionComponent<Props> = ({onStats, startingState, onChangeState, forceReload1Up}) => {
@@ -53,6 +53,16 @@ const LineupFilter: React.FunctionComponent<Props> = ({onStats, startingState, o
 
   /** The state managed by the CommonFilter element */
   const [ commonParams, setCommonParams ] = useState(startingCommonFilterParams as CommonFilterParams);
+
+  /** Ugly pattern that is part of support for force reloading */
+  const [ internalForceReload1Up, setInternalForceReload1Up ] = useState(forceReload1Up);
+
+  useEffect(() => { // Whenever forceReload1Up is incremented, reset common params:
+    if (forceReload1Up != internalForceReload1Up) {
+      setCommonParams(startingCommonFilterParams as CommonFilterParams);
+      setInternalForceReload1Up(forceReload1Up);
+    }
+  }, [ forceReload1Up ]);
 
   // Lineup Filter - custom queries and filters:
 
@@ -152,7 +162,7 @@ const LineupFilter: React.FunctionComponent<Props> = ({onStats, startingState, o
       tablePrefix = {cacheKeyPrefix}
       buildParamsFromState={buildParamsFromState}
       childHandleResponse={handleResponse}
-      forceReload1Up={forceReload1Up}
+      forceReload1Up={internalForceReload1Up}
     />
     ;
 }
