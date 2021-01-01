@@ -36,10 +36,9 @@ export class LineupUtils {
 
   /** Parses the terms/histogram aggregation giving a bit of info about each lineup's game */
   static getGameInfo(
-    gameInfo: Record<string, any>, mutableOpponents?: Record<string, any>, maxOffPoss?: number
-  ): [ Array<Record<string, any>>, number ] {
-    var tmpVarMaxOffPoss = maxOffPoss || 0;
-    return [ _.sortBy((gameInfo?.buckets || []).flatMap((bb: any) => {
+    gameInfo: Record<string, any>, mutableOpponents?: Record<string, any>
+  ): Array<Record<string, any>> {
+    return _.sortBy((gameInfo?.buckets || []).flatMap((bb: any) => {
       const opponent = _.drop(bb?.key || "unknown", 2);
       return (bb?.game_info?.buckets || []).map((b: any) => {
         const opponent = bb?.key || "?:Unknown";
@@ -49,18 +48,16 @@ export class LineupUtils {
           date: date,
           num_off_poss: 0, num_def_poss: 0, num_pts_for: 0, num_pts_against: 0
         };
-        const offPoss = b?.num_off_poss?.value;
-        if (offPoss > tmpVarMaxOffPoss) tmpVarMaxOffPoss = offPoss;
         return {
           opponent: opponent,
           date: date,
-          num_off_poss: offPoss || 0,
+          num_off_poss: b?.num_off_poss?.value || 0,
           num_def_poss: b?.num_def_poss?.value || 0,
           num_pts_for: b?.num_pts_for?.value || 0,
           num_pts_against: b?.num_pts_against?.value || 0,
         };
       });
-    }), [ "date" ]), tmpVarMaxOffPoss ];
+    }), [ "date" ]);
   }
 
   /** Builds on/off info out of lineups */
@@ -187,7 +184,9 @@ export class LineupUtils {
   private static readonly ignoreFieldSet =  //or anything that starts with total_
     { key: true, players_array: true, doc_count: true,
       //(replacement on/off vals:)
-      offLineups: true, offLineupKeys: true, onLineup: true
+      offLineups: true, offLineupKeys: true, onLineup: true,
+      // Game info, handled seoarately:
+      game_info: true
      };
   private static readonly sumFieldSet = { off_poss: true, def_poss: true, duration_mins: true };
 
@@ -363,6 +362,30 @@ export class LineupUtils {
             mutableAcc[key].old_value += oldVal*weights.fga_totals.def;
           }
         }
+      } else if (key == "game_info") {
+        const gameInfo = keyVal[1];
+        const zeroOppoInfo = {
+          num_pts_for: 0,
+          num_pts_against: 0,
+          num_off_poss: 0,
+          num_def_poss: 0,
+        };
+        const accGameInfo = mutableAcc.game_info || {};
+        mutableAcc.game_info = accGameInfo;
+
+        const newGameInfo = LineupUtils.getGameInfo(gameInfo || []);
+        newGameInfo.forEach(oppoInfo => {
+          const key = `${oppoInfo.date} ${oppoInfo.opponent}`;
+          const currOppoInfo = accGameInfo[key] || {
+            opponent: oppoInfo.opponent,
+            date: oppoInfo.date,
+            ...zeroOppoInfo
+          };
+          _.keys(currOppoInfo).forEach(key => {
+            if (_.startsWith(key, "num_")) currOppoInfo[key] += (oppoInfo[key] || 0)
+          });
+          accGameInfo[key] = currOppoInfo;
+        });
       }
     }).value();
   }
@@ -438,6 +461,8 @@ export class LineupUtils {
             mutableAcc[key].old_value = 1.0*oldVal/weights.fga_totals.def;
           }
         }
+      } else if (key == "game_info") { // Switch from an associative array to a real one
+        mutableAcc[key] = _.values((mutableAcc[key] || {}) as Record<string, any>);
       }
     }).value();
   }

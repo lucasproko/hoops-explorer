@@ -197,11 +197,9 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
 
     // Build a list of all the opponents:
     const mutableOppoList = {} as Record<string, any>;
-    var varGlobalMaxPoss = 0;
-    if (showGameInfo) {
+    if (showGameInfo) { // (calculate this before doing the table filter)
       lineups.forEach((l) => {
-        const [ dummy, maxPoss ] = LineupUtils.getGameInfo(l.game_info, mutableOppoList, varGlobalMaxPoss);
-        varGlobalMaxPoss = maxPoss;
+        LineupUtils.getGameInfo(l.game_info, mutableOppoList);
       });
     }
     const orderedMutableOppoList = {} as Record<string, any>;
@@ -216,6 +214,11 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
         filterStr, sortBy, minPoss, maxTableSize,
         teamSeasonLookup, positionFromPlayerKey
       );
+      const globalMaxPoss = _.chain(filteredLineups)
+        .flatMap(l => LineupUtils.getGameInfo(l.game_info || {}))
+        .map(oppo => oppo?.num_off_poss || 0)
+        .reduce((acc, offPoss) => offPoss > acc ? offPoss : acc)
+        .value();
 
       const tableData = LineupTableUtils.buildEnrichedLineups(
         filteredLineups,
@@ -246,10 +249,10 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
           [ GenericTableOps.buildDataRow(stats, defPrefixFn, defCellMetaFn) ],
           (showGameInfo && (lineup.key != LineupTableUtils.totalLineupId)) ? [ GenericTableOps.buildTextRow(
             <GameInfoDiagView
-              oppoList={LineupUtils.getGameInfo(lineup.game_info)[0]}
+              oppoList={LineupUtils.getGameInfo(lineup.game_info)}
               orderedOppoList={_.clone(orderedMutableOppoList)}
               params={startingState}
-              maxOffPoss={varGlobalMaxPoss}
+              maxOffPoss={globalMaxPoss}
             />, "small"
           )] : [],
           (showLuckAdjDiags && lineup.off_luck_diags && sortedCodesAndIds) ? [ GenericTableOps.buildTextRow(
@@ -334,11 +337,17 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
 
       const maybeTotal = enrichedLineups?.[LineupTableUtils.totalLineupId];
       const otherLineups = _.chain(enrichedLineups).omit([ LineupTableUtils.totalLineupId ]).values().value();
-      const refilteredLineups = (maybeTotal ? [ maybeTotal as any ] : []).concat(LineupTableUtils.buildFilteredLineups(
+      const refilteredLineupsNotTotal = LineupTableUtils.buildFilteredLineups(
         otherLineups,
         "", sortBy, minPoss, maxTableSize,
         teamSeasonLookup, positionFromPlayerKey
-      ));
+      );
+      const refilteredLineups = (maybeTotal ? [ maybeTotal as any ] : []).concat(refilteredLineupsNotTotal);
+      const comboGlobalMaxPoss = _.chain(refilteredLineupsNotTotal)
+        .flatMap(l => l.game_info || [])
+        .map(oppo => oppo?.num_off_poss || 0)
+        .reduce((acc, offPoss) => offPoss > acc ? offPoss : acc)
+        .value();
 
       const tableData = refilteredLineups.flatMap(stats => {
         // Re-enrich if not total
@@ -349,6 +358,14 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
         return _.flatten([
           [ GenericTableOps.buildDataRow(stats, offPrefixFn, offCellMetaFn) ],
           [ GenericTableOps.buildDataRow(stats, defPrefixFn, defCellMetaFn) ],
+          (showGameInfo && (stats.posKey != LineupTableUtils.totalLineupId)) ? [ GenericTableOps.buildTextRow(
+            <GameInfoDiagView
+              oppoList={stats.game_info || []}
+              orderedOppoList={_.clone(orderedMutableOppoList)}
+              params={startingState}
+              maxOffPoss={comboGlobalMaxPoss}
+            />, "small"
+          )] : [],
           [ GenericTableOps.buildRowSeparator() ]
         ]);
       });
