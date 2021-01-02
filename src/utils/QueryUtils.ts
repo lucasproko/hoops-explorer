@@ -94,6 +94,7 @@ export class QueryUtils {
     if (mutableObj.queryFilters == ParamDefaults.defaultQueryFilters) { //default==[] => remove altogether
       delete mutableObj.queryFilters;
     }
+    return mutableObj; //(for chaining)
   }
 
   /** Returns the advanced query, with NOT support, or undefined if not an advanced query */

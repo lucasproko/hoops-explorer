@@ -65,10 +65,11 @@ type Props = {
     teamStats: TeamStatsModel,
     rosterStats: RosterStatsModel
   },
-  onChangeState: (newParams: GameFilterParams) => void
+  onChangeState: (newParams: GameFilterParams) => void,
+  testMode?: boolean //(if set, the initial processing occurs synchronously)
 }
 
-const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataEvent, onChangeState}) => {
+const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataEvent, onChangeState, testMode}) => {
   const { teamStats, rosterStats } = dataEvent;
 
   const server = (typeof window === `undefined`) ? //(ensures SSR code still compiles)

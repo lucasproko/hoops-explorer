@@ -46,6 +46,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
     onOffLuck: startOnOffLuck,
     showOnOffLuckDiags: startShowOnOffLuckDiags,
     showPlayerOnOffLuckDiags: startShowPlayerOnOffLuckDiags,
+    calcRapm: startCalcRapm,
     //(these fields are for the individual view)
     filter: startFilter, sortBy: startSortBy,
     showBase: startShowBase, showExpanded: startShowExpanded,
@@ -68,6 +69,13 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
     if (forceReload1Up != internalForceReload1Up) {
       setCommonParams(startingCommonFilterParams as CommonFilterParams);
       setInternalForceReload1Up(forceReload1Up);
+      // Actually have to reset these two vs just their underlying value
+      // (could build that intermediate pair,. but we'll stick with this limitation for now)
+      setOnQuery(startOnQuery);
+      setOffQuery(startOffQuery);
+      //(leave toggleAutoOffQuery since it seems harmless, and weird stuff happened when I tried to set it
+      // which I don't have time to investigate):
+      //toggleAutoOffQuery(startAutoOffQuery);
     }
   }, [ forceReload1Up ]);
 
@@ -86,7 +94,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
 
   /** Bridge between the callback in CommonFilter and state management */
   function updateCommonParams(params: CommonFilterParams) {
-    setCommonParams(params)
+    setCommonParams(params);
   }
 
   /** Builds a game filter from the various state elements, and also any secondary filters
@@ -106,6 +114,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
           onOffLuck: startOnOffLuck,
           showOnOffLuckDiags: startShowOnOffLuckDiags,
           showPlayerOnOffLuckDiags: startShowPlayerOnOffLuckDiags,
+          calcRapm: startCalcRapm,
           // Individual stats:
           autoOffQuery: autoOffQuery,
           filter: startFilter, sortBy: startSortBy,
@@ -127,7 +136,28 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
       minRank: ParamDefaults.defaultMinRank, maxRank: ParamDefaults.defaultMaxRank,
       baseQuery: "", onQuery: "", offQuery: ""
     };
+    const [ baseQuery, maybeAdvBaseQuery ] = startCalcRapm ?
+      QueryUtils.extractAdvancedQuery(commonParams.baseQuery) : "";
     //TODO: also if the main query minus/on-off matches can't we just re-use that?!
+
+    // RAPM calculations:
+    const getLineupQuery = (onOrOffQuery: string) => {
+      const [ onOrOff, maybeAdvOnOrOff ] = QueryUtils.extractAdvancedQuery(onOrOffQuery);
+      const baseToUse = maybeAdvBaseQuery || baseQuery || "";
+      const onOffToUse = maybeAdvOnOrOff || onOrOff || "";
+      return (baseToUse != "") ? `(${onOffToUse}) AND (${baseToUse})` : onOffToUse;
+    };
+    const lineupRequests = startCalcRapm ? [ QueryUtils.cleanseQuery({
+      ...commonParams
+    }) ].concat((onQuery != "") ? [ QueryUtils.cleanseQuery({
+        ...commonParams,
+        baseQuery: getLineupQuery(onQuery)
+      }) ] : []
+    ).concat((offQuery != "") ? [ QueryUtils.cleanseQuery({
+        ...commonParams,
+        baseQuery: getLineupQuery(offQuery)
+      }) ] : []
+    ) : [];
 
     return [ primaryRequest, [{
         context: ParamPrefixes.roster as ParamPrefixesType, paramsObj: primaryRequest
@@ -135,7 +165,9 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
         context: ParamPrefixes.player as ParamPrefixesType, paramsObj: primaryRequest
       }].concat(_.isEqual(entireSeasonRequest, primaryRequest) ? [] :[{ //(don't make a spurious call)
         context: ParamPrefixes.player as ParamPrefixesType, paramsObj: entireSeasonRequest
-      }])
+      }]).concat(lineupRequests.map(req => {
+        return { context: ParamPrefixes.lineup as ParamPrefixesType, paramsObj: req };
+      }))
     ];
   }
 
