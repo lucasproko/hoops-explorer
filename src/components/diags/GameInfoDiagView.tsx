@@ -11,11 +11,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { CbbColors } from "../../utils/CbbColors"
 // import Tooltip from 'react-bootstrap/Tooltip';
 // import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 
 //@ts-ignore
-import { ResponsiveContainer, ComposedChart, Bar, Line, CartesianGrid, XAxis, YAxis, Tooltip, Legend, ReferenceLine, Label } from 'recharts';
+import { ResponsiveContainer, ComposedChart, Area, Bar, Line, CartesianGrid, XAxis, YAxis, Tooltip, Legend, ReferenceLine, Label } from 'recharts';
 
 // Utils
 
@@ -39,13 +40,16 @@ const CustomTooltip: React.FunctionComponent<CustomTooltipProps> = ({ active, pa
           <span>[<b>{data.num_def_poss}</b>] def possessions</span><br/>
           <span>[<b>{data.num_pts_for}</b>] pts scored</span><br/>
           <span>[<b>{data.num_pts_against}</b>] pts conceded</span><br/>
-          <span>+- [<b>{data.plusMinus}</b>]</span><br/>
+          {(data.num_off_poss > 0 && data.num_def_poss > 0) ? <span>+- [<b>{data.plusMinus}</b>]</span> : null}
         </p>
       </div>
     );
   }
   return null;
 };
+
+/** Was getting into weirdness with only 1 lineup defined, must be something to do with SVG + ids */
+var oneUp_ = 0;
 
 type Props = {
   oppoList: Array<any>,
@@ -54,22 +58,24 @@ type Props = {
   maxOffPoss: number
 };
 const GameInfoDiagView: React.FunctionComponent<Props> = ({oppoList, orderedOppoList, params, maxOffPoss}) => {
+  const currId = oneUp_;
+  oneUp_++;
 
   const [ zoomIn, setZoomIn ] = useState(false as boolean);
 
   // Merge with the ordered oppo list
-  oppoList.forEach((oppo) => {
+  oppoList.forEach((oppo, i) => {
     const plusMinus = (oppo.num_pts_for || 0) - (oppo.num_pts_against || 0);
     const marginalEff = (oppo.num_pts_for || 0)/(oppo.num_off_poss || 1) - (oppo.num_pts_against || 0)/(oppo.num_def_poss || 1);
     const maybeMin = (t: number) => zoomIn ? t : Math.min(t, 100);
     orderedOppoList[`${oppo.date} ${oppo.opponent}`] = {
       ...oppo,
       plusMinus: plusMinus,
-      plusOnly: marginalEff >= 0 ? maybeMin(100*marginalEff) : undefined,
-      minusOnly: marginalEff < 0 ? maybeMin(100*Math.abs(marginalEff)) : undefined,
+      marginalEff: 100*marginalEff,
     };
   });
-  const gameDates = _.values(orderedOppoList);
+  const gameDates = _.values(orderedOppoList).map((o, i) => { return { max: 100, ...o } });
+  const numGames = gameDates.length;
 
   return <Container>
     <Row>
@@ -84,12 +90,11 @@ const GameInfoDiagView: React.FunctionComponent<Props> = ({oppoList, orderedOppo
             }}
           >
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="opponent" />
+            <XAxis dataKey="id" />
             <YAxis yAxisId="left" domain={[0, zoomIn ? 'auto' : (maxOffPoss + 1)]}>
               <Label angle={-90} value='# possessions' position='insideLeft' style={{textAnchor: 'middle'}} />
             </YAxis>
-            <YAxis yAxisId="right" domain={[0, zoomIn ? 'auto' : 100]} orientation="right" tickFormatter={t => (!zoomIn && (t == 100)) ? "100+" : t.toFixed(0)}>
-              <Label angle={-90} value='margin/100' position='insideRight' style={{textAnchor: 'middle'}} />
+            <YAxis yAxisId="right" domain={[0, 100]} orientation="right" tickFormatter={t => ""}>
             </YAxis>
             <Tooltip
               content={(<CustomTooltip />)}
@@ -98,24 +103,29 @@ const GameInfoDiagView: React.FunctionComponent<Props> = ({oppoList, orderedOppo
               allowEscapeViewBox={{x: true, y: true}}
               itemSorter={(item: any) => <span>item.value</span>}
             />
-            <Bar
+            <defs>
+              <linearGradient id={`splitColor${currId}`} x1="0" y1="0" x2="1" y2="0">
+                {gameDates.flatMap((oppo, i) => {
+                  const color = CbbColors.off_diff50_redGreen(oppo.marginalEff);
+                  return [
+                    <stop offset={(i)/(numGames - 1)} stopColor={color} stopOpacity={1} />,
+                    <stop offset={(i + 0.5)/(numGames - 1)} stopColor={color} stopOpacity={1} />,
+                  ];
+                })}
+              </linearGradient>
+            </defs>
+            <Area
               yAxisId="right"
-              barSize={5}
               isAnimationActive={false}
-              dataKey="plusOnly"
-              fill="green" fillOpacity={0.5}/>
-            <Bar
-              yAxisId="right"
-              barSize={5}
-              isAnimationActive={false}
-              dataKey="minusOnly"
-              fill="red" fillOpacity={0.5}/>
+              type="monotone" dataKey="max" stroke="#000" strokeWidth={0} fill={`url(#splitColor${currId})`}
+              fillOpacity={0.15}
+            />
             <Line
               yAxisId="left"
               type="monotone"
               isAnimationActive={false}
               dataKey="num_off_poss"
-              stroke="#8884d8" strokeWidth={2}/>
+              stroke="#000" strokeWidth={1}/>
           </ComposedChart>
         </ResponsiveContainer>
         <div style={{display: 'flex', justifyContent: 'center'}}>
