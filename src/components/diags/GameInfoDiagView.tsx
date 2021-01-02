@@ -71,7 +71,7 @@ const GameInfoDiagView: React.FunctionComponent<Props> = ({oppoList, orderedOppo
     orderedOppoList[`${oppo.date} ${oppo.opponent}`] = {
       ...oppo,
       plusMinus: plusMinus,
-      marginalEff: 100*marginalEff,
+      marginalEff: marginalEff,
     };
   });
   const gameDates = _.values(orderedOppoList).map((o, i) => { return { max: 100, ...o } });
@@ -90,11 +90,11 @@ const GameInfoDiagView: React.FunctionComponent<Props> = ({oppoList, orderedOppo
             }}
           >
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="id" />
+            <XAxis dataKey="opponent" />
             <YAxis yAxisId="left" domain={[0, zoomIn ? 'auto' : (maxOffPoss + 1)]}>
               <Label angle={-90} value='# possessions' position='insideLeft' style={{textAnchor: 'middle'}} />
             </YAxis>
-            <YAxis yAxisId="right" domain={[0, 100]} orientation="right" tickFormatter={t => ""}>
+            <YAxis yAxisId="right" domain={[0, 100]} orientation="right" tickFormatter={(t: any) => ""}>
             </YAxis>
             <Tooltip
               content={(<CustomTooltip />)}
@@ -106,10 +106,9 @@ const GameInfoDiagView: React.FunctionComponent<Props> = ({oppoList, orderedOppo
             <defs>
               <linearGradient id={`splitColor${currId}`} x1="0" y1="0" x2="1" y2="0">
                 {gameDates.flatMap((oppo, i) => {
-                  const color = CbbColors.off_diff50_redGreen(oppo.marginalEff);
+                  const color = CbbColors.off_diff150_redGreen(oppo.marginalEff);
                   return [
                     <stop offset={(i)/(numGames - 1)} stopColor={color} stopOpacity={1} />,
-                    <stop offset={(i + 0.5)/(numGames - 1)} stopColor={color} stopOpacity={1} />,
                   ];
                 })}
               </linearGradient>
@@ -117,8 +116,9 @@ const GameInfoDiagView: React.FunctionComponent<Props> = ({oppoList, orderedOppo
             <Area
               yAxisId="right"
               isAnimationActive={false}
-              type="monotone" dataKey="max" stroke="#000" strokeWidth={0} fill={`url(#splitColor${currId})`}
-              fillOpacity={0.15}
+              type="monotone" dataKey="max"
+              stroke="#000" strokeWidth={0} dot={false} activeDot={false}
+              fill={`url(#splitColor${currId})`} fillOpacity={0.25}
             />
             <Line
               yAxisId="left"

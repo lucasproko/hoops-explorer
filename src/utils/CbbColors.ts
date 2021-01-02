@@ -104,9 +104,9 @@ export class CbbColors {
   public static readonly diff10_redGreen: CbbColorTuple = [ CbbColors.off_diff10_redGreen, CbbColors.def_diff10_redGreen ];
   public static readonly diff10_greenRed: CbbColorTuple = [ CbbColors.def_diff10_redGreen, CbbColors.off_diff10_redGreen ];
   // bigger diff
-  private static readonly diff50DomainRedGreen = [ -0.50, 0, 0.50 ];
-  public static readonly off_diff50_redGreen = (val: number) => CbbColors.redToGreen.domain(CbbColors.diff50DomainRedGreen)(val).toString();
-  public static readonly def_diff50_redGreen = (val: number) => CbbColors.greenToRed.domain(CbbColors.diff50DomainRedGreen)(val).toString();
+  private static readonly diff150DomainRedGreen = [ -1.5, 0, 1.5 ];
+  public static readonly off_diff150_redGreen = (val: number) => CbbColors.redToGreen.domain(CbbColors.diff150DomainRedGreen)(val).toString();
+  public static readonly def_diff150_redGreen = (val: number) => CbbColors.greenToRed.domain(CbbColors.diff150DomainRedGreen)(val).toString();
 
   // Around 0, pp100 (red/green):
   private static readonly diff10Domainp100RedGreen = [ -10, 0, 10 ];
