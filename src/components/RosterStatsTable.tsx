@@ -173,6 +173,11 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
     ParamDefaults.defaultPlayerShowPlayTypes : gameFilterParams.showPlayerPlayTypes
   );
 
+  /** (placeholder for positional info)*/
+  const [ calcRapm, setCalcRapm ] = useState(_.isNil(gameFilterParams.calcRapm) ?
+    ParamDefaults.defaultPlayerCalcRapm : gameFilterParams.calcRapm
+  );
+
   /** Whether we are showing the luck config modal */
   const [ showLuckConfig, setShowLuckConfig ] = useState(false);
 
@@ -202,6 +207,8 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
       manual: manualOverrides,
       // Luck:
       luck: luckConfig,
+      calcRapm: calcRapm,
+      factorMins: factorMins,
       onOffLuck: adjustForLuck,
       showPlayerOnOffLuckDiags: showLuckAdjDiags,
       showPlayerManual: showManualOverrides
@@ -209,13 +216,13 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
     onChangeState(newState);
 
   }, [ sortBy, filterStr, showDiagMode, alwaysShowBaseline, expandedView, possAsPct, showPositionDiags,
-      showPlayTypes, luckConfig, adjustForLuck, showLuckAdjDiags, showManualOverrides, manualOverrides
+      showPlayTypes, luckConfig, adjustForLuck, showLuckAdjDiags, showManualOverrides, manualOverrides, calcRapm, factorMins
     ]);
 
   // 2] Data Model
 
   const allTableFields = CommonTableDefs.onOffIndividualTableAllFields(expandedView);
-  const tableFields = CommonTableDefs.onOffIndividualTable(expandedView, possAsPct, factorMins, false);
+  const tableFields = CommonTableDefs.onOffIndividualTable(expandedView, possAsPct, factorMins, calcRapm);
 
   // 3] Utils
 
@@ -742,6 +749,11 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
               onSelect={() => toggleFactorMins()}
             />
             <GenericTogglingMenuItem
+              text={<span>Calculate RAPM metric (slow)</span>}
+              truthVal={calcRapm}
+              onSelect={() => setCalcRapm(!calcRapm)}
+            />
+            <GenericTogglingMenuItem
               text="Adjust for Luck"
               truthVal={adjustForLuck}
               onSelect={() => setAdjustForLuck(!adjustForLuck)}
@@ -803,6 +815,12 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
               tooltip: "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
               toggled: factorMins,
               onClick: () => toggleFactorMins()
+            },
+            {
+              label: "RAPM",
+              tooltip: "Whether to calculate the RAPM Off/Def metrics for each player (can be slow)')",
+              toggled: calcRapm,
+              onClick: () => setCalcRapm(!calcRapm)
             },
             {
               label: "Luck",

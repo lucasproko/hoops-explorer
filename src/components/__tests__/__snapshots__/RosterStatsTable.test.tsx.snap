@@ -4653,6 +4653,15 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
             truthVal={false}
           />
           <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <span>
+                Calculate RAPM metric (slow)
+              </span>
+            }
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
             helpLink="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
             onSelect={[Function]}
             text="Adjust for Luck"
@@ -4720,6 +4729,12 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                 "onClick": [Function],
                 "toggled": false,
                 "tooltip": "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
+              },
+              Object {
+                "label": "RAPM",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Whether to calculate the RAPM Off/Def metrics for each player (can be slow)')",
               },
               Object {
                 "label": "Luck",
@@ -7890,6 +7905,15 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
             truthVal={false}
           />
           <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <span>
+                Calculate RAPM metric (slow)
+              </span>
+            }
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
             helpLink="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
             onSelect={[Function]}
             text="Adjust for Luck"
@@ -7957,6 +7981,12 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
                 "onClick": [Function],
                 "toggled": false,
                 "tooltip": "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
+              },
+              Object {
+                "label": "RAPM",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Whether to calculate the RAPM Off/Def metrics for each player (can be slow)')",
               },
               Object {
                 "label": "Luck",
@@ -10420,6 +10450,15 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
             truthVal={false}
           />
           <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <span>
+                Calculate RAPM metric (slow)
+              </span>
+            }
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
             helpLink="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
             onSelect={[Function]}
             text="Adjust for Luck"
@@ -10487,6 +10526,12 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                 "onClick": [Function],
                 "toggled": false,
                 "tooltip": "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
+              },
+              Object {
+                "label": "RAPM",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Whether to calculate the RAPM Off/Def metrics for each player (can be slow)')",
               },
               Object {
                 "label": "Luck",
@@ -15396,6 +15441,15 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
             truthVal={false}
           />
           <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <span>
+                Calculate RAPM metric (slow)
+              </span>
+            }
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
             helpLink="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
             onSelect={[Function]}
             text="Adjust for Luck"
@@ -15463,6 +15517,12 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                 "onClick": [Function],
                 "toggled": false,
                 "tooltip": "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
+              },
+              Object {
+                "label": "RAPM",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Whether to calculate the RAPM Off/Def metrics for each player (can be slow)')",
               },
               Object {
                 "label": "Luck",
@@ -22313,6 +22373,15 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
             truthVal={false}
           />
           <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <span>
+                Calculate RAPM metric (slow)
+              </span>
+            }
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
             helpLink="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
             onSelect={[Function]}
             text="Adjust for Luck"
@@ -22380,6 +22449,12 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                 "onClick": [Function],
                 "toggled": false,
                 "tooltip": "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
+              },
+              Object {
+                "label": "RAPM",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Whether to calculate the RAPM Off/Def metrics for each player (can be slow)')",
               },
               Object {
                 "label": "Luck",
@@ -29993,6 +30068,15 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
             truthVal={false}
           />
           <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <span>
+                Calculate RAPM metric (slow)
+              </span>
+            }
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
             helpLink="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
             onSelect={[Function]}
             text="Adjust for Luck"
@@ -30060,6 +30144,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                 "onClick": [Function],
                 "toggled": false,
                 "tooltip": "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
+              },
+              Object {
+                "label": "RAPM",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Whether to calculate the RAPM Off/Def metrics for each player (can be slow)')",
               },
               Object {
                 "label": "Luck",
@@ -40357,6 +40447,15 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
             truthVal={false}
           />
           <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <span>
+                Calculate RAPM metric (slow)
+              </span>
+            }
+            truthVal={false}
+          />
+          <GenericTogglingMenuItem
             helpLink="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
             onSelect={[Function]}
             text="Adjust for Luck"
@@ -40424,6 +40523,12 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                 "onClick": [Function],
                 "toggled": false,
                 "tooltip": "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
+              },
+              Object {
+                "label": "RAPM",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Whether to calculate the RAPM Off/Def metrics for each player (can be slow)')",
               },
               Object {
                 "label": "Luck",

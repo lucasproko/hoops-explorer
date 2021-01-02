@@ -38,6 +38,7 @@ exports[`OnOffAnalyzerPage OnOffAnalyzerPage - should create snapshot 1`] = `
       title="Team and Game Filter"
     >
       <GameFilter
+        forceReload1Up={0}
         onChangeState={[Function]}
         onStats={[Function]}
         startingState={Object {}}

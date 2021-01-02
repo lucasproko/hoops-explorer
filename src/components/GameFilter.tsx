@@ -28,9 +28,10 @@ type Props = {
   onStats: (teamStats: TeamStatsModel, rosterCompareStats: RosterCompareModel, rosterStats: RosterStatsModel) => void;
   startingState: GameFilterParams;
   onChangeState: (newParams: GameFilterParams) => void;
+  forceReload1Up: number;
 }
 
-const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onChangeState}) => {
+const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onChangeState, forceReload1Up}) => {
 
   // Data model
 
@@ -59,6 +60,16 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
 
   /** The state managed by the CommonFilter element */
   const [ commonParams, setCommonParams ] = useState(startingCommonFilterParams as CommonFilterParams);
+
+  /** Ugly pattern that is part of support for force reloading */
+  const [ internalForceReload1Up, setInternalForceReload1Up ] = useState(forceReload1Up);
+
+  useEffect(() => { // Whenever forceReload1Up is incremented, reset common params:
+    if (forceReload1Up != internalForceReload1Up) {
+      setCommonParams(startingCommonFilterParams as CommonFilterParams);
+      setInternalForceReload1Up(forceReload1Up);
+    }
+  }, [ forceReload1Up ]);
 
   // Game Filter - custom queries and filters:
 
@@ -200,6 +211,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
       tablePrefix = {cacheKeyPrefix}
       buildParamsFromState={buildParamsFromState}
       childHandleResponse={handleResponse}
+      forceReload1Up={internalForceReload1Up}
     ><GlobalKeypressManager.Consumer>{ globalKeypressHandler => <div>
       <Form.Group as={Row}>
         <Form.Label column sm="2">{maybeOn} Query</Form.Label>
