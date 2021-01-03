@@ -122,12 +122,12 @@ export class CommonTableDefs {
       CbbColors.offOnlyPicker(...CbbColors.usg), GenericTableOps.percentOrHtmlFormatter), //TODO needs to be steeper
     "adj_rtg": GenericTableOps.addPtsCol("Adj+ Rtg", "Offensive/Defensive rating vs average in selected lineups adjusted for SoS and (for ORtg) the player's usage", CbbColors.picker(...CbbColors.diff10_p100_redGreen)),
     "adj_prod": GenericTableOps.addPtsCol("Adj+ Prod", "Offensive/Defensive production (ratings * mins%) vs average in selected lineups adjusted for SoS and (for ORtg) the player's usage", CbbColors.picker(...CbbColors.diff10_p100_redGreen)),
-    "adj_rapm": GenericTableOps.addPtsCol(
+    "adj_rapm": GenericTableOps.addDataCol(
       "RAPM", "Adjusted Plus-Minus vs D1 average" + (expandedView ? "" : " (Off-Def margin)"),
-      CbbColors.picker(...CbbColors.diff10_p100_redGreen)),
-    "adj_rapm_prod": GenericTableOps.addPtsCol(
-      "RAPM Prod", "Adjusted Plus-Minus production (pts/100 * mins%) vs D1 average" + (expandedView ? "" : " (Off-Def margin)"), 
-      CbbColors.picker(...CbbColors.diff10_p100_redGreen)),
+      CbbColors.picker(...CbbColors.diff10_p100_redGreen), GenericTableOps.pointsOrHtmlFormatter),
+    "adj_rapm_prod": GenericTableOps.addDataCol(
+      "RAPM Prod", "Adjusted Plus-Minus production (pts/100 * mins%) vs D1 average" + (expandedView ? "" : " (Off-Def margin)"),
+      CbbColors.picker(...CbbColors.diff10_p100_redGreen), GenericTableOps.pointsOrHtmlFormatter),
     "sep1": GenericTableOps.addColSeparator(),
     "efg": GenericTableOps.addPctCol("eFG%", "Effective field goal% (3 pointers count 1.5x as much) in selected lineups", CbbColors.picker(...CbbColors.eFG)),
     "assist": GenericTableOps.addPctCol("A%", "Assist % for player in selected lineups", CbbColors.picker(...CbbColors.p_ast)),

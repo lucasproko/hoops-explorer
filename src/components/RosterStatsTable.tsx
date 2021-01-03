@@ -32,6 +32,7 @@ import PositionalDiagView from "./diags/PositionalDiagView";
 import GenericTogglingMenu from "./shared/GenericTogglingMenu";
 import GenericTogglingMenuItem from "./shared/GenericTogglingMenuItem";
 import { TeamStatsModel } from '../components/TeamStatsTable';
+import { LineupStatsModel } from '../components/LineupStatsTable';
 import LuckAdjDiagView from "./diags/LuckAdjDiagView"
 import LuckConfigModal from "./shared/LuckConfigModal";
 import ManualOverrideModal from "./shared/ManualOverrideModal";
@@ -49,6 +50,9 @@ import { LuckUtils } from "../utils/stats/LuckUtils";
 import { OverrideUtils } from "../utils/stats/OverrideUtils";
 import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
 import { TableDisplayUtils } from "../utils/tables/TableDisplayUtils";
+import { QueryUtils } from "../utils/QueryUtils";
+import { RapmUtils } from "../utils/stats/RapmUtils";
+import { LineupUtils } from "../utils/stats/LineupUtils";
 
 export type RosterStatsModel = {
   on?: Array<any>,
@@ -63,7 +67,8 @@ type Props = {
   /** Ensures that all relevant data is received at the same time */
   dataEvent: {
     teamStats: TeamStatsModel,
-    rosterStats: RosterStatsModel
+    rosterStats: RosterStatsModel,
+    lineupStats: LineupStatsTable[]
   },
   onChangeState: (newParams: GameFilterParams) => void,
   testMode?: boolean //(if set, the initial processing occurs synchronously)
@@ -229,6 +234,67 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
 
   //(end luck calcs)
 
+  // 3.0] RAPM
+
+  const [ cachedRapm, setCachedRapm ] = useState({} as Record<string, any>);
+
+  useEffect(() => {
+    //ensure we never show the _wrong_ RAPM
+    setCachedRapm({});
+  }, [ dataEvent ]);
+
+  /** For a given lineup set, calculate RAPM as quickly as possible */
+  const buildRapm = (lineupStats: LineupStatsModel) => {
+/*
+    const preRapmTableData = LineupTableUtils.buildEnrichedLineups(
+      sortedLineups,
+      teamGlobal, rosterGlobal, teamBaseline,
+      true, "baseline", avgEfficiency,
+      false, teamSeasonLookup, positionFromPlayerKey, baselinePlayerInfo
+    );
+    const tempTeamReport = LineupUtils.lineupToTeamReport({
+      lineups: preRapmTableData
+    });
+    const rapmContext = RapmUtils.buildPlayerContext(
+      tempTeamReport.players || [], preRapmTableData,
+      baselinePlayerInfo,
+      avgEfficiency
+    );
+    const [ offRapmWeights, defRapmWeights ] = RapmUtils.calcPlayerWeights(rapmContext);
+    const preProcDiags = RapmUtils.calcCollinearityDiag(offRapmWeights, rapmContext);
+    const [ offRapmInputs, defRapmInputs ] = RapmUtils.pickRidgeRegression(
+      offRapmWeights, defRapmWeights, rapmContext, preProcDiags.adaptiveCorrelWeights, false
+    );
+    RapmUtils.injectRapmIntoPlayers(
+      tempTeamReport.players || [], offRapmInputs, defRapmInputs, statsAverages, rapmContext, preProcDiags.adaptiveCorrelWeights
+    );
+    const alwaysAdjustForLuck = true;
+    if (alwaysAdjustForLuck) { // (Calculate RAPM without luck, for display purposes)
+      const [ offNoLuckRapmInputs, defNoLuckRapmInputs ] = RapmUtils.pickRidgeRegression(
+        offRapmWeights, defRapmWeights, rapmContext, preProcDiags.adaptiveCorrelWeights, false,
+        true //<- uses old_value (ie pre-luck-adjusted)
+      );
+      RapmUtils.injectRapmIntoPlayers(
+        tempTeamReport.players || [], offNoLuckRapmInputs, defNoLuckRapmInputs, statsAverages, rapmContext, preProcDiags.adaptiveCorrelWeights,
+        true //<- only applies RAPM to old_values
+      );
+    }
+    const enrichedAndFilteredPlayersMap = _.fromPairs(
+      enrichedAndFilteredPlayers.map(p => [ p.key, p ])
+    );
+*/
+  };
+
+  useEffect(() => {
+/**/
+console.log("BUILD RAPM");
+    //TODO: use startOnQuery and startOffQuery to figure out what's going on with dataEvent.lineupStats[*]
+    if (calcRapm) {
+      const rapmInfos = dataEvent.lineupStats.map(lineupStat => buildRapm(lineupStat));
+      //TODO: recalc RAPM
+    }
+  }, [ cachedRapm ]);
+
   // 3.1] Table building
 
   /** Handles the various sorting combos */
@@ -276,8 +342,6 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
       case "baseline": return "Base"
     }
   };
-
-
 
   /** Utility function to build the title for the player stats */
   const insertTitle = (playerName: string, type: "on" | "off" | "baseline", pos: string) => {
@@ -455,6 +519,19 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
         </OverlayTrigger>;
         if (showPlayTypes) {
           stat.role = pos;
+        }
+
+        // RAPM: if we have a cached value then use that else claim it's being calculated...
+        if (calcRapm) {
+//TODO: or maybe just block out the whole table, since I think the HTML might not be responsive
+//(of course the nicer solution for that would be to move RAPM calcs to a worker thread?)
+          const rapmPlaceholder = <OverlayTrigger placement="auto" overlay={
+            <Tooltip id={`${stat.key}-pendingRapm`}>Calculating, stand by...</Tooltip>
+          }><i>??</i></OverlayTrigger>;
+          stat.off_adj_rapm = rapmPlaceholder;
+          stat.def_adj_rapm = rapmPlaceholder;
+          stat.off_adj_rapm_prod = rapmPlaceholder;
+          stat.def_adj_rapm_prod = rapmPlaceholder;
         }
 
         // Now we have the position we can build the titles:

@@ -23,6 +23,7 @@ import GameFilter from '../components/GameFilter';
 import { ParamDefaults, ParamPrefixes, GameFilterParams, LineupFilterParams } from '../utils/FilterModels';
 import TeamStatsTable, { TeamStatsModel } from '../components/TeamStatsTable';
 import RosterStatsTable, { RosterStatsModel } from '../components/RosterStatsTable';
+import { LineupStatsModel } from '../components/LineupStatsTable';
 import RosterCompareTable, { RosterCompareModel } from '../components/RosterCompareTable';
 import GenericCollapsibleCard from '../components/shared/GenericCollapsibleCard';
 import Footer from '../components/shared/Footer';
@@ -50,14 +51,15 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
   const [ gaInited, setGaInited ] = useState(false);
   const [ dataEvent, setDataEvent ] = useState({
     teamStats: {on: {}, off: {}, baseline: {}} as TeamStatsModel,
-    rosterStats: {on: [], off: [], baseline: []} as RosterStatsModel
+    rosterStats: {on: [], off: [], baseline: []} as RosterStatsModel,
+    lineupStats: [] as LineupStatsModel[]
   });
   const [ rosterCompareStats, setRosterCompareStats ] = useState({on: {}, off: {}, baseline: {}} as RosterCompareModel);
 
   const injectStats = (
-    teamStats: TeamStatsModel, rosterCompareStats: RosterCompareModel, rosterStats: RosterStatsModel
+    teamStats: TeamStatsModel, rosterCompareStats: RosterCompareModel, rosterStats: RosterStatsModel, lineupStats: LineupStatsModel[]
   ) => {
-    setDataEvent({teamStats, rosterStats});
+    setDataEvent({teamStats, rosterStats, lineupStats});
     setRosterCompareStats(rosterCompareStats);
   }
 

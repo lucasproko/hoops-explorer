@@ -108,6 +108,13 @@ export class GenericTableOps {
     }
   }
   static readonly pointsFormatter = (val: any) => (val.value as number).toFixed(1);
+  static readonly pointsOrHtmlFormatter = (val: any) => {
+    if (React.isValidElement(val)) {
+      return GenericTableOps.htmlFormatter(val as React.ReactNode);
+    } else {
+      return GenericTableOps.pointsFormatter(val);
+    }
+  }
   static readonly defaultCellMeta = (key: string, value: any) => "";
   static readonly defaultColorPicker =  (val: any, cellMeta: string) => undefined;
   static readonly defaultRowSpanCalculator = (key: string) => 1;

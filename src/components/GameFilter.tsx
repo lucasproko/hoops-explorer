@@ -17,6 +17,7 @@ import Col from 'react-bootstrap/Col';
 import { TeamStatsModel } from '../components/TeamStatsTable';
 import { RosterCompareModel } from '../components/RosterCompareTable';
 import { RosterStatsModel } from '../components/RosterStatsTable';
+import { LineupStatsModel } from '../components/LineupStatsTable';
 import CommonFilter, { GlobalKeypressManager } from '../components/CommonFilter';
 import { ParamPrefixes, FilterParamsType, CommonFilterParams, GameFilterParams, FilterRequestInfo, ParamPrefixesType, ParamDefaults } from "../utils/FilterModels";
 import AutoSuggestText from './shared/AutoSuggestText';
@@ -25,7 +26,7 @@ import AutoSuggestText from './shared/AutoSuggestText';
 import { QueryUtils } from '../utils/QueryUtils';
 
 type Props = {
-  onStats: (teamStats: TeamStatsModel, rosterCompareStats: RosterCompareModel, rosterStats: RosterStatsModel) => void;
+  onStats: (teamStats: TeamStatsModel, rosterCompareStats: RosterCompareModel, rosterStats: RosterStatsModel, lineupStats: LineupStatsModel[]) => void;
   startingState: GameFilterParams;
   onChangeState: (newParams: GameFilterParams) => void;
   forceReload1Up: number;
@@ -139,6 +140,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
     const [ baseQuery, maybeAdvBaseQuery ] = startCalcRapm ?
       QueryUtils.extractAdvancedQuery(commonParams.baseQuery) : "";
     //TODO: also if the main query minus/on-off matches can't we just re-use that?!
+    // (ie and just ignore the on-off portion)
 
     // RAPM calculations:
     const getLineupQuery = (onOrOffQuery: string) => {
@@ -177,8 +179,24 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
     const teamJson = jsonResps?.[0]?.responses?.[0] || {};
     const rosterCompareJson = jsonResps?.[1]?.responses?.[0] || {};
     const rosterStatsJson = jsonResps?.[2]?.responses?.[0] || {};
-    const globalRosterStatsJson = jsonResps?.[3]?.responses?.[0] || _.cloneDeep(rosterStatsJson);
+
+    // 3, [4, 5] can be lineups ... or they might be 4, [5, 6]
+    // depends on whether jsonResps?.[3]?.responses?.[0] has "aggregations.tri_filter"
+
+    const hasGlobalRosterStats = jsonResps?.[3]?.responses?.[0]?.aggregations?.tri_filter;
+
+
+    const globalRosterStatsJson =
+      (hasGlobalRosterStats ? jsonResps?.[3]?.responses?.[0] : undefined) || _.cloneDeep(rosterStatsJson);
       //(need to clone it so that changes to baseline don't overwrite global)
+
+    /** For RAPM */
+    const lineupResponses = _.drop(jsonResps, globalRosterStatsJson ? 4 : 3).map(lineupJson => {
+      return {
+        lineups: lineupJson?.aggregations?.lineups?.buckets,
+        error_code: wasError ? (lineupJson?.status || jsonStatuses?.[0] || "Unknown") : undefined
+      };
+    });
 
     onStats({
       on: teamJson?.aggregations?.tri_filter?.buckets?.on || {},
@@ -202,7 +220,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
       error_code: wasError ?
         (rosterStatsJson?.status || jsonStatuses?.[2] ||
           globalRosterStatsJson?.status || jsonStatuses?.[3] || "Unknown") : undefined
-    });
+    }, lineupResponses);
   }
 
   /** Sets the automatically generated off query, if that option is selected */
