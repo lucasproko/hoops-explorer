@@ -161,7 +161,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
       }) ] : []
     ) : [];
 
-    return [ primaryRequest, [{
+    const requests = [ primaryRequest, [{
         context: ParamPrefixes.roster as ParamPrefixesType, paramsObj: primaryRequest
       }, {
         context: ParamPrefixes.player as ParamPrefixesType, paramsObj: primaryRequest
@@ -171,29 +171,29 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
         return { context: ParamPrefixes.lineup as ParamPrefixesType, paramsObj: req };
       }))
     ];
+    return requests;
   }
 
   /** Handles the response from ES to a stats calc request */
   function handleResponse(jsonResps: any[], wasError: Boolean) {
     const jsonStatuses = jsonResps.map(j => j.status);
-    const teamJson = jsonResps?.[0]?.responses?.[0] || {};
-    const rosterCompareJson = jsonResps?.[1]?.responses?.[0] || {};
-    const rosterStatsJson = jsonResps?.[2]?.responses?.[0] || {};
+    const teamJson = jsonResps?.[0]?.responses?.[0] || {}; //(from primary request)
+    const rosterCompareJson = jsonResps?.[1]?.responses?.[0] || {}; //(from roster request)
+    const rosterStatsJson = jsonResps?.[2]?.responses?.[0] || {}; //(from player request #1)
 
     // 3, [4, 5] can be lineups ... or they might be 4, [5, 6]
     // depends on whether jsonResps?.[3]?.responses?.[0] has "aggregations.tri_filter"
 
+    //(optionally, from player request #2)
     const hasGlobalRosterStats = jsonResps?.[3]?.responses?.[0]?.aggregations?.tri_filter;
-
-
     const globalRosterStatsJson =
       (hasGlobalRosterStats ? jsonResps?.[3]?.responses?.[0] : undefined) || _.cloneDeep(rosterStatsJson);
       //(need to clone it so that changes to baseline don't overwrite global)
 
-    /** For RAPM */
-    const lineupResponses = _.drop(jsonResps, globalRosterStatsJson ? 4 : 3).map(lineupJson => {
+    /** For RAPM, from lineup requests */
+    const lineupResponses = _.drop(jsonResps, hasGlobalRosterStats ? 4 : 3).map(lineupJson => {
       return {
-        lineups: lineupJson?.aggregations?.lineups?.buckets,
+        lineups: lineupJson?.responses?.[0]?.aggregations?.lineups?.buckets,
         error_code: wasError ? (lineupJson?.status || jsonStatuses?.[0] || "Unknown") : undefined
       };
     });

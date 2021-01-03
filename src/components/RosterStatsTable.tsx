@@ -50,6 +50,7 @@ import { LuckUtils } from "../utils/stats/LuckUtils";
 import { OverrideUtils } from "../utils/stats/OverrideUtils";
 import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
 import { TableDisplayUtils } from "../utils/tables/TableDisplayUtils";
+import { LineupTableUtils } from "../utils/tables/LineupTableUtils";
 import { QueryUtils } from "../utils/QueryUtils";
 import { RapmUtils } from "../utils/stats/RapmUtils";
 import { LineupUtils } from "../utils/stats/LineupUtils";
@@ -75,7 +76,7 @@ type Props = {
 }
 
 const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataEvent, onChangeState, testMode}) => {
-  const { teamStats, rosterStats } = dataEvent;
+  const { teamStats, rosterStats, lineupStats } = dataEvent;
 
   const server = (typeof window === `undefined`) ? //(ensures SSR code still compiles)
     "server" : window.location.hostname
@@ -241,15 +242,26 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
   useEffect(() => {
     //ensure we never show the _wrong_ RAPM
     setCachedRapm({});
-  }, [ dataEvent ]);
+  }, [ dataEvent, adjustForLuck ]);
 
   /** For a given lineup set, calculate RAPM as quickly as possible */
   const buildRapm = (lineupStats: LineupStatsModel) => {
-/*
+//TODO: handle luck switching on and off also
+
+    /** Largest sample of player stats, by player key - use for ORtg calcs */
+    const globalRosterStatsByCode =
+      _.chain(rosterStats.global).map(p => {
+        return [ p.player_array?.hits?.hits?.[0]?._source?.player?.code || p.key, p ];
+      }).fromPairs().value();
+    const baselinePlayerInfo = LineupTableUtils.buildBaselinePlayerInfo(
+      rosterStats.baseline, globalRosterStatsByCode, teamStats.baseline, avgEfficiency
+    );
+    const positionFromPlayerKey = LineupTableUtils.buildPositionPlayerMap(rosterStats.global, teamSeasonLookup);
+
     const preRapmTableData = LineupTableUtils.buildEnrichedLineups(
-      sortedLineups,
-      teamGlobal, rosterGlobal, teamBaseline,
-      true, "baseline", avgEfficiency,
+      lineupStats.lineups || [],
+      teamStats.global, rosterStats.global, teamStats.baseline,
+      adjustForLuck, luckConfig.base, avgEfficiency,
       false, teamSeasonLookup, positionFromPlayerKey, baselinePlayerInfo
     );
     const tempTeamReport = LineupUtils.lineupToTeamReport({
@@ -266,31 +278,41 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
       offRapmWeights, defRapmWeights, rapmContext, preProcDiags.adaptiveCorrelWeights, false
     );
     RapmUtils.injectRapmIntoPlayers(
-      tempTeamReport.players || [], offRapmInputs, defRapmInputs, statsAverages, rapmContext, preProcDiags.adaptiveCorrelWeights
+      tempTeamReport.players || [], offRapmInputs, defRapmInputs, {}, rapmContext, preProcDiags.adaptiveCorrelWeights
     );
-    const alwaysAdjustForLuck = true;
-    if (alwaysAdjustForLuck) { // (Calculate RAPM without luck, for display purposes)
+    if (adjustForLuck) { // (Calculate RAPM without luck, for display purposes)
       const [ offNoLuckRapmInputs, defNoLuckRapmInputs ] = RapmUtils.pickRidgeRegression(
         offRapmWeights, defRapmWeights, rapmContext, preProcDiags.adaptiveCorrelWeights, false,
         true //<- uses old_value (ie pre-luck-adjusted)
       );
       RapmUtils.injectRapmIntoPlayers(
-        tempTeamReport.players || [], offNoLuckRapmInputs, defNoLuckRapmInputs, statsAverages, rapmContext, preProcDiags.adaptiveCorrelWeights,
+        tempTeamReport.players || [], offNoLuckRapmInputs, defNoLuckRapmInputs, {}, rapmContext, preProcDiags.adaptiveCorrelWeights,
         true //<- only applies RAPM to old_values
       );
     }
-    const enrichedAndFilteredPlayersMap = _.fromPairs(
-      enrichedAndFilteredPlayers.map(p => [ p.key, p ])
+/**/
+console.log("BUILT RAPM");
+    return _.fromPairs(
+      (tempTeamReport.players || []).map(p => [ p.key, { off_adj_rapm: p.off_adj_rapm, def_adj_rapm: p.def_adj_rapm }])
     );
-*/
   };
 
   useEffect(() => {
 /**/
-console.log("BUILD RAPM");
+console.log("BUILD RAPM " + calcRapm + " ... " + lineupStats.length);
     //TODO: use startOnQuery and startOffQuery to figure out what's going on with dataEvent.lineupStats[*]
-    if (calcRapm) {
-      const rapmInfos = dataEvent.lineupStats.map(lineupStat => buildRapm(lineupStat));
+    if (calcRapm && _.isEmpty(cachedRapm)) {
+      try {
+        const rapmInfos = (lineupStats || []).map(lineupStat => buildRapm(lineupStat));
+        setCachedRapm({
+          "baseline": rapmInfos?.[0]
+        });
+
+      } catch (err) {
+/**/
+console.log("Error calc RAPM: " + err.message);
+//throw err;
+      }
       //TODO: recalc RAPM
     }
   }, [ cachedRapm ]);
@@ -525,13 +547,18 @@ console.log("BUILD RAPM");
         if (calcRapm) {
 //TODO: or maybe just block out the whole table, since I think the HTML might not be responsive
 //(of course the nicer solution for that would be to move RAPM calcs to a worker thread?)
-          const rapmPlaceholder = <OverlayTrigger placement="auto" overlay={
-            <Tooltip id={`${stat.key}-pendingRapm`}>Calculating, stand by...</Tooltip>
-          }><i>??</i></OverlayTrigger>;
-          stat.off_adj_rapm = rapmPlaceholder;
-          stat.def_adj_rapm = rapmPlaceholder;
-          stat.off_adj_rapm_prod = rapmPlaceholder;
-          stat.def_adj_rapm_prod = rapmPlaceholder;
+          if (!cachedRapm.baseline) {
+            const rapmPlaceholder = <OverlayTrigger placement="auto" overlay={
+              <Tooltip id={`${stat.key}-pendingRapm`}>Calculating, stand by...</Tooltip>
+            }><i>??</i></OverlayTrigger>;
+            stat.off_adj_rapm = rapmPlaceholder;
+            stat.def_adj_rapm = rapmPlaceholder;
+            stat.off_adj_rapm_prod = rapmPlaceholder;
+            stat.def_adj_rapm_prod = rapmPlaceholder;
+          } else {
+//TODO: etc           
+            stat.off_adj_rapm = cachedRapm.baseline[stat.key]?.off_adj_rapm;
+          }
         }
 
         // Now we have the position we can build the titles:
