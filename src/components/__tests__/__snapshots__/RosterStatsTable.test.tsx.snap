@@ -444,6 +444,8 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                         "value": 0.34782608695652173,
                       }},
           {
+            code: "AnCowan"
+
             def_2pmidr: <small
                         style={
                           Object {
@@ -876,6 +878,8 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                         "value": 0.291044776119403,
                       }},
           {
+            code: "AaWiggins"
+
             def_2pmidr: <small
                         style={
                           Object {
@@ -1320,6 +1324,8 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "AnCowan"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -1542,6 +1548,8 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "AnCowan"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -3104,6 +3112,8 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "AaWiggins"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -3326,6 +3336,8 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "AaWiggins"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -4178,27 +4190,27 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                       "value": "asc:off_adj_prod:off",
                     },
                     Object {
-                      "label": "Base RAPM (Desc. / Offensive)",
+                      "label": "Base RAPM diff (Desc. / Offensive)",
                       "value": "desc:off_adj_rapm:baseline",
                     },
                     Object {
-                      "label": "'On' RAPM (Desc. / Offensive)",
+                      "label": "'On' RAPM diff (Desc. / Offensive)",
                       "value": "desc:off_adj_rapm:on",
                     },
                     Object {
-                      "label": "'Off' RAPM (Desc. / Offensive)",
+                      "label": "'Off' RAPM diff (Desc. / Offensive)",
                       "value": "desc:off_adj_rapm:off",
                     },
                     Object {
-                      "label": "Base RAPM (Asc. / Offensive)",
+                      "label": "Base RAPM diff (Asc. / Offensive)",
                       "value": "asc:off_adj_rapm:baseline",
                     },
                     Object {
-                      "label": "'On' RAPM (Asc. / Offensive)",
+                      "label": "'On' RAPM diff (Asc. / Offensive)",
                       "value": "asc:off_adj_rapm:on",
                     },
                     Object {
-                      "label": "'Off' RAPM (Asc. / Offensive)",
+                      "label": "'Off' RAPM diff (Asc. / Offensive)",
                       "value": "asc:off_adj_rapm:off",
                     },
                     Object {
@@ -5765,7 +5777,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                 "isTitle": false,
                 "missingData": undefined,
                 "rowSpan": [Function],
-                "toolTip": "Offensive/Defensive rating vs average in selected lineups adjusted for SoS and (for ORtg) the player's usage",
+                "toolTip": "Offensive rating vs average in selected lineups adjusted for SoS and (for ORtg) the player's usage",
                 "widthUnits": 2,
               },
               "assist": GenericTableColProps {
@@ -5831,7 +5843,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                 "isTitle": false,
                 "missingData": undefined,
                 "rowSpan": [Function],
-                "toolTip": "Offensive/Defensive rating in selected lineups",
+                "toolTip": "Offensive rating in selected lineups",
                 "widthUnits": 2,
               },
               "sep0": GenericTableColProps {
@@ -5954,6 +5966,8 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
       inStats={
         Array [
           {
+            code: "AnCowan"
+
             def_2pmidr: <small
                         style={
                           Object {
@@ -6163,6 +6177,8 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
                         "value": 0.3227953410981697,
                       }},
           {
+            code: "AaWiggins"
+
             def_2pmidr: <small
                         style={
                           Object {
@@ -6384,6 +6400,8 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "AnCowan"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -6599,6 +6617,8 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "AnCowan"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -6816,6 +6836,8 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "AaWiggins"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -7031,6 +7053,8 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "AaWiggins"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -7430,27 +7454,27 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
                       "value": "asc:off_adj_prod:off",
                     },
                     Object {
-                      "label": "Base RAPM (Desc. / Offensive)",
+                      "label": "Base RAPM diff (Desc. / Offensive)",
                       "value": "desc:off_adj_rapm:baseline",
                     },
                     Object {
-                      "label": "'On' RAPM (Desc. / Offensive)",
+                      "label": "'On' RAPM diff (Desc. / Offensive)",
                       "value": "desc:off_adj_rapm:on",
                     },
                     Object {
-                      "label": "'Off' RAPM (Desc. / Offensive)",
+                      "label": "'Off' RAPM diff (Desc. / Offensive)",
                       "value": "desc:off_adj_rapm:off",
                     },
                     Object {
-                      "label": "Base RAPM (Asc. / Offensive)",
+                      "label": "Base RAPM diff (Asc. / Offensive)",
                       "value": "asc:off_adj_rapm:baseline",
                     },
                     Object {
-                      "label": "'On' RAPM (Asc. / Offensive)",
+                      "label": "'On' RAPM diff (Asc. / Offensive)",
                       "value": "asc:off_adj_rapm:on",
                     },
                     Object {
-                      "label": "'Off' RAPM (Asc. / Offensive)",
+                      "label": "'Off' RAPM diff (Asc. / Offensive)",
                       "value": "asc:off_adj_rapm:off",
                     },
                     Object {
@@ -8034,6 +8058,8 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
               GenericTableDataRow {
                 "cellMetaFn": [Function],
                 "dataObj": {
+                  code: "AnCowan"
+
                   def_2pmidr: <small
                                     style={
                                       Object {
@@ -8252,6 +8278,8 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
               GenericTableDataRow {
                 "cellMetaFn": [Function],
                 "dataObj": {
+                  code: "AaWiggins"
+
                   def_2pmidr: <small
                                     style={
                                       Object {
@@ -8556,7 +8584,7 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
                 "isTitle": false,
                 "missingData": undefined,
                 "rowSpan": [Function],
-                "toolTip": "Offensive/Defensive rating vs average in selected lineups adjusted for SoS and (for ORtg) the player's usage",
+                "toolTip": "Offensive rating vs average in selected lineups adjusted for SoS and (for ORtg) the player's usage",
                 "widthUnits": 2,
               },
               "assist": GenericTableColProps {
@@ -8622,7 +8650,7 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
                 "isTitle": false,
                 "missingData": undefined,
                 "rowSpan": [Function],
-                "toolTip": "Offensive/Defensive rating in selected lineups",
+                "toolTip": "Offensive rating in selected lineups",
                 "widthUnits": 2,
               },
               "sep0": GenericTableColProps {
@@ -8745,6 +8773,8 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
       inStats={
         Array [
           {
+            code: "AnCowan"
+
             def_2pmidr: <small
                         style={
                           Object {
@@ -8913,6 +8943,8 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                         "value": 0.3227953410981697,
                       }},
           {
+            code: "AaWiggins"
+
             def_2pmidr: <small
                         style={
                           Object {
@@ -9093,6 +9125,8 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "AnCowan"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -9267,6 +9301,8 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "AnCowan"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -9443,6 +9479,8 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "AaWiggins"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -9617,6 +9655,8 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "AaWiggins"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -10579,6 +10619,8 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
               GenericTableDataRow {
                 "cellMetaFn": [Function],
                 "dataObj": {
+                  code: "AnCowan"
+
                   def_2pmidr: <small
                                     style={
                                       Object {
@@ -10753,6 +10795,8 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
               GenericTableDataRow {
                 "cellMetaFn": [Function],
                 "dataObj": {
+                  code: "AnCowan"
+
                   def_2pmidr: <small
                                     style={
                                       Object {
@@ -10930,6 +10974,8 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
               GenericTableDataRow {
                 "cellMetaFn": [Function],
                 "dataObj": {
+                  code: "AaWiggins"
+
                   def_2pmidr: <small
                                     style={
                                       Object {
@@ -11104,6 +11150,8 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
               GenericTableDataRow {
                 "cellMetaFn": [Function],
                 "dataObj": {
+                  code: "AaWiggins"
+
                   def_2pmidr: <small
                                     style={
                                       Object {
@@ -11904,6 +11952,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                         "value": 0.34782608695652173,
                       }},
           {
+            code: "AnCowan"
+
             def_2pmidr: <small
                         style={
                           Object {
@@ -12252,6 +12302,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                         "value": 0.291044776119403,
                       }},
           {
+            code: "AaWiggins"
+
             def_2pmidr: <small
                         style={
                           Object {
@@ -12612,6 +12664,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "AnCowan"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -12792,6 +12846,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "AnCowan"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -14060,6 +14116,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "AaWiggins"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -14240,6 +14298,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "AaWiggins"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -17786,6 +17846,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                         "value": 0.3251726283750374,
                       }},
           {
+            code: "AnCowan"
+
             def_2pmidr: <small
                         style={
                           Object {
@@ -18272,6 +18334,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                         "value": 0.3213607857535103,
                       }},
           {
+            code: "AaWiggins"
+
             def_2pmidr: <small
                         style={
                           Object {
@@ -18748,6 +18812,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "AnCowan"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -18994,6 +19060,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "AnCowan"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -20716,6 +20784,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "AaWiggins"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -20962,6 +21032,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "AaWiggins"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -21898,27 +21970,27 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                       "value": "asc:off_adj_prod:off",
                     },
                     Object {
-                      "label": "Base RAPM (Desc. / Offensive)",
+                      "label": "Base RAPM diff (Desc. / Offensive)",
                       "value": "desc:off_adj_rapm:baseline",
                     },
                     Object {
-                      "label": "'On' RAPM (Desc. / Offensive)",
+                      "label": "'On' RAPM diff (Desc. / Offensive)",
                       "value": "desc:off_adj_rapm:on",
                     },
                     Object {
-                      "label": "'Off' RAPM (Desc. / Offensive)",
+                      "label": "'Off' RAPM diff (Desc. / Offensive)",
                       "value": "desc:off_adj_rapm:off",
                     },
                     Object {
-                      "label": "Base RAPM (Asc. / Offensive)",
+                      "label": "Base RAPM diff (Asc. / Offensive)",
                       "value": "asc:off_adj_rapm:baseline",
                     },
                     Object {
-                      "label": "'On' RAPM (Asc. / Offensive)",
+                      "label": "'On' RAPM diff (Asc. / Offensive)",
                       "value": "asc:off_adj_rapm:on",
                     },
                     Object {
-                      "label": "'Off' RAPM (Asc. / Offensive)",
+                      "label": "'Off' RAPM diff (Asc. / Offensive)",
                       "value": "asc:off_adj_rapm:off",
                     },
                     Object {
@@ -24737,7 +24809,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                 "isTitle": false,
                 "missingData": undefined,
                 "rowSpan": [Function],
-                "toolTip": "Offensive/Defensive rating vs average in selected lineups adjusted for SoS and (for ORtg) the player's usage",
+                "toolTip": "Offensive rating vs average in selected lineups adjusted for SoS and (for ORtg) the player's usage",
                 "widthUnits": 2,
               },
               "assist": GenericTableColProps {
@@ -24803,7 +24875,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                 "isTitle": false,
                 "missingData": undefined,
                 "rowSpan": [Function],
-                "toolTip": "Offensive/Defensive rating in selected lineups",
+                "toolTip": "Offensive rating in selected lineups",
                 "widthUnits": 2,
               },
               "sep0": GenericTableColProps {
@@ -25422,6 +25494,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
 
             role: "s-PG"},
           {
+            code: "AnCowan"
+
             def_2pmidr: <small
                         style={
                           Object {
@@ -25918,6 +25992,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
 
             role: "WG"},
           {
+            code: "AaWiggins"
+
             def_2pmidr: <small
                         style={
                           Object {
@@ -26407,6 +26483,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "AnCowan"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -26661,6 +26739,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "AnCowan"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -28403,6 +28483,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "AaWiggins"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -28651,6 +28733,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "AaWiggins"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -29593,27 +29677,27 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                       "value": "asc:off_adj_prod:off",
                     },
                     Object {
-                      "label": "Base RAPM (Desc. / Offensive)",
+                      "label": "Base RAPM diff (Desc. / Offensive)",
                       "value": "desc:off_adj_rapm:baseline",
                     },
                     Object {
-                      "label": "'On' RAPM (Desc. / Offensive)",
+                      "label": "'On' RAPM diff (Desc. / Offensive)",
                       "value": "desc:off_adj_rapm:on",
                     },
                     Object {
-                      "label": "'Off' RAPM (Desc. / Offensive)",
+                      "label": "'Off' RAPM diff (Desc. / Offensive)",
                       "value": "desc:off_adj_rapm:off",
                     },
                     Object {
-                      "label": "Base RAPM (Asc. / Offensive)",
+                      "label": "Base RAPM diff (Asc. / Offensive)",
                       "value": "asc:off_adj_rapm:baseline",
                     },
                     Object {
-                      "label": "'On' RAPM (Asc. / Offensive)",
+                      "label": "'On' RAPM diff (Asc. / Offensive)",
                       "value": "asc:off_adj_rapm:on",
                     },
                     Object {
-                      "label": "'Off' RAPM (Asc. / Offensive)",
+                      "label": "'Off' RAPM diff (Asc. / Offensive)",
                       "value": "asc:off_adj_rapm:off",
                     },
                     Object {
@@ -31023,6 +31107,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                   rosterStatsByCode={
                     Object {
                       "AaWiggins": {
+                        code: "AaWiggins"
+
                         def_2pmidr: <small
                                                 style={
                                                   Object {
@@ -31257,6 +31343,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
 
                         role: "WG"},
                       "AnCowan": {
+                        code: "AnCowan"
+
                         def_2pmidr: <small
                                                 style={
                                                   Object {
@@ -32329,6 +32417,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                   rosterStatsByCode={
                     Object {
                       "AaWiggins": {
+                        code: "AaWiggins"
+
                         def_2pmidr: <small
                                                 style={
                                                   Object {
@@ -32563,6 +32653,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
 
                         role: "WG"},
                       "AnCowan": {
+                        code: "AnCowan"
+
                         def_2pmidr: <small
                                                 style={
                                                   Object {
@@ -33638,6 +33730,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                   rosterStatsByCode={
                     Object {
                       "AaWiggins": {
+                        code: "AaWiggins"
+
                         def_2pmidr: <small
                                                 style={
                                                   Object {
@@ -33872,6 +33966,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
 
                         role: "WG"},
                       "AnCowan": {
+                        code: "AnCowan"
+
                         def_2pmidr: <small
                                                 style={
                                                   Object {
@@ -34851,6 +34947,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                   rosterStatsByCode={
                     Object {
                       "AaWiggins": {
+                        code: "AaWiggins"
+
                         def_2pmidr: <small
                                                 style={
                                                   Object {
@@ -35085,6 +35183,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
 
                         role: "WG"},
                       "AnCowan": {
+                        code: "AnCowan"
+
                         def_2pmidr: <small
                                                 style={
                                                   Object {
@@ -35428,7 +35528,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                 "isTitle": false,
                 "missingData": undefined,
                 "rowSpan": [Function],
-                "toolTip": "Offensive/Defensive rating vs average in selected lineups adjusted for SoS and (for ORtg) the player's usage",
+                "toolTip": "Offensive rating vs average in selected lineups adjusted for SoS and (for ORtg) the player's usage",
                 "widthUnits": 2,
               },
               "assist": GenericTableColProps {
@@ -35494,7 +35594,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                 "isTitle": false,
                 "missingData": undefined,
                 "rowSpan": [Function],
-                "toolTip": "Offensive/Defensive rating in selected lineups",
+                "toolTip": "Offensive rating in selected lineups",
                 "widthUnits": 2,
               },
               "sep0": GenericTableColProps {
@@ -36065,6 +36165,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                         "value": 0.34782608695652173,
                       }},
           {
+            code: "AnCowan"
+
             def_2pmidr: <small
                         style={
                           Object {
@@ -36525,6 +36627,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                         "value": 0.291044776119403,
                       }},
           {
+            code: "AaWiggins"
+
             def_2pmidr: <small
                         style={
                           Object {
@@ -36994,6 +37098,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "AnCowan"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -37236,6 +37342,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "AnCowan"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -38866,6 +38974,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "AaWiggins"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -39096,6 +39206,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "AaWiggins"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -39972,27 +40084,27 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                       "value": "asc:off_adj_prod:off",
                     },
                     Object {
-                      "label": "Base RAPM (Desc. / Offensive)",
+                      "label": "Base RAPM diff (Desc. / Offensive)",
                       "value": "desc:off_adj_rapm:baseline",
                     },
                     Object {
-                      "label": "'On' RAPM (Desc. / Offensive)",
+                      "label": "'On' RAPM diff (Desc. / Offensive)",
                       "value": "desc:off_adj_rapm:on",
                     },
                     Object {
-                      "label": "'Off' RAPM (Desc. / Offensive)",
+                      "label": "'Off' RAPM diff (Desc. / Offensive)",
                       "value": "desc:off_adj_rapm:off",
                     },
                     Object {
-                      "label": "Base RAPM (Asc. / Offensive)",
+                      "label": "Base RAPM diff (Asc. / Offensive)",
                       "value": "asc:off_adj_rapm:baseline",
                     },
                     Object {
-                      "label": "'On' RAPM (Asc. / Offensive)",
+                      "label": "'On' RAPM diff (Asc. / Offensive)",
                       "value": "asc:off_adj_rapm:on",
                     },
                     Object {
-                      "label": "'Off' RAPM (Asc. / Offensive)",
+                      "label": "'Off' RAPM diff (Asc. / Offensive)",
                       "value": "asc:off_adj_rapm:off",
                     },
                     Object {
@@ -42615,7 +42727,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                 "isTitle": false,
                 "missingData": undefined,
                 "rowSpan": [Function],
-                "toolTip": "Offensive/Defensive rating vs average in selected lineups adjusted for SoS and (for ORtg) the player's usage",
+                "toolTip": "Offensive rating vs average in selected lineups adjusted for SoS and (for ORtg) the player's usage",
                 "widthUnits": 2,
               },
               "assist": GenericTableColProps {
@@ -42681,7 +42793,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                 "isTitle": false,
                 "missingData": undefined,
                 "rowSpan": [Function],
-                "toolTip": "Offensive/Defensive rating in selected lineups",
+                "toolTip": "Offensive rating in selected lineups",
                 "widthUnits": 2,
               },
               "sep0": GenericTableColProps {

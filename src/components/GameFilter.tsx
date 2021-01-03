@@ -72,8 +72,8 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
       setInternalForceReload1Up(forceReload1Up);
       // Actually have to reset these two vs just their underlying value
       // (could build that intermediate pair,. but we'll stick with this limitation for now)
-      setOnQuery(startOnQuery);
-      setOffQuery(startOffQuery);
+      setOnQuery(startOnQuery || "");
+      setOffQuery(startOffQuery || "");
       //(leave toggleAutoOffQuery since it seems harmless, and weird stuff happened when I tried to set it
       // which I don't have time to investigate):
       //toggleAutoOffQuery(startAutoOffQuery);
@@ -137,10 +137,11 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
       minRank: ParamDefaults.defaultMinRank, maxRank: ParamDefaults.defaultMaxRank,
       baseQuery: "", onQuery: "", offQuery: ""
     };
-    const [ baseQuery, maybeAdvBaseQuery ] = startCalcRapm ?
-      QueryUtils.extractAdvancedQuery(commonParams.baseQuery) : "";
     //TODO: also if the main query minus/on-off matches can't we just re-use that?!
     // (ie and just ignore the on-off portion)
+
+    const [ baseQuery, maybeAdvBaseQuery ] = startCalcRapm ?
+      QueryUtils.extractAdvancedQuery(commonParams.baseQuery || "") : [ "", undefined ];
 
     // RAPM calculations:
     const getLineupQuery = (onOrOffQuery: string) => {
@@ -161,7 +162,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
       }) ] : []
     ) : [];
 
-    const requests = [ primaryRequest, [{
+    return [ primaryRequest, [{
         context: ParamPrefixes.roster as ParamPrefixesType, paramsObj: primaryRequest
       }, {
         context: ParamPrefixes.player as ParamPrefixesType, paramsObj: primaryRequest
@@ -171,7 +172,6 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
         return { context: ParamPrefixes.lineup as ParamPrefixesType, paramsObj: req };
       }))
     ];
-    return requests;
   }
 
   /** Handles the response from ES to a stats calc request */

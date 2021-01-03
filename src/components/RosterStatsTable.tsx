@@ -69,7 +69,7 @@ type Props = {
   dataEvent: {
     teamStats: TeamStatsModel,
     rosterStats: RosterStatsModel,
-    lineupStats: LineupStatsTable[]
+    lineupStats: LineupStatsModel[]
   },
   onChangeState: (newParams: GameFilterParams) => void,
   testMode?: boolean //(if set, the initial processing occurs synchronously)
@@ -233,6 +233,23 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
 
   // 3] Utils
 
+  // Needed for a few things, including RAPM and play type analysis
+
+  /** Largest sample of player stats, by player key - use for ORtg calcs */
+  const globalRosterStatsByCode =
+    _.chain(rosterStats.global || []).map(p => {
+
+      //TODO: do I want this one, or the baseline or ???
+      if (showPlayTypes) {
+        const [ posConfs, posConfsDiags ] = PositionUtils.buildPositionConfidences(p);
+        const [ pos, posDiags ] = PositionUtils.buildPosition(posConfs, p, teamSeasonLookup);
+        p.posClass = _.values(posConfs);
+        p.role = pos;
+      }
+
+      return [ p.player_array?.hits?.hits?.[0]?._source?.player?.code || p.key, p ];
+    }).fromPairs().value();
+
   //(end luck calcs)
 
   // 3.0] RAPM
@@ -242,21 +259,17 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
   useEffect(() => {
     //ensure we never show the _wrong_ RAPM
     setCachedRapm({});
-  }, [ dataEvent, adjustForLuck ]);
+  }, [ dataEvent, adjustForLuck, manualOverrides ]);
+
+  const baselinePlayerInfo = LineupTableUtils.buildBaselinePlayerInfo(
+    rosterStats.baseline, globalRosterStatsByCode, teamStats.baseline, avgEfficiency
+  );
+  const positionFromPlayerKey = LineupTableUtils.buildPositionPlayerMap(rosterStats.global, teamSeasonLookup);
 
   /** For a given lineup set, calculate RAPM as quickly as possible */
   const buildRapm = (lineupStats: LineupStatsModel) => {
-//TODO: handle luck switching on and off also
-
-    /** Largest sample of player stats, by player key - use for ORtg calcs */
-    const globalRosterStatsByCode =
-      _.chain(rosterStats.global).map(p => {
-        return [ p.player_array?.hits?.hits?.[0]?._source?.player?.code || p.key, p ];
-      }).fromPairs().value();
-    const baselinePlayerInfo = LineupTableUtils.buildBaselinePlayerInfo(
-      rosterStats.baseline, globalRosterStatsByCode, teamStats.baseline, avgEfficiency
-    );
-    const positionFromPlayerKey = LineupTableUtils.buildPositionPlayerMap(rosterStats.global, teamSeasonLookup);
+    //TODO: manual edits don't show as override (so can't see original value) - fix at some point
+    // but not worth delaying over
 
     const preRapmTableData = LineupTableUtils.buildEnrichedLineups(
       lineupStats.lineups || [],
@@ -295,21 +308,28 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
     );
   };
 
-  useEffect(() => {
+  const buildAllRapm = () => {
     if (calcRapm && _.isEmpty(cachedRapm)) {
-      try {
-        const rapmInfos = (lineupStats || []).map(lineupStat => buildRapm(lineupStat));
-//TODO: use startOnQuery and startOffQuery to figure out what's going on with dataEvent.lineupStats[*]
-        setCachedRapm({
-          baseline: rapmInfos?.[0]
-        });
-      } catch (err) {
-        //(not unusual if the data is too bad)
-        setCachedRapm({ baseline: {} });
-        //console.log("Error calc RAPM: " + err.message);
-      }
+        const rapmInfos = (lineupStats || []).map(lineupStat => {
+        try {
+          return buildRapm(lineupStat)
+        } catch (err) {
+          return {};
+        }
+      });
+      setCachedRapm({
+        baseline: rapmInfos?.[0],
+        on: (gameFilterParams.onQuery) != "" ? rapmInfos?.[1] : undefined,
+        off: (gameFilterParams.onQuery) != "" ? rapmInfos?.[2] : rapmInfos?.[1],
+      });
     }
+  };
+
+  useEffect(() => {
+    buildAllRapm();
   }, [ cachedRapm ]);
+
+  if (testMode) buildAllRapm();
 
   // 3.1] Table building
 
@@ -389,21 +409,6 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
 
   /** Need to be able to see the stats table for players in the manual override table */
   const mutableTableDisplayForOverrides = {} as Record<string, any[]>;
-
-  /** Largest sample of player stats, by player key - use for ORtg calcs */
-  const globalRosterStatsByCode =
-    _.chain(rosterStats.global || []).map(p => {
-
-      //TODO: do I want this one, or the baseline or ???
-      if (showPlayTypes) {
-        const [ posConfs, posConfsDiags ] = PositionUtils.buildPositionConfidences(p);
-        const [ pos, posDiags ] = PositionUtils.buildPosition(posConfs, p, teamSeasonLookup);
-        p.posClass = _.values(posConfs);
-        p.role = pos;
-      }
-
-      return [ p.player_array?.hits?.hits?.[0]?._source?.player?.code || p.key, p ];
-    }).fromPairs().value();
 
   // (Always just use A/B here because it's too confusing to say
   // "On <Player name>" meaning ""<Player Name> when <Other other player> is on")
@@ -539,9 +544,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
 
         // RAPM: if we have a cached value then use that else claim it's being calculated...
         if (calcRapm) {
-//TODO: or maybe just block out the whole table, since I think the HTML might not be responsive
-//(of course the nicer solution for that would be to move RAPM calcs to a worker thread?)
-          if (!cachedRapm.baseline) {
+          if (!cachedRapm.baseline) { //(if baseline has RAPM it must have calculated)
             const rapmPlaceholder = <OverlayTrigger placement="auto" overlay={
               <Tooltip id={`${stat.key}-pendingRapm`}>Calculating, stand by...</Tooltip>
             }><i>??</i></OverlayTrigger>;
@@ -550,8 +553,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
             stat.off_adj_rapm_prod = rapmPlaceholder;
             stat.def_adj_rapm_prod = rapmPlaceholder;
           } else {
-//TODO: etc
-            const rapm = cachedRapm.baseline[stat.key] || {};
+            const rapm = cachedRapm?.[key]?.[stat.key] || {};
             if (expandedView) {
               stat.off_adj_rapm = rapm.off_adj_rapm;
               stat.def_adj_rapm = rapm.def_adj_rapm;
