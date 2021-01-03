@@ -290,30 +290,24 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
         true //<- only applies RAPM to old_values
       );
     }
-/**/
-console.log("BUILT RAPM");
     return _.fromPairs(
-      (tempTeamReport.players || []).map(p => [ p.key, { off_adj_rapm: p.off_adj_rapm, def_adj_rapm: p.def_adj_rapm }])
+      (tempTeamReport.players || []).map(p => [ p.playerId, { off_adj_rapm: p.rapm?.off_adj_ppp, def_adj_rapm: p.rapm?.def_adj_ppp }])
     );
   };
 
   useEffect(() => {
-/**/
-console.log("BUILD RAPM " + calcRapm + " ... " + lineupStats.length);
-    //TODO: use startOnQuery and startOffQuery to figure out what's going on with dataEvent.lineupStats[*]
     if (calcRapm && _.isEmpty(cachedRapm)) {
       try {
         const rapmInfos = (lineupStats || []).map(lineupStat => buildRapm(lineupStat));
+//TODO: use startOnQuery and startOffQuery to figure out what's going on with dataEvent.lineupStats[*]
         setCachedRapm({
-          "baseline": rapmInfos?.[0]
+          baseline: rapmInfos?.[0]
         });
-
       } catch (err) {
-/**/
-console.log("Error calc RAPM: " + err.message);
-//throw err;
+        //(not unusual if the data is too bad)
+        setCachedRapm({ baseline: {} });
+        //console.log("Error calc RAPM: " + err.message);
       }
-      //TODO: recalc RAPM
     }
   }, [ cachedRapm ]);
 
@@ -556,8 +550,19 @@ console.log("Error calc RAPM: " + err.message);
             stat.off_adj_rapm_prod = rapmPlaceholder;
             stat.def_adj_rapm_prod = rapmPlaceholder;
           } else {
-//TODO: etc           
-            stat.off_adj_rapm = cachedRapm.baseline[stat.key]?.off_adj_rapm;
+//TODO: etc
+            const rapm = cachedRapm.baseline[stat.key] || {};
+            if (expandedView) {
+              stat.off_adj_rapm = rapm.off_adj_rapm;
+              stat.def_adj_rapm = rapm.def_adj_rapm;
+              stat.off_adj_rapm_prod = rapm.off_adj_rapm ? { value: (rapm.off_adj_rapm?.value || 0)*stat.off_team_poss_pct.value! } : undefined;
+              stat.def_adj_rapm_prod = rapm.off_adj_rapm ? { value: (rapm.def_adj_rapm?.value || 0)*stat.def_team_poss_pct.value! } : undefined;
+            } else {
+              stat.off_adj_rapm = (rapm.off_adj_rapm && rapm.def_adj_rapm) ?
+                { value: (rapm.off_adj_rapm?.value || 0) - (rapm.def_adj_rapm?.value || 0) } :
+                undefined;
+              stat.off_adj_rapm_prod = stat.off_adj_rapm ? { value: (stat.off_adj_rapm.value || 0)*stat.off_team_poss_pct.value! } : undefined;
+            }
           }
         }
 

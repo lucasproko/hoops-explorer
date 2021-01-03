@@ -115,15 +115,18 @@ export class CommonTableDefs {
       GenericTableOps.addTitle("", "", CommonTableDefs.singleLineRowSpanCalculator, "small", GenericTableOps.htmlFormatter)
     ,
     "sep0": GenericTableOps.addColSeparator(),
-    "rtg": GenericTableOps.addPtsCol("Rtg", "Offensive/Defensive rating in selected lineups", CbbColors.picker(...CbbColors.pp100)),
+    "rtg": GenericTableOps.addPtsCol("Rtg",
+      (expandedView ? "Offensive/Defensive" : "Offensive") + " rating in selected lineups", CbbColors.picker(...CbbColors.pp100)),
     "usage": GenericTableOps.addDataCol(
       expandedView ? "Usg Pos" : "Usg",
       expandedView ? "% of team possessions used in selected lineups, plus the position category for this player": "% of team possessions used in selected lineups",
       CbbColors.offOnlyPicker(...CbbColors.usg), GenericTableOps.percentOrHtmlFormatter), //TODO needs to be steeper
-    "adj_rtg": GenericTableOps.addPtsCol("Adj+ Rtg", "Offensive/Defensive rating vs average in selected lineups adjusted for SoS and (for ORtg) the player's usage", CbbColors.picker(...CbbColors.diff10_p100_redGreen)),
-    "adj_prod": GenericTableOps.addPtsCol("Adj+ Prod", "Offensive/Defensive production (ratings * mins%) vs average in selected lineups adjusted for SoS and (for ORtg) the player's usage", CbbColors.picker(...CbbColors.diff10_p100_redGreen)),
+    "adj_rtg": GenericTableOps.addPtsCol("Adj+ Rtg",
+      (expandedView ? "Offensive/Defensive" : "Offensive") + " rating vs average in selected lineups adjusted for SoS and (for ORtg) the player's usage", CbbColors.picker(...CbbColors.diff10_p100_redGreen)),
+    "adj_prod": GenericTableOps.addPtsCol("Adj+ Prod",
+      (expandedView ? "Offensive/Defensive" : "Offensive") + " production (ratings * mins%) vs average in selected lineups adjusted for SoS and (for ORtg) the player's usage", CbbColors.picker(...CbbColors.diff10_p100_redGreen)),
     "adj_rapm": GenericTableOps.addDataCol(
-      "RAPM", "Adjusted Plus-Minus vs D1 average" + (expandedView ? "" : " (Off-Def margin)"),
+      expandedView ? "RAPM" : "RAPM diff", "Adjusted Plus-Minus vs D1 average" + (expandedView ? "" : " (Off-Def margin)"),
       CbbColors.picker(...CbbColors.diff10_p100_redGreen), GenericTableOps.pointsOrHtmlFormatter),
     "adj_rapm_prod": GenericTableOps.addDataCol(
       "RAPM Prod", "Adjusted Plus-Minus production (pts/100 * mins%) vs D1 average" + (expandedView ? "" : " (Off-Def margin)"),
