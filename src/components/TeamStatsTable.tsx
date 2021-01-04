@@ -22,6 +22,7 @@ import LoadingOverlay from 'react-loading-overlay';
 // Component imports
 import GenericTable, { GenericTableOps, GenericTableColProps } from "./GenericTable"
 import { RosterStatsModel } from './RosterStatsTable';
+import { LineupStatsModel } from './LineupStatsTable';
 import LuckConfigModal from "./shared/LuckConfigModal";
 import GenericTogglingMenu from "./shared/GenericTogglingMenu";
 import GenericTogglingMenuItem from "./shared/GenericTogglingMenuItem";
@@ -50,7 +51,8 @@ type Props = {
   /** Ensures that all relevant data is received at the same time */
   dataEvent: {
     teamStats: TeamStatsModel,
-    rosterStats: RosterStatsModel
+    rosterStats: RosterStatsModel,
+    lineupStats: LineupStatsModel[]
   },
   onChangeState: (newParams: GameFilterParams) => void;
 }

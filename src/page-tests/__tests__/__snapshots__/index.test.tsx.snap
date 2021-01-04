@@ -38,6 +38,7 @@ exports[`OnOffAnalyzerPage OnOffAnalyzerPage - should create snapshot 1`] = `
       title="Team and Game Filter"
     >
       <GameFilter
+        forceReload1Up={0}
         onChangeState={[Function]}
         onStats={[Function]}
         startingState={Object {}}
@@ -55,6 +56,7 @@ exports[`OnOffAnalyzerPage OnOffAnalyzerPage - should create snapshot 1`] = `
       <TeamStatsTable
         dataEvent={
           Object {
+            "lineupStats": Array [],
             "rosterStats": Object {
               "baseline": Array [],
               "off": Array [],
@@ -83,6 +85,7 @@ exports[`OnOffAnalyzerPage OnOffAnalyzerPage - should create snapshot 1`] = `
       <RosterStatsTable
         dataEvent={
           Object {
+            "lineupStats": Array [],
             "rosterStats": Object {
               "baseline": Array [],
               "off": Array [],

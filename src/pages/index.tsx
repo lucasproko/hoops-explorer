@@ -23,6 +23,7 @@ import GameFilter from '../components/GameFilter';
 import { ParamDefaults, ParamPrefixes, GameFilterParams, LineupFilterParams } from '../utils/FilterModels';
 import TeamStatsTable, { TeamStatsModel } from '../components/TeamStatsTable';
 import RosterStatsTable, { RosterStatsModel } from '../components/RosterStatsTable';
+import { LineupStatsModel } from '../components/LineupStatsTable';
 import RosterCompareTable, { RosterCompareModel } from '../components/RosterCompareTable';
 import GenericCollapsibleCard from '../components/shared/GenericCollapsibleCard';
 import Footer from '../components/shared/Footer';
@@ -50,14 +51,15 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
   const [ gaInited, setGaInited ] = useState(false);
   const [ dataEvent, setDataEvent ] = useState({
     teamStats: {on: {}, off: {}, baseline: {}} as TeamStatsModel,
-    rosterStats: {on: [], off: [], baseline: []} as RosterStatsModel
+    rosterStats: {on: [], off: [], baseline: []} as RosterStatsModel,
+    lineupStats: [] as LineupStatsModel[]
   });
   const [ rosterCompareStats, setRosterCompareStats ] = useState({on: {}, off: {}, baseline: {}} as RosterCompareModel);
 
   const injectStats = (
-    teamStats: TeamStatsModel, rosterCompareStats: RosterCompareModel, rosterStats: RosterStatsModel
+    teamStats: TeamStatsModel, rosterCompareStats: RosterCompareModel, rosterStats: RosterStatsModel, lineupStats: LineupStatsModel[]
   ) => {
-    setDataEvent({teamStats, rosterStats});
+    setDataEvent({teamStats, rosterStats, lineupStats});
     setRosterCompareStats(rosterCompareStats);
   }
 
@@ -88,6 +90,7 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
   function getRootUrl(params: GameFilterParams) {
     return UrlRouting.getGameUrl(params, {});
   }
+  const [ shouldForceReload, setShouldForceReload ] = useState(0 as number);
 
   const onGameFilterParamsChange = (rawParams: GameFilterParams) => {
     /** We're going to want to remove the manual options if the year changes */
@@ -117,9 +120,16 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
       (rawParams.showPosDiag == ParamDefaults.defaultPlayerPosDiagMode) ? [ 'showPosDiag' ] : [],
       (rawParams.showPlayerPlayTypes == ParamDefaults.defaultPlayerShowPlayTypes) ? [ 'showPlayerPlayTypes' ] : [],
       (rawParams.showPlayerManual == false) ? [ 'showPlayerManual' ] : [],
+      (rawParams.calcRapm == ParamDefaults.defaultPlayerCalcRapm) ? [ 'calcRapm' ] : [],
     ]));
 
     if (!_.isEqual(params, gameFilterParamsRef.current)) { //(to avoid recursion)
+
+      // Currently: game info requires an extra possibly expensive query component so we make it on demand only
+      if (params.calcRapm != gameFilterParamsRef.current?.calcRapm) {
+        setShouldForceReload(t => t + 1); //(note this sets an intermediate param, NOT the one in CommonFilter)
+      }
+
       const href = getRootUrl(params);
       const as = href;
       //TODO: this doesn't work if it's the same page (#91)
@@ -141,6 +151,17 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
       return undefined;
     }
   }
+
+  /** Only rebuild the table if the data changes */
+  const rosterStatsTable = React.useMemo(() => {
+    return  <GenericCollapsibleCard minimizeMargin={true} title="Individual Analysis" helpLink={maybeShowDocs()}>
+      <RosterStatsTable
+        gameFilterParams={gameFilterParams}
+        dataEvent={dataEvent}
+        onChangeState={onGameFilterParamsChange}
+      />
+    </GenericCollapsibleCard>
+  }, [ dataEvent ]);
 
   return <Container>
     <Row>
@@ -164,6 +185,7 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
           onStats={injectStats}
           startingState={gameFilterParams}
           onChangeState={onGameFilterParamsChange}
+          forceReload1Up={shouldForceReload}
         />
       </GenericCollapsibleCard>
     </Row>
@@ -177,13 +199,7 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
       </GenericCollapsibleCard>
     </Row>
     <Row>
-      <GenericCollapsibleCard minimizeMargin={true} title="Individual Analysis" helpLink={maybeShowDocs()}>
-        <RosterStatsTable
-          gameFilterParams={gameFilterParams}
-          dataEvent={dataEvent}
-          onChangeState={onGameFilterParamsChange}
-        />
-      </GenericCollapsibleCard>
+      {rosterStatsTable}
     </Row>
     <Row>
       <GenericCollapsibleCard minimizeMargin={false} title="Lineup Comparison" helpLink={maybeShowDocs()}>

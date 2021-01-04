@@ -81,7 +81,8 @@ export type GameFilterParams = {
   showDiag?: boolean
   possAsPct?: boolean,
   factorMins?: boolean,
-  showPosDiag?: boolean
+  showPosDiag?: boolean,
+  calcRapm?: boolean
 };
 
 /** Params for lineup filtering */
@@ -186,6 +187,7 @@ export class ParamDefaults {
   static readonly defaultPlayerPossAsPct = true;
   static readonly defaultPlayerFactorMins = false;
   static readonly defaultPlayerPosDiagMode = false;
+  static readonly defaultPlayerCalcRapm = false;
   // Lineup
   static readonly defaultLineupShowTotal = false;
   static readonly defaultLineupDecorate = true;

@@ -32,6 +32,7 @@ import PositionalDiagView from "./diags/PositionalDiagView";
 import GenericTogglingMenu from "./shared/GenericTogglingMenu";
 import GenericTogglingMenuItem from "./shared/GenericTogglingMenuItem";
 import { TeamStatsModel } from '../components/TeamStatsTable';
+import { LineupStatsModel } from '../components/LineupStatsTable';
 import LuckAdjDiagView from "./diags/LuckAdjDiagView"
 import LuckConfigModal from "./shared/LuckConfigModal";
 import ManualOverrideModal from "./shared/ManualOverrideModal";
@@ -49,6 +50,10 @@ import { LuckUtils } from "../utils/stats/LuckUtils";
 import { OverrideUtils } from "../utils/stats/OverrideUtils";
 import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
 import { TableDisplayUtils } from "../utils/tables/TableDisplayUtils";
+import { LineupTableUtils } from "../utils/tables/LineupTableUtils";
+import { QueryUtils } from "../utils/QueryUtils";
+import { RapmUtils } from "../utils/stats/RapmUtils";
+import { LineupUtils } from "../utils/stats/LineupUtils";
 
 export type RosterStatsModel = {
   on?: Array<any>,
@@ -63,13 +68,15 @@ type Props = {
   /** Ensures that all relevant data is received at the same time */
   dataEvent: {
     teamStats: TeamStatsModel,
-    rosterStats: RosterStatsModel
+    rosterStats: RosterStatsModel,
+    lineupStats: LineupStatsModel[]
   },
-  onChangeState: (newParams: GameFilterParams) => void
+  onChangeState: (newParams: GameFilterParams) => void,
+  testMode?: boolean //(if set, the initial processing occurs synchronously)
 }
 
-const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataEvent, onChangeState}) => {
-  const { teamStats, rosterStats } = dataEvent;
+const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataEvent, onChangeState, testMode}) => {
+  const { teamStats, rosterStats, lineupStats } = dataEvent;
 
   const server = (typeof window === `undefined`) ? //(ensures SSR code still compiles)
     "server" : window.location.hostname
@@ -173,6 +180,11 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
     ParamDefaults.defaultPlayerShowPlayTypes : gameFilterParams.showPlayerPlayTypes
   );
 
+  /** (placeholder for positional info)*/
+  const [ calcRapm, setCalcRapm ] = useState(_.isNil(gameFilterParams.calcRapm) ?
+    ParamDefaults.defaultPlayerCalcRapm : gameFilterParams.calcRapm
+  );
+
   /** Whether we are showing the luck config modal */
   const [ showLuckConfig, setShowLuckConfig ] = useState(false);
 
@@ -202,6 +214,8 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
       manual: manualOverrides,
       // Luck:
       luck: luckConfig,
+      calcRapm: calcRapm,
+      factorMins: factorMins,
       onOffLuck: adjustForLuck,
       showPlayerOnOffLuckDiags: showLuckAdjDiags,
       showPlayerManual: showManualOverrides
@@ -209,17 +223,113 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
     onChangeState(newState);
 
   }, [ sortBy, filterStr, showDiagMode, alwaysShowBaseline, expandedView, possAsPct, showPositionDiags,
-      showPlayTypes, luckConfig, adjustForLuck, showLuckAdjDiags, showManualOverrides, manualOverrides
+      showPlayTypes, luckConfig, adjustForLuck, showLuckAdjDiags, showManualOverrides, manualOverrides, calcRapm, factorMins
     ]);
 
   // 2] Data Model
 
   const allTableFields = CommonTableDefs.onOffIndividualTableAllFields(expandedView);
-  const tableFields = CommonTableDefs.onOffIndividualTable(expandedView, possAsPct, factorMins, false);
+  const tableFields = CommonTableDefs.onOffIndividualTable(expandedView, possAsPct, factorMins, calcRapm);
 
   // 3] Utils
 
+  // Needed for a few things, including RAPM and play type analysis
+
+  /** Largest sample of player stats, by player key - use for ORtg calcs */
+  const globalRosterStatsByCode =
+    _.chain(rosterStats.global || []).map(p => {
+
+      //TODO: do I want this one, or the baseline or ???
+      if (showPlayTypes) {
+        const [ posConfs, posConfsDiags ] = PositionUtils.buildPositionConfidences(p);
+        const [ pos, posDiags ] = PositionUtils.buildPosition(posConfs, p, teamSeasonLookup);
+        p.posClass = _.values(posConfs);
+        p.role = pos;
+      }
+
+      return [ p.player_array?.hits?.hits?.[0]?._source?.player?.code || p.key, p ];
+    }).fromPairs().value();
+
   //(end luck calcs)
+
+  // 3.0] RAPM
+
+  const [ cachedRapm, setCachedRapm ] = useState({} as Record<string, any>);
+
+  useEffect(() => {
+    //ensure we never show the _wrong_ RAPM
+    setCachedRapm({});
+  }, [ dataEvent, adjustForLuck, manualOverrides ]);
+
+  const baselinePlayerInfo = LineupTableUtils.buildBaselinePlayerInfo(
+    rosterStats.baseline, globalRosterStatsByCode, teamStats.baseline, avgEfficiency
+  );
+  const positionFromPlayerKey = LineupTableUtils.buildPositionPlayerMap(rosterStats.global, teamSeasonLookup);
+
+  /** For a given lineup set, calculate RAPM as quickly as possible */
+  const buildRapm = (lineupStats: LineupStatsModel) => {
+    //TODO: manual edits don't show as override (so can't see original value) - fix at some point
+    // but not worth delaying over
+
+    const preRapmTableData = LineupTableUtils.buildEnrichedLineups(
+      lineupStats.lineups || [],
+      teamStats.global, rosterStats.global, teamStats.baseline,
+      adjustForLuck, luckConfig.base, avgEfficiency,
+      false, teamSeasonLookup, positionFromPlayerKey, baselinePlayerInfo
+    );
+    const tempTeamReport = LineupUtils.lineupToTeamReport({
+      lineups: preRapmTableData
+    });
+    const rapmContext = RapmUtils.buildPlayerContext(
+      tempTeamReport.players || [], preRapmTableData,
+      baselinePlayerInfo,
+      avgEfficiency
+    );
+    const [ offRapmWeights, defRapmWeights ] = RapmUtils.calcPlayerWeights(rapmContext);
+    const preProcDiags = RapmUtils.calcCollinearityDiag(offRapmWeights, rapmContext);
+    const [ offRapmInputs, defRapmInputs ] = RapmUtils.pickRidgeRegression(
+      offRapmWeights, defRapmWeights, rapmContext, preProcDiags.adaptiveCorrelWeights, false
+    );
+    RapmUtils.injectRapmIntoPlayers(
+      tempTeamReport.players || [], offRapmInputs, defRapmInputs, {}, rapmContext, preProcDiags.adaptiveCorrelWeights
+    );
+    if (adjustForLuck) { // (Calculate RAPM without luck, for display purposes)
+      const [ offNoLuckRapmInputs, defNoLuckRapmInputs ] = RapmUtils.pickRidgeRegression(
+        offRapmWeights, defRapmWeights, rapmContext, preProcDiags.adaptiveCorrelWeights, false,
+        true //<- uses old_value (ie pre-luck-adjusted)
+      );
+      RapmUtils.injectRapmIntoPlayers(
+        tempTeamReport.players || [], offNoLuckRapmInputs, defNoLuckRapmInputs, {}, rapmContext, preProcDiags.adaptiveCorrelWeights,
+        true //<- only applies RAPM to old_values
+      );
+    }
+    return _.fromPairs(
+      (tempTeamReport.players || []).map(p => [ p.playerId, { off_adj_rapm: p.rapm?.off_adj_ppp, def_adj_rapm: p.rapm?.def_adj_ppp }])
+    );
+  };
+
+  const buildAllRapm = () => {
+    if (calcRapm && _.isEmpty(cachedRapm)) {
+        const rapmInfos = (lineupStats || []).map(lineupStat => {
+        try {
+          return buildRapm(lineupStat)
+        } catch (err) {
+          return {};
+        }
+      });
+      setCachedRapm({
+        baseline: rapmInfos?.[0],
+        on: (gameFilterParams.onQuery) != "" ? rapmInfos?.[1] : undefined,
+        off: (gameFilterParams.onQuery) != "" ? rapmInfos?.[2] : rapmInfos?.[1],
+      });
+    }
+  };
+
+  useEffect(() => {
+    buildAllRapm();
+  }, [ cachedRapm ]);
+
+  if (testMode) buildAllRapm();
 
   // 3.1] Table building
 
@@ -269,8 +379,6 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
     }
   };
 
-
-
   /** Utility function to build the title for the player stats */
   const insertTitle = (playerName: string, type: "on" | "off" | "baseline", pos: string) => {
     const singleLineCase = type == "baseline" && baselineIsOnlyLine;
@@ -301,21 +409,6 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
 
   /** Need to be able to see the stats table for players in the manual override table */
   const mutableTableDisplayForOverrides = {} as Record<string, any[]>;
-
-  /** Largest sample of player stats, by player key - use for ORtg calcs */
-  const globalRosterStatsByCode =
-    _.chain(rosterStats.global || []).map(p => {
-
-      //TODO: do I want this one, or the baseline or ???
-      if (showPlayTypes) {
-        const [ posConfs, posConfsDiags ] = PositionUtils.buildPositionConfidences(p);
-        const [ pos, posDiags ] = PositionUtils.buildPosition(posConfs, p, teamSeasonLookup);
-        p.posClass = _.values(posConfs);
-        p.role = pos;
-      }
-
-      return [ p.player_array?.hits?.hits?.[0]?._source?.player?.code || p.key, p ];
-    }).fromPairs().value();
 
   // (Always just use A/B here because it's too confusing to say
   // "On <Player name>" meaning ""<Player Name> when <Other other player> is on")
@@ -447,6 +540,32 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
         </OverlayTrigger>;
         if (showPlayTypes) {
           stat.role = pos;
+        }
+
+        // RAPM: if we have a cached value then use that else claim it's being calculated...
+        if (calcRapm) {
+          if (!cachedRapm.baseline) { //(if baseline has RAPM it must have calculated)
+            const rapmPlaceholder = <OverlayTrigger placement="auto" overlay={
+              <Tooltip id={`${stat.key}-pendingRapm`}>Calculating, stand by...</Tooltip>
+            }><i>??</i></OverlayTrigger>;
+            stat.off_adj_rapm = rapmPlaceholder;
+            stat.def_adj_rapm = rapmPlaceholder;
+            stat.off_adj_rapm_prod = rapmPlaceholder;
+            stat.def_adj_rapm_prod = rapmPlaceholder;
+          } else {
+            const rapm = cachedRapm?.[key]?.[stat.key] || {};
+            if (expandedView) {
+              stat.off_adj_rapm = rapm.off_adj_rapm;
+              stat.def_adj_rapm = rapm.def_adj_rapm;
+              stat.off_adj_rapm_prod = rapm.off_adj_rapm ? { value: (rapm.off_adj_rapm?.value || 0)*stat.off_team_poss_pct.value! } : undefined;
+              stat.def_adj_rapm_prod = rapm.off_adj_rapm ? { value: (rapm.def_adj_rapm?.value || 0)*stat.def_team_poss_pct.value! } : undefined;
+            } else {
+              stat.off_adj_rapm = (rapm.off_adj_rapm && rapm.def_adj_rapm) ?
+                { value: (rapm.off_adj_rapm?.value || 0) - (rapm.def_adj_rapm?.value || 0) } :
+                undefined;
+              stat.off_adj_rapm_prod = stat.off_adj_rapm ? { value: (stat.off_adj_rapm.value || 0)*stat.off_team_poss_pct.value! } : undefined;
+            }
+          }
         }
 
         // Now we have the position we can build the titles:
@@ -742,6 +861,11 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
               onSelect={() => toggleFactorMins()}
             />
             <GenericTogglingMenuItem
+              text={<span>Calculate RAPM metric (slow)</span>}
+              truthVal={calcRapm}
+              onSelect={() => setCalcRapm(!calcRapm)}
+            />
+            <GenericTogglingMenuItem
               text="Adjust for Luck"
               truthVal={adjustForLuck}
               onSelect={() => setAdjustForLuck(!adjustForLuck)}
@@ -803,6 +927,12 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
               tooltip: "Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')",
               toggled: factorMins,
               onClick: () => toggleFactorMins()
+            },
+            {
+              label: "RAPM",
+              tooltip: "Whether to calculate the RAPM Off/Def metrics for each player (can be slow)')",
+              toggled: calcRapm,
+              onClick: () => setCalcRapm(!calcRapm)
             },
             {
               label: "Luck",

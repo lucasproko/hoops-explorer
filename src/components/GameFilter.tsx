@@ -17,6 +17,7 @@ import Col from 'react-bootstrap/Col';
 import { TeamStatsModel } from '../components/TeamStatsTable';
 import { RosterCompareModel } from '../components/RosterCompareTable';
 import { RosterStatsModel } from '../components/RosterStatsTable';
+import { LineupStatsModel } from '../components/LineupStatsTable';
 import CommonFilter, { GlobalKeypressManager } from '../components/CommonFilter';
 import { ParamPrefixes, FilterParamsType, CommonFilterParams, GameFilterParams, FilterRequestInfo, ParamPrefixesType, ParamDefaults } from "../utils/FilterModels";
 import AutoSuggestText from './shared/AutoSuggestText';
@@ -25,12 +26,13 @@ import AutoSuggestText from './shared/AutoSuggestText';
 import { QueryUtils } from '../utils/QueryUtils';
 
 type Props = {
-  onStats: (teamStats: TeamStatsModel, rosterCompareStats: RosterCompareModel, rosterStats: RosterStatsModel) => void;
+  onStats: (teamStats: TeamStatsModel, rosterCompareStats: RosterCompareModel, rosterStats: RosterStatsModel, lineupStats: LineupStatsModel[]) => void;
   startingState: GameFilterParams;
   onChangeState: (newParams: GameFilterParams) => void;
+  forceReload1Up: number;
 }
 
-const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onChangeState}) => {
+const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onChangeState, forceReload1Up}) => {
 
   // Data model
 
@@ -45,6 +47,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
     onOffLuck: startOnOffLuck,
     showOnOffLuckDiags: startShowOnOffLuckDiags,
     showPlayerOnOffLuckDiags: startShowPlayerOnOffLuckDiags,
+    calcRapm: startCalcRapm,
     //(these fields are for the individual view)
     filter: startFilter, sortBy: startSortBy,
     showBase: startShowBase, showExpanded: startShowExpanded,
@@ -59,6 +62,23 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
 
   /** The state managed by the CommonFilter element */
   const [ commonParams, setCommonParams ] = useState(startingCommonFilterParams as CommonFilterParams);
+
+  /** Ugly pattern that is part of support for force reloading */
+  const [ internalForceReload1Up, setInternalForceReload1Up ] = useState(forceReload1Up);
+
+  useEffect(() => { // Whenever forceReload1Up is incremented, reset common params:
+    if (forceReload1Up != internalForceReload1Up) {
+      setCommonParams(startingCommonFilterParams as CommonFilterParams);
+      setInternalForceReload1Up(forceReload1Up);
+      // Actually have to reset these two vs just their underlying value
+      // (could build that intermediate pair,. but we'll stick with this limitation for now)
+      setOnQuery(startOnQuery || "");
+      setOffQuery(startOffQuery || "");
+      //(leave toggleAutoOffQuery since it seems harmless, and weird stuff happened when I tried to set it
+      // which I don't have time to investigate):
+      //toggleAutoOffQuery(startAutoOffQuery);
+    }
+  }, [ forceReload1Up ]);
 
   // Game Filter - custom queries and filters:
 
@@ -75,7 +95,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
 
   /** Bridge between the callback in CommonFilter and state management */
   function updateCommonParams(params: CommonFilterParams) {
-    setCommonParams(params)
+    setCommonParams(params);
   }
 
   /** Builds a game filter from the various state elements, and also any secondary filters
@@ -95,6 +115,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
           onOffLuck: startOnOffLuck,
           showOnOffLuckDiags: startShowOnOffLuckDiags,
           showPlayerOnOffLuckDiags: startShowPlayerOnOffLuckDiags,
+          calcRapm: startCalcRapm,
           // Individual stats:
           autoOffQuery: autoOffQuery,
           filter: startFilter, sortBy: startSortBy,
@@ -117,6 +138,29 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
       baseQuery: "", onQuery: "", offQuery: ""
     };
     //TODO: also if the main query minus/on-off matches can't we just re-use that?!
+    // (ie and just ignore the on-off portion)
+
+    const [ baseQuery, maybeAdvBaseQuery ] = startCalcRapm ?
+      QueryUtils.extractAdvancedQuery(commonParams.baseQuery || "") : [ "", undefined ];
+
+    // RAPM calculations:
+    const getLineupQuery = (onOrOffQuery: string) => {
+      const [ onOrOff, maybeAdvOnOrOff ] = QueryUtils.extractAdvancedQuery(onOrOffQuery);
+      const baseToUse = maybeAdvBaseQuery || baseQuery || "";
+      const onOffToUse = maybeAdvOnOrOff || onOrOff || "";
+      return (baseToUse != "") ? `(${onOffToUse}) AND (${baseToUse})` : onOffToUse;
+    };
+    const lineupRequests = startCalcRapm ? [ QueryUtils.cleanseQuery({
+      ...commonParams
+    }) ].concat((onQuery != "") ? [ QueryUtils.cleanseQuery({
+        ...commonParams,
+        baseQuery: getLineupQuery(onQuery)
+      }) ] : []
+    ).concat((offQuery != "") ? [ QueryUtils.cleanseQuery({
+        ...commonParams,
+        baseQuery: getLineupQuery(offQuery)
+      }) ] : []
+    ) : [];
 
     return [ primaryRequest, [{
         context: ParamPrefixes.roster as ParamPrefixesType, paramsObj: primaryRequest
@@ -124,18 +168,35 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
         context: ParamPrefixes.player as ParamPrefixesType, paramsObj: primaryRequest
       }].concat(_.isEqual(entireSeasonRequest, primaryRequest) ? [] :[{ //(don't make a spurious call)
         context: ParamPrefixes.player as ParamPrefixesType, paramsObj: entireSeasonRequest
-      }])
+      }]).concat(lineupRequests.map(req => {
+        return { context: ParamPrefixes.lineup as ParamPrefixesType, paramsObj: req };
+      }))
     ];
   }
 
   /** Handles the response from ES to a stats calc request */
   function handleResponse(jsonResps: any[], wasError: Boolean) {
     const jsonStatuses = jsonResps.map(j => j.status);
-    const teamJson = jsonResps?.[0]?.responses?.[0] || {};
-    const rosterCompareJson = jsonResps?.[1]?.responses?.[0] || {};
-    const rosterStatsJson = jsonResps?.[2]?.responses?.[0] || {};
-    const globalRosterStatsJson = jsonResps?.[3]?.responses?.[0] || _.cloneDeep(rosterStatsJson);
+    const teamJson = jsonResps?.[0]?.responses?.[0] || {}; //(from primary request)
+    const rosterCompareJson = jsonResps?.[1]?.responses?.[0] || {}; //(from roster request)
+    const rosterStatsJson = jsonResps?.[2]?.responses?.[0] || {}; //(from player request #1)
+
+    // 3, [4, 5] can be lineups ... or they might be 4, [5, 6]
+    // depends on whether jsonResps?.[3]?.responses?.[0] has "aggregations.tri_filter"
+
+    //(optionally, from player request #2)
+    const hasGlobalRosterStats = jsonResps?.[3]?.responses?.[0]?.aggregations?.tri_filter;
+    const globalRosterStatsJson =
+      (hasGlobalRosterStats ? jsonResps?.[3]?.responses?.[0] : undefined) || _.cloneDeep(rosterStatsJson);
       //(need to clone it so that changes to baseline don't overwrite global)
+
+    /** For RAPM, from lineup requests */
+    const lineupResponses = _.drop(jsonResps, hasGlobalRosterStats ? 4 : 3).map(lineupJson => {
+      return {
+        lineups: lineupJson?.responses?.[0]?.aggregations?.lineups?.buckets,
+        error_code: wasError ? (lineupJson?.status || jsonStatuses?.[0] || "Unknown") : undefined
+      };
+    });
 
     onStats({
       on: teamJson?.aggregations?.tri_filter?.buckets?.on || {},
@@ -159,7 +220,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
       error_code: wasError ?
         (rosterStatsJson?.status || jsonStatuses?.[2] ||
           globalRosterStatsJson?.status || jsonStatuses?.[3] || "Unknown") : undefined
-    });
+    }, lineupResponses);
   }
 
   /** Sets the automatically generated off query, if that option is selected */
@@ -200,6 +261,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
       tablePrefix = {cacheKeyPrefix}
       buildParamsFromState={buildParamsFromState}
       childHandleResponse={handleResponse}
+      forceReload1Up={internalForceReload1Up}
     ><GlobalKeypressManager.Consumer>{ globalKeypressHandler => <div>
       <Form.Group as={Row}>
         <Form.Label column sm="2">{maybeOn} Query</Form.Label>
