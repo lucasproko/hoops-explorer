@@ -53,18 +53,20 @@ const ManualOverrideModal: React.FunctionComponent<Props> = (
   })();
 
   const getFirstPlayer = (statList: any[]) => {
-    const first = statList?.[0];
+    const matchingList = (statList || []).filter(s => !filteredPlayers || filteredPlayers.has(s.key));
+    const first = matchingList?.[0];
     return first ? OverrideUtils.getPlayerRowId(first.key, first.onOffKey) : undefined;
   }
   useEffect(() => {
-    if ("" == currInStat) {
+    // Show no players, unless there is a single filtered player in which case show them
+    if (("" == currInStat) && filteredPlayers && (1 == filteredPlayers.size)) {
       setCurrInStat(getFirstPlayer(inStats) || "");
     }
-  }, [ inStats ]);
+  }, [ inStats, filteredPlayers ]);
 
   // Starting values:
   const [ currInStat, setCurrInStat ] = useState(
-    startOverride?.rowId || getFirstPlayer(inStats) || ""
+    startOverride?.rowId || ""
   );
   const [ currStatName, setCurrStatName ] = useState(startOverride?.statName || "");
   const [ oldStatVal, setOldStatVal ] = useState(0 as number);
