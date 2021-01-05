@@ -129,6 +129,10 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
       if (params.calcRapm != gameFilterParamsRef.current?.calcRapm) {
         setShouldForceReload(t => t + 1); //(note this sets an intermediate param, NOT the one in CommonFilter)
       }
+      // Adjust for luck change in one table needs to be guaranteed to switch the other
+      if (params.onOffLuck != gameFilterParamsRef.current?.onOffLuck) {
+        setDataEvent(d => { return  { ...d } }); //(leave data unchanged but fool the useMemo below)
+      }
 
       const href = getRootUrl(params);
       const as = href;
@@ -152,7 +156,7 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
     }
   }
 
-  /** Only rebuild the table if the data changes */
+  /** Only rebuild the table if the data changes, or if luck changes (see above) */
   const rosterStatsTable = React.useMemo(() => {
     return  <GenericCollapsibleCard minimizeMargin={true} title="Individual Analysis" helpLink={maybeShowDocs()}>
       <RosterStatsTable

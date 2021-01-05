@@ -4746,7 +4746,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                 "label": "RAPM",
                 "onClick": [Function],
                 "toggled": false,
-                "tooltip": "Whether to calculate the RAPM Off/Def metrics for each player (can be slow)')",
+                "tooltip": "Whether to calculate the RAPM Off/Def metrics for each player (can be slow - also on/off RAPMs can be very unreliable, particularly for high/low poss% values)",
               },
               Object {
                 "label": "Luck",
@@ -8010,7 +8010,7 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
                 "label": "RAPM",
                 "onClick": [Function],
                 "toggled": false,
-                "tooltip": "Whether to calculate the RAPM Off/Def metrics for each player (can be slow)')",
+                "tooltip": "Whether to calculate the RAPM Off/Def metrics for each player (can be slow - also on/off RAPMs can be very unreliable, particularly for high/low poss% values)",
               },
               Object {
                 "label": "Luck",
@@ -10571,7 +10571,7 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                 "label": "RAPM",
                 "onClick": [Function],
                 "toggled": false,
-                "tooltip": "Whether to calculate the RAPM Off/Def metrics for each player (can be slow)')",
+                "tooltip": "Whether to calculate the RAPM Off/Def metrics for each player (can be slow - also on/off RAPMs can be very unreliable, particularly for high/low poss% values)",
               },
               Object {
                 "label": "Luck",
@@ -15582,7 +15582,7 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                 "label": "RAPM",
                 "onClick": [Function],
                 "toggled": false,
-                "tooltip": "Whether to calculate the RAPM Off/Def metrics for each player (can be slow)')",
+                "tooltip": "Whether to calculate the RAPM Off/Def metrics for each player (can be slow - also on/off RAPMs can be very unreliable, particularly for high/low poss% values)",
               },
               Object {
                 "label": "Luck",
@@ -22526,7 +22526,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                 "label": "RAPM",
                 "onClick": [Function],
                 "toggled": false,
-                "tooltip": "Whether to calculate the RAPM Off/Def metrics for each player (can be slow)')",
+                "tooltip": "Whether to calculate the RAPM Off/Def metrics for each player (can be slow - also on/off RAPMs can be very unreliable, particularly for high/low poss% values)",
               },
               Object {
                 "label": "Luck",
@@ -30233,7 +30233,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                 "label": "RAPM",
                 "onClick": [Function],
                 "toggled": false,
-                "tooltip": "Whether to calculate the RAPM Off/Def metrics for each player (can be slow)')",
+                "tooltip": "Whether to calculate the RAPM Off/Def metrics for each player (can be slow - also on/off RAPMs can be very unreliable, particularly for high/low poss% values)",
               },
               Object {
                 "label": "Luck",
@@ -40640,7 +40640,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                 "label": "RAPM",
                 "onClick": [Function],
                 "toggled": false,
-                "tooltip": "Whether to calculate the RAPM Off/Def metrics for each player (can be slow)')",
+                "tooltip": "Whether to calculate the RAPM Off/Def metrics for each player (can be slow - also on/off RAPMs can be very unreliable, particularly for high/low poss% values)",
               },
               Object {
                 "label": "Luck",

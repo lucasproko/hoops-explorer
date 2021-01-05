@@ -930,7 +930,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
             },
             {
               label: "RAPM",
-              tooltip: "Whether to calculate the RAPM Off/Def metrics for each player (can be slow)')",
+              tooltip: "Whether to calculate the RAPM Off/Def metrics for each player (can be slow - also on/off RAPMs can be very unreliable, particularly for high/low poss% values)",
               toggled: calcRapm,
               onClick: () => setCalcRapm(!calcRapm)
             },
