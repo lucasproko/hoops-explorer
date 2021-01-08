@@ -488,7 +488,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
         // Set or unset derived stats:
         OverrideUtils.updateDerivedStats(stat, adjustmentReason);
         stat.off_drb = stat.def_orb; //(just for display, all processing should use def_orb)
-        TableDisplayUtils.injectPlayTypeInfo(stat, expandedView, true);
+        TableDisplayUtils.injectPlayTypeInfo(stat, expandedView, true, teamSeasonLookup);
 
         // Ratings:
 

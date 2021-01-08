@@ -241,9 +241,9 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       ;
 
     const tableData = lineups.flatMap((lineup, lineupIndex) => {
-      TableDisplayUtils.injectPlayTypeInfo(lineup, false, false); //(inject assist numbers)
-
       const teamSeasonLookup = `${startingState.gender}_${lineup.team}_${startingState.year}`;
+
+      TableDisplayUtils.injectPlayTypeInfo(lineup, false, false, teamSeasonLookup); //(inject assist+tempo numbers)
 
       const perLineupBaselinePlayerMap = lineup.player_info;
       const positionFromPlayerKey = lineup.player_info;

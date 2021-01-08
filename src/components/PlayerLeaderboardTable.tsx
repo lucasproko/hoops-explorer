@@ -377,6 +377,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       </OverlayTrigger>;
 
       const confNickname = ConferenceToNickname[player.conf] || "???";
+      const teamSeasonLookup = `${startingState.gender}_${player.team}_${startingState.year}`;
 
       const generalRank = isGeneralSortOrFilter ? <span><i>(#{playerIndex + 1})</i>&nbsp;</span> : null;
       const rankingsTooltip = (
@@ -480,7 +481,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
         </div>;
 
       player.off_drb = player.def_orb; //(just for display, all processing should use def_orb)
-      TableDisplayUtils.injectPlayTypeInfo(player, true, true);
+      TableDisplayUtils.injectPlayTypeInfo(player, true, true, teamSeasonLookup);
 
       return _.flatten([
         [ GenericTableOps.buildDataRow(player, offPrefixFn, offCellMetaFn) ],

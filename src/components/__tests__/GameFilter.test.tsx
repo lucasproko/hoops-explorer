@@ -14,6 +14,7 @@ describe("GameFilter", () => {
       onStats={dummySubmitCallback}
       startingState={{}}
       onChangeState={dummyChangeStateCallback}
+      forceReload1Up={0}
     />);
     expect(toJson(wrapper)).toMatchSnapshot();
   });

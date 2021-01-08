@@ -226,7 +226,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
         adjustForLuck, luckConfig.base, avgEfficiency,
         showTotals, teamSeasonLookup, positionFromPlayerKey, baselinePlayerInfo
       ).flatMap((lineup, lineupIndex) => {
-        TableDisplayUtils.injectPlayTypeInfo(lineup, false, false); //(inject assist numbers)
+        TableDisplayUtils.injectPlayTypeInfo(lineup, false, false, teamSeasonLookup); //(inject assist numbers)
 
         const codesAndIds = LineupTableUtils.buildCodesAndIds(lineup);
         const sortedCodesAndIds = (lineup.key == LineupTableUtils.totalLineupId) ? undefined :
@@ -286,7 +286,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
         adjustForLuck, luckConfig.base, avgEfficiency,
         showTotals, teamSeasonLookup, positionFromPlayerKey, baselinePlayerInfo
       )).flatMap((lineup, lineupIndex) => {
-        TableDisplayUtils.injectPlayTypeInfo(lineup, false, false); //(inject assist numbers)
+        TableDisplayUtils.injectPlayTypeInfo(lineup, false, false, teamSeasonLookup); //(inject assist numbers)
 
         const codesAndIds = LineupTableUtils.buildCodesAndIds(lineup);
         const sortedCodesAndIds = (lineup.key == LineupTableUtils.totalLineupId) ? undefined :
@@ -352,7 +352,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
       const tableData = refilteredLineups.flatMap(stats => {
         // Re-enrich if not total
         if (stats.posKey != LineupTableUtils.totalLineupId) {
-          TableDisplayUtils.injectPlayTypeInfo(stats, false, false); //(inject assist numbers)
+          TableDisplayUtils.injectPlayTypeInfo(stats, false, false, teamSeasonLookup); //(inject assist numbers)
         }
 
         return _.flatten([

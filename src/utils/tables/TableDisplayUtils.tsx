@@ -156,7 +156,7 @@ export class TableDisplayUtils {
   }
 
   /** Inject various assist info into the table cell inputs */
-  static injectPlayTypeInfo(stat: Record<string, any>, expandedView: boolean, playerView: boolean) {
+  static injectPlayTypeInfo(stat: Record<string, any>, expandedView: boolean, playerView: boolean, teamSeasonLookup?: string) {
     if (playerView) {
       // Put assist %s as the row underneath shot types:
       const buildInfoRow = (stat: any) =>
@@ -222,6 +222,29 @@ export class TableDisplayUtils {
       return `${(100*(stat?.value || 0)).toFixed(0)}% assisted`
     }
 
+
+    // Pending fixing this issue (https://github.com/Alex-At-Home/cbb-on-off-analyzer/issues/142),
+    // just filter out any teams that suffer from it (All women teams and a few men's teams)
+    const workaroundTempoBug = teamSeasonLookup && (
+      _.startsWith(teamSeasonLookup, "Women_") ||
+      (teamSeasonLookup == "Men_West Virginia_2018/9") ||
+      (teamSeasonLookup == "Men_Florida St._2018/9") ||
+      (teamSeasonLookup == "Men_George Washington_2018/9") ||
+      (teamSeasonLookup == "Men_Kansas St._2018/9") ||
+      (teamSeasonLookup == "Men_NC State_2018/9") ||
+      (teamSeasonLookup == "Men_Oklahoma St._2018/9") ||
+      (teamSeasonLookup == "Men_South Carolina_2018/9") ||
+      (teamSeasonLookup == "Men_Tennessee_2018/9") ||
+      (teamSeasonLookup == "Men_Utah St._2018/9") ||
+      (teamSeasonLookup == "Men_Florida_2019/20") ||
+      (teamSeasonLookup == "Men_Missouri_2019/20") ||
+      (teamSeasonLookup == "Men_Jackson St._2020/21") ||
+      (teamSeasonLookup == "Men_N.C. A&T_2020/21") ||
+      (teamSeasonLookup == "Men_South Carolina St._2020/21") ||
+      (teamSeasonLookup == "Men_Southeast Mo. St._2020/21") ||
+      (teamSeasonLookup == "Men_Tennessee St._2020/21")
+    );
+
     // Handle adding and removing of extra info:
     if (expandedView) {
       if (stat.off_2primr) {
@@ -265,7 +288,11 @@ export class TableDisplayUtils {
       }
       if (stat.off_poss) {
         //TODO: see https://github.com/Alex-At-Home/cbb-on-off-analyzer/issues/142
-        //stat.off_poss.extraInfo = paceBuilder(stat, false);
+        if (workaroundTempoBug) {
+          stat.off_poss.extraInfo = <i>(data not available for this team, contact me for more details)</i>;
+        } else {
+          stat.off_poss.extraInfo = paceBuilder(stat, false);
+        }
       }
       // Defensive FT%: team/lineup/ only
       if (stat.def_ftr) {
@@ -274,11 +301,19 @@ export class TableDisplayUtils {
     } else {
       if (stat.off_team_poss) {
         //TODO: see https://github.com/Alex-At-Home/cbb-on-off-analyzer/issues/142
-        //stat.off_team_poss.extraInfo = paceBuilder(stat, true);
+        if (workaroundTempoBug) {
+          stat.off_team_poss.extraInfo = <i>(data not available for this team, contact me for more details)</i>;
+        } else {
+          stat.off_team_poss.extraInfo = paceBuilder(stat, true);
+        }
       }
       if (stat.off_team_poss_pct) {
         //TODO: see https://github.com/Alex-At-Home/cbb-on-off-analyzer/issues/142
-        //stat.off_team_poss_pct.extraInfo = paceBuilder(stat, true);
+        if (workaroundTempoBug) {
+          stat.off_team_poss_pct.extraInfo = <i>(data not available for this team, contact me for more details)</i>;
+        } else {
+          stat.off_team_poss_pct.extraInfo = paceBuilder(stat, true);
+        }
       }
     }
     return stat;

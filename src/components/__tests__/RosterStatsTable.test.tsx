@@ -28,7 +28,8 @@ describe("RosterStatsTable", () => {
       gameFilterParams={{showExpanded: false}}
       dataEvent={{
         teamStats: {on: {}, off: {}, global: {}, onOffMode: true, baseline: {}},
-        rosterStats: testData
+        rosterStats: testData,
+        lineupStats: []
       }}
       onChangeState={(newParams: GameFilterParams) => {}}
     />
@@ -48,7 +49,8 @@ describe("RosterStatsTable", () => {
       gameFilterParams={{showExpanded: true}}
       dataEvent={{
         teamStats: {on: {}, off: {}, global: {}, onOffMode: true, baseline: {}},
-        rosterStats: testData
+        rosterStats: testData,
+        lineupStats: []
       }}
       onChangeState={(newParams: GameFilterParams) => {}}
     />
@@ -68,7 +70,8 @@ describe("RosterStatsTable", () => {
       gameFilterParams={{}}
       dataEvent={{
         teamStats: {on: {}, off: {}, global: {}, onOffMode: true, baseline: {}},
-        rosterStats: testData
+        rosterStats: testData,
+        lineupStats: []
       }}
       onChangeState={(newParams: GameFilterParams) => {}}
     />
@@ -88,7 +91,8 @@ describe("RosterStatsTable", () => {
       gameFilterParams={{showExpanded: true}}
       dataEvent={{
         teamStats: {on: {}, off: {}, global: {}, onOffMode: true, baseline: {}},
-        rosterStats: testData
+        rosterStats: testData,
+        lineupStats: []
       }}
       onChangeState={(newParams: GameFilterParams) => {}}
     />
@@ -109,7 +113,8 @@ describe("RosterStatsTable", () => {
       gameFilterParams={{onOffLuck: true, showPlayerOnOffLuckDiags: true, showDiag: true, showPosDiag: true }}
       dataEvent={{
         teamStats: {on: {}, off: {}, global: {}, onOffMode: true, baseline: {}},
-        rosterStats: testData
+        rosterStats: testData,
+        lineupStats: []
       }}
       onChangeState={(newParams: GameFilterParams) => {}}
     />
@@ -135,7 +140,8 @@ describe("RosterStatsTable", () => {
        }}
       dataEvent={{
         teamStats: {on: {}, off: {}, global: {}, onOffMode: true, baseline: {}},
-        rosterStats: testData
+        rosterStats: testData,
+        lineupStats: []
       }}
       onChangeState={(newParams: GameFilterParams) => {}}
     />
@@ -162,7 +168,8 @@ describe("RosterStatsTable", () => {
        }}
       dataEvent={{
         teamStats: {on: {}, off: {}, global: {}, onOffMode: true, baseline: {}},
-        rosterStats: testData
+        rosterStats: testData,
+        lineupStats: []
       }}
       onChangeState={(newParams: GameFilterParams) => {}}
     />

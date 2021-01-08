@@ -1514,6 +1514,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                                         "value": 0.45949926362297494,
                                       }
 
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          67.8
+                                           poss/g
+                                        </span>,
+                                        "value": 809,
+                                      }
+
                     off_ppp: Object {
                                         "extraInfo": <span>
                                           Play category breakdown:
@@ -1942,6 +1950,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                                         "value": 0.45949926362297494,
                                       }
 
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          67.8
+                                           poss/g
+                                        </span>,
+                                        "value": 809,
+                                      }
+
                     off_ppp: Object {
                                         "extraInfo": <span>
                                           Play category breakdown:
@@ -2105,6 +2121,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                                           0.0
                                           %
                                         </span>,
+                                        "value": 0,
+                                      }
+
+                    off_poss: Object {
+                                        "extraInfo": undefined,
                                         "value": 0,
                                       }
 
@@ -2535,6 +2556,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                                         "value": 0,
                                       }
 
+                    off_poss: Object {
+                                        "extraInfo": undefined,
+                                        "value": 0,
+                                      }
+
                     off_ppp: Object {
                                         "extraInfo": <span>
                                           Play category breakdown:
@@ -2719,6 +2745,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                                         "value": 0.45949926362297494,
                                       }
 
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          67.8
+                                           poss/g
+                                        </span>,
+                                        "value": 809,
+                                      }
+
                     off_ppp: Object {
                                         "extraInfo": <span>
                                           Play category breakdown:
@@ -3147,6 +3181,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                                         "value": 0.45949926362297494,
                                       }
 
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          67.8
+                                           poss/g
+                                        </span>,
+                                        "value": 809,
+                                      }
+
                     off_ppp: Object {
                                         "extraInfo": <span>
                                           Play category breakdown:
@@ -3310,6 +3352,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                                           0.0
                                           %
                                         </span>,
+                                        "value": 0,
+                                      }
+
+                    off_poss: Object {
+                                        "extraInfo": undefined,
                                         "value": 0,
                                       }
 
@@ -3737,6 +3784,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                                           0.0
                                           %
                                         </span>,
+                                        "value": 0,
+                                      }
+
+                    off_poss: Object {
+                                        "extraInfo": undefined,
                                         "value": 0,
                                       }
 
@@ -3924,6 +3976,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                                         "value": 0.45949926362297494,
                                       }
 
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          67.8
+                                           poss/g
+                                        </span>,
+                                        "value": 809,
+                                      }
+
                     off_ppp: Object {
                                         "extraInfo": <span>
                                           Play category breakdown:
@@ -4352,6 +4412,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                                         "value": 0.45949926362297494,
                                       }
 
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          67.8
+                                           poss/g
+                                        </span>,
+                                        "value": 809,
+                                      }
+
                     off_ppp: Object {
                                         "extraInfo": <span>
                                           Play category breakdown:
@@ -4515,6 +4583,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                                           0.0
                                           %
                                         </span>,
+                                        "value": 0,
+                                      }
+
+                    off_poss: Object {
+                                        "extraInfo": undefined,
                                         "value": 0,
                                       }
 
@@ -4942,6 +5015,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                                           0.0
                                           %
                                         </span>,
+                                        "value": 0,
+                                      }
+
+                    off_poss: Object {
+                                        "extraInfo": undefined,
                                         "value": 0,
                                       }
 
@@ -5127,6 +5205,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                                           %
                                         </span>,
                                         "value": 0.545271629778672,
+                                      }
+
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          69.1
+                                           poss/g
+                                        </span>,
+                                        "value": 612,
                                       }
 
                     off_ppp: Object {
@@ -5555,6 +5641,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                                           %
                                         </span>,
                                         "value": 0.545271629778672,
+                                      }
+
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          69.1
+                                           poss/g
+                                        </span>,
+                                        "value": 612,
                                       }
 
                     off_ppp: Object {
@@ -5729,6 +5823,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                                           %
                                         </span>,
                                         "value": 0.22527472527472528,
+                                      }
+
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          64.0
+                                           poss/g
+                                        </span>,
+                                        "value": 197,
                                       }
 
                     off_ppp: Object {
@@ -6172,6 +6274,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                                           %
                                         </span>,
                                         "value": 0.22527472527472528,
+                                      }
+
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          64.0
+                                           poss/g
+                                        </span>,
+                                        "value": 197,
                                       }
 
                     off_ppp: Object {
@@ -6364,6 +6474,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                                           %
                                         </span>,
                                         "value": 0.44554455445544555,
+                                      }
+
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          68.9
+                                           poss/g
+                                        </span>,
+                                        "value": 598,
                                       }
 
                     off_ppp: Object {
@@ -6792,6 +6910,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                                           %
                                         </span>,
                                         "value": 0.44554455445544555,
+                                      }
+
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          68.9
+                                           poss/g
+                                        </span>,
+                                        "value": 598,
                                       }
 
                     off_ppp: Object {
@@ -6966,6 +7092,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                                           %
                                         </span>,
                                         "value": 0.5,
+                                      }
+
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          64.7
+                                           poss/g
+                                        </span>,
+                                        "value": 211,
                                       }
 
                     off_ppp: Object {
@@ -7409,6 +7543,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                                           %
                                         </span>,
                                         "value": 0.5,
+                                      }
+
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          64.7
+                                           poss/g
+                                        </span>,
+                                        "value": 211,
                                       }
 
                     off_ppp: Object {
@@ -7601,6 +7743,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                                           %
                                         </span>,
                                         "value": 0.3595505617977528,
+                                      }
+
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          64.4
+                                           poss/g
+                                        </span>,
+                                        "value": 408,
                                       }
 
                     off_ppp: Object {
@@ -8029,6 +8179,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                                           %
                                         </span>,
                                         "value": 0.3595505617977528,
+                                      }
+
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          64.4
+                                           poss/g
+                                        </span>,
+                                        "value": 408,
                                       }
 
                     off_ppp: Object {
@@ -8203,6 +8361,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                                           %
                                         </span>,
                                         "value": 0.5696594427244582,
+                                      }
+
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          71.7
+                                           poss/g
+                                        </span>,
+                                        "value": 401,
                                       }
 
                     off_ppp: Object {
@@ -8646,6 +8812,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                                           %
                                         </span>,
                                         "value": 0.5696594427244582,
+                                      }
+
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          71.7
+                                           poss/g
+                                        </span>,
+                                        "value": 401,
                                       }
 
                     off_ppp: Object {
@@ -10917,6 +11091,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                         "value": 0.45949926362297494,
                                       }
 
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          67.8
+                                           poss/g
+                                        </span>,
+                                        "value": 809,
+                                      }
+
                     off_ppp: Object {
                                         "extraInfo": <span>
                                           Play category breakdown:
@@ -11385,6 +11567,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                         "value": 0.45949926362297494,
                                       }
 
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          67.8
+                                           poss/g
+                                        </span>,
+                                        "value": 809,
+                                      }
+
                     off_ppp: Object {
                                         "extraInfo": <span>
                                           Play category breakdown:
@@ -11550,6 +11740,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           0.0
                                           %
                                         </span>,
+                                        "value": 0,
+                                      }
+
+                    off_poss: Object {
+                                        "extraInfo": undefined,
                                         "value": 0,
                                       }
 
@@ -11977,6 +12172,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           0.0
                                           %
                                         </span>,
+                                        "value": 0,
+                                      }
+
+                    off_poss: Object {
+                                        "extraInfo": undefined,
                                         "value": 0,
                                       }
 
@@ -12758,6 +12958,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                         "value": 0.45949926362297494,
                                       }
 
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          67.8
+                                           poss/g
+                                        </span>,
+                                        "value": 809,
+                                      }
+
                     off_ppp: Object {
                                         "extraInfo": <span>
                                           Play category breakdown:
@@ -13226,6 +13434,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                         "value": 0.45949926362297494,
                                       }
 
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          67.8
+                                           poss/g
+                                        </span>,
+                                        "value": 809,
+                                      }
+
                     off_ppp: Object {
                                         "extraInfo": <span>
                                           Play category breakdown:
@@ -13391,6 +13607,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           0.0
                                           %
                                         </span>,
+                                        "value": 0,
+                                      }
+
+                    off_poss: Object {
+                                        "extraInfo": undefined,
                                         "value": 0,
                                       }
 
@@ -13818,6 +14039,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           0.0
                                           %
                                         </span>,
+                                        "value": 0,
+                                      }
+
+                    off_poss: Object {
+                                        "extraInfo": undefined,
                                         "value": 0,
                                       }
 
@@ -14599,6 +14825,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                         "value": 0.45949926362297494,
                                       }
 
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          67.8
+                                           poss/g
+                                        </span>,
+                                        "value": 809,
+                                      }
+
                     off_ppp: Object {
                                         "extraInfo": <span>
                                           Play category breakdown:
@@ -15067,6 +15301,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                         "value": 0.45949926362297494,
                                       }
 
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          67.8
+                                           poss/g
+                                        </span>,
+                                        "value": 809,
+                                      }
+
                     off_ppp: Object {
                                         "extraInfo": <span>
                                           Play category breakdown:
@@ -15232,6 +15474,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           0.0
                                           %
                                         </span>,
+                                        "value": 0,
+                                      }
+
+                    off_poss: Object {
+                                        "extraInfo": undefined,
                                         "value": 0,
                                       }
 
@@ -15659,6 +15906,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           0.0
                                           %
                                         </span>,
+                                        "value": 0,
+                                      }
+
+                    off_poss: Object {
+                                        "extraInfo": undefined,
                                         "value": 0,
                                       }
 
@@ -16438,6 +16690,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           %
                                         </span>,
                                         "value": 0.545271629778672,
+                                      }
+
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          69.1
+                                           poss/g
+                                        </span>,
+                                        "value": 612,
                                       }
 
                     off_ppp: Object {
@@ -16906,6 +17166,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           %
                                         </span>,
                                         "value": 0.545271629778672,
+                                      }
+
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          69.1
+                                           poss/g
+                                        </span>,
+                                        "value": 612,
                                       }
 
                     off_ppp: Object {
@@ -17120,6 +17388,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           %
                                         </span>,
                                         "value": 0.22527472527472528,
+                                      }
+
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          64.0
+                                           poss/g
+                                        </span>,
+                                        "value": 197,
                                       }
 
                     off_ppp: Object {
@@ -17603,6 +17879,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           %
                                         </span>,
                                         "value": 0.22527472527472528,
+                                      }
+
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          64.0
+                                           poss/g
+                                        </span>,
+                                        "value": 197,
                                       }
 
                     off_ppp: Object {
@@ -18487,6 +18771,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           %
                                         </span>,
                                         "value": 0.44554455445544555,
+                                      }
+
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          68.9
+                                           poss/g
+                                        </span>,
+                                        "value": 598,
                                       }
 
                     off_ppp: Object {
@@ -18955,6 +19247,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           %
                                         </span>,
                                         "value": 0.44554455445544555,
+                                      }
+
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          68.9
+                                           poss/g
+                                        </span>,
+                                        "value": 598,
                                       }
 
                     off_ppp: Object {
@@ -19169,6 +19469,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           %
                                         </span>,
                                         "value": 0.5,
+                                      }
+
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          64.7
+                                           poss/g
+                                        </span>,
+                                        "value": 211,
                                       }
 
                     off_ppp: Object {
@@ -19652,6 +19960,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           %
                                         </span>,
                                         "value": 0.5,
+                                      }
+
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          64.7
+                                           poss/g
+                                        </span>,
+                                        "value": 211,
                                       }
 
                     off_ppp: Object {
@@ -20536,6 +20852,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           %
                                         </span>,
                                         "value": 0.3595505617977528,
+                                      }
+
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          64.4
+                                           poss/g
+                                        </span>,
+                                        "value": 408,
                                       }
 
                     off_ppp: Object {
@@ -21004,6 +21328,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           %
                                         </span>,
                                         "value": 0.3595505617977528,
+                                      }
+
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          64.4
+                                           poss/g
+                                        </span>,
+                                        "value": 408,
                                       }
 
                     off_ppp: Object {
@@ -21218,6 +21550,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           %
                                         </span>,
                                         "value": 0.5696594427244582,
+                                      }
+
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          71.7
+                                           poss/g
+                                        </span>,
+                                        "value": 401,
                                       }
 
                     off_ppp: Object {
@@ -21701,6 +22041,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           %
                                         </span>,
                                         "value": 0.5696594427244582,
+                                      }
+
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          71.7
+                                           poss/g
+                                        </span>,
+                                        "value": 401,
                                       }
 
                     off_ppp: Object {
@@ -24588,6 +24936,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                         "value": 0.45949926362297494,
                                       }
 
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          67.8
+                                           poss/g
+                                        </span>,
+                                        "value": 809,
+                                      }
+
                     off_ppp: Object {
                                         "extraInfo": <span>
                                           Play category breakdown:
@@ -25016,6 +25372,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                         "value": 0.45949926362297494,
                                       }
 
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          67.8
+                                           poss/g
+                                        </span>,
+                                        "value": 809,
+                                      }
+
                     off_ppp: Object {
                                         "extraInfo": <span>
                                           Play category breakdown:
@@ -25179,6 +25543,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           0.0
                                           %
                                         </span>,
+                                        "value": 0,
+                                      }
+
+                    off_poss: Object {
+                                        "extraInfo": undefined,
                                         "value": 0,
                                       }
 
@@ -25606,6 +25975,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           0.0
                                           %
                                         </span>,
+                                        "value": 0,
+                                      }
+
+                    off_poss: Object {
+                                        "extraInfo": undefined,
                                         "value": 0,
                                       }
 
@@ -26349,6 +26723,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                         "value": 0.45949926362297494,
                                       }
 
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          67.8
+                                           poss/g
+                                        </span>,
+                                        "value": 809,
+                                      }
+
                     off_ppp: Object {
                                         "extraInfo": <span>
                                           Play category breakdown:
@@ -26777,6 +27159,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                         "value": 0.45949926362297494,
                                       }
 
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          67.8
+                                           poss/g
+                                        </span>,
+                                        "value": 809,
+                                      }
+
                     off_ppp: Object {
                                         "extraInfo": <span>
                                           Play category breakdown:
@@ -26940,6 +27330,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           0.0
                                           %
                                         </span>,
+                                        "value": 0,
+                                      }
+
+                    off_poss: Object {
+                                        "extraInfo": undefined,
                                         "value": 0,
                                       }
 
@@ -27367,6 +27762,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           0.0
                                           %
                                         </span>,
+                                        "value": 0,
+                                      }
+
+                    off_poss: Object {
+                                        "extraInfo": undefined,
                                         "value": 0,
                                       }
 
@@ -28110,6 +28510,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                         "value": 0.45949926362297494,
                                       }
 
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          67.8
+                                           poss/g
+                                        </span>,
+                                        "value": 809,
+                                      }
+
                     off_ppp: Object {
                                         "extraInfo": <span>
                                           Play category breakdown:
@@ -28538,6 +28946,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                         "value": 0.45949926362297494,
                                       }
 
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          67.8
+                                           poss/g
+                                        </span>,
+                                        "value": 809,
+                                      }
+
                     off_ppp: Object {
                                         "extraInfo": <span>
                                           Play category breakdown:
@@ -28701,6 +29117,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           0.0
                                           %
                                         </span>,
+                                        "value": 0,
+                                      }
+
+                    off_poss: Object {
+                                        "extraInfo": undefined,
                                         "value": 0,
                                       }
 
@@ -29128,6 +29549,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           0.0
                                           %
                                         </span>,
+                                        "value": 0,
+                                      }
+
+                    off_poss: Object {
+                                        "extraInfo": undefined,
                                         "value": 0,
                                       }
 
@@ -29869,6 +30295,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           %
                                         </span>,
                                         "value": 0.545271629778672,
+                                      }
+
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          69.1
+                                           poss/g
+                                        </span>,
+                                        "value": 612,
                                       }
 
                     off_ppp: Object {
@@ -30297,6 +30731,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           %
                                         </span>,
                                         "value": 0.545271629778672,
+                                      }
+
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          69.1
+                                           poss/g
+                                        </span>,
+                                        "value": 612,
                                       }
 
                     off_ppp: Object {
@@ -30471,6 +30913,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           %
                                         </span>,
                                         "value": 0.22527472527472528,
+                                      }
+
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          64.0
+                                           poss/g
+                                        </span>,
+                                        "value": 197,
                                       }
 
                     off_ppp: Object {
@@ -30914,6 +31364,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           %
                                         </span>,
                                         "value": 0.22527472527472528,
+                                      }
+
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          64.0
+                                           poss/g
+                                        </span>,
+                                        "value": 197,
                                       }
 
                     off_ppp: Object {
@@ -31662,6 +32120,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           %
                                         </span>,
                                         "value": 0.44554455445544555,
+                                      }
+
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          68.9
+                                           poss/g
+                                        </span>,
+                                        "value": 598,
                                       }
 
                     off_ppp: Object {
@@ -32090,6 +32556,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           %
                                         </span>,
                                         "value": 0.44554455445544555,
+                                      }
+
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          68.9
+                                           poss/g
+                                        </span>,
+                                        "value": 598,
                                       }
 
                     off_ppp: Object {
@@ -32264,6 +32738,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           %
                                         </span>,
                                         "value": 0.5,
+                                      }
+
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          64.7
+                                           poss/g
+                                        </span>,
+                                        "value": 211,
                                       }
 
                     off_ppp: Object {
@@ -32707,6 +33189,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           %
                                         </span>,
                                         "value": 0.5,
+                                      }
+
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          64.7
+                                           poss/g
+                                        </span>,
+                                        "value": 211,
                                       }
 
                     off_ppp: Object {
@@ -33455,6 +33945,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           %
                                         </span>,
                                         "value": 0.3595505617977528,
+                                      }
+
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          64.4
+                                           poss/g
+                                        </span>,
+                                        "value": 408,
                                       }
 
                     off_ppp: Object {
@@ -33883,6 +34381,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           %
                                         </span>,
                                         "value": 0.3595505617977528,
+                                      }
+
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          64.4
+                                           poss/g
+                                        </span>,
+                                        "value": 408,
                                       }
 
                     off_ppp: Object {
@@ -34057,6 +34563,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           %
                                         </span>,
                                         "value": 0.5696594427244582,
+                                      }
+
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          71.7
+                                           poss/g
+                                        </span>,
+                                        "value": 401,
                                       }
 
                     off_ppp: Object {
@@ -34500,6 +35014,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           %
                                         </span>,
                                         "value": 0.5696594427244582,
+                                      }
+
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          71.7
+                                           poss/g
+                                        </span>,
+                                        "value": 401,
                                       }
 
                     off_ppp: Object {
@@ -37289,6 +37811,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                         "value": 0.45949926362297494,
                                       }
 
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          67.8
+                                           poss/g
+                                        </span>,
+                                        "value": 809,
+                                      }
+
                     off_ppp: Object {
                                         "extraInfo": <span>
                                           Play category breakdown:
@@ -37717,6 +38247,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                         "value": 0.45949926362297494,
                                       }
 
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          67.8
+                                           poss/g
+                                        </span>,
+                                        "value": 809,
+                                      }
+
                     off_ppp: Object {
                                         "extraInfo": <span>
                                           Play category breakdown:
@@ -37880,6 +38418,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           0.0
                                           %
                                         </span>,
+                                        "value": 0,
+                                      }
+
+                    off_poss: Object {
+                                        "extraInfo": undefined,
                                         "value": 0,
                                       }
 
@@ -38307,6 +38850,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           0.0
                                           %
                                         </span>,
+                                        "value": 0,
+                                      }
+
+                    off_poss: Object {
+                                        "extraInfo": undefined,
                                         "value": 0,
                                       }
 
@@ -39058,6 +39606,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                                     "value": 0,
                                                   }
 
+                          off_poss: Object {
+                                                    "extraInfo": undefined,
+                                                    "value": 0,
+                                                  }
+
                           off_ppp: Object {
                                                     "extraInfo": <span>
                                                       Play category breakdown:
@@ -39192,6 +39745,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                                       %
                                                     </span>,
                                                     "value": 0.45949926362297494,
+                                                  }
+
+                          off_poss: Object {
+                                                    "extraInfo": <span>
+                                                      67.8
+                                                       poss/g
+                                                    </span>,
+                                                    "value": 809,
                                                   }
 
                           off_ppp: Object {
@@ -39429,6 +39990,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                         "value": 0.45949926362297494,
                                       }
 
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          67.8
+                                           poss/g
+                                        </span>,
+                                        "value": 809,
+                                      }
+
                     off_ppp: Object {
                                         "extraInfo": <span>
                                           Play category breakdown:
@@ -39857,6 +40426,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                         "value": 0.45949926362297494,
                                       }
 
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          67.8
+                                           poss/g
+                                        </span>,
+                                        "value": 809,
+                                      }
+
                     off_ppp: Object {
                                         "extraInfo": <span>
                                           Play category breakdown:
@@ -40020,6 +40597,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           0.0
                                           %
                                         </span>,
+                                        "value": 0,
+                                      }
+
+                    off_poss: Object {
+                                        "extraInfo": undefined,
                                         "value": 0,
                                       }
 
@@ -40447,6 +41029,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           0.0
                                           %
                                         </span>,
+                                        "value": 0,
+                                      }
+
+                    off_poss: Object {
+                                        "extraInfo": undefined,
                                         "value": 0,
                                       }
 
@@ -41198,6 +41785,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                                     "value": 0,
                                                   }
 
+                          off_poss: Object {
+                                                    "extraInfo": undefined,
+                                                    "value": 0,
+                                                  }
+
                           off_ppp: Object {
                                                     "extraInfo": <span>
                                                       Play category breakdown:
@@ -41332,6 +41924,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                                       %
                                                     </span>,
                                                     "value": 0.45949926362297494,
+                                                  }
+
+                          off_poss: Object {
+                                                    "extraInfo": <span>
+                                                      67.8
+                                                       poss/g
+                                                    </span>,
+                                                    "value": 809,
                                                   }
 
                           off_ppp: Object {
@@ -41569,6 +42169,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                         "value": 0.45949926362297494,
                                       }
 
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          67.8
+                                           poss/g
+                                        </span>,
+                                        "value": 809,
+                                      }
+
                     off_ppp: Object {
                                         "extraInfo": <span>
                                           Play category breakdown:
@@ -41997,6 +42605,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                         "value": 0.45949926362297494,
                                       }
 
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          67.8
+                                           poss/g
+                                        </span>,
+                                        "value": 809,
+                                      }
+
                     off_ppp: Object {
                                         "extraInfo": <span>
                                           Play category breakdown:
@@ -42160,6 +42776,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           0.0
                                           %
                                         </span>,
+                                        "value": 0,
+                                      }
+
+                    off_poss: Object {
+                                        "extraInfo": undefined,
                                         "value": 0,
                                       }
 
@@ -42587,6 +43208,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           0.0
                                           %
                                         </span>,
+                                        "value": 0,
+                                      }
+
+                    off_poss: Object {
+                                        "extraInfo": undefined,
                                         "value": 0,
                                       }
 
@@ -43338,6 +43964,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                                     "value": 0,
                                                   }
 
+                          off_poss: Object {
+                                                    "extraInfo": undefined,
+                                                    "value": 0,
+                                                  }
+
                           off_ppp: Object {
                                                     "extraInfo": <span>
                                                       Play category breakdown:
@@ -43472,6 +44103,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                                       %
                                                     </span>,
                                                     "value": 0.45949926362297494,
+                                                  }
+
+                          off_poss: Object {
+                                                    "extraInfo": <span>
+                                                      67.8
+                                                       poss/g
+                                                    </span>,
+                                                    "value": 809,
                                                   }
 
                           off_ppp: Object {
@@ -43707,6 +44346,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           %
                                         </span>,
                                         "value": 0.545271629778672,
+                                      }
+
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          69.1
+                                           poss/g
+                                        </span>,
+                                        "value": 612,
                                       }
 
                     off_ppp: Object {
@@ -44137,6 +44784,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                         "value": 0.545271629778672,
                                       }
 
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          69.1
+                                           poss/g
+                                        </span>,
+                                        "value": 612,
+                                      }
+
                     off_ppp: Object {
                                         "extraInfo": <span>
                                           Play category breakdown:
@@ -44309,6 +44964,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           %
                                         </span>,
                                         "value": 0.22527472527472528,
+                                      }
+
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          64.0
+                                           poss/g
+                                        </span>,
+                                        "value": 197,
                                       }
 
                     off_ppp: Object {
@@ -44752,6 +45415,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           %
                                         </span>,
                                         "value": 0.22527472527472528,
+                                      }
+
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          64.0
+                                           poss/g
+                                        </span>,
+                                        "value": 197,
                                       }
 
                     off_ppp: Object {
@@ -45735,6 +46406,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                                     "value": 0.22527472527472528,
                                                   }
 
+                          off_poss: Object {
+                                                    "extraInfo": <span>
+                                                      64.0
+                                                       poss/g
+                                                    </span>,
+                                                    "value": 197,
+                                                  }
+
                           off_ppp: Object {
                                                     "extraInfo": <span>
                                                       Play category breakdown:
@@ -45877,6 +46556,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                                       %
                                                     </span>,
                                                     "value": 0.545271629778672,
+                                                  }
+
+                          off_poss: Object {
+                                                    "extraInfo": <span>
+                                                      69.1
+                                                       poss/g
+                                                    </span>,
+                                                    "value": 612,
                                                   }
 
                           off_ppp: Object {
@@ -46158,6 +46845,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           %
                                         </span>,
                                         "value": 0.44554455445544555,
+                                      }
+
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          68.9
+                                           poss/g
+                                        </span>,
+                                        "value": 598,
                                       }
 
                     off_ppp: Object {
@@ -46588,6 +47283,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                         "value": 0.44554455445544555,
                                       }
 
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          68.9
+                                           poss/g
+                                        </span>,
+                                        "value": 598,
+                                      }
+
                     off_ppp: Object {
                                         "extraInfo": <span>
                                           Play category breakdown:
@@ -46760,6 +47463,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           %
                                         </span>,
                                         "value": 0.5,
+                                      }
+
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          64.7
+                                           poss/g
+                                        </span>,
+                                        "value": 211,
                                       }
 
                     off_ppp: Object {
@@ -47203,6 +47914,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           %
                                         </span>,
                                         "value": 0.5,
+                                      }
+
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          64.7
+                                           poss/g
+                                        </span>,
+                                        "value": 211,
                                       }
 
                     off_ppp: Object {
@@ -48186,6 +48905,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                                     "value": 0.5,
                                                   }
 
+                          off_poss: Object {
+                                                    "extraInfo": <span>
+                                                      64.7
+                                                       poss/g
+                                                    </span>,
+                                                    "value": 211,
+                                                  }
+
                           off_ppp: Object {
                                                     "extraInfo": <span>
                                                       Play category breakdown:
@@ -48328,6 +49055,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                                       %
                                                     </span>,
                                                     "value": 0.44554455445544555,
+                                                  }
+
+                          off_poss: Object {
+                                                    "extraInfo": <span>
+                                                      68.9
+                                                       poss/g
+                                                    </span>,
+                                                    "value": 598,
                                                   }
 
                           off_ppp: Object {
@@ -48609,6 +49344,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           %
                                         </span>,
                                         "value": 0.3595505617977528,
+                                      }
+
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          64.4
+                                           poss/g
+                                        </span>,
+                                        "value": 408,
                                       }
 
                     off_ppp: Object {
@@ -49039,6 +49782,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                         "value": 0.3595505617977528,
                                       }
 
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          64.4
+                                           poss/g
+                                        </span>,
+                                        "value": 408,
+                                      }
+
                     off_ppp: Object {
                                         "extraInfo": <span>
                                           Play category breakdown:
@@ -49211,6 +49962,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           %
                                         </span>,
                                         "value": 0.5696594427244582,
+                                      }
+
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          71.7
+                                           poss/g
+                                        </span>,
+                                        "value": 401,
                                       }
 
                     off_ppp: Object {
@@ -49654,6 +50413,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           %
                                         </span>,
                                         "value": 0.5696594427244582,
+                                      }
+
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          71.7
+                                           poss/g
+                                        </span>,
+                                        "value": 401,
                                       }
 
                     off_ppp: Object {
@@ -50637,6 +51404,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                                     "value": 0.5696594427244582,
                                                   }
 
+                          off_poss: Object {
+                                                    "extraInfo": <span>
+                                                      71.7
+                                                       poss/g
+                                                    </span>,
+                                                    "value": 401,
+                                                  }
+
                           off_ppp: Object {
                                                     "extraInfo": <span>
                                                       Play category breakdown:
@@ -50779,6 +51554,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                                       %
                                                     </span>,
                                                     "value": 0.3595505617977528,
+                                                  }
+
+                          off_poss: Object {
+                                                    "extraInfo": <span>
+                                                      64.4
+                                                       poss/g
+                                                    </span>,
+                                                    "value": 408,
                                                   }
 
                           off_ppp: Object {
@@ -53101,6 +53884,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                         "value": 0.45949926362297494,
                                       }
 
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          67.8
+                                           poss/g
+                                        </span>,
+                                        "value": 809,
+                                      }
+
                     off_ppp: Object {
                                         "extraInfo": <span>
                                           Play category breakdown:
@@ -53529,6 +54320,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                         "value": 0.45949926362297494,
                                       }
 
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          67.8
+                                           poss/g
+                                        </span>,
+                                        "value": 809,
+                                      }
+
                     off_ppp: Object {
                                         "extraInfo": <span>
                                           Play category breakdown:
@@ -53692,6 +54491,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           0.0
                                           %
                                         </span>,
+                                        "value": 0,
+                                      }
+
+                    off_poss: Object {
+                                        "extraInfo": undefined,
                                         "value": 0,
                                       }
 
@@ -54119,6 +54923,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           0.0
                                           %
                                         </span>,
+                                        "value": 0,
+                                      }
+
+                    off_poss: Object {
+                                        "extraInfo": undefined,
                                         "value": 0,
                                       }
 
@@ -54870,6 +55679,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                                     "value": 0,
                                                   }
 
+                          off_poss: Object {
+                                                    "extraInfo": undefined,
+                                                    "value": 0,
+                                                  }
+
                           off_ppp: Object {
                                                     "extraInfo": <span>
                                                       Play category breakdown:
@@ -55004,6 +55818,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                                       %
                                                     </span>,
                                                     "value": 0.45949926362297494,
+                                                  }
+
+                          off_poss: Object {
+                                                    "extraInfo": <span>
+                                                      67.8
+                                                       poss/g
+                                                    </span>,
+                                                    "value": 809,
                                                   }
 
                           off_ppp: Object {
@@ -56992,6 +57814,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                         "value": 0.45949926362297494,
                                       }
 
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          67.8
+                                           poss/g
+                                        </span>,
+                                        "value": 809,
+                                      }
+
                     off_ppp: Object {
                                         "extraInfo": <span>
                                           Play category breakdown:
@@ -57420,6 +58250,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                         "value": 0.45949926362297494,
                                       }
 
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          67.8
+                                           poss/g
+                                        </span>,
+                                        "value": 809,
+                                      }
+
                     off_ppp: Object {
                                         "extraInfo": <span>
                                           Play category breakdown:
@@ -57583,6 +58421,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           0.0
                                           %
                                         </span>,
+                                        "value": 0,
+                                      }
+
+                    off_poss: Object {
+                                        "extraInfo": undefined,
                                         "value": 0,
                                       }
 
@@ -58013,6 +58856,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                         "value": 0,
                                       }
 
+                    off_poss: Object {
+                                        "extraInfo": undefined,
+                                        "value": 0,
+                                      }
+
                     off_ppp: Object {
                                         "extraInfo": <span>
                                           Play category breakdown:
@@ -58197,6 +59045,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                         "value": 0.45949926362297494,
                                       }
 
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          67.8
+                                           poss/g
+                                        </span>,
+                                        "value": 809,
+                                      }
+
                     off_ppp: Object {
                                         "extraInfo": <span>
                                           Play category breakdown:
@@ -58625,6 +59481,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                         "value": 0.45949926362297494,
                                       }
 
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          67.8
+                                           poss/g
+                                        </span>,
+                                        "value": 809,
+                                      }
+
                     off_ppp: Object {
                                         "extraInfo": <span>
                                           Play category breakdown:
@@ -58788,6 +59652,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           0.0
                                           %
                                         </span>,
+                                        "value": 0,
+                                      }
+
+                    off_poss: Object {
+                                        "extraInfo": undefined,
                                         "value": 0,
                                       }
 
@@ -59215,6 +60084,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           0.0
                                           %
                                         </span>,
+                                        "value": 0,
+                                      }
+
+                    off_poss: Object {
+                                        "extraInfo": undefined,
                                         "value": 0,
                                       }
 
@@ -59402,6 +60276,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                         "value": 0.45949926362297494,
                                       }
 
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          67.8
+                                           poss/g
+                                        </span>,
+                                        "value": 809,
+                                      }
+
                     off_ppp: Object {
                                         "extraInfo": <span>
                                           Play category breakdown:
@@ -59830,6 +60712,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                         "value": 0.45949926362297494,
                                       }
 
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          67.8
+                                           poss/g
+                                        </span>,
+                                        "value": 809,
+                                      }
+
                     off_ppp: Object {
                                         "extraInfo": <span>
                                           Play category breakdown:
@@ -59993,6 +60883,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           0.0
                                           %
                                         </span>,
+                                        "value": 0,
+                                      }
+
+                    off_poss: Object {
+                                        "extraInfo": undefined,
                                         "value": 0,
                                       }
 
@@ -60420,6 +61315,11 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           0.0
                                           %
                                         </span>,
+                                        "value": 0,
+                                      }
+
+                    off_poss: Object {
+                                        "extraInfo": undefined,
                                         "value": 0,
                                       }
 
@@ -60605,6 +61505,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           %
                                         </span>,
                                         "value": 0.545271629778672,
+                                      }
+
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          69.1
+                                           poss/g
+                                        </span>,
+                                        "value": 612,
                                       }
 
                     off_ppp: Object {
@@ -61033,6 +61941,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           %
                                         </span>,
                                         "value": 0.545271629778672,
+                                      }
+
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          69.1
+                                           poss/g
+                                        </span>,
+                                        "value": 612,
                                       }
 
                     off_ppp: Object {
@@ -61207,6 +62123,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           %
                                         </span>,
                                         "value": 0.22527472527472528,
+                                      }
+
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          64.0
+                                           poss/g
+                                        </span>,
+                                        "value": 197,
                                       }
 
                     off_ppp: Object {
@@ -61650,6 +62574,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           %
                                         </span>,
                                         "value": 0.22527472527472528,
+                                      }
+
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          64.0
+                                           poss/g
+                                        </span>,
+                                        "value": 197,
                                       }
 
                     off_ppp: Object {
@@ -61842,6 +62774,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           %
                                         </span>,
                                         "value": 0.44554455445544555,
+                                      }
+
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          68.9
+                                           poss/g
+                                        </span>,
+                                        "value": 598,
                                       }
 
                     off_ppp: Object {
@@ -62270,6 +63210,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           %
                                         </span>,
                                         "value": 0.44554455445544555,
+                                      }
+
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          68.9
+                                           poss/g
+                                        </span>,
+                                        "value": 598,
                                       }
 
                     off_ppp: Object {
@@ -62444,6 +63392,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           %
                                         </span>,
                                         "value": 0.5,
+                                      }
+
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          64.7
+                                           poss/g
+                                        </span>,
+                                        "value": 211,
                                       }
 
                     off_ppp: Object {
@@ -62887,6 +63843,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           %
                                         </span>,
                                         "value": 0.5,
+                                      }
+
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          64.7
+                                           poss/g
+                                        </span>,
+                                        "value": 211,
                                       }
 
                     off_ppp: Object {
@@ -63079,6 +64043,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           %
                                         </span>,
                                         "value": 0.3595505617977528,
+                                      }
+
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          64.4
+                                           poss/g
+                                        </span>,
+                                        "value": 408,
                                       }
 
                     off_ppp: Object {
@@ -63507,6 +64479,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           %
                                         </span>,
                                         "value": 0.3595505617977528,
+                                      }
+
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          64.4
+                                           poss/g
+                                        </span>,
+                                        "value": 408,
                                       }
 
                     off_ppp: Object {
@@ -63681,6 +64661,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           %
                                         </span>,
                                         "value": 0.5696594427244582,
+                                      }
+
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          71.7
+                                           poss/g
+                                        </span>,
+                                        "value": 401,
                                       }
 
                     off_ppp: Object {
@@ -64124,6 +65112,14 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                           %
                                         </span>,
                                         "value": 0.5696594427244582,
+                                      }
+
+                    off_poss: Object {
+                                        "extraInfo": <span>
+                                          71.7
+                                           poss/g
+                                        </span>,
+                                        "value": 401,
                                       }
 
                     off_ppp: Object {

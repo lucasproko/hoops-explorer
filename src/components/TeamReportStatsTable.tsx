@@ -82,6 +82,8 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({startingState, da
   const commonParams = getCommonFilterParams(startingState);
 
   const genderYearLookup = `${commonParams.gender}_${commonParams.year}`;
+  const teamSeasonLookup = `${commonParams.gender}_${commonParams.team}_${commonParams.year}`;
+
   const avgEfficiency = efficiencyAverages[genderYearLookup] || efficiencyAverages.fallback;
   const statsAverages = averageStatsInfo[genderYearLookup] || {};
 
@@ -401,8 +403,8 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({startingState, da
       <Tooltip id="playerOnOffTooltip">Open a tab with the on/off analysis for this player</Tooltip>;
 
     const tableData = _.chain(tableDataInputs).flatMap((player, index) => {
-      TableDisplayUtils.injectPlayTypeInfo(player.on, false, false); //(inject assist numbers)
-      TableDisplayUtils.injectPlayTypeInfo(player.off, false, false); //(inject assist numbers)
+      TableDisplayUtils.injectPlayTypeInfo(player.on, false, false, teamSeasonLookup); //(inject assist numbers)
+      TableDisplayUtils.injectPlayTypeInfo(player.off, false, false, teamSeasonLookup); //(inject assist numbers)
 
       const [ onMargin, offMargin ] = OnOffReportDiagUtils.getAdjEffMargins(player);
       const onSuffix =

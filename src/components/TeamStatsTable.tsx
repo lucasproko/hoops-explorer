@@ -116,6 +116,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
   // Luck calculations:
 
   const genderYearLookup = `${gameFilterParams.gender}_${gameFilterParams.year}`;
+  const teamSeasonLookup = `${gameFilterParams.gender}_${gameFilterParams.team}_${gameFilterParams.year}`;
   const avgEfficiency = efficiencyAverages[genderYearLookup] || efficiencyAverages.fallback;
 
   // The luck baseline can either be the user-selecteed baseline or the entire season
@@ -164,7 +165,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
   const teamStatsBaseline = { off_title: "Baseline Offense", def_title: "Baseline Defense", ...teamStats.baseline };
 
   ([ "on", "off", "baseline" ] as OnOffBase[]).forEach(k => {
-    TableDisplayUtils.injectPlayTypeInfo(teamStats[k], false, false);
+    TableDisplayUtils.injectPlayTypeInfo(teamStats[k], false, false, teamSeasonLookup);
   });
 
   const tableData = _.flatMap([

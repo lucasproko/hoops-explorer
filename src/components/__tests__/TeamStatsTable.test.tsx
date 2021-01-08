@@ -22,7 +22,8 @@ describe("TeamStatsTable", () => {
       gameFilterParams={{}}
       dataEvent={{
         teamStats: testData,
-        rosterStats: {}
+        rosterStats: {},
+        lineupStats: []
       }}
       onChangeState={(newParams: GameFilterParams) => {}}
       />);
@@ -38,7 +39,8 @@ describe("TeamStatsTable", () => {
       gameFilterParams={{ onOffLuck: true, showOnOffLuckDiags: true }}
       dataEvent={{
         teamStats: testData,
-        rosterStats: {}
+        rosterStats: {},
+        lineupStats: []
       }}
       onChangeState={(newParams: GameFilterParams) => {}}
       />);
