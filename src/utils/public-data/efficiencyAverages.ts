@@ -5,7 +5,7 @@ export const efficiencyAverages: Record<string, number> = {
   "Men_2017/8": 105.0,
   "Men_2018/9": 104.3,
   "Men_2019/20": 102.4,
-  "Men_2020/21": 101.0,
+  "Men_2020/21": 101.6,
 
   "Women_2018/9": 93.4,
   "Women_2019/20": 91.93,
