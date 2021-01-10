@@ -239,10 +239,7 @@ export class TableDisplayUtils {
       (teamSeasonLookup == "Men_Utah St._2018/9") ||
 
       (teamSeasonLookup == "Men_Florida_2019/20") ||
-      (teamSeasonLookup == "Men_Missouri_2019/20") ||
-
-      (teamSeasonLookup == "Men_Jackson St._2020/21") ||
-      (teamSeasonLookup == "Men_N.C. A&T_2020/21")
+      (teamSeasonLookup == "Men_Missouri_2019/20")
     );
 
     // Handle adding and removing of extra info:
