@@ -5,11 +5,11 @@ export const efficiencyAverages: Record<string, number> = {
   "Men_2017/8": 105.0,
   "Men_2018/9": 104.3,
   "Men_2019/20": 102.4,
-  "Men_2020/21": 101.6,
+  "Men_2020/21": 101.3,
 
   "Women_2018/9": 93.4,
   "Women_2019/20": 91.93,
-  "Women_2020/21": 88.0,
+  "Women_2020/21": 87.9,
 
   fallback: 100.0
 };
