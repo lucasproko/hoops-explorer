@@ -225,7 +225,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
 
   /** Sets the automatically generated off query, if that option is selected */
   const setAutoOffQuery = (onQuery: string) => {
-    setOffQuery(onQuery == "" ? "" : `NOT (${onQuery})`);
+    setOffQuery((onQuery == "") || (onQuery == " ") ? "" : `NOT (${onQuery})`);
   }
 
   /** Ran into issues with SSR and 'readOnly' property, so have to fix like this */

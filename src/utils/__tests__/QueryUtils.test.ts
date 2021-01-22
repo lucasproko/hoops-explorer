@@ -77,11 +77,11 @@ describe("QueryUtils", () => {
     const query2 = "te'st";
     const query3 = undefined;
     const query4 = ' NOT ([ test "] )';
-    const query5 = '{"Cowan, Ant";Morsell;Ayala}~2'
-    const query6 = '[players.id:{"Cowan, Ant";Morsell;Ayala}~2]'
-    const query6b = '[players.id:{"Cowan, Ant";Morsell;Ayala}=2]'
-    const query7 = '{Morsell;Ayala}=1'
-    const query8 = '[players.id:{Cowan;Morsell;Ayala}=1]'
+    const query5 = '{"Cowan, Ant";Morsell;Ayala}~2';
+    const query6 = '[players.id:{"Cowan, Ant";Morsell;Ayala}~2]';
+    const query6b = '[players.id:{"Cowan, Ant";Morsell;Ayala}=2]';
+    const query7 = '{Morsell;Ayala}=1';
+    const query8 = '[players.id:{Cowan;Morsell;Ayala}=1]';
 
     expect(QueryUtils.basicOrAdvancedQuery(query1, "1")).toBe(' test "');
     expect(QueryUtils.basicOrAdvancedQuery(query2, "2")).toBe("players.id:(te'st)");
@@ -102,6 +102,20 @@ describe("QueryUtils", () => {
     expect(QueryUtils.basicOrAdvancedQuery(query8, "fallback")).toBe(
       `players.id:(((Cowan) AND NOT (Morsell OR Ayala)) OR ((Morsell) AND NOT (Cowan OR Ayala)) OR ((Ayala) AND NOT (Cowan OR Morsell)))`
     );
+
+    // Whizzy home/away/neutral:
+    const query9_ = '[opponent.team: Michigan]';
+    const query9a = '[opponent.home: Michigan]';
+    const query9b = '[(opponent.Home: Michigan)]';
+    const query9c = '[opponent.away: "Michigan St."]';
+    const query9d = '[opponent.Neutral: Michigan AND "blah"]';
+    const query9e = '[opponent.neutral:(Michigan AND "blah")]';
+    expect(QueryUtils.basicOrAdvancedQuery(query9_, "")).toBe('opponent.team: Michigan');
+    expect(QueryUtils.basicOrAdvancedQuery(query9a, "")).toBe('(location_type:Home AND (opponent.team:Michigan))');
+    expect(QueryUtils.basicOrAdvancedQuery(query9b, "")).toBe('((location_type:Home AND (opponent.team:Michigan)))');
+    expect(QueryUtils.basicOrAdvancedQuery(query9c, "")).toBe('(location_type:Away AND (opponent.team:"Michigan St."))');
+    expect(QueryUtils.basicOrAdvancedQuery(query9d, "")).toBe('(location_type:Neutral AND (opponent.team:Michigan)) AND "blah"');
+    expect(QueryUtils.basicOrAdvancedQuery(query9e, "")).toBe('(location_type:Neutral AND (opponent.team:(Michigan AND "blah")))');
   });
   test("QueryUtils - parseFilter", () => {
     expect(QueryUtils.parseFilter("Conf ,Home, Nov-Dec")).toEqual([

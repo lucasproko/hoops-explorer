@@ -115,11 +115,13 @@ export class QueryUtils {
     }
   }
 
-  /** Converts a hoop-explorer lineup query into an ES query_string */
+  /** Returns the advanced query, with NOT support, or undefined if not an advanced query
+   ** NOTE: this is now basically obsolete, since the "advanced queries" work just fine without it
+  */
   static basicOrAdvancedQuery(query: string | undefined, fallback: string): string {
     // Firstly, let's sub-in the special case of {playerX|...}~N to take N from that set
     const subMatch = /[{]([^}]*)[}]([~=])([0-9]+)/g;
-    return _.chain((query || fallback).replace(subMatch, function(match, p1, p2, p3) {
+    return _.chain((_.trim(query) || fallback).replace(subMatch, function(match, p1, p2, p3) {
       const players = p1.split(';');
       const laxCombo = p2 == '~'; //(vs strict if ==)
       const numToInclude = parseInt(p3); //(number by construction)
@@ -134,6 +136,13 @@ export class QueryUtils {
         ")";
 
     })).thru((subQuery) => {
+      const locationMatch = /opponent[.]([Hh]ome|[Aa]way|[Nn]eutral): *([(][^)]+[)]|"[^"]+"|[^ )\]]+)/g;
+      return subQuery.replace(locationMatch, function(match, p1, p2) {
+        const replaceStr = `(location_type:${_.capitalize(p1)} AND (opponent.team:${p2}))`;
+        return replaceStr;
+      });
+
+    }).thru((subQuery) => {
       const [ basicMatch, maybeAdvQuery ] = QueryUtils.extractAdvancedQuery(subQuery);
       if (maybeAdvQuery) { //(advanced query must already have field ids etc)
         return maybeAdvQuery;

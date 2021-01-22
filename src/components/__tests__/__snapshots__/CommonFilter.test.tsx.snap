@@ -6,6 +6,77 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
   spinner={true}
   text="Calculating statistics"
 >
+  <Modal
+    animation={true}
+    autoFocus={true}
+    backdrop={true}
+    dialogAs={
+      Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "displayName": "ModalDialog",
+        "render": [Function],
+      }
+    }
+    enforceFocus={true}
+    keyboard={true}
+    onHide={[Function]}
+    restoreFocus={true}
+    show={false}
+  >
+    <ModalHeader
+      closeButton={true}
+      closeLabel="Close"
+    >
+      <ModalTitle>
+        Ambiguous Query Error!
+      </ModalTitle>
+    </ModalHeader>
+    <ModalBody>
+      Your query contains one of these terms: ' 
+      <b>
+        and
+      </b>
+       ', ' 
+      <b>
+        or
+      </b>
+       ', ' 
+      <b>
+        not
+      </b>
+       '.
+      <br />
+      Please use ' 
+      <b>
+        AND
+      </b>
+       ', ' 
+      <b>
+        OR
+      </b>
+       ', ' 
+      <b>
+        NOT
+      </b>
+       ' instead.
+      <br />
+      <br />
+      <i>
+        In the unlikely event you wanted to search on the word rather than using it as an operator, please put the term in quotes, eg ' "and" '
+      </i>
+      .
+    </ModalBody>
+    <ModalFooter>
+      <Button
+        active={false}
+        disabled={false}
+        onClick={[Function]}
+        variant="secondary"
+      >
+        Close
+      </Button>
+    </ModalFooter>
+  </Modal>
   <Form
     inline={false}
   >
@@ -144,6 +215,10 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
                 "value": "Alcorn",
               },
               Object {
+                "label": "American",
+                "value": "American",
+              },
+              Object {
                 "label": "App State",
                 "value": "App State",
               },
@@ -208,6 +283,10 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
                 "value": "Boston College",
               },
               Object {
+                "label": "Boston U.",
+                "value": "Boston U.",
+              },
+              Object {
                 "label": "Bowling Green",
                 "value": "Bowling Green",
               },
@@ -218,6 +297,10 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
               Object {
                 "label": "Bryant",
                 "value": "Bryant",
+              },
+              Object {
+                "label": "Bucknell",
+                "value": "Bucknell",
               },
               Object {
                 "label": "Buffalo",
@@ -302,6 +385,10 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
               Object {
                 "label": "Col. of Charleston",
                 "value": "Col. of Charleston",
+              },
+              Object {
+                "label": "Colgate",
+                "value": "Colgate",
               },
               Object {
                 "label": "Colorado",
@@ -508,6 +595,10 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
                 "value": "Hofstra",
               },
               Object {
+                "label": "Holy Cross",
+                "value": "Holy Cross",
+              },
+              Object {
                 "label": "Houston",
                 "value": "Houston",
               },
@@ -616,8 +707,16 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
                 "value": "La Salle",
               },
               Object {
+                "label": "Lafayette",
+                "value": "Lafayette",
+              },
+              Object {
                 "label": "Lamar University",
                 "value": "Lamar University",
+              },
+              Object {
+                "label": "Lehigh",
+                "value": "Lehigh",
               },
               Object {
                 "label": "Liberty",
@@ -654,6 +753,10 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
               Object {
                 "label": "Loyola Chicago",
                 "value": "Loyola Chicago",
+              },
+              Object {
+                "label": "Loyola Maryland",
+                "value": "Loyola Maryland",
               },
               Object {
                 "label": "Manhattan",
@@ -1888,6 +1991,77 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
   spinner={true}
   text="Calculating statistics"
 >
+  <Modal
+    animation={true}
+    autoFocus={true}
+    backdrop={true}
+    dialogAs={
+      Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "displayName": "ModalDialog",
+        "render": [Function],
+      }
+    }
+    enforceFocus={true}
+    keyboard={true}
+    onHide={[Function]}
+    restoreFocus={true}
+    show={false}
+  >
+    <ModalHeader
+      closeButton={true}
+      closeLabel="Close"
+    >
+      <ModalTitle>
+        Ambiguous Query Error!
+      </ModalTitle>
+    </ModalHeader>
+    <ModalBody>
+      Your query contains one of these terms: ' 
+      <b>
+        and
+      </b>
+       ', ' 
+      <b>
+        or
+      </b>
+       ', ' 
+      <b>
+        not
+      </b>
+       '.
+      <br />
+      Please use ' 
+      <b>
+        AND
+      </b>
+       ', ' 
+      <b>
+        OR
+      </b>
+       ', ' 
+      <b>
+        NOT
+      </b>
+       ' instead.
+      <br />
+      <br />
+      <i>
+        In the unlikely event you wanted to search on the word rather than using it as an operator, please put the term in quotes, eg ' "and" '
+      </i>
+      .
+    </ModalBody>
+    <ModalFooter>
+      <Button
+        active={false}
+        disabled={false}
+        onClick={[Function]}
+        variant="secondary"
+      >
+        Close
+      </Button>
+    </ModalFooter>
+  </Modal>
   <Form
     inline={false}
   >

@@ -20,6 +20,7 @@ import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Popover from 'react-bootstrap/Popover';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Tooltip from 'react-bootstrap/Tooltip';
+import Modal from 'react-bootstrap/Modal';
 
 // Additional components:
 import Select, { components} from "react-select"
@@ -118,6 +119,9 @@ const CommonFilter: CommonFilterI = ({
       _.isNil(startingState.queryFilters) ? ParamDefaults.defaultQueryFilters : startingState.queryFilters
     )
   );
+
+  // Validation, this currently only supports once case:
+  const [ showInvalidQuery, setShowInvalidQuery ] = useState(false as boolean);
 
   // Automatically update child state when any current param is changed:
   // (Note this doesn't trigger a change to the URL unless submit is pressed)
@@ -297,15 +301,28 @@ const CommonFilter: CommonFilterI = ({
 
   /** The user has pressed the submit button - mix of generic and custom logic */
   function onSubmit() {
-    setQueryIsLoading(true);
-
     // Store every primary request in history, successful or not:
     // including the filtering on the results
-    const newParamsStrWithFilterParams = QueryUtils.stringify(buildParamsFromState(true)[0]);
-    HistoryManager.addParamsToHistory(newParamsStrWithFilterParams, tablePrefix);
+    const newParamsWithFilterParams = buildParamsFromState(true)[0];
+    const checkQueriesForLowercaseOps = (strs: Array<string | undefined>) => {
+      return _.find(strs, str => (str && / (and|or|not) /.exec(str)));
+    };
+    if (checkQueriesForLowercaseOps([
+      newParamsWithFilterParams.baseQuery, //(common)
+      newParamsWithFilterParams.onQuery, newParamsWithFilterParams.offQuery //(on off page)
+    ])) {
+      // Invalid query, raise an error, don't submit
+      setShowInvalidQuery(true);
 
-    // Load the data via request
-    requestHandlingLogic(false);
+    } else { // Submit validated, carry on
+      setQueryIsLoading(true);
+
+      const newParamsStrWithFilterParams = QueryUtils.stringify(newParamsWithFilterParams);
+      HistoryManager.addParamsToHistory(newParamsStrWithFilterParams, tablePrefix);
+
+      // Load the data via request
+      requestHandlingLogic(false);
+    }
   }
 
   /** Load the designated example */
@@ -524,7 +541,22 @@ const CommonFilter: CommonFilterI = ({
     active={queryIsLoading}
     spinner
     text="Calculating statistics"
-  ><Form>
+  ><Modal show={showInvalidQuery} onHide={() => setShowInvalidQuery(false)}>
+      <Modal.Header closeButton>
+        <Modal.Title>Ambiguous Query Error!</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        Your query contains one of these terms: ' <b>and</b> ', ' <b>or</b> ', ' <b>not</b> '.<br/>
+        Please use ' <b>AND</b> ', ' <b>OR</b> ', ' <b>NOT</b> ' instead.<br/><br/>
+        <i>In the unlikely event you wanted to search on the word rather than using it as an operator, please put the term in quotes, eg ' "and" '</i>.
+      </Modal.Body>
+      <Modal.Footer>
+        <Button variant="secondary" onClick={() => setShowInvalidQuery(false)}>
+          Close
+        </Button>
+      </Modal.Footer>
+    </Modal>
+  <Form>
     <Form.Group as={Row}>
       <Col xs={6} sm={6} md={3} lg={2}>
         <Select
