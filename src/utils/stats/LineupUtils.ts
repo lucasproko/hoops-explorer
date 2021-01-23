@@ -59,8 +59,8 @@ export class LineupUtils {
     //TODO use correct field and copy across as part of enrichment
     if (lineup?.off_ppp && lineup?.def_ppp) {
       const value = (lineup?.off_ppp?.[nonLuckKey] || 0) - (lineup?.def_ppp?.[nonLuckKey] || 0);
-      lineup.def_net = keyOverride ? {
-        ...lineup.def_net,
+      lineup.off_raw_net = keyOverride ? {
+        ...lineup.off_raw_net,
         [keyOverride]: value
       } : {
         value: value

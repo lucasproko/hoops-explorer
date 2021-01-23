@@ -190,7 +190,7 @@ export class CommonTableDefs {
     "title": GenericTableOps.addTitle("", "", CommonTableDefs.rowSpanCalculator, "small", GenericTableOps.htmlFormatter, 20),
     "sep0": GenericTableOps.addColSeparator(0.05),
     "net": GenericTableOps.addDataCol(
-      "Net P/100", "The margin between the adjusted offensive and defensive efficiencies (lower number is raw margin)",
+      "Net Rtg", "The margin between the adjusted offensive and defensive efficiencies (lower number is raw margin)",
       CbbColors.offOnlyPicker(...CbbColors.diff10_p100_redGreen), GenericTableOps.pointsOrHtmlFormatter),
     "ppp": GenericTableOps.addPtsCol("P/100", "Points per 100 possessions", CommonTableDefs.picker(...CbbColors.pp100)),
     "adj_ppp": GenericTableOps.addPtsCol("Adj P/100", "Approximate schedule-adjusted Points per 100 possessions", CommonTableDefs.picker(...CbbColors.pp100)),

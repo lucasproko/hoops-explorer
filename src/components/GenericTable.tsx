@@ -111,6 +111,8 @@ export class GenericTableOps {
   static readonly pointsOrHtmlFormatter = (val: any) => {
     if (React.isValidElement(val)) {
       return GenericTableOps.htmlFormatter(val as React.ReactNode);
+    } else if (React.isValidElement(val?.value)) {
+      return GenericTableOps.htmlFormatter(val?.value as React.ReactNode);
     } else {
       return GenericTableOps.pointsFormatter(val);
     }

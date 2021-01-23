@@ -207,6 +207,30 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                   "label": "Other",
                   "options": Array [
                     Object {
+                      "label": "Net Rtg (Desc. / Offensive)",
+                      "value": "desc:off_net",
+                    },
+                    Object {
+                      "label": "Net Rtg (Asc. / Offensive)",
+                      "value": "asc:off_net",
+                    },
+                    Object {
+                      "label": "Net Rtg (Desc. / Defensive)",
+                      "value": "desc:def_net",
+                    },
+                    Object {
+                      "label": "Net Rtg (Asc. / Defensive)",
+                      "value": "asc:def_net",
+                    },
+                    Object {
+                      "label": "Net Rtg (Desc. / Off-Def)",
+                      "value": "desc:diff_net",
+                    },
+                    Object {
+                      "label": "Net Rtg (Asc. / Off-Def)",
+                      "value": "asc:diff_net",
+                    },
+                    Object {
                       "label": "P/100 (Desc. / Offensive)",
                       "value": "desc:off_ppp",
                     },
@@ -730,6 +754,20 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
 
                   def_luck_diags: undefined
 
+                  def_net: Object {
+                                    "value": <small
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 10px #008000",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        23.9
+                                      </i>
+                                    </small>,
+                                  }
+
                   def_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -806,6 +844,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
 
                   off_luck_diags: undefined
 
+                  off_net: Object {
+                                    "value": 35.440941110261065,
+                                  }
+
                   off_poss: Object {
                                     "extraInfo": <span>
                                       71.7
@@ -835,6 +877,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                       </li>
                                     </span>,
                                     "value": 117.2069825436409,
+                                  }
+
+                  off_raw_net: Object {
+                                    "value": 23.908013471475954,
                                   }
 
                   off_title: <OverlayTrigger
@@ -1169,6 +1215,20 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
 
                   def_luck_diags: undefined
 
+                  def_net: Object {
+                                    "value": <small
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 10px #008000",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        23.9
+                                      </i>
+                                    </small>,
+                                  }
+
                   def_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -1245,6 +1305,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
 
                   off_luck_diags: undefined
 
+                  off_net: Object {
+                                    "value": 35.440941110261065,
+                                  }
+
                   off_poss: Object {
                                     "extraInfo": <span>
                                       71.7
@@ -1274,6 +1338,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                       </li>
                                     </span>,
                                     "value": 117.2069825436409,
+                                  }
+
+                  off_raw_net: Object {
+                                    "value": 23.908013471475954,
                                   }
 
                   off_title: <OverlayTrigger
@@ -1611,6 +1679,20 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
 
                   def_luck_diags: undefined
 
+                  def_net: Object {
+                                    "value": <small
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 10px #008000",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        23.1
+                                      </i>
+                                    </small>,
+                                  }
+
                   def_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -1687,6 +1769,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
 
                   off_luck_diags: undefined
 
+                  off_net: Object {
+                                    "value": 36.82854462721707,
+                                  }
+
                   off_poss: Object {
                                     "extraInfo": <span>
                                       64.7
@@ -1716,6 +1802,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                       </li>
                                     </span>,
                                     "value": 107.1090047393365,
+                                  }
+
+                  off_raw_net: Object {
+                                    "value": 23.071446053890483,
                                   }
 
                   off_title: <OverlayTrigger
@@ -2050,6 +2140,20 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
 
                   def_luck_diags: undefined
 
+                  def_net: Object {
+                                    "value": <small
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 10px #008000",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        23.1
+                                      </i>
+                                    </small>,
+                                  }
+
                   def_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -2126,6 +2230,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
 
                   off_luck_diags: undefined
 
+                  off_net: Object {
+                                    "value": 36.82854462721707,
+                                  }
+
                   off_poss: Object {
                                     "extraInfo": <span>
                                       64.7
@@ -2155,6 +2263,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                       </li>
                                     </span>,
                                     "value": 107.1090047393365,
+                                  }
+
+                  off_raw_net: Object {
+                                    "value": 23.071446053890483,
                                   }
 
                   off_title: <OverlayTrigger
@@ -2492,6 +2604,20 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
 
                   def_luck_diags: undefined
 
+                  def_net: Object {
+                                    "value": <small
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 10px #008000",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        25.1
+                                      </i>
+                                    </small>,
+                                  }
+
                   def_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -2568,6 +2694,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
 
                   off_luck_diags: undefined
 
+                  off_net: Object {
+                                    "value": 38.2719272157307,
+                                  }
+
                   off_poss: Object {
                                     "extraInfo": <span>
                                       64.0
@@ -2597,6 +2727,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                       </li>
                                     </span>,
                                     "value": 112.18274111675127,
+                                  }
+
+                  off_raw_net: Object {
+                                    "value": 25.136108992398945,
                                   }
 
                   off_title: <OverlayTrigger
@@ -2931,6 +3065,20 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
 
                   def_luck_diags: undefined
 
+                  def_net: Object {
+                                    "value": <small
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 10px #008000",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        25.1
+                                      </i>
+                                    </small>,
+                                  }
+
                   def_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -3007,6 +3155,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
 
                   off_luck_diags: undefined
 
+                  off_net: Object {
+                                    "value": 38.2719272157307,
+                                  }
+
                   off_poss: Object {
                                     "extraInfo": <span>
                                       64.0
@@ -3036,6 +3188,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                       </li>
                                     </span>,
                                     "value": 112.18274111675127,
+                                  }
+
+                  off_raw_net: Object {
+                                    "value": 25.136108992398945,
                                   }
 
                   off_title: <OverlayTrigger
@@ -3455,6 +3611,17 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                 "toolTip": "Free throw rate for selected lineups",
                 "widthUnits": 2,
               },
+              "net": GenericTableColProps {
+                "className": "",
+                "colName": "Net Rtg",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "The margin between the adjusted offensive and defensive efficiencies (lower number is raw margin)",
+                "widthUnits": 2,
+              },
               "orb": GenericTableColProps {
                 "className": "",
                 "colName": "OR%",
@@ -3497,7 +3664,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                 "missingData": undefined,
                 "rowSpan": [Function],
                 "toolTip": "",
-                "widthUnits": 0.5,
+                "widthUnits": 0.05,
               },
               "sep1": GenericTableColProps {
                 "className": "",
@@ -3508,7 +3675,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                 "missingData": undefined,
                 "rowSpan": [Function],
                 "toolTip": "",
-                "widthUnits": 0.5,
+                "widthUnits": 0.05,
               },
               "sep2a": GenericTableColProps {
                 "className": "",
@@ -3541,7 +3708,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                 "missingData": undefined,
                 "rowSpan": [Function],
                 "toolTip": "",
-                "widthUnits": 0.5,
+                "widthUnits": 0.05,
               },
               "sep4": GenericTableColProps {
                 "className": "",
@@ -3563,7 +3730,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                 "missingData": undefined,
                 "rowSpan": [Function],
                 "toolTip": "",
-                "widthUnits": 16,
+                "widthUnits": 20,
               },
               "to": GenericTableColProps {
                 "className": "",
@@ -3791,6 +3958,30 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                 Object {
                   "label": "Other",
                   "options": Array [
+                    Object {
+                      "label": "Net Rtg (Desc. / Offensive)",
+                      "value": "desc:off_net",
+                    },
+                    Object {
+                      "label": "Net Rtg (Asc. / Offensive)",
+                      "value": "asc:off_net",
+                    },
+                    Object {
+                      "label": "Net Rtg (Desc. / Defensive)",
+                      "value": "desc:def_net",
+                    },
+                    Object {
+                      "label": "Net Rtg (Asc. / Defensive)",
+                      "value": "asc:def_net",
+                    },
+                    Object {
+                      "label": "Net Rtg (Desc. / Off-Def)",
+                      "value": "desc:diff_net",
+                    },
+                    Object {
+                      "label": "Net Rtg (Asc. / Off-Def)",
+                      "value": "asc:diff_net",
+                    },
                     Object {
                       "label": "P/100 (Desc. / Offensive)",
                       "value": "desc:off_ppp",
@@ -4337,6 +4528,22 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                      "deltaDefAdjEff": 2.018193045557538
                   }
 
+                  def_net: Object {
+                                    "old_value": 23.908013471475954,
+                                    "override": "Adjusted from Off 3P% and Def 3P%",
+                                    "value": <small
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 10px #008000",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        21.7
+                                      </i>
+                                    </small>,
+                                  }
+
                   def_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -4437,6 +4644,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                      "deltaOffAdjEff": 0
                   }
 
+                  off_net: Object {
+                                    "old_value": 35.440941110261065,
+                                    "override": "Adjusted from Off 3P% and Def 3P%",
+                                    "value": 33.422748064703526,
+                                  }
+
                   off_poss: Object {
                                     "extraInfo": <span>
                                       71.7
@@ -4468,6 +4681,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "old_value": 117.2069825436409,
                                     "override": "Adjusted from Off 3P%",
                                     "value": 117.2069825436409,
+                                  }
+
+                  off_raw_net: Object {
+                                    "old_value": 23.908013471475954,
+                                    "override": "Adjusted from Off 3P% and Def 3P%",
+                                    "value": 21.721415740240655,
                                   }
 
                   off_title: <OverlayTrigger
@@ -4626,6 +4845,22 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                      "deltaDefAdjEff": 2.018193045557538
                   }
 
+                  def_net: Object {
+                                    "old_value": 23.908013471475954,
+                                    "override": "Adjusted from Off 3P% and Def 3P%",
+                                    "value": <small
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 10px #008000",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        21.7
+                                      </i>
+                                    </small>,
+                                  }
+
                   def_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -4726,6 +4961,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                      "deltaOffAdjEff": 0
                   }
 
+                  off_net: Object {
+                                    "old_value": 35.440941110261065,
+                                    "override": "Adjusted from Off 3P% and Def 3P%",
+                                    "value": 33.422748064703526,
+                                  }
+
                   off_poss: Object {
                                     "extraInfo": <span>
                                       71.7
@@ -4757,6 +4998,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "old_value": 117.2069825436409,
                                     "override": "Adjusted from Off 3P%",
                                     "value": 117.2069825436409,
+                                  }
+
+                  off_raw_net: Object {
+                                    "old_value": 23.908013471475954,
+                                    "override": "Adjusted from Off 3P% and Def 3P%",
+                                    "value": 21.721415740240655,
                                   }
 
                   off_title: <OverlayTrigger
@@ -4941,6 +5188,22 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                      "deltaDefAdjEff": 2.844199736433623
                   }
 
+                  def_net: Object {
+                                    "old_value": 23.071446053890483,
+                                    "override": "Adjusted from Off 3P% and Def 3P%",
+                                    "value": <small
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 10px #008000",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        20.0
+                                      </i>
+                                    </small>,
+                                  }
+
                   def_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -5041,6 +5304,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                      "deltaOffAdjEff": 0
                   }
 
+                  off_net: Object {
+                                    "old_value": 36.82854462721707,
+                                    "override": "Adjusted from Off 3P% and Def 3P%",
+                                    "value": 33.98434489078345,
+                                  }
+
                   off_poss: Object {
                                     "extraInfo": <span>
                                       64.7
@@ -5072,6 +5341,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "old_value": 107.1090047393365,
                                     "override": "Adjusted from Off 3P%",
                                     "value": 107.1090047393365,
+                                  }
+
+                  off_raw_net: Object {
+                                    "old_value": 23.071446053890483,
+                                    "override": "Adjusted from Off 3P% and Def 3P%",
+                                    "value": 19.958409353637055,
                                   }
 
                   off_title: <OverlayTrigger
@@ -5230,6 +5505,22 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                      "deltaDefAdjEff": 2.844199736433623
                   }
 
+                  def_net: Object {
+                                    "old_value": 23.071446053890483,
+                                    "override": "Adjusted from Off 3P% and Def 3P%",
+                                    "value": <small
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 10px #008000",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        20.0
+                                      </i>
+                                    </small>,
+                                  }
+
                   def_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -5330,6 +5621,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                      "deltaOffAdjEff": 0
                   }
 
+                  off_net: Object {
+                                    "old_value": 36.82854462721707,
+                                    "override": "Adjusted from Off 3P% and Def 3P%",
+                                    "value": 33.98434489078345,
+                                  }
+
                   off_poss: Object {
                                     "extraInfo": <span>
                                       64.7
@@ -5361,6 +5658,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "old_value": 107.1090047393365,
                                     "override": "Adjusted from Off 3P%",
                                     "value": 107.1090047393365,
+                                  }
+
+                  off_raw_net: Object {
+                                    "old_value": 23.071446053890483,
+                                    "override": "Adjusted from Off 3P% and Def 3P%",
+                                    "value": 19.958409353637055,
                                   }
 
                   off_title: <OverlayTrigger
@@ -5545,6 +5848,22 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                      "deltaDefAdjEff": 5.07621288783883
                   }
 
+                  def_net: Object {
+                                    "old_value": 25.136108992398945,
+                                    "override": "Adjusted from Off 3P% and Def 3P%",
+                                    "value": <small
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 10px #008000",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        19.6
+                                      </i>
+                                    </small>,
+                                  }
+
                   def_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -5645,6 +5964,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                      "deltaOffAdjEff": 0
                   }
 
+                  off_net: Object {
+                                    "old_value": 38.2719272157307,
+                                    "override": "Adjusted from Off 3P% and Def 3P%",
+                                    "value": 33.19571432789187,
+                                  }
+
                   off_poss: Object {
                                     "extraInfo": <span>
                                       64.0
@@ -5676,6 +6001,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "old_value": 112.18274111675127,
                                     "override": "Adjusted from Off 3P%",
                                     "value": 112.18274111675127,
+                                  }
+
+                  off_raw_net: Object {
+                                    "old_value": 25.136108992398945,
+                                    "override": "Adjusted from Off 3P% and Def 3P%",
+                                    "value": 19.63012761447055,
                                   }
 
                   off_title: <OverlayTrigger
@@ -5834,6 +6165,22 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                      "deltaDefAdjEff": 5.07621288783883
                   }
 
+                  def_net: Object {
+                                    "old_value": 25.136108992398945,
+                                    "override": "Adjusted from Off 3P% and Def 3P%",
+                                    "value": <small
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 10px #008000",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        19.6
+                                      </i>
+                                    </small>,
+                                  }
+
                   def_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -5934,6 +6281,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                      "deltaOffAdjEff": 0
                   }
 
+                  off_net: Object {
+                                    "old_value": 38.2719272157307,
+                                    "override": "Adjusted from Off 3P% and Def 3P%",
+                                    "value": 33.19571432789187,
+                                  }
+
                   off_poss: Object {
                                     "extraInfo": <span>
                                       64.0
@@ -5965,6 +6318,12 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "old_value": 112.18274111675127,
                                     "override": "Adjusted from Off 3P%",
                                     "value": 112.18274111675127,
+                                  }
+
+                  off_raw_net: Object {
+                                    "old_value": 25.136108992398945,
+                                    "override": "Adjusted from Off 3P% and Def 3P%",
+                                    "value": 19.63012761447055,
                                   }
 
                   off_title: <OverlayTrigger
@@ -6209,6 +6568,17 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                 "toolTip": "Free throw rate for selected lineups",
                 "widthUnits": 2,
               },
+              "net": GenericTableColProps {
+                "className": "",
+                "colName": "Net Rtg",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "The margin between the adjusted offensive and defensive efficiencies (lower number is raw margin)",
+                "widthUnits": 2,
+              },
               "orb": GenericTableColProps {
                 "className": "",
                 "colName": "OR%",
@@ -6251,7 +6621,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                 "missingData": undefined,
                 "rowSpan": [Function],
                 "toolTip": "",
-                "widthUnits": 0.5,
+                "widthUnits": 0.05,
               },
               "sep1": GenericTableColProps {
                 "className": "",
@@ -6262,7 +6632,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                 "missingData": undefined,
                 "rowSpan": [Function],
                 "toolTip": "",
-                "widthUnits": 0.5,
+                "widthUnits": 0.05,
               },
               "sep2a": GenericTableColProps {
                 "className": "",
@@ -6295,7 +6665,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                 "missingData": undefined,
                 "rowSpan": [Function],
                 "toolTip": "",
-                "widthUnits": 0.5,
+                "widthUnits": 0.05,
               },
               "sep4": GenericTableColProps {
                 "className": "",
@@ -6317,7 +6687,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                 "missingData": undefined,
                 "rowSpan": [Function],
                 "toolTip": "",
-                "widthUnits": 16,
+                "widthUnits": 20,
               },
               "to": GenericTableColProps {
                 "className": "",
@@ -6546,6 +6916,30 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                   "label": "Other",
                   "options": Array [
                     Object {
+                      "label": "Net Rtg (Desc. / Offensive)",
+                      "value": "desc:off_net",
+                    },
+                    Object {
+                      "label": "Net Rtg (Asc. / Offensive)",
+                      "value": "asc:off_net",
+                    },
+                    Object {
+                      "label": "Net Rtg (Desc. / Defensive)",
+                      "value": "desc:def_net",
+                    },
+                    Object {
+                      "label": "Net Rtg (Asc. / Defensive)",
+                      "value": "asc:def_net",
+                    },
+                    Object {
+                      "label": "Net Rtg (Desc. / Off-Def)",
+                      "value": "desc:diff_net",
+                    },
+                    Object {
+                      "label": "Net Rtg (Asc. / Off-Def)",
+                      "value": "asc:diff_net",
+                    },
+                    Object {
                       "label": "P/100 (Desc. / Offensive)",
                       "value": "desc:off_ppp",
                     },
@@ -7069,6 +7463,20 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   def_luck_diags: undefined
 
+                  def_net: Object {
+                                    "value": <small
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 10px #008000",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        23.9
+                                      </i>
+                                    </small>,
+                                  }
+
                   def_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -7145,6 +7553,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   off_luck_diags: undefined
 
+                  off_net: Object {
+                                    "value": 35.440941110261065,
+                                  }
+
                   off_poss: Object {
                                     "extraInfo": <span>
                                       71.7
@@ -7174,6 +7586,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                       </li>
                                     </span>,
                                     "value": 117.2069825436409,
+                                  }
+
+                  off_raw_net: Object {
+                                    "value": 23.908013471475954,
                                   }
 
                   off_title: <OverlayTrigger
@@ -7522,6 +7938,20 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   def_luck_diags: undefined
 
+                  def_net: Object {
+                                    "value": <small
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 10px #008000",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        23.9
+                                      </i>
+                                    </small>,
+                                  }
+
                   def_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -7598,6 +8028,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   off_luck_diags: undefined
 
+                  off_net: Object {
+                                    "value": 35.440941110261065,
+                                  }
+
                   off_poss: Object {
                                     "extraInfo": <span>
                                       71.7
@@ -7627,6 +8061,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                       </li>
                                     </span>,
                                     "value": 117.2069825436409,
+                                  }
+
+                  off_raw_net: Object {
+                                    "value": 23.908013471475954,
                                   }
 
                   off_title: <OverlayTrigger
@@ -7978,6 +8416,20 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   def_luck_diags: undefined
 
+                  def_net: Object {
+                                    "value": <small
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 10px #008000",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        23.1
+                                      </i>
+                                    </small>,
+                                  }
+
                   def_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -8054,6 +8506,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   off_luck_diags: undefined
 
+                  off_net: Object {
+                                    "value": 36.82854462721707,
+                                  }
+
                   off_poss: Object {
                                     "extraInfo": <span>
                                       64.7
@@ -8083,6 +8539,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                       </li>
                                     </span>,
                                     "value": 107.1090047393365,
+                                  }
+
+                  off_raw_net: Object {
+                                    "value": 23.071446053890483,
                                   }
 
                   off_title: <OverlayTrigger
@@ -8431,6 +8891,20 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   def_luck_diags: undefined
 
+                  def_net: Object {
+                                    "value": <small
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 10px #008000",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        23.1
+                                      </i>
+                                    </small>,
+                                  }
+
                   def_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -8507,6 +8981,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   off_luck_diags: undefined
 
+                  off_net: Object {
+                                    "value": 36.82854462721707,
+                                  }
+
                   off_poss: Object {
                                     "extraInfo": <span>
                                       64.7
@@ -8536,6 +9014,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                       </li>
                                     </span>,
                                     "value": 107.1090047393365,
+                                  }
+
+                  off_raw_net: Object {
+                                    "value": 23.071446053890483,
                                   }
 
                   off_title: <OverlayTrigger
@@ -8887,6 +9369,20 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   def_luck_diags: undefined
 
+                  def_net: Object {
+                                    "value": <small
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 10px #008000",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        25.1
+                                      </i>
+                                    </small>,
+                                  }
+
                   def_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -8963,6 +9459,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   off_luck_diags: undefined
 
+                  off_net: Object {
+                                    "value": 38.2719272157307,
+                                  }
+
                   off_poss: Object {
                                     "extraInfo": <span>
                                       64.0
@@ -8992,6 +9492,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                       </li>
                                     </span>,
                                     "value": 112.18274111675127,
+                                  }
+
+                  off_raw_net: Object {
+                                    "value": 25.136108992398945,
                                   }
 
                   off_title: <OverlayTrigger
@@ -9340,6 +9844,20 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   def_luck_diags: undefined
 
+                  def_net: Object {
+                                    "value": <small
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 10px #008000",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        25.1
+                                      </i>
+                                    </small>,
+                                  }
+
                   def_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -9416,6 +9934,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   off_luck_diags: undefined
 
+                  off_net: Object {
+                                    "value": 38.2719272157307,
+                                  }
+
                   off_poss: Object {
                                     "extraInfo": <span>
                                       64.0
@@ -9445,6 +9967,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                       </li>
                                     </span>,
                                     "value": 112.18274111675127,
+                                  }
+
+                  off_raw_net: Object {
+                                    "value": 25.136108992398945,
                                   }
 
                   off_title: <OverlayTrigger
@@ -9878,6 +10404,17 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                 "toolTip": "Free throw rate for selected lineups",
                 "widthUnits": 2,
               },
+              "net": GenericTableColProps {
+                "className": "",
+                "colName": "Net Rtg",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "The margin between the adjusted offensive and defensive efficiencies (lower number is raw margin)",
+                "widthUnits": 2,
+              },
               "orb": GenericTableColProps {
                 "className": "",
                 "colName": "OR%",
@@ -9920,7 +10457,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                 "missingData": undefined,
                 "rowSpan": [Function],
                 "toolTip": "",
-                "widthUnits": 0.5,
+                "widthUnits": 0.05,
               },
               "sep1": GenericTableColProps {
                 "className": "",
@@ -9931,7 +10468,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                 "missingData": undefined,
                 "rowSpan": [Function],
                 "toolTip": "",
-                "widthUnits": 0.5,
+                "widthUnits": 0.05,
               },
               "sep2a": GenericTableColProps {
                 "className": "",
@@ -9964,7 +10501,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                 "missingData": undefined,
                 "rowSpan": [Function],
                 "toolTip": "",
-                "widthUnits": 0.5,
+                "widthUnits": 0.05,
               },
               "sep4": GenericTableColProps {
                 "className": "",
@@ -9986,7 +10523,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                 "missingData": undefined,
                 "rowSpan": [Function],
                 "toolTip": "",
-                "widthUnits": 16,
+                "widthUnits": 20,
               },
               "to": GenericTableColProps {
                 "className": "",
@@ -10215,6 +10752,30 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                   "label": "Other",
                   "options": Array [
                     Object {
+                      "label": "Net Rtg (Desc. / Offensive)",
+                      "value": "desc:off_net",
+                    },
+                    Object {
+                      "label": "Net Rtg (Asc. / Offensive)",
+                      "value": "asc:off_net",
+                    },
+                    Object {
+                      "label": "Net Rtg (Desc. / Defensive)",
+                      "value": "desc:def_net",
+                    },
+                    Object {
+                      "label": "Net Rtg (Asc. / Defensive)",
+                      "value": "asc:def_net",
+                    },
+                    Object {
+                      "label": "Net Rtg (Desc. / Off-Def)",
+                      "value": "desc:diff_net",
+                    },
+                    Object {
+                      "label": "Net Rtg (Asc. / Off-Def)",
+                      "value": "asc:diff_net",
+                    },
+                    Object {
                       "label": "P/100 (Desc. / Offensive)",
                       "value": "desc:off_ppp",
                     },
@@ -10738,6 +11299,20 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   def_luck_diags: undefined
 
+                  def_net: Object {
+                                    "value": <small
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 10px #008000",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        23.9
+                                      </i>
+                                    </small>,
+                                  }
+
                   def_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -10814,6 +11389,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   off_luck_diags: undefined
 
+                  off_net: Object {
+                                    "value": 35.440941110261065,
+                                  }
+
                   off_poss: Object {
                                     "extraInfo": <span>
                                       71.7
@@ -10843,6 +11422,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                       </li>
                                     </span>,
                                     "value": 117.2069825436409,
+                                  }
+
+                  off_raw_net: Object {
+                                    "value": 23.908013471475954,
                                   }
 
                   off_title: <OverlayTrigger
@@ -11191,6 +11774,20 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   def_luck_diags: undefined
 
+                  def_net: Object {
+                                    "value": <small
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 10px #008000",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        23.9
+                                      </i>
+                                    </small>,
+                                  }
+
                   def_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -11267,6 +11864,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   off_luck_diags: undefined
 
+                  off_net: Object {
+                                    "value": 35.440941110261065,
+                                  }
+
                   off_poss: Object {
                                     "extraInfo": <span>
                                       71.7
@@ -11296,6 +11897,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                       </li>
                                     </span>,
                                     "value": 117.2069825436409,
+                                  }
+
+                  off_raw_net: Object {
+                                    "value": 23.908013471475954,
                                   }
 
                   off_title: <OverlayTrigger
@@ -11647,6 +12252,20 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   def_luck_diags: undefined
 
+                  def_net: Object {
+                                    "value": <small
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 10px #008000",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        23.1
+                                      </i>
+                                    </small>,
+                                  }
+
                   def_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -11723,6 +12342,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   off_luck_diags: undefined
 
+                  off_net: Object {
+                                    "value": 36.82854462721707,
+                                  }
+
                   off_poss: Object {
                                     "extraInfo": <span>
                                       64.7
@@ -11752,6 +12375,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                       </li>
                                     </span>,
                                     "value": 107.1090047393365,
+                                  }
+
+                  off_raw_net: Object {
+                                    "value": 23.071446053890483,
                                   }
 
                   off_title: <OverlayTrigger
@@ -12100,6 +12727,20 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   def_luck_diags: undefined
 
+                  def_net: Object {
+                                    "value": <small
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 10px #008000",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        23.1
+                                      </i>
+                                    </small>,
+                                  }
+
                   def_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -12176,6 +12817,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   off_luck_diags: undefined
 
+                  off_net: Object {
+                                    "value": 36.82854462721707,
+                                  }
+
                   off_poss: Object {
                                     "extraInfo": <span>
                                       64.7
@@ -12205,6 +12850,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                       </li>
                                     </span>,
                                     "value": 107.1090047393365,
+                                  }
+
+                  off_raw_net: Object {
+                                    "value": 23.071446053890483,
                                   }
 
                   off_title: <OverlayTrigger
@@ -12556,6 +13205,20 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   def_luck_diags: undefined
 
+                  def_net: Object {
+                                    "value": <small
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 10px #008000",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        25.1
+                                      </i>
+                                    </small>,
+                                  }
+
                   def_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -12632,6 +13295,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   off_luck_diags: undefined
 
+                  off_net: Object {
+                                    "value": 38.2719272157307,
+                                  }
+
                   off_poss: Object {
                                     "extraInfo": <span>
                                       64.0
@@ -12661,6 +13328,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                       </li>
                                     </span>,
                                     "value": 112.18274111675127,
+                                  }
+
+                  off_raw_net: Object {
+                                    "value": 25.136108992398945,
                                   }
 
                   off_title: <OverlayTrigger
@@ -13009,6 +13680,20 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   def_luck_diags: undefined
 
+                  def_net: Object {
+                                    "value": <small
+                                      style={
+                                        Object {
+                                          "textShadow": "0px 0px 10px #008000",
+                                        }
+                                      }
+                                    >
+                                      <i>
+                                        25.1
+                                      </i>
+                                    </small>,
+                                  }
+
                   def_ppp: Object {
                                     "extraInfo": <span>
                                       Play category breakdown:
@@ -13085,6 +13770,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
 
                   off_luck_diags: undefined
 
+                  off_net: Object {
+                                    "value": 38.2719272157307,
+                                  }
+
                   off_poss: Object {
                                     "extraInfo": <span>
                                       64.0
@@ -13114,6 +13803,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                       </li>
                                     </span>,
                                     "value": 112.18274111675127,
+                                  }
+
+                  off_raw_net: Object {
+                                    "value": 25.136108992398945,
                                   }
 
                   off_title: <OverlayTrigger
@@ -13547,6 +14240,17 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                 "toolTip": "Free throw rate for selected lineups",
                 "widthUnits": 2,
               },
+              "net": GenericTableColProps {
+                "className": "",
+                "colName": "Net Rtg",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "The margin between the adjusted offensive and defensive efficiencies (lower number is raw margin)",
+                "widthUnits": 2,
+              },
               "orb": GenericTableColProps {
                 "className": "",
                 "colName": "OR%",
@@ -13589,7 +14293,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                 "missingData": undefined,
                 "rowSpan": [Function],
                 "toolTip": "",
-                "widthUnits": 0.5,
+                "widthUnits": 0.05,
               },
               "sep1": GenericTableColProps {
                 "className": "",
@@ -13600,7 +14304,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                 "missingData": undefined,
                 "rowSpan": [Function],
                 "toolTip": "",
-                "widthUnits": 0.5,
+                "widthUnits": 0.05,
               },
               "sep2a": GenericTableColProps {
                 "className": "",
@@ -13633,7 +14337,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                 "missingData": undefined,
                 "rowSpan": [Function],
                 "toolTip": "",
-                "widthUnits": 0.5,
+                "widthUnits": 0.05,
               },
               "sep4": GenericTableColProps {
                 "className": "",
@@ -13655,7 +14359,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                 "missingData": undefined,
                 "rowSpan": [Function],
                 "toolTip": "",
-                "widthUnits": 16,
+                "widthUnits": 20,
               },
               "to": GenericTableColProps {
                 "className": "",

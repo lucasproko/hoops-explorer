@@ -1069,6 +1069,11 @@ Array [
       "sampleOffPpp": 107.1090047393365,
       "samplePoss": 211,
     },
+    "off_net": Object {
+      "old_value": 36.82854462721707,
+      "override": "Adjusted from Off 3P% and Def 3P%",
+      "value": 33.924588525653576,
+    },
     "off_orb": Object {
       "value": 0.31896551724137934,
     },
@@ -1079,6 +1084,11 @@ Array [
       "old_value": 107.1090047393365,
       "override": "Adjusted from Off 3P%",
       "value": 108.24353901686453,
+    },
+    "off_raw_net": Object {
+      "old_value": 23.071446053890483,
+      "override": "Adjusted from Off 3P% and Def 3P%",
+      "value": 19.759528855268567,
     },
     "off_scramble_2p": Object {
       "value": 0.75,
@@ -1629,6 +1639,11 @@ Array [
       "sampleOffPpp": 117.2069825436409,
       "samplePoss": 401,
     },
+    "off_net": Object {
+      "old_value": 35.440941110261065,
+      "override": "Adjusted from Off 3P% and Def 3P%",
+      "value": 33.744726093031105,
+    },
     "off_orb": Object {
       "value": 0.2857142857142857,
     },
@@ -1639,6 +1654,11 @@ Array [
       "old_value": 117.2069825436409,
       "override": "Adjusted from Off 3P%",
       "value": 118.28021212305299,
+    },
+    "off_raw_net": Object {
+      "old_value": 23.908013471475954,
+      "override": "Adjusted from Off 3P% and Def 3P%",
+      "value": 21.974012264978786,
     },
     "off_scramble_2p": Object {
       "value": 0.7,
@@ -2189,6 +2209,11 @@ Array [
       "sampleOffPpp": 112.18274111675127,
       "samplePoss": 197,
     },
+    "off_net": Object {
+      "old_value": 38.2719272157307,
+      "override": "Adjusted from Off 3P% and Def 3P%",
+      "value": 28.988013158307723,
+    },
     "off_orb": Object {
       "value": 0.3148148148148148,
     },
@@ -2199,6 +2224,11 @@ Array [
       "old_value": 112.18274111675127,
       "override": "Adjusted from Off 3P%",
       "value": 110.41750209571207,
+    },
+    "off_raw_net": Object {
+      "old_value": 25.136108992398945,
+      "override": "Adjusted from Off 3P% and Def 3P%",
+      "value": 15.439704042312885,
     },
     "off_scramble_2p": Object {
       "value": 0.5384615384615384,
@@ -2754,6 +2784,11 @@ Array [
       "sampleOffPpp": 117.2069825436409,
       "samplePoss": 401,
     },
+    "off_net": Object {
+      "old_value": 35.440941110261065,
+      "override": "Adjusted from Off 3P% and Def 3P%",
+      "value": 33.744726093031105,
+    },
     "off_orb": Object {
       "value": 0.2857142857142857,
     },
@@ -2764,6 +2799,11 @@ Array [
       "old_value": 117.2069825436409,
       "override": "Adjusted from Off 3P%",
       "value": 118.28021212305299,
+    },
+    "off_raw_net": Object {
+      "old_value": 23.908013471475954,
+      "override": "Adjusted from Off 3P% and Def 3P%",
+      "value": 21.974012264978786,
     },
     "off_scramble_2p": Object {
       "value": 0.7,

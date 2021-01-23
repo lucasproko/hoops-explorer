@@ -405,6 +405,30 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                   "label": "Other",
                   "options": Array [
                     Object {
+                      "label": "Net Rtg (Desc. / Offensive)",
+                      "value": "desc:off_net",
+                    },
+                    Object {
+                      "label": "Net Rtg (Asc. / Offensive)",
+                      "value": "asc:off_net",
+                    },
+                    Object {
+                      "label": "Net Rtg (Desc. / Defensive)",
+                      "value": "desc:def_net",
+                    },
+                    Object {
+                      "label": "Net Rtg (Asc. / Defensive)",
+                      "value": "asc:def_net",
+                    },
+                    Object {
+                      "label": "Net Rtg (Desc. / Off-Def)",
+                      "value": "desc:diff_net",
+                    },
+                    Object {
+                      "label": "Net Rtg (Asc. / Off-Def)",
+                      "value": "asc:diff_net",
+                    },
+                    Object {
                       "label": "P/100 (Desc. / Offensive)",
                       "value": "desc:off_ppp",
                     },
@@ -12515,6 +12539,17 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                 "toolTip": "Free throw rate for selected lineups",
                 "widthUnits": 2,
               },
+              "net": GenericTableColProps {
+                "className": "",
+                "colName": "Net Rtg",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "The margin between the adjusted offensive and defensive efficiencies (lower number is raw margin)",
+                "widthUnits": 2,
+              },
               "orb": GenericTableColProps {
                 "className": "",
                 "colName": "OR%",
@@ -12557,7 +12592,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                 "missingData": undefined,
                 "rowSpan": [Function],
                 "toolTip": "",
-                "widthUnits": 0.5,
+                "widthUnits": 0.05,
               },
               "sep1": GenericTableColProps {
                 "className": "",
@@ -12568,7 +12603,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                 "missingData": undefined,
                 "rowSpan": [Function],
                 "toolTip": "",
-                "widthUnits": 0.5,
+                "widthUnits": 0.05,
               },
               "sep2a": GenericTableColProps {
                 "className": "",
@@ -12601,7 +12636,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                 "missingData": undefined,
                 "rowSpan": [Function],
                 "toolTip": "",
-                "widthUnits": 0.5,
+                "widthUnits": 0.05,
               },
               "sep4": GenericTableColProps {
                 "className": "",
@@ -12623,7 +12658,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                 "missingData": undefined,
                 "rowSpan": [Function],
                 "toolTip": "",
-                "widthUnits": 16,
+                "widthUnits": 20,
               },
               "to": GenericTableColProps {
                 "className": "",
@@ -13049,6 +13084,30 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                 Object {
                   "label": "Other",
                   "options": Array [
+                    Object {
+                      "label": "Net Rtg (Desc. / Offensive)",
+                      "value": "desc:off_net",
+                    },
+                    Object {
+                      "label": "Net Rtg (Asc. / Offensive)",
+                      "value": "asc:off_net",
+                    },
+                    Object {
+                      "label": "Net Rtg (Desc. / Defensive)",
+                      "value": "desc:def_net",
+                    },
+                    Object {
+                      "label": "Net Rtg (Asc. / Defensive)",
+                      "value": "asc:def_net",
+                    },
+                    Object {
+                      "label": "Net Rtg (Desc. / Off-Def)",
+                      "value": "desc:diff_net",
+                    },
+                    Object {
+                      "label": "Net Rtg (Asc. / Off-Def)",
+                      "value": "asc:diff_net",
+                    },
                     Object {
                       "label": "P/100 (Desc. / Offensive)",
                       "value": "desc:off_ppp",
@@ -31107,6 +31166,17 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                 "toolTip": "Free throw rate for selected lineups",
                 "widthUnits": 2,
               },
+              "net": GenericTableColProps {
+                "className": "",
+                "colName": "Net Rtg",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "The margin between the adjusted offensive and defensive efficiencies (lower number is raw margin)",
+                "widthUnits": 2,
+              },
               "orb": GenericTableColProps {
                 "className": "",
                 "colName": "OR%",
@@ -31149,7 +31219,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                 "missingData": undefined,
                 "rowSpan": [Function],
                 "toolTip": "",
-                "widthUnits": 0.5,
+                "widthUnits": 0.05,
               },
               "sep1": GenericTableColProps {
                 "className": "",
@@ -31160,7 +31230,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                 "missingData": undefined,
                 "rowSpan": [Function],
                 "toolTip": "",
-                "widthUnits": 0.5,
+                "widthUnits": 0.05,
               },
               "sep2a": GenericTableColProps {
                 "className": "",
@@ -31193,7 +31263,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                 "missingData": undefined,
                 "rowSpan": [Function],
                 "toolTip": "",
-                "widthUnits": 0.5,
+                "widthUnits": 0.05,
               },
               "sep4": GenericTableColProps {
                 "className": "",
@@ -31215,7 +31285,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                 "missingData": undefined,
                 "rowSpan": [Function],
                 "toolTip": "",
-                "widthUnits": 16,
+                "widthUnits": 20,
               },
               "to": GenericTableColProps {
                 "className": "",
@@ -31641,6 +31711,30 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                 Object {
                   "label": "Other",
                   "options": Array [
+                    Object {
+                      "label": "Net Rtg (Desc. / Offensive)",
+                      "value": "desc:off_net",
+                    },
+                    Object {
+                      "label": "Net Rtg (Asc. / Offensive)",
+                      "value": "asc:off_net",
+                    },
+                    Object {
+                      "label": "Net Rtg (Desc. / Defensive)",
+                      "value": "desc:def_net",
+                    },
+                    Object {
+                      "label": "Net Rtg (Asc. / Defensive)",
+                      "value": "asc:def_net",
+                    },
+                    Object {
+                      "label": "Net Rtg (Desc. / Off-Def)",
+                      "value": "desc:diff_net",
+                    },
+                    Object {
+                      "label": "Net Rtg (Asc. / Off-Def)",
+                      "value": "asc:diff_net",
+                    },
                     Object {
                       "label": "P/100 (Desc. / Offensive)",
                       "value": "desc:off_ppp",
@@ -43982,6 +44076,17 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                 "toolTip": "Free throw rate for selected lineups",
                 "widthUnits": 2,
               },
+              "net": GenericTableColProps {
+                "className": "",
+                "colName": "Net Rtg",
+                "colorPicker": [Function],
+                "formatter": [Function],
+                "isTitle": false,
+                "missingData": undefined,
+                "rowSpan": [Function],
+                "toolTip": "The margin between the adjusted offensive and defensive efficiencies (lower number is raw margin)",
+                "widthUnits": 2,
+              },
               "orb": GenericTableColProps {
                 "className": "",
                 "colName": "OR%",
@@ -44024,7 +44129,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                 "missingData": undefined,
                 "rowSpan": [Function],
                 "toolTip": "",
-                "widthUnits": 0.5,
+                "widthUnits": 0.05,
               },
               "sep1": GenericTableColProps {
                 "className": "",
@@ -44035,7 +44140,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                 "missingData": undefined,
                 "rowSpan": [Function],
                 "toolTip": "",
-                "widthUnits": 0.5,
+                "widthUnits": 0.05,
               },
               "sep2a": GenericTableColProps {
                 "className": "",
@@ -44068,7 +44173,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                 "missingData": undefined,
                 "rowSpan": [Function],
                 "toolTip": "",
-                "widthUnits": 0.5,
+                "widthUnits": 0.05,
               },
               "sep4": GenericTableColProps {
                 "className": "",
@@ -44090,7 +44195,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                 "missingData": undefined,
                 "rowSpan": [Function],
                 "toolTip": "",
-                "widthUnits": 16,
+                "widthUnits": 20,
               },
               "to": GenericTableColProps {
                 "className": "",

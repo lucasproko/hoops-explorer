@@ -295,6 +295,14 @@ export class TableDisplayUtils {
       if (stat.def_ftr) {
         stat.def_ftr.extraInfo = <span>FT: {(100*(stat.def_ft?.value || 0)).toFixed(1)}%</span>;
       }
+      if (stat.off_raw_net) { // Copy raw net as a small extra info in the defensive column
+        stat.def_net = {
+          ...stat.off_raw_net,
+          value: <small style={CommonTableDefs.getTextShadow(stat.off_raw_net, CbbColors.off_diff10_p100_redGreen)}><i>
+            {(stat.off_raw_net?.value || 0).toFixed(1)}
+          </i></small>
+        };
+      }
     } else {
       if (stat.off_team_poss) {
         //TODO: see https://github.com/Alex-At-Home/cbb-on-off-analyzer/issues/142

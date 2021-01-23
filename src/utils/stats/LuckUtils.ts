@@ -355,7 +355,7 @@ export class LuckUtils {
     OverrideUtils.overrideMutableVal(mutableStats, "off_net",
       maybeDelta(pppAdjMargin), "Adjusted from Off 3P% and Def 3P%"
     );
-    OverrideUtils.overrideMutableVal(mutableStats, "def_net",
+    OverrideUtils.overrideMutableVal(mutableStats, "off_raw_net",
       maybeDelta(pppMargin), "Adjusted from Off 3P% and Def 3P%"
     );
 
