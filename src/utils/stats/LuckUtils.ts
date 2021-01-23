@@ -343,5 +343,21 @@ export class LuckUtils {
         defLuck?.adjDef3P, "Luck adjusted"
       );
     }
+
+    // Net
+
+    const pppAdjMargin = _.isNil(defLuck?.deltaDefAdjEff) && _.isNil(offLuck?.deltaOffAdjEff) ? undefined
+      :  (offLuck?.deltaOffAdjEff || 0) - (defLuck?.deltaDefAdjEff || 0);
+
+    const pppMargin = _.isNil(defLuck?.deltaDefPpp) && _.isNil(offLuck?.deltaOffPpp) ? undefined
+      :  (offLuck?.deltaOffPpp || 0) - (defLuck?.deltaDefPpp || 0);
+
+    OverrideUtils.overrideMutableVal(mutableStats, "off_net",
+      maybeDelta(pppAdjMargin), "Adjusted from Off 3P% and Def 3P%"
+    );
+    OverrideUtils.overrideMutableVal(mutableStats, "off_raw_net",
+      maybeDelta(pppMargin), "Adjusted from Off 3P% and Def 3P%"
+    );
+
   };
 };

@@ -195,6 +195,8 @@ export class LineupTableUtils {
       ] as [OffLuckAdjustmentDiags, DefLuckAdjustmentDiags] : undefined;
 
       if (lineup?.doc_count) {
+        LineupUtils.buildEfficiencyMargins(lineup);
+
         LuckUtils.injectLuck(lineup, luckAdj?.[0], luckAdj?.[1]);
         lineup.off_luck_diags = luckAdj?.[0];
         lineup.def_luck_diags = luckAdj?.[1];
