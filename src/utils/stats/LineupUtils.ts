@@ -31,7 +31,41 @@ export class LineupUtils {
 
     }, {} as Record<string, any>).value();
     LineupUtils.completeWeightedAvg(teamInfo);
+
+    // Rebuild net margin since aggregated version won't be quite right:
+    LineupUtils.buildEfficiencyMargins(teamInfo, "value");
+    if (!_.isNil(teamInfo?.off_ppp?.old_value)) { //(luck adjusted mode)
+      LineupUtils.buildEfficiencyMargins(teamInfo, "old_value");
+    }
+
     return teamInfo;
+  }
+
+  /** Builds the raw and adjusted efficiency margins */
+  static buildEfficiencyMargins(lineup: any, keyOverride?: string) {
+    // Add margins:
+    const nonLuckKey = keyOverride || (!_.isNil(lineup?.off_ppp?.old_value) ? "old_value" : "value");
+
+    if (lineup?.off_adj_ppp && lineup?.def_adj_ppp) {
+      const value = (lineup?.off_adj_ppp?.[nonLuckKey] || 0) - (lineup?.def_adj_ppp?.[nonLuckKey] || 0);
+      lineup.off_net = keyOverride ? {
+        ...lineup.off_net,
+        [keyOverride]: value
+      } : {
+        value: value
+      };
+    }
+    // def_net is off_raw_net
+    //TODO use correct field and copy across as part of enrichment
+    if (lineup?.off_ppp && lineup?.def_ppp) {
+      const value = (lineup?.off_ppp?.[nonLuckKey] || 0) - (lineup?.def_ppp?.[nonLuckKey] || 0);
+      lineup.def_net = keyOverride ? {
+        ...lineup.def_net,
+        [keyOverride]: value
+      } : {
+        value: value
+      };
+    }
   }
 
   /** Parses the terms/histogram aggregation giving a bit of info about each lineup's game */

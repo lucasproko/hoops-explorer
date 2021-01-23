@@ -187,11 +187,14 @@ export class CommonTableDefs {
   // LINEUP:
 
   static readonly lineupTable = { //accessors vs column metadata
-    "title": GenericTableOps.addTitle("", "", CommonTableDefs.rowSpanCalculator, "small", GenericTableOps.htmlFormatter, 16),
-    "sep0": GenericTableOps.addColSeparator(),
+    "title": GenericTableOps.addTitle("", "", CommonTableDefs.rowSpanCalculator, "small", GenericTableOps.htmlFormatter, 20),
+    "sep0": GenericTableOps.addColSeparator(0.05),
+    "net": GenericTableOps.addDataCol(
+      "Net P/100", "The margin between the adjusted offensive and defensive efficiencies (lower number is raw margin)",
+      CbbColors.offOnlyPicker(...CbbColors.diff10_p100_redGreen), GenericTableOps.pointsOrHtmlFormatter),
     "ppp": GenericTableOps.addPtsCol("P/100", "Points per 100 possessions", CommonTableDefs.picker(...CbbColors.pp100)),
     "adj_ppp": GenericTableOps.addPtsCol("Adj P/100", "Approximate schedule-adjusted Points per 100 possessions", CommonTableDefs.picker(...CbbColors.pp100)),
-    "sep1": GenericTableOps.addColSeparator(),
+    "sep1": GenericTableOps.addColSeparator(0.05),
     "efg": GenericTableOps.addPctCol("eFG%", "Effective field goal% (3 pointers count 1.5x as much) for selected lineups", CommonTableDefs.picker(...CbbColors.eFG)),
     "to": GenericTableOps.addPctCol("TO%", "Turnover % for selected lineups", CommonTableDefs.picker(...CbbColors.tOver)),
     "orb": GenericTableOps.addPctCol("OR%", "Offensive rebounding % for selected lineups", CommonTableDefs.picker(...CbbColors.oReb)),
@@ -202,7 +205,7 @@ export class CommonTableDefs {
     "3pr": GenericTableOps.addPctCol("3PR", "Percentage of 3 pointers taken against all field goals", CommonTableDefs.picker(...CbbColors.fgr)),
     "2pmidr": GenericTableOps.addPctCol("2PR mid", "Percentage of mid range 2 pointers taken against all field goals", CommonTableDefs.picker(...CbbColors.fgr)),
     "2primr": GenericTableOps.addPctCol("2PR rim", "Percentage of layup/dunk/etc 2 pointers taken against all field goals", CommonTableDefs.picker(...CbbColors.fgr)),
-    "sep3": GenericTableOps.addColSeparator(),
+    "sep3": GenericTableOps.addColSeparator(0.05),
     "3p": GenericTableOps.addPctCol("3P%", "3 point field goal percentage", CommonTableDefs.picker(...CbbColors.fg3P)),
     "2p": GenericTableOps.addPctCol("2P%", "2 point field goal percentage", CommonTableDefs.picker(...CbbColors.fg2P)),
     "2pmid": GenericTableOps.addPctCol("2P% mid", "2 point field goal percentage (mid range)", CommonTableDefs.picker(...CbbColors.fg2P_mid)),
