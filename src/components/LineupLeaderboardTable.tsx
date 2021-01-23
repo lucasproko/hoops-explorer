@@ -243,6 +243,13 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
     const tableData = lineups.flatMap((lineup, lineupIndex) => {
       const teamSeasonLookup = `${startingState.gender}_${lineup.team}_${startingState.year}`;
 
+      // Rebuild net margin in case the raw data doesn't include it:
+      LineupUtils.buildEfficiencyMargins(lineup, "value");
+      if (!_.isNil(lineup?.off_ppp?.old_value)) { //(luck adjusted mode)
+        LineupUtils.buildEfficiencyMargins(lineup, "old_value");
+        lineup.off_net.override = "Adjusted from Off 3P% and Def 3P%";
+        lineup.off_raw_net.override = "Adjusted from Off 3P% and Def 3P%";
+      }
       TableDisplayUtils.injectPlayTypeInfo(lineup, false, false, teamSeasonLookup); //(inject assist+tempo numbers)
 
       const perLineupBaselinePlayerMap = lineup.player_info;
@@ -292,9 +299,10 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
         <a target="_blank" href={UrlRouting.getLineupUrl(teamParams, {})}><b>{lineup.team}{maybeYrStr}</b></a>
       </OverlayTrigger>;
 
+      const adjMarginHtml = lineup.off_net ? "" : <span>&nbsp;[<b>{adjMarginStr}</b>]</span>;
       const title = <div><span className="float-left">
         {rankings}
-        &nbsp;<span>{teamEl} (<span>{confNickname}</span>)&nbsp;[<b>{adjMarginStr}</b>]</span>
+        &nbsp;<span>{teamEl} (<span>{confNickname}</span>){adjMarginHtml}</span>
         </span><br/>
         {subTitle}
       </div>
