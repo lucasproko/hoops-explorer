@@ -117,6 +117,7 @@ export type LineupLeaderboardParams = {
   sortBy?: string,
   // Filtering:
   filter?: string,
+  lineupFilters?: string,
   // Luck adjustments
   showLineupLuckDiags?: boolean,
   // Query pre-sets

@@ -849,6 +849,49 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                 "toggled": false,
                 "tooltip": "Open a page that explains some of the elements of this table",
               },
+              Object {
+                "isLabelOnly": true,
+                "label": "| Filters: ",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Filter lineups based on their positional attributes",
+              },
+              Object {
+                "label": "0-PG",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Lineups without a true PG",
+              },
+              Object {
+                "label": "2-PG",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Lineups with two primary ball-handlers",
+              },
+              Object {
+                "label": "4-G",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "4-Guard lineups only",
+              },
+              Object {
+                "label": "5-out",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "5 out lineups only",
+              },
+              Object {
+                "label": "2-Big",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "2-Big lineups only",
+              },
+              Object {
+                "label": "x",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Clear all positional filters",
+              },
             ]
           }
         />
@@ -14028,6 +14071,49 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                 "onClick": [Function],
                 "toggled": false,
                 "tooltip": "Open a page that explains some of the elements of this table",
+              },
+              Object {
+                "isLabelOnly": true,
+                "label": "| Filters: ",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Filter lineups based on their positional attributes",
+              },
+              Object {
+                "label": "0-PG",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Lineups without a true PG",
+              },
+              Object {
+                "label": "2-PG",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Lineups with two primary ball-handlers",
+              },
+              Object {
+                "label": "4-G",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "4-Guard lineups only",
+              },
+              Object {
+                "label": "5-out",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "5 out lineups only",
+              },
+              Object {
+                "label": "2-Big",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "2-Big lineups only",
+              },
+              Object {
+                "label": "x",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Clear all positional filters",
               },
             ]
           }
@@ -33405,6 +33491,49 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                 "onClick": [Function],
                 "toggled": false,
                 "tooltip": "Open a page that explains some of the elements of this table",
+              },
+              Object {
+                "isLabelOnly": true,
+                "label": "| Filters: ",
+                "onClick": [Function],
+                "toggled": true,
+                "tooltip": "Filter lineups based on their positional attributes",
+              },
+              Object {
+                "label": "0-PG",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Lineups without a true PG",
+              },
+              Object {
+                "label": "2-PG",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Lineups with two primary ball-handlers",
+              },
+              Object {
+                "label": "4-G",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "4-Guard lineups only",
+              },
+              Object {
+                "label": "5-out",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "5 out lineups only",
+              },
+              Object {
+                "label": "2-Big",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "2-Big lineups only",
+              },
+              Object {
+                "label": "x",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Clear all positional filters",
               },
             ]
           }

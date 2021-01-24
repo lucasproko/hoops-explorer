@@ -80,6 +80,7 @@ const LineupLeaderboardPage: NextPage<{}> = () => {
       (!rawParams.confOnly) ? [ 'confOnly' ] : [],
       (!rawParams.filter) ? [ 'filter' ] : [],
       (!rawParams.conf) ? [ 'conf' ] : [],
+      (!rawParams.lineupFilters) ? [ 'lineupFilters' ] : [],
 
       (rawParams.minPoss == ParamDefaults.defaultLineupLboardMinPos) ? [ 'minPoss' ] : [],
       (rawParams.maxTableSize == ParamDefaults.defaultLineupLboardMaxTableSize) ? [ 'maxTableSize' ] : [],

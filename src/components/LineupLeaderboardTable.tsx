@@ -154,6 +154,11 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
   const [ isT100, setIsT100 ] = useState(startingState.t100 || false);
   const [ isConfOnly, setIsConfOnly ] = useState(startingState.confOnly || false);
 
+  const [ lineupFilters, setLineupFilters ] = useState((startingState.lineupFilters ?
+      new Set(startingState.lineupFilters.split(",")) : new Set()
+    ) as Set<"0-PG" | "2-PG" | "4-G" | "5-Out" | "2-Big">
+  );
+
   // Luck:
 
   /** Whether to show the luck diagnostics */
@@ -186,12 +191,13 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       minPoss: minPoss,
       maxTableSize: maxTableSize,
       sortBy: sortBy,
-      filter: filterStr
+      filter: filterStr,
+      lineupFilters: Array.from(lineupFilters).join(",")
     };
     onChangeState(newState);
   }, [ minPoss, maxTableSize, sortBy, filterStr,
       showLuckAdjDiags,
-      isT100, isConfOnly,
+      isT100, isConfOnly, lineupFilters,
       confs, year, gender ]);
 
   // 3] Utils
@@ -229,7 +235,37 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       filterStr,
       (year != "All") && (sortBy == ParamDefaults.defaultLineupLboardSortBy) ? undefined : sortBy,
       minPoss, maxTableSize, undefined, undefined //<-calc from lineup
-    );
+    ).filter((lineup) => { //Positional filters
+        if (lineupFilters.size > 0) {
+          const teamSeasonLookup = `${startingState.gender}_${lineup.team}_${startingState.year}`;
+          const perLineupBaselinePlayerMap = lineup.player_info;
+          const positionFromPlayerKey = lineup.player_info;
+          const codesAndIds = LineupTableUtils.buildCodesAndIds(lineup);
+          const sortedCodesAndIds = PositionUtils.orderLineup(codesAndIds, positionFromPlayerKey, teamSeasonLookup);
+
+          if (lineupFilters.has("0-PG")) {
+            const pos0 = positionFromPlayerKey[sortedCodesAndIds[0]!.id!]?.posClass || "";
+            if ((pos0 == "PG") || (pos0 == "s-PG")) return false;
+          }
+          if (lineupFilters.has("2-PG")) {
+            const pos1 = positionFromPlayerKey[sortedCodesAndIds[1]!.id!]?.posClass || "";
+            if ((pos1 != "PG") && (pos1 != "s-PG")) return false;
+          }
+          if (lineupFilters.has("4-G")) {
+            const pos3 = positionFromPlayerKey[sortedCodesAndIds[3]!.id!]?.posClass || "";
+            if (!_.endsWith(pos3, "G") || (pos3 == "G?")) return false;
+          }
+          if (lineupFilters.has("5-Out")) {
+            const pos4 = positionFromPlayerKey[sortedCodesAndIds[4]!.id!]?.posClass || "";
+            if ((pos4 == "PF/C") || (pos4 == "C") || (pos4 == "F/C?")) return false;
+          }
+          if (lineupFilters.has("2-Big")) {
+            const pos3 = positionFromPlayerKey[sortedCodesAndIds[3]!.id!]?.posClass || "";
+            if ((pos3 != "PF/C") && (pos3 != "C")) return false;
+          }
+        }
+        return true;
+    });
 
     /** Either the sort is not one of the 3 pre-calced, or there is a filter */
     const isGeneralSortOrFilter = ((sortBy != ParamDefaults.defaultLineupLboardSortBy) &&
@@ -238,6 +274,8 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       ((confDataEventLineups.length < dataEventLineups.length) || ((filterStr || "") != ""))
       ||
       (year == "All")
+      ||
+      (lineupFilters.size > 0)
       ;
 
     const tableData = lineups.flatMap((lineup, lineupIndex) => {
@@ -332,7 +370,7 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
     />
 
   }, [ minPoss, maxTableSize, sortBy, filterStr,
-      showLuckAdjDiags, confs,
+      showLuckAdjDiags, confs, lineupFilters,
       dataEvent ]);
 
   // 3.2] Sorting utils
@@ -412,6 +450,30 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       children: [ newText, props.children[1] ]
     }
     return <components.MultiValueContainer {...newProps} />
+  };
+
+  /** Handles the complexity of changing the set of positional filters */
+  const toggleLineupFilters = (s: "0-PG" | "2-PG" | "4-G" | "5-Out" | "2-Big") => {
+    const tmp = new Set(lineupFilters);
+    if (tmp.has(s)) {
+      tmp.delete(s);
+    } else {
+      tmp.add(s);
+    }
+    // Some extra logic:
+    if ((s == "0-PG") && tmp.has("0-PG")) {
+      tmp.delete("2-PG");
+    } else if ((s == "2-PG") && tmp.has("2-PG")) {
+      tmp.delete("0-PG");
+    } else if ((s == "5-Out") && tmp.has("5-Out")) {
+      tmp.delete("2-Big");
+    } else if ((s == "4-G") && tmp.has("4-G")) {
+      tmp.delete("2-Big");
+    } else if ((s == "2-Big") && tmp.has("2-Big")) {
+      tmp.delete("4-G");
+      tmp.delete("5-Out");
+    }
+    setLineupFilters(tmp);
   };
 
   /** At the expense of some time makes it easier to see when changes are happening */
@@ -573,7 +635,7 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
               tooltip: "Leaderboard of lineups vs conference opposition",
               toggled: isConfOnly,
               onClick: () => friendlyChange(() => { setIsT100(false); setIsConfOnly(!isConfOnly); }, true)
-            }
+            },
           ] as Array<any>).concat(showHelp ? [
             {
               label: <a href="https://hoop-explorer.blogspot.com/2020/07/understanding-lineup-analyzer-page.html" target="_blank">?</a>,
@@ -581,7 +643,51 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
               toggled: false,
               onClick: () => {}
             }
-          ] : [])
+          ] : []).concat([
+            {
+              label: "| Filters: ",
+              tooltip: "Filter lineups based on their positional attributes",
+              toggled: true,
+              onClick: () => {},
+              isLabelOnly: true
+            },
+            {
+              label: "0-PG",
+              tooltip: "Lineups without a true PG",
+              toggled: lineupFilters.has("0-PG"),
+              onClick: () => friendlyChange(() => { toggleLineupFilters("0-PG"); }, true)
+            },
+            {
+              label: "2-PG",
+              tooltip: "Lineups with two primary ball-handlers",
+              toggled: lineupFilters.has("2-PG"),
+              onClick: () => friendlyChange(() => { toggleLineupFilters("2-PG"); }, true)
+            },
+            {
+              label: "4-G",
+              tooltip: "4-Guard lineups only",
+              toggled: lineupFilters.has("4-G"),
+              onClick: () => friendlyChange(() => { toggleLineupFilters("4-G"); }, true)
+            },
+            {
+              label: "5-out",
+              tooltip: "5 out lineups only",
+              toggled: lineupFilters.has("5-Out"),
+              onClick: () => friendlyChange(() => { toggleLineupFilters("5-Out"); }, true)
+            },
+            {
+              label: "2-Big",
+              tooltip: "2-Big lineups only",
+              toggled: lineupFilters.has("2-Big"),
+              onClick: () => friendlyChange(() => { toggleLineupFilters("2-Big"); }, true)
+            },
+            {
+              label: "x",
+              tooltip: "Clear all positional filters",
+              toggled: false,
+              onClick: () => friendlyChange(() => { setLineupFilters(new Set()); }, true)
+            },
+          ])
           }/>
         </Col>
         <Col xs={12} sm={12} md={12} lg={4}>
