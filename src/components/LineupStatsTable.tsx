@@ -292,10 +292,16 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
         const sortedCodesAndIds = (lineup.key == LineupTableUtils.totalLineupId) ? undefined :
           PositionUtils.orderLineup(codesAndIds, positionFromPlayerKey, teamSeasonLookup);
 
+        const getBackcourtCombos = () => {
+          const top4 = _.take(sortedCodesAndIds || [], 4).map(p => p.id);
+          const pf = top4?.[3] || "";
+          const is4Guard = _.endsWith(positionFromPlayerKey[pf]?.posClass || "", "G"); //(not "G?" since we don't really know if that's a guard/forward yet)
+          return is4Guard ? top4.join(" / ") : _.take(top4, 3).join(" / ");
+        };
         const getKeys = () => { if (lineup.key != LineupTableUtils.totalLineupId)
           switch (aggregateByPos) {
             case "PG": return [ sortedCodesAndIds?.[0]?.id || "Unknown" ];
-            case "Backcourt": return [ _.take(sortedCodesAndIds || [], 3).map(p => p.id).join(" / ") ];
+            case "Backcourt": return [  getBackcourtCombos() ];
             case "PG+C": return [ `${(sortedCodesAndIds?.[0]?.id || "Unknown")} / ${(sortedCodesAndIds?.[4]?.id || "Unknown")}` ];
             case "Frontcourt": return [ _.chain(sortedCodesAndIds || []).drop(3).map(p => p.id).value().join(" / ") ];
             case "C": return [ sortedCodesAndIds?.[4]?.id || "Unknown" ];
