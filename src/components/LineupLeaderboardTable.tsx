@@ -243,13 +243,21 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
           const codesAndIds = LineupTableUtils.buildCodesAndIds(lineup);
           const sortedCodesAndIds = PositionUtils.orderLineup(codesAndIds, positionFromPlayerKey, teamSeasonLookup);
 
+          const isPassyG = (playerId: string) => {
+            const plStats = perLineupBaselinePlayerMap[playerId] || {};
+            const assistRate = plStats.off_assist?.value || 0;
+            const pos = positionFromPlayerKey[playerId]?.posClass || "";
+            const isPassyCG = ((pos == "CG") || (pos == "G?")) && assistRate >= 0.19;
+
+            return (pos == "PG") || (pos == "s-PG") || isPassyCG;
+          }
+
           if (lineupFilters.has("0-PG")) {
-            const pos0 = positionFromPlayerKey[sortedCodesAndIds[0]!.id!]?.posClass || "";
-            if ((pos0 == "PG") || (pos0 == "s-PG")) return false;
+            if (isPassyG(sortedCodesAndIds[0]!.id!)) return false;
           }
           if (lineupFilters.has("2-PG")) {
-            const pos1 = positionFromPlayerKey[sortedCodesAndIds[1]!.id!]?.posClass || "";
-            if ((pos1 != "PG") && (pos1 != "s-PG")) return false;
+            if (!isPassyG(sortedCodesAndIds[0]!.id!)) return false;
+            if (!isPassyG(sortedCodesAndIds[1]!.id!)) return false;
           }
           if (lineupFilters.has("4-G")) {
             const pos3 = positionFromPlayerKey[sortedCodesAndIds[3]!.id!]?.posClass || "";

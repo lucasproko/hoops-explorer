@@ -10,9 +10,19 @@ export const absolutePositionFixes: Record<string, Record<string, AbsolutePositi
       position: "PF/C"
     }
   },
-  "Men_Clemson_2020/21": {
-    "Simms, Aamir": {
-      position: "WF"
+  "Men_Cincinnati_2020/21": {
+    "DeJulius, David": {
+      position: "s-PG"
+    }
+  },
+  "Men_Iowa_2020/21": {
+    "Garza, Luka": {
+      position: "PF/C"
+    }
+  },
+  "Men_Purdue_2020/21": {
+    "Wheeler, Aaron": {
+      position: "S-PF"
     }
   },
   "Men_Maryland_2020/21": {
@@ -28,6 +38,26 @@ export const absolutePositionFixes: Record<string, Record<string, AbsolutePositi
     "Graham III, James": {
       position: "WG"
     },
+  },
+  "Men_Michigan St._2020/21": {
+    "Hauser, Joey": {
+      position: "S-PF"
+    }
+  },
+  "Men_Seton Hall_2020/21": {
+    "Mamukelashvili, Sandro": {
+      position: "PF/C"
+    }
+  },
+  "Men_Syracuse_2018/9": {
+    "Dolezaj, Marek": {
+      position: "WF"
+    }
+  },
+  "Men_Syracuse_2020/21": {
+    "Dolezaj, Marek": {
+      position: "PF/C"
+    }
   },
 };
 
