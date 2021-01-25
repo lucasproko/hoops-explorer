@@ -679,7 +679,7 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
             },
             {
               label: "5-out",
-              tooltip: "5 out lineups only",
+              tooltip: "Lineups with a smallball center (not quite the same as 5-out)",
               toggled: lineupFilters.has("5-Out"),
               onClick: () => friendlyChange(() => { toggleLineupFilters("5-Out"); }, true)
             },

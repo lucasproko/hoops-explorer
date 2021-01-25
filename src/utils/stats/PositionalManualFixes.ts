@@ -5,6 +5,21 @@ export type AbsolutePositionFixRule = {
 
 /** Team/season -> player -> positional override */
 export const absolutePositionFixes: Record<string, Record<string, AbsolutePositionFixRule>> = {
+  "Men_Baylor_2018/9": {
+    "Vital, Mark": {
+      position: "S-PF"
+    }
+  },
+  "Men_Baylor_2019/20": {
+    "Vital, Mark": {
+      position: "S-PF"
+    }
+  },
+  "Men_Baylor_2020/21": {
+    "Vital, Mark": {
+      position: "S-PF"
+    }
+  },
   "Men_Boston College_2019/20": {
     "Popovic, Nik": {
       position: "PF/C"
@@ -17,6 +32,11 @@ export const absolutePositionFixes: Record<string, Record<string, AbsolutePositi
   },
   "Men_Iowa_2020/21": {
     "Garza, Luka": {
+      position: "PF/C"
+    }
+  },
+  "Men_Oregon St._2020/21": {
+    "Alatishe, Warith": {
       position: "PF/C"
     }
   },
@@ -41,6 +61,11 @@ export const absolutePositionFixes: Record<string, Record<string, AbsolutePositi
   },
   "Men_Michigan St._2020/21": {
     "Hauser, Joey": {
+      position: "S-PF"
+    }
+  },
+  "Men_St. Bonaventure_2020/21": {
+    "Adaway, Jalen": {
       position: "S-PF"
     }
   },
