@@ -878,7 +878,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                 "label": "5-out",
                 "onClick": [Function],
                 "toggled": false,
-                "tooltip": "Lineups with a smallball center (not quite the same as 5-out)",
+                "tooltip": "Lineups with a smallball center or 5-out",
               },
               Object {
                 "label": "2-Big",
@@ -14101,7 +14101,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                 "label": "5-out",
                 "onClick": [Function],
                 "toggled": false,
-                "tooltip": "Lineups with a smallball center (not quite the same as 5-out)",
+                "tooltip": "Lineups with a smallball center or 5-out",
               },
               Object {
                 "label": "2-Big",
@@ -33521,7 +33521,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                 "label": "5-out",
                 "onClick": [Function],
                 "toggled": false,
-                "tooltip": "Lineups with a smallball center (not quite the same as 5-out)",
+                "tooltip": "Lineups with a smallball center or 5-out",
               },
               Object {
                 "label": "2-Big",

@@ -229,51 +229,51 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
     const confDataEventLineups = dataEventLineups.filter(lineup => {
       return (!confSet || confSet.has(lineup.conf || "Unknown")) && (lineup.off_poss?.value >= minPossNum);
         //(we do the "spurious" minPossNum check so we can detect filter presence and use to add a ranking)
+    }).filter((lineup) => { //Positional filters
+      if (lineupFilters.size > 0) {
+        const teamSeasonLookup = `${startingState.gender}_${lineup.team}_${startingState.year}`;
+        const perLineupBaselinePlayerMap = lineup.player_info;
+        const positionFromPlayerKey = lineup.player_info;
+        const codesAndIds = LineupTableUtils.buildCodesAndIds(lineup);
+        const sortedCodesAndIds = PositionUtils.orderLineup(codesAndIds, positionFromPlayerKey, teamSeasonLookup);
+
+        const isPassyG = (playerId: string) => {
+          const plStats = perLineupBaselinePlayerMap[playerId] || {};
+          const assistRate = plStats.off_assist?.value || 0;
+          const pos = positionFromPlayerKey[playerId]?.posClass || "";
+          const isPassyCG = ((pos == "CG") || (pos == "G?")) && assistRate >= 0.19;
+
+          return (pos == "PG") || (pos == "s-PG") || isPassyCG;
+        }
+
+        if (lineupFilters.has("0-PG")) {
+          if (isPassyG(sortedCodesAndIds[0]!.id!)) return false;
+        }
+        if (lineupFilters.has("2-PG")) {
+          if (!isPassyG(sortedCodesAndIds[0]!.id!)) return false;
+          if (!isPassyG(sortedCodesAndIds[1]!.id!)) return false;
+        }
+        if (lineupFilters.has("4-G")) {
+          const pos3 = positionFromPlayerKey[sortedCodesAndIds[3]!.id!]?.posClass || "";
+          if (!_.endsWith(pos3, "G") || (pos3 == "G?")) return false;
+        }
+        if (lineupFilters.has("5-Out")) {
+          const pos4 = positionFromPlayerKey[sortedCodesAndIds[4]!.id!]?.posClass || "";
+          if ((pos4 == "PF/C") || (pos4 == "C") || (pos4 == "F/C?")) return false;
+        }
+        if (lineupFilters.has("2-Big")) {
+          const pos3 = positionFromPlayerKey[sortedCodesAndIds[3]!.id!]?.posClass || "";
+          if ((pos3 != "PF/C") && (pos3 != "C")) return false;
+        }
+      }
+      return true;
     });
     const lineups = LineupTableUtils.buildFilteredLineups(
       confDataEventLineups,
       filterStr,
       (year != "All") && (sortBy == ParamDefaults.defaultLineupLboardSortBy) ? undefined : sortBy,
       minPoss, maxTableSize, undefined, undefined //<-calc from lineup
-    ).filter((lineup) => { //Positional filters
-        if (lineupFilters.size > 0) {
-          const teamSeasonLookup = `${startingState.gender}_${lineup.team}_${startingState.year}`;
-          const perLineupBaselinePlayerMap = lineup.player_info;
-          const positionFromPlayerKey = lineup.player_info;
-          const codesAndIds = LineupTableUtils.buildCodesAndIds(lineup);
-          const sortedCodesAndIds = PositionUtils.orderLineup(codesAndIds, positionFromPlayerKey, teamSeasonLookup);
-
-          const isPassyG = (playerId: string) => {
-            const plStats = perLineupBaselinePlayerMap[playerId] || {};
-            const assistRate = plStats.off_assist?.value || 0;
-            const pos = positionFromPlayerKey[playerId]?.posClass || "";
-            const isPassyCG = ((pos == "CG") || (pos == "G?")) && assistRate >= 0.19;
-
-            return (pos == "PG") || (pos == "s-PG") || isPassyCG;
-          }
-
-          if (lineupFilters.has("0-PG")) {
-            if (isPassyG(sortedCodesAndIds[0]!.id!)) return false;
-          }
-          if (lineupFilters.has("2-PG")) {
-            if (!isPassyG(sortedCodesAndIds[0]!.id!)) return false;
-            if (!isPassyG(sortedCodesAndIds[1]!.id!)) return false;
-          }
-          if (lineupFilters.has("4-G")) {
-            const pos3 = positionFromPlayerKey[sortedCodesAndIds[3]!.id!]?.posClass || "";
-            if (!_.endsWith(pos3, "G") || (pos3 == "G?")) return false;
-          }
-          if (lineupFilters.has("5-Out")) {
-            const pos4 = positionFromPlayerKey[sortedCodesAndIds[4]!.id!]?.posClass || "";
-            if ((pos4 == "PF/C") || (pos4 == "C") || (pos4 == "F/C?")) return false;
-          }
-          if (lineupFilters.has("2-Big")) {
-            const pos3 = positionFromPlayerKey[sortedCodesAndIds[3]!.id!]?.posClass || "";
-            if ((pos3 != "PF/C") && (pos3 != "C")) return false;
-          }
-        }
-        return true;
-    });
+    );
 
     /** Either the sort is not one of the 3 pre-calced, or there is a filter */
     const isGeneralSortOrFilter = ((sortBy != ParamDefaults.defaultLineupLboardSortBy) &&
@@ -679,7 +679,7 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
             },
             {
               label: "5-out",
-              tooltip: "Lineups with a smallball center (not quite the same as 5-out)",
+              tooltip: "Lineups with a smallball center or 5-out",
               toggled: lineupFilters.has("5-Out"),
               onClick: () => friendlyChange(() => { toggleLineupFilters("5-Out"); }, true)
             },
