@@ -6107,7 +6107,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                 "isTitle": false,
                 "missingData": undefined,
                 "rowSpan": [Function],
-                "toolTip": "Offensive rating in selected lineups",
+                "toolTip": "Offensive rating in selected lineups (box-score derived)",
                 "widthUnits": 2,
               },
               "sep0": GenericTableColProps {
@@ -9010,7 +9010,7 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
                 "isTitle": false,
                 "missingData": undefined,
                 "rowSpan": [Function],
-                "toolTip": "Offensive rating in selected lineups",
+                "toolTip": "Offensive rating in selected lineups (box-score derived)",
                 "widthUnits": 2,
               },
               "sep0": GenericTableColProps {
@@ -11961,7 +11961,7 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                 "isTitle": false,
                 "missingData": undefined,
                 "rowSpan": [Function],
-                "toolTip": "Offensive/Defensive rating in selected lineups",
+                "toolTip": "Offensive/Defensive rating in selected lineups (box-score derived)",
                 "widthUnits": 2,
               },
               "sep0": GenericTableColProps {
@@ -18023,7 +18023,7 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                 "isTitle": false,
                 "missingData": undefined,
                 "rowSpan": [Function],
-                "toolTip": "Offensive/Defensive rating in selected lineups",
+                "toolTip": "Offensive/Defensive rating in selected lineups (box-score derived)",
                 "widthUnits": 2,
               },
               "sep0": GenericTableColProps {
@@ -25979,7 +25979,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                 "isTitle": false,
                 "missingData": undefined,
                 "rowSpan": [Function],
-                "toolTip": "Offensive rating in selected lineups",
+                "toolTip": "Offensive rating in selected lineups (box-score derived)",
                 "widthUnits": 2,
               },
               "sep0": GenericTableColProps {
@@ -37154,7 +37154,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                 "isTitle": false,
                 "missingData": undefined,
                 "rowSpan": [Function],
-                "toolTip": "Offensive rating in selected lineups",
+                "toolTip": "Offensive rating in selected lineups (box-score derived)",
                 "widthUnits": 2,
               },
               "sep0": GenericTableColProps {
@@ -44665,7 +44665,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                 "isTitle": false,
                 "missingData": undefined,
                 "rowSpan": [Function],
-                "toolTip": "Offensive rating in selected lineups",
+                "toolTip": "Offensive rating in selected lineups (box-score derived)",
                 "widthUnits": 2,
               },
               "sep0": GenericTableColProps {

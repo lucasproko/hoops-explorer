@@ -27,13 +27,14 @@ import LuckConfigModal from "./shared/LuckConfigModal";
 import GenericTogglingMenu from "./shared/GenericTogglingMenu";
 import GenericTogglingMenuItem from "./shared/GenericTogglingMenuItem";
 import ToggleButtonGroup from "./shared/ToggleButtonGroup";
-import LuckAdjDiagView from "./diags/LuckAdjDiagView"
-import TeamPlayTypeDiagView from "./diags/TeamPlayTypeDiagView"
+import LuckAdjDiagView from "./diags/LuckAdjDiagView";
+import TeamPlayTypeDiagView from "./diags/TeamPlayTypeDiagView";
 
 // Util imports
-import { CbbColors } from "../utils/CbbColors"
-import { GameFilterParams, ParamDefaults, LuckParams } from "../utils/FilterModels"
-import { CommonTableDefs } from "../utils/CommonTableDefs"
+import { CbbColors } from "../utils/CbbColors";
+import { GameFilterParams, ParamDefaults, LuckParams } from "../utils/FilterModels";
+import { CommonTableDefs } from "../utils/CommonTableDefs";
+import { LineupUtils } from "../utils/stats/LineupUtils";
 import { LuckUtils, OffLuckAdjustmentDiags, DefLuckAdjustmentDiags, LuckAdjustmentBaseline } from "../utils/stats/LuckUtils";
 import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
 import { TableDisplayUtils } from "../utils/tables/TableDisplayUtils";
@@ -143,6 +144,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
     ] as [OffLuckAdjustmentDiags, DefLuckAdjustmentDiags] : undefined;
 
     if (teamStats[k]?.doc_count) {
+      LineupUtils.buildEfficiencyMargins(teamStats[k]);
       LuckUtils.injectLuck(teamStats[k], luckAdj?.[0], luckAdj?.[1]);
     }
     return [ k, luckAdj ];

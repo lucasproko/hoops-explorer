@@ -6460,7 +6460,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 "isTitle": false,
                 "missingData": undefined,
                 "rowSpan": [Function],
-                "toolTip": "Offensive/Defensive rating in selected lineups",
+                "toolTip": "Offensive/Defensive rating in selected lineups (box-score derived)",
                 "widthUnits": 2,
               },
               "sep0": GenericTableColProps {
@@ -13031,7 +13031,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 "isTitle": false,
                 "missingData": undefined,
                 "rowSpan": [Function],
-                "toolTip": "Offensive/Defensive rating in selected lineups",
+                "toolTip": "Offensive/Defensive rating in selected lineups (box-score derived)",
                 "widthUnits": 2,
               },
               "sep0": GenericTableColProps {
@@ -22337,7 +22337,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 "isTitle": false,
                 "missingData": undefined,
                 "rowSpan": [Function],
-                "toolTip": "Offensive/Defensive rating in selected lineups",
+                "toolTip": "Offensive/Defensive rating in selected lineups (box-score derived)",
                 "widthUnits": 2,
               },
               "sep0": GenericTableColProps {
@@ -28888,7 +28888,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 "isTitle": false,
                 "missingData": undefined,
                 "rowSpan": [Function],
-                "toolTip": "Offensive/Defensive rating in selected lineups",
+                "toolTip": "Offensive/Defensive rating in selected lineups (box-score derived)",
                 "widthUnits": 2,
               },
               "sep0": GenericTableColProps {
@@ -35439,7 +35439,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 "isTitle": false,
                 "missingData": undefined,
                 "rowSpan": [Function],
-                "toolTip": "Offensive/Defensive rating in selected lineups",
+                "toolTip": "Offensive/Defensive rating in selected lineups (box-score derived)",
                 "widthUnits": 2,
               },
               "sep0": GenericTableColProps {
