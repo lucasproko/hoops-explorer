@@ -118,7 +118,7 @@ export class CommonTableDefs {
       GenericTableOps.addTitle("", "", CommonTableDefs.singleLineRowSpanCalculator, "small", GenericTableOps.htmlFormatter)
     ,
     "sep0": GenericTableOps.addColSeparator(),
-    "rtg": GenericTableOps.addPtsCol("Rtg",
+    "rtg": GenericTableOps.addPtsCol("Box Rtg",
       (expandedView ? "Offensive/Defensive" : "Offensive") + " rating in selected lineups (box-score derived)", CbbColors.picker(...CbbColors.pp100)),
     "usage": GenericTableOps.addDataCol(
       expandedView ? "Usg Pos" : "Usg",

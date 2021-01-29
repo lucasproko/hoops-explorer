@@ -442,27 +442,27 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                   "label": "Other",
                   "options": Array [
                     Object {
-                      "label": "Rtg (Desc. / Offensive)",
+                      "label": "Box Rtg (Desc. / Offensive)",
                       "value": "desc:off_rtg",
                     },
                     Object {
-                      "label": "Rtg (Asc. / Offensive)",
+                      "label": "Box Rtg (Asc. / Offensive)",
                       "value": "asc:off_rtg",
                     },
                     Object {
-                      "label": "Rtg (Desc. / Defensive)",
+                      "label": "Box Rtg (Desc. / Defensive)",
                       "value": "desc:def_rtg",
                     },
                     Object {
-                      "label": "Rtg (Asc. / Defensive)",
+                      "label": "Box Rtg (Asc. / Defensive)",
                       "value": "asc:def_rtg",
                     },
                     Object {
-                      "label": "Rtg (Desc. / Off-Def)",
+                      "label": "Box Rtg (Desc. / Off-Def)",
                       "value": "desc:diff_rtg",
                     },
                     Object {
-                      "label": "Rtg (Asc. / Off-Def)",
+                      "label": "Box Rtg (Asc. / Off-Def)",
                       "value": "asc:diff_rtg",
                     },
                     Object {
@@ -6454,7 +6454,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               "rtg": GenericTableColProps {
                 "className": "",
-                "colName": "Rtg",
+                "colName": "Box Rtg",
                 "colorPicker": [Function],
                 "formatter": [Function],
                 "isTitle": false,
@@ -7013,27 +7013,27 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                   "label": "Other",
                   "options": Array [
                     Object {
-                      "label": "Rtg (Desc. / Offensive)",
+                      "label": "Box Rtg (Desc. / Offensive)",
                       "value": "desc:off_rtg",
                     },
                     Object {
-                      "label": "Rtg (Asc. / Offensive)",
+                      "label": "Box Rtg (Asc. / Offensive)",
                       "value": "asc:off_rtg",
                     },
                     Object {
-                      "label": "Rtg (Desc. / Defensive)",
+                      "label": "Box Rtg (Desc. / Defensive)",
                       "value": "desc:def_rtg",
                     },
                     Object {
-                      "label": "Rtg (Asc. / Defensive)",
+                      "label": "Box Rtg (Asc. / Defensive)",
                       "value": "asc:def_rtg",
                     },
                     Object {
-                      "label": "Rtg (Desc. / Off-Def)",
+                      "label": "Box Rtg (Desc. / Off-Def)",
                       "value": "desc:diff_rtg",
                     },
                     Object {
-                      "label": "Rtg (Asc. / Off-Def)",
+                      "label": "Box Rtg (Asc. / Off-Def)",
                       "value": "asc:diff_rtg",
                     },
                     Object {
@@ -13025,7 +13025,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               "rtg": GenericTableColProps {
                 "className": "",
-                "colName": "Rtg",
+                "colName": "Box Rtg",
                 "colorPicker": [Function],
                 "formatter": [Function],
                 "isTitle": false,
@@ -13584,27 +13584,27 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                   "label": "Other",
                   "options": Array [
                     Object {
-                      "label": "Rtg (Desc. / Offensive)",
+                      "label": "Box Rtg (Desc. / Offensive)",
                       "value": "desc:off_rtg",
                     },
                     Object {
-                      "label": "Rtg (Asc. / Offensive)",
+                      "label": "Box Rtg (Asc. / Offensive)",
                       "value": "asc:off_rtg",
                     },
                     Object {
-                      "label": "Rtg (Desc. / Defensive)",
+                      "label": "Box Rtg (Desc. / Defensive)",
                       "value": "desc:def_rtg",
                     },
                     Object {
-                      "label": "Rtg (Asc. / Defensive)",
+                      "label": "Box Rtg (Asc. / Defensive)",
                       "value": "asc:def_rtg",
                     },
                     Object {
-                      "label": "Rtg (Desc. / Off-Def)",
+                      "label": "Box Rtg (Desc. / Off-Def)",
                       "value": "desc:diff_rtg",
                     },
                     Object {
-                      "label": "Rtg (Asc. / Off-Def)",
+                      "label": "Box Rtg (Asc. / Off-Def)",
                       "value": "asc:diff_rtg",
                     },
                     Object {
@@ -22331,7 +22331,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               "rtg": GenericTableColProps {
                 "className": "",
-                "colName": "Rtg",
+                "colName": "Box Rtg",
                 "colorPicker": [Function],
                 "formatter": [Function],
                 "isTitle": false,
@@ -22890,27 +22890,27 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                   "label": "Other",
                   "options": Array [
                     Object {
-                      "label": "Rtg (Desc. / Offensive)",
+                      "label": "Box Rtg (Desc. / Offensive)",
                       "value": "desc:off_rtg",
                     },
                     Object {
-                      "label": "Rtg (Asc. / Offensive)",
+                      "label": "Box Rtg (Asc. / Offensive)",
                       "value": "asc:off_rtg",
                     },
                     Object {
-                      "label": "Rtg (Desc. / Defensive)",
+                      "label": "Box Rtg (Desc. / Defensive)",
                       "value": "desc:def_rtg",
                     },
                     Object {
-                      "label": "Rtg (Asc. / Defensive)",
+                      "label": "Box Rtg (Asc. / Defensive)",
                       "value": "asc:def_rtg",
                     },
                     Object {
-                      "label": "Rtg (Desc. / Off-Def)",
+                      "label": "Box Rtg (Desc. / Off-Def)",
                       "value": "desc:diff_rtg",
                     },
                     Object {
-                      "label": "Rtg (Asc. / Off-Def)",
+                      "label": "Box Rtg (Asc. / Off-Def)",
                       "value": "asc:diff_rtg",
                     },
                     Object {
@@ -28882,7 +28882,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               "rtg": GenericTableColProps {
                 "className": "",
-                "colName": "Rtg",
+                "colName": "Box Rtg",
                 "colorPicker": [Function],
                 "formatter": [Function],
                 "isTitle": false,
@@ -29441,27 +29441,27 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                   "label": "Other",
                   "options": Array [
                     Object {
-                      "label": "Rtg (Desc. / Offensive)",
+                      "label": "Box Rtg (Desc. / Offensive)",
                       "value": "desc:off_rtg",
                     },
                     Object {
-                      "label": "Rtg (Asc. / Offensive)",
+                      "label": "Box Rtg (Asc. / Offensive)",
                       "value": "asc:off_rtg",
                     },
                     Object {
-                      "label": "Rtg (Desc. / Defensive)",
+                      "label": "Box Rtg (Desc. / Defensive)",
                       "value": "desc:def_rtg",
                     },
                     Object {
-                      "label": "Rtg (Asc. / Defensive)",
+                      "label": "Box Rtg (Asc. / Defensive)",
                       "value": "asc:def_rtg",
                     },
                     Object {
-                      "label": "Rtg (Desc. / Off-Def)",
+                      "label": "Box Rtg (Desc. / Off-Def)",
                       "value": "desc:diff_rtg",
                     },
                     Object {
-                      "label": "Rtg (Asc. / Off-Def)",
+                      "label": "Box Rtg (Asc. / Off-Def)",
                       "value": "asc:diff_rtg",
                     },
                     Object {
@@ -35433,7 +35433,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               "rtg": GenericTableColProps {
                 "className": "",
-                "colName": "Rtg",
+                "colName": "Box Rtg",
                 "colorPicker": [Function],
                 "formatter": [Function],
                 "isTitle": false,
