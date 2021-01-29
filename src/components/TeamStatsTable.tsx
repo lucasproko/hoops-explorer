@@ -27,13 +27,14 @@ import LuckConfigModal from "./shared/LuckConfigModal";
 import GenericTogglingMenu from "./shared/GenericTogglingMenu";
 import GenericTogglingMenuItem from "./shared/GenericTogglingMenuItem";
 import ToggleButtonGroup from "./shared/ToggleButtonGroup";
-import LuckAdjDiagView from "./diags/LuckAdjDiagView"
-import TeamPlayTypeDiagView from "./diags/TeamPlayTypeDiagView"
+import LuckAdjDiagView from "./diags/LuckAdjDiagView";
+import TeamPlayTypeDiagView from "./diags/TeamPlayTypeDiagView";
 
 // Util imports
-import { CbbColors } from "../utils/CbbColors"
-import { GameFilterParams, ParamDefaults, LuckParams } from "../utils/FilterModels"
-import { CommonTableDefs } from "../utils/CommonTableDefs"
+import { CbbColors } from "../utils/CbbColors";
+import { GameFilterParams, ParamDefaults, LuckParams } from "../utils/FilterModels";
+import { CommonTableDefs } from "../utils/CommonTableDefs";
+import { LineupUtils } from "../utils/stats/LineupUtils";
 import { LuckUtils, OffLuckAdjustmentDiags, DefLuckAdjustmentDiags, LuckAdjustmentBaseline } from "../utils/stats/LuckUtils";
 import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
 import { TableDisplayUtils } from "../utils/tables/TableDisplayUtils";
@@ -78,6 +79,10 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
     ParamDefaults.defaultLuckConfig : gameFilterParams.luck
   );
 
+  const [ showDiffs, setShowDiffs ] = useState(_.isNil(gameFilterParams.teamDiffs) ?
+    false : gameFilterParams.teamDiffs
+  );
+
   /** (placeholder for positional info)*/
   const [ showPlayTypes, setShowPlayTypes ] = useState(false)
 
@@ -96,12 +101,13 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
   useEffect(() => { //(this ensures that the filter component is up to date with the union of these fields)
     const newState = {
       ...gameFilterParams,
+      teamDiffs: showDiffs,
       luck: luckConfig,
       onOffLuck: adjustForLuck,
       showOnOffLuckDiags: showLuckAdjDiags,
     };
     onChangeState(newState);
-  }, [ luckConfig, adjustForLuck, showLuckAdjDiags ]);
+  }, [ luckConfig, adjustForLuck, showLuckAdjDiags, showDiffs ]);
 
   // 2] Data View
 
@@ -135,6 +141,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
     } else return [ {}, {} ]; //(not used)
   })();
 
+  // Create luck adjustments, inject luck into mutable stat sets, and calculate efficiency margins
   type OnOffBase = "on" | "off" | "baseline";
   const luckAdjustment = _.fromPairs(([ "on", "off", "baseline" ] as OnOffBase[]).map(k => {
     const luckAdj = (adjustForLuck && teamStats[k]?.doc_count) ? [
@@ -143,6 +150,9 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
     ] as [OffLuckAdjustmentDiags, DefLuckAdjustmentDiags] : undefined;
 
     if (teamStats[k]?.doc_count) {
+      // Extra mutable set, build net margin column:
+      LineupUtils.buildEfficiencyMargins(teamStats[k]);
+      // Mutate stats object to inject luck
       LuckUtils.injectLuck(teamStats[k], luckAdj?.[0], luckAdj?.[1]);
     }
     return [ k, luckAdj ];
@@ -163,6 +173,24 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
     ...teamStats.off
   };
   const teamStatsBaseline = { off_title: "Baseline Offense", def_title: "Baseline Defense", ...teamStats.baseline };
+
+  // Calc diffs if required ... needs to be before injectPlayTypeInfo but after luck injection!
+  const [ aMinusB, aMinusBase, bMinusBase ] = showDiffs ? (() => {
+    const aMinusB = (teamStats.on?.doc_count && teamStats.off?.doc_count) ? LineupUtils.getStatsDiff(
+      teamStats.on, teamStats.off, "A - B diffs"
+    ) : undefined;
+    const aMinusBase = (teamStats.on?.doc_count && teamStats.baseline?.doc_count) ? LineupUtils.getStatsDiff(
+      teamStats.on, teamStats.baseline, "A - Baseline diffs"
+    ) : undefined;
+    const bMinusBase = (teamStats.off?.doc_count && teamStats.baseline?.doc_count) ? LineupUtils.getStatsDiff(
+      teamStats.off, teamStats.baseline,  "B - Baseline diffs"
+    ) : undefined;
+
+    [ aMinusB, aMinusBase, bMinusBase ].forEach((statSet) => {
+      if (statSet) TableDisplayUtils.injectPlayTypeInfo(statSet, false, false, teamSeasonLookup)
+    });
+    return [ aMinusB, aMinusBase, bMinusBase ];
+  })() : [ undefined, undefined, undefined ] as [ any, any, any ];
 
   ([ "on", "off", "baseline" ] as OnOffBase[]).forEach(k => {
     TableDisplayUtils.injectPlayTypeInfo(teamStats[k], false, false, teamSeasonLookup);
@@ -223,6 +251,23 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
         ) ] : [],
       [ GenericTableOps.buildRowSeparator() ],
     ]),
+    // Diffs if showing:
+    showDiffs ? [ GenericTableOps.buildRowSeparator() ] : [],
+    aMinusB ? _.flatten([
+      [ GenericTableOps.buildDataRow(aMinusB, offPrefixFn, offCellMetaFn, CommonTableDefs.onOffReportReplacement) ],
+      [ GenericTableOps.buildDataRow(aMinusB, defPrefixFn, defCellMetaFn, CommonTableDefs.onOffReportReplacement) ],
+      [ GenericTableOps.buildRowSeparator() ],
+    ] ) : [],
+    aMinusBase ? _.flatten([
+      [ GenericTableOps.buildDataRow(aMinusBase, offPrefixFn, offCellMetaFn, CommonTableDefs.onOffReportReplacement) ],
+      [ GenericTableOps.buildDataRow(aMinusBase, defPrefixFn, defCellMetaFn, CommonTableDefs.onOffReportReplacement) ],
+      [ GenericTableOps.buildRowSeparator() ],
+    ] ) : [],
+    bMinusBase ? _.flatten([
+      [ GenericTableOps.buildDataRow(bMinusBase, offPrefixFn, offCellMetaFn, CommonTableDefs.onOffReportReplacement) ],
+      [ GenericTableOps.buildDataRow(bMinusBase, defPrefixFn, defCellMetaFn, CommonTableDefs.onOffReportReplacement) ],
+      [ GenericTableOps.buildRowSeparator() ],
+    ] ) : [],
   ]);
 
   // 3] Utils
@@ -260,6 +305,12 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
                   tooltip: adjustForLuck ? "Remove luck adjustments" : "Adjust statistics for luck",
                   toggled: adjustForLuck,
                   onClick: () => setAdjustForLuck(!adjustForLuck)
+                },
+                {
+                  label: "Diffs",
+                  tooltip: "Show hide diffs between A/B/Baseline stats",
+                  toggled: showDiffs,
+                  onClick: () => setShowDiffs(!showDiffs)
                 }
               ]}/>
             </Col>
@@ -272,6 +323,11 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
               truthVal={adjustForLuck}
               onSelect={() => setAdjustForLuck(!adjustForLuck)}
               helpLink={showHelp ? "https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html" : undefined}
+            />
+            <GenericTogglingMenuItem
+              text="Show Stat Differences"
+              truthVal={showDiffs}
+              onSelect={() => setShowDiffs(!showDiffs)}
             />
             <Dropdown.Divider />
             <GenericTogglingMenuItem

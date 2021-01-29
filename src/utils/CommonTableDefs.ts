@@ -60,6 +60,9 @@ export class CommonTableDefs {
   static readonly onOffTable = { //accessors vs column metadata
     "title": GenericTableOps.addTitle("", ""),
     "sep0": GenericTableOps.addColSeparator(),
+    "net": GenericTableOps.addDataCol(
+      "Net Rtg", "The margin between the adjusted offensive and defensive efficiencies (lower number is raw margin)",
+      CbbColors.offOnlyPicker(...CbbColors.diff35_p100_redGreen), GenericTableOps.pointsOrHtmlFormatter),
     "ppp": GenericTableOps.addPtsCol("P/100", "Points per 100 possessions", CommonTableDefs.picker(...CbbColors.pp100)),
     "adj_ppp": GenericTableOps.addPtsCol("Adj P/100", "Approximate schedule-adjusted Points per 100 possessions", CommonTableDefs.picker(...CbbColors.pp100)),
     "sep1": GenericTableOps.addColSeparator(),
@@ -115,8 +118,8 @@ export class CommonTableDefs {
       GenericTableOps.addTitle("", "", CommonTableDefs.singleLineRowSpanCalculator, "small", GenericTableOps.htmlFormatter)
     ,
     "sep0": GenericTableOps.addColSeparator(),
-    "rtg": GenericTableOps.addPtsCol("Rtg",
-      (expandedView ? "Offensive/Defensive" : "Offensive") + " rating in selected lineups", CbbColors.picker(...CbbColors.pp100)),
+    "rtg": GenericTableOps.addPtsCol("Box Rtg",
+      (expandedView ? "Offensive/Defensive" : "Offensive") + " rating in selected lineups (box-score derived)", CbbColors.picker(...CbbColors.pp100)),
     "usage": GenericTableOps.addDataCol(
       expandedView ? "Usg Pos" : "Usg",
       expandedView ? "% of team possessions used in selected lineups, plus the position category for this player": "% of team possessions used in selected lineups",
@@ -191,7 +194,7 @@ export class CommonTableDefs {
     "sep0": GenericTableOps.addColSeparator(0.05),
     "net": GenericTableOps.addDataCol(
       "Net Rtg", "The margin between the adjusted offensive and defensive efficiencies (lower number is raw margin)",
-      CbbColors.offOnlyPicker(...CbbColors.diff10_p100_redGreen), GenericTableOps.pointsOrHtmlFormatter),
+      CbbColors.offOnlyPicker(...CbbColors.diff35_p100_redGreen), GenericTableOps.pointsOrHtmlFormatter),
     "ppp": GenericTableOps.addPtsCol("P/100", "Points per 100 possessions", CommonTableDefs.picker(...CbbColors.pp100)),
     "adj_ppp": GenericTableOps.addPtsCol("Adj P/100", "Approximate schedule-adjusted Points per 100 possessions", CommonTableDefs.picker(...CbbColors.pp100)),
     "sep1": GenericTableOps.addColSeparator(0.05),

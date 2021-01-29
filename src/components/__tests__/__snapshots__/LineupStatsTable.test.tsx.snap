@@ -758,7 +758,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #008000",
+                                          "textShadow": "0px 0px 10px #51a851",
                                         }
                                       }
                                     >
@@ -1219,7 +1219,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #008000",
+                                          "textShadow": "0px 0px 10px #51a851",
                                         }
                                       }
                                     >
@@ -1683,7 +1683,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #008000",
+                                          "textShadow": "0px 0px 10px #57ab57",
                                         }
                                       }
                                     >
@@ -2144,7 +2144,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #008000",
+                                          "textShadow": "0px 0px 10px #57ab57",
                                         }
                                       }
                                     >
@@ -2608,7 +2608,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #008000",
+                                          "textShadow": "0px 0px 10px #48a448",
                                         }
                                       }
                                     >
@@ -3069,7 +3069,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #008000",
+                                          "textShadow": "0px 0px 10px #48a448",
                                         }
                                       }
                                     >
@@ -4534,7 +4534,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #008000",
+                                          "textShadow": "0px 0px 10px #61b061",
                                         }
                                       }
                                     >
@@ -4851,7 +4851,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #008000",
+                                          "textShadow": "0px 0px 10px #61b061",
                                         }
                                       }
                                     >
@@ -5194,7 +5194,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #008000",
+                                          "textShadow": "0px 0px 10px #6eb76e",
                                         }
                                       }
                                     >
@@ -5511,7 +5511,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #008000",
+                                          "textShadow": "0px 0px 10px #6eb76e",
                                         }
                                       }
                                     >
@@ -5854,7 +5854,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #008000",
+                                          "textShadow": "0px 0px 10px #70b870",
                                         }
                                       }
                                     >
@@ -6171,7 +6171,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #008000",
+                                          "textShadow": "0px 0px 10px #70b870",
                                         }
                                       }
                                     >
@@ -7467,7 +7467,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #008000",
+                                          "textShadow": "0px 0px 10px #51a851",
                                         }
                                       }
                                     >
@@ -7942,7 +7942,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #008000",
+                                          "textShadow": "0px 0px 10px #51a851",
                                         }
                                       }
                                     >
@@ -8420,7 +8420,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #008000",
+                                          "textShadow": "0px 0px 10px #57ab57",
                                         }
                                       }
                                     >
@@ -8895,7 +8895,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #008000",
+                                          "textShadow": "0px 0px 10px #57ab57",
                                         }
                                       }
                                     >
@@ -9373,7 +9373,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #008000",
+                                          "textShadow": "0px 0px 10px #48a448",
                                         }
                                       }
                                     >
@@ -9848,7 +9848,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #008000",
+                                          "textShadow": "0px 0px 10px #48a448",
                                         }
                                       }
                                     >
@@ -11303,7 +11303,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #008000",
+                                          "textShadow": "0px 0px 10px #51a851",
                                         }
                                       }
                                     >
@@ -11778,7 +11778,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #008000",
+                                          "textShadow": "0px 0px 10px #51a851",
                                         }
                                       }
                                     >
@@ -12256,7 +12256,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #008000",
+                                          "textShadow": "0px 0px 10px #57ab57",
                                         }
                                       }
                                     >
@@ -12731,7 +12731,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #008000",
+                                          "textShadow": "0px 0px 10px #57ab57",
                                         }
                                       }
                                     >
@@ -13209,7 +13209,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #008000",
+                                          "textShadow": "0px 0px 10px #48a448",
                                         }
                                       }
                                     >
@@ -13684,7 +13684,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                     "value": <small
                                       style={
                                         Object {
-                                          "textShadow": "0px 0px 10px #008000",
+                                          "textShadow": "0px 0px 10px #48a448",
                                         }
                                       }
                                     >

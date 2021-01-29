@@ -4305,15 +4305,15 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                       "value": "desc:off_team_poss_pct:off",
                     },
                     Object {
-                      "label": "Base Rtg (Desc. / Offensive)",
+                      "label": "Base Box Rtg (Desc. / Offensive)",
                       "value": "desc:off_rtg:baseline",
                     },
                     Object {
-                      "label": "'On' Rtg (Desc. / Offensive)",
+                      "label": "'On' Box Rtg (Desc. / Offensive)",
                       "value": "desc:off_rtg:on",
                     },
                     Object {
-                      "label": "'Off' Rtg (Desc. / Offensive)",
+                      "label": "'Off' Box Rtg (Desc. / Offensive)",
                       "value": "desc:off_rtg:off",
                     },
                     Object {
@@ -4346,15 +4346,15 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                   "label": "Other",
                   "options": Array [
                     Object {
-                      "label": "Base Rtg (Asc. / Offensive)",
+                      "label": "Base Box Rtg (Asc. / Offensive)",
                       "value": "asc:off_rtg:baseline",
                     },
                     Object {
-                      "label": "'On' Rtg (Asc. / Offensive)",
+                      "label": "'On' Box Rtg (Asc. / Offensive)",
                       "value": "asc:off_rtg:on",
                     },
                     Object {
-                      "label": "'Off' Rtg (Asc. / Offensive)",
+                      "label": "'Off' Box Rtg (Asc. / Offensive)",
                       "value": "asc:off_rtg:off",
                     },
                     Object {
@@ -6101,13 +6101,13 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
               },
               "rtg": GenericTableColProps {
                 "className": "",
-                "colName": "Rtg",
+                "colName": "Box Rtg",
                 "colorPicker": [Function],
                 "formatter": [Function],
                 "isTitle": false,
                 "missingData": undefined,
                 "rowSpan": [Function],
-                "toolTip": "Offensive rating in selected lineups",
+                "toolTip": "Offensive rating in selected lineups (box-score derived)",
                 "widthUnits": 2,
               },
               "sep0": GenericTableColProps {
@@ -7689,15 +7689,15 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
                       "value": "desc:off_team_poss_pct:off",
                     },
                     Object {
-                      "label": "Base Rtg (Desc. / Offensive)",
+                      "label": "Base Box Rtg (Desc. / Offensive)",
                       "value": "desc:off_rtg:baseline",
                     },
                     Object {
-                      "label": "'On' Rtg (Desc. / Offensive)",
+                      "label": "'On' Box Rtg (Desc. / Offensive)",
                       "value": "desc:off_rtg:on",
                     },
                     Object {
-                      "label": "'Off' Rtg (Desc. / Offensive)",
+                      "label": "'Off' Box Rtg (Desc. / Offensive)",
                       "value": "desc:off_rtg:off",
                     },
                     Object {
@@ -7730,15 +7730,15 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
                   "label": "Other",
                   "options": Array [
                     Object {
-                      "label": "Base Rtg (Asc. / Offensive)",
+                      "label": "Base Box Rtg (Asc. / Offensive)",
                       "value": "asc:off_rtg:baseline",
                     },
                     Object {
-                      "label": "'On' Rtg (Asc. / Offensive)",
+                      "label": "'On' Box Rtg (Asc. / Offensive)",
                       "value": "asc:off_rtg:on",
                     },
                     Object {
-                      "label": "'Off' Rtg (Asc. / Offensive)",
+                      "label": "'Off' Box Rtg (Asc. / Offensive)",
                       "value": "asc:off_rtg:off",
                     },
                     Object {
@@ -9004,13 +9004,13 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
               },
               "rtg": GenericTableColProps {
                 "className": "",
-                "colName": "Rtg",
+                "colName": "Box Rtg",
                 "colorPicker": [Function],
                 "formatter": [Function],
                 "isTitle": false,
                 "missingData": undefined,
                 "rowSpan": [Function],
-                "toolTip": "Offensive rating in selected lineups",
+                "toolTip": "Offensive rating in selected lineups (box-score derived)",
                 "widthUnits": 2,
               },
               "sep0": GenericTableColProps {
@@ -10346,15 +10346,15 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                       "value": "desc:off_team_poss_pct:off",
                     },
                     Object {
-                      "label": "Base Rtg (Desc. / Offensive)",
+                      "label": "Base Box Rtg (Desc. / Offensive)",
                       "value": "desc:off_rtg:baseline",
                     },
                     Object {
-                      "label": "'On' Rtg (Desc. / Offensive)",
+                      "label": "'On' Box Rtg (Desc. / Offensive)",
                       "value": "desc:off_rtg:on",
                     },
                     Object {
-                      "label": "'Off' Rtg (Desc. / Offensive)",
+                      "label": "'Off' Box Rtg (Desc. / Offensive)",
                       "value": "desc:off_rtg:off",
                     },
                     Object {
@@ -10387,15 +10387,15 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                   "label": "Other",
                   "options": Array [
                     Object {
-                      "label": "Base Rtg (Asc. / Offensive)",
+                      "label": "Base Box Rtg (Asc. / Offensive)",
                       "value": "asc:off_rtg:baseline",
                     },
                     Object {
-                      "label": "'On' Rtg (Asc. / Offensive)",
+                      "label": "'On' Box Rtg (Asc. / Offensive)",
                       "value": "asc:off_rtg:on",
                     },
                     Object {
-                      "label": "'Off' Rtg (Asc. / Offensive)",
+                      "label": "'Off' Box Rtg (Asc. / Offensive)",
                       "value": "asc:off_rtg:off",
                     },
                     Object {
@@ -11955,13 +11955,13 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
               },
               "rtg": GenericTableColProps {
                 "className": "",
-                "colName": "Rtg",
+                "colName": "Box Rtg",
                 "colorPicker": [Function],
                 "formatter": [Function],
                 "isTitle": false,
                 "missingData": undefined,
                 "rowSpan": [Function],
-                "toolTip": "Offensive/Defensive rating in selected lineups",
+                "toolTip": "Offensive/Defensive rating in selected lineups (box-score derived)",
                 "widthUnits": 2,
               },
               "sep0": GenericTableColProps {
@@ -15621,15 +15621,15 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                       "value": "desc:off_team_poss_pct:off",
                     },
                     Object {
-                      "label": "Base Rtg (Desc. / Offensive)",
+                      "label": "Base Box Rtg (Desc. / Offensive)",
                       "value": "desc:off_rtg:baseline",
                     },
                     Object {
-                      "label": "'On' Rtg (Desc. / Offensive)",
+                      "label": "'On' Box Rtg (Desc. / Offensive)",
                       "value": "desc:off_rtg:on",
                     },
                     Object {
-                      "label": "'Off' Rtg (Desc. / Offensive)",
+                      "label": "'Off' Box Rtg (Desc. / Offensive)",
                       "value": "desc:off_rtg:off",
                     },
                     Object {
@@ -15662,15 +15662,15 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                   "label": "Other",
                   "options": Array [
                     Object {
-                      "label": "Base Rtg (Asc. / Offensive)",
+                      "label": "Base Box Rtg (Asc. / Offensive)",
                       "value": "asc:off_rtg:baseline",
                     },
                     Object {
-                      "label": "'On' Rtg (Asc. / Offensive)",
+                      "label": "'On' Box Rtg (Asc. / Offensive)",
                       "value": "asc:off_rtg:on",
                     },
                     Object {
-                      "label": "'Off' Rtg (Asc. / Offensive)",
+                      "label": "'Off' Box Rtg (Asc. / Offensive)",
                       "value": "asc:off_rtg:off",
                     },
                     Object {
@@ -18017,13 +18017,13 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
               },
               "rtg": GenericTableColProps {
                 "className": "",
-                "colName": "Rtg",
+                "colName": "Box Rtg",
                 "colorPicker": [Function],
                 "formatter": [Function],
                 "isTitle": false,
                 "missingData": undefined,
                 "rowSpan": [Function],
-                "toolTip": "Offensive/Defensive rating in selected lineups",
+                "toolTip": "Offensive/Defensive rating in selected lineups (box-score derived)",
                 "widthUnits": 2,
               },
               "sep0": GenericTableColProps {
@@ -22877,15 +22877,15 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                       "value": "desc:off_team_poss_pct:off",
                     },
                     Object {
-                      "label": "Base Rtg (Desc. / Offensive)",
+                      "label": "Base Box Rtg (Desc. / Offensive)",
                       "value": "desc:off_rtg:baseline",
                     },
                     Object {
-                      "label": "'On' Rtg (Desc. / Offensive)",
+                      "label": "'On' Box Rtg (Desc. / Offensive)",
                       "value": "desc:off_rtg:on",
                     },
                     Object {
-                      "label": "'Off' Rtg (Desc. / Offensive)",
+                      "label": "'Off' Box Rtg (Desc. / Offensive)",
                       "value": "desc:off_rtg:off",
                     },
                     Object {
@@ -22918,15 +22918,15 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                   "label": "Other",
                   "options": Array [
                     Object {
-                      "label": "Base Rtg (Asc. / Offensive)",
+                      "label": "Base Box Rtg (Asc. / Offensive)",
                       "value": "asc:off_rtg:baseline",
                     },
                     Object {
-                      "label": "'On' Rtg (Asc. / Offensive)",
+                      "label": "'On' Box Rtg (Asc. / Offensive)",
                       "value": "asc:off_rtg:on",
                     },
                     Object {
-                      "label": "'Off' Rtg (Asc. / Offensive)",
+                      "label": "'Off' Box Rtg (Asc. / Offensive)",
                       "value": "asc:off_rtg:off",
                     },
                     Object {
@@ -25973,13 +25973,13 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
               },
               "rtg": GenericTableColProps {
                 "className": "",
-                "colName": "Rtg",
+                "colName": "Box Rtg",
                 "colorPicker": [Function],
                 "formatter": [Function],
                 "isTitle": false,
                 "missingData": undefined,
                 "rowSpan": [Function],
-                "toolTip": "Offensive rating in selected lineups",
+                "toolTip": "Offensive rating in selected lineups (box-score derived)",
                 "widthUnits": 2,
               },
               "sep0": GenericTableColProps {
@@ -30896,15 +30896,15 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                       "value": "desc:off_team_poss_pct:off",
                     },
                     Object {
-                      "label": "Base Rtg (Desc. / Offensive)",
+                      "label": "Base Box Rtg (Desc. / Offensive)",
                       "value": "desc:off_rtg:baseline",
                     },
                     Object {
-                      "label": "'On' Rtg (Desc. / Offensive)",
+                      "label": "'On' Box Rtg (Desc. / Offensive)",
                       "value": "desc:off_rtg:on",
                     },
                     Object {
-                      "label": "'Off' Rtg (Desc. / Offensive)",
+                      "label": "'Off' Box Rtg (Desc. / Offensive)",
                       "value": "desc:off_rtg:off",
                     },
                     Object {
@@ -30937,15 +30937,15 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                   "label": "Other",
                   "options": Array [
                     Object {
-                      "label": "Base Rtg (Asc. / Offensive)",
+                      "label": "Base Box Rtg (Asc. / Offensive)",
                       "value": "asc:off_rtg:baseline",
                     },
                     Object {
-                      "label": "'On' Rtg (Asc. / Offensive)",
+                      "label": "'On' Box Rtg (Asc. / Offensive)",
                       "value": "asc:off_rtg:on",
                     },
                     Object {
-                      "label": "'Off' Rtg (Asc. / Offensive)",
+                      "label": "'Off' Box Rtg (Asc. / Offensive)",
                       "value": "asc:off_rtg:off",
                     },
                     Object {
@@ -37148,13 +37148,13 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
               },
               "rtg": GenericTableColProps {
                 "className": "",
-                "colName": "Rtg",
+                "colName": "Box Rtg",
                 "colorPicker": [Function],
                 "formatter": [Function],
                 "isTitle": false,
                 "missingData": undefined,
                 "rowSpan": [Function],
-                "toolTip": "Offensive rating in selected lineups",
+                "toolTip": "Offensive rating in selected lineups (box-score derived)",
                 "widthUnits": 2,
               },
               "sep0": GenericTableColProps {
@@ -41759,15 +41759,15 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                       "value": "desc:off_team_poss_pct:off",
                     },
                     Object {
-                      "label": "Base Rtg (Desc. / Offensive)",
+                      "label": "Base Box Rtg (Desc. / Offensive)",
                       "value": "desc:off_rtg:baseline",
                     },
                     Object {
-                      "label": "'On' Rtg (Desc. / Offensive)",
+                      "label": "'On' Box Rtg (Desc. / Offensive)",
                       "value": "desc:off_rtg:on",
                     },
                     Object {
-                      "label": "'Off' Rtg (Desc. / Offensive)",
+                      "label": "'Off' Box Rtg (Desc. / Offensive)",
                       "value": "desc:off_rtg:off",
                     },
                     Object {
@@ -41800,15 +41800,15 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                   "label": "Other",
                   "options": Array [
                     Object {
-                      "label": "Base Rtg (Asc. / Offensive)",
+                      "label": "Base Box Rtg (Asc. / Offensive)",
                       "value": "asc:off_rtg:baseline",
                     },
                     Object {
-                      "label": "'On' Rtg (Asc. / Offensive)",
+                      "label": "'On' Box Rtg (Asc. / Offensive)",
                       "value": "asc:off_rtg:on",
                     },
                     Object {
-                      "label": "'Off' Rtg (Asc. / Offensive)",
+                      "label": "'Off' Box Rtg (Asc. / Offensive)",
                       "value": "asc:off_rtg:off",
                     },
                     Object {
@@ -44659,13 +44659,13 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
               },
               "rtg": GenericTableColProps {
                 "className": "",
-                "colName": "Rtg",
+                "colName": "Box Rtg",
                 "colorPicker": [Function],
                 "formatter": [Function],
                 "isTitle": false,
                 "missingData": undefined,
                 "rowSpan": [Function],
-                "toolTip": "Offensive rating in selected lineups",
+                "toolTip": "Offensive rating in selected lineups (box-score derived)",
                 "widthUnits": 2,
               },
               "sep0": GenericTableColProps {
