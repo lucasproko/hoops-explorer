@@ -186,14 +186,15 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
       teamStats.off, teamStats.baseline,  "B - Baseline diffs"
     ) : undefined;
 
-    ([ "on", "off", "baseline" ] as OnOffBase[]).forEach(k => {
-      TableDisplayUtils.injectPlayTypeInfo(teamStats[k], false, false, teamSeasonLookup);
-    });
     [ aMinusB, aMinusBase, bMinusBase ].forEach((statSet) => {
       if (statSet) TableDisplayUtils.injectPlayTypeInfo(statSet, false, false, teamSeasonLookup)
     });
     return [ aMinusB, aMinusBase, bMinusBase ];
   })() : [ undefined, undefined, undefined ] as [ any, any, any ];
+
+  ([ "on", "off", "baseline" ] as OnOffBase[]).forEach(k => {
+    TableDisplayUtils.injectPlayTypeInfo(teamStats[k], false, false, teamSeasonLookup);
+  });
 
   const tableData = _.flatMap([
     (teamStats.on?.doc_count) ? _.flatten([
