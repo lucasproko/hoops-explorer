@@ -68,6 +68,32 @@ export class LineupUtils {
     }
   }
 
+  /** Take two statSet eg team stats and straight diffs them with no clever weighting or anything*/
+  static getStatsDiff(statSet1: any, statSet2: any, offTitle: string, defTitle?: string) {
+    // (discard some of the enriched info)
+    return {
+      ...(_.chain(statSet1).toPairs().map((kv) => {
+          const key = kv[0];
+          const startVal = kv[1];
+          const toSub = statSet2[key];
+          if (_.isNil(toSub?.value) || _.isNil(startVal.value)) {
+            return [ key, undefined ];
+          } else {
+            const diffStat = {
+              value: startVal.value - toSub.value,
+              old_value: (_.isNil(toSub?.old_value) || _.isNil(startVal.old_value)) ?
+                undefined : startVal.old_value - toSub.old_value,
+              override: startVal.override
+            };
+            return [ key, diffStat ]
+          }
+        }).fromPairs().value()
+      ),
+      off_title: offTitle,
+      def_title: defTitle
+    };
+  }
+
   /** Parses the terms/histogram aggregation giving a bit of info about each lineup's game */
   static getGameInfo(
     gameInfo: Record<string, any>, mutableOpponents?: Record<string, any>

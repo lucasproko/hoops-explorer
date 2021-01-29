@@ -63,6 +63,8 @@ export type GameFilterParams = {
   onQuery?: string,
   offQuery?: string,
   autoOffQuery?: boolean
+  // Team view
+  teamDiffs?: boolean,
   // Manual override:
   manual?: ManualOverride[],
   showPlayerManual?: boolean,
