@@ -28,7 +28,7 @@ import { faArrowAltCircleDown } from '@fortawesome/free-solid-svg-icons';
 type GenericTableColorPickerFn =  (val: any, cellMeta: string) => string | undefined
 export class GenericTableColProps {
   constructor(
-    colName: string, toolTip: string,
+    colName: string | React.ReactNode, toolTip: string,
     widthUnits: number, isTitle: boolean = false,
     formatter: (val: any) => string | React.ReactNode = GenericTableOps.defaultFormatter,
     colorPicker: GenericTableColorPickerFn = GenericTableOps.defaultColorPicker,
@@ -46,7 +46,7 @@ export class GenericTableColProps {
     this.missingData = missingData;
     this.className = className;
   }
-  readonly colName: string;
+  readonly colName: string | React.ReactNode;
   readonly toolTip: string;
   readonly widthUnits: number;
   readonly isTitle: boolean;
@@ -140,16 +140,16 @@ export class GenericTableOps {
 
   // Cols:
 
-  static addPctCol(colName: string, toolTip: string, colorPicker: GenericTableColorPickerFn) {
+  static addPctCol(colName: string | React.ReactNode, toolTip: string, colorPicker: GenericTableColorPickerFn) {
     return new GenericTableColProps(colName, toolTip, 2, false, GenericTableOps.percentFormatter, colorPicker, GenericTableOps.defaultRowSpanCalculator, undefined);
   }
-  static addPtsCol(colName: string, toolTip: string, colorPicker: GenericTableColorPickerFn) {
+  static addPtsCol(colName: string | React.ReactNode, toolTip: string, colorPicker: GenericTableColorPickerFn) {
     return new GenericTableColProps(colName, toolTip, 2, false, GenericTableOps.pointsFormatter, colorPicker, GenericTableOps.defaultRowSpanCalculator, undefined);
   }
-  static addIntCol(colName: string, toolTip: string, colorPicker: GenericTableColorPickerFn) {
+  static addIntCol(colName: string | React.ReactNode, toolTip: string, colorPicker: GenericTableColorPickerFn) {
     return new GenericTableColProps(colName, toolTip, 2, false, GenericTableOps.intFormatter, colorPicker, GenericTableOps.defaultRowSpanCalculator, undefined);
   }
-  static addDataCol(colName: string, toolTip: string, colorPicker: GenericTableColorPickerFn, formatter: (val: any) => string | React.ReactNode) {
+  static addDataCol(colName: string | React.ReactNode, toolTip: string, colorPicker: GenericTableColorPickerFn, formatter: (val: any) => string | React.ReactNode) {
     return new GenericTableColProps(colName, toolTip, 2, false, formatter, colorPicker, GenericTableOps.defaultRowSpanCalculator, undefined);
   }
   static addTitle(

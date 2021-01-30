@@ -16,7 +16,7 @@ import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 
 // Utils
 import { PositionUtils } from "../../utils/stats/PositionUtils";
-import { CommonTableDefs } from "../../utils/CommonTableDefs";
+import { CommonTableDefs } from "../../utils/tables/CommonTableDefs";
 import { CbbColors } from "../../utils/CbbColors";
 
 // Component imports

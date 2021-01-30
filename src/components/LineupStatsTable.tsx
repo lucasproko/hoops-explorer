@@ -39,7 +39,7 @@ import { LineupTableUtils } from "../utils/tables/LineupTableUtils";
 
 // Util imports
 import { CbbColors } from "../utils/CbbColors";
-import { CommonTableDefs } from "../utils/CommonTableDefs";
+import { CommonTableDefs } from "../utils/tables/CommonTableDefs";
 import { PositionUtils } from "../utils/stats/PositionUtils";
 import { LineupUtils } from "../utils/stats/LineupUtils";
 import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';

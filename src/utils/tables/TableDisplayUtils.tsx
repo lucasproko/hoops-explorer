@@ -12,7 +12,7 @@ import _ from "lodash";
 import { CbbColors } from "../CbbColors";
 import { PositionUtils } from "../stats/PositionUtils";
 
-import { CommonTableDefs } from "../CommonTableDefs";
+import { CommonTableDefs } from "../tables/CommonTableDefs";
 import "./TableDisplayUtils.css";
 
 /** Encapsulates some of the logic used to build decorated lineups in LineupStatsTable */

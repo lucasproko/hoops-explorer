@@ -3,7 +3,7 @@ import React from 'react';
 import { OnOffReportDiagUtils } from '../OnOffReportDiagUtils';
 import { CommonFilterParams } from "../../FilterModels";
 import { LineupUtils } from "../../stats/LineupUtils";
-import { CommonTableDefs } from "../../CommonTableDefs";
+import { CommonTableDefs } from "../../tables/CommonTableDefs";
 import { LineupStatsModel } from '../../../components/LineupStatsTable';
 import GenericTable, { GenericTableOps, GenericTableColProps } from "../../../components/GenericTable";
 import { sampleLineupStatsResponse } from "../../../sample-data/sampleLineupStatsResponse"

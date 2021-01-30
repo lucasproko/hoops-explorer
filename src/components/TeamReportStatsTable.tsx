@@ -45,7 +45,7 @@ import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
 import { averageStatsInfo } from '../utils/internal-data/averageStatsInfo';
 import { CbbColors } from "../utils/CbbColors";
 import { OnOffReportDiagUtils } from "../utils/tables/OnOffReportDiagUtils";
-import { CommonTableDefs } from "../utils/CommonTableDefs";
+import { CommonTableDefs } from "../utils/tables/CommonTableDefs";
 import { LineupStatsModel } from '../components/LineupStatsTable';
 import { RosterStatsModel } from '../components/RosterStatsTable';
 import { TeamStatsModel } from '../components/TeamStatsTable';

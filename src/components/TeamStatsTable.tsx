@@ -33,7 +33,7 @@ import TeamPlayTypeDiagView from "./diags/TeamPlayTypeDiagView";
 // Util imports
 import { CbbColors } from "../utils/CbbColors";
 import { GameFilterParams, ParamDefaults, LuckParams } from "../utils/FilterModels";
-import { CommonTableDefs } from "../utils/CommonTableDefs";
+import { CommonTableDefs } from "../utils/tables/CommonTableDefs";
 import { LineupUtils } from "../utils/stats/LineupUtils";
 import { LuckUtils, OffLuckAdjustmentDiags, DefLuckAdjustmentDiags, LuckAdjustmentBaseline } from "../utils/stats/LuckUtils";
 import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';

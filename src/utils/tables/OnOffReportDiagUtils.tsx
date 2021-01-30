@@ -18,7 +18,7 @@ import GenericTable, { GenericTableOps, GenericTableColProps } from "../../compo
 // Utils
 import { QueryUtils } from '../QueryUtils';
 import { UrlRouting } from '../UrlRouting';
-import { CommonTableDefs } from "../CommonTableDefs";
+import { CommonTableDefs } from "../tables/CommonTableDefs";
 import { CommonFilterParams, TeamReportFilterParams, ParamDefaults } from "../FilterModels";
 
 /** Encapsulates some of the logic used to build the diag visualiations in TeamReportStatsTable */

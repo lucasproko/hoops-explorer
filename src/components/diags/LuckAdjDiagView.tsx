@@ -15,7 +15,7 @@ import Tooltip from 'react-bootstrap/Tooltip';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 
 // Utils
-import { CommonTableDefs } from "../../utils/CommonTableDefs";
+import { CommonTableDefs } from "../../utils/tables/CommonTableDefs";
 import { CbbColors } from "../../utils/CbbColors";
 import { LuckAdjustmentBaseline, OffLuckAdjustmentDiags, DefLuckAdjustmentDiags } from "../../utils/stats/LuckUtils";
 

@@ -46,7 +46,7 @@ import { LineupTableUtils } from "../utils/tables/LineupTableUtils";
 import { UrlRouting } from "../utils/UrlRouting";
 import { LineupUtils } from "../utils/stats/LineupUtils";
 import { CbbColors } from "../utils/CbbColors";
-import { CommonTableDefs } from "../utils/CommonTableDefs";
+import { CommonTableDefs } from "../utils/tables/CommonTableDefs";
 import { PositionUtils } from "../utils/stats/PositionUtils";
 import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
 import { PlayerLeaderboardParams, ParamDefaults, LuckParams } from '../utils/FilterModels';
@@ -76,7 +76,13 @@ const sortOptions: Array<any> = _.flatten(
     .map(keycol => {
       return [
         ["desc","off"], ["asc","off"], ["desc","def"], ["asc","def"], ["desc","diff"], ["asc","diff"]
-      ].map(combo => {
+      ].flatMap(combo => {
+        if ((combo[1] == "diff") && (
+          (keycol[0] != "rtg") && (keycol[0] != "adj_rtg") && (keycol[0] != "adj_prod") &&
+            (keycol[0] != "adj_rapm") && (keycol[0] != "adj_rapm_prod") && (keycol[0] != "adj_opp")
+        )) {  // only do diff for a few:
+          return [];
+        }
         const ascOrDesc = (s: string) => { switch(s) {
           case "asc": return "Asc.";
           case "desc": return "Desc.";
@@ -86,10 +92,14 @@ const sortOptions: Array<any> = _.flatten(
           case "def": return "Defensive";
           case "diff": return "Off-Def";
         }}
-        return {
-          label: `${keycol[1].colName} (${ascOrDesc(combo[0])} / ${offOrDef(combo[1])})`,
+        const labelOverride = CommonTableDefs.indivColNameOverrides[`${combo[1]}_${keycol[0]}`];
+        const ascOrDecLabel = ascOrDesc(combo[0]) || "";
+        const offOrDefLabel = offOrDef(combo[1]) || "";
+        const label = labelOverride ? labelOverride(ascOrDecLabel) : "see_below";
+        return label ? [{
+          label: !_.isNil(labelOverride) ? label : `${keycol[1].colName} (${ascOrDecLabel} / ${offOrDefLabel})`,
           value: `${combo[0]}:${combo[1]}_${keycol[0]}`
-        };
+        }] : [];
       });
     })
 );

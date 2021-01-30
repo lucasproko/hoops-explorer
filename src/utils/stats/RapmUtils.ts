@@ -72,7 +72,7 @@ import _ from "lodash";
 // Other app utils
 import { LineupUtils } from "./LineupUtils";
 import { LuckUtils } from "./LuckUtils";
-import { CommonTableDefs } from "../CommonTableDefs";
+import { CommonTableDefs } from "../tables/CommonTableDefs";
 
 // Math utils
 // @ts-ignore

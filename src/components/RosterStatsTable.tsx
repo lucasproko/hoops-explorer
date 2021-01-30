@@ -42,7 +42,7 @@ import AsyncFormControl from './shared/AsyncFormControl';
 
 // Util imports
 import { CbbColors } from "../utils/CbbColors";
-import { CommonTableDefs } from "../utils/CommonTableDefs";
+import { CommonTableDefs } from "../utils/tables/CommonTableDefs";
 import { getCommonFilterParams, ParamDefaults, ParamPrefixes, GameFilterParams, LuckParams, ManualOverride } from "../utils/FilterModels";
 import { ORtgDiagnostics, RatingUtils } from "../utils/stats/RatingUtils";
 import { PositionUtils } from "../utils/stats/PositionUtils";
@@ -712,15 +712,21 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
       .map(keycol => {
         return _.flatMap([
           //TODO: inject some defensive fields in here
-          ["desc","off"], ["asc","off"],
+          ["desc","off"], ["asc","off"], ["desc","def"], ["asc","def"], ["desc","diff"], ["asc","diff"]
         ], sort_offDef => {
           const onOffCombos = _.flatMap([
-            ["baseline", "on", "off"]
+            ["baseline"].concat(teamStats?.on?.doc_count ? ["on"] : []).concat(teamStats?.off?.doc_count ? ["off"] : [])
           ]);
           return onOffCombos.map(onOff => {
             return [ ...sort_offDef, onOff ];
           }); // eg [ [ desc, off, on ], [ desc, off, off ], [ desc, off, delta ] ]
-        }).map(combo => {
+        }).flatMap(combo => {
+          if ((combo[1] == "diff") && (
+            (keycol[0] != "rtg") && (keycol[0] != "adj_rtg") && (keycol[0] != "adj_prod") &&
+              (keycol[0] != "adj_rapm") && (keycol[0] != "adj_rapm_prod") && (keycol[0] != "adj_opp")
+          )) {  // only do diff for a few:
+            return [];
+          }
           const onOrOff = (s: string) => { switch(s) {
             case "on": return "'On'";
             case "off": return "'Off'";
@@ -733,11 +739,16 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
           const offOrDef = (s: string) => { switch(s) {
             case "off": return "Offensive";
             case "def": return "Defensive";
+            case "diff": return "Off-Def";
           }}
-          return {
-            label: `${onOrOff(combo[2])} ${keycol[1].colName} (${ascOrDesc(combo[0])} / ${offOrDef(combo[1])})`,
+          const labelOverride = CommonTableDefs.indivColNameOverrides[`${combo[1]}_${keycol[0]}`];
+          const ascOrDecLabel = ascOrDesc(combo[0]) || "";
+          const offOrDefLabel = offOrDef(combo[1]) || "";
+          const label = labelOverride ? labelOverride(ascOrDecLabel) : "see_below";
+          return label ? [{
+            label: !_.isNil(labelOverride) ? `${onOrOff(combo[2])} ${label}` : `${onOrOff(combo[2])} ${keycol[1].colName} (${ascOrDecLabel} / ${offOrDefLabel})`,
             value: `${combo[0]}:${combo[1]}_${keycol[0]}:${combo[2]}`
-          };
+          }] : [];
         });
       })
   );

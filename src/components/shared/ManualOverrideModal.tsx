@@ -22,7 +22,7 @@ import GenericTable, { GenericTableOps } from "../GenericTable";
 
 // Utils:
 import { ManualOverride, ParamPrefixes, ParamPrefixesType } from '../../utils/FilterModels';
-import { CommonTableDefs } from "../../utils/CommonTableDefs";
+import { CommonTableDefs } from "../../utils/tables/CommonTableDefs";
 import { OverrideUtils } from "../../utils/stats/OverrideUtils";
 
 // External Data Model

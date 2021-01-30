@@ -1,12 +1,21 @@
 
 // Component imports
-import GenericTable, { GenericTableOps, GenericTableColProps } from "../components/GenericTable";
+import GenericTable, { GenericTableOps, GenericTableColProps } from "../../components/GenericTable";
 
 // Util imports
-import { CbbColors } from "./CbbColors";
+import { CbbColors } from "../CbbColors";
 
 // Lodash:
 import _ from "lodash";
+
+const lineSep = <hr style={{
+  border: "none",
+  height: "1px",
+  padding: 0,
+  marginTop: "2px",
+  marginBottom: 0,
+  backgroundColor: "#aaa"
+}}/>;
 
 /** Holds all the different column definitions for the similar tables used throughout this SPA */
 export class CommonTableDefs {
@@ -111,6 +120,25 @@ export class CommonTableDefs {
     "def_orb": [ "DR%", "Defensive rebounding % in selected lineups" ],
   } as Record<string, any>;
 
+  /** For any HTML titles */
+  static indivColNameOverrides = {
+    "off_usage": (o: string) => `Usage (${o} / Offensive)`,
+    "def_usage": (o: string) => undefined,
+    "diff_usage": (o: string) => undefined,
+    "off_to": (o: string) => `TO% (${o} / Offensive)`,
+    "def_to": (o: string) => `Stl% (${o} / Defensive)`,
+    "diff_to": (o: string) => undefined,
+    "off_ftr": (o: string) => `FTR (${o} / Offensive)`,
+    "def_ftr": (o: string) => `FC/50 (${o} / Defensive)`,
+    "diff_ftr": (o: string) => undefined,
+    "off_2prim": (o: string) => `2P% rim (${o} / Offensive)`,
+    "def_2prim": (o: string) => `Blk% (${o} / Defensive)`,
+    "diff_2prim": (o: string) => undefined,
+    //(also nothing to be done about def OR% because it's both RB and OR)
+    "off_drb": (o: string) => `DR% (${o} / Defensive)`,
+    "def_drb": (o: string) => undefined
+  } as Record<string, (o: string) => (string | undefined)>
+
   /** All stats that could possibly be used in the roster stats table */
   static onOffIndividualTableAllFields = (expandedView: boolean) => { return { //accessors vs column metadata
     "title": expandedView ?
@@ -121,7 +149,7 @@ export class CommonTableDefs {
     "rtg": GenericTableOps.addPtsCol("Box Rtg",
       (expandedView ? "Offensive/Defensive" : "Offensive") + " rating in selected lineups (box-score derived)", CbbColors.picker(...CbbColors.pp100)),
     "usage": GenericTableOps.addDataCol(
-      expandedView ? "Usg Pos" : "Usg",
+      expandedView ? (<div>Usg{lineSep} Pos</div>) : "Usg",
       expandedView ? "% of team possessions used in selected lineups, plus the position category for this player": "% of team possessions used in selected lineups",
       CbbColors.offOnlyPicker(...CbbColors.usg), GenericTableOps.percentOrHtmlFormatter), //TODO needs to be steeper
     "adj_rtg": GenericTableOps.addPtsCol("Adj+ Rtg",
@@ -138,7 +166,7 @@ export class CommonTableDefs {
     "efg": GenericTableOps.addPctCol("eFG%", "Effective field goal% (3 pointers count 1.5x as much) in selected lineups", CbbColors.picker(...CbbColors.eFG)),
     "assist": GenericTableOps.addPctCol("A%", "Assist % for player in selected lineups", CbbColors.picker(...CbbColors.p_ast)),
     "to": GenericTableOps.addPctCol(
-        expandedView ? "TO% Stl%" : "TO%",
+        expandedView ? (<div>TO%{lineSep} Stl%</div>) : "TO%",
         expandedView ? "Turnover % / Steal % in selected lineups" : "Turnover % in selected lineups",
         CbbColors.picker(...CbbColors.p_tOver)),
     "orb": expandedView ?
@@ -147,7 +175,7 @@ export class CommonTableDefs {
       ,
     "drb": GenericTableOps.addPctCol("DR%", "Defensive rebounding % in selected lineups", CbbColors.picker(...CbbColors.p_dReb)),
     "ftr": GenericTableOps.addPctCol(
-      expandedView ? "FTR F/50" : "FTR",
+      expandedView ? (<div>FTR{lineSep} F/50</div>) : "FTR",
       expandedView ? "Free throw rate (off) and Fouls called/50 possessions (def) in selected lineups" : "Free throw rate in selected lineups",
       CbbColors.picker(...CbbColors.p_ftr)),
     "sep2": GenericTableOps.addColSeparator(),
@@ -165,7 +193,7 @@ export class CommonTableDefs {
     "2p": GenericTableOps.addPctCol("2P%", "2 point field goal percentage", CbbColors.picker(...CbbColors.fg2P)),
     "2pmid": GenericTableOps.addPctCol("2P% mid", "2 point field goal percentage (mid range)", CbbColors.picker(...CbbColors.fg2P_mid)),
     "2prim": GenericTableOps.addPctCol(
-        expandedView ? "Rim% Blk%" : "2P% rim",
+        expandedView ? (<div>Rim%{lineSep} Blk%</div>) : "2P% rim",
         expandedView ? "2 point field goal percentage (off) and Block% (def)" : "2 point field goal percentage (layup/dunk/etc)",
         CbbColors.picker(...CbbColors.p_fg2P_rim)),
     "sep4": GenericTableOps.addColSeparator(),
