@@ -24,46 +24,6 @@ import { LineupUtils } from "../../utils/stats/LineupUtils";
 // Component imports
 import GenericTable, { GenericTableOps, GenericTableColProps } from "../GenericTable";
 
-// Table defs
-/*
-const simpleDiagTable = {
-  "title": GenericTableOps.addTitle("", "The positional class associated with this player's statistical signature"),
-  "sep0": GenericTableOps.addColSeparator(),
-  "pos_pg": GenericTableOps.addPctCol("PG%", tooltipTradPosGenerator("Point Guard"), GenericTableOps.defaultColorPicker),
-  "pos_sg": GenericTableOps.addPctCol("SG%", tooltipTradPosGenerator("Shooting Guard"), GenericTableOps.defaultColorPicker),
-  "pos_sf": GenericTableOps.addPctCol("SF%", tooltipTradPosGenerator("Small Forward"), GenericTableOps.defaultColorPicker),
-  "pos_pf": GenericTableOps.addPctCol("PF%", tooltipTradPosGenerator("Power Forward"), GenericTableOps.defaultColorPicker),
-  "pos_c": GenericTableOps.addPctCol("C%", tooltipTradPosGenerator("Center"), GenericTableOps.defaultColorPicker),
-};
-
-const complexDiagTable = {
-
-  "feature": GenericTableOps.addTitle("", "Each of the statistical features used in the classification", CommonTableDefs.singleLineRowSpanCalculator, "", GenericTableOps.htmlFormatter),
-  "sep0": GenericTableOps.addColSeparator(),
-  "player": GenericTableOps.addPctCol("Player %", "The value of this player vs this statistic", colorPicker),
-  "sep1": GenericTableOps.addColSeparator(),
-  "pos_pg": GenericTableOps.addPctCol("Wt PG", tooltipWeightGenerator("Point Guard"), GenericTableOps.defaultColorPicker),
-  "av_pos_pg": GenericTableOps.addPctCol("Av PG", tooltipAverageGenerator("Point Guard"), colorPicker),
-  "contrib_pos_pg": GenericTableOps.addPctCol("+- PG%", tooltipContribGenerator("Point Guard"), CbbColors.varPicker(CbbColors.posColors)),
-  "sep2": GenericTableOps.addColSeparator(),
-  "pos_sg": GenericTableOps.addPctCol("Wt SG", tooltipWeightGenerator("Shooting Guard"), GenericTableOps.defaultColorPicker),
-  "av_pos_sg": GenericTableOps.addPctCol("Av SG", tooltipAverageGenerator("Shooting Guard"), colorPicker),
-  "contrib_pos_sg": GenericTableOps.addPctCol("+- SG%", tooltipContribGenerator("Shooting Guard"), CbbColors.varPicker(CbbColors.posColors)),
-  "sep3": GenericTableOps.addColSeparator(),
-  "pos_sf": GenericTableOps.addPctCol("Wt SF", tooltipWeightGenerator("Small Forward"), GenericTableOps.defaultColorPicker),
-  "av_pos_sf": GenericTableOps.addPctCol("Av SF", tooltipAverageGenerator("Small Forward"), colorPicker),
-  "contrib_pos_sf": GenericTableOps.addPctCol("+- SF%", tooltipContribGenerator("Small Forward"), CbbColors.varPicker(CbbColors.posColors)),
-  "sep4": GenericTableOps.addColSeparator(),
-  "pos_pf": GenericTableOps.addPctCol("Wt PF", tooltipWeightGenerator("Power Forward"), GenericTableOps.defaultColorPicker),
-  "av_pos_pf": GenericTableOps.addPctCol("Av PF", tooltipAverageGenerator("Power Forward"), colorPicker),
-  "contrib_pos_pf": GenericTableOps.addPctCol("+- PF%", tooltipContribGenerator("Power Forward"), CbbColors.varPicker(CbbColors.posColors)),
-  "sep5": GenericTableOps.addColSeparator(),
-  "pos_c": GenericTableOps.addPctCol("Wt C", tooltipWeightGenerator("Center"), GenericTableOps.defaultColorPicker),
-  "av_pos_c": GenericTableOps.addPctCol("Av C", tooltipAverageGenerator("Center"), colorPicker),
-  "contrib_pos_c": GenericTableOps.addPctCol("+- C%", tooltipContribGenerator("Center"), CbbColors.varPicker(CbbColors.posColors)),
-};
-*/
-
 const tidyNumbers = (k: string, v: any) => {
   if (_.isNumber(v)) {
     const numStr = v.toFixed(3);
@@ -86,27 +46,11 @@ type Props = {
 };
 const PlayerPlayTypeDiagView: React.FunctionComponent<Props> = ({player, rosterStatsByCode, teamSeason, showHelp, showDetailsOverride}) => {
 
-  /*
-  // Play type calculations
-  const [targetAssistNetworks, sourceAssistNetworks] = [ "target", "source" ].map((loc) => {
-    const targetNotSource = loc == "target";
-    return _.fromPairs([ "3p", "mid", "rim" ].map((key) => {
-      const allAssistNetwork = player[`off_ast_${key}_${loc}`]?.value || {};
-      const statsPerPosFamily = PlayTypeUtils.simplifyAssistNetwork(
-        allAssistNetwork,
-        targetNotSource ? rosterStatsByCode : player,
-        key, targetNotSource
-      );
-      return [ key, statsPerPosFamily ];
-    }));
-  });
-  */
-
   ////////////////////////////////////
 
   // Build raw assist table:
 
-  const targetSource = [ "target", "source" ];
+  const targetSource = [ "source", "target" ];
   const shotTypes = [ "3p", "mid", "rim" ];
   const allPlayers = _.chain(targetSource).flatMap((loc) => {
     return shotTypes.flatMap((key) => {
@@ -124,7 +68,7 @@ const PlayerPlayTypeDiagView: React.FunctionComponent<Props> = ({player, rosterS
         ].concat(
           shotTypes.flatMap((key) => {
             const descriptionAst = targetNotSource ?
-              `% of assists to this shot type / player` : `% of made shots of this shot type assisted by this player`;
+              `% of total assists to this player for this shot type` : `% of scoring possessions/assists of this shot type assisted BY this player`;
             const descriptionEfg = `The season eFG% of this shot type / player`;
             return [
               [
@@ -139,15 +83,29 @@ const PlayerPlayTypeDiagView: React.FunctionComponent<Props> = ({player, rosterS
                     descriptionEfg, CbbColors.offOnlyPicker(CbbColors.alwaysWhite, CbbColors.alwaysWhite), GenericTableOps.percentOrHtmlFormatter
                   )
                 ],
-                [ `sep${loc}${key}`, GenericTableOps.addColSeparator(0.25) ]
+                [ `sep${loc}${key}`, GenericTableOps.addColSeparator(0.25) ],
               ] : []
             );
-          })
+          }).concat(targetNotSource ? [] : [
+            [
+              `source_sf`, GenericTableOps.addPctCol(`SF%`,
+                "% of scoring possessions/assists ending in a trip to the FT line", CbbColors.varPicker(CbbColors.p_ast_breakdown),
+              )
+            ],
+            [
+              `target_ast`, GenericTableOps.addPctCol(`AST%`,
+                "% of scoring possessions/assists ending with an assist TO the specified player", CbbColors.varPicker(CbbColors.p_ast_breakdown),
+              )
+            ],
+            [ `sep${loc}_targetsrc`, GenericTableOps.addColSeparator(0.25) ]
+          ])
         );
       })))
   };
-  const totalAssists = player[`total_off_assist`]?.value || 1;
-  const totalShotsMade = player[`total_off_fgm`]?.value || 1;
+  const totalAssists = player[`total_off_assist`]?.value || 0;
+  const totalShotsMade = player[`total_off_fgm`]?.value || 0;
+  const totalFtTripsMade = 0.475*(player[`total_off_fta`]?.value || 0);
+  const totalScoringPlaysMade = (totalShotsMade + totalFtTripsMade + totalAssists) || 1;
   const shotMap = { "3p": "3p", "rim": "2prim", "mid": "2pmid" } as Record<string, string>;
   const buildInfoRow = (stat: any) =>
     <text style={CommonTableDefs.getTextShadow(stat, CbbColors.off_eFG)}>
@@ -159,118 +117,74 @@ const PlayerPlayTypeDiagView: React.FunctionComponent<Props> = ({player, rosterS
     const assisted = player[`total_off_${shotMap[key]!}_ast`]?.value || 0;
     const unassisted = shots - assisted;
     return [ `source_${key}_ast`, unassisted > 0 ? {
-      value: unassisted/totalShotsMade
+      value: unassisted/totalScoringPlaysMade
     } : null];
-  });
-  const rawAssistTableData = _.orderBy(allPlayers.map((p) => {
+  }).concat([
+    [ `source_sf`, { value: totalFtTripsMade/totalScoringPlaysMade } ]
+  ]);
+  const rawAssistTableData = [
+    GenericTableOps.buildDataRow(
+      {
+        title: <i>Unassisted - half court</i>,
+        ...(_.fromPairs(unassisted))
+      }, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta)
+    ,
+    GenericTableOps.buildDataRow(
+      {
+        title: <i>In Transition</i>,
+        ...({})
+      }, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta)
+    ,
+    GenericTableOps.buildDataRow(
+      {
+        title: <i>Scrambles</i>,
+        ...({})
+      }, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta)
+    ,
+    GenericTableOps.buildRowSeparator()
+  ].concat(_.orderBy(allPlayers.map((p) => {
     var mutableTotal = 0;
     const info = {
       title: <span><b>{rosterStatsByCode[p]?.key || ""}</b> ({rosterStatsByCode[p]?.role})</span>,
       ...(_.fromPairs([ "target", "source" ].flatMap((loc) => {
         const targetNotSource = loc == "target";
+        var mutableAssistsAcrossShotTypes = 0;
         return [ "3p", "mid", "rim" ].flatMap((key) => {
           const assists = player[`off_ast_${key}_${loc}`]?.value?.[p] || 0;
+          mutableAssistsAcrossShotTypes += targetNotSource ? assists : 0;
           mutableTotal += assists;
-          const denominator = targetNotSource ? totalAssists : totalShotsMade;
+          const denominator = targetNotSource ? (totalAssists || 1) : totalScoringPlaysMade;
           const eFG = (key == "3p" ? 1.5 : 1) * rosterStatsByCode[p]?.[`off_${shotMap[key]!}`]?.value || 0;
           return assists > 0 ? [
             [`${loc}_${key}_ast`, { value: assists/(denominator || 1) }],
             [`${loc}_${key}_efg`, buildInfoRow({ value: eFG }) ]
           ] : [];
-        });
+        }).concat( (targetNotSource && (mutableAssistsAcrossShotTypes > 0)) ?
+          [ [ `target_ast`, { value: mutableAssistsAcrossShotTypes / totalScoringPlaysMade } ] ]: []
+        );
       })))
     };
     return { ...info, total_shots_or_assists: mutableTotal };
   }), [ "total_shots_or_assists" ], [ "desc" ]).map((info) =>
     GenericTableOps.buildDataRow(info, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta)
-  ).concat([
-    GenericTableOps.buildDataRow(
-      {
-        title: <i>Unassisted</i>,
-        ...(_.fromPairs(unassisted))
-      }, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta)
-  ]);
+  ));
 
   ////////////////////////////////////
 
   // Visual layout:
 
   return <span>
-    {/*<span>
-      <span>
-        <b>Half-Court Play Type Breakdown for [{player.key}]</b>
-      </span>
-      <br/>
-      {PlayTypeUtils.buildPlayTypes(
-          player, targetAssistNetworks, sourceAssistNetworks
-        ).map(kv => {
-          return <div key={kv[0]}>
-            <b>{kv[0]}</b><br/>
-            {JSON.stringify(kv[1], tidyNumbers)}
-          </div>;
-        })
-      }
-      <span>
-        <b>Diags ... Half-Court Play Type Breakdown for [{player.key}]</b>
-      </span>
-      <br/>
-      {[ "target", "source" ].flatMap((loc) => {
-          const targetNotSource = loc == "target";
-          return [ "3p", "mid", "rim", "" ].map((key) => {
-            if (key == "") return <br key={key+loc}/>;
-            const statsPerPosFamily = targetNotSource ? targetAssistNetworks[key] : sourceAssistNetworks[key];
-
-            return <span key={key+loc}>
-                <span>{key} {loc} ballhandler {JSON.stringify(
-                  statsPerPosFamily.ballhandler, tidyNumbers
-                )}</span>
-                <br/>
-                <span>{key} {loc} wing {JSON.stringify(
-                  statsPerPosFamily.wing, tidyNumbers
-                )}</span>
-                <br/>
-                <span>{key} {loc} big {JSON.stringify(
-                  statsPerPosFamily.big, tidyNumbers
-                )}</span>
-                <br/>
-              </span>;
-          });
-        })
-      }
       <br/>
       <span>
-        <b>Raw Assist Networks for [{player.key}]</b>
-      </span>
-      <br/>
-      {[ "target", "source" ].flatMap((loc) => {
-        return [ "3p", "mid", "rim", "" ].map((key) => {
-          if (key == "") return <br key={key+loc}/>;
-            return <span key={key+loc}>
-                <span>{key} {loc} {JSON.stringify(
-                  player[`off_ast_${key}_${loc}`]?.value || {}, null, 3
-                )}</span>
-                <br/>
-              </span>;
-          });
-        })
-      }
-      <br/>
-    </span>*/}
-      <br/>
-      <span>
-        <b>Assist Partnerships for [{player.key}]</b>
+        <b>Scoring Analysis for [{player.key}]</b>
       </span>
       <br/>
       <br/>
       <Container>
-        <Col xs={8}>
+        <Col xs={10}>
           <GenericTable responsive={false} tableCopyId="rawAssistNetworks" tableFields={rawAssistTableFields} tableData={rawAssistTableData}/>
         </Col>
       </Container>
-      <span>
-        <i><b>More style info coming!</b></i>
-      </span>
-      <br/>
       <br/>
     </span>;
 };
