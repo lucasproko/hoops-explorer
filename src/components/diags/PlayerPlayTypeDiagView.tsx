@@ -72,7 +72,7 @@ const PlayerPlayTypeDiagView: React.FunctionComponent<Props> = ({player, rosterS
             const descriptionEfg = `The season eFG% of this shot type / player`;
             return [
               [
-                `${loc}_${key}_ast`, GenericTableOps.addPctCol(`${shotNameMap[key]!} ${targetNotSource ? "AST%" : "A'd%"} `,
+                `${loc}_${key}_ast`, GenericTableOps.addPctCol(`${shotNameMap[key]!}${targetNotSource ? " AST%" : ""} `,
                   descriptionAst, CbbColors.varPicker(CbbColors.p_ast_breakdown)
                 )
               ],
