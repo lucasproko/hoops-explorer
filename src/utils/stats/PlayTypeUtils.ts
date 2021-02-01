@@ -5,23 +5,20 @@ import _ from 'lodash'
 export type PosFamily = "ballhandler" | "wing" | "big";
 export const PosFamilyNames: PosFamily[] = [ "ballhandler", "wing", "big" ];
 
-/** Information we can calculate */
-export type PlayTypeRawInfo = { scoringPoss: number, eFG: number, fg: number, approxPoss: number };
-const playRawInfo0: PlayTypeRawInfo = { scoringPoss: 0, eFG: 0, fg: 0, approxPoss: 0 };
-
-export type PlayTypeInfo = {
-  type: "target" | "source" | "sum",
-  totalPossPct: number,
-  shotLikePossPct: number,
-  scoringPossPct: number,
-  passPossPct: number,
-  assistPossPct: number,
-  targetEfg: number,
-};
-const playInfo0 = {
-  type: "sum", totalPossPct: 0, shotLikePossPct: 0, scoringPossPct: 0, passPossPct: 0, assistPossPct: 0, targetEfg: 0
+/** Data for a given player broken down */
+export type PlayerStyleInfo = {
+  unassistedHalfCourt: Record<string, any>,
+  assistedHalfCourt: Record<string, any>,
+  scramble: Record<string, any>,
+  transition: Record<string, any>,
+  totalScoringPlaysMade: number,
+  totalAssists: number
 };
 
+const targetSource = [ "source", "target" ];
+const shotTypes = [ "3p", "mid", "rim" ];
+const shotNameMap = { "3p": "3P", "mid": "Mid", "rim": "Rim" } as Record<string, string>;
+const shotMap = { "3p": "3p", "rim": "2prim", "mid": "2pmid" } as Record<string, string>;
 
 /** Utilities for guessing different play types based on box scorer info */
 export class PlayTypeUtils {
@@ -54,172 +51,115 @@ export class PlayTypeUtils {
     // });
   }
 
-  /** Simplifies assist networks by mapping them from individuals to position families (shotType: "rim", "mid", "3p")*/
-  static simplifyAssistNetwork(
-    assistNetwork: Record<string, number>,
-    rosterStatsByCode: Record<string, any>,
-    shotType: string,
-    calcTargetStats: boolean
-  ) {
-    const actualShotType = shotType == "3p" ? shotType : "2p" + shotType;
-    const shotBonus = shotType == "3p" ? 1.5 : 1;
-    return _.chain(assistNetwork).transform(
-      (acc, assistVal, key) => {
-        const playerStats = (calcTargetStats ? rosterStatsByCode[key] : rosterStatsByCode) || {};
 
-        const familyStats = PlayTypeUtils.buildPosFamily(playerStats.role, playerStats.posClass || [ 0, 0, 0, 0, 0]);
-        const playerFg = playerStats[`off_${actualShotType}`]?.value || 0;
-        _.map(acc, (familyVal, posFamily) => {
-          return [
-            familyVal.scoringPoss + assistVal*familyStats[posFamily]!,
-            familyVal.fg + playerFg*assistVal*familyStats[posFamily]!
-          ];
-        }).forEach((scoresFg, ii) => {
-          acc[ii] = { scoringPoss: scoresFg[0], eFG: 0, fg: scoresFg[1], approxPoss: 0 };
-        });
+  /** Decomposes a player stats into unassisted/assisted and half-court/scramble/transition */
+  private static buildPlayerStyle(player: Record<string, any>): PlayerStyleInfo {
 
-      }, [ playRawInfo0, playRawInfo0, playRawInfo0 ]
-    ).map((v, ii) => {
-      const fg = v.fg/(v.scoringPoss || 1);
-      return [ PosFamilyNames[ii]!, {
-        scoringPoss: v.scoringPoss,
-        fg: fg, eFG: fg*shotBonus,
-        approxPoss: fg > 0 ? v.scoringPoss/fg : fg
-      } ];
-    }).fromPairs().value();
-  }
+    // Some types and globals
 
-  /** Converts assist networks and other stats into some simple stats indexed by play type */
-  static buildPlayTypes(
-    playerStats: Record<string, any>,
-    targetAssistNetworks: Record<string, Record<string, PlayTypeRawInfo>>, //(indexed as `<shotType>:<from>`)
-    sourceAssistNetworks: Record<string, Record<string, PlayTypeRawInfo>> //(indexed as `<shotType>:<from>`)
-  ) {
-    //TODO; is there some way I can take super low % play types and add them to saner ones?
-    //TODO; scramble and transition assisted play adjustments
-    //TODO: dole out FT credit to play types (based on %s of: rims, unassisted mid)
+    const ftaMult = 0.475;
+    const totalAssists = player[`total_off_assist`]?.value || 0;
+    const totalShotsMade = player[`total_off_fgm`]?.value || 0;
+    const totalFtTripsMade = ftaMult*(player[`total_off_fta`]?.value || 0);
+    const totalScoringPlaysMade = (totalShotsMade + totalFtTripsMade + totalAssists) || 1;
 
-    const mutableResultArray = [] as Array<[string, PlayTypeInfo]>;
-    const mutableTotalsArray = { ... playInfo0 };
+    /** (util method, see below) */
+    const buildTotal = (prefix: string) => { return _.fromPairs(shotTypes.map((key) => {
+      const total = player[`total_off_${prefix}_${shotMap[key]!}_made`]?.value || 0;
+      const assisted = player[`total_off_${prefix}_${shotMap[key]!}_ast`]?.value || 0;
+      const unassisted = total - assisted;
+      return [ key, [ total, assisted, unassisted ] ];
+    })) as Record<string, number[]>; };
 
-    // Build player family:
-    const playerFamily = PlayTypeUtils.buildPosFamily(playerStats.role, playerStats.posClass);
+    /** (util method, see below) */
+    const buildRow = (totalInfo: Record<string, number[]>, ftInfo: number) => {
+      return _.toPairs(totalInfo).map(kv => {
+        const key = kv[0];
+        const total = kv[1][0]!;
+        return [ `source_${key}_ast`, total > 0 ? {
+          value: total/totalScoringPlaysMade
+        } : null ]
+      }).concat([
+        [ `source_sf`, ftInfo > 0 ? { value: ftInfo/totalScoringPlaysMade } : null ]
+      ]);
+    }
 
-    // Nasty mutable nested loop for expediency
-    const playTypes = playerFamily.filter(pct => pct > 0).flatMap((familyPct, familyIndex) => {
-      const posFamilyName = PosFamilyNames[familyIndex]!;
+    // Scramble and transitiob
 
-      // Turns my assists into play info:
-      // Note that for target, you swap the key round ie <<assisted>>_shotType_<<shotTaker>>
-      const flatTargetNetwork = _.chain(targetAssistNetworks).toPairs().flatMap(kv => {
-        return _.toPairs(kv[1]).map(kv2 => [`${kv2[0]}_${kv[0]}`, kv2[1]]);
-      }).value();
-      const targetPlayTypes: Array<[string, PlayTypeInfo]> = flatTargetNetwork.map(kv => {
-        const shotTypeFrom = kv[0];
-        const targetInfo = kv[1] as PlayTypeRawInfo;
-        const toAdd = {
-          type: "target" as "target",
-          totalPossPct: 0,
-          shotLikePossPct: 0,
-          scoringPossPct: 0,
-          passPossPct: targetInfo.approxPoss*familyPct,
-          assistPossPct: targetInfo.scoringPoss*familyPct,
-          targetEfg: (targetInfo.scoringPoss*familyPct)*targetInfo.eFG,
-        };
-        mutableTotalsArray.passPossPct += toAdd.passPossPct;
-        mutableTotalsArray.assistPossPct += toAdd.assistPossPct;
+    const scrambleTotal = buildTotal("scramble");
+    const scrambleFtTrips = ftaMult*(player[`total_off_scramble_fta`]?.value || 0);
+    const scrambleRow = buildRow(scrambleTotal, scrambleFtTrips);
 
-        return [`${shotTypeFrom}_${posFamilyName}`, toAdd];
-      });
+    const transitionTotal = buildTotal("trans");
+    const transitionFtTrips = ftaMult*(player[`total_off_trans_fta`]?.value || 0);
+    const transitionRow = buildRow(transitionTotal, transitionFtTrips);
 
-      // Turns assists to me into play info:
+    // Half court:
 
-      const buildUnassisted = (actualShotType: string) => {
-        const assists = playerStats[`total_off_${actualShotType}_ast`]?.value || 0;
-        const made = playerStats[`total_off_${actualShotType}_made`]?.value || 0;
-        const unassisted = made - assists;
-        const unassistedPct = made > 0 ? unassisted/made : 0;
-          //(this obv makes the assumption that eFG is the same assisted vs unassisted)
-        const attempts = playerStats[`total_off_${actualShotType}_attempts`]?.value || 0;
-        const unassistedAttempts = unassistedPct*made;
-        return [ unassisted, unassistedAttempts ];
-      };
-      const buildHalfCourtUnassisted = (actualShotType: string) => {
-        const [ totalUnassisted, unassistedAttempts ] = buildUnassisted(`${actualShotType}`);
-        const [ nonHcUnassisted, nonHcUnassistedAttempts ] = _.transform([ "scramble_", "trans_" ], (acc, v) => {
-          const [ unassisted, unassistedAttempts ] = buildUnassisted(`${v}${actualShotType}`);
+    const totalFtTripsMadeHalfCourt = totalFtTripsMade - transitionFtTrips - scrambleFtTrips;
 
-          acc[0] = acc[0] + unassisted;
-          acc[1] = acc[1] + unassistedAttempts;
+    const unassistedHalfCourtRow = shotTypes.map((key) => {
+      const shots = player[`total_off_${shotMap[key]!}_made`]?.value || 0; //(half court/transition/scramble)
+      const assisted = player[`total_off_${shotMap[key]!}_ast`]?.value || 0; //(half court/transition/scramble)
+      const unassistedHalfCourt = (shots - assisted) - scrambleTotal[key]![2]! - transitionTotal[key]![2]!;
 
-        }, [ 0, 0 ]); // [ made, attempts]
+      return [ `source_${key}_ast`, unassistedHalfCourt > 0 ? {
+        value: unassistedHalfCourt/totalScoringPlaysMade
+      } : null ];
+    }).concat([
+      [ `source_sf`, totalFtTripsMadeHalfCourt > 0 ? { value: totalFtTripsMadeHalfCourt/totalScoringPlaysMade } : null ]
+    ]);
 
-        return [ totalUnassisted - nonHcUnassisted, unassistedAttempts - nonHcUnassistedAttempts ];
-      }
+    const assistTotalsRow = shotTypes.map((key) => {
+      const assisted = player[`total_off_${shotMap[key]!}_ast`]?.value || 0;
+      const assistedHalfCourt = assisted - scrambleTotal[key]![1]! - transitionTotal[key]![1]!;
+      return [ `source_${key}_ast`, assisted > 0 ? {
+        value: assistedHalfCourt/totalScoringPlaysMade
+      } : null];
+    }).concat([
+      [ `target_ast`, totalAssists > 0 ? {
+        value: totalAssists/totalScoringPlaysMade
+      } : null ]
+    ]);
 
-      const flatSourceNetwork = _.chain(sourceAssistNetworks).toPairs().flatMap(kv => {
-        return _.toPairs(kv[1]).map(kv2 => [`${kv[0]}_${kv2[0]}`, kv2[1]]);
-      }).value().concat( // Add unassisted events:
-        [ "3p", "mid", "rim" ].map(shotType => {
-          const actualShotType = shotType == "3p" ? shotType : "2p" + shotType;
-          const [ made, attempts ] = buildHalfCourtUnassisted(actualShotType);
-          return [
-            shotType, {
-              approxPoss: attempts,
-              scoringPoss: made,
-              fg: (attempts > 0 ? made/attempts : 0),
-              eFG: (attempts > 0 ? made/attempts : 0)*(shotType == "3p" ? 1.5 : 1)
-            }
-          ];
-        })
-      );
-      const sourcePlayTypes: Array<[string, PlayTypeInfo]> = flatSourceNetwork.map(kv => {
-        const shotTypeFrom = kv[0];
-        const sourceInfo = kv[1] as PlayTypeRawInfo;
-        const toAdd = {
-          type: "source" as "source",
-          totalPossPct: 0,
-          shotLikePossPct: sourceInfo.approxPoss*familyPct,
-          scoringPossPct: sourceInfo.scoringPoss*familyPct,
-          passPossPct: 0,
-          assistPossPct: 0,
-          targetEfg: 0,
-        };
-        mutableTotalsArray.shotLikePossPct += toAdd.shotLikePossPct;
-        mutableTotalsArray.scoringPossPct += toAdd.scoringPossPct;
-        return [`${posFamilyName}_${shotTypeFrom}`, toAdd];
-      });
-      return sourcePlayTypes.concat(targetPlayTypes);
-    });
-
-    const completePlayTypes = (vals: Array<PlayTypeInfo>) => {
-      const merged = _.transform(vals, (acc, v) => {
-        acc.shotLikePossPct += v.shotLikePossPct;
-        acc.scoringPossPct += v.scoringPossPct;
-        acc.passPossPct += v.passPossPct;
-        acc.assistPossPct += v.assistPossPct;
-        acc.targetEfg += v.targetEfg;
-      },  { ...playInfo0 });
-      return { ...merged,
-        totalPossPct: merged.shotLikePossPct + merged.passPossPct,
-        targetEfg: merged.assistPossPct > 0 ? merged.targetEfg/merged.assistPossPct : 0
-      } as PlayTypeInfo;
+    return {
+      unassistedHalfCourt: _.fromPairs(unassistedHalfCourtRow),
+      assistedHalfCourt: _.fromPairs(assistTotalsRow),
+      scramble: _.fromPairs(scrambleRow),
+      transition: _.fromPairs(transitionRow),
+      totalScoringPlaysMade: totalScoringPlaysMade,
+      totalAssists: totalAssists
     };
-
-    return _.chain(playTypes).groupBy(kv => {
-      const key = kv[0]!;
-      const subKey = kv[1]!.type;
-      return PlayTypeUtils.playTypesByFamily[key]![subKey]!;
-    }).toPairs().map(keyVals => {
-      const key = keyVals[0]!;
-      const vals = keyVals[1]!;
-      const retVal: [ string, PlayTypeInfo ] = [ key, completePlayTypes(vals.map(kv => kv[1])) ];
-      return retVal;
-    }).filter(kv => kv[1].totalPossPct >= 5).value();
   }
 
-//TODO: these descs don't work well because eg Cowan: to Stix for 3 shows as "3P Assisted by a ballhandler"
-// not: "Ballhandler to big: for 3" (target: ballhandler_3p_big)
+  /** Takes a player or category (ball-handler / wing / frontcourt) and builds their assist network */
+  static buildPlayerOrPosAssistNetwork(
+    playerOrPos: Record<string, any>, mainPlayer: Record<string, any>,
+    totalScoringPlaysMade: number, totalAssists: number,
+    rosterStatsByCode: Record<string, any>,
+    buildInfoRow: (data: any) => any
+  ): [ Record<string, any>, number ] {
+    const p = playerOrPos;
+    var mutableTotal = 0;
+    const info = (_.fromPairs([ "target", "source" ].flatMap((loc) => {
+      const targetNotSource = loc == "target";
+      var mutableAssistsAcrossShotTypes = 0;
+      return [ "3p", "mid", "rim" ].flatMap((key) => {
+        const assists = mainPlayer[`off_ast_${key}_${loc}`]?.value?.[p] || 0;
+        mutableAssistsAcrossShotTypes += targetNotSource ? assists : 0;
+        mutableTotal += assists;
+        const denominator = targetNotSource ? (totalAssists || 1) : totalScoringPlaysMade;
+        const eFG = (key == "3p" ? 1.5 : 1) * rosterStatsByCode[p]?.[`off_${shotMap[key]!}`]?.value || 0;
+        return assists > 0 ? [
+          [`${loc}_${key}_ast`, { value: assists/(denominator || 1) }],
+          [`${loc}_${key}_efg`, buildInfoRow({ value: eFG }) ]
+        ] : [];
+      }).concat( (targetNotSource && (mutableAssistsAcrossShotTypes > 0)) ?
+        [ [ `target_ast`, { value: mutableAssistsAcrossShotTypes / totalScoringPlaysMade } ] ]: []
+      );
+    })));
+    return [ info, mutableTotal ];
+  }
 
   /** PlayerFamily_ShotType_([source|target]_AssisterFamily)? */
   private static playTypesByFamily = {

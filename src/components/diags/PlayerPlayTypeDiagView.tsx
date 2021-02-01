@@ -52,13 +52,15 @@ const PlayerPlayTypeDiagView: React.FunctionComponent<Props> = ({player, rosterS
 
   const targetSource = [ "source", "target" ];
   const shotTypes = [ "3p", "mid", "rim" ];
+  const shotNameMap = { "3p": "3P", "mid": "Mid", "rim": "Rim" } as Record<string, string>;
+  const shotMap = { "3p": "3p", "rim": "2prim", "mid": "2pmid" } as Record<string, string>;
+
   const allPlayers = _.chain(targetSource).flatMap((loc) => {
     return shotTypes.flatMap((key) => {
       return _.keys(player[`off_ast_${key}_${loc}`]?.value || {});
     });
-  }).uniq().value(); //TODO sort by something better...
+  }).uniq().value();
 
-  const shotNameMap = { "3p": "3P", "mid": "Mid", "rim": "Rim" } as Record<string, string>;
   const rawAssistTableFields = {
     "title": GenericTableOps.addTitle("", "", CommonTableDefs.singleLineRowSpanCalculator, "", GenericTableOps.htmlFormatter),
     ...(_.fromPairs(targetSource.flatMap((loc) => {
@@ -68,7 +70,7 @@ const PlayerPlayTypeDiagView: React.FunctionComponent<Props> = ({player, rosterS
         ].concat(
           shotTypes.flatMap((key) => {
             const descriptionAst = targetNotSource ?
-              `% of total assists to this player for this shot type` : `% of scoring possessions/assists of this shot type assisted BY this player`;
+              `% of total assists to this player for this shot type` : `% of scoring possessions/assists of this shot type assisted BY the specified row (team-mate/category)`;
             const descriptionEfg = `The season eFG% of this shot type / player`;
             return [
               [
@@ -94,7 +96,7 @@ const PlayerPlayTypeDiagView: React.FunctionComponent<Props> = ({player, rosterS
             ],
             [
               `target_ast`, GenericTableOps.addPctCol(`AST%`,
-                "% of scoring possessions/assists ending with an assist TO the specified player", CbbColors.varPicker(CbbColors.p_ast_breakdown),
+                "% of scoring possessions/assists ending with an assist TO the specified row (team-mate/team category)", CbbColors.varPicker(CbbColors.p_ast_breakdown),
               )
             ],
             [ `sep${loc}_targetsrc`, GenericTableOps.addColSeparator(0.25) ]
@@ -102,69 +104,39 @@ const PlayerPlayTypeDiagView: React.FunctionComponent<Props> = ({player, rosterS
         );
       })))
   };
-  const totalAssists = player[`total_off_assist`]?.value || 0;
-  const totalShotsMade = player[`total_off_fgm`]?.value || 0;
-  const totalFtTripsMade = 0.475*(player[`total_off_fta`]?.value || 0);
-  const totalScoringPlaysMade = (totalShotsMade + totalFtTripsMade + totalAssists) || 1;
-  const shotMap = { "3p": "3p", "rim": "2prim", "mid": "2pmid" } as Record<string, string>;
+
   const buildInfoRow = (stat: any) =>
     <text style={CommonTableDefs.getTextShadow(stat, CbbColors.off_eFG)}>
       <i>{(100*(stat?.value || 0)).toFixed(1)}%</i>
     </text>;
 
-  const unassisted = shotTypes.map((key) => {
-    const shots = player[`total_off_${shotMap[key]!}_made`]?.value || 0;
-    const assisted = player[`total_off_${shotMap[key]!}_ast`]?.value || 0;
-    const unassisted = shots - assisted;
-    return [ `source_${key}_ast`, unassisted > 0 ? {
-      value: unassisted/totalScoringPlaysMade
-    } : null];
-  }).concat([
-    [ `source_sf`, { value: totalFtTripsMade/totalScoringPlaysMade } ]
-  ]);
-  const rawAssistTableData = [
-    GenericTableOps.buildDataRow(
-      {
-        title: <i>Unassisted - half court</i>,
-        ...(_.fromPairs(unassisted))
-      }, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta)
-    ,
-    GenericTableOps.buildDataRow(
-      {
-        title: <i>In Transition</i>,
-        ...({})
-      }, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta)
-    ,
-    GenericTableOps.buildDataRow(
-      {
-        title: <i>Scrambles</i>,
-        ...({})
-      }, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta)
-    ,
-    GenericTableOps.buildRowSeparator()
-  ].concat(_.orderBy(allPlayers.map((p) => {
+  const playerStyle = PlayTypeUtils.buildPlayerStyle(player);
+
+  const basicStyleInfo = [
+    { title: <i>Unassisted (half court)</i>, ...playerStyle.unassistedHalfCourt },
+    { title: <i>In Transition</i>, ...playerStyle.transition },
+    { title: <i>Scrambles</i>, ...playerStyle.scramble },
+    { title: <i>Assist totals (half court)</i>, ...playerStyle.assistedHalfCourt },
+  ];
+
+  const rawAssistTableData = basicStyleInfo.map(objData => {
+    return GenericTableOps.buildDataRow(
+      objData, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta
+    );
+  }).concat(
+    [ GenericTableOps.buildRowSeparator() ]
+  ).concat(_.orderBy(allPlayers.map((p) => {
     var mutableTotal = 0;
-    const info = {
+    const [ info, mutableTmpTotal ] = PlayTypeUtils.buildPlayerOrPosAssistNetwork(
+      p, player, playerStyle.totalScoringPlaysMade, playerStyle.totalAssists,
+      rosterStatsByCode, buildInfoRow
+    );
+    mutableTotal += mutableTmpTotal;
+    return {
       title: <span><b>{rosterStatsByCode[p]?.key || ""}</b> ({rosterStatsByCode[p]?.role})</span>,
-      ...(_.fromPairs([ "target", "source" ].flatMap((loc) => {
-        const targetNotSource = loc == "target";
-        var mutableAssistsAcrossShotTypes = 0;
-        return [ "3p", "mid", "rim" ].flatMap((key) => {
-          const assists = player[`off_ast_${key}_${loc}`]?.value?.[p] || 0;
-          mutableAssistsAcrossShotTypes += targetNotSource ? assists : 0;
-          mutableTotal += assists;
-          const denominator = targetNotSource ? (totalAssists || 1) : totalScoringPlaysMade;
-          const eFG = (key == "3p" ? 1.5 : 1) * rosterStatsByCode[p]?.[`off_${shotMap[key]!}`]?.value || 0;
-          return assists > 0 ? [
-            [`${loc}_${key}_ast`, { value: assists/(denominator || 1) }],
-            [`${loc}_${key}_efg`, buildInfoRow({ value: eFG }) ]
-          ] : [];
-        }).concat( (targetNotSource && (mutableAssistsAcrossShotTypes > 0)) ?
-          [ [ `target_ast`, { value: mutableAssistsAcrossShotTypes / totalScoringPlaysMade } ] ]: []
-        );
-      })))
+      ...info,
+      total_shots_or_assists: mutableTotal
     };
-    return { ...info, total_shots_or_assists: mutableTotal };
   }), [ "total_shots_or_assists" ], [ "desc" ]).map((info) =>
     GenericTableOps.buildDataRow(info, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta)
   ));
@@ -185,7 +157,6 @@ const PlayerPlayTypeDiagView: React.FunctionComponent<Props> = ({player, rosterS
           <GenericTable responsive={false} tableCopyId="rawAssistNetworks" tableFields={rawAssistTableFields} tableData={rawAssistTableData}/>
         </Col>
       </Container>
-      <br/>
     </span>;
 };
 export default PlayerPlayTypeDiagView;
