@@ -132,12 +132,13 @@ export class PlayTypeUtils {
     };
   }
 
-  /** Takes a player or category (ball-handler / wing / frontcourt) and builds their assist network */
+  /** Takes a player or category (ball-handler / wing / frontcourt) and builds their assist network
+   *  (note that the interaction between this logic and the calling code in XxxPlayTypeDiagView is currently a bit tangled)
+   */
   static buildPlayerOrPosAssistNetwork(
     playerOrPos: Record<string, any>, mainPlayer: Record<string, any>,
     totalScoringPlaysMade: number, totalAssists: number,
-    rosterStatsByCode: Record<string, any>,
-    buildInfoRow: (data: any) => any
+    rosterStatsByCode: Record<string, any>
   ): [ Record<string, any>, number ] {
     const p = playerOrPos;
     var mutableTotal = 0;
@@ -150,15 +151,75 @@ export class PlayTypeUtils {
         mutableTotal += assists;
         const denominator = targetNotSource ? (totalAssists || 1) : totalScoringPlaysMade;
         const eFG = (key == "3p" ? 1.5 : 1) * rosterStatsByCode[p]?.[`off_${shotMap[key]!}`]?.value || 0;
+
         return assists > 0 ? [
           [`${loc}_${key}_ast`, { value: assists/(denominator || 1) }],
-          [`${loc}_${key}_efg`, buildInfoRow({ value: eFG }) ]
+          [`${loc}_${key}_efg`, { value: eFG } ]
         ] : [];
       }).concat( (targetNotSource && (mutableAssistsAcrossShotTypes > 0)) ?
         [ [ `target_ast`, { value: mutableAssistsAcrossShotTypes / totalScoringPlaysMade } ] ]: []
       );
     })));
     return [ info, mutableTotal ];
+  }
+
+  /** Converts a player-grouped assist network into a positional category grouped one
+   *  (note that the interaction between this logic and the calling code in XxxPlayTypeDiagView is currently a bit tangled)
+   */
+  static buildPosCategoryAssistNetwork(
+    playerAssistNetwork: Array<Record<string, any>>,
+    rosterStatsByCode: Record<string, any>
+  ) {
+    return _.chain(playerAssistNetwork).flatMap(playerStats => {
+      const playerCode = playerStats.code!;
+      const role = rosterStatsByCode[playerCode]?.role || "??";
+      const posClass = rosterStatsByCode[playerCode]?.posClass || [];
+      return PlayTypeUtils.buildPosFamily(role, posClass).flatMap((catScore, ix) => {
+        return catScore > 0 ? [ { ...playerStats, title: null, order: ix, score: catScore } ] : [];
+      });
+    }).concat([
+      { order: 0, score: 0 }, { order: 1, score: 0 }, { order: 2, score: 0 }
+    ]).groupBy(info => info.order).values().map(infos => {
+      const mutableObj = {
+        order: infos[0]!.order
+      };
+
+      // Score inv vs shot type:
+      const scoreTotalInvsTarget = shotTypes.map(shotType => {
+        return 1.0 /
+          (_.reduce(infos, (acc, statSet) =>
+            acc + statSet.score*(statSet[`target_${shotType}_ast`]?.value || 0), 0
+          ) || 1);
+      });
+      // Aggregate the different stats across the different player weights vs the category
+      _.transform(infos, (acc, statSet) => {
+        const maybeFill = (key: string) => {
+          if (!acc[key]) acc[key] = { value: 0 };
+        }
+
+        // Handle sums:
+        _.forEach(statSet, (statVal, statKey) => {
+          if (!_.endsWith(statKey, "_efg")) {
+            if (statVal?.value) { // (do nothing on 0)
+              maybeFill(statKey);
+              acc[statKey].value! += statSet.score! * statVal.value;
+            }
+          }
+        });
+        // Handle weighted averages
+        shotTypes.forEach((shotType, ix) => {
+          const statKey = `target_${shotType}_efg`;
+          const statVal = statSet[statKey];
+          if (statVal?.value) { // (do nothing on 0)
+            maybeFill(statKey);
+            const weight = (statSet[`target_${shotType}_ast`]?.value || 0) * scoreTotalInvsTarget[ix]!
+            acc[statKey].value! += statSet.score! * statVal.value * weight;
+          }
+        });
+      }, mutableObj);
+
+      return mutableObj;
+    }).orderBy(["order"], ["asc"]).value();
   }
 
   /** PlayerFamily_ShotType_([source|target]_AssisterFamily)? */

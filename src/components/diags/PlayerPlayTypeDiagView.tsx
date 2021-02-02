@@ -15,7 +15,7 @@ import Tooltip from 'react-bootstrap/Tooltip';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 
 // Utils
-import { PlayTypeUtils } from "../../utils/stats/PlayTypeUtils";
+import { PosFamilyNames, PlayTypeUtils } from "../../utils/stats/PlayTypeUtils";
 import { PositionUtils } from "../../utils/stats/PositionUtils";
 import { CommonTableDefs } from "../../utils/tables/CommonTableDefs";
 import { CbbColors } from "../../utils/CbbColors";
@@ -66,7 +66,7 @@ const PlayerPlayTypeDiagView: React.FunctionComponent<Props> = ({player, rosterS
     ...(_.fromPairs(targetSource.flatMap((loc) => {
         const targetNotSource = loc == "target";
         return [
-          [`sep${loc}`, GenericTableOps.addColSeparator(1.0) ],
+          [`sep${loc}`, GenericTableOps.addColSeparator(0.5) ],
         ].concat(
           shotTypes.flatMap((key) => {
             const descriptionAst = targetNotSource ?
@@ -94,21 +94,27 @@ const PlayerPlayTypeDiagView: React.FunctionComponent<Props> = ({player, rosterS
                 "% of scoring possessions/assists ending in a trip to the FT line", CbbColors.varPicker(CbbColors.p_ast_breakdown),
               )
             ],
+            [ `sep${loc}_targetsrc`, GenericTableOps.addColSeparator(0.5) ],
             [
               `target_ast`, GenericTableOps.addPctCol(`AST%`,
                 "% of scoring possessions/assists ending with an assist TO the specified row (team-mate/team category)", CbbColors.varPicker(CbbColors.p_ast_breakdown),
               )
-            ],
-            [ `sep${loc}_targetsrc`, GenericTableOps.addColSeparator(0.25) ]
+            ]
           ])
         );
       })))
   };
 
+  // Couple of utils for decorating the background eFG
   const buildInfoRow = (stat: any) =>
     <text style={CommonTableDefs.getTextShadow(stat, CbbColors.off_eFG)}>
       <i>{(100*(stat?.value || 0)).toFixed(1)}%</i>
     </text>;
+  const buildInfoRows = (statSet: any) => {
+    return _.mapValues(statSet, (valObj, key) => { // Decorate eFG
+      return _.endsWith(key, "_efg") ? buildInfoRow(valObj) : valObj;
+    });
+  }
 
   const playerStyle = PlayTypeUtils.buildPlayerStyle(player);
 
@@ -119,27 +125,48 @@ const PlayerPlayTypeDiagView: React.FunctionComponent<Props> = ({player, rosterS
     { title: <i>Assist totals (half court)</i>, ...playerStyle.assistedHalfCourt },
   ];
 
+  // (note that the interaction between this logic and the innards of the PlayTypeUtils is a bit tangled currently)
+  const playerAssistNetwork = _.orderBy(allPlayers.map((p) => {
+    var mutableTotal = 0;
+    const [ info, mutableTmpTotal ] = PlayTypeUtils.buildPlayerOrPosAssistNetwork(
+      p, player, playerStyle.totalScoringPlaysMade, playerStyle.totalAssists,
+      rosterStatsByCode
+    );
+    mutableTotal += mutableTmpTotal;
+    return {
+      code: p,
+      title: <span><b>{rosterStatsByCode[p]?.key || ""}</b> ({rosterStatsByCode[p]?.role})</span>,
+      ...info,
+      total_shots_or_assists: mutableTotal
+    };
+  }), [ "total_shots_or_assists" ], [ "desc" ]);
+
+  const posCategoryAssistNetwork = PlayTypeUtils.buildPosCategoryAssistNetwork(
+    playerAssistNetwork, rosterStatsByCode
+  ).map(info => {
+    return {
+      ...info,
+      title: <span><i>{_.capitalize(PosFamilyNames[info.order])} assists</i></span>,
+    };
+  });
+
   const rawAssistTableData = basicStyleInfo.map(objData => {
     return GenericTableOps.buildDataRow(
       objData, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta
     );
   }).concat(
     [ GenericTableOps.buildRowSeparator() ]
-  ).concat(_.orderBy(allPlayers.map((p) => {
-    var mutableTotal = 0;
-    const [ info, mutableTmpTotal ] = PlayTypeUtils.buildPlayerOrPosAssistNetwork(
-      p, player, playerStyle.totalScoringPlaysMade, playerStyle.totalAssists,
-      rosterStatsByCode, buildInfoRow
-    );
-    mutableTotal += mutableTmpTotal;
-    return {
-      title: <span><b>{rosterStatsByCode[p]?.key || ""}</b> ({rosterStatsByCode[p]?.role})</span>,
-      ...info,
-      total_shots_or_assists: mutableTotal
-    };
-  }), [ "total_shots_or_assists" ], [ "desc" ]).map((info) =>
-    GenericTableOps.buildDataRow(info, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta)
-  ));
+  ).concat(
+    posCategoryAssistNetwork.map(info => buildInfoRows(info)).map((info) =>
+      GenericTableOps.buildDataRow(info, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta)
+    )
+  ).concat(
+    [ GenericTableOps.buildRowSeparator() ]
+  ).concat(
+    playerAssistNetwork.map(info => buildInfoRows(info)).map((info) =>
+      GenericTableOps.buildDataRow(info, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta)
+    )
+  );
 
   ////////////////////////////////////
 
