@@ -7,8 +7,8 @@ export const PosFamilyNames: PosFamily[] = [ "ballhandler", "wing", "big" ];
 
 /** Data for a given player broken down */
 export type PlayerStyleInfo = {
-  unassistedHalfCourt: Record<string, any>,
-  assistedHalfCourt: Record<string, any>,
+  unassisted: Record<string, any>,
+  assisted: Record<string, any>,
   scramble: Record<string, any>,
   transition: Record<string, any>,
   totalScoringPlaysMade: number,
@@ -98,13 +98,15 @@ export class PlayTypeUtils {
 
     const totalFtTripsMadeHalfCourt = totalFtTripsMade - transitionFtTrips - scrambleFtTrips;
 
-    const unassistedHalfCourtRow = shotTypes.map((key) => {
+//    const unassistedHalfCourtRow = shotTypes.map((key) => {
+    const unassistedRow = shotTypes.map((key) => {
       const shots = player[`total_off_${shotMap[key]!}_made`]?.value || 0; //(half court/transition/scramble)
       const assisted = player[`total_off_${shotMap[key]!}_ast`]?.value || 0; //(half court/transition/scramble)
-      const unassistedHalfCourt = (shots - assisted) - scrambleTotal[key]![2]! - transitionTotal[key]![2]!;
+      const unassisted = (shots - assisted);
+      const unassistedHalfCourt =  unassisted - scrambleTotal[key]![2]! - transitionTotal[key]![2]!;
 
-      return [ `source_${key}_ast`, unassistedHalfCourt > 0 ? {
-        value: unassistedHalfCourt/totalScoringPlaysMade
+      return [ `source_${key}_ast`, unassisted > 0 ? {
+        value: unassisted/totalScoringPlaysMade
       } : null ];
     }).concat([
       [ `source_sf`, totalFtTripsMadeHalfCourt > 0 ? { value: totalFtTripsMadeHalfCourt/totalScoringPlaysMade } : null ]
@@ -114,7 +116,7 @@ export class PlayTypeUtils {
       const assisted = player[`total_off_${shotMap[key]!}_ast`]?.value || 0;
       const assistedHalfCourt = assisted - scrambleTotal[key]![1]! - transitionTotal[key]![1]!;
       return [ `source_${key}_ast`, assisted > 0 ? {
-        value: assistedHalfCourt/totalScoringPlaysMade
+        value: assisted/totalScoringPlaysMade
       } : null];
     }).concat([
       [ `target_ast`, totalAssists > 0 ? {
@@ -123,8 +125,8 @@ export class PlayTypeUtils {
     ]);
 
     return {
-      unassistedHalfCourt: _.fromPairs(unassistedHalfCourtRow),
-      assistedHalfCourt: _.fromPairs(assistTotalsRow),
+      unassisted: _.fromPairs(unassistedRow),
+      assisted: _.fromPairs(assistTotalsRow),
       scramble: _.fromPairs(scrambleRow),
       transition: _.fromPairs(transitionRow),
       totalScoringPlaysMade: totalScoringPlaysMade,
@@ -168,8 +170,14 @@ export class PlayTypeUtils {
    */
   static buildPosCategoryAssistNetwork(
     playerAssistNetwork: Array<Record<string, any>>,
-    rosterStatsByCode: Record<string, any>
+    rosterStatsByCode: Record<string, any>,
+    mainPlayer: Record<string, any>
   ) {
+    // Build main player's positional category:
+    const mainPlayerCats = _.orderBy(PlayTypeUtils.buildPosFamily(mainPlayer.role, mainPlayer.posClass).flatMap((catScore, ix) => {
+      return catScore > 0 ? [ { order: ix, score: catScore } ] : [];
+    }), ["score"], ["desc"]);
+
     return _.chain(playerAssistNetwork).flatMap(playerStats => {
       const playerCode = playerStats.code!;
       const role = rosterStatsByCode[playerCode]?.role || "??";
@@ -193,20 +201,42 @@ export class PlayTypeUtils {
       });
       // Aggregate the different stats across the different player weights vs the category
       _.transform(infos, (acc, statSet) => {
-        const maybeFill = (key: string) => {
-          if (!acc[key]) acc[key] = { value: 0 };
+        const maybeFill = (key: string, examples?: Array<Array<string>>) => {
+          if (!acc[key]) {
+            acc[key] = { value: 0, extraInfo: examples };
+          }
         }
 
-        // Handle sums:
-        _.forEach(statSet, (statVal, statKey) => {
-          if (!_.endsWith(statKey, "_efg")) {
-            if (statVal?.value) { // (do nothing on 0)
-              maybeFill(statKey);
-              acc[statKey].value! += statSet.score! * statVal.value;
-            }
+        // Handle misc sums:
+        [ "target_ast", "source_sf" ].forEach(statKey => {
+          const statVal = statSet[statKey];
+          if (statVal?.value) { // (do nothing on 0)
+            maybeFill(statKey);
+            acc[statKey].value! += statSet.score! * statVal.value;
           }
         });
-        // Handle weighted averages
+        // handle usages, (AST)
+        targetSource.forEach(loc => {
+          shotTypes.forEach((shotType, ix) => {
+
+            // Inject examples
+            const playTypeExamples = _.chain(mainPlayerCats).map(catInfo => {
+              const exampleKey = (loc == "source") ?
+                `${PosFamilyNames[catInfo.order!]}_${shotType}_${PosFamilyNames[statSet.order!]}` :
+                `${PosFamilyNames[statSet.order!]}_${shotType}_${PosFamilyNames[catInfo.order!]}`;
+
+              return PlayTypeUtils.playTypesByFamily[exampleKey]?.examples || [];
+            }).flatten().uniq().value();
+
+            const statKey = `${loc}_${shotType}_ast`;
+            const statVal = statSet[statKey];
+            if (statVal?.value) { // (do nothing on 0)
+              maybeFill(statKey, playTypeExamples);
+              acc[statKey].value! += statSet.score! * statVal.value;
+            }
+          });
+        });
+        // Handle weighted averages (eFG)
         shotTypes.forEach((shotType, ix) => {
           const statKey = `target_${shotType}_efg`;
           const statVal = statSet[statKey];
@@ -415,17 +445,17 @@ export class PlayTypeUtils {
     "big_rim_ballhandler": {
       source: "Layup Assisted by ballhandler",
       target: "Pass to frontcourt for layup",
-      examples: [ "roll or cut" , "sometimes post-up" ]
+      examples: [ "roll", "cut", "sometimes post-up" ]
     },
     "big_rim_wing": {
       source: "Layup Assisted by wing",
       target: "Pass to frontcourt for layup",
-      examples: [ "roll or cut", "sometimes post-up" ]
+      examples: [ "roll", "cut", "sometimes post-up" ]
     },
     "big_rim_big": {
       source: "Layup Assisted by frontcourt",
       target: "Pass to frontcourt for layup",
-      examples: [ "roll or cut", "sometimes post-up" ]
+      examples: [ "roll", "cut", "sometimes post-up" ]
     }
   } as Record<string, any>;
 

@@ -46,6 +46,8 @@ type Props = {
 };
 const PlayerPlayTypeDiagView: React.FunctionComponent<Props> = ({player, rosterStatsByCode, teamSeason, showHelp, showDetailsOverride}) => {
 
+  const [ showPlayerBreakdown, setShowPlayerBreakdown ] = useState(false);
+
   ////////////////////////////////////
 
   // Build raw assist table:
@@ -66,7 +68,7 @@ const PlayerPlayTypeDiagView: React.FunctionComponent<Props> = ({player, rosterS
     ...(_.fromPairs(targetSource.flatMap((loc) => {
         const targetNotSource = loc == "target";
         return [
-          [`sep${loc}`, GenericTableOps.addColSeparator(0.5) ],
+          [`sep${loc}`, GenericTableOps.addColSeparator(0.25) ],
         ].concat(
           shotTypes.flatMap((key) => {
             const descriptionAst = targetNotSource ?
@@ -85,7 +87,7 @@ const PlayerPlayTypeDiagView: React.FunctionComponent<Props> = ({player, rosterS
                     descriptionEfg, CbbColors.offOnlyPicker(CbbColors.alwaysWhite, CbbColors.alwaysWhite), GenericTableOps.percentOrHtmlFormatter
                   )
                 ],
-                [ `sep${loc}${key}`, GenericTableOps.addColSeparator(0.25) ],
+                [ `sep${loc}${key}`, GenericTableOps.addColSeparator(0.125) ],
               ] : []
             );
           }).concat(targetNotSource ? [] : [
@@ -94,7 +96,7 @@ const PlayerPlayTypeDiagView: React.FunctionComponent<Props> = ({player, rosterS
                 "% of scoring possessions/assists ending in a trip to the FT line", CbbColors.varPicker(CbbColors.p_ast_breakdown),
               )
             ],
-            [ `sep${loc}_targetsrc`, GenericTableOps.addColSeparator(0.5) ],
+            [ `sep${loc}_targetsrc`, GenericTableOps.addColSeparator(0.75) ],
             [
               `target_ast`, GenericTableOps.addPctCol(`AST%`,
                 "% of scoring possessions/assists ending with an assist TO the specified row (team-mate/team category)", CbbColors.varPicker(CbbColors.p_ast_breakdown),
@@ -110,19 +112,29 @@ const PlayerPlayTypeDiagView: React.FunctionComponent<Props> = ({player, rosterS
     <text style={CommonTableDefs.getTextShadow(stat, CbbColors.off_eFG)}>
       <i>{(100*(stat?.value || 0)).toFixed(1)}%</i>
     </text>;
+  const enrichExtraInfo = (stat: any) => {
+    if (stat.extraInfo) {
+      stat.extraInfo = <div>
+        Example play types:<br/>
+        {stat.extraInfo.map((ex, i) => <li key={`ex${i}`}>{ex}</li>)}
+      </div>;
+    }
+    return stat;
+  };
   const buildInfoRows = (statSet: any) => {
     return _.mapValues(statSet, (valObj, key) => { // Decorate eFG
-      return _.endsWith(key, "_efg") ? buildInfoRow(valObj) : valObj;
+      return _.endsWith(key, "_efg") ? buildInfoRow(valObj) : enrichExtraInfo(valObj);
     });
   }
 
   const playerStyle = PlayTypeUtils.buildPlayerStyle(player);
 
   const basicStyleInfo = [
-    { title: <i>Unassisted (half court)</i>, ...playerStyle.unassistedHalfCourt },
+    { title: <i>Unassisted</i>, ...playerStyle.unassisted },
+    { title: <i>Assist totals:</i>, ...playerStyle.assisted }
+    ,
     { title: <i>In Transition</i>, ...playerStyle.transition },
-    { title: <i>Scrambles</i>, ...playerStyle.scramble },
-    { title: <i>Assist totals (half court)</i>, ...playerStyle.assistedHalfCourt },
+    { title: <i>Scrambles after RB</i>, ...playerStyle.scramble },
   ];
 
   // (note that the interaction between this logic and the innards of the PlayTypeUtils is a bit tangled currently)
@@ -142,30 +154,52 @@ const PlayerPlayTypeDiagView: React.FunctionComponent<Props> = ({player, rosterS
   }), [ "total_shots_or_assists" ], [ "desc" ]);
 
   const posCategoryAssistNetwork = PlayTypeUtils.buildPosCategoryAssistNetwork(
-    playerAssistNetwork, rosterStatsByCode
+    playerAssistNetwork, rosterStatsByCode, player
   ).map(info => {
     return {
       ...info,
-      title: <span><i>{_.capitalize(PosFamilyNames[info.order])} assists</i></span>,
+      title: <span><i>{_.capitalize(PosFamilyNames[info.order])}</i></span>,
     };
   });
 
-  const rawAssistTableData = basicStyleInfo.map(objData => {
+  const playerBreakdownHtml = showPlayerBreakdown ?
+    <b>Player breakdown (<a href="#" onClick={(event) => { event.preventDefault(); setShowPlayerBreakdown(false) }}
+      >hide<
+    /a>):</b>
+    :
+    <b><a href="#" onClick={(event) => { event.preventDefault(); setShowPlayerBreakdown(true) }}
+      >Show player breakdown<
+    /a></b>
+    ;
+
+  const rawAssistTableData = [
+    GenericTableOps.buildTextRow(
+      <Row>
+        <Col xs={3}></Col>
+        <Col xs={3} className="d-flex justify-content-center"><i><span>Scored / Assisted By:</span></i></Col>
+        <Col xs={6} className="d-flex justify-content-center"><i><span>Assists:</span></i></Col>
+      </Row>
+    )
+  ].concat(_.take(basicStyleInfo, 2).map(objData => {
     return GenericTableOps.buildDataRow(
       objData, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta
     );
-  }).concat(
-    [ GenericTableOps.buildRowSeparator() ]
-  ).concat(
+  })).concat(
     posCategoryAssistNetwork.map(info => buildInfoRows(info)).map((info) =>
       GenericTableOps.buildDataRow(info, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta)
     )
   ).concat(
     [ GenericTableOps.buildRowSeparator() ]
+  ).concat(_.drop(basicStyleInfo, 2).map(objData => {
+    return GenericTableOps.buildDataRow(
+      objData, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta
+    );
+  })).concat(
+    [ GenericTableOps.buildTextRow(playerBreakdownHtml) ]
   ).concat(
-    playerAssistNetwork.map(info => buildInfoRows(info)).map((info) =>
+    showPlayerBreakdown ? playerAssistNetwork.map(info => buildInfoRows(info)).map((info) =>
       GenericTableOps.buildDataRow(info, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta)
-    )
+    ) : []
   );
 
   ////////////////////////////////////
