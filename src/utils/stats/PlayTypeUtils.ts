@@ -97,25 +97,25 @@ export class PlayTypeUtils {
 
     // Half court:
 
-    const totalFtTripsMadeHalfCourt = totalFtTripsMade - transitionFtTrips - scrambleFtTrips;
+    //const totalFtTripsMadeHalfCourt = totalFtTripsMade - transitionFtTrips - scrambleFtTrips;
 
-//    const unassistedHalfCourtRow = shotTypes.map((key) => {
+    //const unassistedHalfCourtRow = shotTypes.map((key) => {
     const unassistedRow = shotTypes.map((key) => {
       const shots = player[`total_off_${shotMap[key]!}_made`]?.value || 0; //(half court/transition/scramble)
       const assisted = player[`total_off_${shotMap[key]!}_ast`]?.value || 0; //(half court/transition/scramble)
       const unassisted = (shots - assisted);
-      const unassistedHalfCourt =  unassisted - scrambleTotal[key]![2]! - transitionTotal[key]![2]!;
+      //const unassistedHalfCourt =  unassisted - scrambleTotal[key]![2]! - transitionTotal[key]![2]!;
 
       return [ `source_${key}_ast`, unassisted > 0 ? {
         value: unassisted/totalScoringPlaysMade
       } : null ];
     }).concat([
-      [ `source_sf`, totalFtTripsMadeHalfCourt > 0 ? { value: totalFtTripsMadeHalfCourt/totalScoringPlaysMade } : null ]
+      [ `source_sf`, totalFtTripsMade > 0 ? { value: totalFtTripsMade/totalScoringPlaysMade } : null ]
     ]);
 
     const assistTotalsRow = shotTypes.map((key) => {
       const assisted = player[`total_off_${shotMap[key]!}_ast`]?.value || 0;
-      const assistedHalfCourt = assisted - scrambleTotal[key]![1]! - transitionTotal[key]![1]!;
+      //const assistedHalfCourt = assisted - scrambleTotal[key]![1]! - transitionTotal[key]![1]!;
       return [ `source_${key}_ast`, assisted > 0 ? {
         value: assisted/totalScoringPlaysMade
       } : null];
