@@ -28,12 +28,13 @@ export class PlayTypeUtils {
     "PG": [ 1.0, 0, 0],
     "s-PG": [ 1.0, 0, 0],
     "CG": [ 0.8, 0.2, 0 ],
-    "WG": [ 0, 1.0, 0 ],
+    "WG": [ 0.2, 0.8, 0 ],
     "WF": [ 0, 1.0, 0 ],
-    "S-PF": [ 0, 0.5, 0.5 ],
+    "S-PF": [ 0, 0.6, 0.4 ],
+    "PF/C": [ 0, 0.2, 0.8 ],
     "C": [ 0, 0, 1.0 ],
     "G?": [ 0.75, 0.25, 0 ],
-    "F/C?": [ 0, 0.25, 0.75 ]
+    "F/C?": [ 0, 0.5, 0.5 ]
   } as Record<string, [ number, number, number ]>;
   private static posClassToFamilyScore = [
     [ 1.00, 0.66, 0.15, 0.00, 0.00 ], // ballhandler
@@ -292,7 +293,7 @@ export class PlayTypeUtils {
 
     "ballhandler_3p": {
       source: "3P Unassisted",
-      examples: [ "off ball-screen", "ISO", "dribble jumper off misc action" ]
+      examples: [ "dribble jumper off misc action", "off ball-screen", "dribble jumper off ISO" ]
     },
     "ballhandler_3p_ballhandler": {
       source: "3P Assisted by a ballhandler",
@@ -366,7 +367,7 @@ export class PlayTypeUtils {
 
     "wing_3p": {
       source: "3P Unassisted",
-      examples: [ "off ball-screen", "ISO", "dribble jumper off misc action" ]
+      examples: [ "off ball-screen", "dribble jumper off misc action", "dribble jumper off ISO" ]
     },
     "wing_3p_ballhandler": {
       source: "3P Assisted by a ballhandler",
@@ -440,7 +441,7 @@ export class PlayTypeUtils {
 
     "big_3p": {
       source: "3P Unassisted",
-      examples: [ "off ball-screen", "ISO", "dribble jumper off misc action" ]
+      examples: [ "dribble jumper off misc action", "dribble jumper off ISO", "off ball-screen" ]
     },
     "big_3p_ballhandler": {
       source: "3P Assisted by a ballhandler",
