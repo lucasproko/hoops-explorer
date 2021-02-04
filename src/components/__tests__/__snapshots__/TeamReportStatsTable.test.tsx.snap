@@ -1434,7 +1434,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                     def_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          67.8
+                                          67.7
                                           %
                                         </span>,
                                         "value": 0.266857962697274,
@@ -1870,7 +1870,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                     def_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          67.8
+                                          67.7
                                           %
                                         </span>,
                                         "value": 0.266857962697274,
@@ -2665,7 +2665,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                     def_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          67.8
+                                          67.7
                                           %
                                         </span>,
                                         "value": 0.266857962697274,
@@ -3101,7 +3101,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                     def_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          67.8
+                                          67.7
                                           %
                                         </span>,
                                         "value": 0.266857962697274,
@@ -3896,7 +3896,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                     def_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          67.8
+                                          67.7
                                           %
                                         </span>,
                                         "value": 0.266857962697274,
@@ -4332,7 +4332,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                     def_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          67.8
+                                          67.7
                                           %
                                         </span>,
                                         "value": 0.266857962697274,
@@ -5127,7 +5127,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                     def_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          70.8
+                                          71.2
                                           %
                                         </span>,
                                         "value": 0.2543352601156069,
@@ -5201,7 +5201,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                     off_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          74.8
+                                          74.9
                                           %
                                         </span>,
                                         "value": 0.545271629778672,
@@ -5563,7 +5563,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                     def_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          70.8
+                                          71.2
                                           %
                                         </span>,
                                         "value": 0.2543352601156069,
@@ -5637,7 +5637,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                     off_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          74.8
+                                          74.9
                                           %
                                         </span>,
                                         "value": 0.545271629778672,
@@ -6396,7 +6396,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                     def_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          69.4
+                                          69.0
                                           %
                                         </span>,
                                         "value": 0.2815533980582524,
@@ -6470,7 +6470,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                     off_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          76.3
+                                          76.4
                                           %
                                         </span>,
                                         "value": 0.44554455445544555,
@@ -6832,7 +6832,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                     def_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          69.4
+                                          69.0
                                           %
                                         </span>,
                                         "value": 0.2815533980582524,
@@ -6906,7 +6906,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                     off_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          76.3
+                                          76.4
                                           %
                                         </span>,
                                         "value": 0.44554455445544555,
@@ -7665,7 +7665,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                     def_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          61.4
+                                          61.1
                                           %
                                         </span>,
                                         "value": 0.2638888888888889,
@@ -7739,7 +7739,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                     off_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          73.5
+                                          72.7
                                           %
                                         </span>,
                                         "value": 0.3595505617977528,
@@ -8101,7 +8101,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                     def_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          61.4
+                                          61.1
                                           %
                                         </span>,
                                         "value": 0.2638888888888889,
@@ -8175,7 +8175,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                     off_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          73.5
+                                          72.7
                                           %
                                         </span>,
                                         "value": 0.3595505617977528,
@@ -10991,7 +10991,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     def_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          67.8
+                                          67.7
                                           %
                                         </span>,
                                         "value": 0.266857962697274,
@@ -11467,7 +11467,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     def_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          67.8
+                                          67.7
                                           %
                                         </span>,
                                         "value": 0.266857962697274,
@@ -12858,7 +12858,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     def_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          67.8
+                                          67.7
                                           %
                                         </span>,
                                         "value": 0.266857962697274,
@@ -13334,7 +13334,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     def_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          67.8
+                                          67.7
                                           %
                                         </span>,
                                         "value": 0.266857962697274,
@@ -14725,7 +14725,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     def_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          67.8
+                                          67.7
                                           %
                                         </span>,
                                         "value": 0.266857962697274,
@@ -15201,7 +15201,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     def_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          67.8
+                                          67.7
                                           %
                                         </span>,
                                         "value": 0.266857962697274,
@@ -16592,7 +16592,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     def_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          70.8
+                                          71.2
                                           %
                                         </span>,
                                         "value": 0.2543352601156069,
@@ -16686,7 +16686,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     off_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          74.8
+                                          74.9
                                           %
                                         </span>,
                                         "value": 0.545271629778672,
@@ -17068,7 +17068,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     def_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          70.8
+                                          71.2
                                           %
                                         </span>,
                                         "value": 0.2543352601156069,
@@ -17162,7 +17162,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     off_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          74.8
+                                          74.9
                                           %
                                         </span>,
                                         "value": 0.545271629778672,
@@ -18673,7 +18673,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     def_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          69.4
+                                          69.0
                                           %
                                         </span>,
                                         "value": 0.2815533980582524,
@@ -18767,7 +18767,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     off_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          76.3
+                                          76.4
                                           %
                                         </span>,
                                         "value": 0.44554455445544555,
@@ -19149,7 +19149,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     def_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          69.4
+                                          69.0
                                           %
                                         </span>,
                                         "value": 0.2815533980582524,
@@ -19243,7 +19243,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     off_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          76.3
+                                          76.4
                                           %
                                         </span>,
                                         "value": 0.44554455445544555,
@@ -20754,7 +20754,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     def_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          61.4
+                                          61.1
                                           %
                                         </span>,
                                         "value": 0.2638888888888889,
@@ -20848,7 +20848,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     off_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          73.5
+                                          72.7
                                           %
                                         </span>,
                                         "value": 0.3595505617977528,
@@ -21230,7 +21230,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     def_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          61.4
+                                          61.1
                                           %
                                         </span>,
                                         "value": 0.2638888888888889,
@@ -21324,7 +21324,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     off_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          73.5
+                                          72.7
                                           %
                                         </span>,
                                         "value": 0.3595505617977528,
@@ -24856,7 +24856,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     def_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          67.8
+                                          67.7
                                           %
                                         </span>,
                                         "value": 0.266857962697274,
@@ -25292,7 +25292,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     def_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          67.8
+                                          67.7
                                           %
                                         </span>,
                                         "value": 0.266857962697274,
@@ -26643,7 +26643,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     def_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          67.8
+                                          67.7
                                           %
                                         </span>,
                                         "value": 0.266857962697274,
@@ -27079,7 +27079,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     def_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          67.8
+                                          67.7
                                           %
                                         </span>,
                                         "value": 0.266857962697274,
@@ -28430,7 +28430,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     def_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          67.8
+                                          67.7
                                           %
                                         </span>,
                                         "value": 0.266857962697274,
@@ -28866,7 +28866,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     def_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          67.8
+                                          67.7
                                           %
                                         </span>,
                                         "value": 0.266857962697274,
@@ -30217,7 +30217,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     def_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          70.8
+                                          71.2
                                           %
                                         </span>,
                                         "value": 0.2543352601156069,
@@ -30291,7 +30291,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     off_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          74.8
+                                          74.9
                                           %
                                         </span>,
                                         "value": 0.545271629778672,
@@ -30653,7 +30653,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     def_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          70.8
+                                          71.2
                                           %
                                         </span>,
                                         "value": 0.2543352601156069,
@@ -30727,7 +30727,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     off_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          74.8
+                                          74.9
                                           %
                                         </span>,
                                         "value": 0.545271629778672,
@@ -32042,7 +32042,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     def_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          69.4
+                                          69.0
                                           %
                                         </span>,
                                         "value": 0.2815533980582524,
@@ -32116,7 +32116,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     off_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          76.3
+                                          76.4
                                           %
                                         </span>,
                                         "value": 0.44554455445544555,
@@ -32478,7 +32478,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     def_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          69.4
+                                          69.0
                                           %
                                         </span>,
                                         "value": 0.2815533980582524,
@@ -32552,7 +32552,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     off_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          76.3
+                                          76.4
                                           %
                                         </span>,
                                         "value": 0.44554455445544555,
@@ -33867,7 +33867,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     def_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          61.4
+                                          61.1
                                           %
                                         </span>,
                                         "value": 0.2638888888888889,
@@ -33941,7 +33941,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     off_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          73.5
+                                          72.7
                                           %
                                         </span>,
                                         "value": 0.3595505617977528,
@@ -34303,7 +34303,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     def_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          61.4
+                                          61.1
                                           %
                                         </span>,
                                         "value": 0.2638888888888889,
@@ -34377,7 +34377,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     off_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          73.5
+                                          72.7
                                           %
                                         </span>,
                                         "value": 0.3595505617977528,
@@ -37731,7 +37731,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     def_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          67.8
+                                          67.7
                                           %
                                         </span>,
                                         "value": 0.266857962697274,
@@ -38167,7 +38167,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     def_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          67.8
+                                          67.7
                                           %
                                         </span>,
                                         "value": 0.266857962697274,
@@ -39669,7 +39669,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                           def_ftr: Object {
                                                     "extraInfo": <span>
                                                       FT: 
-                                                      67.8
+                                                      67.7
                                                       %
                                                     </span>,
                                                     "value": 0.266857962697274,
@@ -39910,7 +39910,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     def_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          67.8
+                                          67.7
                                           %
                                         </span>,
                                         "value": 0.266857962697274,
@@ -40346,7 +40346,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     def_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          67.8
+                                          67.7
                                           %
                                         </span>,
                                         "value": 0.266857962697274,
@@ -41848,7 +41848,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                           def_ftr: Object {
                                                     "extraInfo": <span>
                                                       FT: 
-                                                      67.8
+                                                      67.7
                                                       %
                                                     </span>,
                                                     "value": 0.266857962697274,
@@ -42089,7 +42089,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     def_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          67.8
+                                          67.7
                                           %
                                         </span>,
                                         "value": 0.266857962697274,
@@ -42525,7 +42525,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     def_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          67.8
+                                          67.7
                                           %
                                         </span>,
                                         "value": 0.266857962697274,
@@ -44027,7 +44027,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                           def_ftr: Object {
                                                     "extraInfo": <span>
                                                       FT: 
-                                                      67.8
+                                                      67.7
                                                       %
                                                     </span>,
                                                     "value": 0.266857962697274,
@@ -44268,7 +44268,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     def_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          70.8
+                                          71.2
                                           %
                                         </span>,
                                         "value": 0.2543352601156069,
@@ -44342,7 +44342,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     off_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          74.8
+                                          74.9
                                           %
                                         </span>,
                                         "value": 0.545271629778672,
@@ -44704,7 +44704,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     def_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          70.8
+                                          71.2
                                           %
                                         </span>,
                                         "value": 0.2543352601156069,
@@ -44778,7 +44778,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     off_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          74.8
+                                          74.9
                                           %
                                         </span>,
                                         "value": 0.545271629778672,
@@ -46480,7 +46480,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                           def_ftr: Object {
                                                     "extraInfo": <span>
                                                       FT: 
-                                                      70.8
+                                                      71.2
                                                       %
                                                     </span>,
                                                     "value": 0.2543352601156069,
@@ -46552,7 +46552,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                           off_ftr: Object {
                                                     "extraInfo": <span>
                                                       FT: 
-                                                      74.8
+                                                      74.9
                                                       %
                                                     </span>,
                                                     "value": 0.545271629778672,
@@ -46767,7 +46767,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     def_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          69.4
+                                          69.0
                                           %
                                         </span>,
                                         "value": 0.2815533980582524,
@@ -46841,7 +46841,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     off_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          76.3
+                                          76.4
                                           %
                                         </span>,
                                         "value": 0.44554455445544555,
@@ -47203,7 +47203,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     def_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          69.4
+                                          69.0
                                           %
                                         </span>,
                                         "value": 0.2815533980582524,
@@ -47277,7 +47277,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     off_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          76.3
+                                          76.4
                                           %
                                         </span>,
                                         "value": 0.44554455445544555,
@@ -48979,7 +48979,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                           def_ftr: Object {
                                                     "extraInfo": <span>
                                                       FT: 
-                                                      69.4
+                                                      69.0
                                                       %
                                                     </span>,
                                                     "value": 0.2815533980582524,
@@ -49051,7 +49051,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                           off_ftr: Object {
                                                     "extraInfo": <span>
                                                       FT: 
-                                                      76.3
+                                                      76.4
                                                       %
                                                     </span>,
                                                     "value": 0.44554455445544555,
@@ -49266,7 +49266,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     def_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          61.4
+                                          61.1
                                           %
                                         </span>,
                                         "value": 0.2638888888888889,
@@ -49340,7 +49340,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     off_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          73.5
+                                          72.7
                                           %
                                         </span>,
                                         "value": 0.3595505617977528,
@@ -49702,7 +49702,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     def_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          61.4
+                                          61.1
                                           %
                                         </span>,
                                         "value": 0.2638888888888889,
@@ -49776,7 +49776,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     off_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          73.5
+                                          72.7
                                           %
                                         </span>,
                                         "value": 0.3595505617977528,
@@ -51478,7 +51478,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                           def_ftr: Object {
                                                     "extraInfo": <span>
                                                       FT: 
-                                                      61.4
+                                                      61.1
                                                       %
                                                     </span>,
                                                     "value": 0.2638888888888889,
@@ -51550,7 +51550,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                           off_ftr: Object {
                                                     "extraInfo": <span>
                                                       FT: 
-                                                      73.5
+                                                      72.7
                                                       %
                                                     </span>,
                                                     "value": 0.3595505617977528,
@@ -53804,7 +53804,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     def_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          67.8
+                                          67.7
                                           %
                                         </span>,
                                         "value": 0.266857962697274,
@@ -54240,7 +54240,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     def_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          67.8
+                                          67.7
                                           %
                                         </span>,
                                         "value": 0.266857962697274,
@@ -55742,7 +55742,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                           def_ftr: Object {
                                                     "extraInfo": <span>
                                                       FT: 
-                                                      67.8
+                                                      67.7
                                                       %
                                                     </span>,
                                                     "value": 0.266857962697274,
@@ -57734,7 +57734,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     def_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          67.8
+                                          67.7
                                           %
                                         </span>,
                                         "value": 0.266857962697274,
@@ -58170,7 +58170,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     def_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          67.8
+                                          67.7
                                           %
                                         </span>,
                                         "value": 0.266857962697274,
@@ -58965,7 +58965,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     def_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          67.8
+                                          67.7
                                           %
                                         </span>,
                                         "value": 0.266857962697274,
@@ -59401,7 +59401,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     def_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          67.8
+                                          67.7
                                           %
                                         </span>,
                                         "value": 0.266857962697274,
@@ -60196,7 +60196,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     def_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          67.8
+                                          67.7
                                           %
                                         </span>,
                                         "value": 0.266857962697274,
@@ -60632,7 +60632,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     def_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          67.8
+                                          67.7
                                           %
                                         </span>,
                                         "value": 0.266857962697274,
@@ -61427,7 +61427,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     def_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          70.8
+                                          71.2
                                           %
                                         </span>,
                                         "value": 0.2543352601156069,
@@ -61501,7 +61501,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     off_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          74.8
+                                          74.9
                                           %
                                         </span>,
                                         "value": 0.545271629778672,
@@ -61863,7 +61863,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     def_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          70.8
+                                          71.2
                                           %
                                         </span>,
                                         "value": 0.2543352601156069,
@@ -61937,7 +61937,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     off_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          74.8
+                                          74.9
                                           %
                                         </span>,
                                         "value": 0.545271629778672,
@@ -62696,7 +62696,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     def_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          69.4
+                                          69.0
                                           %
                                         </span>,
                                         "value": 0.2815533980582524,
@@ -62770,7 +62770,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     off_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          76.3
+                                          76.4
                                           %
                                         </span>,
                                         "value": 0.44554455445544555,
@@ -63132,7 +63132,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     def_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          69.4
+                                          69.0
                                           %
                                         </span>,
                                         "value": 0.2815533980582524,
@@ -63206,7 +63206,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     off_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          76.3
+                                          76.4
                                           %
                                         </span>,
                                         "value": 0.44554455445544555,
@@ -63965,7 +63965,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     def_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          61.4
+                                          61.1
                                           %
                                         </span>,
                                         "value": 0.2638888888888889,
@@ -64039,7 +64039,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     off_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          73.5
+                                          72.7
                                           %
                                         </span>,
                                         "value": 0.3595505617977528,
@@ -64401,7 +64401,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     def_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          61.4
+                                          61.1
                                           %
                                         </span>,
                                         "value": 0.2638888888888889,
@@ -64475,7 +64475,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     off_ftr: Object {
                                         "extraInfo": <span>
                                           FT: 
-                                          73.5
+                                          72.7
                                           %
                                         </span>,
                                         "value": 0.3595505617977528,

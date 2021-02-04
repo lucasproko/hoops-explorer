@@ -115,6 +115,7 @@ describe("LineupUtils", () => {
               "key", "off_poss", "def_poss",
               "off_ppp", "def_ppp", "off_adj_opp", "def_adj_opp",
               "def_2prim", "def_2primr",
+              "off_ft",
               "off_orb", "def_orb", "off_ftr",
               //^(note FTR has a different implementation because you can have lineups with FTs but no FGAs
               // this is not currently tested here, except by inspection on real data)

@@ -51,6 +51,9 @@ Array [
     "off_adj_opp": Object {
       "value": "108.385",
     },
+    "off_ft": Object {
+      "value": "0.764",
+    },
     "off_ftr": Object {
       "value": "0.446",
     },
@@ -105,6 +108,9 @@ Array [
     "key": "'Off' Ayala, Eric",
     "off_adj_opp": Object {
       "value": "109.452",
+    },
+    "off_ft": Object {
+      "value": "0.713",
     },
     "off_ftr": Object {
       "value": "0.500",
@@ -167,6 +173,9 @@ Array [
     "off_adj_opp": Object {
       "value": "108.385",
     },
+    "off_ft": Object {
+      "value": "0.764",
+    },
     "off_ftr": Object {
       "value": "0.446",
     },
@@ -222,6 +231,9 @@ Array [
     "off_adj_opp": Object {
       "value": "109.452",
     },
+    "off_ft": Object {
+      "value": "0.713",
+    },
     "off_ftr": Object {
       "value": "0.500",
     },
@@ -276,6 +288,9 @@ Array [
     "key": "'r:On-Off' Ayala, Eric",
     "off_adj_opp": Object {
       "value": "-1.014",
+    },
+    "off_ft": Object {
+      "value": "0.050",
     },
     "off_ftr": Object {
       "value": "-0.079",
@@ -337,6 +352,9 @@ Array [
     "off_adj_opp": Object {
       "value": "108.385",
     },
+    "off_ft": Object {
+      "value": "0.764",
+    },
     "off_ftr": Object {
       "value": "0.446",
     },
@@ -391,6 +409,9 @@ Array [
     "key": "'Off' Ayala, Eric",
     "off_adj_opp": Object {
       "value": "109.452",
+    },
+    "off_ft": Object {
+      "value": "0.713",
     },
     "off_ftr": Object {
       "value": "0.500",
@@ -453,6 +474,9 @@ Array [
     "off_adj_opp": Object {
       "value": "108.385",
     },
+    "off_ft": Object {
+      "value": "0.764",
+    },
     "off_ftr": Object {
       "value": "0.446",
     },
@@ -507,6 +531,9 @@ Array [
     "key": "'Off' Ayala, Eric",
     "off_adj_opp": Object {
       "value": "109.452",
+    },
+    "off_ft": Object {
+      "value": "0.713",
     },
     "off_ftr": Object {
       "value": "0.500",
@@ -569,6 +596,9 @@ Array [
     "off_adj_opp": Object {
       "value": "108.385",
     },
+    "off_ft": Object {
+      "value": "0.764",
+    },
     "off_ftr": Object {
       "value": "0.446",
     },
@@ -624,6 +654,9 @@ Array [
     "off_adj_opp": Object {
       "value": "109.452",
     },
+    "off_ft": Object {
+      "value": "0.713",
+    },
     "off_ftr": Object {
       "value": "0.500",
     },
@@ -678,6 +711,9 @@ Array [
     "key": "'r:On-Off' Ayala, Eric",
     "off_adj_opp": Object {
       "value": "-1.056",
+    },
+    "off_ft": Object {
+      "value": "0.050",
     },
     "off_ftr": Object {
       "value": "-0.082",
@@ -739,6 +775,9 @@ Array [
     "off_adj_opp": Object {
       "value": "108.385",
     },
+    "off_ft": Object {
+      "value": "0.764",
+    },
     "off_ftr": Object {
       "value": "0.446",
     },
@@ -794,6 +833,9 @@ Array [
     "off_adj_opp": Object {
       "value": "109.452",
     },
+    "off_ft": Object {
+      "value": "0.713",
+    },
     "off_ftr": Object {
       "value": "0.500",
     },
@@ -848,6 +890,9 @@ Array [
     "key": "'r:On-Off' Ayala, Eric",
     "off_adj_opp": Object {
       "value": "-1.056",
+    },
+    "off_ft": Object {
+      "value": "0.050",
     },
     "off_ftr": Object {
       "value": "-0.082",
@@ -909,6 +954,9 @@ Array [
     "off_adj_opp": Object {
       "value": "108.385",
     },
+    "off_ft": Object {
+      "value": "0.764",
+    },
     "off_ftr": Object {
       "value": "0.446",
     },
@@ -963,6 +1011,9 @@ Array [
     "key": "'Off' Ayala, Eric",
     "off_adj_opp": Object {
       "value": "109.452",
+    },
+    "off_ft": Object {
+      "value": "0.713",
     },
     "off_ftr": Object {
       "value": "0.500",
@@ -1025,6 +1076,9 @@ Array [
     "off_adj_opp": Object {
       "value": "108.385",
     },
+    "off_ft": Object {
+      "value": "0.764",
+    },
     "off_ftr": Object {
       "value": "0.446",
     },
@@ -1080,6 +1134,9 @@ Array [
     "off_adj_opp": Object {
       "value": "109.452",
     },
+    "off_ft": Object {
+      "value": "0.713",
+    },
     "off_ftr": Object {
       "value": "0.500",
     },
@@ -1134,6 +1191,9 @@ Array [
     "key": "'r:On-Off' Ayala, Eric",
     "off_adj_opp": Object {
       "value": "-1.014",
+    },
+    "off_ft": Object {
+      "value": "0.050",
     },
     "off_ftr": Object {
       "value": "-0.079",
@@ -1195,6 +1255,9 @@ Array [
     "off_adj_opp": Object {
       "value": "108.385",
     },
+    "off_ft": Object {
+      "value": "0.764",
+    },
     "off_ftr": Object {
       "value": "0.446",
     },
@@ -1249,6 +1312,9 @@ Array [
     "key": "'Off' Ayala, Eric",
     "off_adj_opp": Object {
       "value": "109.452",
+    },
+    "off_ft": Object {
+      "value": "0.713",
     },
     "off_ftr": Object {
       "value": "0.500",
@@ -1311,6 +1377,9 @@ Array [
     "off_adj_opp": Object {
       "value": "108.385",
     },
+    "off_ft": Object {
+      "value": "0.764",
+    },
     "off_ftr": Object {
       "value": "0.446",
     },
@@ -1365,6 +1434,9 @@ Array [
     "key": "'Off' Ayala, Eric",
     "off_adj_opp": Object {
       "value": "109.452",
+    },
+    "off_ft": Object {
+      "value": "0.713",
     },
     "off_ftr": Object {
       "value": "0.500",
@@ -1427,6 +1499,9 @@ Array [
     "off_adj_opp": Object {
       "value": "108.385",
     },
+    "off_ft": Object {
+      "value": "0.764",
+    },
     "off_ftr": Object {
       "value": "0.446",
     },
@@ -1482,6 +1557,9 @@ Array [
     "off_adj_opp": Object {
       "value": "109.452",
     },
+    "off_ft": Object {
+      "value": "0.713",
+    },
     "off_ftr": Object {
       "value": "0.500",
     },
@@ -1536,6 +1614,9 @@ Array [
     "key": "'r:On-Off' Ayala, Eric",
     "off_adj_opp": Object {
       "value": "-1.056",
+    },
+    "off_ft": Object {
+      "value": "0.050",
     },
     "off_ftr": Object {
       "value": "-0.082",
@@ -1597,6 +1678,9 @@ Array [
     "off_adj_opp": Object {
       "value": "108.385",
     },
+    "off_ft": Object {
+      "value": "0.764",
+    },
     "off_ftr": Object {
       "value": "0.446",
     },
@@ -1652,6 +1736,9 @@ Array [
     "off_adj_opp": Object {
       "value": "109.452",
     },
+    "off_ft": Object {
+      "value": "0.713",
+    },
     "off_ftr": Object {
       "value": "0.500",
     },
@@ -1706,6 +1793,9 @@ Array [
     "key": "'r:On-Off' Ayala, Eric",
     "off_adj_opp": Object {
       "value": "-1.056",
+    },
+    "off_ft": Object {
+      "value": "0.050",
     },
     "off_ftr": Object {
       "value": "-0.082",

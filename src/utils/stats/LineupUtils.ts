@@ -300,7 +300,8 @@ export class LineupUtils {
       poss: usePoss,
       orb: 0.4*usePoss, //(eg 50% of fga are missed)
       ast: 0.2*usePoss, //(50% of FGM, 50% of FGA)
-      fga: 0.8*usePoss //(eg 20% end in TOs/FTs)
+      fga: 0.8*usePoss, //(eg 20% end in TOs/FTs)
+      fta: 0.1*usePoss //(10% = 50% of the 20% are FT)
     }
   };
 
@@ -345,12 +346,17 @@ export class LineupUtils {
       off: offRegress.fga + obj.total_off_fga?.value || defaultVal,
       def: defRegress.fga + obj.total_def_fga?.value || defaultVal
     };
+    const fta_totals = {
+      off_ft: offRegress.fta + obj.total_off_fta?.value || defaultVal,
+      def_ft: defRegress.fta + obj.total_def_fta?.value || defaultVal
+    };
     // For transition and scramble playes, just do ppp for now
     return {
       ppp_totals: ppp_totals,
       orb_totals: orb_totals,
       ast_totals: ast_totals,
       fga_totals: fga_totals,
+      fta_totals: fta_totals,
       regress: {
         off: offRegress,
         def: defRegress
@@ -399,6 +405,9 @@ export class LineupUtils {
           }
         } else if (weights.orb_totals.hasOwnProperty(key)) {
           mutableAcc[key].value += val*(weights.orb_totals as any)[key];
+          //(no luck adjustment currently)
+        } else if (weights.fta_totals.hasOwnProperty(key)) {
+          mutableAcc[key].value += val*(weights.fta_totals as any)[key];
           //(no luck adjustment currently)
         } else if (weights.ast_totals.hasOwnProperty(key)) {
           mutableAcc[key].value += val*(weights.ast_totals as any)[key];
@@ -462,7 +471,6 @@ export class LineupUtils {
       const key = keyVal[0];
       // all the shot type stats:
       const totalShotTypeKey: string | undefined = LineupUtils.getShotTypeField(key);
-
       if (!LineupUtils.ignoreFieldSet.hasOwnProperty(key)) {
         const val = keyVal[1]?.value || 0;
         const oldVal = keyVal[1]?.old_value || 0;
@@ -485,6 +493,9 @@ export class LineupUtils {
           }
         } else if (weights.orb_totals.hasOwnProperty(key)) {
           mutableAcc[key].value = 1.0*val/(weights.orb_totals as any)[key];
+          // (no luck adjustment for these stats)
+        } else if (weights.fta_totals.hasOwnProperty(key)) {
+          mutableAcc[key].value = 1.0*val/(weights.fta_totals as any)[key];
           // (no luck adjustment for these stats)
         } else if (weights.ast_totals.hasOwnProperty(key)) {
           mutableAcc[key].value = 1.0*val/(weights.ast_totals as any)[key];
