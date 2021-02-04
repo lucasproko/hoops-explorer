@@ -53,7 +53,7 @@ export class PlayTypeUtils {
 
 
   /** Decomposes a player stats into unassisted/assisted and half-court/scramble/transition */
-  private static buildPlayerStyle(player: Record<string, any>): PlayerStyleInfo {
+  static buildPlayerStyle(player: Record<string, any>): PlayerStyleInfo {
 
     // Some types and globals
 
@@ -138,7 +138,7 @@ export class PlayTypeUtils {
    *  (note that the interaction between this logic and the calling code in XxxPlayTypeDiagView is currently a bit tangled)
    */
   static buildPlayerOrPosAssistNetwork(
-    playerOrPos: Record<string, any>, mainPlayer: Record<string, any>,
+    playerOrPos: string, mainPlayer: Record<string, any>,
     totalScoringPlaysMade: number, totalAssists: number,
     rosterStatsByCode: Record<string, any>
   ): [ Record<string, any>, number ] {
@@ -165,6 +165,32 @@ export class PlayTypeUtils {
     return [ info, mutableTotal ];
   }
 
+  /** Adds example plays to the "extraInfo" of unassited stats */
+  static enrichUnassistedStats(unassistedStats: Record<string, any>, mainPlayer: Record<string, any>) {
+    // Build main player's positional category:
+    const mainPlayerCats = _.orderBy(PlayTypeUtils.buildPosFamily(mainPlayer.role, mainPlayer.posClass).flatMap((catScore, ix) => {
+      return catScore > 0 ? [ { order: ix, score: catScore } ] : [];
+    }), ["score"], ["desc"]);
+
+    // handle usages, (AST)
+    shotTypes.concat(["sf"]).forEach((shotType, ix) => {
+
+      const statKey = shotType == "sf" ? `source_sf` : `source_${shotType}_ast`;
+
+      // Inject examples
+      const playTypeExamples = _.chain(mainPlayerCats).map(catInfo => {
+        const exampleKey = `${PosFamilyNames[catInfo.order!]}_${shotType}`;
+
+        return PlayTypeUtils.playTypesByFamily[exampleKey]?.examples || [];
+      }).flatten().uniq().value();
+
+      if (unassistedStats[statKey]) {
+        unassistedStats[statKey].extraInfo = playTypeExamples;
+      }
+    });
+    return unassistedStats; //(for chaining)
+  }
+
   /** Converts a player-grouped assist network into a positional category grouped one
    *  (note that the interaction between this logic and the calling code in XxxPlayTypeDiagView is currently a bit tangled)
    */
@@ -184,13 +210,13 @@ export class PlayTypeUtils {
       const posClass = rosterStatsByCode[playerCode]?.posClass || [];
       return PlayTypeUtils.buildPosFamily(role, posClass).flatMap((catScore, ix) => {
         return catScore > 0 ? [ { ...playerStats, title: null, order: ix, score: catScore } ] : [];
-      });
+      }) as Array<any>;
     }).concat([
       { order: 0, score: 0 }, { order: 1, score: 0 }, { order: 2, score: 0 }
     ]).groupBy(info => info.order).values().map(infos => {
       const mutableObj = {
         order: infos[0]!.order
-      };
+      } as Record<string, any>;
 
       // Score inv vs shot type:
       const scoreTotalInvsTarget = shotTypes.map(shotType => {
@@ -256,6 +282,12 @@ export class PlayTypeUtils {
   private static playTypesByFamily = {
     // 1] Ball handler:
 
+    // 1.0] SF
+    "ballhandler_sf": {
+      source: "Shooting Foul",
+      examples: [ "fouled driving to the rim", "fouled in the bonus", "fouled cutting" ]
+    },
+
     // 1.1] 3P
 
     "ballhandler_3p": {
@@ -292,7 +324,7 @@ export class PlayTypeUtils {
     "ballhandler_mid_wing": {
       source: "Mid Range Assisted by wing",
       target: "Pass to ballhandler for mid-range",
-      examples: [ "spread offense, misc action" ]
+      examples: [ "spread offense", "misc action" ]
     },
     "ballhandler_mid_big": {
       source: "Mid Range Assisted from frontcourt",
@@ -323,6 +355,12 @@ export class PlayTypeUtils {
     },
 
     // 2] Wing:
+
+    // 2.0] SF
+    "wing_sf": {
+      source: "Shooting Foul",
+      examples: [ "fouled slashing to the rim", "fouled in the bonus", "fouled cutting" ]
+    },
 
     // 2.1] 3P
 
@@ -392,6 +430,12 @@ export class PlayTypeUtils {
 
     // 3] Frontcourt:
 
+    // 2.0] SF
+    "big_sf": {
+      source: "Shooting Foul",
+      examples: [ "fouled on a rebound", "fouled posting up", "fouled rolling", "fouled in the bonus", "fouled cutting" ]
+    },
+
     // 3.1] 3P
 
     "big_3p": {
@@ -418,17 +462,17 @@ export class PlayTypeUtils {
 
     "big_mid": {
       source: "Mid Range Unassisted",
-      exammples: [ "eg deep post-up", "ISO", "misc action" ]
+      exammples: [ "high post-up", "ISO", "misc action" ]
     },
     "big_mid_ballhandler": {
       source: "Mid Range Assisted by ballhandler",
       target: "Pass to frontcourt for mid-range",
-      examples: [ "deep post-up", "spread offense", "misc action" ]
+      examples: [ "high post-up", "spread offense", "misc action" ]
     },
     "big_mid_wing": {
       source: "Mid Range Assisted by wing",
       target: "Pass to frontcourt for mid-range",
-      examples: [ "deep post-up", "spread offense", "misc action" ]
+      examples: [ "high post-up", "spread offense", "misc action" ]
     },
     "big_mid_big": {
       source: "Mid Range Assisted from frontcourt",

@@ -116,25 +116,54 @@ const PlayerPlayTypeDiagView: React.FunctionComponent<Props> = ({player, rosterS
     if (stat.extraInfo) {
       stat.extraInfo = <div>
         Example play types:<br/>
-        {stat.extraInfo.map((ex, i) => <li key={`ex${i}`}>{ex}</li>)}
+        {stat.extraInfo.map((ex: string, i: number) => <li key={`ex${i}`}>{ex}</li>)}
       </div>;
     }
     return stat;
   };
   const buildInfoRows = (statSet: any) => {
     return _.mapValues(statSet, (valObj, key) => { // Decorate eFG
-      return _.endsWith(key, "_efg") ? buildInfoRow(valObj) : enrichExtraInfo(valObj);
+      if (valObj) {
+        return _.endsWith(key, "_efg") ? buildInfoRow(valObj) : enrichExtraInfo(valObj);
+      } else return valObj;
     });
   }
 
   const playerStyle = PlayTypeUtils.buildPlayerStyle(player);
 
+  const tooltipBuilder = (id: string, title: string, tooltip: string) =>
+    <OverlayTrigger placement="auto" overlay={
+      <Tooltip id={id + "Tooltip"}>{tooltip}</Tooltip>
+    }><i>{title}</i></OverlayTrigger>;
+
   const basicStyleInfo = [
-    { title: <i>Unassisted</i>, ...playerStyle.unassisted },
-    { title: <i>Assist totals:</i>, ...playerStyle.assisted }
-    ,
-    { title: <i>In Transition</i>, ...playerStyle.transition },
-    { title: <i>Scrambles after RB</i>, ...playerStyle.scramble },
+    {
+      title: tooltipBuilder("unassist", "Unassisted",
+        "All scoring plays where the player was unassisted (includes FTs which can never be assisted). Includes half court, scrambles, and transition)"
+      ),
+      ...buildInfoRows(PlayTypeUtils.enrichUnassistedStats(playerStyle.unassisted, player))
+    },
+    {
+      title: tooltipBuilder("assist", "Assist totals:",
+        "All plays where the player was assisted (left half) or provided the assist (right half). " +
+        "The 3 rows below break down assisted plays according to the positional category of the assister/assistee. " +
+        "(Includes half court, scramble, and transitions)"
+      ),
+      ...playerStyle.assisted
+    },
+    {
+      title: tooltipBuilder("trans", "In transition",
+        "All plays (assisted or unassisted) that are classified as 'in transition', normally shots taken rapidly after a rebound, miss, or make in the other direction."
+      ),
+      ...playerStyle.transition
+    },
+    {
+      title: tooltipBuilder("scramble", "Scrambles after RB",
+        "All plays (assisted or unassisted) that occur in the aftermath of an offensive rebound, where the offense does not get reset before scoring. " +
+        "Examples are putbacks (unassisted) or tips to other players (assisted)"
+      ),
+      ...playerStyle.scramble
+    },
   ];
 
   // (note that the interaction between this logic and the innards of the PlayTypeUtils is a bit tangled currently)
@@ -163,13 +192,9 @@ const PlayerPlayTypeDiagView: React.FunctionComponent<Props> = ({player, rosterS
   });
 
   const playerBreakdownHtml = showPlayerBreakdown ?
-    <b>Player breakdown (<a href="#" onClick={(event) => { event.preventDefault(); setShowPlayerBreakdown(false) }}
-      >hide<
-    /a>):</b>
+    <b>Player breakdown (<a href="#" onClick={(event) => { event.preventDefault(); setShowPlayerBreakdown(false) }}>hide</a>):</b>
     :
-    <b><a href="#" onClick={(event) => { event.preventDefault(); setShowPlayerBreakdown(true) }}
-      >Show player breakdown<
-    /a></b>
+    <b><a href="#" onClick={(event) => { event.preventDefault(); setShowPlayerBreakdown(true) }}>Show player breakdown</a></b>
     ;
 
   const rawAssistTableData = [
