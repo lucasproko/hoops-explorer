@@ -61,7 +61,7 @@ const GameInfoDiagView: React.FunctionComponent<Props> = ({oppoList, orderedOppo
   const currId = oneUp_;
   oneUp_++;
 
-  const [ zoomIn, setZoomIn ] = useState(false as boolean);
+  const [ zoomIn, setZoomIn ] = useState((maxOffPoss < 0) as boolean);
 
   // Merge with the ordered oppo list
   oppoList.forEach((oppo, i) => {
@@ -130,7 +130,9 @@ const GameInfoDiagView: React.FunctionComponent<Props> = ({oppoList, orderedOppo
         </ResponsiveContainer>
         <div style={{display: 'flex', justifyContent: 'center'}}>
           <b>Game breakdown for above lineup</b>
-          &nbsp;(<a href="#" onClick={(event) => { event.preventDefault(); setZoomIn(!zoomIn) }}>{zoomIn ? "zoom out" : "zoom in"}</a>)
+          &nbsp;{(maxOffPoss < 0) ? null : <div>(
+            <a href="#" onClick={(event) => { event.preventDefault(); setZoomIn(!zoomIn) }}>{zoomIn ? "zoom out" : "zoom in"}</a>
+          )</div>}
         </div>
       </Col>
       <Col/>

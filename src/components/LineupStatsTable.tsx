@@ -247,12 +247,15 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
         return _.flatten([
           [ GenericTableOps.buildDataRow(stats, offPrefixFn, offCellMetaFn) ],
           [ GenericTableOps.buildDataRow(stats, defPrefixFn, defCellMetaFn) ],
-          (showGameInfo && (lineup.key != LineupTableUtils.totalLineupId)) ? [ GenericTableOps.buildTextRow(
+          showGameInfo ? [ GenericTableOps.buildTextRow(
             <GameInfoDiagView
-              oppoList={LineupUtils.getGameInfo(lineup.game_info)}
+              oppoList={(lineup.key == LineupTableUtils.totalLineupId) ?
+                (lineup.game_info || []) :
+                LineupUtils.getGameInfo(lineup.game_info)}
               orderedOppoList={_.clone(orderedMutableOppoList)}
               params={startingState}
-              maxOffPoss={globalMaxPoss}
+              maxOffPoss={(lineup.key == LineupTableUtils.totalLineupId) ?
+                 -1 : globalMaxPoss}
             />, "small"
           )] : [],
           (showLuckAdjDiags && lineup.off_luck_diags && sortedCodesAndIds) ? [ GenericTableOps.buildTextRow(
@@ -364,7 +367,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
         return _.flatten([
           [ GenericTableOps.buildDataRow(stats, offPrefixFn, offCellMetaFn) ],
           [ GenericTableOps.buildDataRow(stats, defPrefixFn, defCellMetaFn) ],
-          (showGameInfo && (stats.posKey != LineupTableUtils.totalLineupId)) ? [ GenericTableOps.buildTextRow(
+          showGameInfo ? [ GenericTableOps.buildTextRow(
             <GameInfoDiagView
               oppoList={stats.game_info || []}
               orderedOppoList={_.clone(orderedMutableOppoList)}
