@@ -29,6 +29,7 @@ import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
 import { averageStatsInfo } from '../utils/internal-data/averageStatsInfo';
 import { efficiencyInfo } from '../utils/internal-data/efficiencyInfo';
 import { LineupTableUtils } from "../utils/tables/LineupTableUtils";
+import { RosterTableUtils } from "../utils/tables/RosterTableUtils";
 import { AvailableTeams } from '../utils/internal-data/AvailableTeams';
 import { dataLastUpdated } from '../utils/internal-data/dataLastUpdated';
 
@@ -246,10 +247,7 @@ export async function main() {
         teamResponse.getJsonResponse().aggregations?.tri_filter?.buckets?.baseline || {};
 
       /** Largest sample of player stats, by player key - use for ORtg calcs */
-      const globalRosterStatsByCode =
-        _.chain(rosterGlobal).map(p => {
-          return [ p.player_array?.hits?.hits?.[0]?._source?.player?.code || p.key, p ];
-        }).fromPairs().value();
+      const globalRosterStatsByCode = RosterTableUtils.buildRosterTableByCode(rosterGlobal);
 
       const baselinePlayerInfo = LineupTableUtils.buildBaselinePlayerInfo(
         rosterBaseline, globalRosterStatsByCode, teamBaseline, avgEfficiency

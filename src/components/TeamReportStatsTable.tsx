@@ -51,6 +51,7 @@ import { RosterStatsModel } from '../components/RosterStatsTable';
 import { TeamStatsModel } from '../components/TeamStatsTable';
 import { LuckUtils, OffLuckAdjustmentDiags, DefLuckAdjustmentDiags, LuckAdjustmentBaseline } from "../utils/stats/LuckUtils";
 import { TableDisplayUtils } from "../utils/tables/TableDisplayUtils";
+import { RosterTableUtils } from "../utils/tables/RosterTableUtils";
 
 /** Convert from LineupStatsModel into this */
 export type TeamReportStatsModel = {
@@ -242,10 +243,7 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({startingState, da
       if (incRapm) {
         try {
           // Do some prep on the individual stats we'll use for the prior:
-          const globalRosterStatsByCode =
-            _.chain(rosterStats.global || []).map(p => {
-              return [ p.player_array?.hits?.hits?.[0]?._source?.player?.code || p.key, p ];
-            }).fromPairs().value();
+          const globalRosterStatsByCode = RosterTableUtils.buildRosterTableByCode(rosterStats.global || []);
           const insertExtraInfo = (playersTmp: Array<any>) => {
             if (playersTmp) {
               const players = _.cloneDeep(playersTmp);

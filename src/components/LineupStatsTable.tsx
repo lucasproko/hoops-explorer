@@ -36,6 +36,7 @@ import AsyncFormControl from './shared/AsyncFormControl';
 // Table building
 import { TableDisplayUtils } from "../utils/tables/TableDisplayUtils";
 import { LineupTableUtils } from "../utils/tables/LineupTableUtils";
+import { RosterTableUtils } from "../utils/tables/RosterTableUtils";
 
 // Util imports
 import { CbbColors } from "../utils/CbbColors";
@@ -160,10 +161,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
   const avgEfficiency = efficiencyAverages[genderYearLookup] || efficiencyAverages.fallback;
 
   /** Largest sample of player stats, by player key - use for ORtg calcs */
-  const globalRosterStatsByCode =
-    _.chain(rosterStats.global || []).map(p => {
-      return [ p.player_array?.hits?.hits?.[0]?._source?.player?.code || p.key, p ];
-    }).fromPairs().value();
+  const globalRosterStatsByCode = RosterTableUtils.buildRosterTableByCode(rosterStats.global || []);
 
   /** Need baseline player info for tooltip view/lineup decoration */
   const baselinePlayerInfo = LineupTableUtils.buildBaselinePlayerInfo(

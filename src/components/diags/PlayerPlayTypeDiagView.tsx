@@ -46,7 +46,7 @@ type Props = {
 };
 const PlayerPlayTypeDiagView: React.FunctionComponent<Props> = ({player, rosterStatsByCode, teamSeason, showHelp, showDetailsOverride}) => {
 
-  const [ showPlayerBreakdown, setShowPlayerBreakdown ] = useState(false);
+  const [ showPlayerBreakdown, setShowPlayerBreakdown ] = useState(showDetailsOverride || false);
 
   ////////////////////////////////////
 

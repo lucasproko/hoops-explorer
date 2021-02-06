@@ -51,6 +51,7 @@ import { OverrideUtils } from "../utils/stats/OverrideUtils";
 import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
 import { TableDisplayUtils } from "../utils/tables/TableDisplayUtils";
 import { LineupTableUtils } from "../utils/tables/LineupTableUtils";
+import { RosterTableUtils } from "../utils/tables/RosterTableUtils";
 import { QueryUtils } from "../utils/QueryUtils";
 import { RapmUtils } from "../utils/stats/RapmUtils";
 import { LineupUtils } from "../utils/stats/LineupUtils";
@@ -236,21 +237,9 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
   // Needed for a few things, including RAPM and play type analysis
 
   /** Largest sample of player stats, by player key - use for ORtg calcs */
-  const globalRosterStatsByCode =
-    _.chain(rosterStats.global || []).map(p => {
-
-      //TODO: do I want this one, or the baseline or ???
-      if (showPlayTypes) {
-        const [ posConfs, posConfsDiags ] = PositionUtils.buildPositionConfidences(p);
-        const [ pos, posDiags ] = PositionUtils.buildPosition(posConfs, p, teamSeasonLookup);
-        p.posClass = _.values(posConfs);
-        p.role = pos;
-      }
-
-      return [ p.player_array?.hits?.hits?.[0]?._source?.player?.code || p.key, p ];
-    }).fromPairs().value();
-
-  //(end luck calcs)
+  const globalRosterStatsByCode = RosterTableUtils.buildRosterTableByCode(
+    rosterStats.global || [], showPlayTypes, teamSeasonLookup
+  ); //TODO: which set do I actually want to use for positional calcs here?
 
   // 3.0] RAPM
 
