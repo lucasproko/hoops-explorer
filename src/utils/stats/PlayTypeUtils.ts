@@ -43,7 +43,7 @@ export class PlayTypeUtils {
   ];
 
   /** Goes from all 5 position classes to a smaller/simple position family */
-  static buildPosFamily(pos: string, posClass: number[]): [ number, number, number ] {
+  private static buildPosFamily(pos: string, posClass: number[]): [ number, number, number ] {
     return PlayTypeUtils.posToFamilyScore[pos] || [ 0, 1.0, 0 ];
     //TODO: this uses the raw numbers, which empiricially didn't work particularly well
     // eg for centers it tended to
@@ -52,6 +52,14 @@ export class PlayTypeUtils {
     // });
   }
 
+  /** Builds a list of all the team-mate codes who assist or are assisted by the specified player */
+  static buildPlayerAssistCodeList(player: Record<string, any>) {
+    return _.chain(targetSource).flatMap((loc) => {
+      return shotTypes.flatMap((key) => {
+        return _.keys(player[`off_ast_${key}_${loc}`]?.value || {});
+      });
+    }).uniq().value();
+  }
 
   /** Decomposes a player stats into unassisted/assisted and half-court/scramble/transition */
   static buildPlayerStyle(player: Record<string, any>): PlayerStyleInfo {
@@ -138,7 +146,7 @@ export class PlayTypeUtils {
   /** Takes a player or category (ball-handler / wing / frontcourt) and builds their assist network
    *  (note that the interaction between this logic and the calling code in XxxPlayTypeDiagView is currently a bit tangled)
    */
-  static buildPlayerOrPosAssistNetwork(
+  static buildPlayerAssistNetwork(
     playerOrPos: string, mainPlayer: Record<string, any>,
     totalScoringPlaysMade: number, totalAssists: number,
     rosterStatsByCode: Record<string, any>

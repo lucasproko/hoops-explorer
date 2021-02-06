@@ -57,11 +57,7 @@ const PlayerPlayTypeDiagView: React.FunctionComponent<Props> = ({player, rosterS
   const shotNameMap = { "3p": "3P", "mid": "Mid", "rim": "Rim" } as Record<string, string>;
   const shotMap = { "3p": "3p", "rim": "2prim", "mid": "2pmid" } as Record<string, string>;
 
-  const allPlayers = _.chain(targetSource).flatMap((loc) => {
-    return shotTypes.flatMap((key) => {
-      return _.keys(player[`off_ast_${key}_${loc}`]?.value || {});
-    });
-  }).uniq().value();
+  const allPlayers = PlayTypeUtils.buildPlayerAssistCodeList(player); 
 
   const rawAssistTableFields = {
     "title": GenericTableOps.addTitle("", "", CommonTableDefs.singleLineRowSpanCalculator, "", GenericTableOps.htmlFormatter),
@@ -169,7 +165,7 @@ const PlayerPlayTypeDiagView: React.FunctionComponent<Props> = ({player, rosterS
   // (note that the interaction between this logic and the innards of the PlayTypeUtils is a bit tangled currently)
   const playerAssistNetwork = _.orderBy(allPlayers.map((p) => {
     var mutableTotal = 0;
-    const [ info, mutableTmpTotal ] = PlayTypeUtils.buildPlayerOrPosAssistNetwork(
+    const [ info, mutableTmpTotal ] = PlayTypeUtils.buildPlayerAssistNetwork(
       p, player, playerStyle.totalScoringPlaysMade, playerStyle.totalAssists,
       rosterStatsByCode
     );
