@@ -38,6 +38,7 @@ import { LineupUtils } from "../utils/stats/LineupUtils";
 import { LuckUtils, OffLuckAdjustmentDiags, DefLuckAdjustmentDiags, LuckAdjustmentBaseline } from "../utils/stats/LuckUtils";
 import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
 import { TableDisplayUtils } from "../utils/tables/TableDisplayUtils";
+import { RosterTableUtils } from "../utils/tables/RosterTableUtils";
 
 export type TeamStatsModel = {
   on: any,
@@ -84,7 +85,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
   );
 
   /** (placeholder for positional info)*/
-  const [ showPlayTypes, setShowPlayTypes ] = useState(false)
+  const [ showPlayTypes, setShowPlayTypes ] = useState(true)
 
   /** Whether we are showing the luck config modal */
   const [ showLuckConfig, setShowLuckConfig ] = useState(false);
@@ -162,6 +163,11 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
 
   //(end luck calcs)
 
+  /** Largest sample of player stats, by player key - use for ORtg calcs */
+  const globalRosterStatsByCode = RosterTableUtils.buildRosterTableByCode(
+    rosterStats.global || [], showPlayTypes, teamSeasonLookup
+  ); //TODO: which set do I actually want to use for positional calcs here?
+
   const teamStatsOn = {
     off_title: `${maybeOn} Offense`,
     def_title: `${maybeOn} Defense`,
@@ -211,7 +217,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
       ) ] : [] ,
       showPlayTypes ?
         [ GenericTableOps.buildTextRow(
-          <TeamPlayTypeDiagView lineupSet={teamStats.off} showHelp={showHelp}/>, "small"
+          <span>TODO</span>, "small"
         ) ] : [],
       [ GenericTableOps.buildRowSeparator() ]
     ]) : [],
@@ -229,7 +235,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
       ) ] : [] ,
       showPlayTypes ?
         [ GenericTableOps.buildTextRow(
-          <TeamPlayTypeDiagView lineupSet={teamStats.off} showHelp={showHelp}/>, "small"
+          <span>TODO</span>, "small"
         ) ] : [],
       [ GenericTableOps.buildRowSeparator() ]
     ]) : [],
@@ -247,7 +253,12 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
       ) ] : [] ,
       showPlayTypes ?
         [ GenericTableOps.buildTextRow(
-          <TeamPlayTypeDiagView lineupSet={teamStats.baseline} showHelp={showHelp}/>, "small"
+          <TeamPlayTypeDiagView
+            players={rosterStats.baseline || []}
+            rosterStatsByCode={globalRosterStatsByCode}
+            teamSeason={teamSeasonLookup}
+            showHelp={showHelp}
+            />, "small"
         ) ] : [],
       [ GenericTableOps.buildRowSeparator() ],
     ]),

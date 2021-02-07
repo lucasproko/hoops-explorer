@@ -206,12 +206,13 @@ export class PlayTypeUtils {
   static buildPosCategoryAssistNetwork(
     playerAssistNetwork: Array<Record<string, any>>,
     rosterStatsByCode: Record<string, any>,
-    mainPlayer: Record<string, any>
+    mainPlayer: Record<string, any> | undefined
   ) {
     // Build main player's positional category:
-    const mainPlayerCats = _.orderBy(PlayTypeUtils.buildPosFamily(mainPlayer.role, mainPlayer.posClass).flatMap((catScore, ix) => {
+    // (this is just for injecting examples - if you don't want examples just set mainPlayer to undefined)
+    const mainPlayerCats = mainPlayer ? _.orderBy(PlayTypeUtils.buildPosFamily(mainPlayer.role, mainPlayer.posClass).flatMap((catScore, ix) => {
       return catScore > 0 ? [ { order: ix, score: catScore } ] : [];
-    }), ["score"], ["desc"]);
+    }), ["score"], ["desc"]) : undefined;
 
     return _.chain(playerAssistNetwork).flatMap(playerStats => {
       const playerCode = playerStats.code!;
@@ -255,13 +256,13 @@ export class PlayTypeUtils {
           shotTypes.forEach((shotType, ix) => {
 
             // Inject examples
-            const playTypeExamples = _.chain(mainPlayerCats).map(catInfo => {
+            const playTypeExamples = mainPlayerCats  ? _.chain(mainPlayerCats).map(catInfo => {
               const exampleKey = (loc == "source") ?
                 `${PosFamilyNames[catInfo.order!]}_${shotType}_${PosFamilyNames[statSet.order!]}` :
                 `${PosFamilyNames[statSet.order!]}_${shotType}_${PosFamilyNames[catInfo.order!]}`;
 
               return PlayTypeUtils.playTypesByFamily[exampleKey]?.examples || [];
-            }).flatten().uniq().value();
+            }).flatten().uniq().value() : undefined;
 
             const statKey = `${loc}_${shotType}_ast`;
             const statVal = statSet[statKey];
