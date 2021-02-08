@@ -158,6 +158,17 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
   }
 
   /** Only rebuild the table if the data changes, or if luck changes (see above) */
+  const teamStatsTable = React.useMemo(() => {
+    return <GenericCollapsibleCard minimizeMargin={true} title="Team Analysis" helpLink={maybeShowDocs()}>
+      <TeamStatsTable
+        gameFilterParams={gameFilterParams}
+        dataEvent={dataEvent}
+        onChangeState={onGameFilterParamsChange}
+      />
+    </GenericCollapsibleCard>
+  }, [ dataEvent ]);
+
+  /** Only rebuild the table if the data changes, or if luck changes (see above) */
   const rosterStatsTable = React.useMemo(() => {
     return  <GenericCollapsibleCard minimizeMargin={true} title="Individual Analysis" helpLink={maybeShowDocs()}>
       <RosterStatsTable
@@ -195,13 +206,7 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
       </GenericCollapsibleCard>
     </Row>
     <Row>
-      <GenericCollapsibleCard minimizeMargin={true} title="Team Analysis" helpLink={maybeShowDocs()}>
-        <TeamStatsTable
-          gameFilterParams={gameFilterParams}
-          dataEvent={dataEvent}
-          onChangeState={onGameFilterParamsChange}
-        />
-      </GenericCollapsibleCard>
+      {teamStatsTable}
     </Row>
     <Row>
       {rosterStatsTable}

@@ -228,8 +228,16 @@ export class PlayTypeUtils {
         order: infos[0]!.order
       } as Record<string, any>;
 
-      // Score inv vs shot type:
-      const scoreTotalInvsTarget = shotTypes.map(shotType => {
+      // Weighting inv vs shot type:
+      const scorePossTotalInvsSource = shotTypes.map(shotType => {
+        //TODO: this is only if going x-player
+        return 1.0 /
+          (_.reduce(infos, (acc, statSet) =>
+            acc + statSet.score*(statSet[`source_totalScorePoss`]?.value || 0), 0
+          ) || 1);
+      });
+      const efgWeightInvsTarget = shotTypes.map(shotType => {
+        //TODO: handle going x-player (number of asssisted FGAs)
         return 1.0 /
           (_.reduce(infos, (acc, statSet) =>
             acc + statSet.score*(statSet[`target_${shotType}_ast`]?.value || 0), 0
@@ -278,7 +286,7 @@ export class PlayTypeUtils {
           const statVal = statSet[statKey];
           if (statVal?.value) { // (do nothing on 0)
             maybeFill(statKey);
-            const weight = (statSet[`target_${shotType}_ast`]?.value || 0) * scoreTotalInvsTarget[ix]!
+            const weight = (statSet[`target_${shotType}_ast`]?.value || 0) * efgWeightInvsTarget[ix]!
             acc[statKey].value! += statSet.score! * statVal.value * weight;
           }
         });
