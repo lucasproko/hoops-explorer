@@ -18,6 +18,7 @@ import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import { PosFamilyNames, PlayTypeUtils } from "../../utils/stats/PlayTypeUtils";
 import { PositionUtils } from "../../utils/stats/PositionUtils";
 import { CommonTableDefs } from "../../utils/tables/CommonTableDefs";
+import { PlayTypeDiagUtils } from "../../utils/tables/PlayTypeDiagUtils";
 import { CbbColors } from "../../utils/CbbColors";
 import { LineupUtils } from "../../utils/stats/LineupUtils";
 
@@ -45,10 +46,9 @@ type Props = {
   showDetailsOverride?: boolean
 };
 const TeamPlayTypeDiagView: React.FunctionComponent<Props> = ({players, rosterStatsByCode, teamSeasonLookup, showHelp, showDetailsOverride}) => {
-
   // Repeat the logic in PlayerTypeTypeDiagView:
 
-  const perPlayCategoryAssistNetwork = _.chain(players).map((player) => {
+  const perPlayCategoryAssistNetwork = _.chain(players).map((player, ix) => {
     const allPlayers = PlayTypeUtils.buildPlayerAssistCodeList(player);
     const playerStyle = PlayTypeUtils.buildPlayerStyle(player);
     const playerAssistNetwork = allPlayers.map((p) => {
@@ -56,16 +56,20 @@ const TeamPlayTypeDiagView: React.FunctionComponent<Props> = ({players, rosterSt
         p, player, playerStyle.totalScoringPlaysMade, playerStyle.totalAssists,
         rosterStatsByCode
       );
-      return info;
+      return { code: p, ...info };
     });
     const posCategoryAssistNetwork = PlayTypeUtils.buildPosCategoryAssistNetwork(
       playerAssistNetwork, rosterStatsByCode, undefined
     );
 
-    /**/
-    console.log(`${player.code} ... vs ... ${JSON.stringify(posCategoryAssistNetwork, tidyNumbers, 3)}`);
+    const code = player.player_array?.hits?.hits?.[0]?._source?.player?.code || player.key;
 
-    return [ player.code || "??", posCategoryAssistNetwork ];
+    /**/
+//     if (0 == ix)
+// console.log(`${code} ... vs ... ${JSON.stringify(playerAssistNetwork, tidyNumbers, 3)}`);
+
+
+    return [ code, posCategoryAssistNetwork ];
   }).fromPairs().value();
 
   //TODO: need unassisted as well
@@ -80,7 +84,7 @@ const TeamPlayTypeDiagView: React.FunctionComponent<Props> = ({players, rosterSt
   // So transform [1] to (pos)(players)[ <shot-type-stats> ] and then use [2] on each pos
   // and that gives us a pos vs pos -> <shot-type-stats> as desired!
 
-  _.chain(PosFamilyNames).map((pos, ix) => {
+  const posVsPosAssistNetwork = _.chain(PosFamilyNames).map((pos, ix) => {
     const perPlayer = _.chain(perPlayCategoryAssistNetwork).mapValues((posAssistNetwork, playerCode) => {
       const posStats = posAssistNetwork.filter(net => net?.order == ix)?.[0] || undefined;
        return posStats ? [ {
@@ -96,14 +100,32 @@ const TeamPlayTypeDiagView: React.FunctionComponent<Props> = ({players, rosterSt
 /**/
 //console.log(`${pos} ... vs ... ${JSON.stringify(posPosCatAssistNetwork, tidyNumbers, 3)}`);
 
+//TODO: need to weight by each player's FGA
     return [ pos, posPosCatAssistNetwork ];
 
   }).fromPairs().value();
 
-
+  const rawAssistTableData = _.chain(posVsPosAssistNetwork).toPairs().flatMap((kv) => {
+    return [ GenericTableOps.buildTextRow(
+      <span>{kv[0]}</span>
+    ) ].concat(
+      kv[1].map(info => PlayTypeDiagUtils.buildInfoRows(info)).map((info) =>
+        GenericTableOps.buildDataRow({
+          ...info,
+          title: <span><i>{_.capitalize(PosFamilyNames[info.order])}</i></span>
+        }, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta)
+      )
+    );
+  }).value();
 
   return <span>
-
-    </span>;
+    {/*JSON.stringify(test, tidyNumbers, 3)*/}
+    <br/>
+    <Container>
+      <Col xs={10}>
+        <GenericTable responsive={false} tableCopyId="teamAssistNetworks" tableFields={PlayTypeDiagUtils.rawAssistTableFields} tableData={rawAssistTableData}/>
+      </Col>
+    </Container>
+  </span>;
 };
 export default TeamPlayTypeDiagView;
