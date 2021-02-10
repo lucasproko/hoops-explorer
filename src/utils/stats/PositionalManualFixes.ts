@@ -137,12 +137,19 @@ export const relativePositionFixes: Record<string, RelativePositionFixRule[]> = 
       { code: "JaSmith", id: "Smith, Jalen" }
     ]
   }]),
-  // 22/12/2020: Hamilton plays the 5 alongside Scott; Morsell plays 4 alongside Wiggins
+  // 22/12/2020: Hamilton plays the 5 alongside Scott (+ 4/3); Morsell plays 4 alongside Wiggins
   "Men_Maryland_2020/21": Maryland_2018_2020.concat([{
     key: [ undefined, undefined, undefined, "JsHamilton", "DoScott" ],
     rule: [ undefined, undefined, undefined,
       { code: "DoScott", id: "Scott, Donta" },
       { code: "JsHamilton", id: "Hamilton, Jairus" }
+    ]
+  }, {
+    key: [ undefined, undefined, "JsHamilton", "DoScott", undefined ],
+    rule: [ undefined, undefined,
+      { code: "DoScott", id: "Scott, Donta" },
+      { code: "JsHamilton", id: "Hamilton, Jairus" },
+      undefined
     ]
   }])
 };
