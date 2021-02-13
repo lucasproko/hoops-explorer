@@ -65,7 +65,7 @@ const PlayerPlayTypeDiagView: React.FunctionComponent<Props> = ({player, rosterS
       title: tooltipBuilder("unassist", "Unassisted",
         "All scoring plays where the player was unassisted (includes FTs which can never be assisted). Includes half court, scrambles, and transition)"
       ),
-      ...PlayTypeDiagUtils.buildInfoRows(PlayTypeUtils.enrichUnassistedStats(playerStyle.unassisted, player))
+      ...PlayTypeDiagUtils.buildInfoRow(PlayTypeUtils.enrichUnassistedStats(playerStyle.unassisted, player))
     },
     {
       title: tooltipBuilder("assist", "Assist totals:",
@@ -134,7 +134,7 @@ const PlayerPlayTypeDiagView: React.FunctionComponent<Props> = ({player, rosterS
       objData, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta
     );
   })).concat(
-    posCategoryAssistNetwork.map(info => PlayTypeDiagUtils.buildInfoRows(info)).map((info) =>
+    posCategoryAssistNetwork.map(info => PlayTypeDiagUtils.buildInfoRow(info)).map((info) =>
       GenericTableOps.buildDataRow(info, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta)
     )
   ).concat(
@@ -146,7 +146,7 @@ const PlayerPlayTypeDiagView: React.FunctionComponent<Props> = ({player, rosterS
   })).concat(
     [ GenericTableOps.buildTextRow(playerBreakdownHtml) ]
   ).concat(
-    showPlayerBreakdown ? playerAssistNetwork.map(info => PlayTypeDiagUtils.buildInfoRows(info)).map((info) =>
+    showPlayerBreakdown ? playerAssistNetwork.map(info => PlayTypeDiagUtils.buildInfoRow(info)).map((info) =>
       GenericTableOps.buildDataRow(info, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta)
     ) : []
   );

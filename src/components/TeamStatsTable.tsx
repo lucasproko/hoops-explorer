@@ -256,7 +256,8 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
           <TeamPlayTypeDiagView
             players={rosterStats.baseline || []}
             rosterStatsByCode={globalRosterStatsByCode}
-            teamSeason={teamSeasonLookup}
+            teamStats={teamStatsBaseline}
+            teamSeasonLookup={teamSeasonLookup}
             showHelp={showHelp}
             />, "small"
         ) ] : [],

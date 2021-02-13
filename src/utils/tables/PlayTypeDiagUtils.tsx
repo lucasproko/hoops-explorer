@@ -34,7 +34,7 @@ import GenericTable, { GenericTableOps, GenericTableColProps } from "../../compo
 export class PlayTypeDiagUtils {
 
   // Couple of utils for decorating the background eFG
-  private static buildInfoRow = (stat: any) =>
+  private static buildInfoStat = (stat: any) =>
     <text style={CommonTableDefs.getTextShadow(stat, CbbColors.off_eFG)}>
       <i>{(100*(stat?.value || 0)).toFixed(1)}%</i>
     </text>;
@@ -47,10 +47,10 @@ export class PlayTypeDiagUtils {
     }
     return stat;
   };
-  static buildInfoRows = (statSet: any) => {
+  static buildInfoRow = (statSet: any) => {
     return _.mapValues(statSet, (valObj, key) => { // Decorate eFG
       if (valObj) {
-        return _.endsWith(key, "_efg") ? PlayTypeDiagUtils.buildInfoRow(valObj) : PlayTypeDiagUtils.enrichExtraInfo(valObj);
+        return _.endsWith(key, "_efg") ? PlayTypeDiagUtils.buildInfoStat(valObj) : PlayTypeDiagUtils.enrichExtraInfo(valObj);
       } else return valObj;
     });
   }
@@ -62,11 +62,11 @@ export class PlayTypeDiagUtils {
     ...(_.fromPairs(targetSource.flatMap((loc) => {
         const targetNotSource = loc == "target";
         return [
-          [`sep${loc}`, GenericTableOps.addColSeparator(0.25) ],
+          [`sep${loc}`, GenericTableOps.addColSeparator(1) ],
         ].concat(
           shotTypes.flatMap((key) => {
             const descriptionAst = targetNotSource ?
-              `% of total assists to this player for this shot type` : `% of scoring possessions/assists of this shot type assisted BY the specified row (team-mate/category)`;
+              `% of total assists to the specified row (team-mate/team category) for this shot type` : `% of scoring possessions/assists of this shot type assisted BY the specified row (team-mate/category)`;
             const descriptionEfg = `The season eFG% of this shot type / player`;
             return [
               [
@@ -86,14 +86,13 @@ export class PlayTypeDiagUtils {
             );
           }).concat(targetNotSource ? [] : [
             [
-              `source_sf`, GenericTableOps.addPctCol(`SF%`,
+              `source_sf`, GenericTableOps.addPctCol(`SF`,
                 "% of scoring possessions/assists ending in a trip to the FT line", CbbColors.varPicker(CbbColors.p_ast_breakdown),
               )
             ],
-            [ `sep${loc}_targetsrc`, GenericTableOps.addColSeparator(0.75) ],
             [
-              `target_ast`, GenericTableOps.addPctCol(`AST%`,
-                "% of scoring possessions/assists ending with an assist TO the specified row (team-mate/team category)", CbbColors.varPicker(CbbColors.p_ast_breakdown),
+              `target_ast`, GenericTableOps.addPctCol(`AST`,
+                "% of scoring possessions/assists ending with an assist FOR the specified row (team-mate/team category)", CbbColors.varPicker(CbbColors.p_ast_breakdown),
               )
             ]
           ])

@@ -519,18 +519,7 @@ exports[`PlayerPlayTypeDiagView PositionalDiagView - should create snapshot (!de
               "missingData": undefined,
               "rowSpan": [Function],
               "toolTip": "",
-              "widthUnits": 0.25,
-            },
-            "sepsource_targetsrc": GenericTableColProps {
-              "className": "",
-              "colName": "",
-              "colorPicker": [Function],
-              "formatter": [Function],
-              "isTitle": false,
-              "missingData": undefined,
-              "rowSpan": [Function],
-              "toolTip": "",
-              "widthUnits": 0.75,
+              "widthUnits": 1,
             },
             "septarget": GenericTableColProps {
               "className": "",
@@ -541,7 +530,7 @@ exports[`PlayerPlayTypeDiagView PositionalDiagView - should create snapshot (!de
               "missingData": undefined,
               "rowSpan": [Function],
               "toolTip": "",
-              "widthUnits": 0.25,
+              "widthUnits": 1,
             },
             "septarget3p": GenericTableColProps {
               "className": "",
@@ -611,7 +600,7 @@ exports[`PlayerPlayTypeDiagView PositionalDiagView - should create snapshot (!de
             },
             "source_sf": GenericTableColProps {
               "className": "",
-              "colName": "SF%",
+              "colName": "SF",
               "colorPicker": [Function],
               "formatter": [Function],
               "isTitle": false,
@@ -628,7 +617,7 @@ exports[`PlayerPlayTypeDiagView PositionalDiagView - should create snapshot (!de
               "isTitle": false,
               "missingData": undefined,
               "rowSpan": [Function],
-              "toolTip": "% of total assists to this player for this shot type",
+              "toolTip": "% of total assists to the specified row (team-mate/team category) for this shot type",
               "widthUnits": 2,
             },
             "target_3p_efg": GenericTableColProps {
@@ -644,13 +633,13 @@ exports[`PlayerPlayTypeDiagView PositionalDiagView - should create snapshot (!de
             },
             "target_ast": GenericTableColProps {
               "className": "",
-              "colName": "AST%",
+              "colName": "AST",
               "colorPicker": [Function],
               "formatter": [Function],
               "isTitle": false,
               "missingData": undefined,
               "rowSpan": [Function],
-              "toolTip": "% of scoring possessions/assists ending with an assist TO the specified row (team-mate/team category)",
+              "toolTip": "% of scoring possessions/assists ending with an assist FOR the specified row (team-mate/team category)",
               "widthUnits": 2,
             },
             "target_mid_ast": GenericTableColProps {
@@ -661,7 +650,7 @@ exports[`PlayerPlayTypeDiagView PositionalDiagView - should create snapshot (!de
               "isTitle": false,
               "missingData": undefined,
               "rowSpan": [Function],
-              "toolTip": "% of total assists to this player for this shot type",
+              "toolTip": "% of total assists to the specified row (team-mate/team category) for this shot type",
               "widthUnits": 2,
             },
             "target_mid_efg": GenericTableColProps {
@@ -683,7 +672,7 @@ exports[`PlayerPlayTypeDiagView PositionalDiagView - should create snapshot (!de
               "isTitle": false,
               "missingData": undefined,
               "rowSpan": [Function],
-              "toolTip": "% of total assists to this player for this shot type",
+              "toolTip": "% of total assists to the specified row (team-mate/team category) for this shot type",
               "widthUnits": 2,
             },
             "target_rim_efg": GenericTableColProps {
@@ -1803,18 +1792,7 @@ exports[`PlayerPlayTypeDiagView PositionalDiagView - should create snapshot (det
               "missingData": undefined,
               "rowSpan": [Function],
               "toolTip": "",
-              "widthUnits": 0.25,
-            },
-            "sepsource_targetsrc": GenericTableColProps {
-              "className": "",
-              "colName": "",
-              "colorPicker": [Function],
-              "formatter": [Function],
-              "isTitle": false,
-              "missingData": undefined,
-              "rowSpan": [Function],
-              "toolTip": "",
-              "widthUnits": 0.75,
+              "widthUnits": 1,
             },
             "septarget": GenericTableColProps {
               "className": "",
@@ -1825,7 +1803,7 @@ exports[`PlayerPlayTypeDiagView PositionalDiagView - should create snapshot (det
               "missingData": undefined,
               "rowSpan": [Function],
               "toolTip": "",
-              "widthUnits": 0.25,
+              "widthUnits": 1,
             },
             "septarget3p": GenericTableColProps {
               "className": "",
@@ -1895,7 +1873,7 @@ exports[`PlayerPlayTypeDiagView PositionalDiagView - should create snapshot (det
             },
             "source_sf": GenericTableColProps {
               "className": "",
-              "colName": "SF%",
+              "colName": "SF",
               "colorPicker": [Function],
               "formatter": [Function],
               "isTitle": false,
@@ -1912,7 +1890,7 @@ exports[`PlayerPlayTypeDiagView PositionalDiagView - should create snapshot (det
               "isTitle": false,
               "missingData": undefined,
               "rowSpan": [Function],
-              "toolTip": "% of total assists to this player for this shot type",
+              "toolTip": "% of total assists to the specified row (team-mate/team category) for this shot type",
               "widthUnits": 2,
             },
             "target_3p_efg": GenericTableColProps {
@@ -1928,13 +1906,13 @@ exports[`PlayerPlayTypeDiagView PositionalDiagView - should create snapshot (det
             },
             "target_ast": GenericTableColProps {
               "className": "",
-              "colName": "AST%",
+              "colName": "AST",
               "colorPicker": [Function],
               "formatter": [Function],
               "isTitle": false,
               "missingData": undefined,
               "rowSpan": [Function],
-              "toolTip": "% of scoring possessions/assists ending with an assist TO the specified row (team-mate/team category)",
+              "toolTip": "% of scoring possessions/assists ending with an assist FOR the specified row (team-mate/team category)",
               "widthUnits": 2,
             },
             "target_mid_ast": GenericTableColProps {
@@ -1945,7 +1923,7 @@ exports[`PlayerPlayTypeDiagView PositionalDiagView - should create snapshot (det
               "isTitle": false,
               "missingData": undefined,
               "rowSpan": [Function],
-              "toolTip": "% of total assists to this player for this shot type",
+              "toolTip": "% of total assists to the specified row (team-mate/team category) for this shot type",
               "widthUnits": 2,
             },
             "target_mid_efg": GenericTableColProps {
@@ -1967,7 +1945,7 @@ exports[`PlayerPlayTypeDiagView PositionalDiagView - should create snapshot (det
               "isTitle": false,
               "missingData": undefined,
               "rowSpan": [Function],
-              "toolTip": "% of total assists to this player for this shot type",
+              "toolTip": "% of total assists to the specified row (team-mate/team category) for this shot type",
               "widthUnits": 2,
             },
             "target_rim_efg": GenericTableColProps {
