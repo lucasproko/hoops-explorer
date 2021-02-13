@@ -1,0 +1,2677 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!details, help) 1`] = `
+<span>
+  <br />
+  <Container
+    fluid={false}
+  >
+    <Col
+      xs={10}
+    >
+      <GenericTable
+        responsive={false}
+        tableCopyId="teamAssistNetworks"
+        tableData={
+          Array [
+            GenericTableDataRow {
+              "cellMetaFn": [Function],
+              "dataObj": Object {
+                "title": <b>
+                  Ballhandler
+                   to/from:
+                </b>,
+              },
+              "kind": "data-row",
+              "prefixFn": [Function],
+              "tableFieldsOverride": undefined,
+            },
+            GenericTableDataRow {
+              "cellMetaFn": [Function],
+              "dataObj": Object {
+                "order": 0,
+                "source_3p_ast": Object {
+                  "extraInfo": <div>
+                    Example play types:
+                    <br />
+                    <li>
+                      dribble jumper off misc action
+                    </li>
+                    <li>
+                      off ball-screen
+                    </li>
+                    <li>
+                      dribble jumper off ISO
+                    </li>
+                  </div>,
+                  "value": 0.061497789032172866,
+                },
+                "source_mid_ast": Object {
+                  "extraInfo": <div>
+                    Example play types:
+                    <br />
+                    <li>
+                      drive and pull-up off ball-screen or ISO
+                    </li>
+                    <li>
+                      misc action
+                    </li>
+                  </div>,
+                  "value": 0.058621682269414596,
+                },
+                "source_rim_ast": Object {
+                  "extraInfo": <div>
+                    Example play types:
+                    <br />
+                    <li>
+                      attacks the rim off pick-and-roll
+                    </li>
+                    <li>
+                      ISO
+                    </li>
+                  </div>,
+                  "value": 0.15011419002220688,
+                },
+                "source_sf": Object {
+                  "extraInfo": <div>
+                    Example play types:
+                    <br />
+                    <li>
+                      fouled driving to the rim
+                    </li>
+                    <li>
+                      fouled in the bonus
+                    </li>
+                    <li>
+                      fouled cutting
+                    </li>
+                  </div>,
+                  "value": 0.2829976928643818,
+                },
+                "title": <OverlayTrigger
+                  overlay={
+                    <ForwardRef
+                      id="unassistedTooltip"
+                      placement="right"
+                    >
+                      All scoring plays where the ballhandler was unassisted (includes FTs which can never be assisted). Includes half court, scrambles, and transition)
+                    </ForwardRef>
+                  }
+                  placement="auto"
+                >
+                  <i>
+                    Unassisted
+                  </i>
+                </OverlayTrigger>,
+              },
+              "kind": "data-row",
+              "prefixFn": [Function],
+              "tableFieldsOverride": undefined,
+            },
+            GenericTableDataRow {
+              "cellMetaFn": [Function],
+              "dataObj": Object {
+                "order": 0,
+                "source_3p_ast": Object {
+                  "extraInfo": undefined,
+                  "value": 0.13813678001392635,
+                },
+                "source_mid_ast": Object {
+                  "extraInfo": undefined,
+                  "value": 0.006838775859121217,
+                },
+                "source_rim_ast": Object {
+                  "extraInfo": undefined,
+                  "value": 0.06446979085444507,
+                },
+                "target_ast": Object {
+                  "extraInfo": undefined,
+                  "value": 0.43732329908433126,
+                },
+                "title": <OverlayTrigger
+                  overlay={
+                    <ForwardRef
+                      id="assistTooltip"
+                      placement="right"
+                    >
+                      All plays where the  ballhandler was assisted (left half) or provided the assist (right half). The 3 rows below break down assisted plays according to the positional category of the assister/assistee. (Includes half court, scramble, and transitions)
+                    </ForwardRef>
+                  }
+                  placement="auto"
+                >
+                  <i>
+                    Assist totals:
+                  </i>
+                </OverlayTrigger>,
+              },
+              "kind": "data-row",
+              "prefixFn": [Function],
+              "tableFieldsOverride": undefined,
+            },
+            GenericTableSeparator {
+              "kind": "separator",
+            },
+            GenericTableDataRow {
+              "cellMetaFn": [Function],
+              "dataObj": Object {
+                "order": 0,
+                "source_3p_ast": Object {
+                  "extraInfo": <div>
+                    Example play types:
+                    <br />
+                    <li>
+                      drive-and-kick
+                    </li>
+                    <li>
+                      hockey assist after defense collapses inside
+                    </li>
+                    <li>
+                      misc action
+                    </li>
+                  </div>,
+                  "value": 0.022760974419926357,
+                },
+                "source_mid_ast": Object {
+                  "extraInfo": <div>
+                    Example play types:
+                    <br />
+                    <li>
+                      spread offense
+                    </li>
+                    <li>
+                      misc action
+                    </li>
+                  </div>,
+                  "value": 0.004103265515472731,
+                },
+                "source_rim_ast": Object {
+                  "extraInfo": <div>
+                    Example play types:
+                    <br />
+                    <li>
+                      cut
+                    </li>
+                  </div>,
+                  "value": 0.008706334803950413,
+                },
+                "target_3p_ast": Object {
+                  "extraInfo": <div>
+                    Example play types:
+                    <br />
+                    <li>
+                      drive-and-kick
+                    </li>
+                    <li>
+                      hockey assist after defense collapses inside
+                    </li>
+                    <li>
+                      misc action
+                    </li>
+                  </div>,
+                  "value": 0.06911976911976912,
+                },
+                "target_3p_efg": <text
+                  style={
+                    Object {
+                      "textShadow": "0px 0px 10px #ffbfbf",
+                    }
+                  }
+                >
+                  <i>
+                    47.5
+                    %
+                  </i>
+                </text>,
+                "target_ast": Object {
+                  "extraInfo": undefined,
+                  "value": 0.028118219503871056,
+                },
+                "target_mid_ast": Object {
+                  "extraInfo": <div>
+                    Example play types:
+                    <br />
+                    <li>
+                      spread offense
+                    </li>
+                    <li>
+                      misc action
+                    </li>
+                  </div>,
+                  "value": 0.004761904761904762,
+                },
+                "target_mid_efg": <text
+                  style={
+                    Object {
+                      "textShadow": "0px 0px 10px #ff0000",
+                    }
+                  }
+                >
+                  <i>
+                    24.6
+                    %
+                  </i>
+                </text>,
+                "target_rim_ast": Object {
+                  "extraInfo": <div>
+                    Example play types:
+                    <br />
+                    <li>
+                      cut
+                    </li>
+                  </div>,
+                  "value": 0.02611832611832612,
+                },
+                "target_rim_efg": <text
+                  style={
+                    Object {
+                      "textShadow": "0px 0px 10px #008000",
+                    }
+                  }
+                >
+                  <i>
+                    60.7
+                    %
+                  </i>
+                </text>,
+                "title": <span>
+                  <i>
+                    Ballhandler
+                  </i>
+                </span>,
+              },
+              "kind": "data-row",
+              "prefixFn": [Function],
+              "tableFieldsOverride": undefined,
+            },
+            GenericTableDataRow {
+              "cellMetaFn": [Function],
+              "dataObj": Object {
+                "order": 1,
+                "source_3p_ast": Object {
+                  "extraInfo": <div>
+                    Example play types:
+                    <br />
+                    <li>
+                      slash-and-kick
+                    </li>
+                    <li>
+                      hockey assist after defense collapses inside
+                    </li>
+                    <li>
+                      misc action
+                    </li>
+                  </div>,
+                  "value": 0.11537580559399999,
+                },
+                "source_mid_ast": Object {
+                  "extraInfo": <div>
+                    Example play types:
+                    <br />
+                    <li>
+                      spread offense
+                    </li>
+                    <li>
+                      misc action
+                    </li>
+                  </div>,
+                  "value": 0.0027355103436484873,
+                },
+                "source_rim_ast": Object {
+                  "extraInfo": <div>
+                    Example play types:
+                    <br />
+                    <li>
+                      cut
+                    </li>
+                  </div>,
+                  "value": 0.05576345605049465,
+                },
+                "target_3p_ast": Object {
+                  "extraInfo": <div>
+                    Example play types:
+                    <br />
+                    <li>
+                      drive-and-kick
+                    </li>
+                    <li>
+                      hockey assist after defense collapses inside
+                    </li>
+                    <li>
+                      misc action
+                    </li>
+                  </div>,
+                  "value": 0.4741702741702742,
+                },
+                "target_3p_efg": <text
+                  style={
+                    Object {
+                      "textShadow": "0px 0px 10px #ff0000",
+                    }
+                  }
+                >
+                  <i>
+                    7.7
+                    %
+                  </i>
+                </text>,
+                "target_ast": Object {
+                  "extraInfo": undefined,
+                  "value": 0.40920507958046015,
+                },
+                "target_mid_ast": Object {
+                  "extraInfo": <div>
+                    Example play types:
+                    <br />
+                    <li>
+                      spread offense
+                    </li>
+                    <li>
+                      misc action
+                    </li>
+                    <li>
+                      zone buster
+                    </li>
+                  </div>,
+                  "value": 0.08484848484848485,
+                },
+                "target_mid_efg": <text
+                  style={
+                    Object {
+                      "textShadow": "0px 0px 10px #ff0000",
+                    }
+                  }
+                >
+                  <i>
+                    5.5
+                    %
+                  </i>
+                </text>,
+                "target_rim_ast": Object {
+                  "extraInfo": <div>
+                    Example play types:
+                    <br />
+                    <li>
+                      cut
+                    </li>
+                  </div>,
+                  "value": 0.540981240981241,
+                },
+                "target_rim_efg": <text
+                  style={
+                    Object {
+                      "textShadow": "0px 0px 10px #ff0000",
+                    }
+                  }
+                >
+                  <i>
+                    4.2
+                    %
+                  </i>
+                </text>,
+                "title": <span>
+                  <i>
+                    Wing
+                  </i>
+                </span>,
+              },
+              "kind": "data-row",
+              "prefixFn": [Function],
+              "tableFieldsOverride": undefined,
+            },
+            GenericTableDataRow {
+              "cellMetaFn": [Function],
+              "dataObj": Object {
+                "order": 2,
+                "title": <span>
+                  <i>
+                    Big
+                  </i>
+                </span>,
+              },
+              "kind": "data-row",
+              "prefixFn": [Function],
+              "tableFieldsOverride": undefined,
+            },
+            GenericTableSeparator {
+              "kind": "separator",
+            },
+            GenericTableDataRow {
+              "cellMetaFn": [Function],
+              "dataObj": Object {
+                "order": 0,
+                "source_3p_ast": Object {
+                  "extraInfo": undefined,
+                  "value": 0.030985385994710155,
+                },
+                "source_mid_ast": Object {
+                  "extraInfo": undefined,
+                  "value": 0.008583618928678968,
+                },
+                "source_rim_ast": Object {
+                  "extraInfo": undefined,
+                  "value": 0.05725392709759035,
+                },
+                "source_sf": Object {
+                  "extraInfo": undefined,
+                  "value": 0.11288091362235218,
+                },
+                "target_ast": Object {
+                  "extraInfo": undefined,
+                  "value": 0.11502553851202399,
+                },
+                "title": <OverlayTrigger
+                  overlay={
+                    <ForwardRef
+                      id="transTooltip"
+                      placement="right"
+                    >
+                      All plays (assisted or unassisted) that are classified as 'in transition', normally shots taken rapidly after a rebound, miss, or make in the other direction.
+                    </ForwardRef>
+                  }
+                  placement="auto"
+                >
+                  <i>
+                    In transition
+                  </i>
+                </OverlayTrigger>,
+              },
+              "kind": "data-row",
+              "prefixFn": [Function],
+              "tableFieldsOverride": undefined,
+            },
+            GenericTableDataRow {
+              "cellMetaFn": [Function],
+              "dataObj": Object {
+                "order": 0,
+                "source_3p_ast": Object {
+                  "extraInfo": undefined,
+                  "value": 0.013818148137352219,
+                },
+                "source_rim_ast": Object {
+                  "extraInfo": undefined,
+                  "value": 0.017544325755091444,
+                },
+                "source_sf": Object {
+                  "extraInfo": undefined,
+                  "value": 0.01803326017964705,
+                },
+                "target_ast": Object {
+                  "extraInfo": undefined,
+                  "value": 0.016930746378734214,
+                },
+                "title": <OverlayTrigger
+                  overlay={
+                    <ForwardRef
+                      id="scrambleTooltip"
+                      placement="right"
+                    >
+                      All plays (assisted or unassisted) that occur in the aftermath of an offensive rebound, where the offense does not get reset before scoring. Examples are putbacks (unassisted) or tips to other players (assisted)
+                    </ForwardRef>
+                  }
+                  placement="auto"
+                >
+                  <i>
+                    Scrambles after RB
+                  </i>
+                </OverlayTrigger>,
+              },
+              "kind": "data-row",
+              "prefixFn": [Function],
+              "tableFieldsOverride": undefined,
+            },
+            GenericTableSeparator {
+              "kind": "separator",
+            },
+            GenericTableDataRow {
+              "cellMetaFn": [Function],
+              "dataObj": Object {
+                "title": <b>
+                  Wing
+                   to/from:
+                </b>,
+              },
+              "kind": "data-row",
+              "prefixFn": [Function],
+              "tableFieldsOverride": undefined,
+            },
+            GenericTableDataRow {
+              "cellMetaFn": [Function],
+              "dataObj": Object {
+                "order": 1,
+                "source_3p_ast": Object {
+                  "extraInfo": <div>
+                    Example play types:
+                    <br />
+                    <li>
+                      off ball-screen
+                    </li>
+                    <li>
+                      dribble jumper off misc action
+                    </li>
+                    <li>
+                      dribble jumper off ISO
+                    </li>
+                  </div>,
+                  "value": 0.0218840827491879,
+                },
+                "source_mid_ast": Object {
+                  "extraInfo": <div>
+                    Example play types:
+                    <br />
+                    <li>
+                      drive and pull-up off ball-screen or ISO
+                    </li>
+                    <li>
+                      misc action
+                    </li>
+                  </div>,
+                  "value": 0.06018122756026672,
+                },
+                "source_rim_ast": Object {
+                  "extraInfo": <div>
+                    Example play types:
+                    <br />
+                    <li>
+                      attacks the rim off pick-and-roll
+                    </li>
+                    <li>
+                      ISO
+                    </li>
+                  </div>,
+                  "value": 0.11489143443323646,
+                },
+                "source_sf": Object {
+                  "extraInfo": <div>
+                    Example play types:
+                    <br />
+                    <li>
+                      fouled slashing to the rim
+                    </li>
+                    <li>
+                      fouled in the bonus
+                    </li>
+                    <li>
+                      fouled cutting
+                    </li>
+                  </div>,
+                  "value": 0.1325354761497692,
+                },
+                "title": <OverlayTrigger
+                  overlay={
+                    <ForwardRef
+                      id="unassistedTooltip"
+                      placement="right"
+                    >
+                      All scoring plays where the wing was unassisted (includes FTs which can never be assisted). Includes half court, scrambles, and transition)
+                    </ForwardRef>
+                  }
+                  placement="auto"
+                >
+                  <i>
+                    Unassisted
+                  </i>
+                </OverlayTrigger>,
+              },
+              "kind": "data-row",
+              "prefixFn": [Function],
+              "tableFieldsOverride": undefined,
+            },
+            GenericTableDataRow {
+              "cellMetaFn": [Function],
+              "dataObj": Object {
+                "order": 1,
+                "source_3p_ast": Object {
+                  "extraInfo": undefined,
+                  "value": 0.1914857240553941,
+                },
+                "source_mid_ast": Object {
+                  "extraInfo": undefined,
+                  "value": 0.027355103436484868,
+                },
+                "source_rim_ast": Object {
+                  "extraInfo": undefined,
+                  "value": 0.07112326893486066,
+                },
+                "target_ast": Object {
+                  "extraInfo": undefined,
+                  "value": 0.18054368268080015,
+                },
+                "title": <OverlayTrigger
+                  overlay={
+                    <ForwardRef
+                      id="assistTooltip"
+                      placement="right"
+                    >
+                      All plays where the  wing was assisted (left half) or provided the assist (right half). The 3 rows below break down assisted plays according to the positional category of the assister/assistee. (Includes half court, scramble, and transitions)
+                    </ForwardRef>
+                  }
+                  placement="auto"
+                >
+                  <i>
+                    Assist totals:
+                  </i>
+                </OverlayTrigger>,
+              },
+              "kind": "data-row",
+              "prefixFn": [Function],
+              "tableFieldsOverride": undefined,
+            },
+            GenericTableSeparator {
+              "kind": "separator",
+            },
+            GenericTableDataRow {
+              "cellMetaFn": [Function],
+              "dataObj": Object {
+                "order": 0,
+                "source_3p_ast": Object {
+                  "extraInfo": <div>
+                    Example play types:
+                    <br />
+                    <li>
+                      drive-and-kick
+                    </li>
+                    <li>
+                      hockey assist after defense collapses inside
+                    </li>
+                    <li>
+                      misc action
+                    </li>
+                  </div>,
+                  "value": 0.07112326893486066,
+                },
+                "source_mid_ast": Object {
+                  "extraInfo": <div>
+                    Example play types:
+                    <br />
+                    <li>
+                      spread offense
+                    </li>
+                    <li>
+                      misc action
+                    </li>
+                    <li>
+                      zone buster
+                    </li>
+                  </div>,
+                  "value": 0.016413062061890926,
+                },
+                "source_rim_ast": Object {
+                  "extraInfo": <div>
+                    Example play types:
+                    <br />
+                    <li>
+                      cut
+                    </li>
+                  </div>,
+                  "value": 0.027355103436484868,
+                },
+                "target_3p_ast": Object {
+                  "extraInfo": <div>
+                    Example play types:
+                    <br />
+                    <li>
+                      slash-and-kick
+                    </li>
+                    <li>
+                      hockey assist after defense collapses inside
+                    </li>
+                    <li>
+                      misc action
+                    </li>
+                  </div>,
+                  "value": 0.19393939393939397,
+                },
+                "target_3p_efg": <text
+                  style={
+                    Object {
+                      "textShadow": "0px 0px 10px #ffe4e4",
+                    }
+                  }
+                >
+                  <i>
+                    49.0
+                    %
+                  </i>
+                </text>,
+                "target_ast": Object {
+                  "extraInfo": undefined,
+                  "value": 0.06018122756026672,
+                },
+                "target_rim_ast": Object {
+                  "extraInfo": <div>
+                    Example play types:
+                    <br />
+                    <li>
+                      cut
+                    </li>
+                  </div>,
+                  "value": 0.07272727272727274,
+                },
+                "target_rim_efg": <text
+                  style={
+                    Object {
+                      "textShadow": "0px 0px 10px #60b060",
+                    }
+                  }
+                >
+                  <i>
+                    56.2
+                    %
+                  </i>
+                </text>,
+                "title": <span>
+                  <i>
+                    Ballhandler
+                  </i>
+                </span>,
+              },
+              "kind": "data-row",
+              "prefixFn": [Function],
+              "tableFieldsOverride": undefined,
+            },
+            GenericTableDataRow {
+              "cellMetaFn": [Function],
+              "dataObj": Object {
+                "order": 1,
+                "source_3p_ast": Object {
+                  "extraInfo": <div>
+                    Example play types:
+                    <br />
+                    <li>
+                      slash-and-kick
+                    </li>
+                    <li>
+                      hockey assist after defense collapses inside
+                    </li>
+                    <li>
+                      misc action
+                    </li>
+                  </div>,
+                  "value": 0.12036245512053344,
+                },
+                "source_mid_ast": Object {
+                  "extraInfo": <div>
+                    Example play types:
+                    <br />
+                    <li>
+                      spread offense, misc action
+                    </li>
+                    <li>
+                      zone buster
+                    </li>
+                  </div>,
+                  "value": 0.01094204137459395,
+                },
+                "source_rim_ast": Object {
+                  "extraInfo": <div>
+                    Example play types:
+                    <br />
+                    <li>
+                      cut
+                    </li>
+                  </div>,
+                  "value": 0.04376816549837579,
+                },
+                "target_3p_ast": Object {
+                  "extraInfo": <div>
+                    Example play types:
+                    <br />
+                    <li>
+                      slash-and-kick
+                    </li>
+                    <li>
+                      hockey assist after defense collapses inside
+                    </li>
+                    <li>
+                      misc action
+                    </li>
+                  </div>,
+                  "value": 0.1696969696969697,
+                },
+                "target_ast": Object {
+                  "extraInfo": undefined,
+                  "value": 0.12036245512053341,
+                },
+                "target_mid_ast": Object {
+                  "extraInfo": <div>
+                    Example play types:
+                    <br />
+                    <li>
+                      spread offense, misc action
+                    </li>
+                    <li>
+                      zone buster
+                    </li>
+                  </div>,
+                  "value": 0.07272727272727274,
+                },
+                "target_rim_ast": Object {
+                  "extraInfo": <div>
+                    Example play types:
+                    <br />
+                    <li>
+                      cut
+                    </li>
+                  </div>,
+                  "value": 0.29090909090909095,
+                },
+                "title": <span>
+                  <i>
+                    Wing
+                  </i>
+                </span>,
+              },
+              "kind": "data-row",
+              "prefixFn": [Function],
+              "tableFieldsOverride": undefined,
+            },
+            GenericTableDataRow {
+              "cellMetaFn": [Function],
+              "dataObj": Object {
+                "order": 2,
+                "title": <span>
+                  <i>
+                    Big
+                  </i>
+                </span>,
+              },
+              "kind": "data-row",
+              "prefixFn": [Function],
+              "tableFieldsOverride": undefined,
+            },
+            GenericTableSeparator {
+              "kind": "separator",
+            },
+            GenericTableDataRow {
+              "cellMetaFn": [Function],
+              "dataObj": Object {
+                "order": 1,
+                "source_3p_ast": Object {
+                  "extraInfo": undefined,
+                  "value": 0.04923918618567277,
+                },
+                "source_mid_ast": Object {
+                  "extraInfo": undefined,
+                  "value": 0.0218840827491879,
+                },
+                "source_rim_ast": Object {
+                  "extraInfo": undefined,
+                  "value": 0.054710206872969736,
+                },
+                "source_sf": Object {
+                  "extraInfo": undefined,
+                  "value": 0.049375961702855194,
+                },
+                "target_ast": Object {
+                  "extraInfo": undefined,
+                  "value": 0.04923918618567277,
+                },
+                "title": <OverlayTrigger
+                  overlay={
+                    <ForwardRef
+                      id="transTooltip"
+                      placement="right"
+                    >
+                      All plays (assisted or unassisted) that are classified as 'in transition', normally shots taken rapidly after a rebound, miss, or make in the other direction.
+                    </ForwardRef>
+                  }
+                  placement="auto"
+                >
+                  <i>
+                    In transition
+                  </i>
+                </OverlayTrigger>,
+              },
+              "kind": "data-row",
+              "prefixFn": [Function],
+              "tableFieldsOverride": undefined,
+            },
+            GenericTableDataRow {
+              "cellMetaFn": [Function],
+              "dataObj": Object {
+                "order": 1,
+                "source_3p_ast": Object {
+                  "extraInfo": undefined,
+                  "value": 0.005471020687296975,
+                },
+                "source_rim_ast": Object {
+                  "extraInfo": undefined,
+                  "value": 0.03282612412378185,
+                },
+                "source_sf": Object {
+                  "extraInfo": undefined,
+                  "value": 0.012993674132330314,
+                },
+                "target_ast": Object {
+                  "extraInfo": undefined,
+                  "value": 0.005471020687296975,
+                },
+                "title": <OverlayTrigger
+                  overlay={
+                    <ForwardRef
+                      id="scrambleTooltip"
+                      placement="right"
+                    >
+                      All plays (assisted or unassisted) that occur in the aftermath of an offensive rebound, where the offense does not get reset before scoring. Examples are putbacks (unassisted) or tips to other players (assisted)
+                    </ForwardRef>
+                  }
+                  placement="auto"
+                >
+                  <i>
+                    Scrambles after RB
+                  </i>
+                </OverlayTrigger>,
+              },
+              "kind": "data-row",
+              "prefixFn": [Function],
+              "tableFieldsOverride": undefined,
+            },
+            GenericTableSeparator {
+              "kind": "separator",
+            },
+            GenericTableDataRow {
+              "cellMetaFn": [Function],
+              "dataObj": Object {
+                "title": <b>
+                  Big
+                   to/from:
+                </b>,
+              },
+              "kind": "data-row",
+              "prefixFn": [Function],
+              "tableFieldsOverride": undefined,
+            },
+            GenericTableDataRow {
+              "cellMetaFn": [Function],
+              "dataObj": Object {
+                "order": 2,
+                "title": <OverlayTrigger
+                  overlay={
+                    <ForwardRef
+                      id="unassistedTooltip"
+                      placement="right"
+                    >
+                      All scoring plays where the big was unassisted (includes FTs which can never be assisted). Includes half court, scrambles, and transition)
+                    </ForwardRef>
+                  }
+                  placement="auto"
+                >
+                  <i>
+                    Unassisted
+                  </i>
+                </OverlayTrigger>,
+              },
+              "kind": "data-row",
+              "prefixFn": [Function],
+              "tableFieldsOverride": undefined,
+            },
+            GenericTableDataRow {
+              "cellMetaFn": [Function],
+              "dataObj": Object {
+                "order": 2,
+                "title": <OverlayTrigger
+                  overlay={
+                    <ForwardRef
+                      id="assistTooltip"
+                      placement="right"
+                    >
+                      All plays where the  big was assisted (left half) or provided the assist (right half). The 3 rows below break down assisted plays according to the positional category of the assister/assistee. (Includes half court, scramble, and transitions)
+                    </ForwardRef>
+                  }
+                  placement="auto"
+                >
+                  <i>
+                    Assist totals:
+                  </i>
+                </OverlayTrigger>,
+              },
+              "kind": "data-row",
+              "prefixFn": [Function],
+              "tableFieldsOverride": undefined,
+            },
+            GenericTableSeparator {
+              "kind": "separator",
+            },
+            GenericTableDataRow {
+              "cellMetaFn": [Function],
+              "dataObj": Object {
+                "order": 0,
+                "title": <span>
+                  <i>
+                    Ballhandler
+                  </i>
+                </span>,
+              },
+              "kind": "data-row",
+              "prefixFn": [Function],
+              "tableFieldsOverride": undefined,
+            },
+            GenericTableDataRow {
+              "cellMetaFn": [Function],
+              "dataObj": Object {
+                "order": 1,
+                "title": <span>
+                  <i>
+                    Wing
+                  </i>
+                </span>,
+              },
+              "kind": "data-row",
+              "prefixFn": [Function],
+              "tableFieldsOverride": undefined,
+            },
+            GenericTableDataRow {
+              "cellMetaFn": [Function],
+              "dataObj": Object {
+                "order": 2,
+                "title": <span>
+                  <i>
+                    Big
+                  </i>
+                </span>,
+              },
+              "kind": "data-row",
+              "prefixFn": [Function],
+              "tableFieldsOverride": undefined,
+            },
+            GenericTableSeparator {
+              "kind": "separator",
+            },
+            GenericTableDataRow {
+              "cellMetaFn": [Function],
+              "dataObj": Object {
+                "order": 2,
+                "title": <OverlayTrigger
+                  overlay={
+                    <ForwardRef
+                      id="transTooltip"
+                      placement="right"
+                    >
+                      All plays (assisted or unassisted) that are classified as 'in transition', normally shots taken rapidly after a rebound, miss, or make in the other direction.
+                    </ForwardRef>
+                  }
+                  placement="auto"
+                >
+                  <i>
+                    In transition
+                  </i>
+                </OverlayTrigger>,
+              },
+              "kind": "data-row",
+              "prefixFn": [Function],
+              "tableFieldsOverride": undefined,
+            },
+            GenericTableDataRow {
+              "cellMetaFn": [Function],
+              "dataObj": Object {
+                "order": 2,
+                "title": <OverlayTrigger
+                  overlay={
+                    <ForwardRef
+                      id="scrambleTooltip"
+                      placement="right"
+                    >
+                      All plays (assisted or unassisted) that occur in the aftermath of an offensive rebound, where the offense does not get reset before scoring. Examples are putbacks (unassisted) or tips to other players (assisted)
+                    </ForwardRef>
+                  }
+                  placement="auto"
+                >
+                  <i>
+                    Scrambles after RB
+                  </i>
+                </OverlayTrigger>,
+              },
+              "kind": "data-row",
+              "prefixFn": [Function],
+              "tableFieldsOverride": undefined,
+            },
+            GenericTableSeparator {
+              "kind": "separator",
+            },
+          ]
+        }
+        tableFields={
+          Object {
+            "sepsource": GenericTableColProps {
+              "className": "",
+              "colName": "",
+              "colorPicker": [Function],
+              "formatter": [Function],
+              "isTitle": false,
+              "missingData": undefined,
+              "rowSpan": [Function],
+              "toolTip": "",
+              "widthUnits": 0.75,
+            },
+            "sepsourceast": GenericTableColProps {
+              "className": "",
+              "colName": "",
+              "colorPicker": [Function],
+              "formatter": [Function],
+              "isTitle": false,
+              "missingData": undefined,
+              "rowSpan": [Function],
+              "toolTip": "",
+              "widthUnits": 0.25,
+            },
+            "septarget": GenericTableColProps {
+              "className": "",
+              "colName": "",
+              "colorPicker": [Function],
+              "formatter": [Function],
+              "isTitle": false,
+              "missingData": undefined,
+              "rowSpan": [Function],
+              "toolTip": "",
+              "widthUnits": 0.75,
+            },
+            "septarget3p": GenericTableColProps {
+              "className": "",
+              "colName": "",
+              "colorPicker": [Function],
+              "formatter": [Function],
+              "isTitle": false,
+              "missingData": undefined,
+              "rowSpan": [Function],
+              "toolTip": "",
+              "widthUnits": 0.125,
+            },
+            "septargetmid": GenericTableColProps {
+              "className": "",
+              "colName": "",
+              "colorPicker": [Function],
+              "formatter": [Function],
+              "isTitle": false,
+              "missingData": undefined,
+              "rowSpan": [Function],
+              "toolTip": "",
+              "widthUnits": 0.125,
+            },
+            "septargetrim": GenericTableColProps {
+              "className": "",
+              "colName": "",
+              "colorPicker": [Function],
+              "formatter": [Function],
+              "isTitle": false,
+              "missingData": undefined,
+              "rowSpan": [Function],
+              "toolTip": "",
+              "widthUnits": 0.125,
+            },
+            "source_3p_ast": GenericTableColProps {
+              "className": "",
+              "colName": "3P ",
+              "colorPicker": [Function],
+              "formatter": [Function],
+              "isTitle": false,
+              "missingData": undefined,
+              "rowSpan": [Function],
+              "toolTip": "% of team scoring possessions of this shot type assisted BY the specified row (positional role)",
+              "widthUnits": 2,
+            },
+            "source_mid_ast": GenericTableColProps {
+              "className": "",
+              "colName": "Mid ",
+              "colorPicker": [Function],
+              "formatter": [Function],
+              "isTitle": false,
+              "missingData": undefined,
+              "rowSpan": [Function],
+              "toolTip": "% of team scoring possessions of this shot type assisted BY the specified row (positional role)",
+              "widthUnits": 2,
+            },
+            "source_rim_ast": GenericTableColProps {
+              "className": "",
+              "colName": "Rim ",
+              "colorPicker": [Function],
+              "formatter": [Function],
+              "isTitle": false,
+              "missingData": undefined,
+              "rowSpan": [Function],
+              "toolTip": "% of team scoring possessions of this shot type assisted BY the specified row (positional role)",
+              "widthUnits": 2,
+            },
+            "source_sf": GenericTableColProps {
+              "className": "",
+              "colName": "SF",
+              "colorPicker": [Function],
+              "formatter": [Function],
+              "isTitle": false,
+              "missingData": undefined,
+              "rowSpan": [Function],
+              "toolTip": "% of team scoring possessions ending in a trip to the FT line",
+              "widthUnits": 2,
+            },
+            "target_3p_ast": GenericTableColProps {
+              "className": "",
+              "colName": "3P AST% ",
+              "colorPicker": [Function],
+              "formatter": [Function],
+              "isTitle": false,
+              "missingData": undefined,
+              "rowSpan": [Function],
+              "toolTip": "% of total assists to the specified row (positional role) for this shot type",
+              "widthUnits": 2,
+            },
+            "target_3p_efg": GenericTableColProps {
+              "className": "",
+              "colName": "eFG",
+              "colorPicker": [Function],
+              "formatter": [Function],
+              "isTitle": false,
+              "missingData": undefined,
+              "rowSpan": [Function],
+              "toolTip": "The season eFG% of this shot type / row (positional role)",
+              "widthUnits": 2,
+            },
+            "target_ast": GenericTableColProps {
+              "className": "",
+              "colName": "AST",
+              "colorPicker": [Function],
+              "formatter": [Function],
+              "isTitle": false,
+              "missingData": undefined,
+              "rowSpan": [Function],
+              "toolTip": "% of team scoring possessions ending with an assist FOR the specified row (positional role)",
+              "widthUnits": 2,
+            },
+            "target_mid_ast": GenericTableColProps {
+              "className": "",
+              "colName": "Mid AST% ",
+              "colorPicker": [Function],
+              "formatter": [Function],
+              "isTitle": false,
+              "missingData": undefined,
+              "rowSpan": [Function],
+              "toolTip": "% of total assists to the specified row (positional role) for this shot type",
+              "widthUnits": 2,
+            },
+            "target_mid_efg": GenericTableColProps {
+              "className": "",
+              "colName": "eFG",
+              "colorPicker": [Function],
+              "formatter": [Function],
+              "isTitle": false,
+              "missingData": undefined,
+              "rowSpan": [Function],
+              "toolTip": "The season eFG% of this shot type / row (positional role)",
+              "widthUnits": 2,
+            },
+            "target_rim_ast": GenericTableColProps {
+              "className": "",
+              "colName": "Rim AST% ",
+              "colorPicker": [Function],
+              "formatter": [Function],
+              "isTitle": false,
+              "missingData": undefined,
+              "rowSpan": [Function],
+              "toolTip": "% of total assists to the specified row (positional role) for this shot type",
+              "widthUnits": 2,
+            },
+            "target_rim_efg": GenericTableColProps {
+              "className": "",
+              "colName": "eFG",
+              "colorPicker": [Function],
+              "formatter": [Function],
+              "isTitle": false,
+              "missingData": undefined,
+              "rowSpan": [Function],
+              "toolTip": "The season eFG% of this shot type / row (positional role)",
+              "widthUnits": 2,
+            },
+            "title": GenericTableColProps {
+              "className": "",
+              "colName": "",
+              "colorPicker": [Function],
+              "formatter": [Function],
+              "isTitle": true,
+              "missingData": undefined,
+              "rowSpan": [Function],
+              "toolTip": "",
+              "widthUnits": 8,
+            },
+          }
+        }
+      />
+    </Col>
+  </Container>
+</span>
+`;
+
+exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!help) 1`] = `
+<span>
+  <br />
+  <Container
+    fluid={false}
+  >
+    <Col
+      xs={10}
+    >
+      <GenericTable
+        responsive={false}
+        tableCopyId="teamAssistNetworks"
+        tableData={
+          Array [
+            GenericTableDataRow {
+              "cellMetaFn": [Function],
+              "dataObj": Object {
+                "title": <b>
+                  Ballhandler
+                   to/from:
+                </b>,
+              },
+              "kind": "data-row",
+              "prefixFn": [Function],
+              "tableFieldsOverride": undefined,
+            },
+            GenericTableDataRow {
+              "cellMetaFn": [Function],
+              "dataObj": Object {
+                "order": 0,
+                "source_3p_ast": Object {
+                  "extraInfo": <div>
+                    Example play types:
+                    <br />
+                    <li>
+                      dribble jumper off misc action
+                    </li>
+                    <li>
+                      off ball-screen
+                    </li>
+                    <li>
+                      dribble jumper off ISO
+                    </li>
+                  </div>,
+                  "value": 0.061497789032172866,
+                },
+                "source_mid_ast": Object {
+                  "extraInfo": <div>
+                    Example play types:
+                    <br />
+                    <li>
+                      drive and pull-up off ball-screen or ISO
+                    </li>
+                    <li>
+                      misc action
+                    </li>
+                  </div>,
+                  "value": 0.058621682269414596,
+                },
+                "source_rim_ast": Object {
+                  "extraInfo": <div>
+                    Example play types:
+                    <br />
+                    <li>
+                      attacks the rim off pick-and-roll
+                    </li>
+                    <li>
+                      ISO
+                    </li>
+                  </div>,
+                  "value": 0.15011419002220688,
+                },
+                "source_sf": Object {
+                  "extraInfo": <div>
+                    Example play types:
+                    <br />
+                    <li>
+                      fouled driving to the rim
+                    </li>
+                    <li>
+                      fouled in the bonus
+                    </li>
+                    <li>
+                      fouled cutting
+                    </li>
+                  </div>,
+                  "value": 0.2829976928643818,
+                },
+                "title": <OverlayTrigger
+                  overlay={
+                    <ForwardRef
+                      id="unassistedTooltip"
+                      placement="right"
+                    >
+                      All scoring plays where the ballhandler was unassisted (includes FTs which can never be assisted). Includes half court, scrambles, and transition)
+                    </ForwardRef>
+                  }
+                  placement="auto"
+                >
+                  <i>
+                    Unassisted
+                  </i>
+                </OverlayTrigger>,
+              },
+              "kind": "data-row",
+              "prefixFn": [Function],
+              "tableFieldsOverride": undefined,
+            },
+            GenericTableDataRow {
+              "cellMetaFn": [Function],
+              "dataObj": Object {
+                "order": 0,
+                "source_3p_ast": Object {
+                  "extraInfo": undefined,
+                  "value": 0.13813678001392635,
+                },
+                "source_mid_ast": Object {
+                  "extraInfo": undefined,
+                  "value": 0.006838775859121217,
+                },
+                "source_rim_ast": Object {
+                  "extraInfo": undefined,
+                  "value": 0.06446979085444507,
+                },
+                "target_ast": Object {
+                  "extraInfo": undefined,
+                  "value": 0.43732329908433126,
+                },
+                "title": <OverlayTrigger
+                  overlay={
+                    <ForwardRef
+                      id="assistTooltip"
+                      placement="right"
+                    >
+                      All plays where the  ballhandler was assisted (left half) or provided the assist (right half). The 3 rows below break down assisted plays according to the positional category of the assister/assistee. (Includes half court, scramble, and transitions)
+                    </ForwardRef>
+                  }
+                  placement="auto"
+                >
+                  <i>
+                    Assist totals:
+                  </i>
+                </OverlayTrigger>,
+              },
+              "kind": "data-row",
+              "prefixFn": [Function],
+              "tableFieldsOverride": undefined,
+            },
+            GenericTableSeparator {
+              "kind": "separator",
+            },
+            GenericTableDataRow {
+              "cellMetaFn": [Function],
+              "dataObj": Object {
+                "order": 0,
+                "source_3p_ast": Object {
+                  "extraInfo": <div>
+                    Example play types:
+                    <br />
+                    <li>
+                      drive-and-kick
+                    </li>
+                    <li>
+                      hockey assist after defense collapses inside
+                    </li>
+                    <li>
+                      misc action
+                    </li>
+                  </div>,
+                  "value": 0.022760974419926357,
+                },
+                "source_mid_ast": Object {
+                  "extraInfo": <div>
+                    Example play types:
+                    <br />
+                    <li>
+                      spread offense
+                    </li>
+                    <li>
+                      misc action
+                    </li>
+                  </div>,
+                  "value": 0.004103265515472731,
+                },
+                "source_rim_ast": Object {
+                  "extraInfo": <div>
+                    Example play types:
+                    <br />
+                    <li>
+                      cut
+                    </li>
+                  </div>,
+                  "value": 0.008706334803950413,
+                },
+                "target_3p_ast": Object {
+                  "extraInfo": <div>
+                    Example play types:
+                    <br />
+                    <li>
+                      drive-and-kick
+                    </li>
+                    <li>
+                      hockey assist after defense collapses inside
+                    </li>
+                    <li>
+                      misc action
+                    </li>
+                  </div>,
+                  "value": 0.06911976911976912,
+                },
+                "target_3p_efg": <text
+                  style={
+                    Object {
+                      "textShadow": "0px 0px 10px #ffbfbf",
+                    }
+                  }
+                >
+                  <i>
+                    47.5
+                    %
+                  </i>
+                </text>,
+                "target_ast": Object {
+                  "extraInfo": undefined,
+                  "value": 0.028118219503871056,
+                },
+                "target_mid_ast": Object {
+                  "extraInfo": <div>
+                    Example play types:
+                    <br />
+                    <li>
+                      spread offense
+                    </li>
+                    <li>
+                      misc action
+                    </li>
+                  </div>,
+                  "value": 0.004761904761904762,
+                },
+                "target_mid_efg": <text
+                  style={
+                    Object {
+                      "textShadow": "0px 0px 10px #ff0000",
+                    }
+                  }
+                >
+                  <i>
+                    24.6
+                    %
+                  </i>
+                </text>,
+                "target_rim_ast": Object {
+                  "extraInfo": <div>
+                    Example play types:
+                    <br />
+                    <li>
+                      cut
+                    </li>
+                  </div>,
+                  "value": 0.02611832611832612,
+                },
+                "target_rim_efg": <text
+                  style={
+                    Object {
+                      "textShadow": "0px 0px 10px #008000",
+                    }
+                  }
+                >
+                  <i>
+                    60.7
+                    %
+                  </i>
+                </text>,
+                "title": <span>
+                  <i>
+                    Ballhandler
+                  </i>
+                </span>,
+              },
+              "kind": "data-row",
+              "prefixFn": [Function],
+              "tableFieldsOverride": undefined,
+            },
+            GenericTableDataRow {
+              "cellMetaFn": [Function],
+              "dataObj": Object {
+                "order": 1,
+                "source_3p_ast": Object {
+                  "extraInfo": <div>
+                    Example play types:
+                    <br />
+                    <li>
+                      slash-and-kick
+                    </li>
+                    <li>
+                      hockey assist after defense collapses inside
+                    </li>
+                    <li>
+                      misc action
+                    </li>
+                  </div>,
+                  "value": 0.11537580559399999,
+                },
+                "source_mid_ast": Object {
+                  "extraInfo": <div>
+                    Example play types:
+                    <br />
+                    <li>
+                      spread offense
+                    </li>
+                    <li>
+                      misc action
+                    </li>
+                  </div>,
+                  "value": 0.0027355103436484873,
+                },
+                "source_rim_ast": Object {
+                  "extraInfo": <div>
+                    Example play types:
+                    <br />
+                    <li>
+                      cut
+                    </li>
+                  </div>,
+                  "value": 0.05576345605049465,
+                },
+                "target_3p_ast": Object {
+                  "extraInfo": <div>
+                    Example play types:
+                    <br />
+                    <li>
+                      drive-and-kick
+                    </li>
+                    <li>
+                      hockey assist after defense collapses inside
+                    </li>
+                    <li>
+                      misc action
+                    </li>
+                  </div>,
+                  "value": 0.4741702741702742,
+                },
+                "target_3p_efg": <text
+                  style={
+                    Object {
+                      "textShadow": "0px 0px 10px #ff0000",
+                    }
+                  }
+                >
+                  <i>
+                    7.7
+                    %
+                  </i>
+                </text>,
+                "target_ast": Object {
+                  "extraInfo": undefined,
+                  "value": 0.40920507958046015,
+                },
+                "target_mid_ast": Object {
+                  "extraInfo": <div>
+                    Example play types:
+                    <br />
+                    <li>
+                      spread offense
+                    </li>
+                    <li>
+                      misc action
+                    </li>
+                    <li>
+                      zone buster
+                    </li>
+                  </div>,
+                  "value": 0.08484848484848485,
+                },
+                "target_mid_efg": <text
+                  style={
+                    Object {
+                      "textShadow": "0px 0px 10px #ff0000",
+                    }
+                  }
+                >
+                  <i>
+                    5.5
+                    %
+                  </i>
+                </text>,
+                "target_rim_ast": Object {
+                  "extraInfo": <div>
+                    Example play types:
+                    <br />
+                    <li>
+                      cut
+                    </li>
+                  </div>,
+                  "value": 0.540981240981241,
+                },
+                "target_rim_efg": <text
+                  style={
+                    Object {
+                      "textShadow": "0px 0px 10px #ff0000",
+                    }
+                  }
+                >
+                  <i>
+                    4.2
+                    %
+                  </i>
+                </text>,
+                "title": <span>
+                  <i>
+                    Wing
+                  </i>
+                </span>,
+              },
+              "kind": "data-row",
+              "prefixFn": [Function],
+              "tableFieldsOverride": undefined,
+            },
+            GenericTableDataRow {
+              "cellMetaFn": [Function],
+              "dataObj": Object {
+                "order": 2,
+                "title": <span>
+                  <i>
+                    Big
+                  </i>
+                </span>,
+              },
+              "kind": "data-row",
+              "prefixFn": [Function],
+              "tableFieldsOverride": undefined,
+            },
+            GenericTableSeparator {
+              "kind": "separator",
+            },
+            GenericTableDataRow {
+              "cellMetaFn": [Function],
+              "dataObj": Object {
+                "order": 0,
+                "source_3p_ast": Object {
+                  "extraInfo": undefined,
+                  "value": 0.030985385994710155,
+                },
+                "source_mid_ast": Object {
+                  "extraInfo": undefined,
+                  "value": 0.008583618928678968,
+                },
+                "source_rim_ast": Object {
+                  "extraInfo": undefined,
+                  "value": 0.05725392709759035,
+                },
+                "source_sf": Object {
+                  "extraInfo": undefined,
+                  "value": 0.11288091362235218,
+                },
+                "target_ast": Object {
+                  "extraInfo": undefined,
+                  "value": 0.11502553851202399,
+                },
+                "title": <OverlayTrigger
+                  overlay={
+                    <ForwardRef
+                      id="transTooltip"
+                      placement="right"
+                    >
+                      All plays (assisted or unassisted) that are classified as 'in transition', normally shots taken rapidly after a rebound, miss, or make in the other direction.
+                    </ForwardRef>
+                  }
+                  placement="auto"
+                >
+                  <i>
+                    In transition
+                  </i>
+                </OverlayTrigger>,
+              },
+              "kind": "data-row",
+              "prefixFn": [Function],
+              "tableFieldsOverride": undefined,
+            },
+            GenericTableDataRow {
+              "cellMetaFn": [Function],
+              "dataObj": Object {
+                "order": 0,
+                "source_3p_ast": Object {
+                  "extraInfo": undefined,
+                  "value": 0.013818148137352219,
+                },
+                "source_rim_ast": Object {
+                  "extraInfo": undefined,
+                  "value": 0.017544325755091444,
+                },
+                "source_sf": Object {
+                  "extraInfo": undefined,
+                  "value": 0.01803326017964705,
+                },
+                "target_ast": Object {
+                  "extraInfo": undefined,
+                  "value": 0.016930746378734214,
+                },
+                "title": <OverlayTrigger
+                  overlay={
+                    <ForwardRef
+                      id="scrambleTooltip"
+                      placement="right"
+                    >
+                      All plays (assisted or unassisted) that occur in the aftermath of an offensive rebound, where the offense does not get reset before scoring. Examples are putbacks (unassisted) or tips to other players (assisted)
+                    </ForwardRef>
+                  }
+                  placement="auto"
+                >
+                  <i>
+                    Scrambles after RB
+                  </i>
+                </OverlayTrigger>,
+              },
+              "kind": "data-row",
+              "prefixFn": [Function],
+              "tableFieldsOverride": undefined,
+            },
+            GenericTableSeparator {
+              "kind": "separator",
+            },
+            GenericTableDataRow {
+              "cellMetaFn": [Function],
+              "dataObj": Object {
+                "title": <b>
+                  Wing
+                   to/from:
+                </b>,
+              },
+              "kind": "data-row",
+              "prefixFn": [Function],
+              "tableFieldsOverride": undefined,
+            },
+            GenericTableDataRow {
+              "cellMetaFn": [Function],
+              "dataObj": Object {
+                "order": 1,
+                "source_3p_ast": Object {
+                  "extraInfo": <div>
+                    Example play types:
+                    <br />
+                    <li>
+                      off ball-screen
+                    </li>
+                    <li>
+                      dribble jumper off misc action
+                    </li>
+                    <li>
+                      dribble jumper off ISO
+                    </li>
+                  </div>,
+                  "value": 0.0218840827491879,
+                },
+                "source_mid_ast": Object {
+                  "extraInfo": <div>
+                    Example play types:
+                    <br />
+                    <li>
+                      drive and pull-up off ball-screen or ISO
+                    </li>
+                    <li>
+                      misc action
+                    </li>
+                  </div>,
+                  "value": 0.06018122756026672,
+                },
+                "source_rim_ast": Object {
+                  "extraInfo": <div>
+                    Example play types:
+                    <br />
+                    <li>
+                      attacks the rim off pick-and-roll
+                    </li>
+                    <li>
+                      ISO
+                    </li>
+                  </div>,
+                  "value": 0.11489143443323646,
+                },
+                "source_sf": Object {
+                  "extraInfo": <div>
+                    Example play types:
+                    <br />
+                    <li>
+                      fouled slashing to the rim
+                    </li>
+                    <li>
+                      fouled in the bonus
+                    </li>
+                    <li>
+                      fouled cutting
+                    </li>
+                  </div>,
+                  "value": 0.1325354761497692,
+                },
+                "title": <OverlayTrigger
+                  overlay={
+                    <ForwardRef
+                      id="unassistedTooltip"
+                      placement="right"
+                    >
+                      All scoring plays where the wing was unassisted (includes FTs which can never be assisted). Includes half court, scrambles, and transition)
+                    </ForwardRef>
+                  }
+                  placement="auto"
+                >
+                  <i>
+                    Unassisted
+                  </i>
+                </OverlayTrigger>,
+              },
+              "kind": "data-row",
+              "prefixFn": [Function],
+              "tableFieldsOverride": undefined,
+            },
+            GenericTableDataRow {
+              "cellMetaFn": [Function],
+              "dataObj": Object {
+                "order": 1,
+                "source_3p_ast": Object {
+                  "extraInfo": undefined,
+                  "value": 0.1914857240553941,
+                },
+                "source_mid_ast": Object {
+                  "extraInfo": undefined,
+                  "value": 0.027355103436484868,
+                },
+                "source_rim_ast": Object {
+                  "extraInfo": undefined,
+                  "value": 0.07112326893486066,
+                },
+                "target_ast": Object {
+                  "extraInfo": undefined,
+                  "value": 0.18054368268080015,
+                },
+                "title": <OverlayTrigger
+                  overlay={
+                    <ForwardRef
+                      id="assistTooltip"
+                      placement="right"
+                    >
+                      All plays where the  wing was assisted (left half) or provided the assist (right half). The 3 rows below break down assisted plays according to the positional category of the assister/assistee. (Includes half court, scramble, and transitions)
+                    </ForwardRef>
+                  }
+                  placement="auto"
+                >
+                  <i>
+                    Assist totals:
+                  </i>
+                </OverlayTrigger>,
+              },
+              "kind": "data-row",
+              "prefixFn": [Function],
+              "tableFieldsOverride": undefined,
+            },
+            GenericTableSeparator {
+              "kind": "separator",
+            },
+            GenericTableDataRow {
+              "cellMetaFn": [Function],
+              "dataObj": Object {
+                "order": 0,
+                "source_3p_ast": Object {
+                  "extraInfo": <div>
+                    Example play types:
+                    <br />
+                    <li>
+                      drive-and-kick
+                    </li>
+                    <li>
+                      hockey assist after defense collapses inside
+                    </li>
+                    <li>
+                      misc action
+                    </li>
+                  </div>,
+                  "value": 0.07112326893486066,
+                },
+                "source_mid_ast": Object {
+                  "extraInfo": <div>
+                    Example play types:
+                    <br />
+                    <li>
+                      spread offense
+                    </li>
+                    <li>
+                      misc action
+                    </li>
+                    <li>
+                      zone buster
+                    </li>
+                  </div>,
+                  "value": 0.016413062061890926,
+                },
+                "source_rim_ast": Object {
+                  "extraInfo": <div>
+                    Example play types:
+                    <br />
+                    <li>
+                      cut
+                    </li>
+                  </div>,
+                  "value": 0.027355103436484868,
+                },
+                "target_3p_ast": Object {
+                  "extraInfo": <div>
+                    Example play types:
+                    <br />
+                    <li>
+                      slash-and-kick
+                    </li>
+                    <li>
+                      hockey assist after defense collapses inside
+                    </li>
+                    <li>
+                      misc action
+                    </li>
+                  </div>,
+                  "value": 0.19393939393939397,
+                },
+                "target_3p_efg": <text
+                  style={
+                    Object {
+                      "textShadow": "0px 0px 10px #ffe4e4",
+                    }
+                  }
+                >
+                  <i>
+                    49.0
+                    %
+                  </i>
+                </text>,
+                "target_ast": Object {
+                  "extraInfo": undefined,
+                  "value": 0.06018122756026672,
+                },
+                "target_rim_ast": Object {
+                  "extraInfo": <div>
+                    Example play types:
+                    <br />
+                    <li>
+                      cut
+                    </li>
+                  </div>,
+                  "value": 0.07272727272727274,
+                },
+                "target_rim_efg": <text
+                  style={
+                    Object {
+                      "textShadow": "0px 0px 10px #60b060",
+                    }
+                  }
+                >
+                  <i>
+                    56.2
+                    %
+                  </i>
+                </text>,
+                "title": <span>
+                  <i>
+                    Ballhandler
+                  </i>
+                </span>,
+              },
+              "kind": "data-row",
+              "prefixFn": [Function],
+              "tableFieldsOverride": undefined,
+            },
+            GenericTableDataRow {
+              "cellMetaFn": [Function],
+              "dataObj": Object {
+                "order": 1,
+                "source_3p_ast": Object {
+                  "extraInfo": <div>
+                    Example play types:
+                    <br />
+                    <li>
+                      slash-and-kick
+                    </li>
+                    <li>
+                      hockey assist after defense collapses inside
+                    </li>
+                    <li>
+                      misc action
+                    </li>
+                  </div>,
+                  "value": 0.12036245512053344,
+                },
+                "source_mid_ast": Object {
+                  "extraInfo": <div>
+                    Example play types:
+                    <br />
+                    <li>
+                      spread offense, misc action
+                    </li>
+                    <li>
+                      zone buster
+                    </li>
+                  </div>,
+                  "value": 0.01094204137459395,
+                },
+                "source_rim_ast": Object {
+                  "extraInfo": <div>
+                    Example play types:
+                    <br />
+                    <li>
+                      cut
+                    </li>
+                  </div>,
+                  "value": 0.04376816549837579,
+                },
+                "target_3p_ast": Object {
+                  "extraInfo": <div>
+                    Example play types:
+                    <br />
+                    <li>
+                      slash-and-kick
+                    </li>
+                    <li>
+                      hockey assist after defense collapses inside
+                    </li>
+                    <li>
+                      misc action
+                    </li>
+                  </div>,
+                  "value": 0.1696969696969697,
+                },
+                "target_ast": Object {
+                  "extraInfo": undefined,
+                  "value": 0.12036245512053341,
+                },
+                "target_mid_ast": Object {
+                  "extraInfo": <div>
+                    Example play types:
+                    <br />
+                    <li>
+                      spread offense, misc action
+                    </li>
+                    <li>
+                      zone buster
+                    </li>
+                  </div>,
+                  "value": 0.07272727272727274,
+                },
+                "target_rim_ast": Object {
+                  "extraInfo": <div>
+                    Example play types:
+                    <br />
+                    <li>
+                      cut
+                    </li>
+                  </div>,
+                  "value": 0.29090909090909095,
+                },
+                "title": <span>
+                  <i>
+                    Wing
+                  </i>
+                </span>,
+              },
+              "kind": "data-row",
+              "prefixFn": [Function],
+              "tableFieldsOverride": undefined,
+            },
+            GenericTableDataRow {
+              "cellMetaFn": [Function],
+              "dataObj": Object {
+                "order": 2,
+                "title": <span>
+                  <i>
+                    Big
+                  </i>
+                </span>,
+              },
+              "kind": "data-row",
+              "prefixFn": [Function],
+              "tableFieldsOverride": undefined,
+            },
+            GenericTableSeparator {
+              "kind": "separator",
+            },
+            GenericTableDataRow {
+              "cellMetaFn": [Function],
+              "dataObj": Object {
+                "order": 1,
+                "source_3p_ast": Object {
+                  "extraInfo": undefined,
+                  "value": 0.04923918618567277,
+                },
+                "source_mid_ast": Object {
+                  "extraInfo": undefined,
+                  "value": 0.0218840827491879,
+                },
+                "source_rim_ast": Object {
+                  "extraInfo": undefined,
+                  "value": 0.054710206872969736,
+                },
+                "source_sf": Object {
+                  "extraInfo": undefined,
+                  "value": 0.049375961702855194,
+                },
+                "target_ast": Object {
+                  "extraInfo": undefined,
+                  "value": 0.04923918618567277,
+                },
+                "title": <OverlayTrigger
+                  overlay={
+                    <ForwardRef
+                      id="transTooltip"
+                      placement="right"
+                    >
+                      All plays (assisted or unassisted) that are classified as 'in transition', normally shots taken rapidly after a rebound, miss, or make in the other direction.
+                    </ForwardRef>
+                  }
+                  placement="auto"
+                >
+                  <i>
+                    In transition
+                  </i>
+                </OverlayTrigger>,
+              },
+              "kind": "data-row",
+              "prefixFn": [Function],
+              "tableFieldsOverride": undefined,
+            },
+            GenericTableDataRow {
+              "cellMetaFn": [Function],
+              "dataObj": Object {
+                "order": 1,
+                "source_3p_ast": Object {
+                  "extraInfo": undefined,
+                  "value": 0.005471020687296975,
+                },
+                "source_rim_ast": Object {
+                  "extraInfo": undefined,
+                  "value": 0.03282612412378185,
+                },
+                "source_sf": Object {
+                  "extraInfo": undefined,
+                  "value": 0.012993674132330314,
+                },
+                "target_ast": Object {
+                  "extraInfo": undefined,
+                  "value": 0.005471020687296975,
+                },
+                "title": <OverlayTrigger
+                  overlay={
+                    <ForwardRef
+                      id="scrambleTooltip"
+                      placement="right"
+                    >
+                      All plays (assisted or unassisted) that occur in the aftermath of an offensive rebound, where the offense does not get reset before scoring. Examples are putbacks (unassisted) or tips to other players (assisted)
+                    </ForwardRef>
+                  }
+                  placement="auto"
+                >
+                  <i>
+                    Scrambles after RB
+                  </i>
+                </OverlayTrigger>,
+              },
+              "kind": "data-row",
+              "prefixFn": [Function],
+              "tableFieldsOverride": undefined,
+            },
+            GenericTableSeparator {
+              "kind": "separator",
+            },
+            GenericTableDataRow {
+              "cellMetaFn": [Function],
+              "dataObj": Object {
+                "title": <b>
+                  Big
+                   to/from:
+                </b>,
+              },
+              "kind": "data-row",
+              "prefixFn": [Function],
+              "tableFieldsOverride": undefined,
+            },
+            GenericTableDataRow {
+              "cellMetaFn": [Function],
+              "dataObj": Object {
+                "order": 2,
+                "title": <OverlayTrigger
+                  overlay={
+                    <ForwardRef
+                      id="unassistedTooltip"
+                      placement="right"
+                    >
+                      All scoring plays where the big was unassisted (includes FTs which can never be assisted). Includes half court, scrambles, and transition)
+                    </ForwardRef>
+                  }
+                  placement="auto"
+                >
+                  <i>
+                    Unassisted
+                  </i>
+                </OverlayTrigger>,
+              },
+              "kind": "data-row",
+              "prefixFn": [Function],
+              "tableFieldsOverride": undefined,
+            },
+            GenericTableDataRow {
+              "cellMetaFn": [Function],
+              "dataObj": Object {
+                "order": 2,
+                "title": <OverlayTrigger
+                  overlay={
+                    <ForwardRef
+                      id="assistTooltip"
+                      placement="right"
+                    >
+                      All plays where the  big was assisted (left half) or provided the assist (right half). The 3 rows below break down assisted plays according to the positional category of the assister/assistee. (Includes half court, scramble, and transitions)
+                    </ForwardRef>
+                  }
+                  placement="auto"
+                >
+                  <i>
+                    Assist totals:
+                  </i>
+                </OverlayTrigger>,
+              },
+              "kind": "data-row",
+              "prefixFn": [Function],
+              "tableFieldsOverride": undefined,
+            },
+            GenericTableSeparator {
+              "kind": "separator",
+            },
+            GenericTableDataRow {
+              "cellMetaFn": [Function],
+              "dataObj": Object {
+                "order": 0,
+                "title": <span>
+                  <i>
+                    Ballhandler
+                  </i>
+                </span>,
+              },
+              "kind": "data-row",
+              "prefixFn": [Function],
+              "tableFieldsOverride": undefined,
+            },
+            GenericTableDataRow {
+              "cellMetaFn": [Function],
+              "dataObj": Object {
+                "order": 1,
+                "title": <span>
+                  <i>
+                    Wing
+                  </i>
+                </span>,
+              },
+              "kind": "data-row",
+              "prefixFn": [Function],
+              "tableFieldsOverride": undefined,
+            },
+            GenericTableDataRow {
+              "cellMetaFn": [Function],
+              "dataObj": Object {
+                "order": 2,
+                "title": <span>
+                  <i>
+                    Big
+                  </i>
+                </span>,
+              },
+              "kind": "data-row",
+              "prefixFn": [Function],
+              "tableFieldsOverride": undefined,
+            },
+            GenericTableSeparator {
+              "kind": "separator",
+            },
+            GenericTableDataRow {
+              "cellMetaFn": [Function],
+              "dataObj": Object {
+                "order": 2,
+                "title": <OverlayTrigger
+                  overlay={
+                    <ForwardRef
+                      id="transTooltip"
+                      placement="right"
+                    >
+                      All plays (assisted or unassisted) that are classified as 'in transition', normally shots taken rapidly after a rebound, miss, or make in the other direction.
+                    </ForwardRef>
+                  }
+                  placement="auto"
+                >
+                  <i>
+                    In transition
+                  </i>
+                </OverlayTrigger>,
+              },
+              "kind": "data-row",
+              "prefixFn": [Function],
+              "tableFieldsOverride": undefined,
+            },
+            GenericTableDataRow {
+              "cellMetaFn": [Function],
+              "dataObj": Object {
+                "order": 2,
+                "title": <OverlayTrigger
+                  overlay={
+                    <ForwardRef
+                      id="scrambleTooltip"
+                      placement="right"
+                    >
+                      All plays (assisted or unassisted) that occur in the aftermath of an offensive rebound, where the offense does not get reset before scoring. Examples are putbacks (unassisted) or tips to other players (assisted)
+                    </ForwardRef>
+                  }
+                  placement="auto"
+                >
+                  <i>
+                    Scrambles after RB
+                  </i>
+                </OverlayTrigger>,
+              },
+              "kind": "data-row",
+              "prefixFn": [Function],
+              "tableFieldsOverride": undefined,
+            },
+            GenericTableSeparator {
+              "kind": "separator",
+            },
+          ]
+        }
+        tableFields={
+          Object {
+            "sepsource": GenericTableColProps {
+              "className": "",
+              "colName": "",
+              "colorPicker": [Function],
+              "formatter": [Function],
+              "isTitle": false,
+              "missingData": undefined,
+              "rowSpan": [Function],
+              "toolTip": "",
+              "widthUnits": 0.75,
+            },
+            "sepsourceast": GenericTableColProps {
+              "className": "",
+              "colName": "",
+              "colorPicker": [Function],
+              "formatter": [Function],
+              "isTitle": false,
+              "missingData": undefined,
+              "rowSpan": [Function],
+              "toolTip": "",
+              "widthUnits": 0.25,
+            },
+            "septarget": GenericTableColProps {
+              "className": "",
+              "colName": "",
+              "colorPicker": [Function],
+              "formatter": [Function],
+              "isTitle": false,
+              "missingData": undefined,
+              "rowSpan": [Function],
+              "toolTip": "",
+              "widthUnits": 0.75,
+            },
+            "septarget3p": GenericTableColProps {
+              "className": "",
+              "colName": "",
+              "colorPicker": [Function],
+              "formatter": [Function],
+              "isTitle": false,
+              "missingData": undefined,
+              "rowSpan": [Function],
+              "toolTip": "",
+              "widthUnits": 0.125,
+            },
+            "septargetmid": GenericTableColProps {
+              "className": "",
+              "colName": "",
+              "colorPicker": [Function],
+              "formatter": [Function],
+              "isTitle": false,
+              "missingData": undefined,
+              "rowSpan": [Function],
+              "toolTip": "",
+              "widthUnits": 0.125,
+            },
+            "septargetrim": GenericTableColProps {
+              "className": "",
+              "colName": "",
+              "colorPicker": [Function],
+              "formatter": [Function],
+              "isTitle": false,
+              "missingData": undefined,
+              "rowSpan": [Function],
+              "toolTip": "",
+              "widthUnits": 0.125,
+            },
+            "source_3p_ast": GenericTableColProps {
+              "className": "",
+              "colName": "3P ",
+              "colorPicker": [Function],
+              "formatter": [Function],
+              "isTitle": false,
+              "missingData": undefined,
+              "rowSpan": [Function],
+              "toolTip": "% of team scoring possessions of this shot type assisted BY the specified row (positional role)",
+              "widthUnits": 2,
+            },
+            "source_mid_ast": GenericTableColProps {
+              "className": "",
+              "colName": "Mid ",
+              "colorPicker": [Function],
+              "formatter": [Function],
+              "isTitle": false,
+              "missingData": undefined,
+              "rowSpan": [Function],
+              "toolTip": "% of team scoring possessions of this shot type assisted BY the specified row (positional role)",
+              "widthUnits": 2,
+            },
+            "source_rim_ast": GenericTableColProps {
+              "className": "",
+              "colName": "Rim ",
+              "colorPicker": [Function],
+              "formatter": [Function],
+              "isTitle": false,
+              "missingData": undefined,
+              "rowSpan": [Function],
+              "toolTip": "% of team scoring possessions of this shot type assisted BY the specified row (positional role)",
+              "widthUnits": 2,
+            },
+            "source_sf": GenericTableColProps {
+              "className": "",
+              "colName": "SF",
+              "colorPicker": [Function],
+              "formatter": [Function],
+              "isTitle": false,
+              "missingData": undefined,
+              "rowSpan": [Function],
+              "toolTip": "% of team scoring possessions ending in a trip to the FT line",
+              "widthUnits": 2,
+            },
+            "target_3p_ast": GenericTableColProps {
+              "className": "",
+              "colName": "3P AST% ",
+              "colorPicker": [Function],
+              "formatter": [Function],
+              "isTitle": false,
+              "missingData": undefined,
+              "rowSpan": [Function],
+              "toolTip": "% of total assists to the specified row (positional role) for this shot type",
+              "widthUnits": 2,
+            },
+            "target_3p_efg": GenericTableColProps {
+              "className": "",
+              "colName": "eFG",
+              "colorPicker": [Function],
+              "formatter": [Function],
+              "isTitle": false,
+              "missingData": undefined,
+              "rowSpan": [Function],
+              "toolTip": "The season eFG% of this shot type / row (positional role)",
+              "widthUnits": 2,
+            },
+            "target_ast": GenericTableColProps {
+              "className": "",
+              "colName": "AST",
+              "colorPicker": [Function],
+              "formatter": [Function],
+              "isTitle": false,
+              "missingData": undefined,
+              "rowSpan": [Function],
+              "toolTip": "% of team scoring possessions ending with an assist FOR the specified row (positional role)",
+              "widthUnits": 2,
+            },
+            "target_mid_ast": GenericTableColProps {
+              "className": "",
+              "colName": "Mid AST% ",
+              "colorPicker": [Function],
+              "formatter": [Function],
+              "isTitle": false,
+              "missingData": undefined,
+              "rowSpan": [Function],
+              "toolTip": "% of total assists to the specified row (positional role) for this shot type",
+              "widthUnits": 2,
+            },
+            "target_mid_efg": GenericTableColProps {
+              "className": "",
+              "colName": "eFG",
+              "colorPicker": [Function],
+              "formatter": [Function],
+              "isTitle": false,
+              "missingData": undefined,
+              "rowSpan": [Function],
+              "toolTip": "The season eFG% of this shot type / row (positional role)",
+              "widthUnits": 2,
+            },
+            "target_rim_ast": GenericTableColProps {
+              "className": "",
+              "colName": "Rim AST% ",
+              "colorPicker": [Function],
+              "formatter": [Function],
+              "isTitle": false,
+              "missingData": undefined,
+              "rowSpan": [Function],
+              "toolTip": "% of total assists to the specified row (positional role) for this shot type",
+              "widthUnits": 2,
+            },
+            "target_rim_efg": GenericTableColProps {
+              "className": "",
+              "colName": "eFG",
+              "colorPicker": [Function],
+              "formatter": [Function],
+              "isTitle": false,
+              "missingData": undefined,
+              "rowSpan": [Function],
+              "toolTip": "The season eFG% of this shot type / row (positional role)",
+              "widthUnits": 2,
+            },
+            "title": GenericTableColProps {
+              "className": "",
+              "colName": "",
+              "colorPicker": [Function],
+              "formatter": [Function],
+              "isTitle": true,
+              "missingData": undefined,
+              "rowSpan": [Function],
+              "toolTip": "",
+              "widthUnits": 8,
+            },
+          }
+        }
+      />
+    </Col>
+  </Container>
+</span>
+`;

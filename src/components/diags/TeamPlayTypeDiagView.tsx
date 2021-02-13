@@ -43,10 +43,9 @@ type Props = {
   rosterStatsByCode: Record<string, any>,
   teamStats: Record<string, any>,
   teamSeasonLookup: string,
-  showHelp: boolean,
-  showDetailsOverride?: boolean
+  showHelp: boolean
 };
-const TeamPlayTypeDiagView: React.FunctionComponent<Props> = ({players, rosterStatsByCode, teamStats, teamSeasonLookup, showHelp, showDetailsOverride}) => {
+const TeamPlayTypeDiagView: React.FunctionComponent<Props> = ({players, rosterStatsByCode, teamStats, teamSeasonLookup, showHelp}) => {
   // Repeat the logic in PlayerTypeTypeDiagView:
 
   const teamScoringPossessions =
@@ -56,11 +55,11 @@ const TeamPlayTypeDiagView: React.FunctionComponent<Props> = ({players, rosterSt
   const teamTotalAssists = teamStats.total_off_assist?.value || 0;
     //(use team total assists for consistency with individual chart)
 
-  const filterCodes: Set<string> | undefined = undefined; // = new Set(["ErAyala", "AqSmart"])
-  const filteredPlayers = players.filter(pl => {
-    const code = pl.player_array?.hits?.hits?.[0]?._source?.player?.code || player.key;
-    return !filterCodes || filterCodes.has(code);
-  });
+  const filterCodes = undefined as Set<string> | undefined; // = new Set(["ErAyala", "AqSmart"])
+  const filteredPlayers = filterCodes ? players.filter(pl => {
+    const code = pl.player_array?.hits?.hits?.[0]?._source?.player?.code || pl.key;
+    return filterCodes.has(code);
+  }) : players;
 
   const posCategoryAssistNetworkVsPlayer = _.chain(filteredPlayers).map((player, ix) => {
     const allPlayers = PlayTypeUtils.buildPlayerAssistCodeList(player);

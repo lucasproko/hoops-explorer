@@ -41,11 +41,11 @@ const tidyNumbers = (k: string, v: any) => {
 type Props = {
   player: Record<string, any>,
   rosterStatsByCode: Record<string, any>,
-  teamSeason: string,
+  teamSeasonLookup: string,
   showHelp: boolean,
   showDetailsOverride?: boolean
 };
-const PlayerPlayTypeDiagView: React.FunctionComponent<Props> = ({player, rosterStatsByCode, teamSeason, showHelp, showDetailsOverride}) => {
+const PlayerPlayTypeDiagView: React.FunctionComponent<Props> = ({player, rosterStatsByCode, teamSeasonLookup, showHelp, showDetailsOverride}) => {
 
   const [ showPlayerBreakdown, setShowPlayerBreakdown ] = useState(showDetailsOverride || false);
 

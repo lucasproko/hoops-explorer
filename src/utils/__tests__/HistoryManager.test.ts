@@ -60,6 +60,7 @@ describe("HistoryManager", () => {
     const game2: GameFilterParams = {
       team: "test",
       manual: [{ newVal: 1, rowId: "test", use: true, statName: "test" }],
+      showTeamPlayTypes: true,
       year: "2019/20", gender: "Men",
       minRank: "1", maxRank: "150",
       onQuery: "testOn", baseQuery: "testBase",
@@ -69,7 +70,7 @@ describe("HistoryManager", () => {
       filterGarbage: true, queryFilters: "Conf"
     };
     expect(HistoryManager.filterSummary("game-", game2)).toBe(
-      `On/Off: 2019/20 test (M) [1:150] [!garbage] [+Conf]: on:'testOn', off:'testOff', base:'testBase', luck:[baseline], [overrides], team:[on-off-luck]`
+      `On/Off: 2019/20 test (M) [1:150] [!garbage] [+Conf]: on:'testOn', off:'testOff', base:'testBase', luck:[baseline], [overrides], team:[on-off-luck,show-play-types]`
     );
   });
   test("HistoryManager - lineupFilterSummary", () => { //(need to change this every season)
