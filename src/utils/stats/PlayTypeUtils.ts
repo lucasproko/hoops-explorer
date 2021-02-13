@@ -182,11 +182,14 @@ export class PlayTypeUtils {
   }
 
   /** Adds example plays to the "extraInfo" of unassited stats */
-  static enrichUnassistedStats(unassistedStats: Record<string, any>, mainPlayer: Record<string, any>) {
+  static enrichUnassistedStats(unassistedStats: Record<string, any>, mainPlayer: Record<string, any> | number) {
     // Build main player's positional category:
-    const mainPlayerCats = _.orderBy(PlayTypeUtils.buildPosFamily(mainPlayer.role, mainPlayer.posClass).flatMap((catScore, ix) => {
-      return catScore > 0 ? [ { order: ix, score: catScore } ] : [];
-    }), ["score"], ["desc"]);
+    const mainPlayerCats = _.isNumber(mainPlayer) ?
+      [ { order: mainPlayer, score: 0 }  ]
+      :
+      _.orderBy(PlayTypeUtils.buildPosFamily(mainPlayer.role, mainPlayer.posClass).flatMap((catScore, ix) => {
+        return catScore > 0 ? [ { order: ix, score: catScore } ] : [];
+      }), ["score"], ["desc"]);
 
     // handle usages, (AST)
     shotTypes.concat(["sf"]).forEach((shotType, ix) => {
@@ -215,13 +218,18 @@ export class PlayTypeUtils {
   static buildPosCategoryAssistNetwork(
     playerAssistNetwork: Array<Record<string, any>>,
     rosterStatsByCode: Record<string, any>,
-    mainPlayer: Record<string, any> | undefined
+    mainPlayer: Record<string, any> | number | undefined
   ): Array<Record<string, any>> {
     // Build main player's positional category:
     // (this is just for injecting examples - if you don't want examples just set mainPlayer to undefined)
-    const mainPlayerCats = mainPlayer ? _.orderBy(PlayTypeUtils.buildPosFamily(mainPlayer.role, mainPlayer.posClass).flatMap((catScore, ix) => {
-      return catScore > 0 ? [ { order: ix, score: catScore } ] : [];
-    }), ["score"], ["desc"]) : undefined;
+    const mainPlayerCats = !_.isNil(mainPlayer) ? (
+      _.isNumber(mainPlayer) ?
+        [ { order: mainPlayer, score: 0 }  ]
+        :
+        _.orderBy(PlayTypeUtils.buildPosFamily(mainPlayer.role, mainPlayer.posClass).flatMap((catScore, ix) => {
+         return catScore > 0 ? [ { order: ix, score: catScore } ] : [];
+       }), ["score"], ["desc"])
+    ) : undefined;
 
     return _.chain(playerAssistNetwork).flatMap(playerStats => {
       const playerCode = playerStats.code!;
@@ -274,10 +282,12 @@ export class PlayTypeUtils {
 
           // Handle shot types
           shotTypes.forEach((shotType, ix) => {
+            //(bit horrid but everything is reversed when doing pos vs pos calcs)
+            const playTypeWayRound = _.isNumber(mainPlayer) ? !sourceNotTarget : sourceNotTarget;
 
             // Inject examples
-            const playTypeExamples = mainPlayerCats  ? _.chain(mainPlayerCats).map(catInfo => {
-              const exampleKey = sourceNotTarget ?
+            const playTypeExamples = mainPlayerCats ? _.chain(mainPlayerCats).map(catInfo => {
+              const exampleKey = playTypeWayRound ?
                 `${PosFamilyNames[catInfo.order!]}_${shotType}_${PosFamilyNames[statSet.order!]}` :
                 `${PosFamilyNames[statSet.order!]}_${shotType}_${PosFamilyNames[catInfo.order!]}`;
 

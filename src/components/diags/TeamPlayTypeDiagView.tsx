@@ -49,22 +49,25 @@ type Props = {
 const TeamPlayTypeDiagView: React.FunctionComponent<Props> = ({players, rosterStatsByCode, teamStats, teamSeasonLookup, showHelp, showDetailsOverride}) => {
   // Repeat the logic in PlayerTypeTypeDiagView:
 
+//TODO: not sure I believe the transition numbers (too low?) or the scramble numbers (too high for guards with Maryland 2020)
+//TODO: add play type examples
+//TODO: fix headers
+//TODO: add row title tooltips
+
   const teamScoringPossessions =
     (teamStats.total_off_fgm?.value || 0) + 0.475*(teamStats.total_off_fta?.value || 0);
-    //TODO: need to decide whether to use this or scoring poss+assists
-    //(and change the col header tooltips - change from / to + anyway...)
+    //(use pure scoring possessions and not + assists because the team is "closed" unlike one player)
 
   const teamTotalAssists = teamStats.total_off_assist?.value || 0;
-    //TODO: need to decide whether to use assists/scoring poss in buildPlayerStyle below
+    //(use team total assists for consistency with individual chart)
 
-/**/
-/*
-const players_ToUse = players.filter(pl => {
-  const code = pl.player_array?.hits?.hits?.[0]?._source?.player?.code || player.key;
-  return code == "ErAyala" || code == "AqSmart";
-});
-*/
-  const posCategoryAssistNetworkVsPlayer = _.chain(players).map((player, ix) => {
+  const filterCodes: Set<string> | undefined = undefined; // = new Set(["ErAyala", "AqSmart"])
+  const filteredPlayers = players.filter(pl => {
+    const code = pl.player_array?.hits?.hits?.[0]?._source?.player?.code || player.key;
+    return !filterCodes || filterCodes.has(code);
+  });
+
+  const posCategoryAssistNetworkVsPlayer = _.chain(filteredPlayers).map((player, ix) => {
     const allPlayers = PlayTypeUtils.buildPlayerAssistCodeList(player);
     const playerStyle = PlayTypeUtils.buildPlayerStyle(
       player, teamScoringPossessions, teamTotalAssists
@@ -112,9 +115,10 @@ const players_ToUse = players.filter(pl => {
       } ] : [];
     }).values().flatten().value();
 
+//TODO: this is the wrong way round...
     // This is now "for each pos, a list of player stats", so we can reapply, to get "for each pos a list of pos stats"
     const posPosCatAssistNetwork = PlayTypeUtils.buildPosCategoryAssistNetwork(
-      perPlayer, rosterStatsByCode, undefined,
+      perPlayer, rosterStatsByCode, ix,
     ); // pos vs <shot-type-stats> (order tells you which)
 
 //console.log(`${pos} ... vs ... ${JSON.stringify(perPlayer, tidyNumbers, 3)}`);
@@ -160,10 +164,12 @@ const players_ToUse = players.filter(pl => {
 
     return [
       GenericTableOps.buildTextRow(
-        <span>{posTitle}</span>
+        <span>{_.capitalize(posTitle)} to/from:</span>
       ),
       GenericTableOps.buildDataRow({
-        ...PlayTypeDiagUtils.buildInfoRow(otherInfo[0]!),
+        ...PlayTypeDiagUtils.buildInfoRow(
+          PlayTypeUtils.enrichUnassistedStats(otherInfo[0]!, ix)
+        ),
         title: <span><i>Unassisted</i></span>
       }, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta),
       GenericTableOps.buildDataRow({
