@@ -277,6 +277,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
             />, "small"
         ) ] : [],
       [ GenericTableOps.buildRowSeparator() ],
+//TODO: for some reason this row separator and the text row about it get merged (even if it's in the : [] above it??)      
     ]),
     // Diffs if showing:
     showDiffs ? [ GenericTableOps.buildRowSeparator() ] : [],

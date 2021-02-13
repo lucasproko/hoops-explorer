@@ -210,6 +210,11 @@ const TeamPlayTypeDiagView: React.FunctionComponent<Props> = ({players, rosterSt
   return <span>
     {/*JSON.stringify(_.chain(teamStats).toPairs().filter(kv => kv[0].indexOf("trans") >= 0).values(), tidyNumbers, 3)*/}
     <br/>
+    <span>
+      <b>Scoring Analysis: [{(teamStats.off_title || "").replace(" Offense", "")}]</b>
+    </span>
+    <br/>
+    <br/>
     <Container>
       <Col xs={10}>
         <GenericTable responsive={false} tableCopyId="teamAssistNetworks" tableFields={PlayTypeDiagUtils.rawAssistTableFields(false, true)} tableData={rawAssistTableData}/>
