@@ -86,7 +86,7 @@ export class PlayTypeUtils {
     })) as Record<string, number[]>; };
 
     /** (util method, see below) */
-    const buildRow = (totalInfo: Record<string, number[]>, ftInfo: number) => {
+    const buildRow = (totalInfo: Record<string, number[]>, ftInfo: number, assists: number) => {
       return _.toPairs(totalInfo).map(kv => {
         const key = kv[0];
         const total = kv[1][0]!;
@@ -94,7 +94,8 @@ export class PlayTypeUtils {
           value: total/totalScoringPlaysMade
         } : null ]
       }).concat([
-        [ `source_sf`, ftInfo > 0 ? { value: ftInfo/totalScoringPlaysMade } : null ]
+        [ `source_sf`, ftInfo > 0 ? { value: ftInfo/totalScoringPlaysMade } : null ],
+        [ `target_ast`, assists > 0 ? { value: assists/totalScoringPlaysMade } : null ],
       ]);
     }
 
@@ -102,11 +103,13 @@ export class PlayTypeUtils {
 
     const scrambleTotal = buildTotal("scramble");
     const scrambleFtTrips = ftaMult*(player[`total_off_scramble_fta`]?.value || 0);
-    const scrambleRow = buildRow(scrambleTotal, scrambleFtTrips);
+    const scrambleAssists = player[`total_off_scramble_assist`]?.value || 0;
+    const scrambleRow = buildRow(scrambleTotal, scrambleFtTrips, scrambleAssists);
 
     const transitionTotal = buildTotal("trans");
     const transitionFtTrips = ftaMult*(player[`total_off_trans_fta`]?.value || 0);
-    const transitionRow = buildRow(transitionTotal, transitionFtTrips);
+    const transitionAssists = player[`total_off_trans_assist`]?.value || 0;
+    const transitionRow = buildRow(transitionTotal, transitionFtTrips, transitionAssists);
 
     // Half court:
 

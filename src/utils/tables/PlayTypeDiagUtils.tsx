@@ -57,47 +57,52 @@ export class PlayTypeDiagUtils {
 
   // Build raw assist table:
 
-  static rawAssistTableFields = {
-    "title": GenericTableOps.addTitle("", "", CommonTableDefs.singleLineRowSpanCalculator, "", GenericTableOps.htmlFormatter),
-    ...(_.fromPairs(targetSource.flatMap((loc) => {
-        const targetNotSource = loc == "target";
-        return [
-          [`sep${loc}`, GenericTableOps.addColSeparator(1) ],
-        ].concat(
-          shotTypes.flatMap((key) => {
-            const descriptionAst = targetNotSource ?
-              `% of total assists to the specified row (team-mate/team category) for this shot type` : `% of scoring possessions/assists of this shot type assisted BY the specified row (team-mate/category)`;
-            const descriptionEfg = `The season eFG% of this shot type / player`;
-            return [
-              [
-                `${loc}_${key}_ast`, GenericTableOps.addPctCol(`${shotNameMap[key]!}${targetNotSource ? " AST%" : ""} `,
-                  descriptionAst, CbbColors.varPicker(CbbColors.p_ast_breakdown)
-                )
-              ],
-            ].concat(targetNotSource ?
-              [
+  static rawAssistTableFields = (hasPlayers: boolean, teamTotals: boolean) => {
+    const rowMeans = hasPlayers ? "team-mate / positional role" : "positional role";
+    const denomMeans = teamTotals ? "team scoring possessions" : "player scoring possessions + assists";
+    return {
+      "title": GenericTableOps.addTitle("", "", CommonTableDefs.singleLineRowSpanCalculator, "", GenericTableOps.htmlFormatter),
+      ...(_.fromPairs(targetSource.flatMap((loc) => {
+          const targetNotSource = loc == "target";
+          return [
+            [`sep${loc}`, GenericTableOps.addColSeparator(0.75) ],
+          ].concat(
+            shotTypes.flatMap((key) => {
+              const descriptionAst = targetNotSource ?
+                `% of total assists to the specified row (${rowMeans}) for this shot type` : `% of ${denomMeans} of this shot type assisted BY the specified row (${rowMeans})`;
+              const descriptionEfg = `The season eFG% of this shot type / row (${rowMeans})`;
+              return [
                 [
-                  `${loc}_${key}_efg`, GenericTableOps.addDataCol(`eFG`,
-                    descriptionEfg, CbbColors.offOnlyPicker(CbbColors.alwaysWhite, CbbColors.alwaysWhite), GenericTableOps.percentOrHtmlFormatter
+                  `${loc}_${key}_ast`, GenericTableOps.addPctCol(`${shotNameMap[key]!}${targetNotSource ? " AST%" : ""} `,
+                    descriptionAst, CbbColors.varPicker(CbbColors.p_ast_breakdown)
                   )
                 ],
-                [ `sep${loc}${key}`, GenericTableOps.addColSeparator(0.125) ],
-              ] : []
-            );
-          }).concat(targetNotSource ? [] : [
-            [
-              `source_sf`, GenericTableOps.addPctCol(`SF`,
-                "% of scoring possessions/assists ending in a trip to the FT line", CbbColors.varPicker(CbbColors.p_ast_breakdown),
-              )
-            ],
-            [
-              `target_ast`, GenericTableOps.addPctCol(`AST`,
-                "% of scoring possessions/assists ending with an assist FOR the specified row (team-mate/team category)", CbbColors.varPicker(CbbColors.p_ast_breakdown),
-              )
-            ]
-          ])
-        );
-      })))
+              ].concat(targetNotSource ?
+                [
+                  [
+                    `${loc}_${key}_efg`, GenericTableOps.addDataCol(`eFG`,
+                      descriptionEfg, CbbColors.offOnlyPicker(CbbColors.alwaysWhite, CbbColors.alwaysWhite), GenericTableOps.percentOrHtmlFormatter
+                    )
+                  ],
+                  [ `sep${loc}${key}`, GenericTableOps.addColSeparator(0.125) ],
+                ] : []
+              );
+            }).concat(targetNotSource ? [] : [
+              [
+                `source_sf`, GenericTableOps.addPctCol(`SF`,
+                  `% of ${denomMeans} ending in a trip to the FT line`, CbbColors.varPicker(CbbColors.p_ast_breakdown),
+                )
+              ],
+              [`sep${loc}ast`, GenericTableOps.addColSeparator(0.25) ],
+              [
+                `target_ast`, GenericTableOps.addPctCol(`AST`,
+                  `% of ${denomMeans} ending with an assist FOR the specified row (${rowMeans})`, CbbColors.varPicker(CbbColors.p_ast_breakdown),
+                )
+              ]
+            ])
+          );
+        })))
+    };
   };
 
 };

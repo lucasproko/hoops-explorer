@@ -134,6 +134,8 @@ const PlayerPlayTypeDiagView: React.FunctionComponent<Props> = ({player, rosterS
       objData, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta
     );
   })).concat(
+    [ GenericTableOps.buildRowSeparator() ]
+  ).concat(
     posCategoryAssistNetwork.map(info => PlayTypeDiagUtils.buildInfoRow(info)).map((info) =>
       GenericTableOps.buildDataRow(info, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta)
     )
@@ -156,6 +158,7 @@ const PlayerPlayTypeDiagView: React.FunctionComponent<Props> = ({player, rosterS
   // Visual layout:
 
   return <span>
+      {/*JSON.stringify(_.chain(player).toPairs().filter(kv => kv[0].indexOf("trans") >= 0).values(), tidyNumbers, 3)*/}
       <br/>
       <span>
         <b>Scoring Analysis for [{player.key}]</b>
@@ -164,7 +167,7 @@ const PlayerPlayTypeDiagView: React.FunctionComponent<Props> = ({player, rosterS
       <br/>
       <Container>
         <Col xs={10}>
-          <GenericTable responsive={false} tableCopyId="rawAssistNetworks" tableFields={PlayTypeDiagUtils.rawAssistTableFields} tableData={rawAssistTableData}/>
+          <GenericTable responsive={false} tableCopyId="rawAssistNetworks" tableFields={PlayTypeDiagUtils.rawAssistTableFields(showPlayerBreakdown, false)} tableData={rawAssistTableData}/>
         </Col>
       </Container>
     </span>;

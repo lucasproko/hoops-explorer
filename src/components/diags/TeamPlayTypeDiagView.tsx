@@ -49,11 +49,6 @@ type Props = {
 const TeamPlayTypeDiagView: React.FunctionComponent<Props> = ({players, rosterStatsByCode, teamStats, teamSeasonLookup, showHelp, showDetailsOverride}) => {
   // Repeat the logic in PlayerTypeTypeDiagView:
 
-//TODO: not sure I believe the transition numbers (too low?) or the scramble numbers (too high for guards with Maryland 2020)
-//TODO: add play type examples
-//TODO: fix headers
-//TODO: add row title tooltips
-
   const teamScoringPossessions =
     (teamStats.total_off_fgm?.value || 0) + 0.475*(teamStats.total_off_fta?.value || 0);
     //(use pure scoring possessions and not + assists because the team is "closed" unlike one player)
@@ -72,7 +67,6 @@ const TeamPlayTypeDiagView: React.FunctionComponent<Props> = ({players, rosterSt
     const playerStyle = PlayTypeUtils.buildPlayerStyle(
       player, teamScoringPossessions, teamTotalAssists
     );
-      //^ (the true means calc the totals (/100) not the % like we do for individual)
     const playerAssistNetwork = allPlayers.map((p) => {
       const [ info, ignore ] = PlayTypeUtils.buildPlayerAssistNetwork(
         p, player, playerStyle.totalScoringPlaysMade, playerStyle.totalAssists,
@@ -124,7 +118,7 @@ const TeamPlayTypeDiagView: React.FunctionComponent<Props> = ({players, rosterSt
 //console.log(`${pos} ... vs ... ${JSON.stringify(perPlayer, tidyNumbers, 3)}`);
 
     // Unassisted/scramble/transition: similar:
-    const posVsPosOtherTypes = _.chain([ "unassisted", "assisted", "scramble", "transition" ]).map(key => {
+    const posVsPosOtherTypes = _.chain([ "unassisted", "assisted", "transition", "scramble" ]).map(key => {
 
       //TODO: need to weight each set of stats by the score
 
@@ -157,26 +151,38 @@ const TeamPlayTypeDiagView: React.FunctionComponent<Props> = ({players, rosterSt
     return [ pos, { assists: assists, other: other } ];
   }).fromPairs().value();
 
+  const tooltipBuilder = (id: string, title: string, tooltip: string) =>
+    <OverlayTrigger placement="auto" overlay={
+      <Tooltip id={id + "Tooltip"}>{tooltip}</Tooltip>
+    }><i>{title}</i></OverlayTrigger>;
+
   const rawAssistTableData = _.chain(reorderedPosVsPosAssistNetwork).toPairs().flatMap((kv, ix) => {
     const posTitle = kv[0];
     const assistInfo = kv[1].assists;
     const otherInfo = kv[1].other;
 
     return [
-      GenericTableOps.buildTextRow(
-        <span>{_.capitalize(posTitle)} to/from:</span>
-      ),
+      GenericTableOps.buildDataRow({
+        title: <b>{_.capitalize(posTitle)} to/from:</b>
+      }, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta),
       GenericTableOps.buildDataRow({
         ...PlayTypeDiagUtils.buildInfoRow(
           PlayTypeUtils.enrichUnassistedStats(otherInfo[0]!, ix)
         ),
-        title: <span><i>Unassisted</i></span>
+        title: tooltipBuilder("unassisted", "Unassisted",
+          `All scoring plays where the ${posTitle} was unassisted (includes FTs which can never be assisted). Includes half court, scrambles, and transition)`
+        )
       }, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta),
       GenericTableOps.buildDataRow({
         ...PlayTypeDiagUtils.buildInfoRow(otherInfo[1]!),
-        title: <span><i>Assist totals:</i></span>
+        title: tooltipBuilder("assist", "Assist totals:",
+          `All plays where the  ${posTitle} was assisted (left half) or provided the assist (right half). ` +
+          "The 3 rows below break down assisted plays according to the positional category of the assister/assistee. " +
+          "(Includes half court, scramble, and transitions)"
+        )
       }, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta)
     ].concat(
+      GenericTableOps.buildRowSeparator(),
       assistInfo.map((info: any) => PlayTypeDiagUtils.buildInfoRow(info)).map((info: any) =>
         GenericTableOps.buildDataRow({
           ...info,
@@ -187,21 +193,27 @@ const TeamPlayTypeDiagView: React.FunctionComponent<Props> = ({players, rosterSt
       GenericTableOps.buildRowSeparator(),
       GenericTableOps.buildDataRow({
         ...PlayTypeDiagUtils.buildInfoRow(otherInfo[2]!),
-        title: <span><i>In transition</i></span>
+        title: tooltipBuilder("trans", "In transition",
+          "All plays (assisted or unassisted) that are classified as 'in transition', normally shots taken rapidly after a rebound, miss, or make in the other direction."
+        )
       }, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta),
       GenericTableOps.buildDataRow({
         ...PlayTypeDiagUtils.buildInfoRow(otherInfo[3]!),
-        title: <span><i>Scrambles after RB</i></span>
-      }, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta)
+        title: tooltipBuilder("scramble", "Scrambles after RB",
+          "All plays (assisted or unassisted) that occur in the aftermath of an offensive rebound, where the offense does not get reset before scoring. " +
+          "Examples are putbacks (unassisted) or tips to other players (assisted)"
+        ),
+      }, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta),
+      GenericTableOps.buildRowSeparator(),
     ]);
   }).value();
 
   return <span>
-    {/*JSON.stringify(test, tidyNumbers, 3)*/}
+    {/*JSON.stringify(_.chain(teamStats).toPairs().filter(kv => kv[0].indexOf("trans") >= 0).values(), tidyNumbers, 3)*/}
     <br/>
     <Container>
       <Col xs={10}>
-        <GenericTable responsive={false} tableCopyId="teamAssistNetworks" tableFields={PlayTypeDiagUtils.rawAssistTableFields} tableData={rawAssistTableData}/>
+        <GenericTable responsive={false} tableCopyId="teamAssistNetworks" tableFields={PlayTypeDiagUtils.rawAssistTableFields(false, true)} tableData={rawAssistTableData}/>
       </Col>
     </Container>
   </span>;
