@@ -5024,6 +5024,38 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                             <tr>
                               <td
                                 className=""
+                                colSpan={18}
+                              >
+                                <div
+                                  className="row"
+                                >
+                                  <div
+                                    className="col-3"
+                                  />
+                                  <div
+                                    className="d-flex justify-content-center col-3"
+                                  >
+                                    <i>
+                                      <span>
+                                        Scored / Assisted By:
+                                      </span>
+                                    </i>
+                                  </div>
+                                  <div
+                                    className="d-flex justify-content-center col-6"
+                                  >
+                                    <i>
+                                      <span>
+                                        Assists:
+                                      </span>
+                                    </i>
+                                  </div>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td
+                                className=""
                                 rowSpan={1}
                                 style={
                                   Object {
@@ -14049,6 +14081,38 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                             <tr>
                               <td
                                 className=""
+                                colSpan={18}
+                              >
+                                <div
+                                  className="row"
+                                >
+                                  <div
+                                    className="col-3"
+                                  />
+                                  <div
+                                    className="d-flex justify-content-center col-3"
+                                  >
+                                    <i>
+                                      <span>
+                                        Scored / Assisted By:
+                                      </span>
+                                    </i>
+                                  </div>
+                                  <div
+                                    className="d-flex justify-content-center col-6"
+                                  >
+                                    <i>
+                                      <span>
+                                        Assists:
+                                      </span>
+                                    </i>
+                                  </div>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td
+                                className=""
                                 rowSpan={1}
                                 style={
                                   Object {
@@ -23071,6 +23135,38 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                             </tr>
                           </thead>
                           <tbody>
+                            <tr>
+                              <td
+                                className=""
+                                colSpan={18}
+                              >
+                                <div
+                                  className="row"
+                                >
+                                  <div
+                                    className="col-3"
+                                  />
+                                  <div
+                                    className="d-flex justify-content-center col-3"
+                                  >
+                                    <i>
+                                      <span>
+                                        Scored / Assisted By:
+                                      </span>
+                                    </i>
+                                  </div>
+                                  <div
+                                    className="d-flex justify-content-center col-6"
+                                  >
+                                    <i>
+                                      <span>
+                                        Assists:
+                                      </span>
+                                    </i>
+                                  </div>
+                                </div>
+                              </td>
+                            </tr>
                             <tr>
                               <td
                                 className=""

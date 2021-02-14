@@ -22,6 +22,37 @@ exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!de
         tableCopyId="teamAssistNetworks"
         tableData={
           Array [
+            GenericTableTextRow {
+              "className": "",
+              "kind": "text-row",
+              "text": <ForwardRef
+                noGutters={false}
+              >
+                <ForwardRef
+                  xs={3}
+                />
+                <ForwardRef
+                  className="d-flex justify-content-center"
+                  xs={3}
+                >
+                  <i>
+                    <span>
+                      Scored / Assisted By:
+                    </span>
+                  </i>
+                </ForwardRef>
+                <ForwardRef
+                  className="d-flex justify-content-center"
+                  xs={6}
+                >
+                  <i>
+                    <span>
+                      Assists:
+                    </span>
+                  </i>
+                </ForwardRef>
+              </ForwardRef>,
+            },
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": Object {
@@ -1368,6 +1399,37 @@ exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!he
         tableCopyId="teamAssistNetworks"
         tableData={
           Array [
+            GenericTableTextRow {
+              "className": "",
+              "kind": "text-row",
+              "text": <ForwardRef
+                noGutters={false}
+              >
+                <ForwardRef
+                  xs={3}
+                />
+                <ForwardRef
+                  className="d-flex justify-content-center"
+                  xs={3}
+                >
+                  <i>
+                    <span>
+                      Scored / Assisted By:
+                    </span>
+                  </i>
+                </ForwardRef>
+                <ForwardRef
+                  className="d-flex justify-content-center"
+                  xs={6}
+                >
+                  <i>
+                    <span>
+                      Assists:
+                    </span>
+                  </i>
+                </ForwardRef>
+              </ForwardRef>,
+            },
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": Object {

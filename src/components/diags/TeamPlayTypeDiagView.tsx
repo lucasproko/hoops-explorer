@@ -155,7 +155,15 @@ const TeamPlayTypeDiagView: React.FunctionComponent<Props> = ({players, rosterSt
       <Tooltip id={id + "Tooltip"}>{tooltip}</Tooltip>
     }><i>{title}</i></OverlayTrigger>;
 
-  const rawAssistTableData = _.chain(reorderedPosVsPosAssistNetwork).toPairs().flatMap((kv, ix) => {
+  const rawAssistTableData = [
+    GenericTableOps.buildTextRow(
+      <Row>
+        <Col xs={3}></Col>
+        <Col xs={3} className="d-flex justify-content-center"><i><span>Scored / Assisted By:</span></i></Col>
+        <Col xs={6} className="d-flex justify-content-center"><i><span>Assists:</span></i></Col>
+      </Row>
+    )
+  ].concat(_.chain(reorderedPosVsPosAssistNetwork).toPairs().flatMap((kv, ix) => {
     const posTitle = kv[0];
     const assistInfo = kv[1].assists;
     const otherInfo = kv[1].other;
@@ -205,7 +213,7 @@ const TeamPlayTypeDiagView: React.FunctionComponent<Props> = ({players, rosterSt
       }, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta),
       GenericTableOps.buildRowSeparator(),
     ]);
-  }).value();
+  }).value());
 
   return <span>
     {/*JSON.stringify(_.chain(teamStats).toPairs().filter(kv => kv[0].indexOf("trans") >= 0).values(), tidyNumbers, 3)*/}
