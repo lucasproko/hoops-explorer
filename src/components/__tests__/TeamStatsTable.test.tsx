@@ -36,7 +36,7 @@ describe("TeamStatsTable", () => {
       { global: {}, onOffMode: true }
     );
     const component = renderer.create(<TeamStatsTable
-      gameFilterParams={{ onOffLuck: true, showOnOffLuckDiags: true }}
+      gameFilterParams={{ onOffLuck: true, showOnOffLuckDiags: true, showTeamPlayTypes: true }}
       dataEvent={{
         teamStats: testData,
         rosterStats: {},
