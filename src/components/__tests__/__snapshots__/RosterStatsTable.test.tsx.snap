@@ -32229,7 +32229,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                     }
                   }
                   showHelp={true}
-                  teamSeason="undefined_undefined_undefined"
+                  teamSeasonLookup="undefined_undefined_undefined"
                 />,
               },
               GenericTableDataRow {
@@ -33599,7 +33599,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                     }
                   }
                   showHelp={true}
-                  teamSeason="undefined_undefined_undefined"
+                  teamSeasonLookup="undefined_undefined_undefined"
                 />,
               },
               GenericTableSeparator {
@@ -34972,7 +34972,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                     }
                   }
                   showHelp={true}
-                  teamSeason="undefined_undefined_undefined"
+                  teamSeasonLookup="undefined_undefined_undefined"
                 />,
               },
               GenericTableSeparator {
@@ -36249,7 +36249,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                     }
                   }
                   showHelp={true}
-                  teamSeason="undefined_undefined_undefined"
+                  teamSeasonLookup="undefined_undefined_undefined"
                 />,
               },
               GenericTableSeparator {

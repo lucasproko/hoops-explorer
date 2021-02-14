@@ -22,6 +22,10 @@ describe("PlayTypeUtils", () => {
     const playStyle = PlayTypeUtils.buildPlayerStyle(mainPlayer);
     //expect(playStyle).toEqual({});
     expect(playStyle).toMatchSnapshot();
+
+    const playStyleWithTotals = PlayTypeUtils.buildPlayerStyle(mainPlayer, 1, 1);
+    //expect(playStyleWithTotals).toEqual({});
+    expect(playStyle).toMatchSnapshot();
   });
   test("PlayTypeUtils - buildPlayerAssistNetwork", () => {
     const playerStyle = PlayTypeUtils.buildPlayerStyle(mainPlayer);
@@ -39,6 +43,10 @@ describe("PlayTypeUtils", () => {
     const extraUnassistedInfo = PlayTypeUtils.enrichUnassistedStats(playerStyle.unassisted, mainPlayer);
     //expect(extraUnassistedInfo).toEqual({});
     expect(extraUnassistedInfo).toMatchSnapshot();
+
+    const extraUnassistedInfoPos = PlayTypeUtils.enrichUnassistedStats(playerStyle.unassisted, 0);
+    //expect(extraUnassistedInfoPos).toEqual({});
+    expect(extraUnassistedInfoPos).toMatchSnapshot();
   });
   test("PlayTypeUtils - buildPosCategoryAssistNetwork", () => {
     const playerStyle = PlayTypeUtils.buildPlayerStyle(mainPlayer);
@@ -54,5 +62,17 @@ describe("PlayTypeUtils", () => {
     );
     //expect(posCategoryAssistNetwork).toEqual({});
     expect(posCategoryAssistNetwork).toMatchSnapshot();
+
+    const posCategoryAssistNetworkNoInfo = PlayTypeUtils.buildPosCategoryAssistNetwork(
+      playerAssistNetwork, rosterStatsByCode, undefined
+    );
+    //expect(posCategoryAssistNetworkNoInfo).toEqual({});
+    expect(posCategoryAssistNetworkNoInfo).toMatchSnapshot();
+
+    const posCategoryAssistNetworkPos = PlayTypeUtils.buildPosCategoryAssistNetwork(
+      playerAssistNetwork, rosterStatsByCode, 0
+    );
+    //expect(posCategoryAssistNetworkPos).toEqual({});
+    expect(posCategoryAssistNetworkPos).toMatchSnapshot();
   });
 });

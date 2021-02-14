@@ -609,7 +609,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
             <PlayerPlayTypeDiagView
               player={{...p.on, posClass: p.global?.posClass || "??"}}
               rosterStatsByCode={globalRosterStatsByCode}
-              teamSeason={teamSeasonLookup} showHelp={showHelp}/>, "small"
+              teamSeasonLookup={teamSeasonLookup} showHelp={showHelp}/>, "small"
           ) ] : [],
       ]),
       _.isNil(p.off?.off_title) ? [ ] : _.flatten([
@@ -634,7 +634,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
             <PlayerPlayTypeDiagView
               player={{...p.off, posClass: p.global?.posClass || "??"}}
               rosterStatsByCode={globalRosterStatsByCode}
-              teamSeason={teamSeasonLookup} showHelp={showHelp}/>, "small"
+              teamSeasonLookup={teamSeasonLookup} showHelp={showHelp}/>, "small"
           ) ] : [],
       ]),
       (skipBaseline || _.isNil(p.baseline?.off_title)) ? [ ] : _.flatten([
@@ -659,7 +659,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
             <PlayerPlayTypeDiagView
               player={{...p.baseline, posClass: p.global?.posClass || "??"}}
               rosterStatsByCode={globalRosterStatsByCode}
-              teamSeason={teamSeasonLookup} showHelp={showHelp}/>, "small"
+              teamSeasonLookup={teamSeasonLookup} showHelp={showHelp}/>, "small"
           ) ] : [],
       ]),
       [ GenericTableOps.buildRowSeparator() ]

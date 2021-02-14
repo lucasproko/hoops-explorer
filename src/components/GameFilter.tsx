@@ -37,6 +37,9 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
   // Data model
 
   const {
+    // Team stats
+    teamDiffs: startTeamDiffs,
+    showTeamPlayTypes: startShowTeamPlayTypes,
     //(common visualization fields across all tables)
     //(manual overrides)
     manual: startManual,
@@ -105,19 +108,21 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
     const primaryRequest: GameFilterParams = includeFilterParams ?
       _.assign(
         buildParamsFromState(false)[0], {
+          // Team stats
+          autoOffQuery: autoOffQuery,
+          teamDiffs: startTeamDiffs,
+          showTeamPlayTypes: startShowTeamPlayTypes,
           // Common luck stats across all tables:
           //(manual overrides)
           manual: startManual,
           showPlayerManual: startShowPlayerManual,
           //(luck)
           luck: startLuck,
-          // Team luck stats:
           onOffLuck: startOnOffLuck,
           showOnOffLuckDiags: startShowOnOffLuckDiags,
           showPlayerOnOffLuckDiags: startShowPlayerOnOffLuckDiags,
-          calcRapm: startCalcRapm,
           // Individual stats:
-          autoOffQuery: autoOffQuery,
+          calcRapm: startCalcRapm,
           filter: startFilter, sortBy: startSortBy,
           showBase: startShowBase, showExpanded: startShowExpanded,
           showDiag: startShowDiag, possAsPct: startPossAsPct,

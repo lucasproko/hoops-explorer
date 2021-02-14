@@ -38,6 +38,7 @@ import { LineupUtils } from "../utils/stats/LineupUtils";
 import { LuckUtils, OffLuckAdjustmentDiags, DefLuckAdjustmentDiags, LuckAdjustmentBaseline } from "../utils/stats/LuckUtils";
 import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
 import { TableDisplayUtils } from "../utils/tables/TableDisplayUtils";
+import { RosterTableUtils } from "../utils/tables/RosterTableUtils";
 
 export type TeamStatsModel = {
   on: any,
@@ -84,7 +85,9 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
   );
 
   /** (placeholder for positional info)*/
-  const [ showPlayTypes, setShowPlayTypes ] = useState(false)
+  const [ showPlayTypes, setShowPlayTypes ] = useState(_.isNil(gameFilterParams.showTeamPlayTypes) ?
+    ParamDefaults.defaultTeamShowPlayTypes : gameFilterParams.showTeamPlayTypes
+  );
 
   /** Whether we are showing the luck config modal */
   const [ showLuckConfig, setShowLuckConfig ] = useState(false);
@@ -102,12 +105,13 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
     const newState = {
       ...gameFilterParams,
       teamDiffs: showDiffs,
+      showTeamPlayTypes: showPlayTypes,
       luck: luckConfig,
       onOffLuck: adjustForLuck,
       showOnOffLuckDiags: showLuckAdjDiags,
     };
     onChangeState(newState);
-  }, [ luckConfig, adjustForLuck, showLuckAdjDiags, showDiffs ]);
+  }, [ luckConfig, adjustForLuck, showLuckAdjDiags, showDiffs, showPlayTypes ]);
 
   // 2] Data View
 
@@ -162,6 +166,11 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
 
   //(end luck calcs)
 
+  /** Largest sample of player stats, by player key - use for ORtg calcs */
+  const globalRosterStatsByCode = RosterTableUtils.buildRosterTableByCode(
+    rosterStats.global || [], showPlayTypes, teamSeasonLookup
+  ); //TODO: which set do I actually want to use for positional calcs here?
+
   const teamStatsOn = {
     off_title: `${maybeOn} Offense`,
     def_title: `${maybeOn} Defense`,
@@ -211,7 +220,13 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
       ) ] : [] ,
       showPlayTypes ?
         [ GenericTableOps.buildTextRow(
-          <TeamPlayTypeDiagView lineupSet={teamStats.off} showHelp={showHelp}/>, "small"
+          <TeamPlayTypeDiagView
+            players={rosterStats.on || []}
+            rosterStatsByCode={globalRosterStatsByCode}
+            teamStats={teamStatsOn}
+            teamSeasonLookup={teamSeasonLookup}
+            showHelp={showHelp}
+            />, "small"
         ) ] : [],
       [ GenericTableOps.buildRowSeparator() ]
     ]) : [],
@@ -229,7 +244,13 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
       ) ] : [] ,
       showPlayTypes ?
         [ GenericTableOps.buildTextRow(
-          <TeamPlayTypeDiagView lineupSet={teamStats.off} showHelp={showHelp}/>, "small"
+          <TeamPlayTypeDiagView
+            players={rosterStats.off || []}
+            rosterStatsByCode={globalRosterStatsByCode}
+            teamStats={teamStatsOff}
+            teamSeasonLookup={teamSeasonLookup}
+            showHelp={showHelp}
+            />, "small"
         ) ] : [],
       [ GenericTableOps.buildRowSeparator() ]
     ]) : [],
@@ -247,9 +268,14 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
       ) ] : [] ,
       showPlayTypes ?
         [ GenericTableOps.buildTextRow(
-          <TeamPlayTypeDiagView lineupSet={teamStats.baseline} showHelp={showHelp}/>, "small"
+          <TeamPlayTypeDiagView
+            players={rosterStats.baseline || []}
+            rosterStatsByCode={globalRosterStatsByCode}
+            teamStats={teamStatsBaseline}
+            teamSeasonLookup={teamSeasonLookup}
+            showHelp={showHelp}
+            />, "small"
         ) ] : [],
-      [ GenericTableOps.buildRowSeparator() ],
     ]),
     // Diffs if showing:
     showDiffs ? [ GenericTableOps.buildRowSeparator() ] : [],
@@ -311,7 +337,13 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
                   tooltip: "Show hide diffs between A/B/Baseline stats",
                   toggled: showDiffs,
                   onClick: () => setShowDiffs(!showDiffs)
-                }
+                },
+                {
+                  label: "Style",
+                  tooltip: showPlayTypes ? "Hide play style breakdowns" : "Show play style breakdowns",
+                  toggled: showPlayTypes,
+                  onClick: () => setShowPlayTypes(!showPlayTypes)
+                },
               ]}/>
             </Col>
           </Form.Row>
@@ -328,6 +360,11 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
               text="Show Stat Differences"
               truthVal={showDiffs}
               onSelect={() => setShowDiffs(!showDiffs)}
+            />
+            <GenericTogglingMenuItem
+              text="Show Play Style Breakdowns"
+              truthVal={showPlayTypes}
+              onSelect={() => setShowPlayTypes(!showPlayTypes)}
             />
             <Dropdown.Divider />
             <GenericTogglingMenuItem

@@ -15,91 +15,219 @@ import Tooltip from 'react-bootstrap/Tooltip';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 
 // Utils
+import { PosFamilyNames, PlayTypeUtils } from "../../utils/stats/PlayTypeUtils";
 import { PositionUtils } from "../../utils/stats/PositionUtils";
 import { CommonTableDefs } from "../../utils/tables/CommonTableDefs";
+import { PlayTypeDiagUtils } from "../../utils/tables/PlayTypeDiagUtils";
 import { CbbColors } from "../../utils/CbbColors";
+import { LineupUtils } from "../../utils/stats/LineupUtils";
 
 // Component imports
 import GenericTable, { GenericTableOps, GenericTableColProps } from "../GenericTable";
 
-// Table defs
-/*
-const simpleDiagTable = {
-  "title": GenericTableOps.addTitle("", "The positional class associated with this player's statistical signature"),
-  "sep0": GenericTableOps.addColSeparator(),
-  "pos_pg": GenericTableOps.addPctCol("PG%", tooltipTradPosGenerator("Point Guard"), GenericTableOps.defaultColorPicker),
-  "pos_sg": GenericTableOps.addPctCol("SG%", tooltipTradPosGenerator("Shooting Guard"), GenericTableOps.defaultColorPicker),
-  "pos_sf": GenericTableOps.addPctCol("SF%", tooltipTradPosGenerator("Small Forward"), GenericTableOps.defaultColorPicker),
-  "pos_pf": GenericTableOps.addPctCol("PF%", tooltipTradPosGenerator("Power Forward"), GenericTableOps.defaultColorPicker),
-  "pos_c": GenericTableOps.addPctCol("C%", tooltipTradPosGenerator("Center"), GenericTableOps.defaultColorPicker),
-};
-
-const complexDiagTable = {
-
-  "feature": GenericTableOps.addTitle("", "Each of the statistical features used in the classification", CommonTableDefs.singleLineRowSpanCalculator, "", GenericTableOps.htmlFormatter),
-  "sep0": GenericTableOps.addColSeparator(),
-  "player": GenericTableOps.addPctCol("Player %", "The value of this player vs this statistic", colorPicker),
-  "sep1": GenericTableOps.addColSeparator(),
-  "pos_pg": GenericTableOps.addPctCol("Wt PG", tooltipWeightGenerator("Point Guard"), GenericTableOps.defaultColorPicker),
-  "av_pos_pg": GenericTableOps.addPctCol("Av PG", tooltipAverageGenerator("Point Guard"), colorPicker),
-  "contrib_pos_pg": GenericTableOps.addPctCol("+- PG%", tooltipContribGenerator("Point Guard"), CbbColors.varPicker(CbbColors.posColors)),
-  "sep2": GenericTableOps.addColSeparator(),
-  "pos_sg": GenericTableOps.addPctCol("Wt SG", tooltipWeightGenerator("Shooting Guard"), GenericTableOps.defaultColorPicker),
-  "av_pos_sg": GenericTableOps.addPctCol("Av SG", tooltipAverageGenerator("Shooting Guard"), colorPicker),
-  "contrib_pos_sg": GenericTableOps.addPctCol("+- SG%", tooltipContribGenerator("Shooting Guard"), CbbColors.varPicker(CbbColors.posColors)),
-  "sep3": GenericTableOps.addColSeparator(),
-  "pos_sf": GenericTableOps.addPctCol("Wt SF", tooltipWeightGenerator("Small Forward"), GenericTableOps.defaultColorPicker),
-  "av_pos_sf": GenericTableOps.addPctCol("Av SF", tooltipAverageGenerator("Small Forward"), colorPicker),
-  "contrib_pos_sf": GenericTableOps.addPctCol("+- SF%", tooltipContribGenerator("Small Forward"), CbbColors.varPicker(CbbColors.posColors)),
-  "sep4": GenericTableOps.addColSeparator(),
-  "pos_pf": GenericTableOps.addPctCol("Wt PF", tooltipWeightGenerator("Power Forward"), GenericTableOps.defaultColorPicker),
-  "av_pos_pf": GenericTableOps.addPctCol("Av PF", tooltipAverageGenerator("Power Forward"), colorPicker),
-  "contrib_pos_pf": GenericTableOps.addPctCol("+- PF%", tooltipContribGenerator("Power Forward"), CbbColors.varPicker(CbbColors.posColors)),
-  "sep5": GenericTableOps.addColSeparator(),
-  "pos_c": GenericTableOps.addPctCol("Wt C", tooltipWeightGenerator("Center"), GenericTableOps.defaultColorPicker),
-  "av_pos_c": GenericTableOps.addPctCol("Av C", tooltipAverageGenerator("Center"), colorPicker),
-  "contrib_pos_c": GenericTableOps.addPctCol("+- C%", tooltipContribGenerator("Center"), CbbColors.varPicker(CbbColors.posColors)),
-};
-*/
+const tidyNumbers = (k: string, v: any) => {
+  if (_.isNumber(v)) {
+    const numStr = v.toFixed(3);
+    if (_.endsWith(numStr, ".000")) {
+      return numStr.split(".")[0];
+    } else {
+      return parseFloat(numStr);
+    }
+  } else {
+    return v;
+  }
+}
 
 type Props = {
-  lineupSet: Record<string, any>,
-  showHelp: boolean,
-  showDetailsOverride?: boolean
+  players: Array<Record<string, any>>,
+  rosterStatsByCode: Record<string, any>,
+  teamStats: Record<string, any>,
+  teamSeasonLookup: string,
+  showHelp: boolean
 };
-const TeamPlayTypeDiagView: React.FunctionComponent<Props> = ({lineupSet, showHelp, showDetailsOverride}) => {
+const TeamPlayTypeDiagView: React.FunctionComponent<Props> = ({players, rosterStatsByCode, teamStats, teamSeasonLookup, showHelp}) => {
+  // Repeat the logic in PlayerTypeTypeDiagView:
+
+  const teamScoringPossessions =
+    (teamStats.total_off_fgm?.value || 0) + 0.475*(teamStats.total_off_fta?.value || 0);
+    //(use pure scoring possessions and not + assists because the team is "closed" unlike one player)
+
+  const teamTotalAssists = teamStats.total_off_assist?.value || 0;
+    //(use team total assists for consistency with individual chart)
+
+  const filterCodes = undefined as Set<string> | undefined; // = new Set(["ErAyala", "AqSmart"])
+  const filteredPlayers = filterCodes ? players.filter(pl => {
+    const code = pl.player_array?.hits?.hits?.[0]?._source?.player?.code || pl.key;
+    return filterCodes.has(code);
+  }) : players;
+
+  const posCategoryAssistNetworkVsPlayer = _.chain(filteredPlayers).map((player, ix) => {
+    const allPlayers = PlayTypeUtils.buildPlayerAssistCodeList(player);
+    const playerStyle = PlayTypeUtils.buildPlayerStyle(
+      player, teamScoringPossessions, teamTotalAssists
+    );
+    const playerAssistNetwork = allPlayers.map((p) => {
+      const [ info, ignore ] = PlayTypeUtils.buildPlayerAssistNetwork(
+        p, player, playerStyle.totalScoringPlaysMade, playerStyle.totalAssists,
+        rosterStatsByCode
+      );
+      return { code: p, ...info };
+    });
+    const posCategoryAssistNetwork = PlayTypeUtils.buildPosCategoryAssistNetwork(
+      playerAssistNetwork, rosterStatsByCode, undefined
+    );
+
+    const code = player.player_array?.hits?.hits?.[0]?._source?.player?.code || player.key;
+
+// console.log(`${code} ... vs ... ${JSON.stringify(playerAssistNetwork, tidyNumbers, 3)}`);
+
+    return [ code, { posCategoryAssistNetwork: posCategoryAssistNetwork, playerStyle: playerStyle } ];
+  }).fromPairs().value();
+
+  // This gets us to:
+  // [1] (player)[ { [pos]: <shot-type-stats> } ]   (pos=bh|wing|big)
+
+  // Then buildPosCategoryAssistNetwork goes:
+  // [2] player, (other_players)[ <shot-type-stats> ] => { [pos]: <shot-type-stats> }
+  // (and "player" is only used to inject examples in)
+
+  // So transform [1] to (pos)(players)[ <shot-type-stats> ] and then use [2] on each pos
+  // and that gives us a pos vs pos -> <shot-type-stats> as desired!
+
+  const posVsPosAssistNetwork = _.chain(PosFamilyNames).map((pos, ix) => {
+    const perPlayer = _.chain(posCategoryAssistNetworkVsPlayer).mapValues((perPlayerInfo, playerCode) => {
+      const posCategoryAssistNetwork = perPlayerInfo.posCategoryAssistNetwork;
+        // ^ For each player, the stats to/from the position
+      const playerStyle = perPlayerInfo.playerStyle;
+
+      // For each player: get a single pos category stats
+      const posStats = posCategoryAssistNetwork.filter((net: any) => net?.order == ix)?.[0] || undefined;
+      return posStats ? [ {
+        ...posStats,
+        code: playerCode
+      } ] : [];
+    }).values().flatten().value();
+
+//TODO: this is the wrong way round...
+    // This is now "for each pos, a list of player stats", so we can reapply, to get "for each pos a list of pos stats"
+    const posPosCatAssistNetwork = PlayTypeUtils.buildPosCategoryAssistNetwork(
+      perPlayer, rosterStatsByCode, ix,
+    ); // pos vs <shot-type-stats> (order tells you which)
+
+//console.log(`${pos} ... vs ... ${JSON.stringify(perPlayer, tidyNumbers, 3)}`);
+
+    // Unassisted/scramble/transition: similar:
+    const posVsPosOtherTypes = _.chain([ "unassisted", "assisted", "transition", "scramble" ]).map(key => {
+
+      //TODO: need to weight each set of stats by the score
+
+      const perPlayer = _.chain(posCategoryAssistNetworkVsPlayer).mapValues((perPlayerInfo, playerCode) => {
+        const playerStyle = perPlayerInfo.playerStyle;
+        return { ...(playerStyle[key] || {}), code: playerCode };
+      }).values().value();
+      const posPosCatAssistNetwork = PlayTypeUtils.buildPosCategoryAssistNetwork(
+        perPlayer, rosterStatsByCode, undefined,
+      ); // pos vs <shot-type-stats> (order tells you which)
+
+//console.log(`${key}: ${JSON.stringify(perPlayer, tidyNumbers)} ... ${JSON.stringify(posPosCatAssistNetwork, tidyNumbers)}`);
+
+      return posPosCatAssistNetwork[ix];
+    }).value();
+
+    return [ pos, { assists: posPosCatAssistNetwork, other: posVsPosOtherTypes} ];
+
+  }).fromPairs().value();
+
+  // The above is the wrong way round, so re-order the 2x pos keys:
+  const reorderedPosVsPosAssistNetwork = _.chain(PosFamilyNames).map((pos, ix) => {
+    const other = posVsPosAssistNetwork[pos]?.other || {};
+    const assists = _.chain(posVsPosAssistNetwork).values().map((assistNetwork, ix2) => {
+      return { ...(assistNetwork.assists?.[ix] || {}), order: ix2 };
+    }).value();
+
+//console.log(`${pos} ... vs ... ${JSON.stringify(posVsPosAssistNetwork[pos], tidyNumbers, 3)}`);
+
+    return [ pos, { assists: assists, other: other } ];
+  }).fromPairs().value();
+
+  const tooltipBuilder = (id: string, title: string, tooltip: string) =>
+    <OverlayTrigger placement="auto" overlay={
+      <Tooltip id={id + "Tooltip"}>{tooltip}</Tooltip>
+    }><i>{title}</i></OverlayTrigger>;
+
+  const rawAssistTableData = [
+    GenericTableOps.buildTextRow(
+      <Row>
+        <Col xs={3}></Col>
+        <Col xs={3} className="d-flex justify-content-center"><i><span>Scored / Assisted By:</span></i></Col>
+        <Col xs={6} className="d-flex justify-content-center"><i><span>Assists:</span></i></Col>
+      </Row>
+    )
+  ].concat(_.chain(reorderedPosVsPosAssistNetwork).toPairs().flatMap((kv, ix) => {
+    const posTitle = kv[0];
+    const assistInfo = kv[1].assists;
+    const otherInfo = kv[1].other;
+
+    return [
+      GenericTableOps.buildDataRow({
+        title: <b>{_.capitalize(posTitle)} from/to:</b>
+      }, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta),
+      GenericTableOps.buildDataRow({
+        ...PlayTypeDiagUtils.buildInfoRow(
+          PlayTypeUtils.enrichUnassistedStats(otherInfo[0]!, ix)
+        ),
+        title: tooltipBuilder("unassisted", "Unassisted",
+          `All scoring plays where the ${posTitle} was unassisted (includes FTs which can never be assisted). Includes half court, scrambles, and transition)`
+        )
+      }, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta),
+      GenericTableOps.buildDataRow({
+        ...PlayTypeDiagUtils.buildInfoRow(otherInfo[1]!),
+        title: tooltipBuilder("assist", "Assist totals:",
+          `All plays where the  ${posTitle} was assisted (left half) or provided the assist (right half). ` +
+          "The 3 rows below break down assisted plays according to the positional category of the assister/assistee. " +
+          "(Includes half court, scramble, and transitions)"
+        )
+      }, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta)
+    ].concat(
+      GenericTableOps.buildRowSeparator(),
+      assistInfo.map((info: any) => PlayTypeDiagUtils.buildInfoRow(info)).map((info: any) =>
+        GenericTableOps.buildDataRow({
+          ...info,
+          title: <span><i>{_.capitalize(PosFamilyNames[info.order])}</i></span>
+        }, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta)
+      )
+    ).concat([
+      GenericTableOps.buildRowSeparator(),
+      GenericTableOps.buildDataRow({
+        ...PlayTypeDiagUtils.buildInfoRow(otherInfo[2]!),
+        title: tooltipBuilder("trans", "In transition",
+          "All plays (assisted or unassisted) that are classified as 'in transition', normally shots taken rapidly after a rebound, miss, or make in the other direction."
+        )
+      }, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta),
+      GenericTableOps.buildDataRow({
+        ...PlayTypeDiagUtils.buildInfoRow(otherInfo[3]!),
+        title: tooltipBuilder("scramble", "Scrambles after RB",
+          "All plays (assisted or unassisted) that occur in the aftermath of an offensive rebound, where the offense does not get reset before scoring. " +
+          "Examples are putbacks (unassisted) or tips to other players (assisted)"
+        ),
+      }, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta),
+      GenericTableOps.buildRowSeparator(),
+    ]);
+  }).value());
 
   return <span>
-      <span>
-        <b>Play Type Breakdown</b>
-      </span>
-      <br/>
-      <span>
-        <b>Scrambles off rebounds</b>
-      </span>
-      <br/>
-      <span>
-      {
-        JSON.stringify(_.chain(lineupSet).toPairs().filter((kv: [string, any]) => {
-          return kv[0].indexOf("scramble_") > 0
-        }).fromPairs().value())
-      }
-      </span>
-      <br/>
-      <span>
-        <b>Transition</b>
-      </span>
-      <br/>
-      <span>
-      {
-//TODO: these transition numbers seem way too high ... 400 vs 300 FGA and more importantly 60% FTR vs 16% (2019)
-//2015/6: FGAs are almost identical (273) but 50% FTR (138) vs 15% again, leading to noticeable difference
-// trans TO also slightly high (20% vs 13%)     
-        JSON.stringify(_.chain(lineupSet).toPairs().filter((kv: [string, any]) => {
-          return kv[0].indexOf("trans_") > 0
-        }).fromPairs().value())
-      }
-      </span>
-    </span>;
+    {/*JSON.stringify(_.chain(teamStats).toPairs().filter(kv => kv[0].indexOf("trans") >= 0).values(), tidyNumbers, 3)*/}
+    <br/>
+    <span>
+      <b>Scoring Analysis: [{(teamStats.off_title || "").replace(" Offense", "")}]</b>
+    </span>
+    <br/>
+    <br/>
+    <Container>
+      <Col xs={10}>
+        <GenericTable responsive={false} tableCopyId="teamAssistNetworks" tableFields={PlayTypeDiagUtils.rawAssistTableFields(false, true)} tableData={rawAssistTableData}/>
+      </Col>
+    </Container>
+  </span>;
 };
 export default TeamPlayTypeDiagView;

@@ -29,7 +29,7 @@ export class PlayTypeUtils {
     "s-PG": [ 1.0, 0, 0],
     "CG": [ 0.8, 0.2, 0 ],
     "WG": [ 0.2, 0.8, 0 ],
-    "WF": [ 0, 1.0, 0 ],
+    "WF": [ 0, 0.8, 0.2 ],
     "S-PF": [ 0, 0.6, 0.4 ],
     "PF/C": [ 0, 0.2, 0.8 ],
     "C": [ 0, 0, 1.0 ],
@@ -62,15 +62,20 @@ export class PlayTypeUtils {
   }
 
   /** Decomposes a player stats into unassisted/assisted and half-court/scramble/transition */
-  static buildPlayerStyle(player: Record<string, any>): PlayerStyleInfo {
+  static buildPlayerStyle(
+    player: Record<string, any>, countNotPctScorePoss?: number, countNotPctAssists?: number
+  ): PlayerStyleInfo {
 
     // Some types and globals
 
     const ftaMult = 0.475;
-    const totalAssists = player[`total_off_assist`]?.value || 0;
+    const totalAssistsCalc = player[`total_off_assist`]?.value || 0; // (don't render if 0)
+    const totalAssists = countNotPctAssists ? countNotPctAssists : totalAssistsCalc;
+
     const totalShotsMade = player[`total_off_fgm`]?.value || 0;
     const totalFtTripsMade = ftaMult*(player[`total_off_fta`]?.value || 0);
-    const totalScoringPlaysMade = (totalShotsMade + totalFtTripsMade + totalAssists) || 1;
+    const totalScoringPlaysMade = (countNotPctScorePoss ? countNotPctScorePoss :
+        (totalShotsMade + totalFtTripsMade + totalAssists)) || 1; //(always render so avoid NaN with default 1)
 
     /** (util method, see below) */
     const buildTotal = (prefix: string) => { return _.fromPairs(shotTypes.map((key) => {
@@ -81,7 +86,7 @@ export class PlayTypeUtils {
     })) as Record<string, number[]>; };
 
     /** (util method, see below) */
-    const buildRow = (totalInfo: Record<string, number[]>, ftInfo: number) => {
+    const buildRow = (totalInfo: Record<string, number[]>, ftInfo: number, assists: number) => {
       return _.toPairs(totalInfo).map(kv => {
         const key = kv[0];
         const total = kv[1][0]!;
@@ -89,7 +94,8 @@ export class PlayTypeUtils {
           value: total/totalScoringPlaysMade
         } : null ]
       }).concat([
-        [ `source_sf`, ftInfo > 0 ? { value: ftInfo/totalScoringPlaysMade } : null ]
+        [ `source_sf`, ftInfo > 0 ? { value: ftInfo/totalScoringPlaysMade } : null ],
+        [ `target_ast`, assists > 0 ? { value: assists/totalScoringPlaysMade } : null ],
       ]);
     }
 
@@ -97,11 +103,13 @@ export class PlayTypeUtils {
 
     const scrambleTotal = buildTotal("scramble");
     const scrambleFtTrips = ftaMult*(player[`total_off_scramble_fta`]?.value || 0);
-    const scrambleRow = buildRow(scrambleTotal, scrambleFtTrips);
+    const scrambleAssists = player[`total_off_scramble_assist`]?.value || 0;
+    const scrambleRow = buildRow(scrambleTotal, scrambleFtTrips, scrambleAssists);
 
     const transitionTotal = buildTotal("trans");
     const transitionFtTrips = ftaMult*(player[`total_off_trans_fta`]?.value || 0);
-    const transitionRow = buildRow(transitionTotal, transitionFtTrips);
+    const transitionAssists = player[`total_off_trans_assist`]?.value || 0;
+    const transitionRow = buildRow(transitionTotal, transitionFtTrips, transitionAssists);
 
     // Half court:
 
@@ -128,8 +136,8 @@ export class PlayTypeUtils {
         value: assisted/totalScoringPlaysMade
       } : null];
     }).concat([
-      [ `target_ast`, totalAssists > 0 ? {
-        value: totalAssists/totalScoringPlaysMade
+      [ `target_ast`, totalAssistsCalc > 0 ? {
+        value: totalAssistsCalc/totalScoringPlaysMade
       } : null ]
     ]);
 
@@ -144,6 +152,8 @@ export class PlayTypeUtils {
   }
 
   /** Takes a player or category (ball-handler / wing / frontcourt) and builds their assist network
+   * relative to the main player (ie assisting or assisted by) for each shot type
+   * note totalScoringPlaysMade/totalAssists is relative to "mainPlayer"
    *  (note that the interaction between this logic and the calling code in XxxPlayTypeDiagView is currently a bit tangled)
    */
   static buildPlayerAssistNetwork(
@@ -175,11 +185,14 @@ export class PlayTypeUtils {
   }
 
   /** Adds example plays to the "extraInfo" of unassited stats */
-  static enrichUnassistedStats(unassistedStats: Record<string, any>, mainPlayer: Record<string, any>) {
+  static enrichUnassistedStats(unassistedStats: Record<string, any>, mainPlayer: Record<string, any> | number) {
     // Build main player's positional category:
-    const mainPlayerCats = _.orderBy(PlayTypeUtils.buildPosFamily(mainPlayer.role, mainPlayer.posClass).flatMap((catScore, ix) => {
-      return catScore > 0 ? [ { order: ix, score: catScore } ] : [];
-    }), ["score"], ["desc"]);
+    const mainPlayerCats = _.isNumber(mainPlayer) ?
+      [ { order: mainPlayer, score: 0 }  ]
+      :
+      _.orderBy(PlayTypeUtils.buildPosFamily(mainPlayer.role, mainPlayer.posClass).flatMap((catScore, ix) => {
+        return catScore > 0 ? [ { order: ix, score: catScore } ] : [];
+      }), ["score"], ["desc"]);
 
     // handle usages, (AST)
     shotTypes.concat(["sf"]).forEach((shotType, ix) => {
@@ -201,34 +214,48 @@ export class PlayTypeUtils {
   }
 
   /** Converts a player-grouped assist network into a positional category grouped one
+   *  Returns an array of stats for each of: ballhandler, guard, wing (ie size <= 3)
    *  (note that the interaction between this logic and the calling code in XxxPlayTypeDiagView is currently a bit tangled)
+   * (if mainPlayer is undefined then is called for team calcs)
    */
   static buildPosCategoryAssistNetwork(
     playerAssistNetwork: Array<Record<string, any>>,
     rosterStatsByCode: Record<string, any>,
-    mainPlayer: Record<string, any>
-  ) {
+    mainPlayer: Record<string, any> | number | undefined
+  ): Array<Record<string, any>> {
     // Build main player's positional category:
-    const mainPlayerCats = _.orderBy(PlayTypeUtils.buildPosFamily(mainPlayer.role, mainPlayer.posClass).flatMap((catScore, ix) => {
-      return catScore > 0 ? [ { order: ix, score: catScore } ] : [];
-    }), ["score"], ["desc"]);
+    // (this is just for injecting examples - if you don't want examples just set mainPlayer to undefined)
+    const mainPlayerCats = !_.isNil(mainPlayer) ? (
+      _.isNumber(mainPlayer) ?
+        [ { order: mainPlayer, score: 0 }  ]
+        :
+        _.orderBy(PlayTypeUtils.buildPosFamily(mainPlayer.role, mainPlayer.posClass).flatMap((catScore, ix) => {
+         return catScore > 0 ? [ { order: ix, score: catScore } ] : [];
+       }), ["score"], ["desc"])
+    ) : undefined;
 
     return _.chain(playerAssistNetwork).flatMap(playerStats => {
       const playerCode = playerStats.code!;
       const role = rosterStatsByCode[playerCode]?.role || "??";
       const posClass = rosterStatsByCode[playerCode]?.posClass || [];
       return PlayTypeUtils.buildPosFamily(role, posClass).flatMap((catScore, ix) => {
-        return catScore > 0 ? [ { ...playerStats, title: null, order: ix, score: catScore } ] : [];
+        return catScore > 0 ? [ {
+          ...playerStats,
+          title: null, order: ix,
+          score: catScore
+        } ] : [];
       }) as Array<any>;
     }).concat([
       { order: 0, score: 0 }, { order: 1, score: 0 }, { order: 2, score: 0 }
-    ]).groupBy(info => info.order).values().map(infos => {
+    ]).groupBy(
+      info => info.order
+    ).values().map(infos => { //(NOTE: infos includes the empty dummy entry that just ensures we have one obj for every position)
       const mutableObj = {
         order: infos[0]!.order
       } as Record<string, any>;
 
-      // Score inv vs shot type:
-      const scoreTotalInvsTarget = shotTypes.map(shotType => {
+      // Weighting inv vs shot type:
+      const efgWeightInvsTarget = shotTypes.map(shotType => {
         return 1.0 /
           (_.reduce(infos, (acc, statSet) =>
             acc + statSet.score*(statSet[`target_${shotType}_ast`]?.value || 0), 0
@@ -241,44 +268,55 @@ export class PlayTypeUtils {
             acc[key] = { value: 0, extraInfo: examples };
           }
         }
-
-        // Handle misc sums:
-        [ "target_ast", "source_sf" ].forEach(statKey => {
-          const statVal = statSet[statKey];
-          if (statVal?.value) { // (do nothing on 0)
-            maybeFill(statKey);
-            acc[statKey].value! += statSet.score! * statVal.value;
-          }
-        });
         // handle usages, (AST)
         targetSource.forEach(loc => {
+          const sourceNotTarget = (loc == "source");
+          const weight = statSet.score;
+
+          // Handle misc sums:
+          const miscStats = sourceNotTarget ? [ "source_sf" ] : [ "target_ast" ];
+          miscStats.forEach(statKey => {
+            const statVal = statSet[statKey];
+            if (statVal?.value) { // (do nothing on 0)
+              maybeFill(statKey);
+              acc[statKey].value! += weight * statVal.value;
+            }
+          });
+
+          // Handle shot types
           shotTypes.forEach((shotType, ix) => {
+            //(bit horrid but everything is reversed when doing pos vs pos calcs)
+            const playTypeWayRound = _.isNumber(mainPlayer) ? !sourceNotTarget : sourceNotTarget;
 
             // Inject examples
-            const playTypeExamples = _.chain(mainPlayerCats).map(catInfo => {
-              const exampleKey = (loc == "source") ?
+            const playTypeExamples = mainPlayerCats ? _.chain(mainPlayerCats).map(catInfo => {
+              const exampleKey = playTypeWayRound ?
                 `${PosFamilyNames[catInfo.order!]}_${shotType}_${PosFamilyNames[statSet.order!]}` :
                 `${PosFamilyNames[statSet.order!]}_${shotType}_${PosFamilyNames[catInfo.order!]}`;
 
               return PlayTypeUtils.playTypesByFamily[exampleKey]?.examples || [];
-            }).flatten().uniq().value();
+            }).flatten().uniq().value() : undefined;
 
             const statKey = `${loc}_${shotType}_ast`;
             const statVal = statSet[statKey];
             if (statVal?.value) { // (do nothing on 0)
               maybeFill(statKey, playTypeExamples);
-              acc[statKey].value! += statSet.score! * statVal.value;
+              acc[statKey].value! += weight * statVal.value;
             }
           });
         });
+
         // Handle weighted averages (eFG)
         shotTypes.forEach((shotType, ix) => {
+          //TODO: weights are still wrong here in x-player case
+          const weight = statSet.score;
+
           const statKey = `target_${shotType}_efg`;
           const statVal = statSet[statKey];
           if (statVal?.value) { // (do nothing on 0)
             maybeFill(statKey);
-            const weight = (statSet[`target_${shotType}_ast`]?.value || 0) * scoreTotalInvsTarget[ix]!
-            acc[statKey].value! += statSet.score! * statVal.value * weight;
+            const eFgWeight = (statSet[`target_${shotType}_ast`]?.value || 0) * efgWeightInvsTarget[ix]!
+            acc[statKey].value! += weight * statVal.value * eFgWeight;
           }
         });
       }, mutableObj);

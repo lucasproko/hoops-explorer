@@ -18,6 +18,7 @@ import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import { PosFamilyNames, PlayTypeUtils } from "../../utils/stats/PlayTypeUtils";
 import { PositionUtils } from "../../utils/stats/PositionUtils";
 import { CommonTableDefs } from "../../utils/tables/CommonTableDefs";
+import { PlayTypeDiagUtils } from "../../utils/tables/PlayTypeDiagUtils";
 import { CbbColors } from "../../utils/CbbColors";
 import { LineupUtils } from "../../utils/stats/LineupUtils";
 
@@ -40,90 +41,17 @@ const tidyNumbers = (k: string, v: any) => {
 type Props = {
   player: Record<string, any>,
   rosterStatsByCode: Record<string, any>,
-  teamSeason: string,
+  teamSeasonLookup: string,
   showHelp: boolean,
   showDetailsOverride?: boolean
 };
-const PlayerPlayTypeDiagView: React.FunctionComponent<Props> = ({player, rosterStatsByCode, teamSeason, showHelp, showDetailsOverride}) => {
+const PlayerPlayTypeDiagView: React.FunctionComponent<Props> = ({player, rosterStatsByCode, teamSeasonLookup, showHelp, showDetailsOverride}) => {
 
   const [ showPlayerBreakdown, setShowPlayerBreakdown ] = useState(showDetailsOverride || false);
 
   ////////////////////////////////////
 
-  // Build raw assist table:
-
-  const targetSource = [ "source", "target" ];
-  const shotTypes = [ "3p", "mid", "rim" ];
-  const shotNameMap = { "3p": "3P", "mid": "Mid", "rim": "Rim" } as Record<string, string>;
-  const shotMap = { "3p": "3p", "rim": "2prim", "mid": "2pmid" } as Record<string, string>;
-
-  const allPlayers = PlayTypeUtils.buildPlayerAssistCodeList(player); 
-
-  const rawAssistTableFields = {
-    "title": GenericTableOps.addTitle("", "", CommonTableDefs.singleLineRowSpanCalculator, "", GenericTableOps.htmlFormatter),
-    ...(_.fromPairs(targetSource.flatMap((loc) => {
-        const targetNotSource = loc == "target";
-        return [
-          [`sep${loc}`, GenericTableOps.addColSeparator(0.25) ],
-        ].concat(
-          shotTypes.flatMap((key) => {
-            const descriptionAst = targetNotSource ?
-              `% of total assists to this player for this shot type` : `% of scoring possessions/assists of this shot type assisted BY the specified row (team-mate/category)`;
-            const descriptionEfg = `The season eFG% of this shot type / player`;
-            return [
-              [
-                `${loc}_${key}_ast`, GenericTableOps.addPctCol(`${shotNameMap[key]!}${targetNotSource ? " AST%" : ""} `,
-                  descriptionAst, CbbColors.varPicker(CbbColors.p_ast_breakdown)
-                )
-              ],
-            ].concat(targetNotSource ?
-              [
-                [
-                  `${loc}_${key}_efg`, GenericTableOps.addDataCol(`eFG`,
-                    descriptionEfg, CbbColors.offOnlyPicker(CbbColors.alwaysWhite, CbbColors.alwaysWhite), GenericTableOps.percentOrHtmlFormatter
-                  )
-                ],
-                [ `sep${loc}${key}`, GenericTableOps.addColSeparator(0.125) ],
-              ] : []
-            );
-          }).concat(targetNotSource ? [] : [
-            [
-              `source_sf`, GenericTableOps.addPctCol(`SF%`,
-                "% of scoring possessions/assists ending in a trip to the FT line", CbbColors.varPicker(CbbColors.p_ast_breakdown),
-              )
-            ],
-            [ `sep${loc}_targetsrc`, GenericTableOps.addColSeparator(0.75) ],
-            [
-              `target_ast`, GenericTableOps.addPctCol(`AST%`,
-                "% of scoring possessions/assists ending with an assist TO the specified row (team-mate/team category)", CbbColors.varPicker(CbbColors.p_ast_breakdown),
-              )
-            ]
-          ])
-        );
-      })))
-  };
-
-  // Couple of utils for decorating the background eFG
-  const buildInfoRow = (stat: any) =>
-    <text style={CommonTableDefs.getTextShadow(stat, CbbColors.off_eFG)}>
-      <i>{(100*(stat?.value || 0)).toFixed(1)}%</i>
-    </text>;
-  const enrichExtraInfo = (stat: any) => {
-    if (stat.extraInfo) {
-      stat.extraInfo = <div>
-        Example play types:<br/>
-        {stat.extraInfo.map((ex: string, i: number) => <li key={`ex${i}`}>{ex}</li>)}
-      </div>;
-    }
-    return stat;
-  };
-  const buildInfoRows = (statSet: any) => {
-    return _.mapValues(statSet, (valObj, key) => { // Decorate eFG
-      if (valObj) {
-        return _.endsWith(key, "_efg") ? buildInfoRow(valObj) : enrichExtraInfo(valObj);
-      } else return valObj;
-    });
-  }
+  const allPlayers = PlayTypeUtils.buildPlayerAssistCodeList(player);
 
   const playerStyle = PlayTypeUtils.buildPlayerStyle(player);
 
@@ -137,7 +65,7 @@ const PlayerPlayTypeDiagView: React.FunctionComponent<Props> = ({player, rosterS
       title: tooltipBuilder("unassist", "Unassisted",
         "All scoring plays where the player was unassisted (includes FTs which can never be assisted). Includes half court, scrambles, and transition)"
       ),
-      ...buildInfoRows(PlayTypeUtils.enrichUnassistedStats(playerStyle.unassisted, player))
+      ...PlayTypeDiagUtils.buildInfoRow(PlayTypeUtils.enrichUnassistedStats(playerStyle.unassisted, player))
     },
     {
       title: tooltipBuilder("assist", "Assist totals:",
@@ -206,7 +134,9 @@ const PlayerPlayTypeDiagView: React.FunctionComponent<Props> = ({player, rosterS
       objData, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta
     );
   })).concat(
-    posCategoryAssistNetwork.map(info => buildInfoRows(info)).map((info) =>
+    [ GenericTableOps.buildRowSeparator() ]
+  ).concat(
+    posCategoryAssistNetwork.map(info => PlayTypeDiagUtils.buildInfoRow(info)).map((info) =>
       GenericTableOps.buildDataRow(info, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta)
     )
   ).concat(
@@ -218,7 +148,7 @@ const PlayerPlayTypeDiagView: React.FunctionComponent<Props> = ({player, rosterS
   })).concat(
     [ GenericTableOps.buildTextRow(playerBreakdownHtml) ]
   ).concat(
-    showPlayerBreakdown ? playerAssistNetwork.map(info => buildInfoRows(info)).map((info) =>
+    showPlayerBreakdown ? playerAssistNetwork.map(info => PlayTypeDiagUtils.buildInfoRow(info)).map((info) =>
       GenericTableOps.buildDataRow(info, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta)
     ) : []
   );
@@ -228,6 +158,7 @@ const PlayerPlayTypeDiagView: React.FunctionComponent<Props> = ({player, rosterS
   // Visual layout:
 
   return <span>
+      {/*JSON.stringify(_.chain(player).toPairs().filter(kv => kv[0].indexOf("trans") >= 0).values(), tidyNumbers, 3)*/}
       <br/>
       <span>
         <b>Scoring Analysis for [{player.key}]</b>
@@ -236,7 +167,7 @@ const PlayerPlayTypeDiagView: React.FunctionComponent<Props> = ({player, rosterS
       <br/>
       <Container>
         <Col xs={10}>
-          <GenericTable responsive={false} tableCopyId="rawAssistNetworks" tableFields={rawAssistTableFields} tableData={rawAssistTableData}/>
+          <GenericTable responsive={false} tableCopyId="rawAssistNetworks" tableFields={PlayTypeDiagUtils.rawAssistTableFields(showPlayerBreakdown, false)} tableData={rawAssistTableData}/>
         </Col>
       </Container>
     </span>;
