@@ -218,7 +218,7 @@ exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!de
                   </div>,
                   "value": 0.06911976911976912,
                 },
-                "target_3p_efg": <text
+                "target_3p_efg": <span
                   style={
                     Object {
                       "textShadow": "0px 0px 10px #ffbfbf",
@@ -229,7 +229,7 @@ exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!de
                     47.5
                     %
                   </i>
-                </text>,
+                </span>,
                 "target_ast": Object {
                   "extraInfo": undefined,
                   "value": 0.028118219503871056,
@@ -247,7 +247,7 @@ exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!de
                   </div>,
                   "value": 0.004761904761904762,
                 },
-                "target_mid_efg": <text
+                "target_mid_efg": <span
                   style={
                     Object {
                       "textShadow": "0px 0px 10px #ff0000",
@@ -258,7 +258,7 @@ exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!de
                     24.6
                     %
                   </i>
-                </text>,
+                </span>,
                 "target_rim_ast": Object {
                   "extraInfo": <div>
                     Example play types:
@@ -269,7 +269,7 @@ exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!de
                   </div>,
                   "value": 0.02611832611832612,
                 },
-                "target_rim_efg": <text
+                "target_rim_efg": <span
                   style={
                     Object {
                       "textShadow": "0px 0px 10px #008000",
@@ -280,7 +280,7 @@ exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!de
                     60.7
                     %
                   </i>
-                </text>,
+                </span>,
                 "title": <span>
                   <i>
                     Ballhandler
@@ -350,7 +350,7 @@ exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!de
                   </div>,
                   "value": 0.4741702741702742,
                 },
-                "target_3p_efg": <text
+                "target_3p_efg": <span
                   style={
                     Object {
                       "textShadow": "0px 0px 10px #ff0000",
@@ -361,7 +361,7 @@ exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!de
                     7.7
                     %
                   </i>
-                </text>,
+                </span>,
                 "target_ast": Object {
                   "extraInfo": undefined,
                   "value": 0.40920507958046015,
@@ -382,7 +382,7 @@ exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!de
                   </div>,
                   "value": 0.08484848484848485,
                 },
-                "target_mid_efg": <text
+                "target_mid_efg": <span
                   style={
                     Object {
                       "textShadow": "0px 0px 10px #ff0000",
@@ -393,7 +393,7 @@ exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!de
                     5.5
                     %
                   </i>
-                </text>,
+                </span>,
                 "target_rim_ast": Object {
                   "extraInfo": <div>
                     Example play types:
@@ -404,7 +404,7 @@ exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!de
                   </div>,
                   "value": 0.540981240981241,
                 },
-                "target_rim_efg": <text
+                "target_rim_efg": <span
                   style={
                     Object {
                       "textShadow": "0px 0px 10px #ff0000",
@@ -415,7 +415,7 @@ exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!de
                     4.2
                     %
                   </i>
-                </text>,
+                </span>,
                 "title": <span>
                   <i>
                     Wing
@@ -729,7 +729,7 @@ exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!de
                   </div>,
                   "value": 0.19393939393939397,
                 },
-                "target_3p_efg": <text
+                "target_3p_efg": <span
                   style={
                     Object {
                       "textShadow": "0px 0px 10px #ffe4e4",
@@ -740,7 +740,7 @@ exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!de
                     49.0
                     %
                   </i>
-                </text>,
+                </span>,
                 "target_ast": Object {
                   "extraInfo": undefined,
                   "value": 0.06018122756026672,
@@ -755,7 +755,7 @@ exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!de
                   </div>,
                   "value": 0.07272727272727274,
                 },
-                "target_rim_efg": <text
+                "target_rim_efg": <span
                   style={
                     Object {
                       "textShadow": "0px 0px 10px #60b060",
@@ -766,7 +766,7 @@ exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!de
                     56.2
                     %
                   </i>
-                </text>,
+                </span>,
                 "title": <span>
                   <i>
                     Ballhandler
@@ -1564,7 +1564,7 @@ exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!he
                   </div>,
                   "value": 0.06911976911976912,
                 },
-                "target_3p_efg": <text
+                "target_3p_efg": <span
                   style={
                     Object {
                       "textShadow": "0px 0px 10px #ffbfbf",
@@ -1575,7 +1575,7 @@ exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!he
                     47.5
                     %
                   </i>
-                </text>,
+                </span>,
                 "target_ast": Object {
                   "extraInfo": undefined,
                   "value": 0.028118219503871056,
@@ -1593,7 +1593,7 @@ exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!he
                   </div>,
                   "value": 0.004761904761904762,
                 },
-                "target_mid_efg": <text
+                "target_mid_efg": <span
                   style={
                     Object {
                       "textShadow": "0px 0px 10px #ff0000",
@@ -1604,7 +1604,7 @@ exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!he
                     24.6
                     %
                   </i>
-                </text>,
+                </span>,
                 "target_rim_ast": Object {
                   "extraInfo": <div>
                     Example play types:
@@ -1615,7 +1615,7 @@ exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!he
                   </div>,
                   "value": 0.02611832611832612,
                 },
-                "target_rim_efg": <text
+                "target_rim_efg": <span
                   style={
                     Object {
                       "textShadow": "0px 0px 10px #008000",
@@ -1626,7 +1626,7 @@ exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!he
                     60.7
                     %
                   </i>
-                </text>,
+                </span>,
                 "title": <span>
                   <i>
                     Ballhandler
@@ -1696,7 +1696,7 @@ exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!he
                   </div>,
                   "value": 0.4741702741702742,
                 },
-                "target_3p_efg": <text
+                "target_3p_efg": <span
                   style={
                     Object {
                       "textShadow": "0px 0px 10px #ff0000",
@@ -1707,7 +1707,7 @@ exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!he
                     7.7
                     %
                   </i>
-                </text>,
+                </span>,
                 "target_ast": Object {
                   "extraInfo": undefined,
                   "value": 0.40920507958046015,
@@ -1728,7 +1728,7 @@ exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!he
                   </div>,
                   "value": 0.08484848484848485,
                 },
-                "target_mid_efg": <text
+                "target_mid_efg": <span
                   style={
                     Object {
                       "textShadow": "0px 0px 10px #ff0000",
@@ -1739,7 +1739,7 @@ exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!he
                     5.5
                     %
                   </i>
-                </text>,
+                </span>,
                 "target_rim_ast": Object {
                   "extraInfo": <div>
                     Example play types:
@@ -1750,7 +1750,7 @@ exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!he
                   </div>,
                   "value": 0.540981240981241,
                 },
-                "target_rim_efg": <text
+                "target_rim_efg": <span
                   style={
                     Object {
                       "textShadow": "0px 0px 10px #ff0000",
@@ -1761,7 +1761,7 @@ exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!he
                     4.2
                     %
                   </i>
-                </text>,
+                </span>,
                 "title": <span>
                   <i>
                     Wing
@@ -2075,7 +2075,7 @@ exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!he
                   </div>,
                   "value": 0.19393939393939397,
                 },
-                "target_3p_efg": <text
+                "target_3p_efg": <span
                   style={
                     Object {
                       "textShadow": "0px 0px 10px #ffe4e4",
@@ -2086,7 +2086,7 @@ exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!he
                     49.0
                     %
                   </i>
-                </text>,
+                </span>,
                 "target_ast": Object {
                   "extraInfo": undefined,
                   "value": 0.06018122756026672,
@@ -2101,7 +2101,7 @@ exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!he
                   </div>,
                   "value": 0.07272727272727274,
                 },
-                "target_rim_efg": <text
+                "target_rim_efg": <span
                   style={
                     Object {
                       "textShadow": "0px 0px 10px #60b060",
@@ -2112,7 +2112,7 @@ exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!he
                     56.2
                     %
                   </i>
-                </text>,
+                </span>,
                 "title": <span>
                   <i>
                     Ballhandler

@@ -3223,34 +3223,6 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                   </div>
                 </td>
               </tr>
-              <tr
-                className="divider"
-              >
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-              </tr>
             </tbody>
           </table>
         </div>
@@ -6983,34 +6955,6 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                     </ul>
                   </span>
                 </td>
-              </tr>
-              <tr
-                className="divider"
-              >
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
               </tr>
             </tbody>
           </table>

@@ -217,7 +217,7 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
                   </div>,
                   "value": 0.020634920634920634,
                 },
-                "target_3p_efg": <text
+                "target_3p_efg": <span
                   style={
                     Object {
                       "textShadow": "0px 0px 10px #ff6666",
@@ -228,7 +228,7 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
                     44.0
                     %
                   </i>
-                </text>,
+                </span>,
                 "target_ast": Object {
                   "extraInfo": undefined,
                   "value": 0.013072912613804374,
@@ -246,7 +246,7 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
                   </div>,
                   "value": 0.004761904761904762,
                 },
-                "target_mid_efg": <text
+                "target_mid_efg": <span
                   style={
                     Object {
                       "textShadow": "0px 0px 10px #ff0000",
@@ -257,7 +257,7 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
                     24.6
                     %
                   </i>
-                </text>,
+                </span>,
                 "target_rim_ast": Object {
                   "extraInfo": <div>
                     Example play types:
@@ -268,7 +268,7 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
                   </div>,
                   "value": 0.007936507936507936,
                 },
-                "target_rim_efg": <text
+                "target_rim_efg": <span
                   style={
                     Object {
                       "textShadow": "0px 0px 10px #008000",
@@ -279,7 +279,7 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
                     70.8
                     %
                   </i>
-                </text>,
+                </span>,
                 "title": <span>
                   <i>
                     Ballhandler
@@ -336,7 +336,7 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
                   </div>,
                   "value": 0.4317460317460317,
                 },
-                "target_3p_efg": <text
+                "target_3p_efg": <span
                   style={
                     Object {
                       "textShadow": "0px 0px 10px #ff0000",
@@ -347,7 +347,7 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
                     8.4
                     %
                   </i>
-                </text>,
+                </span>,
                 "target_ast": Object {
                   "extraInfo": undefined,
                   "value": 0.3791144658003268,
@@ -368,7 +368,7 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
                   </div>,
                   "value": 0.06666666666666667,
                 },
-                "target_mid_efg": <text
+                "target_mid_efg": <span
                   style={
                     Object {
                       "textShadow": "0px 0px 10px #ff0000",
@@ -379,7 +379,7 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
                     7.0
                     %
                   </i>
-                </text>,
+                </span>,
                 "target_rim_ast": Object {
                   "extraInfo": <div>
                     Example play types:
@@ -390,7 +390,7 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
                   </div>,
                   "value": 0.46825396825396814,
                 },
-                "target_rim_efg": <text
+                "target_rim_efg": <span
                   style={
                     Object {
                       "textShadow": "0px 0px 10px #ff0000",
@@ -401,7 +401,7 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
                     4.8
                     %
                   </i>
-                </text>,
+                </span>,
                 "title": <span>
                   <i>
                     Wing
@@ -942,7 +942,7 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
                   </div>,
                   "value": 0.020634920634920634,
                 },
-                "target_3p_efg": <text
+                "target_3p_efg": <span
                   style={
                     Object {
                       "textShadow": "0px 0px 10px #ff6666",
@@ -953,7 +953,7 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
                     44.0
                     %
                   </i>
-                </text>,
+                </span>,
                 "target_ast": Object {
                   "extraInfo": undefined,
                   "value": 0.013072912613804374,
@@ -971,7 +971,7 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
                   </div>,
                   "value": 0.004761904761904762,
                 },
-                "target_mid_efg": <text
+                "target_mid_efg": <span
                   style={
                     Object {
                       "textShadow": "0px 0px 10px #ff0000",
@@ -982,7 +982,7 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
                     24.6
                     %
                   </i>
-                </text>,
+                </span>,
                 "target_rim_ast": Object {
                   "extraInfo": <div>
                     Example play types:
@@ -993,7 +993,7 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
                   </div>,
                   "value": 0.007936507936507936,
                 },
-                "target_rim_efg": <text
+                "target_rim_efg": <span
                   style={
                     Object {
                       "textShadow": "0px 0px 10px #008000",
@@ -1004,7 +1004,7 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
                     70.8
                     %
                   </i>
-                </text>,
+                </span>,
                 "title": <span>
                   <i>
                     Ballhandler
@@ -1061,7 +1061,7 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
                   </div>,
                   "value": 0.4317460317460317,
                 },
-                "target_3p_efg": <text
+                "target_3p_efg": <span
                   style={
                     Object {
                       "textShadow": "0px 0px 10px #ff0000",
@@ -1072,7 +1072,7 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
                     8.4
                     %
                   </i>
-                </text>,
+                </span>,
                 "target_ast": Object {
                   "extraInfo": undefined,
                   "value": 0.3791144658003268,
@@ -1093,7 +1093,7 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
                   </div>,
                   "value": 0.06666666666666667,
                 },
-                "target_mid_efg": <text
+                "target_mid_efg": <span
                   style={
                     Object {
                       "textShadow": "0px 0px 10px #ff0000",
@@ -1104,7 +1104,7 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
                     7.0
                     %
                   </i>
-                </text>,
+                </span>,
                 "target_rim_ast": Object {
                   "extraInfo": <div>
                     Example play types:
@@ -1115,7 +1115,7 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
                   </div>,
                   "value": 0.46825396825396814,
                 },
-                "target_rim_efg": <text
+                "target_rim_efg": <span
                   style={
                     Object {
                       "textShadow": "0px 0px 10px #ff0000",
@@ -1126,7 +1126,7 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
                     4.8
                     %
                   </i>
-                </text>,
+                </span>,
                 "title": <span>
                   <i>
                     Wing
@@ -1249,7 +1249,7 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
                 "source_3p_ast": Object {
                   "value": 0.009337794724145981,
                 },
-                "source_3p_efg": <text
+                "source_3p_efg": <span
                   style={
                     Object {
                       "textShadow": "0px 0px 10px #ff0000",
@@ -1260,11 +1260,11 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
                     0.0
                     %
                   </i>
-                </text>,
+                </span>,
                 "source_rim_ast": Object {
                   "value": 0.009337794724145981,
                 },
-                "source_rim_efg": <text
+                "source_rim_efg": <span
                   style={
                     Object {
                       "textShadow": "0px 0px 10px #ff0000",
@@ -1275,11 +1275,11 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
                     0.0
                     %
                   </i>
-                </text>,
+                </span>,
                 "target_3p_ast": Object {
                   "value": 0.0873015873015873,
                 },
-                "target_3p_efg": <text
+                "target_3p_efg": <span
                   style={
                     Object {
                       "textShadow": "0px 0px 10px #ff0000",
@@ -1290,14 +1290,14 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
                     0.0
                     %
                   </i>
-                </text>,
+                </span>,
                 "target_ast": Object {
                   "value": 0.13072912613804374,
                 },
                 "target_mid_ast": Object {
                   "value": 0.007936507936507936,
                 },
-                "target_mid_efg": <text
+                "target_mid_efg": <span
                   style={
                     Object {
                       "textShadow": "0px 0px 10px #ff0000",
@@ -1308,11 +1308,11 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
                     0.0
                     %
                   </i>
-                </text>,
+                </span>,
                 "target_rim_ast": Object {
                   "value": 0.23809523809523808,
                 },
-                "target_rim_efg": <text
+                "target_rim_efg": <span
                   style={
                     Object {
                       "textShadow": "0px 0px 10px #ff0000",
@@ -1323,7 +1323,7 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
                     0.0
                     %
                   </i>
-                </text>,
+                </span>,
                 "title": <span>
                   <b>
                     
@@ -1344,7 +1344,7 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
                 "source_3p_ast": Object {
                   "value": 0.02490078593105595,
                 },
-                "source_3p_efg": <text
+                "source_3p_efg": <span
                   style={
                     Object {
                       "textShadow": "0px 0px 10px #ff0000",
@@ -1355,11 +1355,11 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
                     0.0
                     %
                   </i>
-                </text>,
+                </span>,
                 "source_rim_ast": Object {
                   "value": 0.01556299120690997,
                 },
-                "source_rim_efg": <text
+                "source_rim_efg": <span
                   style={
                     Object {
                       "textShadow": "0px 0px 10px #ff0000",
@@ -1370,11 +1370,11 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
                     0.0
                     %
                   </i>
-                </text>,
+                </span>,
                 "target_3p_ast": Object {
                   "value": 0.05555555555555555,
                 },
-                "target_3p_efg": <text
+                "target_3p_efg": <span
                   style={
                     Object {
                       "textShadow": "0px 0px 10px #ff0000",
@@ -1385,14 +1385,14 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
                     0.0
                     %
                   </i>
-                </text>,
+                </span>,
                 "target_ast": Object {
                   "value": 0.07158975955178586,
                 },
                 "target_mid_ast": Object {
                   "value": 0.031746031746031744,
                 },
-                "target_mid_efg": <text
+                "target_mid_efg": <span
                   style={
                     Object {
                       "textShadow": "0px 0px 10px #ff0000",
@@ -1403,11 +1403,11 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
                     0.0
                     %
                   </i>
-                </text>,
+                </span>,
                 "target_rim_ast": Object {
                   "value": 0.09523809523809523,
                 },
-                "target_rim_efg": <text
+                "target_rim_efg": <span
                   style={
                     Object {
                       "textShadow": "0px 0px 10px #ff0000",
@@ -1418,7 +1418,7 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
                     0.0
                     %
                   </i>
-                </text>,
+                </span>,
                 "title": <span>
                   <b>
                     
@@ -1439,7 +1439,7 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
                 "source_3p_ast": Object {
                   "value": 0.02490078593105595,
                 },
-                "source_3p_efg": <text
+                "source_3p_efg": <span
                   style={
                     Object {
                       "textShadow": "0px 0px 10px #ff0000",
@@ -1450,11 +1450,11 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
                     0.0
                     %
                   </i>
-                </text>,
+                </span>,
                 "source_rim_ast": Object {
                   "value": 0.009337794724145981,
                 },
-                "source_rim_efg": <text
+                "source_rim_efg": <span
                   style={
                     Object {
                       "textShadow": "0px 0px 10px #ff0000",
@@ -1465,11 +1465,11 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
                     0.0
                     %
                   </i>
-                </text>,
+                </span>,
                 "target_3p_ast": Object {
                   "value": 0.1746031746031746,
                 },
-                "target_3p_efg": <text
+                "target_3p_efg": <span
                   style={
                     Object {
                       "textShadow": "0px 0px 10px #ff0000",
@@ -1480,14 +1480,14 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
                     0.0
                     %
                   </i>
-                </text>,
+                </span>,
                 "target_ast": Object {
                   "value": 0.07781495603454984,
                 },
                 "target_rim_ast": Object {
                   "value": 0.023809523809523808,
                 },
-                "target_rim_efg": <text
+                "target_rim_efg": <span
                   style={
                     Object {
                       "textShadow": "0px 0px 10px #ff0000",
@@ -1498,7 +1498,7 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
                     0.0
                     %
                   </i>
-                </text>,
+                </span>,
                 "title": <span>
                   <b>
                     
@@ -1519,7 +1519,7 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
                 "source_3p_ast": Object {
                   "value": 0.02490078593105595,
                 },
-                "source_3p_efg": <text
+                "source_3p_efg": <span
                   style={
                     Object {
                       "textShadow": "0px 0px 10px #ff6666",
@@ -1530,11 +1530,11 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
                     44.0
                     %
                   </i>
-                </text>,
+                </span>,
                 "source_rim_ast": Object {
                   "value": 0.009337794724145981,
                 },
-                "source_rim_efg": <text
+                "source_rim_efg": <span
                   style={
                     Object {
                       "textShadow": "0px 0px 10px #008000",
@@ -1545,11 +1545,11 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
                     70.8
                     %
                   </i>
-                </text>,
+                </span>,
                 "target_3p_ast": Object {
                   "value": 0.10317460317460317,
                 },
-                "target_3p_efg": <text
+                "target_3p_efg": <span
                   style={
                     Object {
                       "textShadow": "0px 0px 10px #ff6666",
@@ -1560,14 +1560,14 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
                     44.0
                     %
                   </i>
-                </text>,
+                </span>,
                 "target_ast": Object {
                   "value": 0.06536456306902187,
                 },
                 "target_mid_ast": Object {
                   "value": 0.023809523809523808,
                 },
-                "target_mid_efg": <text
+                "target_mid_efg": <span
                   style={
                     Object {
                       "textShadow": "0px 0px 10px #ff0000",
@@ -1578,11 +1578,11 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
                     24.6
                     %
                   </i>
-                </text>,
+                </span>,
                 "target_rim_ast": Object {
                   "value": 0.03968253968253968,
                 },
-                "target_rim_efg": <text
+                "target_rim_efg": <span
                   style={
                     Object {
                       "textShadow": "0px 0px 10px #008000",
@@ -1593,7 +1593,7 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
                     70.8
                     %
                   </i>
-                </text>,
+                </span>,
                 "title": <span>
                   <b>
                     Wiggins, Aaron
@@ -1615,7 +1615,7 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
                 "source_3p_ast": Object {
                   "value": 0.0031125982413819937,
                 },
-                "source_3p_efg": <text
+                "source_3p_efg": <span
                   style={
                     Object {
                       "textShadow": "0px 0px 10px #ff0000",
@@ -1626,11 +1626,11 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
                     0.0
                     %
                   </i>
-                </text>,
+                </span>,
                 "target_3p_ast": Object {
                   "value": 0.031746031746031744,
                 },
-                "target_3p_efg": <text
+                "target_3p_efg": <span
                   style={
                     Object {
                       "textShadow": "0px 0px 10px #ff0000",
@@ -1641,14 +1641,14 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
                     0.0
                     %
                   </i>
-                </text>,
+                </span>,
                 "target_ast": Object {
                   "value": 0.037351178896583924,
                 },
                 "target_rim_ast": Object {
                   "value": 0.06349206349206349,
                 },
-                "target_rim_efg": <text
+                "target_rim_efg": <span
                   style={
                     Object {
                       "textShadow": "0px 0px 10px #ff0000",
@@ -1659,7 +1659,7 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
                     0.0
                     %
                   </i>
-                </text>,
+                </span>,
                 "title": <span>
                   <b>
                     
@@ -1680,7 +1680,7 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
                 "source_3p_ast": Object {
                   "value": 0.0031125982413819937,
                 },
-                "source_3p_efg": <text
+                "source_3p_efg": <span
                   style={
                     Object {
                       "textShadow": "0px 0px 10px #ff0000",
@@ -1691,14 +1691,14 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
                     0.0
                     %
                   </i>
-                </text>,
+                </span>,
                 "target_ast": Object {
                   "value": 0.0031125982413819937,
                 },
                 "target_rim_ast": Object {
                   "value": 0.007936507936507936,
                 },
-                "target_rim_efg": <text
+                "target_rim_efg": <span
                   style={
                     Object {
                       "textShadow": "0px 0px 10px #ff0000",
@@ -1709,7 +1709,7 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
                     0.0
                     %
                   </i>
-                </text>,
+                </span>,
                 "title": <span>
                   <b>
                     
@@ -1730,7 +1730,7 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
                 "source_rim_ast": Object {
                   "value": 0.0031125982413819937,
                 },
-                "source_rim_efg": <text
+                "source_rim_efg": <span
                   style={
                     Object {
                       "textShadow": "0px 0px 10px #ff0000",
@@ -1741,14 +1741,14 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
                     0.0
                     %
                   </i>
-                </text>,
+                </span>,
                 "target_ast": Object {
                   "value": 0.0031125982413819937,
                 },
                 "target_mid_ast": Object {
                   "value": 0.007936507936507936,
                 },
-                "target_mid_efg": <text
+                "target_mid_efg": <span
                   style={
                     Object {
                       "textShadow": "0px 0px 10px #ff0000",
@@ -1759,7 +1759,7 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
                     0.0
                     %
                   </i>
-                </text>,
+                </span>,
                 "title": <span>
                   <b>
                     
@@ -1783,7 +1783,7 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
                 "target_rim_ast": Object {
                   "value": 0.007936507936507936,
                 },
-                "target_rim_efg": <text
+                "target_rim_efg": <span
                   style={
                     Object {
                       "textShadow": "0px 0px 10px #ff0000",
@@ -1794,7 +1794,7 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
                     0.0
                     %
                   </i>
-                </text>,
+                </span>,
                 "title": <span>
                   <b>
                     

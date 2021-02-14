@@ -35,9 +35,9 @@ export class PlayTypeDiagUtils {
 
   // Couple of utils for decorating the background eFG
   private static buildInfoStat = (stat: any) =>
-    <text style={CommonTableDefs.getTextShadow(stat, CbbColors.off_eFG)}>
+    <span style={CommonTableDefs.getTextShadow(stat, CbbColors.off_eFG)}>
       <i>{(100*(stat?.value || 0)).toFixed(1)}%</i>
-    </text>;
+    </span>;
   private static enrichExtraInfo = (stat: any) => {
     if (stat.extraInfo) {
       stat.extraInfo = <div>
