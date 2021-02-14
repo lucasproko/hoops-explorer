@@ -58,6 +58,7 @@ import { CommonFilterType, QueryUtils } from '../utils/QueryUtils';
 
 // Library imports:
 import fetch from 'isomorphic-unfetch';
+import fetchBuilder from 'fetch-retry-ts';
 
 interface Props<PARAMS> {
   startingState: PARAMS;
@@ -73,6 +74,13 @@ interface Props<PARAMS> {
 
 /** Used to pass the submitListener to child components */
 export const GlobalKeypressManager = React.createContext((ev: any) => {});
+
+const fetchRetryOptions = {
+    retries: 5,
+    retryDelay: 500,
+    retryOn: [419, 502, 503, 504],
+};
+const fetchWithRetry = fetchBuilder(fetch, fetchRetryOptions);
 
 /** Type workaround per https://stackoverflow.com/questions/51459971/type-of-generic-stateless-component-react-or-extending-generic-function-interfa */
 type CommonFilterI<PARAMS = any> = React.FunctionComponent<Props<PARAMS>>
@@ -196,7 +204,7 @@ const CommonFilter: CommonFilterI = ({
 
     const fetchUrl = (url: string, force: boolean) => {
       return !onLoad || force ? //(if onLoad - JSON cache, or wait for user to hit submit)
-        fetch(url).then((response: fetch.IsomorphicResponse) => {
+        fetchWithRetry(url).then((response: fetch.IsomorphicResponse) => {
           return response.json().then((json: any) => [json, response.ok, response]);
         }) :
         Promise.reject(new Error('Needed request, currently forcing user to press submit'));
