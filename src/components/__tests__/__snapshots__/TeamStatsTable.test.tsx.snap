@@ -5069,7 +5069,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                               >
                                 <b>
                                   Ballhandler
-                                   to/from:
+                                   from/to:
                                 </b>
                               </td>
                               <td
@@ -7614,7 +7614,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                               >
                                 <b>
                                   Wing
-                                   to/from:
+                                   from/to:
                                 </b>
                               </td>
                               <td
@@ -10159,7 +10159,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                               >
                                 <b>
                                   Big
-                                   to/from:
+                                   from/to:
                                 </b>
                               </td>
                               <td
@@ -14126,7 +14126,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                               >
                                 <b>
                                   Ballhandler
-                                   to/from:
+                                   from/to:
                                 </b>
                               </td>
                               <td
@@ -16671,7 +16671,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                               >
                                 <b>
                                   Wing
-                                   to/from:
+                                   from/to:
                                 </b>
                               </td>
                               <td
@@ -19216,7 +19216,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                               >
                                 <b>
                                   Big
-                                   to/from:
+                                   from/to:
                                 </b>
                               </td>
                               <td
@@ -23183,7 +23183,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                               >
                                 <b>
                                   Ballhandler
-                                   to/from:
+                                   from/to:
                                 </b>
                               </td>
                               <td
@@ -25728,7 +25728,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                               >
                                 <b>
                                   Wing
-                                   to/from:
+                                   from/to:
                                 </b>
                               </td>
                               <td
@@ -28273,7 +28273,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                               >
                                 <b>
                                   Big
-                                   to/from:
+                                   from/to:
                                 </b>
                               </td>
                               <td

@@ -58,7 +58,7 @@ exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!de
               "dataObj": Object {
                 "title": <b>
                   Ballhandler
-                   to/from:
+                   from/to:
                 </b>,
               },
               "kind": "data-row",
@@ -566,7 +566,7 @@ exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!de
               "dataObj": Object {
                 "title": <b>
                   Wing
-                   to/from:
+                   from/to:
                 </b>,
               },
               "kind": "data-row",
@@ -1013,7 +1013,7 @@ exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!de
               "dataObj": Object {
                 "title": <b>
                   Big
-                   to/from:
+                   from/to:
                 </b>,
               },
               "kind": "data-row",
@@ -1435,7 +1435,7 @@ exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!he
               "dataObj": Object {
                 "title": <b>
                   Ballhandler
-                   to/from:
+                   from/to:
                 </b>,
               },
               "kind": "data-row",
@@ -1943,7 +1943,7 @@ exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!he
               "dataObj": Object {
                 "title": <b>
                   Wing
-                   to/from:
+                   from/to:
                 </b>,
               },
               "kind": "data-row",
@@ -2390,7 +2390,7 @@ exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!he
               "dataObj": Object {
                 "title": <b>
                   Big
-                   to/from:
+                   from/to:
                 </b>,
               },
               "kind": "data-row",

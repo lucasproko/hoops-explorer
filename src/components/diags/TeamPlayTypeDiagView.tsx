@@ -170,7 +170,7 @@ const TeamPlayTypeDiagView: React.FunctionComponent<Props> = ({players, rosterSt
 
     return [
       GenericTableOps.buildDataRow({
-        title: <b>{_.capitalize(posTitle)} to/from:</b>
+        title: <b>{_.capitalize(posTitle)} from/to:</b>
       }, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta),
       GenericTableOps.buildDataRow({
         ...PlayTypeDiagUtils.buildInfoRow(
