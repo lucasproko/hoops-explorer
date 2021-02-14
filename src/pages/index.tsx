@@ -124,17 +124,16 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
       (rawParams.showPlayerManual == false) ? [ 'showPlayerManual' ] : [],
       (rawParams.calcRapm == ParamDefaults.defaultPlayerCalcRapm) ? [ 'calcRapm' ] : [],
     ]));
-
     if (!_.isEqual(params, gameFilterParamsRef.current)) { //(to avoid recursion)
-
       // Currently: game info requires an extra possibly expensive query component so we make it on demand only
       if (params.calcRapm != gameFilterParamsRef.current?.calcRapm) {
         setShouldForceReload(t => t + 1); //(note this sets an intermediate param, NOT the one in CommonFilter)
       }
-      // Adjust for luck change in one table needs to be guaranteed to switch the other
-      if (params.onOffLuck != gameFilterParamsRef.current?.onOffLuck) {
-        setDataEvent(d => { return  { ...d } }); //(leave data unchanged but fool the useMemo below)
-      }
+      // Because changing the params in one table merges that table's params with the last set
+      // when the other table's memo was refreshed, currently we to always refresh the memo on both
+      // tables whenever any memo changes
+      // TODO: of course this can be done much more elegantly/efficiently
+      setDataEvent(d => { return  { ...d } }); //(leave data unchanged but fool the useMemo below)
 
       const href = getRootUrl(params);
       const as = href;
