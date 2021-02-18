@@ -174,19 +174,20 @@ const ManualOverrideModal: React.FunctionComponent<Props> = (
       return [GenericTableOps.buildDataRow({
         title: <span>
           {over.use ? over.rowId : <del>{over.rowId}</del>}<br/>
-          <a href="#" onClick={() => {
+          <a href="#" onClick={(event) => {
+            event.preventDefault();
             insertOrUpdate({ ...over, use: !over.use });
-            return false;
           }}>{over.use ? "(disable)" : "(enable)"}</a>
-          &nbsp;<a href="#" onClick={() => {
+          &nbsp;<a href="#" onClick={(event) => {
+            event.preventDefault();
             removeOverride(over);
             return false;
           }}>(delete)</a>
           &nbsp;{
             over.rowId == currInStat && over.statName == currStatName ? <i>(select)</i> :
-            <a href="#" onClick={() => {
+            <a href="#" onClick={(event) => {
+              event.preventDefault();
               selectOverride(over);
-              return false;
             }}>(select)</a>}
         </span>,
         stat: <span>{metricsMap[over.statName] || over.statName}</span>,
@@ -335,17 +336,17 @@ const ManualOverrideModal: React.FunctionComponent<Props> = (
 
       <Card className="w-100">
         <Card.Header className="small">Existing Overrides
-        &nbsp;<a href="#" onClick={() => {
+        &nbsp;<a href="#" onClick={(event) => {
+          event.preventDefault();
           overrides.forEach((over) => {
             if (!over.use) insertOrUpdate({ ...over, use: true });
           })
-          return false;
         }}>(enable all)</a>
-        &nbsp;<a href="#" onClick={() => {
+        &nbsp;<a href="#" onClick={(event) => {
+          event.preventDefault();
           overrides.forEach((over) => {
             if (over.use) insertOrUpdate({ ...over, use: false });
           })
-          return false;
         }}>(disable all)</a>
         </Card.Header>
         <Card.Body>
