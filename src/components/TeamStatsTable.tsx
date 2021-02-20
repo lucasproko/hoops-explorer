@@ -171,18 +171,6 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
     rosterStats.global || [], showPlayTypes, teamSeasonLookup
   ); //TODO: which set do I actually want to use for positional calcs here?
 
-  const teamStatsOn = {
-    off_title: `${maybeOn} Offense`,
-    def_title: `${maybeOn} Defense`,
-    ...teamStats.on
-  };
-  const teamStatsOff = {
-    off_title: `${maybeOff} Offense`,
-    def_title: `${maybeOff} Defense`,
-    ...teamStats.off
-  };
-  const teamStatsBaseline = { off_title: "Baseline Offense", def_title: "Baseline Defense", ...teamStats.baseline };
-
   // Calc diffs if required ... needs to be before injectPlayTypeInfo but after luck injection!
   const [ aMinusB, aMinusBase, bMinusBase ] = showDiffs ? (() => {
     const aMinusB = (teamStats.on?.doc_count && teamStats.off?.doc_count) ? LineupUtils.getStatsDiff(
@@ -204,6 +192,19 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
   ([ "on", "off", "baseline" ] as OnOffBase[]).forEach(k => {
     TableDisplayUtils.injectPlayTypeInfo(teamStats[k], false, false, teamSeasonLookup);
   });
+
+  // Last stage before building the table: inject titles into the stats:
+  const teamStatsOn = {
+    off_title: `${maybeOn} Offense`,
+    def_title: `${maybeOn} Defense`,
+    ...teamStats.on
+  };
+  const teamStatsOff = {
+    off_title: `${maybeOff} Offense`,
+    def_title: `${maybeOff} Defense`,
+    ...teamStats.off
+  };
+  const teamStatsBaseline = { off_title: "Baseline Offense", def_title: "Baseline Defense", ...teamStats.baseline };
 
   const tableData = _.flatMap([
     (teamStats.on?.doc_count) ? _.flatten([

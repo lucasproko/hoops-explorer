@@ -21,6 +21,96 @@ Object {
 }
 `;
 
+exports[`LineupUtils LineupUtils - gameGameInfo 1`] = `
+Array [
+  Object {
+    "date": "2021-02-02",
+    "num_def_poss": 17,
+    "num_off_poss": 18,
+    "num_pts_against": 20,
+    "num_pts_for": 23,
+    "opponent": "H:Purdue",
+  },
+  Object {
+    "date": "2021-02-05",
+    "num_def_poss": 14,
+    "num_off_poss": 16,
+    "num_pts_against": 12,
+    "num_pts_for": 12,
+    "opponent": "A:Penn St.",
+  },
+  Object {
+    "date": "2021-02-14",
+    "num_def_poss": 14,
+    "num_off_poss": 14,
+    "num_pts_against": 6,
+    "num_pts_for": 15,
+    "opponent": "H:Minnesota",
+  },
+  Object {
+    "date": "2021-02-16",
+    "num_def_poss": 14,
+    "num_off_poss": 15,
+    "num_pts_against": 10,
+    "num_pts_for": 14,
+    "opponent": "H:Nebraska",
+  },
+  Object {
+    "date": "2021-02-18",
+    "num_def_poss": 19,
+    "num_off_poss": 19,
+    "num_pts_against": 23,
+    "num_pts_for": 30,
+    "opponent": "H:Nebraska",
+  },
+]
+`;
+
+exports[`LineupUtils LineupUtils - gameGameInfo 2`] = `
+Object {
+  "2021-02-02 H:Purdue": Object {
+    "date": "2021-02-02",
+    "num_def_poss": 0,
+    "num_off_poss": 0,
+    "num_pts_against": 0,
+    "num_pts_for": 0,
+    "opponent": "H:Purdue",
+  },
+  "2021-02-05 A:Penn St.": Object {
+    "date": "2021-02-05",
+    "num_def_poss": 0,
+    "num_off_poss": 0,
+    "num_pts_against": 0,
+    "num_pts_for": 0,
+    "opponent": "A:Penn St.",
+  },
+  "2021-02-14 H:Minnesota": Object {
+    "date": "2021-02-14",
+    "num_def_poss": 0,
+    "num_off_poss": 0,
+    "num_pts_against": 0,
+    "num_pts_for": 0,
+    "opponent": "H:Minnesota",
+  },
+  "2021-02-16 H:Nebraska": Object {
+    "date": "2021-02-16",
+    "num_def_poss": 0,
+    "num_off_poss": 0,
+    "num_pts_against": 0,
+    "num_pts_for": 0,
+    "opponent": "H:Nebraska",
+  },
+  "2021-02-18 H:Nebraska": Object {
+    "date": "2021-02-18",
+    "num_def_poss": 0,
+    "num_off_poss": 0,
+    "num_pts_against": 0,
+    "num_pts_for": 0,
+    "opponent": "H:Nebraska",
+  },
+}
+`;
+
 exports[`LineupUtils LineupUtils - lineupToTeamReport: diagMode=[0] regressDiffs=[-500] incOnOff=[false] 1`] = `
 Array [
   Object {

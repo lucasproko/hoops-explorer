@@ -941,9 +941,17 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  <div>
-                    
-                  </div>
+                  <small
+                    style={
+                      Object {
+                        "textShadow": "0px 0px 10px #a1d0a1",
+                      }
+                    }
+                  >
+                    <i>
+                      12.9
+                    </i>
+                  </small>
                 </td>
                 <td
                   className=""
@@ -1880,9 +1888,17 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  <div>
-                    
-                  </div>
+                  <small
+                    style={
+                      Object {
+                        "textShadow": "0px 0px 10px #dbeddb",
+                      }
+                    }
+                  >
+                    <i>
+                      5.0
+                    </i>
+                  </small>
                 </td>
                 <td
                   className=""
@@ -2819,9 +2835,17 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot 1`] = `
                     }
                   }
                 >
-                  <div>
-                    
-                  </div>
+                  <small
+                    style={
+                      Object {
+                        "textShadow": "0px 0px 10px #aed7ae",
+                      }
+                    }
+                  >
+                    <i>
+                      11.1
+                    </i>
+                  </small>
                 </td>
                 <td
                   className=""
@@ -4183,17 +4207,21 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                     }
                   }
                 >
-                  <small
-                    style={
-                      Object {
-                        "textShadow": "0px 0px 10px #a1d0a1",
-                      }
-                    }
-                  >
-                    <i>
-                      12.9
-                    </i>
-                  </small>
+                  <div>
+                    <u>
+                      <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 10px #a9d4a9",
+                          }
+                        }
+                      >
+                        <i>
+                          11.9
+                        </i>
+                      </small>
+                    </u>
+                  </div>
                 </td>
                 <td
                   className=""
@@ -13240,17 +13268,21 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                     }
                   }
                 >
-                  <small
-                    style={
-                      Object {
-                        "textShadow": "0px 0px 10px #dbeddb",
-                      }
-                    }
-                  >
-                    <i>
-                      5.0
-                    </i>
-                  </small>
+                  <div>
+                    <u>
+                      <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 10px #cae4ca",
+                          }
+                        }
+                      >
+                        <i>
+                          7.3
+                        </i>
+                      </small>
+                    </u>
+                  </div>
                 </td>
                 <td
                   className=""
@@ -22297,17 +22329,21 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, luck enabled + 
                     }
                   }
                 >
-                  <small
-                    style={
-                      Object {
-                        "textShadow": "0px 0px 10px #aed7ae",
-                      }
-                    }
-                  >
-                    <i>
-                      11.1
-                    </i>
-                  </small>
+                  <div>
+                    <u>
+                      <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 10px #b0d8b0",
+                          }
+                        }
+                      >
+                        <i>
+                          10.8
+                        </i>
+                      </small>
+                    </u>
+                  </div>
                 </td>
                 <td
                   className=""

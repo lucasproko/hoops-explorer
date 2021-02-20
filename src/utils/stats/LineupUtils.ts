@@ -100,7 +100,10 @@ export class LineupUtils {
   ): Array<Record<string, any>> {
     return _.sortBy((gameInfo?.buckets || []).flatMap((bb: any) => {
       const opponent = _.drop(bb?.key || "unknown", 2);
-      return (bb?.game_info?.buckets || []).map((b: any) => {
+      return (bb?.game_info?.buckets || []).filter((b: any) => {
+        //Ignore any buckets of size 0:
+        return (b?.num_off_poss?.value || 0) || (b?.num_def_poss?.value || 0);
+      }).map((b: any) => {
         const opponent = bb?.key || "?:Unknown";
         const date = (b?.key_as_string || "????-??-??").substring(0, 10);
         if (mutableOpponents) mutableOpponents[`${date} ${opponent}`] = {
@@ -119,6 +122,10 @@ export class LineupUtils {
       });
     }), [ "date" ]);
   }
+
+//TODO: there is a problem with the dates here, eg the last poss of the Neb game is listed as:
+//           "date" : "2021-02-18T17:39:15.889-05:00",
+// which is out by one day .. not clear if the error is in my parser or in the data itself
 
   /** Builds on/off info out of lineups */
   static lineupToTeamReport(

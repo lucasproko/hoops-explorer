@@ -191,4 +191,30 @@ describe("LineupUtils", () => {
       });//(end loop over regress diffs)
     });//(end loop over diag mode)
   });
+  test("LineupUtils - gameGameInfo", () => {
+    const testIn = {"doc_count_error_upper_bound":0,"sum_other_doc_count":0,
+    "buckets":[
+      {"key":"H:Nebraska","doc_count":6,"game_info":{
+        "buckets":[
+          {"key_as_string":"2021-02-16T12:00:00.000-10:00","key":1613512800000,"doc_count":2,"num_pts_for":{"value":14},"num_off_poss":{"value":15},"num_pts_against":{"value":10},"num_def_poss":{"value":14}},
+          {"key_as_string":"2021-02-17T00:00:00.000-10:00","key":1613556000000,"doc_count":0,"num_pts_for":{"value":0},"num_off_poss":{"value":0},"num_pts_against":{"value":0},"num_def_poss":{"value":0}},
+          {"key_as_string":"2021-02-17T12:00:00.000-10:00","key":1613599200000,"doc_count":0,"num_pts_for":{"value":0},"num_off_poss":{"value":0},"num_pts_against":{"value":0},"num_def_poss":{"value":0}},
+          {"key_as_string":"2021-02-18T00:00:00.000-10:00","key":1613642400000,"doc_count":0,"num_pts_for":{"value":0},"num_off_poss":{"value":0},"num_pts_against":{"value":0},"num_def_poss":{"value":0}},
+          {"key_as_string":"2021-02-18T12:00:00.000-10:00","key":1613685600000,"doc_count":4,"num_pts_for":{"value":30},"num_off_poss":{"value":19},"num_pts_against":{"value":23},"num_def_poss":{"value":19}}]}},
+      {"key":"A:Penn St.","doc_count":4,"game_info":{
+        "buckets":[
+            {"key_as_string":"2021-02-05T12:00:00.000-10:00","key":1612562400000,"doc_count":4,"num_pts_for":{"value":12},"num_off_poss":{"value":16},"num_pts_against":{"value":12},"num_def_poss":{"value":14}}]}},
+      {"key":"H:Minnesota","doc_count":3,"game_info":{
+        "buckets":[
+          {"key_as_string":"2021-02-14T12:00:00.000-10:00","key":1613340000000,"doc_count":3,"num_pts_for":{"value":15},"num_off_poss":{"value":14},"num_pts_against":{"value":6},"num_def_poss":{"value":14}}]}},
+      {"key":"H:Purdue","doc_count":3,"game_info":{
+        "buckets":[{"key_as_string":"2021-02-02T12:00:00.000-10:00","key":1612303200000,"doc_count":3,"num_pts_for":{"value":23},"num_off_poss":{"value":18},"num_pts_against":{"value":20},"num_def_poss":{"value":17}}]}}]};
+
+    const mutableOpponents = {};
+    const results = LineupUtils.getGameInfo(testIn, mutableOpponents);
+    //expect(results).toBe([]);
+    expect(results).toMatchSnapshot();
+    //expect(mutableOpponents).toBe({});
+    expect(mutableOpponents).toMatchSnapshot();
+  });
 });
