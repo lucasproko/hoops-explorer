@@ -96,6 +96,16 @@ export type RelativePositionFixRule = {
 /** 7/6/2020: In 4-guard lineups, Morsell plays the 4 (18/19 and 19/20 seasons) */
 const Maryland_2018_2020 = [
   {
+    // 2/2022: In 4-guard lineups, Morsell plays the 4 (even when he's supposedly playing the 2!)
+    key: [ undefined, "DaMorsell", "HaHart", "AaWiggins", undefined ],
+    rule: [ undefined,
+      { code: "HaHart", id: "Hart, Hakim" },
+      { code: "AaWiggins", id: "Wiggins, Aaron" },
+      { code: "DaMorsell", id: "Morsell, Darryl" },
+      undefined
+    ]
+  },
+  {
     // 7/6/2020: In 4-guard lineups, Morsell plays the 4
     key: [ undefined, undefined, "DaMorsell", "AaWiggins", undefined ],
     rule: [ undefined, undefined,
