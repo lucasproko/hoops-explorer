@@ -1,5 +1,6 @@
 import _ from "lodash";
 
+import { commonRuntimeMappings } from "./commonRuntimeMappings";
 import { commonTeamQuery } from "./commonTeamQuery";
 import { commonOnOffBaseQuery } from "./commonOnOffBaseQuery";
 import { commonLineupAggregations, commonAggregations } from "./commonLineupAggregations";
@@ -11,11 +12,15 @@ export const teamStatsQuery = function(
   lastDate: number, publicEfficiency: any, lookup: any, avgEfficiency: number, hca: number
 ) {
   return {
+    ...commonRuntimeMappings(params, lastDate, publicEfficiency, lookup),
      "_source": {
         "includes": [],
         "excludes": []
      },
-     "size": 0,
+/**/
+"fields" : [ "common_lookup", "is_high_major", "rank", "off_rank", "def_rank" ],
+     "size": 1,
+/**/
      "aggregations": {
        "global": {
          "global": {},

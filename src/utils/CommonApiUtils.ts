@@ -141,6 +141,8 @@ export class CommonApiUtils {
           //console.log(JSON.stringify(esFetchJson?.responses?.[0], null, 3));
           //console.log(JSON.stringify(esFetchJson?.responses?.[2]?.aggregations?.tri_filter?.buckets?.baseline?.player?.buckets, null, 3));
           //console.log(esFetch.status);
+/**/
+console.log(JSON.stringify(esFetchJson?.responses?.[0]?.hits, null, 3));
 
           const jsonToUse = esFetchOk ?
             esFetchJson :
@@ -180,7 +182,15 @@ export class CommonApiUtils {
       } else { //(this is set to the parent object per stringify.docs)
         if (this == kp_ptr) {
           // Everything key under one of these is [team_name]: { stats }
-          if ("kp_opp" == kp_type) {
+          if ("kp_info" == kp_type) {
+            return {
+              "stats.adj_margin.rank": value?.["stats.adj_margin.rank"],
+              "conf": value?.["conf"],
+              "is_high_major": value?.["is_high_major"],
+              "stats.adj_off.rank": value?.["stats.adj_off.rank"],
+              "stats.adj_def.rank": value?.["stats.adj_def.rank"]
+            };
+          } else if ("kp_opp" == kp_type) {
             return {
               "stats.adj_margin.rank": value?.["stats.adj_margin.rank"],
               "conf": value?.["conf"]
