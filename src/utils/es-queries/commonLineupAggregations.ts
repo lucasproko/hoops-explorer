@@ -283,14 +283,7 @@ export const commonAggregations = function(
              "field": `opponent_stats.fg_3p.attempts.total`
           },
           "value": {
-             "script": {
-                "source": `${calculate3pSos()}\nreturn sos_3p;`,
-                "lang": "painless",
-                "params": {
-                   "pbp_to_kp": lookup,
-                   "kp_3p": publicEfficiency
-                }
-             }
+             "field": "_3p"
           }
         }
      }} : {}),

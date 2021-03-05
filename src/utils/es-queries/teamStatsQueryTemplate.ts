@@ -17,10 +17,7 @@ export const teamStatsQuery = function(
         "includes": [],
         "excludes": []
      },
-/**/
-"fields" : [ "common_lookup", "is_high_major", "rank", "off_rank", "def_rank" ],
-     "size": 1,
-/**/
+     "size": 0,
      "aggregations": {
        "global": {
          "global": {},
