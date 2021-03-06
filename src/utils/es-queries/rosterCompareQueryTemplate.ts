@@ -1,3 +1,4 @@
+import { commonRuntimeMappings } from "./commonRuntimeMappings";
 import { commonTeamQuery } from "./commonTeamQuery";
 import { commonOnOffBaseQuery } from "./commonOnOffBaseQuery";
 import { GameFilterParams } from "../FilterModels";
@@ -7,6 +8,7 @@ export const rosterCompareQuery = function(
   lastDate: number, publicEfficiency: any, lookup: any
 ) {
   return {
+    ...commonRuntimeMappings(params, lastDate, publicEfficiency, lookup),
      "_source": {
         "includes": [],
         "excludes": []

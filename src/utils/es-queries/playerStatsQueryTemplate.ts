@@ -1,3 +1,4 @@
+import { commonRuntimeMappings } from "./commonRuntimeMappings";
 import { commonTeamQuery } from "./commonTeamQuery";
 import { commonOnOffBaseQuery } from "./commonOnOffBaseQuery";
 import { commonPlayerAggregations } from "./commonPlayerAggregations";
@@ -9,6 +10,7 @@ export const playerStatsQuery = function(
   lastDate: number, publicEfficiency: any, lookup: any, avgEfficiency: number, hca: number
 ) {
   return {
+    ...commonRuntimeMappings(params, lastDate, publicEfficiency, lookup),
      "_source": {
         "includes": [],
         "excludes": []

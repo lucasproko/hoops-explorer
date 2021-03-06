@@ -13,32 +13,10 @@ const calculateAdjEff = function(offOrDef: "off" | "def") { return `
   } else if (doc["location_type.keyword"].value == "Away") {
     hca = -params.${offOrDef}_hca;
   }
-  def kp_name = params.pbp_to_kp[doc["opponent.team.keyword"].value];
-  if (kp_name == null) {
-     kp_name = doc["opponent.team.keyword"].value;
-  } else {
-     kp_name = kp_name.pbp_kp_team;
-  }
-  def oppo = params.kp_${offOrDef}[kp_name];
-  def adj_sos = null;
-  if (oppo != null) {
-     adj_sos = oppo['stats.adj_${offOrDef}.value'] - hca;
-  }
-  `;
-};
 
-/** Painless script used below to calculate average opponent's 3P */
-const calculate3pSos = function() { return `
-  def kp_name = params.pbp_to_kp[doc["opponent.team.keyword"].value];
-  if (kp_name == null) {
-     kp_name = doc["opponent.team.keyword"].value;
-  } else {
-     kp_name = kp_name.pbp_kp_team;
-  }
-  def oppo = params.kp_3p[kp_name];
-  def sos_3p = null;
-  if (oppo != null) {
-     sos_3p = oppo['stats.off._3p_pct.value'];
+  def adj_sos = null;
+  if (doc["${offOrDef}_adj"].size()  > 0) {
+     adj_sos = doc["${offOrDef}_adj"].value - hca;
   }
   `;
 };
@@ -268,8 +246,6 @@ export const commonAggregations = function(
                  "lang": "painless",
                  "params": {
                     "avgEff": avgEff,
-                    "pbp_to_kp": lookup,
-                    [`kp_${dstPrefix}`]: publicEfficiency,
                     "off_hca": hca, //(this should be derived from year/gender at some point?)
                     "def_hca": -hca
                  }
@@ -283,14 +259,7 @@ export const commonAggregations = function(
              "field": `opponent_stats.fg_3p.attempts.total`
           },
           "value": {
-             "script": {
-                "source": `${calculate3pSos()}\nreturn sos_3p;`,
-                "lang": "painless",
-                "params": {
-                   "pbp_to_kp": lookup,
-                   "kp_3p": publicEfficiency
-                }
-             }
+             "field": "_3p"
           }
         }
      }} : {}),
@@ -313,8 +282,6 @@ export const commonAggregations = function(
                   "lang": "painless",
                   "params": {
                      "avgEff": avgEff,
-                     "pbp_to_kp": lookup,
-                     [`kp_${oppoDstPrefix}`]: publicEfficiency,
                      "off_hca": hca, //(this should be derived from year/gender at some point?)
                      "def_hca": -hca
                   }

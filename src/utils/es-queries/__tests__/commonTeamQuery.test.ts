@@ -39,14 +39,18 @@ describe("commonTeamQuery", () => {
     expect(test1.bool.must_not).toEqual([]);
     expect(test1.bool.should).toEqual([]);
     expect(test1.bool.minimum_should_match).toEqual(0);
-    expect(test1.bool.must.length).toEqual(4);
-    expect(test1.bool?.must?.[1]?.script?.script?.params?.game_filter?.conf).toEqual("TestConf");
+    expect(test1.bool.must.length).toEqual(5);
     expect(test1.bool?.must?.[2]).toEqual({
+      "query_string": {
+         "query": `is_same_conf:true`
+       }
+    });
+    expect(test1.bool?.must?.[3]).toEqual({
       "term": {
         "location_type.keyword": "Home"
       }
     });
-    expect(test1.bool?.must?.[3]).toEqual({
+    expect(test1.bool?.must?.[4]).toEqual({
       "range": {
         "date": {
           "lte": "2019-12-31"
@@ -60,7 +64,6 @@ describe("commonTeamQuery", () => {
     expect(test2.bool.should.length).toEqual(3);
     expect(test2.bool.minimum_should_match).toEqual(1);
     expect(test2.bool.must.length).toEqual(4);
-    expect(test2.bool?.must?.[1]?.script?.script?.params?.game_filter?.conf).toEqual("");
     expect(test2.bool?.must?.[2]).toEqual({
       "term": {
         "location_type.keyword": "Away"
@@ -83,9 +86,13 @@ describe("commonTeamQuery", () => {
     }]);
     expect(test3.bool.should.length).toEqual(3);
     expect(test3.bool.minimum_should_match).toEqual(1);
-    expect(test3.bool.must.length).toEqual(3);
-    expect(test3.bool?.must?.[1]?.script?.script?.params?.game_filter?.conf).toEqual("TestConf");
-    expect(test3.bool?.must?.[2]).toEqual({
+    expect(test3.bool.must.length).toEqual(4);
+    expect(test1.bool?.must?.[2]).toEqual({
+      "query_string": {
+         "query": `is_same_conf:true`
+       }
+    });
+    expect(test3.bool?.must?.[3]).toEqual({
       "range": {
         "date": {
           "gt": "333000||-30d/d"

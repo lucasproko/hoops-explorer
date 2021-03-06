@@ -72,47 +72,16 @@ export const commonTeamQuery = function(
               "team.team.keyword": `${params.team}`
             }
           }],
-          //TODO: don't need to run this unless min/max range is specified or conf/non-conf/high-major is requested
           [{
-            "script": {
-               "script": {
-                 "source": `
-                  if (params.kp_opp.isEmpty()) return true;
-                  def kp_name = params.pbp_to_kp[doc["opponent.team.keyword"].value];
-                  if (kp_name == null) {
-                     kp_name = doc["opponent.team.keyword"].value;
-                  } else {
-                     kp_name = kp_name.pbp_kp_team;
-                  }
-                  def oppo = params.kp_opp[kp_name];
-                  if (oppo != null) {
-                     def kp_rank = oppo["stats.adj_margin.rank"];
-                     def game_filter = params.game_filter;
-                     def oppo_conf = oppo["conf"];
-                     def conf_allowed = true;
-                     if (!game_filter.conf.isEmpty()) {
-                        conf_allowed = game_filter.conf.equals(oppo_conf);
-                     }
-                     return conf_allowed && (kp_rank >= game_filter.min_kp) && (kp_rank <= game_filter.max_kp);
-                  } else {
-                      return false;
-                  }
-                 `,
-                  "lang": "painless",
-                  "params": {
-                     "pbp_to_kp": lookup,
-                     "kp_opp": publicEfficiency, //(if empty then the query auto-returns true)
-                     "game_filter": {
-                        "min_kp": Number(params.minRank),
-                        "max_kp": Number(params.maxRank),
-                        "conf": QueryUtils.filterHas(queryFilters, "Conf") ?
-                            QueryUtils.getConference(params.team || "", publicEfficiency, lookup) :
-                            ""
-                     }
-                  }
-               }
-            }
+            "query_string": {
+               "query": `rank:[${Number(params.minRank)} TO ${Number(params.maxRank)}]`
+             }
           }],
+          QueryUtils.filterHas(queryFilters, "Conf") ? [{
+            "query_string": {
+               "query": `is_same_conf:true`
+             }
+          }] : [],
           _.flatMap([ "Home", "Away" ], (homeOrAway: "Home" | "Away") => {
             return QueryUtils.filterHas(queryFilters, homeOrAway) ? [ homeOrAwayFilter(homeOrAway) ] : [];
           }),
