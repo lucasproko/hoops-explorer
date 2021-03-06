@@ -141,8 +141,7 @@ export class CommonApiUtils {
           //console.log(JSON.stringify(esFetchJson?.responses?.[0], null, 3));
           //console.log(JSON.stringify(esFetchJson?.responses?.[2]?.aggregations?.tri_filter?.buckets?.baseline?.player?.buckets, null, 3));
           //console.log(esFetch.status);
-/**/
-console.log(JSON.stringify(esFetchJson?.responses?.[0]?.hits, null, 3));
+          //console.log(JSON.stringify(esFetchJson?.responses?.[0]?.hits, null, 3));
 
           const jsonToUse = esFetchOk ?
             esFetchJson :
@@ -174,8 +173,11 @@ console.log(JSON.stringify(esFetchJson?.responses?.[0]?.hits, null, 3));
     let kp_type: string | undefined = undefined; // (kp_filter, kp_off_sos, kp_def_sos)
     let kp_ptr: any = undefined; //(so we know when we're done)
 
+    // IMPORTANT: ONLY KP_INFO IS NOW USED, WILL REMOVE THE OTHERS AFTER A RESPECTFUL PERIOD!
+    // (because of runtime fields I can now calc all the values I want at the top)
+
     return function(this: any, key: string, value: any) {
-      if ((key == "kp_opp") || (key == "kp_off") || (key == "kp_def") || (key == "kp_3p")) {
+      if ((key == "kp_opp") || (key == "kp_off") || (key == "kp_def") || (key == "kp_3p") || (key == "kp_info")) {
         kp_ptr = value;
         kp_type = key;
         return value;
@@ -188,7 +190,10 @@ console.log(JSON.stringify(esFetchJson?.responses?.[0]?.hits, null, 3));
               "conf": value?.["conf"],
               "is_high_major": value?.["is_high_major"],
               "stats.adj_off.rank": value?.["stats.adj_off.rank"],
-              "stats.adj_def.rank": value?.["stats.adj_def.rank"]
+              "stats.adj_def.rank": value?.["stats.adj_def.rank"],
+              "stats.adj_off.value": value?.["stats.adj_off.value"],
+              "stats.adj_def.value": value?.["stats.adj_def.value"],
+              "stats.off._3p_pct.value": value?.["stats.off._3p_pct.value"],
             };
           } else if ("kp_opp" == kp_type) {
             return {
