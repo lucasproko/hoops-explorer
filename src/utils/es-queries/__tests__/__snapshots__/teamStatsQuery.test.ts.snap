@@ -2,6 +2,62 @@
 
 exports[`teamStatsQuery teamStatsQuery 1`] = `
 {
+   "runtime_mappings": {
+      "is_high_major": {
+         "type": "boolean",
+         "script": {
+            "source": "if (0 != doc['common_lookup'].size()) emit((doc['common_lookup'].value & 1) > 0)"
+         }
+      },
+      "is_same_conf": {
+         "type": "boolean",
+         "script": {
+            "source": "if (0 != doc['common_lookup'].size()) emit((doc['common_lookup'].value & 2) > 0)"
+         }
+      },
+      "rank": {
+         "type": "long",
+         "script": {
+            "source": "if (0 != doc['common_lookup'].size()) emit((doc['common_lookup'].value >> 2) & 511)"
+         }
+      },
+      "_3p": {
+         "type": "double",
+         "script": {
+            "source": "if (0 != doc['common_lookup'].size()) {\\n            def _3p = (doc['common_lookup'].value >> 11)  & 1023;\\n            if (_3p > 0) emit(0.1*_3p);\\n          }"
+         }
+      },
+      "off_adj": {
+         "type": "double",
+         "script": {
+            "source": "if (0 != doc['common_lookup'].size()) emit(0.1*((doc['common_lookup'].value >> 21) & 2047))"
+         }
+      },
+      "def_adj": {
+         "type": "double",
+         "script": {
+            "source": "if (0 != doc['common_lookup'].size()) emit(0.1*((doc['common_lookup'].value >> 32) & 2047))"
+         }
+      },
+      "common_lookup": {
+         "type": "long",
+         "script": {
+            "source": "\\n            if (!params.kp_info.isEmpty()) {\\n              def kp_name = params.pbp_to_kp[doc[\\"opponent.team.keyword\\"].value];\\n              if (kp_name == null) {\\n                 kp_name = doc[\\"opponent.team.keyword\\"].value;\\n              } else {\\n                 kp_name = kp_name.pbp_kp_team;\\n              }\\n              def oppo = params.kp_info[kp_name];\\n              if (oppo != null) {\\n                def is_high_major = oppo[\\"is_high_major\\"] ?: 1;\\n                def oppo_conf = oppo[\\"conf\\"];\\n                def is_same_conf = params.conf.equals(oppo_conf);\\n                def margin_rank = oppo[\\"stats.adj_margin.rank\\"] ?: 0;\\n\\n                def _3p = oppo[\\"stats.off._3p_pct.value\\"] ?: 0.0;\\n                _3p = (_3p * 10).longValue() & 1023;\\n\\n                def off_adj = oppo[\\"stats.adj_off.value\\"] ?: 0;\\n                off_adj = (off_adj * 10).longValue() & 2047;\\n\\n                def def_adj = oppo[\\"stats.adj_def.value\\"] ?: 0;\\n                def_adj = (def_adj * 10).longValue() & 2047;\\n\\n                long returnVal = 0L | (is_high_major << 0)\\n                  | ((is_same_conf ? 1 : 0) << 1)\\n                  | ((margin_rank & 511) << 2)\\n                  | (_3p.longValue() << 11)\\n                  | (off_adj.longValue() << 21)\\n                  | (def_adj.longValue() << 32)\\n                  ;\\n                emit(returnVal);\\n              }\\n            }\\n          ",
+            "lang": "painless",
+            "params": {
+               "pbp_to_kp": {
+                  "name1": "name1b"
+               },
+               "kp_info": {
+                  "team": {
+                     "stats": 0
+                  }
+               },
+               "conf": ""
+            }
+         }
+      }
+   },
    "_source": {
       "includes": [],
       "excludes": []
@@ -65,20 +121,7 @@ exports[`teamStatsQuery teamStatsQuery 1`] = `
                            "field": "opponent_stats.fg_3p.attempts.total"
                         },
                         "value": {
-                           "script": {
-                              "source": "\\n  def kp_name = params.pbp_to_kp[doc[\\"opponent.team.keyword\\"].value];\\n  if (kp_name == null) {\\n     kp_name = doc[\\"opponent.team.keyword\\"].value;\\n  } else {\\n     kp_name = kp_name.pbp_kp_team;\\n  }\\n  def oppo = params.kp_3p[kp_name];\\n  def sos_3p = null;\\n  if (oppo != null) {\\n     sos_3p = oppo['stats.off._3p_pct.value'];\\n  }\\n  \\nreturn sos_3p;",
-                              "lang": "painless",
-                              "params": {
-                                 "pbp_to_kp": {
-                                    "name1": "name1b"
-                                 },
-                                 "kp_3p": {
-                                    "team": {
-                                       "stats": 0
-                                    }
-                                 }
-                              }
-                           }
+                           "field": "_3p"
                         }
                      }
                   }
@@ -967,18 +1010,10 @@ exports[`teamStatsQuery teamStatsQuery 1`] = `
                   },
                   "value": {
                      "script": {
-                        "source": "\\n  def hca = 0.0;\\n  if (doc[\\"location_type.keyword\\"].value == \\"Home\\") {\\n    hca = params.off_hca;\\n  } else if (doc[\\"location_type.keyword\\"].value == \\"Away\\") {\\n    hca = -params.off_hca;\\n  }\\n  def kp_name = params.pbp_to_kp[doc[\\"opponent.team.keyword\\"].value];\\n  if (kp_name == null) {\\n     kp_name = doc[\\"opponent.team.keyword\\"].value;\\n  } else {\\n     kp_name = kp_name.pbp_kp_team;\\n  }\\n  def oppo = params.kp_off[kp_name];\\n  def adj_sos = null;\\n  if (oppo != null) {\\n     adj_sos = oppo['stats.adj_off.value'] - hca;\\n  }\\n  \\nreturn adj_sos;",
+                        "source": "\\n  def hca = 0.0;\\n  if (doc[\\"location_type.keyword\\"].value == \\"Home\\") {\\n    hca = params.off_hca;\\n  } else if (doc[\\"location_type.keyword\\"].value == \\"Away\\") {\\n    hca = -params.off_hca;\\n  }\\n\\n  def adj_sos = null;\\n  if (doc[\\"off_adj\\"].size()  > 0) {\\n     adj_sos = doc[\\"off_adj\\"].value - hca;\\n  }\\n  \\nreturn adj_sos;",
                         "lang": "painless",
                         "params": {
                            "avgEff": 100,
-                           "pbp_to_kp": {
-                              "name1": "name1b"
-                           },
-                           "kp_off": {
-                              "team": {
-                                 "stats": 0
-                              }
-                           },
                            "off_hca": 1.5,
                            "def_hca": -1.5
                         }
@@ -993,18 +1028,10 @@ exports[`teamStatsQuery teamStatsQuery 1`] = `
                   },
                   "value": {
                      "script": {
-                        "source": "\\n  def hca = 0.0;\\n  if (doc[\\"location_type.keyword\\"].value == \\"Home\\") {\\n    hca = params.def_hca;\\n  } else if (doc[\\"location_type.keyword\\"].value == \\"Away\\") {\\n    hca = -params.def_hca;\\n  }\\n  def kp_name = params.pbp_to_kp[doc[\\"opponent.team.keyword\\"].value];\\n  if (kp_name == null) {\\n     kp_name = doc[\\"opponent.team.keyword\\"].value;\\n  } else {\\n     kp_name = kp_name.pbp_kp_team;\\n  }\\n  def oppo = params.kp_def[kp_name];\\n  def adj_sos = null;\\n  if (oppo != null) {\\n     adj_sos = oppo['stats.adj_def.value'] - hca;\\n  }\\n  \\n                    if (null != adj_sos) {\\n                       def bottom = adj_sos*doc[\\"team_stats.num_possessions\\"].value;\\n                       return (bottom > 0) ?\\n                         100.0*doc[\\"team_stats.pts\\"].value*params.avgEff/bottom : params.avgEff;\\n                    } else {\\n                      return null;\\n                    }\\n                  ",
+                        "source": "\\n  def hca = 0.0;\\n  if (doc[\\"location_type.keyword\\"].value == \\"Home\\") {\\n    hca = params.def_hca;\\n  } else if (doc[\\"location_type.keyword\\"].value == \\"Away\\") {\\n    hca = -params.def_hca;\\n  }\\n\\n  def adj_sos = null;\\n  if (doc[\\"def_adj\\"].size()  > 0) {\\n     adj_sos = doc[\\"def_adj\\"].value - hca;\\n  }\\n  \\n                    if (null != adj_sos) {\\n                       def bottom = adj_sos*doc[\\"team_stats.num_possessions\\"].value;\\n                       return (bottom > 0) ?\\n                         100.0*doc[\\"team_stats.pts\\"].value*params.avgEff/bottom : params.avgEff;\\n                    } else {\\n                      return null;\\n                    }\\n                  ",
                         "lang": "painless",
                         "params": {
                            "avgEff": 100,
-                           "pbp_to_kp": {
-                              "name1": "name1b"
-                           },
-                           "kp_def": {
-                              "team": {
-                                 "stats": 0
-                              }
-                           },
                            "off_hca": 1.5,
                            "def_hca": -1.5
                         }
@@ -1891,18 +1918,10 @@ exports[`teamStatsQuery teamStatsQuery 1`] = `
                   },
                   "value": {
                      "script": {
-                        "source": "\\n  def hca = 0.0;\\n  if (doc[\\"location_type.keyword\\"].value == \\"Home\\") {\\n    hca = params.def_hca;\\n  } else if (doc[\\"location_type.keyword\\"].value == \\"Away\\") {\\n    hca = -params.def_hca;\\n  }\\n  def kp_name = params.pbp_to_kp[doc[\\"opponent.team.keyword\\"].value];\\n  if (kp_name == null) {\\n     kp_name = doc[\\"opponent.team.keyword\\"].value;\\n  } else {\\n     kp_name = kp_name.pbp_kp_team;\\n  }\\n  def oppo = params.kp_def[kp_name];\\n  def adj_sos = null;\\n  if (oppo != null) {\\n     adj_sos = oppo['stats.adj_def.value'] - hca;\\n  }\\n  \\nreturn adj_sos;",
+                        "source": "\\n  def hca = 0.0;\\n  if (doc[\\"location_type.keyword\\"].value == \\"Home\\") {\\n    hca = params.def_hca;\\n  } else if (doc[\\"location_type.keyword\\"].value == \\"Away\\") {\\n    hca = -params.def_hca;\\n  }\\n\\n  def adj_sos = null;\\n  if (doc[\\"def_adj\\"].size()  > 0) {\\n     adj_sos = doc[\\"def_adj\\"].value - hca;\\n  }\\n  \\nreturn adj_sos;",
                         "lang": "painless",
                         "params": {
                            "avgEff": 100,
-                           "pbp_to_kp": {
-                              "name1": "name1b"
-                           },
-                           "kp_def": {
-                              "team": {
-                                 "stats": 0
-                              }
-                           },
                            "off_hca": 1.5,
                            "def_hca": -1.5
                         }
@@ -1916,20 +1935,7 @@ exports[`teamStatsQuery teamStatsQuery 1`] = `
                      "field": "opponent_stats.fg_3p.attempts.total"
                   },
                   "value": {
-                     "script": {
-                        "source": "\\n  def kp_name = params.pbp_to_kp[doc[\\"opponent.team.keyword\\"].value];\\n  if (kp_name == null) {\\n     kp_name = doc[\\"opponent.team.keyword\\"].value;\\n  } else {\\n     kp_name = kp_name.pbp_kp_team;\\n  }\\n  def oppo = params.kp_3p[kp_name];\\n  def sos_3p = null;\\n  if (oppo != null) {\\n     sos_3p = oppo['stats.off._3p_pct.value'];\\n  }\\n  \\nreturn sos_3p;",
-                        "lang": "painless",
-                        "params": {
-                           "pbp_to_kp": {
-                              "name1": "name1b"
-                           },
-                           "kp_3p": {
-                              "team": {
-                                 "stats": 0
-                              }
-                           }
-                        }
-                     }
+                     "field": "_3p"
                   }
                }
             },
@@ -1940,18 +1946,10 @@ exports[`teamStatsQuery teamStatsQuery 1`] = `
                   },
                   "value": {
                      "script": {
-                        "source": "\\n  def hca = 0.0;\\n  if (doc[\\"location_type.keyword\\"].value == \\"Home\\") {\\n    hca = params.off_hca;\\n  } else if (doc[\\"location_type.keyword\\"].value == \\"Away\\") {\\n    hca = -params.off_hca;\\n  }\\n  def kp_name = params.pbp_to_kp[doc[\\"opponent.team.keyword\\"].value];\\n  if (kp_name == null) {\\n     kp_name = doc[\\"opponent.team.keyword\\"].value;\\n  } else {\\n     kp_name = kp_name.pbp_kp_team;\\n  }\\n  def oppo = params.kp_off[kp_name];\\n  def adj_sos = null;\\n  if (oppo != null) {\\n     adj_sos = oppo['stats.adj_off.value'] - hca;\\n  }\\n  \\n                    if (null != adj_sos) {\\n                       def bottom = adj_sos*doc[\\"opponent_stats.num_possessions\\"].value;\\n                       return (bottom > 0) ?\\n                         100.0*doc[\\"opponent_stats.pts\\"].value*params.avgEff/bottom : params.avgEff;\\n                    } else {\\n                      return null;\\n                    }\\n                  ",
+                        "source": "\\n  def hca = 0.0;\\n  if (doc[\\"location_type.keyword\\"].value == \\"Home\\") {\\n    hca = params.off_hca;\\n  } else if (doc[\\"location_type.keyword\\"].value == \\"Away\\") {\\n    hca = -params.off_hca;\\n  }\\n\\n  def adj_sos = null;\\n  if (doc[\\"off_adj\\"].size()  > 0) {\\n     adj_sos = doc[\\"off_adj\\"].value - hca;\\n  }\\n  \\n                    if (null != adj_sos) {\\n                       def bottom = adj_sos*doc[\\"opponent_stats.num_possessions\\"].value;\\n                       return (bottom > 0) ?\\n                         100.0*doc[\\"opponent_stats.pts\\"].value*params.avgEff/bottom : params.avgEff;\\n                    } else {\\n                      return null;\\n                    }\\n                  ",
                         "lang": "painless",
                         "params": {
                            "avgEff": 100,
-                           "pbp_to_kp": {
-                              "name1": "name1b"
-                           },
-                           "kp_off": {
-                              "team": {
-                                 "stats": 0
-                              }
-                           },
                            "off_hca": 1.5,
                            "def_hca": -1.5
                         }
@@ -1999,26 +1997,8 @@ exports[`teamStatsQuery teamStatsQuery 1`] = `
                }
             },
             {
-               "script": {
-                  "script": {
-                     "source": "\\n                  if (params.kp_opp.isEmpty()) return true;\\n                  def kp_name = params.pbp_to_kp[doc[\\"opponent.team.keyword\\"].value];\\n                  if (kp_name == null) {\\n                     kp_name = doc[\\"opponent.team.keyword\\"].value;\\n                  } else {\\n                     kp_name = kp_name.pbp_kp_team;\\n                  }\\n                  def oppo = params.kp_opp[kp_name];\\n                  if (oppo != null) {\\n                     def kp_rank = oppo[\\"stats.adj_margin.rank\\"];\\n                     def game_filter = params.game_filter;\\n                     def oppo_conf = oppo[\\"conf\\"];\\n                     def conf_allowed = true;\\n                     if (!game_filter.conf.isEmpty()) {\\n                        conf_allowed = game_filter.conf.equals(oppo_conf);\\n                     }\\n                     return conf_allowed && (kp_rank >= game_filter.min_kp) && (kp_rank <= game_filter.max_kp);\\n                  } else {\\n                      return false;\\n                  }\\n                 ",
-                     "lang": "painless",
-                     "params": {
-                        "pbp_to_kp": {
-                           "name1": "name1b"
-                        },
-                        "kp_opp": {
-                           "team": {
-                              "stats": 0
-                           }
-                        },
-                        "game_filter": {
-                           "min_kp": 10,
-                           "max_kp": 100,
-                           "conf": ""
-                        }
-                     }
-                  }
+               "query_string": {
+                  "query": "rank:[10 TO 100]"
                }
             }
          ]
@@ -2029,6 +2009,62 @@ exports[`teamStatsQuery teamStatsQuery 1`] = `
 
 exports[`teamStatsQuery teamStatsQuery 2`] = `
 {
+   "runtime_mappings": {
+      "is_high_major": {
+         "type": "boolean",
+         "script": {
+            "source": "if (0 != doc['common_lookup'].size()) emit((doc['common_lookup'].value & 1) > 0)"
+         }
+      },
+      "is_same_conf": {
+         "type": "boolean",
+         "script": {
+            "source": "if (0 != doc['common_lookup'].size()) emit((doc['common_lookup'].value & 2) > 0)"
+         }
+      },
+      "rank": {
+         "type": "long",
+         "script": {
+            "source": "if (0 != doc['common_lookup'].size()) emit((doc['common_lookup'].value >> 2) & 511)"
+         }
+      },
+      "_3p": {
+         "type": "double",
+         "script": {
+            "source": "if (0 != doc['common_lookup'].size()) {\\n            def _3p = (doc['common_lookup'].value >> 11)  & 1023;\\n            if (_3p > 0) emit(0.1*_3p);\\n          }"
+         }
+      },
+      "off_adj": {
+         "type": "double",
+         "script": {
+            "source": "if (0 != doc['common_lookup'].size()) emit(0.1*((doc['common_lookup'].value >> 21) & 2047))"
+         }
+      },
+      "def_adj": {
+         "type": "double",
+         "script": {
+            "source": "if (0 != doc['common_lookup'].size()) emit(0.1*((doc['common_lookup'].value >> 32) & 2047))"
+         }
+      },
+      "common_lookup": {
+         "type": "long",
+         "script": {
+            "source": "\\n            if (!params.kp_info.isEmpty()) {\\n              def kp_name = params.pbp_to_kp[doc[\\"opponent.team.keyword\\"].value];\\n              if (kp_name == null) {\\n                 kp_name = doc[\\"opponent.team.keyword\\"].value;\\n              } else {\\n                 kp_name = kp_name.pbp_kp_team;\\n              }\\n              def oppo = params.kp_info[kp_name];\\n              if (oppo != null) {\\n                def is_high_major = oppo[\\"is_high_major\\"] ?: 1;\\n                def oppo_conf = oppo[\\"conf\\"];\\n                def is_same_conf = params.conf.equals(oppo_conf);\\n                def margin_rank = oppo[\\"stats.adj_margin.rank\\"] ?: 0;\\n\\n                def _3p = oppo[\\"stats.off._3p_pct.value\\"] ?: 0.0;\\n                _3p = (_3p * 10).longValue() & 1023;\\n\\n                def off_adj = oppo[\\"stats.adj_off.value\\"] ?: 0;\\n                off_adj = (off_adj * 10).longValue() & 2047;\\n\\n                def def_adj = oppo[\\"stats.adj_def.value\\"] ?: 0;\\n                def_adj = (def_adj * 10).longValue() & 2047;\\n\\n                long returnVal = 0L | (is_high_major << 0)\\n                  | ((is_same_conf ? 1 : 0) << 1)\\n                  | ((margin_rank & 511) << 2)\\n                  | (_3p.longValue() << 11)\\n                  | (off_adj.longValue() << 21)\\n                  | (def_adj.longValue() << 32)\\n                  ;\\n                emit(returnVal);\\n              }\\n            }\\n          ",
+            "lang": "painless",
+            "params": {
+               "pbp_to_kp": {
+                  "name1": "name1b"
+               },
+               "kp_info": {
+                  "team": {
+                     "stats": 0
+                  }
+               },
+               "conf": ""
+            }
+         }
+      }
+   },
    "_source": {
       "includes": [],
       "excludes": []
@@ -2092,20 +2128,7 @@ exports[`teamStatsQuery teamStatsQuery 2`] = `
                            "field": "opponent_stats.fg_3p.attempts.total"
                         },
                         "value": {
-                           "script": {
-                              "source": "\\n  def kp_name = params.pbp_to_kp[doc[\\"opponent.team.keyword\\"].value];\\n  if (kp_name == null) {\\n     kp_name = doc[\\"opponent.team.keyword\\"].value;\\n  } else {\\n     kp_name = kp_name.pbp_kp_team;\\n  }\\n  def oppo = params.kp_3p[kp_name];\\n  def sos_3p = null;\\n  if (oppo != null) {\\n     sos_3p = oppo['stats.off._3p_pct.value'];\\n  }\\n  \\nreturn sos_3p;",
-                              "lang": "painless",
-                              "params": {
-                                 "pbp_to_kp": {
-                                    "name1": "name1b"
-                                 },
-                                 "kp_3p": {
-                                    "team": {
-                                       "stats": 0
-                                    }
-                                 }
-                              }
-                           }
+                           "field": "_3p"
                         }
                      }
                   }
@@ -2994,18 +3017,10 @@ exports[`teamStatsQuery teamStatsQuery 2`] = `
                   },
                   "value": {
                      "script": {
-                        "source": "\\n  def hca = 0.0;\\n  if (doc[\\"location_type.keyword\\"].value == \\"Home\\") {\\n    hca = params.off_hca;\\n  } else if (doc[\\"location_type.keyword\\"].value == \\"Away\\") {\\n    hca = -params.off_hca;\\n  }\\n  def kp_name = params.pbp_to_kp[doc[\\"opponent.team.keyword\\"].value];\\n  if (kp_name == null) {\\n     kp_name = doc[\\"opponent.team.keyword\\"].value;\\n  } else {\\n     kp_name = kp_name.pbp_kp_team;\\n  }\\n  def oppo = params.kp_off[kp_name];\\n  def adj_sos = null;\\n  if (oppo != null) {\\n     adj_sos = oppo['stats.adj_off.value'] - hca;\\n  }\\n  \\nreturn adj_sos;",
+                        "source": "\\n  def hca = 0.0;\\n  if (doc[\\"location_type.keyword\\"].value == \\"Home\\") {\\n    hca = params.off_hca;\\n  } else if (doc[\\"location_type.keyword\\"].value == \\"Away\\") {\\n    hca = -params.off_hca;\\n  }\\n\\n  def adj_sos = null;\\n  if (doc[\\"off_adj\\"].size()  > 0) {\\n     adj_sos = doc[\\"off_adj\\"].value - hca;\\n  }\\n  \\nreturn adj_sos;",
                         "lang": "painless",
                         "params": {
                            "avgEff": 100,
-                           "pbp_to_kp": {
-                              "name1": "name1b"
-                           },
-                           "kp_off": {
-                              "team": {
-                                 "stats": 0
-                              }
-                           },
                            "off_hca": 1,
                            "def_hca": -1
                         }
@@ -3020,18 +3035,10 @@ exports[`teamStatsQuery teamStatsQuery 2`] = `
                   },
                   "value": {
                      "script": {
-                        "source": "\\n  def hca = 0.0;\\n  if (doc[\\"location_type.keyword\\"].value == \\"Home\\") {\\n    hca = params.def_hca;\\n  } else if (doc[\\"location_type.keyword\\"].value == \\"Away\\") {\\n    hca = -params.def_hca;\\n  }\\n  def kp_name = params.pbp_to_kp[doc[\\"opponent.team.keyword\\"].value];\\n  if (kp_name == null) {\\n     kp_name = doc[\\"opponent.team.keyword\\"].value;\\n  } else {\\n     kp_name = kp_name.pbp_kp_team;\\n  }\\n  def oppo = params.kp_def[kp_name];\\n  def adj_sos = null;\\n  if (oppo != null) {\\n     adj_sos = oppo['stats.adj_def.value'] - hca;\\n  }\\n  \\n                    if (null != adj_sos) {\\n                       def bottom = adj_sos*doc[\\"team_stats.num_possessions\\"].value;\\n                       return (bottom > 0) ?\\n                         100.0*doc[\\"team_stats.pts\\"].value*params.avgEff/bottom : params.avgEff;\\n                    } else {\\n                      return null;\\n                    }\\n                  ",
+                        "source": "\\n  def hca = 0.0;\\n  if (doc[\\"location_type.keyword\\"].value == \\"Home\\") {\\n    hca = params.def_hca;\\n  } else if (doc[\\"location_type.keyword\\"].value == \\"Away\\") {\\n    hca = -params.def_hca;\\n  }\\n\\n  def adj_sos = null;\\n  if (doc[\\"def_adj\\"].size()  > 0) {\\n     adj_sos = doc[\\"def_adj\\"].value - hca;\\n  }\\n  \\n                    if (null != adj_sos) {\\n                       def bottom = adj_sos*doc[\\"team_stats.num_possessions\\"].value;\\n                       return (bottom > 0) ?\\n                         100.0*doc[\\"team_stats.pts\\"].value*params.avgEff/bottom : params.avgEff;\\n                    } else {\\n                      return null;\\n                    }\\n                  ",
                         "lang": "painless",
                         "params": {
                            "avgEff": 100,
-                           "pbp_to_kp": {
-                              "name1": "name1b"
-                           },
-                           "kp_def": {
-                              "team": {
-                                 "stats": 0
-                              }
-                           },
                            "off_hca": 1,
                            "def_hca": -1
                         }
@@ -3918,18 +3925,10 @@ exports[`teamStatsQuery teamStatsQuery 2`] = `
                   },
                   "value": {
                      "script": {
-                        "source": "\\n  def hca = 0.0;\\n  if (doc[\\"location_type.keyword\\"].value == \\"Home\\") {\\n    hca = params.def_hca;\\n  } else if (doc[\\"location_type.keyword\\"].value == \\"Away\\") {\\n    hca = -params.def_hca;\\n  }\\n  def kp_name = params.pbp_to_kp[doc[\\"opponent.team.keyword\\"].value];\\n  if (kp_name == null) {\\n     kp_name = doc[\\"opponent.team.keyword\\"].value;\\n  } else {\\n     kp_name = kp_name.pbp_kp_team;\\n  }\\n  def oppo = params.kp_def[kp_name];\\n  def adj_sos = null;\\n  if (oppo != null) {\\n     adj_sos = oppo['stats.adj_def.value'] - hca;\\n  }\\n  \\nreturn adj_sos;",
+                        "source": "\\n  def hca = 0.0;\\n  if (doc[\\"location_type.keyword\\"].value == \\"Home\\") {\\n    hca = params.def_hca;\\n  } else if (doc[\\"location_type.keyword\\"].value == \\"Away\\") {\\n    hca = -params.def_hca;\\n  }\\n\\n  def adj_sos = null;\\n  if (doc[\\"def_adj\\"].size()  > 0) {\\n     adj_sos = doc[\\"def_adj\\"].value - hca;\\n  }\\n  \\nreturn adj_sos;",
                         "lang": "painless",
                         "params": {
                            "avgEff": 100,
-                           "pbp_to_kp": {
-                              "name1": "name1b"
-                           },
-                           "kp_def": {
-                              "team": {
-                                 "stats": 0
-                              }
-                           },
                            "off_hca": 1,
                            "def_hca": -1
                         }
@@ -3943,20 +3942,7 @@ exports[`teamStatsQuery teamStatsQuery 2`] = `
                      "field": "opponent_stats.fg_3p.attempts.total"
                   },
                   "value": {
-                     "script": {
-                        "source": "\\n  def kp_name = params.pbp_to_kp[doc[\\"opponent.team.keyword\\"].value];\\n  if (kp_name == null) {\\n     kp_name = doc[\\"opponent.team.keyword\\"].value;\\n  } else {\\n     kp_name = kp_name.pbp_kp_team;\\n  }\\n  def oppo = params.kp_3p[kp_name];\\n  def sos_3p = null;\\n  if (oppo != null) {\\n     sos_3p = oppo['stats.off._3p_pct.value'];\\n  }\\n  \\nreturn sos_3p;",
-                        "lang": "painless",
-                        "params": {
-                           "pbp_to_kp": {
-                              "name1": "name1b"
-                           },
-                           "kp_3p": {
-                              "team": {
-                                 "stats": 0
-                              }
-                           }
-                        }
-                     }
+                     "field": "_3p"
                   }
                }
             },
@@ -3967,18 +3953,10 @@ exports[`teamStatsQuery teamStatsQuery 2`] = `
                   },
                   "value": {
                      "script": {
-                        "source": "\\n  def hca = 0.0;\\n  if (doc[\\"location_type.keyword\\"].value == \\"Home\\") {\\n    hca = params.off_hca;\\n  } else if (doc[\\"location_type.keyword\\"].value == \\"Away\\") {\\n    hca = -params.off_hca;\\n  }\\n  def kp_name = params.pbp_to_kp[doc[\\"opponent.team.keyword\\"].value];\\n  if (kp_name == null) {\\n     kp_name = doc[\\"opponent.team.keyword\\"].value;\\n  } else {\\n     kp_name = kp_name.pbp_kp_team;\\n  }\\n  def oppo = params.kp_off[kp_name];\\n  def adj_sos = null;\\n  if (oppo != null) {\\n     adj_sos = oppo['stats.adj_off.value'] - hca;\\n  }\\n  \\n                    if (null != adj_sos) {\\n                       def bottom = adj_sos*doc[\\"opponent_stats.num_possessions\\"].value;\\n                       return (bottom > 0) ?\\n                         100.0*doc[\\"opponent_stats.pts\\"].value*params.avgEff/bottom : params.avgEff;\\n                    } else {\\n                      return null;\\n                    }\\n                  ",
+                        "source": "\\n  def hca = 0.0;\\n  if (doc[\\"location_type.keyword\\"].value == \\"Home\\") {\\n    hca = params.off_hca;\\n  } else if (doc[\\"location_type.keyword\\"].value == \\"Away\\") {\\n    hca = -params.off_hca;\\n  }\\n\\n  def adj_sos = null;\\n  if (doc[\\"off_adj\\"].size()  > 0) {\\n     adj_sos = doc[\\"off_adj\\"].value - hca;\\n  }\\n  \\n                    if (null != adj_sos) {\\n                       def bottom = adj_sos*doc[\\"opponent_stats.num_possessions\\"].value;\\n                       return (bottom > 0) ?\\n                         100.0*doc[\\"opponent_stats.pts\\"].value*params.avgEff/bottom : params.avgEff;\\n                    } else {\\n                      return null;\\n                    }\\n                  ",
                         "lang": "painless",
                         "params": {
                            "avgEff": 100,
-                           "pbp_to_kp": {
-                              "name1": "name1b"
-                           },
-                           "kp_off": {
-                              "team": {
-                                 "stats": 0
-                              }
-                           },
                            "off_hca": 1,
                            "def_hca": -1
                         }
@@ -4026,26 +4004,8 @@ exports[`teamStatsQuery teamStatsQuery 2`] = `
                }
             },
             {
-               "script": {
-                  "script": {
-                     "source": "\\n                  if (params.kp_opp.isEmpty()) return true;\\n                  def kp_name = params.pbp_to_kp[doc[\\"opponent.team.keyword\\"].value];\\n                  if (kp_name == null) {\\n                     kp_name = doc[\\"opponent.team.keyword\\"].value;\\n                  } else {\\n                     kp_name = kp_name.pbp_kp_team;\\n                  }\\n                  def oppo = params.kp_opp[kp_name];\\n                  if (oppo != null) {\\n                     def kp_rank = oppo[\\"stats.adj_margin.rank\\"];\\n                     def game_filter = params.game_filter;\\n                     def oppo_conf = oppo[\\"conf\\"];\\n                     def conf_allowed = true;\\n                     if (!game_filter.conf.isEmpty()) {\\n                        conf_allowed = game_filter.conf.equals(oppo_conf);\\n                     }\\n                     return conf_allowed && (kp_rank >= game_filter.min_kp) && (kp_rank <= game_filter.max_kp);\\n                  } else {\\n                      return false;\\n                  }\\n                 ",
-                     "lang": "painless",
-                     "params": {
-                        "pbp_to_kp": {
-                           "name1": "name1b"
-                        },
-                        "kp_opp": {
-                           "team": {
-                              "stats": 0
-                           }
-                        },
-                        "game_filter": {
-                           "min_kp": 10,
-                           "max_kp": 100,
-                           "conf": ""
-                        }
-                     }
-                  }
+               "query_string": {
+                  "query": "rank:[10 TO 100]"
                }
             }
          ]
