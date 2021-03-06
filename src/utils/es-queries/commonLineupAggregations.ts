@@ -15,8 +15,8 @@ const calculateAdjEff = function(offOrDef: "off" | "def") { return `
   }
 
   def adj_sos = null;
-  if (doc["${offOrDef}_adj"].size()  > 0) {
-     adj_sos = doc["${offOrDef}_adj"].value - hca;
+  if (doc["vs_adj_${offOrDef}"].size()  > 0) {
+     adj_sos = doc["vs_adj_${offOrDef}"].value - hca;
   }
   `;
 };
@@ -259,7 +259,7 @@ export const commonAggregations = function(
              "field": `opponent_stats.fg_3p.attempts.total`
           },
           "value": {
-             "field": "_3p"
+             "field": "vs_3p"
           }
         }
      }} : {}),

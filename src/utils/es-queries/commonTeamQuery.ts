@@ -74,12 +74,12 @@ export const commonTeamQuery = function(
           }],
           [{
             "query_string": {
-               "query": `rank:[${Number(params.minRank)} TO ${Number(params.maxRank)}]`
+               "query": `vs_rank:[${Number(params.minRank)} TO ${Number(params.maxRank)}]`
              }
           }],
           QueryUtils.filterHas(queryFilters, "Conf") ? [{
             "query_string": {
-               "query": `is_same_conf:true`
+               "query": `in_conf:true`
              }
           }] : [],
           _.flatMap([ "Home", "Away" ], (homeOrAway: "Home" | "Away") => {

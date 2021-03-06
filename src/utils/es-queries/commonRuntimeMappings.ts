@@ -11,25 +11,25 @@ export const commonRuntimeMappings = function(
   const queryFilters = QueryUtils.parseFilter(params.queryFilters || "");
   return {
     runtime_mappings: {
-      is_high_major: {
+      vs_high_major: {
         type: "boolean",
         script: {
           source: `if (0 != doc['common_lookup'].size()) emit((doc['common_lookup'].value & 1) > 0)`
         }
       },
-      is_same_conf: {
+      in_conf: {
         type: "boolean",
         script: {
           source: `if (0 != doc['common_lookup'].size()) emit((doc['common_lookup'].value & 2) > 0)`
         }
       },
-      rank: {
+      vs_rank: {
         type: "long",
         script: {
           source: `if (0 != doc['common_lookup'].size()) emit((doc['common_lookup'].value >> 2) & 511)`
         }
       },
-      _3p: {
+      vs_3p: {
         type: "double",
         script: { //(don't have 3P% for women so add an extra guard here)
           source: `if (0 != doc['common_lookup'].size()) {
@@ -38,13 +38,13 @@ export const commonRuntimeMappings = function(
           }`
         }
       },
-      off_adj: {
+      vs_adj_off: {
         type: "double",
         script: {
           source: `if (0 != doc['common_lookup'].size()) emit(0.1*((doc['common_lookup'].value >> 21) & 2047))`
         }
       },
-      def_adj: {
+      vs_adj_def: {
         type: "double",
         script: {
           source: `if (0 != doc['common_lookup'].size()) emit(0.1*((doc['common_lookup'].value >> 32) & 2047))`
@@ -63,26 +63,26 @@ export const commonRuntimeMappings = function(
               }
               def oppo = params.kp_info[kp_name];
               if (oppo != null) {
-                def is_high_major = oppo["is_high_major"] ?: 1;
+                def vs_high_major = oppo["is_high_major"] ?: 1;
                 def oppo_conf = oppo["conf"];
-                def is_same_conf = params.conf.equals(oppo_conf);
+                def in_conf = params.conf.equals(oppo_conf);
                 def margin_rank = oppo["stats.adj_margin.rank"] ?: 0;
 
                 def _3p = oppo["stats.off._3p_pct.value"] ?: 0.0;
                 _3p = (_3p * 10).longValue() & 1023;
 
-                def off_adj = oppo["stats.adj_off.value"] ?: 0;
-                off_adj = (off_adj * 10).longValue() & 2047;
+                def adj_off = oppo["stats.adj_off.value"] ?: 0;
+                adj_off = (adj_off * 10).longValue() & 2047;
 
-                def def_adj = oppo["stats.adj_def.value"] ?: 0;
-                def_adj = (def_adj * 10).longValue() & 2047;
+                def adj_def = oppo["stats.adj_def.value"] ?: 0;
+                adj_def = (adj_def * 10).longValue() & 2047;
 
-                long returnVal = 0L | (is_high_major << 0)
-                  | ((is_same_conf ? 1 : 0) << 1)
+                long returnVal = 0L | (vs_high_major << 0)
+                  | ((in_conf ? 1 : 0) << 1)
                   | ((margin_rank & 511) << 2)
                   | (_3p.longValue() << 11)
-                  | (off_adj.longValue() << 21)
-                  | (def_adj.longValue() << 32)
+                  | (adj_off.longValue() << 21)
+                  | (adj_def.longValue() << 32)
                   ;
                 emit(returnVal);
               }

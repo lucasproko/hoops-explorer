@@ -42,7 +42,7 @@ describe("commonTeamQuery", () => {
     expect(test1.bool.must.length).toEqual(5);
     expect(test1.bool?.must?.[2]).toEqual({
       "query_string": {
-         "query": `is_same_conf:true`
+         "query": `in_conf:true`
        }
     });
     expect(test1.bool?.must?.[3]).toEqual({
@@ -89,7 +89,7 @@ describe("commonTeamQuery", () => {
     expect(test3.bool.must.length).toEqual(4);
     expect(test1.bool?.must?.[2]).toEqual({
       "query_string": {
-         "query": `is_same_conf:true`
+         "query": `in_conf:true`
        }
     });
     expect(test3.bool?.must?.[3]).toEqual({

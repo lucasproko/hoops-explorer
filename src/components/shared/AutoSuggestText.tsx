@@ -62,9 +62,9 @@ const AutoSuggestText: React.FunctionComponent<Props> = (
     "date:",
     "players_in.id:",  "players_out.id:",
     "score_info.start_diff:", "score_info.end_diff:",
-    "is_same_conf:true", "is_same_conf:false",
-    "is_high_major:true", "is_high_major:false",
-    "rank:", "off_adj:", "def_adj:" 
+    "in_conf:true", "in_conf:false",
+    "vs_high_major:true", "vs_high_major:false",
+    "vs_rank:", "vs_adj_off:", "vs_adj_def:", "vs_3p:"
   ]);
 
   const textRef = createRef();
