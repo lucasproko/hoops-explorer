@@ -558,7 +558,7 @@ const CommonFilter: CommonFilterI = ({
       case "Nov-Dec":
         return <Tooltip id={`qf${t}`}>Nov/Dec games only. Use eg <b>date:[* TO {_.take(year, 4)}-12-31]</b> directly in query fields(s).</Tooltip>
       case "Jan-Apr":
-        return <Tooltip id={`qf${t}`}>Jan-Apr games only. Use eg <b>date:({_.take(year, 4)}-12-31 TO *]</b> directly in query fields(s).</Tooltip>
+        return <Tooltip id={`qf${t}`}>Jan-Apr games only. Use eg <b>date:{`{`}{_.take(year, 4)}-12-31 TO *]</b> directly in query fields(s).</Tooltip>
       case "Last-30d":
         return <Tooltip id={`qf${t}`}>Games in the last 30 days (from now/end-of-season). Use <b>date:[yyyy-mm-dd TO yyyy-mm-dd]</b> directly in query fields(s) for different date queries.</Tooltip>
       default:
