@@ -56,12 +56,15 @@ const AutoSuggestText: React.FunctionComponent<Props> = (
   ];
   const advancedFields = basicOperators.concat([
     "players.id:", "opponent.team:",
-    "opponent.Home:", "opponent.Away:", "opponent.Neutral:", 
+    "opponent.Home:", "opponent.Away:", "opponent.Neutral:",
     "start_min:", "end_min:",
     "location_type:", "location_type:Home", "location_type:Away", "location_type:Neutral",
     "date:",
     "players_in.id:",  "players_out.id:",
-    "score_info.start_diff:", "score_info.end_diff:"
+    "score_info.start_diff:", "score_info.end_diff:",
+    "is_same_conf:true", "is_same_conf:false",
+    "is_high_major:true", "is_high_major:false",
+    "rank:", "off_adj:", "def_adj:" 
   ]);
 
   const textRef = createRef();
