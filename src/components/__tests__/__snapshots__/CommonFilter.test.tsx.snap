@@ -1832,15 +1832,6 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
           </Dropdown>
         </InputGroup>
       </Col>
-      <FormLabel
-        className="ml-0 pl-0"
-        column={true}
-        srOnly={false}
-      >
-        <span
-          className="text-muted small"
-        />
-      </FormLabel>
     </FormGroup>
     <FormGroup
       as={
@@ -2891,15 +2882,6 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
           </Dropdown>
         </InputGroup>
       </Col>
-      <FormLabel
-        className="ml-0 pl-0"
-        column={true}
-        srOnly={false}
-      >
-        <span
-          className="text-muted small"
-        />
-      </FormLabel>
     </FormGroup>
     <FormGroup
       as={

@@ -545,6 +545,30 @@ const CommonFilter: CommonFilterI = ({
     />;
   };
 
+  const showQueryFilter = (t: String) => {
+    const toolTip = () => { switch(t) {
+      case "Conf":
+        return <Tooltip id={`qf${t}`}>Conference games only. Use <b>in_conf:true</b> directly in query fields(s).</Tooltip>
+      case "Home":
+        return <Tooltip id={`qf${t}`}>Home games only. Use <b>location_type:Home</b> or <b>opponent.Home:*</b> directly in query fields(s).</Tooltip>
+      case "Away":
+        return <Tooltip id={`qf${t}`}>Away games only. Use <b>location_type:Away</b> or <b>opponent.Away:*</b> directly in query fields(s).</Tooltip>
+      case "Not-Home":
+        return <Tooltip id={`qf${t}`}>Away/Neutral games only. Use <b>location_type:(Away Neutral)</b> or <b>(opponent.Away:* opponent.Neutral:*)</b> directly in query fields(s).</Tooltip>
+      case "Nov-Dec":
+        return <Tooltip id={`qf${t}`}>Nov/Dec games only. Use eg <b>date:[* TO {_.take(year, 4)}-12-31]</b> directly in query fields(s).</Tooltip>
+      case "Jan-Apr":
+        return <Tooltip id={`qf${t}`}>Jan-Apr games only. Use eg <b>date:({_.take(year, 4)}-12-31 TO *]</b> directly in query fields(s).</Tooltip>
+      case "Last-30d":
+        return <Tooltip id={`qf${t}`}>Games in the last 30 days (from now/end-of-season). Use <b>date:[yyyy-mm-dd TO yyyy-mm-dd]</b> directly in query fields(s) for different date queries.</Tooltip>
+      default:
+        return <Tooltip id={`qf${t}`}>(unknown)</Tooltip>
+    }}
+    return <OverlayTrigger placement="auto" overlay={toolTip()}>
+      <span className="badge badge-pill badge-secondary">{t}</span>
+    </OverlayTrigger>;
+  };
+
   return <LoadingOverlay
     active={queryIsLoading}
     spinner
@@ -665,7 +689,12 @@ const CommonFilter: CommonFilterI = ({
           </Dropdown>
         </InputGroup>
       </Col>
-      <Form.Label column className="ml-0 pl-0"><span className="text-muted small">{_.join(queryFilters, "; ")}</span></Form.Label>
+      { queryFilters.length > 0
+        ? <Form.Label column sm="2">{queryFilters.map(
+            (p, i) => <span key={`conf${i}`}>{showQueryFilter(p)}&nbsp;</span>)
+          }</Form.Label>
+        : null
+      }
     </Form.Group>
     <Form.Group as={Row} controlId="oppositionFilter">
       <Form.Label column sm="2">Opponent Strength</Form.Label>
