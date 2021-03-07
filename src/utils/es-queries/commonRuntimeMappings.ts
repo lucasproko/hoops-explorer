@@ -64,6 +64,9 @@ export const commonRuntimeMappings = function(
               def oppo = params.kp_info[kp_name];
               if (oppo != null) {
                 def vs_high_major = oppo["is_high_major"] ?: 1;
+                if (vs_high_major instanceof String) {
+                  vs_high_major = 0;
+                }
                 def oppo_conf = oppo["conf"];
                 def in_conf = params.conf.equals(oppo_conf);
                 def margin_rank = oppo["stats.adj_margin.rank"] ?: 0;
