@@ -10,12 +10,16 @@ now secrets add men-curr-update $NEW_DATE
 echo "y" | now secrets rm women-curr-update
 now secrets add women-curr-update $NEW_DATE
 # Redeploy app (so that server side cache gets the new data)
-#echo "Always deploy to dev:"
-#now
-if git status | grep -q "nothing to commit, working tree clean"  && \
-    git status | grep -q "Your branch is up to date with 'origin/master'."; then
-  echo "Deploy to prod:"
-  now --prod
+if [ ! -z "$REDEPLOY_HOOK_ID" ]; then
+  echo "Always deploy, using hook:"
+  curl https://api.vercel.com/v1/integrations/deploy/$REDEPLOY_HOOK_ID
 else
-  echo "Unclean working directory, you will have to hand deploy to prod: 'now --prod'"
+  # Before I new about hooks, I was redeploying from source:
+  if git status | grep -q "nothing to commit, working tree clean"  && \
+      git status | grep -q "Your branch is up to date with 'origin/master'."; then
+    echo "Deploy to prod:"
+    now --prod
+  else
+    echo "Unclean working directory, you will have to hand deploy to prod: 'now --prod'"
+  fi  
 fi
