@@ -72,7 +72,7 @@ export const commonTeamQuery = function(
               "team.team.keyword": `${params.team}`
             }
           }],
-          [{
+          _.isEmpty(publicEfficiency) ? [] : [{
             "query_string": {
                "query": `vs_rank:[${Number(params.minRank)} TO ${Number(params.maxRank)}]`
              }

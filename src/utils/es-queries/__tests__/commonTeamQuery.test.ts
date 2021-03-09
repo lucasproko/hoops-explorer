@@ -31,6 +31,11 @@ describe("commonTeamQuery", () => {
       "Not-Home", "Last-30d", "Conf"
     ], true), 333, efficiencyInfo, lookup);
 
+    const test4 = commonTeamQuery(queryWithFilters([
+      "Not-Home", "Last-30d", "Conf"
+    ], true), 333, {}, {}); //(ensure ignores the vs_rank clause)
+
+
     // For testing:
     //console.log(JSON.stringify(test2, null, 3));
 
@@ -100,5 +105,9 @@ describe("commonTeamQuery", () => {
       }
     });
 
+    // Like test3 but no efficiency
+    expect(test4.bool.should.length).toEqual(3);
+    expect(test4.bool.minimum_should_match).toEqual(1);
+    expect(test4.bool.must.length).toEqual(3); //(vs_rank disappeared)
   });
 });
