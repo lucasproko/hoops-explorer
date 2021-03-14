@@ -10,7 +10,9 @@ now secrets add men-curr-update $NEW_DATE
 echo "y" | now secrets rm women-curr-update
 now secrets add women-curr-update $NEW_DATE
 # Redeploy app (so that server side cache gets the new data)
-if [ ! -z "$REDEPLOY_HOOK_ID" ]; then
+if [ "$REDEPLOY_HOOK_ID" == "--skip" ]; then
+  echo "Skip redeploy"
+elif [ ! -z "$REDEPLOY_HOOK_ID" ]; then
   echo "Always deploy, using hook:"
   curl https://api.vercel.com/v1/integrations/deploy/$REDEPLOY_HOOK_ID
 else
