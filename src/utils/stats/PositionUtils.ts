@@ -7,7 +7,7 @@ import { absolutePositionFixes, relativePositionFixes, RelativePositionFixRule }
 /** (just to make copy/pasting between colab and this code easier)*/
 const array = (v: number[]) => { return v; }
 
-type PositionInfo = { player: Record<String, any>, num_poss: number };
+type PositionInfo = { key: string, numPoss: number };
 
 /** Positional analysis module */
 export class PositionUtils {
@@ -347,23 +347,6 @@ export class PositionUtils {
     }
   }
 
-  /** Builds the list of where players play based on their lineup */
-  static getPositionalInfo(
-    lineups: Record<string, any>[],
-    playersById: Record<string, any>,
-    teamSeason: string
-  ): PositionInfo[][] {
-    return _.transform(lineups, (lineup, acc) => {
-
-    }, [
-        [] as PositionInfo[],
-        [] as PositionInfo[],
-        [] as PositionInfo[],
-        [] as PositionInfo[],
-        [] as PositionInfo[],
-      ]);
-  }
-
   /** Takes lineup in form X1_X2_X3_X4_X5 and returns an array of Xi ordered by position and some info for tooltips */
   static orderLineup(
     playerCodesAndIds: { code: string, id: string }[],
@@ -377,8 +360,8 @@ export class PositionUtils {
 
     const playerIds = _.keys(playerIdToPlayerCode);
     const init = -100000;
-    const scores = [ init, init, init, init, init ]; //TODO use fill heree, make this small number
-    const bestFits = [ -1, -1, -1, -1, -1 ]; //(indices of "winning" player)
+    const mutableScores = [ init, init, init, init, init ]; //TODO use fill heree, make this small number
+    const mutableBestFits = [ -1, -1, -1, -1, -1 ]; //(indices of "winning" player)
     const playerInfos = playerIds.map((pid: string) => playersById[pid]);
 
     /** Fit a player to their best position, refitting recursively any player dislodged */
@@ -402,13 +385,13 @@ export class PositionUtils {
       ] as [ number, number ][];
 
       _.takeWhile(plScores, ([score, scorePos]: [number, number]) => {
-        if (score > scores[scorePos]) {
-          const prevBestFit = bestFits[scorePos];
+        if (score > mutableScores[scorePos]) {
+          const prevBestFit = mutableBestFits[scorePos];
           if (prevBestFit >= 0) { //refit the player being replaced
             fitPlayer(playerIds[prevBestFit], prevBestFit);
           }
-          bestFits[scorePos] = plIndex;
-          scores[scorePos] = score;
+          mutableBestFits[scorePos] = plIndex;
+          mutableScores[scorePos] = score;
           return false;
         } else {
           return true; //(keep going)
@@ -419,7 +402,7 @@ export class PositionUtils {
       fitPlayer(pid, plIndex);
     });
     return PositionUtils.applyRelativePositionalOverrides(
-      bestFits.map((index: number) => {
+      mutableBestFits.map((index: number) => {
         const playerId = playerIds[index];
         return { code: playerIdToPlayerCode[playerId], id: playerId };
       }), teamSeason

@@ -214,4 +214,29 @@ export class LineupTableUtils {
 
     return totalLineup.concat(enrichedLineups);
   }
+
+  /** Builds the list of where players play based on their lineup */
+  static getPositionalInfo(
+    lineups: Record<string, any>[],
+    positionFromPlayerId: Record<string, any>,
+    teamSeasonLookup: string
+  ): PositionInfo[][] {
+    return _.chain(lineups).transform((mutableAcc, lineup) => {
+      const codesAndIds = LineupTableUtils.buildCodesAndIds(lineup);
+      const sortedCodesAndIds = PositionUtils.orderLineup(codesAndIds, positionFromPlayerId, teamSeasonLookup);
+      sortedCodesAndIds.forEach((codeId, i) => {
+        mutableAcc[i]!.push({ key: codeId.id, numPoss: lineup?.off_poss?.value || 0 })
+      });
+    }, [
+      [] as PositionInfo[], [] as PositionInfo[], [] as PositionInfo[], [] as PositionInfo[], [] as PositionInfo[],
+    ]).map(keyPosses => {
+      return _.chain(keyPosses).groupBy(keyPoss => keyPoss.key).mapValues((keyPosses, key) => {
+        return {
+          key: key,
+          numPoss: _.reduce(keyPosses, (acc, keyPoss) => acc + keyPoss.numPoss, 0)
+        };
+      }).values().orderBy([ "numPoss" ], [ "desc" ]).value();
+    }).value();
+  }
+
 }

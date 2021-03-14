@@ -39,6 +39,7 @@ import { LuckUtils, OffLuckAdjustmentDiags, DefLuckAdjustmentDiags, LuckAdjustme
 import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
 import { TableDisplayUtils } from "../utils/tables/TableDisplayUtils";
 import { RosterTableUtils } from "../utils/tables/RosterTableUtils";
+import { LineupTableUtils } from "../utils/tables/LineupTableUtils";
 
 export type TeamStatsModel = {
   on: any,
@@ -60,8 +61,7 @@ type Props = {
 }
 
 const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataEvent, onChangeState}) => {
-  const { teamStats, rosterStats } = dataEvent;
-
+  const { teamStats, rosterStats, lineupStats } = dataEvent;
   const server = (typeof window === `undefined`) ? //(ensures SSR code still compiles)
     "server" : window.location.hostname
 
@@ -176,6 +176,10 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
     rosterStats.global || [], showPlayTypes, teamSeasonLookup
   ); //TODO: which set do I actually want to use for positional calcs here?
 
+  const positionFromPlayerKey =
+    showLineups ? LineupTableUtils.buildPositionPlayerMap(rosterStats.global, teamSeasonLookup) : {};
+     //TODO: which set do I actually want to use for positional calcs here?
+
   // Calc diffs if required ... needs to be before injectPlayTypeInfo but after luck injection!
   const [ aMinusB, aMinusBase, bMinusBase ] = showDiffs ? (() => {
     const aMinusB = (teamStats.on?.doc_count && teamStats.off?.doc_count) ? LineupUtils.getStatsDiff(
@@ -263,6 +267,13 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
     _.flatten([
       [ GenericTableOps.buildDataRow(teamStatsBaseline, offPrefixFn, offCellMetaFn) ],
       [ GenericTableOps.buildDataRow(teamStatsBaseline, defPrefixFn, defCellMetaFn) ],
+      showLineups ? [ GenericTableOps.buildTextRow(<span>
+        {JSON.stringify(LineupTableUtils.getPositionalInfo(
+/**/
+          lineupStats[0]?.lineups || [], positionFromPlayerKey, teamSeasonLookup
+        ), null, 3)}
+        </span>, "small pt-2"
+      )] : [],
       showLuckAdjDiags && luckAdjustment.baseline ? [ GenericTableOps.buildTextRow(
         <LuckAdjDiagView
           name="Baseline"
