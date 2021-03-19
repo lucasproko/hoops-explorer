@@ -7,7 +7,7 @@ import { PositionUtils } from "../stats/PositionUtils";
 import { LineupUtils } from "../stats/LineupUtils";
 import { LuckUtils, OffLuckAdjustmentDiags, DefLuckAdjustmentDiags, LuckAdjustmentBaseline } from "../stats/LuckUtils";
 
-type PositionInfo = { key: string, numPoss: number };
+export type PositionInfo = { id: string, code: string, numPoss: number };
 
 /** Object marshalling logic for lineup tables */
 export class LineupTableUtils {
@@ -227,14 +227,16 @@ export class LineupTableUtils {
       const codesAndIds = LineupTableUtils.buildCodesAndIds(lineup);
       const sortedCodesAndIds = PositionUtils.orderLineup(codesAndIds, positionFromPlayerId, teamSeasonLookup);
       sortedCodesAndIds.forEach((codeId, i) => {
-        mutableAcc[i]!.push({ key: codeId.id, numPoss: lineup?.off_poss?.value || 0 })
+        mutableAcc[i]!.push({ id: codeId.id, code: codeId.code, numPoss: lineup?.off_poss?.value || 0 })
       });
     }, [
       [] as PositionInfo[], [] as PositionInfo[], [] as PositionInfo[], [] as PositionInfo[], [] as PositionInfo[],
     ]).map(keyPosses => {
-      return _.chain(keyPosses).groupBy(keyPoss => keyPoss.key).mapValues((keyPosses, key) => {
+      return _.chain(keyPosses).groupBy(keyPoss => keyPoss.id).mapValues((keyPosses, id) => {
+        const code = keyPosses?.[0].code;
         return {
-          key: key,
+          id: id,
+          code: code,
           numPoss: _.reduce(keyPosses, (acc, keyPoss) => acc + keyPoss.numPoss, 0)
         };
       }).values().orderBy([ "numPoss" ], [ "desc" ]).value();

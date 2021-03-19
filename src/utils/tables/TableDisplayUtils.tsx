@@ -42,9 +42,10 @@ export class TableDisplayUtils {
       key + pid, sortedLineup, perLineupPlayerMap, positionFromPlayerKey
     );
     if (decorateLineup) {
+      const max = (sortedLineup?.length || 0) - 1;
       return <OverlayTrigger placement="auto" overlay={tooltipBuilder(0)}>
         <div>{sortedLineup.map((cid: { code: string, id: string }, pid: number) => {
-          return TableDisplayUtils.buildDecoratedPlayer(cid, perLineupPlayerMap, colorField, pid == 4)
+          return TableDisplayUtils.buildDecoratedPlayer(cid, perLineupPlayerMap, colorField, pid == max)
         })}</div>
       </OverlayTrigger>;
     } else {
