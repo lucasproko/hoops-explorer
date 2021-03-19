@@ -7,6 +7,8 @@ import { PositionUtils } from "../stats/PositionUtils";
 import { LineupUtils } from "../stats/LineupUtils";
 import { LuckUtils, OffLuckAdjustmentDiags, DefLuckAdjustmentDiags, LuckAdjustmentBaseline } from "../stats/LuckUtils";
 
+type PositionInfo = { key: string, numPoss: number };
+
 /** Object marshalling logic for lineup tables */
 export class LineupTableUtils {
 

@@ -7,8 +7,6 @@ import { absolutePositionFixes, relativePositionFixes, RelativePositionFixRule }
 /** (just to make copy/pasting between colab and this code easier)*/
 const array = (v: number[]) => { return v; }
 
-type PositionInfo = { key: string, numPoss: number };
-
 /** Positional analysis module */
 export class PositionUtils {
 
