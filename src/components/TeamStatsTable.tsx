@@ -80,8 +80,8 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
     ParamDefaults.defaultLuckConfig : gameFilterParams.luck
   );
 
-  const [ showLineups, setShowLineups ] = useState(_.isNil(gameFilterParams.showLineups) ?
-    ParamDefaults.defaultTeamShowLineups : gameFilterParams.showLineups
+  const [ showRoster, setShowRoster ] = useState(_.isNil(gameFilterParams.showRoster) ?
+    ParamDefaults.defaultTeamShowRoster : gameFilterParams.showRoster
   );
 
   const [ showDiffs, setShowDiffs ] = useState(_.isNil(gameFilterParams.teamDiffs) ?
@@ -113,10 +113,10 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
       luck: luckConfig,
       onOffLuck: adjustForLuck,
       showOnOffLuckDiags: showLuckAdjDiags,
-      showLineups: showLineups
+      showRoster: showRoster
     };
     onChangeState(newState);
-  }, [ luckConfig, adjustForLuck, showLuckAdjDiags, showDiffs, showPlayTypes, showLineups ]);
+  }, [ luckConfig, adjustForLuck, showLuckAdjDiags, showDiffs, showPlayTypes, showRoster ]);
 
   // 2] Data View
 
@@ -177,7 +177,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
   ); //TODO: which set do I actually want to use for positional calcs here?
 
   const positionFromPlayerKey =
-    showLineups ? LineupTableUtils.buildPositionPlayerMap(rosterStats.global, teamSeasonLookup) : {};
+    showRoster ? LineupTableUtils.buildPositionPlayerMap(rosterStats.global, teamSeasonLookup) : {};
      //TODO: which set do I actually want to use for positional calcs here?
 
   // Calc diffs if required ... needs to be before injectPlayTypeInfo but after luck injection!
@@ -267,7 +267,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
     _.flatten([
       [ GenericTableOps.buildDataRow(teamStatsBaseline, offPrefixFn, offCellMetaFn) ],
       [ GenericTableOps.buildDataRow(teamStatsBaseline, defPrefixFn, defCellMetaFn) ],
-      showLineups ? [ GenericTableOps.buildTextRow(<span>
+      showRoster ? [ GenericTableOps.buildTextRow(<span>
         {JSON.stringify(LineupTableUtils.getPositionalInfo(
 /**/
           lineupStats[0]?.lineups || [], positionFromPlayerKey, teamSeasonLookup
@@ -362,10 +362,10 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
                   onClick: () => setShowPlayTypes(!showPlayTypes)
                 },
                 {
-                  label: "Lineups",
-                  tooltip: showLineups ? "Hide lineup information" : "Show lineup information",
-                  toggled: showLineups,
-                  onClick: () => setShowLineups(!showLineups)
+                  label: "Roster",
+                  tooltip: showRoster ? "Hide roster/positional information" : "Show roster/positional information",
+                  toggled: showRoster,
+                  onClick: () => setShowRoster(!showRoster)
                 },
               ]}/>
             </Col>
@@ -390,9 +390,9 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
               onSelect={() => setShowPlayTypes(!showPlayTypes)}
             />
             <GenericTogglingMenuItem
-              text="Show Lineup Information"
-              truthVal={showLineups}
-              onSelect={() => setShowLineups(!showLineups)}
+              text="Show Roster Information"
+              truthVal={showRoster}
+              onSelect={() => setShowRoster(!showRoster)}
             />
             <Dropdown.Divider />
             <GenericTogglingMenuItem
