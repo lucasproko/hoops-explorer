@@ -72,7 +72,7 @@ const TeamRosterDiagView: React.FunctionComponent<Props> = ({positionInfo, roste
       if (playerCodeId) {
         const pct = (playerCodeId.numPoss || 0)*(possByPosPctInv[colIndex] || 0);
         const decoratedPlayerInfo = TableDisplayUtils.buildDecoratedLineup(
-          playerCodeId.code + col, [ playerCodeId ], rosterStatsByKey, positionFromPlayerKey, "off_adj_rtg", true
+          playerCodeId.code + col, [ playerCodeId ], rosterStatsByKey, positionFromPlayerKey, "off_adj_rtg", true, true
         );
         return [ col, <Row>
             <Col xs="1"/>

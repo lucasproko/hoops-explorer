@@ -36,10 +36,11 @@ export class TableDisplayUtils {
     perLineupPlayerMap: Record<string, Record<string, any>>,
     positionFromPlayerKey: Record<string, {posClass: string}>,
     colorField: string,
-    decorateLineup: boolean
+    decorateLineup: boolean,
+    extendedTooltipView: boolean = false
   ) {
     const tooltipBuilder = (pid: number) => TableDisplayUtils.buildTooltipTexts(
-      key + pid, sortedLineup, perLineupPlayerMap, positionFromPlayerKey
+      key + pid, sortedLineup, perLineupPlayerMap, positionFromPlayerKey, extendedTooltipView
     );
     if (decorateLineup) {
       const max = (sortedLineup?.length || 0) - 1;
@@ -60,10 +61,11 @@ export class TableDisplayUtils {
     key: string,
     sortedLineup: { code: string, id: string }[],
     perLineupPlayerMap: Record<string, Record<string, any>>,
-    positionFromPlayerKey: Record<string, {posClass: string}>
+    positionFromPlayerKey: Record<string, {posClass: string}>,
+    extendedView: boolean = false
   ) {
     const tooltipTexts = _.flatMap(sortedLineup, (cid: {id: string, code: string}) => {
-      return TableDisplayUtils.buildTooltipText(cid, perLineupPlayerMap, positionFromPlayerKey);
+      return TableDisplayUtils.buildTooltipText(cid, perLineupPlayerMap, positionFromPlayerKey, extendedView);
     });
     const tooltip = <Tooltip id={`${key}_info`}>{_.map(tooltipTexts,
       (t: string, i: number) => <span key={"" + i}>{t}<br/></span>
@@ -75,14 +77,33 @@ export class TableDisplayUtils {
   private static buildTooltipText(
     cid: { code: string, id: string },
     perLineupPlayerMap: Record<string, Record<string, any>>,
-    positionFromPlayerKey: Record<string, {posClass: string}>
+    positionFromPlayerKey: Record<string, {posClass: string}>,
+    extendedView: boolean = false
   ) {
     // Some minimal info:
     const playerInfo = perLineupPlayerMap[cid.id] || {};
     const oRtgStr = (playerInfo.off_rtg?.value || 0).toFixed(0);
     const usageStr = (100*(playerInfo.off_usage?.value || 0)).toFixed(0) + "%";
     const defRbStr = (100*(playerInfo.def_orb?.value || 0)).toFixed(0) + "%";
-    return [
+
+    // Extended view:
+    const assistRateStr = extendedView ? ((100*(playerInfo.off_assist?.value || 0)).toFixed(0) + "%") : "";
+    const toRateStr = extendedView ? ((100*(playerInfo.off_to?.value || 0)).toFixed(0) + "%") : "";
+    const offRbStr = extendedView ? ((100*(playerInfo.off_orb?.value || 0)).toFixed(0) + "%") : "";
+    const freethrowRateStr = extendedView ? ((100*(playerInfo.off_ftr?.value || 0)).toFixed(0) + "%") : "";
+    const efgStr = extendedView ? ((100*(playerInfo.off_efg?.value || 0)).toFixed(0) + "%") : "";
+    const threePointRateStr = extendedView ? ((100*(playerInfo.off_3pr?.value || 0)).toFixed(0) + "%") : "";
+    const threePointPctStr = extendedView ? ((100*(playerInfo.off_3p?.value || 0)).toFixed(0) + "%") : "";
+
+    return extendedView ?
+    [
+      `${cid.id}: ${positionFromPlayerKey[cid.id]?.posClass || "??"}`,
+      `ORtg ${oRtgStr} on ${usageStr}, FTR ${freethrowRateStr}`,
+      `3P ${threePointPctStr} on ${threePointRateStr}, eFG ${efgStr}`,
+      `AST ${assistRateStr} : TO ${toRateStr}`,
+      `ORB ${offRbStr}, DRB ${defRbStr}`,
+    ] :
+    [
       `${cid.id}: ${positionFromPlayerKey[cid.id]?.posClass || "??"}`,
       `ORtg ${oRtgStr} on ${usageStr}, DRB ${defRbStr}`,
       ""
