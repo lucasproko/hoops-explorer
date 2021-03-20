@@ -87,19 +87,26 @@ export class TableDisplayUtils {
     const defRbStr = (100*(playerInfo.def_orb?.value || 0)).toFixed(0) + "%";
 
     // Extended view:
+    const adjOffRtg = playerInfo.off_adj_rtg?.value || 0;
+    const adjOffRtgSgn = adjOffRtg >= 0 ? '+' : "";
+    const adjOffRtgStr = extendedView ? (adjOffRtgSgn + adjOffRtg.toFixed(1)) : "";
     const assistRateStr = extendedView ? ((100*(playerInfo.off_assist?.value || 0)).toFixed(0) + "%") : "";
     const toRateStr = extendedView ? ((100*(playerInfo.off_to?.value || 0)).toFixed(0) + "%") : "";
     const offRbStr = extendedView ? ((100*(playerInfo.off_orb?.value || 0)).toFixed(0) + "%") : "";
     const freethrowRateStr = extendedView ? ((100*(playerInfo.off_ftr?.value || 0)).toFixed(0) + "%") : "";
     const efgStr = extendedView ? ((100*(playerInfo.off_efg?.value || 0)).toFixed(0) + "%") : "";
-    const threePointRateStr = extendedView ? ((100*(playerInfo.off_3pr?.value || 0)).toFixed(0) + "%") : "";
+    const threePointRate = 100*(playerInfo.off_3pr?.value || 0);
+    const threePointRateStr = extendedView ? (threePointRate.toFixed(0) + "%") : "";
     const threePointPctStr = extendedView ? ((100*(playerInfo.off_3p?.value || 0)).toFixed(0) + "%") : "";
+    const rimRateStr = extendedView ? ((100*(playerInfo.off_2primr?.value || 0)).toFixed(0) + "%") : "";
+    const rimPointPctStr = extendedView ? ((100*(playerInfo.off_2prim?.value || 0)).toFixed(0) + "%") : "";
 
     return extendedView ?
     [
       `${cid.id}: ${positionFromPlayerKey[cid.id]?.posClass || "??"}`,
-      `ORtg ${oRtgStr} on ${usageStr}, FTR ${freethrowRateStr}`,
+      `ORtg ${oRtgStr} on ${usageStr} (${adjOffRtgStr})`,//, FTR ${freethrowRateStr}`,
       `3P ${threePointPctStr} on ${threePointRateStr}, eFG ${efgStr}`,
+      `Rim ${rimPointPctStr} on ${rimRateStr}, FTR ${freethrowRateStr}`,
       `AST ${assistRateStr} : TO ${toRateStr}`,
       `ORB ${offRbStr}, DRB ${defRbStr}`,
     ] :
