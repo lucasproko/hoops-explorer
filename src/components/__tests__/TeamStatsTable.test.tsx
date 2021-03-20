@@ -3,7 +3,9 @@ import React from 'react';
 import _ from 'lodash';
 import TeamStatsTable from '../TeamStatsTable';
 import { SampleDataUtils } from "../../sample-data/SampleDataUtils";
-import { sampleTeamStatsResponse } from "../../sample-data/sampleTeamStatsResponse"
+import { sampleLineupStatsResponse } from "../../sample-data/sampleLineupStatsResponse";
+import { sampleTeamStatsResponse } from "../../sample-data/sampleTeamStatsResponse";
+import { samplePlayerStatsResponse } from "../../sample-data/samplePlayerStatsResponse";
 import { GameFilterParams } from '../../utils/FilterModels';
 
 describe("TeamStatsTable", () => {
@@ -13,11 +15,24 @@ describe("TeamStatsTable", () => {
     sampleTeamStatsResponse.responses[0].aggregations.tri_filter.buckets.baseline
   ));
 
+  const testData = _.assign(
+    sampleTeamStatsResponse.responses[0].aggregations.tri_filter.buckets as { on: any, off: any, baseline: any },
+    { global: {}, onOffMode: true }
+  );
+  const players = samplePlayerStatsResponse.responses[0].aggregations?.tri_filter?.buckets?.baseline?.player?.buckets || [];
+  const testRosterData = {
+    on: _.cloneDeep(players),
+    off: _.cloneDeep(players),
+    baseline: samplePlayerStatsResponse.responses[0].aggregations?.tri_filter?.buckets?.baseline?.player?.buckets || [],
+    global: _.cloneDeep(players),
+    error_code: undefined
+  };
+  const testLineupData = {
+    lineups: sampleLineupStatsResponse.responses[0].aggregations.lineups.buckets
+  }
+
+
   test("TeamStatsTable - should create snapshot", () => {
-    const testData = _.assign(
-      sampleTeamStatsResponse.responses[0].aggregations.tri_filter.buckets as { on: any, off: any, baseline: any },
-      { global: {}, onOffMode: true }
-    );
     const component = renderer.create(<TeamStatsTable
       gameFilterParams={{}}
       dataEvent={{
@@ -31,16 +46,12 @@ describe("TeamStatsTable", () => {
     expect(tree).toMatchSnapshot();
   });
   test("TeamStatsTable - should create snapshot, luck enabled + diagnostics shown", () => {
-    const testData = _.assign(
-      sampleTeamStatsResponse.responses[0].aggregations.tri_filter.buckets as { on: any, off: any, baseline: any },
-      { global: {}, onOffMode: true }
-    );
     const component = renderer.create(<TeamStatsTable
-      gameFilterParams={{ onOffLuck: true, showOnOffLuckDiags: true, showTeamPlayTypes: true }}
+      gameFilterParams={{ onOffLuck: true, showOnOffLuckDiags: true, showRoster: true, showTeamPlayTypes: true }}
       dataEvent={{
         teamStats: testData,
-        rosterStats: {},
-        lineupStats: []
+        rosterStats: testRosterData,
+        lineupStats: [ ] //(can't find lineup that works with this, needs more investigation - in the meantime just show the empty table)
       }}
       onChangeState={(newParams: GameFilterParams) => {}}
       />);
