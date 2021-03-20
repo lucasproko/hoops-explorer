@@ -19,7 +19,7 @@ import { PositionUtils } from "../../utils/stats/PositionUtils";
 import { CommonTableDefs } from "../../utils/tables/CommonTableDefs";
 import { CbbColors } from "../../utils/CbbColors";
 import { LineupUtils } from "../../utils/stats/LineupUtils";
-import { LineupTableUtils, PositionInfo } from "../../utils/stats/LineupTableUtils";
+import { LineupTableUtils, PositionInfo } from "../../utils/tables/LineupTableUtils";
 import { TableDisplayUtils } from "../../utils/tables/TableDisplayUtils";
 
 // Component imports
