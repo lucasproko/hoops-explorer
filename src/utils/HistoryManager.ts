@@ -152,12 +152,15 @@ export class HistoryManager {
       _.isNil(p.showOnOffLuckDiags) ? ParamDefaults.defaultOnOffLuckDiagMode : p.showOnOffLuckDiags;
     const showDiffs =
       _.isNil(p.teamDiffs) ? false : p.teamDiffs;
+    const showRoster =
+      _.isNil(p.showRoster) ? ParamDefaults.defaultTeamShowRoster : p.showRoster;
     const showTeamPlayTypes =
       _.isNil(p.showTeamPlayTypes) ? ParamDefaults.defaultTeamShowPlayTypes : p.showTeamPlayTypes;
     const showTeamArray = _.flatMap([
       onOffLuck ? [ `on-off-luck`]: [],
       showOnOffLuckDiags ? [ `show-on-off-luck-diags` ] : [],
       showDiffs ? [ "show-diffs" ] : [],
+      showRoster ? [ "show-roster" ] : [],
       showTeamPlayTypes ? [ "show-play-types" ] : [],
     ]);
     const teamParams = (showTeamArray.length > 0) ?
