@@ -39,48 +39,52 @@ const TeamRosterDiagView: React.FunctionComponent<Props> = ({positionInfo, roste
     "title": GenericTableOps.addTitle(
       "", "", CommonTableDefs.singleLineRowSpanCalculator, "", GenericTableOps.htmlFormatter, 0
     ),
-    "pg": GenericTableOps.addDataCol(`PG`, "PG slot",
+    "pg": GenericTableOps.addDataCol(`PG`, "Roster distribution for PG slot",
       CbbColors.offOnlyPicker(CbbColors.alwaysWhite, CbbColors.alwaysWhite), GenericTableOps.percentOrHtmlFormatter
     ),
-    "sg": GenericTableOps.addDataCol(`SG`, "SG slot",
+    "sg": GenericTableOps.addDataCol(`SG`, "Roster distribution for SG slot",
       CbbColors.offOnlyPicker(CbbColors.alwaysWhite, CbbColors.alwaysWhite), GenericTableOps.percentOrHtmlFormatter
     ),
-    "sf": GenericTableOps.addDataCol(`SF`, "SF slot",
+    "sf": GenericTableOps.addDataCol(`SF`, "Roster distribution for SF slot",
       CbbColors.offOnlyPicker(CbbColors.alwaysWhite, CbbColors.alwaysWhite), GenericTableOps.percentOrHtmlFormatter
     ),
-    "pf": GenericTableOps.addDataCol(`PF`, "PF slot",
+    "pf": GenericTableOps.addDataCol(`PF`, "Roster distribution for PF slot",
       CbbColors.offOnlyPicker(CbbColors.alwaysWhite, CbbColors.alwaysWhite), GenericTableOps.percentOrHtmlFormatter
     ),
-    "c": GenericTableOps.addDataCol(`C`, "C slot",
+    "c": GenericTableOps.addDataCol(`C`, "Roster distribution for C slot",
       CbbColors.offOnlyPicker(CbbColors.alwaysWhite, CbbColors.alwaysWhite), GenericTableOps.percentOrHtmlFormatter
     ),
   };
 
-  const tableSize = _.max(positionInfo.map(players => players?.length || 0));
   const possByPosPctInv = positionInfo.map(players => _.sumBy(players, "numPoss")).map(num => 100.0/(num || 1));
+  const filteredPositionInfo = positionInfo.map((players, colIndex) => {
+    return (players || []).filter(playerCodeId => {
+      const pct = (playerCodeId.numPoss || 0)*(possByPosPctInv[colIndex] || 0);
+      return pct >= 5;
+    });
+  });
+  const tableSize = _.max(filteredPositionInfo.map(players => players.length)) || 0;
 
   const tableRawData = _.range(tableSize).map(index => {
     return _.chain(tableCols).map((col, colIndex) => {
-      const playerCodeId = positionInfo?.[colIndex]?.[index];
+      const playerCodeId = filteredPositionInfo?.[colIndex]?.[index];
 
       if (playerCodeId) {
         const pct = (playerCodeId.numPoss || 0)*(possByPosPctInv[colIndex] || 0);
-
-        if (pct >= 3) { //seems like a good threshold
-/**///TODO have option to show all, plus tidy up table
-          const decoratedPlayerInfo = TableDisplayUtils.buildDecoratedLineup(
-            playerCodeId.code + col, [ playerCodeId ], rosterStatsByKey, positionFromPlayerKey, "off_adj_rtg", true
-          );
-          return [ col, <Row>
-              <Col xs="1"/>
-              <Col xs="5">{decoratedPlayerInfo}</Col>
-              <Col xs="4">{pct.toFixed(1)}%</Col>
-              <Col xs="1"/>
-            </Row>
-          ];
-        } else {
-          return [ col, undefined ];
-        }
+        const decoratedPlayerInfo = TableDisplayUtils.buildDecoratedLineup(
+          playerCodeId.code + col, [ playerCodeId ], rosterStatsByKey, positionFromPlayerKey, "off_adj_rtg", true
+        );
+        return [ col, <Row>
+            <Col xs="1"/>
+            <Col xs="5">{decoratedPlayerInfo}</Col>
+            <Col xs="4"><div
+              style={CommonTableDefs.getTextShadow({ value: pct }, CbbColors.posFreq)}
+            >
+              {pct.toFixed(0)}%
+            </div></Col>
+            <Col xs="1"/>
+          </Row>
+        ];
       } else {
         return [ col, undefined ];
       }

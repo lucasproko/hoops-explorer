@@ -166,4 +166,7 @@ export class CbbColors {
   // Positional diags
   private static readonly posDomain = [ -0.50, 0.0, 0.50 ];
   public static readonly posColors = (val: number) => CbbColors.redToGreen.domain(CbbColors.posDomain)(val).toString();
+  // Frequency with which player is at given position
+  private static readonly posFreqDomain = [ 0, 50, 100 ];
+  public static readonly posFreq = (val: number) => CbbColors.whiteToOrange.domain(CbbColors.posFreqDomain)(val).toString();
 }

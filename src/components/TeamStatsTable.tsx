@@ -207,8 +207,8 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
 
   // If building roster info then enrich player stats:
   const playerInfoByKeyBy0AB = showRoster ? [ "baseline", "on", "off" ].map(queryKey => {
-    const playerStatsBy0AB = rosterStats?.[queryKey] || {};
-    const teamStatsBy0AB = teamStats?.[queryKey] || {};
+    const playerStatsBy0AB = (rosterStats as any)?.[queryKey] || {};
+    const teamStatsBy0AB = (teamStats as any)?.[queryKey] || {};
     if (teamStatsBy0AB?.doc_count) {
       /** Need player info for tooltip view/lineup decoration */
       const playerInfo = LineupTableUtils.buildBaselinePlayerInfo(
@@ -242,7 +242,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
             positionInfo={LineupTableUtils.getPositionalInfo(
               lineupStats[1]?.lineups || [], positionFromPlayerKey, teamSeasonLookup
             )}
-            rosterStatsByKey={playerInfoByKeyBy0AB[1]}
+            rosterStatsByKey={playerInfoByKeyBy0AB[1] || {}}
             positionFromPlayerKey={positionFromPlayerKey}
             teamSeasonLookup={teamSeasonLookup}
             showHelp={showHelp}
@@ -278,7 +278,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
             positionInfo={LineupTableUtils.getPositionalInfo(
               lineupStats[2]?.lineups || [], positionFromPlayerKey, teamSeasonLookup
             )}
-            rosterStatsByKey={playerInfoByKeyBy0AB[2]}
+            rosterStatsByKey={playerInfoByKeyBy0AB[2] || {}}
             positionFromPlayerKey={positionFromPlayerKey}
             teamSeasonLookup={teamSeasonLookup}
             showHelp={showHelp}
@@ -314,7 +314,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
             positionInfo={LineupTableUtils.getPositionalInfo(
               lineupStats[0]?.lineups || [], positionFromPlayerKey, teamSeasonLookup
             )}
-            rosterStatsByKey={playerInfoByKeyBy0AB[0]}
+            rosterStatsByKey={playerInfoByKeyBy0AB[0] || {}}
             positionFromPlayerKey={positionFromPlayerKey}
             teamSeasonLookup={teamSeasonLookup}
             showHelp={showHelp}
