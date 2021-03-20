@@ -4,39 +4,46 @@ exports[`LineupTableUtils getPositionalInfo 1`] = `
 Array [
   Array [
     Object {
-      "key": "Cowan, Anthony",
+      "code": "AnCowan",
+      "id": "Cowan, Anthony",
       "numPoss": 809,
     },
   ],
   Array [
     Object {
-      "key": "Wiggins, Aaron",
+      "code": "AaWiggins",
+      "id": "Wiggins, Aaron",
       "numPoss": 809,
     },
   ],
   Array [
     Object {
-      "key": "Smith, Jalen",
+      "code": "JaSmith",
+      "id": "Smith, Jalen",
       "numPoss": 809,
     },
   ],
   Array [
     Object {
-      "key": "Ayala, Eric",
+      "code": "ErAyala",
+      "id": "Ayala, Eric",
       "numPoss": 598,
     },
     Object {
-      "key": "Scott, Donta",
+      "code": "DoScott",
+      "id": "Scott, Donta",
       "numPoss": 211,
     },
   ],
   Array [
     Object {
-      "key": "Morsell, Darryl",
+      "code": "DaMorsell",
+      "id": "Morsell, Darryl",
       "numPoss": 612,
     },
     Object {
-      "key": "Scott, Donta",
+      "code": "DoScott",
+      "id": "Scott, Donta",
       "numPoss": 197,
     },
   ],
