@@ -75,14 +75,12 @@ const TeamRosterDiagView: React.FunctionComponent<Props> = ({positionInfo, roste
           playerCodeId.code + col, [ playerCodeId ], rosterStatsByKey, positionFromPlayerKey, "off_adj_rtg", true, true
         );
         return [ col, <Row>
-            <Col xs="1"/>
-            <Col xs="5">{decoratedPlayerInfo}</Col>
-            <Col xs="4"><div
+            <Col className="pr-0 pl-0" xs="3"><div className="float-right"
               style={CommonTableDefs.getTextShadow({ value: pct }, CbbColors.posFreq)}
             >
               {pct.toFixed(0)}%
             </div></Col>
-            <Col xs="1"/>
+            <Col xs="auto"><div className="float-left">{decoratedPlayerInfo}</div></Col>
           </Row>
         ];
       } else {
