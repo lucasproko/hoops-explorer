@@ -177,7 +177,7 @@ const TeamPlayTypeDiagView: React.FunctionComponent<Props> = ({players, rosterSt
           PlayTypeUtils.enrichUnassistedStats(otherInfo[0]!, ix)
         ),
         title: tooltipBuilder("unassisted", "Unassisted",
-          `All scoring plays where the ${posTitle} was unassisted (includes FTs which can never be assisted). Includes half court, scrambles, and transition)`
+          `All scoring plays where the ${posTitle} was unassisted (includes FTs which can never be assisted). Includes half court, scrambles, and transition.`
         )
       }, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta),
       GenericTableOps.buildDataRow({

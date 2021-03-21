@@ -179,7 +179,7 @@ export class TableDisplayUtils {
             fontWeight: playerInfo ? fontWeight(playerInfo) : undefined
           }}>{cid.code}</span>
       </Badge>
-      {playerInfo ? (playerInfo) : null}</span>
+      {playerInfo ? buildBadges(playerInfo) : null}</span>
       {finalPlayer ? null : <span style={{opacity: 0}}> ; </span> }
     </span>;
   }

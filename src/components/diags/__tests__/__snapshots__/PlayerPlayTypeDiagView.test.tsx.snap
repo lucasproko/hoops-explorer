@@ -121,7 +121,7 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
                       id="unassistTooltip"
                       placement="right"
                     >
-                      All scoring plays where the player was unassisted (includes FTs which can never be assisted). Includes half court, scrambles, and transition)
+                      All scoring plays where the player was unassisted (includes FTs which can never be assisted). Includes half court, scrambles, and transition.
                     </ForwardRef>
                   }
                   placement="auto"
@@ -846,7 +846,7 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
                       id="unassistTooltip"
                       placement="right"
                     >
-                      All scoring plays where the player was unassisted (includes FTs which can never be assisted). Includes half court, scrambles, and transition)
+                      All scoring plays where the player was unassisted (includes FTs which can never be assisted). Includes half court, scrambles, and transition.
                     </ForwardRef>
                   }
                   placement="auto"

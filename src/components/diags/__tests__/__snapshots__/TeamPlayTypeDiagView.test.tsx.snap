@@ -133,7 +133,7 @@ exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!de
                       id="unassistedTooltip"
                       placement="right"
                     >
-                      All scoring plays where the ballhandler was unassisted (includes FTs which can never be assisted). Includes half court, scrambles, and transition)
+                      All scoring plays where the ballhandler was unassisted (includes FTs which can never be assisted). Includes half court, scrambles, and transition.
                     </ForwardRef>
                   }
                   placement="auto"
@@ -641,7 +641,7 @@ exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!de
                       id="unassistedTooltip"
                       placement="right"
                     >
-                      All scoring plays where the wing was unassisted (includes FTs which can never be assisted). Includes half court, scrambles, and transition)
+                      All scoring plays where the wing was unassisted (includes FTs which can never be assisted). Includes half court, scrambles, and transition.
                     </ForwardRef>
                   }
                   placement="auto"
@@ -1030,7 +1030,7 @@ exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!de
                       id="unassistedTooltip"
                       placement="right"
                     >
-                      All scoring plays where the big was unassisted (includes FTs which can never be assisted). Includes half court, scrambles, and transition)
+                      All scoring plays where the big was unassisted (includes FTs which can never be assisted). Includes half court, scrambles, and transition.
                     </ForwardRef>
                   }
                   placement="auto"
@@ -1510,7 +1510,7 @@ exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!he
                       id="unassistedTooltip"
                       placement="right"
                     >
-                      All scoring plays where the ballhandler was unassisted (includes FTs which can never be assisted). Includes half court, scrambles, and transition)
+                      All scoring plays where the ballhandler was unassisted (includes FTs which can never be assisted). Includes half court, scrambles, and transition.
                     </ForwardRef>
                   }
                   placement="auto"
@@ -2018,7 +2018,7 @@ exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!he
                       id="unassistedTooltip"
                       placement="right"
                     >
-                      All scoring plays where the wing was unassisted (includes FTs which can never be assisted). Includes half court, scrambles, and transition)
+                      All scoring plays where the wing was unassisted (includes FTs which can never be assisted). Includes half court, scrambles, and transition.
                     </ForwardRef>
                   }
                   placement="auto"
@@ -2407,7 +2407,7 @@ exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!he
                       id="unassistedTooltip"
                       placement="right"
                     >
-                      All scoring plays where the big was unassisted (includes FTs which can never be assisted). Includes half court, scrambles, and transition)
+                      All scoring plays where the big was unassisted (includes FTs which can never be assisted). Includes half court, scrambles, and transition.
                     </ForwardRef>
                   }
                   placement="auto"

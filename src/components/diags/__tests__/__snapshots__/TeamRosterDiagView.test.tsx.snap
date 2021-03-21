@@ -103,56 +103,19 @@ exports[`TeamRosterDiagView TeamRosterDiagView 1`] = `
                                 AnCowan
                               </span>
                             </ForwardRef>
-                            {
-                              code: "AnCowan"
-
-                              def_adj_rtg: Object {
-                                                            "old_value": -1.9073922729482804,
-                                                            "override": "Luck adjusted",
-                                                            "value": -1.748506675197845,
-                                                          }
-
-                              def_rtg: Object {
-                                                            "old_value": 97.93561913082087,
-                                                            "override": "Luck adjusted",
-                                                            "value": 98.79566980021075,
-                                                          }
-
-                              def_team_poss_pct: Object {
-                                                            "value": 0.9541457286432161,
-                                                          }
-
-                              off_adj_rtg: Object {
-                                                            "old_value": undefined,
-                                                            "override": undefined,
-                                                            "value": 5.293455229097873,
-                                                          }
-
-                              off_rtg: Object {
-                                                            "old_value": undefined,
-                                                            "override": undefined,
-                                                            "value": 115.28041262383013,
-                                                          }
-
-                              off_team_poss_pct: Object {
-                                                            "value": 0.9550561797752809,
-                                                          }
-
-                              oppo_def_3p: Object {
-                                                            "old_value": 0.3182711198428291,
-                                                            "override": "Luck adjusted",
-                                                            "value": 0.32761744597249504,
-                                                          }
-
-                              posClass: Array [
-                                                            0.7608816899806605,
-                                                            0.23503457939493452,
-                                                            0.003893285388442086,
-                                                            0.00019043748354377016,
-                                                            7.752418955526866e-9,
-                                                          ]
-
-                              role: "s-PG"}
+                            <span
+                              style={Object {}}
+                            >
+                              <sup
+                                className="threePointBadge"
+                              />
+                              <sub
+                                className="freeThrowBadge"
+                              />
+                              <sup
+                                className="megaAssistBadge"
+                              />
+                            </span>
                           </span>
                         </span>
                       </div>
@@ -343,56 +306,13 @@ exports[`TeamRosterDiagView TeamRosterDiagView 1`] = `
                                 AaWiggins
                               </span>
                             </ForwardRef>
-                            {
-                              code: "AaWiggins"
-
-                              def_adj_rtg: Object {
-                                                            "old_value": -3.0941074793878247,
-                                                            "override": "Luck adjusted",
-                                                            "value": -2.6155013524449546,
-                                                          }
-
-                              def_rtg: Object {
-                                                            "old_value": 91.2892111124598,
-                                                            "override": "Luck adjusted",
-                                                            "value": 93.87361035130118,
-                                                          }
-
-                              def_team_poss_pct: Object {
-                                                            "value": 0.753140703517588,
-                                                          }
-
-                              off_adj_rtg: Object {
-                                                            "old_value": undefined,
-                                                            "override": undefined,
-                                                            "value": 0.21942065949300515,
-                                                          }
-
-                              off_rtg: Object {
-                                                            "old_value": undefined,
-                                                            "override": undefined,
-                                                            "value": 95.89942468169478,
-                                                          }
-
-                              off_team_poss_pct: Object {
-                                                            "value": 0.7615480649188514,
-                                                          }
-
-                              oppo_def_3p: Object {
-                                                            "old_value": 0.291044776119403,
-                                                            "override": "Luck adjusted",
-                                                            "value": 0.3186219402985075,
-                                                          }
-
-                              posClass: Array [
-                                                            0.0072892947188542105,
-                                                            0.2984404921863898,
-                                                            0.45743042057193684,
-                                                            0.2368364746315466,
-                                                            0.0000033178912727678397,
-                                                          ]
-
-                              role: "WG"}
+                            <span
+                              style={Object {}}
+                            >
+                              <sup
+                                className="threePointBadge"
+                              />
+                            </span>
                           </span>
                         </span>
                       </div>
