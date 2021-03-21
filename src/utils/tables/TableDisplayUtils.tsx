@@ -127,7 +127,7 @@ export class TableDisplayUtils {
     const fontWeight = (playerInfo: Record<string, any>) => {
       const usage = _.max(
         [ 0.10, _.min(
-          [ playerInfo.off_usage?.value || 0.20, 0.35 ]
+          [ playerInfo?.off_usage?.value || 0.20, 0.35 ]
         )]
       );
       return 100*_.round((usage < 0.20) ? //10 == 100 weight
@@ -170,16 +170,16 @@ export class TableDisplayUtils {
     return <span key={cid.code}>
       <span style={{whiteSpace: 'nowrap'}}><Badge variant="light"
         style={{
-          backgroundColor: singleColorField(playerInfo, colorField)
+          backgroundColor: playerInfo ? singleColorField(playerInfo, colorField) : "grey"
 // consider this in the future:
 //          background: `linear-gradient(to right, ${singleColorField(cid.id, colorField)}, white, ${singleColorField(cid.id, "def_adj_rtg")})`
         }}>
           <span style={{
             fontSize: "small",
-            fontWeight: fontWeight(playerInfo)
+            fontWeight: playerInfo ? fontWeight(playerInfo) : undefined
           }}>{cid.code}</span>
       </Badge>
-      {buildBadges(playerInfo)}</span>
+      {playerInfo ? (playerInfo) : null}</span>
       {finalPlayer ? null : <span style={{opacity: 0}}> ; </span> }
     </span>;
   }
