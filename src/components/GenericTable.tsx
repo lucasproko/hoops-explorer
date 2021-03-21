@@ -175,9 +175,10 @@ type Props = {
   tableFields: Record<string, GenericTableColProps>,
   tableData: Array<GenericTableRow>,
   tableCopyId?: string,
-  cellTooltipMode?: LockModes
+  cellTooltipMode?: LockModes,
+  bordered?: boolean
 }
-const GenericTable: React.FunctionComponent<Props> = ({responsive, tableFields, tableData, tableCopyId, cellTooltipMode}) => {
+const GenericTable: React.FunctionComponent<Props> = ({responsive, tableFields, tableData, tableCopyId, cellTooltipMode, bordered}) => {
 
   const [ lockMode, setLockMode ]= useState((cellTooltipMode || "missing") as LockModes);
   const [ cellOverlayShowStates, setCellOverlayShowStates ] = useState({} as Record<string, boolean>);
@@ -405,7 +406,8 @@ const GenericTable: React.FunctionComponent<Props> = ({responsive, tableFields, 
     };
   }
   const isResponsive = _.isNil(responsive) ? true : responsive;
-  return <Table responsive={isResponsive && (lockMode != "row")} id={tableId} size="sm">
+  const isBordered = _.isNil(bordered) ? false : bordered;
+  return <Table bordered={isBordered} responsive={isResponsive && (lockMode != "row")} id={tableId} size="sm">
     <thead>
       <tr>{ renderTableHeaders() }</tr>
     </thead>

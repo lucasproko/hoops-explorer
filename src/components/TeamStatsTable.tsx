@@ -29,6 +29,7 @@ import GenericTogglingMenuItem from "./shared/GenericTogglingMenuItem";
 import ToggleButtonGroup from "./shared/ToggleButtonGroup";
 import LuckAdjDiagView from "./diags/LuckAdjDiagView";
 import TeamPlayTypeDiagView from "./diags/TeamPlayTypeDiagView";
+import TeamRosterDiagView from "./diags/TeamRosterDiagView";
 
 // Util imports
 import { CbbColors } from "../utils/CbbColors";
@@ -39,6 +40,7 @@ import { LuckUtils, OffLuckAdjustmentDiags, DefLuckAdjustmentDiags, LuckAdjustme
 import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
 import { TableDisplayUtils } from "../utils/tables/TableDisplayUtils";
 import { RosterTableUtils } from "../utils/tables/RosterTableUtils";
+import { LineupTableUtils } from "../utils/tables/LineupTableUtils";
 
 export type TeamStatsModel = {
   on: any,
@@ -60,8 +62,7 @@ type Props = {
 }
 
 const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataEvent, onChangeState}) => {
-  const { teamStats, rosterStats } = dataEvent;
-
+  const { teamStats, rosterStats, lineupStats } = dataEvent;
   const server = (typeof window === `undefined`) ? //(ensures SSR code still compiles)
     "server" : window.location.hostname
 
@@ -78,6 +79,10 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
   );
   const [ luckConfig, setLuckConfig ] = useState(_.isNil(gameFilterParams.luck) ?
     ParamDefaults.defaultLuckConfig : gameFilterParams.luck
+  );
+
+  const [ showRoster, setShowRoster ] = useState(_.isNil(gameFilterParams.showRoster) ?
+    ParamDefaults.defaultTeamShowRoster : gameFilterParams.showRoster
   );
 
   const [ showDiffs, setShowDiffs ] = useState(_.isNil(gameFilterParams.teamDiffs) ?
@@ -109,9 +114,10 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
       luck: luckConfig,
       onOffLuck: adjustForLuck,
       showOnOffLuckDiags: showLuckAdjDiags,
+      showRoster: showRoster
     };
     onChangeState(newState);
-  }, [ luckConfig, adjustForLuck, showLuckAdjDiags, showDiffs, showPlayTypes ]);
+  }, [ luckConfig, adjustForLuck, showLuckAdjDiags, showDiffs, showPlayTypes, showRoster ]);
 
   // 2] Data View
 
@@ -171,6 +177,12 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
     rosterStats.global || [], showPlayTypes, teamSeasonLookup
   ); //TODO: which set do I actually want to use for positional calcs here?
 
+  const positionFromPlayerKey =
+    showRoster ? LineupTableUtils.buildPositionPlayerMap(rosterStats.global, teamSeasonLookup) : {};
+     //TODO: which set do I actually want to use for positional calcs here?
+
+
+
   // Calc diffs if required ... needs to be before injectPlayTypeInfo but after luck injection!
   const [ aMinusB, aMinusBase, bMinusBase ] = showDiffs ? (() => {
     const aMinusB = (teamStats.on?.doc_count && teamStats.off?.doc_count) ? LineupUtils.getStatsDiff(
@@ -193,6 +205,21 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
     TableDisplayUtils.injectPlayTypeInfo(teamStats[k], false, false, teamSeasonLookup);
   });
 
+  // If building roster info then enrich player stats:
+  const playerInfoByKeyBy0AB = showRoster ? [ "baseline", "on", "off" ].map(queryKey => {
+    const playerStatsBy0AB = (rosterStats as any)?.[queryKey] || {};
+    const teamStatsBy0AB = (teamStats as any)?.[queryKey] || {};
+    if (teamStatsBy0AB?.doc_count) {
+      /** Need player info for tooltip view/lineup decoration */
+      const playerInfo = LineupTableUtils.buildBaselinePlayerInfo(
+        playerStatsBy0AB, globalRosterStatsByCode, teamStats, avgEfficiency
+      );
+      return playerInfo;
+    } else {
+      return undefined;
+    }
+  }) : [];
+
   // Last stage before building the table: inject titles into the stats:
   const teamStatsOn = {
     off_title: `${maybeOn} Offense`,
@@ -210,6 +237,18 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
     (teamStats.on?.doc_count) ? _.flatten([
       [ GenericTableOps.buildDataRow(teamStatsOn, offPrefixFn, offCellMetaFn) ],
       [ GenericTableOps.buildDataRow(teamStatsOn, defPrefixFn, defCellMetaFn) ],
+      showRoster && teamStats.on?.doc_count ? [ GenericTableOps.buildTextRow(<span>
+          <TeamRosterDiagView
+            positionInfo={LineupTableUtils.getPositionalInfo(
+              lineupStats[1]?.lineups || [], positionFromPlayerKey, teamSeasonLookup
+            )}
+            rosterStatsByKey={playerInfoByKeyBy0AB[1] || {}}
+            positionFromPlayerKey={positionFromPlayerKey}
+            teamSeasonLookup={teamSeasonLookup}
+            showHelp={showHelp}
+          />
+        </span>, "small pt-2"
+      )] : [],
       showLuckAdjDiags && luckAdjustment.on ? [ GenericTableOps.buildTextRow(
         <LuckAdjDiagView
           name="On"
@@ -234,6 +273,18 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
     (teamStats.off?.doc_count) ? _.flatten([
       [ GenericTableOps.buildDataRow(teamStatsOff, offPrefixFn, offCellMetaFn) ],
       [ GenericTableOps.buildDataRow(teamStatsOff, defPrefixFn, defCellMetaFn) ],
+      showRoster && teamStats.off?.doc_count ? [ GenericTableOps.buildTextRow(<span>
+          <TeamRosterDiagView
+            positionInfo={LineupTableUtils.getPositionalInfo(
+              lineupStats[2]?.lineups || [], positionFromPlayerKey, teamSeasonLookup
+            )}
+            rosterStatsByKey={playerInfoByKeyBy0AB[2] || {}}
+            positionFromPlayerKey={positionFromPlayerKey}
+            teamSeasonLookup={teamSeasonLookup}
+            showHelp={showHelp}
+          />
+        </span>, "small pt-2"
+      )] : [],
       showLuckAdjDiags && luckAdjustment.off ? [ GenericTableOps.buildTextRow(
         <LuckAdjDiagView
           name="Off"
@@ -258,6 +309,18 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
     _.flatten([
       [ GenericTableOps.buildDataRow(teamStatsBaseline, offPrefixFn, offCellMetaFn) ],
       [ GenericTableOps.buildDataRow(teamStatsBaseline, defPrefixFn, defCellMetaFn) ],
+      showRoster && teamStats.baseline?.doc_count ? [ GenericTableOps.buildTextRow(<span>
+          <TeamRosterDiagView
+            positionInfo={LineupTableUtils.getPositionalInfo(
+              lineupStats[0]?.lineups || [], positionFromPlayerKey, teamSeasonLookup
+            )}
+            rosterStatsByKey={playerInfoByKeyBy0AB[0] || {}}
+            positionFromPlayerKey={positionFromPlayerKey}
+            teamSeasonLookup={teamSeasonLookup}
+            showHelp={showHelp}
+          />
+        </span>, "small pt-2"
+      )] : [],
       showLuckAdjDiags && luckAdjustment.baseline ? [ GenericTableOps.buildTextRow(
         <LuckAdjDiagView
           name="Baseline"
@@ -345,6 +408,12 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
                   toggled: showPlayTypes,
                   onClick: () => setShowPlayTypes(!showPlayTypes)
                 },
+                {
+                  label: "Roster",
+                  tooltip: showRoster ? "Hide roster/positional information" : "Show roster/positional information",
+                  toggled: showRoster,
+                  onClick: () => setShowRoster(!showRoster)
+                },
               ]}/>
             </Col>
           </Form.Row>
@@ -366,6 +435,11 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
               text="Show Play Style Breakdowns"
               truthVal={showPlayTypes}
               onSelect={() => setShowPlayTypes(!showPlayTypes)}
+            />
+            <GenericTogglingMenuItem
+              text="Show Roster Information"
+              truthVal={showRoster}
+              onSelect={() => setShowRoster(!showRoster)}
             />
             <Dropdown.Divider />
             <GenericTogglingMenuItem

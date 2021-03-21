@@ -36,15 +36,17 @@ export class TableDisplayUtils {
     perLineupPlayerMap: Record<string, Record<string, any>>,
     positionFromPlayerKey: Record<string, {posClass: string}>,
     colorField: string,
-    decorateLineup: boolean
+    decorateLineup: boolean,
+    extendedTooltipView: boolean = false
   ) {
     const tooltipBuilder = (pid: number) => TableDisplayUtils.buildTooltipTexts(
-      key + pid, sortedLineup, perLineupPlayerMap, positionFromPlayerKey
+      key + pid, sortedLineup, perLineupPlayerMap, positionFromPlayerKey, extendedTooltipView
     );
     if (decorateLineup) {
+      const max = (sortedLineup?.length || 0) - 1;
       return <OverlayTrigger placement="auto" overlay={tooltipBuilder(0)}>
         <div>{sortedLineup.map((cid: { code: string, id: string }, pid: number) => {
-          return TableDisplayUtils.buildDecoratedPlayer(cid, perLineupPlayerMap, colorField, pid == 4)
+          return TableDisplayUtils.buildDecoratedPlayer(cid, perLineupPlayerMap, colorField, pid == max)
         })}</div>
       </OverlayTrigger>;
     } else {
@@ -59,10 +61,11 @@ export class TableDisplayUtils {
     key: string,
     sortedLineup: { code: string, id: string }[],
     perLineupPlayerMap: Record<string, Record<string, any>>,
-    positionFromPlayerKey: Record<string, {posClass: string}>
+    positionFromPlayerKey: Record<string, {posClass: string}>,
+    extendedView: boolean = false
   ) {
     const tooltipTexts = _.flatMap(sortedLineup, (cid: {id: string, code: string}) => {
-      return TableDisplayUtils.buildTooltipText(cid, perLineupPlayerMap, positionFromPlayerKey);
+      return TableDisplayUtils.buildTooltipText(cid, perLineupPlayerMap, positionFromPlayerKey, extendedView);
     });
     const tooltip = <Tooltip id={`${key}_info`}>{_.map(tooltipTexts,
       (t: string, i: number) => <span key={"" + i}>{t}<br/></span>
@@ -74,14 +77,40 @@ export class TableDisplayUtils {
   private static buildTooltipText(
     cid: { code: string, id: string },
     perLineupPlayerMap: Record<string, Record<string, any>>,
-    positionFromPlayerKey: Record<string, {posClass: string}>
+    positionFromPlayerKey: Record<string, {posClass: string}>,
+    extendedView: boolean = false
   ) {
     // Some minimal info:
     const playerInfo = perLineupPlayerMap[cid.id] || {};
     const oRtgStr = (playerInfo.off_rtg?.value || 0).toFixed(0);
     const usageStr = (100*(playerInfo.off_usage?.value || 0)).toFixed(0) + "%";
     const defRbStr = (100*(playerInfo.def_orb?.value || 0)).toFixed(0) + "%";
-    return [
+
+    // Extended view:
+    const adjOffRtg = playerInfo.off_adj_rtg?.value || 0;
+    const adjOffRtgSgn = adjOffRtg >= 0 ? '+' : "";
+    const adjOffRtgStr = extendedView ? (adjOffRtgSgn + adjOffRtg.toFixed(1)) : "";
+    const assistRateStr = extendedView ? ((100*(playerInfo.off_assist?.value || 0)).toFixed(0) + "%") : "";
+    const toRateStr = extendedView ? ((100*(playerInfo.off_to?.value || 0)).toFixed(0) + "%") : "";
+    const offRbStr = extendedView ? ((100*(playerInfo.off_orb?.value || 0)).toFixed(0) + "%") : "";
+    const freethrowRateStr = extendedView ? ((100*(playerInfo.off_ftr?.value || 0)).toFixed(0) + "%") : "";
+    const efgStr = extendedView ? ((100*(playerInfo.off_efg?.value || 0)).toFixed(0) + "%") : "";
+    const threePointRate = 100*(playerInfo.off_3pr?.value || 0);
+    const threePointRateStr = extendedView ? (threePointRate.toFixed(0) + "%") : "";
+    const threePointPctStr = extendedView ? ((100*(playerInfo.off_3p?.value || 0)).toFixed(0) + "%") : "";
+    const rimRateStr = extendedView ? ((100*(playerInfo.off_2primr?.value || 0)).toFixed(0) + "%") : "";
+    const rimPointPctStr = extendedView ? ((100*(playerInfo.off_2prim?.value || 0)).toFixed(0) + "%") : "";
+
+    return extendedView ?
+    [
+      `${cid.id}: ${positionFromPlayerKey[cid.id]?.posClass || "??"}`,
+      `ORtg ${oRtgStr} on ${usageStr} (${adjOffRtgStr})`,//, FTR ${freethrowRateStr}`,
+      `3P ${threePointPctStr} on ${threePointRateStr}, eFG ${efgStr}`,
+      `Rim ${rimPointPctStr} on ${rimRateStr}, FTR ${freethrowRateStr}`,
+      `AST ${assistRateStr} : TO ${toRateStr}`,
+      `ORB ${offRbStr}, DRB ${defRbStr}`,
+    ] :
+    [
       `${cid.id}: ${positionFromPlayerKey[cid.id]?.posClass || "??"}`,
       `ORtg ${oRtgStr} on ${usageStr}, DRB ${defRbStr}`,
       ""
@@ -98,7 +127,7 @@ export class TableDisplayUtils {
     const fontWeight = (playerInfo: Record<string, any>) => {
       const usage = _.max(
         [ 0.10, _.min(
-          [ playerInfo.off_usage?.value || 0.20, 0.35 ]
+          [ playerInfo?.off_usage?.value || 0.20, 0.35 ]
         )]
       );
       return 100*_.round((usage < 0.20) ? //10 == 100 weight
@@ -141,16 +170,16 @@ export class TableDisplayUtils {
     return <span key={cid.code}>
       <span style={{whiteSpace: 'nowrap'}}><Badge variant="light"
         style={{
-          backgroundColor: singleColorField(playerInfo, colorField)
+          backgroundColor: playerInfo ? singleColorField(playerInfo, colorField) : "grey"
 // consider this in the future:
 //          background: `linear-gradient(to right, ${singleColorField(cid.id, colorField)}, white, ${singleColorField(cid.id, "def_adj_rtg")})`
         }}>
           <span style={{
             fontSize: "small",
-            fontWeight: fontWeight(playerInfo)
+            fontWeight: playerInfo ? fontWeight(playerInfo) : undefined
           }}>{cid.code}</span>
       </Badge>
-      {buildBadges(playerInfo)}</span>
+      {playerInfo ? (playerInfo) : null}</span>
       {finalPlayer ? null : <span style={{opacity: 0}}> ; </span> }
     </span>;
   }
