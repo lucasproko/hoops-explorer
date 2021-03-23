@@ -113,10 +113,11 @@ if (!testMode) console.log(`Args: gender=[${inGender}] year=[${inYear}]`);
 
 const onlyHasTopConferences = (inGender != "Men") || (parseInt(inYear.substring(0, 4)) < 2020);
 
-const teamFilter = undefined as Set<string> | undefined;
-//  (inYear == "2019/20") ? new Set([ "Maryland", "Iowa", "Michigan", "Dayton", "Rutgers" ]) : undefined;
+const testTeamFilter = undefined as Set<string> | undefined;
+//  (inYear == "2020/21") ? new Set([ "Maryland", "Iowa", "Michigan", "Dayton", "Rutgers", "Fordham" ]) : undefined;
 
-const conferenceSet = new Set() as Set<string>;
+/** All the conferences in a given tier plus the "guest" teams if it's not in the right tier */
+const mutableConferenceMap = {} as Record<string, string[]>;
 
 const effectivelyHighMajor = new Set([
   "Gonzaga", "BYU", "Saint Mary's (CA)",
@@ -135,26 +136,38 @@ export async function main() {
     _.chain(AvailableTeams.extraTeamsBase) :
     _.chain(AvailableTeams.byName).values().flatten();
 
-  const teams = teamListChain.filter(team => {
+  /** If any teams aren't in the conf then */
+  const mutableIncompleteConfs = new Set() as Set<string>;
+  const teams = teamListChain.filter(
+    team => ((testTeamFilter == undefined) || testTeamFilter.has(team.team))
+  ).filter(team => {
+    return team.gender == inGender &&
+      ((inYear == "Extra") || (team.year == inYear));
+  }).filter(team => {
+    const genderYearLookup = `${inGender}_${team.year}`;
+    const conference = efficiencyInfo?.[genderYearLookup]?.[0]?.[team.team]?.conf || "Unknown";
+    const rank = efficiencyInfo?.[genderYearLookup]?.[0]?.[team.team]?.["stats.adj_margin.rank"] || 400;
     // For years with lots of conferences, split into tiers:
     if (onlyHasTopConferences) {
       return true;
     } else {
-      const rank = efficiencyInfo?.[`${inGender}_${team.year}`]?.[0]?.[team.team]?.["stats.adj_margin.rank"] || 400;
-      if (inTier == "High") {
-        return team.category == "high" || (rank <= 150) || effectivelyHighMajor.has(team.team);
-      } else if (inTier == "Medium") {
-        return (team.category != "high") && (team.category != "low") && (rank < 275) && !excludeFromMidMajor.has(team.team);
-      } else if (inTier == "Low") {
-        return team.category == "low" || team.category == "midlow" || ((team.category != "high") && (rank > 250));
-      } else {
-        throw `Tier not supported: ${inTier}`;
+      const isSupported = () => {
+        if (inTier == "High") {
+          return team.category == "high" || (rank <= 150) || effectivelyHighMajor.has(team.team);
+        } else if (inTier == "Medium") {
+          return (team.category != "high") && (team.category != "low") && (rank < 275) && !excludeFromMidMajor.has(team.team);
+        } else if (inTier == "Low") {
+          return team.category == "low" || team.category == "midlow" || ((team.category != "high") && (rank > 250));
+        } else {
+          throw `Tier not supported: ${inTier}`;
+        }
+      };
+      const toInclude = isSupported();
+      if (!toInclude) {
+        mutableIncompleteConfs.add(conference);
       }
+      return toInclude;
     }
-  }).filter(team => {
-    return team.gender == inGender &&
-      ((inYear == "Extra") || (team.year == inYear)) &&
-        ((teamFilter == undefined) || teamFilter.has(team.team))
   }).value();
 
 /**/
@@ -191,7 +204,17 @@ export async function main() {
 
     // Snag conference from D1 metadata
     const conference = efficiencyInfo?.[genderYearLookup]?.[0]?.[team]?.conf || "Unknown";
-    conferenceSet.add(conference);
+    const buildTeamAbbr = (t: string) => {
+      const candidate1 = t.replace(/[^A-Z]/g, "");
+      const addU = (abb: string) => {
+        return (abb.indexOf("U") >= 0) ? abb : abb + "U";
+      };
+      return (candidate1.length == 1) ? t.substring(0, 3) : addU(candidate1);
+    };
+    mutableConferenceMap[conference] =
+      mutableIncompleteConfs.has(conference) ?
+        (mutableConferenceMap[conference] || []).concat([ buildTeamAbbr(team) ]) :
+        [];
 
     const inputCases: Array<[string, any]> =
       [ [ "all", fullRequestModel], [ "conf", requestModelConfOnly ], [ "t100", requestModelT100 ] ];
@@ -481,13 +504,15 @@ if (!testMode) main().then(dummy => {
     const sortedLineups = completeLineupLeaderboard(kv[0], kv[1], topLineupSize);
     const sortedLineupsStr = JSON.stringify({
       lastUpdated: lastUpdated,
-      confs: Array.from(conferenceSet.values()),
+      confMap: mutableConferenceMap,
+      confs: _.keys(mutableConferenceMap),
       lineups: sortedLineups
     }, reduceNumberSize);
     const players = completePlayerLeaderboard(kv[0], kv[2], topPlayersSize);
     const playersStr = JSON.stringify({
       lastUpdated: lastUpdated,
-      confs: Array.from(conferenceSet.values()),
+      confMap: mutableConferenceMap,
+      confs: _.keys(mutableConferenceMap),
       players: players
     }, reduceNumberSize);
 
