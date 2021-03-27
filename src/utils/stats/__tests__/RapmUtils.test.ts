@@ -29,6 +29,7 @@ export const semiRealRapmResults = {
   "playerToCol":{"Smith, Jalen":0,"Cowan, Anthony":1,"Wiggins, Aaron":2,"Morsell, Darryl":3,"Ayala, Eric":4,"Scott, Donta":5,"Lindo Jr., Ricky":6,"Smith Jr., Serrel":7},"colToPlayer":["Smith, Jalen","Cowan, Anthony","Wiggins, Aaron","Morsell, Darryl","Ayala, Eric","Scott, Donta","Lindo Jr., Ricky","Smith Jr., Serrel"],"avgEfficiency":102.4,"numPlayers":8,"numLineups":31,"offLineupPoss":1351,"defLineupPoss":1349,
   priorInfo:{
     strongWeight: 0.5,
+    noWeakPrior: false,
     includeStrong: {},
     playersStrong: [ { off_adj_ppp: 5.0 }, { off_adj_ppp: 4.5 }, { off_adj_ppp: 4.0 }, { off_adj_ppp: 3.5 }, { off_adj_ppp: 3.0 }, {  off_adj_ppp: 2.5  }, {  off_adj_ppp: 2.0  }, {  off_adj_ppp: 2.0 }  ],
     playersWeak: [ { off_adj_ppp: 5.0, def_adj_ppp: -5.0 }, { off_adj_ppp: 4.5, def_adj_ppp: -4.5 }, { off_adj_ppp: 4.0, def_adj_ppp: -4.0 }, { off_adj_ppp: 3.5, def_adj_ppp: -3.5 }, { off_adj_ppp: 3.0, def_adj_ppp: -3.0 }, { off_adj_ppp: 2.5, def_adj_ppp: -2.5 }, { off_adj_ppp: 2.0, def_adj_ppp: -2.0 }, { off_adj_ppp: 1.5, def_adj_ppp: -1.5 } ]
@@ -285,7 +286,7 @@ describe("RapmUtils", () => {
       offLineupPoss: 10,
       defLineupPoss: 9,
       unbiasWeight: 0,
-      priorInfo: { strongWeight: 0.5, includeStrong: {}, playersWeak: [], playersStrong: [] }
+      priorInfo: { strongWeight: 0.5, noWeakPrior: false, includeStrong: {}, playersWeak: [], playersStrong: [] }
     };
 
     const results = RapmUtils.calcCollinearityDiag(test, dummyContext);

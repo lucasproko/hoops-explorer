@@ -83,6 +83,7 @@ import { add, apply, diag, identity, inv, matrix, mean, multiply, resize, row, s
 /** Contains the prior info for individuals (strong priors dominate RAPM, weak priors are dominated)*/
 export type RapmPriorInfo = {
   strongWeight: number,
+  noWeakPrior: boolean, //(ie allow the RAPM to diverge from the KenPom that generated it)
   includeStrong: Record<string, boolean>; //(only need to set if unbiasWeight>0, else unused - TODO planning to remove unbiasWeight)
   playersStrong: Array<Record<string, number>>;
   playersWeak: Array<Record<string, number>>;
@@ -174,11 +175,14 @@ export class RapmUtils {
   static buildPriors(
     playersBaseline: Record<string, any>,
     colToPlayer: Array<string>,
-    priorMode: number //(-1 for adaptive mode)
+    priorMode: number //(-1 for adaptive mode, -2 for no prior)
   ): RapmPriorInfo {
+    const noWeakPrior = priorMode < -1.5;
     return {
       includeStrong: {}, //(see RapmPriorInfo type definition, not needed unless unbiasWeight > 0)
-      strongWeight: priorMode, //(how much of a lineup is attributed to RAPM, and how much to the prior)
+      strongWeight: noWeakPrior ? 0 : priorMode, //(how much of a lineup is attributed to RAPM, and how much to the prior)
+        //(-2 means no prior at all)
+      noWeakPrior: noWeakPrior,
       playersWeak: colToPlayer.map(player => {
         const stats = playersBaseline[player] || {};
         if (stats) {
@@ -202,6 +206,7 @@ export class RapmUtils {
   /**
   * Builds a context object with functionality required by further processing
   * removalPct - the min% (eg 10%) of possessions a player must have
+  * priorMode - -1 for adaptive strong prior (using Adj Rtg+), -2 for no strong prior, 0-1 to apply strong prior
   * unbiasWeight - if >0 adds an extra row with the desired combined results (eg 2)
   */
   static buildPlayerContext(
@@ -721,7 +726,7 @@ export class RapmUtils {
 
             //(^ since we'll keep going in diag mode, ensure we don't change the actual processing flow)
             acc.output.ridgeLambda = ridgeLambda;
-            acc.output.rapmAdjPpp = results;
+            acc.output.rapmAdjPpp = ctx.priorInfo.noWeakPrior ? resultsPrePrior : results;
             acc.output.rapmRawAdjPpp = resultsPrePrior;
             acc.output.solnMatrix = solver;
             if ((adjEffErr >= 1.05) && notFirstStep) {

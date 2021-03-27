@@ -60,7 +60,9 @@ const TeamRosterStatsConfigModal: React.FunctionComponent<Props> = ({onSave, con
             <Form.Control as="select"
               onChange={(newVal: any) => {
                 const mutableNewConfig = getBase();
-                if (newVal.target?.value == "Weak Adj Rtg+ Prior") {
+                if (newVal.target?.value == "No Prior") {
+                  mutableNewConfig.rapmPriorMode = -2;
+                } else if (newVal.target?.value == "Weak Adj Rtg+ Prior") {
                   mutableNewConfig.rapmPriorMode = 0;
                 } else if (newVal.target?.value == "Medium Adj Rtg+ Prior") {
                   mutableNewConfig.rapmPriorMode = 0.5;
@@ -72,6 +74,7 @@ const TeamRosterStatsConfigModal: React.FunctionComponent<Props> = ({onSave, con
                 onSave(mutableNewConfig);
               }}
             >
+              <option selected={config.rapmPriorMode==-2}>No Prior</option>
               <option selected={config.rapmPriorMode==0}>Weak Adj Rtg+ Prior</option>
               <option selected={config.rapmPriorMode==0.5}>Medium Adj Rtg+ Prior</option>
               <option selected={config.rapmPriorMode==-1}>Adaptive Adj Rtg+ Prior</option>

@@ -239,6 +239,7 @@ Object {
   },
   "priorInfo": Object {
     "includeStrong": Object {},
+    "noWeakPrior": false,
     "playersStrong": Array [
       Object {
         "off_adj_ppp": 4.5,
@@ -332,6 +333,7 @@ Object {
   },
   "priorInfo": Object {
     "includeStrong": Object {},
+    "noWeakPrior": false,
     "playersStrong": Array [
       Object {
         "off_adj_ppp": 4.5,
