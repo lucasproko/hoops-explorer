@@ -91,6 +91,7 @@ Object {
       },
     ],
     "strongWeight": -1,
+    "useRecursiveWeakPrior": false,
   },
   "removalPct": 0,
   "removedPlayers": Object {},
@@ -171,6 +172,7 @@ Object {
       },
     ],
     "strongWeight": -1,
+    "useRecursiveWeakPrior": false,
   },
   "removalPct": 0.2,
   "removedPlayers": Object {

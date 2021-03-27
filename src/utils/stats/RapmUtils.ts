@@ -84,6 +84,7 @@ import { add, apply, diag, identity, inv, matrix, mean, multiply, resize, row, s
 export type RapmPriorInfo = {
   strongWeight: number,
   noWeakPrior: boolean, //(ie allow the RAPM to diverge from the KenPom that generated it)
+  useRecursiveWeakPrior: boolean, //if noWeakPrior then use the initial RAPM to make up the KP short-fall
   includeStrong: Record<string, boolean>; //(only need to set if unbiasWeight>0, else unused - TODO planning to remove unbiasWeight)
   playersStrong: Array<Record<string, number>>;
   playersWeak: Array<Record<string, number>>;
@@ -183,6 +184,7 @@ export class RapmUtils {
       strongWeight: noWeakPrior ? 0 : priorMode, //(how much of a lineup is attributed to RAPM, and how much to the prior)
         //(-2 means no prior at all)
       noWeakPrior: noWeakPrior,
+      useRecursiveWeakPrior: priorMode < -2.5,
       playersWeak: colToPlayer.map(player => {
         const stats = playersBaseline[player] || {};
         if (stats) {
@@ -202,6 +204,18 @@ export class RapmUtils {
       }),
     };
   }
+
+  /** For "recursive" prior */
+  static buildWeakPriorFromRapm(
+    rapmResults: Array<number>,
+    offOrDef: "off" | "def"
+  ): Array<Record<string, any>> {
+    return rapmResults.map(rapm => {
+      return {
+        [`${offOrDef}_adj_ppp`]: rapm
+      }
+    })
+  };
 
   /**
   * Builds a context object with functionality required by further processing
@@ -726,7 +740,14 @@ export class RapmUtils {
 
             //(^ since we'll keep going in diag mode, ensure we don't change the actual processing flow)
             acc.output.ridgeLambda = ridgeLambda;
-            acc.output.rapmAdjPpp = ctx.priorInfo.noWeakPrior ? resultsPrePrior : results;
+
+            const maybeRecursiveWeakPrior = ctx.priorInfo.useRecursiveWeakPrior ?
+              RapmUtils.applyWeakPriors(`${offOrDef}_adj_ppp`, pctByPlayer[offOrDef]!, {
+                ...ctx.priorInfo,
+                playersWeak: RapmUtils.buildWeakPriorFromRapm(resultsPrePrior, offOrDef)
+              })(adjEffErrPrePrior, resultsPrePrior) : resultsPrePrior;
+
+            acc.output.rapmAdjPpp = ctx.priorInfo.noWeakPrior ? maybeRecursiveWeakPrior : results;
             acc.output.rapmRawAdjPpp = resultsPrePrior;
             acc.output.solnMatrix = solver;
             if ((adjEffErr >= 1.05) && notFirstStep) {

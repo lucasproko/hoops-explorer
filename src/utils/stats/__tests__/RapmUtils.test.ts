@@ -30,6 +30,7 @@ export const semiRealRapmResults = {
   priorInfo:{
     strongWeight: 0.5,
     noWeakPrior: false,
+    useRecursiveWeakPrior: false,
     includeStrong: {},
     playersStrong: [ { off_adj_ppp: 5.0 }, { off_adj_ppp: 4.5 }, { off_adj_ppp: 4.0 }, { off_adj_ppp: 3.5 }, { off_adj_ppp: 3.0 }, {  off_adj_ppp: 2.5  }, {  off_adj_ppp: 2.0  }, {  off_adj_ppp: 2.0 }  ],
     playersWeak: [ { off_adj_ppp: 5.0, def_adj_ppp: -5.0 }, { off_adj_ppp: 4.5, def_adj_ppp: -4.5 }, { off_adj_ppp: 4.0, def_adj_ppp: -4.0 }, { off_adj_ppp: 3.5, def_adj_ppp: -3.5 }, { off_adj_ppp: 3.0, def_adj_ppp: -3.0 }, { off_adj_ppp: 2.5, def_adj_ppp: -2.5 }, { off_adj_ppp: 2.0, def_adj_ppp: -2.0 }, { off_adj_ppp: 1.5, def_adj_ppp: -1.5 } ]
@@ -286,7 +287,14 @@ describe("RapmUtils", () => {
       offLineupPoss: 10,
       defLineupPoss: 9,
       unbiasWeight: 0,
-      priorInfo: { strongWeight: 0.5, noWeakPrior: false, includeStrong: {}, playersWeak: [], playersStrong: [] }
+      priorInfo: {
+        strongWeight: 0.5,
+        noWeakPrior: false,
+        useRecursiveWeakPrior: false,
+        includeStrong: {}, 
+        playersWeak: [],
+        playersStrong: []
+      }
     };
 
     const results = RapmUtils.calcCollinearityDiag(test, dummyContext);
