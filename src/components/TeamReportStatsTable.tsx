@@ -651,8 +651,11 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({startingState, da
         onSave={(config: TeamRosterStatsConfig) => {
           setRegressDiffs(config.regressDiffs);
           setRapmPriorMode(config.rapmPriorMode);
+          setRapmDiagMode(config.showRapmDiag ? "base" : "");
         }}
-        config={{rapmPriorMode: rapmPriorMode, regressDiffs: regressDiffs}}
+        config={{
+          rapmPriorMode: rapmPriorMode, regressDiffs: regressDiffs, showRapmDiag: rapmDiagMode != ""
+        }}
         showHelp={showHelp}
       />
       <Form.Row>

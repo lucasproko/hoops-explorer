@@ -21,7 +21,8 @@ import { LuckParams } from '../../utils/FilterModels';
 
 export type TeamRosterStatsConfig = {
   rapmPriorMode: number,
-  regressDiffs: number
+  regressDiffs: number,
+  showRapmDiag: boolean
 };
 
 type Props = {
@@ -37,6 +38,11 @@ const TeamRosterStatsConfigModal: React.FunctionComponent<Props> = ({onSave, con
     setSavedConfig(config);
   }, [ config ]);
 
+  const getBase = () => {
+    return {
+      ...config
+    };
+  };
   // State decomposition:
   const [ savedConfig, setSavedConfig ] = useState(config);
   return <Modal {...props}>
@@ -53,10 +59,7 @@ const TeamRosterStatsConfigModal: React.FunctionComponent<Props> = ({onSave, con
             <Form.Label>RAPM Prior Mode&nbsp;&nbsp;</Form.Label>
             <Form.Control as="select"
               onChange={(newVal: any) => {
-                const mutableNewConfig = {
-                  rapmPriorMode: config.rapmPriorMode,
-                  regressDiffs: config.regressDiffs
-                };
+                const mutableNewConfig = getBase();
                 if (newVal.target?.value == "Weak Adj Rtg+ Prior") {
                   mutableNewConfig.rapmPriorMode = 0;
                 } else if (newVal.target?.value == "Medium Adj Rtg+ Prior") {
@@ -66,7 +69,6 @@ const TeamRosterStatsConfigModal: React.FunctionComponent<Props> = ({onSave, con
                 } else if (newVal.target?.value == "Strong Adj Rtg+ Prior") {
                   mutableNewConfig.rapmPriorMode = 1;
                 }
-                setSavedConfig(mutableNewConfig);
                 onSave(mutableNewConfig);
               }}
             >
@@ -75,6 +77,19 @@ const TeamRosterStatsConfigModal: React.FunctionComponent<Props> = ({onSave, con
               <option selected={config.rapmPriorMode==-1}>Adaptive Adj Rtg+ Prior</option>
               <option selected={config.rapmPriorMode==1}>Strong Adj Rtg+ Prior</option>
             </Form.Control>
+          </Form>
+          <hr/>
+          <Form inline>
+            <Form.Check
+              checked={config.showRapmDiag} type="checkbox" label="Show RAPM diag mode"
+              onChange={(evt: any) => {
+                 const newConfig = {
+                   ...getBase(),
+                   showRapmDiag: evt.target.checked || false,
+                 };
+                 onSave(newConfig);
+              }}
+            />
           </Form>
         </Card.Body>
       </Card>
@@ -92,10 +107,9 @@ const TeamRosterStatsConfigModal: React.FunctionComponent<Props> = ({onSave, con
                     checked={config.regressDiffs <= 0}
                     onChange={() => {
                       const newConfig = {
-                        rapmPriorMode: config.rapmPriorMode,
-                        regressDiffs: -1*Math.abs(config.regressDiffs)
+                        ...getBase(),
+                        regressDiffs: -1*Math.abs(config.regressDiffs),
                       }
-                      setSavedConfig(newConfig);
                       onSave(newConfig);
                     }}
                   />
@@ -107,10 +121,9 @@ const TeamRosterStatsConfigModal: React.FunctionComponent<Props> = ({onSave, con
                     checked={config.regressDiffs > 0}
                     onChange={() => {
                       const newConfig = {
-                        rapmPriorMode: config.rapmPriorMode,
-                        regressDiffs: Math.abs(config.regressDiffs)
-                      }
-                      setSavedConfig(newConfig);
+                        ...getBase(),
+                        regressDiffs: Math.abs(config.regressDiffs),
+                      };
                       onSave(newConfig);
                     }}
                   />
@@ -125,10 +138,9 @@ const TeamRosterStatsConfigModal: React.FunctionComponent<Props> = ({onSave, con
                   onChange={(newVal: any) => {
                     const sgn = config.regressDiffs > 0 ? 1 : -1;
                     const newConfig = {
-                      rapmPriorMode: config.rapmPriorMode,
-                      regressDiffs: sgn*(newVal.target?.value || 0)
-                    }
-                    setSavedConfig(newConfig);
+                      ...getBase(),
+                      regressDiffs: sgn*(newVal.target?.value || 0),
+                    };
                     onSave(newConfig);
                   }}
                 >

@@ -25,6 +25,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
           Object {
             "rapmPriorMode": -1,
             "regressDiffs": -2000,
+            "showRapmDiag": false,
           }
         }
         onHide={[Function]}
@@ -9192,6 +9193,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
           Object {
             "rapmPriorMode": -1,
             "regressDiffs": -2000,
+            "showRapmDiag": false,
           }
         }
         onHide={[Function]}
@@ -23087,6 +23089,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
           Object {
             "rapmPriorMode": -1,
             "regressDiffs": -2000,
+            "showRapmDiag": false,
           }
         }
         onHide={[Function]}
@@ -35974,6 +35977,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
           Object {
             "rapmPriorMode": -1,
             "regressDiffs": -2000,
+            "showRapmDiag": false,
           }
         }
         onHide={[Function]}
@@ -52059,6 +52063,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
           Object {
             "rapmPriorMode": -1,
             "regressDiffs": -2000,
+            "showRapmDiag": false,
           }
         }
         onHide={[Function]}
@@ -56385,6 +56390,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
           Object {
             "rapmPriorMode": -1,
             "regressDiffs": -2000,
+            "showRapmDiag": false,
           }
         }
         onHide={[Function]}

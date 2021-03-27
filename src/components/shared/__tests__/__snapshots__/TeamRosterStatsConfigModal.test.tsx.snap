@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TeamRosterStatsConfigModal TeamRosterStatsConfigModal - should create snapshot (config set 1) 1`] = `
+<div>
+  <TeamRosterStatsConfigModal
+    config={
+      Object {
+        "rapmPriorMode": -1,
+        "regressDiffs": -2000,
+        "showRapmDiag": false,
+      }
+    }
+    onHide={[Function]}
+    onSave={[Function]}
+    show={true}
+    showHelp={true}
+  />
+</div>
+`;
+
+exports[`TeamRosterStatsConfigModal TeamRosterStatsConfigModal - should create snapshot (config set 2) 1`] = `
+<div>
+  <TeamRosterStatsConfigModal
+    config={
+      Object {
+        "rapmPriorMode": 0,
+        "regressDiffs": 0,
+        "showRapmDiag": true,
+      }
+    }
+    onHide={[Function]}
+    onSave={[Function]}
+    show={true}
+    showHelp={false}
+  />
+</div>
+`;
+
+exports[`TeamRosterStatsConfigModal TeamRosterStatsConfigModal - should create snapshot (config set 3) 1`] = `
+<div>
+  <TeamRosterStatsConfigModal
+    config={
+      Object {
+        "rapmPriorMode": 0.5,
+        "regressDiffs": 2000,
+        "showRapmDiag": true,
+      }
+    }
+    onHide={[Function]}
+    onSave={[Function]}
+    show={true}
+    showHelp={true}
+  />
+</div>
+`;
