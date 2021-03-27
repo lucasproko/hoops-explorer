@@ -82,6 +82,7 @@ const TeamReportPage: NextPage<{}> = () => {
       (rawParams.repOnOffDiagMode == ParamDefaults.defaultTeamReportRepOnOffDiagMode) ? [ 'repOnOffDiagMode' ] : [],
       (rawParams.rapmDiagMode == ParamDefaults.defaultTeamReportRapmDiagMode) ? [ 'rapmDiagMode' ] : [],
       (rawParams.rapmPriorMode == ParamDefaults.defaultTeamReportRapmPriorMode) ? [ 'rapmPriorMode' ] : [],
+      (rawParams.regressDiffs == ParamDefaults.defaultTeamReportRegressDiffs) ? [ 'regressDiffs' ] : [],
       _.isEqual(rawParams.luck, ParamDefaults.defaultLuckConfig) ? [ 'luck' ] : [],
       !rawParams.teamLuck ? [ 'teamLuck' ] : [],
     ]));

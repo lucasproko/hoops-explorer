@@ -20,6 +20,18 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
         show={false}
         showHelp={true}
       />
+      <TeamRosterStatsConfigModal
+        config={
+          Object {
+            "rapmPriorMode": -1,
+            "regressDiffs": -2000,
+          }
+        }
+        onHide={[Function]}
+        onSave={[Function]}
+        show={false}
+        showHelp={true}
+      />
       <FormRow>
         <FormGroup
           as={
@@ -1313,12 +1325,12 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
             />
             <GenericTogglingMenuItem
               onSelect={[Function]}
-              text="Regress 'r:On-Off' to 2000 samples"
-              truthVal={true}
+              text="Configure Luck Adjustments..."
+              truthVal={false}
             />
             <GenericTogglingMenuItem
               onSelect={[Function]}
-              text="Configure Luck Adjustments..."
+              text="Configure Advanced On/Off Stats..."
               truthVal={false}
             />
             <DropdownDivider
@@ -9175,6 +9187,18 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
         show={false}
         showHelp={true}
       />
+      <TeamRosterStatsConfigModal
+        config={
+          Object {
+            "rapmPriorMode": -1,
+            "regressDiffs": -2000,
+          }
+        }
+        onHide={[Function]}
+        onSave={[Function]}
+        show={false}
+        showHelp={true}
+      />
       <FormRow>
         <FormGroup
           as={
@@ -10852,12 +10876,12 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
             />
             <GenericTogglingMenuItem
               onSelect={[Function]}
-              text="Regress 'r:On-Off' to 2000 samples"
-              truthVal={true}
+              text="Configure Luck Adjustments..."
+              truthVal={false}
             />
             <GenericTogglingMenuItem
               onSelect={[Function]}
-              text="Configure Luck Adjustments..."
+              text="Configure Advanced On/Off Stats..."
               truthVal={false}
             />
             <DropdownDivider
@@ -23058,6 +23082,18 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
         show={false}
         showHelp={true}
       />
+      <TeamRosterStatsConfigModal
+        config={
+          Object {
+            "rapmPriorMode": -1,
+            "regressDiffs": -2000,
+          }
+        }
+        onHide={[Function]}
+        onSave={[Function]}
+        show={false}
+        showHelp={true}
+      />
       <FormRow>
         <FormGroup
           as={
@@ -24735,12 +24771,12 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
             />
             <GenericTogglingMenuItem
               onSelect={[Function]}
-              text="Regress 'r:On-Off' to 2000 samples"
-              truthVal={true}
+              text="Configure Luck Adjustments..."
+              truthVal={false}
             />
             <GenericTogglingMenuItem
               onSelect={[Function]}
-              text="Configure Luck Adjustments..."
+              text="Configure Advanced On/Off Stats..."
               truthVal={false}
             />
             <DropdownDivider
@@ -35933,6 +35969,18 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
         show={false}
         showHelp={true}
       />
+      <TeamRosterStatsConfigModal
+        config={
+          Object {
+            "rapmPriorMode": -1,
+            "regressDiffs": -2000,
+          }
+        }
+        onHide={[Function]}
+        onSave={[Function]}
+        show={false}
+        showHelp={true}
+      />
       <FormRow>
         <FormGroup
           as={
@@ -37610,12 +37658,12 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
             />
             <GenericTogglingMenuItem
               onSelect={[Function]}
-              text="Regress 'r:On-Off' to 2000 samples"
-              truthVal={true}
+              text="Configure Luck Adjustments..."
+              truthVal={false}
             />
             <GenericTogglingMenuItem
               onSelect={[Function]}
-              text="Configure Luck Adjustments..."
+              text="Configure Advanced On/Off Stats..."
               truthVal={false}
             />
             <DropdownDivider
@@ -52006,6 +52054,18 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
         show={false}
         showHelp={true}
       />
+      <TeamRosterStatsConfigModal
+        config={
+          Object {
+            "rapmPriorMode": -1,
+            "regressDiffs": -2000,
+          }
+        }
+        onHide={[Function]}
+        onSave={[Function]}
+        show={false}
+        showHelp={true}
+      />
       <FormRow>
         <FormGroup
           as={
@@ -53683,12 +53743,12 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
             />
             <GenericTogglingMenuItem
               onSelect={[Function]}
-              text="Regress 'r:On-Off' to 2000 samples"
-              truthVal={true}
+              text="Configure Luck Adjustments..."
+              truthVal={false}
             />
             <GenericTogglingMenuItem
               onSelect={[Function]}
-              text="Configure Luck Adjustments..."
+              text="Configure Advanced On/Off Stats..."
               truthVal={false}
             />
             <DropdownDivider
@@ -56320,6 +56380,18 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
         show={false}
         showHelp={true}
       />
+      <TeamRosterStatsConfigModal
+        config={
+          Object {
+            "rapmPriorMode": -1,
+            "regressDiffs": -2000,
+          }
+        }
+        onHide={[Function]}
+        onSave={[Function]}
+        show={false}
+        showHelp={true}
+      />
       <FormRow>
         <FormGroup
           as={
@@ -57613,12 +57685,12 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
             />
             <GenericTogglingMenuItem
               onSelect={[Function]}
-              text="Regress 'r:On-Off' to 2000 samples"
-              truthVal={true}
+              text="Configure Luck Adjustments..."
+              truthVal={false}
             />
             <GenericTogglingMenuItem
               onSelect={[Function]}
-              text="Configure Luck Adjustments..."
+              text="Configure Advanced On/Off Stats..."
               truthVal={false}
             />
             <DropdownDivider

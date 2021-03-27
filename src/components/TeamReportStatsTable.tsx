@@ -33,6 +33,7 @@ import RapmPlayerDiagView from "./diags/RapmPlayerDiagView";
 import RepOnOffDiagView from "./diags/RepOnOffDiagView";
 import ToggleButtonGroup from "./shared/ToggleButtonGroup";
 import LuckConfigModal from './shared/LuckConfigModal';
+import TeamRosterStatsConfigModal, { TeamRosterStatsConfig } from './shared/TeamRosterStatsConfigModal';
 import AsyncFormControl from './shared/AsyncFormControl';
 
 // Util imports
@@ -107,6 +108,9 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({startingState, da
   /** Whether we are showing the luck config modal */
   const [ showLuckConfig, setShowLuckConfig ] = useState(false);
 
+  /** Whether we are showing the advanced on/off stats config modal */
+  const [ showTeamRosterStatsConfig, setShowTeamRosterStatsConfig ] = useState(false);
+
   // Display options:
 
   const [ showOnOff, setShowOnOff ] = useState(
@@ -125,11 +129,11 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({startingState, da
     _.isNil(startingState.incRapm) ? ParamDefaults.defaultTeamReportIncRapm : startingState.incRapm
   );
 
-  const [ regressDiffs, setRegressDiffs ] = useState(
-    parseInt(_.isNil(startingState.regressDiffs) ? ParamDefaults.defaultTeamReportRegressDiffs : startingState.regressDiffs)
+  // Advanced stats config:
+  const [ rapmPriorMode, setRapmPriorMode ] = useState(
+    parseFloat(_.isNil(startingState.rapmPriorMode) ? ParamDefaults.defaultTeamReportRapmPriorMode : startingState.rapmPriorMode)
   );
-  //(this won't change unless the page is reloaded)
-  const [ startingRegressDiffs, setStartingRegressDiffs_UNUSED ] = useState(
+  const [ regressDiffs, setRegressDiffs ] = useState(
     parseInt(_.isNil(startingState.regressDiffs) ? ParamDefaults.defaultTeamReportRegressDiffs : startingState.regressDiffs)
   );
 
@@ -172,11 +176,12 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({startingState, da
       incRapm: incRapm,
       regressDiffs: regressDiffs.toString(),
       repOnOffDiagMode: repOnOffDiagMode,
-      rapmDiagMode: rapmDiagMode
+      rapmDiagMode: rapmDiagMode,
+      rapmPriorMode: rapmPriorMode.toString(),
     };
     onChangeState(newState);
   }, [ sortBy, filterStr, showOnOff, showLineupCompositions, incReplacementOnOff, incRapm,
-        regressDiffs, repOnOffDiagMode, rapmDiagMode,
+        regressDiffs, repOnOffDiagMode, rapmDiagMode, rapmPriorMode,
         luckConfig, adjustForLuck ]);
 
   // (cache this below)
@@ -190,7 +195,7 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({startingState, da
     // we're processing (vs just being unresponsive)
     setInBrowserRepOnOffPxing(inBrowserRepOnOffPxing + 1);
 
-  }, [ lineupStats, incReplacementOnOff, incRapm, regressDiffs, repOnOffDiagMode, rapmDiagMode,
+  }, [ lineupStats, incReplacementOnOff, incRapm, regressDiffs, repOnOffDiagMode, rapmDiagMode, rapmPriorMode,
         luckConfig, adjustForLuck ] );
 
   /** logic to perform whenever the data changes (or the metadata in such a way re-processing is required) */
@@ -276,7 +281,7 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({startingState, da
           const rapmContext = RapmUtils.buildPlayerContext(
             tempTeamReport.players || [], lineupStats.lineups || [],
             rapmPriorsBaseline,
-            avgEfficiency, undefined, parseFloat(startingState.rapmPriorMode || ParamDefaults.defaultTeamReportRapmPriorMode)
+            avgEfficiency, undefined, rapmPriorMode
           );
           const [ offRapmWeights, defRapmWeights ] = RapmUtils.calcPlayerWeights(rapmContext);
           const preProcDiags = RapmUtils.calcCollinearityDiag(offRapmWeights, rapmContext);
@@ -640,6 +645,16 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({startingState, da
         luck={luckConfig}
         showHelp={showHelp}
       />
+      <TeamRosterStatsConfigModal
+        show={showTeamRosterStatsConfig}
+        onHide={() => setShowTeamRosterStatsConfig(false)}
+        onSave={(config: TeamRosterStatsConfig) => {
+          setRegressDiffs(config.regressDiffs);
+          setRapmPriorMode(config.rapmPriorMode);
+        }}
+        config={{rapmPriorMode: rapmPriorMode, regressDiffs: regressDiffs}}
+        showHelp={showHelp}
+      />
       <Form.Row>
         <Form.Group as={Col} sm="6">
           <InputGroup>
@@ -704,22 +719,14 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({startingState, da
             />
             <Dropdown.Divider />
             <GenericTogglingMenuItem
-              text={`Regress 'r:On-Off' ${
-                startingRegressDiffs > 0 ? "by" : "to"
-              } ${
-                Math.abs(startingRegressDiffs != 0 ? startingRegressDiffs : parseInt(ParamDefaults.defaultTeamReportRegressDiffs))
-              } samples`}
-              truthVal={regressDiffs != 0}
-              onSelect={() => setRegressDiffs(
-                regressDiffs != 0 ?
-                  0 : // switch off if on, else switch to the number the page was loaded with
-                  (startingRegressDiffs != 0 ? startingRegressDiffs : parseInt(ParamDefaults.defaultTeamReportRegressDiffs))
-              )}
-            />
-            <GenericTogglingMenuItem
               text="Configure Luck Adjustments..."
               truthVal={false}
               onSelect={() => setShowLuckConfig(true)}
+            />
+            <GenericTogglingMenuItem
+              text="Configure Advanced On/Off Stats..."
+              truthVal={false}
+              onSelect={() => setShowTeamRosterStatsConfig(true)}
             />
             <Dropdown.Divider />
             <GenericTogglingMenuItem

@@ -139,8 +139,8 @@ describe("HistoryManager", () => {
     expect(HistoryManager.teamReportFilterSummary(_.assign(_.clone(report2), { incRapm: true, rapmDiagMode: "" }))).toBe(
       `On/Off Report: 2018/19 team3 (W) [10:370]: query:'test ""' (sort:test-sort, filter:'Test"Filter', show:[rapm])`
     );
-    expect(HistoryManager.teamReportFilterSummary(_.assign(_.clone(report2), { incRapm: true, rapmDiagMode: "base" }))).toBe(
-      `On/Off Report: 2018/19 team3 (W) [10:370]: query:'test ""' (sort:test-sort, filter:'Test"Filter', show:[rapm,rapm:diag])`
+    expect(HistoryManager.teamReportFilterSummary(_.assign(_.clone(report2), { incRapm: true, rapmDiagMode: "base", rapmPriorMode: 0.5 }))).toBe(
+      `On/Off Report: 2018/19 team3 (W) [10:370]: query:'test ""' (sort:test-sort, filter:'Test"Filter', show:[rapm:prior=0.5,rapm:diag])`
     );
     expect(HistoryManager.teamReportFilterSummary(_.assign(_.clone(report2), { incRepOnOff: true, repOnOffDiagMode: 10 }))).toBe(
       `On/Off Report: 2018/19 team3 (W) [10:370]: query:'test ""' (sort:test-sort, filter:'Test"Filter', show:[r:on-off,r:on-off:diag])`
