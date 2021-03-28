@@ -58,6 +58,7 @@ import ReactDOMServer from 'react-dom/server'
 export type LineupLeaderboardStatsModel = {
   lineups?: Array<any>,
   confs?: Array<string>,
+  confMap?: Map<string, Array<string>>,
   lastUpdated?: number,
   error?: string
 }
@@ -494,6 +495,12 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
     }
   };
 
+  const confsWithTeams = dataEvent?.confMap ?
+    _.toPairs(dataEvent?.confMap || {}).map(kv => {
+      const teams = kv[1] || [];
+      return _.isEmpty(teams) ? kv[0] : `${kv[0]} [${teams.join(", ")}]`;
+    }) : (dataEvent?.confs || []);
+
   return <Container>
     <LoadingOverlay
       active={needToLoadQuery()}
@@ -529,12 +536,13 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
           isMulti
           components={{ MultiValueContainer: ConferenceValueContainer }}
           value={ getCurrentConfsOrPlaceholder() }
-          options={(tier == "High" ? ["Power 6 Conferences"] : []).concat(_.sortBy(dataEvent?.confs || [])).map(
+          options={(tier == "High" ? ["Power 6 Conferences"] : []).concat(_.sortBy(confsWithTeams)).map(
             (r) => stringToOption(r)
           )}
           onChange={(optionsIn) => {
             const options = optionsIn as Array<any>;
-            const selection = (options || []).map(option => (option as any)?.value || "");
+            const selection = (options || [])
+              .map(option => ((option as any)?.value || "").replace(/ *\[.*\]/, ""));
             const confStr = selection.filter((t: string) => t != "").map((c: string) => ConferenceToNickname[c] || c).join(",")
             friendlyChange(() => setConfs(confStr), confs != confStr);
           }}
