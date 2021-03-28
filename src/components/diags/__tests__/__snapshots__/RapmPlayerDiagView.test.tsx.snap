@@ -86,70 +86,9 @@ exports[`RapmPlayerDiagView RapmPlayerDiagView - should create snapshot 1`] = `
         ]
       </li>
     </ul>
-    <li>
-       + POST RAPM adjustment: off=[
-      <b>
-        0.00
-      </b>
-      ], def=[
-      <b>
-        -0.47
-      </b>
-      ], total=[
-      <b>
-        0.47
-      </b>
-      ]
-    </li>
-    <ul>
+    <span>
       <li>
-        We calculate a team adjustment (off=[
-        <b>
-          -10.15
-        </b>
-        ] def=[
-        <b>
-          -2.07
-        </b>
-        ]) to reduce/remove the the delta between total adjusted efficiency and RAPM (due to the regression factor): eg compare 
-        <em>
-          observed
-        </em>
-         (off=[
-        <b>
-          10.00
-        </b>
-        ] def=[
-        <b>
-          -20.00
-        </b>
-        ]) vs 
-        <em>
-          derived solely from RAPM
-        </em>
-         (off=[
-        <b>
-          20.15
-        </b>
-        ] def=[
-        <b>
-          -17.93
-        </b>
-        ]).
-      </li>
-      <li>
-        Then we calculate a player's contribution to this team total - currently this is a fraction of "Adj Rtg+": off=[
-        <b>
-          4.00
-        </b>
-        ] def=[
-        <b>
-          -4.00
-        </b>
-        ]), ...
-      </li>
-      <li>
-        ... chosen so that a minutes-weighted average of the ratings sums to the team value: off=[
+         + POST RAPM adjustment: off=[
         <b>
           0.00
         </b>
@@ -157,41 +96,106 @@ exports[`RapmPlayerDiagView RapmPlayerDiagView - should create snapshot 1`] = `
         <b>
           -0.47
         </b>
+        ], total=[
+        <b>
+          0.47
+        </b>
         ]
-        <ul>
-          <li>
-            <em>
-               (eg incorporating the % on floor [
-              <b>
-                82
-                %
-              </b>
-              ] (of [
-              <b>
-                101
-              </b>
-              ] poss, this is an off=[
-              <b>
-                0.00
-              </b>
-              ] def=[
-              <b>
-                -0.38
-              </b>
-              ] "slice" of the team total of off=[
-              <b>
-                -10.15
-              </b>
-              ] def=[
-              <b>
-                -2.07
-              </b>
-              ])
-            </em>
-          </li>
-        </ul>
       </li>
-    </ul>
+      <ul>
+        <li>
+          We calculate a team adjustment (off=[
+          <b>
+            -10.15
+          </b>
+          ] def=[
+          <b>
+            -2.07
+          </b>
+          ]) to reduce/remove the the delta between total adjusted efficiency and RAPM (due to the regression factor): eg compare 
+          <em>
+            observed
+          </em>
+           (off=[
+          <b>
+            10.00
+          </b>
+          ] def=[
+          <b>
+            -20.00
+          </b>
+          ]) vs 
+          <em>
+            derived solely from RAPM
+          </em>
+           (off=[
+          <b>
+            20.15
+          </b>
+          ] def=[
+          <b>
+            -17.93
+          </b>
+          ]).
+        </li>
+        <span>
+          <li>
+            Then we calculate a player's contribution to this team total - currently this is a fraction of "Adj Rtg+": off=[
+            <b>
+              4.00
+            </b>
+            ] def=[
+            <b>
+              -4.00
+            </b>
+            ]), ...
+          </li>
+          <li>
+            ... chosen so that a minutes-weighted average of the ratings sums to the team value: off=[
+            <b>
+              0.00
+            </b>
+            ], def=[
+            <b>
+              -0.47
+            </b>
+            ]
+            <ul>
+              <li>
+                <em>
+                   (eg incorporating the % on floor [
+                  <b>
+                    82
+                    %
+                  </b>
+                  ] (of [
+                  <b>
+                    101
+                  </b>
+                  ] poss, this is an off=[
+                  <b>
+                    0.00
+                  </b>
+                  ] def=[
+                  <b>
+                    -0.38
+                  </b>
+                  ] "slice" of the team total of off=[
+                  <b>
+                    -10.15
+                  </b>
+                  ] def=[
+                  <b>
+                    -2.07
+                  </b>
+                  ])
+                </em>
+              </li>
+            </ul>
+          </li>
+        </span>
+      </ul>
+    </span>
   </ul>
   (
   <b>

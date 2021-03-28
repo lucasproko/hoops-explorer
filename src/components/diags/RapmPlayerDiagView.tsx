@@ -68,21 +68,31 @@ const RapmPlayerDiagView: React.FunctionComponent<Props> = (({rapmInfo, player, 
       the delta between total adjusted efficiency and RAPM (due to the regression factor): eg compare <em>observed</em> (off=[<b>{teamOffAdj.toFixed(2)}</b>] def=[<b>{teamDefAdj.toFixed(2)}</b>])
       vs <em>derived solely from RAPM</em> (off=[<b>{sigmaRapmOff.toFixed(2)}</b>] def=[<b>{sigmaRapmDef.toFixed(2)}</b>]).
       </li>
-      <li>Then we calculate a player's contribution to this team total - currently this is a fraction of
-      "Adj Rtg+": off=[<b>{offPrior.toFixed(2)}</b>] def=[<b>{defPrior.toFixed(2)}</b>]), ...
-      </li>
-      <li>
-      ... chosen so that a minutes-weighted average of the ratings sums to the team value: off=[<b>{offPriorContrib.toFixed(2)}</b>], def=[<b>{defPriorContrib.toFixed(2)}</b>]
-        <ul>
-          <li>
-          <em> (eg incorporating the % on floor [<b>{offPossPctStr}%</b>] (of [<b>{totalOffPoss}</b>] poss,
-             this is an off=[<b>{(offPriorContrib*offPoss).toFixed(2)}</b>] def=[<b>{(defPriorContrib*defPoss).toFixed(2)}</b>]
-            "slice" of the team total of off=[<b>{offPriorTotalDiff.toFixed(2)}</b>] def=[<b>{defPriorTotalDiff.toFixed(2)}</b>])</em>
+      {ctx.priorInfo.useRecursiveWeakPrior ?
+        <span>
+          <ul>
+            <li>(In "recursive prior" mode this is just a factor of the player's raw RAPM, see above)</li>
+          </ul>
+        </span>
+        :
+        <span>
+          <li>Then we calculate a player's contribution to this team total - currently this is a fraction of
+          "Adj Rtg+": off=[<b>{offPrior.toFixed(2)}</b>] def=[<b>{defPrior.toFixed(2)}</b>]), ...
           </li>
-        </ul>
-      </li>
+          <li>
+          ... chosen so that a minutes-weighted average of the ratings sums to the team value: off=[<b>{offPriorContrib.toFixed(2)}</b>], def=[<b>{defPriorContrib.toFixed(2)}</b>]
+            <ul>
+              <li>
+              <em> (eg incorporating the % on floor [<b>{offPossPctStr}%</b>] (of [<b>{totalOffPoss}</b>] poss,
+                 this is an off=[<b>{(offPriorContrib*offPoss).toFixed(2)}</b>] def=[<b>{(defPriorContrib*defPoss).toFixed(2)}</b>]
+                "slice" of the team total of off=[<b>{offPriorTotalDiff.toFixed(2)}</b>] def=[<b>{defPriorTotalDiff.toFixed(2)}</b>])</em>
+              </li>
+            </ul>
+          </li>
+        </span>
+      }
     </ul>;
-    
+
     const adaptiveWeight = ctx.priorInfo.strongWeight >= 0 ? ctx.priorInfo.strongWeight : maybeAdaptiveWeight;
     const rapmPriorOverrideInfo = ctx.priorInfo.strongWeight >= 0 ?
       <span> (hand-overwritten to <b>{(adaptiveWeight).toFixed(2)}</b>)</span> : null;
@@ -107,8 +117,11 @@ const RapmPlayerDiagView: React.FunctionComponent<Props> = (({rapmInfo, player, 
         <ul>
           <li>RAPM contribution: off=[<b>{offUnbiasRapm.toFixed(2)}</b>], def=[<b>{defUnbiasRapm.toFixed(2)}</b>], total=[<b>{totalRawRapm.toFixed(2)}</b>]</li>
             {detailedInfoPre}
-          <li>&nbsp;+ POST RAPM adjustment: off=[<b>{offPriorContrib.toFixed(2)}</b>], def=[<b>{defPriorContrib.toFixed(2)}</b>], total=[<b>{totalPrior.toFixed(2)}</b>]</li>
+          {(!ctx.priorInfo.noWeakPrior || ctx.priorInfo.useRecursiveWeakPrior) ?
+            <span><li>&nbsp;+ POST RAPM adjustment: off=[<b>{offPriorContrib.toFixed(2)}</b>], def=[<b>{defPriorContrib.toFixed(2)}</b>], total=[<b>{totalPrior.toFixed(2)}</b>]</li>
             {detailedInfoPost}
+            </span> : null
+          }
         </ul>
         (<b>More player diagnostics to come...</b>)<br/>(<a href="#" onClick={(event) => { event.preventDefault(); gotoGlobalDiags() }}>Scroll to global RAPM diagnostics</a>)
       </span>;
