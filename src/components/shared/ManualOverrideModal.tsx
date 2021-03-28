@@ -223,7 +223,11 @@ const ManualOverrideModal: React.FunctionComponent<Props> = (
 
   const statsTableFields = CommonTableDefs.onOffIndividualTable(true, false, false, false); //(expanded view, abs poss count, rating not prod)
 
-  return <div><Modal size="lg" {...props}>
+  return <div><Modal size="lg" {...props}
+    onEntered={() => {
+      document.body.style.overflow = "scroll";
+    }}
+  >
     <Modal.Header closeButton>
       <Modal.Title>Manual Overrides</Modal.Title>&nbsp;{showHelp ?
         <a target="_blank" href="https://hoop-explorer.blogspot.com/TODO.html">(?)</a> : null

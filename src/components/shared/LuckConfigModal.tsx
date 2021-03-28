@@ -34,7 +34,11 @@ const LuckConfigModal: React.FunctionComponent<Props> = ({onSave, luck, showHelp
 
   // State decomposition:
   const [ generalLuckBase, setGeneralLuckBase ] = useState(luck.base as "baseline" | "season");
-  return <Modal {...props}>
+  return <Modal {...props}
+    onEntered={() => {
+      document.body.style.overflow = "scroll";
+    }}
+  >
     <Modal.Header closeButton>
       <Modal.Title>Luck Adjustment Config</Modal.Title>&nbsp;{showHelp ?
         <a target="_blank" href="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html">(?)</a> : null

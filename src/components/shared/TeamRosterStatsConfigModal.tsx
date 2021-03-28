@@ -45,7 +45,11 @@ const TeamRosterStatsConfigModal: React.FunctionComponent<Props> = ({onSave, con
   };
   // State decomposition:
   const [ savedConfig, setSavedConfig ] = useState(config);
-  return <Modal {...props}>
+  return <Modal {...props}
+    onEntered={() => {
+      document.body.style.overflow = "scroll";
+    }}
+  >
     <Modal.Header closeButton>
       <Modal.Title>Advanced On/Off Stats Config</Modal.Title>&nbsp;{showHelp ?
         <a target="_blank" href="https://hoop-explorer.blogspot.com/2020/03/understanding-team-report-onoff-page.html">(?)</a> : null
