@@ -250,6 +250,7 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({startingState, da
           // Do some prep on the individual stats we'll use for the prior:
           const globalRosterStatsByCode = RosterTableUtils.buildRosterTableByCode(rosterStats.global || []);
           const insertExtraInfo = (playersTmp: Array<any>) => {
+            //TODO: port this over to LineupTableUtils.buildBaselinePlayerInfo to avoid duplication
             if (playersTmp) {
               const players = _.cloneDeep(playersTmp);
               players.forEach((stat) => {

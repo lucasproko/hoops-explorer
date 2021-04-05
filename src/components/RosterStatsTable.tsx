@@ -250,35 +250,40 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
     setCachedRapm({});
   }, [ dataEvent, adjustForLuck, manualOverrides ]);
 
-  const baselinePlayerInfo = LineupTableUtils.buildBaselinePlayerInfo(
-    rosterStats.baseline, globalRosterStatsByCode, teamStats.baseline, avgEfficiency
-  );
   const positionFromPlayerKey = LineupTableUtils.buildPositionPlayerMap(rosterStats.global, teamSeasonLookup);
 
   /** For a given lineup set, calculate RAPM as quickly as possible */
-  const buildRapm = (lineupStats: LineupStatsModel) => {
+  const buildRapm = (lineupStats: LineupStatsModel, playerInfo: Record<string, any>) => {
     //TODO: manual edits don't show as override (so can't see original value) - fix at some point
     // but not worth delaying over
+
+    //TODO: note luck isn't quite the same, because the team and player stats here
+    // are adjusted for luck whereas for (over-?)caution reasons in other RAPM pages I only inject luck into the player
+    // defensive stats, and need to check if I do anything with the team stats)
+    // (ideally I'd make this code consistent for now but I made a bit of a mess of the mutation here
+    //  - for good performance reasons! - so I'd need to do some refactoring first)
 
     const preRapmTableData = LineupTableUtils.buildEnrichedLineups(
       lineupStats.lineups || [],
       teamStats.global, rosterStats.global, teamStats.baseline,
+        //(the baseline vs on/off here doesn't make any practical difference)
       adjustForLuck, luckConfig.base, avgEfficiency,
-      false, teamSeasonLookup, positionFromPlayerKey, baselinePlayerInfo
+      false, teamSeasonLookup, positionFromPlayerKey, playerInfo
     );
     const tempTeamReport = LineupUtils.lineupToTeamReport({
       lineups: preRapmTableData
     });
     const rapmContext = RapmUtils.buildPlayerContext(
       tempTeamReport.players || [], preRapmTableData,
-      baselinePlayerInfo,
-      avgEfficiency
+      playerInfo,
+      avgEfficiency,
     );
     const [ offRapmWeights, defRapmWeights ] = RapmUtils.calcPlayerWeights(rapmContext);
     const preProcDiags = RapmUtils.calcCollinearityDiag(offRapmWeights, rapmContext);
     const [ offRapmInputs, defRapmInputs ] = RapmUtils.pickRidgeRegression(
       offRapmWeights, defRapmWeights, rapmContext, preProcDiags.adaptiveCorrelWeights, false
     );
+
     RapmUtils.injectRapmIntoPlayers(
       tempTeamReport.players || [], offRapmInputs, defRapmInputs, {}, rapmContext, preProcDiags.adaptiveCorrelWeights
     );
@@ -299,17 +304,23 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
 
   const buildAllRapm = () => {
     if (calcRapm && _.isEmpty(cachedRapm)) {
-        const rapmInfos = (lineupStats || []).map(lineupStat => {
+      const onIndex = (gameFilterParams.onQuery != "") ? 1 : 3;
+      const offIndex = (gameFilterParams.onQuery != "") ? 2 : 1;
+      const rapmInfos = (lineupStats || []).map((lineupStat, i) => {
         try {
-          return buildRapm(lineupStat)
-        } catch (err) {
+          const key = (0 == i) ? "baseline" : (onIndex == i) ? "on" : "off";
+          const playerInfo = LineupTableUtils.buildBaselinePlayerInfo(
+            rosterStats[key]!, globalRosterStatsByCode, teamStats[key]!, avgEfficiency
+          );
+          return buildRapm(lineupStat, playerInfo);
+        } catch (err) { //(data not ready, ignore for now)
           return {};
         }
       });
       setCachedRapm({
         baseline: rapmInfos?.[0],
-        on: (gameFilterParams.onQuery) != "" ? rapmInfos?.[1] : undefined,
-        off: (gameFilterParams.onQuery) != "" ? rapmInfos?.[2] : rapmInfos?.[1],
+        on: rapmInfos?.[onIndex],
+        off: rapmInfos?.[offIndex],
       });
     }
   };
@@ -930,7 +941,9 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
             },
             {
               label: "RAPM",
-              tooltip: "Whether to calculate the RAPM Off/Def metrics for each player (can be slow - also on/off RAPMs can be very unreliable, particularly for high/low poss% values)",
+              tooltip:
+                "Whether to calculate the RAPM Off/Def metrics for each player (can be slow - also on/off RAPMs can be very unreliable, particularly for high/low poss% values)" +
+                (adjustForLuck ? ". Note luck is applied more aggressively here than in the leaderboard/team report pages" : ""),
               toggled: calcRapm,
               onClick: () => setCalcRapm(!calcRapm)
             },

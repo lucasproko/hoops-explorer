@@ -468,8 +468,6 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                         "value": 0.34782608695652173,
                       }},
           {
-            code: "AnCowan"
-
             def_2pmidr: <small
                         style={
                           Object {
@@ -926,8 +924,6 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                         "value": 0.291044776119403,
                       }},
           {
-            code: "AaWiggins"
-
             def_2pmidr: <small
                         style={
                           Object {
@@ -1396,8 +1392,6 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
-                code: "AnCowan"
-
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -1632,8 +1626,6 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
-                code: "AnCowan"
-
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -3280,8 +3272,6 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
-                code: "AaWiggins"
-
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -3516,8 +3506,6 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
-                code: "AaWiggins"
-
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -6086,8 +6074,6 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
       inStats={
         Array [
           {
-            code: "AnCowan"
-
             def_2pmidr: <small
                         style={
                           Object {
@@ -6309,8 +6295,6 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
                         "value": 0.3227953410981697,
                       }},
           {
-            code: "AaWiggins"
-
             def_2pmidr: <small
                         style={
                           Object {
@@ -6544,8 +6528,6 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
-                code: "AnCowan"
-
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -6773,8 +6755,6 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
-                code: "AnCowan"
-
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -7004,8 +6984,6 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
-                code: "AaWiggins"
-
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -7233,8 +7211,6 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
-                code: "AaWiggins"
-
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -8106,8 +8082,6 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
               GenericTableDataRow {
                 "cellMetaFn": [Function],
                 "dataObj": {
-                  code: "AnCowan"
-
                   def_2pmidr: <small
                                     style={
                                       Object {
@@ -8338,8 +8312,6 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
               GenericTableDataRow {
                 "cellMetaFn": [Function],
                 "dataObj": {
-                  code: "AaWiggins"
-
                   def_2pmidr: <small
                                     style={
                                       Object {
@@ -8845,8 +8817,6 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
       inStats={
         Array [
           {
-            code: "AnCowan"
-
             def_2pmidr: <small
                         style={
                           Object {
@@ -9027,8 +8997,6 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                         "value": 0.3227953410981697,
                       }},
           {
-            code: "AaWiggins"
-
             def_2pmidr: <small
                         style={
                           Object {
@@ -9221,8 +9189,6 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
-                code: "AnCowan"
-
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -9409,8 +9375,6 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
-                code: "AnCowan"
-
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -9599,8 +9563,6 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
-                code: "AaWiggins"
-
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -9787,8 +9749,6 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
-                code: "AaWiggins"
-
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -10619,8 +10579,6 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
               GenericTableDataRow {
                 "cellMetaFn": [Function],
                 "dataObj": {
-                  code: "AnCowan"
-
                   def_2pmidr: <small
                                     style={
                                       Object {
@@ -10807,8 +10765,6 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
               GenericTableDataRow {
                 "cellMetaFn": [Function],
                 "dataObj": {
-                  code: "AnCowan"
-
                   def_2pmidr: <small
                                     style={
                                       Object {
@@ -10998,8 +10954,6 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
               GenericTableDataRow {
                 "cellMetaFn": [Function],
                 "dataObj": {
-                  code: "AaWiggins"
-
                   def_2pmidr: <small
                                     style={
                                       Object {
@@ -11186,8 +11140,6 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
               GenericTableDataRow {
                 "cellMetaFn": [Function],
                 "dataObj": {
-                  code: "AaWiggins"
-
                   def_2pmidr: <small
                                     style={
                                       Object {
@@ -12084,8 +12036,6 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                         "value": 0.34782608695652173,
                       }},
           {
-            code: "AnCowan"
-
             def_2pmidr: <small
                         style={
                           Object {
@@ -12458,8 +12408,6 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                         "value": 0.291044776119403,
                       }},
           {
-            code: "AaWiggins"
-
             def_2pmidr: <small
                         style={
                           Object {
@@ -12844,8 +12792,6 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
-                code: "AnCowan"
-
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -13038,8 +12984,6 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
-                code: "AnCowan"
-
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -14392,8 +14336,6 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
-                code: "AaWiggins"
-
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -14586,8 +14528,6 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
-                code: "AaWiggins"
-
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -18206,8 +18146,6 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                         "value": 0.3251726283750374,
                       }},
           {
-            code: "AnCowan"
-
             def_2pmidr: <small
                         style={
                           Object {
@@ -18718,8 +18656,6 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                         "value": 0.3213607857535103,
                       }},
           {
-            code: "AaWiggins"
-
             def_2pmidr: <small
                         style={
                           Object {
@@ -19220,8 +19156,6 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
-                code: "AnCowan"
-
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -19480,8 +19414,6 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
-                code: "AnCowan"
-
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -21288,8 +21220,6 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
-                code: "AaWiggins"
-
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -21548,8 +21478,6 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
-                code: "AaWiggins"
-
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -22934,7 +22862,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                 "label": "RAPM",
                 "onClick": [Function],
                 "toggled": false,
-                "tooltip": "Whether to calculate the RAPM Off/Def metrics for each player (can be slow - also on/off RAPMs can be very unreliable, particularly for high/low poss% values)",
+                "tooltip": "Whether to calculate the RAPM Off/Def metrics for each player (can be slow - also on/off RAPMs can be very unreliable, particularly for high/low poss% values). Note luck is applied more aggressively here than in the leaderboard/team report pages",
               },
               Object {
                 "label": "Luck",
@@ -26022,8 +25950,6 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
 
             role: "s-PG"},
           {
-            code: "AnCowan"
-
             def_2pmidr: <small
                         style={
                           Object {
@@ -26544,8 +26470,6 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
 
             role: "WG"},
           {
-            code: "AaWiggins"
-
             def_2pmidr: <small
                         style={
                           Object {
@@ -27059,8 +26983,6 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
-                code: "AnCowan"
-
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -27327,8 +27249,6 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
-                code: "AnCowan"
-
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -29155,8 +29075,6 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
-                code: "AaWiggins"
-
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -29417,8 +29335,6 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
-                code: "AaWiggins"
-
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -30809,7 +30725,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                 "label": "RAPM",
                 "onClick": [Function],
                 "toggled": false,
-                "tooltip": "Whether to calculate the RAPM Off/Def metrics for each player (can be slow - also on/off RAPMs can be very unreliable, particularly for high/low poss% values)",
+                "tooltip": "Whether to calculate the RAPM Off/Def metrics for each player (can be slow - also on/off RAPMs can be very unreliable, particularly for high/low poss% values). Note luck is applied more aggressively here than in the leaderboard/team report pages",
               },
               Object {
                 "label": "Luck",
@@ -31719,8 +31635,6 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                   rosterStatsByCode={
                     Object {
                       "AaWiggins": {
-                        code: "AaWiggins"
-
                         def_2pmidr: <small
                                                 style={
                                                   Object {
@@ -31967,8 +31881,6 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
 
                         role: "WG"},
                       "AnCowan": {
-                        code: "AnCowan"
-
                         def_2pmidr: <small
                                                 style={
                                                   Object {
@@ -33089,8 +33001,6 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                   rosterStatsByCode={
                     Object {
                       "AaWiggins": {
-                        code: "AaWiggins"
-
                         def_2pmidr: <small
                                                 style={
                                                   Object {
@@ -33337,8 +33247,6 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
 
                         role: "WG"},
                       "AnCowan": {
-                        code: "AnCowan"
-
                         def_2pmidr: <small
                                                 style={
                                                   Object {
@@ -34462,8 +34370,6 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                   rosterStatsByCode={
                     Object {
                       "AaWiggins": {
-                        code: "AaWiggins"
-
                         def_2pmidr: <small
                                                 style={
                                                   Object {
@@ -34710,8 +34616,6 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
 
                         role: "WG"},
                       "AnCowan": {
-                        code: "AnCowan"
-
                         def_2pmidr: <small
                                                 style={
                                                   Object {
@@ -35739,8 +35643,6 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                   rosterStatsByCode={
                     Object {
                       "AaWiggins": {
-                        code: "AaWiggins"
-
                         def_2pmidr: <small
                                                 style={
                                                   Object {
@@ -35987,8 +35889,6 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
 
                         role: "WG"},
                       "AnCowan": {
-                        code: "AnCowan"
-
                         def_2pmidr: <small
                                                 style={
                                                   Object {
@@ -37005,8 +36905,6 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                         "value": 0.34782608695652173,
                       }},
           {
-            code: "AnCowan"
-
             def_2pmidr: <small
                         style={
                           Object {
@@ -37491,8 +37389,6 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                         "value": 0.291044776119403,
                       }},
           {
-            code: "AaWiggins"
-
             def_2pmidr: <small
                         style={
                           Object {
@@ -37986,8 +37882,6 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
-                code: "AnCowan"
-
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -38242,8 +38136,6 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
-                code: "AnCowan"
-
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -39958,8 +39850,6 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
-                code: "AaWiggins"
-
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -40202,8 +40092,6 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
-                code: "AaWiggins"
-
                 def_2pmidr: <small
                                 style={
                                   Object {
