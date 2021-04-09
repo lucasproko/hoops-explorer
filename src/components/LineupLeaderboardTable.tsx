@@ -232,7 +232,7 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
         //(we do the "spurious" minPossNum check so we can detect filter presence and use to add a ranking)
     }).filter((lineup) => { //Positional filters
       if (lineupFilters.size > 0) {
-        const teamSeasonLookup = `${startingState.gender}_${lineup.team}_${startingState.year}`;
+        const teamSeasonLookup = `${startingState.gender}_${lineup.team}_${lineup.year}`;
         const perLineupBaselinePlayerMap = lineup.player_info;
         const positionFromPlayerKey = lineup.player_info;
         const codesAndIds = LineupTableUtils.buildCodesAndIds(lineup);
@@ -288,7 +288,7 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       ;
 
     const tableData = lineups.flatMap((lineup, lineupIndex) => {
-      const teamSeasonLookup = `${startingState.gender}_${lineup.team}_${startingState.year}`;
+      const teamSeasonLookup = `${startingState.gender}_${lineup.team}_${lineup.year}`;
 
       // Rebuild net margin in case the raw data doesn't include it:
       LineupUtils.buildEfficiencyMargins(lineup, "value");
