@@ -9,8 +9,8 @@ export const dataLastUpdated: Record<string, number> = { //Update by executing .
   "Women_2018/9": 1554854420,
   "Men_2019/20": 1583968717,
   "Women_2019/20": 1583968716,
-  "Men_2020/21": 1617682984,
-  "Women_2020/21": 1617682984,
+  "Men_2020/21": 1617682985,
+  "Women_2020/21": 1617682985,
   "Men_2021/22": parseInt(process.env.MEN_CURR_UPDATE || "0"),
   "Women_2021/22": parseInt(process.env.WOMEN_CURR_UPDATE || "0")
 };
