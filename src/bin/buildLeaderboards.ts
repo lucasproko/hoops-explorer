@@ -39,6 +39,10 @@ const sleep = (milliseconds: number) => {
   return new Promise(resolve => setTimeout(resolve, milliseconds));
 }
 
+/** For completed years, filter based on possessions */
+const ongoingYear = "2021/22";
+const averagePossInCompletedYear = 1600;
+
 /** Handy util for reducing  */
 const reduceNumberSize = (k: string, v: any) => {
   if (_.isNumber(v)) {
@@ -285,7 +289,17 @@ export async function main() {
 
       // Merge ratings and position, and filter based on offensive possessions played
       const enrichedAndFilteredPlayers = _.toPairs(baselinePlayerInfo).filter(kv => {
-        return kv[1].off_team_poss_pct!.value! > 0.37; //(~15mpg min)
+
+        const globalTeamPoss = teamGlobal?.def_poss?.value || 0; //(global has def_poss but not off_poss)
+        const playerPossPct = kv[1].off_team_poss_pct?.value || 0;
+
+        // Basically: for teams that have played fewer possessions, but a decent number overall relative to their team
+        // we'll allow it!
+        const teamFactor = Math.min(globalTeamPoss/averagePossInCompletedYear, 1.0);
+        const secondaryFilter =
+          (fullRequestModel.year == ongoingYear) || (teamFactor*playerPossPct > 0.25);
+
+        return secondaryFilter && (playerPossPct > 0.37); //(~15mpg min)
       }).map(kv => {
         const posInfo = positionFromPlayerKey[kv[0]] || {};
         return {
