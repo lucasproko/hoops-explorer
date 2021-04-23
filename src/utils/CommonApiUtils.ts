@@ -151,11 +151,13 @@ export class CommonApiUtils {
           // (...Special case for player request - enrich with roster...)
           const rosterInfoPromise = (queryPrefix == ParamPrefixes.player) ?
             _fs.promises.readFile(
-              `./public/rosters/${gender}_${yearStr}/${params.team.toString().replace()}.json`, { encoding: "UTF-8" }
+              `${pxIsDebug ? "./public/" : process.cwd()}/rosters/${gender}_${yearStr}/${params.team.toString().replace()}.json`, { encoding: "UTF-8" }
             ).then(
               (jsonStr: any) => JSON.parse(jsonStr)
             ).catch( //(carry on error, eg if the file doesn't exist)
-              (err: any) => undefined
+              (err: any) => {
+                return undefined;
+              }
             ) : Promise.resolve(undefined)
 
           const waitForAll = Promise.all([requestPromise, rosterInfoPromise]);
