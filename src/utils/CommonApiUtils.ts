@@ -145,9 +145,9 @@ export class CommonApiUtils {
             readFile(
               `./public/rosters/${gender}_${yearStr}/${params.team.toString().replace()}.json`, { encoding: "UTF-8" }
             ).then(
-              jsonStr => JSON.parse(jsonStr)
+              (jsonStr: any) => JSON.parse(jsonStr)
             ).catch( //(carry on error, eg if the file doesn't exist)
-              (err) => undefined
+              (err: any) => undefined
             ) : Promise.resolve(undefined)
 
           const waitForAll = Promise.all([requestPromise, rosterInfoPromise]);
