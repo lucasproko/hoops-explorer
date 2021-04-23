@@ -3,7 +3,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import fetch from 'isomorphic-unfetch';
 import _ from 'lodash';
-import { readFile } from 'fs/promises';
 
 // Application imports
 import { teamStatsQuery } from "./es-queries/teamStatsQueryTemplate";
@@ -26,6 +25,10 @@ if (pxIsDebug) {
   console.log(`Use test indices = [${pxUseTestIndices}]`);
 }
 
+/** FS module, only gets imported server side */
+var  _fs: any = null;
+
+/** NOTE: can only be called server side */
 export class CommonApiUtils {
 
   static getHca(params: CommonFilterParams) {
@@ -140,9 +143,14 @@ export class CommonApiUtils {
           // (launch async request...)
           const requestPromise = makeRequest(body)
 
+          if (!_fs) {
+            // Need to do it this way to ensure this only happens server side:
+            _fs = await import('fs');
+          }
+
           // (...Special case for player request - enrich with roster...)
           const rosterInfoPromise = (queryPrefix == ParamPrefixes.player) ?
-            readFile(
+            _fs.promises.readFile(
               `./public/rosters/${gender}_${yearStr}/${params.team.toString().replace()}.json`, { encoding: "UTF-8" }
             ).then(
               (jsonStr: any) => JSON.parse(jsonStr)
