@@ -163,8 +163,12 @@ export class CommonTableDefs {
       "RAPM Prod", "Adjusted Plus-Minus production (pts/100 * mins%) vs D1 average" + (expandedView ? "" : " (Off-Def margin)"),
       CbbColors.picker(...CbbColors.diff10_p100_redGreen), GenericTableOps.pointsOrHtmlFormatter),
     "sep1": GenericTableOps.addColSeparator(),
-    "efg": GenericTableOps.addPctCol("eFG%", "Effective field goal% (3 pointers count 1.5x as much) in selected lineups", CbbColors.picker(...CbbColors.eFG)),
-    "assist": GenericTableOps.addPctCol("A%", "Assist % for player in selected lineups", CbbColors.picker(...CbbColors.p_ast)),
+    "efg": GenericTableOps.addDataCol(
+      "eFG%", "Effective field goal% (3 pointers count 1.5x as much) in selected lineups",
+      CbbColors.offOnlyPicker(...CbbColors.eFG), GenericTableOps.percentOrHtmlFormatter),
+    "assist": GenericTableOps.addDataCol(
+      "A%", "Assist % for player in selected lineups",
+       CbbColors.offOnlyPicker(...CbbColors.p_ast), GenericTableOps.percentOrHtmlFormatter),
     "to": GenericTableOps.addPctCol(
         expandedView ? (<div>TO%{lineSep} Stl%</div>) : "TO%",
         expandedView ? "Turnover % / Steal % in selected lineups" : "Turnover % in selected lineups",

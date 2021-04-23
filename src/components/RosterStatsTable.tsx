@@ -464,6 +464,15 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
         stat.off_luck = offLuckAdj;
         stat.def_luck = defLuckAdj;
 
+        // Apply roster info:
+        const playerCode = teamStats.global?.roster ?
+          (stat.player_array?.hits?.hits?.[0]?._source?.player?.code || "??") : "??";
+        const rosterEntry = teamStats.global?.roster?.[playerCode] || {};
+        const height = rosterEntry.height;
+        const yearClass = rosterEntry.year_class;
+        stat.def_efg = (height && height != "-") ? <small><i className="text-secondary">{height}</i></small> : null;
+        stat.def_assist = yearClass ? <small><i className="text-secondary">{yearClass}</i></small> : null;
+
         // Once luck is applied apply any manual overrides
 
         const playerOverrideKey = OverrideUtils.getPlayerRowId(stat.key, stat.onOffKey);

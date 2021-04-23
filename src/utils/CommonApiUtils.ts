@@ -3,6 +3,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import fetch from 'isomorphic-unfetch';
 import _ from 'lodash';
+import { readFile } from 'fs/promises';
 
 // Application imports
 import { teamStatsQuery } from "./es-queries/teamStatsQueryTemplate";
@@ -122,8 +123,9 @@ export class CommonApiUtils {
       if (team == null) {
         onTeamNotFound(resHandle);
       } else {
+        const yearStr = (team.year || params.year || "xxxx").substring(0, 4);
         const index = (team.index_template || AvailableTeams.defaultConfIndex) + "_" +
-                        (team.year || params.year || "xxxx").substring(0, 4) + (useTestIndices ? "_ltest" : "");
+                      yearStr + (useTestIndices ? "_ltest" : "");
 
         //(women is the suffix for index, so only need to add for men)
         const genderPrefix = (gender == "Women" ? "" : (`${gender}_` || "")).toLowerCase();
@@ -134,9 +136,34 @@ export class CommonApiUtils {
 
         try {
           const startTimeMs = new Date().getTime();
-          const [ esFetchOk, esFetchStatus, esFetchJson ] = await makeRequest(body);
+
+          // (launch async request...)
+          const requestPromise = makeRequest(body)
+
+          // (...Special case for player request - enrich with roster...)
+          const rosterInfoPromise = (queryPrefix == ParamPrefixes.player) ?
+            readFile(
+              `./public/rosters/${gender}_${yearStr}/${params.team.toString().replace()}.json`, { encoding: "UTF-8" }
+            ).then(
+              jsonStr => JSON.parse(jsonStr)
+            ).catch( //(carry on error, eg if the file doesn't exist)
+              (err) => undefined
+            ) : Promise.resolve(undefined)
+
+          const waitForAll = Promise.all([requestPromise, rosterInfoPromise]);
+
+          const rosterJson = await rosterInfoPromise;
+
+          //(...and finally wait for async request to complete)
+          const [ esFetchOk, esFetchStatus, esFetchJson ] = await requestPromise;
+
+          //Ugly mutating code to inject the roster metadata:
+          if (rosterJson) {
+            esFetchJson.roster = rosterJson;
+          }
 
           // Debug logs:
+          //console.log(JSON.stringify(esFetchJson.roster, null, 3));
           //console.log(JSON.stringify(esFetchJson, null, 3));
           //console.log(JSON.stringify(esFetchJson?.responses?.[0], null, 3));
           //console.log(JSON.stringify(esFetchJson?.responses?.[2]?.aggregations?.tri_filter?.buckets?.baseline?.player?.buckets, null, 3));

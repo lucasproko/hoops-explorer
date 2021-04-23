@@ -199,6 +199,12 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
       (hasGlobalRosterStats ? jsonResps?.[3]?.responses?.[0] : undefined) || _.cloneDeep(rosterStatsJson);
       //(need to clone it so that changes to baseline don't overwrite global)
 
+    const globalTeam = teamJson?.aggregations?.global?.only?.buckets?.team || {};
+    const rosterInfo = jsonResps?.[2]?.roster;
+    if (rosterInfo) {
+      globalTeam.roster = rosterInfo;
+    }
+
     /** For RAPM, from lineup requests */
     const lineupResponses = _.drop(jsonResps, hasGlobalRosterStats ? 4 : 3).map(lineupJson => {
       return {
@@ -212,7 +218,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
       off: teamJson?.aggregations?.tri_filter?.buckets?.off || {},
       onOffMode: autoOffQuery,
       baseline: teamJson?.aggregations?.tri_filter?.buckets?.baseline || {},
-      global: teamJson?.aggregations?.global?.only?.buckets?.team || {},
+      global: globalTeam,
       error_code: wasError ? (teamJson?.status || jsonStatuses?.[0] || "Unknown") : undefined
     }, {
       on: rosterCompareJson?.aggregations?.tri_filter?.buckets?.on || {},
