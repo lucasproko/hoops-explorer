@@ -437,11 +437,16 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
     const baseOrSeasonTeamStats = (luckConfig.base == "baseline")
       ? teamStats.baseline : teamStats.global;
 
+    /** (ugly hack so that we only render the roster info for one of the rows per player)*/
+    var varFirstRowKey: string | undefined = undefined;
+
     // Inject ORtg and DRB and Poss% (ie mutate player idempotently)
-    ([ "baseline", "on", "off" ] as ("baseline" | "on" | "off")[]).forEach((key) => {
+    ([ "on", "off", "baseline" ] as ("baseline" | "on" | "off")[]).forEach((key) => {
       const stat = (player as any)[key];
       const teamStat = (teamStats as any)[key] || {};
       if (stat) {
+        if (!varFirstRowKey) varFirstRowKey = key;
+
         stat.off_team_poss_pct = { value: _.min([(stat.off_team_poss.value || 0)
             / (teamStat.off_poss?.value || 1), 1 ]) };
         stat.def_team_poss_pct = { value: _.min([(stat.def_team_poss.value || 0)
@@ -470,11 +475,13 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
         const rosterEntry = teamStats.global?.roster?.[playerCode] || {};
         const height = rosterEntry.height;
         const yearClass = rosterEntry.year_class;
+        const visibility = (key ==  varFirstRowKey) ? 100 : 0;
+          //^(means it will be visible on table export but not on the page)
         if (height && height != "-") {
-          stat.def_efg = <small><i className="text-secondary">{height}</i></small>;
+          stat.def_efg = <small><i className="text-secondary" style={{opacity:visibility}}>{height}</i></small>;
         }
         if (yearClass) {
-          stat.def_assist = <small><i className="text-secondary">{yearClass}</i></small>;
+          stat.def_assist = <small><i className="text-secondary" style={{opacity:visibility}}>{yearClass}</i></small>;
         }
 
         // Once luck is applied apply any manual overrides
