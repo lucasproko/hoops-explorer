@@ -27,6 +27,16 @@ export class RequestUtils {
     return isGlobalError || isLocalError;
   }
 
+  /** Handles the rather ugly URL conversion needed to fetch URL encoded files
+   * highlights: spaces become +, use strict encoding, and % gets re-encoded as 25
+   */
+  private static fixRosterUrl(str: string, encodeEncodePrefix: boolean): string {
+    const stage1 = encodeURIComponent(str).replace(/[!'()*]/g, function(c) {
+      return '%' + c.charCodeAt(0).toString(16);
+    }).replace(/[%]20/g, "+");
+    return encodeEncodePrefix ? stage1.replace(/[%]/g, "%25") : stage1;
+  }
+
   /** An easily test abstraction for requesting multiple objects from the server */
   static requestHandlingLogic(
     primaryRequest: FilterParamsType, primaryContext: ParamPrefixesType, otherRequests: FilterRequestInfo[],
@@ -51,12 +61,38 @@ export class RequestUtils {
           return Promise.resolve(cachedJson);
         } else {
           const startTimeMs = new Date().getTime();
-          return fetchPromiseFactory(
+          const fetchPromise = fetchPromiseFactory(
             RequestUtils.requestContextToUrl(req.context, newParamsStr), jsonExistsButEmpty
-          ).then(function(jsonResp: [any, boolean, fetch.IsomorphicResponse | undefined]) {
+          );
+
+          // Fetch the JSON from the CDN if requested
+          const fetchRosterJson = (encodeEncodePrefix: boolean) => {
+            const rosterJsonUri = (encodeEncodePrefix: boolean) =>
+              `/rosters/${req.paramsObj.gender}_${(req.paramsObj.year || "").substring(0, 4)}`
+              + `/${RequestUtils.fixRosterUrl(req.paramsObj.team || "", encodeEncodePrefix)}.json`;
+            return fetch(
+              rosterJsonUri(encodeEncodePrefix)
+            ).then(
+              (resp: any) => resp.json()
+            );
+          };
+          const rosterJsonPromise = (req.includeRoster ?
+            fetchRosterJson(false).catch( //(carry on error, eg if the file doesn't exist)
+              (err: any) => fetchRosterJson(true)
+            ).catch(
+              (err: any) => undefined
+            ) : Promise.resolve(undefined)
+          );
+          return rosterJsonPromise.then((rosterJson: any) => {
+            return fetchPromise.then(function(jsonResp: [any, boolean, fetch.IsomorphicResponse | undefined]) {
               const json = jsonResp[0];
               const respOk = jsonResp[1];
               const response = jsonResp[2]; //(just for debugging hence can be undefined)
+
+              // Inject the roster into the cacheable object
+              if (rosterJson) {
+                json.roster = rosterJson;
+              }
 
               // Cache result locally:
               if (isDebug) {
@@ -78,6 +114,7 @@ export class RequestUtils {
               }
               return json;
             });
+          });
         }
       }
     );

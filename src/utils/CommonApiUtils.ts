@@ -122,8 +122,9 @@ export class CommonApiUtils {
       if (team == null) {
         onTeamNotFound(resHandle);
       } else {
+        const yearStr = (team.year || params.year || "xxxx").substring(0, 4);
         const index = (team.index_template || AvailableTeams.defaultConfIndex) + "_" +
-                        (team.year || params.year || "xxxx").substring(0, 4) + (useTestIndices ? "_ltest" : "");
+                      yearStr + (useTestIndices ? "_ltest" : "");
 
         //(women is the suffix for index, so only need to add for men)
         const genderPrefix = (gender == "Women" ? "" : (`${gender}_` || "")).toLowerCase();

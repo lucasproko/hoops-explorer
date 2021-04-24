@@ -5,12 +5,12 @@ export const dataLastUpdated: Record<string, number> = { //Update by executing .
   "Men_2015/6": 1458864015,
   "Men_2016/7": 1491782413,
   "Men_2017/8": 1523318413,
-  "Men_2018/9": 1554854421,
-  "Women_2018/9": 1554854420,
-  "Men_2019/20": 1583968717,
-  "Women_2019/20": 1583968716,
-  "Men_2020/21": 1617682986,
-  "Women_2020/21": 1617682986,
+  "Men_2018/9": 1554854423,
+  "Women_2018/9": 1554854422,
+  "Men_2019/20": 1583968719,
+  "Women_2019/20": 1583968718,
+  "Men_2020/21": 1617682988,
+  "Women_2020/21": 1617682988,
   "Men_2021/22": parseInt(process.env.MEN_CURR_UPDATE || "0"),
   "Women_2021/22": parseInt(process.env.WOMEN_CURR_UPDATE || "0")
 };

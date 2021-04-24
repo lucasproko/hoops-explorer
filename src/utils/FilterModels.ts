@@ -253,5 +253,6 @@ export type FilterParamsType = GameFilterParams | LineupFilterParams | TeamRepor
 /** Which API to call and with what object */
 export type FilterRequestInfo = {
   context: ParamPrefixesType,
-  paramsObj: FilterParamsType
+  paramsObj: FilterParamsType,
+  includeRoster?: boolean //(if true will fetch the roster, eg one call per page should do this)
 };
