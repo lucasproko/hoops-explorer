@@ -27,6 +27,15 @@ export class RequestUtils {
     return isGlobalError || isLocalError;
   }
 
+  /** Handles the rather ugly URL conversion needed to fetch URL encoded files
+   * highlights: spaces become +, use strict encoding, and % gets re-encoded as 25
+   */
+  private static fixedEncodeURIComponent(str: string): string {
+    return encodeURIComponent(str).replace(/[!'()*]/g, function(c) {
+      return '%' + c.charCodeAt(0).toString(16);
+    }).replace(/[%]20/g, "+").replace(/[%]/g, "%25");
+  }
+
   /** An easily test abstraction for requesting multiple objects from the server */
   static requestHandlingLogic(
     primaryRequest: FilterParamsType, primaryContext: ParamPrefixesType, otherRequests: FilterRequestInfo[],
@@ -57,7 +66,8 @@ export class RequestUtils {
           // Fetch the JSON from the CDN if requested
           const rosterJsonPromise = (req.includeRoster ?
             fetch(
-              `/rosters/${req.paramsObj.gender}_${(req.paramsObj.year || "").substring(0, 4)}/${req.paramsObj.team}.json`
+              `/rosters/${req.paramsObj.gender}_${(req.paramsObj.year || "").substring(0, 4)}`
+                + `/${RequestUtils.fixedEncodeURIComponent(req.paramsObj.team || "")}.json`
             ).then(
               (resp: any) => resp.json()
             ).catch( //(carry on error, eg if the file doesn't exist)
