@@ -30,10 +30,11 @@ export class RequestUtils {
   /** Handles the rather ugly URL conversion needed to fetch URL encoded files
    * highlights: spaces become +, use strict encoding, and % gets re-encoded as 25
    */
-  private static fixedEncodeURIComponent(str: string): string {
-    return encodeURIComponent(str).replace(/[!'()*]/g, function(c) {
+  private static fixRosterUrl(str: string, encodeEncodePrefix: boolean): string {
+    const stage1 = encodeURIComponent(str).replace(/[!'()*]/g, function(c) {
       return '%' + c.charCodeAt(0).toString(16);
-    }).replace(/[%]20/g, "+").replace(/[%]/g, "%25");
+    }).replace(/[%]20/g, "+");
+    return encodeEncodePrefix ? stage1.replace(/[%]/g, "%25") : stage1;
   }
 
   /** An easily test abstraction for requesting multiple objects from the server */
@@ -63,15 +64,23 @@ export class RequestUtils {
           const fetchPromise = fetchPromiseFactory(
             RequestUtils.requestContextToUrl(req.context, newParamsStr), jsonExistsButEmpty
           );
+
           // Fetch the JSON from the CDN if requested
-          const rosterJsonPromise = (req.includeRoster ?
-            fetch(
+          const fetchRosterJson = (encodeEncodePrefix: boolean) => {
+            const rosterJsonUri = (encodeEncodePrefix: boolean) =>
               `/rosters/${req.paramsObj.gender}_${(req.paramsObj.year || "").substring(0, 4)}`
-                + `/${RequestUtils.fixedEncodeURIComponent(req.paramsObj.team || "")}.json`
+              + `/${RequestUtils.fixRosterUrl(req.paramsObj.team || "", encodeEncodePrefix)}.json`;
+            return fetch(
+              rosterJsonUri(encodeEncodePrefix)
             ).then(
               (resp: any) => resp.json()
-            ).catch( //(carry on error, eg if the file doesn't exist)
-               (err: any) => { return undefined; }
+            );
+          };
+          const rosterJsonPromise = (req.includeRoster ?
+            fetchRosterJson(false).catch( //(carry on error, eg if the file doesn't exist)
+              (err: any) => fetchRosterJson(true)
+            ).catch(
+              (err: any) => undefined
             ) : Promise.resolve(undefined)
           );
           return rosterJsonPromise.then((rosterJson: any) => {
