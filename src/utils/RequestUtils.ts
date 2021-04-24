@@ -51,12 +51,29 @@ export class RequestUtils {
           return Promise.resolve(cachedJson);
         } else {
           const startTimeMs = new Date().getTime();
-          return fetchPromiseFactory(
+          const fetchPromise = fetchPromiseFactory(
             RequestUtils.requestContextToUrl(req.context, newParamsStr), jsonExistsButEmpty
-          ).then(function(jsonResp: [any, boolean, fetch.IsomorphicResponse | undefined]) {
+          );
+          // Fetch the JSON from the CDN if requested
+          const rosterJsonPromise = (req.includeRoster ?
+            fetch(
+              `/rosters/${req.paramsObj.gender}_${(req.paramsObj.year || "").substring(0, 4)}/${req.paramsObj.team}.json`
+            ).then(
+              (resp: any) => resp.json()
+            ).catch( //(carry on error, eg if the file doesn't exist)
+               (err: any) => { return undefined; }
+            ) : Promise.resolve(undefined)
+          );
+          return rosterJsonPromise.then((rosterJson: any) => {
+            return fetchPromise.then(function(jsonResp: [any, boolean, fetch.IsomorphicResponse | undefined]) {
               const json = jsonResp[0];
               const respOk = jsonResp[1];
               const response = jsonResp[2]; //(just for debugging hence can be undefined)
+
+              // Inject the roster into the cacheable object
+              if (rosterJson) {
+                json.roster = rosterJson;
+              }
 
               // Cache result locally:
               if (isDebug) {
@@ -78,6 +95,7 @@ export class RequestUtils {
               }
               return json;
             });
+          });
         }
       }
     );

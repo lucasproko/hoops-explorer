@@ -25,10 +25,6 @@ if (pxIsDebug) {
   console.log(`Use test indices = [${pxUseTestIndices}]`);
 }
 
-/** FS module, only gets imported server side */
-var  _fs: any = null;
-
-/** NOTE: can only be called server side */
 export class CommonApiUtils {
 
   static getHca(params: CommonFilterParams) {
@@ -139,41 +135,9 @@ export class CommonApiUtils {
 
         try {
           const startTimeMs = new Date().getTime();
-
-          // (launch async request...)
-          const requestPromise = makeRequest(body)
-
-          if (!_fs) {
-            // Need to do it this way to ensure this only happens server side:
-            _fs = await import('fs');
-          }
-
-          // (...Special case for player request - enrich with roster...)
-          const rosterInfoPromise = (queryPrefix == ParamPrefixes.player) ?
-            _fs.promises.readFile(
-              `${pxIsDebug ? "./public/" : process.cwd()}/rosters/${gender}_${yearStr}/${params.team.toString().replace()}.json`, { encoding: "UTF-8" }
-            ).then(
-              (jsonStr: any) => JSON.parse(jsonStr)
-            ).catch( //(carry on error, eg if the file doesn't exist)
-              (err: any) => {
-                return undefined;
-              }
-            ) : Promise.resolve(undefined)
-
-          const waitForAll = Promise.all([requestPromise, rosterInfoPromise]);
-
-          const rosterJson = await rosterInfoPromise;
-
-          //(...and finally wait for async request to complete)
-          const [ esFetchOk, esFetchStatus, esFetchJson ] = await requestPromise;
-
-          //Ugly mutating code to inject the roster metadata:
-          if (rosterJson) {
-            esFetchJson.roster = rosterJson;
-          }
+          const [ esFetchOk, esFetchStatus, esFetchJson ] = await makeRequest(body);
 
           // Debug logs:
-          //console.log(JSON.stringify(esFetchJson.roster, null, 3));
           //console.log(JSON.stringify(esFetchJson, null, 3));
           //console.log(JSON.stringify(esFetchJson?.responses?.[0], null, 3));
           //console.log(JSON.stringify(esFetchJson?.responses?.[2]?.aggregations?.tri_filter?.buckets?.baseline?.player?.buckets, null, 3));
