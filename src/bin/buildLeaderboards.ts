@@ -283,14 +283,7 @@ export async function main() {
         teamResponse.getJsonResponse().aggregations?.tri_filter?.buckets?.baseline || {};
 
       /** Largest sample of player stats, by player key - use for ORtg calcs */
-      const globalRosterStatsByCode = RosterTableUtils.buildRosterTableByCode(rosterGlobal);
-      // Inject the rosterInfo into the rosterGlobal:
-      _.toPairs(globalRosterStatsByCode).forEach(kv => {
-        const roster = rosterInfoJson?.[kv[0]];
-        if (roster) {
-          kv[1].roster = roster;
-        }
-      });
+      const globalRosterStatsByCode = RosterTableUtils.buildRosterTableByCode(rosterGlobal, rosterInfoJson);
 
       const baselinePlayerInfo = LineupTableUtils.buildBaselinePlayerInfo(
         rosterBaseline, globalRosterStatsByCode, teamBaseline, avgEfficiency

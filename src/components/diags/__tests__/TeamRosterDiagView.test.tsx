@@ -31,7 +31,7 @@ describe("TeamRosterDiagView", () => {
     lineups: sampleLineupStatsResponse.responses[0].aggregations.lineups.buckets
   }
   const teamSeasonLookup = "Men_Maryland_2018/9";
-  const rosterStatsByCode = RosterTableUtils.buildRosterTableByCode(testData.on, true, teamSeasonLookup);
+  const rosterStatsByCode = RosterTableUtils.buildRosterTableByCode(testData.on, undefined, true, teamSeasonLookup);
   const positionFromPlayerKey = _.chain(testData.on).map(p => { //inject pos class into data
     const player = p.player_array?.hits?.hits?.[0]?._source?.player;
     const code = player?.code;

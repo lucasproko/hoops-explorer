@@ -161,7 +161,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
   const avgEfficiency = efficiencyAverages[genderYearLookup] || efficiencyAverages.fallback;
 
   /** Largest sample of player stats, by player key - use for ORtg calcs */
-  const globalRosterStatsByCode = RosterTableUtils.buildRosterTableByCode(rosterStats.global || []);
+  const globalRosterStatsByCode = RosterTableUtils.buildRosterTableByCode(rosterStats.global || [], teamStats.global?.roster);
 
   /** Need baseline player info for tooltip view/lineup decoration */
   const baselinePlayerInfo = LineupTableUtils.buildBaselinePlayerInfo(

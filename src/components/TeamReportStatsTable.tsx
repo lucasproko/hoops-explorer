@@ -248,7 +248,7 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({startingState, da
       if (incRapm) {
         try {
           // Do some prep on the individual stats we'll use for the prior:
-          const globalRosterStatsByCode = RosterTableUtils.buildRosterTableByCode(rosterStats.global || []);
+          const globalRosterStatsByCode = RosterTableUtils.buildRosterTableByCode(rosterStats.global || [], teamStats.global?.roster);
           const insertExtraInfo = (playersTmp: Array<any>) => {
             //TODO: port this over to LineupTableUtils.buildBaselinePlayerInfo to avoid duplication
             if (playersTmp) {

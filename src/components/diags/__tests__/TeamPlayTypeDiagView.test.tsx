@@ -21,7 +21,7 @@ describe("TeamPlayTypeDiagView", () => {
     { global: {}, onOffMode: true }
   );
   const teamSeasonLookup = "Men_Maryland_2018/9";
-  const rosterStatsByCode = RosterTableUtils.buildRosterTableByCode(testData.on, true, teamSeasonLookup);
+  const rosterStatsByCode = RosterTableUtils.buildRosterTableByCode(testData.on, undefined, true, teamSeasonLookup);
   const players = testData.on.map(p => { //inject pos class into data
     const code = p.player_array?.hits?.hits?.[0]?._source?.player?.code;
     return {

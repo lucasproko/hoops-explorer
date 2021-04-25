@@ -15,7 +15,7 @@ describe("PlayerPlayTypeDiagView", () => {
     error_code: undefined
   };
   const teamSeasonLookup = "Men_Maryland_2018/9";
-  const rosterStatsByCode = RosterTableUtils.buildRosterTableByCode(testData.on, true, teamSeasonLookup);
+  const rosterStatsByCode = RosterTableUtils.buildRosterTableByCode(testData.on, undefined, true, teamSeasonLookup);
   test("PlayerPlayTypeDiagView - should create snapshot (!details, help)", () => {
     const wrapper = shallow(
       <PlayerPlayTypeDiagView

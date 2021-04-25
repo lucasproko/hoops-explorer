@@ -238,8 +238,10 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
 
   /** Largest sample of player stats, by player key - use for ORtg calcs */
   const globalRosterStatsByCode = RosterTableUtils.buildRosterTableByCode(
-    rosterStats.global || [], showPlayTypes, teamSeasonLookup
+    rosterStats.global || [], teamStats.global?.roster, showPlayTypes, teamSeasonLookup
   ); //TODO: which set do I actually want to use for positional calcs here?
+
+
 
   // 3.0] RAPM
 
