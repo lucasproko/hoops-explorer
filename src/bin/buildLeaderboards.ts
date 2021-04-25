@@ -9,7 +9,6 @@
 // System imports
 import { NextApiRequest, NextApiResponse } from 'next';
 import fs from 'fs';
-import { readFile } from 'fs/promises'
 import zlib from 'zlib';
 
 import _ from "lodash";
@@ -253,7 +252,7 @@ export async function main() {
 
       // Also we're going to try fetching the roster
 
-      const rosterInfoJson = await readFile(
+      const rosterInfoJson = await fs.promises.readFile(
         `./public/rosters/${inGender}_${(teamYear || "").substring(0, 4)}/${RequestUtils.fixRosterUrl(team, false)}.json`
       ).then((s: any) => JSON.parse(s)).catch((err: any) => {
         return undefined;
