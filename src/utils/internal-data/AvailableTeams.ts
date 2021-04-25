@@ -100,6 +100,8 @@ export class AvailableTeams {
          { team: "Austin Peay", year: "2020/21", gender: "Men", index_template: "ovc", category: "midlow" },
       ],
      "BYU": [
+         { team: "BYU", year: "2018/9", gender: "Men", index_template: "misc_conf", category: "midhigh" },
+         { team: "BYU", year: "2019/20", gender: "Men", index_template: "misc_conf", category: "midhigh" },
          { team: "BYU", year: "2020/21", gender: "Men", index_template: "wcc", category: "midhigh" },
       ],
      "Ball St.": [
@@ -411,6 +413,8 @@ export class AvailableTeams {
          { team: "Georgia Tech", year: "2020/21", gender: "Women", index_template: "women_acc", category: "high" },
       ],
      "Gonzaga": [
+         { team: "Gonzaga", year: "2018/9", gender: "Men", index_template: "misc_conf", category: "midhigh" },
+         { team: "Gonzaga", year: "2019/20", gender: "Men", index_template: "misc_conf", category: "midhigh" },
          { team: "Gonzaga", year: "2020/21", gender: "Men", index_template: "wcc", category: "midhigh" },
       ],
      "Grambling": [
@@ -1014,7 +1018,9 @@ export class AvailableTeams {
          { team: "Saint Louis", year: "2020/21", gender: "Men", index_template: "atlanticten", category: "midhigh" },
       ],
      "Saint Mary's (CA)": [
-         { team: "Saint Mary's (CA)", year: "2020/21", gender: "Men", index_template: "wcc", category: "midhigh" },
+        { team: "Saint Mary's (CA)", year: "2018/9", gender: "Men", index_template: "misc_conf", category: "midhigh" },
+        { team: "Saint Mary's (CA)", year: "2019/20", gender: "Men", index_template: "misc_conf", category: "midhigh" },
+        { team: "Saint Mary's (CA)", year: "2020/21", gender: "Men", index_template: "wcc", category: "midhigh" },
       ],
      "Saint Peter's": [
          { team: "Saint Peter's", year: "2020/21", gender: "Men", index_template: "maac", category: "midlow" },
@@ -1029,6 +1035,8 @@ export class AvailableTeams {
          { team: "San Diego", year: "2020/21", gender: "Men", index_template: "wcc", category: "midhigh" },
       ],
      "San Diego St.": [
+         { team: "San Diego St.", year: "2018/9", gender: "Men", index_template: "misc_conf", category: "midhigh" },
+         { team: "San Diego St.", year: "2019/20", gender: "Men", index_template: "misc_conf", category: "midhigh" },
          { team: "San Diego St.", year: "2020/21", gender: "Men", index_template: "mountainwest", category: "midhigh" },
       ],
      "San Francisco": [
@@ -1325,6 +1333,8 @@ export class AvailableTeams {
          { team: "Utah", year: "2020/21", gender: "Women", index_template: "women_pactwelve", category: "high" },
       ],
      "Utah St.": [
+         { team: "Utah St.", year: "2018/9", gender: "Men", index_template: "misc_conf", category: "midhigh" },
+         { team: "Utah St.", year: "2019/20", gender: "Men", index_template: "misc_conf", category: "midhigh" },
          { team: "Utah St.", year: "2020/21", gender: "Men", index_template: "mountainwest", category: "midhigh" },
       ],
      "Utah Valley": [
