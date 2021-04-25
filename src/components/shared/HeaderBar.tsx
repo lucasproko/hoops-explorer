@@ -266,10 +266,10 @@ const HeaderBar: React.FunctionComponent<Props> = ({thisPage, common, override})
           :
           <Dropdown.Menu style={dropdownStyle}>
             <Dropdown.Item>
-              {buildNavItem("Lineups - 'high' tier", lineupLeaderboardTooltip("High"), getLineupLeaderboardUrl("High"), true)}
+              {buildNavItem("Players - 'high' tier", playerLeaderboardTooltip("High"), getPlayerLeaderboardUrl("High"), true)}
             </Dropdown.Item>
             <Dropdown.Item>
-              {buildNavItem("Players - 'high' tier", playerLeaderboardTooltip("High"), getPlayerLeaderboardUrl("High"), true)}
+              {buildNavItem("Lineups - 'high' tier", lineupLeaderboardTooltip("High"), getLineupLeaderboardUrl("High"), true)}
             </Dropdown.Item>
             <Dropdown.Divider/>
             <Dropdown.Item>

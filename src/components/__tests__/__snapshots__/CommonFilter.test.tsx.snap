@@ -2188,6 +2188,10 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
                 "value": "Auburn",
               },
               Object {
+                "label": "BYU",
+                "value": "BYU",
+              },
+              Object {
                 "label": "Baylor",
                 "value": "Baylor",
               },
@@ -2274,6 +2278,10 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
               Object {
                 "label": "Georgia Tech",
                 "value": "Georgia Tech",
+              },
+              Object {
+                "label": "Gonzaga",
+                "value": "Gonzaga",
               },
               Object {
                 "label": "Houston",
@@ -2440,6 +2448,14 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
                 "value": "Saint Louis",
               },
               Object {
+                "label": "Saint Mary's (CA)",
+                "value": "Saint Mary's (CA)",
+              },
+              Object {
+                "label": "San Diego St.",
+                "value": "San Diego St.",
+              },
+              Object {
                 "label": "Seton Hall",
                 "value": "Seton Hall",
               },
@@ -2518,6 +2534,10 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
               Object {
                 "label": "Utah",
                 "value": "Utah",
+              },
+              Object {
+                "label": "Utah St.",
+                "value": "Utah St.",
               },
               Object {
                 "label": "VCU",
