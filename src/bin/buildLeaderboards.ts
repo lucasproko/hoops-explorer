@@ -9,6 +9,7 @@
 // System imports
 import { NextApiRequest, NextApiResponse } from 'next';
 import fs from 'fs';
+import { readFile } from 'fs/promises'
 import zlib from 'zlib';
 
 import _ from "lodash";
@@ -19,6 +20,7 @@ import calculateOnOffStats from "../pages/api/calculateOnOffStats";
 import calculateOnOffPlayerStats from "../pages/api/calculateOnOffPlayerStats";
 
 // Pre processing
+import { RequestUtils } from "../utils/RequestUtils";
 import { QueryUtils } from "../utils/QueryUtils";
 import { ParamDefaults } from "../utils/FilterModels";
 import { RapmUtils } from "../utils/stats/RapmUtils";
@@ -249,6 +251,14 @@ export async function main() {
         ),
       ]);
 
+      // Also we're going to try fetching the roster
+
+      const rosterInfoJson = await readFile(
+        `./public/rosters/${inGender}_${(teamYear || "").substring(0, 4)}/${RequestUtils.fixRosterUrl(team, false)}.json`
+      ).then((s: any) => JSON.parse(s)).catch((err: any) => {
+        return undefined;
+      });
+
       // Check for errors:
 
       if ((lineupResponse.statusCode >= 400) || (teamResponse.statusCode >= 400) || (playerResponse.statusCode >= 400)) {
@@ -275,6 +285,13 @@ export async function main() {
 
       /** Largest sample of player stats, by player key - use for ORtg calcs */
       const globalRosterStatsByCode = RosterTableUtils.buildRosterTableByCode(rosterGlobal);
+      // Inject the rosterInfo into the rosterGlobal:
+      _.toPairs(globalRosterStatsByCode).forEach(kv => {
+        const roster = rosterInfoJson?.[kv[0]];
+        if (roster) {
+          kv[1].roster = roster;
+        }
+      });
 
       const baselinePlayerInfo = LineupTableUtils.buildBaselinePlayerInfo(
         rosterBaseline, globalRosterStatsByCode, teamBaseline, avgEfficiency
@@ -326,7 +343,7 @@ export async function main() {
                 !_.startsWith(t2[0], "team_") && !_.startsWith(t2[0], "oppo_") &&
                 !_.startsWith(t2[0], "total_") &&
                 !_.endsWith(t2[0], "_target") && !_.endsWith(t2[0], "_source") &&
-                (t2[0] != "player_array")
+                (t2[0] != "player_array") && (t2[0] != "roster")
               )
             ).fromPairs().value()
           )

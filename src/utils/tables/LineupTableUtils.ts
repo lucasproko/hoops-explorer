@@ -26,7 +26,7 @@ export class LineupTableUtils {
   /** Injects some advanced stats into players, returns an associative array vs player.key */
   static buildBaselinePlayerInfo(
     players: any[] | undefined,
-    globalRosterStats: Record<string, any>, teamStat: Record<string, any>,
+    globalRosterStatsByCode: Record<string, any>, teamStat: Record<string, any>,
     avgEfficiency: number
   ) {
     //(note changes here will likely need to be reflected in TeamReportStatsTable::insertExtraInfo)
@@ -51,7 +51,7 @@ export class LineupTableUtils {
 
         // Add ORtg to lineup stats:
         const [ oRtg, adjORtg, rawORtg, rawAdjORtg, oRtgDiag ] = RatingUtils.buildORtg(
-          mutableP, globalRosterStats, avgEfficiency, false, playerAdjustForLuckOff
+          mutableP, globalRosterStatsByCode, avgEfficiency, false, playerAdjustForLuckOff
         );
         const [ dRtg, adjDRtg, rawDRtg, rawAdjDRtg, dRtgDiag ] = RatingUtils.buildDRtg(
           mutableP, avgEfficiency, false, playerAdjustForLuckDef
@@ -104,9 +104,15 @@ export class LineupTableUtils {
     players: any[] | undefined, teamSeasonLookup: string
   ) {
     const positionFromPlayerKey = _.chain(players || []).map((player: any) => {
+      const rosterMeta = player.roster;
       const [ posConfs, posConfsDiags ] = PositionUtils.buildPositionConfidences(player);
       const [ pos, posDiags ] = PositionUtils.buildPosition(posConfs, player, teamSeasonLookup);
-      return [ player.key, { posConfidences: _.values(posConfs || {}), posClass: pos } ];
+      return [ player.key, { posConfidences: _.values(posConfs || {}), posClass: pos,
+        roster: rosterMeta ? {
+          height: rosterMeta.height,
+          year_class: rosterMeta.year_class,
+        } : undefined
+      } ];
     }).fromPairs().value();
 
     return positionFromPlayerKey;

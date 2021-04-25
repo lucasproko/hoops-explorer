@@ -30,7 +30,7 @@ export class RequestUtils {
   /** Handles the rather ugly URL conversion needed to fetch URL encoded files
    * highlights: spaces become +, use strict encoding, and % gets re-encoded as 25
    */
-  private static fixRosterUrl(str: string, encodeEncodePrefix: boolean): string {
+  static fixRosterUrl(str: string, encodeEncodePrefix: boolean): string {
     const stage1 = encodeURIComponent(str).replace(/[!'()*]/g, function(c) {
       return '%' + c.charCodeAt(0).toString(16);
     }).replace(/[%]20/g, "+");

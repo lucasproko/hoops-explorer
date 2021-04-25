@@ -349,7 +349,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
 
     // Filter, sort, and limit players part 2/2
     const players = _.chain(confDataEventPlayers).filter(player => {
-      const strToTest = `${(player.key || "")} ${player.team || ""}_${player.year || ""} ${player.code || ""}:${player.team || ""}`;
+      const strToTest = `${(player.key || "")} ${player.team || ""}_${player.year || ""} ${player.roster?.year_class || ""}_${player.code || ""}:${player.team || ""}`;
 
       return(
         (filterFragmentsPve.length == 0) ||
@@ -480,6 +480,19 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
         </OverlayTrigger>;
 
       const maybeYrStr = isMultiYr ? ` '${player.year.substring(2, 4)}+` : ``;
+
+      // Add roster metadata:
+
+      const height = player.roster?.height;
+      const yearClass = player.roster?.year_class;
+
+      if (height && height != "-") {
+        player.def_efg = <small><i className="text-secondary">{height}</i></small>;
+      }
+      if (yearClass) {
+        player.def_assist = <small><i className="text-secondary">{yearClass}</i></small>;
+      }
+
 
       player.off_title = <div>
         <span className="float-left">
@@ -697,7 +710,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
               startingVal={filterStr}
               onChange={(t: string) => friendlyChange(() => setFilterStr(t), t != filterStr)}
               timeout={500}
-              placeholder = "eg Year;TeamA_Year;TeamB;Player1Code;Player2FirstName;-Player3Surname"
+              placeholder = "eg [-]Year;[-]TeamA[_Year];[-][Class_]Player1Code[:Team];[-]Player2Names"
             />
           </InputGroup>
         </Form.Group>
