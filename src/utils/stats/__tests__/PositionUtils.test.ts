@@ -11,6 +11,15 @@ describe("PositionUtils", () => {
 
   const tidyObj = (vo: Record<string, number>) => _.mapValues(vo, (v: any) => (v.value || v).toFixed(2))
 
+  test("PositionUtils - incorporateHeight", () => {
+    // Check the Krutwig example from here: https://hoop-explorer.blogspot.com/2020/05/classifying-college-basketball.html
+    expect(PositionUtils.incorporateHeight(
+      81, [ 0.03, 0.19, 0.49, 0.09, 0.18 ]
+    ).map(n => n.toFixed(4))).toEqual(
+      [ "0.0011", "0.0322",  "0.4078", "0.1471", "0.4119" ]
+      //(note these aren't quite the vals from the website because my weights changed slightly since that article)
+    );
+  });
   test("PositionUtils - averageScoresByPos", () => {
     expect(_.values(tidyObj(PositionUtils.averageScoresByPos))).toEqual(["0.15", "-0.03", "-0.11", "0.03", "0.42", ]);
   });
@@ -19,7 +28,7 @@ describe("PositionUtils", () => {
     // Some hand-checked results:
 
     const [ realConfidences, realDiags ] = PositionUtils.buildPositionConfidences(
-      samplePlayerStatsResponse.responses[0].aggregations.tri_filter.buckets.baseline.player.buckets[0]
+      samplePlayerStatsResponse.responses[0].aggregations.tri_filter.buckets.baseline.player.buckets[0], undefined
     );
     expect(_.values(tidyObj(realConfidences))).toEqual(["0.76", "0.24", "0.00", "0.00", "0.00", ]);
     expect(_.values(tidyObj(realDiags.scores))).toEqual(["0.19","0.07","-0.33","-0.61","-1.61"]);
@@ -35,7 +44,7 @@ describe("PositionUtils", () => {
     expect(_.keys(realDiags.scores)).toEqual(PositionUtils.tradPosList)
 
     const [ realConfidences2, realDiags2 ] = PositionUtils.buildPositionConfidences(
-      samplePlayerStatsResponse.responses[0].aggregations.tri_filter.buckets.baseline.player.buckets[1]
+      samplePlayerStatsResponse.responses[0].aggregations.tri_filter.buckets.baseline.player.buckets[1], undefined
     );
     expect(_.values(tidyObj(realConfidences2))).toEqual(["0.01", "0.37", "0.42", "0.19", "0.00", ]);
   });

@@ -1,11 +1,15 @@
 
 // Utils:
-import _ from 'lodash'
+import _ from 'lodash';
+// @ts-ignore
+import { erf } from 'mathjs';
 
 import { absolutePositionFixes, relativePositionFixes, RelativePositionFixRule } from './PositionalManualFixes';
 
 /** (just to make copy/pasting between colab and this code easier)*/
 const array = (v: number[]) => { return v; }
+
+const sqrt2 = Math.sqrt(2);
 
 /** Positional analysis module */
 export class PositionUtils {
@@ -115,6 +119,14 @@ export class PositionUtils {
       array([3.13113654, 3.08755648, 3.86938628, 4.45762274, 5.06942942]),
     } as Record<string, number[]>;
 
+  static readonly heightMeanStds = [
+    { mean: 73.57716289697129, std: 2.5561436676424854 },
+    { mean: 75.23626157179437, std: 2.539520215232971 },
+    { mean: 77.73867983130089, std: 2.286685273859796 },
+    { mean: 79.14888834651121, std: 2.0930557964524996 },
+    { mean: 80.2680159415085, std: 2.014906878530024 }
+  ];
+
   static readonly averageScoresByPos = _.chain(PositionUtils.positionFeatureWeights).transform(
     (acc: number[], feat_scale_weights: [string, number, number[]]) => {
       const feat = feat_scale_weights[0];
@@ -165,7 +177,7 @@ export class PositionUtils {
   /** Returns a vector of 5 elements representing the confidence that the player
       can play that position (0=PG, 1=SG, 4=SF, 4=PF, 5=C)
   */
-  static buildPositionConfidences(player: Record<string, any>): [ Record<string, number>, any ] {
+  static buildPositionConfidences(player: Record<string, any>, height_in: number |  undefined): [ Record<string, number>, any ] {
     const posList = PositionUtils.tradPosList;
 
     const calculated = {
@@ -202,16 +214,43 @@ export class PositionUtils {
       return _.chain(v).map((s: number, i: number) => [ posList[i], s*scale ]).fromPairs().value();
     }
     const maxScore = _.max(scores) || 0;
-    const confs = scores.map((s: number) => Math.exp(s - maxScore));
-    const maxConfInv = 1.0/(_.sum(confs) || 1);
+    const confsNoHeight = scores.map((s: number) => Math.exp(s - maxScore));
+    const maxConfNoHeightInv = 1.0/(_.sum(confsNoHeight) || 1);
+    const confsNoHeightScaled = confsNoHeight.map((s: number) => s*maxConfNoHeightInv);
+
+    const confsScaled = height_in ?
+      PositionUtils.incorporateHeight(height_in, confsNoHeightScaled)
+      : confsNoHeightScaled;
 
     return [
-      addPosAndScale(confs, maxConfInv),
+      addPosAndScale(confsScaled, 1.0),
       {
         scores: addPosAndScale(scores, 0.1), //(0.1 == factor to make the scores render nicely)
+        confsNoHeight: height_in ? addPosAndScale(confsNoHeightScaled, 1.0) : undefined,
         calculated: calculated,
       }
     ];
+  }
+
+  /** See https://www.wolframalpha.com/input/?i=cdf+normal+distribution */
+  private static cdf(val: number, mean: number, std: number): number {
+    return 0.5*(1 + erf((val - mean) / (sqrt2*std)));
+  }
+
+  /** Incorporates height - see build_height_adj_probs in https://hoop-explorer.blogspot.com/2020/05/classifying-college-basketball.html */
+  static incorporateHeight(height_in: number, confs: number[]): number[] {
+    const thresh = 1;
+    const mutableState = { sumProduct: 0, scores: [ 0, 0, 0, 0, 0 ] };
+    _.transform(confs, (acc, v, i) => {
+      const mean = PositionUtils.heightMeanStds[i]!.mean!;
+      const std = PositionUtils.heightMeanStds[i]!.std!;
+       const newScore = acc.scores[i]! +
+        PositionUtils.cdf(height_in + thresh, mean, std) - PositionUtils.cdf(height_in - thresh, mean, std);
+       acc.sumProduct = acc.sumProduct + newScore*v;
+       acc.scores[i]! = newScore;
+    }, mutableState);
+
+    return mutableState.scores.map((v, i) => confs[i]!*v / (mutableState.sumProduct || 1));
   }
 
   /** Description of the different roles */

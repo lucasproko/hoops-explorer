@@ -35,4 +35,15 @@ describe("PositionalDiagView", () => {
     );
     expect(toJson(wrapper)).toMatchSnapshot();
   });
+  test("PositionalDiagView - should create snapshot (use height, basic details, !help)", () => {
+    const wrapper = shallow(
+    <PositionalDiagView
+      showHelp={false}
+      player={{...(testData.baseline[0]), roster: { height_in: 81}}}
+      teamSeason="Men_Maryland_2018/9"
+      showDetailsOverride={false}
+    />
+    );
+    expect(toJson(wrapper)).toMatchSnapshot();
+  });
 });

@@ -123,15 +123,21 @@ const PositionalDiagView: React.FunctionComponent<Props> = ({player, teamSeason,
 
   const topRef = React.createRef<HTMLDivElement>();
 
-  const [ positionInfo, positionDiags ] = PositionUtils.buildPositionConfidences(player);
+  const [ positionInfo, positionDiags ] = PositionUtils.buildPositionConfidences(player, player?.roster?.height_in);
   const [ positionId, positionIdDiag ] = PositionUtils.buildPosition(positionInfo, player, teamSeason);
-
+  const [ positionIdNoHeight, positionIdDiagNoHeight ] = positionDiags.confsNoHeight ?
+    PositionUtils.buildPosition(positionDiags.confsNoHeight, player, teamSeason) : [ positionId, undefined ];
   const [ showComplexDiag, setShowComplexDiag ] = useState(_.isNil(showDetailsOverride) ? false : showDetailsOverride);
 
   const simpleDiagTableData = [ GenericTableOps.buildDataRow({
     title: PositionUtils.idToPosition[positionId] || "Unknown",
     ...(_.mapValues(positionInfo, (p: number) => { return { value: p }; }))
-  }, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta) ];
+  }, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta) ].concat(
+    positionDiags.confsNoHeight ? [GenericTableOps.buildDataRow({
+      title: `(Ignore Height) ${PositionUtils.idToPosition[positionIdNoHeight] || "Unknown"}`,
+      ...(_.mapValues(positionDiags.confsNoHeight, (p: number) => { return { value: p }; }))
+    }, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta)] : []
+  );
 
   const buildFeatureTooltip = (key: string, text: string) => {
     return <Tooltip id={key + "Tooltip"}>{text}</Tooltip>;

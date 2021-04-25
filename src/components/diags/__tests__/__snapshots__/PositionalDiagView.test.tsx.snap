@@ -1902,3 +1902,182 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (details
   </span>
 </span>
 `;
+
+exports[`PositionalDiagView PositionalDiagView - should create snapshot (use height, basic details, !help) 1`] = `
+<span>
+  <span>
+    <b>
+      Positional diagnostics for [
+      Cowan, Anthony
+      ]
+    </b>
+     
+  </span>
+  <ul>
+    <li>
+      The following table shows the confidence that the player could fit into one of the traditional positional categories. That "signature" is then used to assign a "positional role".
+    </li>
+    <li>
+      Rule used to categorize player: 
+      <i>
+        <b>
+          (Max[P] == SG) AND (P[PG] &gt;= P[SF] + P[PF] + P[C])
+        </b>
+      </i>
+    </li>
+  </ul>
+  <Container
+    fluid={false}
+  >
+    <Col
+      xs={8}
+    >
+      <GenericTable
+        responsive={false}
+        tableData={
+          Array [
+            GenericTableDataRow {
+              "cellMetaFn": [Function],
+              "dataObj": Object {
+                "pos_c": Object {
+                  "value": 3.8215685089719856e-7,
+                },
+                "pos_pf": Object {
+                  "value": 0.005947983389240556,
+                },
+                "pos_pg": Object {
+                  "value": 0.37459224419502063,
+                },
+                "pos_sf": Object {
+                  "value": 0.05310150221212781,
+                },
+                "pos_sg": Object {
+                  "value": 0.5663578880467601,
+                },
+                "title": "Combo Guard",
+              },
+              "kind": "data-row",
+              "prefixFn": [Function],
+              "tableFieldsOverride": undefined,
+            },
+            GenericTableDataRow {
+              "cellMetaFn": [Function],
+              "dataObj": Object {
+                "pos_c": Object {
+                  "value": 1.1870453146996361e-8,
+                },
+                "pos_pf": Object {
+                  "value": 0.00025873437114051626,
+                },
+                "pos_pg": Object {
+                  "value": 0.7573493221063862,
+                },
+                "pos_sf": Object {
+                  "value": 0.004535396666879756,
+                },
+                "pos_sg": Object {
+                  "value": 0.23785653498514026,
+                },
+                "title": "(Ignore Height) Scoring PG",
+              },
+              "kind": "data-row",
+              "prefixFn": [Function],
+              "tableFieldsOverride": undefined,
+            },
+          ]
+        }
+        tableFields={
+          Object {
+            "pos_c": GenericTableColProps {
+              "className": "",
+              "colName": "C%",
+              "colorPicker": [Function],
+              "formatter": [Function],
+              "isTitle": false,
+              "missingData": undefined,
+              "rowSpan": [Function],
+              "toolTip": "% Fit of the player vs signature stats associated with players traditionally called [Center]",
+              "widthUnits": 2,
+            },
+            "pos_pf": GenericTableColProps {
+              "className": "",
+              "colName": "PF%",
+              "colorPicker": [Function],
+              "formatter": [Function],
+              "isTitle": false,
+              "missingData": undefined,
+              "rowSpan": [Function],
+              "toolTip": "% Fit of the player vs signature stats associated with players traditionally called [Power Forward]",
+              "widthUnits": 2,
+            },
+            "pos_pg": GenericTableColProps {
+              "className": "",
+              "colName": "PG%",
+              "colorPicker": [Function],
+              "formatter": [Function],
+              "isTitle": false,
+              "missingData": undefined,
+              "rowSpan": [Function],
+              "toolTip": "% Fit of the player vs signature stats associated with players traditionally called [Point Guard]",
+              "widthUnits": 2,
+            },
+            "pos_sf": GenericTableColProps {
+              "className": "",
+              "colName": "SF%",
+              "colorPicker": [Function],
+              "formatter": [Function],
+              "isTitle": false,
+              "missingData": undefined,
+              "rowSpan": [Function],
+              "toolTip": "% Fit of the player vs signature stats associated with players traditionally called [Small Forward]",
+              "widthUnits": 2,
+            },
+            "pos_sg": GenericTableColProps {
+              "className": "",
+              "colName": "SG%",
+              "colorPicker": [Function],
+              "formatter": [Function],
+              "isTitle": false,
+              "missingData": undefined,
+              "rowSpan": [Function],
+              "toolTip": "% Fit of the player vs signature stats associated with players traditionally called [Shooting Guard]",
+              "widthUnits": 2,
+            },
+            "sep0": GenericTableColProps {
+              "className": "",
+              "colName": "",
+              "colorPicker": [Function],
+              "formatter": [Function],
+              "isTitle": false,
+              "missingData": undefined,
+              "rowSpan": [Function],
+              "toolTip": "",
+              "widthUnits": 0.5,
+            },
+            "title": GenericTableColProps {
+              "className": "",
+              "colName": "",
+              "colorPicker": [Function],
+              "formatter": [Function],
+              "isTitle": true,
+              "missingData": undefined,
+              "rowSpan": [Function],
+              "toolTip": "The positional class associated with this player's statistical signature",
+              "widthUnits": 8,
+            },
+          }
+        }
+      />
+    </Col>
+  </Container>
+  (
+  <a
+    href="#"
+    onClick={[Function]}
+  >
+    Show
+     detailed positional breakdown
+  </a>
+  )
+</span>
+`;
