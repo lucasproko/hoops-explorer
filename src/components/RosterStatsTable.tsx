@@ -479,13 +479,13 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
         const height = rosterEntry.height;
         const heightIn = rosterEntry.height_in;
         const yearClass = rosterEntry.year_class;
-        const visibility = (key ==  varFirstRowKey) ? 100 : 0;
+        const rosterVisibility = ((key ==  varFirstRowKey) || (showPositionDiags || showLuckAdjDiags || showPlayTypes)) ? 100 : 0;
           //^(means it will be visible on table export but not on the page)
         if (height && height != "-") {
-          stat.def_efg = <small><i className="text-secondary" style={{opacity:visibility}}>{height}</i></small>;
+          stat.def_efg = <small><i className="text-secondary" style={{opacity:rosterVisibility}}>{height}</i></small>;
         }
         if (yearClass) {
-          stat.def_assist = <small><i className="text-secondary" style={{opacity:visibility}}>{yearClass}</i></small>;
+          stat.def_assist = <small><i className="text-secondary" style={{opacity:rosterVisibility}}>{yearClass}</i></small>;
         }
         if (heightIn  || yearClass) {
           stat.roster = { height_in: heightIn, year_class: yearClass };
