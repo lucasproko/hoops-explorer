@@ -269,11 +269,12 @@ export class PositionUtils {
 
   /** Tag the player with a position string given the confidences */
   static buildPosition(
-    confs: Record<string, number>, player: Record<string, any>, teamSeason: string
+    confs: Record<string, number>, confsNoHeight: Record<string, number> | undefined,
+    player: Record<string, any>, teamSeason: string
   ): [string, string] {
     const override = absolutePositionFixes[teamSeason]?.[player.key];
     if (override) { // Look for overrides
-      const [ manualPos, diag ] = PositionUtils.buildPosition(confs, player, "");
+      const [ manualPos, diag ] = PositionUtils.buildPosition(confs, confsNoHeight, player, "");
       return [ override.position,
         `Override from [${manualPos}] which matched rule [${diag}]`
       ];
@@ -332,14 +333,53 @@ export class PositionUtils {
       const poss = (player?.off_team_poss?.value || 0);
       const effectivePoss = poss*usage;
 
+      const posFromStats = effectivePoss < 25.0 ? fallbackPos : pos;
+
+      const [ posWithRoster, posWithRosterInfo ] = PositionUtils.usingRosterPos(posFromStats, player.roster?.pos);
+      const extraInfo = posWithRosterInfo ? `${posWithRosterInfo}. From stats: ` : "";
+
       if (effectivePoss < 25.0) { // Too few possessions to make an accurate determination
-        return [ fallbackPos,
-          `Too few used possessions [${effectivePoss.toFixed(1)}]=[${poss.toFixed(0)}]*[${(usage*100).toFixed(1)}]% < [25.0]. ` +
+        return [ posWithRoster,
+          `${extraInfo}Too few used possessions [${effectivePoss.toFixed(1)}]=[${poss.toFixed(0)}]*[${(usage*100).toFixed(1)}]% < [25.0]. ` +
           `Would have matched [${pos}] from rule [${diag}]` ];
       } else {
-        return [ pos, diag ];
+        return [ posWithRoster, `${extraInfo}${diag}` ];
       }
     }
+  }
+
+  /** Corrects dubious categorizations from the roster metadata */
+  static usingRosterPos(
+    posClass: string, rosterPos: string | undefined
+  ): [ string, string | undefined ] {
+    if (rosterPos) {
+      // Handle unsure cases:
+      if ((posClass == "G?")  || (posClass == "F/C?")) {
+        if  (rosterPos == "G") {
+          return [ "G?", "Based on roster info" ];
+        } else if (rosterPos == "C") { //(if someone's roster pos is a C then they are always a C!)
+          return [ "C", "Based on roster info" ];
+        } else  {
+          return [ "F/C?", "Based on roster info"];
+        }
+      } else { // Handle the algo being obviously wrong:
+        const score = PositionUtils.posClassToScore(posClass);
+
+        if ((score < 7000) && (rosterPos == "C")) {
+          return [ "PF/C", "Roster info says 'C', stats say wing(?) - compromise at 'PF/C'"]
+        } else if ((score < 4000) && (rosterPos == "F")) {
+          return [ "WG", "Roster info says 'F', stats say 'CG'/'PG' - compromise at 'WG'" ];
+        } else if ((score == 4000) && (rosterPos == "F")) {
+          return [ "WF", "Roster info says 'F', stats say 'WG'" ];
+        } else if ((score == 5000) && (rosterPos == "G")) {
+          return [ "WG", "Roster info says 'G', stats say 'WF'" ];
+        } else if ((score > 5000) && (rosterPos == "G")) {
+          return [ "WF", "Roster info says 'G', stats say frontcourt - compromize at 'WF'" ];
+        } else {
+          return [ posClass, undefined ];
+        }
+      }
+    } else return [ posClass, undefined ];
   }
 
   /** We usee the positional class of the player as the most important */

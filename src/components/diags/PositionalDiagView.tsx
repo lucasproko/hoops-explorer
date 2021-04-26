@@ -124,9 +124,15 @@ const PositionalDiagView: React.FunctionComponent<Props> = ({player, teamSeason,
   const topRef = React.createRef<HTMLDivElement>();
 
   const [ positionInfo, positionDiags ] = PositionUtils.buildPositionConfidences(player, player?.roster?.height_in);
-  const [ positionId, positionIdDiag ] = PositionUtils.buildPosition(positionInfo, player, teamSeason);
+
+  const [ positionId, positionIdDiag ] = PositionUtils.buildPosition(
+    positionInfo, positionDiags.confsNoHeight, player, teamSeason
+  );
   const [ positionIdNoHeight, positionIdDiagNoHeight ] = positionDiags.confsNoHeight ?
-    PositionUtils.buildPosition(positionDiags.confsNoHeight, player, teamSeason) : [ positionId, undefined ];
+    PositionUtils.buildPosition(
+      positionDiags.confsNoHeight, undefined, player, teamSeason
+    ) : [ positionId, undefined ];
+
   const [ showComplexDiag, setShowComplexDiag ] = useState(_.isNil(showDetailsOverride) ? false : showDetailsOverride);
 
   const simpleDiagTableData = [ GenericTableOps.buildDataRow({
