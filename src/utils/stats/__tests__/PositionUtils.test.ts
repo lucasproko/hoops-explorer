@@ -67,6 +67,10 @@ describe("PositionUtils", () => {
         pos: "s-PG", fallbackPos: "G?", diag: `(P[PG] >= 50%)`, name: "Scoring PG"
       },
       {
+        confs: [0.6, 0.4, 0, 0, 0], confsNoHeight: [0.9, 0.1, 0, 0, 0], extra: { off_assist: 0.10, off_3pr: 0.20, off_team_poss: 1000, off_usage: 0.20 },
+        pos: "PG", fallbackPos: "G?", diag: `(P[PG] >= 85%) ('PG' vs 's-PG', ignore height)`, name: "Pure PG"
+      },
+      {
         confs: [0.6, 0.4, 0, 0, 0], extra: { off_assist: 0.05, off_3pr: 0.20, off_team_poss: 1000, off_usage: 0.20 },
         pos: "WG", fallbackPos: "G?", diag: `(pG:)(P[PG] >= 50%) BUT (AST%[5.0] < 9%)`
       },
@@ -131,21 +135,23 @@ describe("PositionUtils", () => {
       // Just check that the override is plumbed in:
       {
         confs: [0.0, 0.0, 0.0, 0.1, 0.9], roster: { pos: "G" }, extra: { off_assist: 0.10, off_3pr: 0.25, off_team_poss: 1000, off_usage: 0.20 },
-        pos: "WF", fallbackPos: "G?", diag: `Roster info says 'G', stats say frontcourt - compromize at 'WF'. From stats: (P[C] >= 85%)`, name: "Wing Forward"
+        pos: "WF", fallbackPos: "G?", diag: `Roster info says 'G', stats say [C] - compromize at 'WF'. From stats: (P[C] >= 85%)`, name: "Wing Forward"
       }
     ];
     const posList = PositionUtils.tradPosList;
     testCases.forEach((caseObj: any) => {
       const confObj = _.fromPairs(_.zip(posList, caseObj.confs).map(kv => [kv[0], kv[1]]));
+      const confObjNoHeight = caseObj.confsNoHeight ?
+        _.fromPairs(_.zip(posList, caseObj.confsNoHeight).map(kv => [kv[0], kv[1]])) : undefined;
       const player = { ...(_.mapValues(caseObj.extra, (v: any) => { return { value: v}; })), roster: caseObj.roster };
-      expect(PositionUtils.buildPosition(confObj, undefined, player, sampleTeamSeason1)).toEqual([ caseObj.pos, caseObj.diag ]);
+      expect(PositionUtils.buildPosition(confObj, confObjNoHeight, player, sampleTeamSeason1)).toEqual([ caseObj.pos, caseObj.diag ]);
 
       if (caseObj.name) {
         expect(PositionUtils.idToPosition[caseObj.pos as string]).toEqual(caseObj.name);
       }
 
       const playerTooFewPos = _.chain(player).clone().merge({off_team_poss: { value: 100 } }).value();
-      if (!caseObj.roster) {
+      if (!caseObj.roster && !caseObj.confsNoHeight) {
         expect(PositionUtils.buildPosition(confObj, undefined, playerTooFewPos, sampleTeamSeason2)).toEqual([ caseObj.fallbackPos,
           `Too few used possessions [20.0]=[100]*[20.0]% < [25.0]. Would have matched [${caseObj.pos}] from rule [${caseObj.diag}]`
         ]);

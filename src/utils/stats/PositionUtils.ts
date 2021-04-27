@@ -291,15 +291,33 @@ export class PositionUtils {
 
       const fwdConfSum = confs["pos_sf"] + confs["pos_pf"] + confs["pos_c"];
 
+      const maybeIgnoreHeight = (inPosInfo: [ string, string, string ]) => {
+        if (confsNoHeight) {
+          const posWithHeight = inPosInfo[0];
+          const [ posNoHeight, diagNoHeight ] = PositionUtils.buildPosition(
+            confsNoHeight, undefined, player, teamSeason
+          )
+          if (((posNoHeight == "s-PG") && (posWithHeight == "PG")) ||
+              ((posNoHeight == "PG") && (posWithHeight == "s-PG")))
+            {
+              return [ posNoHeight, `${diagNoHeight} ('PG' vs 's-PG', ignore height)`, inPosInfo[2] ];
+            } else {
+              return inPosInfo;
+            }
+        } else {
+          return inPosInfo;
+        }
+      }
+
       // Just do the rules as a big bunch of if statements
       const getPosition = () => {
         if (confs["pos_pg"] > 0.85) {
           return (assistRate >= minAstRate) ?
-            [ "PG", `(P[PG] >= 85%)`, "G?" ] :
+            maybeIgnoreHeight([ "PG", `(P[PG] >= 85%)`, "G?" ]) :
             [ "WG", `(PG:)(P[PG] >= 85%) BUT (AST%[${(assistRate*100).toFixed(1)}] < 9%)`, "G?" ];
         } else if (confs["pos_pg"] > 0.5) {
           return (assistRate >= minAstRate) ?
-            [ "s-PG", `(P[PG] >= 50%)`, "G?" ] :
+            maybeIgnoreHeight([ "s-PG", `(P[PG] >= 50%)`, "G?" ]) :
             [ "WG", `(pG:)(P[PG] >= 50%) BUT (AST%[${(assistRate*100).toFixed(1)}] < 9%)`, "G?" ];
         } else if (maxPos == posList[0]) {
           return (assistRate >= minAstRate) ?
