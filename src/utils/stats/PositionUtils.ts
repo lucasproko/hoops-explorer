@@ -366,15 +366,15 @@ export class PositionUtils {
         const score = PositionUtils.posClassToScore(posClass);
 
         if ((score < 7000) && (rosterPos == "C")) {
-          return [ "PF/C", "Roster info says 'C', stats say wing(?) - compromise at 'PF/C'"]
+          return [ "PF/C", `Roster info says 'C', stats say [${posClass}] - compromize at 'PF/C'`]
         } else if ((score < 4000) && (rosterPos == "F")) {
-          return [ "WG", "Roster info says 'F', stats say 'CG'/'PG' - compromise at 'WG'" ];
+          return [ "WG", `Roster info says 'F', stats say [${posClass}] - compromize at 'WG'` ];
         } else if ((score == 4000) && (rosterPos == "F")) {
           return [ "WF", "Roster info says 'F', stats say 'WG'" ];
         } else if ((score == 5000) && (rosterPos == "G")) {
           return [ "WG", "Roster info says 'G', stats say 'WF'" ];
         } else if ((score > 5000) && (rosterPos == "G")) {
-          return [ "WF", "Roster info says 'G', stats say frontcourt - compromize at 'WF'" ];
+          return [ "WF", `Roster info says 'G', stats say [${posClass}] - compromize at 'WF'` ];
         } else {
           return [ posClass, undefined ];
         }
