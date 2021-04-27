@@ -1921,7 +1921,7 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (use hei
       Rule used to categorize player: 
       <i>
         <b>
-          (Max[P] == SG) AND (P[PG] &gt;= P[SF] + P[PF] + P[C])
+          (P[PG] &gt;= 50%)
         </b>
       </i>
     </li>
@@ -1940,21 +1940,21 @@ exports[`PositionalDiagView PositionalDiagView - should create snapshot (use hei
               "cellMetaFn": [Function],
               "dataObj": Object {
                 "pos_c": Object {
-                  "value": 3.8215685089719856e-7,
+                  "value": 8.59013220789501e-8,
                 },
                 "pos_pf": Object {
-                  "value": 0.005947983389240556,
+                  "value": 0.001543505695546625,
                 },
                 "pos_pg": Object {
-                  "value": 0.37459224419502063,
+                  "value": 0.5752853784512509,
                 },
                 "pos_sf": Object {
-                  "value": 0.05310150221212781,
+                  "value": 0.018322671990721153,
                 },
                 "pos_sg": Object {
-                  "value": 0.5663578880467601,
+                  "value": 0.4048483579611593,
                 },
-                "title": "Combo Guard",
+                "title": "Scoring PG",
               },
               "kind": "data-row",
               "prefixFn": [Function],

@@ -240,10 +240,11 @@ export class PositionUtils {
   /** Incorporates height - see build_height_adj_probs in https://hoop-explorer.blogspot.com/2020/05/classifying-college-basketball.html */
   static incorporateHeight(height_in: number, confs: number[]): number[] {
     const thresh = 1;
+    const heightDampening = sqrt2; //(increase variance to make the effect smaller - empirically this seems a touch aggro)
     const mutableState = { sumProduct: 0, scores: [ 0, 0, 0, 0, 0 ] };
     _.transform(confs, (acc, v, i) => {
       const mean = PositionUtils.heightMeanStds[i]!.mean!;
-      const std = PositionUtils.heightMeanStds[i]!.std!;
+      const std = heightDampening*PositionUtils.heightMeanStds[i]!.std!;
        const newScore = acc.scores[i]! +
         PositionUtils.cdf(height_in + thresh, mean, std) - PositionUtils.cdf(height_in - thresh, mean, std);
        acc.sumProduct = acc.sumProduct + newScore*v;

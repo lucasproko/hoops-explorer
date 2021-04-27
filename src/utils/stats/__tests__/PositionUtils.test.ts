@@ -16,7 +16,9 @@ describe("PositionUtils", () => {
     expect(PositionUtils.incorporateHeight(
       81, [ 0.03, 0.19, 0.49, 0.09, 0.18 ]
     ).map(n => n.toFixed(4))).toEqual(
-      [ "0.0011", "0.0322",  "0.4078", "0.1471", "0.4119" ]
+      // This was with heightDampening of 1
+//      [ "0.0011", "0.0322",  "0.4078", "0.1471", "0.4119" ]
+      [ "0.0055", "0.0776",  "0.4753", "0.1289", "0.3127" ]
       //(note these aren't quite the vals from the website because my weights changed slightly since that article)
     );
   });
