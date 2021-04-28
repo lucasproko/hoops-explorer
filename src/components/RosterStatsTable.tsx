@@ -479,6 +479,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
         const height = rosterEntry.height;
         const heightIn = rosterEntry.height_in;
         const yearClass = rosterEntry.year_class;
+        const rosterPos = rosterEntry.pos;
         const rosterVisibility = ((key ==  varFirstRowKey) || (showPositionDiags || showLuckAdjDiags || showPlayTypes)) ? 100 : 0;
           //^(means it will be visible on table export but not on the page)
         if (height && height != "-") {
@@ -487,8 +488,8 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
         if (yearClass) {
           stat.def_assist = <small><i className="text-secondary" style={{opacity:rosterVisibility}}>{yearClass}</i></small>;
         }
-        if (heightIn  || yearClass) {
-          stat.roster = { height_in: heightIn, year_class: yearClass };
+        if (heightIn  || yearClass || rosterPos) {
+          stat.roster = { height_in: heightIn, pos: rosterPos, year_class: yearClass };
         }
 
         // Once luck is applied apply any manual overrides
@@ -561,7 +562,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
         // Positional info (NOTE - no dependencies on other processing like ORtg):
 
         const [ posConfs, posConfsDiags ] = PositionUtils.buildPositionConfidences(stat, heightIn);
-        const [ pos, posDiags ] = PositionUtils.buildPosition(posConfs, stat, teamSeasonLookup);
+        const [ pos, posDiags ] = PositionUtils.buildPosition(posConfs, posConfsDiags.confsNoHeight, stat, teamSeasonLookup);
         stat.def_usage = <OverlayTrigger placement="auto" overlay={TableDisplayUtils.buildPositionTooltip(pos, onOffBaseToPhrase(key))}>
           <small>{pos}</small>
         </OverlayTrigger>;

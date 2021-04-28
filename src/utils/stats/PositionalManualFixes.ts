@@ -46,9 +46,6 @@ export const absolutePositionFixes: Record<string, Record<string, AbsolutePositi
     }
   },
   "Men_Maryland_2020/21": {
-    "Hamilton, Jairus": {
-      position: "WF"
-    },
     "Smart, Aquan": {
       position: "s-PG"
     },
@@ -56,7 +53,7 @@ export const absolutePositionFixes: Record<string, Record<string, AbsolutePositi
       position: "CG"
     },
     "Graham III, James": {
-      position: "WG"
+      position: "WF"
     },
   },
   "Men_Michigan St._2020/21": {

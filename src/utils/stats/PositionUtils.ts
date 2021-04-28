@@ -240,10 +240,11 @@ export class PositionUtils {
   /** Incorporates height - see build_height_adj_probs in https://hoop-explorer.blogspot.com/2020/05/classifying-college-basketball.html */
   static incorporateHeight(height_in: number, confs: number[]): number[] {
     const thresh = 1;
+    const heightDampening = sqrt2; //(increase variance to make the effect smaller - empirically this seems a touch aggro)
     const mutableState = { sumProduct: 0, scores: [ 0, 0, 0, 0, 0 ] };
     _.transform(confs, (acc, v, i) => {
       const mean = PositionUtils.heightMeanStds[i]!.mean!;
-      const std = PositionUtils.heightMeanStds[i]!.std!;
+      const std = heightDampening*PositionUtils.heightMeanStds[i]!.std!;
        const newScore = acc.scores[i]! +
         PositionUtils.cdf(height_in + thresh, mean, std) - PositionUtils.cdf(height_in - thresh, mean, std);
        acc.sumProduct = acc.sumProduct + newScore*v;
@@ -269,11 +270,12 @@ export class PositionUtils {
 
   /** Tag the player with a position string given the confidences */
   static buildPosition(
-    confs: Record<string, number>, player: Record<string, any>, teamSeason: string
+    confs: Record<string, number>, confsNoHeight: Record<string, number> | undefined,
+    player: Record<string, any>, teamSeason: string
   ): [string, string] {
     const override = absolutePositionFixes[teamSeason]?.[player.key];
     if (override) { // Look for overrides
-      const [ manualPos, diag ] = PositionUtils.buildPosition(confs, player, "");
+      const [ manualPos, diag ] = PositionUtils.buildPosition(confs, confsNoHeight, player, "");
       return [ override.position,
         `Override from [${manualPos}] which matched rule [${diag}]`
       ];
@@ -290,15 +292,33 @@ export class PositionUtils {
 
       const fwdConfSum = confs["pos_sf"] + confs["pos_pf"] + confs["pos_c"];
 
+      const maybeIgnoreHeight = (inPosInfo: [ string, string, string ]) => {
+        if (confsNoHeight) {
+          const posWithHeight = inPosInfo[0];
+          const [ posNoHeight, diagNoHeight ] = PositionUtils.buildPosition(
+            confsNoHeight, undefined, player, teamSeason
+          )
+          if (((posNoHeight == "s-PG") && (posWithHeight == "PG")) ||
+              ((posNoHeight == "PG") && (posWithHeight == "s-PG")))
+            {
+              return [ posNoHeight, `${diagNoHeight} ('PG' vs 's-PG', ignore height)`, inPosInfo[2] ];
+            } else {
+              return inPosInfo;
+            }
+        } else {
+          return inPosInfo;
+        }
+      }
+
       // Just do the rules as a big bunch of if statements
       const getPosition = () => {
         if (confs["pos_pg"] > 0.85) {
           return (assistRate >= minAstRate) ?
-            [ "PG", `(P[PG] >= 85%)`, "G?" ] :
+            maybeIgnoreHeight([ "PG", `(P[PG] >= 85%)`, "G?" ]) :
             [ "WG", `(PG:)(P[PG] >= 85%) BUT (AST%[${(assistRate*100).toFixed(1)}] < 9%)`, "G?" ];
         } else if (confs["pos_pg"] > 0.5) {
           return (assistRate >= minAstRate) ?
-            [ "s-PG", `(P[PG] >= 50%)`, "G?" ] :
+            maybeIgnoreHeight([ "s-PG", `(P[PG] >= 50%)`, "G?" ]) :
             [ "WG", `(pG:)(P[PG] >= 50%) BUT (AST%[${(assistRate*100).toFixed(1)}] < 9%)`, "G?" ];
         } else if (maxPos == posList[0]) {
           return (assistRate >= minAstRate) ?
@@ -332,14 +352,53 @@ export class PositionUtils {
       const poss = (player?.off_team_poss?.value || 0);
       const effectivePoss = poss*usage;
 
+      const posFromStats = effectivePoss < 25.0 ? fallbackPos : pos;
+
+      const [ posWithRoster, posWithRosterInfo ] = PositionUtils.usingRosterPos(posFromStats, player.roster?.pos);
+      const extraInfo = posWithRosterInfo ? `${posWithRosterInfo}. From stats: ` : "";
+
       if (effectivePoss < 25.0) { // Too few possessions to make an accurate determination
-        return [ fallbackPos,
-          `Too few used possessions [${effectivePoss.toFixed(1)}]=[${poss.toFixed(0)}]*[${(usage*100).toFixed(1)}]% < [25.0]. ` +
+        return [ posWithRoster,
+          `${extraInfo}Too few used possessions [${effectivePoss.toFixed(1)}]=[${poss.toFixed(0)}]*[${(usage*100).toFixed(1)}]% < [25.0]. ` +
           `Would have matched [${pos}] from rule [${diag}]` ];
       } else {
-        return [ pos, diag ];
+        return [ posWithRoster, `${extraInfo}${diag}` ];
       }
     }
+  }
+
+  /** Corrects dubious categorizations from the roster metadata */
+  static usingRosterPos(
+    posClass: string, rosterPos: string | undefined
+  ): [ string, string | undefined ] {
+    if (rosterPos) {
+      // Handle unsure cases:
+      if ((posClass == "G?")  || (posClass == "F/C?")) {
+        if  (rosterPos == "G") {
+          return [ "G?", "Based on roster info" ];
+        } else if (rosterPos == "C") { //(if someone's roster pos is a C then they are always a C!)
+          return [ "C", "Based on roster info" ];
+        } else  {
+          return [ "F/C?", "Based on roster info"];
+        }
+      } else { // Handle the algo being obviously wrong:
+        const score = PositionUtils.posClassToScore(posClass);
+
+        if ((score < 7000) && (rosterPos == "C")) {
+          return [ "PF/C", `Roster info says 'C', stats say [${posClass}] - compromize at 'PF/C'`]
+        } else if ((score < 4000) && (rosterPos == "F")) {
+          return [ "WG", `Roster info says 'F', stats say [${posClass}] - compromize at 'WG'` ];
+        } else if ((score == 4000) && (rosterPos == "F")) {
+          return [ "WF", "Roster info says 'F', stats say 'WG'" ];
+        } else if ((score == 5000) && (rosterPos == "G")) {
+          return [ "WG", "Roster info says 'G', stats say 'WF'" ];
+        } else if ((score > 5000) && (rosterPos == "G")) {
+          return [ "WF", `Roster info says 'G', stats say [${posClass}] - compromize at 'WF'` ];
+        } else {
+          return [ posClass, undefined ];
+        }
+      }
+    } else return [ posClass, undefined ];
   }
 
   /** We usee the positional class of the player as the most important */

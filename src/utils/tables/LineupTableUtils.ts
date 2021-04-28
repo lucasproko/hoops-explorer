@@ -106,11 +106,13 @@ export class LineupTableUtils {
     const positionFromPlayerKey = _.chain(players || []).map((player: any) => {
       const rosterMeta = player.roster;
       const [ posConfs, posConfsDiags ] = PositionUtils.buildPositionConfidences(player, player.roster?.height_in);
-      const [ pos, posDiags ] = PositionUtils.buildPosition(posConfs, player, teamSeasonLookup);
+      const [ pos, posDiags ] = PositionUtils.buildPosition(posConfs, posConfsDiags.confsNoHeight, player, teamSeasonLookup);
+
       return [ player.key, { posConfidences: _.values(posConfs || {}), posClass: pos,
         roster: rosterMeta ? {
           height: rosterMeta.height,
           year_class: rosterMeta.year_class,
+          pos: rosterMeta.pos,
         } : undefined
       } ];
     }).fromPairs().value();

@@ -21,7 +21,7 @@ export class RosterTableUtils {
       //TODO: do I want this one, or the baseline or ???
       if (includePosCat) {
         const [ posConfs, posConfsDiags ] = PositionUtils.buildPositionConfidences(p, rosterEntry?.height_in);
-        const [ pos, posDiags ] = PositionUtils.buildPosition(posConfs, p, teamSeasonLookup || "");
+        const [ pos, posDiags ] = PositionUtils.buildPosition(posConfs, posConfsDiags.confsNoHeight, p, teamSeasonLookup || "");
         p.posClass = _.values(posConfs);
         p.role = pos;
       }

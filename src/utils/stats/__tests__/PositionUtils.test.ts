@@ -16,7 +16,9 @@ describe("PositionUtils", () => {
     expect(PositionUtils.incorporateHeight(
       81, [ 0.03, 0.19, 0.49, 0.09, 0.18 ]
     ).map(n => n.toFixed(4))).toEqual(
-      [ "0.0011", "0.0322",  "0.4078", "0.1471", "0.4119" ]
+      // This was with heightDampening of 1
+//      [ "0.0011", "0.0322",  "0.4078", "0.1471", "0.4119" ]
+      [ "0.0055", "0.0776",  "0.4753", "0.1289", "0.3127" ]
       //(note these aren't quite the vals from the website because my weights changed slightly since that article)
     );
   });
@@ -65,6 +67,10 @@ describe("PositionUtils", () => {
       {
         confs: [0.6, 0.4, 0, 0, 0], extra: { off_assist: 0.10, off_3pr: 0.20, off_team_poss: 1000, off_usage: 0.20 },
         pos: "s-PG", fallbackPos: "G?", diag: `(P[PG] >= 50%)`, name: "Scoring PG"
+      },
+      {
+        confs: [0.6, 0.4, 0, 0, 0], confsNoHeight: [0.9, 0.1, 0, 0, 0], extra: { off_assist: 0.10, off_3pr: 0.20, off_team_poss: 1000, off_usage: 0.20 },
+        pos: "PG", fallbackPos: "G?", diag: `(P[PG] >= 85%) ('PG' vs 's-PG', ignore height)`, name: "Pure PG"
       },
       {
         confs: [0.6, 0.4, 0, 0, 0], extra: { off_assist: 0.05, off_3pr: 0.20, off_team_poss: 1000, off_usage: 0.20 },
@@ -127,26 +133,35 @@ describe("PositionUtils", () => {
       {
         confs: [0.0, 0.0, 0.0, 0.1, 0.9], extra: { off_assist: 0.10, off_3pr: 0.25, off_team_poss: 1000, off_usage: 0.20 },
         pos: "C", fallbackPos: "F/C?", diag: `(P[C] >= 85%)`, name: "Center"
+      },
+      // Just check that the override is plumbed in:
+      {
+        confs: [0.0, 0.0, 0.0, 0.1, 0.9], roster: { pos: "G" }, extra: { off_assist: 0.10, off_3pr: 0.25, off_team_poss: 1000, off_usage: 0.20 },
+        pos: "WF", fallbackPos: "G?", diag: `Roster info says 'G', stats say [C] - compromize at 'WF'. From stats: (P[C] >= 85%)`, name: "Wing Forward"
       }
     ];
     const posList = PositionUtils.tradPosList;
     testCases.forEach((caseObj: any) => {
       const confObj = _.fromPairs(_.zip(posList, caseObj.confs).map(kv => [kv[0], kv[1]]));
-      const player = _.mapValues(caseObj.extra, (v: any) => { return { value: v}; });
-      expect(PositionUtils.buildPosition(confObj, player, sampleTeamSeason1)).toEqual([ caseObj.pos, caseObj.diag ]);
+      const confObjNoHeight = caseObj.confsNoHeight ?
+        _.fromPairs(_.zip(posList, caseObj.confsNoHeight).map(kv => [kv[0], kv[1]])) : undefined;
+      const player = { ...(_.mapValues(caseObj.extra, (v: any) => { return { value: v}; })), roster: caseObj.roster };
+      expect(PositionUtils.buildPosition(confObj, confObjNoHeight, player, sampleTeamSeason1)).toEqual([ caseObj.pos, caseObj.diag ]);
 
       if (caseObj.name) {
         expect(PositionUtils.idToPosition[caseObj.pos as string]).toEqual(caseObj.name);
       }
 
       const playerTooFewPos = _.chain(player).clone().merge({off_team_poss: { value: 100 } }).value();
-      expect(PositionUtils.buildPosition(confObj, playerTooFewPos, sampleTeamSeason2)).toEqual([ caseObj.fallbackPos,
-        `Too few used possessions [20.0]=[100]*[20.0]% < [25.0]. Would have matched [${caseObj.pos}] from rule [${caseObj.diag}]`
-      ]);
+      if (!caseObj.roster && !caseObj.confsNoHeight) {
+        expect(PositionUtils.buildPosition(confObj, undefined, playerTooFewPos, sampleTeamSeason2)).toEqual([ caseObj.fallbackPos,
+          `Too few used possessions [20.0]=[100]*[20.0]% < [25.0]. Would have matched [${caseObj.pos}] from rule [${caseObj.diag}]`
+        ]);
+      }//(it gets too complex otherwise, live without a test for that)
     });
     // Check overrides:
     const confObj = _.fromPairs(_.zip(posList, testCases[0].confs).map(kv => [kv[0], kv[1]]));
-    expect(PositionUtils.buildPosition(confObj, {
+    expect(PositionUtils.buildPosition(confObj, undefined, {
       key: 'Popovic, Nik', off_usage: { value: 1 }, off_team_poss: { value: 200 }, off_assist: { value: 0.10 }
     }, sampleTeamSeason1)).toEqual([
       "PF/C", "Override from [PG] which matched rule [(P[PG] >= 85%)]"
@@ -176,6 +191,26 @@ describe("PositionUtils", () => {
     // Case 4: regression
     expect(PositionUtils.regressShotQuality(100, 3, "calc_rim_relative", player).toFixed(2)).toEqual("53.92");
 
+  });
+
+  test("PositionUtils - usingRosterPos", () => {
+    const testCases = [
+      { stats: "C", roster: "C", expected: "C",  hasInfo: false  },
+      { stats: "PF/C", roster: "C", expected: "PF/C",  hasInfo: false  },
+      { stats: "CG", roster: "C", expected: "PF/C",  hasInfo: true  },
+      { stats: "PG", roster: "F", expected: "WG",  hasInfo: true  },
+      { stats: "PG", roster: "G", expected: "PG",  hasInfo: false  },
+      { stats: "WG", roster: "F", expected: "WF",  hasInfo: true  },
+      { stats: "WG", roster: "G", expected: "WG",  hasInfo: false  },
+      { stats: "WF", roster: "F", expected: "WF",  hasInfo: false  },
+      { stats: "WF", roster: "G", expected: "WG",  hasInfo: true  },
+      { stats: "C", roster: "G", expected: "WF",  hasInfo: true  }
+    ];
+    _.forEach(testCases, (test, i) => {
+      const [expected, info ] = PositionUtils.usingRosterPos(test.stats, test.roster);
+      expect(expected + `: ${i}`).toEqual(test.expected + `: ${i}`);
+      expect(info != undefined ? i : -i).toEqual(test.hasInfo ? i : -i); //(report the index on error)
+    });
   });
 
   test("PositionUtils - orderLineup", () => {
