@@ -478,6 +478,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
 
         const height = rosterEntry.height;
         const heightIn = rosterEntry.height_in;
+
         const yearClass = rosterEntry.year_class;
         const rosterPos = rosterEntry.pos;
         const rosterVisibility = ((key ==  varFirstRowKey) || (showPositionDiags || showLuckAdjDiags || showPlayTypes)) ? 100 : 0;

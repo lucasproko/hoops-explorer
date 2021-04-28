@@ -257,6 +257,8 @@ export async function main() {
       ).then((s: any) => JSON.parse(s)).catch((err: any) => {
         return undefined;
       });
+      //(don't use height_in for women)
+      RequestUtils.mutateRosterJsonForWomen(rosterInfoJson, inGender);
 
       // Check for errors:
 

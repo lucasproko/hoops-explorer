@@ -6,11 +6,11 @@ export const dataLastUpdated: Record<string, number> = { //Update by executing .
   "Men_2016/7": 1491782414,
   "Men_2017/8": 1523318414,
   "Men_2018/9": 1554854424,
-  "Women_2018/9": 1554854423,
+  "Women_2018/9": 1554854424,
   "Men_2019/20": 1583968720,
-  "Women_2019/20": 1583968719,
+  "Women_2019/20": 1583968720,
   "Men_2020/21": 1617682989,
-  "Women_2020/21": 1617682989,
+  "Women_2020/21": 1617682990,
   "Men_2021/22": parseInt(process.env.MEN_CURR_UPDATE || "0"),
   "Women_2021/22": parseInt(process.env.WOMEN_CURR_UPDATE || "0")
 };

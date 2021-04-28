@@ -36,6 +36,13 @@ export class RequestUtils {
     }).replace(/[%]20/g, "+");
     return encodeEncodePrefix ? stage1.replace(/[%]/g, "%25") : stage1;
   }
+  static mutateRosterJsonForWomen(json: any, gender: string) {
+    if (json && (gender == "Women")) { // Remove height_in because all the fns that use it are trained on men
+      _.chain(json).mapValues(rosterEntry => {
+        delete rosterEntry.height_in;
+      }).value();
+    }
+  }
 
   /** An easily test abstraction for requesting multiple objects from the server */
   static requestHandlingLogic(
@@ -91,6 +98,7 @@ export class RequestUtils {
 
               // Inject the roster into the cacheable object
               if (rosterJson) {
+                RequestUtils.mutateRosterJsonForWomen(rosterJson, req.paramsObj.gender);
                 json.roster = rosterJson;
               }
 
