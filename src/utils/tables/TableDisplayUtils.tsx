@@ -103,7 +103,14 @@ export class TableDisplayUtils {
 
     return extendedView ?
     [
-      `${cid.id}: ${positionFromPlayerKey[cid.id]?.posClass || "??"}`,
+      `${cid.id}`
+      ,
+      _.chain(
+        [ playerInfo.roster?.year_class, playerInfo.roster?.height, positionFromPlayerKey[cid.id]?.posClass ]
+      ).filter(
+        p => (p != undefined) && (p != "-")
+      ).join(" / ").value()
+      ,
       `ORtg ${oRtgStr} on ${usageStr} (${adjOffRtgStr})`,//, FTR ${freethrowRateStr}`,
       `3P ${threePointPctStr} on ${threePointRateStr}, eFG ${efgStr}`,
       `Rim ${rimPointPctStr} on ${rimRateStr}, FTR ${freethrowRateStr}`,

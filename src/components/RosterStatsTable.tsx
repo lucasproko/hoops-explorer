@@ -472,9 +472,13 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
         stat.def_luck = defLuckAdj;
 
         // Apply roster info:
+        // (note this duplicates LineupTableUtils.buildBaselinePlayerInfo, but that isn't called unless RAPM is enabled)
         const playerCode = teamStats.global?.roster ?
           (stat.player_array?.hits?.hits?.[0]?._source?.player?.code || "??") : "??";
         const rosterEntry = teamStats.global?.roster?.[playerCode] || {};
+        if (!_.isEmpty(rosterEntry)) {
+          stat.roster = rosterEntry;
+        }
 
         const height = rosterEntry.height;
         const heightIn = rosterEntry.height_in;
@@ -488,9 +492,6 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
         }
         if (yearClass) {
           stat.def_assist = <small><i className="text-secondary" style={{opacity:rosterVisibility}}>{yearClass}</i></small>;
-        }
-        if (heightIn  || yearClass || rosterPos) {
-          stat.roster = { height_in: heightIn, pos: rosterPos, year_class: yearClass };
         }
 
         // Once luck is applied apply any manual overrides

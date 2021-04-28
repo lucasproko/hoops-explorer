@@ -73,6 +73,13 @@ export class LineupTableUtils {
           override: playerAdjustForLuckDef ? "Luck adjusted" : undefined
         };
         mutableP.code = mutableP.player_array?.hits?.hits?.[0]?._source?.player?.code || mutableP.key;
+
+        // If roster info is available then add:
+        const rosterEntry = globalRosterStatsByCode[mutableP.code].roster;
+        if (rosterEntry && !_.isEmpty(rosterEntry)) {
+          mutableP.roster = rosterEntry;
+        }
+
         return [ mutableP.key, mutableP ];
       })
     );

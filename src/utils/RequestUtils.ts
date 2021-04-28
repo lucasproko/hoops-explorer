@@ -36,7 +36,7 @@ export class RequestUtils {
     }).replace(/[%]20/g, "+");
     return encodeEncodePrefix ? stage1.replace(/[%]/g, "%25") : stage1;
   }
-  static mutateRosterJsonForWomen(json: any, gender: string) {
+  static mutateRosterJsonForWomen(json: any, gender: string | undefined) {
     if (json && (gender == "Women")) { // Remove height_in because all the fns that use it are trained on men
       _.chain(json).mapValues(rosterEntry => {
         delete rosterEntry.height_in;

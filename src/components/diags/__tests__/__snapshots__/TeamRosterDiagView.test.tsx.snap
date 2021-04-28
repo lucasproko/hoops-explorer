@@ -47,7 +47,11 @@ exports[`TeamRosterDiagView TeamRosterDiagView 1`] = `
                           placement="right"
                         >
                           <span>
-                            Cowan, Anthony: 0.7608816899806605,0.23503457939493452,0.003893285388442086,0.00019043748354377016,7.752418955526866e-9
+                            Cowan, Anthony
+                            <br />
+                          </span>
+                          <span>
+                            0.7608816899806605,0.23503457939493452,0.003893285388442086,0.00019043748354377016,7.752418955526866e-9
                             <br />
                           </span>
                           <span>
@@ -155,7 +159,11 @@ exports[`TeamRosterDiagView TeamRosterDiagView 1`] = `
                           placement="right"
                         >
                           <span>
-                            Ayala, Eric: ??
+                            Ayala, Eric
+                            <br />
+                          </span>
+                          <span>
+                            
                             <br />
                           </span>
                           <span>
@@ -250,7 +258,11 @@ exports[`TeamRosterDiagView TeamRosterDiagView 1`] = `
                           placement="right"
                         >
                           <span>
-                            Wiggins, Aaron: 0.0072892947188542105,0.2984404921863898,0.45743042057193684,0.2368364746315466,0.0000033178912727678397
+                            Wiggins, Aaron
+                            <br />
+                          </span>
+                          <span>
+                            0.0072892947188542105,0.2984404921863898,0.45743042057193684,0.2368364746315466,0.0000033178912727678397
                             <br />
                           </span>
                           <span>
@@ -352,7 +364,11 @@ exports[`TeamRosterDiagView TeamRosterDiagView 1`] = `
                           placement="right"
                         >
                           <span>
-                            Smith, Jalen: ??
+                            Smith, Jalen
+                            <br />
+                          </span>
+                          <span>
+                            
                             <br />
                           </span>
                           <span>
@@ -447,7 +463,11 @@ exports[`TeamRosterDiagView TeamRosterDiagView 1`] = `
                           placement="right"
                         >
                           <span>
-                            Morsell, Darryl: ??
+                            Morsell, Darryl
+                            <br />
+                          </span>
+                          <span>
+                            
                             <br />
                           </span>
                           <span>
@@ -551,7 +571,11 @@ exports[`TeamRosterDiagView TeamRosterDiagView 1`] = `
                           placement="right"
                         >
                           <span>
-                            Scott, Donta: ??
+                            Scott, Donta
+                            <br />
+                          </span>
+                          <span>
+                            
                             <br />
                           </span>
                           <span>
@@ -648,7 +672,11 @@ exports[`TeamRosterDiagView TeamRosterDiagView 1`] = `
                           placement="right"
                         >
                           <span>
-                            Scott, Donta: ??
+                            Scott, Donta
+                            <br />
+                          </span>
+                          <span>
+                            
                             <br />
                           </span>
                           <span>
