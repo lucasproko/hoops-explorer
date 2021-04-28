@@ -105,13 +105,15 @@ const TeamReportFilter: React.FunctionComponent<Props> = ({onStats, startingStat
       baseQuery: "", onQuery: "", offQuery: ""
     };
 
+    const makeGlobalRequest = !_.isEqual(entireSeasonRequest, secondaryRequest);
+
     return [ primaryRequest, [{
         context: ParamPrefixes.game as ParamPrefixesType, paramsObj: secondaryRequest
       }, {
-        context: ParamPrefixes.player as ParamPrefixesType, paramsObj: secondaryRequest
-      }].concat(_.isEqual(entireSeasonRequest, secondaryRequest) ? [] :[{ //(don't make a spurious call)
-        context: ParamPrefixes.player as ParamPrefixesType, paramsObj: entireSeasonRequest
-      }])
+        context: ParamPrefixes.player as ParamPrefixesType, paramsObj: secondaryRequest, includeRoster: !makeGlobalRequest
+      }].concat(makeGlobalRequest ? [{ //(don't make a spurious call)
+        context: ParamPrefixes.player as ParamPrefixesType, paramsObj: entireSeasonRequest, includeRoster: true
+      }] : [])
     ];
   }
 
@@ -120,8 +122,16 @@ const TeamReportFilter: React.FunctionComponent<Props> = ({onStats, startingStat
     const jsonStatuses = jsonResps.map(j => j.status);
     const lineupJson = jsonResps?.[0]?.responses?.[0] || {};
     const teamJson = jsonResps?.[1]?.responses?.[0] || {};
+
     const rosterStatsJson = jsonResps?.[2]?.responses?.[0] || {};
     const globalRosterStatsJson = jsonResps?.[3]?.responses?.[0] || rosterStatsJson;
+    const hasGlobalRosterStats = jsonResps?.[3]?.responses?.[0]?.aggregations?.tri_filter;
+
+    const globalTeam = teamJson?.aggregations?.global?.only?.buckets?.team || {};
+    const rosterInfo = jsonResps?.[hasGlobalRosterStats ? 3 : 2]?.roster;
+    if (rosterInfo) {
+      globalTeam.roster = rosterInfo;
+    }
 
     onStats({
       lineups: lineupJson?.aggregations?.lineups?.buckets,
@@ -129,7 +139,7 @@ const TeamReportFilter: React.FunctionComponent<Props> = ({onStats, startingStat
     }, {
       on: {}, off: {}, onOffMode: true,
       baseline: teamJson?.aggregations?.tri_filter?.buckets?.baseline || {},
-      global: teamJson?.aggregations?.global?.only?.buckets?.team || {},
+      global: globalTeam,
       error_code: wasError ? (teamJson?.status || jsonStatuses?.[1] || "Unknown") : undefined
     }, {
       baseline: rosterStatsJson?.aggregations?.tri_filter?.buckets?.baseline?.player?.buckets || [],

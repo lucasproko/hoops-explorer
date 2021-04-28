@@ -118,7 +118,7 @@ const LineupFilter: React.FunctionComponent<Props> = ({onStats, startingState, o
       primaryRequest.showGameInfo = true;
     }
 
-    const makeGlobalRequest = !_.isEqual(entireSeasonRequest, primaryRequest);
+    const makeGlobalRequest = !_.isEqual(entireSeasonRequest, secondaryRequest);
 
     return [ primaryRequest, [{
         context: ParamPrefixes.game as ParamPrefixesType, paramsObj: secondaryRequest
