@@ -132,7 +132,7 @@ const HeaderBar: React.FunctionComponent<Props> = ({thisPage, common, override})
     return <Tooltip id={"playerLeaderboardTooltip" + tier}>Go to the (luck adjusted) Player Leaderboard T900 page ({describeConfs(tier)})</Tooltip>
   };
   const playerLeaderboardTooltipNba2021 = (
-    <Tooltip id="playerLeaderboardTooltipNba2021">Go to the (luck adjusted) Player Leaderboard page (Men, 'high' tier), filtered for 2021 NBA prosects (from Tankathon)</Tooltip>
+    <Tooltip id="playerLeaderboardTooltipNba2021">Go to the (luck adjusted) Player Leaderboard page (Men, 'high' tier), filtered for 2021 NBA prospects (from Tankathon)</Tooltip>
   );
   const playerLeaderboardTooltipMdDmv2017 = (
     <Tooltip id="playerLeaderboardTooltipMdDmv2017">Go to the (luck adjusted) Player Leaderboard page (Men, 'high' tier), filtered for Md/DMV-area players class of 2017+</Tooltip>
