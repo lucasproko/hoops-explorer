@@ -9,7 +9,7 @@ export const dataLastUpdated: Record<string, number> = { //Update by executing .
   "Women_2018/9": 1554854425,
   "Men_2019/20": 1583968721,
   "Women_2019/20": 1583968721,
-  "Men_2020/21": 1617682990,
+  "Men_2020/21": 1617682991,
   "Women_2020/21": 1617682991,
   "Men_2021/22": parseInt(process.env.MEN_CURR_UPDATE || "0"),
   "Women_2021/22": parseInt(process.env.WOMEN_CURR_UPDATE || "0")
