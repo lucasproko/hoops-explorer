@@ -106,7 +106,7 @@ export type RapmPlayerContext = {
   removalPct: number;
 
   /** Players that have been removed */
-  removedPlayers: Record<string, [number, number]>;
+  removedPlayers: Record<string, [number, number, Record<string, any>]>;
   /** The column corresponding to the player */
   playerToCol: Record<string, number>;
   /** The player name in each column */
@@ -227,7 +227,7 @@ export class RapmUtils {
     players: Array<any>,
     lineups: Array<any>
     ,
-    playersBaseline: Record<string, any> //(used for building priors)
+    playersBaseline: Record<string, any> //(used for building priors - most general info)
     ,
     avgEfficiency: number
     ,
@@ -248,7 +248,7 @@ export class RapmUtils {
     // Filter out players with too few possessions
     var checkForPlayersToRemove = true; //(always do the full processing loop once)
     var currFilteredLineupSet = [];
-    const removedPlayersSet: Record<string, [number, number]> = {};
+    const removedPlayersSet: Record<string, [number, number, Record<string, any>]> = {};
     const playerPossessionCountTracker: Record<string, number> = {};
     while (checkForPlayersToRemove) {
       _.chain(players).filter((p: any) => !p.rapmRemove).forEach((p: any) => {
@@ -261,8 +261,15 @@ export class RapmUtils {
         if (playerPossessionCountTracker[playerId] < removalThreshold) {
           p.rapmRemove = true; //(temp flag for peformance in this loop)
           const origPoss = (p.on?.off_poss?.value || 0) + (p.on?.def_poss?.value || 0);
-          removedPlayersSet[playerId] =
-            [ origPoss/totalLineups, playerPossessionCountTracker[playerId]/totalLineups ];
+          const playerBaseline = playersBaseline[playerId] || {};
+          removedPlayersSet[playerId] = [
+            origPoss/totalLineups, playerPossessionCountTracker[playerId]/totalLineups,
+            { // Stats we need to ensure KP is consistent:
+              off_adj_rtg: playerBaseline.off_adj_rtg, def_adj_rtg: playerBaseline.def_adj_rtg,
+              off_team_poss: playerBaseline.off_team_poss?.value || 0,
+              def_team_poss: playerBaseline.def_team_poss?.value || 0,
+            }
+          ];
           checkForPlayersToRemove = true;
         }
       }).value();
@@ -624,8 +631,9 @@ export class RapmUtils {
     // Get an approximate idea of the scale of the lambdas:
     const avgEigenVal = 0.5*mean(svd.off.q) + 0.5*mean(svd.def.q);
     const actualEff = {
-      off: getVal(ctx.teamInfo.off_adj_ppp) - ctx.avgEfficiency,
-      def: getVal(ctx.teamInfo.def_adj_ppp) - ctx.avgEfficiency
+      //(we include both "RAPM players only" and "all other lineups" and then counter adjust with adj_rtg when we don't have RAPM)
+      off: getVal(ctx.teamInfo.all_lineups?.off_adj_ppp) - ctx.avgEfficiency,
+      def: getVal(ctx.teamInfo.all_lineups?.def_adj_ppp) - ctx.avgEfficiency
     };
 
     // Build player usage vectors:
@@ -645,6 +653,24 @@ export class RapmUtils {
         def: buildUsageVector("def") as number[]
       };
     })();
+
+    // Build an adj-rating-based adjustment for low-volume players
+    const lowVolumePlayerRapmAdj = (() => {
+      const buildLowVolumePlayerRapmAdj = (onOrOff: "off" | "def") => {
+        const lineupPossCount = ctx.teamInfo.all_lineups?.[`${onOrOff}_poss`]?.value || 1;
+        return [ _.chain(ctx.removedPlayers).values().reduce((acc, v) => {
+            const vStat = v[2];
+            return acc + getVal(vStat[`${onOrOff}_adj_rtg`])*(vStat[`${onOrOff}_team_poss`] || 0)/lineupPossCount;
+          }, 0.0).value(),
+          ctx[`${onOrOff}LineupPoss`]!/lineupPossCount
+        ];
+      };
+      return {
+        off: buildLowVolumePlayerRapmAdj("off") as [ number, number ],
+        def: buildLowVolumePlayerRapmAdj("def") as [ number, number ]
+      };
+    })();
+
     const useWeakPriorsToFixErrors = {
       off: RapmUtils.applyWeakPriors(`off_adj_ppp`, pctByPlayer.off, ctx.priorInfo),
       def: RapmUtils.applyWeakPriors(`def_adj_ppp`, pctByPlayer.def, ctx.priorInfo)
@@ -683,9 +709,10 @@ export class RapmUtils {
             }
           );
 
+          const [ addLowVolumeAdjRtg, reduceRapm ] = lowVolumePlayerRapmAdj[offOrDef];
           const combinedAdjEffPrePrior = _.sum(_.zip(pctByPlayer[offOrDef], resultsPrePrior).map((zip: Array<number|undefined>) => {
             return (zip[0] || 0)*(zip[1] || 0);
-          }));
+          }))*reduceRapm + addLowVolumeAdjRtg;
           const adjEffErrPrePrior = combinedAdjEffPrePrior - actualEff[offOrDef];
           const adjEffAbsErrPrePrior = Math.abs(adjEffErrPrePrior);
 
