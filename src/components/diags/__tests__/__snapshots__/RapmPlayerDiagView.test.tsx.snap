@@ -13,7 +13,7 @@ exports[`RapmPlayerDiagView RapmPlayerDiagView - should create snapshot 1`] = `
   </b>
   ], adj_def=[
   <b>
-    -4.94
+    -5.37
   </b>
   ] =
   <ul>
@@ -24,11 +24,11 @@ exports[`RapmPlayerDiagView RapmPlayerDiagView - should create snapshot 1`] = `
       </b>
       ], def=[
       <b>
-        -4.48
+        -5.37
       </b>
       ], total=[
       <b>
-        9.62
+        10.52
       </b>
       ]
     </li>
@@ -94,11 +94,11 @@ exports[`RapmPlayerDiagView RapmPlayerDiagView - should create snapshot 1`] = `
         </b>
         ], def=[
         <b>
-          -0.47
+          0.00
         </b>
         ], total=[
         <b>
-          0.47
+          0.00
         </b>
         ]
       </li>
@@ -106,11 +106,11 @@ exports[`RapmPlayerDiagView RapmPlayerDiagView - should create snapshot 1`] = `
         <li>
           We calculate a team adjustment (off=[
           <b>
-            -10.15
+            -2035.04
           </b>
           ] def=[
           <b>
-            -2.07
+            1892.33
           </b>
           ]) to reduce/remove the the delta between total adjusted efficiency and RAPM (due to the regression factor): eg compare 
           <em>
@@ -118,11 +118,11 @@ exports[`RapmPlayerDiagView RapmPlayerDiagView - should create snapshot 1`] = `
           </em>
            (off=[
           <b>
-            10.00
+            0.00
           </b>
           ] def=[
           <b>
-            -20.00
+            0.00
           </b>
           ]) vs 
           <em>
@@ -130,14 +130,29 @@ exports[`RapmPlayerDiagView RapmPlayerDiagView - should create snapshot 1`] = `
           </em>
            (off=[
           <b>
-            20.15
+            2035.04
           </b>
           ] def=[
           <b>
-            -17.93
+            -1892.33
           </b>
-          ]).
+          ])
         </li>
+        <ul>
+          <li>
+            <em>
+              (includes an adjustment for low-volume players based on their "Adj Rtg+"s: off=[
+              <b>
+                0.00
+              </b>
+              ] def=[
+              <b>
+                0.00
+              </b>
+              ]).
+            </em>
+          </li>
+        </ul>
         <span>
           <li>
             Then we calculate a player's contribution to this team total - currently this is a fraction of "Adj Rtg+": off=[
@@ -151,47 +166,24 @@ exports[`RapmPlayerDiagView RapmPlayerDiagView - should create snapshot 1`] = `
             ]), ...
           </li>
           <li>
-            ... chosen so that a minutes-weighted average of the ratings sums to the team value: off=[
+            ... chosen so that a minutes-weighted average of the ratings ([
+            <b>
+              82
+              %
+            </b>
+            ] (of [
+            <b>
+              101
+            </b>
+            ]) sums to the team value: off=[
             <b>
               0.00
             </b>
             ], def=[
             <b>
-              -0.47
+              0.00
             </b>
             ]
-            <ul>
-              <li>
-                <em>
-                   (eg incorporating the % on floor [
-                  <b>
-                    82
-                    %
-                  </b>
-                  ] (of [
-                  <b>
-                    101
-                  </b>
-                  ] poss, this is an off=[
-                  <b>
-                    0.00
-                  </b>
-                  ] def=[
-                  <b>
-                    -0.38
-                  </b>
-                  ] "slice" of the team total of off=[
-                  <b>
-                    -10.15
-                  </b>
-                  ] def=[
-                  <b>
-                    -2.07
-                  </b>
-                  ])
-                </em>
-              </li>
-            </ul>
           </li>
         </span>
       </ul>
@@ -393,10 +385,22 @@ Object {
     "Data, Dummy": Array [
       0.05254860746190226,
       0.05254860746190226,
+      Object {
+        "def_adj_rtg": undefined,
+        "def_team_poss": 0,
+        "off_adj_rtg": undefined,
+        "off_team_poss": 0,
+      },
     ],
     "Player, Other": Array [
       0.1576458223857068,
       0.1576458223857068,
+      Object {
+        "def_adj_rtg": undefined,
+        "def_team_poss": 0,
+        "off_adj_rtg": undefined,
+        "off_team_poss": 0,
+      },
     ],
   },
   "unbiasWeight": 0,

@@ -105,20 +105,20 @@ const RapmGlobalDiagView: React.FunctionComponent<Props> = (({rapmInfo, players,
     // Player removal
 
     const playerThreshold = ctx.removalPct;
-    const playerRemovalTidy = (playerList: Array<[string, [number, number]]>, phase: "p1" | "p2") => {
+    const playerRemovalTidy = (playerList: Array<[string, [number, number, Record<string, any>]]>, phase: "p1" | "p2") => {
       return _.sortBy(
-        playerList, [ (playerPoss: [string, [number, number]]) => -playerPoss[1][0] ]
-      ).map((playerPoss: [string, [number, number]]) => {
+        playerList, [ (playerPoss: [string, [number, number, Record<string, any>]]) => -playerPoss[1][0] ]
+      ).map((playerPoss: [string, [number, number, Record<string, any>]]) => {
         const extra = (phase == "p1") ? "" : `->[${(100*playerPoss[1][1]).toFixed(1)}%]`
         return `"${playerPoss[0]}" [${(100*playerPoss[1][0]).toFixed(1)}%]${extra}`;
       });
     };
     const tmpRemovedPlayersPhase1 = playerRemovalTidy(
-      _.toPairs(ctx.removedPlayers).filter((playerPoss: [string, [number, number]]) =>
+      _.toPairs(ctx.removedPlayers).filter((playerPoss: [string, [number, number, Record<string, any>]]) =>
         playerPoss[1][0] <= ctx.removalPct
     ), "p1");
     const tmpRemovedPlayersPhase2 = playerRemovalTidy(
-      _.toPairs(ctx.removedPlayers).filter((playerPoss: [string, [number, number]]) =>
+      _.toPairs(ctx.removedPlayers).filter((playerPoss: [string, [number, number, Record<string, any>]]) =>
         playerPoss[1][0] > ctx.removalPct
     ), "p2");
 
