@@ -144,7 +144,7 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 1`] = 
     </li>
     <ul>
       <li>
-        (Gives adjusted usage = [
+        (Gives adjusted usage: Adj_Usage = [
         <b>
           26.6
           %
@@ -173,7 +173,11 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 1`] = 
           <b>
             117
           </b>
-          )] + 0.475*fta=[
+          )] + [
+          <b>
+            0.451
+          </b>
+          ]*fta=[
           <b>
             100.7
           </b>

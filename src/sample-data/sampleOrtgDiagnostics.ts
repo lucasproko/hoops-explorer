@@ -60,6 +60,7 @@ export const sampleOrtgDiagnostics =
    "ppAssist_Classic": 82.88469256002232,
    "ppFg": 299.2107279693486,
    "ftPoss": 100.69999999999999,
+   "actualFtaToPoss": 0.451,
    "ftPct": 0.8113207547169812,
    "missedBothFTs": 0.03559985760056958,
    "offPlaysLessPoss": 74.21547619047624,
