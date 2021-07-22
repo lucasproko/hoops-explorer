@@ -179,10 +179,22 @@ Object {
     "Data, Dummy": Array [
       0.05254860746190226,
       0.05254860746190226,
+      Object {
+        "def_adj_rtg": undefined,
+        "def_team_poss": 0,
+        "off_adj_rtg": undefined,
+        "off_team_poss": 0,
+      },
     ],
     "Player, Other": Array [
       0.1576458223857068,
       0.1576458223857068,
+      Object {
+        "def_adj_rtg": undefined,
+        "def_team_poss": 0,
+        "off_adj_rtg": undefined,
+        "off_team_poss": 0,
+      },
     ],
   },
   "unbiasWeight": 0,

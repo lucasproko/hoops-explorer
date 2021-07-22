@@ -662,7 +662,7 @@ export class RapmUtils {
             const vStat = v[2];
             return acc + getVal(vStat[`${onOrOff}_adj_rtg`])*(vStat[`${onOrOff}_team_poss`] || 0)/lineupPossCount;
           }, 0.0).value(),
-          ctx[`${onOrOff}LineupPoss`]!/lineupPossCount
+          (ctx as any)[`${onOrOff}LineupPoss`]!/lineupPossCount
         ];
       };
       return {
