@@ -4,11 +4,11 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 1`] = 
 <span>
   ORtg = Points_Produced [
   <b>
-    569.5
+    569.6
   </b>
   ] / Adjusted_Possessions [
   <b>
-    479.7
+    475.2
   </b>
   ] (
   <a
@@ -39,11 +39,11 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 1`] = 
     <li>
       Points_Produced: [
       <b>
-        569.5
+        569.6
       </b>
       ] = PProd_From_ORB [
       <b>
-        9.5
+        9.6
       </b>
       ] + [
       <b>
@@ -122,11 +122,11 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 1`] = 
     <li>
       Adjusted_Possessions: [
       <b>
-        479.7
+        475.2
       </b>
       ] = Scoring_Possessions [
       <b>
-        263.2
+        259.0
       </b>
       ] + Missed_FG_Possessions [
       <b>
@@ -134,7 +134,7 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 1`] = 
       </b>
       ] + Missed_FT_Possessions [
       <b>
-        3.6
+        3.4
       </b>
       ] + TO [
       <b>
@@ -146,7 +146,7 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 1`] = 
       <li>
         (Gives adjusted usage: Adj_Usage = [
         <b>
-          26.6
+          26.4
           %
         </b>
         ])
@@ -175,11 +175,11 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 1`] = 
           </b>
           )] + [
           <b>
-            0.451
+            0.454
           </b>
           ]*fta=[
           <b>
-            100.7
+            96.3
           </b>
           ] + to=[
           <b>
@@ -187,7 +187,7 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 1`] = 
           </b>
           ] - orb=[
           <b>
-            74.2
+            69.8
           </b>
           ])
         </em>
@@ -199,7 +199,7 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 1`] = 
       </b>
       : [
       <b>
-        6.2
+        6.9
       </b>
       ] = 
       <em>
@@ -207,15 +207,15 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 1`] = 
       </em>
        [
       <b>
-        131.0
+        134.4
       </b>
       ] (Regressed_ORtg [
       <b>
-        120.2
+        121.8
       </b>
       ] + Usage_Bonus [
       <b>
-        6.3
+        8.0
       </b>
       ]) * (Avg_Efficiency [
       <b>
