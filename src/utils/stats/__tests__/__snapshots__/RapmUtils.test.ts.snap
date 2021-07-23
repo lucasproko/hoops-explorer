@@ -110,10 +110,10 @@ Object {
     "Ayala, Eric",
     "Scott, Donta",
   ],
-  "defLineupPoss": 794,
-  "numLineups": 3,
+  "defLineupPoss": 944,
+  "numLineups": 5,
   "numPlayers": 6,
-  "offLineupPoss": 809,
+  "offLineupPoss": 959,
   "playerToCol": Object {
     "Ayala, Eric": 4,
     "Cowan, Anthony": 1,
@@ -178,22 +178,26 @@ Object {
   "removedPlayers": Object {
     "Data, Dummy": Array [
       0.05254860746190226,
-      0.05254860746190226,
+      0,
       Object {
-        "def_adj_rtg": undefined,
-        "def_team_poss": 0,
-        "off_adj_rtg": undefined,
-        "off_team_poss": 0,
+        "def_poss": Object {
+          "value": 50,
+        },
+        "off_poss": Object {
+          "value": 50,
+        },
       },
     ],
     "Player, Other": Array [
       0.1576458223857068,
-      0.1576458223857068,
+      0,
       Object {
-        "def_adj_rtg": undefined,
-        "def_team_poss": 0,
-        "off_adj_rtg": undefined,
-        "off_team_poss": 0,
+        "def_poss": Object {
+          "value": 150,
+        },
+        "off_poss": Object {
+          "value": 150,
+        },
       },
     ],
   },

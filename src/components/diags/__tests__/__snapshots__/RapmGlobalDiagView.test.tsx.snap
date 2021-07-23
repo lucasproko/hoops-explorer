@@ -1776,16 +1776,6 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
         </li>
       </ul>
     </span>
-    <span>
-      <li>
-        Players who have too few possessions after filtering out other players:
-      </li>
-      <ul>
-        <li>
-          "Mitchell, Makhi" [26.4%]-&gt;[2.6%]; "Hart, Hakim" [23.7%]-&gt;[2.4%]; "Mitchell, Makhel" [21.0%]-&gt;[1.0%]; "Tomaic, Joshua" [14.9%]-&gt;[2.0%]
-        </li>
-      </ul>
-    </span>
   </ul>
   <h5>
     Lineup collinearity diagnostics
@@ -6106,23 +6096,23 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 fillOpacity={1}
                 stroke="green"
                 strokeWidth={1}
-                x="0.439"
-                x1={60}
-                x2={60}
+                x="1.536"
+                x1={199.28571428571428}
+                x2={199.28571428571428}
                 y1={365}
                 y2={5}
               />
               <text
                 className="recharts-text recharts-label"
                 textAnchor="middle"
-                x={60}
+                x={199.28571428571428}
                 y={10}
               >
                 <tspan
                   dy="0.71em"
-                  x={60}
+                  x={199.28571428571428}
                 >
-                  Selected regression 'lambda' [0.439]
+                  Selected regression 'lambda' [1.536]
                 </tspan>
               </text>
             </g>
@@ -6560,7 +6550,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
               <path
                 className="recharts-curve recharts-line-curve"
                 clipPath={null}
-                d="M60,302.57838718580376C69.28571428571429,291.9562687627316,78.57142857142857,281.33415033965946,87.85714285714286,273.85275195870446C97.14285714285715,266.37135357774946,106.42857142857143,262.1848170497026,115.71428571428572,257.68999690007377C125,253.19517675044497,134.28571428571428,250.01978905057027,143.57142857142856,246.88383106093164C152.85714285714286,243.74787307129301,162.14285714285714,241.2683086456835,171.42857142857144,238.87424896224198C180.71428571428572,236.48018927880048,190,234.45980291464917,199.28571428571428,232.51947296028257C208.57142857142856,230.57914300591594,217.85714285714286,228.872307712618,227.14285714285714,227.23226923604227C236.42857142857142,225.59223075946653,245.71428571428572,224.10849338260888,255,222.67924210082813C264.2857142857143,221.24999081904738,273.5714285714286,219.93109756790741,282.8571428571429,218.65676154535782C292.14285714285717,217.38242552280823,301.42857142857144,216.1894106360734,310.7142857142857,215.03322596553053C320,213.87704129498766,329.2857142857143,212.7829234522964,338.57142857142856,211.7196535221006C347.85714285714283,210.6563835919048,357.14285714285717,209.64190051830403,366.42857142857144,208.65360638435584C375.7142857142857,207.66531225040765,385,206.71633881495944,394.2857142857143,205.78988871841153C403.57142857142856,204.86343862186362,412.8571428571429,203.96936959508125,422.14285714285717,203.09490580506835C431.42857142857144,202.22044201505548,440.7142857142857,201.38177399669485,450,200.54310597833424"
+                d="M60,278.3855914572025C69.28571428571429,271.3041791751544,78.57142857142857,264.2227668931063,87.85714285714286,259.23516797246964C97.14285714285715,254.24756905183295,106.42857142857143,251.4565446998017,115.71428571428572,248.45999793338248C125,245.4634511669633,134.28571428571428,243.34652603371353,143.57142857142856,241.25588737395444C152.85714285714286,239.16524871419534,162.14285714285714,237.51220576378896,171.42857142857144,235.91616597482795C180.71428571428572,234.32012618586694,190,232.9732019430995,199.28571428571428,231.67964864018842C208.57142857142856,230.38609533727734,217.85714285714286,229.24820514174536,227.14285714285714,228.15484615736153C236.42857142857142,227.0614871729777,245.71428571428572,226.07232892173928,255,225.11949473388546C264.2857142857143,224.16666054603164,273.5714285714286,223.28739837860496,282.8571428571429,222.43784103023856C292.14285714285717,221.58828368187216,301.42857142857144,220.7929404240489,310.7142857142857,220.02215064368698C320,219.25136086332506,329.2857142857143,218.5219489681976,338.57142857142856,217.81310234806708C347.85714285714283,217.10425572793656,357.14285714285717,216.42793367886938,366.42857142857144,215.76907092290392C375.7142857142857,215.11020816693846,385,214.477559209973,394.2857142857143,213.85992581227438C403.57142857142856,213.24229241457576,412.8571428571429,212.6462463967208,422.14285714285717,212.06327053671222C431.42857142857144,211.48029467670364,440.7142857142857,210.92118266446326,450,210.36207065222285"
                 fill="none"
                 height={360}
                 stroke="#a6cee3"
@@ -6574,7 +6564,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={60}
-                  cy={302.57838718580376}
+                  cy={278.3855914572025}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -6585,7 +6575,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={87.85714285714286}
-                  cy={273.85275195870446}
+                  cy={259.23516797246964}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -6596,7 +6586,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={115.71428571428572}
-                  cy={257.68999690007377}
+                  cy={248.45999793338248}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -6607,7 +6597,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={143.57142857142856}
-                  cy={246.88383106093164}
+                  cy={241.25588737395444}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -6618,7 +6608,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={171.42857142857144}
-                  cy={238.87424896224198}
+                  cy={235.91616597482795}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -6629,7 +6619,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={199.28571428571428}
-                  cy={232.51947296028257}
+                  cy={231.67964864018842}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -6640,7 +6630,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={227.14285714285714}
-                  cy={227.23226923604227}
+                  cy={228.15484615736153}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -6651,7 +6641,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={255}
-                  cy={222.67924210082813}
+                  cy={225.11949473388546}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -6662,7 +6652,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={282.8571428571429}
-                  cy={218.65676154535782}
+                  cy={222.43784103023856}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -6673,7 +6663,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={310.7142857142857}
-                  cy={215.03322596553053}
+                  cy={220.02215064368698}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -6684,7 +6674,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={338.57142857142856}
-                  cy={211.7196535221006}
+                  cy={217.81310234806708}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -6695,7 +6685,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={366.42857142857144}
-                  cy={208.65360638435584}
+                  cy={215.76907092290392}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -6706,7 +6696,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={394.2857142857143}
-                  cy={205.78988871841153}
+                  cy={213.85992581227438}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -6717,7 +6707,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={422.14285714285717}
-                  cy={203.09490580506835}
+                  cy={212.06327053671222}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -6728,7 +6718,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={450}
-                  cy={200.54310597833424}
+                  cy={210.36207065222285}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -6744,7 +6734,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
               <path
                 className="recharts-curve recharts-line-curve"
                 clipPath={null}
-                d="M60,127.95576429218704C69.28571428571429,136.22321352383872,78.57142857142857,144.4906627554904,87.85714285714286,149.91744643075788C97.14285714285715,155.34423010602535,106.42857142857143,157.79013571357007,115.71428571428572,160.5164663437918C125,163.24279697401352,134.28571428571428,164.77066960188708,143.57142857142856,166.27543021208828C152.85714285714286,167.78019082228948,162.14285714285714,168.6947991128722,171.42857142857144,169.54503000499895C180.71428571428572,170.39526089712567,190,170.91587933036493,199.28571428571428,171.37681556484867C208.57142857142856,171.8377517993324,217.85714285714286,172.09817408017162,227.14285714285714,172.31064741190136C236.42857142857142,172.5231207436311,245.71428571428572,172.65165555522705,255,172.65165555522705C264.2857142857143,172.65165555522705,273.5714285714286,172.62943687856395,282.8571428571429,172.58499952523775C292.14285714285717,172.54056217191155,301.42857142857144,172.38282837064787,310.7142857142857,172.22934723279215C320,172.07586609493643,329.2857142857143,171.87828189755894,338.57142857142856,171.66411269810334C347.85714285714283,171.44994349864774,357.14285714285717,171.20347420899577,366.42857142857144,170.94433203605857C375.7142857142857,170.6851898631214,385,170.4020528922442,394.2857142857143,170.1092596604802C403.57142857142856,169.8164664287162,412.8571428571429,169.50567468193117,422.14285714285717,169.18757264547463C431.42857142857144,168.86947060901812,440.7142857142857,168.53505902537958,450,168.20064744174107"
+                d="M60,154.47050952812467C69.28571428571429,159.9821423492258,78.57142857142857,165.49377517032693,87.85714285714286,169.11163095383856C97.14285714285715,172.7294867373502,106.42857142857143,174.36009047571335,115.71428571428572,176.1776442291945C125,177.99519798267565,134.28571428571428,179.01377973459134,143.57142857142856,180.01695347472548C152.85714285714286,181.02012721485963,162.14285714285714,181.62986607524815,171.42857142857144,182.1966866699993C180.71428571428572,182.76350726475047,190,183.11058622024325,199.28571428571428,183.4178770432324C208.57142857142856,183.72516786622157,217.85714285714286,183.8987827201144,227.14285714285714,184.04043160793424C236.42857142857142,184.18208049575406,245.71428571428572,184.2677703701514,255,184.2677703701514C264.2857142857143,184.2677703701514,273.5714285714286,184.25295791904264,282.8571428571429,184.22333301682514C292.14285714285717,184.19370811460763,301.42857142857144,184.0885522470986,310.7142857142857,183.9862314885281C320,183.8839107299576,329.2857142857143,183.75218793170592,338.57142857142856,183.6094084654022C347.85714285714283,183.46662899909848,357.14285714285717,183.3023161393305,366.42857142857144,183.1295546907057C375.7142857142857,182.95679324208092,385,182.7680352614961,394.2857142857143,182.57283977365344C403.57142857142856,182.3776442858108,412.8571428571429,182.1704497879541,422.14285714285717,181.95838176364975C431.42857142857144,181.74631373934542,440.7142857142857,181.5233726835864,450,181.30043162782738"
                 fill="none"
                 height={360}
                 stroke="#1f78b4"
@@ -6758,7 +6748,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={60}
-                  cy={127.95576429218704}
+                  cy={154.47050952812467}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -6769,7 +6759,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={87.85714285714286}
-                  cy={149.91744643075788}
+                  cy={169.11163095383856}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -6780,7 +6770,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={115.71428571428572}
-                  cy={160.5164663437918}
+                  cy={176.1776442291945}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -6791,7 +6781,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={143.57142857142856}
-                  cy={166.27543021208828}
+                  cy={180.01695347472548}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -6802,7 +6792,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={171.42857142857144}
-                  cy={169.54503000499895}
+                  cy={182.1966866699993}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -6813,7 +6803,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={199.28571428571428}
-                  cy={171.37681556484867}
+                  cy={183.4178770432324}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -6824,7 +6814,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={227.14285714285714}
-                  cy={172.31064741190136}
+                  cy={184.04043160793424}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -6835,7 +6825,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={255}
-                  cy={172.65165555522705}
+                  cy={184.2677703701514}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -6846,7 +6836,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={282.8571428571429}
-                  cy={172.58499952523775}
+                  cy={184.22333301682514}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -6857,7 +6847,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={310.7142857142857}
-                  cy={172.22934723279215}
+                  cy={183.9862314885281}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -6868,7 +6858,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={338.57142857142856}
-                  cy={171.66411269810334}
+                  cy={183.6094084654022}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -6879,7 +6869,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={366.42857142857144}
-                  cy={170.94433203605857}
+                  cy={183.1295546907057}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -6890,7 +6880,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={394.2857142857143}
-                  cy={170.1092596604802}
+                  cy={182.57283977365344}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -6901,7 +6891,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={422.14285714285717}
-                  cy={169.18757264547463}
+                  cy={181.95838176364975}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -6912,7 +6902,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={450}
-                  cy={168.20064744174107}
+                  cy={181.30043162782738}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -6928,7 +6918,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
               <path
                 className="recharts-curve recharts-line-curve"
                 clipPath={null}
-                d="M60,270.81682326669994C69.28571428571429,262.0266112845613,78.57142857142857,253.23639930242265,87.85714285714286,246.69654325961093C97.14285714285715,240.1566872167992,106.42857142857143,235.86896373497837,115.71428571428572,231.57768700982962C125,227.28641028468087,134.28571428571428,224.06406335779172,143.57142857142856,220.9488829087184C152.85714285714286,217.83370245964502,162.14285714285714,215.3056789541738,171.42857142857144,212.88660431538952C180.71428571428572,210.46752967660524,190,208.40498451548947,199.28571428571428,206.43443507601273C208.57142857142856,204.463885636536,217.85714285714286,202.7262621290557,227.14285714285714,201.06330767852901C236.42857142857142,199.40035322800233,245.71428571428572,197.89833396608933,255,196.45670837285257C264.2857142857143,195.01508277961582,273.5714285714286,193.6896961697053,282.8571428571429,192.41355411910854C292.14285714285717,191.1374120685118,301.42857142857144,189.9483158093773,310.7142857142857,188.7998560692721C320,187.6513963291669,329.2857142857143,186.57011148080346,338.57142857142856,185.52279567847722C347.85714285714283,184.47547987615098,357.14285714285717,183.4813412873834,366.42857142857144,182.51596125531472C375.7142857142857,181.55058122324604,385,180.6282275706084,394.2857142857143,179.73051548606517C403.57142857142856,178.83280340152194,412.8571428571429,177.97057075431397,422.14285714285717,177.12968874805532C431.42857142857144,176.2888067417967,440.7142857142857,175.48701509515502,450,174.68522344851334"
+                d="M60,242.2112155111333C69.28571428571429,236.35107418970753,78.57142857142857,230.49093286828173,87.85714285714286,226.1310288397406C97.14285714285715,221.77112481119946,106.42857142857143,218.9126424899856,115.71428571428572,216.05179133988642C125,213.19094018978726,134.28571428571428,211.0427089051945,143.57142857142856,208.9659219391456C152.85714285714286,206.8891349730967,162.14285714285714,205.2037859694492,171.42857142857144,203.59106954359302C180.71428571428572,201.97835311773684,190,200.6033230103263,199.28571428571428,199.28962338400848C208.57142857142856,197.97592375769065,217.85714285714286,196.81750808603712,227.14285714285714,195.708871785686C236.42857142857142,194.60023548533488,245.71428571428572,193.59888931072624,255,192.63780558190174C264.2857142857143,191.67672185307725,273.5714285714286,190.79313077980353,282.8571428571429,189.94236941273903C292.14285714285717,189.09160804567452,301.42857142857144,188.29887720625157,310.7142857142857,187.53323737951476C320,186.76759755277794,329.2857142857143,186.04674098720224,338.57142857142856,185.3485304523181C347.85714285714283,184.65031991743393,357.14285714285717,183.98756085825562,366.42857142857144,183.34397417020983C375.7142857142857,182.70038748216405,385,182.08548504707227,394.2857142857143,181.48701032404344C403.57142857142856,180.8885356010146,412.8571428571429,180.31371383620927,422.14285714285717,179.75312583203686C431.42857142857144,179.19253782786444,440.7142857142857,178.65801006343665,450,178.12348229900888"
                 fill="none"
                 height={360}
                 stroke="#b2df8a"
@@ -6942,7 +6932,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={60}
-                  cy={270.81682326669994}
+                  cy={242.2112155111333}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -6953,7 +6943,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={87.85714285714286}
-                  cy={246.69654325961093}
+                  cy={226.1310288397406}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -6964,7 +6954,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={115.71428571428572}
-                  cy={231.57768700982962}
+                  cy={216.05179133988642}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -6975,7 +6965,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={143.57142857142856}
-                  cy={220.9488829087184}
+                  cy={208.9659219391456}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -6986,7 +6976,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={171.42857142857144}
-                  cy={212.88660431538952}
+                  cy={203.59106954359302}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -6997,7 +6987,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={199.28571428571428}
-                  cy={206.43443507601273}
+                  cy={199.28962338400848}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -7008,7 +6998,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={227.14285714285714}
-                  cy={201.06330767852901}
+                  cy={195.708871785686}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -7019,7 +7009,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={255}
-                  cy={196.45670837285257}
+                  cy={192.63780558190174}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -7030,7 +7020,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={282.8571428571429}
-                  cy={192.41355411910854}
+                  cy={189.94236941273903}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -7041,7 +7031,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={310.7142857142857}
-                  cy={188.7998560692721}
+                  cy={187.53323737951476}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -7052,7 +7042,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={338.57142857142856}
-                  cy={185.52279567847722}
+                  cy={185.3485304523181}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -7063,7 +7053,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={366.42857142857144}
-                  cy={182.51596125531472}
+                  cy={183.34397417020983}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -7074,7 +7064,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={394.2857142857143}
-                  cy={179.73051548606517}
+                  cy={181.48701032404344}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -7085,7 +7075,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={422.14285714285717}
-                  cy={177.12968874805532}
+                  cy={179.75312583203686}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -7096,7 +7086,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={450}
-                  cy={174.68522344851334}
+                  cy={178.12348229900888}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -7112,7 +7102,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
               <path
                 className="recharts-curve recharts-line-curve"
                 clipPath={null}
-                d="M60,107.00316785009372C69.28571428571429,111.81809890366574,78.57142857142857,116.63302995723777,87.85714285714286,119.99042594278396C97.14285714285715,123.34782192833015,106.42857142857143,125.24425370919674,115.71428571428572,127.14754376337086C125,129.05083381754497,134.28571428571428,130.26376612732867,143.57142857142856,131.41016626782869C152.85714285714286,132.5565664083287,162.14285714285714,133.3243735287221,171.42857142857144,134.02594460637098C180.71428571428572,134.72751568401986,190,135.2007145794746,199.28571428571428,135.619592733722C208.57142857142856,136.03847088796937,217.85714285714286,136.3101113325291,227.14285714285714,136.5392135318552C236.42857142857142,136.76831573118133,245.71428571428572,136.91165544838887,255,136.99420592967877C264.2857142857143,137.07675641096867,273.5714285714286,137.11803165161362,282.8571428571429,137.11803165161362C292.14285714285717,137.11803165161362,301.42857142857144,137.06924141252964,310.7142857142857,136.99969588869052C320,136.93015036485141,329.2857142857143,136.82319304697634,338.57142857142856,136.70075850857893C347.85714285714283,136.57832397018151,357.14285714285717,136.42775898991343,366.42857142857144,136.265088658306C375.7142857142857,136.1024183266986,385,135.91831564039515,394.2857142857143,135.72473651893444C403.57142857142856,135.53115739747372,412.8571428571429,135.3210896510642,422.14285714285717,135.10361392954175C431.42857142857144,134.8861382080193,440.7142857142857,134.6530101989095,450,134.4198821897997"
+                d="M60,125.50211190006247C69.28571428571429,128.71206593577716,78.57142857142857,131.92201997149186,87.85714285714286,134.16028396185598C97.14285714285715,136.3985479522201,106.42857142857143,137.66283580613117,115.71428571428572,138.93169584224725C125,140.20055587836333,134.28571428571428,141.00917741821908,143.57142857142856,141.77344417855244C152.85714285714286,142.5377109388858,162.14285714285714,143.0495823524814,171.42857142857144,143.51729640424733C180.71428571428572,143.98501045601324,190,144.3004763863164,199.28571428571428,144.57972848914798C208.57142857142856,144.85898059197956,217.85714285714286,145.04007422168607,227.14285714285714,145.19280902123683C236.42857142857142,145.34554382078758,245.71428571428572,145.44110363225928,255,145.49613728645252C264.2857142857143,145.55117094064576,273.5714285714286,145.5786877677424,282.8571428571429,145.5786877677424C292.14285714285717,145.5786877677424,301.42857142857144,145.54616094168642,310.7142857142857,145.499797259127C320,145.4534335765676,329.2857142857143,145.38212869798423,338.57142857142856,145.30050567238595C347.85714285714283,145.21888264678768,357.14285714285717,145.11850599327562,366.42857142857144,145.01005910553735C375.7142857142857,144.90161221779908,385,144.77887709359678,394.2857142857143,144.64982434595632C403.57142857142856,144.52077159831583,412.8571428571429,144.38072643404283,422.14285714285717,144.23574261969452C431.42857142857144,144.0907588053462,440.7142857142857,143.9353401326063,450,143.77992145986644"
                 fill="none"
                 height={360}
                 stroke="#33a02c"
@@ -7126,7 +7116,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={60}
-                  cy={107.00316785009372}
+                  cy={125.50211190006247}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -7137,7 +7127,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={87.85714285714286}
-                  cy={119.99042594278396}
+                  cy={134.16028396185598}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -7148,7 +7138,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={115.71428571428572}
-                  cy={127.14754376337086}
+                  cy={138.93169584224725}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -7159,7 +7149,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={143.57142857142856}
-                  cy={131.41016626782869}
+                  cy={141.77344417855244}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -7170,7 +7160,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={171.42857142857144}
-                  cy={134.02594460637098}
+                  cy={143.51729640424733}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -7181,7 +7171,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={199.28571428571428}
-                  cy={135.619592733722}
+                  cy={144.57972848914798}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -7192,7 +7182,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={227.14285714285714}
-                  cy={136.5392135318552}
+                  cy={145.19280902123683}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -7203,7 +7193,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={255}
-                  cy={136.99420592967877}
+                  cy={145.49613728645252}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -7214,7 +7204,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={282.8571428571429}
-                  cy={137.11803165161362}
+                  cy={145.5786877677424}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -7225,7 +7215,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={310.7142857142857}
-                  cy={136.99969588869052}
+                  cy={145.499797259127}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -7236,7 +7226,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={338.57142857142856}
-                  cy={136.70075850857893}
+                  cy={145.30050567238595}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -7247,7 +7237,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={366.42857142857144}
-                  cy={136.265088658306}
+                  cy={145.01005910553735}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -7258,7 +7248,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={394.2857142857143}
-                  cy={135.72473651893444}
+                  cy={144.64982434595632}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -7269,7 +7259,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={422.14285714285717}
-                  cy={135.10361392954175}
+                  cy={144.23574261969452}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -7280,7 +7270,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={450}
-                  cy={134.4198821897997}
+                  cy={143.77992145986644}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -7296,7 +7286,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
               <path
                 className="recharts-curve recharts-line-curve"
                 clipPath={null}
-                d="M60,64.64932714785165C69.28571428571429,73.11943033028136,78.57142857142857,81.58953351271107,87.85714285714286,87.60204407690931C97.14285714285715,93.61455464110755,106.42857142857143,97.16312854691316,115.71428571428572,100.7243905330411C125,104.28565251916905,134.28571428571428,106.68401427627951,143.57142857142856,108.96961599367698C152.85714285714286,111.25521771107445,162.14285714285714,112.90320851138824,171.42857142857144,114.43800083742589C180.71428571428572,115.97279316346354,190,117.12237632721138,199.28571428571428,118.17836994990284C208.57142857142856,119.2343635725943,217.85714285714286,120.04116439308962,227.14285714285714,120.77396257357462C236.42857142857142,121.50676075405963,245.71428571428572,122.06996466459366,255,122.57515903281292C264.2857142857143,123.08035340103218,273.5714285714286,123.46553930969424,282.8571428571429,123.80512878289021C292.14285714285717,124.14471825608616,301.42857142857144,124.39674240455423,310.7142857142857,124.6126958719887C320,124.82864933942318,329.2857142857143,124.9791212482268,338.57142857142856,125.1008495874971C347.85714285714283,125.22257792676739,357.14285714285717,125.3096975895258,366.42857142857144,125.34306590761042C375.7142857142857,125.37643422569505,385,125.39311838473736,394.2857142857143,125.39311838473736C403.57142857142856,125.39311838473736,412.8571428571429,125.34540581607833,422.14285714285717,125.29122069403317C431.42857142857144,125.23703557198802,440.7142857142857,125.15252161222723,450,125.06800765246645"
+                d="M60,89.76621809856776C69.28571428571429,95.41295355352091,78.57142857142857,101.05968900847404,87.85714285714286,105.0680293846062C97.14285714285715,109.07636976073837,106.42857142857143,111.44208569794212,115.71428571428572,113.81626035536075C125,116.19043501277939,134.28571428571428,117.78934285085303,143.57142857142856,119.313077329118C152.85714285714286,120.83681180738297,162.14285714285714,121.9354723409255,171.42857142857144,122.95866722495059C180.71428571428572,123.98186210897568,190,124.74825088480758,199.28571428571428,125.45224663326854C208.57142857142856,126.15624238172951,217.85714285714286,126.69410959539307,227.14285714285714,127.18264171571641C236.42857142857142,127.67117383603976,245.71428571428572,128.04664310972908,255,128.3834393552086C264.2857142857143,128.7202356006881,273.5714285714286,128.97702620646285,282.8571428571429,129.2034191885935C292.14285714285717,129.42981217072415,301.42857142857144,129.59782826970283,310.7142857142857,129.74179724799248C320,129.88576622628213,329.2857142857143,129.9860808321512,338.57142857142856,130.0672330583314C347.85714285714283,130.1483852845116,357.14285714285717,130.20646505968392,366.42857142857144,130.22871060507364C375.7142857142857,130.25095615046337,385,130.26207892315824,394.2857142857143,130.26207892315824C403.57142857142856,130.26207892315824,412.8571428571429,130.23027054405222,422.14285714285717,130.19414712935546C431.42857142857144,130.1580237146587,440.7142857142857,130.10168107481815,450,130.04533843497762"
                 fill="none"
                 height={360}
                 stroke="#fb9a99"
@@ -7310,7 +7300,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={60}
-                  cy={64.64932714785165}
+                  cy={89.76621809856776}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -7321,7 +7311,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={87.85714285714286}
-                  cy={87.60204407690931}
+                  cy={105.0680293846062}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -7332,7 +7322,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={115.71428571428572}
-                  cy={100.7243905330411}
+                  cy={113.81626035536075}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -7343,7 +7333,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={143.57142857142856}
-                  cy={108.96961599367698}
+                  cy={119.313077329118}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -7354,7 +7344,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={171.42857142857144}
-                  cy={114.43800083742589}
+                  cy={122.95866722495059}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -7365,7 +7355,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={199.28571428571428}
-                  cy={118.17836994990284}
+                  cy={125.45224663326854}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -7376,7 +7366,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={227.14285714285714}
-                  cy={120.77396257357462}
+                  cy={127.18264171571641}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -7387,7 +7377,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={255}
-                  cy={122.57515903281292}
+                  cy={128.3834393552086}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -7398,7 +7388,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={282.8571428571429}
-                  cy={123.80512878289021}
+                  cy={129.2034191885935}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -7409,7 +7399,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={310.7142857142857}
-                  cy={124.6126958719887}
+                  cy={129.74179724799248}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -7420,7 +7410,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={338.57142857142856}
-                  cy={125.1008495874971}
+                  cy={130.0672330583314}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -7431,7 +7421,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={366.42857142857144}
-                  cy={125.34306590761042}
+                  cy={130.22871060507364}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -7442,7 +7432,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={394.2857142857143}
-                  cy={125.39311838473736}
+                  cy={130.26207892315824}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -7453,7 +7443,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={422.14285714285717}
-                  cy={125.29122069403317}
+                  cy={130.19414712935546}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -7464,7 +7454,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={450}
-                  cy={125.06800765246645}
+                  cy={130.04533843497762}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -7480,7 +7470,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
               <path
                 className="recharts-curve recharts-line-curve"
                 clipPath={null}
-                d="M60,171.02160512829923C69.28571428571429,166.86572237601942,78.57142857142857,162.70983962373964,87.85714285714286,159.432200614823C97.14285714285715,156.15456160590634,106.42857142857143,153.7074294339045,115.71428571428572,151.35577107479935C125,149.0041127156942,134.28571428571428,147.1210901264136,143.57142857142856,145.32225046019198C152.85714285714286,143.52341079397033,162.14285714285714,142.00815639023327,171.42857142857144,140.56273307746952C180.71428571428572,139.11730976470577,190,137.85534812000182,199.28571428571428,136.64971058360942C208.57142857142856,135.44407304721702,217.85714285714286,134.36383309485385,227.14285714285714,133.32890785911516C236.42857142857142,132.29398262337648,245.71428571428572,131.34869629390928,255,130.4401591691773C264.2857142857143,129.5316220444453,273.5714285714286,128.6895740107374,282.8571428571429,127.87768511072322C292.14285714285717,127.06579621070904,301.42857142857144,126.30477378269622,310.7142857142857,125.56882576909217C320,124.83287775548813,329.2857142857143,124.13687884657118,338.57142857142856,123.46199702909892C347.85714285714283,122.78711521162667,357.14285714285717,122.14432338004265,366.42857142857144,121.51953486425867C375.7142857142857,120.8947463484747,385,120.29624383872418,394.2857142857143,119.71326593439508C403.57142857142856,119.13028803006598,412.8571428571429,118.56921350780232,422.14285714285717,118.02166743828407C431.42857142857144,117.47412136876582,440.7142857142857,116.95105544302572,450,116.42798951728562"
+                d="M60,153.1810700855328C69.28571428571429,150.41048158401298,78.57142857142857,147.63989308249313,87.85714285714286,145.45480040988204C97.14285714285715,143.26970773727095,106.42857142857143,141.63828628926964,115.71428571428572,140.0705140498662C125,138.50274181046277,134.28571428571428,137.2473934176091,143.57142857142856,136.04816697346135C152.85714285714286,134.8489405293136,162.14285714285714,133.8387709268222,171.42857142857144,132.8751553849797C180.71428571428572,131.9115398431372,190,131.0702320800012,199.28571428571428,130.2664737224063C208.57142857142856,129.46271536481134,217.85714285714286,128.74255539656926,227.14285714285714,128.05260523941013C236.42857142857142,127.362655082251,245.71428571428572,126.73246419593951,255,126.12677277945151C264.2857142857143,125.52108136296351,273.5714285714286,124.95971600715828,282.8571428571429,124.41845674048216C292.14285714285717,123.87719747380604,301.42857142857144,123.36984918846414,310.7142857142857,122.87921717939477C320,122.3885851703254,329.2857142857143,121.92458589771412,338.57142857142856,121.47466468606596C347.85714285714283,121.02474347441779,357.14285714285717,120.5962155866951,366.42857142857144,120.17968990950577C375.7142857142857,119.76316423231646,385,119.36416255914945,394.2857142857143,118.97551062293005C403.57142857142856,118.58685868671064,412.8571428571429,118.21280900520152,422.14285714285717,117.84777829218936C431.42857142857144,117.4827475791772,440.7142857142857,117.13403696201715,450,116.7853263448571"
                 fill="none"
                 height={360}
                 stroke="#e31a1c"
@@ -7494,7 +7484,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={60}
-                  cy={171.02160512829923}
+                  cy={153.1810700855328}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -7505,7 +7495,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={87.85714285714286}
-                  cy={159.432200614823}
+                  cy={145.45480040988204}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -7516,7 +7506,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={115.71428571428572}
-                  cy={151.35577107479935}
+                  cy={140.0705140498662}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -7527,7 +7517,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={143.57142857142856}
-                  cy={145.32225046019198}
+                  cy={136.04816697346135}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -7538,7 +7528,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={171.42857142857144}
-                  cy={140.56273307746952}
+                  cy={132.8751553849797}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -7549,7 +7539,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={199.28571428571428}
-                  cy={136.64971058360942}
+                  cy={130.2664737224063}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -7560,7 +7550,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={227.14285714285714}
-                  cy={133.32890785911516}
+                  cy={128.05260523941013}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -7571,7 +7561,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={255}
-                  cy={130.4401591691773}
+                  cy={126.12677277945151}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -7582,7 +7572,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={282.8571428571429}
-                  cy={127.87768511072322}
+                  cy={124.41845674048216}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -7593,7 +7583,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={310.7142857142857}
-                  cy={125.56882576909217}
+                  cy={122.87921717939477}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -7604,7 +7594,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={338.57142857142856}
-                  cy={123.46199702909892}
+                  cy={121.47466468606596}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -7615,7 +7605,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={366.42857142857144}
-                  cy={121.51953486425867}
+                  cy={120.17968990950577}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -7626,7 +7616,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={394.2857142857143}
-                  cy={119.71326593439508}
+                  cy={118.97551062293005}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -7637,7 +7627,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={422.14285714285717}
-                  cy={118.02166743828407}
+                  cy={117.84777829218936}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -7648,7 +7638,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={450}
-                  cy={116.42798951728562}
+                  cy={116.7853263448571}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -7664,7 +7654,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
               <path
                 className="recharts-curve recharts-line-curve"
                 clipPath={null}
-                d="M60,5.960732567329252C69.28571428571429,9.675996414223308,78.57142857142857,13.391260261117363,87.85714285714286,15.870222028043617C97.14285714285715,18.34918379496987,106.42857142857143,19.52546995683266,115.71428571428572,20.834503168886773C125,22.143536380940887,134.28571428571428,22.937234903993712,143.57142857142856,23.724421300368313C152.85714285714286,24.511607696742914,162.14285714285714,25.04785843872291,171.42857142857144,25.55762154713438C180.71428571428572,26.06738465554585,190,26.43785634691732,199.28571428571428,26.782999950837144C208.57142857142856,27.12814355475697,217.85714285714286,27.388682715688997,227.14285714285714,27.62848317065333C236.42857142857142,27.86828362561766,245.71428571428572,28.05322078990549,255,28.221802680623135C264.2857142857143,28.39038457134078,273.5714285714286,28.521586192691622,282.8571428571429,28.639974514959196C292.14285714285717,28.75836283722677,301.42857142857144,28.850284868552748,310.7142857142857,28.932132614228586C320,29.013980359904423,329.2857142857143,29.07650863965621,338.57142857142856,29.13106098901421C347.85714285714283,29.18561333837221,357.14285714285717,29.225711748830875,366.42857142857144,29.259446710376583C375.7142857142857,29.29318167192229,385,29.315883500120265,394.2857142857143,29.33347075828845C403.57142857142856,29.351058016456633,412.8571428571429,29.364970259385696,422.14285714285717,29.364970259385696C431.42857142857144,29.364970259385696,440.7142857142857,29.363881847528855,450,29.362793435672014"
+                d="M60,35.640488378219516C69.28571428571429,38.11733094281555,78.57142857142857,40.59417350741158,87.85714285714286,42.246814685362416C97.14285714285715,43.89945586331325,106.42857142857143,44.68364663788842,115.71428571428572,45.5563354459245C125,46.429024253960584,134.28571428571428,46.95815660266249,143.57142857142856,47.482947533578894C152.85714285714286,48.0077384644953,162.14285714285714,48.36523895914861,171.42857142857144,48.70508103142292C180.71428571428572,49.04492310369722,190,49.29190423127818,199.28571428571428,49.52199996722472C208.57142857142856,49.75209570317127,217.85714285714286,49.92578847712596,227.14285714285714,50.08565544710219C236.42857142857142,50.24552241707842,245.71428571428572,50.36881385993698,255,50.48120178708207C264.2857142857143,50.593589714227164,273.5714285714286,50.681057461794374,282.8571428571429,50.75998300997276C292.14285714285717,50.83890855815114,301.42857142857144,50.900189912368475,310.7142857142857,50.954755076152374C320,51.00932023993627,329.2857142857143,51.05100575977082,338.57142857142856,51.08737399267615C347.85714285714283,51.12374222558148,357.14285714285717,51.150474499220564,366.42857142857144,51.172964473584365C375.7142857142857,51.195454447948165,385,51.210589000080155,394.2857142857143,51.22231383885895C403.57142857142856,51.23403867763775,412.8571428571429,51.243313506257145,422.14285714285717,51.243313506257145C431.42857142857144,51.243313506257145,440.7142857142857,51.24258789835258,450,51.24186229044802"
                 fill="none"
                 height={360}
                 stroke="#fdbf6f"
@@ -7678,7 +7668,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={60}
-                  cy={5.960732567329252}
+                  cy={35.640488378219516}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -7689,7 +7679,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={87.85714285714286}
-                  cy={15.870222028043617}
+                  cy={42.246814685362416}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -7700,7 +7690,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={115.71428571428572}
-                  cy={20.834503168886773}
+                  cy={45.5563354459245}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -7711,7 +7701,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={143.57142857142856}
-                  cy={23.724421300368313}
+                  cy={47.482947533578894}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -7722,7 +7712,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={171.42857142857144}
-                  cy={25.55762154713438}
+                  cy={48.70508103142292}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -7733,7 +7723,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={199.28571428571428}
-                  cy={26.782999950837144}
+                  cy={49.52199996722472}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -7744,7 +7734,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={227.14285714285714}
-                  cy={27.62848317065333}
+                  cy={50.08565544710219}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -7755,7 +7745,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={255}
-                  cy={28.221802680623135}
+                  cy={50.48120178708207}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -7766,7 +7756,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={282.8571428571429}
-                  cy={28.639974514959196}
+                  cy={50.75998300997276}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -7777,7 +7767,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={310.7142857142857}
-                  cy={28.932132614228586}
+                  cy={50.954755076152374}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -7788,7 +7778,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={338.57142857142856}
-                  cy={29.13106098901421}
+                  cy={51.08737399267615}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -7799,7 +7789,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={366.42857142857144}
-                  cy={29.259446710376583}
+                  cy={51.172964473584365}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -7810,7 +7800,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={394.2857142857143}
-                  cy={29.33347075828845}
+                  cy={51.22231383885895}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -7821,7 +7811,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={422.14285714285717}
-                  cy={29.364970259385696}
+                  cy={51.243313506257145}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -7832,7 +7822,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={450}
-                  cy={29.362793435672014}
+                  cy={51.24186229044802}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -7848,7 +7838,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
               <path
                 className="recharts-curve recharts-line-curve"
                 clipPath={null}
-                d="M60,137.456386274771C69.28571428571429,127.00178892712152,78.57142857142857,116.54719157947203,87.85714285714286,109.04377947717592C97.14285714285715,101.5403673748798,106.42857142857143,97.02691175050018,115.71428571428572,92.43591366099433C125,87.84491557148849,134.28571428571428,84.61756386561169,143.57142857142856,81.49779094014085C152.85714285714286,78.37801801467,162.14285714285714,75.98753426888914,171.42857142857144,73.7172761081693C180.71428571428572,71.44701794744948,190,69.61036587043996,199.28571428571428,67.87624197582187C208.57142857142856,66.14211808120376,217.85714285714286,64.68603430410775,227.14285714285714,63.3125327404607C236.42857142857142,61.93903117681366,245.71428571428572,60.75421282086235,255,59.6352325939396C264.2857142857143,58.51625236701684,273.5714285714286,57.531091427263775,282.8571428571429,56.598651378924174C292.14285714285717,55.66621133058458,301.42857142857144,54.83209358161899,310.7142857142857,54.04059230390202C320,53.24909102618504,329.2857142857143,52.531953884389154,338.57142857142856,51.849643712622324C347.85714285714283,51.167333540855495,357.14285714285717,50.54264387710399,366.42857142857144,49.94673127330104C375.7142857142857,49.35081866949809,385,48.800477843207716,394.2857142857143,48.274168089804604C403.57142857142856,47.747858336401485,412.8571428571429,47.25823164393437,422.14285714285717,46.78887275288235C431.42857142857144,46.31951386183032,440.7142857142857,45.888764302661386,450,45.45801474349245"
+                d="M60,115.804257516514C69.28571428571429,108.83452595141434,78.57142857142857,101.86479438631468,87.85714285714286,96.8625196514506C97.14285714285715,91.86024491658651,106.42857142857143,88.8512745003334,115.71428571428572,85.79060910732952C125,82.72994371432563,134.28571428571428,80.57837591040779,143.57142857142856,78.49852729342724C152.85714285714286,76.4186786764467,162.14285714285714,74.82502284592614,171.42857142857144,73.31151740544625C180.71428571428572,71.79801196496636,190,70.57357724695999,199.28571428571428,69.41749465054791C208.57142857142856,68.26141205413583,217.85714285714286,67.29068953607182,227.14285714285714,66.37502182697379C236.42857142857142,65.45935411787576,245.71428571428572,64.66947521390823,255,63.92348839595972C264.2857142857143,63.17750157801122,273.5714285714286,62.52072761817582,282.8571428571429,61.89910091928275C292.14285714285717,61.277474220389685,301.42857142857144,60.72139572107931,310.7142857142857,60.19372820260133C320,59.666060684123345,329.2857142857143,59.187969256259414,338.57142857142856,58.73309580841486C347.85714285714283,58.278222360570304,357.14285714285717,57.86176258473597,366.42857142857144,57.464487515534C375.7142857142857,57.067212446332036,385,56.70031856213846,394.2857142857143,56.34944539320306C403.57142857142856,55.998572224267654,412.8571428571429,55.67215442928959,422.14285714285717,55.35924850192158C431.42857142857144,55.04634257455356,440.7142857142857,54.759176201774274,450,54.472009828994985"
                 fill="none"
                 height={360}
                 stroke="#ff7f00"
@@ -7862,7 +7852,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={60}
-                  cy={137.456386274771}
+                  cy={115.804257516514}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -7873,7 +7863,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={87.85714285714286}
-                  cy={109.04377947717592}
+                  cy={96.8625196514506}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -7884,7 +7874,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={115.71428571428572}
-                  cy={92.43591366099433}
+                  cy={85.79060910732952}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -7895,7 +7885,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={143.57142857142856}
-                  cy={81.49779094014085}
+                  cy={78.49852729342724}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -7906,7 +7896,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={171.42857142857144}
-                  cy={73.7172761081693}
+                  cy={73.31151740544625}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -7917,7 +7907,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={199.28571428571428}
-                  cy={67.87624197582187}
+                  cy={69.41749465054791}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -7928,7 +7918,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={227.14285714285714}
-                  cy={63.3125327404607}
+                  cy={66.37502182697379}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -7939,7 +7929,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={255}
-                  cy={59.6352325939396}
+                  cy={63.92348839595972}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -7950,7 +7940,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={282.8571428571429}
-                  cy={56.598651378924174}
+                  cy={61.89910091928275}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -7961,7 +7951,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={310.7142857142857}
-                  cy={54.04059230390202}
+                  cy={60.19372820260133}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -7972,7 +7962,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={338.57142857142856}
-                  cy={51.849643712622324}
+                  cy={58.73309580841486}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -7983,7 +7973,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={366.42857142857144}
-                  cy={49.94673127330104}
+                  cy={57.464487515534}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -7994,7 +7984,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={394.2857142857143}
-                  cy={48.274168089804604}
+                  cy={56.34944539320306}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -8005,7 +7995,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={422.14285714285717}
-                  cy={46.78887275288235}
+                  cy={55.35924850192158}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -8016,7 +8006,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 <circle
                   className="recharts-dot recharts-line-dot"
                   cx={450}
-                  cy={45.45801474349245}
+                  cy={54.472009828994985}
                   fill="#fff"
                   height={360}
                   r={3}
@@ -8878,7 +8868,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                       dy="0.355em"
                       x={52}
                     >
-                      -8
+                      -12
                     </tspan>
                   </text>
                 </g>
@@ -8912,7 +8902,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                       dy="0.355em"
                       x={52}
                     >
-                      -6
+                      -9
                     </tspan>
                   </text>
                 </g>
@@ -8946,7 +8936,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                       dy="0.355em"
                       x={52}
                     >
-                      -4
+                      -6
                     </tspan>
                   </text>
                 </g>
@@ -8980,7 +8970,7 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                       dy="0.355em"
                       x={52}
                     >
-                      -2
+                      -3
                     </tspan>
                   </text>
                 </g>
@@ -9580,10 +9570,10 @@ Object {
     "Ayala, Eric",
     "Scott, Donta",
   ],
-  "defLineupPoss": 794,
-  "numLineups": 3,
+  "defLineupPoss": 944,
+  "numLineups": 5,
   "numPlayers": 6,
-  "offLineupPoss": 809,
+  "offLineupPoss": 959,
   "playerToCol": Object {
     "Ayala, Eric": 4,
     "Cowan, Anthony": 1,
@@ -9648,22 +9638,26 @@ Object {
   "removedPlayers": Object {
     "Data, Dummy": Array [
       0.05254860746190226,
-      0.05254860746190226,
+      0,
       Object {
-        "def_adj_rtg": undefined,
-        "def_team_poss": 0,
-        "off_adj_rtg": undefined,
-        "off_team_poss": 0,
+        "def_poss": Object {
+          "value": 50,
+        },
+        "off_poss": Object {
+          "value": 50,
+        },
       },
     ],
     "Player, Other": Array [
       0.1576458223857068,
-      0.1576458223857068,
+      0,
       Object {
-        "def_adj_rtg": undefined,
-        "def_team_poss": 0,
-        "off_adj_rtg": undefined,
-        "off_team_poss": 0,
+        "def_poss": Object {
+          "value": 150,
+        },
+        "off_poss": Object {
+          "value": 150,
+        },
       },
     ],
   },

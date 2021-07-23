@@ -110,8 +110,8 @@ describe("RapmUtils", () => {
         threshold,
       );
       expect(_.omit(results, ["filteredLineups", "teamInfo"])).toMatchSnapshot();
-      expect(results.filteredLineups.length).toEqual(threshold > 0.05 ? 3 : 5);
-      expect(results.teamInfo.off_poss.value).toEqual(threshold > 0.05 ? 809 : 959);
+      expect(results.filteredLineups.length).toEqual(threshold > 0.05 ? 5 : 5); //(filtering now v rare)
+      expect(results.teamInfo.off_poss.value).toEqual(threshold > 0.05 ? 959 : 959);
     });
   });
 
@@ -206,21 +206,21 @@ describe("RapmUtils", () => {
 
       expect([luckAdjusted, offResults.prevAttempts.map((o: any) => {
         return { l: o?.ridgeLambda?.toFixed(2), ex: o?.results?.[0]?.toFixed(2) }
-      })]).toEqual( // 2 iterations
+      })]).toEqual( // 3 iterations
         [ luckAdjusted,
-            [ { l: "1.10", ex: "4.79" }, { ex: "4.81", l: "1.32" } ]
+            [ { l: "1.10", ex: "4.79" }, { ex: "4.81", l: "1.32" }, { ex: "4.81", l: "1.54" } ]
         ]
       );
-      expect(offResults.ridgeLambda.toFixed(3)).toEqual("1.097");
-      expect(_.take(offResults.rapmAdjPpp.map(n => n.toFixed(2)), 3)).toEqual(["4.81", "4.74", "4.67"]);
-      expect(_.take(offResults.rapmRawAdjPpp.map(n => n.toFixed(2)), 3)).toEqual(["4.81", "4.74", "4.67"]);
+      expect(offResults.ridgeLambda.toFixed(3)).toEqual("1.536");
+      expect(_.take(offResults.rapmAdjPpp.map(n => n.toFixed(2)), 3)).toEqual(["4.81", "4.71", "4.59"]);
+      expect(_.take(offResults.rapmRawAdjPpp.map(n => n.toFixed(2)), 3)).toEqual(["4.81", "4.71", "4.59"]);
       expect([luckAdjusted, defResults.prevAttempts.map((o: any) => {
         return { l: o?.ridgeLambda?.toFixed(2), ex: o?.results?.[0]?.toFixed(2) }
       })]).toEqual( // 2 iterations
-        [ luckAdjusted, [ { l: "1.10", ex: "-5.38" }, { l: "1.32", ex: "-5.20" } ] ]
+        [ luckAdjusted, [ { l: "1.10", ex: "-7.88" }, { l: "1.32", ex: "-7.70" } ] ]
       );
       expect(defResults.ridgeLambda.toFixed(3)).toEqual("1.097");
-      expect(_.take(defResults.rapmAdjPpp.map(n => n.toFixed(2)), 3)).toEqual(["-5.20", "-3.66", "-4.62"]);
+      expect(_.take(defResults.rapmAdjPpp.map(n => n.toFixed(2)), 3)).toEqual(["-7.70", "-5.91", "-6.62"]);
       expect(_.take(defResults.rapmRawAdjPpp.map(n => n.toFixed(2)), 3)).toEqual(["-5.20", "-3.66", "-4.62"]);
     });
   });
@@ -260,11 +260,11 @@ describe("RapmUtils", () => {
              "noRapm": true,
            },
            {
-             "def_adj_ppp": "-4.62",
+             "def_adj_ppp": "-6.62",
              "def_poss": luckAdjusted ? "0.00" : "99.00", //(these don't get an old_value)
              "def_to": luckAdjusted ? "0.00" : "0.01",
              "key": "RAPM Wiggins, Aaron",
-             "off_adj_ppp": "4.67",
+             "off_adj_ppp": "4.59",
              "off_poss": luckAdjusted ? "0.00" : "101.00",
              "off_to": "0.00",
            },

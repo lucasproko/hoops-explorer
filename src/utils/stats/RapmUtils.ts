@@ -603,8 +603,7 @@ export class RapmUtils {
         ((_.isNil(o?.old_value) ? o?.value : o?.old_value) || 0) :
         o?.value || 0;
     };
-/**/
-    const offDefDebugMode = { off: true, def: false };
+    const offDefDebugMode = { off: false, def: false };
     const generateTestCases = false;
 
     if (offDefDebugMode.off || offDefDebugMode.def) {
@@ -802,7 +801,7 @@ export class RapmUtils {
               RapmUtils.applyWeakPriors(`${offOrDef}_adj_ppp`, pctByPlayer[offOrDef]!, {
                 ...ctx.priorInfo,
                 playersWeak: RapmUtils.buildWeakPriorFromRapm(resultsPrePrior, offOrDef)
-              })(adjEffErrPrePrior, resultsPrePrior) : resultsPrePrior;
+              }, debugMode)(adjEffErrPrePrior, resultsPrePrior) : resultsPrePrior;
 
             acc.output.rapmAdjPpp = ctx.priorInfo.noWeakPrior ? maybeRecursiveWeakPrior : results;
             acc.output.rapmRawAdjPpp = resultsPrePrior;
