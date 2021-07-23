@@ -64,6 +64,17 @@
 //               Haven't figured out how/if that works yet!
 //
 
+// Another quick summary to help understand:
+// you have "rotation" - will calc their RAPMs
+// and "bench" - too low volume to calc their RAPMs, so will just use their adj rating+ instead
+// so what you want is:
+// sum(RAPM,total_min,rotation) + sum(Rtg,total_min,bench) = KP(rotation) + KP(combined) + KP(bench)
+// calc RAPM based on rotation+combined, using Rtg for bench, which gives you:
+// sum(RAPM,total_min,rotation) + sum(Rtg,combined_min,bench) ~= KP(rotation) + KP(combined)
+// => sum(RAPM,total_min,rotation) + sum(Rtg,total_min,bench) ~= KP(rotation) + KP(combined) + sum(Rtg,bench_min,bench)
+// the latter is ~= KP(bench) + noise from combined mins, so we can use the error of:
+// sum(RAPM,total_min,rotation) + sum(Rtg,total_min,bench) vs KP(total) [IMPORTANT-EQUATION-01]
+
 //////////////////////////////////////////////////////////////////////////////////////////
 
 // Lodash:
@@ -245,68 +256,51 @@ export class RapmUtils {
       (players?.[0]?.on?.off_poss?.value || 0) + (players?.[0]?.off?.off_poss?.value || 0) +
       (players?.[0]?.on?.def_poss?.value || 0) + (players?.[0]?.off?.def_poss?.value || 0);
     const removalThreshold = removalPct*totalLineups || 1;
-    // Filter out players with too few possessions
-    var checkForPlayersToRemove = true; //(always do the full processing loop once)
-    var currFilteredLineupSet = [];
-    const removedPlayersSet: Record<string, [number, number, Record<string, any>]> = {};
-    const playerPossessionCountTracker: Record<string, number> = {};
-    while (checkForPlayersToRemove) {
-      _.chain(players).filter((p: any) => !p.rapmRemove).forEach((p: any) => {
-        const playerId = p.playerId as string || "";
-        if (_.isNil(playerPossessionCountTracker[playerId])) {
-          //(first time through, fill in the player possession tracker)
-          playerPossessionCountTracker[playerId] =
-            (p.on?.off_poss?.value || 0) + (p.on?.def_poss?.value || 0);
-        }
-        if (playerPossessionCountTracker[playerId] < removalThreshold) {
-          p.rapmRemove = true; //(temp flag for peformance in this loop)
-          const origPoss = (p.on?.off_poss?.value || 0) + (p.on?.def_poss?.value || 0);
-          const playerBaseline = playersBaseline[playerId] || {};
-          removedPlayersSet[playerId] = [
-            origPoss/totalLineups, playerPossessionCountTracker[playerId]/totalLineups,
-            { // Stats we need to ensure KP is consistent:
-              off_adj_rtg: playerBaseline.off_adj_rtg, def_adj_rtg: playerBaseline.def_adj_rtg,
-              off_team_poss: playerBaseline.off_team_poss?.value || 0,
-              def_team_poss: playerBaseline.def_team_poss?.value || 0,
-            }
-          ];
-          checkForPlayersToRemove = true;
-        }
-      }).value();
-      if (checkForPlayersToRemove) { //(always go through this first time)
-        checkForPlayersToRemove = false; //(won't need to rerun unless we remove any new lineups)
 
-        // Now need to go through lineups, remove them
-        currFilteredLineupSet = _.chain(lineups).filter((l: any) => !l.rapmRemove).flatMap((l: any) => {
-          // THIS FLATMAP HAS SIDE-EFFECTS
+    // Calculate while players do not have enough possessions to use their RAPM:
 
-          const lineupPlayers = l?.players_array?.hits?.hits?.[0]?._source?.players || [];
-          const shouldRemoveLineup =
-            _.find(lineupPlayers, (p: any) => !_.isNil(removedPlayersSet[p.id as string])) //contains removed players
-            ||
-            (!l.off_poss?.value || !l.def_poss?.value); // only take lineup combos with both off and def combos
-
-          if (shouldRemoveLineup) {
-            l.rapmRemove = true; //(temp flag for peformance in this loop)
-            const lineupPossCount = (l.off_poss?.value || 0) + (l.def_poss?.value || 0);
-            // Loop over all the players, remove the lineup possessions from their counter
-            _.chain(lineupPlayers).forEach((lp: any) => {
-              playerPossessionCountTracker[lp.id as string] =
-                (playerPossessionCountTracker[lp.id as string] || 0) - lineupPossCount;
-            }).value();
-            checkForPlayersToRemove = true;
+    const removedPlayersSet = _.chain(players).transform((acc, p: any) => {
+      const playerId = p.playerId as string || "";
+      const origPoss = (p.on?.off_poss?.value || 0) + (p.on?.def_poss?.value || 0);
+      if (origPoss < removalThreshold) {
+        acc[playerId] = [
+          origPoss/totalLineups, 0, //(<- unused now)
+          {
+            ...(playersBaseline[playerId] || {}),
+            off_poss: p.on?.off_poss || {},
+            def_poss: p.on?.def_poss || {},
           }
-          return l.rapmRemove ? [] : [ l ];
-        }).value();
+        ];
       }
-    }
+    }, {} as Record<string, [number, number, Record<string, any>]>).value();
+
+    // Now need to go through lineups, remove any that don't include RAPM info
+
+    const currFilteredLineupSet = _.chain(lineups).flatMap((l: any) => {
+      // THIS FLATMAP HAS SIDE-EFFECTS - ADDS rapmRemove to some lineups
+
+      const lineupPlayers = l?.players_array?.hits?.hits?.[0]?._source?.players || [];
+      const shouldRemoveLineup =
+        _.every(lineupPlayers, (p: any) => !_.isNil(removedPlayersSet[p.id as string])) //contains _only_ removed players
+        ||
+        (!l.off_poss?.value || !l.def_poss?.value); // only take lineup combos with both off and def combos
+
+      if (shouldRemoveLineup) {
+        l.rapmRemove = true; //(temp flag for peformance in calculateAggregatedLineupStats)
+        const lineupPossOffCount = (l.off_poss?.value || 0) + (l.def_poss?.value || 0);
+        const lineupPossDefCount = (l.off_poss?.value || 0) + (l.def_poss?.value || 0);
+      }
+      return shouldRemoveLineup ? [] : [ l ];
+    }).value();
+
     // Calculate the aggregated team stats
     //(note includes pre-luck-adjusted stats if the main stats are luck adjusted)
     const teamInfo = LineupUtils.calculateAggregatedLineupStats(lineups);
 
-    const sortedPlayers = _.chain(playerPossessionCountTracker).toPairs().filter((kv) => {
-      return !removedPlayersSet.hasOwnProperty(kv[0]);
-    }).sortBy(kv => -kv[1]).map((kv) => kv[0]).value();
+    const sortedPlayers = _.chain(players).filter((p) => {
+      const playerId = p.playerId as string || "";
+      return !removedPlayersSet.hasOwnProperty(playerId);
+    }).sortBy(p => -1*(p.on?.off_poss?.value || 0)).map(p => p.playerId as string || "").value();
 
     return {
       unbiasWeight: unbiasWeight
@@ -356,9 +350,9 @@ export class RapmUtils {
         const inPlayers = lineup?.players_array?.hits?.hits?.[0]?._source?.players || [];
         inPlayers.forEach((player: any) => {
           const playerIndex = ctx.playerToCol[player.id];
-          if (playerIndex >= 0) {
+          if (!_.isNil(playerIndex) && (playerIndex >= 0)) {
             lineupRow[playerIndex] = possCountWeight;
-          } //(else this player is filtered out so ignore)
+          } //(else this player is filtered out so ignore, we'll just use their adj_rtg)
         });
       });
     };
@@ -405,16 +399,34 @@ export class RapmUtils {
         const possCountWeight = Math.sqrt(possCount/lineupPossCount);
         const val = getVal((lineup as any)[`${prefix}_${field}`]);
 
-        var priorOffset = offsets[prefix];
-
         const inPlayers = lineup?.players_array?.hits?.hits?.[0]?._source?.players || [];
-        inPlayers.forEach((player: any) => {
+        const priorOffset = _.reduce(inPlayers, (acc: number, player: any) => {
           const playerIndex = ctx.playerToCol[player.id];
-          if (playerIndex >= 0) {
+          // imagine you have a 2 person lineup, one rotation player and one rotation/bench player, the 2 cases are:
+          // (R and B are value above average)
+          // 1] sqrt(poss%)*R1 + sqrt(poss%)*R2 = L(stat) - sqrt(poss%)*(D1-av-stat)
+          // sqrt(poss%)*R1 + sqrt(poss%)*B1 = L(stat) - sqrt(poss%)*(D1-av-stat), B1 is constant, so:
+          // 2] sqrt(poss%)*R1 = L(stat) - sqrt(poss%)*(D1-av-stat - B1)
+
+          if (!_.isNil(playerIndex) && (playerIndex >= 0)) { //(case 1] above)
+            //(the strong weight is currently 0 for everything except adj_off_rtg)
             const strongWeight = getStrongWeight(ctx.priorInfo, adaptiveCorrelWeights?.[playerIndex]);
-            priorOffset += strongWeight*ctx.priorInfo.playersStrong[playerIndex]![`${prefix}_${field}`] || 0;
-          } //(else this player is filtered out so ignore - exception case I think)
-        });
+            return acc + (strongWeight*ctx.priorInfo.playersStrong[playerIndex]![`${prefix}_${field}`] || 0);
+          } else { // this player is filtered out but we still want to use their result on the RHS of equation
+            // case 2] above
+            const removedPlayerInfo = ctx.removedPlayers[player.id] as [ number, number, Record<string, any> ] || undefined;
+            if (removedPlayerInfo) {
+              const removedPlayerStat = removedPlayerInfo[2] || {};
+              const removedPlayerStatAboveMean = (field == "adj_ppp") ?
+                getVal(removedPlayerStat[`${prefix}_adj_rtg`]) :
+                (getVal(removedPlayerStat[`${prefix}_${field}`]) - offsets[prefix]);
+              return acc + removedPlayerStatAboveMean;
+            } else {  //(else exception case)
+              return acc;
+            }
+          }
+        }, offsets[prefix]); //(starting value is the D1 average for that stat)
+
         return (val - priorOffset)*possCountWeight;
       });
     };
@@ -564,9 +576,6 @@ export class RapmUtils {
       // .... still -ve ...! Because of priorInv factor (which will on average same sign as errorTimesSumInv)
       //(because it's -error*errorTimesSumInv*prior[player] below)
 
-      //TODO: Can get a sign mismatch where the low volume player adjustments flips the error sign
-// should maybe condition on whether error*priorSum > 0 or <= 0 (<-that is the standard case)
-
       // ... And then also can only take a <50% chunk of the priors
 
       //USEFUL DEBUG:
@@ -594,7 +603,7 @@ export class RapmUtils {
         ((_.isNil(o?.old_value) ? o?.value : o?.old_value) || 0) :
         o?.value || 0;
     };
-
+/**/
     const offDefDebugMode = { off: true, def: false };
     const generateTestCases = false;
 
@@ -639,6 +648,14 @@ export class RapmUtils {
       off: getVal(ctx.teamInfo.all_lineups?.off_adj_ppp) - ctx.avgEfficiency,
       def: getVal(ctx.teamInfo.all_lineups?.def_adj_ppp) - ctx.avgEfficiency
     };
+    if (offDefDebugMode.off) {
+      const possUsedinRapm = getVal(ctx.teamInfo.off_adj_ppp) - ctx.avgEfficiency;
+      console.log(`off: Eff components: rotation+combined=[${possUsedinRapm.toFixed(2)}] bench=[${(actualEff.off - possUsedinRapm).toFixed(2)}]`);
+    }
+    if (offDefDebugMode.def) {
+      const possUsedinRapm = getVal(ctx.teamInfo.def_adj_ppp) - ctx.avgEfficiency;
+      console.log(`def: Eff components: rotation+combined=[${possUsedinRapm.toFixed(2)}] bench=[${(actualEff.def - possUsedinRapm).toFixed(2)}]`);
+    }
 
     // Build player usage vectors:
     const pctByPlayer = (() => {
@@ -664,11 +681,14 @@ export class RapmUtils {
     const lowVolumePlayerRapmAdj = (() => {
       const buildLowVolumePlayerRapmAdj = (onOrOff: "off" | "def") => {
         const lineupPossCount = ctx.teamInfo.all_lineups?.[`${onOrOff}_poss`]?.value || 1;
-        return [ _.chain(ctx.removedPlayers).values().reduce((acc, v) => {
-            const vStat = v[2];
-            return acc + getVal(vStat[`${onOrOff}_adj_rtg`])*(vStat[`${onOrOff}_team_poss`] || 0)/lineupPossCount;
-          }, 0.0).value(),
-          (ctx as any)[`${onOrOff}LineupPoss`]!/lineupPossCount
+        return [
+          _.chain(ctx.removedPlayers).values().reduce((acc, v) => {
+            const vStat = v[2] || {};
+            // (use total bench mins as per [IMPORTANT-EQUATION-01])
+            return acc + getVal(vStat[`${onOrOff}_adj_rtg`])*getVal(vStat[`${onOrOff}_poss`])/lineupPossCount;
+          }, 0.0).value()
+          ,
+          (ctx as any)[`${onOrOff}LineupPoss`]!/lineupPossCount //% of rotation+combined possessions, diag only
         ];
       };
       return {
@@ -715,10 +735,12 @@ export class RapmUtils {
             }
           );
 
-          const [ addLowVolumeAdjRtg, reduceRapm ] = lowVolumePlayerRapmAdj[offOrDef];
+          const [ addLowVolumeAdjRtg, reduceRapmUnused ] = lowVolumePlayerRapmAdj[offOrDef];
           const combinedAdjEffPrePrior = _.sum(_.zip(pctByPlayer[offOrDef], resultsPrePrior).map((zip: Array<number|undefined>) => {
             return (zip[0] || 0)*(zip[1] || 0);
-          }))*reduceRapm + addLowVolumeAdjRtg;
+          })) + addLowVolumeAdjRtg;
+          //(^ see [IMPORTANT-EQUATION-01])
+
           const adjEffErrPrePrior = combinedAdjEffPrePrior - actualEff[offOrDef];
           const adjEffAbsErrPrePrior = Math.abs(adjEffErrPrePrior);
 
@@ -726,7 +748,9 @@ export class RapmUtils {
 
           const combinedAdjEff = _.sum(_.zip(pctByPlayer[offOrDef], results).map((zip: Array<number|undefined>) => {
             return (zip[0] || 0)*(zip[1] || 0);
-          }))*reduceRapm + addLowVolumeAdjRtg;
+          })) + addLowVolumeAdjRtg;
+          //(^ see [IMPORTANT-EQUATION-01])
+
           const adjNonAbsEffErr = combinedAdjEff - actualEff[offOrDef];
           const adjEffErr = Math.abs(adjNonAbsEffErr);
 
