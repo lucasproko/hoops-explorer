@@ -55,7 +55,7 @@ const RapmPlayerDiagView: React.FunctionComponent<Props> = (({rapmInfo, player, 
       const lineupPossCount = ctx.teamInfo.all_lineups?.[`${onOrOff}_poss`]?.value || 1;
       return [ _.chain(ctx.removedPlayers).values().reduce((acc, v) => {
           const vStat = v[2];
-          return acc + (vStat[`${onOrOff}_adj_rtg`]?.value || 0)*(vStat[`${onOrOff}_team_poss`] || 0)/lineupPossCount;
+          return acc + (vStat[`${onOrOff}_adj_rtg`]?.value || 0)*(vStat[`${onOrOff}_poss`]?.value || 0)/lineupPossCount;
         }, 0.0).value(),
         totalOffPoss/lineupPossCount
       ];
