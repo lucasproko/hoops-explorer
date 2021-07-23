@@ -550,7 +550,8 @@ export class RapmUtils {
   static applyWeakPriors(
     field: string,
     playerPossPcts: Array<number>,
-    priorInfo: RapmPriorInfo
+    priorInfo: RapmPriorInfo,
+    debugMode: Boolean,
   ) {
     const priorSum =
       _.chain(priorInfo.playersWeak).map((p, ii) => (p[field] || 0)*playerPossPcts[ii]!).sum().value();
@@ -559,14 +560,17 @@ export class RapmUtils {
       const priorSumInv = priorSum != 0 ? 1/priorSum: 0;
       const errorTimesSumInv = Math.min(0, Math.max(-0.5, error*priorSumInv));
       //(if the error is -ve, the actual eff is > RAPM, so need to add to RAPM (ie more +ve), hence errorTimesSumInv must be -ve, else ignore)
-      //(if the error is +ve. the actual eff is < RAPM, so need to reduce RAPM (ie move -ve), hence errorsTimesSunInv must be
-      // .... still -ve ...! Because of priorInv factor (which will on average same sign as priorSumInv)
+      //(if the error is +ve. the actual eff is < RAPM, so need to reduce RAPM (ie move -ve), hence errorsTimesSunInv ~must~ should be
+      // .... still -ve ...! Because of priorInv factor (which will on average same sign as errorTimesSumInv)
       //(because it's -error*errorTimesSumInv*prior[player] below)
+
+      //TODO: Can get a sign mismatch where the low volume player adjustments flips the error sign
+// should maybe condition on whether error*priorSum > 0 or <= 0 (<-that is the standard case)
 
       // ... And then also can only take a <50% chunk of the priors
 
       //USEFUL DEBUG:
-      //console.log(`prior=[${priorSum}] error=[${error}] tot=[${error*priorSumInv}] => [${errorTimesSumInv}]`);
+      if (debugMode) console.log(`prior=[${priorSum}] error=[${error}] tot=[${error*priorSumInv}] => [${errorTimesSumInv}]`);
 
       return baseResults.map((r, ii) => {
         return r - errorTimesSumInv*(priorInfo.playersWeak[ii]![field] || 0);
@@ -591,7 +595,7 @@ export class RapmUtils {
         o?.value || 0;
     };
 
-    const offDefDebugMode = { off: false, def: false };
+    const offDefDebugMode = { off: true, def: false };
     const generateTestCases = false;
 
     if (offDefDebugMode.off || offDefDebugMode.def) {
@@ -653,6 +657,8 @@ export class RapmUtils {
         def: buildUsageVector("def") as number[]
       };
     })();
+    if (offDefDebugMode.off) console.log(`(Off) Player Poss = [${pctByPlayer.off.map((p: number) => p.toFixed(2))}]`);
+    if (offDefDebugMode.def) console.log(`(Def) Player Poss = [${pctByPlayer.def.map((p: number) => p.toFixed(2))}]`);
 
     // Build an adj-rating-based adjustment for low-volume players
     const lowVolumePlayerRapmAdj = (() => {
@@ -670,13 +676,13 @@ export class RapmUtils {
         def: buildLowVolumePlayerRapmAdj("def") as [ number, number ]
       };
     })();
+    if (offDefDebugMode.off) console.log(`(Off) Low Volume Adj = [${lowVolumePlayerRapmAdj.off[0].toFixed(2)}, ${lowVolumePlayerRapmAdj.off[1].toFixed(2)}]`);
+    if (offDefDebugMode.def) console.log(`(Def) Low Volume Adj = [${lowVolumePlayerRapmAdj.def[0].toFixed(2)}, ${lowVolumePlayerRapmAdj.def[1].toFixed(2)}]`);
 
     const useWeakPriorsToFixErrors = {
-      off: RapmUtils.applyWeakPriors(`off_adj_ppp`, pctByPlayer.off, ctx.priorInfo),
-      def: RapmUtils.applyWeakPriors(`def_adj_ppp`, pctByPlayer.def, ctx.priorInfo)
+      off: RapmUtils.applyWeakPriors(`off_adj_ppp`, pctByPlayer.off, ctx.priorInfo, offDefDebugMode.off),
+      def: RapmUtils.applyWeakPriors(`def_adj_ppp`, pctByPlayer.def, ctx.priorInfo, offDefDebugMode.def)
     };
-
-    if (offDefDebugMode.off) console.log(`(Off) Player Poss = [${pctByPlayer.off.map((p: number) => p.toFixed(2))}]`);
 
     const [ offAdjPoss, defAdjPoss ] = RapmUtils.calcLineupOutputs(
       "adj_ppp", ctx.avgEfficiency, ctx.avgEfficiency, ctx, adaptiveCorrelWeights, useOldValIfPossible
@@ -720,7 +726,7 @@ export class RapmUtils {
 
           const combinedAdjEff = _.sum(_.zip(pctByPlayer[offOrDef], results).map((zip: Array<number|undefined>) => {
             return (zip[0] || 0)*(zip[1] || 0);
-          }));
+          }))*reduceRapm + addLowVolumeAdjRtg;
           const adjNonAbsEffErr = combinedAdjEff - actualEff[offOrDef];
           const adjEffErr = Math.abs(adjNonAbsEffErr);
 
@@ -777,8 +783,12 @@ export class RapmUtils {
             acc.output.rapmAdjPpp = ctx.priorInfo.noWeakPrior ? maybeRecursiveWeakPrior : results;
             acc.output.rapmRawAdjPpp = resultsPrePrior;
             acc.output.solnMatrix = solver;
-            if ((adjEffErr >= 1.05) && notFirstStep) {
-              if (debugMode) console.log(`-!!!!!!!!!!- DONE PICK PREVIOUS [${acc.lastAttempt?.ridgeLambda?.toFixed(2)}]`);
+
+            const lastError = (acc.lastAttempt.adjEffErr || adjEffErr) as number;
+            const errorExitThresh = 1.05;
+
+            if ((adjEffErr >= errorExitThresh) && notFirstStep && (adjEffErr >= lastError)) {
+              if (debugMode) console.log(`-!!!!!!!!!!- DONE [ERROR EXCEEDED=${adjEffErr.toFixed(2)}] PICK PREVIOUS [${acc.lastAttempt?.ridgeLambda?.toFixed(2)}]`);
               acc.foundLambda = true;
               // Roll back to previous
               acc.output.solnMatrix = acc.lastAttempt.solnMatrix;
@@ -787,10 +797,14 @@ export class RapmUtils {
               if (debugMode) console.log(`!!!!!!!!!!!! DONE PICK THIS [${ridgeLambda.toFixed(2)}]`);
               acc.foundLambda = true;
             } else {
+              if (notFirstStep && (adjEffErr >= errorExitThresh)) {
+                if (debugMode) console.log(`(Error=[${adjEffErr.toFixed(4)}] exceeded thresh=[${errorExitThresh}] but smaller than previous=[${lastError.toFixed(4)}])`);
+              }
               acc.lastAttempt = {
                 results: results, // so we can build diffs
                 ridgeLambda: ridgeLambda, // may need this value
-                solnMatrix: solver
+                solnMatrix: solver,
+                adjEffErr: adjEffErr
               };
             }
           }
