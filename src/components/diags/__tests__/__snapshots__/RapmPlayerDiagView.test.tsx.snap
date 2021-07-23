@@ -13,7 +13,7 @@ exports[`RapmPlayerDiagView RapmPlayerDiagView - should create snapshot 1`] = `
   </b>
   ], adj_def=[
   <b>
-    -7.37
+    -4.94
   </b>
   ] =
   <ul>
@@ -24,11 +24,11 @@ exports[`RapmPlayerDiagView RapmPlayerDiagView - should create snapshot 1`] = `
       </b>
       ], def=[
       <b>
-        -5.37
+        -4.48
       </b>
       ], total=[
       <b>
-        9.96
+        9.06
       </b>
       ]
     </li>
@@ -94,11 +94,11 @@ exports[`RapmPlayerDiagView RapmPlayerDiagView - should create snapshot 1`] = `
         </b>
         ], def=[
         <b>
-          -2.00
+          -0.47
         </b>
         ], total=[
         <b>
-          2.00
+          0.47
         </b>
         ]
       </li>
@@ -110,7 +110,7 @@ exports[`RapmPlayerDiagView RapmPlayerDiagView - should create snapshot 1`] = `
           </b>
           ] def=[
           <b>
-            1892.33
+            1810.61
           </b>
           ]) to reduce/remove the the delta between total adjusted efficiency and RAPM (due to the regression factor): eg compare 
           <em>
@@ -134,7 +134,7 @@ exports[`RapmPlayerDiagView RapmPlayerDiagView - should create snapshot 1`] = `
           </b>
           ] def=[
           <b>
-            -1892.33
+            -1810.61
           </b>
           ])
         </li>
@@ -181,7 +181,7 @@ exports[`RapmPlayerDiagView RapmPlayerDiagView - should create snapshot 1`] = `
             </b>
             ], def=[
             <b>
-              -2.00
+              -0.47
             </b>
             ]
           </li>

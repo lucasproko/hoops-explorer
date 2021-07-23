@@ -603,8 +603,13 @@ export class RapmUtils {
         ((_.isNil(o?.old_value) ? o?.value : o?.old_value) || 0) :
         o?.value || 0;
     };
-    const offDefDebugMode = { off: false, def: false };
+    // Some test + diag artefacts
+    const offDefDebugMode = {
+      off: false,
+      def: false
+    };
     const generateTestCases = false;
+    //(end test artefacts)
 
     if (offDefDebugMode.off || offDefDebugMode.def) {
       console.log(`RAPM Priors = [${JSON.stringify(ctx.priorInfo, tidyNumbers)}]`);
@@ -642,10 +647,12 @@ export class RapmUtils {
 
     // Get an approximate idea of the scale of the lambdas:
     const avgEigenVal = 0.5*mean(svd.off.q) + 0.5*mean(svd.def.q);
+    const allLineups = _.isEmpty(ctx.teamInfo.all_lineups) ? ctx.teamInfo : ctx.teamInfo.all_lineups;
+      //(handle the special case where filtered lineups == all lineups)
     const actualEff = {
       //(we include both "RAPM players only" and "all other lineups" and then counter adjust with adj_rtg when we don't have RAPM)
-      off: getVal(ctx.teamInfo.all_lineups?.off_adj_ppp) - ctx.avgEfficiency,
-      def: getVal(ctx.teamInfo.all_lineups?.def_adj_ppp) - ctx.avgEfficiency
+      off: getVal(allLineups?.off_adj_ppp) - ctx.avgEfficiency,
+      def: getVal(allLineups?.def_adj_ppp) - ctx.avgEfficiency
     };
     if (offDefDebugMode.off) {
       const possUsedinRapm = getVal(ctx.teamInfo.off_adj_ppp) - ctx.avgEfficiency;
@@ -679,7 +686,7 @@ export class RapmUtils {
     // Build an adj-rating-based adjustment for low-volume players
     const lowVolumePlayerRapmAdj = (() => {
       const buildLowVolumePlayerRapmAdj = (onOrOff: "off" | "def") => {
-        const lineupPossCount = ctx.teamInfo.all_lineups?.[`${onOrOff}_poss`]?.value || 1;
+        const lineupPossCount = allLineups?.[`${onOrOff}_poss`]?.value || 1;
         return [
           _.chain(ctx.removedPlayers).values().reduce((acc, v) => {
             const vStat = v[2] || {};
