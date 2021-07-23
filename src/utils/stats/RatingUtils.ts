@@ -69,6 +69,7 @@ export type ORtgDiagnostics = {
   // 2] Possession Calcs:
   // Advanced player numbers:
   offPoss: number,
+  actualFtaToPoss: number,
   ftPoss: number,
   ftPct: number,
   missedBothFTs: number,
@@ -242,7 +243,6 @@ export class RatingUtils {
     const FG2PM = statGet("total_off_2p_made");
     const FG3PM = statGet("total_off_3p_made");
     const offPoss = statGet("off_poss");
-    const usage = 100*(statSet.off_usage?.value || 0);
     const Def_SOS = (statSet?.def_adj_opp?.value || avgEfficiency);
     // New for assist calcs:
     const Made = shotLocs.map(l => statGet(`total_off_${l}_made`));
@@ -284,8 +284,6 @@ export class RatingUtils {
     const Others_AST = Team_AST - AST;
     const Others_eFG = Others_FGA > 0 ? (Team_PTS_FROM_FG - PTS_FROM_FG) / (2 * Others_FGA) : 0;
 
-    const FTA_to_Poss = 0.475;
-
     // This is much simplified because the stats are for the period the player was on the floor
     const qAST_Classic = Team_FGM > 0 ? (1.14 * (Others_AST / Team_FGM)) : 0.0; //(estimate of what % of player's FGs were assisted)
     const Team_Assist_Contrib_Classic = (0.5 * eFG) * qAST_Classic;
@@ -322,14 +320,19 @@ export class RatingUtils {
       return (0.5*eFG)*AssistsTotals[index]!;
     });
 
+    // We have the actual number of possessions, which means we can do better than the legacy:
+    //const FTA_to_Poss = 0.475;
+    const Actual_FT_Poss = Team_Poss - (Team_TOV + Team_FGA - Team_ORB);
+    const Actual_FTA_to_Poss = Actual_FT_Poss / (Team_FTA || 1)
+
     const Prob_Miss_Both_FT = (1-(FTM/FTA))**2
-    const FT_Part = FTA > 0 ? (1-Prob_Miss_Both_FT)*FTA_to_Poss*FTA : 0.0;
+    const FT_Part = FTA > 0 ? (1-Prob_Miss_Both_FT)*Actual_FTA_to_Poss*FTA : 0.0;
 
     const Team_Prob_Hit_1plus_FT = (1 - (1 - (Team_FTM / Team_FTA))**2);
-    const Team_Scoring_Poss = Team_FTA > 0 ? Team_FGM + Team_Prob_Hit_1plus_FT * Team_FTA * FTA_to_Poss : 0.0;
+    const Team_Scoring_Poss = Team_FTA > 0 ? Team_FGM + Team_Prob_Hit_1plus_FT * Team_FTA * Actual_FTA_to_Poss : 0.0;
 
     const Team_ORB_pct = (Team_ORB + Opponent_DRB) > 0 ? Team_ORB/(Team_ORB + Opponent_DRB) : 0.0;
-    const Num_Team_Plays = Team_FGA + Team_FTA * FTA_to_Poss + Team_TOV;
+    const Num_Team_Plays = Team_FGA + Team_FTA * Actual_FTA_to_Poss + Team_TOV;
     const Team_Play_Pct = Num_Team_Plays > 0 ? Team_Scoring_Poss / Num_Team_Plays : 0.0;
 
     const Credit_To_Rebounder = ((1 - Team_ORB_pct) * Team_Play_Pct);
@@ -351,7 +354,7 @@ export class RatingUtils {
 
     const FGxPoss = (FGA - FGM) * (1 - 1.07 * Team_ORB_pct);
 
-    const FTxPoss = FTA > 0 ? Prob_Miss_Both_FT * FTA_to_Poss * FTA : 0.0;
+    const FTxPoss = FTA > 0 ? Prob_Miss_Both_FT * Actual_FTA_to_Poss * FTA : 0.0;
 
     const TotPoss = ScPoss + FGxPoss + FTxPoss + TOV;
 
@@ -368,7 +371,7 @@ export class RatingUtils {
     // New assist code:
     const PProd_AST_Part = sumBy(AST_Part, (a, ii) => shotBonus[ii]!*a);
 
-    const Team_FTs_Hit_1plus = Team_FTA > 0 ? Team_Prob_Hit_1plus_FT * FTA_to_Poss * Team_FTA : 0.0;
+    const Team_FTs_Hit_1plus = Team_FTA > 0 ? Team_Prob_Hit_1plus_FT * Actual_FTA_to_Poss * Team_FTA : 0.0;
     const Team_Pts_Per_Score = (Team_FGM + Team_FTs_Hit_1plus) > 0 ? Team_PTS / (Team_FGM + Team_FTs_Hit_1plus) : 0.0;
     const PProd_ORB_Part = ORB * Team_ORB_Weight * Team_Play_Pct * Team_Pts_Per_Score;
 
@@ -382,6 +385,9 @@ export class RatingUtils {
 
     // Adjusted efficiency
     // Adapted from: https://www.bigtengeeks.com/new-stat-porpagatu/
+
+    // Calculate actual ORtg usage and use that in all ORtg calcs
+    const usage = 100*TotPoss/(Team_Poss || 1);
 
     const o_adj = avgEfficiency / Def_SOS;
     const SD_at_Usage = usage * -.144 + 13.023;
@@ -466,10 +472,11 @@ export class RatingUtils {
 
       // 2] Possession Calcs:
       // Advanced player numbers:
-      ftPoss: FTA_to_Poss*FTA,
+      ftPoss: Actual_FTA_to_Poss*FTA,
+      actualFtaToPoss: Actual_FTA_to_Poss,
       ftPct: FTA > 0 ? FTM / FTA : 0,
       missedBothFTs: Prob_Miss_Both_FT,
-      offPlaysLessPoss: FGA + FTA*FTA_to_Poss + TOV - offPoss,
+      offPlaysLessPoss: FGA + FTA*Actual_FTA_to_Poss + TOV - offPoss,
       offPoss: offPoss,
       fgPart: FG_Part,
       ftPart: FT_Part,

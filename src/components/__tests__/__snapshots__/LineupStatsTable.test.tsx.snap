@@ -4700,7 +4700,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           <br />
                                         </span>
                                         <span>
-                                          ORtg 115 on 24%, DRB 9%
+                                          ORtg 116 on 24%, DRB 9%
                                           <br />
                                         </span>
                                         <span>
@@ -5017,7 +5017,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           <br />
                                         </span>
                                         <span>
-                                          ORtg 115 on 24%, DRB 9%
+                                          ORtg 116 on 24%, DRB 9%
                                           <br />
                                         </span>
                                         <span>
@@ -5360,7 +5360,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           <br />
                                         </span>
                                         <span>
-                                          ORtg 115 on 24%, DRB 9%
+                                          ORtg 116 on 24%, DRB 9%
                                           <br />
                                         </span>
                                         <span>
@@ -5677,7 +5677,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           <br />
                                         </span>
                                         <span>
-                                          ORtg 115 on 24%, DRB 9%
+                                          ORtg 116 on 24%, DRB 9%
                                           <br />
                                         </span>
                                         <span>
@@ -6020,7 +6020,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           <br />
                                         </span>
                                         <span>
-                                          ORtg 115 on 24%, DRB 9%
+                                          ORtg 116 on 24%, DRB 9%
                                           <br />
                                         </span>
                                         <span>
@@ -6337,7 +6337,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           <br />
                                         </span>
                                         <span>
-                                          ORtg 115 on 24%, DRB 9%
+                                          ORtg 116 on 24%, DRB 9%
                                           <br />
                                         </span>
                                         <span>
@@ -7603,7 +7603,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           <br />
                                         </span>
                                         <span>
-                                          ORtg 115 on 24%, DRB 9%
+                                          ORtg 116 on 24%, DRB 9%
                                           <br />
                                         </span>
                                         <span>
@@ -7675,7 +7675,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             pill={false}
                                             style={
                                               Object {
-                                                "backgroundColor": "#79bc7980",
+                                                "backgroundColor": "#6db66d80",
                                               }
                                             }
                                             variant="light"
@@ -7727,7 +7727,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             pill={false}
                                             style={
                                               Object {
-                                                "backgroundColor": "#fbfdfb80",
+                                                "backgroundColor": "#fafdfa80",
                                               }
                                             }
                                             variant="light"
@@ -8078,7 +8078,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           <br />
                                         </span>
                                         <span>
-                                          ORtg 115 on 24%, DRB 9%
+                                          ORtg 116 on 24%, DRB 9%
                                           <br />
                                         </span>
                                         <span>
@@ -8150,7 +8150,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             pill={false}
                                             style={
                                               Object {
-                                                "backgroundColor": "#79bc7980",
+                                                "backgroundColor": "#6db66d80",
                                               }
                                             }
                                             variant="light"
@@ -8202,7 +8202,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             pill={false}
                                             style={
                                               Object {
-                                                "backgroundColor": "#fbfdfb80",
+                                                "backgroundColor": "#fafdfa80",
                                               }
                                             }
                                             variant="light"
@@ -8556,7 +8556,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           <br />
                                         </span>
                                         <span>
-                                          ORtg 115 on 24%, DRB 9%
+                                          ORtg 116 on 24%, DRB 9%
                                           <br />
                                         </span>
                                         <span>
@@ -8628,7 +8628,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             pill={false}
                                             style={
                                               Object {
-                                                "backgroundColor": "#79bc7980",
+                                                "backgroundColor": "#6db66d80",
                                               }
                                             }
                                             variant="light"
@@ -8680,7 +8680,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             pill={false}
                                             style={
                                               Object {
-                                                "backgroundColor": "#fbfdfb80",
+                                                "backgroundColor": "#fafdfa80",
                                               }
                                             }
                                             variant="light"
@@ -9031,7 +9031,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           <br />
                                         </span>
                                         <span>
-                                          ORtg 115 on 24%, DRB 9%
+                                          ORtg 116 on 24%, DRB 9%
                                           <br />
                                         </span>
                                         <span>
@@ -9103,7 +9103,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             pill={false}
                                             style={
                                               Object {
-                                                "backgroundColor": "#79bc7980",
+                                                "backgroundColor": "#6db66d80",
                                               }
                                             }
                                             variant="light"
@@ -9155,7 +9155,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             pill={false}
                                             style={
                                               Object {
-                                                "backgroundColor": "#fbfdfb80",
+                                                "backgroundColor": "#fafdfa80",
                                               }
                                             }
                                             variant="light"
@@ -9509,7 +9509,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           <br />
                                         </span>
                                         <span>
-                                          ORtg 115 on 24%, DRB 9%
+                                          ORtg 116 on 24%, DRB 9%
                                           <br />
                                         </span>
                                         <span>
@@ -9581,7 +9581,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             pill={false}
                                             style={
                                               Object {
-                                                "backgroundColor": "#79bc7980",
+                                                "backgroundColor": "#6db66d80",
                                               }
                                             }
                                             variant="light"
@@ -9633,7 +9633,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             pill={false}
                                             style={
                                               Object {
-                                                "backgroundColor": "#fbfdfb80",
+                                                "backgroundColor": "#fafdfa80",
                                               }
                                             }
                                             variant="light"
@@ -9984,7 +9984,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           <br />
                                         </span>
                                         <span>
-                                          ORtg 115 on 24%, DRB 9%
+                                          ORtg 116 on 24%, DRB 9%
                                           <br />
                                         </span>
                                         <span>
@@ -10056,7 +10056,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             pill={false}
                                             style={
                                               Object {
-                                                "backgroundColor": "#79bc7980",
+                                                "backgroundColor": "#6db66d80",
                                               }
                                             }
                                             variant="light"
@@ -10108,7 +10108,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             pill={false}
                                             style={
                                               Object {
-                                                "backgroundColor": "#fbfdfb80",
+                                                "backgroundColor": "#fafdfa80",
                                               }
                                             }
                                             variant="light"
@@ -11439,7 +11439,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           <br />
                                         </span>
                                         <span>
-                                          ORtg 115 on 24%, DRB 9%
+                                          ORtg 116 on 24%, DRB 9%
                                           <br />
                                         </span>
                                         <span>
@@ -11511,7 +11511,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             pill={false}
                                             style={
                                               Object {
-                                                "backgroundColor": "#79bc7980",
+                                                "backgroundColor": "#6db66d80",
                                               }
                                             }
                                             variant="light"
@@ -11563,7 +11563,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             pill={false}
                                             style={
                                               Object {
-                                                "backgroundColor": "#fbfdfb80",
+                                                "backgroundColor": "#fafdfa80",
                                               }
                                             }
                                             variant="light"
@@ -11914,7 +11914,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           <br />
                                         </span>
                                         <span>
-                                          ORtg 115 on 24%, DRB 9%
+                                          ORtg 116 on 24%, DRB 9%
                                           <br />
                                         </span>
                                         <span>
@@ -11986,7 +11986,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             pill={false}
                                             style={
                                               Object {
-                                                "backgroundColor": "#79bc7980",
+                                                "backgroundColor": "#6db66d80",
                                               }
                                             }
                                             variant="light"
@@ -12038,7 +12038,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             pill={false}
                                             style={
                                               Object {
-                                                "backgroundColor": "#fbfdfb80",
+                                                "backgroundColor": "#fafdfa80",
                                               }
                                             }
                                             variant="light"
@@ -12392,7 +12392,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           <br />
                                         </span>
                                         <span>
-                                          ORtg 115 on 24%, DRB 9%
+                                          ORtg 116 on 24%, DRB 9%
                                           <br />
                                         </span>
                                         <span>
@@ -12464,7 +12464,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             pill={false}
                                             style={
                                               Object {
-                                                "backgroundColor": "#79bc7980",
+                                                "backgroundColor": "#6db66d80",
                                               }
                                             }
                                             variant="light"
@@ -12516,7 +12516,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             pill={false}
                                             style={
                                               Object {
-                                                "backgroundColor": "#fbfdfb80",
+                                                "backgroundColor": "#fafdfa80",
                                               }
                                             }
                                             variant="light"
@@ -12867,7 +12867,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           <br />
                                         </span>
                                         <span>
-                                          ORtg 115 on 24%, DRB 9%
+                                          ORtg 116 on 24%, DRB 9%
                                           <br />
                                         </span>
                                         <span>
@@ -12939,7 +12939,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             pill={false}
                                             style={
                                               Object {
-                                                "backgroundColor": "#79bc7980",
+                                                "backgroundColor": "#6db66d80",
                                               }
                                             }
                                             variant="light"
@@ -12991,7 +12991,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             pill={false}
                                             style={
                                               Object {
-                                                "backgroundColor": "#fbfdfb80",
+                                                "backgroundColor": "#fafdfa80",
                                               }
                                             }
                                             variant="light"
@@ -13345,7 +13345,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           <br />
                                         </span>
                                         <span>
-                                          ORtg 115 on 24%, DRB 9%
+                                          ORtg 116 on 24%, DRB 9%
                                           <br />
                                         </span>
                                         <span>
@@ -13417,7 +13417,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             pill={false}
                                             style={
                                               Object {
-                                                "backgroundColor": "#79bc7980",
+                                                "backgroundColor": "#6db66d80",
                                               }
                                             }
                                             variant="light"
@@ -13469,7 +13469,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             pill={false}
                                             style={
                                               Object {
-                                                "backgroundColor": "#fbfdfb80",
+                                                "backgroundColor": "#fafdfa80",
                                               }
                                             }
                                             variant="light"
@@ -13820,7 +13820,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                           <br />
                                         </span>
                                         <span>
-                                          ORtg 115 on 24%, DRB 9%
+                                          ORtg 116 on 24%, DRB 9%
                                           <br />
                                         </span>
                                         <span>
@@ -13892,7 +13892,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             pill={false}
                                             style={
                                               Object {
-                                                "backgroundColor": "#79bc7980",
+                                                "backgroundColor": "#6db66d80",
                                               }
                                             }
                                             variant="light"
@@ -13944,7 +13944,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                             pill={false}
                                             style={
                                               Object {
-                                                "backgroundColor": "#fbfdfb80",
+                                                "backgroundColor": "#fafdfa80",
                                               }
                                             }
                                             variant="light"

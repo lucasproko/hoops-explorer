@@ -1776,16 +1776,6 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
         </li>
       </ul>
     </span>
-    <span>
-      <li>
-        Players who have too few possessions after filtering out other players:
-      </li>
-      <ul>
-        <li>
-          "Mitchell, Makhi" [26.4%]-&gt;[2.6%]; "Hart, Hakim" [23.7%]-&gt;[2.4%]; "Mitchell, Makhel" [21.0%]-&gt;[1.0%]; "Tomaic, Joshua" [14.9%]-&gt;[2.0%]
-        </li>
-      </ul>
-    </span>
   </ul>
   <h5>
     Lineup collinearity diagnostics
@@ -6106,23 +6096,23 @@ exports[`RapmGlobalDiagView RapmGlobalDiagView - should create snapshot 1`] = `
                 fillOpacity={1}
                 stroke="green"
                 strokeWidth={1}
-                x="0.439"
-                x1={60}
-                x2={60}
+                x="1.536"
+                x1={199.28571428571428}
+                x2={199.28571428571428}
                 y1={365}
                 y2={5}
               />
               <text
                 className="recharts-text recharts-label"
                 textAnchor="middle"
-                x={60}
+                x={199.28571428571428}
                 y={10}
               >
                 <tspan
                   dy="0.71em"
-                  x={60}
+                  x={199.28571428571428}
                 >
-                  Selected regression 'lambda' [0.439]
+                  Selected regression 'lambda' [1.536]
                 </tspan>
               </text>
             </g>
@@ -9580,10 +9570,10 @@ Object {
     "Ayala, Eric",
     "Scott, Donta",
   ],
-  "defLineupPoss": 794,
-  "numLineups": 3,
+  "defLineupPoss": 944,
+  "numLineups": 5,
   "numPlayers": 6,
-  "offLineupPoss": 809,
+  "offLineupPoss": 959,
   "playerToCol": Object {
     "Ayala, Eric": 4,
     "Cowan, Anthony": 1,
@@ -9648,11 +9638,27 @@ Object {
   "removedPlayers": Object {
     "Data, Dummy": Array [
       0.05254860746190226,
-      0.05254860746190226,
+      0,
+      Object {
+        "def_poss": Object {
+          "value": 50,
+        },
+        "off_poss": Object {
+          "value": 50,
+        },
+      },
     ],
     "Player, Other": Array [
       0.1576458223857068,
-      0.1576458223857068,
+      0,
+      Object {
+        "def_poss": Object {
+          "value": 150,
+        },
+        "off_poss": Object {
+          "value": 150,
+        },
+      },
     ],
   },
   "unbiasWeight": 0,

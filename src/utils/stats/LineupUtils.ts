@@ -22,15 +22,28 @@ export class LineupUtils {
   private static readonly debugReplacementOnOffPlayer = "PLAYER";
   private static readonly debugReplacementOnOffMinPoss = 30;
 
-  /** Combines all lineups into a single team stat, ignoring discarded fields */
+  /**
+   * Combines all lineups into a single team stat, ignoring discarded fields
+   * TODO: for individual RAPM calcs, only actually need to do this for a couple of fields, can
+   *       save a lot of CPU cycles
+   */
   static calculateAggregatedLineupStats(
     lineups: Array<any>
   ) {
-    const teamInfo = _.chain(lineups || []).filter((l: any) => !l.rapmRemove).transform((acc, lineup) => {
-      LineupUtils.weightedAvg(acc, lineup);
+    const teamInfo = _.chain(lineups || []).transform((acc, lineup) => {
+      if (!lineup.rapmRemove) {
+        LineupUtils.weightedAvg(acc, lineup);
+      } else {
+        LineupUtils.weightedAvg(acc.all_lineups!, lineup);
+      }
 
-    }, {} as Record<string, any>).value();
+    }, { all_lineups: {} } as Record<string, any>).value();
     LineupUtils.completeWeightedAvg(teamInfo);
+    if (!_.isEmpty(teamInfo.all_lineups)) {
+      //(TODO: only actually need to do this for _poss and _adj_ppp, can save some CPU cycles)
+      LineupUtils.weightedAvg(teamInfo.all_lineups!, teamInfo);
+      LineupUtils.completeWeightedAvg(teamInfo.all_lineups!);
+    }
 
     // Rebuild net margin since aggregated version won't be quite right:
     LineupUtils.buildEfficiencyMargins(teamInfo, "value");
@@ -253,7 +266,9 @@ export class LineupUtils {
       //(replacement on/off vals:)
       offLineups: true, offLineupKeys: true, onLineup: true,
       // Game info, handled seoarately:
-      game_info: true
+      game_info: true,
+      // Removed lineups
+      removed: true
      };
   private static readonly sumFieldSet = { off_poss: true, def_poss: true, duration_mins: true };
 

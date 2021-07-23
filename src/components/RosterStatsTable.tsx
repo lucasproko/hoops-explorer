@@ -311,10 +311,10 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
       const rapmInfos = (lineupStats || []).map((lineupStat, i) => {
         try {
           const key = (0 == i) ? "baseline" : (onIndex == i) ? "on" : "off";
-          const playerInfo = LineupTableUtils.buildBaselinePlayerInfo(
+          const rapmPriorsBaseline = LineupTableUtils.buildBaselinePlayerInfo(
             rosterStats[key]!, globalRosterStatsByCode, teamStats[key]!, avgEfficiency
           );
-          return buildRapm(lineupStat, playerInfo);
+          return buildRapm(lineupStat, rapmPriorsBaseline);
         } catch (err) { //(data not ready, ignore for now)
           return {};
         }

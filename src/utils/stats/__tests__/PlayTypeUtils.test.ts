@@ -12,7 +12,7 @@ describe("PlayTypeUtils", () => {
   const players =
     samplePlayerStatsResponse.responses[0].aggregations.tri_filter.buckets.baseline.player.buckets || [];
   const rosterStatsByCode = RosterTableUtils.buildRosterTableByCode(
-    players, true, teamSeasonLookup
+    players, {}, true, teamSeasonLookup
   );
   const mainPlayer = players[0];
   const allPlayers = PlayTypeUtils.buildPlayerAssistCodeList(mainPlayer);

@@ -9,7 +9,7 @@ exports[`RapmPlayerDiagView RapmPlayerDiagView - should create snapshot 1`] = `
   </b>
    adj_off=[
   <b>
-    5.15
+    4.59
   </b>
   ], adj_def=[
   <b>
@@ -20,7 +20,7 @@ exports[`RapmPlayerDiagView RapmPlayerDiagView - should create snapshot 1`] = `
     <li>
       RAPM contribution: off=[
       <b>
-        5.15
+        4.59
       </b>
       ], def=[
       <b>
@@ -28,7 +28,7 @@ exports[`RapmPlayerDiagView RapmPlayerDiagView - should create snapshot 1`] = `
       </b>
       ], total=[
       <b>
-        9.62
+        9.06
       </b>
       ]
     </li>
@@ -73,11 +73,11 @@ exports[`RapmPlayerDiagView RapmPlayerDiagView - should create snapshot 1`] = `
       <li>
         ie Off RAPM [
         <b>
-          5.15
+          4.59
         </b>
         ] = Raw RAPM [
         <b>
-          3.15
+          2.59
         </b>
         ] + Prior [
         <b>
@@ -106,11 +106,11 @@ exports[`RapmPlayerDiagView RapmPlayerDiagView - should create snapshot 1`] = `
         <li>
           We calculate a team adjustment (off=[
           <b>
-            -10.15
+            -1991.44
           </b>
           ] def=[
           <b>
-            -2.07
+            1810.61
           </b>
           ]) to reduce/remove the the delta between total adjusted efficiency and RAPM (due to the regression factor): eg compare 
           <em>
@@ -118,11 +118,11 @@ exports[`RapmPlayerDiagView RapmPlayerDiagView - should create snapshot 1`] = `
           </em>
            (off=[
           <b>
-            10.00
+            0.00
           </b>
           ] def=[
           <b>
-            -20.00
+            0.00
           </b>
           ]) vs 
           <em>
@@ -130,14 +130,29 @@ exports[`RapmPlayerDiagView RapmPlayerDiagView - should create snapshot 1`] = `
           </em>
            (off=[
           <b>
-            20.15
+            1991.44
           </b>
           ] def=[
           <b>
-            -17.93
+            -1810.61
           </b>
-          ]).
+          ])
         </li>
+        <ul>
+          <li>
+            <em>
+              (includes an adjustment for low-volume players based on their "Adj Rtg+"s: off=[
+              <b>
+                0.00
+              </b>
+              ] def=[
+              <b>
+                0.00
+              </b>
+              ]).
+            </em>
+          </li>
+        </ul>
         <span>
           <li>
             Then we calculate a player's contribution to this team total - currently this is a fraction of "Adj Rtg+": off=[
@@ -151,7 +166,16 @@ exports[`RapmPlayerDiagView RapmPlayerDiagView - should create snapshot 1`] = `
             ]), ...
           </li>
           <li>
-            ... chosen so that a minutes-weighted average of the ratings sums to the team value: off=[
+            ... chosen so that a minutes-weighted average of the ratings ([
+            <b>
+              82
+              %
+            </b>
+            ] (of [
+            <b>
+              101
+            </b>
+            ]) sums to the team value: off=[
             <b>
               0.00
             </b>
@@ -160,38 +184,6 @@ exports[`RapmPlayerDiagView RapmPlayerDiagView - should create snapshot 1`] = `
               -0.47
             </b>
             ]
-            <ul>
-              <li>
-                <em>
-                   (eg incorporating the % on floor [
-                  <b>
-                    82
-                    %
-                  </b>
-                  ] (of [
-                  <b>
-                    101
-                  </b>
-                  ] poss, this is an off=[
-                  <b>
-                    0.00
-                  </b>
-                  ] def=[
-                  <b>
-                    -0.38
-                  </b>
-                  ] "slice" of the team total of off=[
-                  <b>
-                    -10.15
-                  </b>
-                  ] def=[
-                  <b>
-                    -2.07
-                  </b>
-                  ])
-                </em>
-              </li>
-            </ul>
           </li>
         </span>
       </ul>
@@ -324,10 +316,10 @@ Object {
     "Ayala, Eric",
     "Scott, Donta",
   ],
-  "defLineupPoss": 794,
-  "numLineups": 3,
+  "defLineupPoss": 944,
+  "numLineups": 5,
   "numPlayers": 6,
-  "offLineupPoss": 809,
+  "offLineupPoss": 959,
   "playerToCol": Object {
     "Ayala, Eric": 4,
     "Cowan, Anthony": 1,
@@ -392,11 +384,27 @@ Object {
   "removedPlayers": Object {
     "Data, Dummy": Array [
       0.05254860746190226,
-      0.05254860746190226,
+      0,
+      Object {
+        "def_poss": Object {
+          "value": 50,
+        },
+        "off_poss": Object {
+          "value": 50,
+        },
+      },
     ],
     "Player, Other": Array [
       0.1576458223857068,
-      0.1576458223857068,
+      0,
+      Object {
+        "def_poss": Object {
+          "value": 150,
+        },
+        "off_poss": Object {
+          "value": 150,
+        },
+      },
     ],
   },
   "unbiasWeight": 0,

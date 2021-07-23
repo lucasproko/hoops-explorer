@@ -37,8 +37,8 @@ const RapmPlayerDiagView: React.FunctionComponent<Props> = (({rapmInfo, player, 
     const col = ctx.playerToCol[player.playerId];
 
     const totalOffPoss = ctx.teamInfo?.off_poss?.value;
-    const teamOffAdj = ((ctx.teamInfo.off_adj_ppp?.value || ctx.avgEfficiency) - ctx.avgEfficiency);
-    const teamDefAdj = ((ctx.teamInfo.def_adj_ppp?.value || ctx.avgEfficiency) - ctx.avgEfficiency);
+    const teamOffAdj = ((ctx.teamInfo.all_lineups?.off_adj_ppp?.value || ctx.avgEfficiency) - ctx.avgEfficiency);
+    const teamDefAdj = ((ctx.teamInfo.all_lineups?.def_adj_ppp?.value || ctx.avgEfficiency) - ctx.avgEfficiency);
 
     const offPoss = offInputs.playerPossPcts[col]!;
     const defPoss = defInputs.playerPossPcts[col]!;
@@ -51,11 +51,22 @@ const RapmPlayerDiagView: React.FunctionComponent<Props> = (({rapmInfo, player, 
     const offUnbiasRapm = offInputs.rapmRawAdjPpp[col];
     const defUnbiasRapm = defInputs.rapmRawAdjPpp[col];
 
-    const buildPrior = (input: RapmProcessingInputs) => {
-      const vec = input.rapmRawAdjPpp;
-      return _.reduce(vec, (acc, n: number, i: number) => acc + n*input.playerPossPcts[i]!) || 0
+    const buildLowVolumePlayerRapmAdj = (onOrOff: "off" | "def") => {
+      const lineupPossCount = ctx.teamInfo.all_lineups?.[`${onOrOff}_poss`]?.value || 1;
+      return [ _.chain(ctx.removedPlayers).values().reduce((acc, v) => {
+          const vStat = v[2];
+          return acc + (vStat[`${onOrOff}_adj_rtg`]?.value || 0)*(vStat[`${onOrOff}_poss`]?.value || 0)/lineupPossCount;
+        }, 0.0).value(),
+        totalOffPoss/lineupPossCount
+      ];
     };
-    const [ sigmaRapmOff, sigmaRapmDef ]  = [ buildPrior(offInputs), buildPrior(defInputs) ];
+    const buildPrior = (onOrOff: "off" | "def", input: RapmProcessingInputs) => {
+      const vec = input.rapmRawAdjPpp;
+      const [ addLowVolumeAdjRtg, reduceRapm ] = buildLowVolumePlayerRapmAdj(onOrOff);
+      return (_.reduce(vec, (acc, n: number, i: number) => acc + n*input.playerPossPcts[i]!) || 0)*reduceRapm +
+              addLowVolumeAdjRtg;
+    };
+    const [ sigmaRapmOff, sigmaRapmDef ]  = [ buildPrior("off", offInputs), buildPrior("def", defInputs) ];
     const offPriorTotalDiff = teamOffAdj - sigmaRapmOff;
     const defPriorTotalDiff = teamDefAdj - sigmaRapmDef;
     const offPriorContrib = rapmOff - offUnbiasRapm;
@@ -66,8 +77,14 @@ const RapmPlayerDiagView: React.FunctionComponent<Props> = (({rapmInfo, player, 
     const detailedInfoPost = <ul>
       <li>We calculate a team adjustment (off=[<b>{offPriorTotalDiff.toFixed(2)}</b>] def=[<b>{defPriorTotalDiff.toFixed(2)}</b>]) to reduce/remove the
       the delta between total adjusted efficiency and RAPM (due to the regression factor): eg compare <em>observed</em> (off=[<b>{teamOffAdj.toFixed(2)}</b>] def=[<b>{teamDefAdj.toFixed(2)}</b>])
-      vs <em>derived solely from RAPM</em> (off=[<b>{sigmaRapmOff.toFixed(2)}</b>] def=[<b>{sigmaRapmDef.toFixed(2)}</b>]).
+      vs <em>derived solely from RAPM</em> (off=[<b>{sigmaRapmOff.toFixed(2)}</b>] def=[<b>{sigmaRapmDef.toFixed(2)}</b>])
       </li>
+      <ul>
+        <li><em>
+        (includes an adjustment for low-volume players based on their "Adj Rtg+"s:
+        off=[<b>{buildLowVolumePlayerRapmAdj("off")[0]!.toFixed(2)}</b>] def=[<b>{buildLowVolumePlayerRapmAdj("def")[0]!.toFixed(2)}</b>]).
+        </em></li>
+      </ul>
       {ctx.priorInfo.useRecursiveWeakPrior ?
         <span>
           <ul>
@@ -80,14 +97,7 @@ const RapmPlayerDiagView: React.FunctionComponent<Props> = (({rapmInfo, player, 
           "Adj Rtg+": off=[<b>{offPrior.toFixed(2)}</b>] def=[<b>{defPrior.toFixed(2)}</b>]), ...
           </li>
           <li>
-          ... chosen so that a minutes-weighted average of the ratings sums to the team value: off=[<b>{offPriorContrib.toFixed(2)}</b>], def=[<b>{defPriorContrib.toFixed(2)}</b>]
-            <ul>
-              <li>
-              <em> (eg incorporating the % on floor [<b>{offPossPctStr}%</b>] (of [<b>{totalOffPoss}</b>] poss,
-                 this is an off=[<b>{(offPriorContrib*offPoss).toFixed(2)}</b>] def=[<b>{(defPriorContrib*defPoss).toFixed(2)}</b>]
-                "slice" of the team total of off=[<b>{offPriorTotalDiff.toFixed(2)}</b>] def=[<b>{defPriorTotalDiff.toFixed(2)}</b>])</em>
-              </li>
-            </ul>
+          ... chosen so that a minutes-weighted average of the ratings ([<b>{offPossPctStr}%</b>] (of [<b>{totalOffPoss}</b>]) sums to the team value: off=[<b>{offPriorContrib.toFixed(2)}</b>], def=[<b>{defPriorContrib.toFixed(2)}</b>]
           </li>
         </span>
       }

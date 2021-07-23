@@ -81,8 +81,8 @@ const RosterStatsDiagView: React.FunctionComponent<Props> = ({ortgDiags, drtgDia
       </ul></span> : null }
       <li>Adjusted_Possessions: [<b>{o.adjPoss.toFixed(1)}</b>] = Scoring_Possessions [<b>{o.scoringPoss.toFixed(1)}</b>] + Missed_FG_Possessions [<b>{o.fgxPoss.toFixed(1)}</b>] + Missed_FT_Possessions [<b>{o.ftxPoss.toFixed(1)}</b>] + TO [<b>{o.rawTo}</b>]</li>
       <ul>
-        <li>(Gives adjusted usage = [<b>{(100*o.adjPoss/(o.teamPoss || 1)).toFixed(1)}%</b>])</li>
-        <li><em>Compare raw stats: poss=[<b>{o.offPoss.toFixed(1)}</b>] (fga=[<b>{o.rawFga}</b> = <b>{o.raw3Fga}</b> + (<b>{o.raw2midFga}</b> + <b>{o.raw2rimFga}</b>)] + 0.475*fta=[<b>{o.ftPoss.toFixed(1)}</b>] + to=[<b>{o.rawTo}</b>] - orb=[<b>{o.offPlaysLessPoss.toFixed(1)}</b>])</em></li>
+        <li>(Gives adjusted usage: Adj_Usage = [<b>{(100*o.adjPoss/(o.teamPoss || 1)).toFixed(1)}%</b>])</li>
+        <li><em>Compare raw stats: poss=[<b>{o.offPoss.toFixed(1)}</b>] (fga=[<b>{o.rawFga}</b> = <b>{o.raw3Fga}</b> + (<b>{o.raw2midFga}</b> + <b>{o.raw2rimFga}</b>)] + [<b>{o.actualFtaToPoss.toFixed(3)}</b>]*fta=[<b>{o.ftPoss.toFixed(1)}</b>] + to=[<b>{o.rawTo}</b>] - orb=[<b>{o.offPlaysLessPoss.toFixed(1)}</b>])</em></li>
       </ul>
       {showMoreORtgPoss ?
       <span><li><u>Possessions section</u></li>
@@ -96,20 +96,20 @@ const RosterStatsDiagView: React.FunctionComponent<Props> = ({ortgDiags, drtgDia
             <li>% Plays_Team_Scored: [<b>{(100*o.teamScoredPlayPct).toFixed(1)}%</b>] = Team_Scoring_Plays [<b>{o.teamScoringPoss.toFixed(1)}</b>] / Team_Total_Plays [<b>{o.teamPlays.toFixed(1)}</b>]</li>
             <li>Team_Scoring_Plays: [<b>{o.teamScoringPoss.toFixed(1)}</b>] = Team_FGM [<b>{o.teamFgm.toFixed(1)}</b>] + Team_FTs_Hit_1+ [<b>{o.teamFtHitOnePlus.toFixed(1)}</b>]</li>
             <ul>
-              <li>Team_FTs_Hit_1+: [<b>{o.teamFtHitOnePlus.toFixed(1)}</b>] = (1 - Team_FTs_Missed_Both% [<b>{(100*(1 - o.teamProbFtHitOnePlus)).toFixed(1)}%</b>]) * (0.475*Team_FTA) [<b>{(0.475*o.teamFta).toFixed(1)}</b>]</li>
+              <li>Team_FTs_Hit_1+: [<b>{o.teamFtHitOnePlus.toFixed(1)}</b>] = (1 - Team_FTs_Missed_Both% [<b>{(100*(1 - o.teamProbFtHitOnePlus)).toFixed(1)}%</b>]) * ([<b>{o.actualFtaToPoss.toFixed(3)}</b>]*Team_FTA) [<b>{(o.actualFtaToPoss*o.teamFta).toFixed(1)}</b>]</li>
               <ul>
                 <li>Team_FTs_Missed_Both%: [<b>{(100*(1 - o.teamProbFtHitOnePlus)).toFixed(1)}%</b>] = (1 - Team_FT% [<b>{(100*o.teamFtPct).toFixed(1)}%</b>])^2</li>
-                <li><em>(0.475*FTA is a standard equation for estimating the number of trips to the FT line)</em></li>
+                <li><em>([0.475]*FTA is standard for estimating the number of trips to the FT line; we use [<b>{o.actualFtaToPoss.toFixed(3)}</b>] inferred from the actual possession count)</em></li>
               </ul>
             </ul>
-            <li>Team_Total_Plays: [<b>{o.teamPlays.toFixed(1)}</b>] = Team_FGA [<b>{o.teamFga}</b>] + (0.475*Team_FTA) [<b>{(0.475*o.teamFta).toFixed(1)}</b>] + Team_TOV [<b>{o.teamTo}</b>]</li>
+            <li>Team_Total_Plays: [<b>{o.teamPlays.toFixed(1)}</b>] = Team_FGA [<b>{o.teamFga}</b>] + ([<b>{o.actualFtaToPoss.toFixed(3)}</b>]*Team_FTA) [<b>{(o.actualFtaToPoss*o.teamFta).toFixed(1)}</b>] + Team_TOV [<b>{o.teamTo}</b>]</li>
             <li><em>(Team_ORB_Weight is described in the points section, above. The cost of the play is reduced like the reward of the score)</em></li>
           </ul>
           <li>FG_Part: [<b>{o.fgPart.toFixed(1)}</b>] = FGM [<b>{o.rawFgm.toFixed(1)}</b>], less Team_Assist_Contrib% [<b>{(100*o.ppFgTeamAstPct).toFixed(1)}%</b>]===[<b>{(o.rawFgm-o.fgPart).toFixed(1)}</b>]</li>
           <ul>
             <li><em>(Team_Assist_Contrib% is described in the points section, above. Since it reduces the reward of a score, it also reduces the cost of the play)</em></li>
           </ul>
-          <li>FT_Part: [<b>{o.ftPart.toFixed(1)}</b>] = (1 - Missed_Both_FTs% [<b>{(100*o.missedBothFTs).toFixed(1)}%</b>]) * 0.475*FTA [<b>{o.ftPoss.toFixed(1)}</b>]</li>
+          <li>FT_Part: [<b>{o.ftPart.toFixed(1)}</b>] = (1 - Missed_Both_FTs% [<b>{(100*o.missedBothFTs).toFixed(1)}%</b>]) * [<b>{o.actualFtaToPoss.toFixed(3)}</b>]*FTA [<b>{o.ftPoss.toFixed(1)}</b>]</li>
           <ul>
             <li>Missed_Both_FTs%: [<b>{(100*o.missedBothFTs).toFixed(1)}%</b>] = (1 - FT% [<b>{(100*o.ftPct).toFixed(1)}%</b>])^2</li>
           </ul>
@@ -121,7 +121,7 @@ const RosterStatsDiagView: React.FunctionComponent<Props> = ({ortgDiags, drtgDia
           <li><em>(Team_Rebound_Weight: each missed shot doesn't count a full possession, because it may be rebounded)</em></li>
           <li>Team_Rebound_Weight: [<b>{(107*o.teamOrbPct).toFixed(1)}%</b>] = Weight [<b>1.07</b>] * Team_ORB% [<b>{(100*o.teamOrbPct).toFixed(1)}%</b>]</li>
         </ul>
-        <li>Missed_FT_Possessions: [<b>{o.ftxPoss.toFixed(1)}</b>] = Missed_Both_FTs% [<b>{(100*o.missedBothFTs).toFixed(1)}%</b>] * 0.475*FTA [<b>{o.ftPoss.toFixed(1)}</b>]</li>
+        <li>Missed_FT_Possessions: [<b>{o.ftxPoss.toFixed(1)}</b>] = Missed_Both_FTs% [<b>{(100*o.missedBothFTs).toFixed(1)}%</b>] * [<b>{o.actualFtaToPoss.toFixed(3)}</b>]*FTA [<b>{o.ftPoss.toFixed(1)}</b>]</li>
         <ul>
           <li><em>(FT possession calcs above, under Team_Scoring_Plays)</em></li>
         </ul>
@@ -134,17 +134,17 @@ const RosterStatsDiagView: React.FunctionComponent<Props> = ({ortgDiags, drtgDia
         <ul>
           <li>ORtg_SDs_Above_Mean: [<b>{o.SDs_Above_Mean.toFixed(1)}</b>] = (ORtg [<b>{o.oRtg.toFixed(1)}</b>] - Avg_Efficiency [<b>{o.avgEff.toFixed(1)}</b>]) / SD_At_Actual_Usage [<b>{o.SD_at_Usage.toFixed(1)}</b>]</li>
           <ul>
-            <li>SD_At_Actual_Usage: [<b>{o.SD_at_Usage.toFixed(1)}</b>] = [<b>13.023</b>] - (Usage [<b>{o.Usage.toFixed(1)}</b>] * [<b>0.144</b>])</li>
+            <li>SD_At_Actual_Usage: [<b>{o.SD_at_Usage.toFixed(1)}</b>] = [<b>13.023</b>] - (Adj_Usage [<b>{o.Usage.toFixed(1)}</b>] * [<b>0.144</b>])</li>
           </ul>
           <li>ORtg_SD_At_20%_Usage [<b>{o.SD_at_Usage_20.toFixed(1)}</b>] = [<b>10.143</b>]</li>
           <li><em>(Various constants empirically derived)</em></li>
         </ul>
         <li>Usage_Bonus: [<b>{o.Usage_Bonus.toFixed(1)}</b>] = {o.Usage > 20 ?
-        <span>((Usage [<b>{o.Usage.toFixed(1)}%</b>] - [<b>20%</b>]) * [<b>1.25</b>])</span> : <span>((Usage [<b>{o.Usage.toFixed(1)}%</b>] - [<b>20%</b>]) * [<b>1.5</b>])</span>
+        <span>((Adj_Usage [<b>{o.Usage.toFixed(1)}%</b>] - [<b>20%</b>]) * [<b>1.25</b>])</span> : <span>((Adj_Usage [<b>{o.Usage.toFixed(1)}%</b>] - [<b>20%</b>]) * [<b>1.5</b>])</span>
         }</li>
         <ul>
           <li><em>
-          (Factor would have been [<b>{o.Usage > 20 ? <span>1.5</span> : <span>1.25</span>}</b>] at Usage {o.Usage > 20 ? <span>&lt;</span> : <span>&gt;</span>} [<b>20%</b>]),
+          (Factor would have been [<b>{o.Usage > 20 ? <span>1.5</span> : <span>1.25</span>}</b>] at Adj_Usage {o.Usage > 20 ? <span>&lt;</span> : <span>&gt;</span>} [<b>20%</b>]),
           ie there is an additional penalty on low usage players
           </em></li>
         </ul>
@@ -169,10 +169,10 @@ const RosterStatsDiagView: React.FunctionComponent<Props> = ({ortgDiags, drtgDia
         <ul>
           <li>Scoring_Plays: [<b>{d.oppoScPoss.toFixed(1)}</b>] = Opponent_FGM [<b>{d.oppoFgm.toFixed(0)}</b>] + Opponent_FTs_Hit_1+ [<b>{d.oppoFtHitOnePlus.toFixed(1)}</b>]</li>
           <ul>
-            <li>Opponent_FTs_Hit_1+: [<b>{d.oppoFtHitOnePlus.toFixed(1)}</b>] = (1 - Opponent_FTs_Missed_Both% [<b>{(100*(1 - d.oppoProbFtHitOnePlus)).toFixed(1)}%</b>]) * (0.475*Opponent_FTA) [<b>{d.oppoFtPoss.toFixed(1)}</b>]</li>
+            <li>Opponent_FTs_Hit_1+: [<b>{d.oppoFtHitOnePlus.toFixed(1)}</b>] = (1 - Opponent_FTs_Missed_Both% [<b>{(100*(1 - d.oppoProbFtHitOnePlus)).toFixed(1)}%</b>]) * ([0.475]*Opponent_FTA) [<b>{d.oppoFtPoss.toFixed(1)}</b>]</li>
             <ul>
               <li>Opponent_FTs_Missed_Both%: [<b>{(100*(1 - d.oppoProbFtHitOnePlus)).toFixed(1)}%</b>] = (1 - Opponent_FT% [<b>{(100*d.oppoFtPct).toFixed(1)}%</b>])^2</li>
-              <li><em>(0.475*FTA is a standard equation for estimating the number of trips to the FT line)</em></li>
+              <li><em>([0.475*FTA is a standard equation for estimating the number of trips to the FT line)</em></li>
             </ul>
           </ul>
         </ul>
@@ -195,7 +195,7 @@ const RosterStatsDiagView: React.FunctionComponent<Props> = ({ortgDiags, drtgDia
             <li>Rebound_Credit: [<b>{d.reboundCredit.toFixed(1)}</b>] = Rebounds [<b>{d.drb.toFixed(0)}</b>] * (1 - Miss_vs_Rebound_Credit% [<b>{(100*d.teamDvsRebCredit).toFixed(1)}%</b>])</li>
             <li>MissFT_Credit: [<b>{d.missFtCredit.toFixed(1)}</b>] = PF% [<b>{(100*d.pfPct).toFixed(1)}%</b>] * (0.475*Opponent_FTA) [<b>{d.oppoFtPoss.toFixed(1)}</b>] * Opponent_FTs_Missed_Both% [<b>{(100*(1 - d.oppoProbFtHitOnePlus)).toFixed(1)}%</b>]</li>
             <ul>
-              <li><em>(0.475*FTA is a standard equation for estimating the number of trips to the FT line)</em></li>
+              <li><em>([0.475]*FTA is standard for estimating the number of trips to the FT line)</em></li>
             </ul>
           </ul>
           <li>Stops_Credit_Team%: [<b>{(100*d.stopsTeamPct).toFixed(1)}%</b>] = ((Opponent_FGMiss [<b>{d.oppoFgMiss.toFixed(0)}</b>] * Opponent_Miss_Credit% [<b>{(100*d.teamMissWeight).toFixed(1)}%</b>]) + Opponent_NonSteal_TOV [<b>{d.oppoNonStlTov.toFixed(0)}</b>]) / Opponent_Poss [<b>{(d.oppoPoss).toFixed(0)}</b>]</li>

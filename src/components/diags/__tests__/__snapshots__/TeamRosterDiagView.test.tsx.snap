@@ -55,7 +55,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView 1`] = `
                             <br />
                           </span>
                           <span>
-                            ORtg 115 on 24% (+5.3)
+                            ORtg 116 on 24% (+5.8)
                             <br />
                           </span>
                           <span>
@@ -91,7 +91,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView 1`] = `
                               pill={false}
                               style={
                                 Object {
-                                  "backgroundColor": "#78bc7880",
+                                  "backgroundColor": "#6cb66c80",
                                 }
                               }
                               variant="light"
@@ -266,7 +266,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView 1`] = `
                             <br />
                           </span>
                           <span>
-                            ORtg 96 on 21% (+0.2)
+                            ORtg 96 on 21% (+0.3)
                             <br />
                           </span>
                           <span>
@@ -302,7 +302,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView 1`] = `
                               pill={false}
                               style={
                                 Object {
-                                  "backgroundColor": "#f9fcf980",
+                                  "backgroundColor": "#f8fcf880",
                                 }
                               }
                               variant="light"
