@@ -845,10 +845,11 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
         onHide={() => setShowLuckConfig(false)}
         onSave={(l: LuckParams) => setLuckConfig(l)}
         luck={luckConfig}
-        showHelp={showHelp} 
+        showHelp={showHelp}
       />
       <OnBallDefenseModal
         show={true}
+        players={rosterStats.baseline || []}
         onHide={() => null}
         onSave={(onBallDefense: any[]) => null}
         onBallDefense={[]}

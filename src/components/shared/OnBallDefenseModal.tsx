@@ -27,18 +27,106 @@ import { CommonTableDefs } from "../../utils/tables/CommonTableDefs";
 
 type Props = {
   show: boolean,
+  players: Record<string, any>[],
   onHide: () => void,
   onSave: (onBallDefense: any[]) => void,
   onBallDefense: any[],
-  showHelp: boolean,
-  startOverride?: any //(just for testing)
+  showHelp: boolean
 };
 const OnBallDefenseModal: React.FunctionComponent<Props> = (
-  {onHide, onSave, onBallDefense, showHelp, startOverride, ...props}
+  {players, onSave, onBallDefense, showHelp, ...props}
 ) => {
 
-  const onApply = () => {
-    props.onHide();
+  // State:
+
+  const [ inputContents, setInputContents ] = useState(_.isEmpty(onBallDefense) ? "" : "TODO");
+  const [ inputChanged, setInputChanged ] = useState(false);
+
+  const [ parseStatus, setParseStatus ] = useState(<span>
+    <li>Awaiting input</li>
+    </span>);
+
+  const onApply = (clipboard: string | undefined) => {
+    const contents = clipboard || inputContents;
+    // Analyze incoming data:
+
+    const rowsCols: string[][] =
+      contents
+        .split("\n").filter(line => _.endsWith(line, "%"))
+        .map(line => line.split("\t")).filter(cols => cols.length > 5);
+
+    const playerNumberToCol = _.transform(rowsCols, (acc, cols) => {
+      const playerId = cols[0]!;
+      const playerIdComps = playerId.split(" ");
+      if (_.startsWith(playerId, "#")) {
+        acc[playerIdComps[0]] = cols;
+      }
+    }, {});
+
+    const matchedPlayers = _.transform(players, (acc, player, ii) => {
+      const rosterId = "#" + (player.roster?.number || "??");
+      const backupRosterId = "#" + (player.roster?.alt_number || "??");
+      const matchingRosterId = playerNumberToCol.hasOwnProperty(rosterId) ? rosterId :
+        (playerNumberToCol.hasOwnProperty(backupRosterId) ? backupRosterId : undefined);
+      if (matchingRosterId) {
+        acc.found.push(ii);
+        acc.matchedCols.push(matchingRosterId)
+      } else {
+        acc.notFound.push(ii);
+      }
+    }, { found: [], notFound: [], matchedCols: [] });
+
+    const colsNotMatched = _.chain(playerNumberToCol).omit(matchedPlayers.matchedCols).keys().value();
+
+    if (_.isEmpty(matchedPlayers.notFound) && _.isEmpty(colsNotMatched)) {
+      setParseStatus(
+        <span>
+          <li>Import succeeded</li>
+        </span>
+      );
+    } else if (!_.isEmpty(matchedPlayers.found)){
+      setParseStatus(
+        <span>
+          <li>Import succeeded, with possible issues: </li>
+          <ul>
+            {_.isEmpty(matchedPlayers.notFound) ?
+              <li>Matched all players with recorded stats</li>
+              :
+              <li>Didn't match these players: {matchedPlayers.notFound.map(index => {
+                const player = players[index];
+                return `[#${player.roster?.number || "??"} / ${player.code}]`;
+              }).join(", ")}</li>
+            }
+            {_.isEmpty(matchedPlayers.notFound) ?
+              null :
+              <ul>
+                <li><i>Try changing the number to match - if that works, contact me and I'll update my database.</i></li>
+              </ul>
+            }
+            <li>Didn't match these entries from the input: {colsNotMatched.map(key => {
+              const col = playerNumberToCol[key];
+              return `[${col[0]}]`;
+            }).join(", ")}</li>
+            {_.isEmpty(matchedPlayers.notFound) ?
+              <ul>
+                <li><i>(Likely just walk-ons, you can ignore them)</i></li>
+              </ul>
+              :
+              null
+            }
+          </ul>
+        </span>
+      );
+    } else {
+      setParseStatus(
+        <span>
+          <li>Import failure, no players matched.</li>
+        </span>
+      );
+    }
+
+    //(handy debug)
+    //console.log(JSON.stringify(matchedPlayers) + " / " + colsNotMatched);
   };
 
   return <div><Modal size="lg" {...props}
@@ -59,7 +147,13 @@ const OnBallDefenseModal: React.FunctionComponent<Props> = (
             <Form.Row>
               <Form.Group as={Col} sm="12">
                 <InputGroup>
-                  <FormControl as="textarea" />
+                  <FormControl as="textarea"
+                    value={inputContents}
+                    onPaste={(ev: any) => { onApply(ev.clipboardData.getData('Text')); }}
+                    onChange={(ev: any) => { setInputChanged(true); setInputContents(ev.target.value); }}
+                    onKeyUp={(ev: any) => { setInputChanged(true); setInputContents(ev.target.value); }}
+                    placeholder="Paste on-ball defense table from web page or Google Sheets"
+                  />
                 </InputGroup>
               </Form.Group>
             </Form.Row>
@@ -73,7 +167,8 @@ const OnBallDefenseModal: React.FunctionComponent<Props> = (
           <Container>
             <Row>
               <ul>
-                <li>Awaiting input</li>
+                {parseStatus}
+                <br/>
                 <li><i>(no previous dataset)</i></li>
               </ul>
             </Row>
@@ -87,9 +182,12 @@ const OnBallDefenseModal: React.FunctionComponent<Props> = (
 
     </Modal.Body>
     <Modal.Footer>
-      <Button disabled={true} variant="warning" onClick={() => null}>Clear</Button>
+      <Button disabled={inputContents.length == 0} variant="warning" onClick={() => {
+        //TODO change processing
+        setInputContents("");
+      }}>Clear</Button>
       <Button disabled={true} variant="warning" onClick={() => null}>Reset</Button>
-      <Button disabled={true} variant="info" onClick={() => onApply()}>Apply changes</Button>
+      <Button disabled={!inputChanged} variant="info" onClick={() => onApply()}>Apply changes</Button>
       <Button variant="primary" onClick={() => onHide()}>Done</Button>
     </Modal.Footer>
   </Modal></div>;
