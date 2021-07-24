@@ -36,6 +36,7 @@ import { LineupStatsModel } from '../components/LineupStatsTable';
 import LuckAdjDiagView from "./diags/LuckAdjDiagView"
 import LuckConfigModal from "./shared/LuckConfigModal";
 import ManualOverrideModal from "./shared/ManualOverrideModal";
+import OnBallDefenseModal from './shared/OnBallDefenseModal';
 import ToggleButtonGroup from "./shared/ToggleButtonGroup";
 import PlayerPlayTypeDiagView from "./diags/PlayerPlayTypeDiagView"
 import AsyncFormControl from './shared/AsyncFormControl';
@@ -844,7 +845,14 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
         onHide={() => setShowLuckConfig(false)}
         onSave={(l: LuckParams) => setLuckConfig(l)}
         luck={luckConfig}
-        showHelp={showHelp}
+        showHelp={showHelp} 
+      />
+      <OnBallDefenseModal
+        show={true}
+        onHide={() => null}
+        onSave={(onBallDefense: any[]) => null}
+        onBallDefense={[]}
+        showHelp={false}
       />
       <Form.Row>
         <Form.Group as={Col} sm="6">
