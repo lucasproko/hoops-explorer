@@ -22,6 +22,7 @@ import GenericTable, { GenericTableOps } from "../GenericTable";
 
 // Utils:
 import { CommonTableDefs } from "../../utils/tables/CommonTableDefs";
+import { OnBallDefenseModel, RatingUtils } from "../../utils/stats/RatingUtils";
 
 // External Data Model
 
@@ -29,8 +30,8 @@ type Props = {
   show: boolean,
   players: Record<string, any>[],
   onHide: () => void,
-  onSave: (onBallDefense: any[]) => void,
-  onBallDefense: any[],
+  onSave: (onBallDefense: OnBallDefenseModel[]) => void,
+  onBallDefense: OnBallDefenseModel[],
   showHelp: boolean
 };
 const OnBallDefenseModal: React.FunctionComponent<Props> = (
@@ -55,19 +56,32 @@ const OnBallDefenseModal: React.FunctionComponent<Props> = (
         .split("\n").filter(line => _.endsWith(line, "%"))
         .map(line => line.split("\t")).filter(cols => cols.length > 5);
 
-    const playerNumberToCol = _.transform(rowsCols, (acc, cols) => {
+    const maybeTotals = _.startsWith(rowsCols[0], "#") ? undefined : rowsCols[0];
+
+    const playerNumberToColAndDups = _.transform(rowsCols, (acc, cols) => {
       const playerId = cols[0]!;
       const playerIdComps = playerId.split(" ");
       if (_.startsWith(playerId, "#")) {
-        acc[playerIdComps[0]] = cols;
+        if (acc.unique.hasOwnProperty(playerIdComps[0])) {
+          acc.dups.push(playerId);
+          acc.dups.push(acc.unique[playerIdComps[0]][0]);
+        } else {
+          acc.unique[playerIdComps[0]] = cols;
+        }
       }
-    }, {});
+    }, { unique: {}, dups: [] });
 
+    const playerNumberToCol = playerNumberToColAndDups.unique;
+    const dupColMatches = playerNumberToColAndDups.dups;
+
+    const getMatchingRosterId = (roster: Record<string, string>) => {
+      const rosterId = "#" + (roster?.number || "??");
+      const backupRosterId = "#" + (roster?.alt_number || "??");
+      return playerNumberToCol.hasOwnProperty(rosterId) ? rosterId :
+              (playerNumberToCol.hasOwnProperty(backupRosterId) ? backupRosterId : undefined);
+    };
     const matchedPlayers = _.transform(players, (acc, player, ii) => {
-      const rosterId = "#" + (player.roster?.number || "??");
-      const backupRosterId = "#" + (player.roster?.alt_number || "??");
-      const matchingRosterId = playerNumberToCol.hasOwnProperty(rosterId) ? rosterId :
-        (playerNumberToCol.hasOwnProperty(backupRosterId) ? backupRosterId : undefined);
+      const matchingRosterId = getMatchingRosterId(player.roster || {});
       if (matchingRosterId) {
         acc.found.push(ii);
         acc.matchedCols.push(matchingRosterId)
@@ -78,7 +92,53 @@ const OnBallDefenseModal: React.FunctionComponent<Props> = (
 
     const colsNotMatched = _.chain(playerNumberToCol).omit(matchedPlayers.matchedCols).keys().value();
 
-    if (_.isEmpty(matchedPlayers.notFound) && _.isEmpty(colsNotMatched)) {
+    // Convert TSV to data structures
+
+    const parseFloatOrMissing = (s: string | undefined) => {
+      const tmp = parseFloat(s || "-");
+      return _.isNaN(tmp) ? 0 : tmp;
+    };
+    const parseRow = (code: string, row: string[]) => {
+      return {
+        code: code,
+
+        pts: parseFloatOrMissing(row[3]),
+        plays: parseFloatOrMissing(row[2]),
+        scorePct: parseFloatOrMissing(row[15]),
+        tovPct: parseFloatOrMissing(row[12]),
+        fgMiss: parseFloatOrMissing(row[7]),
+
+        // Fill these in later:
+        totalPlays: -1,
+        uncatPts: -1,
+        uncatPlays: -1,
+        uncatScorePct: -1
+      };
+    };
+    const matchedPlayerStats = matchedPlayers.found.map(ii => {
+      const player = players[ii]!;
+      const matchingRosterId = getMatchingRosterId(player.roster || {});
+      const row = playerNumberToCol[matchingRosterId] || [];
+      const onBallDefense = parseRow(player.code || matchingRosterId, row);
+      return onBallDefense;
+    });
+    const unmatchedPlayerStats = colsNotMatched.map(rosterId => {
+      const row = playerNumberToCol[rosterId] || [];
+      const onBallDefense = parseRow(rosterId, row);
+      return onBallDefense;
+    });
+
+    // If there's a totals row we can now add team stats (can still do something otherwise)
+    if (maybeTotals) {
+      const totalStats = parseRow("totals", maybeTotals);
+      RatingUtils.buildUncatOnBallDefenseStats(totalStats, _.concat(matchedPlayerStats, unmatchedPlayerStats));
+        //(mutates the objects in these array)
+    }
+
+    // Finally, update status
+    //TODO: might be nice to collect and report stats errors?
+
+    if (_.isEmpty(matchedPlayers.notFound) && _.isEmpty(colsNotMatched) && maybeTotals && _.isEmpty(dupColMatches)) {
       setParseStatus(
         <span>
           <li>Import succeeded</li>
@@ -89,6 +149,14 @@ const OnBallDefenseModal: React.FunctionComponent<Props> = (
         <span>
           <li>Import succeeded, with possible issues: </li>
           <ul>
+            {_.isEmpty(dupColMatches) ? null
+              :
+              <li>Duplicate player numbers in roster. This will likely mess up the stats, so remove one of each pair: [{dupColMatches.join(", ")}].</li>
+            }
+            {maybeTotals ? null
+              :
+              <li>Couldn't find team stats, first row was [{rowsCols[0]?.join("|")}] - this will make stats adjustments unreliable</li>
+            }
             {_.isEmpty(matchedPlayers.notFound) ?
               <li>Matched all players with recorded stats</li>
               :
@@ -124,6 +192,8 @@ const OnBallDefenseModal: React.FunctionComponent<Props> = (
         </span>
       );
     }
+
+    onSave(matchedPlayerStats);
 
     //(handy debug)
     //console.log(JSON.stringify(matchedPlayers) + " / " + colsNotMatched);

@@ -45,7 +45,7 @@ import AsyncFormControl from './shared/AsyncFormControl';
 import { CbbColors } from "../utils/CbbColors";
 import { CommonTableDefs } from "../utils/tables/CommonTableDefs";
 import { getCommonFilterParams, ParamDefaults, ParamPrefixes, GameFilterParams, LuckParams, ManualOverride } from "../utils/FilterModels";
-import { ORtgDiagnostics, RatingUtils } from "../utils/stats/RatingUtils";
+import { ORtgDiagnostics, RatingUtils, OnBallDefenseModel } from "../utils/stats/RatingUtils";
 import { PositionUtils } from "../utils/stats/PositionUtils";
 import { LuckUtils } from "../utils/stats/LuckUtils";
 import { OverrideUtils } from "../utils/stats/OverrideUtils";
@@ -143,6 +143,10 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
 
   const [ manualOverrides, setManualOverrides ] = useState(_.isNil(gameFilterParams.manual) ?
     [] : gameFilterParams.manual
+  );
+
+  const [ onBallDefenseByCode, setOnBallDefenseByCode ] = useState(
+    {} as Record<string, OnBallDefenseModel>
   );
 
   // Transform the list into a map of maps of values
@@ -523,15 +527,18 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
 
         // Ratings:
 
+        const calcDiagModeOff = showDiagMode;
+        const calcDiagModeDef = showDiagMode || !_.isEmpty(onBallDefenseByCode);
+
         const [
           oRtg, adjORtg, rawORtg, rawAdjORtg, oRtgDiag
         ] = RatingUtils.buildORtg(
             stat, globalRosterStatsByCode,
-            avgEfficiency, showDiagMode, adjustForLuck || overrodeOffFields
+            avgEfficiency, calcDiagModeOff, adjustForLuck || overrodeOffFields
           );
         const [
           dRtg, adjDRtg, rawDRtg, rawAdjDRtg, dRtgDiag
-        ] = RatingUtils.buildDRtg(stat, avgEfficiency, showDiagMode, adjustForLuck);
+        ] = RatingUtils.buildDRtg(stat, avgEfficiency, calcDiagModeDef, adjustForLuck);
         stat.off_rtg = {
           value: oRtg?.value, old_value: rawORtg?.value,
           override: adjustmentReason
@@ -561,6 +568,14 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
           override: adjustForLuck ? "Derived from luck adjustments" : undefined
         };
         stat.diag_def_rtg = dRtgDiag;
+
+        // Apply on-ball defense if it exists for this player
+        if (onBallDefenseByCode.hasOwnProperty(playerCode)) {
+          const onBallDefense = onBallDefenseByCode[playerCode]!;
+          const onBallDiags = RatingUtils.buildOnBallDefenseAdjustmentsPhase1(stat, dRtgDiag, onBallDefense);
+          dRtgDiag.onBallDef = onBallDefense;
+          dRtgDiag.onBallDiags = onBallDiags;
+        }
 
         // Positional info (NOTE - no dependencies on other processing like ORtg):
 
@@ -632,7 +647,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
       _.isNil(p.on?.off_title) ? [ ] : _.flatten([
         [ GenericTableOps.buildDataRow(p.on, offPrefixFn, offCellMetaFn) ],
         expandedView ? [ GenericTableOps.buildDataRow(p.on, defPrefixFn, defCellMetaFn) ] : [],
-        p.on?.diag_off_rtg ?
+        showDiagMode && p.on?.diag_off_rtg ?
           [ GenericTableOps.buildTextRow(<RosterStatsDiagView ortgDiags={p.on?.diag_off_rtg} drtgDiags={p.on?.diag_def_rtg}/>, "small") ] : [],
         showPositionDiags ?
           [ GenericTableOps.buildTextRow(<PositionalDiagView player={p.on} teamSeason={teamSeasonLookup} showHelp={showHelp}/>, "small") ] : [],
@@ -657,7 +672,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
       _.isNil(p.off?.off_title) ? [ ] : _.flatten([
         [ GenericTableOps.buildDataRow(p.off, offPrefixFn, offCellMetaFn) ],
         expandedView ? [ GenericTableOps.buildDataRow(p.off, defPrefixFn, defCellMetaFn) ] : [],
-        p.off?.diag_off_rtg ?
+        showDiagMode && p.off?.diag_off_rtg ?
           [ GenericTableOps.buildTextRow(<RosterStatsDiagView ortgDiags={p.off?.diag_off_rtg} drtgDiags={p.off?.diag_def_rtg}/>, "small") ] : [],
         showPositionDiags ?
           [ GenericTableOps.buildTextRow(<PositionalDiagView player={p.off} teamSeason={teamSeasonLookup} showHelp={showHelp}/>, "small") ] : [],
@@ -682,7 +697,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
       (skipBaseline || _.isNil(p.baseline?.off_title)) ? [ ] : _.flatten([
         [ GenericTableOps.buildDataRow(p.baseline, offPrefixFn, offCellMetaFn) ],
         expandedView ? [ GenericTableOps.buildDataRow(p.baseline, defPrefixFn, defCellMetaFn) ] : [],
-        p.baseline?.diag_off_rtg ?
+        showDiagMode && p.baseline?.diag_off_rtg ?
           [ GenericTableOps.buildTextRow(<RosterStatsDiagView ortgDiags={p.baseline?.diag_off_rtg} drtgDiags={p.baseline?.diag_def_rtg}/>, "small") ] : [],
         showPositionDiags ?
           [ GenericTableOps.buildTextRow(<PositionalDiagView player={p.baseline} teamSeason={teamSeasonLookup} showHelp={showHelp}/>, "small") ] : [],
@@ -851,7 +866,11 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
         show={true}
         players={rosterStats.baseline || []}
         onHide={() => null}
-        onSave={(onBallDefense: any[]) => null}
+        onSave={(onBallDefense: OnBallDefenseModel[]) => {
+          setOnBallDefenseByCode(
+            _.chain(onBallDefense).groupBy(p => p.code).mapValues(l => l[0]!).value()
+          );
+        }}
         onBallDefense={[]}
         showHelp={false}
       />

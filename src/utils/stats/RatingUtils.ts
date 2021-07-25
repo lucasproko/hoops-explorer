@@ -150,6 +150,43 @@ export type DRtgDiagnostics = {
   avgEff: number,
   adjDRtg: number,
   adjDRtgPlus: number,
+
+  onBallDef?: OnBallDefenseModel,
+  onBallDiags?: OnBallDefenseDiags
+};
+
+/** Data pulled from proprietary sources to show pts/play */
+export type OnBallDefenseModel = {
+  code: string,
+
+  // Pts/play and stops credit
+  pts: number,
+  plays: number,
+  scorePct: number,
+  // Stops credit only
+  tovPct: number,
+  fgMiss: number,
+
+  // Team numbers (same for all players) - needed for pts/play:
+  totalPlays: number,
+  uncatPtsPerScPlay: number,
+  uncatPts: number,
+  uncatPlays: number,
+  uncatScorePct: number
+};
+
+/** All the info needed to explain on ball defense adjustments to DRtg */
+export type OnBallDefenseDiags = {
+  uncatPlayPct: number,
+  indivPtsPerScPlay: number,
+  ptsPerScPlay: number,
+
+  stopCreditPct_Drb: number,
+  stopCreditPct_other_top: number,
+  stopCreditPct_other_bottom: number,
+  stopCredit_other: number,
+
+  personalDRtg: number
 };
 
 /** (just to make copy/pasting between colab and this code easier)*/
@@ -157,6 +194,64 @@ const array = (v: number[]) => { return v; }
 
 /** Contains the logic to build offensive and defensive ratings for individual players */
 export class RatingUtils {
+
+  // On-Ball defense calcs:
+
+  /** Builds a stat object for all the defensive plays not assigned to a player, copy into the player stats */
+  static buildUncatOnBallDefenseStats(totalStats: OnBallDefenseModel, players: OnBallDefenseModel[]): OnBallDefenseModel {
+    const uncatOnBallDefense = _.transform(players, (acc, player) => {
+      acc.pts -= player.pts;
+      acc.plays -= player.plays;
+      acc.uncatPtsPerScPlay -= player.scorePct*player.plays;
+    }, {
+      ...totalStats,
+      totalPlays: totalStats.plays,
+      uncatPtsPerScPlay: totalStats.scorePct*totalStats.plays
+    } as OnBallDefenseModel);
+
+    const uncatPtsPerScPlay = 100*uncatOnBallDefense.pts/(uncatOnBallDefense.uncatPtsPerScPlay || 1);
+
+    return players.map(player => {
+      player.totalPlays = uncatOnBallDefense.totalPlays;
+      player.uncatPtsPerScPlay = uncatPtsPerScPlay;
+      player.uncatScorePct = uncatOnBallDefense.scorePct / (uncatOnBallDefense.plays || 1);
+      player.uncatPts = uncatOnBallDefense.pts;
+      player.uncatPlays = uncatOnBallDefense.plays;
+    });
+  }
+
+  /** Adjusts the defensive stats according to the individual stats (phase 2 takes the team into account)*/
+  static buildOnBallDefenseAdjustmentsPhase1(
+    player: Record<string, any>, diags: DRtgDiagnostics, onBallStats: OnBallDefenseModel
+  ): OnBallDefenseDiags {
+    const uncatPlayPct = onBallStats.uncatPlays / (onBallStats.totalPlays || 1);
+
+    const indivPtsPerScPlay = 100*onBallStats.pts / (onBallStats.plays*onBallStats.scorePct || 1);
+    // (share out the credit/blame for uncategorized pts/score equally)
+    const ptsPerScPlay = indivPtsPerScPlay*(1 - uncatPlayPct) + uncatPlayPct*onBallStats.uncatPtsPerScPlay;
+
+
+    const stopCreditPct_Drb = diags.reboundCredit/(diags.oppoPoss*0.2 || 1);
+    const stopCreditPct_other_top =
+      0.01*onBallStats.tovPct*onBallStats.plays +
+      diags.missFtCredit +
+      onBallStats.fgMiss*diags.teamMissWeight;
+
+    const stopCreditPct_other_bottom = onBallStats.plays - onBallStats.fgMiss*diags.opponentOrbPct;
+
+    const stopCredit_other = stopCreditPct_other_top/(stopCreditPct_other_bottom || 1);
+
+    const personalDRtg = 100*ptsPerScPlay*(1 - stopCreditPct_Drb - stopCredit_other);
+
+    // (can't do anything more until we've calc'd how much of the DRtg is uncategorized and adjusted)
+    return {
+      uncatPlayPct, indivPtsPerScPlay, ptsPerScPlay,
+      stopCreditPct_Drb, stopCreditPct_other_top, stopCreditPct_other_bottom, stopCredit_other,
+      personalDRtg
+    };
+  }
+
+  // Manual override calcs:
 
   /** Builds the overrides to the raw fields based on stat overrides */
   static buildOffOverrides(statSet: Record<string, any>) {
@@ -203,6 +298,8 @@ export class RatingUtils {
 
     };
   };
+
+  // Rating calcs
 
   /** From https://www.basketball-reference.com/about/ratings.html */
   static buildORtg(
