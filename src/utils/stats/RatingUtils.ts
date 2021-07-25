@@ -186,7 +186,10 @@ export type OnBallDefenseDiags = {
   stopCreditPct_other_bottom: number,
   stopCredit_other: number,
 
-  personalDRtg: number
+  personalDRtg: number,
+
+  adjPersonalDRtg?: number, //(takes an even split of uncategorized DRtg)
+  DRtg?: number
 };
 
 /** (just to make copy/pasting between colab and this code easier)*/
@@ -250,6 +253,52 @@ export class RatingUtils {
       personalDRtg
     };
   }
+
+  /** (MUTATES) Adjusts the defensive stats according to the individual stats (phase 2 takes the team into account) */
+  static injectOnBallDefenseAdjustmentsPhase2(players: Record<string, any>[]) {
+    const weightedClassicPlayerMean = 0.2*_.reduce(players, (acc, stat) => {
+      //(use poss% because classic DRtg is fixed% per player possession, no concept of targeting)
+      return acc + ((stat.diag_def_rtg?.playerRtg || 0) * (stat.def_team_poss_pct?.value || 0));
+    }, 0);
+
+    const weightedOnBallPlayerMean = 0.2*_.reduce(players, (acc, stat) => {
+      const onBallDiags = stat.diag_def_rtg?.onBallDiags;
+      if (onBallDiags) {
+        //actually this should be based partially on target% and partially just on poss%
+        return acc + ((onBallDiags.personalDRtg || 0) * (stat.def_team_poss_pct?.value || 0));
+      } else {
+        return acc;
+      }
+    }, 0);
+
+    _.forEach(players, stat => {
+      const diag = stat.diag_def_rtg!;
+      const onBallDef = diag.onBallDef;
+      const onBallDiags = diag.onBallDiags;
+      if (onBallDef && onBallDiags) {
+        onBallDiags.adjPersonalDRtg = onBallDiags.personalDRtg + (weightedClassicPlayerMean - weightedOnBallPlayerMean);
+        // Get charged 40% of on-ball and 1/4th of 60% (=0.15) of off-ball
+        //TODO: fix this to use target%
+        const targetPct = (onBallDef.plays / (onBallDef.totalPlays || 1))/(stat.def_team_poss_pct?.value || 1);
+        const denom = (0.4*targetPct) + 0.15*(1 - targetPct);
+        onBallDiags.DRtg = ((0.4*targetPct)*onBallDiags.adjPersonalDRtg + 0.15*(1 - targetPct)*diag.teamRtg) / (denom || 1);
+
+        //DEBUG
+        //console.log(stat.key + ": " + stat.def_rtg.value + " -> " + onBallDiags.DRtg + "( " + targetPct.toFixed(4) + " / " + onBallDiags.adjPersonalDRtg);
+
+        //TODO: fix this, also want adj_drtg
+        stat.def_rtg.value = onBallDiags.DRtg;
+
+        const Adj_DRtg = diag.offSos > 0 ? onBallDiags.DRtg*(diag.avgEff / diag.offSos) : 0;
+        const Adj_DRtgPlus =  0.2*(Adj_DRtg - diag.avgEff);
+        stat.def_adj_rtg.value = Adj_DRtgPlus;
+
+      }
+    });
+/**/
+console.log("Recalc'd DRtgs");
+  }
+
 
   // Manual override calcs:
 

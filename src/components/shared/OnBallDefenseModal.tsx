@@ -258,7 +258,7 @@ const OnBallDefenseModal: React.FunctionComponent<Props> = (
       }}>Clear</Button>
       <Button disabled={true} variant="warning" onClick={() => null}>Reset</Button>
       <Button disabled={!inputChanged} variant="info" onClick={() => onApply()}>Apply changes</Button>
-      <Button variant="primary" onClick={() => onHide()}>Done</Button>
+      <Button variant="primary" onClick={() => props.onHide()}>Done</Button>
     </Modal.Footer>
   </Modal></div>;
 };
