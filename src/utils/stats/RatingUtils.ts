@@ -158,6 +158,7 @@ export type DRtgDiagnostics = {
 /** Data pulled from proprietary sources to show pts/play */
 export type OnBallDefenseModel = {
   code: string,
+  title: string,
 
   // Pts/play and stops credit
   pts: number,
@@ -169,6 +170,8 @@ export type OnBallDefenseModel = {
 
   // Team numbers (same for all players) - needed for pts/play:
   totalPlays: number,
+  totalPts: number,
+  totalScorePct: number,
   uncatPtsPerScPlay: number,
   uncatPts: number,
   uncatPlays: number,
@@ -216,6 +219,8 @@ export class RatingUtils {
 
     return players.map(player => {
       player.totalPlays = uncatOnBallDefense.totalPlays;
+      player.totalPts = totalStats.pts;
+      player.totalScorePct = totalStats.scorePct;
       player.uncatPtsPerScPlay = uncatPtsPerScPlay;
       player.uncatScorePct = uncatOnBallDefense.scorePct / (uncatOnBallDefense.plays || 1);
       player.uncatPts = uncatOnBallDefense.pts;
@@ -293,10 +298,25 @@ export class RatingUtils {
         const Adj_DRtgPlus =  0.2*(Adj_DRtg - diag.avgEff);
         stat.def_adj_rtg.value = Adj_DRtgPlus;
 
+        stat.def_rtg.extraInfo = `Using on-ball defense stats - classic value would be [${stat.diag_def_rtg.dRtg.toFixed(1)}]`;
+        stat.def_adj_rtg.extraInfo = `Using on-ball defense stats - classic value would be [${stat.diag_def_rtg.adjDRtgPlus.toFixed(1)}]`;
+
+        if (stat.def_adj_prod) {
+          stat.def_adj_prod.value = Adj_DRtgPlus*(stat.def_team_poss_pct.value || 0);
+
+          const defAdjProd = stat.diag_def_rtg.adjDRtgPlus*(stat.def_team_poss_pct.value || 0);
+          stat.def_adj_prod.extraInfo = `Using on-ball defense stats - classic value would be [${defAdjProd.toFixed(1)}]`;
+        }
+        if (!_.isNil(stat.def_adj_rapm?.value)) {
+          stat.def_adj_rapm.extraInfo = `Using on-ball defense - unknown adjustment (see Adj+ Rtg for estimate)`;
+        }
+        if (!_.isNil(stat.def_adj_rapm_prod?.value)) {
+          stat.def_adj_rapm_prod.extraInfo = `Using on-ball defense - unknown adjustment (see Adj+ Prod for estimate)`;
+        }
+
+        //TODO: add to diags
       }
     });
-/**/
-console.log("Recalc'd DRtgs");
   }
 
 

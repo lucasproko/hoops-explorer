@@ -24,6 +24,9 @@ import GenericTable, { GenericTableOps } from "../GenericTable";
 import { CommonTableDefs } from "../../utils/tables/CommonTableDefs";
 import { OnBallDefenseModel, RatingUtils } from "../../utils/stats/RatingUtils";
 
+//TODO: #1: need to clear when changing team/year/etc
+//TODO: #2: need to allow "0" + in front of rosterId
+
 // External Data Model
 
 type Props = {
@@ -40,7 +43,20 @@ const OnBallDefenseModal: React.FunctionComponent<Props> = (
 
   // State:
 
-  const [ inputContents, setInputContents ] = useState(_.isEmpty(onBallDefense) ? "" : "TODO");
+  /** Idempotent conversion of on ball stats to the TSV */
+  const parseInput = (stats: OnBallDefenseModel[]) => {
+    const st = stats[0]!;
+    const headerRow = "Team,-,Plays,Pts,-,-,-,FGm,-,-,-,-,TOV%,-,-,score%".replace(",", "\t");
+    const teamRow = `Team,-,${st.totalPlays},${st.totalPts},-,-,-,-,-,-,-,-,-,-,-,${st.totalScorePct}`.replace(",", "\t");
+
+    const rows = stats.map(s => {
+      return `Team,-,${s.plays},${s.pts},-,-,-,${s.fgMiss},-,-,-,-,${s.tovPct},-,-,${s.scorePct}`.replace(",", "\t");
+    });
+
+    return `${headerRow}\n${teamRow}\n${rows.join("\n")}`
+  };
+
+  const [ inputContents, setInputContents ] = useState(_.isEmpty(onBallDefense) ? "" : parseInput(onBallDefense));
   const [ inputChanged, setInputChanged ] = useState(false);
 
   const [ parseStatus, setParseStatus ] = useState(<span>
@@ -48,7 +64,7 @@ const OnBallDefenseModal: React.FunctionComponent<Props> = (
     </span>);
 
   const onApply = (clipboard: string | undefined) => {
-    const contents = clipboard || inputContents;
+    const contents = !_.isNil(clipboard) ? clipboard : inputContents;
     // Analyze incoming data:
 
     const rowsCols: string[][] =
@@ -101,6 +117,7 @@ const OnBallDefenseModal: React.FunctionComponent<Props> = (
     const parseRow = (code: string, row: string[]) => {
       return {
         code: code,
+        title: row[0],
 
         pts: parseFloatOrMissing(row[3]),
         plays: parseFloatOrMissing(row[2]),
@@ -185,15 +202,22 @@ const OnBallDefenseModal: React.FunctionComponent<Props> = (
           </ul>
         </span>
       );
-    } else {
+    } else if (contents) {
       setParseStatus(
         <span>
           <li>Import failure, no players matched.</li>
         </span>
       );
+    } else {
+      setParseStatus(
+        <span>
+          <li>Awaiting input</li>
+        </span>
+      );
     }
 
     onSave(matchedPlayerStats);
+    setInputContents(contents);
 
     //(handy debug)
     //console.log(JSON.stringify(matchedPlayers) + " / " + colsNotMatched);
@@ -238,8 +262,6 @@ const OnBallDefenseModal: React.FunctionComponent<Props> = (
             <Row>
               <ul>
                 {parseStatus}
-                <br/>
-                <li><i>(no previous dataset)</i></li>
               </ul>
             </Row>
           </Container>
@@ -253,10 +275,8 @@ const OnBallDefenseModal: React.FunctionComponent<Props> = (
     </Modal.Body>
     <Modal.Footer>
       <Button disabled={inputContents.length == 0} variant="warning" onClick={() => {
-        //TODO change processing
-        setInputContents("");
+        onApply("");
       }}>Clear</Button>
-      <Button disabled={true} variant="warning" onClick={() => null}>Reset</Button>
       <Button disabled={!inputChanged} variant="info" onClick={() => onApply()}>Apply changes</Button>
       <Button variant="primary" onClick={() => props.onHide()}>Done</Button>
     </Modal.Footer>

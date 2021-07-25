@@ -149,6 +149,8 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
     {} as Record<string, OnBallDefenseModel>
   );
 
+  const [ showOnBallDefense, setShowOnBallDefense ] = useState(true);
+
   // Transform the list into a map of maps of values
   const manualOverridesAsMap = OverrideUtils.buildOverrideAsMap(manualOverrides);
   const overridableStatsList = _.keys(OverrideUtils.getOverridableStats(ParamPrefixes.player));
@@ -317,15 +319,13 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
         try {
           const key = (0 == i) ? "baseline" : (onIndex == i) ? "on" : "off";
           const rapmPriorsBaseline = LineupTableUtils.buildBaselinePlayerInfo(
-            rosterStats[key]!, globalRosterStatsByCode, teamStats[key]!, avgEfficiency
+            rosterStats[key]!, globalRosterStatsByCode, teamStats[key]!, avgEfficiency, onBallDefenseByCode
           );
           return buildRapm(lineupStat, rapmPriorsBaseline);
         } catch (err) { //(data not ready, ignore for now)
           return {};
         }
       });
-/**/
-console.log("Setting cached RAPM...");      
       setCachedRapm({
         baseline: rapmInfos?.[0],
         on: rapmInfos?.[onIndex],
@@ -482,6 +482,7 @@ console.log("Setting cached RAPM...");
         // (note this duplicates LineupTableUtils.buildBaselinePlayerInfo, but that isn't called unless RAPM is enabled)
         const playerCode = teamStats.global?.roster ?
           (stat.player_array?.hits?.hits?.[0]?._source?.player?.code || "??") : "??";
+
         const rosterEntry = teamStats.global?.roster?.[playerCode] || {};
         if (!_.isEmpty(rosterEntry)) {
           stat.roster = rosterEntry;
@@ -873,15 +874,15 @@ console.log("Setting cached RAPM...");
         showHelp={showHelp}
       />
       <OnBallDefenseModal
-        show={true}
+        show={showOnBallDefense}
         players={rosterStats.baseline || []}
-        onHide={() => null}
+        onHide={() => setShowOnBallDefense(!showOnBallDefense)}
         onSave={(onBallDefense: OnBallDefenseModel[]) => {
           setOnBallDefenseByCode(
             _.chain(onBallDefense).groupBy(p => p.code).mapValues(l => l[0]!).value()
           );
         }}
-        onBallDefense={[]}
+        onBallDefense={_.values(onBallDefenseByCode)}
         showHelp={false}
       />
       <Form.Row>
@@ -960,6 +961,11 @@ console.log("Setting cached RAPM...");
               text="Configure Luck Adjustments..."
               truthVal={false}
               onSelect={() => setShowLuckConfig(true)}
+            />
+            <GenericTogglingMenuItem
+              text="Configure On-Ball Defense..."
+              truthVal={showOnBallDefense}
+              onSelect={() => setShowOnBallDefense(true)}
             />
             <Dropdown.Divider />
             <GenericTogglingMenuItem

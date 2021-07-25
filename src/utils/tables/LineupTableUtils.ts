@@ -27,8 +27,10 @@ export class LineupTableUtils {
   static buildBaselinePlayerInfo(
     players: any[] | undefined,
     globalRosterStatsByCode: Record<string, any>, teamStat: Record<string, any>,
-    avgEfficiency: number
+    avgEfficiency: number, onBallDefenseByCode: Record<string, OnBallDefenseModel>  = {}
   ) {
+//TODO: need to include onBallDef logic in here also...
+
     //(note changes here will likely need to be reflected in TeamReportStatsTable::insertExtraInfo)
     const baselinePlayerInfo = _.fromPairs(
       (players || []).map((mutableP: any) => {
@@ -54,7 +56,7 @@ export class LineupTableUtils {
           mutableP, globalRosterStatsByCode, avgEfficiency, false, playerAdjustForLuckOff
         );
         const [ dRtg, adjDRtg, rawDRtg, rawAdjDRtg, dRtgDiag ] = RatingUtils.buildDRtg(
-          mutableP, avgEfficiency, false, playerAdjustForLuckDef
+          mutableP, avgEfficiency, !_.isEmpty(onBallDefenseByCode), playerAdjustForLuckDef
         );
         mutableP.off_rtg = {
           value: oRtg?.value, old_value: rawORtg?.value,
@@ -74,6 +76,16 @@ export class LineupTableUtils {
         };
         mutableP.code = mutableP.player_array?.hits?.hits?.[0]?._source?.player?.code || mutableP.key;
 
+        // Apply on-ball defense if it exists for this player
+        try {
+        if (onBallDefenseByCode.hasOwnProperty(mutableP.code)) {
+          const onBallDefense = onBallDefenseByCode[mutableP.code]!;
+          const onBallDiags = RatingUtils.buildOnBallDefenseAdjustmentsPhase1(mutableP, dRtgDiag, onBallDefense);
+          dRtgDiag.onBallDef = onBallDefense;
+          dRtgDiag.onBallDiags = onBallDiags;
+        }
+      } catch (err) { console.log(err.message) }
+
         // If roster info is available then add:
         const rosterEntry = globalRosterStatsByCode[mutableP.code].roster;
         if (rosterEntry && !_.isEmpty(rosterEntry)) {
@@ -83,6 +95,11 @@ export class LineupTableUtils {
         return [ mutableP.key, mutableP ];
       })
     );
+
+    // Finish off on-ball defense if there is any:
+    if (!_.isEmpty(onBallDefenseByCode)) {
+      RatingUtils.injectOnBallDefenseAdjustmentsPhase2(_.values(baselinePlayerInfo));
+    }
     return baselinePlayerInfo;
   }
 
