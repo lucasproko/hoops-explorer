@@ -145,11 +145,12 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
     [] : gameFilterParams.manual
   );
 
-  const [ onBallDefenseByCode, setOnBallDefenseByCode ] = useState(
-    {} as Record<string, OnBallDefenseModel>
+  const [ onBallDefenseByCode, setOnBallDefenseByCode ] = useState([] as OnBallDefenseModel[]);
+
+  const [ showOnBallConfig, setShowOnBallConfig ] = useState(_.isNil(gameFilterParams.showOnBallConfig) ?
+    false : gameFilterParams.showOnBallConfig
   );
 
-  const [ showOnBallDefense, setShowOnBallDefense ] = useState(true);
 
   // Transform the list into a map of maps of values
   const manualOverridesAsMap = OverrideUtils.buildOverrideAsMap(manualOverrides);
@@ -226,12 +227,13 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
       factorMins: factorMins,
       onOffLuck: adjustForLuck,
       showPlayerOnOffLuckDiags: showLuckAdjDiags,
-      showPlayerManual: showManualOverrides
+      showPlayerManual: showManualOverrides,
+      showOnBallConfig: showOnBallConfig
     };
     onChangeState(newState);
 
   }, [ sortBy, filterStr, showDiagMode, alwaysShowBaseline, expandedView, possAsPct, showPositionDiags,
-      showPlayTypes, luckConfig, adjustForLuck, showLuckAdjDiags, showManualOverrides, manualOverrides, calcRapm, factorMins
+      showPlayTypes, luckConfig, adjustForLuck, showLuckAdjDiags, showManualOverrides, showOnBallConfig, manualOverrides, calcRapm, factorMins
     ]);
 
   // 2] Data Model
@@ -874,9 +876,9 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
         showHelp={showHelp}
       />
       <OnBallDefenseModal
-        show={showOnBallDefense}
+        show={showOnBallConfig}
         players={rosterStats.baseline || []}
-        onHide={() => setShowOnBallDefense(!showOnBallDefense)}
+        onHide={() => setShowOnBallConfig(!showOnBallConfig)}
         onSave={(onBallDefense: OnBallDefenseModel[]) => {
           setOnBallDefenseByCode(
             _.chain(onBallDefense).groupBy(p => p.code).mapValues(l => l[0]!).value()
@@ -964,8 +966,8 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
             />
             <GenericTogglingMenuItem
               text="Configure On-Ball Defense..."
-              truthVal={showOnBallDefense}
-              onSelect={() => setShowOnBallDefense(true)}
+              truthVal={showOnBallConfig}
+              onSelect={() => setShowOnBallConfig(true)}
             />
             <Dropdown.Divider />
             <GenericTogglingMenuItem

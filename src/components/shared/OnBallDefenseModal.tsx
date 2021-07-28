@@ -24,9 +24,6 @@ import GenericTable, { GenericTableOps } from "../GenericTable";
 import { CommonTableDefs } from "../../utils/tables/CommonTableDefs";
 import { OnBallDefenseModel, RatingUtils } from "../../utils/stats/RatingUtils";
 
-//TODO: #1: need to clear when changing team/year/etc
-//TODO: #2: need to allow "0" + in front of rosterId
-
 // External Data Model
 
 type Props = {
@@ -43,7 +40,7 @@ const OnBallDefenseModal: React.FunctionComponent<Props> = (
 
   // State:
 
-  /** Idempotent conversion of on ball stats to the TSV */
+  /** Idempotent conversion of on ball stats to the TSV - in practice not currently used since they are never persisted */
   const parseInput = (stats: OnBallDefenseModel[]) => {
     const st = stats[0]!;
     const headerRow = "Team,-,Plays,Pts,-,-,-,FGm,-,-,-,-,TOV%,-,-,score%".replace(",", "\t");
@@ -91,10 +88,14 @@ const OnBallDefenseModal: React.FunctionComponent<Props> = (
     const dupColMatches = playerNumberToColAndDups.dups;
 
     const getMatchingRosterId = (roster: Record<string, string>) => {
-      const rosterId = "#" + (roster?.number || "??");
+      const rosterNumber = (roster?.number || "??")
+      const rosterNumberNoZero = rosterNumber.replace(/0([0-9])/, "$1");
+      const rosterId = "#" + rosterNumberNoZero;
+      const rosterIdWithLeadingZero = "#0" + (roster?.number || "??");
       const backupRosterId = "#" + (roster?.alt_number || "??");
       return playerNumberToCol.hasOwnProperty(rosterId) ? rosterId :
-              (playerNumberToCol.hasOwnProperty(backupRosterId) ? backupRosterId : undefined);
+              (playerNumberToCol.hasOwnProperty(rosterIdWithLeadingZero) ? rosterIdWithLeadingZero :
+                (playerNumberToCol.hasOwnProperty(backupRosterId) ? backupRosterId : undefined));
     };
     const matchedPlayers = _.transform(players, (acc, player, ii) => {
       const matchingRosterId = getMatchingRosterId(player.roster || {});

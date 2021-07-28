@@ -129,6 +129,7 @@ export type DRtgDiagnostics = {
   oppoFtPoss: number,
   oppoTov: number,
   teamStl: number,
+  teamDrb: number,
   opponentOrbPct: number,
   opponentFgPct: number,
   // Advanced team numbers
@@ -180,20 +181,32 @@ export type OnBallDefenseModel = {
 
 /** All the info needed to explain on ball defense adjustments to DRtg */
 export type OnBallDefenseDiags = {
-  uncatPlayPct: number,
-  indivPtsPerScPlay: number,
-  ptsPerScPlay: number,
+  playerRebCredit: number,
+  teamRebCredit: number,
+  comboRebCredit: number,
 
-  stopCreditPct_Drb: number,
-  stopCreditPct_other_top: number,
-  stopCreditPct_other_bottom: number,
-  stopCredit_other: number,
+  playerTargetPoss: number,
+  targetedPct: number,
+  playerPtsPerScore: number,
+  onBallStopCredit: number
 
-  personalDRtg: number,
+  offBallPlays: number,
+  offBallPts: number,
+  offBallStopCredit: number,
 
-  adjPersonalDRtg?: number, //(takes an even split of uncategorized DRtg)
-  DRtg?: number
+  onBallCreditWeight: number,
+  offBallCreditWeight: number,
+  comboBallStopCredit: number,
+
+  weightedPtsPerScore: number,
+  unadjDRtg: number,
+
+  weightedClassicDRtgMean: number,
+  weightedUnadjDRtgMean: number,
+  uncategorizedAdjustment: number,
+  dRtg: number,
 };
+
 
 /** (just to make copy/pasting between colab and this code easier)*/
 const array = (v: number[]) => { return v; }
@@ -232,69 +245,123 @@ export class RatingUtils {
   static buildOnBallDefenseAdjustmentsPhase1(
     player: Record<string, any>, diags: DRtgDiagnostics, onBallStats: OnBallDefenseModel
   ): OnBallDefenseDiags {
-    const uncatPlayPct = onBallStats.uncatPlays / (onBallStats.totalPlays || 1);
 
-    const indivPtsPerScPlay = 100*onBallStats.pts / (onBallStats.plays*onBallStats.scorePct || 1);
-    // (share out the credit/blame for uncategorized pts/score equally)
-    const ptsPerScPlay = indivPtsPerScPlay*(1 - uncatPlayPct) + uncatPlayPct*onBallStats.uncatPtsPerScPlay;
+    // Rebound Calcs
 
+    const playerVsTeamRebWeight = 0.2;
+    const playerRebCredit = diags.reboundCredit/(diags.oppoPoss*0.2 || 1);
+    const teamRebCredit = diags.teamDrb*(1 - diags.teamDvsRebCredit)/(diags.oppoPoss || 1);
+    const comboRebCredit = diags.oppoPtsPerScore*(
+      playerVsTeamRebWeight*playerRebCredit + (1 - playerVsTeamRebWeight)*teamRebCredit
+    );
 
-    const stopCreditPct_Drb = diags.reboundCredit/(diags.oppoPoss*0.2 || 1);
-    const stopCreditPct_other_top =
+    // Targeted defense calcs
+
+    const playerTargetPoss = onBallStats.plays - diags.opponentOrbPct*onBallStats.fgMiss;
+    const targetedPct = (onBallStats.plays/(onBallStats.totalPlays || 1)) / (player.def_team_poss_pct?.value || 1);
+    const playerPtsPerScore = onBallStats.pts / ((onBallStats.plays * onBallStats.scorePct*0.01) || 1);
+
+    const onBallStopCredit = (
+      onBallStats.fgMiss*diags.teamMissWeight +
       0.01*onBallStats.tovPct*onBallStats.plays +
-      diags.missFtCredit +
-      onBallStats.fgMiss*diags.teamMissWeight;
+      diags.missFtCredit
+    ) / (playerTargetPoss || 1);
 
-    const stopCreditPct_other_bottom = onBallStats.plays - onBallStats.fgMiss*diags.opponentOrbPct;
+    // Off ball calcs
 
-    const stopCredit_other = stopCreditPct_other_top/(stopCreditPct_other_bottom || 1);
+    //(pro-rata Synergy stats to be more robust to different sample sizes at a small const in accuracy)
+    const offBallPlays = diags.oppoPoss*(1 - targetedPct);
+    const offBallPts = diags.oppoPts - targetedPct*diags.oppoPoss*(0.01*onBallStats.scorePct)*playerPtsPerScore;
 
-    const personalDRtg = 100*ptsPerScPlay*(1 - stopCreditPct_Drb - stopCredit_other);
+    // pts/poss = ptsPerScore*(100% - REB_CREDIT - STOP_CREDIT), so ...
+    // STOP_CREDIT = (100% - REB_CREDIT) - (pts/poss)/ptsPerScore
 
-    // (can't do anything more until we've calc'd how much of the DRtg is uncategorized and adjusted)
+    const offBallStopCredit = (
+      (1 - teamRebCredit) - (offBallPts / (offBallPlays || 1)) / (diags.oppoPtsPerScore || 1)
+    );
+
+    // Combined ball defense stats
+
+    const onVsOffBallWeight = 0.6; //ie credit goes eg "0.6 | 0.1 | 0.1 | 0.1 | 0.1" to the 5 players
+
+    const comboCreditDenom = onVsOffBallWeight*targetedPct + (1 - onVsOffBallWeight)*0.25*(1 - targetedPct);
+    const onBallCreditWeight = (onVsOffBallWeight*targetedPct)/(comboCreditDenom || 1);
+    const offBallCreditWeight = (1 - onVsOffBallWeight)*0.25*(1 - targetedPct)/(comboCreditDenom || 1);
+    const comboBallStopCredit =
+      playerPtsPerScore*onBallCreditWeight*onBallStopCredit
+      + diags.oppoPtsPerScore*offBallCreditWeight*offBallStopCredit;
+
+    // Combine defense stats
+
+    const weightedPtsPerScore = targetedPct*playerPtsPerScore + (1 - targetedPct)*diags.oppoPtsPerScore;
+
+    const unadjDRtg = 100*(weightedPtsPerScore - comboRebCredit - comboBallStopCredit);
+
+    // Calculate these in phase 2:
+
+    const weightedClassicDRtgMean = 0;
+    const weightedUnadjDRtgMean = 0;
+    const uncategorizedAdjustment = 0;
+    const dRtg = 0;
+
     return {
-      uncatPlayPct, indivPtsPerScPlay, ptsPerScPlay,
-      stopCreditPct_Drb, stopCreditPct_other_top, stopCreditPct_other_bottom, stopCredit_other,
-      personalDRtg
+      playerRebCredit, teamRebCredit, comboRebCredit,
+
+      playerTargetPoss, targetedPct, playerPtsPerScore, onBallStopCredit,
+
+      offBallPlays, offBallPts, offBallStopCredit,
+
+      onBallCreditWeight, offBallCreditWeight, comboBallStopCredit,
+
+      weightedPtsPerScore, unadjDRtg,
+
+      weightedClassicDRtgMean, weightedUnadjDRtgMean, uncategorizedAdjustment, dRtg
     };
   }
 
   /** (MUTATES) Adjusts the defensive stats according to the individual stats (phase 2 takes the team into account) */
   static injectOnBallDefenseAdjustmentsPhase2(players: Record<string, any>[]) {
-    const weightedClassicPlayerMean = 0.2*_.reduce(players, (acc, stat) => {
+
+    const weightedClassicDRtgMean = 0.2*_.reduce(players, (acc, stat) => {
       //(use poss% because classic DRtg is fixed% per player possession, no concept of targeting)
-      return acc + ((stat.diag_def_rtg?.playerRtg || 0) * (stat.def_team_poss_pct?.value || 0));
+      return acc + ((stat.diag_def_rtg?.dRtg || 0) * (stat.def_team_poss_pct?.value || 0));
     }, 0);
 
-    const weightedOnBallPlayerMean = 0.2*_.reduce(players, (acc, stat) => {
+    const weightedUnadjDRtgMean = 0.2*_.reduce(players, (acc, stat) => {
       const onBallDiags = stat.diag_def_rtg?.onBallDiags;
       if (onBallDiags) {
         //actually this should be based partially on target% and partially just on poss%
-        return acc + ((onBallDiags.personalDRtg || 0) * (stat.def_team_poss_pct?.value || 0));
+        return acc + ((onBallDiags.unadjDRtg || 0) * (stat.def_team_poss_pct?.value || 0));
       } else {
         return acc;
       }
     }, 0);
+
+    const uncategorizedAdjustment = weightedClassicDRtgMean - weightedUnadjDRtgMean;
 
     _.forEach(players, stat => {
       const diag = stat.diag_def_rtg!;
       const onBallDef = diag.onBallDef;
       const onBallDiags = diag.onBallDiags;
       if (onBallDef && onBallDiags) {
-        onBallDiags.adjPersonalDRtg = onBallDiags.personalDRtg + (weightedClassicPlayerMean - weightedOnBallPlayerMean);
-        // Get charged 40% of on-ball and 1/4th of 60% (=0.15) of off-ball
-        //TODO: fix this to use target%
-        const targetPct = (onBallDef.plays / (onBallDef.totalPlays || 1))/(stat.def_team_poss_pct?.value || 1);
-        const denom = (0.4*targetPct) + 0.15*(1 - targetPct);
-        onBallDiags.DRtg = ((0.4*targetPct)*onBallDiags.adjPersonalDRtg + 0.15*(1 - targetPct)*diag.teamRtg) / (denom || 1);
+        // (Add some working results to diag:)
+        onBallDiags.weightedClassicDRtgMean = weightedClassicDRtgMean;
+        onBallDiags.weightedUnadjDRtgMean = weightedUnadjDRtgMean;
+        onBallDiags.uncategorizedAdjustment = uncategorizedAdjustment;
+
+        // Apply calcs that required all players' ratings:
+
+        // Assign each player uncategorized events in even split (ensures DRtg stays ~ the same, it's just shared out evenly)
+        onBallDiags.dRtg = onBallDiags.unadjDRtg + uncategorizedAdjustment;
 
         //DEBUG
-        //console.log(stat.key + ": " + stat.def_rtg.value + " -> " + onBallDiags.DRtg + "( " + targetPct.toFixed(4) + " / " + onBallDiags.adjPersonalDRtg);
+        //console.log(stat.key + ": " + JSON.stringify(onBallDiags));
 
-        //TODO: fix this, also want adj_drtg
-        stat.def_rtg.value = onBallDiags.DRtg;
+        // Apply the result to the player stats:
 
-        const Adj_DRtg = diag.offSos > 0 ? onBallDiags.DRtg*(diag.avgEff / diag.offSos) : 0;
+        stat.def_rtg.value = onBallDiags.dRtg;
+
+        const Adj_DRtg = diag.offSos > 0 ? onBallDiags.dRtg*(diag.avgEff / diag.offSos) : 0;
         const Adj_DRtgPlus =  0.2*(Adj_DRtg - diag.avgEff);
         stat.def_adj_rtg.value = Adj_DRtgPlus;
 
@@ -313,12 +380,9 @@ export class RatingUtils {
         if (!_.isNil(stat.def_adj_rapm_prod?.value)) {
           stat.def_adj_rapm_prod.extraInfo = `Using on-ball defense - unknown adjustment (see Adj+ Prod for estimate)`;
         }
-
-        //TODO: add to diags
       }
     });
   }
-
 
   // Manual override calcs:
 
@@ -806,6 +870,7 @@ export class RatingUtils {
       oppoFtPoss: Opponent_FTposs,
       oppoTov: Opponent_TOV,
       teamStl: Team_STL,
+      teamDrb: Team_DRB,
       opponentOrbPct: Team_DORpct,
       opponentFgPct: DFGpct,
       // Advanced team numbers

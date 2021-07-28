@@ -123,6 +123,7 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
       (rawParams.showPosDiag == ParamDefaults.defaultPlayerPosDiagMode) ? [ 'showPosDiag' ] : [],
       (rawParams.showPlayerPlayTypes == ParamDefaults.defaultPlayerShowPlayTypes) ? [ 'showPlayerPlayTypes' ] : [],
       (rawParams.showPlayerManual == false) ? [ 'showPlayerManual' ] : [],
+      (rawParams.showOnBallConfig == false) ? [ 'showOnBallConfig' ] : [],
       (rawParams.calcRapm == ParamDefaults.defaultPlayerCalcRapm) ? [ 'calcRapm' ] : [],
     ]));
     if (!_.isEqual(params, gameFilterParamsRef.current)) { //(to avoid recursion)
