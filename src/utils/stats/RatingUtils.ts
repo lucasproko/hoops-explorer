@@ -171,6 +171,7 @@ export type OnBallDefenseModel = {
 
   // Team numbers (same for all players) - needed for pts/play:
   totalPlays: number,
+  // These are just interesting diags
   totalPts: number,
   totalScorePct: number,
   uncatPtsPerScPlay: number,
@@ -190,21 +191,28 @@ export type OnBallDefenseDiags = {
   playerPtsPerScore: number,
   onBallStopCredit: number
 
-  offBallPlays: number,
+  offBallPoss: number,
   offBallPts: number,
+  otherRebounds: number,
+  otherRebCredit: number,
   offBallStopCredit: number,
+
+  onVsOffBallWeight: number,
+  weightedPtsPerScore: number,
 
   onBallCreditWeight: number,
   offBallCreditWeight: number,
   comboBallStopCredit: number,
 
-  weightedPtsPerScore: number,
   unadjDRtg: number,
 
   weightedClassicDRtgMean: number,
   weightedUnadjDRtgMean: number,
   uncategorizedAdjustment: number,
+
   dRtg: number,
+  adjDRtg: number,
+  adjDRtgPlus: number,
 };
 
 
@@ -246,6 +254,25 @@ export class RatingUtils {
     player: Record<string, any>, diags: DRtgDiagnostics, onBallStats: OnBallDefenseModel
   ): OnBallDefenseDiags {
 
+    // The basic idea is:
+    // 1] DRBs treated as before, except we explicitly decompose pts/poss into its (pts/sc-play)*(1 - DRB_credit - Stop_credit)
+    //    for reasons that will become clear below
+    //    ^ ignoring the regression for simplicity, you might get 2*15% credit
+    // 2] For stops we ignore Blks and Stls (they just map to FGm and TO in on-ball-defence stats), and then:
+    //    (for this illustration we will just use FGm, ie posseessions == (shots - DRBs))
+    //    For each 100 possessions: P defends target% of them and is off-ball for (1 - target%) of them
+    //    onBall credit: onBallWeight*target%*(1 - scoring%)*player_pts/score
+    //    ^ (in practice it's more complicated because of TOVs and FTs don't get the DRB_vs_stop weighting)
+    //      (1 - scoring%) == (FGm*stop_weight + miss_all_FT_credit +  TOV)/targeted_plays
+    //      eg in 100 poss: 15 targets, 10 misses (credit 50%), 2pts/score => 0.6*[ 10pts/100 ]
+    //    offBall credit: 0.25*(1 - onBallWeight)*(1 - target%)*(1 - non_player_scoring%)*team_pts/score
+    //    ^ eg in 100 poss: 85 off-ball, 45 misses (credit 50%), 2pts/score => [0.4*0.25=0.1]  * [ 45pts/100 ]
+    //    The above means that every "event" gets either X credit for the targeted player
+    //    OR (1-X)/4 for the 4 other players on the floor...
+    //    Finally you *5 because there are 5 of you on the floor
+    // 3] ... except for uncategorized plays which only get the (1 - target%)*etc weight
+    //    We'll address these simply by adding the delta from the DRtg generated from 1+2 with the "classic DRtg"
+
     // Rebound Calcs
 
     const playerVsTeamRebWeight = 0.2;
@@ -268,34 +295,41 @@ export class RatingUtils {
     ) / (playerTargetPoss || 1);
 
     // Off ball calcs
+    const weightedPtsPerScore = (diags.oppoPtsPerScore - targetedPct*playerPtsPerScore) / ((1 - targetedPct) || 1);
 
     //(pro-rata Synergy stats to be more robust to different sample sizes at a small const in accuracy)
-    const offBallPlays = diags.oppoPoss*(1 - targetedPct);
-    const offBallPts = diags.oppoPts - targetedPct*diags.oppoPoss*(0.01*onBallStats.scorePct)*playerPtsPerScore;
+    const offBallPoss = diags.oppoPoss*(1 - targetedPct);
+    const offBallPts = diags.oppoPts - (targetedPct*diags.oppoPoss)*(onBallStats.pts / playerTargetPoss || 1);
+// targeted_poss = poss/total_poss = plays-rb1/(total_plays-rb2)
+// Oh right because scorePct is based on poss not pts
+
+//TODO: I think this is wrong...
+
+    // FGm*(FGm/poss)
+    const missesOffTargetedShot = (diags.oppoPoss*targetedPct)*(onBallStats.fgMiss/(playerTargetPoss || 1));
+    const otherRebounds = diags.teamDrb - missesOffTargetedShot*(1 - diags.opponentOrbPct);
+    const otherRebCredit = otherRebounds*(1 - diags.teamDvsRebCredit)/(offBallPoss || 1);
 
     // pts/poss = ptsPerScore*(100% - REB_CREDIT - STOP_CREDIT), so ...
     // STOP_CREDIT = (100% - REB_CREDIT) - (pts/poss)/ptsPerScore
 
-    const offBallStopCredit = (
-      (1 - teamRebCredit) - (offBallPts / (offBallPlays || 1)) / (diags.oppoPtsPerScore || 1)
-    );
+    const offBallStopCredit = (1 - otherRebCredit) -
+       ((offBallPts / (offBallPoss || 1)) / (weightedPtsPerScore || 1));
 
     // Combined ball defense stats
 
-    const onVsOffBallWeight = 0.6; //ie credit goes eg "0.6 | 0.1 | 0.1 | 0.1 | 0.1" to the 5 players
+    const onVsOffBallWeight = 0.4; //ie credit goes eg "X | (1-X)/4 | (1-X)/4 | (1-X)/4 | (1-X)/4" to the 5 players
 
-    const comboCreditDenom = onVsOffBallWeight*targetedPct + (1 - onVsOffBallWeight)*0.25*(1 - targetedPct);
-    const onBallCreditWeight = (onVsOffBallWeight*targetedPct)/(comboCreditDenom || 1);
-    const offBallCreditWeight = (1 - onVsOffBallWeight)*0.25*(1 - targetedPct)/(comboCreditDenom || 1);
-    const comboBallStopCredit =
+    const onBallCreditWeight = (onVsOffBallWeight*targetedPct);
+    const offBallCreditWeight = (1 - onVsOffBallWeight)*0.25*(1 - targetedPct);
+    const comboBallStopCredit =  5*(
       playerPtsPerScore*onBallCreditWeight*onBallStopCredit
-      + diags.oppoPtsPerScore*offBallCreditWeight*offBallStopCredit;
+      + weightedPtsPerScore*offBallCreditWeight*offBallStopCredit
+    ); //(*5 because there are 5 players on the court)
 
     // Combine defense stats
 
-    const weightedPtsPerScore = targetedPct*playerPtsPerScore + (1 - targetedPct)*diags.oppoPtsPerScore;
-
-    const unadjDRtg = 100*(weightedPtsPerScore - comboRebCredit - comboBallStopCredit);
+    const unadjDRtg = 100*(diags.oppoPtsPerScore - comboRebCredit - comboBallStopCredit);
 
     // Calculate these in phase 2:
 
@@ -303,19 +337,24 @@ export class RatingUtils {
     const weightedUnadjDRtgMean = 0;
     const uncategorizedAdjustment = 0;
     const dRtg = 0;
+    const adjDRtg = 0;
+    const adjDRtgPlus = 0;
 
     return {
       playerRebCredit, teamRebCredit, comboRebCredit,
 
       playerTargetPoss, targetedPct, playerPtsPerScore, onBallStopCredit,
 
-      offBallPlays, offBallPts, offBallStopCredit,
+      offBallPoss, offBallPts, otherRebounds, otherRebCredit, offBallStopCredit,
+
+      onVsOffBallWeight, weightedPtsPerScore,
 
       onBallCreditWeight, offBallCreditWeight, comboBallStopCredit,
 
-      weightedPtsPerScore, unadjDRtg,
+      unadjDRtg,
 
-      weightedClassicDRtgMean, weightedUnadjDRtgMean, uncategorizedAdjustment, dRtg
+      weightedClassicDRtgMean, weightedUnadjDRtgMean, uncategorizedAdjustment,
+      dRtg, adjDRtg, adjDRtgPlus
     };
   }
 
@@ -364,6 +403,11 @@ export class RatingUtils {
         const Adj_DRtg = diag.offSos > 0 ? onBallDiags.dRtg*(diag.avgEff / diag.offSos) : 0;
         const Adj_DRtgPlus =  0.2*(Adj_DRtg - diag.avgEff);
         stat.def_adj_rtg.value = Adj_DRtgPlus;
+
+        onBallDiags.dRtg = onBallDiags.unadjDRtg + uncategorizedAdjustment;
+        onBallDiags.adjDRtg = Adj_DRtg;
+        onBallDiags.adjDRtgPlus = Adj_DRtgPlus;
+
 
         stat.def_rtg.extraInfo = `Using on-ball defense stats - classic value would be [${stat.diag_def_rtg.dRtg.toFixed(1)}]`;
         stat.def_adj_rtg.extraInfo = `Using on-ball defense stats - classic value would be [${stat.diag_def_rtg.adjDRtgPlus.toFixed(1)}]`;

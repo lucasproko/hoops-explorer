@@ -17,11 +17,14 @@ const RosterStatsDiagView: React.FunctionComponent<Props> = ({ortgDiags, drtgDia
   const [ showMoreORtgPoss, setShowMoreORtgPoss ] = useState(false);
   const [ showMoreORtgAdj, setShowMoreORtgAdj ] = useState(false);
   const [ showMoreDRtg, setShowMoreDRtg ] = useState(false);
+  const [ showMoreOnBallDRtg, setShowMoreOnBallDRtg ] = useState(false);
 
   const o = ortgDiags;
   const d = drtgDiags;
+  const dbd = drtgDiags.onBallDiags;
+  const dbs = drtgDiags.onBallDef;
   return <span>
-    ORtg = Points_Produced [<b>{o.ptsProd.toFixed(1)}</b>] / Adjusted_Possessions [<b>{o.adjPoss.toFixed(1)}</b>]
+    ORtg: [<b>{o.oRtg.toFixed(1)}</b>] = Points_Produced [<b>{o.ptsProd.toFixed(1)}</b>] / Adjusted_Possessions [<b>{o.adjPoss.toFixed(1)}</b>]
     (<a href="#" onClick={(event) => { event.preventDefault(); setShowMoreORtgPts(!showMoreORtgPts) }}>{showMoreORtgPts ? "less" : "more"} about points</a>)
     (<a href="#" onClick={(event) => { event.preventDefault(); setShowMoreORtgPoss(!showMoreORtgPoss) }}>{showMoreORtgPoss ? "less" : "more"} about possessions</a>)
     (<a href="#" onClick={(event) => { event.preventDefault(); setShowMoreORtgAdj(!showMoreORtgAdj) }}>{showMoreORtgAdj ? "less" : "more"} about Adj+ ORtg</a>)
@@ -150,22 +153,78 @@ const RosterStatsDiagView: React.FunctionComponent<Props> = ({ortgDiags, drtgDia
         </ul>
       </ul></span> : null}
     </ul>
-    DRtg = Team_DRtg [<b>{d.teamRtg.toFixed(1)}</b>] + Player_Delta [<b>{d.playerDelta.toFixed(1)}</b>]
-    &nbsp;(<a href="#" onClick={(event) => { event.preventDefault(); setShowMoreDRtg(!showMoreDRtg) }}>{showMoreDRtg ? "less" : "more"} about DRtg</a>)
+    {(dbd && dbs) ?
+      <p>
+        "On-Ball Aware" DRtg: [<b>{dbd.dRtg.toFixed(1)}</b>] = OnBall_Player_DRtg [<b>{dbd.unadjDRtg.toFixed(1)}</b>] + Unassigned_Plays_Bonus [<b>{(dbd.weightedClassicDRtgMean - dbd.weightedUnadjDRtgMean).toFixed(1)}</b>]
+        &nbsp;(<a href="#" onClick={(event) => { event.preventDefault(); setShowMoreOnBallDRtg(!showMoreOnBallDRtg) }}>{showMoreOnBallDRtg ? "less" : "more"} about "On-Ball" DRtg</a>)
+        <ul>
+          <li>OnBall_Player_DRtg: [<b>{dbd.unadjDRtg.toFixed(1)}</b>] = 100 * (Pts_Per_Score [<b>{d.oppoPtsPerScore.toFixed(2)}</b>] -
+          Rebound_Credit [<b>{(100*dbd.comboRebCredit).toFixed(1)}%</b>] - Stop_Credit [<b>{(100*dbd.comboBallStopCredit).toFixed(1)}%</b>])
+          </li>
+          <li>Unassigned_Plays_Bonus: [<b>{(dbd.weightedClassicDRtgMean - dbd.weightedUnadjDRtgMean).toFixed(1)}</b>] = <i>WeightedAvg_Classic_DRtg</i> [<b>{(dbd.weightedClassicDRtgMean).toFixed(1)}</b>] - <i>WeightedAvg_OnBallPlayer_DRtg</i> [<b>{(dbd.weightedUnadjDRtgMean).toFixed(1)}</b>]</li>
+          <li><b>Adjusted+ DRtg</b>: [<b>{dbd.adjDRtgPlus.toFixed(1)}</b>] = <em>Normalize</em> [<b>{dbd.adjDRtg.toFixed(1)}</b>] (DRtg [<b>{dbd.dRtg.toFixed(1)}</b>] * (Avg_Efficiency [<b>{d.avgEff.toFixed(1)}</b>] / Off_SOS [<b>{d.offSos.toFixed(1)}</b>]))</li>
+          {showMoreOnBallDRtg ?
+          <span><li><u>"On-Ball" DRtg details</u></li>
+          <ul>
+            <li>Rebound_Credit: [<b>{(100*dbd.comboRebCredit).toFixed(1)}%</b>] = Pts_Per_Score [<b>{d.oppoPtsPerScore.toFixed(2)}</b>] * ([<b>20%</b>]*Player_Rebound_Credit [<b>{(100*dbd.playerRebCredit).toFixed(1)}%</b>]) + [<b>80%</b>]*Team_Rebound_Credit [<b>{(100*dbd.teamRebCredit).toFixed(1)}%</b>])</li>
+            <ul>
+              <li>Player_Rebound_Credit: [<b>{(100*dbd.playerRebCredit).toFixed(1)}%</b>] = Classic_Rebound_Credit [<b>{d.reboundCredit.toFixed(1)}</b>] / (20% * Opponent_Poss) [<b>{(0.2*d.oppoPoss).toFixed(1)}</b>]</li>
+              <li>Team_Rebound_Credit: [<b>{(100*dbd.teamRebCredit).toFixed(1)}%</b>] = Team_Rebounds [<b>{d.teamDrb.toFixed(0)}</b>] * (1 - Classic_Miss_vs_Rebound_Credit% [<b>{(100*d.teamDvsRebCredit).toFixed(1)}%</b>]) / Opponent_Poss [<b>{d.oppoPoss.toFixed(0)}</b>]</li>
+              <li><i>(This is the same as "Classic", except with Team_DRtg decomposed into rebound and stops - see below)</i></li>
+            </ul>
+            <li>Stop_Credit: [<b>{(100*dbd.comboBallStopCredit).toFixed(1)}%</b>] = [<b>5</b>] * ((OnBall_Weight [<b>{(100*dbd.onBallCreditWeight).toFixed(1)}%</b>] * OnBall_Credit [<b>{(100*dbd.onBallStopCredit*dbd.playerPtsPerScore).toFixed(1)}%</b>]) +  (OffBall_Weight [<b>{(100*dbd.offBallCreditWeight).toFixed(1)}%</b>] * OffBall_Credit [<b>{(100*dbd.offBallStopCredit*dbd.weightedPtsPerScore).toFixed(1)}%</b>]) )</li>
+            <ul>
+              <li><i>(* [<b>5</b>] because each player in the lineup has equal defensive responsibilities)</i></li>
+              <li>OnBall_Credit: [<b>{(100*dbd.onBallStopCredit*dbd.playerPtsPerScore).toFixed(1)}%</b>] = Player_Pts_Per_Score [<b>{dbd.playerPtsPerScore.toFixed(2)}</b>] * Player_Stop_Credit [<b>{(100*dbd.onBallStopCredit*dbd.playerTargetPoss/(dbd.playerTargetPoss || 1)).toFixed(1)}%</b>]</li>
+              <ul>
+                <li>Player_Stop_Credit: [<b>{(100*dbd.onBallStopCredit*dbd.playerTargetPoss/(dbd.playerTargetPoss || 1)).toFixed(1)}%</b>] = No_Shot_Credit [<b>{(dbd.onBallStopCredit*dbd.playerTargetPoss).toFixed(1)}</b>] + Classic_Missed_FTs [<b>{d.missFtCredit.toFixed(1)}</b>]) / Targeted_Poss [<b>{dbd.playerTargetPoss.toFixed(1)}</b>]</li>
+                <li>NoShot_Credit: [<b>{(dbd.onBallStopCredit*dbd.playerTargetPoss).toFixed(1)}</b>] = (Classic_Miss_Weight [<b>{(100*d.teamMissWeight).toFixed(1)}%</b>] * Credited_Misses [<b>{dbs.fgMiss.toFixed(0)}</b>]) + Credited_TOVs [<b>{(0.01*dbs.tovPct*dbs.plays).toFixed(1)}</b>]</li>
+                <li>Targeted_Poss: [<b>{dbd.playerTargetPoss.toFixed(1)}</b>] = Targeted_Plays [<b>{dbs.plays.toFixed(0)}</b>] - (Credited_Misses [<b>{dbs.fgMiss.toFixed(0)}</b>] * Opponent_ORB% [<b>{(100*d.opponentOrbPct).toFixed(1)}%</b>])</li>
+              </ul>
+              <li>OffBall_Credit: [<b>{(100*dbd.offBallStopCredit*dbd.weightedPtsPerScore).toFixed(1)}%</b>] = Weighted_Pts_Per_Score [<b>{dbd.weightedPtsPerScore.toFixed(2)}</b>] * Not_Player_Stop_Credit [<b>{(100*dbd.offBallStopCredit).toFixed(1)}%</b>]</li>
+              <ul>
+                <li>Weighted_Pts_Per_Score: [<b>{dbd.weightedPtsPerScore.toFixed(2)}</b>] = (Pts_Per_Score [<b>{d.oppoPtsPerScore.toFixed(2)}</b>] - (Targeted% [<b>{(100*dbd.targetedPct).toFixed(1)}%</b>] * Player_Pts_Per_Score [<b>{dbd.playerPtsPerScore.toFixed(2)}</b>]))/(1 - Targeted% [<b>{(100*dbd.targetedPct).toFixed(1)}%</b>])</li>
+                <li>Not_Player_Stop_Credit [<b>{(100*dbd.offBallStopCredit).toFixed(1)}%</b>]:
+                <i> We decompose Team_DRtg for all non-player points into rebound and stop credit</i></li>
+                <ul>
+                  <li><i>Delta Pts=[<b>-{(d.oppoPts - dbd.offBallPts).toFixed(1)}</b>], Poss=[<b>-{(d.oppoPoss - dbd.offBallPoss).toFixed(1)}</b>], DRBs=[<b>-{(d.teamDrb - dbd.otherRebounds).toFixed(1)}</b>], DRtgs: all=[<b>-{d.teamRtg.toFixed(1)}</b>] vs [<b>{(100*dbd.offBallPts/(dbd.offBallPoss || 1)).toFixed(1)}</b>]</i></li>
+                </ul>
+                <li><i>NonPlayer_Team_DRtg [<b>{(100*dbd.offBallPts/(dbd.offBallPoss || 1)).toFixed(1)}</b>] = 100*Pts_Per_Score [<b>{dbd.weightedPtsPerScore.toFixed(2)}</b>]*(1 - Other_Rebound_Credit [<b>{(100*dbd.otherRebCredit).toFixed(1)}%</b>] - <u>Not_Player_Stop_Credit</u> [<b>{(100*dbd.offBallStopCredit).toFixed(1)}%</b>]</i></li>
+              </ul>
+              <li>OnBall_Weight: [<b>{(100*dbd.onBallCreditWeight).toFixed(1)}%</b>] = On_vs_OffBall_Weight [<b>{(100*dbd.onVsOffBallWeight).toFixed(1)}%</b>] * Targeted% [<b>{(100*dbd.targetedPct).toFixed(1)}%</b>]</li>
+              <ul>
+                <li>Targeted%: [<b>{(100*dbd.targetedPct).toFixed(1)}%</b>] = (Targeted_Plays [<b>{dbs.plays.toFixed(0)}</b>] / Total_Plays [<b>{dbs.totalPlays.toFixed(0)}</b>]) / Player_Poss% [<b>{(100*dbs.plays/(dbs.totalPlays || 1)/(dbd.targetedPct || 1)).toFixed(1)}%</b>]</li>
+                <li><i>(On_vs_OffBall_Weight [<b>{(100*dbd.onVsOffBallWeight).toFixed(1)}%</b>] is a arbitrary split of credit given to on-ball vs help defense)</i></li>
+              </ul>
+              <li>OffBall_Weight: [<b>{(100*dbd.offBallCreditWeight).toFixed(1)}%</b>] = [<b>25%</b>] * (1 - On_vs_OffBall_Weight [<b>{(100*dbd.onVsOffBallWeight).toFixed(1)}%</b>])*(1 - Targeted% [<b>{(100*dbd.targetedPct).toFixed(1)}%</b>])</li>
+              <ul>
+                <li><i>([<b>25%</b>] because the help defense is spread out across the 4 non-on-ball defenders)</i></li>
+              </ul>
+            </ul>
+            <li><i>(Unassigned_Plays_Bonus spreads out the credit for stops not assigned an on-ball defender. It is typically [<b>-7.0</b>] +- [<b>2.0</b>] pts/100)</i></li>
+          </ul></span>
+          : null }
+        </ul>
+      </p>
+      :
+      null
+    }
+    {(dbd && dbs) ? <span>"Classic" </span> : null}DRtg: [<b>{d.dRtg.toFixed(1)}</b>] = Team_DRtg [<b>{d.teamRtg.toFixed(1)}</b>] + Player_Delta [<b>{d.playerDelta.toFixed(1)}</b>]
+    &nbsp;(<a href="#" onClick={(event) => { event.preventDefault(); setShowMoreDRtg(!showMoreDRtg) }}>{showMoreDRtg ? "less" : "more"} about {(dbd && dbs) ? <span>"Classic" </span> : null}DRtg</a>)
     <ul>
       <li>Team_DRtg: [<b>{d.teamRtg.toFixed(1)}</b>] = 100 * Opponent_Pts [<b>{d.oppoPts.toFixed(0)}</b>] / Opponent_Poss [<b>{d.oppoPoss.toFixed(0)}</b>] <em>(only counting while player was on floor)</em></li>
       <li>Player_Delta: [<b>{(d.playerDelta).toFixed(1)}</b>] = (Player_DRtg [<b>{d.playerRtg.toFixed(1)}</b>] - Team_DRtg [<b>{d.teamRtg.toFixed(1)}</b>]) / Team_Size [<b>5</b>]</li>
       <ul>
-        <li>Player_DRtg:  [<b>{d.playerRtg.toFixed(1)}</b>] = 100 * Pts_Per_Score [<b>{d.oppoPtsPerScore.toFixed(1)}</b>] * Score_Conceded_By_Player% [<b>{(100*d.scPossConceded).toFixed(1)}%</b>]</li>
+        <li>Player_DRtg:  [<b>{d.playerRtg.toFixed(1)}</b>] = 100 * Pts_Per_Score [<b>{d.oppoPtsPerScore.toFixed(2)}</b>] * Score_Conceded_By_Player% [<b>{(100*d.scPossConceded).toFixed(1)}%</b>]</li>
       </ul>
       <li><b>Adjusted+ DRtg</b>: [<b>{d.adjDRtgPlus.toFixed(1)}</b>] = <em>Normalize</em> [<b>{d.adjDRtg.toFixed(1)}</b>] (DRtg [<b>{d.dRtg.toFixed(1)}</b>] * (Avg_Efficiency [<b>{d.avgEff.toFixed(1)}</b>] / Off_SOS [<b>{d.offSos.toFixed(1)}</b>]))</li>
       {showMoreDRtg ?
-      <span><li><u>DRtg details</u></li>
+      <span><li><u>{(dbd && dbs) ? <span>"Classic" </span> : null}DRtg details</u></li>
       <ul>
         <li><em>(Note: you can also view this as DRtg [<b>{(d.teamRtg + d.playerDelta).toFixed(1)}</b>] = ([<b>20%</b>] * Player_DRtg [<b>{d.playerRtg.toFixed(1)}</b>]) + ([<b>80%</b>] * Team_DRtg [<b>{d.teamRtg.toFixed(1)}</b>]);
         ie a weighted average of a player's defense when actively involved,
         vs when passively involved, eg guarding off ball (where the best you can do is use the Team_DRtg). This assumes every player is "targeted" 1/5th of the time.</em></li>
-        <li>Pts_Per_Score: [<b>{d.oppoPtsPerScore.toFixed(1)}</b>] = Opponent_PTS [<b>{d.oppoPts.toFixed(0)}</b>] / Scoring_Plays [<b>{d.oppoScPoss.toFixed(1)}</b>]</li>
+        <li>Pts_Per_Score: [<b>{d.oppoPtsPerScore.toFixed(2)}</b>] = Opponent_PTS [<b>{d.oppoPts.toFixed(0)}</b>] / Scoring_Plays [<b>{d.oppoScPoss.toFixed(1)}</b>]</li>
         <ul>
           <li>Scoring_Plays: [<b>{d.oppoScPoss.toFixed(1)}</b>] = Opponent_FGM [<b>{d.oppoFgm.toFixed(0)}</b>] + Opponent_FTs_Hit_1+ [<b>{d.oppoFtHitOnePlus.toFixed(1)}</b>]</li>
           <ul>
