@@ -138,7 +138,6 @@ const OnBallDefenseModal: React.FunctionComponent<Props> = (
       const player = players[ii]!;
       const matchingRosterId = getMatchingRosterId(player.roster || {});
       const row = playerNumberToCol[matchingRosterId] || [];
-//TODO: ahhh code isn't here unless RAPM calc'd?      
       const onBallDefense = parseRow(player.code || matchingRosterId, row);
       return onBallDefense;
     });
@@ -232,7 +231,7 @@ const OnBallDefenseModal: React.FunctionComponent<Props> = (
     "title": GenericTableOps.addTitle("", "", CommonTableDefs.singleLineRowSpanCalculator, "small", GenericTableOps.htmlFormatter),
     "sep-1": GenericTableOps.addColSeparator(),
     "delta": GenericTableOps.addPtsCol("Delta DRtg", "Difference between classic DRtg and one adjusted for on-ball defense (positive means on-ball stats improve the DRtg)", CbbColors.varPicker(CbbColors.off_diff10_p100_redGreen)),
-    "delta_rapm": GenericTableOps.addPtsCol("RAPM comp", "Delta betwen adjusted DRtg and 5*RAPM - you'd expect 'Delta DRtg' and 'RAPM comp' to be +vely correlated", CbbColors.varPicker(CbbColors.off_diff10_p100_redGreen)),
+    "delta_rapm": GenericTableOps.addPtsCol("RAPM comp", "5*Delta betwen adjusted DRtg and RAPM - you'd expect 'Delta DRtg' and 'RAPM comp' to be +vely correlated", CbbColors.varPicker(CbbColors.off_diff10_p100_redGreen)),
     "sep0": GenericTableOps.addColSeparator(),
     "classic_drtg": GenericTableOps.addPtsCol("Box DRtg", "Box DRtg (no on-ball adjustments)", CbbColors.varPicker(CbbColors.def_pp100)),
     "onball_drtg": GenericTableOps.addPtsCol("new", "DRtg after on-ball adjustments", CbbColors.varPicker(CbbColors.def_pp100)),
