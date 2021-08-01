@@ -61,7 +61,7 @@ const OnBallDefenseModal: React.FunctionComponent<Props> = (
     <li>Awaiting input</li>
     </span>);
 
-  const onApply = (clipboard: string | undefined) => {
+  const onApply = (clipboard?: string) => {
     const contents = !_.isNil(clipboard) ? clipboard : inputContents;
     // Analyze incoming data:
 
@@ -70,7 +70,7 @@ const OnBallDefenseModal: React.FunctionComponent<Props> = (
         .split("\n").filter(line => _.endsWith(line, "%"))
         .map(line => line.split("\t")).filter(cols => cols.length > 5);
 
-    const maybeTotals = _.startsWith(rowsCols[0], "#") ? undefined : rowsCols[0];
+    const maybeTotals = _.startsWith(rowsCols[0]![0]!, "#") ? undefined : rowsCols[0];
 
     const playerNumberToColAndDups = _.transform(rowsCols, (acc, cols) => {
       const playerId = cols[0]!;
@@ -83,7 +83,7 @@ const OnBallDefenseModal: React.FunctionComponent<Props> = (
           acc.unique[playerIdComps[0]] = cols;
         }
       }
-    }, { unique: {}, dups: [] });
+    }, { unique: {} as Record<string, string[]>, dups: [] as string[] });
 
     const playerNumberToCol = playerNumberToColAndDups.unique;
     const dupColMatches = playerNumberToColAndDups.dups;
@@ -106,7 +106,7 @@ const OnBallDefenseModal: React.FunctionComponent<Props> = (
       } else {
         acc.notFound.push(ii);
       }
-    }, { found: [], notFound: [], matchedCols: [] });
+    }, { found: [] as number[], notFound: [] as number[], matchedCols: [] as string[] });
 
     const colsNotMatched = _.chain(playerNumberToCol).omit(matchedPlayers.matchedCols).keys().value();
 
@@ -128,16 +128,15 @@ const OnBallDefenseModal: React.FunctionComponent<Props> = (
         fgMiss: parseFloatOrMissing(row[7]),
 
         // Fill these in later:
-        totalPlays: -1,
-        uncatPts: -1,
-        uncatPlays: -1,
-        uncatScorePct: -1
+        totalPts: -1, totalScorePct: -1, totalPlays: -1,
+        uncatPts: -1, uncatPlays: -1,
+        uncatScorePct: -1,  uncatPtsPerScPlay: -1
       };
     };
     const matchedPlayerStats = matchedPlayers.found.map(ii => {
       const player = players[ii]!;
       const matchingRosterId = getMatchingRosterId(player.roster || {});
-      const row = playerNumberToCol[matchingRosterId] || [];
+      const row = playerNumberToCol[matchingRosterId || "??"] || [];
       const onBallDefense = parseRow(player.code || matchingRosterId, row);
       return onBallDefense;
     });
@@ -150,7 +149,7 @@ const OnBallDefenseModal: React.FunctionComponent<Props> = (
     // If there's a totals row we can now add team stats (can still do something otherwise)
     if (maybeTotals) {
       const totalStats = parseRow("totals", maybeTotals);
-      RatingUtils.buildUncatOnBallDefenseStats(totalStats, _.concat(matchedPlayerStats, unmatchedPlayerStats));
+      RatingUtils.injectUncatOnBallDefenseStats(totalStats, _.concat(matchedPlayerStats, unmatchedPlayerStats));
         //(mutates the objects in these array)
     }
 
@@ -240,28 +239,28 @@ const OnBallDefenseModal: React.FunctionComponent<Props> = (
     "sep1": GenericTableOps.addColSeparator(),
     "ppp": GenericTableOps.addDataCol(
       "Man PPP", "Points/Play conceded (each possession can include multiple plays)",
-      CbbColors.varPicker(CbbColors.alwaysWhite), GenericTableOps.twoDpFormatter, GenericTableOps.defaultCellMeta
+      CbbColors.varPicker(CbbColors.alwaysWhite), GenericTableOps.twoDpFormatter
     ),
     "target": GenericTableOps.addPctCol("Man Tgt%", "% of plays where defender was targeted", CbbColors.varPicker(CbbColors.usg_offDef, 1.5)),
     "tov": GenericTableOps.addPctCol("Man TO%", "% of plays where defender forced a TO", CbbColors.varPicker(CbbColors.p_def_TO, 0.25)),
-    "score": GenericTableOps.addPctCol("Man Sc%", "% of plays where defender was scored on"),
+    "score": GenericTableOps.addPctCol("Man Sc%", "% of plays where defender was scored on", CbbColors.varPicker(CbbColors.alwaysWhite)),
     "sep2": GenericTableOps.addColSeparator(),
     "man_ppp": GenericTableOps.addDataCol(
       "Man P/Sc", "Points per scoring play in on-ball defense",
-      CbbColors.varPicker(CbbColors.alwaysWhite), GenericTableOps.twoDpFormatter, GenericTableOps.defaultCellMeta
+      CbbColors.varPicker(CbbColors.alwaysWhite), GenericTableOps.twoDpFormatter
     ),
-    "man_credit": GenericTableOps.addPtsCol("Man Credit", "Stop credit%/100 targeted defensive possessions"),
+    "man_credit": GenericTableOps.addPtsCol("Man Credit", "Stop credit%/100 targeted defensive possessions", CbbColors.varPicker(CbbColors.alwaysWhite)),
     "off_ppp": GenericTableOps.addDataCol(
       "Off P/Sc", "Points per scoring play in off-ball defense",
-      CbbColors.varPicker(CbbColors.alwaysWhite), GenericTableOps.twoDpFormatter, GenericTableOps.defaultCellMeta
+      CbbColors.varPicker(CbbColors.alwaysWhite), GenericTableOps.twoDpFormatter
     ),
-    "off_credit": GenericTableOps.addPtsCol("Off Credit", "Stop credit%/100 off-ball defensive possessions (split equally amongst all 4 off-ball defenders)"),
-    "reb_credit": GenericTableOps.addPtsCol("DRB Credit", "Stop credit%/100 possessions from rebounding"),
+    "off_credit": GenericTableOps.addPtsCol("Off Credit", "Stop credit%/100 off-ball defensive possessions (split equally amongst all 4 off-ball defenders)", CbbColors.varPicker(CbbColors.alwaysWhite)),
+    "reb_credit": GenericTableOps.addPtsCol("DRB Credit", "Stop credit%/100 possessions from rebounding", CbbColors.varPicker(CbbColors.alwaysWhite)),
     "sep3": GenericTableOps.addColSeparator(),
-    "plays": GenericTableOps.addIntCol("Plays", "Number of targeted plays recorded (each possession can include multiple plays)"),
+    "plays": GenericTableOps.addIntCol("Plays", "Number of targeted plays recorded (each possession can include multiple plays)", CbbColors.varPicker(CbbColors.alwaysWhite)),
   }, hasRapm ? [] : ["delta_rapm"]);
 
-  const unassignedData = onBallDefense[0] ? {
+  const unassignedData: Record<string, any> = onBallDefense[0] ? {
     title: "Unassigned plays",
     ppp: { value: (onBallDefense[0].uncatPts)/(onBallDefense[0].uncatPlays || 1) },
     target: { value: (onBallDefense[0].uncatPlays)/(onBallDefense[0].totalPlays || 1) },
@@ -293,7 +292,7 @@ const OnBallDefenseModal: React.FunctionComponent<Props> = (
       off_credit: { value: 100*onBallDiag.offBallStopCredit },
       reb_credit: { value: 100*onBallDiag.comboRebCredit/(diag.oppoPtsPerScore || 1) },
       plays: { value: onBallStats.plays }
-    };
+    } as Record<string, any>;
   }).concat([ unassignedData ]).map(
     o => GenericTableOps.buildDataRow(o, GenericTableOps.defaultFormatter, GenericTableOps.defaultCellMeta)
   ).value();

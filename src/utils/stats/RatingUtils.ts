@@ -226,7 +226,7 @@ export class RatingUtils {
   // On-Ball defense calcs:
 
   /** Builds a stat object for all the defensive plays not assigned to a player, copy into the player stats */
-  static buildUncatOnBallDefenseStats(totalStats: OnBallDefenseModel, players: OnBallDefenseModel[]): OnBallDefenseModel {
+  static injectUncatOnBallDefenseStats(totalStats: OnBallDefenseModel, players: OnBallDefenseModel[]): OnBallDefenseModel[] {
     const uncatOnBallDefense = _.transform(players, (acc, player) => {
       acc.pts -= player.pts;
       acc.plays -= player.plays;
@@ -239,7 +239,7 @@ export class RatingUtils {
 
     const uncatPtsPerScPlay = 100*uncatOnBallDefense.pts/(uncatOnBallDefense.uncatPtsPerScPlay || 1);
 
-    return players.map(player => {
+    players.forEach(player => {
       player.totalPlays = uncatOnBallDefense.totalPlays;
       player.totalPts = totalStats.pts;
       player.totalScorePct = totalStats.scorePct;
@@ -248,6 +248,7 @@ export class RatingUtils {
       player.uncatPts = uncatOnBallDefense.pts;
       player.uncatPlays = uncatOnBallDefense.plays;
     });
+    return players;
   }
 
   /** Adjusts the defensive stats according to the individual stats (phase 2 takes the team into account)*/
@@ -355,7 +356,9 @@ export class RatingUtils {
 
       unadjDRtg,
 
-      weightedClassicDRtgMean, weightedUnadjDRtgMean, uncategorizedAdjustment,
+      weightedClassicDRtgMean, weightedUnadjDRtgMean,
+      uncategorizedAdjustment, adjustedPossPct,
+
       dRtg, adjDRtg, adjDRtgPlus
     };
   }

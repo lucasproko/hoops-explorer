@@ -2,7 +2,7 @@
 import _ from "lodash";
 
 // Util imports
-import { RatingUtils } from "../stats/RatingUtils";
+import { RatingUtils, OnBallDefenseModel } from "../stats/RatingUtils";
 import { PositionUtils } from "../stats/PositionUtils";
 import { LineupUtils } from "../stats/LineupUtils";
 import { LuckUtils, OffLuckAdjustmentDiags, DefLuckAdjustmentDiags, LuckAdjustmentBaseline } from "../stats/LuckUtils";
@@ -29,8 +29,6 @@ export class LineupTableUtils {
     globalRosterStatsByCode: Record<string, any>, teamStat: Record<string, any>,
     avgEfficiency: number, onBallDefenseByCode: Record<string, OnBallDefenseModel>  = {}
   ) {
-//TODO: need to include onBallDef logic in here also...
-
     //(note changes here will likely need to be reflected in TeamReportStatsTable::insertExtraInfo)
     const baselinePlayerInfo = _.fromPairs(
       (players || []).map((mutableP: any) => {
@@ -77,14 +75,12 @@ export class LineupTableUtils {
         mutableP.code = mutableP.player_array?.hits?.hits?.[0]?._source?.player?.code || mutableP.key;
 
         // Apply on-ball defense if it exists for this player
-        try {
-        if (onBallDefenseByCode.hasOwnProperty(mutableP.code)) {
+        if (dRtgDiag && onBallDefenseByCode.hasOwnProperty(mutableP.code)) {
           const onBallDefense = onBallDefenseByCode[mutableP.code]!;
           const onBallDiags = RatingUtils.buildOnBallDefenseAdjustmentsPhase1(mutableP, dRtgDiag, onBallDefense);
           dRtgDiag.onBallDef = onBallDefense;
           dRtgDiag.onBallDiags = onBallDiags;
         }
-      } catch (err) { console.log(err.message) }
 
         // If roster info is available then add:
         const rosterEntry = globalRosterStatsByCode[mutableP.code].roster;

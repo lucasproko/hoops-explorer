@@ -145,7 +145,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
     [] : gameFilterParams.manual
   );
 
-  const [ onBallDefenseByCode, setOnBallDefenseByCode ] = useState([] as OnBallDefenseModel[]);
+  const [ onBallDefenseByCode, setOnBallDefenseByCode ] = useState({} as Record<string, OnBallDefenseModel>);
 
   const [ showOnBallConfig, setShowOnBallConfig ] = useState(_.isNil(gameFilterParams.showOnBallConfig) ?
     false : gameFilterParams.showOnBallConfig
@@ -574,7 +574,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
         stat.diag_def_rtg = dRtgDiag;
 
         // Apply on-ball defense if it exists for this player
-        if (onBallDefenseByCode.hasOwnProperty(playerCode)) {
+        if (dRtgDiag && onBallDefenseByCode.hasOwnProperty(playerCode)) {
           const onBallDefense = onBallDefenseByCode[playerCode]!;
           const onBallDiags = RatingUtils.buildOnBallDefenseAdjustmentsPhase1(stat, dRtgDiag, onBallDefense);
           dRtgDiag.onBallDef = onBallDefense;
@@ -635,7 +635,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
   // If we have on-ball defense, then need to do a quick aggregation of the personal DRtgs
   if (!_.isEmpty(onBallDefenseByCode)) {
     _.forEach([ "on", "off", "baseline" ], loc => {
-      const playerList = allPlayers.filter(p => !_.isNil(p[loc]?.off_title)).map(p => p[loc]!);
+      const playerList = allPlayers.filter((p: any) => !_.isNil(p[loc]?.off_title)).map((p: any) => p[loc]!);
       RatingUtils.injectOnBallDefenseAdjustmentsPhase2(playerList);
     });
   }
