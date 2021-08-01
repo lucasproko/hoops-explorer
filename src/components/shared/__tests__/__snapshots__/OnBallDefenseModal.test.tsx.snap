@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`OnBallDefenseModal OnBallDefenseModal - should create snapshot (not initialized at all) 1`] = `
+<div>
+  <OnBallDefenseModal
+    onBallDefense={Array []}
+    onHide={[Function]}
+    onSave={[Function]}
+    players={Array []}
+    show={true}
+    showHelp={false}
+  />
+</div>
+`;

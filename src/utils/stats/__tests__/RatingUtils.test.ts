@@ -2,11 +2,12 @@
 
 import _ from 'lodash';
 
-import { RatingUtils } from "../RatingUtils";
+import { RatingUtils, OnBallDefenseModel} from "../RatingUtils";
 import { GameFilterParams, LineupFilterParams, TeamReportFilterParams } from "../../FilterModels";
 import { samplePlayerStatsResponse } from "../../../sample-data/samplePlayerStatsResponse";
 import { sampleOrtgDiagnostics } from "../../../sample-data/sampleOrtgDiagnostics";
 import { sampleDrtgDiagnostics } from "../../../sample-data/sampleDrtgDiagnostics";
+import { sampleOnBallDefenseStats } from "../../../sample-data/sampleOnBallDefenseStats";
 
 describe("RatingUtils", () => {
 
@@ -142,4 +143,27 @@ describe("RatingUtils", () => {
     expect(rawDRtg2).toEqual(expDRtg);
     expect(rawAdjDRtg2).toEqual(expDRtgAdj);
   });
+
+  test("RatingUtils - injectUncatOnBallDefenseStats", () => {
+    const onBallStats = _.cloneDeep(sampleOnBallDefenseStats[1]) as OnBallDefenseModel[];
+    const teamStats = sampleOnBallDefenseStats[0] as OnBallDefenseModel;
+    const modOnBallStats: OnBallDefenseModel[] = RatingUtils.injectUncatOnBallDefenseStats(teamStats, onBallStats);
+    expect(modOnBallStats).toMatchSnapshot();
+  });
+  test("RatingUtils - buildOnBallDefenseAdjustmentsPhase1", () => {
+    const playerOnBallStats = (sampleOnBallDefenseStats[1] as OnBallDefenseModel[])[0]!;
+    const playerInfo = _.cloneDeep(
+      samplePlayerStatsResponse.responses[0].aggregations.tri_filter.buckets.baseline.player.buckets[0]
+    );
+
+    const onBallDiags = RatingUtils.buildOnBallDefenseAdjustmentsPhase1(
+      playerInfo, sampleDrtgDiagnostics, playerOnBallStats
+    );
+    expect(onBallDiags).toMatchSnapshot();
+
+  });
+  test("RatingUtils - injectOnBallDefenseAdjustmentsPhase2", () => {
+
+  });
+
 });
