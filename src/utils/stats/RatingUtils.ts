@@ -209,6 +209,7 @@ export type OnBallDefenseDiags = {
   weightedClassicDRtgMean: number,
   weightedUnadjDRtgMean: number,
   uncategorizedAdjustment: number,
+  adjustedPossPct: number,
 
   dRtg: number,
   adjDRtg: number,
@@ -243,7 +244,7 @@ export class RatingUtils {
       player.totalPts = totalStats.pts;
       player.totalScorePct = totalStats.scorePct;
       player.uncatPtsPerScPlay = uncatPtsPerScPlay;
-      player.uncatScorePct = uncatOnBallDefense.scorePct / (uncatOnBallDefense.plays || 1);
+      player.uncatScorePct = uncatOnBallDefense.uncatPtsPerScPlay / (uncatOnBallDefense.plays || 1);
       player.uncatPts = uncatOnBallDefense.pts;
       player.uncatPlays = uncatOnBallDefense.plays;
     });
@@ -336,6 +337,7 @@ export class RatingUtils {
     const weightedClassicDRtgMean = 0;
     const weightedUnadjDRtgMean = 0;
     const uncategorizedAdjustment = 0;
+    const adjustedPossPct = 0;
     const dRtg = 0;
     const adjDRtg = 0;
     const adjDRtgPlus = 0;
@@ -361,10 +363,26 @@ export class RatingUtils {
   /** (MUTATES) Adjusts the defensive stats according to the individual stats (phase 2 takes the team into account) */
   static injectOnBallDefenseAdjustmentsPhase2(players: Record<string, any>[]) {
 
+    // Calc the % of possessions over which I'm calculating the weighted means
+    const adjustedPossPct = 0.2*_.reduce(players, (acc, stat) => {
+      const onBallDiags = stat.diag_def_rtg?.onBallDiags;
+      if (onBallDiags) {
+        return acc + (stat.def_team_poss_pct?.value || 0);
+      } else {
+        return acc;
+      }
+    }, 0);
+
     const weightedClassicDRtgMean = 0.2*_.reduce(players, (acc, stat) => {
       //(use poss% because classic DRtg is fixed% per player possession, no concept of targeting)
-      return acc + ((stat.diag_def_rtg?.dRtg || 0) * (stat.def_team_poss_pct?.value || 0));
-    }, 0);
+      // Only calculate it for players with adjusted ratings
+      const onBallDiags = stat.diag_def_rtg?.onBallDiags;
+      if (onBallDiags) {
+        return acc + ((stat.diag_def_rtg?.dRtg || 0) * (stat.def_team_poss_pct?.value || 0));
+      } else {
+        return acc;
+      }
+    }, 0) / (adjustedPossPct || 1);
 
     const weightedUnadjDRtgMean = 0.2*_.reduce(players, (acc, stat) => {
       const onBallDiags = stat.diag_def_rtg?.onBallDiags;
@@ -374,9 +392,11 @@ export class RatingUtils {
       } else {
         return acc;
       }
-    }, 0);
+    }, 0) / (adjustedPossPct || 1);
 
-    const uncategorizedAdjustment = weightedClassicDRtgMean - weightedUnadjDRtgMean;
+    const uncategorizedAdjustment =
+      adjustedPossPct*(weightedClassicDRtgMean - weightedUnadjDRtgMean) +
+      (1 - adjustedPossPct)*(-7.0); //(we use 7.0 as the average uncat on-ball defense adjustments)
 
     _.forEach(players, stat => {
       const diag = stat.diag_def_rtg!;
@@ -387,6 +407,7 @@ export class RatingUtils {
         onBallDiags.weightedClassicDRtgMean = weightedClassicDRtgMean;
         onBallDiags.weightedUnadjDRtgMean = weightedUnadjDRtgMean;
         onBallDiags.uncategorizedAdjustment = uncategorizedAdjustment;
+        onBallDiags.adjustedPossPct = adjustedPossPct;
 
         // Apply calcs that required all players' ratings:
 

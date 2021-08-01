@@ -250,8 +250,6 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
     rosterStats.global || [], teamStats.global?.roster, showPlayTypes, teamSeasonLookup
   ); //TODO: which set do I actually want to use for positional calcs here?
 
-
-
   // 3.0] RAPM
 
   const [ cachedRapm, setCachedRapm ] = useState({} as Record<string, any>);
@@ -484,6 +482,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
         // (note this duplicates LineupTableUtils.buildBaselinePlayerInfo, but that isn't called unless RAPM is enabled)
         const playerCode = teamStats.global?.roster ?
           (stat.player_array?.hits?.hits?.[0]?._source?.player?.code || "??") : "??";
+        stat.code = playerCode; //(ensure it exists)
 
         const rosterEntry = teamStats.global?.roster?.[playerCode] || {};
         if (!_.isEmpty(rosterEntry)) {
@@ -965,7 +964,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
               onSelect={() => setShowLuckConfig(true)}
             />
             <GenericTogglingMenuItem
-              text="Configure On-Ball Defense..."
+              text="Upload On-Ball Defense..."
               truthVal={showOnBallConfig}
               onSelect={() => setShowOnBallConfig(true)}
             />

@@ -95,6 +95,7 @@ export class GenericTableOps {
   static readonly defaultFormatter = (val: any) => "" + val;
   static readonly htmlFormatter = (val: React.ReactNode) => val;
   static readonly intFormatter = (val: any) => "" + (val.value as number).toFixed(0);
+  static readonly twoDpFormatter = (val: any) => "" + (val.value as number).toFixed(2);
   static readonly percentFormatter = (val: any) => {
     return (val.value >= 1) ?
         ((val.value as number)*100.0).toFixed(0) //(remove the .0 in the 100% case)

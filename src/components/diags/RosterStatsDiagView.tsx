@@ -155,13 +155,13 @@ const RosterStatsDiagView: React.FunctionComponent<Props> = ({ortgDiags, drtgDia
     </ul>
     {(dbd && dbs) ?
       <p>
-        "On-Ball Aware" DRtg: [<b>{dbd.dRtg.toFixed(1)}</b>] = OnBall_Player_DRtg [<b>{dbd.unadjDRtg.toFixed(1)}</b>] + Unassigned_Plays_Bonus [<b>{(dbd.weightedClassicDRtgMean - dbd.weightedUnadjDRtgMean).toFixed(1)}</b>]
+        "On-Ball Aware" DRtg: [<b>{dbd.dRtg.toFixed(1)}</b>] = OnBall_Player_DRtg [<b>{dbd.unadjDRtg.toFixed(1)}</b>] + Unassigned_Plays_Bonus [<b>{(dbd.uncategorizedAdjustment).toFixed(1)}</b>]
         &nbsp;(<a href="#" onClick={(event) => { event.preventDefault(); setShowMoreOnBallDRtg(!showMoreOnBallDRtg) }}>{showMoreOnBallDRtg ? "less" : "more"} about "On-Ball" DRtg</a>)
         <ul>
           <li>OnBall_Player_DRtg: [<b>{dbd.unadjDRtg.toFixed(1)}</b>] = 100 * (Pts_Per_Score [<b>{d.oppoPtsPerScore.toFixed(2)}</b>] -
           Rebound_Credit [<b>{(100*dbd.comboRebCredit).toFixed(1)}%</b>] - Stop_Credit [<b>{(100*dbd.comboBallStopCredit).toFixed(1)}%</b>])
           </li>
-          <li>Unassigned_Plays_Bonus: [<b>{(dbd.weightedClassicDRtgMean - dbd.weightedUnadjDRtgMean).toFixed(1)}</b>] = <i>WeightedAvg_Classic_DRtg</i> [<b>{(dbd.weightedClassicDRtgMean).toFixed(1)}</b>] - <i>WeightedAvg_OnBallPlayer_DRtg</i> [<b>{(dbd.weightedUnadjDRtgMean).toFixed(1)}</b>]</li>
+          <li>Unassigned_Plays_Bonus: [<b>{(dbd.uncategorizedAdjustment).toFixed(1)}</b>] = Regress to [<b>-7.0</b>] by [<b>{(100*(1-dbd.adjustedPossPct)).toFixed(1)}%</b>] from [<b>{(dbd.weightedClassicDRtgMean - dbd.weightedUnadjDRtgMean).toFixed(1)}</b>] (<i>Avg_Classic_DRtg</i> [<b>{(dbd.weightedClassicDRtgMean).toFixed(1)}</b>] - <i>Avg_OnBallPlayer_DRtg</i> [<b>{(dbd.weightedUnadjDRtgMean).toFixed(1)}</b>])</li>
           <li><b>Adjusted+ DRtg</b>: [<b>{dbd.adjDRtgPlus.toFixed(1)}</b>] = <em>Normalize</em> [<b>{dbd.adjDRtg.toFixed(1)}</b>] (DRtg [<b>{dbd.dRtg.toFixed(1)}</b>] * (Avg_Efficiency [<b>{d.avgEff.toFixed(1)}</b>] / Off_SOS [<b>{d.offSos.toFixed(1)}</b>]))</li>
           {showMoreOnBallDRtg ?
           <span><li><u>"On-Ball" DRtg details</u></li>
