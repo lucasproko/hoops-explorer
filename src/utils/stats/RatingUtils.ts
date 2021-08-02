@@ -934,20 +934,20 @@ export class RatingUtils {
 
         // Apply the result to the player stats:
 
-        stat.def_rtg.value = onBallDiags.dRtg;
-
         const Adj_DRtg = diag.offSos > 0 ? onBallDiags.dRtg*(diag.avgEff / diag.offSos) : 0;
         const Adj_DRtgPlus =  0.2*(Adj_DRtg - diag.avgEff);
-        stat.def_adj_rtg.value = Adj_DRtgPlus;
-
         onBallDiags.dRtg = onBallDiags.unadjDRtg + uncategorizedAdjustment;
         onBallDiags.adjDRtg = Adj_DRtg;
         onBallDiags.adjDRtgPlus = Adj_DRtgPlus;
 
-
-        stat.def_rtg.extraInfo = `Using on-ball defense stats - classic value would be [${stat.diag_def_rtg.dRtg.toFixed(1)}]`;
-        stat.def_adj_rtg.extraInfo = `Using on-ball defense stats - classic value would be [${stat.diag_def_rtg.adjDRtgPlus.toFixed(1)}]`;
-
+        if (stat.def_rtg) {
+          stat.def_rtg.value = onBallDiags.dRtg;
+          stat.def_rtg.extraInfo = `Using on-ball defense stats - classic value would be [${stat.diag_def_rtg.dRtg.toFixed(1)}]`;
+        }
+        if (stat.def_adj_rtg) {
+          stat.def_adj_rtg.value = Adj_DRtgPlus;
+          stat.def_adj_rtg.extraInfo = `Using on-ball defense stats - classic value would be [${stat.diag_def_rtg.adjDRtgPlus.toFixed(1)}]`;
+        }
         if (stat.def_adj_prod) {
           stat.def_adj_prod.value = Adj_DRtgPlus*(stat.def_team_poss_pct.value || 0);
 

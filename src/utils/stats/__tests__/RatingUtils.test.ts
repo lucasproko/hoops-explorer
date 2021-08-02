@@ -2,7 +2,7 @@
 
 import _ from 'lodash';
 
-import { RatingUtils, OnBallDefenseModel} from "../RatingUtils";
+import { RatingUtils, DRtgDiagnostics, OnBallDefenseModel} from "../RatingUtils";
 import { GameFilterParams, LineupFilterParams, TeamReportFilterParams } from "../../FilterModels";
 import { samplePlayerStatsResponse } from "../../../sample-data/samplePlayerStatsResponse";
 import { sampleOrtgDiagnostics } from "../../../sample-data/sampleOrtgDiagnostics";
@@ -151,7 +151,10 @@ describe("RatingUtils", () => {
     expect(modOnBallStats).toMatchSnapshot();
   });
   test("RatingUtils - buildOnBallDefenseAdjustmentsPhase1", () => {
-    const playerOnBallStats = (sampleOnBallDefenseStats[1] as OnBallDefenseModel[])[0]!;
+    const onBallStats = _.cloneDeep(sampleOnBallDefenseStats[1]) as OnBallDefenseModel[];
+    const teamStats = sampleOnBallDefenseStats[0] as OnBallDefenseModel;
+    const modOnBallStats: OnBallDefenseModel[] = RatingUtils.injectUncatOnBallDefenseStats(teamStats, onBallStats);
+    const playerOnBallStats = modOnBallStats[0]!;
     const playerInfo = _.cloneDeep(
       samplePlayerStatsResponse.responses[0].aggregations.tri_filter.buckets.baseline.player.buckets[0]
     );
@@ -163,7 +166,27 @@ describe("RatingUtils", () => {
 
   });
   test("RatingUtils - injectOnBallDefenseAdjustmentsPhase2", () => {
+    const playerBallStats = _.cloneDeep(sampleOnBallDefenseStats[1]) as OnBallDefenseModel[];
+    const teamStats = sampleOnBallDefenseStats[0] as OnBallDefenseModel;
+    const modOnBallStats: OnBallDefenseModel[] = RatingUtils.injectUncatOnBallDefenseStats(teamStats, playerBallStats);
 
+    const playersToMutate = _.cloneDeep(
+      samplePlayerStatsResponse.responses[0].aggregations.tri_filter.buckets.baseline.player.buckets
+    ) as Record<string, any>[];
+    playersToMutate.forEach((p, ii) => {
+      const dRtgDiag = _.cloneDeep(sampleDrtgDiagnostics) as DRtgDiagnostics;
+      const onBallStats = playerBallStats[ii % playerBallStats.length];
+      const onBallDiags = RatingUtils.buildOnBallDefenseAdjustmentsPhase1(
+        p, dRtgDiag, onBallStats
+      );
+      p.def_rtg = { value: dRtgDiag.dRtg };
+      p.def_team_poss_pct = { value: 0.2 };
+      p.diag_def_rtg = dRtgDiag;
+      dRtgDiag.onBallDef = onBallStats;
+      dRtgDiag.onBallDiags = onBallDiags;
+    });
+    RatingUtils.injectOnBallDefenseAdjustmentsPhase2(playersToMutate);
+
+    expect(playersToMutate[0].diag_def_rtg.onBallDiags).toMatchSnapshot();
   });
-
 });

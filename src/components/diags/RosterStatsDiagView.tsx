@@ -10,14 +10,15 @@ import { ORtgDiagnostics, DRtgDiagnostics } from "../../utils/stats/RatingUtils"
 type Props = {
   ortgDiags: ORtgDiagnostics,
   drtgDiags: DRtgDiagnostics,
+  expandAll?: boolean
 };
-const RosterStatsDiagView: React.FunctionComponent<Props> = ({ortgDiags, drtgDiags}) => {
+const RosterStatsDiagView: React.FunctionComponent<Props> = ({ortgDiags, drtgDiags, expandAll}) => {
 
-  const [ showMoreORtgPts, setShowMoreORtgPts ] = useState(false);
-  const [ showMoreORtgPoss, setShowMoreORtgPoss ] = useState(false);
-  const [ showMoreORtgAdj, setShowMoreORtgAdj ] = useState(false);
-  const [ showMoreDRtg, setShowMoreDRtg ] = useState(false);
-  const [ showMoreOnBallDRtg, setShowMoreOnBallDRtg ] = useState(false);
+  const [ showMoreORtgPts, setShowMoreORtgPts ] = useState(undefined == expandAll ? false : expandAll);
+  const [ showMoreORtgPoss, setShowMoreORtgPoss ] = useState(undefined == expandAll ? false : expandAll);
+  const [ showMoreORtgAdj, setShowMoreORtgAdj ] = useState(undefined == expandAll ? false : expandAll);
+  const [ showMoreDRtg, setShowMoreDRtg ] = useState(undefined == expandAll ? false : expandAll);
+  const [ showMoreOnBallDRtg, setShowMoreOnBallDRtg ] = useState(undefined == expandAll ? false : expandAll);
 
   const o = ortgDiags;
   const d = drtgDiags;
