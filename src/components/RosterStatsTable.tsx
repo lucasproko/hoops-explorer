@@ -604,16 +604,18 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
             stat.def_adj_rapm_prod = rapmPlaceholder;
           } else {
             const rapm = cachedRapm?.[key]?.[stat.key] || {};
+            // Always calc defensive (used for on ball)
+            stat.def_adj_rapm = rapm.def_adj_rapm;
+            stat.def_adj_rapm_prod = rapm.off_adj_rapm ? { value: (rapm.def_adj_rapm?.value || 0)*stat.def_team_poss_pct.value! } : undefined;
             if (expandedView) {
               stat.off_adj_rapm = rapm.off_adj_rapm;
-              stat.def_adj_rapm = rapm.def_adj_rapm;
               stat.off_adj_rapm_prod = rapm.off_adj_rapm ? { value: (rapm.off_adj_rapm?.value || 0)*stat.off_team_poss_pct.value! } : undefined;
-              stat.def_adj_rapm_prod = rapm.off_adj_rapm ? { value: (rapm.def_adj_rapm?.value || 0)*stat.def_team_poss_pct.value! } : undefined;
             } else {
               stat.off_adj_rapm = (rapm.off_adj_rapm && rapm.def_adj_rapm) ?
                 { value: (rapm.off_adj_rapm?.value || 0) - (rapm.def_adj_rapm?.value || 0) } :
                 undefined;
               stat.off_adj_rapm_prod = stat.off_adj_rapm ? { value: (stat.off_adj_rapm.value || 0)*stat.off_team_poss_pct.value! } : undefined;
+
             }
           }
         }
