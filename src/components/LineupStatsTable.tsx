@@ -508,7 +508,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
               onSelect={() => friendlyChange(() => setShowTotals(!showTotals), true)}
             />
             <GenericTogglingMenuItem
-              text="Adjust for Luck"
+              text={<span>Adjust for Luck <span className="badge badge-pill badge-info">alpha!</span></span>}
               truthVal={adjustForLuck}
               onSelect={() => friendlyChange(() => setAdjustForLuck(!adjustForLuck), true)}
               helpLink={showHelp ? "https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html" : undefined}

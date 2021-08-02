@@ -942,19 +942,19 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
               onSelect={() => toggleFactorMins()}
             />
             <GenericTogglingMenuItem
-              text={<span>Calculate RAPM metric (slow)</span>}
+              text={<span>Calculate RAPM metric (<span className="badge badge-pill badge-info">alpha!</span>, slow)</span>}
               truthVal={calcRapm}
               onSelect={() => setCalcRapm(!calcRapm)}
             />
             <GenericTogglingMenuItem
-              text="Adjust for Luck"
+              text={<span>Adjust for Luck <span className="badge badge-pill badge-info">alpha!</span></span>}
               truthVal={adjustForLuck}
               onSelect={() => setAdjustForLuck(!adjustForLuck)}
               helpLink={showHelp ? "https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html" : undefined}
             />
             <Dropdown.Divider />
             <GenericTogglingMenuItem
-              text="Configure Manual Overrides..."
+              text={<span>Configure Manual Overrides... <span className="badge badge-pill badge-info">alpha!</span></span>}
               truthVal={showManualOverrides}
               onSelect={() => setShowManualOverrides(!showManualOverrides)}
             />
@@ -964,13 +964,13 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
               onSelect={() => setShowLuckConfig(true)}
             />
             <GenericTogglingMenuItem
-              text="Upload On-Ball Defense..."
+              text={<span>Upload On-Ball Defense... <span className="badge badge-pill badge-info">pre-alpha!</span></span>}
               truthVal={showOnBallConfig}
               onSelect={() => setShowOnBallConfig(true)}
             />
             <Dropdown.Divider />
             <GenericTogglingMenuItem
-              text="Show Play Style Breakdowns"
+              text={<span>Show Play Style Breakdowns <span className="badge badge-pill badge-info">alpha!</span></span>}
               truthVal={showPlayTypes}
               onSelect={() => setShowPlayTypes(!showPlayTypes)}
             />

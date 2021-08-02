@@ -5235,7 +5235,13 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
             onSelect={[Function]}
             text={
               <span>
-                Calculate RAPM metric (slow)
+                Calculate RAPM metric (
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+                , slow)
               </span>
             }
             truthVal={false}
@@ -5243,7 +5249,16 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
           <GenericTogglingMenuItem
             helpLink="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
             onSelect={[Function]}
-            text="Adjust for Luck"
+            text={
+              <span>
+                Adjust for Luck 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+              </span>
+            }
             truthVal={false}
           />
           <DropdownDivider
@@ -5251,7 +5266,16 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
           />
           <GenericTogglingMenuItem
             onSelect={[Function]}
-            text="Configure Manual Overrides..."
+            text={
+              <span>
+                Configure Manual Overrides... 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+              </span>
+            }
             truthVal={false}
           />
           <GenericTogglingMenuItem
@@ -5261,7 +5285,16 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
           />
           <GenericTogglingMenuItem
             onSelect={[Function]}
-            text="Upload On-Ball Defense..."
+            text={
+              <span>
+                Upload On-Ball Defense... 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  pre-alpha!
+                </span>
+              </span>
+            }
             truthVal={false}
           />
           <DropdownDivider
@@ -5269,7 +5302,16 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
           />
           <GenericTogglingMenuItem
             onSelect={[Function]}
-            text="Show Play Style Breakdowns"
+            text={
+              <span>
+                Show Play Style Breakdowns 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+              </span>
+            }
             truthVal={false}
           />
           <GenericTogglingMenuItem
@@ -8945,7 +8987,13 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
             onSelect={[Function]}
             text={
               <span>
-                Calculate RAPM metric (slow)
+                Calculate RAPM metric (
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+                , slow)
               </span>
             }
             truthVal={false}
@@ -8953,7 +9001,16 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
           <GenericTogglingMenuItem
             helpLink="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
             onSelect={[Function]}
-            text="Adjust for Luck"
+            text={
+              <span>
+                Adjust for Luck 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+              </span>
+            }
             truthVal={false}
           />
           <DropdownDivider
@@ -8961,7 +9018,16 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
           />
           <GenericTogglingMenuItem
             onSelect={[Function]}
-            text="Configure Manual Overrides..."
+            text={
+              <span>
+                Configure Manual Overrides... 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+              </span>
+            }
             truthVal={false}
           />
           <GenericTogglingMenuItem
@@ -8971,7 +9037,16 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
           />
           <GenericTogglingMenuItem
             onSelect={[Function]}
-            text="Upload On-Ball Defense..."
+            text={
+              <span>
+                Upload On-Ball Defense... 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  pre-alpha!
+                </span>
+              </span>
+            }
             truthVal={false}
           />
           <DropdownDivider
@@ -8979,7 +9054,16 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
           />
           <GenericTogglingMenuItem
             onSelect={[Function]}
-            text="Show Play Style Breakdowns"
+            text={
+              <span>
+                Show Play Style Breakdowns 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+              </span>
+            }
             truthVal={false}
           />
           <GenericTogglingMenuItem
@@ -11838,7 +11922,13 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
             onSelect={[Function]}
             text={
               <span>
-                Calculate RAPM metric (slow)
+                Calculate RAPM metric (
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+                , slow)
               </span>
             }
             truthVal={false}
@@ -11846,7 +11936,16 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
           <GenericTogglingMenuItem
             helpLink="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
             onSelect={[Function]}
-            text="Adjust for Luck"
+            text={
+              <span>
+                Adjust for Luck 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+              </span>
+            }
             truthVal={false}
           />
           <DropdownDivider
@@ -11854,7 +11953,16 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
           />
           <GenericTogglingMenuItem
             onSelect={[Function]}
-            text="Configure Manual Overrides..."
+            text={
+              <span>
+                Configure Manual Overrides... 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+              </span>
+            }
             truthVal={false}
           />
           <GenericTogglingMenuItem
@@ -11864,7 +11972,16 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
           />
           <GenericTogglingMenuItem
             onSelect={[Function]}
-            text="Upload On-Ball Defense..."
+            text={
+              <span>
+                Upload On-Ball Defense... 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  pre-alpha!
+                </span>
+              </span>
+            }
             truthVal={false}
           />
           <DropdownDivider
@@ -11872,7 +11989,16 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
           />
           <GenericTogglingMenuItem
             onSelect={[Function]}
-            text="Show Play Style Breakdowns"
+            text={
+              <span>
+                Show Play Style Breakdowns 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+              </span>
+            }
             truthVal={false}
           />
           <GenericTogglingMenuItem
@@ -17445,7 +17571,13 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
             onSelect={[Function]}
             text={
               <span>
-                Calculate RAPM metric (slow)
+                Calculate RAPM metric (
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+                , slow)
               </span>
             }
             truthVal={false}
@@ -17453,7 +17585,16 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
           <GenericTogglingMenuItem
             helpLink="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
             onSelect={[Function]}
-            text="Adjust for Luck"
+            text={
+              <span>
+                Adjust for Luck 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+              </span>
+            }
             truthVal={false}
           />
           <DropdownDivider
@@ -17461,7 +17602,16 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
           />
           <GenericTogglingMenuItem
             onSelect={[Function]}
-            text="Configure Manual Overrides..."
+            text={
+              <span>
+                Configure Manual Overrides... 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+              </span>
+            }
             truthVal={false}
           />
           <GenericTogglingMenuItem
@@ -17471,7 +17621,16 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
           />
           <GenericTogglingMenuItem
             onSelect={[Function]}
-            text="Upload On-Ball Defense..."
+            text={
+              <span>
+                Upload On-Ball Defense... 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  pre-alpha!
+                </span>
+              </span>
+            }
             truthVal={false}
           />
           <DropdownDivider
@@ -17479,7 +17638,16 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
           />
           <GenericTogglingMenuItem
             onSelect={[Function]}
-            text="Show Play Style Breakdowns"
+            text={
+              <span>
+                Show Play Style Breakdowns 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+              </span>
+            }
             truthVal={false}
           />
           <GenericTogglingMenuItem
@@ -25181,7 +25349,13 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
             onSelect={[Function]}
             text={
               <span>
-                Calculate RAPM metric (slow)
+                Calculate RAPM metric (
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+                , slow)
               </span>
             }
             truthVal={false}
@@ -25189,7 +25363,16 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
           <GenericTogglingMenuItem
             helpLink="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
             onSelect={[Function]}
-            text="Adjust for Luck"
+            text={
+              <span>
+                Adjust for Luck 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+              </span>
+            }
             truthVal={true}
           />
           <DropdownDivider
@@ -25197,7 +25380,16 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
           />
           <GenericTogglingMenuItem
             onSelect={[Function]}
-            text="Configure Manual Overrides..."
+            text={
+              <span>
+                Configure Manual Overrides... 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+              </span>
+            }
             truthVal={false}
           />
           <GenericTogglingMenuItem
@@ -25207,7 +25399,16 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
           />
           <GenericTogglingMenuItem
             onSelect={[Function]}
-            text="Upload On-Ball Defense..."
+            text={
+              <span>
+                Upload On-Ball Defense... 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  pre-alpha!
+                </span>
+              </span>
+            }
             truthVal={false}
           />
           <DropdownDivider
@@ -25215,7 +25416,16 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
           />
           <GenericTogglingMenuItem
             onSelect={[Function]}
-            text="Show Play Style Breakdowns"
+            text={
+              <span>
+                Show Play Style Breakdowns 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+              </span>
+            }
             truthVal={false}
           />
           <GenericTogglingMenuItem
@@ -33630,7 +33840,13 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
             onSelect={[Function]}
             text={
               <span>
-                Calculate RAPM metric (slow)
+                Calculate RAPM metric (
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+                , slow)
               </span>
             }
             truthVal={false}
@@ -33638,7 +33854,16 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
           <GenericTogglingMenuItem
             helpLink="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
             onSelect={[Function]}
-            text="Adjust for Luck"
+            text={
+              <span>
+                Adjust for Luck 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+              </span>
+            }
             truthVal={true}
           />
           <DropdownDivider
@@ -33646,7 +33871,16 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
           />
           <GenericTogglingMenuItem
             onSelect={[Function]}
-            text="Configure Manual Overrides..."
+            text={
+              <span>
+                Configure Manual Overrides... 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+              </span>
+            }
             truthVal={true}
           />
           <GenericTogglingMenuItem
@@ -33656,7 +33890,16 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
           />
           <GenericTogglingMenuItem
             onSelect={[Function]}
-            text="Upload On-Ball Defense..."
+            text={
+              <span>
+                Upload On-Ball Defense... 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  pre-alpha!
+                </span>
+              </span>
+            }
             truthVal={false}
           />
           <DropdownDivider
@@ -33664,7 +33907,16 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
           />
           <GenericTogglingMenuItem
             onSelect={[Function]}
-            text="Show Play Style Breakdowns"
+            text={
+              <span>
+                Show Play Style Breakdowns 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+              </span>
+            }
             truthVal={true}
           />
           <GenericTogglingMenuItem
@@ -44901,7 +45153,13 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
             onSelect={[Function]}
             text={
               <span>
-                Calculate RAPM metric (slow)
+                Calculate RAPM metric (
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+                , slow)
               </span>
             }
             truthVal={false}
@@ -44909,7 +45167,16 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
           <GenericTogglingMenuItem
             helpLink="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
             onSelect={[Function]}
-            text="Adjust for Luck"
+            text={
+              <span>
+                Adjust for Luck 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+              </span>
+            }
             truthVal={false}
           />
           <DropdownDivider
@@ -44917,7 +45184,16 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
           />
           <GenericTogglingMenuItem
             onSelect={[Function]}
-            text="Configure Manual Overrides..."
+            text={
+              <span>
+                Configure Manual Overrides... 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+              </span>
+            }
             truthVal={true}
           />
           <GenericTogglingMenuItem
@@ -44927,7 +45203,16 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
           />
           <GenericTogglingMenuItem
             onSelect={[Function]}
-            text="Upload On-Ball Defense..."
+            text={
+              <span>
+                Upload On-Ball Defense... 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  pre-alpha!
+                </span>
+              </span>
+            }
             truthVal={false}
           />
           <DropdownDivider
@@ -44935,7 +45220,16 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
           />
           <GenericTogglingMenuItem
             onSelect={[Function]}
-            text="Show Play Style Breakdowns"
+            text={
+              <span>
+                Show Play Style Breakdowns 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+              </span>
+            }
             truthVal={false}
           />
           <GenericTogglingMenuItem
