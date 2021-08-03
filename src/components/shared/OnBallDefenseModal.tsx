@@ -70,7 +70,7 @@ const OnBallDefenseModal: React.FunctionComponent<Props> = (
         .split("\n").filter(line => _.endsWith(line, "%"))
         .map(line => line.split("\t")).filter(cols => cols.length > 5);
 
-    const maybeTotals = _.startsWith(rowsCols[0]![0]!, "#") ? undefined : rowsCols[0];
+    const maybeTotals = _.startsWith(rowsCols?.[0]?.[0] || "", "#") ? undefined : rowsCols[0];
 
     const playerNumberToColAndDups = _.transform(rowsCols, (acc, cols) => {
       const playerId = cols[0]!;
