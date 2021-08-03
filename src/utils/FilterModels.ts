@@ -70,6 +70,7 @@ export type GameFilterParams = {
   // Manual override:
   manual?: ManualOverride[],
   showPlayerManual?: boolean,
+  showOnBallConfig?: boolean,
   // Global luck adjustments
   luck?: LuckParams, //(missing iff default)
   // Luck adjustments

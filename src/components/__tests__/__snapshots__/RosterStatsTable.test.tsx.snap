@@ -12,6 +12,8 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
       inStats={
         Array [
           {
+            code: "??"
+
             def_2pmidr: <small
                         style={
                           Object {
@@ -240,6 +242,8 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                         "value": 0.3182711198428291,
                       }},
           {
+            code: "??"
+
             def_2pmidr: <small
                         style={
                           Object {
@@ -468,6 +472,8 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                         "value": 0.34782608695652173,
                       }},
           {
+            code: "??"
+
             def_2pmidr: <small
                         style={
                           Object {
@@ -696,6 +702,8 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                         "value": 0.3227953410981697,
                       }},
           {
+            code: "??"
+
             def_2pmidr: <small
                         style={
                           Object {
@@ -924,6 +932,8 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                         "value": 0.291044776119403,
                       }},
           {
+            code: "??"
+
             def_2pmidr: <small
                         style={
                           Object {
@@ -1152,6 +1162,8 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                         "value": 0.30443548387096775,
                       }},
           {
+            code: "??"
+
             def_2pmidr: <small
                         style={
                           Object {
@@ -1392,6 +1404,8 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "??"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -1626,6 +1640,8 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "??"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -1862,6 +1878,8 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "??"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -2096,6 +2114,8 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "??"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -2332,6 +2352,8 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "??"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -2566,6 +2588,8 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "??"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -2802,6 +2826,8 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "??"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -3036,6 +3062,8 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "??"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -3272,6 +3300,8 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "??"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -3506,6 +3536,8 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "??"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -3742,6 +3774,8 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "??"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -3976,6 +4010,8 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "??"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -4222,6 +4258,477 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
       onSave={[Function]}
       show={false}
       showHelp={true}
+    />
+    <OnBallDefenseModal
+      onBallDefense={Array []}
+      onHide={[Function]}
+      onSave={[Function]}
+      players={
+        Array [
+          {
+            code: "??"
+
+            def_2pmidr: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 10px #add8e6",
+                          }
+                        }
+                      >
+                        <i>
+                          0
+                          %
+                        </i>
+                      </small>
+
+            def_2primr: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 10px #e0f0f5",
+                          }
+                        }
+                      >
+                        <i>
+                          26
+                          %
+                        </i>
+                      </small>
+
+            def_3pr: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 10px #ffa500",
+                          }
+                        }
+                      >
+                        <i>
+                          63
+                          %
+                        </i>
+                      </small>
+
+            def_adj_prod: Object {
+                        "old_value": 0,
+                        "override": undefined,
+                        "value": -1.7012563565592531,
+                      }
+
+            def_adj_rtg: Object {
+                        "old_value": undefined,
+                        "override": undefined,
+                        "value": -1.7012563565592531,
+                      }
+
+            def_luck: undefined
+
+            def_rtg: Object {
+                        "old_value": undefined,
+                        "override": undefined,
+                        "value": 98.84955759282161,
+                      }
+
+            def_team_poss_pct: Object {
+                        "value": 1,
+                      }
+
+            def_usage: <OverlayTrigger
+                        overlay={
+                          <ForwardRef
+                            id="s-PGTooltip"
+                            placement="right"
+                          >
+                            Scoring PG
+                            <br />
+                            <br />
+                            Algorithmically assigned via stats from 
+                            Base
+                             lineups. See "Show Positional diagnostics" (gear icon on right) for more details.
+                          </ForwardRef>
+                        }
+                        placement="auto"
+                      >
+                        <small>
+                          s-PG
+                        </small>
+                      </OverlayTrigger>
+
+            diag_def_rtg: undefined
+
+            diag_off_rtg: undefined
+
+            off_2pmidr: Object {
+                        "extraInfo": <span>
+                          0% assisted
+                        </span>,
+                        "value": 0.18258426966292135,
+                      }
+
+            off_2primr: Object {
+                        "extraInfo": <span>
+                          26% assisted
+                        </span>,
+                        "value": 0.32865168539325845,
+                      }
+
+            off_3pr: Object {
+                        "extraInfo": <span>
+                          63% assisted
+                        </span>,
+                        "value": 0.4887640449438202,
+                      }
+
+            off_adj_prod: Object {
+                        "old_value": 0,
+                        "override": undefined,
+                        "value": 6.175541971224357,
+                      }
+
+            off_adj_rtg: Object {
+                        "old_value": undefined,
+                        "override": undefined,
+                        "value": 6.175541971224357,
+                      }
+
+            off_assist: Object {
+                        "extraInfo": <span>
+                          Assist breakdown:
+                          <li>
+                            48
+                            % for 3P
+                          </li>
+                          <li>
+                            7
+                            % for mid-range
+                          </li>
+                          <li>
+                            46
+                            % at the rim
+                          </li>
+                        </span>,
+                        "value": 0.2916666666666667,
+                      }
+
+            off_drb: Object {
+                        "value": 0.096,
+                      }
+
+            off_ftr: Object {
+                        "extraInfo": <span>
+                          FT: 
+                          81.1
+                          %
+                        </span>,
+                        "value": 0.5955056179775281,
+                      }
+
+            off_luck: undefined
+
+            off_rtg: Object {
+                        "old_value": undefined,
+                        "override": undefined,
+                        "value": 117.59977517402329,
+                      }
+
+            off_team_poss: Object {
+                        "extraInfo": <span>
+                          80.1
+                           poss/g
+                        </span>,
+                        "value": 1802,
+                      }
+
+            off_team_poss_pct: Object {
+                        "extraInfo": <span>
+                          80.1
+                           poss/g
+                        </span>,
+                        "value": 1,
+                      }
+
+            off_title: <span>
+                        <span>
+                          <b>
+                            Cowan, Anthony
+                          </b>
+                        </span>
+                        <span
+                          className="d-none d-xl-block"
+                        >
+                          <OverlayTrigger
+                            overlay={
+                              <ForwardRef
+                                id="s-PGTooltip"
+                                placement="right"
+                              >
+                                Scoring PG
+                                <br />
+                                <br />
+                                Algorithmically assigned via stats from 
+                                Base
+                                 lineups. See "Show Positional diagnostics" (gear icon on right) for more details.
+                              </ForwardRef>
+                            }
+                            placement="auto"
+                          >
+                            <small>
+                              s-PG
+                               - 
+                            </small>
+                          </OverlayTrigger>
+                          <b>
+                            Base
+                          </b>
+                           lineups
+                        </span>
+                        <span
+                          className="d-block d-xl-none"
+                        >
+                          <b>
+                            Base
+                          </b>
+                           set
+                        </span>
+                      </span>
+
+            onOffKey: "Baseline"
+
+            oppo_def_3p: Object {
+                        "value": 0.3227953410981697,
+                      }},
+          {
+            code: "??"
+
+            def_2pmidr: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 10px #fffdfa",
+                          }
+                        }
+                      >
+                        <i>
+                          33
+                          %
+                        </i>
+                      </small>
+
+            def_2primr: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 10px #ffbe47",
+                          }
+                        }
+                      >
+                        <i>
+                          45
+                          %
+                        </i>
+                      </small>
+
+            def_3pr: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 10px #ffa500",
+                          }
+                        }
+                      >
+                        <i>
+                          92
+                          %
+                        </i>
+                      </small>
+
+            def_adj_prod: Object {
+                        "old_value": 0,
+                        "override": undefined,
+                        "value": -2.9509992696428613,
+                      }
+
+            def_adj_rtg: Object {
+                        "old_value": undefined,
+                        "override": undefined,
+                        "value": -2.9509992696428613,
+                      }
+
+            def_luck: undefined
+
+            def_rtg: Object {
+                        "old_value": undefined,
+                        "override": undefined,
+                        "value": 91.88787789273368,
+                      }
+
+            def_team_poss_pct: Object {
+                        "value": 1,
+                      }
+
+            def_usage: <OverlayTrigger
+                        overlay={
+                          <ForwardRef
+                            id="WGTooltip"
+                            placement="right"
+                          >
+                            Wing Guard
+                            <br />
+                            <br />
+                            Algorithmically assigned via stats from 
+                            Base
+                             lineups. See "Show Positional diagnostics" (gear icon on right) for more details.
+                          </ForwardRef>
+                        }
+                        placement="auto"
+                      >
+                        <small>
+                          WG
+                        </small>
+                      </OverlayTrigger>
+
+            diag_def_rtg: undefined
+
+            diag_off_rtg: undefined
+
+            off_2pmidr: Object {
+                        "extraInfo": <span>
+                          33% assisted
+                        </span>,
+                        "value": 0.24666666666666667,
+                      }
+
+            off_2primr: Object {
+                        "extraInfo": <span>
+                          45% assisted
+                        </span>,
+                        "value": 0.19666666666666666,
+                      }
+
+            off_3pr: Object {
+                        "extraInfo": <span>
+                          92% assisted
+                        </span>,
+                        "value": 0.5566666666666666,
+                      }
+
+            off_adj_prod: Object {
+                        "old_value": 0,
+                        "override": undefined,
+                        "value": 0.7654428708452571,
+                      }
+
+            off_adj_rtg: Object {
+                        "old_value": undefined,
+                        "override": undefined,
+                        "value": 0.7654428708452571,
+                      }
+
+            off_assist: Object {
+                        "extraInfo": <span>
+                          Assist breakdown:
+                          <li>
+                            50
+                            % for 3P
+                          </li>
+                          <li>
+                            9
+                            % for mid-range
+                          </li>
+                          <li>
+                            41
+                            % at the rim
+                          </li>
+                        </span>,
+                        "value": 0.10185185185185185,
+                      }
+
+            off_drb: Object {
+                        "value": 0.1380952380952381,
+                      }
+
+            off_ftr: Object {
+                        "extraInfo": <span>
+                          FT: 
+                          71.7
+                          %
+                        </span>,
+                        "value": 0.2,
+                      }
+
+            off_luck: undefined
+
+            off_rtg: Object {
+                        "old_value": undefined,
+                        "override": undefined,
+                        "value": 99.76347678499295,
+                      }
+
+            off_team_poss: Object {
+                        "extraInfo": <span>
+                          75.0
+                           poss/g
+                        </span>,
+                        "value": 1499,
+                      }
+
+            off_team_poss_pct: Object {
+                        "extraInfo": <span>
+                          75.0
+                           poss/g
+                        </span>,
+                        "value": 1,
+                      }
+
+            off_title: <span>
+                        <span>
+                          <b>
+                            Wiggins, Aaron
+                          </b>
+                        </span>
+                        <span
+                          className="d-none d-xl-block"
+                        >
+                          <OverlayTrigger
+                            overlay={
+                              <ForwardRef
+                                id="WGTooltip"
+                                placement="right"
+                              >
+                                Wing Guard
+                                <br />
+                                <br />
+                                Algorithmically assigned via stats from 
+                                Base
+                                 lineups. See "Show Positional diagnostics" (gear icon on right) for more details.
+                              </ForwardRef>
+                            }
+                            placement="auto"
+                          >
+                            <small>
+                              WG
+                               - 
+                            </small>
+                          </OverlayTrigger>
+                          <b>
+                            Base
+                          </b>
+                           lineups
+                        </span>
+                        <span
+                          className="d-block d-xl-none"
+                        >
+                          <b>
+                            Base
+                          </b>
+                           set
+                        </span>
+                      </span>
+
+            onOffKey: "Baseline"
+
+            oppo_def_3p: Object {
+                        "value": 0.30443548387096775,
+                      }},
+        ]
+      }
+      show={false}
+      showHelp={false}
     />
     <FormRow>
       <FormGroup
@@ -4728,7 +5235,13 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
             onSelect={[Function]}
             text={
               <span>
-                Calculate RAPM metric (slow)
+                Calculate RAPM metric (
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+                , slow)
               </span>
             }
             truthVal={false}
@@ -4736,7 +5249,16 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
           <GenericTogglingMenuItem
             helpLink="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
             onSelect={[Function]}
-            text="Adjust for Luck"
+            text={
+              <span>
+                Adjust for Luck 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+              </span>
+            }
             truthVal={false}
           />
           <DropdownDivider
@@ -4744,7 +5266,16 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
           />
           <GenericTogglingMenuItem
             onSelect={[Function]}
-            text="Configure Manual Overrides..."
+            text={
+              <span>
+                Configure Manual Overrides... 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+              </span>
+            }
             truthVal={false}
           />
           <GenericTogglingMenuItem
@@ -4752,12 +5283,35 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
             text="Configure Luck Adjustments..."
             truthVal={false}
           />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <span>
+                Upload On-Ball Defense... 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  pre-alpha!
+                </span>
+              </span>
+            }
+            truthVal={false}
+          />
           <DropdownDivider
             role="separator"
           />
           <GenericTogglingMenuItem
             onSelect={[Function]}
-            text="Show Play Style Breakdowns"
+            text={
+              <span>
+                Show Play Style Breakdowns 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+              </span>
+            }
             truthVal={false}
           />
           <GenericTogglingMenuItem
@@ -4854,6 +5408,8 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
               GenericTableDataRow {
                 "cellMetaFn": [Function],
                 "dataObj": {
+                  code: "??"
+
                   def_2pmidr: <small
                                     style={
                                       Object {
@@ -5088,6 +5644,8 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
               GenericTableDataRow {
                 "cellMetaFn": [Function],
                 "dataObj": {
+                  code: "??"
+
                   def_2pmidr: <small
                                     style={
                                       Object {
@@ -5325,6 +5883,8 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
               GenericTableDataRow {
                 "cellMetaFn": [Function],
                 "dataObj": {
+                  code: "??"
+
                   def_2pmidr: <small
                                     style={
                                       Object {
@@ -5562,6 +6122,8 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
               GenericTableDataRow {
                 "cellMetaFn": [Function],
                 "dataObj": {
+                  code: "??"
+
                   def_2pmidr: <small
                                     style={
                                       Object {
@@ -6074,6 +6636,8 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
       inStats={
         Array [
           {
+            code: "??"
+
             def_2pmidr: <small
                         style={
                           Object {
@@ -6295,6 +6859,8 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
                         "value": 0.3227953410981697,
                       }},
           {
+            code: "??"
+
             def_2pmidr: <small
                         style={
                           Object {
@@ -6528,6 +7094,8 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "??"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -6755,6 +7323,8 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "??"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -6984,6 +7554,8 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "??"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -7211,6 +7783,8 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "??"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -7450,6 +8024,463 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
       onSave={[Function]}
       show={false}
       showHelp={true}
+    />
+    <OnBallDefenseModal
+      onBallDefense={Array []}
+      onHide={[Function]}
+      onSave={[Function]}
+      players={
+        Array [
+          {
+            code: "??"
+
+            def_2pmidr: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 10px #add8e6",
+                          }
+                        }
+                      >
+                        <i>
+                          0
+                          %
+                        </i>
+                      </small>
+
+            def_2primr: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 10px #e0f0f5",
+                          }
+                        }
+                      >
+                        <i>
+                          26
+                          %
+                        </i>
+                      </small>
+
+            def_3pr: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 10px #ffa500",
+                          }
+                        }
+                      >
+                        <i>
+                          63
+                          %
+                        </i>
+                      </small>
+
+            def_adj_prod: Object {
+                        "old_value": 0,
+                        "override": undefined,
+                        "value": -1.7012563565592531,
+                      }
+
+            def_adj_rtg: Object {
+                        "old_value": undefined,
+                        "override": undefined,
+                        "value": -1.7012563565592531,
+                      }
+
+            def_luck: undefined
+
+            def_rtg: Object {
+                        "old_value": undefined,
+                        "override": undefined,
+                        "value": 98.84955759282161,
+                      }
+
+            def_team_poss_pct: Object {
+                        "value": 1,
+                      }
+
+            def_usage: <OverlayTrigger
+                        overlay={
+                          <ForwardRef
+                            id="s-PGTooltip"
+                            placement="right"
+                          >
+                            Scoring PG
+                            <br />
+                            <br />
+                            Algorithmically assigned via stats from 
+                            Base
+                             lineups. See "Show Positional diagnostics" (gear icon on right) for more details.
+                          </ForwardRef>
+                        }
+                        placement="auto"
+                      >
+                        <small>
+                          s-PG
+                        </small>
+                      </OverlayTrigger>
+
+            diag_def_rtg: undefined
+
+            diag_off_rtg: undefined
+
+            off_2pmidr: Object {
+                        "extraInfo": <span>
+                          0% assisted
+                        </span>,
+                        "value": 0.18258426966292135,
+                      }
+
+            off_2primr: Object {
+                        "extraInfo": <span>
+                          26% assisted
+                        </span>,
+                        "value": 0.32865168539325845,
+                      }
+
+            off_3pr: Object {
+                        "extraInfo": <span>
+                          63% assisted
+                        </span>,
+                        "value": 0.4887640449438202,
+                      }
+
+            off_adj_prod: Object {
+                        "old_value": 0,
+                        "override": undefined,
+                        "value": 6.175541971224357,
+                      }
+
+            off_adj_rtg: Object {
+                        "old_value": undefined,
+                        "override": undefined,
+                        "value": 6.175541971224357,
+                      }
+
+            off_assist: Object {
+                        "extraInfo": <span>
+                          Assist breakdown:
+                          <li>
+                            48
+                            % for 3P
+                          </li>
+                          <li>
+                            7
+                            % for mid-range
+                          </li>
+                          <li>
+                            46
+                            % at the rim
+                          </li>
+                        </span>,
+                        "value": 0.2916666666666667,
+                      }
+
+            off_drb: Object {
+                        "value": 0.096,
+                      }
+
+            off_ftr: Object {
+                        "extraInfo": <span>
+                          FT: 
+                          81.1
+                          %
+                        </span>,
+                        "value": 0.5955056179775281,
+                      }
+
+            off_luck: undefined
+
+            off_rtg: Object {
+                        "old_value": undefined,
+                        "override": undefined,
+                        "value": 117.59977517402329,
+                      }
+
+            off_team_poss: Object {
+                        "extraInfo": <span>
+                          80.1
+                           poss/g
+                        </span>,
+                        "value": 1802,
+                      }
+
+            off_team_poss_pct: Object {
+                        "extraInfo": <span>
+                          80.1
+                           poss/g
+                        </span>,
+                        "value": 1,
+                      }
+
+            off_title: <span>
+                        <span
+                          className="d-none d-xl-block"
+                        >
+                          <b>
+                            Cowan, Anthony
+                          </b>
+                           
+                          <OverlayTrigger
+                            overlay={
+                              <ForwardRef
+                                id="s-PGTooltip"
+                                placement="right"
+                              >
+                                Scoring PG
+                                <br />
+                                <br />
+                                Algorithmically assigned via stats from 
+                                Base
+                                 lineups. See "Show Positional diagnostics" (gear icon on right) for more details.
+                              </ForwardRef>
+                            }
+                            placement="auto"
+                          >
+                            <sup>
+                              s-PG
+                            </sup>
+                          </OverlayTrigger>
+                        </span>
+                        <span
+                          className="d-block d-xl-none"
+                        >
+                          <b>
+                            Cowan, Anthony
+                          </b>
+                        </span>
+                      </span>
+
+            onOffKey: "Baseline"
+
+            oppo_def_3p: Object {
+                        "value": 0.3227953410981697,
+                      }},
+          {
+            code: "??"
+
+            def_2pmidr: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 10px #fffdfa",
+                          }
+                        }
+                      >
+                        <i>
+                          33
+                          %
+                        </i>
+                      </small>
+
+            def_2primr: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 10px #ffbe47",
+                          }
+                        }
+                      >
+                        <i>
+                          45
+                          %
+                        </i>
+                      </small>
+
+            def_3pr: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 10px #ffa500",
+                          }
+                        }
+                      >
+                        <i>
+                          92
+                          %
+                        </i>
+                      </small>
+
+            def_adj_prod: Object {
+                        "old_value": 0,
+                        "override": undefined,
+                        "value": -2.9509992696428613,
+                      }
+
+            def_adj_rtg: Object {
+                        "old_value": undefined,
+                        "override": undefined,
+                        "value": -2.9509992696428613,
+                      }
+
+            def_luck: undefined
+
+            def_rtg: Object {
+                        "old_value": undefined,
+                        "override": undefined,
+                        "value": 91.88787789273368,
+                      }
+
+            def_team_poss_pct: Object {
+                        "value": 1,
+                      }
+
+            def_usage: <OverlayTrigger
+                        overlay={
+                          <ForwardRef
+                            id="WGTooltip"
+                            placement="right"
+                          >
+                            Wing Guard
+                            <br />
+                            <br />
+                            Algorithmically assigned via stats from 
+                            Base
+                             lineups. See "Show Positional diagnostics" (gear icon on right) for more details.
+                          </ForwardRef>
+                        }
+                        placement="auto"
+                      >
+                        <small>
+                          WG
+                        </small>
+                      </OverlayTrigger>
+
+            diag_def_rtg: undefined
+
+            diag_off_rtg: undefined
+
+            off_2pmidr: Object {
+                        "extraInfo": <span>
+                          33% assisted
+                        </span>,
+                        "value": 0.24666666666666667,
+                      }
+
+            off_2primr: Object {
+                        "extraInfo": <span>
+                          45% assisted
+                        </span>,
+                        "value": 0.19666666666666666,
+                      }
+
+            off_3pr: Object {
+                        "extraInfo": <span>
+                          92% assisted
+                        </span>,
+                        "value": 0.5566666666666666,
+                      }
+
+            off_adj_prod: Object {
+                        "old_value": 0,
+                        "override": undefined,
+                        "value": 0.7654428708452571,
+                      }
+
+            off_adj_rtg: Object {
+                        "old_value": undefined,
+                        "override": undefined,
+                        "value": 0.7654428708452571,
+                      }
+
+            off_assist: Object {
+                        "extraInfo": <span>
+                          Assist breakdown:
+                          <li>
+                            50
+                            % for 3P
+                          </li>
+                          <li>
+                            9
+                            % for mid-range
+                          </li>
+                          <li>
+                            41
+                            % at the rim
+                          </li>
+                        </span>,
+                        "value": 0.10185185185185185,
+                      }
+
+            off_drb: Object {
+                        "value": 0.1380952380952381,
+                      }
+
+            off_ftr: Object {
+                        "extraInfo": <span>
+                          FT: 
+                          71.7
+                          %
+                        </span>,
+                        "value": 0.2,
+                      }
+
+            off_luck: undefined
+
+            off_rtg: Object {
+                        "old_value": undefined,
+                        "override": undefined,
+                        "value": 99.76347678499295,
+                      }
+
+            off_team_poss: Object {
+                        "extraInfo": <span>
+                          75.0
+                           poss/g
+                        </span>,
+                        "value": 1499,
+                      }
+
+            off_team_poss_pct: Object {
+                        "extraInfo": <span>
+                          75.0
+                           poss/g
+                        </span>,
+                        "value": 1,
+                      }
+
+            off_title: <span>
+                        <span
+                          className="d-none d-xl-block"
+                        >
+                          <b>
+                            Wiggins, Aaron
+                          </b>
+                           
+                          <OverlayTrigger
+                            overlay={
+                              <ForwardRef
+                                id="WGTooltip"
+                                placement="right"
+                              >
+                                Wing Guard
+                                <br />
+                                <br />
+                                Algorithmically assigned via stats from 
+                                Base
+                                 lineups. See "Show Positional diagnostics" (gear icon on right) for more details.
+                              </ForwardRef>
+                            }
+                            placement="auto"
+                          >
+                            <sup>
+                              WG
+                            </sup>
+                          </OverlayTrigger>
+                        </span>
+                        <span
+                          className="d-block d-xl-none"
+                        >
+                          <b>
+                            Wiggins, Aaron
+                          </b>
+                        </span>
+                      </span>
+
+            onOffKey: "Baseline"
+
+            oppo_def_3p: Object {
+                        "value": 0.30443548387096775,
+                      }},
+        ]
+      }
+      show={false}
+      showHelp={false}
     />
     <FormRow>
       <FormGroup
@@ -7956,7 +8987,13 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
             onSelect={[Function]}
             text={
               <span>
-                Calculate RAPM metric (slow)
+                Calculate RAPM metric (
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+                , slow)
               </span>
             }
             truthVal={false}
@@ -7964,7 +9001,16 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
           <GenericTogglingMenuItem
             helpLink="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
             onSelect={[Function]}
-            text="Adjust for Luck"
+            text={
+              <span>
+                Adjust for Luck 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+              </span>
+            }
             truthVal={false}
           />
           <DropdownDivider
@@ -7972,7 +9018,16 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
           />
           <GenericTogglingMenuItem
             onSelect={[Function]}
-            text="Configure Manual Overrides..."
+            text={
+              <span>
+                Configure Manual Overrides... 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+              </span>
+            }
             truthVal={false}
           />
           <GenericTogglingMenuItem
@@ -7980,12 +9035,35 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
             text="Configure Luck Adjustments..."
             truthVal={false}
           />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <span>
+                Upload On-Ball Defense... 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  pre-alpha!
+                </span>
+              </span>
+            }
+            truthVal={false}
+          />
           <DropdownDivider
             role="separator"
           />
           <GenericTogglingMenuItem
             onSelect={[Function]}
-            text="Show Play Style Breakdowns"
+            text={
+              <span>
+                Show Play Style Breakdowns 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+              </span>
+            }
             truthVal={false}
           />
           <GenericTogglingMenuItem
@@ -8082,6 +9160,8 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
               GenericTableDataRow {
                 "cellMetaFn": [Function],
                 "dataObj": {
+                  code: "??"
+
                   def_2pmidr: <small
                                     style={
                                       Object {
@@ -8312,6 +9392,8 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
               GenericTableDataRow {
                 "cellMetaFn": [Function],
                 "dataObj": {
+                  code: "??"
+
                   def_2pmidr: <small
                                     style={
                                       Object {
@@ -8817,6 +9899,8 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
       inStats={
         Array [
           {
+            code: "??"
+
             def_2pmidr: <small
                         style={
                           Object {
@@ -8997,6 +10081,8 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                         "value": 0.3227953410981697,
                       }},
           {
+            code: "??"
+
             def_2pmidr: <small
                         style={
                           Object {
@@ -9189,6 +10275,8 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "??"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -9375,6 +10463,8 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "??"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -9563,6 +10653,8 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "??"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -9749,6 +10841,8 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "??"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -9947,6 +11041,381 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
       onSave={[Function]}
       show={false}
       showHelp={true}
+    />
+    <OnBallDefenseModal
+      onBallDefense={Array []}
+      onHide={[Function]}
+      onSave={[Function]}
+      players={
+        Array [
+          {
+            code: "??"
+
+            def_2pmidr: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 10px #add8e6",
+                          }
+                        }
+                      >
+                        <i>
+                          0
+                          %
+                        </i>
+                      </small>
+
+            def_2primr: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 10px #e0f0f5",
+                          }
+                        }
+                      >
+                        <i>
+                          26
+                          %
+                        </i>
+                      </small>
+
+            def_3pr: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 10px #ffa500",
+                          }
+                        }
+                      >
+                        <i>
+                          63
+                          %
+                        </i>
+                      </small>
+
+            def_adj_prod: Object {
+                        "old_value": 0,
+                        "override": undefined,
+                        "value": -1.7012563565592531,
+                      }
+
+            def_adj_rtg: Object {
+                        "old_value": undefined,
+                        "override": undefined,
+                        "value": -1.7012563565592531,
+                      }
+
+            def_luck: undefined
+
+            def_rtg: Object {
+                        "old_value": undefined,
+                        "override": undefined,
+                        "value": 98.84955759282161,
+                      }
+
+            def_team_poss_pct: Object {
+                        "value": 1,
+                      }
+
+            def_usage: <OverlayTrigger
+                        overlay={
+                          <ForwardRef
+                            id="s-PGTooltip"
+                            placement="right"
+                          >
+                            Scoring PG
+                            <br />
+                            <br />
+                            Algorithmically assigned via stats from 
+                            Base
+                             lineups. See "Show Positional diagnostics" (gear icon on right) for more details.
+                          </ForwardRef>
+                        }
+                        placement="auto"
+                      >
+                        <small>
+                          s-PG
+                        </small>
+                      </OverlayTrigger>
+
+            diag_def_rtg: undefined
+
+            diag_off_rtg: undefined
+
+            off_adj_prod: Object {
+                        "old_value": 0,
+                        "override": undefined,
+                        "value": 6.175541971224357,
+                      }
+
+            off_adj_rtg: Object {
+                        "old_value": undefined,
+                        "override": undefined,
+                        "value": 6.175541971224357,
+                      }
+
+            off_assist: Object {
+                        "extraInfo": <span>
+                          Assist breakdown:
+                          <li>
+                            48
+                            % for 3P
+                          </li>
+                          <li>
+                            7
+                            % for mid-range
+                          </li>
+                          <li>
+                            46
+                            % at the rim
+                          </li>
+                        </span>,
+                        "value": 0.2916666666666667,
+                      }
+
+            off_drb: Object {
+                        "value": 0.096,
+                      }
+
+            off_ftr: Object {
+                        "extraInfo": <span>
+                          FT: 
+                          81.1
+                          %
+                        </span>,
+                        "value": 0.5955056179775281,
+                      }
+
+            off_luck: undefined
+
+            off_rtg: Object {
+                        "old_value": undefined,
+                        "override": undefined,
+                        "value": 117.59977517402329,
+                      }
+
+            off_team_poss: Object {
+                        "extraInfo": <span>
+                          80.1
+                           poss/g
+                        </span>,
+                        "value": 1802,
+                      }
+
+            off_team_poss_pct: Object {
+                        "extraInfo": <span>
+                          80.1
+                           poss/g
+                        </span>,
+                        "value": 1,
+                      }
+
+            off_title: <span>
+                        <span
+                          className="d-none d-xl-block"
+                        >
+                          <b>
+                            Cowan, Anthony
+                          </b>
+                           
+                        </span>
+                        <span
+                          className="d-block d-xl-none"
+                        >
+                          <b>
+                            Cowan, Anthony
+                          </b>
+                        </span>
+                      </span>
+
+            onOffKey: "Baseline"
+
+            oppo_def_3p: Object {
+                        "value": 0.3227953410981697,
+                      }},
+          {
+            code: "??"
+
+            def_2pmidr: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 10px #fffdfa",
+                          }
+                        }
+                      >
+                        <i>
+                          33
+                          %
+                        </i>
+                      </small>
+
+            def_2primr: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 10px #ffbe47",
+                          }
+                        }
+                      >
+                        <i>
+                          45
+                          %
+                        </i>
+                      </small>
+
+            def_3pr: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 10px #ffa500",
+                          }
+                        }
+                      >
+                        <i>
+                          92
+                          %
+                        </i>
+                      </small>
+
+            def_adj_prod: Object {
+                        "old_value": 0,
+                        "override": undefined,
+                        "value": -2.9509992696428613,
+                      }
+
+            def_adj_rtg: Object {
+                        "old_value": undefined,
+                        "override": undefined,
+                        "value": -2.9509992696428613,
+                      }
+
+            def_luck: undefined
+
+            def_rtg: Object {
+                        "old_value": undefined,
+                        "override": undefined,
+                        "value": 91.88787789273368,
+                      }
+
+            def_team_poss_pct: Object {
+                        "value": 1,
+                      }
+
+            def_usage: <OverlayTrigger
+                        overlay={
+                          <ForwardRef
+                            id="WGTooltip"
+                            placement="right"
+                          >
+                            Wing Guard
+                            <br />
+                            <br />
+                            Algorithmically assigned via stats from 
+                            Base
+                             lineups. See "Show Positional diagnostics" (gear icon on right) for more details.
+                          </ForwardRef>
+                        }
+                        placement="auto"
+                      >
+                        <small>
+                          WG
+                        </small>
+                      </OverlayTrigger>
+
+            diag_def_rtg: undefined
+
+            diag_off_rtg: undefined
+
+            off_adj_prod: Object {
+                        "old_value": 0,
+                        "override": undefined,
+                        "value": 0.7654428708452571,
+                      }
+
+            off_adj_rtg: Object {
+                        "old_value": undefined,
+                        "override": undefined,
+                        "value": 0.7654428708452571,
+                      }
+
+            off_assist: Object {
+                        "extraInfo": <span>
+                          Assist breakdown:
+                          <li>
+                            50
+                            % for 3P
+                          </li>
+                          <li>
+                            9
+                            % for mid-range
+                          </li>
+                          <li>
+                            41
+                            % at the rim
+                          </li>
+                        </span>,
+                        "value": 0.10185185185185185,
+                      }
+
+            off_drb: Object {
+                        "value": 0.1380952380952381,
+                      }
+
+            off_ftr: Object {
+                        "extraInfo": <span>
+                          FT: 
+                          71.7
+                          %
+                        </span>,
+                        "value": 0.2,
+                      }
+
+            off_luck: undefined
+
+            off_rtg: Object {
+                        "old_value": undefined,
+                        "override": undefined,
+                        "value": 99.76347678499295,
+                      }
+
+            off_team_poss: Object {
+                        "extraInfo": <span>
+                          75.0
+                           poss/g
+                        </span>,
+                        "value": 1499,
+                      }
+
+            off_team_poss_pct: Object {
+                        "extraInfo": <span>
+                          75.0
+                           poss/g
+                        </span>,
+                        "value": 1,
+                      }
+
+            off_title: <span>
+                        <span
+                          className="d-none d-xl-block"
+                        >
+                          <b>
+                            Wiggins, Aaron
+                          </b>
+                           
+                        </span>
+                        <span
+                          className="d-block d-xl-none"
+                        >
+                          <b>
+                            Wiggins, Aaron
+                          </b>
+                        </span>
+                      </span>
+
+            onOffKey: "Baseline"
+
+            oppo_def_3p: Object {
+                        "value": 0.30443548387096775,
+                      }},
+        ]
+      }
+      show={false}
+      showHelp={false}
     />
     <FormRow>
       <FormGroup
@@ -10453,7 +11922,13 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
             onSelect={[Function]}
             text={
               <span>
-                Calculate RAPM metric (slow)
+                Calculate RAPM metric (
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+                , slow)
               </span>
             }
             truthVal={false}
@@ -10461,7 +11936,16 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
           <GenericTogglingMenuItem
             helpLink="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
             onSelect={[Function]}
-            text="Adjust for Luck"
+            text={
+              <span>
+                Adjust for Luck 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+              </span>
+            }
             truthVal={false}
           />
           <DropdownDivider
@@ -10469,7 +11953,16 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
           />
           <GenericTogglingMenuItem
             onSelect={[Function]}
-            text="Configure Manual Overrides..."
+            text={
+              <span>
+                Configure Manual Overrides... 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+              </span>
+            }
             truthVal={false}
           />
           <GenericTogglingMenuItem
@@ -10477,12 +11970,35 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
             text="Configure Luck Adjustments..."
             truthVal={false}
           />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <span>
+                Upload On-Ball Defense... 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  pre-alpha!
+                </span>
+              </span>
+            }
+            truthVal={false}
+          />
           <DropdownDivider
             role="separator"
           />
           <GenericTogglingMenuItem
             onSelect={[Function]}
-            text="Show Play Style Breakdowns"
+            text={
+              <span>
+                Show Play Style Breakdowns 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+              </span>
+            }
             truthVal={false}
           />
           <GenericTogglingMenuItem
@@ -10579,6 +12095,8 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
               GenericTableDataRow {
                 "cellMetaFn": [Function],
                 "dataObj": {
+                  code: "??"
+
                   def_2pmidr: <small
                                     style={
                                       Object {
@@ -10765,6 +12283,8 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
               GenericTableDataRow {
                 "cellMetaFn": [Function],
                 "dataObj": {
+                  code: "??"
+
                   def_2pmidr: <small
                                     style={
                                       Object {
@@ -10954,6 +12474,8 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
               GenericTableDataRow {
                 "cellMetaFn": [Function],
                 "dataObj": {
+                  code: "??"
+
                   def_2pmidr: <small
                                     style={
                                       Object {
@@ -11140,6 +12662,8 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
               GenericTableDataRow {
                 "cellMetaFn": [Function],
                 "dataObj": {
+                  code: "??"
+
                   def_2pmidr: <small
                                     style={
                                       Object {
@@ -11664,6 +13188,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
       inStats={
         Array [
           {
+            code: "??"
+
             def_2pmidr: <small
                         style={
                           Object {
@@ -11850,6 +13376,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                         "value": 0.3182711198428291,
                       }},
           {
+            code: "??"
+
             def_2pmidr: <small
                         style={
                           Object {
@@ -12036,6 +13564,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                         "value": 0.34782608695652173,
                       }},
           {
+            code: "??"
+
             def_2pmidr: <small
                         style={
                           Object {
@@ -12222,6 +13752,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                         "value": 0.3227953410981697,
                       }},
           {
+            code: "??"
+
             def_2pmidr: <small
                         style={
                           Object {
@@ -12408,6 +13940,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                         "value": 0.291044776119403,
                       }},
           {
+            code: "??"
+
             def_2pmidr: <small
                         style={
                           Object {
@@ -12594,6 +14128,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                         "value": 0.30443548387096775,
                       }},
           {
+            code: "??"
+
             def_2pmidr: <small
                         style={
                           Object {
@@ -12792,6 +14328,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "??"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -12984,6 +14522,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "??"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -13178,6 +14718,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "??"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -13370,6 +14912,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "??"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -13564,6 +15108,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "??"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -13756,6 +15302,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "??"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -13950,6 +15498,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "??"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -14142,6 +15692,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "??"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -14336,6 +15888,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "??"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -14528,6 +16082,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "??"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -14722,6 +16278,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "??"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -14914,6 +16472,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "??"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -15118,6 +16678,393 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
       onSave={[Function]}
       show={false}
       showHelp={true}
+    />
+    <OnBallDefenseModal
+      onBallDefense={Array []}
+      onHide={[Function]}
+      onSave={[Function]}
+      players={
+        Array [
+          {
+            code: "??"
+
+            def_2pmidr: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 10px #add8e6",
+                          }
+                        }
+                      >
+                        <i>
+                          0
+                          %
+                        </i>
+                      </small>
+
+            def_2primr: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 10px #e0f0f5",
+                          }
+                        }
+                      >
+                        <i>
+                          26
+                          %
+                        </i>
+                      </small>
+
+            def_3pr: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 10px #ffa500",
+                          }
+                        }
+                      >
+                        <i>
+                          63
+                          %
+                        </i>
+                      </small>
+
+            def_adj_prod: Object {
+                        "old_value": 0,
+                        "override": undefined,
+                        "value": -1.7012563565592531,
+                      }
+
+            def_adj_rtg: Object {
+                        "old_value": undefined,
+                        "override": undefined,
+                        "value": -1.7012563565592531,
+                      }
+
+            def_luck: undefined
+
+            def_rtg: Object {
+                        "old_value": undefined,
+                        "override": undefined,
+                        "value": 98.84955759282161,
+                      }
+
+            def_team_poss_pct: Object {
+                        "value": 1,
+                      }
+
+            def_usage: <OverlayTrigger
+                        overlay={
+                          <ForwardRef
+                            id="s-PGTooltip"
+                            placement="right"
+                          >
+                            Scoring PG
+                            <br />
+                            <br />
+                            Algorithmically assigned via stats from 
+                            Base
+                             lineups. See "Show Positional diagnostics" (gear icon on right) for more details.
+                          </ForwardRef>
+                        }
+                        placement="auto"
+                      >
+                        <small>
+                          s-PG
+                        </small>
+                      </OverlayTrigger>
+
+            diag_def_rtg: undefined
+
+            diag_off_rtg: undefined
+
+            off_adj_prod: Object {
+                        "old_value": 0,
+                        "override": undefined,
+                        "value": 6.175541971224357,
+                      }
+
+            off_adj_rtg: Object {
+                        "old_value": undefined,
+                        "override": undefined,
+                        "value": 6.175541971224357,
+                      }
+
+            off_assist: Object {
+                        "extraInfo": <span>
+                          Assist breakdown:
+                          <li>
+                            48
+                            % for 3P
+                          </li>
+                          <li>
+                            7
+                            % for mid-range
+                          </li>
+                          <li>
+                            46
+                            % at the rim
+                          </li>
+                        </span>,
+                        "value": 0.2916666666666667,
+                      }
+
+            off_drb: Object {
+                        "value": 0.096,
+                      }
+
+            off_ftr: Object {
+                        "extraInfo": <span>
+                          FT: 
+                          81.1
+                          %
+                        </span>,
+                        "value": 0.5955056179775281,
+                      }
+
+            off_luck: undefined
+
+            off_rtg: Object {
+                        "old_value": undefined,
+                        "override": undefined,
+                        "value": 117.59977517402329,
+                      }
+
+            off_team_poss: Object {
+                        "extraInfo": <span>
+                          80.1
+                           poss/g
+                        </span>,
+                        "value": 1802,
+                      }
+
+            off_team_poss_pct: Object {
+                        "extraInfo": <span>
+                          80.1
+                           poss/g
+                        </span>,
+                        "value": 1,
+                      }
+
+            off_title: <span>
+                        <span>
+                          <b>
+                            Cowan, Anthony
+                          </b>
+                        </span>
+                        <span
+                          className="d-none d-xl-block"
+                        >
+                          <b>
+                            Base
+                          </b>
+                           lineups
+                        </span>
+                        <span
+                          className="d-block d-xl-none"
+                        >
+                          <b>
+                            Base
+                          </b>
+                           set
+                        </span>
+                      </span>
+
+            onOffKey: "Baseline"
+
+            oppo_def_3p: Object {
+                        "value": 0.3227953410981697,
+                      }},
+          {
+            code: "??"
+
+            def_2pmidr: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 10px #fffdfa",
+                          }
+                        }
+                      >
+                        <i>
+                          33
+                          %
+                        </i>
+                      </small>
+
+            def_2primr: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 10px #ffbe47",
+                          }
+                        }
+                      >
+                        <i>
+                          45
+                          %
+                        </i>
+                      </small>
+
+            def_3pr: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 10px #ffa500",
+                          }
+                        }
+                      >
+                        <i>
+                          92
+                          %
+                        </i>
+                      </small>
+
+            def_adj_prod: Object {
+                        "old_value": 0,
+                        "override": undefined,
+                        "value": -2.9509992696428613,
+                      }
+
+            def_adj_rtg: Object {
+                        "old_value": undefined,
+                        "override": undefined,
+                        "value": -2.9509992696428613,
+                      }
+
+            def_luck: undefined
+
+            def_rtg: Object {
+                        "old_value": undefined,
+                        "override": undefined,
+                        "value": 91.88787789273368,
+                      }
+
+            def_team_poss_pct: Object {
+                        "value": 1,
+                      }
+
+            def_usage: <OverlayTrigger
+                        overlay={
+                          <ForwardRef
+                            id="WGTooltip"
+                            placement="right"
+                          >
+                            Wing Guard
+                            <br />
+                            <br />
+                            Algorithmically assigned via stats from 
+                            Base
+                             lineups. See "Show Positional diagnostics" (gear icon on right) for more details.
+                          </ForwardRef>
+                        }
+                        placement="auto"
+                      >
+                        <small>
+                          WG
+                        </small>
+                      </OverlayTrigger>
+
+            diag_def_rtg: undefined
+
+            diag_off_rtg: undefined
+
+            off_adj_prod: Object {
+                        "old_value": 0,
+                        "override": undefined,
+                        "value": 0.7654428708452571,
+                      }
+
+            off_adj_rtg: Object {
+                        "old_value": undefined,
+                        "override": undefined,
+                        "value": 0.7654428708452571,
+                      }
+
+            off_assist: Object {
+                        "extraInfo": <span>
+                          Assist breakdown:
+                          <li>
+                            50
+                            % for 3P
+                          </li>
+                          <li>
+                            9
+                            % for mid-range
+                          </li>
+                          <li>
+                            41
+                            % at the rim
+                          </li>
+                        </span>,
+                        "value": 0.10185185185185185,
+                      }
+
+            off_drb: Object {
+                        "value": 0.1380952380952381,
+                      }
+
+            off_ftr: Object {
+                        "extraInfo": <span>
+                          FT: 
+                          71.7
+                          %
+                        </span>,
+                        "value": 0.2,
+                      }
+
+            off_luck: undefined
+
+            off_rtg: Object {
+                        "old_value": undefined,
+                        "override": undefined,
+                        "value": 99.76347678499295,
+                      }
+
+            off_team_poss: Object {
+                        "extraInfo": <span>
+                          75.0
+                           poss/g
+                        </span>,
+                        "value": 1499,
+                      }
+
+            off_team_poss_pct: Object {
+                        "extraInfo": <span>
+                          75.0
+                           poss/g
+                        </span>,
+                        "value": 1,
+                      }
+
+            off_title: <span>
+                        <span>
+                          <b>
+                            Wiggins, Aaron
+                          </b>
+                        </span>
+                        <span
+                          className="d-none d-xl-block"
+                        >
+                          <b>
+                            Base
+                          </b>
+                           lineups
+                        </span>
+                        <span
+                          className="d-block d-xl-none"
+                        >
+                          <b>
+                            Base
+                          </b>
+                           set
+                        </span>
+                      </span>
+
+            onOffKey: "Baseline"
+
+            oppo_def_3p: Object {
+                        "value": 0.30443548387096775,
+                      }},
+        ]
+      }
+      show={false}
+      showHelp={false}
     />
     <FormRow>
       <FormGroup
@@ -15624,7 +17571,13 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
             onSelect={[Function]}
             text={
               <span>
-                Calculate RAPM metric (slow)
+                Calculate RAPM metric (
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+                , slow)
               </span>
             }
             truthVal={false}
@@ -15632,7 +17585,16 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
           <GenericTogglingMenuItem
             helpLink="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
             onSelect={[Function]}
-            text="Adjust for Luck"
+            text={
+              <span>
+                Adjust for Luck 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+              </span>
+            }
             truthVal={false}
           />
           <DropdownDivider
@@ -15640,7 +17602,16 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
           />
           <GenericTogglingMenuItem
             onSelect={[Function]}
-            text="Configure Manual Overrides..."
+            text={
+              <span>
+                Configure Manual Overrides... 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+              </span>
+            }
             truthVal={false}
           />
           <GenericTogglingMenuItem
@@ -15648,12 +17619,35 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
             text="Configure Luck Adjustments..."
             truthVal={false}
           />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <span>
+                Upload On-Ball Defense... 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  pre-alpha!
+                </span>
+              </span>
+            }
+            truthVal={false}
+          />
           <DropdownDivider
             role="separator"
           />
           <GenericTogglingMenuItem
             onSelect={[Function]}
-            text="Show Play Style Breakdowns"
+            text={
+              <span>
+                Show Play Style Breakdowns 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+              </span>
+            }
             truthVal={false}
           />
           <GenericTogglingMenuItem
@@ -15750,6 +17744,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
               GenericTableDataRow {
                 "cellMetaFn": [Function],
                 "dataObj": {
+                  code: "??"
+
                   def_2pmidr: <small
                                     style={
                                       Object {
@@ -15942,6 +17938,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
               GenericTableDataRow {
                 "cellMetaFn": [Function],
                 "dataObj": {
+                  code: "??"
+
                   def_2pmidr: <small
                                     style={
                                       Object {
@@ -16134,6 +18132,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
               GenericTableDataRow {
                 "cellMetaFn": [Function],
                 "dataObj": {
+                  code: "??"
+
                   def_2pmidr: <small
                                     style={
                                       Object {
@@ -16326,6 +18326,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
               GenericTableDataRow {
                 "cellMetaFn": [Function],
                 "dataObj": {
+                  code: "??"
+
                   def_2pmidr: <small
                                     style={
                                       Object {
@@ -16521,6 +18523,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
               GenericTableDataRow {
                 "cellMetaFn": [Function],
                 "dataObj": {
+                  code: "??"
+
                   def_2pmidr: <small
                                     style={
                                       Object {
@@ -16713,6 +18717,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
               GenericTableDataRow {
                 "cellMetaFn": [Function],
                 "dataObj": {
+                  code: "??"
+
                   def_2pmidr: <small
                                     style={
                                       Object {
@@ -16908,6 +18914,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
               GenericTableDataRow {
                 "cellMetaFn": [Function],
                 "dataObj": {
+                  code: "??"
+
                   def_2pmidr: <small
                                     style={
                                       Object {
@@ -17100,6 +19108,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
               GenericTableDataRow {
                 "cellMetaFn": [Function],
                 "dataObj": {
+                  code: "??"
+
                   def_2pmidr: <small
                                     style={
                                       Object {
@@ -17630,6 +19640,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
       inStats={
         Array [
           {
+            code: "??"
+
             def_2pmidr: <small
                         style={
                           Object {
@@ -17888,6 +19900,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                         "value": 0.328607390802694,
                       }},
           {
+            code: "??"
+
             def_2pmidr: <small
                         style={
                           Object {
@@ -18146,6 +20160,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                         "value": 0.3251726283750374,
                       }},
           {
+            code: "??"
+
             def_2pmidr: <small
                         style={
                           Object {
@@ -18398,6 +20414,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                         "value": 0.32858928452579034,
                       }},
           {
+            code: "??"
+
             def_2pmidr: <small
                         style={
                           Object {
@@ -18656,6 +20674,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                         "value": 0.3213607857535103,
                       }},
           {
+            code: "??"
+
             def_2pmidr: <small
                         style={
                           Object {
@@ -18908,6 +20928,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                         "value": 0.32241782258064516,
                       }},
           {
+            code: "??"
+
             def_2pmidr: <small
                         style={
                           Object {
@@ -19156,6 +21178,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "??"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -19414,6 +21438,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "??"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -19674,6 +21700,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "??"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -19938,6 +21966,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "??"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -20204,6 +22234,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "??"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -20468,6 +22500,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "??"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -20734,6 +22768,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "??"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -20976,6 +23012,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "??"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -21220,6 +23258,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "??"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -21478,6 +23518,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "??"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -21738,6 +23780,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "??"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -22002,6 +24046,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "??"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -22278,6 +24324,525 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
       onSave={[Function]}
       show={false}
       showHelp={true}
+    />
+    <OnBallDefenseModal
+      onBallDefense={Array []}
+      onHide={[Function]}
+      onSave={[Function]}
+      players={
+        Array [
+          {
+            code: "??"
+
+            def_2pmidr: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 10px #add8e6",
+                          }
+                        }
+                      >
+                        <i>
+                          0
+                          %
+                        </i>
+                      </small>
+
+            def_2primr: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 10px #e0f0f5",
+                          }
+                        }
+                      >
+                        <i>
+                          26
+                          %
+                        </i>
+                      </small>
+
+            def_3pr: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 10px #ffa500",
+                          }
+                        }
+                      >
+                        <i>
+                          63
+                          %
+                        </i>
+                      </small>
+
+            def_adj_prod: Object {
+                        "old_value": -1.7012563565592531,
+                        "override": "Derived from luck adjustments",
+                        "value": -1.6024649055627949,
+                      }
+
+            def_adj_rtg: Object {
+                        "old_value": -1.7012563565592531,
+                        "override": "Derived from luck adjustments",
+                        "value": -1.6024649055627949,
+                      }
+
+            def_luck: {
+               "deltaDefPpp": 0,
+               "deltaDefEfg": 0,
+               "deltaDefAdjEff": 0
+            }
+
+            def_rtg: Object {
+                        "old_value": 98.84955759282161,
+                        "override": "Derived from luck adjustments",
+                        "value": 99.38322763133561,
+                      }
+
+            def_team_poss_pct: Object {
+                        "value": 1,
+                      }
+
+            def_usage: <OverlayTrigger
+                        overlay={
+                          <ForwardRef
+                            id="s-PGTooltip"
+                            placement="right"
+                          >
+                            Scoring PG
+                            <br />
+                            <br />
+                            Algorithmically assigned via stats from 
+                            Base
+                             lineups. See "Show Positional diagnostics" (gear icon on right) for more details.
+                          </ForwardRef>
+                        }
+                        placement="auto"
+                      >
+                        <small>
+                          s-PG
+                        </small>
+                      </OverlayTrigger>
+
+            diag_def_rtg: {
+               "dRtg": 99.38322763133561,
+               "adjDRtg": 91.98767547218603,
+               "adjDRtgPlus": -1.6024649055627949
+            }
+
+            diag_off_rtg: {
+               "oRtg": 117.59977517402329,
+               "adjORtg": 130.87770985612178,
+               "adjORtgPlus": 6.175541971224357
+            }
+
+            off_2pmidr: Object {
+                        "extraInfo": <span>
+                          0% assisted
+                        </span>,
+                        "value": 0.18258426966292135,
+                      }
+
+            off_2primr: Object {
+                        "extraInfo": <span>
+                          26% assisted
+                        </span>,
+                        "value": 0.32865168539325845,
+                      }
+
+            off_3p: Object {
+                        "old_value": 0.3218390804597701,
+                        "override": "Luck adjusted",
+                        "value": 0.3218390804597701,
+                      }
+
+            off_3pr: Object {
+                        "extraInfo": <span>
+                          63% assisted
+                        </span>,
+                        "value": 0.4887640449438202,
+                      }
+
+            off_adj_prod: Object {
+                        "old_value": 6.175541971224357,
+                        "override": "Derived from luck adjustments",
+                        "value": 6.175541971224357,
+                      }
+
+            off_adj_rtg: Object {
+                        "old_value": 6.175541971224357,
+                        "override": "Derived from luck adjustments",
+                        "value": 6.175541971224357,
+                      }
+
+            off_assist: Object {
+                        "extraInfo": <span>
+                          Assist breakdown:
+                          <li>
+                            48
+                            % for 3P
+                          </li>
+                          <li>
+                            7
+                            % for mid-range
+                          </li>
+                          <li>
+                            46
+                            % at the rim
+                          </li>
+                        </span>,
+                        "value": 0.2916666666666667,
+                      }
+
+            off_drb: Object {
+                        "value": 0.096,
+                      }
+
+            off_ftr: Object {
+                        "extraInfo": <span>
+                          FT: 
+                          81.1
+                          %
+                        </span>,
+                        "value": 0.5955056179775281,
+                      }
+
+            off_luck: {
+               "deltaOffPpp": 0,
+               "deltaOffEfg": 0,
+               "deltaOffAdjEff": 0
+            }
+
+            off_rtg: Object {
+                        "old_value": 117.59977517402329,
+                        "override": "Derived from luck adjustments",
+                        "value": 117.59977517402329,
+                      }
+
+            off_team_poss: Object {
+                        "extraInfo": <span>
+                          80.1
+                           poss/g
+                        </span>,
+                        "value": 1802,
+                      }
+
+            off_team_poss_pct: Object {
+                        "extraInfo": <span>
+                          80.1
+                           poss/g
+                        </span>,
+                        "value": 1,
+                      }
+
+            off_title: <span>
+                        <span>
+                          <b>
+                            Cowan, Anthony
+                          </b>
+                        </span>
+                        <span
+                          className="d-none d-xl-block"
+                        >
+                          <OverlayTrigger
+                            overlay={
+                              <ForwardRef
+                                id="s-PGTooltip"
+                                placement="right"
+                              >
+                                Scoring PG
+                                <br />
+                                <br />
+                                Algorithmically assigned via stats from 
+                                Base
+                                 lineups. See "Show Positional diagnostics" (gear icon on right) for more details.
+                              </ForwardRef>
+                            }
+                            placement="auto"
+                          >
+                            <small>
+                              s-PG
+                               - 
+                            </small>
+                          </OverlayTrigger>
+                          <b>
+                            Base
+                          </b>
+                           lineups
+                        </span>
+                        <span
+                          className="d-block d-xl-none"
+                        >
+                          <b>
+                            Base
+                          </b>
+                           set
+                        </span>
+                      </span>
+
+            onOffKey: "Baseline"
+
+            oppo_def_3p: Object {
+                        "old_value": 0.3227953410981697,
+                        "override": "Luck adjusted",
+                        "value": 0.32858928452579034,
+                      }},
+          {
+            code: "??"
+
+            def_2pmidr: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 10px #fffdfa",
+                          }
+                        }
+                      >
+                        <i>
+                          33
+                          %
+                        </i>
+                      </small>
+
+            def_2primr: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 10px #ffbe47",
+                          }
+                        }
+                      >
+                        <i>
+                          45
+                          %
+                        </i>
+                      </small>
+
+            def_3pr: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 10px #ffa500",
+                          }
+                        }
+                      >
+                        <i>
+                          92
+                          %
+                        </i>
+                      </small>
+
+            def_adj_prod: Object {
+                        "old_value": -2.9509992696428613,
+                        "override": "Derived from luck adjustments",
+                        "value": -2.642865414269929,
+                      }
+
+            def_adj_rtg: Object {
+                        "old_value": -2.9509992696428613,
+                        "override": "Derived from luck adjustments",
+                        "value": -2.642865414269929,
+                      }
+
+            def_luck: {
+               "deltaDefPpp": 0,
+               "deltaDefEfg": 0,
+               "deltaDefAdjEff": 0
+            }
+
+            def_rtg: Object {
+                        "old_value": 91.88787789273368,
+                        "override": "Derived from luck adjustments",
+                        "value": 93.54860666651514,
+                      }
+
+            def_team_poss_pct: Object {
+                        "value": 1,
+                      }
+
+            def_usage: <OverlayTrigger
+                        overlay={
+                          <ForwardRef
+                            id="WGTooltip"
+                            placement="right"
+                          >
+                            Wing Guard
+                            <br />
+                            <br />
+                            Algorithmically assigned via stats from 
+                            Base
+                             lineups. See "Show Positional diagnostics" (gear icon on right) for more details.
+                          </ForwardRef>
+                        }
+                        placement="auto"
+                      >
+                        <small>
+                          WG
+                        </small>
+                      </OverlayTrigger>
+
+            diag_def_rtg: {
+               "dRtg": 93.54860666651514,
+               "adjDRtg": 86.78567292865036,
+               "adjDRtgPlus": -2.642865414269929
+            }
+
+            diag_off_rtg: {
+               "oRtg": 99.76347678499295,
+               "adjORtg": 103.82721435422629,
+               "adjORtgPlus": 0.7654428708452571
+            }
+
+            off_2pmidr: Object {
+                        "extraInfo": <span>
+                          33% assisted
+                        </span>,
+                        "value": 0.24666666666666667,
+                      }
+
+            off_2primr: Object {
+                        "extraInfo": <span>
+                          45% assisted
+                        </span>,
+                        "value": 0.19666666666666666,
+                      }
+
+            off_3p: Object {
+                        "old_value": 0.31736526946107785,
+                        "override": "Luck adjusted",
+                        "value": 0.31736526946107785,
+                      }
+
+            off_3pr: Object {
+                        "extraInfo": <span>
+                          92% assisted
+                        </span>,
+                        "value": 0.5566666666666666,
+                      }
+
+            off_adj_prod: Object {
+                        "old_value": 0.7654428708452571,
+                        "override": "Derived from luck adjustments",
+                        "value": 0.7654428708452571,
+                      }
+
+            off_adj_rtg: Object {
+                        "old_value": 0.7654428708452571,
+                        "override": "Derived from luck adjustments",
+                        "value": 0.7654428708452571,
+                      }
+
+            off_assist: Object {
+                        "extraInfo": <span>
+                          Assist breakdown:
+                          <li>
+                            50
+                            % for 3P
+                          </li>
+                          <li>
+                            9
+                            % for mid-range
+                          </li>
+                          <li>
+                            41
+                            % at the rim
+                          </li>
+                        </span>,
+                        "value": 0.10185185185185185,
+                      }
+
+            off_drb: Object {
+                        "value": 0.1380952380952381,
+                      }
+
+            off_ftr: Object {
+                        "extraInfo": <span>
+                          FT: 
+                          71.7
+                          %
+                        </span>,
+                        "value": 0.2,
+                      }
+
+            off_luck: {
+               "deltaOffPpp": 0,
+               "deltaOffEfg": 0,
+               "deltaOffAdjEff": 0
+            }
+
+            off_rtg: Object {
+                        "old_value": 99.76347678499295,
+                        "override": "Derived from luck adjustments",
+                        "value": 99.76347678499295,
+                      }
+
+            off_team_poss: Object {
+                        "extraInfo": <span>
+                          75.0
+                           poss/g
+                        </span>,
+                        "value": 1499,
+                      }
+
+            off_team_poss_pct: Object {
+                        "extraInfo": <span>
+                          75.0
+                           poss/g
+                        </span>,
+                        "value": 1,
+                      }
+
+            off_title: <span>
+                        <span>
+                          <b>
+                            Wiggins, Aaron
+                          </b>
+                        </span>
+                        <span
+                          className="d-none d-xl-block"
+                        >
+                          <OverlayTrigger
+                            overlay={
+                              <ForwardRef
+                                id="WGTooltip"
+                                placement="right"
+                              >
+                                Wing Guard
+                                <br />
+                                <br />
+                                Algorithmically assigned via stats from 
+                                Base
+                                 lineups. See "Show Positional diagnostics" (gear icon on right) for more details.
+                              </ForwardRef>
+                            }
+                            placement="auto"
+                          >
+                            <small>
+                              WG
+                               - 
+                            </small>
+                          </OverlayTrigger>
+                          <b>
+                            Base
+                          </b>
+                           lineups
+                        </span>
+                        <span
+                          className="d-block d-xl-none"
+                        >
+                          <b>
+                            Base
+                          </b>
+                           set
+                        </span>
+                      </span>
+
+            onOffKey: "Baseline"
+
+            oppo_def_3p: Object {
+                        "old_value": 0.30443548387096775,
+                        "override": "Luck adjusted",
+                        "value": 0.32241782258064516,
+                      }},
+        ]
+      }
+      show={false}
+      showHelp={false}
     />
     <FormRow>
       <FormGroup
@@ -22784,7 +25349,13 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
             onSelect={[Function]}
             text={
               <span>
-                Calculate RAPM metric (slow)
+                Calculate RAPM metric (
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+                , slow)
               </span>
             }
             truthVal={false}
@@ -22792,7 +25363,16 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
           <GenericTogglingMenuItem
             helpLink="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
             onSelect={[Function]}
-            text="Adjust for Luck"
+            text={
+              <span>
+                Adjust for Luck 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+              </span>
+            }
             truthVal={true}
           />
           <DropdownDivider
@@ -22800,7 +25380,16 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
           />
           <GenericTogglingMenuItem
             onSelect={[Function]}
-            text="Configure Manual Overrides..."
+            text={
+              <span>
+                Configure Manual Overrides... 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+              </span>
+            }
             truthVal={false}
           />
           <GenericTogglingMenuItem
@@ -22808,12 +25397,35 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
             text="Configure Luck Adjustments..."
             truthVal={false}
           />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <span>
+                Upload On-Ball Defense... 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  pre-alpha!
+                </span>
+              </span>
+            }
+            truthVal={false}
+          />
           <DropdownDivider
             role="separator"
           />
           <GenericTogglingMenuItem
             onSelect={[Function]}
-            text="Show Play Style Breakdowns"
+            text={
+              <span>
+                Show Play Style Breakdowns 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+              </span>
+            }
             truthVal={false}
           />
           <GenericTogglingMenuItem
@@ -22910,6 +25522,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
               GenericTableDataRow {
                 "cellMetaFn": [Function],
                 "dataObj": {
+                  code: "??"
+
                   def_2pmidr: <small
                                     style={
                                       Object {
@@ -23197,6 +25811,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                 "text": <PositionalDiagView
                   player={
                     {
+                      code: "??"
+
                       def_2pmidr: <small
                                             style={
                                               Object {
@@ -23486,6 +26102,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
               GenericTableDataRow {
                 "cellMetaFn": [Function],
                 "dataObj": {
+                  code: "??"
+
                   def_2pmidr: <small
                                     style={
                                       Object {
@@ -23773,6 +26391,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                 "text": <PositionalDiagView
                   player={
                     {
+                      code: "??"
+
                       def_2pmidr: <small
                                             style={
                                               Object {
@@ -24065,6 +26685,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
               GenericTableDataRow {
                 "cellMetaFn": [Function],
                 "dataObj": {
+                  code: "??"
+
                   def_2pmidr: <small
                                     style={
                                       Object {
@@ -24352,6 +26974,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                 "text": <PositionalDiagView
                   player={
                     {
+                      code: "??"
+
                       def_2pmidr: <small
                                             style={
                                               Object {
@@ -24644,6 +27268,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
               GenericTableDataRow {
                 "cellMetaFn": [Function],
                 "dataObj": {
+                  code: "??"
+
                   def_2pmidr: <small
                                     style={
                                       Object {
@@ -24909,6 +27535,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                 "text": <PositionalDiagView
                   player={
                     {
+                      code: "??"
+
                       def_2pmidr: <small
                                             style={
                                               Object {
@@ -25430,6 +28058,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
       inStats={
         Array [
           {
+            code: "??"
+
             def_2pmidr: <small
                         style={
                           Object {
@@ -25690,6 +28320,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
 
             role: "s-PG"},
           {
+            code: "??"
+
             def_2pmidr: <small
                         style={
                           Object {
@@ -25950,6 +28582,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
 
             role: "s-PG"},
           {
+            code: "??"
+
             def_2pmidr: <small
                         style={
                           Object {
@@ -26210,6 +28844,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
 
             role: "s-PG"},
           {
+            code: "??"
+
             def_2pmidr: <small
                         style={
                           Object {
@@ -26470,6 +29106,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
 
             role: "WG"},
           {
+            code: "??"
+
             def_2pmidr: <small
                         style={
                           Object {
@@ -26724,6 +29362,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
 
             role: "WG"},
           {
+            code: "??"
+
             def_2pmidr: <small
                         style={
                           Object {
@@ -26983,6 +29623,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "??"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -27249,6 +29891,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "??"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -27517,6 +30161,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "??"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -27783,6 +30429,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "??"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -28051,6 +30699,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "??"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -28317,6 +30967,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "??"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -28585,6 +31237,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "??"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -28829,6 +31483,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "??"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -29075,6 +31731,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "??"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -29335,6 +31993,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "??"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -29597,6 +32257,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "??"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -29863,6 +32525,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "??"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -30141,6 +32805,535 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
       onSave={[Function]}
       show={false}
       showHelp={true}
+    />
+    <OnBallDefenseModal
+      onBallDefense={Array []}
+      onHide={[Function]}
+      onSave={[Function]}
+      players={
+        Array [
+          {
+            code: "??"
+
+            def_2pmidr: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 10px #add8e6",
+                          }
+                        }
+                      >
+                        <i>
+                          0
+                          %
+                        </i>
+                      </small>
+
+            def_2primr: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 10px #e0f0f5",
+                          }
+                        }
+                      >
+                        <i>
+                          26
+                          %
+                        </i>
+                      </small>
+
+            def_3pr: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 10px #ffa500",
+                          }
+                        }
+                      >
+                        <i>
+                          63
+                          %
+                        </i>
+                      </small>
+
+            def_adj_prod: Object {
+                        "old_value": -1.7012563565592531,
+                        "override": "Derived from luck adjustments",
+                        "value": -1.6024649055627949,
+                      }
+
+            def_adj_rtg: Object {
+                        "old_value": -1.7012563565592531,
+                        "override": "Derived from luck adjustments",
+                        "value": -1.6024649055627949,
+                      }
+
+            def_luck: {
+               "deltaDefPpp": 0,
+               "deltaDefEfg": 0,
+               "deltaDefAdjEff": 0
+            }
+
+            def_rtg: Object {
+                        "old_value": 98.84955759282161,
+                        "override": "Derived from luck adjustments",
+                        "value": 99.38322763133561,
+                      }
+
+            def_team_poss_pct: Object {
+                        "value": 1,
+                      }
+
+            def_usage: <OverlayTrigger
+                        overlay={
+                          <ForwardRef
+                            id="s-PGTooltip"
+                            placement="right"
+                          >
+                            Scoring PG
+                            <br />
+                            <br />
+                            Algorithmically assigned via stats from 
+                            Base
+                             lineups. See "Show Positional diagnostics" (gear icon on right) for more details.
+                          </ForwardRef>
+                        }
+                        placement="auto"
+                      >
+                        <small>
+                          s-PG
+                        </small>
+                      </OverlayTrigger>
+
+            diag_def_rtg: {
+               "dRtg": 99.38322763133561,
+               "adjDRtg": 91.98767547218603,
+               "adjDRtgPlus": -1.6024649055627949
+            }
+
+            diag_off_rtg: {
+               "oRtg": 130.05090623641826,
+               "adjORtg": 144.6938525944736,
+               "adjORtgPlus": 8.938770518894723
+            }
+
+            off_2pmidr: Object {
+                        "extraInfo": <span>
+                          0% assisted
+                        </span>,
+                        "value": 0.18258426966292135,
+                      }
+
+            off_2primr: Object {
+                        "extraInfo": <span>
+                          26% assisted
+                        </span>,
+                        "value": 0.32865168539325845,
+                      }
+
+            off_3p: Object {
+                        "old_value": 0.3218390804597701,
+                        "override": "Manually adjusted",
+                        "value": 0.5,
+                      }
+
+            off_3pr: Object {
+                        "extraInfo": <span>
+                          63% assisted
+                        </span>,
+                        "value": 0.4887640449438202,
+                      }
+
+            off_adj_prod: Object {
+                        "old_value": 6.175541971224357,
+                        "override": "Derived from luck adjustments and manual overrides",
+                        "value": 8.938770518894723,
+                      }
+
+            off_adj_rtg: Object {
+                        "old_value": 6.175541971224357,
+                        "override": "Derived from luck adjustments and manual overrides",
+                        "value": 8.938770518894723,
+                      }
+
+            off_assist: Object {
+                        "extraInfo": <span>
+                          Assist breakdown:
+                          <li>
+                            48
+                            % for 3P
+                          </li>
+                          <li>
+                            7
+                            % for mid-range
+                          </li>
+                          <li>
+                            46
+                            % at the rim
+                          </li>
+                        </span>,
+                        "value": 0.2916666666666667,
+                      }
+
+            off_drb: Object {
+                        "value": 0.096,
+                      }
+
+            off_efg: Object {
+                        "old_value": 0.4691011235955056,
+                        "override": "Derived from luck adjustments and manual overrides",
+                        "value": 0.5997191011235955,
+                      }
+
+            off_ftr: Object {
+                        "extraInfo": <span>
+                          FT: 
+                          81.1
+                          %
+                        </span>,
+                        "value": 0.5955056179775281,
+                      }
+
+            off_luck: {
+               "deltaOffPpp": 0,
+               "deltaOffEfg": 0,
+               "deltaOffAdjEff": 0
+            }
+
+            off_rtg: Object {
+                        "old_value": 117.59977517402329,
+                        "override": "Derived from luck adjustments and manual overrides",
+                        "value": 130.05090623641826,
+                      }
+
+            off_team_poss: Object {
+                        "extraInfo": <span>
+                          80.1
+                           poss/g
+                        </span>,
+                        "value": 1802,
+                      }
+
+            off_team_poss_pct: Object {
+                        "extraInfo": <span>
+                          80.1
+                           poss/g
+                        </span>,
+                        "value": 1,
+                      }
+
+            off_title: <span>
+                        <span>
+                          <b>
+                            Cowan, Anthony
+                          </b>
+                        </span>
+                        <span
+                          className="d-none d-xl-block"
+                        >
+                          <OverlayTrigger
+                            overlay={
+                              <ForwardRef
+                                id="s-PGTooltip"
+                                placement="right"
+                              >
+                                Scoring PG
+                                <br />
+                                <br />
+                                Algorithmically assigned via stats from 
+                                Base
+                                 lineups. See "Show Positional diagnostics" (gear icon on right) for more details.
+                              </ForwardRef>
+                            }
+                            placement="auto"
+                          >
+                            <small>
+                              s-PG
+                               - 
+                            </small>
+                          </OverlayTrigger>
+                          <b>
+                            Base
+                          </b>
+                           lineups
+                        </span>
+                        <span
+                          className="d-block d-xl-none"
+                        >
+                          <b>
+                            Base
+                          </b>
+                           set
+                        </span>
+                      </span>
+
+            onOffKey: "Baseline"
+
+            oppo_def_3p: Object {
+                        "old_value": 0.3227953410981697,
+                        "override": "Luck adjusted",
+                        "value": 0.32858928452579034,
+                      }
+
+            role: "s-PG"},
+          {
+            code: "??"
+
+            def_2pmidr: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 10px #fffdfa",
+                          }
+                        }
+                      >
+                        <i>
+                          33
+                          %
+                        </i>
+                      </small>
+
+            def_2primr: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 10px #ffbe47",
+                          }
+                        }
+                      >
+                        <i>
+                          45
+                          %
+                        </i>
+                      </small>
+
+            def_3pr: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 10px #ffa500",
+                          }
+                        }
+                      >
+                        <i>
+                          92
+                          %
+                        </i>
+                      </small>
+
+            def_adj_prod: Object {
+                        "old_value": -2.9509992696428613,
+                        "override": "Derived from luck adjustments",
+                        "value": -2.642865414269929,
+                      }
+
+            def_adj_rtg: Object {
+                        "old_value": -2.9509992696428613,
+                        "override": "Derived from luck adjustments",
+                        "value": -2.642865414269929,
+                      }
+
+            def_luck: {
+               "deltaDefPpp": 0,
+               "deltaDefEfg": 0,
+               "deltaDefAdjEff": 0
+            }
+
+            def_rtg: Object {
+                        "old_value": 91.88787789273368,
+                        "override": "Derived from luck adjustments",
+                        "value": 93.54860666651514,
+                      }
+
+            def_team_poss_pct: Object {
+                        "value": 1,
+                      }
+
+            def_usage: <OverlayTrigger
+                        overlay={
+                          <ForwardRef
+                            id="WGTooltip"
+                            placement="right"
+                          >
+                            Wing Guard
+                            <br />
+                            <br />
+                            Algorithmically assigned via stats from 
+                            Base
+                             lineups. See "Show Positional diagnostics" (gear icon on right) for more details.
+                          </ForwardRef>
+                        }
+                        placement="auto"
+                      >
+                        <small>
+                          WG
+                        </small>
+                      </OverlayTrigger>
+
+            diag_def_rtg: {
+               "dRtg": 93.54860666651514,
+               "adjDRtg": 86.78567292865036,
+               "adjDRtgPlus": -2.642865414269929
+            }
+
+            diag_off_rtg: {
+               "oRtg": 100.50917346010739,
+               "adjORtg": 104.70398539896928,
+               "adjORtgPlus": 0.9407970797938561
+            }
+
+            off_2pmidr: Object {
+                        "extraInfo": <span>
+                          33% assisted
+                        </span>,
+                        "value": 0.24666666666666667,
+                      }
+
+            off_2primr: Object {
+                        "extraInfo": <span>
+                          45% assisted
+                        </span>,
+                        "value": 0.19666666666666666,
+                      }
+
+            off_3p: Object {
+                        "old_value": 0.31736526946107785,
+                        "override": "Luck adjusted",
+                        "value": 0.31736526946107785,
+                      }
+
+            off_3pr: Object {
+                        "extraInfo": <span>
+                          92% assisted
+                        </span>,
+                        "value": 0.5566666666666666,
+                      }
+
+            off_adj_prod: Object {
+                        "old_value": 0.9407970797938561,
+                        "override": "Derived from luck adjustments",
+                        "value": 0.9407970797938561,
+                      }
+
+            off_adj_rtg: Object {
+                        "old_value": 0.9407970797938561,
+                        "override": "Derived from luck adjustments",
+                        "value": 0.9407970797938561,
+                      }
+
+            off_assist: Object {
+                        "extraInfo": <span>
+                          Assist breakdown:
+                          <li>
+                            50
+                            % for 3P
+                          </li>
+                          <li>
+                            9
+                            % for mid-range
+                          </li>
+                          <li>
+                            41
+                            % at the rim
+                          </li>
+                        </span>,
+                        "value": 0.10185185185185185,
+                      }
+
+            off_drb: Object {
+                        "value": 0.1380952380952381,
+                      }
+
+            off_ftr: Object {
+                        "extraInfo": <span>
+                          FT: 
+                          71.7
+                          %
+                        </span>,
+                        "value": 0.2,
+                      }
+
+            off_luck: {
+               "deltaOffPpp": 0,
+               "deltaOffEfg": 0,
+               "deltaOffAdjEff": 0
+            }
+
+            off_rtg: Object {
+                        "old_value": 100.50917346010739,
+                        "override": "Derived from luck adjustments",
+                        "value": 100.50917346010739,
+                      }
+
+            off_team_poss: Object {
+                        "extraInfo": <span>
+                          75.0
+                           poss/g
+                        </span>,
+                        "value": 1499,
+                      }
+
+            off_team_poss_pct: Object {
+                        "extraInfo": <span>
+                          75.0
+                           poss/g
+                        </span>,
+                        "value": 1,
+                      }
+
+            off_title: <span>
+                        <span>
+                          <b>
+                            Wiggins, Aaron
+                          </b>
+                        </span>
+                        <span
+                          className="d-none d-xl-block"
+                        >
+                          <OverlayTrigger
+                            overlay={
+                              <ForwardRef
+                                id="WGTooltip"
+                                placement="right"
+                              >
+                                Wing Guard
+                                <br />
+                                <br />
+                                Algorithmically assigned via stats from 
+                                Base
+                                 lineups. See "Show Positional diagnostics" (gear icon on right) for more details.
+                              </ForwardRef>
+                            }
+                            placement="auto"
+                          >
+                            <small>
+                              WG
+                               - 
+                            </small>
+                          </OverlayTrigger>
+                          <b>
+                            Base
+                          </b>
+                           lineups
+                        </span>
+                        <span
+                          className="d-block d-xl-none"
+                        >
+                          <b>
+                            Base
+                          </b>
+                           set
+                        </span>
+                      </span>
+
+            onOffKey: "Baseline"
+
+            oppo_def_3p: Object {
+                        "old_value": 0.30443548387096775,
+                        "override": "Luck adjusted",
+                        "value": 0.32241782258064516,
+                      }
+
+            role: "WG"},
+        ]
+      }
+      show={false}
+      showHelp={false}
     />
     <FormRow>
       <FormGroup
@@ -30647,7 +33840,13 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
             onSelect={[Function]}
             text={
               <span>
-                Calculate RAPM metric (slow)
+                Calculate RAPM metric (
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+                , slow)
               </span>
             }
             truthVal={false}
@@ -30655,7 +33854,16 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
           <GenericTogglingMenuItem
             helpLink="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
             onSelect={[Function]}
-            text="Adjust for Luck"
+            text={
+              <span>
+                Adjust for Luck 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+              </span>
+            }
             truthVal={true}
           />
           <DropdownDivider
@@ -30663,7 +33871,16 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
           />
           <GenericTogglingMenuItem
             onSelect={[Function]}
-            text="Configure Manual Overrides..."
+            text={
+              <span>
+                Configure Manual Overrides... 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+              </span>
+            }
             truthVal={true}
           />
           <GenericTogglingMenuItem
@@ -30671,12 +33888,35 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
             text="Configure Luck Adjustments..."
             truthVal={false}
           />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <span>
+                Upload On-Ball Defense... 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  pre-alpha!
+                </span>
+              </span>
+            }
+            truthVal={false}
+          />
           <DropdownDivider
             role="separator"
           />
           <GenericTogglingMenuItem
             onSelect={[Function]}
-            text="Show Play Style Breakdowns"
+            text={
+              <span>
+                Show Play Style Breakdowns 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+              </span>
+            }
             truthVal={true}
           />
           <GenericTogglingMenuItem
@@ -30781,6 +34021,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
               GenericTableDataRow {
                 "cellMetaFn": [Function],
                 "dataObj": {
+                  code: "??"
+
                   def_2pmidr: <small
                                     style={
                                       Object {
@@ -31070,6 +34312,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                 "text": <PositionalDiagView
                   player={
                     {
+                      code: "??"
+
                       def_2pmidr: <small
                                             style={
                                               Object {
@@ -31364,6 +34608,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                 "text": <PlayerPlayTypeDiagView
                   player={
                     {
+                      code: "??"
+
                       def_2pmidr: <small
                                             style={
                                               Object {
@@ -31635,6 +34881,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                   rosterStatsByCode={
                     Object {
                       "AaWiggins": {
+                        code: "??"
+
                         def_2pmidr: <small
                                                 style={
                                                   Object {
@@ -31881,6 +35129,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
 
                         role: "WG"},
                       "AnCowan": {
+                        code: "??"
+
                         def_2pmidr: <small
                                                 style={
                                                   Object {
@@ -32147,6 +35397,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
               GenericTableDataRow {
                 "cellMetaFn": [Function],
                 "dataObj": {
+                  code: "??"
+
                   def_2pmidr: <small
                                     style={
                                       Object {
@@ -32436,6 +35688,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                 "text": <PositionalDiagView
                   player={
                     {
+                      code: "??"
+
                       def_2pmidr: <small
                                             style={
                                               Object {
@@ -32730,6 +35984,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                 "text": <PlayerPlayTypeDiagView
                   player={
                     {
+                      code: "??"
+
                       def_2pmidr: <small
                                             style={
                                               Object {
@@ -33001,6 +36257,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                   rosterStatsByCode={
                     Object {
                       "AaWiggins": {
+                        code: "??"
+
                         def_2pmidr: <small
                                                 style={
                                                   Object {
@@ -33247,6 +36505,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
 
                         role: "WG"},
                       "AnCowan": {
+                        code: "??"
+
                         def_2pmidr: <small
                                                 style={
                                                   Object {
@@ -33516,6 +36776,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
               GenericTableDataRow {
                 "cellMetaFn": [Function],
                 "dataObj": {
+                  code: "??"
+
                   def_2pmidr: <small
                                     style={
                                       Object {
@@ -33805,6 +37067,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                 "text": <PositionalDiagView
                   player={
                     {
+                      code: "??"
+
                       def_2pmidr: <small
                                             style={
                                               Object {
@@ -34099,6 +37363,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                 "text": <PlayerPlayTypeDiagView
                   player={
                     {
+                      code: "??"
+
                       def_2pmidr: <small
                                             style={
                                               Object {
@@ -34370,6 +37636,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                   rosterStatsByCode={
                     Object {
                       "AaWiggins": {
+                        code: "??"
+
                         def_2pmidr: <small
                                                 style={
                                                   Object {
@@ -34616,6 +37884,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
 
                         role: "WG"},
                       "AnCowan": {
+                        code: "??"
+
                         def_2pmidr: <small
                                                 style={
                                                   Object {
@@ -34885,6 +38155,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
               GenericTableDataRow {
                 "cellMetaFn": [Function],
                 "dataObj": {
+                  code: "??"
+
                   def_2pmidr: <small
                                     style={
                                       Object {
@@ -35152,6 +38424,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                 "text": <PositionalDiagView
                   player={
                     {
+                      code: "??"
+
                       def_2pmidr: <small
                                             style={
                                               Object {
@@ -35400,6 +38674,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                 "text": <PlayerPlayTypeDiagView
                   player={
                     {
+                      code: "??"
+
                       def_2pmidr: <small
                                             style={
                                               Object {
@@ -35643,6 +38919,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                   rosterStatsByCode={
                     Object {
                       "AaWiggins": {
+                        code: "??"
+
                         def_2pmidr: <small
                                                 style={
                                                   Object {
@@ -35889,6 +39167,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
 
                         role: "WG"},
                       "AnCowan": {
+                        code: "??"
+
                         def_2pmidr: <small
                                                 style={
                                                   Object {
@@ -36433,6 +39713,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
       inStats={
         Array [
           {
+            code: "??"
+
             def_2pmidr: <small
                         style={
                           Object {
@@ -36669,6 +39951,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                         "value": 0.3182711198428291,
                       }},
           {
+            code: "??"
+
             def_2pmidr: <small
                         style={
                           Object {
@@ -36905,6 +40189,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                         "value": 0.34782608695652173,
                       }},
           {
+            code: "??"
+
             def_2pmidr: <small
                         style={
                           Object {
@@ -37153,6 +40439,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                         "value": 0.3227953410981697,
                       }},
           {
+            code: "??"
+
             def_2pmidr: <small
                         style={
                           Object {
@@ -37389,6 +40677,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                         "value": 0.291044776119403,
                       }},
           {
+            code: "??"
+
             def_2pmidr: <small
                         style={
                           Object {
@@ -37625,6 +40915,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                         "value": 0.30443548387096775,
                       }},
           {
+            code: "??"
+
             def_2pmidr: <small
                         style={
                           Object {
@@ -37882,6 +41174,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "??"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -38136,6 +41430,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "??"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -38392,6 +41688,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "??"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -38634,6 +41932,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "??"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -38878,6 +42178,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "??"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -39120,6 +42422,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "??"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -39364,6 +42668,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "??"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -39606,6 +42912,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "??"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -39850,6 +43158,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "??"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -40092,6 +43402,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "??"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -40336,6 +43648,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "??"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -40578,6 +43892,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
             GenericTableDataRow {
               "cellMetaFn": [Function],
               "dataObj": {
+                code: "??"
+
                 def_2pmidr: <small
                                 style={
                                   Object {
@@ -40832,6 +44148,505 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
       onSave={[Function]}
       show={false}
       showHelp={true}
+    />
+    <OnBallDefenseModal
+      onBallDefense={Array []}
+      onHide={[Function]}
+      onSave={[Function]}
+      players={
+        Array [
+          {
+            code: "??"
+
+            def_2pmidr: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 10px #add8e6",
+                          }
+                        }
+                      >
+                        <i>
+                          0
+                          %
+                        </i>
+                      </small>
+
+            def_2primr: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 10px #e0f0f5",
+                          }
+                        }
+                      >
+                        <i>
+                          26
+                          %
+                        </i>
+                      </small>
+
+            def_3pr: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 10px #ffa500",
+                          }
+                        }
+                      >
+                        <i>
+                          63
+                          %
+                        </i>
+                      </small>
+
+            def_adj_prod: Object {
+                        "old_value": 0,
+                        "override": undefined,
+                        "value": -1.7012563565592531,
+                      }
+
+            def_adj_rtg: Object {
+                        "old_value": undefined,
+                        "override": undefined,
+                        "value": -1.7012563565592531,
+                      }
+
+            def_luck: undefined
+
+            def_rtg: Object {
+                        "old_value": undefined,
+                        "override": undefined,
+                        "value": 98.84955759282161,
+                      }
+
+            def_team_poss_pct: Object {
+                        "value": 1,
+                      }
+
+            def_usage: <OverlayTrigger
+                        overlay={
+                          <ForwardRef
+                            id="s-PGTooltip"
+                            placement="right"
+                          >
+                            Scoring PG
+                            <br />
+                            <br />
+                            Algorithmically assigned via stats from 
+                            Base
+                             lineups. See "Show Positional diagnostics" (gear icon on right) for more details.
+                          </ForwardRef>
+                        }
+                        placement="auto"
+                      >
+                        <small>
+                          s-PG
+                        </small>
+                      </OverlayTrigger>
+
+            diag_def_rtg: {
+               "dRtg": 98.84955759282161,
+               "adjDRtg": 91.49371821720374,
+               "adjDRtgPlus": -1.7012563565592531
+            }
+
+            diag_off_rtg: {
+               "oRtg": 130.05090623641826,
+               "adjORtg": 144.6938525944736,
+               "adjORtgPlus": 8.938770518894723
+            }
+
+            off_2pmidr: Object {
+                        "extraInfo": <span>
+                          0% assisted
+                        </span>,
+                        "value": 0.18258426966292135,
+                      }
+
+            off_2primr: Object {
+                        "extraInfo": <span>
+                          26% assisted
+                        </span>,
+                        "value": 0.32865168539325845,
+                      }
+
+            off_3p: Object {
+                        "old_value": 0.3218390804597701,
+                        "override": "Manually adjusted",
+                        "value": 0.5,
+                      }
+
+            off_3pr: Object {
+                        "extraInfo": <span>
+                          63% assisted
+                        </span>,
+                        "value": 0.4887640449438202,
+                      }
+
+            off_adj_prod: Object {
+                        "old_value": 6.175541971224357,
+                        "override": "Derived from manual overrides",
+                        "value": 8.938770518894723,
+                      }
+
+            off_adj_rtg: Object {
+                        "old_value": 6.175541971224357,
+                        "override": "Derived from manual overrides",
+                        "value": 8.938770518894723,
+                      }
+
+            off_assist: Object {
+                        "extraInfo": <span>
+                          Assist breakdown:
+                          <li>
+                            48
+                            % for 3P
+                          </li>
+                          <li>
+                            7
+                            % for mid-range
+                          </li>
+                          <li>
+                            46
+                            % at the rim
+                          </li>
+                        </span>,
+                        "value": 0.2916666666666667,
+                      }
+
+            off_drb: Object {
+                        "value": 0.096,
+                      }
+
+            off_efg: Object {
+                        "old_value": 0.4691011235955056,
+                        "override": "Derived from manual overrides",
+                        "value": 0.5997191011235955,
+                      }
+
+            off_ftr: Object {
+                        "extraInfo": <span>
+                          FT: 
+                          81.1
+                          %
+                        </span>,
+                        "value": 0.5955056179775281,
+                      }
+
+            off_luck: undefined
+
+            off_rtg: Object {
+                        "old_value": 117.59977517402329,
+                        "override": "Derived from manual overrides",
+                        "value": 130.05090623641826,
+                      }
+
+            off_team_poss: Object {
+                        "extraInfo": <span>
+                          80.1
+                           poss/g
+                        </span>,
+                        "value": 1802,
+                      }
+
+            off_team_poss_pct: Object {
+                        "extraInfo": <span>
+                          80.1
+                           poss/g
+                        </span>,
+                        "value": 1,
+                      }
+
+            off_title: <span>
+                        <span>
+                          <b>
+                            Cowan, Anthony
+                          </b>
+                        </span>
+                        <span
+                          className="d-none d-xl-block"
+                        >
+                          <OverlayTrigger
+                            overlay={
+                              <ForwardRef
+                                id="s-PGTooltip"
+                                placement="right"
+                              >
+                                Scoring PG
+                                <br />
+                                <br />
+                                Algorithmically assigned via stats from 
+                                Base
+                                 lineups. See "Show Positional diagnostics" (gear icon on right) for more details.
+                              </ForwardRef>
+                            }
+                            placement="auto"
+                          >
+                            <small>
+                              s-PG
+                               - 
+                            </small>
+                          </OverlayTrigger>
+                          <b>
+                            Base
+                          </b>
+                           lineups
+                        </span>
+                        <span
+                          className="d-block d-xl-none"
+                        >
+                          <b>
+                            Base
+                          </b>
+                           set
+                        </span>
+                      </span>
+
+            onOffKey: "Baseline"
+
+            oppo_def_3p: Object {
+                        "value": 0.3227953410981697,
+                      }},
+          {
+            code: "??"
+
+            def_2pmidr: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 10px #fffdfa",
+                          }
+                        }
+                      >
+                        <i>
+                          33
+                          %
+                        </i>
+                      </small>
+
+            def_2primr: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 10px #ffbe47",
+                          }
+                        }
+                      >
+                        <i>
+                          45
+                          %
+                        </i>
+                      </small>
+
+            def_3pr: <small
+                        style={
+                          Object {
+                            "textShadow": "0px 0px 10px #ffa500",
+                          }
+                        }
+                      >
+                        <i>
+                          92
+                          %
+                        </i>
+                      </small>
+
+            def_adj_prod: Object {
+                        "old_value": 0,
+                        "override": undefined,
+                        "value": -2.9509992696428613,
+                      }
+
+            def_adj_rtg: Object {
+                        "old_value": undefined,
+                        "override": undefined,
+                        "value": -2.9509992696428613,
+                      }
+
+            def_luck: undefined
+
+            def_rtg: Object {
+                        "old_value": undefined,
+                        "override": undefined,
+                        "value": 91.88787789273368,
+                      }
+
+            def_team_poss_pct: Object {
+                        "value": 1,
+                      }
+
+            def_usage: <OverlayTrigger
+                        overlay={
+                          <ForwardRef
+                            id="WGTooltip"
+                            placement="right"
+                          >
+                            Wing Guard
+                            <br />
+                            <br />
+                            Algorithmically assigned via stats from 
+                            Base
+                             lineups. See "Show Positional diagnostics" (gear icon on right) for more details.
+                          </ForwardRef>
+                        }
+                        placement="auto"
+                      >
+                        <small>
+                          WG
+                        </small>
+                      </OverlayTrigger>
+
+            diag_def_rtg: {
+               "dRtg": 91.88787789273368,
+               "adjDRtg": 85.2450036517857,
+               "adjDRtgPlus": -2.9509992696428613
+            }
+
+            diag_off_rtg: {
+               "oRtg": 99.76347678499295,
+               "adjORtg": 103.82721435422629,
+               "adjORtgPlus": 0.7654428708452571
+            }
+
+            off_2pmidr: Object {
+                        "extraInfo": <span>
+                          33% assisted
+                        </span>,
+                        "value": 0.24666666666666667,
+                      }
+
+            off_2primr: Object {
+                        "extraInfo": <span>
+                          45% assisted
+                        </span>,
+                        "value": 0.19666666666666666,
+                      }
+
+            off_3pr: Object {
+                        "extraInfo": <span>
+                          92% assisted
+                        </span>,
+                        "value": 0.5566666666666666,
+                      }
+
+            off_adj_prod: Object {
+                        "old_value": 0,
+                        "override": undefined,
+                        "value": 0.7654428708452571,
+                      }
+
+            off_adj_rtg: Object {
+                        "old_value": undefined,
+                        "override": undefined,
+                        "value": 0.7654428708452571,
+                      }
+
+            off_assist: Object {
+                        "extraInfo": <span>
+                          Assist breakdown:
+                          <li>
+                            50
+                            % for 3P
+                          </li>
+                          <li>
+                            9
+                            % for mid-range
+                          </li>
+                          <li>
+                            41
+                            % at the rim
+                          </li>
+                        </span>,
+                        "value": 0.10185185185185185,
+                      }
+
+            off_drb: Object {
+                        "value": 0.1380952380952381,
+                      }
+
+            off_ftr: Object {
+                        "extraInfo": <span>
+                          FT: 
+                          71.7
+                          %
+                        </span>,
+                        "value": 0.2,
+                      }
+
+            off_luck: undefined
+
+            off_rtg: Object {
+                        "old_value": undefined,
+                        "override": undefined,
+                        "value": 99.76347678499295,
+                      }
+
+            off_team_poss: Object {
+                        "extraInfo": <span>
+                          75.0
+                           poss/g
+                        </span>,
+                        "value": 1499,
+                      }
+
+            off_team_poss_pct: Object {
+                        "extraInfo": <span>
+                          75.0
+                           poss/g
+                        </span>,
+                        "value": 1,
+                      }
+
+            off_title: <span>
+                        <span>
+                          <b>
+                            Wiggins, Aaron
+                          </b>
+                        </span>
+                        <span
+                          className="d-none d-xl-block"
+                        >
+                          <OverlayTrigger
+                            overlay={
+                              <ForwardRef
+                                id="WGTooltip"
+                                placement="right"
+                              >
+                                Wing Guard
+                                <br />
+                                <br />
+                                Algorithmically assigned via stats from 
+                                Base
+                                 lineups. See "Show Positional diagnostics" (gear icon on right) for more details.
+                              </ForwardRef>
+                            }
+                            placement="auto"
+                          >
+                            <small>
+                              WG
+                               - 
+                            </small>
+                          </OverlayTrigger>
+                          <b>
+                            Base
+                          </b>
+                           lineups
+                        </span>
+                        <span
+                          className="d-block d-xl-none"
+                        >
+                          <b>
+                            Base
+                          </b>
+                           set
+                        </span>
+                      </span>
+
+            onOffKey: "Baseline"
+
+            oppo_def_3p: Object {
+                        "value": 0.30443548387096775,
+                      }},
+        ]
+      }
+      show={false}
+      showHelp={false}
     />
     <FormRow>
       <FormGroup
@@ -41338,7 +45153,13 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
             onSelect={[Function]}
             text={
               <span>
-                Calculate RAPM metric (slow)
+                Calculate RAPM metric (
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+                , slow)
               </span>
             }
             truthVal={false}
@@ -41346,7 +45167,16 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
           <GenericTogglingMenuItem
             helpLink="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
             onSelect={[Function]}
-            text="Adjust for Luck"
+            text={
+              <span>
+                Adjust for Luck 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+              </span>
+            }
             truthVal={false}
           />
           <DropdownDivider
@@ -41354,7 +45184,16 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
           />
           <GenericTogglingMenuItem
             onSelect={[Function]}
-            text="Configure Manual Overrides..."
+            text={
+              <span>
+                Configure Manual Overrides... 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+              </span>
+            }
             truthVal={true}
           />
           <GenericTogglingMenuItem
@@ -41362,12 +45201,35 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
             text="Configure Luck Adjustments..."
             truthVal={false}
           />
+          <GenericTogglingMenuItem
+            onSelect={[Function]}
+            text={
+              <span>
+                Upload On-Ball Defense... 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  pre-alpha!
+                </span>
+              </span>
+            }
+            truthVal={false}
+          />
           <DropdownDivider
             role="separator"
           />
           <GenericTogglingMenuItem
             onSelect={[Function]}
-            text="Show Play Style Breakdowns"
+            text={
+              <span>
+                Show Play Style Breakdowns 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+              </span>
+            }
             truthVal={false}
           />
           <GenericTogglingMenuItem
@@ -41472,6 +45334,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
               GenericTableDataRow {
                 "cellMetaFn": [Function],
                 "dataObj": {
+                  code: "??"
+
                   def_2pmidr: <small
                                     style={
                                       Object {
@@ -41737,6 +45601,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                 "text": <PositionalDiagView
                   player={
                     {
+                      code: "??"
+
                       def_2pmidr: <small
                                             style={
                                               Object {
@@ -41980,6 +45846,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
               GenericTableDataRow {
                 "cellMetaFn": [Function],
                 "dataObj": {
+                  code: "??"
+
                   def_2pmidr: <small
                                     style={
                                       Object {
@@ -42245,6 +46113,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                 "text": <PositionalDiagView
                   player={
                     {
+                      code: "??"
+
                       def_2pmidr: <small
                                             style={
                                               Object {
@@ -42491,6 +46361,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
               GenericTableDataRow {
                 "cellMetaFn": [Function],
                 "dataObj": {
+                  code: "??"
+
                   def_2pmidr: <small
                                     style={
                                       Object {
@@ -42756,6 +46628,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                 "text": <PositionalDiagView
                   player={
                     {
+                      code: "??"
+
                       def_2pmidr: <small
                                             style={
                                               Object {
@@ -43002,6 +46876,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
               GenericTableDataRow {
                 "cellMetaFn": [Function],
                 "dataObj": {
+                  code: "??"
+
                   def_2pmidr: <small
                                     style={
                                       Object {
@@ -43267,6 +47143,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                 "text": <PositionalDiagView
                   player={
                     {
+                      code: "??"
+
                       def_2pmidr: <small
                                             style={
                                               Object {

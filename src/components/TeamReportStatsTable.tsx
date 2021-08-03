@@ -704,7 +704,7 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({startingState, da
               helpLink={showHelp ? "https://hoop-explorer.blogspot.com/2020/04/replacement-on-off-heres-elevator-pitch.html" : undefined}
             />
             <GenericTogglingMenuItem
-              text={<span>Show RAPM <span className="badge badge-pill badge-info">experimental!</span></span>}
+              text={<span>Show RAPM <span className="badge badge-pill badge-info">alpha!</span></span>}
               truthVal={incRapm}
               onSelect={() => setIncRapm(!incRapm)}
               helpLink={showHelp ? "https://hoop-explorer.blogspot.com/2020/03/understanding-team-report-onoff-page.html#RAPM" : undefined}
@@ -716,7 +716,7 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({startingState, da
             />
             <Dropdown.Divider />
             <GenericTogglingMenuItem
-              text="Adjust for Luck"
+              text={<span>Adjust for Luck <span className="badge badge-pill badge-info">alpha!</span></span>}
               truthVal={adjustForLuck}
               onSelect={() => setAdjustForLuck(!adjustForLuck)}
               helpLink={showHelp ? "https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html" : undefined}

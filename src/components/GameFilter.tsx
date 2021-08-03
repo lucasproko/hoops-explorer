@@ -45,6 +45,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
     //(manual overrides)
     manual: startManual,
     showPlayerManual: startShowPlayerManual,
+    showOnBallConfig: startShowOnBallConfig,
     //(luck)
     luck: startLuck,
     //(these fields are for the team view)
@@ -118,6 +119,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
           //(manual overrides)
           manual: startManual,
           showPlayerManual: startShowPlayerManual,
+          showOnBallConfig: startShowOnBallConfig,
           //(luck)
           luck: startLuck,
           onOffLuck: startOnOffLuck,

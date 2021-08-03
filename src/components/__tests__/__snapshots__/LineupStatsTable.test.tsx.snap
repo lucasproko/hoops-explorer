@@ -73,7 +73,16 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
           <GenericTogglingMenuItem
             helpLink="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
             onSelect={[Function]}
-            text="Adjust for Luck"
+            text={
+              <span>
+                Adjust for Luck 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+              </span>
+            }
             truthVal={false}
           />
           <GenericTogglingMenuItem
@@ -3825,7 +3834,16 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
           <GenericTogglingMenuItem
             helpLink="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
             onSelect={[Function]}
-            text="Adjust for Luck"
+            text={
+              <span>
+                Adjust for Luck 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+              </span>
+            }
             truthVal={true}
           />
           <GenericTogglingMenuItem
@@ -6782,7 +6800,16 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
           <GenericTogglingMenuItem
             helpLink="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
             onSelect={[Function]}
-            text="Adjust for Luck"
+            text={
+              <span>
+                Adjust for Luck 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+              </span>
+            }
             truthVal={false}
           />
           <GenericTogglingMenuItem
@@ -10618,7 +10645,16 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
           <GenericTogglingMenuItem
             helpLink="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
             onSelect={[Function]}
-            text="Adjust for Luck"
+            text={
+              <span>
+                Adjust for Luck 
+                <span
+                  className="badge badge-pill badge-info"
+                >
+                  alpha!
+                </span>
+              </span>
+            }
             truthVal={false}
           />
           <GenericTogglingMenuItem

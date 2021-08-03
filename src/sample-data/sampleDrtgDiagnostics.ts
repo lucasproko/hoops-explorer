@@ -23,6 +23,7 @@ export const sampleDrtgDiagnostics =
    "oppoFtPoss": 182.39999999999998,
    "oppoTov": 312,
    "teamStl": 126,
+   "teamDrb": 726,
    "opponentOrbPct": 0.274,
    "opponentFgPct": 0.40113350125944586,
    "teamOrbCreditToDefender": 0.29122292191435767,

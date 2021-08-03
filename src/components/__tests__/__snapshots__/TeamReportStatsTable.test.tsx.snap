@@ -1301,7 +1301,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                   <span
                     className="badge badge-pill badge-info"
                   >
-                    experimental!
+                    alpha!
                   </span>
                 </span>
               }
@@ -1318,7 +1318,16 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
             <GenericTogglingMenuItem
               helpLink="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
               onSelect={[Function]}
-              text="Adjust for Luck"
+              text={
+                <span>
+                  Adjust for Luck 
+                  <span
+                    className="badge badge-pill badge-info"
+                  >
+                    alpha!
+                  </span>
+                </span>
+              }
               truthVal={false}
             />
             <DropdownDivider
@@ -10853,7 +10862,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                   <span
                     className="badge badge-pill badge-info"
                   >
-                    experimental!
+                    alpha!
                   </span>
                 </span>
               }
@@ -10870,7 +10879,16 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
             <GenericTogglingMenuItem
               helpLink="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
               onSelect={[Function]}
-              text="Adjust for Luck"
+              text={
+                <span>
+                  Adjust for Luck 
+                  <span
+                    className="badge badge-pill badge-info"
+                  >
+                    alpha!
+                  </span>
+                </span>
+              }
               truthVal={true}
             />
             <DropdownDivider
@@ -24749,7 +24767,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                   <span
                     className="badge badge-pill badge-info"
                   >
-                    experimental!
+                    alpha!
                   </span>
                 </span>
               }
@@ -24766,7 +24784,16 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
             <GenericTogglingMenuItem
               helpLink="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
               onSelect={[Function]}
-              text="Adjust for Luck"
+              text={
+                <span>
+                  Adjust for Luck 
+                  <span
+                    className="badge badge-pill badge-info"
+                  >
+                    alpha!
+                  </span>
+                </span>
+              }
               truthVal={false}
             />
             <DropdownDivider
@@ -37637,7 +37664,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                   <span
                     className="badge badge-pill badge-info"
                   >
-                    experimental!
+                    alpha!
                   </span>
                 </span>
               }
@@ -37654,7 +37681,16 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
             <GenericTogglingMenuItem
               helpLink="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
               onSelect={[Function]}
-              text="Adjust for Luck"
+              text={
+                <span>
+                  Adjust for Luck 
+                  <span
+                    className="badge badge-pill badge-info"
+                  >
+                    alpha!
+                  </span>
+                </span>
+              }
               truthVal={false}
             />
             <DropdownDivider
@@ -53723,7 +53759,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                   <span
                     className="badge badge-pill badge-info"
                   >
-                    experimental!
+                    alpha!
                   </span>
                 </span>
               }
@@ -53740,7 +53776,16 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
             <GenericTogglingMenuItem
               helpLink="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
               onSelect={[Function]}
-              text="Adjust for Luck"
+              text={
+                <span>
+                  Adjust for Luck 
+                  <span
+                    className="badge badge-pill badge-info"
+                  >
+                    alpha!
+                  </span>
+                </span>
+              }
               truthVal={false}
             />
             <DropdownDivider
@@ -57666,7 +57711,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                   <span
                     className="badge badge-pill badge-info"
                   >
-                    experimental!
+                    alpha!
                   </span>
                 </span>
               }
@@ -57683,7 +57728,16 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
             <GenericTogglingMenuItem
               helpLink="https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html"
               onSelect={[Function]}
-              text="Adjust for Luck"
+              text={
+                <span>
+                  Adjust for Luck 
+                  <span
+                    className="badge badge-pill badge-info"
+                  >
+                    alpha!
+                  </span>
+                </span>
+              }
               truthVal={false}
             />
             <DropdownDivider

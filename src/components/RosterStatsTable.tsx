@@ -36,6 +36,7 @@ import { LineupStatsModel } from '../components/LineupStatsTable';
 import LuckAdjDiagView from "./diags/LuckAdjDiagView"
 import LuckConfigModal from "./shared/LuckConfigModal";
 import ManualOverrideModal from "./shared/ManualOverrideModal";
+import OnBallDefenseModal from './shared/OnBallDefenseModal';
 import ToggleButtonGroup from "./shared/ToggleButtonGroup";
 import PlayerPlayTypeDiagView from "./diags/PlayerPlayTypeDiagView"
 import AsyncFormControl from './shared/AsyncFormControl';
@@ -44,7 +45,7 @@ import AsyncFormControl from './shared/AsyncFormControl';
 import { CbbColors } from "../utils/CbbColors";
 import { CommonTableDefs } from "../utils/tables/CommonTableDefs";
 import { getCommonFilterParams, ParamDefaults, ParamPrefixes, GameFilterParams, LuckParams, ManualOverride } from "../utils/FilterModels";
-import { ORtgDiagnostics, RatingUtils } from "../utils/stats/RatingUtils";
+import { ORtgDiagnostics, RatingUtils, OnBallDefenseModel } from "../utils/stats/RatingUtils";
 import { PositionUtils } from "../utils/stats/PositionUtils";
 import { LuckUtils } from "../utils/stats/LuckUtils";
 import { OverrideUtils } from "../utils/stats/OverrideUtils";
@@ -144,6 +145,13 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
     [] : gameFilterParams.manual
   );
 
+  const [ onBallDefenseByCode, setOnBallDefenseByCode ] = useState({} as Record<string, OnBallDefenseModel>);
+
+  const [ showOnBallConfig, setShowOnBallConfig ] = useState(_.isNil(gameFilterParams.showOnBallConfig) ?
+    false : gameFilterParams.showOnBallConfig
+  );
+
+
   // Transform the list into a map of maps of values
   const manualOverridesAsMap = OverrideUtils.buildOverrideAsMap(manualOverrides);
   const overridableStatsList = _.keys(OverrideUtils.getOverridableStats(ParamPrefixes.player));
@@ -219,12 +227,13 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
       factorMins: factorMins,
       onOffLuck: adjustForLuck,
       showPlayerOnOffLuckDiags: showLuckAdjDiags,
-      showPlayerManual: showManualOverrides
+      showPlayerManual: showManualOverrides,
+      showOnBallConfig: showOnBallConfig
     };
     onChangeState(newState);
 
   }, [ sortBy, filterStr, showDiagMode, alwaysShowBaseline, expandedView, possAsPct, showPositionDiags,
-      showPlayTypes, luckConfig, adjustForLuck, showLuckAdjDiags, showManualOverrides, manualOverrides, calcRapm, factorMins
+      showPlayTypes, luckConfig, adjustForLuck, showLuckAdjDiags, showManualOverrides, showOnBallConfig, manualOverrides, calcRapm, factorMins
     ]);
 
   // 2] Data Model
@@ -241,8 +250,6 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
     rosterStats.global || [], teamStats.global?.roster, showPlayTypes, teamSeasonLookup
   ); //TODO: which set do I actually want to use for positional calcs here?
 
-
-
   // 3.0] RAPM
 
   const [ cachedRapm, setCachedRapm ] = useState({} as Record<string, any>);
@@ -250,7 +257,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
   useEffect(() => {
     //ensure we never show the _wrong_ RAPM
     setCachedRapm({});
-  }, [ dataEvent, adjustForLuck, manualOverrides ]);
+  }, [ dataEvent, adjustForLuck, manualOverrides, onBallDefenseByCode ]);
 
   const positionFromPlayerKey = LineupTableUtils.buildPositionPlayerMap(rosterStats.global, teamSeasonLookup);
 
@@ -312,7 +319,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
         try {
           const key = (0 == i) ? "baseline" : (onIndex == i) ? "on" : "off";
           const rapmPriorsBaseline = LineupTableUtils.buildBaselinePlayerInfo(
-            rosterStats[key]!, globalRosterStatsByCode, teamStats[key]!, avgEfficiency
+            rosterStats[key]!, globalRosterStatsByCode, teamStats[key]!, avgEfficiency, onBallDefenseByCode
           );
           return buildRapm(lineupStat, rapmPriorsBaseline);
         } catch (err) { //(data not ready, ignore for now)
@@ -475,6 +482,8 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
         // (note this duplicates LineupTableUtils.buildBaselinePlayerInfo, but that isn't called unless RAPM is enabled)
         const playerCode = teamStats.global?.roster ?
           (stat.player_array?.hits?.hits?.[0]?._source?.player?.code || "??") : "??";
+        stat.code = playerCode; //(ensure it exists)
+
         const rosterEntry = teamStats.global?.roster?.[playerCode] || {};
         if (!_.isEmpty(rosterEntry)) {
           stat.roster = rosterEntry;
@@ -522,15 +531,18 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
 
         // Ratings:
 
+        const calcDiagModeOff = showDiagMode;
+        const calcDiagModeDef = showDiagMode || !_.isEmpty(onBallDefenseByCode);
+
         const [
           oRtg, adjORtg, rawORtg, rawAdjORtg, oRtgDiag
         ] = RatingUtils.buildORtg(
             stat, globalRosterStatsByCode,
-            avgEfficiency, showDiagMode, adjustForLuck || overrodeOffFields
+            avgEfficiency, calcDiagModeOff, adjustForLuck || overrodeOffFields
           );
         const [
           dRtg, adjDRtg, rawDRtg, rawAdjDRtg, dRtgDiag
-        ] = RatingUtils.buildDRtg(stat, avgEfficiency, showDiagMode, adjustForLuck);
+        ] = RatingUtils.buildDRtg(stat, avgEfficiency, calcDiagModeDef, adjustForLuck);
         stat.off_rtg = {
           value: oRtg?.value, old_value: rawORtg?.value,
           override: adjustmentReason
@@ -561,6 +573,14 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
         };
         stat.diag_def_rtg = dRtgDiag;
 
+        // Apply on-ball defense if it exists for this player
+        if (dRtgDiag && onBallDefenseByCode.hasOwnProperty(playerCode)) {
+          const onBallDefense = onBallDefenseByCode[playerCode]!;
+          const onBallDiags = RatingUtils.buildOnBallDefenseAdjustmentsPhase1(stat, dRtgDiag, onBallDefense);
+          dRtgDiag.onBallDef = onBallDefense;
+          dRtgDiag.onBallDiags = onBallDiags;
+        }
+
         // Positional info (NOTE - no dependencies on other processing like ORtg):
 
         const [ posConfs, posConfsDiags ] = PositionUtils.buildPositionConfidences(stat, heightIn);
@@ -584,16 +604,18 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
             stat.def_adj_rapm_prod = rapmPlaceholder;
           } else {
             const rapm = cachedRapm?.[key]?.[stat.key] || {};
+            // Always calc defensive (used for on ball)
+            stat.def_adj_rapm = rapm.def_adj_rapm;
+            stat.def_adj_rapm_prod = rapm.off_adj_rapm ? { value: (rapm.def_adj_rapm?.value || 0)*stat.def_team_poss_pct.value! } : undefined;
             if (expandedView) {
               stat.off_adj_rapm = rapm.off_adj_rapm;
-              stat.def_adj_rapm = rapm.def_adj_rapm;
               stat.off_adj_rapm_prod = rapm.off_adj_rapm ? { value: (rapm.off_adj_rapm?.value || 0)*stat.off_team_poss_pct.value! } : undefined;
-              stat.def_adj_rapm_prod = rapm.off_adj_rapm ? { value: (rapm.def_adj_rapm?.value || 0)*stat.def_team_poss_pct.value! } : undefined;
             } else {
               stat.off_adj_rapm = (rapm.off_adj_rapm && rapm.def_adj_rapm) ?
                 { value: (rapm.off_adj_rapm?.value || 0) - (rapm.def_adj_rapm?.value || 0) } :
                 undefined;
               stat.off_adj_rapm_prod = stat.off_adj_rapm ? { value: (stat.off_adj_rapm.value || 0)*stat.off_team_poss_pct.value! } : undefined;
+
             }
           }
         }
@@ -611,6 +633,14 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
     });
     return player;
   }).value();
+
+  // If we have on-ball defense, then need to do a quick aggregation of the personal DRtgs
+  if (!_.isEmpty(onBallDefenseByCode)) {
+    _.forEach([ "on", "off", "baseline" ], loc => {
+      const playerList = allPlayers.filter((p: any) => !_.isNil(p[loc]?.off_title)).map((p: any) => p[loc]!);
+      RatingUtils.injectOnBallDefenseAdjustmentsPhase2(playerList);
+    });
+  }
 
   const filteredPlayers = allPlayers.filter((player) => {
     const strToTest = (player.on?.key || player.off?.key || player.baseline?.key || "") +
@@ -631,7 +661,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
       _.isNil(p.on?.off_title) ? [ ] : _.flatten([
         [ GenericTableOps.buildDataRow(p.on, offPrefixFn, offCellMetaFn) ],
         expandedView ? [ GenericTableOps.buildDataRow(p.on, defPrefixFn, defCellMetaFn) ] : [],
-        p.on?.diag_off_rtg ?
+        showDiagMode && p.on?.diag_off_rtg ?
           [ GenericTableOps.buildTextRow(<RosterStatsDiagView ortgDiags={p.on?.diag_off_rtg} drtgDiags={p.on?.diag_def_rtg}/>, "small") ] : [],
         showPositionDiags ?
           [ GenericTableOps.buildTextRow(<PositionalDiagView player={p.on} teamSeason={teamSeasonLookup} showHelp={showHelp}/>, "small") ] : [],
@@ -656,7 +686,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
       _.isNil(p.off?.off_title) ? [ ] : _.flatten([
         [ GenericTableOps.buildDataRow(p.off, offPrefixFn, offCellMetaFn) ],
         expandedView ? [ GenericTableOps.buildDataRow(p.off, defPrefixFn, defCellMetaFn) ] : [],
-        p.off?.diag_off_rtg ?
+        showDiagMode && p.off?.diag_off_rtg ?
           [ GenericTableOps.buildTextRow(<RosterStatsDiagView ortgDiags={p.off?.diag_off_rtg} drtgDiags={p.off?.diag_def_rtg}/>, "small") ] : [],
         showPositionDiags ?
           [ GenericTableOps.buildTextRow(<PositionalDiagView player={p.off} teamSeason={teamSeasonLookup} showHelp={showHelp}/>, "small") ] : [],
@@ -681,7 +711,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
       (skipBaseline || _.isNil(p.baseline?.off_title)) ? [ ] : _.flatten([
         [ GenericTableOps.buildDataRow(p.baseline, offPrefixFn, offCellMetaFn) ],
         expandedView ? [ GenericTableOps.buildDataRow(p.baseline, defPrefixFn, defCellMetaFn) ] : [],
-        p.baseline?.diag_off_rtg ?
+        showDiagMode && p.baseline?.diag_off_rtg ?
           [ GenericTableOps.buildTextRow(<RosterStatsDiagView ortgDiags={p.baseline?.diag_off_rtg} drtgDiags={p.baseline?.diag_def_rtg}/>, "small") ] : [],
         showPositionDiags ?
           [ GenericTableOps.buildTextRow(<PositionalDiagView player={p.baseline} teamSeason={teamSeasonLookup} showHelp={showHelp}/>, "small") ] : [],
@@ -846,6 +876,18 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
         luck={luckConfig}
         showHelp={showHelp}
       />
+      <OnBallDefenseModal
+        show={showOnBallConfig}
+        players={rosterStats.baseline || []}
+        onHide={() => setShowOnBallConfig(!showOnBallConfig)}
+        onSave={(onBallDefense: OnBallDefenseModel[]) => {
+          setOnBallDefenseByCode(
+            _.chain(onBallDefense).groupBy(p => p.code).mapValues(l => l[0]!).value()
+          );
+        }}
+        onBallDefense={_.values(onBallDefenseByCode)}
+        showHelp={false}
+      />
       <Form.Row>
         <Form.Group as={Col} sm="6">
           <InputGroup>
@@ -902,19 +944,19 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
               onSelect={() => toggleFactorMins()}
             />
             <GenericTogglingMenuItem
-              text={<span>Calculate RAPM metric (slow)</span>}
+              text={<span>Calculate RAPM metric (<span className="badge badge-pill badge-info">alpha!</span>, slow)</span>}
               truthVal={calcRapm}
               onSelect={() => setCalcRapm(!calcRapm)}
             />
             <GenericTogglingMenuItem
-              text="Adjust for Luck"
+              text={<span>Adjust for Luck <span className="badge badge-pill badge-info">alpha!</span></span>}
               truthVal={adjustForLuck}
               onSelect={() => setAdjustForLuck(!adjustForLuck)}
               helpLink={showHelp ? "https://hoop-explorer.blogspot.com/2020/07/luck-adjustment-details.html" : undefined}
             />
             <Dropdown.Divider />
             <GenericTogglingMenuItem
-              text="Configure Manual Overrides..."
+              text={<span>Configure Manual Overrides... <span className="badge badge-pill badge-info">alpha!</span></span>}
               truthVal={showManualOverrides}
               onSelect={() => setShowManualOverrides(!showManualOverrides)}
             />
@@ -923,9 +965,14 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
               truthVal={false}
               onSelect={() => setShowLuckConfig(true)}
             />
+            <GenericTogglingMenuItem
+              text={<span>Upload On-Ball Defense... <span className="badge badge-pill badge-info">pre-alpha!</span></span>}
+              truthVal={showOnBallConfig}
+              onSelect={() => setShowOnBallConfig(true)}
+            />
             <Dropdown.Divider />
             <GenericTogglingMenuItem
-              text="Show Play Style Breakdowns"
+              text={<span>Show Play Style Breakdowns <span className="badge badge-pill badge-info">alpha!</span></span>}
               truthVal={showPlayTypes}
               onSelect={() => setShowPlayTypes(!showPlayTypes)}
             />
