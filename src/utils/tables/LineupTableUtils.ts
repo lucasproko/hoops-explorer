@@ -29,7 +29,6 @@ export class LineupTableUtils {
     globalRosterStatsByCode: Record<string, any>, teamStat: Record<string, any>,
     avgEfficiency: number, onBallDefenseByCode: Record<string, OnBallDefenseModel>  = {}
   ) {
-    //(note changes here will likely need to be reflected in TeamReportStatsTable::insertExtraInfo)
     const baselinePlayerInfo = _.fromPairs(
       (players || []).map((mutableP: any) => {
         const playerAdjustForLuckOff = false; //(for now, no offensive luck calcs, see also below when time to set for true)

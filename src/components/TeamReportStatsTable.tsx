@@ -53,6 +53,8 @@ import { TeamStatsModel } from '../components/TeamStatsTable';
 import { LuckUtils, OffLuckAdjustmentDiags, DefLuckAdjustmentDiags, LuckAdjustmentBaseline } from "../utils/stats/LuckUtils";
 import { TableDisplayUtils } from "../utils/tables/TableDisplayUtils";
 import { RosterTableUtils } from "../utils/tables/RosterTableUtils";
+import { TeamReportTableUtils } from "../utils/tables/TeamReportTableUtils";
+import { LineupTableUtils } from "../utils/tables/LineupTableUtils";
 
 /** Convert from LineupStatsModel into this */
 export type TeamReportStatsModel = {
@@ -246,73 +248,20 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({startingState, da
         inLineupStats, incReplacementOnOff, regressDiffs, repOnOffDiagModeNumLineups
       );
       if (incRapm) {
-        try {
-          // Do some prep on the individual stats we'll use for the prior:
-          const globalRosterStatsByCode = RosterTableUtils.buildRosterTableByCode(rosterStats.global || [], teamStats.global?.roster);
-          const insertExtraInfo = (playersTmp: Array<any>) => {
-            //TODO: port this over to LineupTableUtils.buildBaselinePlayerInfo to avoid duplication
-            if (playersTmp) {
-              const players = _.cloneDeep(playersTmp);
-              players.forEach((stat) => {
-                // Only regress luck - basically the 3P shooting vs the on-off sample
-                const defLuckAdj = LuckUtils.calcDefPlayerLuckAdj(
-                  stat, stat, avgEfficiency
-                );
-                if (stat.doc_count) {
-                  LuckUtils.injectLuck(stat, undefined, defLuckAdj);
-                }
-                const [
-                  oRtg, adjORtg, rawORtg, rawAdjORtg, oRtgDiag
-                ] = RatingUtils.buildORtg(
-                    stat, globalRosterStatsByCode,
-                    avgEfficiency, false, false
-                  );
-                const [
-                  dRtg, adjDRtg, rawDRtg, rawAdjDRtg, dRtgDiag
-                ] = RatingUtils.buildDRtg(stat, avgEfficiency, false, true);
-                stat.off_adj_rtg = adjORtg;
-                stat.def_adj_rtg = adjDRtg;
-              });
-              return _.keyBy(players, "key");
-            } else return {};
-          }
-          const rapmPriorsBaseline = insertExtraInfo(rosterStats.baseline || []);
-
-          // Now do all the RAPM work
-          const rapmContext = RapmUtils.buildPlayerContext(
-            tempTeamReport.players || [], lineupStats.lineups || [],
-            rapmPriorsBaseline,
-            avgEfficiency, undefined, rapmPriorMode
-          );
-          const [ offRapmWeights, defRapmWeights ] = RapmUtils.calcPlayerWeights(rapmContext);
-          const preProcDiags = RapmUtils.calcCollinearityDiag(offRapmWeights, rapmContext);
-          const [ offRapmInputs, defRapmInputs ] = RapmUtils.pickRidgeRegression(
-            offRapmWeights, defRapmWeights, rapmContext, preProcDiags.adaptiveCorrelWeights, (rapmDiagMode != "")
-          );
-          RapmUtils.injectRapmIntoPlayers(
-            tempTeamReport.players || [], offRapmInputs, defRapmInputs, statsAverages, rapmContext, preProcDiags.adaptiveCorrelWeights
-          );
-          if (adjustForLuck) { // (Calculate RAPM without luck, for display purposes)
-            const [ offNoLuckRapmInputs, defNoLuckRapmInputs ] = RapmUtils.pickRidgeRegression(
-              offRapmWeights, defRapmWeights, rapmContext, preProcDiags.adaptiveCorrelWeights, (rapmDiagMode != ""),
-              true //<- uses old_value (ie pre-luck-adjusted)
-            );
-            RapmUtils.injectRapmIntoPlayers(
-              tempTeamReport.players || [], offNoLuckRapmInputs, defNoLuckRapmInputs, statsAverages, rapmContext, preProcDiags.adaptiveCorrelWeights,
-              true //<- only applies RAPM to old_values
-            );
-          }
-          setRapmInfo({
-            ctx: rapmContext,
-            preProcDiags: preProcDiags,
-            offWeights: offRapmWeights,
-            defWeights: defRapmWeights,
-            offInputs: offRapmInputs,
-            defInputs: defRapmInputs
-          });
-        } catch (err) {
-          console.log("ERROR CALLING (R)APM DIAGS: " + err.message, err);
-        }
+        // Do some prep on the individual stats we'll use for the prior:
+        const globalRosterStatsByCode = RosterTableUtils.buildRosterTableByCode(
+          rosterStats.global || [], teamStats.global?.roster
+        );
+        const rapmPriorsBaseline = LineupTableUtils.buildBaselinePlayerInfo(
+          _.cloneDeep(rosterStats.baseline || []),
+          globalRosterStatsByCode, teamStats.baseline, avgEfficiency
+        );
+        const rapmInfo = TeamReportTableUtils.buildOrInjectRapm( //(mutates tempTeamReport)
+          lineupStats.lineups || [], rapmPriorsBaseline,
+          adjustForLuck, avgEfficiency,
+          tempTeamReport, rapmPriorMode, rapmDiagMode
+        );
+        if (rapmInfo) setRapmInfo(rapmInfo);
       }
       setTeamReport(tempTeamReport);
       setPlayersWithAdjEff(tempTeamReport?.players || []);

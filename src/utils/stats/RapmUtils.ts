@@ -156,6 +156,9 @@ export type RapmProcessingInputs = {
 };
 
 export type RapmInfo = {
+  // Output:
+  enrichedPlayers: Array<Record<string, any>>,
+  // All the diags
   ctx: RapmPlayerContext,
   preProcDiags?: RapmPreProcDiagnostics,
   offWeights: any,
@@ -218,6 +221,7 @@ export class RapmUtils {
         } else return {} as Record<string, number>;
       }),
     };
+    //console.log(JSON.stringify(returnVal));
     return returnVal;
   }
 
@@ -249,8 +253,8 @@ export class RapmUtils {
     ,
     priorValueKey: "value" | "old_value" = "value" //(allows use of luck adjusted parameters in prior calcs only)
     ,
-    removalPct: number = 0.06,
     priorMode: number = -1, //(or 0-1 for fixed strong prior)
+    removalPct: number = 0.06,
     // REMOVED CODE:
 //    unbiasWeight: number = 0.0, //TODO; with the new prior code, don't use this (used to be 2.0)
   ): RapmPlayerContext {
@@ -494,11 +498,14 @@ export class RapmUtils {
     statsAverages: Record<string, any>,
     ctx: RapmPlayerContext,
     adaptiveCorrelWeights: number[] | undefined,
-    useOldVals: boolean = false
+    readValueKey: "value" | "old_value" = "value",
+    writeValueKey: "value" | "old_value" = "value"
   ) {
+    const writeOtherVals = writeValueKey == "old_value";
+    const readOtherVals = readValueKey == "old_value";
     const getVal = (o: any) => { //(in practice we're going to discard fields without old_value anyway)
-      return useOldVals ?
-        ((_.isNil(o?.old_value) ? o?.value : o?.old_value) || 0) :
+      return readOtherVals ?
+        ((_.isNil(o?.[readValueKey]) ? o?.value : o?.[readValueKey]) || 0) :
         o?.value || 0;
     };
     if (offRapmInput.solnMatrix && defRapmInput.solnMatrix) {
@@ -507,7 +514,7 @@ export class RapmUtils {
         def: defRapmInput
       };
       // Get a map (per field) of arrays (per player) of the RAPM results
-      const fieldToPlayerRapmArray = (useOldVals ?
+      const fieldToPlayerRapmArray = (writeOtherVals ?
         _.chain(LuckUtils.affectedPartialFieldnames).filter(p => p != "ppp") :
         _.chain(CommonTableDefs.onOffReportReplacement).omit(
           [ "title", "sep0", "ppp", "sep1", "sep2", "sep3", "sep4", "poss", "adj_opp" ]
@@ -521,7 +528,7 @@ export class RapmUtils {
           statsAverages[`def_${partialField}`]?.value || getVal(ctx.teamInfo[`def_${partialField}`])
         ];
         const [ offVal, defVal ] = RapmUtils.calcLineupOutputs(
-          partialField, offOffset, defOffset, ctx, adaptiveCorrelWeights, useOldVals //TODO: adaptive weight here
+          partialField, offOffset, defOffset, ctx, adaptiveCorrelWeights, readOtherVals //TODO: adaptive weight here
         );
         const vals = {
           off: offVal, def: defVal
@@ -545,20 +552,19 @@ export class RapmUtils {
 
       }).fromPairs().value(); //ie returns [ ON1, OFF1, ON2, OFF2, ... ] where ON/OFF as above
 
-      const keyForValOrOldVal = useOldVals ? "old_value" : "value";
       players.filter((p) => !ctx.removedPlayers.hasOwnProperty(p.playerId)).forEach((p) => {
         const index = ctx.playerToCol[p.playerId];
         const playerRapm = _.chain(fieldToPlayerRapmArray).toPairs().map((kv) => {
           return [ kv[0] , {
-            [keyForValOrOldVal]: kv[1][index],
-            override: useOldVals ? ctx.teamInfo[kv[0]]?.override : undefined
+            [writeValueKey]: kv[1][index],
+            override: writeOtherVals ? ctx.teamInfo[kv[0]]?.override : undefined
           } ];
         }).fromPairs().merge({
           key: `RAPM ${p.playerId}`,
           off_poss: ctx.teamInfo.off_poss, def_poss: ctx.teamInfo.def_poss
         }).value();
 
-        p.rapm = useOldVals ? _.merge(p.rapm, playerRapm)  : playerRapm;
+        p.rapm = writeOtherVals ? _.merge(p.rapm, playerRapm)  : playerRapm;
       });
     } //(else do nothing)
   }
@@ -603,11 +609,12 @@ export class RapmUtils {
     ctx: RapmPlayerContext,
     adaptiveCorrelWeights: number[] | undefined,
     diagMode: boolean,
-    useOldValIfPossible: boolean = false
+    valueKey: "value" | "old_value" = "value" // not indiv lineup numbers - just player and team aggregates
   ) {
+    const useOldValIfPossible = valueKey == "old_value";
     const getVal = (o: any) => {
       return useOldValIfPossible ?
-        ((_.isNil(o?.old_value) ? o?.value : o?.old_value) || 0) :
+        ((_.isNil(o?.[valueKey]) ? o?.value : o?.[valueKey]) || 0) :
         o?.value || 0;
     };
     // Some test + diag artefacts

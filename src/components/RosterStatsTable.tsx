@@ -53,8 +53,8 @@ import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
 import { TableDisplayUtils } from "../utils/tables/TableDisplayUtils";
 import { LineupTableUtils } from "../utils/tables/LineupTableUtils";
 import { RosterTableUtils } from "../utils/tables/RosterTableUtils";
+import { TeamReportTableUtils } from "../utils/tables/TeamReportTableUtils";
 import { QueryUtils } from "../utils/QueryUtils";
-import { RapmUtils } from "../utils/stats/RapmUtils";
 import { LineupUtils } from "../utils/stats/LineupUtils";
 
 export type RosterStatsModel = {
@@ -282,35 +282,14 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
       adjustForLuck, luckConfig.base, avgEfficiency,
       false, teamSeasonLookup, positionFromPlayerKey, playerInfo
     );
-    const tempTeamReport = LineupUtils.lineupToTeamReport({ //(calcs for both luck and non-luck versions)
-      lineups: preRapmTableData
-    });
-
-    // Has to be in this order, else injectRapmIntoPlayers doesn't work properly
-    ([ "value", "old_value"  ] as Array<"value" | "old_value">).filter(valueKey => {
-      if (valueKey == "old_value" && !adjustForLuck) return false; //(nothing to do)
-      else return true;
-    }).forEach(valueKey => {
-      const rapmContext = RapmUtils.buildPlayerContext(
-        tempTeamReport.players || [], preRapmTableData,
-        playerInfo,
-        avgEfficiency,
-        valueKey //<- with or without luck adjustment
-      );
-      const [ offRapmWeights, defRapmWeights ] = RapmUtils.calcPlayerWeights(rapmContext);
-      const preProcDiags = RapmUtils.calcCollinearityDiag(offRapmWeights, rapmContext);
-      const [ offRapmInputs, defRapmInputs ] = RapmUtils.pickRidgeRegression(
-        offRapmWeights, defRapmWeights, rapmContext, preProcDiags.adaptiveCorrelWeights, false,
-        valueKey == "old_value" //<- if true, uses old_value (ie pre-luck-adjusted)
-      );
-
-      RapmUtils.injectRapmIntoPlayers(
-        tempTeamReport.players || [], offRapmInputs, defRapmInputs, {}, rapmContext, preProcDiags.adaptiveCorrelWeights,
-        valueKey == "old_value" //<- if true, uses/applies old_value (ie pre-luck-adjusted)
-      );
-    });
+    const rapmInfo = TeamReportTableUtils.buildOrInjectRapm(
+      preRapmTableData, playerInfo,
+      adjustForLuck, avgEfficiency
+    );
     return _.fromPairs(
-      (tempTeamReport.players || []).map(p => [ p.playerId, { off_adj_rapm: p.rapm?.off_adj_ppp, def_adj_rapm: p.rapm?.def_adj_ppp }])
+      (rapmInfo?.enrichedPlayers || []).map(
+        p => [ p.playerId, { off_adj_rapm: p.rapm?.off_adj_ppp, def_adj_rapm: p.rapm?.def_adj_ppp }]
+      )
     );
   };
 
