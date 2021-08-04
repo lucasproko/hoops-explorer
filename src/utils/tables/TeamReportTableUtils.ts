@@ -20,13 +20,7 @@ export class TeamReportTableUtils {
 
     //TODO (#173): ^ similar for on-ball defense adjustments. Both these only affect the priors, so
     //need some logic to loop over before/after options for luck/!luck
-
-    //TODO (#162): note luck isn't quite the same, because the team and player stats here
-    // are adjusted for luck whereas for (over-?)caution reasons in other RAPM pages I only inject luck into the player
-    // defensive stats, and need to check if I do anything with the team stats)
-    // (ideally I'd make this code consistent for now but I made a bit of a mess of the mutation here
-    //  - for good performance reasons! - so I'd need to do some refactoring first)
-
+    
     const tempTeamReport = preCalcTeamReport || LineupUtils.lineupToTeamReport({ //(calcs for both luck and non-luck versions)
       lineups: enrichedLineups
     });
