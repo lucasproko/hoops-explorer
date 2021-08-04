@@ -263,49 +263,52 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
 
   /** For a given lineup set, calculate RAPM as quickly as possible */
   const buildRapm = (lineupStats: LineupStatsModel, playerInfo: Record<string, any>) => {
-    //TODO: manual edits don't show as override (so can't see original value) - fix at some point
+    //TODO (#4): manual edits don't show as override (so can't see original value) - fix at some point
     // but not worth delaying over
 
-    //TODO: note luck isn't quite the same, because the team and player stats here
+    //TODO (#173): ^ similar for on-ball defense adjustments. Both these only affect the priors, so
+    //need some logic to loop over before/after options for luck/!luck
+
+    //TODO (#162): note luck isn't quite the same, because the team and player stats here
     // are adjusted for luck whereas for (over-?)caution reasons in other RAPM pages I only inject luck into the player
     // defensive stats, and need to check if I do anything with the team stats)
     // (ideally I'd make this code consistent for now but I made a bit of a mess of the mutation here
     //  - for good performance reasons! - so I'd need to do some refactoring first)
 
-    const preRapmTableData = LineupTableUtils.buildEnrichedLineups(
+    const preRapmTableData = LineupTableUtils.buildEnrichedLineups( //(calcs for both luck and non-luck versions)
       lineupStats.lineups || [],
       teamStats.global, rosterStats.global, teamStats.baseline,
         //(the baseline vs on/off here doesn't make any practical difference)
       adjustForLuck, luckConfig.base, avgEfficiency,
       false, teamSeasonLookup, positionFromPlayerKey, playerInfo
     );
-    const tempTeamReport = LineupUtils.lineupToTeamReport({
+    const tempTeamReport = LineupUtils.lineupToTeamReport({ //(calcs for both luck and non-luck versions)
       lineups: preRapmTableData
     });
-    const rapmContext = RapmUtils.buildPlayerContext(
-      tempTeamReport.players || [], preRapmTableData,
-      playerInfo,
-      avgEfficiency,
-    );
-    const [ offRapmWeights, defRapmWeights ] = RapmUtils.calcPlayerWeights(rapmContext);
-    const preProcDiags = RapmUtils.calcCollinearityDiag(offRapmWeights, rapmContext);
-    const [ offRapmInputs, defRapmInputs ] = RapmUtils.pickRidgeRegression(
-      offRapmWeights, defRapmWeights, rapmContext, preProcDiags.adaptiveCorrelWeights, false
-    );
 
-    RapmUtils.injectRapmIntoPlayers(
-      tempTeamReport.players || [], offRapmInputs, defRapmInputs, {}, rapmContext, preProcDiags.adaptiveCorrelWeights
-    );
-    if (adjustForLuck) { // (Calculate RAPM without luck, for display purposes)
-      const [ offNoLuckRapmInputs, defNoLuckRapmInputs ] = RapmUtils.pickRidgeRegression(
+    // Has to be in this order, else injectRapmIntoPlayers doesn't work properly
+    ([ "value", "old_value"  ] as Array<"value" | "old_value">).filter(valueKey => {
+      if (valueKey == "old_value" && !adjustForLuck) return false; //(nothing to do)
+      else return true;
+    }).forEach(valueKey => {
+      const rapmContext = RapmUtils.buildPlayerContext(
+        tempTeamReport.players || [], preRapmTableData,
+        playerInfo,
+        avgEfficiency,
+        valueKey //<- with or without luck adjustment
+      );
+      const [ offRapmWeights, defRapmWeights ] = RapmUtils.calcPlayerWeights(rapmContext);
+      const preProcDiags = RapmUtils.calcCollinearityDiag(offRapmWeights, rapmContext);
+      const [ offRapmInputs, defRapmInputs ] = RapmUtils.pickRidgeRegression(
         offRapmWeights, defRapmWeights, rapmContext, preProcDiags.adaptiveCorrelWeights, false,
-        true //<- uses old_value (ie pre-luck-adjusted)
+        valueKey == "old_value" //<- if true, uses old_value (ie pre-luck-adjusted)
       );
+
       RapmUtils.injectRapmIntoPlayers(
-        tempTeamReport.players || [], offNoLuckRapmInputs, defNoLuckRapmInputs, {}, rapmContext, preProcDiags.adaptiveCorrelWeights,
-        true //<- only applies RAPM to old_values
+        tempTeamReport.players || [], offRapmInputs, defRapmInputs, {}, rapmContext, preProcDiags.adaptiveCorrelWeights,
+        valueKey == "old_value" //<- if true, uses/applies old_value (ie pre-luck-adjusted)
       );
-    }
+    });
     return _.fromPairs(
       (tempTeamReport.players || []).map(p => [ p.playerId, { off_adj_rapm: p.rapm?.off_adj_ppp, def_adj_rapm: p.rapm?.def_adj_ppp }])
     );

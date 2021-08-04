@@ -107,7 +107,7 @@ describe("RapmUtils", () => {
     [ 0.0, 0.20 ].forEach((threshold) => {
       const results = RapmUtils.buildPlayerContext(
         onOffReport.players || [], lineupReportWithExtra.lineups || [], playersInfoByKey, 100.0,
-        threshold,
+        "value", threshold,
       );
       expect(_.omit(results, ["filteredLineups", "teamInfo"])).toMatchSnapshot();
       expect(results.filteredLineups.length).toEqual(threshold > 0.05 ? 5 : 5); //(filtering now v rare)
@@ -120,7 +120,7 @@ describe("RapmUtils", () => {
     [ 0.0, 2.0 ].forEach((unbiasWeight) => { //(we don't really support unbiasWeight any more but keept his test for now)
       const onOffReport = LineupUtils.lineupToTeamReport(lineupReport);
       var context = RapmUtils.buildPlayerContext(
-        onOffReport.players || [], lineupReport.lineups || [], playersInfoByKey, 100.0, 0.0
+        onOffReport.players || [], lineupReport.lineups || [], playersInfoByKey, 100.0, "value", 0.0
       );
       context.unbiasWeight = unbiasWeight;
       const results = RapmUtils.calcPlayerWeights(context);
@@ -148,7 +148,7 @@ describe("RapmUtils", () => {
     [ -1, 0.5 ].forEach((strongWeight) => {
       const onOffReport = LineupUtils.lineupToTeamReport(lineupReport);
       const context = RapmUtils.buildPlayerContext(
-        onOffReport.players || [], lineupReport.lineups || [], playersInfoByKey, 100.0, 0.0, strongWeight
+        onOffReport.players || [], lineupReport.lineups || [], playersInfoByKey, 100.0, "value", 0.0, strongWeight
       );
       const adapativeWeights = (onOffReport.players || []).map(p => 0.5);
       const results = RapmUtils.calcLineupOutputs(

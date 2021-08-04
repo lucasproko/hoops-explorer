@@ -187,10 +187,14 @@ export class RapmUtils {
   static buildPriors(
     playersBaseline: Record<string, any>,
     colToPlayer: Array<string>,
-    priorMode: number //(-1 for adaptive mode, -2 for no prior)
+    priorMode: number, //(-1 for adaptive mode, -2 for no prior)
+    valueKey: "value" | "old_value" = "value" //(allows use of luck adjusted parameters)
   ): RapmPriorInfo {
+    const getVal = (o: any) => {
+      return (_.isNil(o?.[valueKey]) ? o?.value : o?.[valueKey]) || 0;
+    };
     const noWeakPrior = priorMode < -1.5;
-    return {
+    const returnVal = {
       includeStrong: {}, //(see RapmPriorInfo type definition, not needed unless unbiasWeight > 0)
       strongWeight: noWeakPrior ? 0 : priorMode, //(how much of a lineup is attributed to RAPM, and how much to the prior)
         //(-2 means no prior at all)
@@ -200,8 +204,8 @@ export class RapmUtils {
         const stats = playersBaseline[player] || {};
         if (stats) {
           return {
-            off_adj_ppp: stats.off_adj_rtg?.value || 0,
-            def_adj_ppp: stats.def_adj_rtg?.value || 0,
+            off_adj_ppp: getVal(stats.off_adj_rtg),
+            def_adj_ppp: getVal(stats.def_adj_rtg),
           } as Record<string, number>;
         } else return {} as Record<string, number>;
       }),
@@ -209,11 +213,12 @@ export class RapmUtils {
         const stats = playersBaseline[player] || {};
         if (stats) {
           return {
-            off_adj_ppp: stats.off_adj_rtg?.value || 0,
+            off_adj_ppp: getVal(stats.off_adj_rtg),
           } as Record<string, number>;
         } else return {} as Record<string, number>;
       }),
     };
+    return returnVal;
   }
 
   /** For "recursive" prior */
@@ -241,6 +246,8 @@ export class RapmUtils {
     playersBaseline: Record<string, any> //(used for building priors - most general info)
     ,
     avgEfficiency: number
+    ,
+    priorValueKey: "value" | "old_value" = "value" //(allows use of luck adjusted parameters in prior calcs only)
     ,
     removalPct: number = 0.06,
     priorMode: number = -1, //(or 0-1 for fixed strong prior)
@@ -325,12 +332,12 @@ export class RapmUtils {
       defLineupPoss: teamInfo.def_poss?.value || 0
       ,
       priorInfo: RapmUtils.buildPriors(
-        playersBaseline, sortedPlayers, priorMode
+        playersBaseline, sortedPlayers, priorMode, priorValueKey
       )
     };
   }
 
-  /** Calculates the weights and returns 2 matrices, one for off */
+  /** Calculates the weights and returns 2 matrices, one for off one for def */
   static calcPlayerWeights(
     ctx: RapmPlayerContext,
   ) {
@@ -654,6 +661,7 @@ export class RapmUtils {
       off: getVal(allLineups?.off_adj_ppp) - ctx.avgEfficiency,
       def: getVal(allLineups?.def_adj_ppp) - ctx.avgEfficiency
     };
+
     if (offDefDebugMode.off) {
       const possUsedinRapm = getVal(ctx.teamInfo.off_adj_ppp) - ctx.avgEfficiency;
       console.log(`off: Eff components: rotation+combined=[${possUsedinRapm.toFixed(2)}] bench=[${(actualEff.off - possUsedinRapm).toFixed(2)}]`);
