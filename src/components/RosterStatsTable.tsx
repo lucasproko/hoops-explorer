@@ -289,7 +289,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
         try {
           const key = (0 == i) ? "baseline" : (onIndex == i) ? "on" : "off";
           const rapmPriorsBaseline = LineupTableUtils.buildBaselinePlayerInfo(
-            rosterStats[key]!, globalRosterStatsByCode, teamStats[key]!, avgEfficiency, onBallDefenseByCode
+            rosterStats[key]!, globalRosterStatsByCode, teamStats[key]!, avgEfficiency, adjustForLuck, onBallDefenseByCode
           );
           return buildRapm(lineupStat, rapmPriorsBaseline);
         } catch (err) { //(data not ready, ignore for now)
@@ -449,7 +449,8 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
         stat.def_luck = defLuckAdj;
 
         // Apply roster info:
-        // (note this duplicates LineupTableUtils.buildBaselinePlayerInfo, but that isn't called unless RAPM is enabled)
+        // (note this duplicates the code derivation in LineupTableUtils.buildBaselinePlayerInfo,
+        // but that isn't called unless RAPM is enabled, so we ensure it here)
         const playerCode = teamStats.global?.roster ?
           (stat.player_array?.hits?.hits?.[0]?._source?.player?.code || "??") : "??";
         stat.code = playerCode; //(ensure it exists)

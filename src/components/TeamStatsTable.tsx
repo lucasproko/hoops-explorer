@@ -212,7 +212,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
     if (teamStatsBy0AB?.doc_count) {
       /** Need player info for tooltip view/lineup decoration */
       const playerInfo = LineupTableUtils.buildBaselinePlayerInfo(
-        playerStatsBy0AB, globalRosterStatsByCode, teamStats, avgEfficiency
+        playerStatsBy0AB, globalRosterStatsByCode, teamStats, avgEfficiency, adjustForLuck
       );
       return playerInfo;
     } else {

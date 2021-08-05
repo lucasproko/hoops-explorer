@@ -254,7 +254,7 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({startingState, da
         );
         const rapmPriorsBaseline = LineupTableUtils.buildBaselinePlayerInfo(
           _.cloneDeep(rosterStats.baseline || []),
-          globalRosterStatsByCode, teamStats.baseline, avgEfficiency
+          globalRosterStatsByCode, teamStats.baseline, avgEfficiency, adjustForLuck
         );
         const rapmInfo = TeamReportTableUtils.buildOrInjectRapm( //(mutates tempTeamReport)
           lineupStats.lineups || [], rapmPriorsBaseline,

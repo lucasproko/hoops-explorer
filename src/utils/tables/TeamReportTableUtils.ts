@@ -20,7 +20,7 @@ export class TeamReportTableUtils {
 
     //TODO (#173): ^ similar for on-ball defense adjustments. Both these only affect the priors, so
     //need some logic to loop over before/after options for luck/!luck
-    
+
     const tempTeamReport = preCalcTeamReport || LineupUtils.lineupToTeamReport({ //(calcs for both luck and non-luck versions)
       lineups: enrichedLineups
     });
@@ -44,10 +44,6 @@ export class TeamReportTableUtils {
           offRapmWeights, defRapmWeights, rapmContext, preProcDiags.adaptiveCorrelWeights, (rapmDiagMode != ""),
           valueKey //<- we fit to the overall efficiency, be it luck adjusted or not
         );
-//TODO: ^ there is still a diff in here between:
-// value, no luck adjustment
-// old_value: luck adjustment .. resulting in luck adjusted "original value" being slightly off
-
         RapmUtils.injectRapmIntoPlayers(
           tempTeamReport.players || [], offRapmInputs, defRapmInputs, {}, rapmContext, preProcDiags.adaptiveCorrelWeights,
           "old_value", valueKey

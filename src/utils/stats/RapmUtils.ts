@@ -612,8 +612,8 @@ export class RapmUtils {
     valueKey: "value" | "old_value" = "value" // not indiv lineup numbers - just player and team aggregates
   ) {
     const useOldValIfPossible = valueKey == "old_value";
-    const getVal = (o: any) => {
-      return useOldValIfPossible ?
+    const getVal = (o: any, alwaysTakeValue: boolean = false) => {
+      return (useOldValIfPossible && !alwaysTakeValue) ?
         ((_.isNil(o?.[valueKey]) ? o?.value : o?.[valueKey]) || 0) :
         o?.value || 0;
     };
@@ -706,7 +706,7 @@ export class RapmUtils {
           _.chain(ctx.removedPlayers).values().reduce((acc, v) => {
             const vStat = v[2] || {};
             // (use total bench mins as per [IMPORTANT-EQUATION-01])
-            return acc + getVal(vStat[`${onOrOff}_adj_rtg`])*getVal(vStat[`${onOrOff}_poss`])/lineupPossCount;
+            return acc + getVal(vStat[`${onOrOff}_adj_rtg`], true)*getVal(vStat[`${onOrOff}_poss`])/lineupPossCount;
           }, 0.0).value()
           ,
           (ctx as any)[`${onOrOff}LineupPoss`]!/lineupPossCount //% of rotation+combined possessions, diag only

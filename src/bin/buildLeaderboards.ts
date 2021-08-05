@@ -289,7 +289,7 @@ export async function main() {
       const globalRosterStatsByCode = RosterTableUtils.buildRosterTableByCode(rosterGlobal, rosterInfoJson);
 
       const baselinePlayerInfo = LineupTableUtils.buildBaselinePlayerInfo(
-        rosterBaseline, globalRosterStatsByCode, teamBaseline, avgEfficiency
+        rosterBaseline, globalRosterStatsByCode, teamBaseline, avgEfficiency, true //(always adjust for luck)
       );
       const positionFromPlayerKey = LineupTableUtils.buildPositionPlayerMap(rosterGlobal, teamSeasonLookup);
 
