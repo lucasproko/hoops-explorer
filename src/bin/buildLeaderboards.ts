@@ -13,6 +13,9 @@ import zlib from 'zlib';
 
 import _ from "lodash";
 
+// Models
+import { PlayerCode, PlayerId, Statistic, IndivStatSet, TeamStatSet, LineupStatSet } from "../utils/StatModels";
+
 // API calls
 import calculateLineupStats from "../pages/api/calculateLineupStats";
 import calculateOnOffStats from "../pages/api/calculateOnOffStats";
@@ -314,7 +317,7 @@ export async function main() {
           (fullRequestModel.year == ongoingYear) || (teamFactor*playerPossPct > 0.25);
 
         return secondaryFilter && (playerPossPct > 0.37); //(~15mpg min)
-      }).map(kv => {
+      }).map((kv: [PlayerId, IndivStatSet]) => {
         const posInfo = positionFromPlayerKey[kv[0]] || {};
         return {
           conf: conference,
@@ -322,12 +325,12 @@ export async function main() {
           year: teamYear,
           // Rating production
           off_adj_prod: {
-            value: kv[1].off_adj_rtg.value * kv[1].off_team_poss_pct.value
+            value: (kv[1].off_adj_rtg?.value || 0) * (kv[1].off_team_poss_pct?.value || 0)
           },
           def_adj_prod: {
-            value: kv[1].def_adj_rtg.value * kv[1].def_team_poss_pct.value,
-            old_value: kv[1].def_adj_rtg.old_value * kv[1].def_team_poss_pct.value,
-            override: kv[1].def_adj_rtg.override
+            value: (kv[1].def_adj_rtg?.value || 0) * (kv[1].def_team_poss_pct?.value || 0),
+            old_value: (kv[1].def_adj_rtg?.old_value || 0) * (kv[1].def_team_poss_pct?.value || 0),
+            override: kv[1].def_adj_rtg?.override
           },
           ...posInfo,
           ...(_.chain(kv[1]).toPairs().filter(t2 => //Reduce down to the field we'll actually need
@@ -398,19 +401,19 @@ export async function main() {
         lineup.year = teamYear;
         // Add minimal player info:
         const codesAndIds = LineupTableUtils.buildCodesAndIds(lineup);
-        lineup.player_info = _.fromPairs(codesAndIds.map((cid: { code: string, id: string }) => {
+        lineup.player_info = _.fromPairs(codesAndIds.map(cid => {
           const playerSubset =  _.pick(baselinePlayerInfo[cid.id] || {}, [
             //These are the fields required for lineup display enrichment
             "off_rtg", "off_usage", "def_orb", "key",
             "off_adj_rtg", "def_adj_rtg", "off_3pr",
             "off_ftr", "off_assist"
-          ]);
+          ]) as IndivStatSet;
           return [
             cid.id,
             { ...playerSubset, code: cid.code,
               // Both these are needed to order the players within the lineup
-              posClass: positionFromPlayerKey[playerSubset.key]?.posClass,
-              posConfidences: positionFromPlayerKey[playerSubset.key]?.posConfidences,
+              posClass: positionFromPlayerKey[playerSubset.key!]?.posClass,
+              posConfidences: positionFromPlayerKey[playerSubset.key!]?.posConfidences,
             }
           ];
         }));

@@ -49,10 +49,14 @@ export type RosterEntry = {
 /** Non statistical metadata relating to individuals */
 export type IndivMetadata = {
   /** Some display info */
-  off_title: string | React.ReactNode,
+  off_title?: string | React.ReactNode,
 
   /** eg 'Ayala, Eric' gives ErAyala */
   code?: PlayerCode,
+
+  /** eg 'Ayala, Eric' - Id and Key are considered equivalent here */
+  key?: PlayerId,
+
   doc_count?: number,
   /** Roster info for the player */
   roster?: RosterEntry,
@@ -65,15 +69,20 @@ export type IndivMetadata = {
 
   /** Gets abused to display positional information in the table */
   def_usage?: React.ReactNode,
+
+  // These are used in the leaderboard:
+  conf?: string,
+  team?: string,
+  teamYear?: string,
 };
 
 /** Derived stats we add to the individual's stat set */
 export type IndivEnrichment = {
   /** Positional info derived from statistics */
-  role: string,
+  role?: string,
 
   /** Positional diag info */
-  posClass: number[],
+  posClass?: number[],
 
   /** Luck diags */
   off_luck?: OffLuckAdjustmentDiags,
@@ -86,7 +95,7 @@ export type IndivEnrichment = {
   diag_def_rtg?: DRtgDiagnostics,
 };
 
-export type IndivStatSet = PureStatSet | IndivEnrichment | IndivMetadata;
+export type IndivStatSet = PureStatSet & IndivEnrichment & IndivMetadata;
 
 //////////////////////////////////////
 
@@ -104,7 +113,7 @@ export type TeamEnrichment = {
 
 };
 
-export type TeamStatSet = PureStatSet | TeamEnrichment | TeamMetadata;
+export type TeamStatSet = PureStatSet & TeamEnrichment & TeamMetadata;
 
 //////////////////////////////////////
 
@@ -120,4 +129,4 @@ export type LineupEnrichment = {
 
 };
 
-export type LineupStatSet = PureStatSet | LineupEnrichment | LineupMetadata;
+export type LineupStatSet = PureStatSet & LineupEnrichment & LineupMetadata;

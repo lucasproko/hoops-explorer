@@ -42,7 +42,7 @@ import PlayerPlayTypeDiagView from "./diags/PlayerPlayTypeDiagView"
 import AsyncFormControl from './shared/AsyncFormControl';
 
 // Util imports
-import { IndivStatSet, TeamStatSet, LineupStatSet } from "../utils/StatModels";
+import { PlayerCode, PlayerId, Statistic, IndivStatSet, TeamStatSet, LineupStatSet } from "../utils/StatModels";
 import { CbbColors } from "../utils/CbbColors";
 import { CommonTableDefs } from "../utils/tables/CommonTableDefs";
 import { getCommonFilterParams, ParamDefaults, ParamPrefixes, GameFilterParams, LuckParams, ManualOverride } from "../utils/FilterModels";
@@ -59,11 +59,11 @@ import { QueryUtils } from "../utils/QueryUtils";
 import { LineupUtils } from "../utils/stats/LineupUtils";
 
 export type RosterStatsModel = {
-  on?: Array<any>,
-  off?: Array<any>,
+  on?: Array<IndivStatSet>,
+  off?: Array<IndivStatSet>,
   onOffMode?: boolean,
-  baseline?: Array<any>,
-  global?: Array<any>, //(across all samples for the team)
+  baseline?: Array<IndivStatSet>,
+  global?: Array<IndivStatSet>, //(across all samples for the team)
   error_code?: string
 }
 type Props = {
@@ -146,7 +146,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
     [] : gameFilterParams.manual
   );
 
-  const [ onBallDefenseByCode, setOnBallDefenseByCode ] = useState({} as Record<string, OnBallDefenseModel>);
+  const [ onBallDefenseByCode, setOnBallDefenseByCode ] = useState({} as Record<PlayerCode, OnBallDefenseModel>);
 
   const [ showOnBallConfig, setShowOnBallConfig ] = useState(_.isNil(gameFilterParams.showOnBallConfig) ?
     false : gameFilterParams.showOnBallConfig
@@ -263,7 +263,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
   const positionFromPlayerKey = LineupTableUtils.buildPositionPlayerMap(rosterStats.global, teamSeasonLookup);
 
   /** For a given lineup set, calculate RAPM as quickly as possible */
-  const buildRapm = (lineupStats: LineupStatsModel, playerInfo: Record<string, any>) => {
+  const buildRapm = (lineupStats: LineupStatsModel, playerInfo: IndivStatSet) => {
     const preRapmTableData = LineupTableUtils.buildEnrichedLineups( //(calcs for both luck and non-luck versions)
       lineupStats.lineups || [],
       teamStats.global, rosterStats.global, teamStats.baseline,

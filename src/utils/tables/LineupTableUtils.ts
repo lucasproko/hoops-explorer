@@ -2,12 +2,13 @@
 import _ from "lodash";
 
 // Util imports
+import { PlayerCodeId, PlayerCode, PlayerId, Statistic, IndivStatSet, TeamStatSet, LineupStatSet } from "../StatModels";
 import { RatingUtils, OnBallDefenseModel } from "../stats/RatingUtils";
 import { PositionUtils } from "../stats/PositionUtils";
 import { LineupUtils } from "../stats/LineupUtils";
 import { LuckUtils, OffLuckAdjustmentDiags, DefLuckAdjustmentDiags, LuckAdjustmentBaseline } from "../stats/LuckUtils";
 
-export type PositionInfo = { id: string, code: string, numPoss: number };
+export type PositionInfo = PlayerCodeId & { numPoss: number };
 
 /** Object marshalling logic for lineup tables */
 export class LineupTableUtils {
@@ -16,7 +17,7 @@ export class LineupTableUtils {
   static readonly totalLineupId = "TOTAL";
 
   /** Handy accessor for picking the player codes out of the lineup */
-  static buildCodesAndIds(lineup: any) {
+  static buildCodesAndIds(lineup: any): Array<PlayerCodeId> {
     return lineup.players_array ?
       (lineup.players_array?.hits?.hits?.[0]?._source?.players || []) :
       _.toPairs(lineup.player_info as Record<string, any>).map(kv => { return { code: kv[1].code, id: kv[0] } }) //(leaderboard mode)
@@ -25,11 +26,11 @@ export class LineupTableUtils {
 
   /** Injects some advanced stats into players, returns an associative array vs player.key */
   static buildBaselinePlayerInfo(
-    players: any[] | undefined,
-    globalRosterStatsByCode: Record<string, any>, teamStat: Record<string, any>,
+    players: Array<IndivStatSet> | undefined,
+    globalRosterStatsByCode: Record<PlayerCode, IndivStatSet>, teamStat: Record<string, any>,
     avgEfficiency: number, adjustForLuck: boolean,
-    onBallDefenseByCode: Record<string, OnBallDefenseModel>  = {}
-  ) {
+    onBallDefenseByCode: Record<PlayerCode, OnBallDefenseModel>  = {}
+  ): Record<PlayerId, IndivStatSet> {
     const baselinePlayerInfo = _.fromPairs(
       (players || []).map((mutableP: any) => {
         const playerAdjustForLuckOff = false; //(for now, no offensive luck calcs, see also below when time to set for true)
@@ -73,7 +74,7 @@ export class LineupTableUtils {
           value: adjDRtg?.value, old_value: rawAdjDRtg?.value,
           override: playerAdjustForLuckDef ? "Luck adjusted" : undefined
         };
-        mutableP.code = mutableP.player_array?.hits?.hits?.[0]?._source?.player?.code || mutableP.key;
+        mutableP.code = (mutableP.player_array?.hits?.hits?.[0]?._source?.player?.code || mutableP.key) as PlayerCode;
 
         // Apply on-ball defense if it exists for this player
         if (dRtgDiag && onBallDefenseByCode.hasOwnProperty(mutableP.code)) {
