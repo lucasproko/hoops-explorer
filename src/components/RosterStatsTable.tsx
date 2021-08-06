@@ -42,7 +42,7 @@ import PlayerPlayTypeDiagView from "./diags/PlayerPlayTypeDiagView"
 import AsyncFormControl from './shared/AsyncFormControl';
 
 // Util imports
-import { PlayerCode, PlayerId, Statistic, IndivStatSet, TeamStatSet, LineupStatSet } from "../utils/StatModels";
+import { StatModels, OnOffBaselineEnum, OnOffBaselineGlobalEnum, PlayerCode, PlayerId, Statistic, IndivStatSet, TeamStatSet, LineupStatSet } from "../utils/StatModels";
 import { CbbColors } from "../utils/CbbColors";
 import { CommonTableDefs } from "../utils/tables/CommonTableDefs";
 import { getCommonFilterParams, ParamDefaults, ParamPrefixes, GameFilterParams, LuckParams, ManualOverride } from "../utils/FilterModels";
@@ -59,13 +59,14 @@ import { QueryUtils } from "../utils/QueryUtils";
 import { LineupUtils } from "../utils/stats/LineupUtils";
 
 export type RosterStatsModel = {
-  on?: Array<IndivStatSet>,
-  off?: Array<IndivStatSet>,
+  on: Array<IndivStatSet>,
+  off: Array<IndivStatSet>,
+  baseline: Array<IndivStatSet>,
+  global: Array<IndivStatSet>
+} & {
   onOffMode?: boolean,
-  baseline?: Array<IndivStatSet>,
-  global?: Array<IndivStatSet>, //(across all samples for the team)
   error_code?: string
-}
+};
 type Props = {
   gameFilterParams: GameFilterParams,
   /** Ensures that all relevant data is received at the same time */
@@ -76,7 +77,7 @@ type Props = {
   },
   onChangeState: (newParams: GameFilterParams) => void,
   testMode?: boolean //(if set, the initial processing occurs synchronously)
-}
+};
 
 const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataEvent, onChangeState, testMode}) => {
   const { teamStats, rosterStats, lineupStats } = dataEvent;
@@ -263,7 +264,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
   const positionFromPlayerKey = LineupTableUtils.buildPositionPlayerMap(rosterStats.global, teamSeasonLookup);
 
   /** For a given lineup set, calculate RAPM as quickly as possible */
-  const buildRapm = (lineupStats: LineupStatsModel, playerInfo: IndivStatSet) => {
+  const buildRapm = (lineupStats: LineupStatsModel, playerInfo: Record<PlayerId, IndivStatSet>) => {
     const preRapmTableData = LineupTableUtils.buildEnrichedLineups( //(calcs for both luck and non-luck versions)
       lineupStats.lineups || [],
       teamStats.global, rosterStats.global, teamStats.baseline,
@@ -313,13 +314,11 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
 
   // 3.1] Table building
 
-  type OnOffEnum = "on"|"off"|"baseline";
-  type OnOffAndGlobalEnum = "on"|"off"|"baseline"|"global";
   /** Collects the different player stat sets according to their sourcee */
   type OnOffPlayerStatSet = {
     key: string
   } & {
-    [key in OnOffAndGlobalEnum]: IndivStatSet | undefined
+    [key in OnOffBaselineGlobalEnum]: IndivStatSet | undefined
   };
 
   /** Handles the various sorting combos */
@@ -333,14 +332,14 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
     };
     const onOrOff = (playerSet: OnOffPlayerStatSet) => {
       switch(sortComps[2]) {
-        case "on": return [ playerSet.on || {} ];
-        case "off": return [ playerSet.off || {} ];
-        case "baseline": return [ playerSet.baseline || {} ];
-        default: return [ {} ];
+        case "on": return [ playerSet.on || StatModels.emptyIndiv ];
+        case "off": return [ playerSet.off || StatModels.emptyIndiv ];
+        case "baseline": return [ playerSet.baseline || StatModels.emptyIndiv ];
+        default: return [ StatModels.emptyIndiv ];
       }
     };
     return (playerSet: OnOffPlayerStatSet) => {
-      const playerFields = onOrOff(playerSet || {}).map(player => field(player) || 0);
+      const playerFields = onOrOff(playerSet).map(player => field(player) || 0);
       return dir*playerFields[0];
     };
   };
@@ -360,7 +359,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
 
   const baselineIsOnlyLine = !(rosterStats?.on?.length || rosterStats?.off?.length);
 
-  const onOffBaseToPhrase = (type: OnOffEnum) => {
+  const onOffBaseToPhrase = (type: OnOffBaselineEnum) => {
     switch(type) {
       case "on":  return "A";
       case "off":  return "B";
@@ -369,7 +368,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
   };
 
   /** Utility function to build the title for the player stats */
-  const insertTitle = (playerName: string, type: OnOffEnum, pos: string) => {
+  const insertTitle = (playerName: string, type: OnOffBaselineEnum, pos: string) => {
     const singleLineCase = type == "baseline" && baselineIsOnlyLine;
       //^ (if this is set we only show it together with on/off)
     const sub = onOffBaseToPhrase(type);
@@ -430,7 +429,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
     var varFirstRowKey: string | undefined = undefined;
 
     // Inject ORtg and DRB and Poss% (ie mutate player idempotently)
-    ([ "on", "off", "baseline" ] as OnOffEnum[]).forEach((key) => {
+    ([ "on", "off", "baseline" ] as OnOffBaselineEnum[]).forEach((key) => {
       const stat = player[key];
       const teamStat = (teamStats as any)[key] || {};
       if (stat) {
@@ -486,7 +485,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
 
         // Once luck is applied apply any manual overrides
 
-        const playerOverrideKey = OverrideUtils.getPlayerRowId(stat.key!, stat.onOffKey!);
+        const playerOverrideKey = OverrideUtils.getPlayerRowId(stat.key, stat.onOffKey!);
         const overrides = manualOverridesAsMap[playerOverrideKey];
         const overrodeOffFields = _.reduce(overridableStatsList, (acc, statName) => {
           const override = overrides?.[statName];
@@ -584,7 +583,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
             stat.off_adj_rapm_prod = rapmPlaceholder;
             stat.def_adj_rapm_prod = rapmPlaceholder;
           } else {
-            const rapm = cachedRapm?.[key]?.[stat.key!] || {};
+            const rapm = cachedRapm?.[key]?.[stat.key] || {};
             // Always calc defensive (used for on ball)
             stat.def_adj_rapm = rapm.def_adj_rapm;
             stat.def_adj_rapm_prod = rapm.off_adj_rapm ? { value: (rapm.def_adj_rapm?.value || 0)*stat.def_team_poss_pct.value! } : undefined;
@@ -604,11 +603,11 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
         }
 
         // Now we have the position we can build the titles:
-        stat.off_title = insertTitle(stat.key!, key, pos);
+        stat.off_title = insertTitle(stat.key, key, pos);
 
         // Create a table for the mutable overrides:
 
-        mutableTableDisplayForOverrides[OverrideUtils.getPlayerRowId(stat.key!, stat.onOffKey!)] = [
+        mutableTableDisplayForOverrides[OverrideUtils.getPlayerRowId(stat.key, stat.onOffKey!)] = [
            GenericTableOps.buildDataRow(stat, offPrefixFn, offCellMetaFn),
            GenericTableOps.buildDataRow(stat, defPrefixFn, defCellMetaFn)
         ];
@@ -619,7 +618,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
 
   // If we have on-ball defense, then need to do a quick aggregation of the personal DRtgs
   if (!_.isEmpty(onBallDefenseByCode)) {
-    _.forEach([ "on", "off", "baseline" ], (loc: OnOffEnum) => {
+    _.forEach([ "on", "off", "baseline" ], (loc: OnOffBaselineEnum) => {
       const playerList = allPlayers.filter(p => !_.isNil(p[loc]?.off_title)).map(p => p[loc]!);
       RatingUtils.injectOnBallDefenseAdjustmentsPhase2(playerList);
     });
@@ -723,9 +722,9 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
   /** A list of all the players in poss count order */
   const playersAsList = _.flatMap(allPlayers, (p) => {
     return _.flatten([
-      p.on?.off_team_poss ? [ p.on! ] : [],
-      p.off?.off_team_poss ? [ p.off! ] : [],
-      p.baseline?.off_team_poss ? [ p.baseline! ] : [],
+      p.on?.off_team_poss ? [ p.on ] : [],
+      p.off?.off_team_poss ? [ p.off ] : [],
+      p.baseline?.off_team_poss ? [ p.baseline ] : [],
     ]);
   });
 

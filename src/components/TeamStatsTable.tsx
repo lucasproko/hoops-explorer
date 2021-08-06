@@ -32,6 +32,7 @@ import TeamPlayTypeDiagView from "./diags/TeamPlayTypeDiagView";
 import TeamRosterDiagView from "./diags/TeamRosterDiagView";
 
 // Util imports
+import { StatModels, OnOffBaselineEnum, OnOffBaselineGlobalEnum, PlayerCode, PlayerId, Statistic, IndivStatSet, TeamStatSet, LineupStatSet } from "../utils/StatModels";
 import { CbbColors } from "../utils/CbbColors";
 import { GameFilterParams, ParamDefaults, LuckParams } from "../utils/FilterModels";
 import { CommonTableDefs } from "../utils/tables/CommonTableDefs";
@@ -43,13 +44,14 @@ import { RosterTableUtils } from "../utils/tables/RosterTableUtils";
 import { LineupTableUtils } from "../utils/tables/LineupTableUtils";
 
 export type TeamStatsModel = {
-  on: any,
-  off: any,
-  baseline: any,
-  global: any, //(a subest of the fields, across all samples for the team)
-  onOffMode: boolean,
+  on: TeamStatSet,
+  off: TeamStatSet,
+  baseline: TeamStatSet,
+  global: TeamStatSet
+} & {
+  onOffMode?: boolean,
   error_code?: string
-}
+};
 type Props = {
   gameFilterParams: GameFilterParams;
   /** Ensures that all relevant data is received at the same time */
@@ -152,22 +154,21 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
   })();
 
   // Create luck adjustments, inject luck into mutable stat sets, and calculate efficiency margins
-  type OnOffBase = "on" | "off" | "baseline";
-  const luckAdjustment = _.fromPairs(([ "on", "off", "baseline" ] as OnOffBase[]).map(k => {
+  const luckAdjustment = _.fromPairs(([ "on", "off", "baseline" ] as OnOffBaselineEnum[]).map(k => {
     const luckAdj = (adjustForLuck && teamStats[k]?.doc_count) ? [
-      LuckUtils.calcOffTeamLuckAdj(teamStats[k], rosterStats[k] || [], baseOrSeasonTeamStats, baseOrSeason3PMap, avgEfficiency),
-      LuckUtils.calcDefTeamLuckAdj(teamStats[k], baseOrSeasonTeamStats, avgEfficiency),
+      LuckUtils.calcOffTeamLuckAdj(teamStats[k]!, rosterStats[k] || [], baseOrSeasonTeamStats, baseOrSeason3PMap, avgEfficiency),
+      LuckUtils.calcDefTeamLuckAdj(teamStats[k]!, baseOrSeasonTeamStats, avgEfficiency),
     ] as [OffLuckAdjustmentDiags, DefLuckAdjustmentDiags] : undefined;
 
     if (teamStats[k]?.doc_count) {
       // Extra mutable set, build net margin column:
       LineupUtils.buildEfficiencyMargins(teamStats[k]);
       // Mutate stats object to inject luck
-      LuckUtils.injectLuck(teamStats[k], luckAdj?.[0], luckAdj?.[1]);
+      LuckUtils.injectLuck(teamStats[k]!, luckAdj?.[0], luckAdj?.[1]);
     }
     return [ k, luckAdj ];
   })) as {
-    [P in OnOffBase]: [ OffLuckAdjustmentDiags, DefLuckAdjustmentDiags ] | undefined
+    [P in OnOffBaselineEnum]: [ OffLuckAdjustmentDiags, DefLuckAdjustmentDiags ] | undefined
   };
 
   //(end luck calcs)
@@ -201,15 +202,15 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
     return [ aMinusB, aMinusBase, bMinusBase ];
   })() : [ undefined, undefined, undefined ] as [ any, any, any ];
 
-  ([ "on", "off", "baseline" ] as OnOffBase[]).forEach(k => {
-    TableDisplayUtils.injectPlayTypeInfo(teamStats[k], false, false, teamSeasonLookup);
+  ([ "on", "off", "baseline" ] as OnOffBaselineEnum[]).forEach(k => {
+    TableDisplayUtils.injectPlayTypeInfo(teamStats[k] || StatModels.emptyTeam, false, false, teamSeasonLookup);
   });
 
   // If building roster info then enrich player stats:
-  const playerInfoByKeyBy0AB = showRoster ? [ "baseline", "on", "off" ].map(queryKey => {
-    const playerStatsBy0AB = (rosterStats as any)?.[queryKey] || {};
-    const teamStatsBy0AB = (teamStats as any)?.[queryKey] || {};
-    if (teamStatsBy0AB?.doc_count) {
+  const playerInfoByKeyBy0AB = showRoster ? ([ "baseline", "on", "off" ] as OnOffBaselineEnum[]).map(queryKey => {
+    const playerStatsBy0AB = rosterStats[queryKey] || [];
+    const teamStatsBy0AB = teamStats[queryKey] || StatModels.emptyTeam;
+    if (teamStatsBy0AB.doc_count) {
       /** Need player info for tooltip view/lineup decoration */
       const playerInfo = LineupTableUtils.buildBaselinePlayerInfo(
         playerStatsBy0AB, globalRosterStatsByCode, teamStats, avgEfficiency, adjustForLuck
@@ -363,9 +364,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
   // 3] Utils
   /** Sticks an overlay on top of the table if no query has ever been loaded */
   function needToLoadQuery() {
-    return (Object.keys(teamStats.on).length == 0) &&
-      (Object.keys(teamStats.off).length == 0) &&
-      (Object.keys(teamStats.baseline).length == 0);
+    return teamStats.baseline.doc_count == 0;
   }
 
   // 4] View

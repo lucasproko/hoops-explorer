@@ -30,6 +30,7 @@ import Footer from '../components/shared/Footer';
 import HeaderBar from '../components/shared/HeaderBar';
 
 // Utils:
+import { StatModels, OnOffBaselineEnum, OnOffBaselineGlobalEnum, PlayerCode, PlayerId, Statistic, IndivStatSet, TeamStatSet, LineupStatSet } from "../utils/StatModels";
 import { UrlRouting } from "../utils/UrlRouting";
 import { HistoryManager } from '../utils/HistoryManager';
 import { ClientRequestCache } from '../utils/ClientRequestCache';
@@ -50,8 +51,8 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
 
   const [ gaInited, setGaInited ] = useState(false);
   const [ dataEvent, setDataEvent ] = useState({
-    teamStats: {on: {}, off: {}, baseline: {}} as TeamStatsModel,
-    rosterStats: {on: [], off: [], baseline: []} as RosterStatsModel,
+    teamStats: { on: StatModels.emptyTeam, off: StatModels.emptyTeam, baseline: StatModels.emptyTeam, global: StatModels.emptyTeam } as TeamStatsModel,
+    rosterStats: { on: [], off: [], baseline: [], global: []} as RosterStatsModel,
     lineupStats: [] as LineupStatsModel[]
   });
   const [ rosterCompareStats, setRosterCompareStats ] = useState({on: {}, off: {}, baseline: {}} as RosterCompareModel);

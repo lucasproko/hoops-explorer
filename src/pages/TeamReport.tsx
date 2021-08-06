@@ -31,6 +31,7 @@ import Footer from '../components/shared/Footer';
 import HeaderBar from '../components/shared/HeaderBar';
 
 // Utils:
+import { StatModels, OnOffBaselineEnum, OnOffBaselineGlobalEnum, PlayerCode, PlayerId, Statistic, IndivStatSet, TeamStatSet, LineupStatSet } from "../utils/StatModels";
 import { UrlRouting } from "../utils/UrlRouting";
 
 const TeamReportPage: NextPage<{}> = () => {
@@ -50,8 +51,8 @@ const TeamReportPage: NextPage<{}> = () => {
   const [ gaInited, setGaInited ] = useState(false);
   const [ dataEvent, setDataEvent ] = useState({
     lineupStats: {} as LineupStatsModel,
-    teamStats: {on: {}, off: {}, baseline: {}} as TeamStatsModel,
-    rosterStats: {on: [], off: [], baseline: []} as RosterStatsModel
+    teamStats: {on: StatModels.emptyTeam, off: StatModels.emptyTeam, baseline: StatModels.emptyTeam, global: StatModels.emptyTeam} as TeamStatsModel,
+    rosterStats: {on: [], off: [], baseline: [], global: []} as RosterStatsModel
   });
 
   const injectStats = (lineupStats: LineupStatsModel, teamStats: TeamStatsModel, rosterStats: RosterStatsModel) => {

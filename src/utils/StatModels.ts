@@ -42,12 +42,21 @@ export type RosterEntry = {
   gp?: number
 };
 
+export type OnOffBaselineEnum = "on" | "off" | "baseline";
+export type OnOffBaselineGlobalEnum = "on" | "off" | "baseline" | "global";
+
 //////////////////////////////////////
 
 // Invidual
 
 /** Non statistical metadata relating to individuals */
 export type IndivMetadata = {
+  /** eg 'Ayala, Eric' - Id and Key are considered equivalent here  - this field is required */
+  key: PlayerId,
+
+  /** Another required field - can just use to tell if the object is empty */
+  doc_count: number,
+
   /** Comes from the ES response */
   player_array?: any, //(long nested type)
 
@@ -57,10 +66,6 @@ export type IndivMetadata = {
   /** eg 'Ayala, Eric' gives ErAyala */
   code?: PlayerCode,
 
-  /** eg 'Ayala, Eric' - Id and Key are considered equivalent here */
-  key?: PlayerId,
-
-  doc_count?: number,
   /** Roster info for the player */
   roster?: RosterEntry,
 
@@ -115,7 +120,9 @@ export type IndivStatSet = PureStatSet & IndivEnrichment & IndivMetadata;
 
 /** Non statistical metadata relating to teams */
 export type TeamMetadata = {
-  doc_count?: number,
+  /** Another required field - can just use to tell if the object is empty */
+  doc_count: number,
+
   /** Only present for global team info */
   roster?: Record<PlayerCode, RosterEntry>
 };
@@ -133,7 +140,7 @@ export type TeamStatSet = PureStatSet & TeamEnrichment & TeamMetadata;
 
 /** Non statistical metadata relating to individuals */
 export type LineupMetadata = {
-  doc_count?: number,
+  doc_count: number,
 };
 
 /** Derived stats we add to the individual's stat set */
@@ -142,3 +149,12 @@ export type LineupEnrichment = {
 };
 
 export type LineupStatSet = PureStatSet & LineupEnrichment & LineupMetadata;
+
+//////////////////////////////////////
+
+/** Useful constants */
+export class StatModels {
+  static emptyIndiv: IndivStatSet = { key: "empty", doc_count: 0 } as IndivStatSet;
+  static emptyTeam: TeamStatSet = { doc_count: 0 } as TeamStatSet;
+  static emptyLineup: LineupStatSet = { doc_count: 0 } as LineupStatSet;
+}

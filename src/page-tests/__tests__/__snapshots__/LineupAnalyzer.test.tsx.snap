@@ -59,13 +59,23 @@ exports[`LineupAnalyzerPage LineupAnalyzerPage - should create snapshot 1`] = `
             "lineupStats": Object {},
             "rosterStats": Object {
               "baseline": Array [],
+              "global": Array [],
               "off": Array [],
               "on": Array [],
             },
             "teamStats": Object {
-              "baseline": Object {},
-              "off": Object {},
-              "on": Object {},
+              "baseline": Object {
+                "doc_count": 0,
+              },
+              "global": Object {
+                "doc_count": 0,
+              },
+              "off": Object {
+                "doc_count": 0,
+              },
+              "on": Object {
+                "doc_count": 0,
+              },
             },
           }
         }

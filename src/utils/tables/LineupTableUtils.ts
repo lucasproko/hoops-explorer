@@ -32,7 +32,7 @@ export class LineupTableUtils {
     onBallDefenseByCode: Record<PlayerCode, OnBallDefenseModel>  = {}
   ): Record<PlayerId, IndivStatSet> {
     const baselinePlayerInfo = _.fromPairs(
-      (players || []).map((mutableP: any) => {
+      (players || []).map((mutableP: IndivStatSet) => {
         const playerAdjustForLuckOff = false; //(for now, no offensive luck calcs, see also below when time to set for true)
         const playerAdjustForLuckDef = adjustForLuck; //(make player defense a little more stable)
 

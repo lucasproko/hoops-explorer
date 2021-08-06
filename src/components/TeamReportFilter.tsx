@@ -22,6 +22,7 @@ import CommonFilter from '../components/CommonFilter';
 import { ParamDefaults, ParamPrefixes, ParamPrefixesType, CommonFilterParams, FilterRequestInfo, TeamReportFilterParams } from "../utils/FilterModels";
 
 // Utils
+import { StatModels, OnOffBaselineEnum, OnOffBaselineGlobalEnum, PlayerCode, PlayerId, Statistic, IndivStatSet, TeamStatSet, LineupStatSet } from "../utils/StatModels";
 import { QueryUtils } from '../utils/QueryUtils';
 
 type Props = {
@@ -127,7 +128,7 @@ const TeamReportFilter: React.FunctionComponent<Props> = ({onStats, startingStat
     const globalRosterStatsJson = jsonResps?.[3]?.responses?.[0] || rosterStatsJson;
     const hasGlobalRosterStats = jsonResps?.[3]?.responses?.[0]?.aggregations?.tri_filter;
 
-    const globalTeam = teamJson?.aggregations?.global?.only?.buckets?.team || {};
+    const globalTeam = teamJson?.aggregations?.global?.only?.buckets?.team || StatModels.emptyTeam;
     const rosterInfo = jsonResps?.[hasGlobalRosterStats ? 3 : 2]?.roster;
     if (rosterInfo) {
       globalTeam.roster = rosterInfo;
@@ -137,11 +138,12 @@ const TeamReportFilter: React.FunctionComponent<Props> = ({onStats, startingStat
       lineups: lineupJson?.aggregations?.lineups?.buckets,
       error_code: wasError ? (lineupJson?.status || jsonStatuses?.[0] || "Unknown") : undefined
     }, {
-      on: {}, off: {}, onOffMode: true,
-      baseline: teamJson?.aggregations?.tri_filter?.buckets?.baseline || {},
+      on: StatModels.emptyTeam, off: StatModels.emptyTeam, onOffMode: true,
+      baseline: teamJson?.aggregations?.tri_filter?.buckets?.baseline || StatModels.emptyTeam,
       global: globalTeam,
       error_code: wasError ? (teamJson?.status || jsonStatuses?.[1] || "Unknown") : undefined
     }, {
+      on: [], off: [],
       baseline: rosterStatsJson?.aggregations?.tri_filter?.buckets?.baseline?.player?.buckets || [],
       global: globalRosterStatsJson?.aggregations?.tri_filter?.buckets?.baseline?.player?.buckets || [],
       error_code: wasError ? (rosterStatsJson?.status || jsonStatuses?.[2] ||
