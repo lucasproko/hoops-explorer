@@ -48,6 +48,9 @@ export type RosterEntry = {
 
 /** Non statistical metadata relating to individuals */
 export type IndivMetadata = {
+  /** Comes from the ES response */
+  player_array?: any, //(long nested type)
+
   /** Some display info */
   off_title?: string | React.ReactNode,
 
@@ -69,6 +72,15 @@ export type IndivMetadata = {
 
   /** Gets abused to display positional information in the table */
   def_usage?: React.ReactNode,
+
+  /** These can be elements to show spinner while loading */
+  off_adj_rapm?: React.ReactNode,
+  def_adj_rapm?: React.ReactNode,
+  off_adj_rapm_prod?: React.ReactNode,
+  def_adj_rapm_prod?: React.ReactNode,
+
+  // Implementation detail for roster stats table:
+  onOffKey?: "On" | "Off" | "Baseline" | "Global",
 
   // These are used in the leaderboard:
   conf?: string,

@@ -313,24 +313,33 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
 
   // 3.1] Table building
 
+  type OnOffEnum = "on"|"off"|"baseline";
+  type OnOffAndGlobalEnum = "on"|"off"|"baseline"|"global";
+  /** Collects the different player stat sets according to their sourcee */
+  type OnOffPlayerStatSet = {
+    key: string
+  } & {
+    [key in OnOffAndGlobalEnum]: IndivStatSet | undefined
+  };
+
   /** Handles the various sorting combos */
   const sorter = (sortStr: string) => { // format: (asc|desc):(off_|def_|diff_)<field>:(on|off|delta)
     const sortComps = sortStr.split(":"); //asc/desc
     const dir = (sortComps[0] == "desc") ? -1 : 1;
     const fieldComps = _.split(sortComps[1], "_", 1); //off/def/diff
     const fieldName = sortComps[1].substring(fieldComps[0].length + 1); //+1 for _
-    const field = (player: any) => {
+    const field = (player: IndivStatSet) => {
       return player?.[sortComps[1]]?.value || 0; //(off or def)
     };
-    const onOrOff = (playerSet: any) => {
+    const onOrOff = (playerSet: OnOffPlayerStatSet) => {
       switch(sortComps[2]) {
-        case "on": return [ playerSet.on ];
-        case "off": return [ playerSet.off ];
-        case "baseline": return [ playerSet.baseline ];
-        default: return [ 0 ];
+        case "on": return [ playerSet.on || {} ];
+        case "off": return [ playerSet.off || {} ];
+        case "baseline": return [ playerSet.baseline || {} ];
+        default: return [ {} ];
       }
     };
-    return (playerSet: any) => {
+    return (playerSet: OnOffPlayerStatSet) => {
       const playerFields = onOrOff(playerSet || {}).map(player => field(player) || 0);
       return dir*playerFields[0];
     };
@@ -341,7 +350,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
   const defPrefixFn = (key: string) => "def_" + key;
   const defCellMetaFn = (key: string, val: any) => "def";
 
-  const onOffBasePicker = (str: "On" | "Off" | "Baseline" | "Global", arr: Array<any>) => {
+  const onOffBasePicker = (str: "On" | "Off" | "Baseline" | "Global", arr: Array<IndivStatSet>) => {
     return _.find(arr, (p) => _.startsWith(p.onOffKey, str));
   }
 
@@ -351,7 +360,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
 
   const baselineIsOnlyLine = !(rosterStats?.on?.length || rosterStats?.off?.length);
 
-  const onOffBaseToPhrase = (type: "on" | "off" | "baseline") => {
+  const onOffBaseToPhrase = (type: OnOffEnum) => {
     switch(type) {
       case "on":  return "A";
       case "off":  return "B";
@@ -360,7 +369,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
   };
 
   /** Utility function to build the title for the player stats */
-  const insertTitle = (playerName: string, type: "on" | "off" | "baseline", pos: string) => {
+  const insertTitle = (playerName: string, type: OnOffEnum, pos: string) => {
     const singleLineCase = type == "baseline" && baselineIsOnlyLine;
       //^ (if this is set we only show it together with on/off)
     const sub = onOffBaseToPhrase(type);
@@ -395,19 +404,19 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
   const allPlayers = _.chain([
     _.map(rosterStats.on  || [], (p) => _.assign(p, {
       onOffKey: 'On'
-    })),
+    }) as IndivStatSet),
     _.map(rosterStats.off  || [], (p) => _.assign(p, {
       onOffKey: 'Off'
-    })),
+    }) as IndivStatSet),
     _.map(rosterStats.baseline || [], (p) => _.assign(p, {
       onOffKey: 'Baseline'
-    })),
+    }) as IndivStatSet),
     _.map(rosterStats.global || [], (p) => _.assign(p, {
       onOffKey: 'Global'
-    })),
+    }) as IndivStatSet),
   ]).flatten().groupBy("key").toPairs().map((key_onOffBase) => {
 
-    const player = { // Now grouped by player, re-create the on/off/baseline set
+    const player: OnOffPlayerStatSet = { // Now grouped by player, re-create the on/off/baseline set
       key: key_onOffBase[0],
       on: onOffBasePicker("On", key_onOffBase[1]),
       off: onOffBasePicker("Off", key_onOffBase[1]),
@@ -421,8 +430,8 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
     var varFirstRowKey: string | undefined = undefined;
 
     // Inject ORtg and DRB and Poss% (ie mutate player idempotently)
-    ([ "on", "off", "baseline" ] as ("baseline" | "on" | "off")[]).forEach((key) => {
-      const stat = (player as any)[key];
+    ([ "on", "off", "baseline" ] as OnOffEnum[]).forEach((key) => {
+      const stat = player[key];
       const teamStat = (teamStats as any)[key] || {};
       if (stat) {
         if (!varFirstRowKey) varFirstRowKey = key;
@@ -434,7 +443,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
 
         // Handle luck:
         const baseOrGlobalPlayer = (luckConfig.base == "baseline")
-          ? (player as any)["baseline"] : (player as any)["global"];
+          ? player.baseline : player.global;
 
         const [ offLuckAdj, defLuckAdj ] = baseOrGlobalPlayer && adjustForLuck ? [
           LuckUtils.calcOffPlayerLuckAdj(
@@ -477,7 +486,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
 
         // Once luck is applied apply any manual overrides
 
-        const playerOverrideKey = OverrideUtils.getPlayerRowId(stat.key, stat.onOffKey);
+        const playerOverrideKey = OverrideUtils.getPlayerRowId(stat.key!, stat.onOffKey!);
         const overrides = manualOverridesAsMap[playerOverrideKey];
         const overrodeOffFields = _.reduce(overridableStatsList, (acc, statName) => {
           const override = overrides?.[statName];
@@ -575,7 +584,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
             stat.off_adj_rapm_prod = rapmPlaceholder;
             stat.def_adj_rapm_prod = rapmPlaceholder;
           } else {
-            const rapm = cachedRapm?.[key]?.[stat.key] || {};
+            const rapm = cachedRapm?.[key]?.[stat.key!] || {};
             // Always calc defensive (used for on ball)
             stat.def_adj_rapm = rapm.def_adj_rapm;
             stat.def_adj_rapm_prod = rapm.off_adj_rapm ? { value: (rapm.def_adj_rapm?.value || 0)*stat.def_team_poss_pct.value! } : undefined;
@@ -583,21 +592,23 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
               stat.off_adj_rapm = rapm.off_adj_rapm;
               stat.off_adj_rapm_prod = rapm.off_adj_rapm ? { value: (rapm.off_adj_rapm?.value || 0)*stat.off_team_poss_pct.value! } : undefined;
             } else {
-              stat.off_adj_rapm = (rapm.off_adj_rapm && rapm.def_adj_rapm) ?
+              const offAdjRapm = (rapm.off_adj_rapm && rapm.def_adj_rapm) ?
                 { value: (rapm.off_adj_rapm?.value || 0) - (rapm.def_adj_rapm?.value || 0) } :
                 undefined;
-              stat.off_adj_rapm_prod = stat.off_adj_rapm ? { value: (stat.off_adj_rapm.value || 0)*stat.off_team_poss_pct.value! } : undefined;
-
+              stat.off_adj_rapm = offAdjRapm;
+              stat.off_adj_rapm_prod = offAdjRapm ?
+                { value: offAdjRapm.value*stat.off_team_poss_pct.value! }
+                : undefined;
             }
           }
         }
 
         // Now we have the position we can build the titles:
-        stat.off_title = insertTitle(stat.key, key, pos);
+        stat.off_title = insertTitle(stat.key!, key, pos);
 
         // Create a table for the mutable overrides:
 
-        mutableTableDisplayForOverrides[OverrideUtils.getPlayerRowId(stat.key, stat.onOffKey)] = [
+        mutableTableDisplayForOverrides[OverrideUtils.getPlayerRowId(stat.key!, stat.onOffKey!)] = [
            GenericTableOps.buildDataRow(stat, offPrefixFn, offCellMetaFn),
            GenericTableOps.buildDataRow(stat, defPrefixFn, defCellMetaFn)
         ];
@@ -608,8 +619,8 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
 
   // If we have on-ball defense, then need to do a quick aggregation of the personal DRtgs
   if (!_.isEmpty(onBallDefenseByCode)) {
-    _.forEach([ "on", "off", "baseline" ], loc => {
-      const playerList = allPlayers.filter((p: any) => !_.isNil(p[loc]?.off_title)).map((p: any) => p[loc]!);
+    _.forEach([ "on", "off", "baseline" ], (loc: OnOffEnum) => {
+      const playerList = allPlayers.filter(p => !_.isNil(p[loc]?.off_title)).map(p => p[loc]!);
       RatingUtils.injectOnBallDefenseAdjustmentsPhase2(playerList);
     });
   }
@@ -633,11 +644,11 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
       _.isNil(p.on?.off_title) ? [ ] : _.flatten([
         [ GenericTableOps.buildDataRow(p.on, offPrefixFn, offCellMetaFn) ],
         expandedView ? [ GenericTableOps.buildDataRow(p.on, defPrefixFn, defCellMetaFn) ] : [],
-        showDiagMode && p.on?.diag_off_rtg ?
+        showDiagMode && p.on?.diag_off_rtg && p.on?.diag_def_rtg ?
           [ GenericTableOps.buildTextRow(<RosterStatsDiagView ortgDiags={p.on?.diag_off_rtg} drtgDiags={p.on?.diag_def_rtg}/>, "small") ] : [],
         showPositionDiags ?
-          [ GenericTableOps.buildTextRow(<PositionalDiagView player={p.on} teamSeason={teamSeasonLookup} showHelp={showHelp}/>, "small") ] : [],
-        showLuckAdjDiags && p.on?.off_luck ? [ GenericTableOps.buildTextRow(
+          [ GenericTableOps.buildTextRow(<PositionalDiagView player={p.on!} teamSeason={teamSeasonLookup} showHelp={showHelp}/>, "small") ] : [],
+        showLuckAdjDiags && p.on?.off_luck && p.on?.def_luck ? [ GenericTableOps.buildTextRow(
           <LuckAdjDiagView
             name="Player On"
             offLuck={p.on?.off_luck}
@@ -658,11 +669,11 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
       _.isNil(p.off?.off_title) ? [ ] : _.flatten([
         [ GenericTableOps.buildDataRow(p.off, offPrefixFn, offCellMetaFn) ],
         expandedView ? [ GenericTableOps.buildDataRow(p.off, defPrefixFn, defCellMetaFn) ] : [],
-        showDiagMode && p.off?.diag_off_rtg ?
+        showDiagMode && p.off?.diag_off_rtg && p.off?.diag_def_rtg ?
           [ GenericTableOps.buildTextRow(<RosterStatsDiagView ortgDiags={p.off?.diag_off_rtg} drtgDiags={p.off?.diag_def_rtg}/>, "small") ] : [],
         showPositionDiags ?
-          [ GenericTableOps.buildTextRow(<PositionalDiagView player={p.off} teamSeason={teamSeasonLookup} showHelp={showHelp}/>, "small") ] : [],
-        showLuckAdjDiags && p.off?.off_luck? [ GenericTableOps.buildTextRow(
+          [ GenericTableOps.buildTextRow(<PositionalDiagView player={p.off!} teamSeason={teamSeasonLookup} showHelp={showHelp}/>, "small") ] : [],
+        showLuckAdjDiags && p.off?.off_luck && p.off?.def_luck ? [ GenericTableOps.buildTextRow(
           <LuckAdjDiagView
             name="Player Off"
             offLuck={p.off?.off_luck}
@@ -683,11 +694,11 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
       (skipBaseline || _.isNil(p.baseline?.off_title)) ? [ ] : _.flatten([
         [ GenericTableOps.buildDataRow(p.baseline, offPrefixFn, offCellMetaFn) ],
         expandedView ? [ GenericTableOps.buildDataRow(p.baseline, defPrefixFn, defCellMetaFn) ] : [],
-        showDiagMode && p.baseline?.diag_off_rtg ?
+        showDiagMode && p.baseline?.diag_off_rtg && p.baseline?.diag_def_rtg ?
           [ GenericTableOps.buildTextRow(<RosterStatsDiagView ortgDiags={p.baseline?.diag_off_rtg} drtgDiags={p.baseline?.diag_def_rtg}/>, "small") ] : [],
         showPositionDiags ?
-          [ GenericTableOps.buildTextRow(<PositionalDiagView player={p.baseline} teamSeason={teamSeasonLookup} showHelp={showHelp}/>, "small") ] : [],
-        showLuckAdjDiags && p.baseline?.off_luck ? [ GenericTableOps.buildTextRow(
+          [ GenericTableOps.buildTextRow(<PositionalDiagView player={p.baseline!} teamSeason={teamSeasonLookup} showHelp={showHelp}/>, "small") ] : [],
+        showLuckAdjDiags && p.baseline?.off_luck && p.baseline?.def_luck ? [ GenericTableOps.buildTextRow(
           <LuckAdjDiagView
             name="Player Base"
             offLuck={p.baseline?.off_luck}
@@ -712,9 +723,9 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
   /** A list of all the players in poss count order */
   const playersAsList = _.flatMap(allPlayers, (p) => {
     return _.flatten([
-      p.on?.off_team_poss ? [ p.on ] : [],
-      p.off?.off_team_poss ? [ p.off ] : [],
-      p.baseline?.off_team_poss ? [ p.baseline ] : [],
+      p.on?.off_team_poss ? [ p.on! ] : [],
+      p.off?.off_team_poss ? [ p.off! ] : [],
+      p.baseline?.off_team_poss ? [ p.baseline! ] : [],
     ]);
   });
 
