@@ -42,6 +42,7 @@ import PlayerPlayTypeDiagView from "./diags/PlayerPlayTypeDiagView"
 import AsyncFormControl from './shared/AsyncFormControl';
 
 // Util imports
+import { IndivStatSet, TeamStatSet, LineupStatSet } from "../utils/StatModels";
 import { CbbColors } from "../utils/CbbColors";
 import { CommonTableDefs } from "../utils/tables/CommonTableDefs";
 import { getCommonFilterParams, ParamDefaults, ParamPrefixes, GameFilterParams, LuckParams, ManualOverride } from "../utils/FilterModels";
