@@ -42,12 +42,14 @@ export class TeamReportTableUtils {
         const preProcDiags = RapmUtils.calcCollinearityDiag(offRapmWeights, rapmContext);
         const [ offRapmInputs, defRapmInputs ] = RapmUtils.pickRidgeRegression(
           offRapmWeights, defRapmWeights, rapmContext, preProcDiags.adaptiveCorrelWeights, (rapmDiagMode != ""),
-          valueKey //<- we fit to the overall efficiency, be it luck adjusted or not
+          valueKey, //<- we fit to the overall efficiency, be it luck adjusted or not
+          adjustForLuck ? "old_value" : "value" //<-never use luck adjusted _lineup_ values though, too noisy
         );
         RapmUtils.injectRapmIntoPlayers(
           tempTeamReport.players || [], offRapmInputs, defRapmInputs, {}, rapmContext, preProcDiags.adaptiveCorrelWeights,
-          "old_value", valueKey
-          //^ currently: not using luck in lineup calcs (ie old_value if it exists),
+          adjustForLuck ? "old_value" : "value", //(read)
+          valueKey //(write)
+          //^ currently: not using luck in lineup calcs (ie old_value if it exists) - they are too nosiy,
           // but writing a luck-adjusted version based on different priors
         );
         return {

@@ -180,19 +180,19 @@ describe("RapmUtils", () => {
     [ true, false ].forEach((luckAdjusted) => {
       const [ offResults, defResults ] = RapmUtils.pickRidgeRegression(
         semiRealRapmResults.testOffWeights, semiRealRapmResults.testDefWeights, semiRealRapmResults.testContext, undefined, false,
-        luckAdjusted ? "value" : "old_value"
+        luckAdjusted ? "value" : "old_value", luckAdjusted ? "old_value" : "value"
       );
       var testContext1 = _.cloneDeep(semiRealRapmResults.testContext);
       testContext1.priorInfo.strongWeight = -1;
       const [ offResults1, defResults1 ] = RapmUtils.pickRidgeRegression(
         semiRealRapmResults.testOffWeights, semiRealRapmResults.testDefWeights, testContext1, adapativeWeights1, false,
-        luckAdjusted ? "value" : "old_value"
+        luckAdjusted ? "value" : "old_value", luckAdjusted ? "old_value" : "value"
       );
       var testContext2 = _.cloneDeep(semiRealRapmResults.testContext);
       testContext2.priorInfo.strongWeight = -1;
       const [ offResults2, defResults2 ] = RapmUtils.pickRidgeRegression(
         semiRealRapmResults.testOffWeights, semiRealRapmResults.testDefWeights, testContext2, adapativeWeights2, false,
-        luckAdjusted ? "value" : "old_value"
+        luckAdjusted ? "value" : "old_value", luckAdjusted ? "old_value" : "value"
       );
       expect(offResults1).toEqual(offResults); //(same adaptive weights)
       expect(offResults2).not.toEqual(offResults); //(same adaptive weights)
@@ -229,7 +229,7 @@ describe("RapmUtils", () => {
     [ true, false ].forEach((luckAdjusted) => {
       const [ offResults, defResults ] = RapmUtils.pickRidgeRegression(
         semiRealRapmResults.testOffWeights, semiRealRapmResults.testDefWeights, semiRealRapmResults.testContext, undefined,
-        false, luckAdjusted ? "value" : "old_value"
+        false, luckAdjusted ? "value" : "old_value", luckAdjusted ? "old_value" : "value"
         //^(note diag=true|false gives a different answer because the data is malformed so picks a really early lambda)
       );
       const onOffReport = LineupUtils.lineupToTeamReport(lineupReport);

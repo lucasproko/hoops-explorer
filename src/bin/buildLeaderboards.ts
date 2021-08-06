@@ -176,7 +176,6 @@ export async function main() {
     }
   }).value();
 
-/**/
 //Test code:
 //console.log("Number of teams = " + teams.length);
 //throw "done";
@@ -273,8 +272,11 @@ export async function main() {
       const rosterBaseline =
         playerResponse.getJsonResponse().aggregations?.tri_filter?.buckets?.baseline?.player?.buckets || [];
 
-      const rosterGlobal = //(using "baseline" not "season" for luck adjustments, so don't need this)
+      const rosterGlobal =
         playerResponse.getJsonResponse().aggregations?.tri_filter?.buckets?.baseline?.player?.buckets || [];
+          //using baseline instead of global here:
+          // has no effect on luck since using "baseline" not "season" for luck adjustments
+          // will have a small impact on ORtg and position calcs, in on/off they use season-wide
 
       const lineups =
         lineupResponse.getJsonResponse().aggregations?.lineups?.buckets || [];

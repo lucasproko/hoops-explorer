@@ -251,7 +251,7 @@ export class RapmUtils {
     ,
     avgEfficiency: number
     ,
-    priorValueKey: "value" | "old_value" = "value" //(allows use of luck adjusted parameters in prior calcs only)
+    aggValueKey: "value" | "old_value" = "value" //(allows use of luck adjusted parameters in prior calcs only)
     ,
     priorMode: number = -1, //(or 0-1 for fixed strong prior)
     removalPct: number = 0.06,
@@ -307,7 +307,6 @@ export class RapmUtils {
     // Calculate the aggregated team stats
     //(note includes pre-luck-adjusted stats if the main stats are luck adjusted)
     const teamInfo = LineupUtils.calculateAggregatedLineupStats(lineups);
-
     const sortedPlayers = _.chain(players).filter((p) => {
       const playerId = p.playerId as string || "";
       return !removedPlayersSet.hasOwnProperty(playerId);
@@ -336,7 +335,7 @@ export class RapmUtils {
       defLineupPoss: teamInfo.def_poss?.value || 0
       ,
       priorInfo: RapmUtils.buildPriors(
-        playersBaseline, sortedPlayers, priorMode, priorValueKey
+        playersBaseline, sortedPlayers, priorMode, aggValueKey
       )
     };
   }
@@ -609,14 +608,17 @@ export class RapmUtils {
     ctx: RapmPlayerContext,
     adaptiveCorrelWeights: number[] | undefined,
     diagMode: boolean,
-    valueKey: "value" | "old_value" = "value" // not indiv lineup numbers - just player and team aggregates
+    aggValueKey: "value" | "old_value" = "value", // not indiv lineup numbers - just player and team aggregates
+    lineupValueKey: "value" | "old_value" = "value" // indiv lineup numbers
   ) {
-    const useOldValIfPossible = valueKey == "old_value";
-    const getVal = (o: any, alwaysTakeValue: boolean = false) => {
-      return (useOldValIfPossible && !alwaysTakeValue) ?
-        ((_.isNil(o?.[valueKey]) ? o?.value : o?.[valueKey]) || 0) :
+    const useAggOldValIfPossible = aggValueKey == "old_value";
+    const getAggVal = (o: any) => {
+      return (useAggOldValIfPossible) ?
+        ((_.isNil(o?.[aggValueKey]) ? o?.value : o?.[aggValueKey]) || 0) :
         o?.value || 0;
     };
+    const useLineupOldValIfPossible = lineupValueKey == "old_value";
+
     // Some test + diag artefacts
     const offDefDebugMode = {
       off: false,
@@ -665,16 +667,16 @@ export class RapmUtils {
       //(handle the special case where filtered lineups == all lineups)
     const actualEff = {
       //(we include both "RAPM players only" and "all other lineups" and then counter adjust with adj_rtg when we don't have RAPM)
-      off: getVal(allLineups?.off_adj_ppp) - ctx.avgEfficiency,
-      def: getVal(allLineups?.def_adj_ppp) - ctx.avgEfficiency
+      off: getAggVal(allLineups?.off_adj_ppp) - ctx.avgEfficiency,
+      def: getAggVal(allLineups?.def_adj_ppp) - ctx.avgEfficiency
     };
 
     if (offDefDebugMode.off) {
-      const possUsedinRapm = getVal(ctx.teamInfo.off_adj_ppp) - ctx.avgEfficiency;
+      const possUsedinRapm = getAggVal(ctx.teamInfo.off_adj_ppp) - ctx.avgEfficiency;
       console.log(`off: Eff components: rotation+combined=[${possUsedinRapm.toFixed(2)}] bench=[${(actualEff.off - possUsedinRapm).toFixed(2)}]`);
     }
     if (offDefDebugMode.def) {
-      const possUsedinRapm = getVal(ctx.teamInfo.def_adj_ppp) - ctx.avgEfficiency;
+      const possUsedinRapm = getAggVal(ctx.teamInfo.def_adj_ppp) - ctx.avgEfficiency;
       console.log(`def: Eff components: rotation+combined=[${possUsedinRapm.toFixed(2)}] bench=[${(actualEff.def - possUsedinRapm).toFixed(2)}]`);
     }
 
@@ -706,7 +708,7 @@ export class RapmUtils {
           _.chain(ctx.removedPlayers).values().reduce((acc, v) => {
             const vStat = v[2] || {};
             // (use total bench mins as per [IMPORTANT-EQUATION-01])
-            return acc + getVal(vStat[`${onOrOff}_adj_rtg`], true)*getVal(vStat[`${onOrOff}_poss`])/lineupPossCount;
+            return acc + getAggVal(vStat[`${onOrOff}_adj_rtg`])*getAggVal(vStat[`${onOrOff}_poss`])/lineupPossCount;
           }, 0.0).value()
           ,
           (ctx as any)[`${onOrOff}LineupPoss`]!/lineupPossCount //% of rotation+combined possessions, diag only
@@ -726,13 +728,12 @@ export class RapmUtils {
     };
 
     const [ offAdjPoss, defAdjPoss ] = RapmUtils.calcLineupOutputs(
-      "adj_ppp", ctx.avgEfficiency, ctx.avgEfficiency, ctx, adaptiveCorrelWeights, useOldValIfPossible
+      "adj_ppp", ctx.avgEfficiency, ctx.avgEfficiency, ctx, adaptiveCorrelWeights, useLineupOldValIfPossible
     );
     const adjPoss = {
       off: offAdjPoss,
       def: defAdjPoss
     };
-
     const pickRidgeThresh = { off: 0.061, def: 0.091 }; //(more confident in offensive priors)
     const lambdaRange = [ 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.25, 2.5, 2.75, 3, 3.25, 3.5, 3.75, 4.0 ];
     const usedLambdaRange = _.drop(lambdaRange, diagMode ? 0 : 3)
