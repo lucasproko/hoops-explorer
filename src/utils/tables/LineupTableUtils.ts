@@ -27,13 +27,13 @@ export class LineupTableUtils {
   static buildBaselinePlayerInfo(
     players: any[] | undefined,
     globalRosterStatsByCode: Record<string, any>, teamStat: Record<string, any>,
-    avgEfficiency: number, onBallDefenseByCode: Record<string, OnBallDefenseModel>  = {}
+    avgEfficiency: number, adjustForLuck: boolean,
+    onBallDefenseByCode: Record<string, OnBallDefenseModel>  = {}
   ) {
-    //(note changes here will likely need to be reflected in TeamReportStatsTable::insertExtraInfo)
     const baselinePlayerInfo = _.fromPairs(
       (players || []).map((mutableP: any) => {
         const playerAdjustForLuckOff = false; //(for now, no offensive luck calcs, see also below when time to set for true)
-        const playerAdjustForLuckDef = true; //(make player defense a little more stable)
+        const playerAdjustForLuckDef = adjustForLuck; //(make player defense a little more stable)
 
         // Possession %
         mutableP.off_team_poss_pct = { value: _.min([(mutableP.off_team_poss.value || 0)
@@ -42,6 +42,7 @@ export class LineupTableUtils {
             / (teamStat.def_poss?.value || 1), 1 ]) };
 
         if (mutableP?.doc_count) {
+          // (No offensive luck since our "to adjust" and baseline are the same)
           // Calculate luck for defense - over the baseline query, but will regress to opponent SoS
           const defLuckAdj = LuckUtils.calcDefPlayerLuckAdj(
             mutableP, mutableP, avgEfficiency

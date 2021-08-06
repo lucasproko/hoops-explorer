@@ -42,7 +42,7 @@ describe("TeamRosterDiagView", () => {
     } ];
   }).fromPairs().value();
   const rosterStatsByKey = LineupTableUtils.buildBaselinePlayerInfo(
-    testData.on, rosterStatsByCode, teamData.on, 100.0
+    testData.on, rosterStatsByCode, teamData.on, 100.0, true //(adjust for luck in this scenario, arbitrarily)
   );
   test("TeamRosterDiagView", () => {
     const wrapper = shallow(

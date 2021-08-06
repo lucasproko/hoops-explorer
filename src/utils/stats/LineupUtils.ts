@@ -50,6 +50,7 @@ export class LineupUtils {
     if (!_.isNil(teamInfo?.off_ppp?.old_value)) { //(luck adjusted mode)
       LineupUtils.buildEfficiencyMargins(teamInfo, "old_value");
     }
+    //(don't bother for "all_lineups" since off_net is not used in any stats)
 
     return teamInfo;
   }
@@ -414,6 +415,10 @@ export class LineupUtils {
             mutableAcc[key].old_value = 0;
             mutableAcc[key].override = oldValOverride;
           }
+        } else if (oldValOverride && !mutableAcc[key].override) {
+          //(was init'd without override)
+          mutableAcc[key].old_value = 0;
+          mutableAcc[key].override = oldValOverride;
         }
         if (totalShotTypeKey) {
           mutableAcc[key].value += val*obj[totalShotTypeKey]?.value || 0;

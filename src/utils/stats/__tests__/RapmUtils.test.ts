@@ -107,7 +107,7 @@ describe("RapmUtils", () => {
     [ 0.0, 0.20 ].forEach((threshold) => {
       const results = RapmUtils.buildPlayerContext(
         onOffReport.players || [], lineupReportWithExtra.lineups || [], playersInfoByKey, 100.0,
-        threshold,
+        "value", undefined, threshold,
       );
       expect(_.omit(results, ["filteredLineups", "teamInfo"])).toMatchSnapshot();
       expect(results.filteredLineups.length).toEqual(threshold > 0.05 ? 5 : 5); //(filtering now v rare)
@@ -120,7 +120,7 @@ describe("RapmUtils", () => {
     [ 0.0, 2.0 ].forEach((unbiasWeight) => { //(we don't really support unbiasWeight any more but keept his test for now)
       const onOffReport = LineupUtils.lineupToTeamReport(lineupReport);
       var context = RapmUtils.buildPlayerContext(
-        onOffReport.players || [], lineupReport.lineups || [], playersInfoByKey, 100.0, 0.0
+        onOffReport.players || [], lineupReport.lineups || [], playersInfoByKey, 100.0, "value", undefined, 0.0
       );
       context.unbiasWeight = unbiasWeight;
       const results = RapmUtils.calcPlayerWeights(context);
@@ -148,7 +148,7 @@ describe("RapmUtils", () => {
     [ -1, 0.5 ].forEach((strongWeight) => {
       const onOffReport = LineupUtils.lineupToTeamReport(lineupReport);
       const context = RapmUtils.buildPlayerContext(
-        onOffReport.players || [], lineupReport.lineups || [], playersInfoByKey, 100.0, 0.0, strongWeight
+        onOffReport.players || [], lineupReport.lineups || [], playersInfoByKey, 100.0, "value", strongWeight, 0.0
       );
       const adapativeWeights = (onOffReport.players || []).map(p => 0.5);
       const results = RapmUtils.calcLineupOutputs(
@@ -180,19 +180,19 @@ describe("RapmUtils", () => {
     [ true, false ].forEach((luckAdjusted) => {
       const [ offResults, defResults ] = RapmUtils.pickRidgeRegression(
         semiRealRapmResults.testOffWeights, semiRealRapmResults.testDefWeights, semiRealRapmResults.testContext, undefined, false,
-        luckAdjusted
+        luckAdjusted ? "value" : "old_value", luckAdjusted ? "old_value" : "value"
       );
       var testContext1 = _.cloneDeep(semiRealRapmResults.testContext);
       testContext1.priorInfo.strongWeight = -1;
       const [ offResults1, defResults1 ] = RapmUtils.pickRidgeRegression(
         semiRealRapmResults.testOffWeights, semiRealRapmResults.testDefWeights, testContext1, adapativeWeights1, false,
-        luckAdjusted
+        luckAdjusted ? "value" : "old_value", luckAdjusted ? "old_value" : "value"
       );
       var testContext2 = _.cloneDeep(semiRealRapmResults.testContext);
       testContext2.priorInfo.strongWeight = -1;
       const [ offResults2, defResults2 ] = RapmUtils.pickRidgeRegression(
         semiRealRapmResults.testOffWeights, semiRealRapmResults.testDefWeights, testContext2, adapativeWeights2, false,
-        luckAdjusted
+        luckAdjusted ? "value" : "old_value", luckAdjusted ? "old_value" : "value"
       );
       expect(offResults1).toEqual(offResults); //(same adaptive weights)
       expect(offResults2).not.toEqual(offResults); //(same adaptive weights)
@@ -229,7 +229,7 @@ describe("RapmUtils", () => {
     [ true, false ].forEach((luckAdjusted) => {
       const [ offResults, defResults ] = RapmUtils.pickRidgeRegression(
         semiRealRapmResults.testOffWeights, semiRealRapmResults.testDefWeights, semiRealRapmResults.testContext, undefined,
-        false, luckAdjusted
+        false, luckAdjusted ? "value" : "old_value", luckAdjusted ? "old_value" : "value"
         //^(note diag=true|false gives a different answer because the data is malformed so picks a really early lambda)
       );
       const onOffReport = LineupUtils.lineupToTeamReport(lineupReport);
@@ -238,12 +238,19 @@ describe("RapmUtils", () => {
       const players = [ { playerId: "Mitchell, Makhel" } as Record<string, any> ].concat(onOffReport.players || []);
       if (luckAdjusted) {  //(needs to be run in normal mode first)
         RapmUtils.injectRapmIntoPlayers(
-          players, offResults, defResults, {}, semiRealRapmResults.testContext, undefined, false
+          players, offResults, defResults, {}, semiRealRapmResults.testContext, undefined,
+          "old_value", "value"
+        );
+        RapmUtils.injectRapmIntoPlayers(
+          players, offResults, defResults, {}, semiRealRapmResults.testContext, undefined,
+          "old_value", "old_value"
+        );
+      } else { //(not luck adjusted readKeyValue can be either value or old value, it doesn't matter)
+        RapmUtils.injectRapmIntoPlayers(
+          players, offResults, defResults, {}, semiRealRapmResults.testContext, undefined,
+          "value", "value"
         );
       }
-      RapmUtils.injectRapmIntoPlayers(
-        players, offResults, defResults, {}, semiRealRapmResults.testContext, undefined, luckAdjusted
-      );
 
       const keyToCheck = luckAdjusted ? "old_value" : "value";
       const resultsToExamine =
@@ -255,7 +262,8 @@ describe("RapmUtils", () => {
           ).value()
         }).value();
 
-      expect(resultsToExamine).toEqual([
+      expect([luckAdjusted, ...resultsToExamine]).toEqual([
+          luckAdjusted,
            {
              "noRapm": true,
            },

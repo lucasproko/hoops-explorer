@@ -28,6 +28,5 @@ export class RosterTableUtils {
 
       return [ code, p ];
     }).fromPairs().value();
-
   }
 };

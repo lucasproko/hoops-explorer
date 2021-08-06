@@ -31,6 +31,7 @@ import { averageStatsInfo } from '../utils/internal-data/averageStatsInfo';
 import { efficiencyInfo } from '../utils/internal-data/efficiencyInfo';
 import { LineupTableUtils } from "../utils/tables/LineupTableUtils";
 import { RosterTableUtils } from "../utils/tables/RosterTableUtils";
+import { TeamReportTableUtils } from "../utils/tables/TeamReportTableUtils";
 import { AvailableTeams } from '../utils/internal-data/AvailableTeams';
 import { dataLastUpdated } from '../utils/internal-data/dataLastUpdated';
 
@@ -175,7 +176,6 @@ export async function main() {
     }
   }).value();
 
-/**/
 //Test code:
 //console.log("Number of teams = " + teams.length);
 //throw "done";
@@ -272,8 +272,11 @@ export async function main() {
       const rosterBaseline =
         playerResponse.getJsonResponse().aggregations?.tri_filter?.buckets?.baseline?.player?.buckets || [];
 
-      const rosterGlobal = //(using "baseline" not "season" for luck adjustments, so don't need this)
+      const rosterGlobal =
         playerResponse.getJsonResponse().aggregations?.tri_filter?.buckets?.baseline?.player?.buckets || [];
+          //using baseline instead of global here:
+          // has no effect on luck since using "baseline" not "season" for luck adjustments
+          // will have a small impact on ORtg and position calcs, in on/off they use season-wide
 
       const lineups =
         lineupResponse.getJsonResponse().aggregations?.lineups?.buckets || [];
@@ -288,7 +291,7 @@ export async function main() {
       const globalRosterStatsByCode = RosterTableUtils.buildRosterTableByCode(rosterGlobal, rosterInfoJson);
 
       const baselinePlayerInfo = LineupTableUtils.buildBaselinePlayerInfo(
-        rosterBaseline, globalRosterStatsByCode, teamBaseline, avgEfficiency
+        rosterBaseline, globalRosterStatsByCode, teamBaseline, avgEfficiency, true //(always adjust for luck)
       );
       const positionFromPlayerKey = LineupTableUtils.buildPositionPlayerMap(rosterGlobal, teamSeasonLookup);
 
@@ -353,56 +356,30 @@ export async function main() {
 
       // Now do all the RAPM work (after luck has been adjusted)
       if (!ignoreRapm) { //(TODO: test data isn't big enough to calc RAPM so ignore for now in unit test)
-        try {
-          const tempTeamReport = LineupUtils.lineupToTeamReport({
-            lineups: preRapmTableData
-          });
-          const rapmContext = RapmUtils.buildPlayerContext(
-            tempTeamReport.players || [], preRapmTableData,
-            baselinePlayerInfo,
-            avgEfficiency
-          );
-          const [ offRapmWeights, defRapmWeights ] = RapmUtils.calcPlayerWeights(rapmContext);
-          const preProcDiags = RapmUtils.calcCollinearityDiag(offRapmWeights, rapmContext);
-          const [ offRapmInputs, defRapmInputs ] = RapmUtils.pickRidgeRegression(
-            offRapmWeights, defRapmWeights, rapmContext, preProcDiags.adaptiveCorrelWeights, false
-          );
-          RapmUtils.injectRapmIntoPlayers(
-            tempTeamReport.players || [], offRapmInputs, defRapmInputs, statsAverages, rapmContext, preProcDiags.adaptiveCorrelWeights
-          );
-          const alwaysAdjustForLuck = true;
-          if (alwaysAdjustForLuck) { // (Calculate RAPM without luck, for display purposes)
-            const [ offNoLuckRapmInputs, defNoLuckRapmInputs ] = RapmUtils.pickRidgeRegression(
-              offRapmWeights, defRapmWeights, rapmContext, preProcDiags.adaptiveCorrelWeights, false,
-              true //<- uses old_value (ie pre-luck-adjusted)
-            );
-            RapmUtils.injectRapmIntoPlayers(
-              tempTeamReport.players || [], offNoLuckRapmInputs, defNoLuckRapmInputs, statsAverages, rapmContext, preProcDiags.adaptiveCorrelWeights,
-              true //<- only applies RAPM to old_values
-            );
+        const rapmInfo = TeamReportTableUtils.buildOrInjectRapm(
+          preRapmTableData, baselinePlayerInfo,
+          true, //<-always adjust for luck
+          avgEfficiency
+        );
+        const enrichedAndFilteredPlayersMap = _.fromPairs(
+          enrichedAndFilteredPlayers.map(p => [ p.key, p ])
+        );
+        (rapmInfo?.enrichedPlayers || []).forEach((rapmP, index) => {
+          const player = enrichedAndFilteredPlayersMap[rapmP.playerId];
+          // RAPM (rating + productions)
+          if (player && rapmP.rapm) {
+            player.off_adj_rapm = rapmP.rapm?.off_adj_ppp;
+            player.off_adj_rapm_prod = {
+              value: rapmP.rapm!.off_adj_ppp!.value! * player.off_team_poss_pct!.value!
+            };
+            player.def_adj_rapm = rapmP.rapm?.def_adj_ppp;
+            player.def_adj_rapm_prod = {
+              value: rapmP.rapm!.def_adj_ppp!.value! * player.def_team_poss_pct!.value!,
+              old_value: (rapmP.rapm?.def_adj_ppp?.old_value || 0) * player.def_team_poss_pct!.value!,
+              override: rapmP.rapm?.def_adj_ppp?.override
+            };
           }
-          const enrichedAndFilteredPlayersMap = _.fromPairs(
-            enrichedAndFilteredPlayers.map(p => [ p.key, p ])
-          );
-          (tempTeamReport.players || []).forEach((rapmP, index) => {
-            const player = enrichedAndFilteredPlayersMap[rapmP.playerId];
-            // RAPM (rating + productions)
-            if (player && rapmP.rapm) {
-              player.off_adj_rapm = rapmP.rapm?.off_adj_ppp;
-              player.off_adj_rapm_prod = {
-                value: rapmP.rapm!.off_adj_ppp!.value! * player.off_team_poss_pct!.value!
-              };
-              player.def_adj_rapm = rapmP.rapm?.def_adj_ppp;
-              player.def_adj_rapm_prod = {
-                value: rapmP.rapm!.def_adj_ppp!.value! * player.def_team_poss_pct!.value!,
-                old_value: (rapmP.rapm?.def_adj_ppp?.old_value || 0) * player.def_team_poss_pct!.value!,
-                override: rapmP.rapm?.def_adj_ppp?.override
-              };
-            }
-          });
-        } catch (e) {
-          console.log("(RAPM failed - this is expected to start the season)")
-        }
+        });
       } //(end RAPM)
 
       const tableData = _.take(preRapmTableData, 5).map(tmpLineup => {
