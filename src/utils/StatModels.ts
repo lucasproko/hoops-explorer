@@ -16,6 +16,7 @@ export type Statistic = {
   override?: string | React.ReactNode
 };
 
+/** TODO: consider coming up with a list of all possible fields from ES and using a mapped type? */
 export type PureStatSet = Record<string, Statistic>;
 
 /** (eg ErAyala) */
@@ -90,7 +91,7 @@ export type IndivMetadata = {
   // These are used in the leaderboard:
   conf?: string,
   team?: string,
-  teamYear?: string,
+  year?: string,
 };
 
 /** Derived stats we add to the individual's stat set */
@@ -140,12 +141,35 @@ export type TeamStatSet = PureStatSet & TeamEnrichment & TeamMetadata;
 
 /** Non statistical metadata relating to individuals */
 export type LineupMetadata = {
+  /** Required, list of codes, _ separated */
+  key: string,
+
   doc_count: number,
+
+  /** Comes from the ES response */
+  players_array?: any, //(long nested type)
+
+  /** From ES (object) or derived by aggregation (list), TODO encode the type */
+  game_info?: any,
+
+  // These are used in the leaderboard:
+  conf?: string,
+  team?: string,
+  year?: string,
+  /** TODO: add type here */
+  player_info?: any,
 };
 
 /** Derived stats we add to the individual's stat set */
 export type LineupEnrichment = {
 
+  /** Luck diags */
+  off_luck_diags?: OffLuckAdjustmentDiags,
+  /** Luck diags */
+  def_luck_diags?: DefLuckAdjustmentDiags,
+
+  /** For aggregating lineups with a filter (RAPM specific logic) - this is the unfiltered version */
+  all_lineups?: LineupStatSet
 };
 
 export type LineupStatSet = PureStatSet & LineupEnrichment & LineupMetadata;
@@ -156,5 +180,5 @@ export type LineupStatSet = PureStatSet & LineupEnrichment & LineupMetadata;
 export class StatModels {
   static emptyIndiv: IndivStatSet = { key: "empty", doc_count: 0 } as IndivStatSet;
   static emptyTeam: TeamStatSet = { doc_count: 0 } as TeamStatSet;
-  static emptyLineup: LineupStatSet = { doc_count: 0 } as LineupStatSet;
+  static emptyLineup: LineupStatSet = { key: "empty", doc_count: 0 } as LineupStatSet;
 }

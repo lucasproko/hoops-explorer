@@ -2,6 +2,7 @@
 import _ from "lodash";
 
 // Util imports
+import { StatModels, OnOffBaselineEnum, OnOffBaselineGlobalEnum, PlayerCodeId, PlayerCode, PlayerId, Statistic, IndivStatSet, TeamStatSet, LineupStatSet } from "../StatModels";
 import { RapmInfo, RapmUtils } from "../stats/RapmUtils";
 import { LineupUtils } from "../stats/LineupUtils";
 
@@ -10,7 +11,7 @@ export class TeamReportTableUtils {
 
   /** For a given lineup set, calculate RAPM as quickly as possible */
   static buildOrInjectRapm(
-    enrichedLineups: Array<Record<string, any>>, playerInfo: Record<string, any>,
+    enrichedLineups: Array<LineupStatSet>, playerInfo: Record<PlayerId, IndivStatSet>,
     adjustForLuck: Boolean, avgEfficiency: number,
     preCalcTeamReport: undefined | Record<string, any> = undefined, //(can calculate this in advance if using anyway)
     rapmPriorMode: number = -1, rapmDiagMode: string = ""

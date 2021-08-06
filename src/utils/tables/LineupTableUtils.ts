@@ -186,14 +186,14 @@ export class LineupTableUtils {
   /** Builds a filtered sorted list of lineups */
   static buildEnrichedLineups(
     // Stats inputs:
-    filteredLineups: any[], globalTeamStats: Record<string, any>,
-    players: any[] | undefined, baselineTeamStats: Record<string, any>,
+    filteredLineups: Array<LineupStatSet>, globalTeamStats: TeamStatSet,
+    players: Array<IndivStatSet>, baselineTeamStats: TeamStatSet,
     // Table control:
     adjustForLuck: boolean, luckConfigBase: "baseline" | "season", avgEfficiency: number,
     // Derived objects:
     showTotalLineups: boolean, teamSeasonLookup: string,
-    positionFromPlayerKey: Record<string, any>, baselinePlayerInfo: Record<string, any>
-  ) {
+    positionFromPlayerKey: Record<PlayerId, any>, baselinePlayerInfo: Record<PlayerId, IndivStatSet>
+  ): Array<LineupStatSet> {
     // The luck baseline can either be the user-selecteed baseline or the entire season
     const [ baseOrSeasonTeamStats, baseOrSeason3PMap ] = (() => {
       if (adjustForLuck) {
@@ -204,14 +204,14 @@ export class LineupTableUtils {
             ];
           default: //("season")
             return [
-              globalTeamStats, _.fromPairs((players || []).map((p: any) => [ p.key, p ]))
+              globalTeamStats, _.fromPairs((players || []).map(p => [ p.key, p ]))
             ];
         }
       } else return [ {}, {} ]; //(not used)
     })();
 
     /** Perform enrichment on each lineup, including luck adjustment */
-    const enrichLineup = (lineup: Record<string, any>) => {
+    const enrichLineup = (lineup: LineupStatSet) => {
       const codesAndIds = LineupTableUtils.buildCodesAndIds(lineup);
 
       const sortedCodesAndIds = (lineup.key == LineupTableUtils.totalLineupId) ? undefined :
@@ -241,7 +241,8 @@ export class LineupTableUtils {
     const totalLineup = showTotalLineups ? [
       // Have to do this last in order to get the luck-mutated lineups
       enrichLineup(_.assign(LineupUtils.calculateAggregatedLineupStats(filteredLineups), {
-        key: LineupTableUtils.totalLineupId
+        key: LineupTableUtils.totalLineupId,
+        doc_count: filteredLineups.length //(just a dummy number >0 since doc_count is required)
       }))
     ] : [];
 
@@ -250,8 +251,8 @@ export class LineupTableUtils {
 
   /** Builds the list of where players play based on their lineup */
   static getPositionalInfo(
-    lineups: Record<string, any>[],
-    positionFromPlayerId: Record<string, any>,
+    lineups: Array<LineupStatSet>,
+    positionFromPlayerId: Record<PlayerId, any>,
     teamSeasonLookup: string
   ): PositionInfo[][] {
     return _.chain(lineups).transform((mutableAcc, lineup) => {

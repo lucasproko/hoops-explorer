@@ -39,6 +39,7 @@ import { LineupTableUtils } from "../utils/tables/LineupTableUtils";
 import { RosterTableUtils } from "../utils/tables/RosterTableUtils";
 
 // Util imports
+import { StatModels, OnOffBaselineEnum, OnOffBaselineGlobalEnum, PlayerCodeId, PlayerCode, PlayerId, Statistic, IndivStatSet, TeamStatSet, LineupStatSet } from "../utils/StatModels";
 import { CbbColors } from "../utils/CbbColors";
 import { CommonTableDefs } from "../utils/tables/CommonTableDefs";
 import { PositionUtils } from "../utils/stats/PositionUtils";
@@ -47,7 +48,7 @@ import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
 import { LineupFilterParams, ParamDefaults, LuckParams } from '../utils/FilterModels';
 
 export type LineupStatsModel = {
-  lineups?: Array<any>,
+  lineups: Array<LineupStatSet>,
   error_code?: string
 }
 type Props = {
@@ -177,7 +178,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
     const lineups = lineupStats?.lineups || [];
 
     if (showGameInfo) {
-      const haveGameInfo: boolean = lineups?.[0]?.game_info;
+      const haveGameInfo: boolean = !_.isNil(lineups?.[0]?.game_info);
       setLoadingOverride(!haveGameInfo); //(special case ... don't remove overlay until we have game info)
     } else {
       setLoadingOverride(false); //(rendering)
@@ -197,7 +198,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
     const mutableOppoList = {} as Record<string, any>;
     if (showGameInfo) { // (calculate this before doing the table filter)
       lineups.forEach((l) => {
-        LineupUtils.getGameInfo(l.game_info, mutableOppoList);
+        LineupUtils.getGameInfo(l.game_info || {}, mutableOppoList);
       });
     }
     const orderedMutableOppoList = {} as Record<string, any>;
@@ -230,9 +231,10 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
         const sortedCodesAndIds = (lineup.key == LineupTableUtils.totalLineupId) ? undefined :
           PositionUtils.orderLineup(codesAndIds, positionFromPlayerKey, teamSeasonLookup);
 
-        const perLineupBaselinePlayerMap = _.fromPairs(codesAndIds.map((cid: { code: string, id: string }) => {
-          return [  cid.id, baselinePlayerInfo[cid.id] || {} ];
-        })) as Record<string, Record<string, any>>;
+        const perLineupBaselinePlayerMap: Record<PlayerId, IndivStatSet> =
+          _.fromPairs(codesAndIds.map((cid: PlayerCodeId) => {
+            return [ cid.id, baselinePlayerInfo[cid.id] || StatModels.emptyIndiv ];
+          }));
 
         const lineupTitleKey = "" + lineupIndex;
         const title = sortedCodesAndIds ?
@@ -249,22 +251,23 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
             <GameInfoDiagView
               oppoList={(lineup.key == LineupTableUtils.totalLineupId) ?
                 (lineup.game_info || []) :
-                LineupUtils.getGameInfo(lineup.game_info)}
+                LineupUtils.getGameInfo(lineup.game_info || {})}
               orderedOppoList={_.clone(orderedMutableOppoList)}
               params={startingState}
               maxOffPoss={(lineup.key == LineupTableUtils.totalLineupId) ?
                  -1 : globalMaxPoss}
             />, "small"
           )] : [],
-          (showLuckAdjDiags && lineup.off_luck_diags && sortedCodesAndIds) ? [ GenericTableOps.buildTextRow(
-            <LuckAdjDiagView
-              name="lineup"
-              offLuck={lineup.off_luck_diags}
-              defLuck={lineup.def_luck_diags}
-              baseline={luckConfig.base}
-              showHelp={showHelp}
-            />, "small pt-2"
-          ) ] : [] ,
+          (showLuckAdjDiags && lineup.off_luck_diags && lineup.def_luck_diags && sortedCodesAndIds) ?
+            [ GenericTableOps.buildTextRow(
+              <LuckAdjDiagView
+                name="lineup"
+                offLuck={lineup.off_luck_diags}
+                defLuck={lineup.def_luck_diags}
+                baseline={luckConfig.base}
+                showHelp={showHelp}
+              />, "small pt-2"
+            ) ] : [] ,
           [ GenericTableOps.buildRowSeparator() ]
         ]);
       });
@@ -320,9 +323,10 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
         const key = lineups?.[0].posKey;
         const codesAndIds = lineups?.[0].codesAndIds || [];
 
-        const perLineupBaselinePlayerMap = _.fromPairs(codesAndIds.map((cid: { code: string, id: string }) => {
-          return [  cid.id, baselinePlayerInfo[cid.id] || {} ];
-        })) as Record<string, Record<string, any>>;
+        const perLineupBaselinePlayerMap: Record<PlayerId, IndivStatSet> =
+          _.fromPairs(codesAndIds.map((cid: PlayerCodeId) => {
+            return [  cid.id, baselinePlayerInfo[cid.id] || StatModels.emptyIndiv ];
+          }));
 
         const lineupTitleKey = "" + key;
         const title =
@@ -351,7 +355,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
       );
       const refilteredLineups = (maybeTotal ? [ maybeTotal as any ] : []).concat(refilteredLineupsNotTotal);
       const comboGlobalMaxPoss = _.chain(refilteredLineupsNotTotal)
-        .flatMap(l => l.game_info || [])
+        .flatMap(l => l.game_info || {})
         .map(oppo => oppo?.num_off_poss || 0)
         .reduce((acc, offPoss) => offPoss > acc ? offPoss : acc)
         .value();
@@ -367,7 +371,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
           [ GenericTableOps.buildDataRow(stats, defPrefixFn, defCellMetaFn) ],
           showGameInfo ? [ GenericTableOps.buildTextRow(
             <GameInfoDiagView
-              oppoList={stats.game_info || []}
+              oppoList={stats.game_info || {}}
               orderedOppoList={_.clone(orderedMutableOppoList)}
               params={startingState}
               maxOffPoss={comboGlobalMaxPoss}
@@ -445,7 +449,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
   // 3] Utils
   /** Sticks an overlay on top of the table if no query has ever been loaded */
   function needToLoadQuery() {
-    return loadingOverride || (lineupStats.lineups === undefined);
+    return loadingOverride || _.isEmpty(lineupStats.lineups);
   }
 
   /** For use in selects */

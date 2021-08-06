@@ -394,7 +394,7 @@ export async function main() {
               || //(need to keep scramble and transition counts for now, used in the interim play category tooltips)
               (_.endsWith(kv[0], "_poss") || _.endsWith(kv[0], "_ppp"))
             );
-          }).fromPairs().value();
+          }).fromPairs().value() as LineupStatSet; //(we trust it has required fields)
         // Add conference:
         lineup.conf = conference;
         lineup.team = team;
