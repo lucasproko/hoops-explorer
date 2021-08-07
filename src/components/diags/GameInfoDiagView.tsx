@@ -11,7 +11,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { CbbColors } from "../../utils/CbbColors"
+import { CbbColors } from "../../utils/CbbColors";
+import { GameInfoStatSet } from "../../utils/StatModels";
 // import Tooltip from 'react-bootstrap/Tooltip';
 // import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 
@@ -52,7 +53,7 @@ const CustomTooltip: React.FunctionComponent<CustomTooltipProps> = ({ active, pa
 var oneUp_ = 0;
 
 type Props = {
-  oppoList: Array<any>,
+  oppoList: Array<GameInfoStatSet>,
   orderedOppoList: Record<string, any>,
   params: Record<string, any>,
   maxOffPoss: number

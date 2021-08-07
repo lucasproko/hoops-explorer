@@ -3,7 +3,7 @@ import _ from "lodash";
 
 import { TeamReportStatsModel } from "../../components/TeamReportStatsTable";
 import { LineupStatsModel } from "../../components/LineupStatsTable";
-import { StatModels, PureStatSet, PlayerCodeId, PlayerCode, PlayerId, Statistic, TeamStatSet, LineupStatSet } from "../StatModels";
+import { StatModels, PureStatSet, PlayerCodeId, PlayerCode, PlayerId, Statistic, TeamStatSet, LineupStatSet, GameInfoStatSet } from "../StatModels";
 
 //TODO: duration_mins and scramble/transition combos...
 
@@ -144,8 +144,8 @@ export class LineupUtils {
 
   /** Parses the terms/histogram aggregation giving a bit of info about each lineup's game */
   static getGameInfo(
-    gameInfo: Record<string, any>, mutableOpponents?: Record<string, any>
-  ): Array<Record<string, any>> {
+    gameInfo: GameInfoStatSet, mutableOpponents?: Record<string, GameInfoStatSet>
+  ): Array<GameInfoStatSet> {
     return _.sortBy((gameInfo?.buckets || []).flatMap((bb: any) => {
       const opponent = _.drop(bb?.key || "unknown", 2);
       return (bb?.game_info?.buckets || []).filter((b: any) => {
@@ -328,7 +328,7 @@ export class LineupUtils {
    *  otherwise, because of the "complex ORB" term in commonLineupAggregations.`total_${dstPrefix}_${typePrefix}poss`
    *  the numbers end up too different. The source of truth is considered to be commonLineupAggregations
   */
-  private static recalculatePlayTypePoss(mutableStats: Record<string, any>) {
+  private static recalculatePlayTypePoss(mutableStats: LineupStatSet) {
     // Written this weird way to keep the code as similar as possible
     [ [ "off", "def" ], [ "def", "off" ] ].forEach(offDef => {
       const [ dstPrefix, oppoDstPrefix ] = offDef;
@@ -603,7 +603,7 @@ export class LineupUtils {
           }
         }
       } else if (key == "game_info") { // Switch from an associative array to a real one
-        mutableAcc[key] = _.values((mutableAcc[key] || {}) as Record<string, any>);
+        mutableAcc[key] = _.values((mutableAcc[key] || {}) as GameInfoStatSet);
       }
     }).value();
   }

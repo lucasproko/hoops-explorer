@@ -39,7 +39,7 @@ import { LineupTableUtils } from "../utils/tables/LineupTableUtils";
 import { RosterTableUtils } from "../utils/tables/RosterTableUtils";
 
 // Util imports
-import { StatModels, OnOffBaselineEnum, OnOffBaselineGlobalEnum, PlayerCodeId, PlayerCode, PlayerId, Statistic, IndivStatSet, TeamStatSet, LineupStatSet } from "../utils/StatModels";
+import { StatModels, OnOffBaselineEnum, OnOffBaselineGlobalEnum, PlayerCodeId, PlayerCode, PlayerId, Statistic, IndivStatSet, TeamStatSet, LineupStatSet,  GameInfoStatSet } from "../utils/StatModels";
 import { CbbColors } from "../utils/CbbColors";
 import { CommonTableDefs } from "../utils/tables/CommonTableDefs";
 import { PositionUtils } from "../utils/stats/PositionUtils";
@@ -195,13 +195,18 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
 
 
     // Build a list of all the opponents:
-    const mutableOppoList = {} as Record<string, any>;
+    function isGameInfoStatSet(l: (GameInfoStatSet | undefined) | Array<GameInfoStatSet>): l is (GameInfoStatSet | undefined) {
+      return !(l instanceof Array);
+    };
+    const mutableOppoList = {} as Record<string, GameInfoStatSet>;
     if (showGameInfo) { // (calculate this before doing the table filter)
       lineups.forEach((l) => {
-        LineupUtils.getGameInfo(l.game_info || {}, mutableOppoList);
+        if (isGameInfoStatSet(l.game_info)) {
+          LineupUtils.getGameInfo(l.game_info || {}, mutableOppoList);
+        }
       });
     }
-    const orderedMutableOppoList = {} as Record<string, any>;
+    const orderedMutableOppoList = {} as Record<string, GameInfoStatSet>;
     _.chain(mutableOppoList).keys().sort().each((key) => {
       orderedMutableOppoList[key] = mutableOppoList[key];
     }).value();
@@ -249,9 +254,10 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
           [ GenericTableOps.buildDataRow(stats, defPrefixFn, defCellMetaFn) ],
           showGameInfo ? [ GenericTableOps.buildTextRow(
             <GameInfoDiagView
-              oppoList={(lineup.key == LineupTableUtils.totalLineupId) ?
-                (lineup.game_info || []) :
-                LineupUtils.getGameInfo(lineup.game_info || {})}
+              oppoList={isGameInfoStatSet(lineup.game_info) ?
+                LineupUtils.getGameInfo(lineup.game_info || {}) :
+                lineup.game_info  //(total lineups - this is already an array, see LineupStatSet in StatModels)
+              }
               orderedOppoList={_.clone(orderedMutableOppoList)}
               params={startingState}
               maxOffPoss={(lineup.key == LineupTableUtils.totalLineupId) ?

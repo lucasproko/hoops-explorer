@@ -141,6 +141,8 @@ export type TeamStatSet = PureStatSet & TeamEnrichment & TeamMetadata;
 
 // Lineup
 
+export type GameInfoStatSet = Record<string,any>; //TODO: model properly
+
 /** Non statistical metadata relating to individuals */
 export type LineupMetadata = {
   /** Required, list of codes, _ separated */
@@ -152,7 +154,7 @@ export type LineupMetadata = {
   players_array?: any, //(long nested type)
 
   /** From ES (object) or derived by aggregation (list), TODO encode the type */
-  game_info?: any,
+  game_info?: GameInfoStatSet | Array<GameInfoStatSet>,
 
   // These are used in the leaderboard:
   conf?: string,
