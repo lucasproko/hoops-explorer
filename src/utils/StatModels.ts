@@ -186,17 +186,7 @@ export type LineupEnrichment = {
   /** Temp hacky flag to optimize some loops during RAPM */
   rapmRemove?: boolean,
 
-  // Used to aggregate on/off lineups, TODO: horrible recursiveness, should fix
-  //TODO: I like the idea of moving this into a separate object that "extends" LineupStatSet
-  myLineups?: Array<LineupStatSet>,
-  onLineup?: LineupStatSet,
-  offLineups?: LineupStatSet,
-  offLineupKeys?: Array<string>,
-  lineupUsage?: Record<string, {
-    poss?: number,
-    keyArray?: Array<string>
-    overlap?: number
-  }>
+  // see also LineupUtils:OnOffLineupStatSet
 };
 
 export type LineupStatSet = PureStatSet & LineupEnrichment & LineupMetadata;

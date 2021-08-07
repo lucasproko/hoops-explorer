@@ -10,6 +10,19 @@ import { StatModels, PureStatSet, PlayerCodeId, PlayerCode, PlayerId, Statistic,
 /** Output of LineupUtils.lineupToTeamReport:players */
 type TeammatePossInfo = { off_poss: number, def_poss: number };
 
+type OnOffLineupStatSet = LineupStatSet & {
+  // Used to aggregate on/off lineups
+  myLineups?: Array<OnOffLineupStatSet>,
+  onLineup?: OnOffLineupStatSet,
+  offLineups?: OnOffLineupStatSet,
+  offLineupKeys?: Array<string>,
+  lineupUsage?: Record<string, {
+    poss?: number,
+    keyArray?: Array<string>
+    overlap?: number
+  }>
+};
+
 /** The complex object representing on/off info about each player in a roster */
 export type PlayerOnOffStats = {
   playerId: PlayerId,
@@ -18,10 +31,10 @@ export type PlayerOnOffStats = {
     on: TeammatePossInfo,
     off: TeammatePossInfo,
   }>,
-  on: LineupStatSet,
-  off: LineupStatSet,
-  rapm?: LineupStatSet, //(optionally injected as part of RapmUtils calcs)
-  replacement?: LineupStatSet,
+  on: OnOffLineupStatSet,
+  off: OnOffLineupStatSet,
+  rapm?: OnOffLineupStatSet, //(optionally injected as part of RapmUtils calcs)
+  replacement?: OnOffLineupStatSet,
 };
 
 /** Handles combining the statistics of different lineups */
@@ -198,11 +211,11 @@ export class LineupUtils {
           on: {
             key: `'On' ${playerId}`,
             doc_count: 0, //(required field)
-          } as LineupStatSet,
+          } as OnOffLineupStatSet,
           off: {
             key: `'Off' ${playerId}`,
             doc_count: 0, //(required field)
-          } as LineupStatSet,
+          } as OnOffLineupStatSet,
           replacement: incReplacement ? {
             key: `'r:On-Off' ${playerId}`,
             doc_count: 0, //(required field)
@@ -211,10 +224,14 @@ export class LineupUtils {
               const playersSet = getPlayerSet(lineup);
               return playersSet.hasOwnProperty(playerId) && (lineup.key != ""); //(workaround for #53 pending fix)
             }).map((lineup) => {
-              return _.assign({ offLineups: {}, offLineupKeys: [], onLineup: {} }, lineup);
+              return _.assign(
+                {
+                  offLineups: StatModels.emptyLineup(), offLineupKeys: [], onLineup: StatModels.emptyLineup()
+                }, lineup
+              ) as OnOffLineupStatSet;
                 //(copies lineup and adds empty offLineups/offLineupList/onLineup)
             }).value()
-          } as LineupStatSet : undefined
+          } as OnOffLineupStatSet : undefined
         };
       }),
       error_code: lineupReport.error_code
@@ -631,7 +648,7 @@ export class LineupUtils {
 
   /** Combines the deltas between the on/off numbers, weights, and averages */
   private static combineReplacementOnOff(
-    mutableReplacementObj: LineupStatSet, keySource: Array<string>,
+    mutableReplacementObj: OnOffLineupStatSet, keySource: Array<string>,
     regressDiffs: number = 0, repOnOffDiagMode: number = 0
   ) {
 

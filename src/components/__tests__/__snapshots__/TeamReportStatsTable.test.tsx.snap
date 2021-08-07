@@ -45633,7 +45633,10 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                                                 offLineups: {
                                                                 }
                                           
-                                                                onLineup: Object {}}},
+                                                                onLineup: Object {
+                                                                                      "doc_count": 0,
+                                                                                      "key": "empty",
+                                                                                    }}},
                                         {
                                           offLineupKeys: Array [
                                                                 "AaWiggins_AnCowan_DoScott_ErAyala_JaSmith",
@@ -45650,7 +45653,10 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                                                 offLineups: {
                                                                 }
                                           
-                                                                onLineup: Object {}}},
+                                                                onLineup: Object {
+                                                                                      "doc_count": 0,
+                                                                                      "key": "empty",
+                                                                                    }}},
                                       ]
 
                     off_title: <span>
@@ -45960,7 +45966,10 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                                                 offLineups: {
                                                                 }
                                           
-                                                                onLineup: Object {}}},
+                                                                onLineup: Object {
+                                                                                      "doc_count": 0,
+                                                                                      "key": "empty",
+                                                                                    }}},
                                         {
                                           offLineupKeys: Array [
                                                                 "AaWiggins_AnCowan_DoScott_ErAyala_JaSmith",
@@ -45977,7 +45986,10 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                                                 offLineups: {
                                                                 }
                                           
-                                                                onLineup: Object {}}},
+                                                                onLineup: Object {
+                                                                                      "doc_count": 0,
+                                                                                      "key": "empty",
+                                                                                    }}},
                                       ]
 
                     off_title: <span>
@@ -46312,7 +46324,10 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                                         offLineups: {
                                                         }
                             
-                                                        onLineup: Object {}}},
+                                                        onLineup: Object {
+                                                                                    "doc_count": 0,
+                                                                                    "key": "empty",
+                                                                                  }}},
                           "peers": Object {
                             "DoScott": Object {
                               "keyArray": Array [
@@ -46371,7 +46386,10 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                                         offLineups: {
                                                         }
                             
-                                                        onLineup: Object {}}},
+                                                        onLineup: Object {
+                                                                                    "doc_count": 0,
+                                                                                    "key": "empty",
+                                                                                  }}},
                           "peers": Object {
                             "ErAyala": Object {
                               "keyArray": Array [
@@ -46731,7 +46749,10 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                                                                   offLineups: {
                                                                                   }
                                                       
-                                                                                  onLineup: Object {}}},
+                                                                                  onLineup: Object {
+                                                                                                              "doc_count": 0,
+                                                                                                              "key": "empty",
+                                                                                                            }}},
                                                     {
                                                       offLineupKeys: Array [
                                                                                   "AaWiggins_AnCowan_DoScott_ErAyala_JaSmith",
@@ -46748,7 +46769,10 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                                                                   offLineups: {
                                                                                   }
                                                       
-                                                                                  onLineup: Object {}}},
+                                                                                  onLineup: Object {
+                                                                                                              "doc_count": 0,
+                                                                                                              "key": "empty",
+                                                                                                            }}},
                                                   ]},
                         "teammates": Object {
                           "Ayala, Eric": Object {
@@ -48132,7 +48156,10 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                                                 offLineups: {
                                                                 }
                                           
-                                                                onLineup: Object {}}},
+                                                                onLineup: Object {
+                                                                                      "doc_count": 0,
+                                                                                      "key": "empty",
+                                                                                    }}},
                                         {
                                           offLineupKeys: Array [
                                                                 "AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith",
@@ -48149,7 +48176,10 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                                                 offLineups: {
                                                                 }
                                           
-                                                                onLineup: Object {}}},
+                                                                onLineup: Object {
+                                                                                      "doc_count": 0,
+                                                                                      "key": "empty",
+                                                                                    }}},
                                       ]
 
                     off_title: <span>
@@ -48459,7 +48489,10 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                                                 offLineups: {
                                                                 }
                                           
-                                                                onLineup: Object {}}},
+                                                                onLineup: Object {
+                                                                                      "doc_count": 0,
+                                                                                      "key": "empty",
+                                                                                    }}},
                                         {
                                           offLineupKeys: Array [
                                                                 "AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith",
@@ -48476,7 +48509,10 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                                                 offLineups: {
                                                                 }
                                           
-                                                                onLineup: Object {}}},
+                                                                onLineup: Object {
+                                                                                      "doc_count": 0,
+                                                                                      "key": "empty",
+                                                                                    }}},
                                       ]
 
                     off_title: <span>
@@ -48811,7 +48847,10 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                                         offLineups: {
                                                         }
                             
-                                                        onLineup: Object {}}},
+                                                        onLineup: Object {
+                                                                                    "doc_count": 0,
+                                                                                    "key": "empty",
+                                                                                  }}},
                           "peers": Object {
                             "DoScott": Object {
                               "keyArray": Array [
@@ -48870,7 +48909,10 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                                         offLineups: {
                                                         }
                             
-                                                        onLineup: Object {}}},
+                                                        onLineup: Object {
+                                                                                    "doc_count": 0,
+                                                                                    "key": "empty",
+                                                                                  }}},
                           "peers": Object {
                             "DaMorsell": Object {
                               "keyArray": Array [
@@ -49230,7 +49272,10 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                                                                   offLineups: {
                                                                                   }
                                                       
-                                                                                  onLineup: Object {}}},
+                                                                                  onLineup: Object {
+                                                                                                              "doc_count": 0,
+                                                                                                              "key": "empty",
+                                                                                                            }}},
                                                     {
                                                       offLineupKeys: Array [
                                                                                   "AaWiggins_AnCowan_DaMorsell_DoScott_JaSmith",
@@ -49247,7 +49292,10 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                                                                   offLineups: {
                                                                                   }
                                                       
-                                                                                  onLineup: Object {}}},
+                                                                                  onLineup: Object {
+                                                                                                              "doc_count": 0,
+                                                                                                              "key": "empty",
+                                                                                                            }}},
                                                   ]},
                         "teammates": Object {
                           "Ayala, Eric": Object {
@@ -50631,7 +50679,10 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                                                 offLineups: {
                                                                 }
                                           
-                                                                onLineup: Object {}}},
+                                                                onLineup: Object {
+                                                                                      "doc_count": 0,
+                                                                                      "key": "empty",
+                                                                                    }}},
                                         {
                                           offLineupKeys: Array [
                                                                 "AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith",
@@ -50648,7 +50699,10 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                                                 offLineups: {
                                                                 }
                                           
-                                                                onLineup: Object {}}},
+                                                                onLineup: Object {
+                                                                                      "doc_count": 0,
+                                                                                      "key": "empty",
+                                                                                    }}},
                                       ]
 
                     off_title: <span>
@@ -50958,7 +51012,10 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                                                 offLineups: {
                                                                 }
                                           
-                                                                onLineup: Object {}}},
+                                                                onLineup: Object {
+                                                                                      "doc_count": 0,
+                                                                                      "key": "empty",
+                                                                                    }}},
                                         {
                                           offLineupKeys: Array [
                                                                 "AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith",
@@ -50975,7 +51032,10 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                                                 offLineups: {
                                                                 }
                                           
-                                                                onLineup: Object {}}},
+                                                                onLineup: Object {
+                                                                                      "doc_count": 0,
+                                                                                      "key": "empty",
+                                                                                    }}},
                                       ]
 
                     off_title: <span>
@@ -51310,7 +51370,10 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                                         offLineups: {
                                                         }
                             
-                                                        onLineup: Object {}}},
+                                                        onLineup: Object {
+                                                                                    "doc_count": 0,
+                                                                                    "key": "empty",
+                                                                                  }}},
                           "peers": Object {
                             "ErAyala": Object {
                               "keyArray": Array [
@@ -51369,7 +51432,10 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                                         offLineups: {
                                                         }
                             
-                                                        onLineup: Object {}}},
+                                                        onLineup: Object {
+                                                                                    "doc_count": 0,
+                                                                                    "key": "empty",
+                                                                                  }}},
                           "peers": Object {
                             "DaMorsell": Object {
                               "keyArray": Array [
@@ -51729,7 +51795,10 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                                                                   offLineups: {
                                                                                   }
                                                       
-                                                                                  onLineup: Object {}}},
+                                                                                  onLineup: Object {
+                                                                                                              "doc_count": 0,
+                                                                                                              "key": "empty",
+                                                                                                            }}},
                                                     {
                                                       offLineupKeys: Array [
                                                                                   "AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith",
@@ -51746,7 +51815,10 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                                                                   offLineups: {
                                                                                   }
                                                       
-                                                                                  onLineup: Object {}}},
+                                                                                  onLineup: Object {
+                                                                                                              "doc_count": 0,
+                                                                                                              "key": "empty",
+                                                                                                            }}},
                                                   ]},
                         "teammates": Object {
                           "Ayala, Eric": Object {
