@@ -50,7 +50,7 @@ const LineupAnalyzerPage: NextPage<{}> = () => {
   const [ gaInited, setGaInited ] = useState(false);
   const [ dataEvent, setDataEvent ] = useState({
     lineupStats: {} as LineupStatsModel,
-    teamStats: {on: StatModels.emptyTeam, off: StatModels.emptyTeam, baseline: StatModels.emptyTeam, global: StatModels.emptyTeam} as TeamStatsModel,
+    teamStats: {on: StatModels.emptyTeam(), off: StatModels.emptyTeam(), baseline: StatModels.emptyTeam(), global: StatModels.emptyTeam()} as TeamStatsModel,
     rosterStats: {on: [], off: [], baseline: [], global: []} as RosterStatsModel
   });
 

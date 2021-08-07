@@ -104,7 +104,7 @@ describe("LineupUtils", () => {
             }).value();
           }).fromPairs().value();
 
-          expect(onOnlyOffVals).toEqual({ key: "'Off' Wiggins, Aaron" }); //(all vals are 0)
+          expect(onOnlyOffVals).toEqual({ key: "'Off' Wiggins, Aaron", "doc_count": 0 }); //(all vals are 0)
 
           // Spot check some values
 
@@ -130,7 +130,7 @@ describe("LineupUtils", () => {
           if ((diagMode > 0) && (incOnOff)) {
             const same4Lineups = _.chain(onOffReport.players).filter((p) => {
               return p.on.key == "'On' Ayala, Eric";
-            }).flatMap((p) => p.replacement.myLineups.map((l: any) => l.key)).value();
+            }).flatMap((p) => (p.replacement?.myLineups || []).map((l: any) => l.key)).value();
             expect(same4Lineups).toEqual(
               ["AaWiggins_AnCowan_DaMorsell_ErAyala_JaSmith", "AaWiggins_AnCowan_DoScott_ErAyala_JaSmith"]
             );
@@ -182,6 +182,7 @@ describe("LineupUtils", () => {
           expect(emptyReplacementOnOff).toEqual(incOnOff ? [
             {
               key: "'r:On-Off' Wiggins, Aaron",
+              doc_count:  0,
               lineupUsage: {},
               myLineups: diagMode > 0 ? [] : undefined
             }

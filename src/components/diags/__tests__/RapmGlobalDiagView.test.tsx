@@ -3,6 +3,7 @@ import React from 'react';
 import RapmGlobalDiagView from '../RapmGlobalDiagView';
 
 // Needed to build the data
+import { StatModels, PureStatSet, PlayerCodeId, PlayerCode, PlayerId, Statistic, IndivStatSet, LineupStatSet } from "../StatModels";
 import { sampleLineupStatsResponse } from "../../../sample-data/sampleLineupStatsResponse";
 import { LineupUtils } from "../../../utils/stats/LineupUtils";
 import { RapmUtils } from "../../../utils/stats/RapmUtils";
@@ -11,7 +12,7 @@ import { semiRealRapmResults } from "../../../utils/stats/__tests__/RapmUtils.te
 describe("RapmGlobalDiagView", () => {
 
   const lineupReport = {
-    lineups: sampleLineupStatsResponse.responses[0].aggregations.lineups.buckets,
+    lineups: sampleLineupStatsResponse.responses[0].aggregations.lineups.buckets as LineupStatSet[],
     avgEff: 100.0,
     error_code: "test"
   };
@@ -26,6 +27,7 @@ describe("RapmGlobalDiagView", () => {
       onOffReport.players || [], offResults, defResults, {}, semiRealRapmResults.testContext, undefined
     );
     const rapmInfo = {
+      enrichedPlayers: [],
       ctx: semiRealRapmResults.testContext,
       preProcDiags: RapmUtils.calcCollinearityDiag(
         semiRealRapmResults.testOffWeights, semiRealRapmResults.testContext
@@ -39,7 +41,6 @@ describe("RapmGlobalDiagView", () => {
     const component = renderer.create(<RapmGlobalDiagView
       topRef={React.createRef<HTMLDivElement>()}
       rapmInfo={rapmInfo}
-      players={onOffReport.players || []}
     />);
 
     const tree = component.toJSON();

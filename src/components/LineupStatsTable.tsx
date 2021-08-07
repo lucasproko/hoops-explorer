@@ -233,7 +233,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
 
         const perLineupBaselinePlayerMap: Record<PlayerId, IndivStatSet> =
           _.fromPairs(codesAndIds.map((cid: PlayerCodeId) => {
-            return [ cid.id, baselinePlayerInfo[cid.id] || StatModels.emptyIndiv ];
+            return [ cid.id, baselinePlayerInfo[cid.id] || StatModels.emptyIndiv() ];
           }));
 
         const lineupTitleKey = "" + lineupIndex;
@@ -316,7 +316,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
         return getKeys().map(key => {
           const comboCodeAndIds = key.split(" / ").flatMap(keyPos => (sortedCodesAndIds || []).filter(codeId => codeId.id == keyPos));
 
-          const stats = { ...lineup, posKey: key, codesAndIds: comboCodeAndIds };
+          const stats = { ...lineup, posKey: key, codesAndIds: comboCodeAndIds } as LineupStatSet;
           return stats;
         });
       }).groupBy(l => l.posKey).mapValues(lineups => {
@@ -325,7 +325,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({startingState, dataEv
 
         const perLineupBaselinePlayerMap: Record<PlayerId, IndivStatSet> =
           _.fromPairs(codesAndIds.map((cid: PlayerCodeId) => {
-            return [  cid.id, baselinePlayerInfo[cid.id] || StatModels.emptyIndiv ];
+            return [  cid.id, baselinePlayerInfo[cid.id] || StatModels.emptyIndiv() ];
           }));
 
         const lineupTitleKey = "" + key;

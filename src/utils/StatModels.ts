@@ -130,7 +130,9 @@ export type TeamMetadata = {
 
 /** Derived stats we add to the team's stat set */
 export type TeamEnrichment = {
-
+  // Title info for tables
+  off_title?: string | React.ReactNode,
+  def_title?: string | React.ReactNode
 };
 
 export type TeamStatSet = PureStatSet & TeamEnrichment & TeamMetadata;
@@ -169,7 +171,32 @@ export type LineupEnrichment = {
   def_luck_diags?: DefLuckAdjustmentDiags,
 
   /** For aggregating lineups with a filter (RAPM specific logic) - this is the unfiltered version */
-  all_lineups?: LineupStatSet
+  all_lineups?: LineupStatSet, //TODO: horrible recursiveness, should fix
+
+  /** The key field when the lineup is an aggregation (TODO: should just rename to key I think?) */
+  posKey?: string,
+
+  /** The codes and ids of players in a lineup */
+  codesAndIds?: Array<PlayerCodeId>,
+
+  // Title info for tables
+  off_title?: string | React.ReactNode,
+  def_title?: string | React.ReactNode,
+
+  /** Temp hacky flag to optimize some loops during RAPM */
+  rapmRemove?: boolean,
+
+  // Used to aggregate on/off lineups, TODO: horrible recursiveness, should fix
+  //TODO: I like the idea of moving this into a separate object that "extends" LineupStatSet
+  myLineups?: Array<LineupStatSet>,
+  onLineup?: LineupStatSet,
+  offLineups?: LineupStatSet,
+  offLineupKeys?: Array<string>,
+  lineupUsage?: Record<string, {
+    poss?: number,
+    keyArray?: Array<string>
+    overlap?: number
+  }>
 };
 
 export type LineupStatSet = PureStatSet & LineupEnrichment & LineupMetadata;
@@ -178,7 +205,7 @@ export type LineupStatSet = PureStatSet & LineupEnrichment & LineupMetadata;
 
 /** Useful constants */
 export class StatModels {
-  static emptyIndiv: IndivStatSet = { key: "empty", doc_count: 0 } as IndivStatSet;
-  static emptyTeam: TeamStatSet = { doc_count: 0 } as TeamStatSet;
-  static emptyLineup: LineupStatSet = { key: "empty", doc_count: 0 } as LineupStatSet;
+  static emptyIndiv: () => IndivStatSet = () => { return { key: "empty", doc_count: 0 } as IndivStatSet; }
+  static emptyTeam: () => TeamStatSet = () => { return { doc_count: 0 } as TeamStatSet };
+  static emptyLineup: () => LineupStatSet = () => { return { key: "empty", doc_count: 0 } as LineupStatSet };
 }

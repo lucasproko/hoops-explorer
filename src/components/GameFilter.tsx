@@ -204,7 +204,7 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
       (hasGlobalRosterStats ? jsonResps?.[3]?.responses?.[0] : undefined) || _.cloneDeep(rosterStatsJson);
       //(need to clone it so that changes to baseline don't overwrite global)
 
-    const globalTeam = teamJson?.aggregations?.global?.only?.buckets?.team || StatModels.emptyTeam;
+    const globalTeam = teamJson?.aggregations?.global?.only?.buckets?.team || StatModels.emptyTeam();
     const rosterInfo = jsonResps?.[hasGlobalRosterStats ? 3 : 2]?.roster;
     if (rosterInfo) {
       globalTeam.roster = rosterInfo;
@@ -219,10 +219,10 @@ const GameFilter: React.FunctionComponent<Props> = ({onStats, startingState, onC
     });
 
     onStats({
-      on: teamJson?.aggregations?.tri_filter?.buckets?.on || StatModels.emptyTeam,
-      off: teamJson?.aggregations?.tri_filter?.buckets?.off || StatModels.emptyTeam,
+      on: teamJson?.aggregations?.tri_filter?.buckets?.on || StatModels.emptyTeam(),
+      off: teamJson?.aggregations?.tri_filter?.buckets?.off || StatModels.emptyTeam(),
       onOffMode: autoOffQuery,
-      baseline: teamJson?.aggregations?.tri_filter?.buckets?.baseline || StatModels.emptyTeam,
+      baseline: teamJson?.aggregations?.tri_filter?.buckets?.baseline || StatModels.emptyTeam(),
       global: globalTeam,
       error_code: wasError ? (teamJson?.status || jsonStatuses?.[0] || "Unknown") : undefined
     }, {

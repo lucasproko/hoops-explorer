@@ -203,13 +203,13 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
   })() : [ undefined, undefined, undefined ] as [ any, any, any ];
 
   ([ "on", "off", "baseline" ] as OnOffBaselineEnum[]).forEach(k => {
-    TableDisplayUtils.injectPlayTypeInfo(teamStats[k] || StatModels.emptyTeam, false, false, teamSeasonLookup);
+    TableDisplayUtils.injectPlayTypeInfo(teamStats[k] || StatModels.emptyTeam(), false, false, teamSeasonLookup);
   });
 
   // If building roster info then enrich player stats:
   const playerInfoByKeyBy0AB = showRoster ? ([ "baseline", "on", "off" ] as OnOffBaselineEnum[]).map(queryKey => {
     const playerStatsBy0AB = rosterStats[queryKey] || [];
-    const teamStatsBy0AB = teamStats[queryKey] || StatModels.emptyTeam;
+    const teamStatsBy0AB = teamStats[queryKey] || StatModels.emptyTeam();
     if (teamStatsBy0AB.doc_count) {
       /** Need player info for tooltip view/lineup decoration */
       const playerInfo = LineupTableUtils.buildBaselinePlayerInfo(

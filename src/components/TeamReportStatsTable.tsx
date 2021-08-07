@@ -38,7 +38,7 @@ import AsyncFormControl from './shared/AsyncFormControl';
 
 // Util imports
 import { getCommonFilterParams, TeamReportFilterParams, ParamDefaults, LuckParams } from '../utils/FilterModels';
-import { LineupUtils } from '../utils/stats/LineupUtils';
+import { PlayerOnOffStats, LineupUtils } from '../utils/stats/LineupUtils';
 import { RatingUtils } from '../utils/stats/RatingUtils';
 import { RapmInfo, RapmUtils } from '../utils/stats/RapmUtils';
 import { UrlRouting } from '../utils/UrlRouting';
@@ -56,9 +56,9 @@ import { RosterTableUtils } from "../utils/tables/RosterTableUtils";
 import { TeamReportTableUtils } from "../utils/tables/TeamReportTableUtils";
 import { LineupTableUtils } from "../utils/tables/LineupTableUtils";
 
-/** Convert from LineupStatsModel into this */
+/** Convert from LineupStatsModel into this via LineupUtils */
 export type TeamReportStatsModel = {
-  players?: Array<any>,
+  players?: Array<PlayerOnOffStats>,
   playerMap?: Record<string, string>,
   error_code?: string
 }
@@ -741,7 +741,6 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({startingState, da
             <RapmGlobalDiagView
               topRef={topRef}
               rapmInfo={rapmInfo}
-              players={[]}
             />
           </div>
         </Col>

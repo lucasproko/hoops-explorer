@@ -8,10 +8,11 @@ import { NextPage } from 'next';
 
 // Utils
 import { RapmInfo, RapmPlayerContext, RapmPreProcDiagnostics, RapmProcessingInputs, RapmUtils } from "../../utils/stats/RapmUtils";
+import { PlayerOnOffStats } from "../../utils/stats/LineupUtils";
 
 type Props = {
   rapmInfo: RapmInfo,
-  player: Record<string, any>,
+  player: PlayerOnOffStats,
   globalRef: React.RefObject<HTMLDivElement>
 };
 
@@ -36,7 +37,7 @@ const RapmPlayerDiagView: React.FunctionComponent<Props> = (({rapmInfo, player, 
 
     const col = ctx.playerToCol[player.playerId];
 
-    const totalOffPoss = ctx.teamInfo?.off_poss?.value;
+    const totalOffPoss = ctx.teamInfo?.off_poss?.value || 0;
     const teamOffAdj = ((ctx.teamInfo.all_lineups?.off_adj_ppp?.value || ctx.avgEfficiency) - ctx.avgEfficiency);
     const teamDefAdj = ((ctx.teamInfo.all_lineups?.def_adj_ppp?.value || ctx.avgEfficiency) - ctx.avgEfficiency);
 

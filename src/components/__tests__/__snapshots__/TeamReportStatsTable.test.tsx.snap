@@ -12283,6 +12283,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                   "cellMetaFn": [Function],
                   "dataObj": Object {
                     "def_title": "",
+                    "doc_count": 0,
                     "key": "'r:On-Off' Wiggins, Aaron",
                     "lineupUsage": Object {},
                     "off_title": <span>
@@ -12561,6 +12562,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                   "cellMetaFn": [Function],
                   "dataObj": Object {
                     "def_title": "",
+                    "doc_count": 0,
                     "key": "'r:On-Off' Wiggins, Aaron",
                     "lineupUsage": Object {},
                     "off_title": <span>
@@ -14150,6 +14152,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                   "cellMetaFn": [Function],
                   "dataObj": Object {
                     "def_title": "",
+                    "doc_count": 0,
                     "key": "'r:On-Off' Cowan, Anthony",
                     "lineupUsage": Object {},
                     "off_title": <span>
@@ -14428,6 +14431,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                   "cellMetaFn": [Function],
                   "dataObj": Object {
                     "def_title": "",
+                    "doc_count": 0,
                     "key": "'r:On-Off' Cowan, Anthony",
                     "lineupUsage": Object {},
                     "off_title": <span>
@@ -16017,6 +16021,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                   "cellMetaFn": [Function],
                   "dataObj": Object {
                     "def_title": "",
+                    "doc_count": 0,
                     "key": "'r:On-Off' Smith, Jalen",
                     "lineupUsage": Object {},
                     "off_title": <span>
@@ -16295,6 +16300,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                   "cellMetaFn": [Function],
                   "dataObj": Object {
                     "def_title": "",
+                    "doc_count": 0,
                     "key": "'r:On-Off' Smith, Jalen",
                     "lineupUsage": Object {},
                     "off_title": <span>
@@ -26108,6 +26114,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                   "cellMetaFn": [Function],
                   "dataObj": Object {
                     "def_title": "",
+                    "doc_count": 0,
                     "key": "'r:On-Off' Wiggins, Aaron",
                     "lineupUsage": Object {},
                     "off_title": <span>
@@ -26386,6 +26393,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                   "cellMetaFn": [Function],
                   "dataObj": Object {
                     "def_title": "",
+                    "doc_count": 0,
                     "key": "'r:On-Off' Wiggins, Aaron",
                     "lineupUsage": Object {},
                     "off_title": <span>
@@ -27895,6 +27903,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                   "cellMetaFn": [Function],
                   "dataObj": Object {
                     "def_title": "",
+                    "doc_count": 0,
                     "key": "'r:On-Off' Cowan, Anthony",
                     "lineupUsage": Object {},
                     "off_title": <span>
@@ -28173,6 +28182,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                   "cellMetaFn": [Function],
                   "dataObj": Object {
                     "def_title": "",
+                    "doc_count": 0,
                     "key": "'r:On-Off' Cowan, Anthony",
                     "lineupUsage": Object {},
                     "off_title": <span>
@@ -29682,6 +29692,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                   "cellMetaFn": [Function],
                   "dataObj": Object {
                     "def_title": "",
+                    "doc_count": 0,
                     "key": "'r:On-Off' Smith, Jalen",
                     "lineupUsage": Object {},
                     "off_title": <span>
@@ -29960,6 +29971,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                   "cellMetaFn": [Function],
                   "dataObj": Object {
                     "def_title": "",
+                    "doc_count": 0,
                     "key": "'r:On-Off' Smith, Jalen",
                     "lineupUsage": Object {},
                     "off_title": <span>
@@ -39005,6 +39017,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                   "cellMetaFn": [Function],
                   "dataObj": Object {
                     "def_title": "",
+                    "doc_count": 0,
                     "key": "'r:On-Off' Wiggins, Aaron",
                     "lineupUsage": Object {},
                     "myLineups": Array [],
@@ -39284,6 +39297,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                   "cellMetaFn": [Function],
                   "dataObj": Object {
                     "def_title": "",
+                    "doc_count": 0,
                     "key": "'r:On-Off' Wiggins, Aaron",
                     "lineupUsage": Object {},
                     "myLineups": Array [],
@@ -39868,6 +39882,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                         "playerCode": "AaWiggins",
                         "playerId": "Wiggins, Aaron",
                         "replacement": Object {
+                          "doc_count": 0,
                           "key": "'r:On-Off' Wiggins, Aaron",
                           "lineupUsage": Object {},
                           "myLineups": Array [],
@@ -41184,6 +41199,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                   "cellMetaFn": [Function],
                   "dataObj": Object {
                     "def_title": "",
+                    "doc_count": 0,
                     "key": "'r:On-Off' Cowan, Anthony",
                     "lineupUsage": Object {},
                     "myLineups": Array [],
@@ -41463,6 +41479,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                   "cellMetaFn": [Function],
                   "dataObj": Object {
                     "def_title": "",
+                    "doc_count": 0,
                     "key": "'r:On-Off' Cowan, Anthony",
                     "lineupUsage": Object {},
                     "myLineups": Array [],
@@ -42047,6 +42064,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                         "playerCode": "AnCowan",
                         "playerId": "Cowan, Anthony",
                         "replacement": Object {
+                          "doc_count": 0,
                           "key": "'r:On-Off' Cowan, Anthony",
                           "lineupUsage": Object {},
                           "myLineups": Array [],
@@ -43363,6 +43381,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                   "cellMetaFn": [Function],
                   "dataObj": Object {
                     "def_title": "",
+                    "doc_count": 0,
                     "key": "'r:On-Off' Smith, Jalen",
                     "lineupUsage": Object {},
                     "myLineups": Array [],
@@ -43642,6 +43661,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                   "cellMetaFn": [Function],
                   "dataObj": Object {
                     "def_title": "",
+                    "doc_count": 0,
                     "key": "'r:On-Off' Smith, Jalen",
                     "lineupUsage": Object {},
                     "myLineups": Array [],
@@ -44226,6 +44246,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                         "playerCode": "JaSmith",
                         "playerId": "Smith, Jalen",
                         "replacement": Object {
+                          "doc_count": 0,
                           "key": "'r:On-Off' Smith, Jalen",
                           "lineupUsage": Object {},
                           "myLineups": Array [],
@@ -55100,6 +55121,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                   "cellMetaFn": [Function],
                   "dataObj": Object {
                     "def_title": "",
+                    "doc_count": 0,
                     "key": "'r:On-Off' Wiggins, Aaron",
                     "lineupUsage": Object {},
                     "myLineups": Array [],
@@ -55379,6 +55401,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                   "cellMetaFn": [Function],
                   "dataObj": Object {
                     "def_title": "",
+                    "doc_count": 0,
                     "key": "'r:On-Off' Wiggins, Aaron",
                     "lineupUsage": Object {},
                     "myLineups": Array [],
@@ -55963,6 +55986,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                         "playerCode": "AaWiggins",
                         "playerId": "Wiggins, Aaron",
                         "replacement": Object {
+                          "doc_count": 0,
                           "key": "'r:On-Off' Wiggins, Aaron",
                           "lineupUsage": Object {},
                           "myLineups": Array [],

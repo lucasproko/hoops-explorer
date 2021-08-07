@@ -141,7 +141,7 @@ const LineupFilter: React.FunctionComponent<Props> = ({onStats, startingState, o
     const globalRosterStatsJson = jsonResps?.[3]?.responses?.[0] || rosterStatsJson;
     const hasGlobalRosterStats = jsonResps?.[3]?.responses?.[0]?.aggregations?.tri_filter;
 
-    const globalTeam = teamJson?.aggregations?.global?.only?.buckets?.team || StatModels.emptyTeam;
+    const globalTeam = teamJson?.aggregations?.global?.only?.buckets?.team || StatModels.emptyTeam();
     const rosterInfo = jsonResps?.[hasGlobalRosterStats ? 3 : 2]?.roster;
     if (rosterInfo) {
       globalTeam.roster = rosterInfo;
@@ -151,8 +151,8 @@ const LineupFilter: React.FunctionComponent<Props> = ({onStats, startingState, o
       lineups: lineupJson?.aggregations?.lineups?.buckets,
       error_code: wasError ? (lineupJson?.status || jsonStatuses?.[0] || "Unknown") : undefined
     }, {
-      on: StatModels.emptyTeam, off: StatModels.emptyTeam, onOffMode: true,
-      baseline: teamJson?.aggregations?.tri_filter?.buckets?.baseline || StatModels.emptyTeam,
+      on: StatModels.emptyTeam(), off: StatModels.emptyTeam(), onOffMode: true,
+      baseline: teamJson?.aggregations?.tri_filter?.buckets?.baseline || StatModels.emptyTeam(),
       global: globalTeam,
       error_code: wasError ? (teamJson?.status || jsonStatuses?.[1] || "Unknown") : undefined
     }, {

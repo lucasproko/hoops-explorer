@@ -3,8 +3,26 @@ import _ from "lodash";
 
 import { TeamReportStatsModel } from "../../components/TeamReportStatsTable";
 import { LineupStatsModel } from "../../components/LineupStatsTable";
+import { StatModels, PureStatSet, PlayerCodeId, PlayerCode, PlayerId, Statistic, TeamStatSet, LineupStatSet } from "../StatModels";
 
 //TODO: duration_mins and scramble/transition combos...
+
+/** Output of LineupUtils.lineupToTeamReport:players */
+type TeammatePossInfo = { off_poss: number, def_poss: number };
+
+/** The complex object representing on/off info about each player in a roster */
+export type PlayerOnOffStats = {
+  playerId: PlayerId,
+  playerCode: PlayerCode,
+  teammates: Record<PlayerId, {
+    on: TeammatePossInfo,
+    off: TeammatePossInfo,
+  }>,
+  on: LineupStatSet,
+  off: LineupStatSet,
+  rapm?: LineupStatSet, //(optionally injected as part of RapmUtils calcs)
+  replacement?: LineupStatSet,
+};
 
 /** Handles combining the statistics of different lineups */
 export class LineupUtils {
@@ -28,8 +46,8 @@ export class LineupUtils {
    *       save a lot of CPU cycles
    */
   static calculateAggregatedLineupStats(
-    lineups: Array<any>
-  ) {
+    lineups: Array<LineupStatSet>
+  ): LineupStatSet {
     const teamInfo = _.chain(lineups || []).transform((acc, lineup) => {
       if (!lineup.rapmRemove) {
         LineupUtils.weightedAvg(acc, lineup);
@@ -37,7 +55,7 @@ export class LineupUtils {
         LineupUtils.weightedAvg(acc.all_lineups!, lineup);
       }
 
-    }, { all_lineups: {} } as Record<string, any>).value();
+    }, { ...(StatModels.emptyLineup()), all_lineups: StatModels.emptyLineup() } as LineupStatSet).value();
     LineupUtils.completeWeightedAvg(teamInfo);
     if (!_.isEmpty(teamInfo.all_lineups)) {
       //(TODO: only actually need to do this for _poss and _adj_ppp, can save some CPU cycles)
@@ -56,14 +74,14 @@ export class LineupUtils {
   }
 
   /** Builds the raw and adjusted efficiency margins */
-  static buildEfficiencyMargins(lineup: any, keyOverride?: string) {
+  static buildEfficiencyMargins(mutableStatSet: TeamStatSet | LineupStatSet, keyOverride?: "old_value" | "value") {
     // Add margins:
-    const nonLuckKey = keyOverride || (!_.isNil(lineup?.off_ppp?.old_value) ? "old_value" : "value");
+    const nonLuckKey = keyOverride || (!_.isNil(mutableStatSet?.off_ppp?.old_value) ? "old_value" : "value");
 
-    if (lineup?.off_adj_ppp && lineup?.def_adj_ppp) {
-      const value = (lineup?.off_adj_ppp?.[nonLuckKey] || 0) - (lineup?.def_adj_ppp?.[nonLuckKey] || 0);
-      lineup.off_net = keyOverride ? {
-        ...lineup.off_net,
+    if (mutableStatSet?.off_adj_ppp && mutableStatSet?.def_adj_ppp) {
+      const value = (mutableStatSet?.off_adj_ppp?.[nonLuckKey] || 0) - (mutableStatSet?.def_adj_ppp?.[nonLuckKey] || 0);
+      mutableStatSet.off_net = keyOverride ? {
+        ...mutableStatSet.off_net,
         [keyOverride]: value
       } : {
         value: value
@@ -71,10 +89,10 @@ export class LineupUtils {
     }
     // def_net is off_raw_net
     //TODO use correct field and copy across as part of enrichment
-    if (lineup?.off_ppp && lineup?.def_ppp) {
-      const value = (lineup?.off_ppp?.[nonLuckKey] || 0) - (lineup?.def_ppp?.[nonLuckKey] || 0);
-      lineup.off_raw_net = keyOverride ? {
-        ...lineup.off_raw_net,
+    if (mutableStatSet?.off_ppp && mutableStatSet?.def_ppp) {
+      const value = (mutableStatSet?.off_ppp?.[nonLuckKey] || 0) - (mutableStatSet?.def_ppp?.[nonLuckKey] || 0);
+      mutableStatSet.off_raw_net = keyOverride ? {
+        ...mutableStatSet.off_raw_net,
         [keyOverride]: value
       } : {
         value: value
@@ -83,29 +101,32 @@ export class LineupUtils {
   }
 
   /** Take two statSet eg team stats and straight diffs them with no clever weighting or anything*/
-  static getStatsDiff(statSet1: any, statSet2: any, offTitle: string, defTitle?: string) {
+  static getStatsDiff(
+    statSet1: TeamStatSet, statSet2: TeamStatSet, offTitle: string, defTitle?: string
+  ): TeamStatSet {
     // (discard some of the enriched info)
+    const statsDiff: PureStatSet = _.chain(statSet1).toPairs().map((kv) => {
+        const key = kv[0];
+        const startVal = kv[1];
+        const toSub = statSet2[key];
+        if (_.isNil(toSub?.value) || _.isNil(startVal.value)) {
+          return [ key, undefined ];
+        } else {
+          const diffStat = {
+            value: startVal.value - toSub.value,
+            old_value: (_.isNil(toSub?.old_value) || _.isNil(startVal.old_value)) ?
+              undefined : startVal.old_value - toSub.old_value,
+            override: startVal.override
+          };
+          return [ key, diffStat ]
+        }
+      }).fromPairs().value();
     return {
-      ...(_.chain(statSet1).toPairs().map((kv) => {
-          const key = kv[0];
-          const startVal = kv[1];
-          const toSub = statSet2[key];
-          if (_.isNil(toSub?.value) || _.isNil(startVal.value)) {
-            return [ key, undefined ];
-          } else {
-            const diffStat = {
-              value: startVal.value - toSub.value,
-              old_value: (_.isNil(toSub?.old_value) || _.isNil(startVal.old_value)) ?
-                undefined : startVal.old_value - toSub.old_value,
-              override: startVal.override
-            };
-            return [ key, diffStat ]
-          }
-        }).fromPairs().value()
-      ),
+      ...statsDiff,
+      doc_count: statSet1.doc_count + statSet2.doc_count, //(required field)
       off_title: offTitle,
       def_title: defTitle
-    };
+    } as TeamStatSet;
   }
 
   /** Parses the terms/histogram aggregation giving a bit of info about each lineup's game */
@@ -147,17 +168,19 @@ export class LineupUtils {
     regressDiffs: number = 0, repOnOffDiagMode: number = 0
   ): TeamReportStatsModel {
 
-    const getPlayerSet = (lineup: any) => {
-      return _.chain(
+    const getPlayerSet = (lineup: LineupStatSet) => {
+      const retVal: Record<PlayerId, PlayerCode> = _.chain(
         lineup?.players_array?.hits?.hits?.[0]?._source?.players || []
       ).map((v) => [ v.id, v.code ]).fromPairs().value();
+      return retVal;
     };
 
-    const allPlayersSet = _.chain(lineupReport.lineups || []).reduce((acc: any, lineup: any) => {
-      delete lineup.rapmRemove; //(ugly hack/coupling with RAPM utils to ensure no state is preserved)
-      const players = lineup?.players_array?.hits?.hits?.[0]?._source?.players || [];
-      return _.mergeWith(acc, getPlayerSet(lineup));
-    }, {}).value();
+    const allPlayersSet: Record<PlayerId, PlayerCode> = _.chain(lineupReport.lineups || []).reduce(
+      (acc: Record<PlayerId, PlayerCode>, lineup: LineupStatSet) => {
+        delete lineup.rapmRemove; //(ugly hack/coupling with RAPM utils to ensure no state is preserved)
+        return _.mergeWith(acc, getPlayerSet(lineup));
+      }, {} as Record<PlayerId, PlayerCode>
+    ).value();
 
     const mutableState: TeamReportStatsModel = {
       playerMap: _.invert(allPlayersSet), //(code -> id)
@@ -168,18 +191,21 @@ export class LineupUtils {
           playerId: playerId,
           playerCode: playerCode,
           teammates: _.chain(allPlayersSet).keys().map(
-              (player) => [ player, {
+              player => [ player, {
                 on: { off_poss: 0, def_poss: 0 }, off: { off_poss : 0, def_poss: 0 }
               } ]
             ).fromPairs().value(),
           on: {
-            key: `'On' ${playerId}`
-          },
+            key: `'On' ${playerId}`,
+            doc_count: 0, //(required field)
+          } as LineupStatSet,
           off: {
-            key: `'Off' ${playerId}`
-          },
+            key: `'Off' ${playerId}`,
+            doc_count: 0, //(required field)
+          } as LineupStatSet,
           replacement: incReplacement ? {
             key: `'r:On-Off' ${playerId}`,
+            doc_count: 0, //(required field)
             lineupUsage: {},
             myLineups: _.chain(lineupReport.lineups || []).filter((lineup) => {
               const playersSet = getPlayerSet(lineup);
@@ -188,7 +214,7 @@ export class LineupUtils {
               return _.assign({ offLineups: {}, offLineupKeys: [], onLineup: {} }, lineup);
                 //(copies lineup and adds empty offLineups/offLineupList/onLineup)
             }).value()
-          } : undefined
+          } as LineupStatSet : undefined
         };
       }),
       error_code: lineupReport.error_code
@@ -215,25 +241,25 @@ export class LineupUtils {
           ).value();
 
           if (incReplacement) {
-            _.chain(playerObj.replacement.myLineups).filter((onLineup) => {
+            _.chain(playerObj.replacement?.myLineups || []).filter((onLineup) => {
               const isComplement =
                 LineupUtils.isComplementLineup(playerObj.playerId, onLineup, lineup);
               return isComplement;
             }).forEach((onLineup) => {
               if (repOnOffDiagMode > 0) {
-                onLineup.offLineupKeys.push(lineup.key);
-                if (!playerObj.replacement.lineupUsage.hasOwnProperty(lineup.key)) {
-                  playerObj.replacement.lineupUsage[lineup.key] = {
+                if (onLineup.offLineupKeys) onLineup.offLineupKeys.push(lineup.key);
+                if (!playerObj.replacement?.lineupUsage?.hasOwnProperty(lineup.key)) {
+                  playerObj.replacement!.lineupUsage![lineup.key] = {
                     poss: lineup?.off_poss?.value || 0,
                     keyArray: lineup.key.split("_"),
                     overlap: 1
                   }
                 } else {
-                  const tempObj = playerObj.replacement.lineupUsage[lineup.key];
-                  tempObj.overlap += 1;
+                  const tempObj = playerObj.replacement?.lineupUsage?.[lineup.key];
+                  if (tempObj && tempObj.overlap) tempObj.overlap += 1;
                 }
               }
-              LineupUtils.weightedAvg(onLineup.offLineups, lineup);
+              if (onLineup.offLineups) LineupUtils.weightedAvg(onLineup.offLineups, lineup);
             }).value();
           }
         }
@@ -252,7 +278,7 @@ export class LineupUtils {
       if (playerObj.off.hasOwnProperty("off_poss")) {
         LineupUtils.completeWeightedAvg(playerObj.off);
       }
-      if (incReplacement) {
+      if (incReplacement && playerObj.replacement) {
         LineupUtils.combineReplacementOnOff(
           playerObj.replacement, _.keys(playerObj.on), regressDiffs, repOnOffDiagMode
         );
@@ -274,7 +300,7 @@ export class LineupUtils {
   private static readonly sumFieldSet = { off_poss: true, def_poss: true, duration_mins: true };
 
   /** Updates lineup info - this is just needed to determine if a player should be included in the list */
-  private static updateLineupComposition(mutableTeammateInfo: any, player: string, lineupInfo: any) {
+  private static updateLineupComposition(mutableTeammateInfo: TeammatePossInfo | undefined, player: string, lineupInfo: LineupStatSet) {
     if (mutableTeammateInfo) {
       mutableTeammateInfo.off_poss += lineupInfo.off_poss?.value || 0;
       mutableTeammateInfo.def_poss += lineupInfo.def_poss?.value || 0;
@@ -330,21 +356,21 @@ export class LineupUtils {
 
   /** Get the weights as a function of the key type (except for shot types) */
   private static getSimpleWeights(
-    obj: any, defaultVal: number, regressDiffs: number = 0
+    obj: LineupStatSet, defaultVal: number, regressDiffs: number = 0
   ) {
     const offRegress = LineupUtils.regressionWeights(regressDiffs, obj.off_poss?.value || defaultVal);
     const defRegress = LineupUtils.regressionWeights(regressDiffs, obj.def_poss?.value || defaultVal);
 
     // ppp, adj_opp (opposite)
     const ppp_totals = {
-      off_ppp: offRegress.poss + obj.off_poss?.value || defaultVal,
-      def_ppp: defRegress.poss + obj.def_poss?.value || defaultVal,
-      off_to: offRegress.poss + obj.off_poss?.value || defaultVal,
-      def_to: defRegress.poss + obj.def_poss?.value || defaultVal,
-      off_adj_opp: offRegress.poss + obj.def_poss?.value || defaultVal,
-      def_adj_opp: defRegress.poss + obj.off_poss?.value || defaultVal,
-      off_adj_ppp: offRegress.poss + obj.off_poss?.value || defaultVal,
-      def_adj_ppp: defRegress.poss + obj.def_poss?.value || defaultVal,
+      off_ppp: offRegress.poss + (obj.off_poss?.value || defaultVal),
+      def_ppp: defRegress.poss + (obj.def_poss?.value || defaultVal),
+      off_to: offRegress.poss + (obj.off_poss?.value || defaultVal),
+      def_to: defRegress.poss + (obj.def_poss?.value || defaultVal),
+      off_adj_opp: offRegress.poss + (obj.def_poss?.value || defaultVal),
+      def_adj_opp: defRegress.poss + (obj.off_poss?.value || defaultVal),
+      off_adj_ppp: offRegress.poss + (obj.off_poss?.value || defaultVal),
+      def_adj_ppp: defRegress.poss + (obj.def_poss?.value || defaultVal),
     };
     // all the shot type %s (not rates, which use FGA):
     // (see totalShotTypeKey below)
@@ -354,8 +380,8 @@ export class LineupUtils {
       def_orb: defRegress.orb + (obj.total_def_orb?.value || defaultVal) + (obj.total_off_drb?.value || defaultVal)
     };
     // Assists:
-    const offAst = offRegress.ast + obj.total_off_assist?.value || defaultVal;
-    const defAst = defRegress.ast + obj.total_def_assist?.value || defaultVal;
+    const offAst = offRegress.ast + (obj.total_off_assist?.value || defaultVal);
+    const defAst = defRegress.ast + (obj.total_def_assist?.value || defaultVal);
     const ast_totals = {
       off_ast_3p: offAst,
       off_ast_mid: offAst,
@@ -366,12 +392,12 @@ export class LineupUtils {
     };
     // everything else
     const fga_totals = {
-      off: offRegress.fga + obj.total_off_fga?.value || defaultVal,
-      def: defRegress.fga + obj.total_def_fga?.value || defaultVal
+      off: offRegress.fga + (obj.total_off_fga?.value || defaultVal),
+      def: defRegress.fga + (obj.total_def_fga?.value || defaultVal)
     };
     const fta_totals = {
-      off_ft: offRegress.fta + obj.total_off_fta?.value || defaultVal,
-      def_ft: defRegress.fta + obj.total_def_fta?.value || defaultVal
+      off_ft: offRegress.fta + (obj.total_off_fta?.value || defaultVal),
+      def_ft: defRegress.fta + (obj.total_def_fta?.value || defaultVal)
     };
     // For transition and scramble playes, just do ppp for now
     return {
@@ -398,7 +424,7 @@ export class LineupUtils {
   }
 
   /** Combines the per-lineup objects into a mutable aggregator */
-  private static weightedAvg(mutableAcc: any, obj: any) {
+  private static weightedAvg(mutableAcc: LineupStatSet, obj: LineupStatSet) {
     const weights = LineupUtils.getSimpleWeights(obj, 0);
     _.chain(obj).toPairs().forEach((keyVal) => {
       const key = keyVal[0];
@@ -421,26 +447,26 @@ export class LineupUtils {
           mutableAcc[key].override = oldValOverride;
         }
         if (totalShotTypeKey) {
-          mutableAcc[key].value += val*obj[totalShotTypeKey]?.value || 0;
+          mutableAcc[key].value! += val*(obj[totalShotTypeKey]?.value || 0);
           if (oldValOverride) {
-            mutableAcc[key].old_value += oldVal*obj[totalShotTypeKey]?.value || 0;
+            mutableAcc[key].old_value! += oldVal*(obj[totalShotTypeKey]?.value || 0);
           }
         } else if (weights.ppp_totals.hasOwnProperty(key)) {
-          mutableAcc[key].value += val*(weights.ppp_totals as any)[key];
+          mutableAcc[key].value! += val*(weights.ppp_totals as any)[key];
           if (oldValOverride) {
-            mutableAcc[key].old_value += oldVal*(weights.ppp_totals as any)[key];
+            mutableAcc[key].old_value! += oldVal*(weights.ppp_totals as any)[key];
           }
         } else if (weights.orb_totals.hasOwnProperty(key)) {
-          mutableAcc[key].value += val*(weights.orb_totals as any)[key];
+          mutableAcc[key].value! += val*(weights.orb_totals as any)[key];
           //(no luck adjustment currently)
         } else if (weights.fta_totals.hasOwnProperty(key)) {
-          mutableAcc[key].value += val*(weights.fta_totals as any)[key];
+          mutableAcc[key].value! += val*(weights.fta_totals as any)[key];
           //(no luck adjustment currently)
         } else if (weights.ast_totals.hasOwnProperty(key)) {
-          mutableAcc[key].value += val*(weights.ast_totals as any)[key];
+          mutableAcc[key].value! += val*(weights.ast_totals as any)[key];
           //(no luck adjustment currently)
         } else if (_.startsWith(key, "total_") || LineupUtils.sumFieldSet.hasOwnProperty(key)) {
-          mutableAcc[key].value += val;
+          mutableAcc[key].value! += val;
           //(no luck adjustment currently)
           //(note includes total_X_(trans|scramble)_poss, which is recalc'd by recalculatePlayTypePoss)
         } else if (_.startsWith(key, "off_trans_") || _.startsWith(key, "def_trans_")) {
@@ -448,14 +474,14 @@ export class LineupUtils {
         } else if (_.startsWith(key, "off_scramble_") || _.startsWith(key, "def_scramble_")) {
           // Ignore for now (ppp handled by recalculatePlayTypePoss)
         } else if (_.startsWith(key, "off_")) { // everything else if off/def FGA
-          mutableAcc[key].value += val*weights.fga_totals.off;
+          mutableAcc[key].value!+= val*weights.fga_totals.off;
           if (oldValOverride) {
-            mutableAcc[key].old_value += oldVal*weights.fga_totals.off;
+            mutableAcc[key].old_value! += oldVal*weights.fga_totals.off;
           }
         } else if (_.startsWith(key, "def_")) {
-          mutableAcc[key].value += val*weights.fga_totals.def;
+          mutableAcc[key].value! += val*weights.fga_totals.def;
           if (oldValOverride) {
-            mutableAcc[key].old_value += oldVal*weights.fga_totals.def;
+            mutableAcc[key].old_value! += oldVal*weights.fga_totals.def;
           }
         }
       } else if (key == "game_info") {
@@ -487,7 +513,7 @@ export class LineupUtils {
   }
   /** Completes the mutable aggregator by dividing by the sum of its weights*/
   private static completeWeightedAvg(
-    mutableAcc: any, harmonicWeighting: boolean = false, regressDiffs: number = 0
+    mutableAcc: LineupStatSet, harmonicWeighting: boolean = false, regressDiffs: number = 0
   ) {
     const weights = LineupUtils.getSimpleWeights(mutableAcc, 1, regressDiffs);
 
@@ -509,9 +535,9 @@ export class LineupUtils {
             //(3P, 2P mid, 2P rim == 1/3rd each, 2p == 2p rim + 2p mid so 2/3s)
           const adjRegWeight = _.endsWith(key, "2p") ? offOrDefWeight*2.0/3 : offOrDefWeight/3;
 
-          mutableAcc[key].value = 1.0*val/(adjRegWeight + mutableAcc[totalShotTypeKey]?.value || 1);
+          mutableAcc[key].value = 1.0*val/((adjRegWeight + (mutableAcc[totalShotTypeKey]?.value || 0)) || 1);
           if (oldValOverride) {
-            mutableAcc[key].old_value = 1.0*oldVal/(adjRegWeight + mutableAcc[totalShotTypeKey]?.value || 1);
+            mutableAcc[key].old_value = 1.0*oldVal/((adjRegWeight + (mutableAcc[totalShotTypeKey]?.value || 0)) || 1);
           }
         } else if (weights.ppp_totals.hasOwnProperty(key)) {
           mutableAcc[key].value = 1.0*val/(weights.ppp_totals as any)[key];
@@ -566,7 +592,7 @@ export class LineupUtils {
   }
 
   /** Builds an empty object (all fields 0) */
-  private static copyAndZero(mutableToZero: any, from: any) {
+  private static copyAndZero(mutableToZero: LineupStatSet, from: LineupStatSet) {
     _.chain(from).keys().forEach((key) => {
       if (!LineupUtils.ignoreFieldSet.hasOwnProperty(key)) {
         mutableToZero[key] = { value: 0 }
@@ -577,7 +603,7 @@ export class LineupUtils {
   // Replacement on/off calcs
 
   /** Is this lineup the same except for the one player */
-  private static isComplementLineup(player: string, onLineup: any, offLineup: any): boolean {
+  private static isComplementLineup(player: string, onLineup: LineupStatSet, offLineup: LineupStatSet): boolean {
     // If the number of non-player matches == 4
     const onLineupPlayerMap = _.chain(
       onLineup?.players_array?.hits?.hits?.[0]?._source?.players || []
@@ -605,7 +631,7 @@ export class LineupUtils {
 
   /** Combines the deltas between the on/off numbers, weights, and averages */
   private static combineReplacementOnOff(
-    mutableReplacementObj: any, keySource: Array<string>,
+    mutableReplacementObj: LineupStatSet, keySource: Array<string>,
     regressDiffs: number = 0, repOnOffDiagMode: number = 0
   ) {
 
@@ -623,12 +649,12 @@ export class LineupUtils {
 
     // x: mutableReplacementObj.myLineups ... a list of lineups
     // x.offLineups the weighted average of the complements
-    const weightedLineups = _.chain(mutableReplacementObj.myLineups)
-      .filter((myLineup) => {
-        const offLineups = myLineup?.offLineups;
+    const weightedLineups = _.chain(mutableReplacementObj.myLineups || [])
+      .filter(myLineup => {
+        const offLineups = myLineup.offLineups || StatModels.emptyLineup();
 
         // remove lineups with no possessions at all
-        const retain = offLineups?.hasOwnProperty("off_poss")
+        const retain = offLineups.hasOwnProperty("off_poss")
 
         if (LineupUtils.debugReplacementOnOff && !retain) {
           if (_.includes(mutableReplacementObj.key, LineupUtils.debugReplacementOnOffPlayer)) {
@@ -639,18 +665,18 @@ export class LineupUtils {
           }
         }
         return retain;
-      }).map((myLineup) => {
+      }).map(myLineup => {
         if (repOnOffDiagMode > 0) {
           myLineup.onLineup = _.clone(myLineup); //(important: this is a shallow clone)
         }
         // Complete weighting
-        const offLineups = myLineup.offLineups;
+        const offLineups = myLineup.offLineups || StatModels.emptyLineup();
         LineupUtils.completeWeightedAvg(offLineups); //mutates this
 
         if (LineupUtils.debugReplacementOnOff) {
           if (_.includes(mutableReplacementObj.key, LineupUtils.debugReplacementOnOffPlayer) &&
-              (myLineup.off_poss.value > LineupUtils.debugReplacementOnOffMinPoss) &&
-              (offLineups.off_poss.value > LineupUtils.debugReplacementOnOffMinPoss)
+              ((myLineup.off_poss?.value || 0) > LineupUtils.debugReplacementOnOffMinPoss) &&
+              ((offLineups.off_poss?.value || 0) > LineupUtils.debugReplacementOnOffMinPoss)
           ) {
             console.log(`LineupUtils.combineReplacementOnOff.counts: [${mutableReplacementObj.key}]: ` +
               `[${myLineup.key}] counts: [${JSON.stringify(_.pick(myLineup, someDebugFields))}] vs `+
@@ -660,26 +686,26 @@ export class LineupUtils {
         }
 
         _.keys(harmonicWeights).forEach((key) => {
-          const oldValue = myLineup?.[key]?.old_value;
-          const oldValOverride = myLineup?.[key]?.override;
+          const oldValue = myLineup[key]?.old_value;
+          const oldValOverride = myLineup[key]?.override;
 
-          if ((myLineup?.[key]?.value > 0) && (offLineups?.[key]?.value > 0)) {
-            myLineup[key] = { value: LineupUtils.calcHarmonicMean(
-              myLineup[key].value, offLineups[key].value
+          if (((myLineup[key]?.value || 0) > 0) && ((offLineups[key]?.value || 0) > 0)) {
+            myLineup[key]! = { value: LineupUtils.calcHarmonicMean(
+              myLineup[key]!.value!, offLineups[key]!.value!
             ) };
           } else {
-            myLineup[key] = { value: 0 };
+            myLineup[key]! = { value: 0 };
           }
           // Same logic but for overridden values:
           // TODO: in the future neeed to handle when old_value is only present some of the time?
           if (oldValOverride) {
-            if ((myLineup?.[key]?.old_value > 0) && (offLineups?.[key]?.old_value > 0)) {
-              myLineup[key].old_value = LineupUtils.calcHarmonicMean(
-                myLineup[key].old_value, offLineups[key].old_value
+            if (((myLineup[key]?.old_value || 0) > 0) && ((offLineups[key]?.old_value || 0) > 0)) {
+              myLineup[key]!.old_value = LineupUtils.calcHarmonicMean(
+                myLineup[key]!.old_value!, offLineups[key]!.old_value!
               );
-              myLineup[key].override = oldValOverride;
+              myLineup[key]!.override = oldValOverride;
             } else {
-              myLineup[key].old_value = 0;
+              myLineup[key]!.old_value = 0;
             }
           }
         });
@@ -688,19 +714,19 @@ export class LineupUtils {
           if (!LineupUtils.ignoreFieldSet.hasOwnProperty(key) &&
             !harmonicWeights.hasOwnProperty(key)
           ) {
-            myLineup[key] = { // calc on-off
+            myLineup[key]! = { // calc on-off
               value: (keyVal[1]?.value || 0) - (offLineups[key]?.value || 0)
             }; //(gets weigted by offensive pos/FGA/etc, so fine that it's nonsense if no samples)
-            if (keyVal[1].override) {
-              myLineup[key].old_value = (keyVal[1]?.old_value || 0) - (offLineups[key]?.old_value || 0);
-              myLineup[key].override = keyVal[1].override;
+            if (keyVal[1]?.override) {
+              myLineup[key]!.old_value = (keyVal[1]?.old_value || 0) - (offLineups[key]?.old_value || 0);
+              myLineup[key]!.override = keyVal[1].override;
             }
           }
         }).value();
 
         if (LineupUtils.debugReplacementOnOff) {
           if (_.includes(mutableReplacementObj.key, LineupUtils.debugReplacementOnOffPlayer) &&
-              (myLineup.off_poss.value > LineupUtils.debugReplacementOnOffMinPoss)
+              ((myLineup.off_poss?.value || 0) > LineupUtils.debugReplacementOnOffMinPoss)
           ) {
             console.log(`LineupUtils.combineReplacementOnOff.diffs: [${mutableReplacementObj.key}]: ` +
               `[${myLineup.key}] diffs: [${JSON.stringify(_.pick(myLineup, someDebugFields))}]`

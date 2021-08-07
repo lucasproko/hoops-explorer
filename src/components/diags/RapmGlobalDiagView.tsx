@@ -20,7 +20,7 @@ import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, Legend, Referenc
 // Utils
 import { RapmInfo, RapmPlayerContext, RapmPreProcDiagnostics, RapmProcessingInputs, RapmUtils } from "../../utils/stats/RapmUtils";
 import { CbbColors } from "../../utils/CbbColors";
-import { LineupUtils } from "../../utils/stats/LineupUtils";
+import { PlayerOnOffStats, LineupUtils } from "../../utils/stats/LineupUtils";
 
 //TODO
 const tidyNumbers = (k: string, v: any) => {
@@ -43,14 +43,13 @@ const showMatrix = (m: any) => {
 
 type Props = {
   rapmInfo: RapmInfo
-  players: Array<Record<string, any>>,
   topRef: React.RefObject<HTMLDivElement>,
 };
 
 /** From https://colorbrewer2.org/#type=qualitative&scheme=Paired&n=12 */
 const categoricalPalette = ['#a6cee3','#1f78b4','#b2df8a','#33a02c','#fb9a99','#e31a1c','#fdbf6f','#ff7f00','#cab2d6','#6a3d9a','#ffff99','#b15928'];
 
-const RapmGlobalDiagView: React.FunctionComponent<Props> = (({rapmInfo, players, topRef}) => {
+const RapmGlobalDiagView: React.FunctionComponent<Props> = (({rapmInfo, topRef}) => {
   if (rapmInfo.preProcDiags) try {
     const ctx = rapmInfo.ctx;
     const gotoTop = () => {

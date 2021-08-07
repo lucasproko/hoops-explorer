@@ -81,9 +81,10 @@
 import _ from "lodash";
 
 // Other app utils
-import { LineupUtils } from "./LineupUtils";
+import { PlayerOnOffStats, LineupUtils } from "./LineupUtils";
 import { LuckUtils } from "./LuckUtils";
 import { CommonTableDefs } from "../tables/CommonTableDefs";
+import { StatModels, PureStatSet, PlayerCodeId, PlayerCode, PlayerId, Statistic, IndivStatSet, LineupStatSet } from "../StatModels";
 
 // Math utils
 // @ts-ignore
@@ -125,7 +126,7 @@ export type RapmPlayerContext = {
   /** A shallow copy of the lineups, minus ones with removed player or no off/def possessions */
   filteredLineups: Array<any>;
   /** An aggregated view of filteredLineups */
-  teamInfo: Record<string, any>;
+  teamInfo: LineupStatSet;
   /** The D1 average efficiency */
   avgEfficiency: number;
   // Handy counts:
@@ -155,9 +156,10 @@ export type RapmProcessingInputs = {
   prevAttempts: Array<any> //TODO make this list of diag objects typed
 };
 
+/** Useful glue type that the code that orchestrates RAPM uses to collect info */
 export type RapmInfo = {
   // Output:
-  enrichedPlayers: Array<Record<string, any>>,
+  enrichedPlayers: Array<PlayerOnOffStats>,
   // All the diags
   ctx: RapmPlayerContext,
   preProcDiags?: RapmPreProcDiagnostics,
@@ -188,7 +190,7 @@ export class RapmUtils {
 
   /** Builds priors for all the supported fields for all players */
   static buildPriors(
-    playersBaseline: Record<string, any>,
+    playersBaseline: Record<PlayerId, IndivStatSet>,
     colToPlayer: Array<string>,
     priorMode: number, //(-1 for adaptive mode, -2 for no prior)
     valueKey: "value" | "old_value" = "value" //(allows use of luck adjusted parameters)
@@ -244,10 +246,10 @@ export class RapmUtils {
   * unbiasWeight - if >0 adds an extra row with the desired combined results (eg 2)
   */
   static buildPlayerContext(
-    players: Array<any>,
-    lineups: Array<any>
+    players: Array<PlayerOnOffStats>,
+    lineups: Array<LineupStatSet>
     ,
-    playersBaseline: Record<string, any> //(used for building priors - most general info)
+    playersBaseline: Record<PlayerId, IndivStatSet> //(used for building priors - most general info)
     ,
     avgEfficiency: number
     ,
@@ -560,6 +562,7 @@ export class RapmUtils {
           } ];
         }).fromPairs().merge({
           key: `RAPM ${p.playerId}`,
+          doc_count: ctx.teamInfo?.doc_count || 1, //(required field)
           off_poss: ctx.teamInfo.off_poss, def_poss: ctx.teamInfo.def_poss
         }).value();
 

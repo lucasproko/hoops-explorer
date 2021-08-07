@@ -332,10 +332,10 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
     };
     const onOrOff = (playerSet: OnOffPlayerStatSet) => {
       switch(sortComps[2]) {
-        case "on": return [ playerSet.on || StatModels.emptyIndiv ];
-        case "off": return [ playerSet.off || StatModels.emptyIndiv ];
-        case "baseline": return [ playerSet.baseline || StatModels.emptyIndiv ];
-        default: return [ StatModels.emptyIndiv ];
+        case "on": return [ playerSet.on || StatModels.emptyIndiv() ];
+        case "off": return [ playerSet.off || StatModels.emptyIndiv() ];
+        case "baseline": return [ playerSet.baseline || StatModels.emptyIndiv() ];
+        default: return [ StatModels.emptyIndiv() ];
       }
     };
     return (playerSet: OnOffPlayerStatSet) => {
