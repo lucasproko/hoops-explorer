@@ -389,6 +389,8 @@ Object {
         "def_poss": Object {
           "value": 50,
         },
+        "doc_count": 0,
+        "key": "empty",
         "off_poss": Object {
           "value": 50,
         },
@@ -401,6 +403,8 @@ Object {
         "def_poss": Object {
           "value": 150,
         },
+        "doc_count": 0,
+        "key": "empty",
         "off_poss": Object {
           "value": 150,
         },

@@ -1,3 +1,4 @@
+//TODO: add models for  prevAttempts  / lastAttempt
 
 //////////////////////////////////////////////////////////////////////////////////////////
 
@@ -118,7 +119,7 @@ export type RapmPlayerContext = {
   removalPct: number;
 
   /** Players that have been removed */
-  removedPlayers: Record<string, [number, number, Record<string, any>]>;
+  removedPlayers: Record<string, [number, number, IndivStatSet]>;
   /** The column corresponding to the player */
   playerToCol: Record<string, number>;
   /** The player name in each column */
@@ -279,13 +280,13 @@ export class RapmUtils {
         acc[playerId] = [
           origPoss/totalLineups, 0, //(<- unused now)
           {
-            ...(playersBaseline[playerId] || {}),
+            ...(playersBaseline[playerId] || StatModels.emptyIndiv()),
             off_poss: p.on?.off_poss || {},
             def_poss: p.on?.def_poss || {},
-          }
+          } as IndivStatSet
         ];
       }
-    }, {} as Record<string, [number, number, Record<string, any>]>).value();
+    }, {} as Record<string, [number, number, IndivStatSet]>).value();
 
     // Now need to go through lineups, remove any that don't include RAPM info
 
@@ -426,7 +427,7 @@ export class RapmUtils {
             return acc + (strongWeight*ctx.priorInfo.playersStrong[playerIndex]![`${prefix}_${field}`] || 0);
           } else { // this player is filtered out but we still want to use their result on the RHS of equation
             // case 2] above
-            const removedPlayerInfo = ctx.removedPlayers[player.id] as [ number, number, Record<string, any> ] || undefined;
+            const removedPlayerInfo = ctx.removedPlayers[player.id] as [ number, number, IndivStatSet ] || undefined;
             if (removedPlayerInfo) {
               const removedPlayerStat = removedPlayerInfo[2] || {};
               const removedPlayerStatAboveMean = (field == "adj_ppp") ?
@@ -494,9 +495,9 @@ export class RapmUtils {
    * (since it injects the old value versions into the existing one)
    */
   static injectRapmIntoPlayers(
-    players: Array<Record<string, any>>,
+    players: Array<PlayerOnOffStats>,
     offRapmInput: RapmProcessingInputs, defRapmInput: RapmProcessingInputs,
-    statsAverages: Record<string, any>,
+    statsAverages: PureStatSet,
     ctx: RapmPlayerContext,
     adaptiveCorrelWeights: number[] | undefined,
     readValueKey: "value" | "old_value" = "value",
@@ -524,7 +525,7 @@ export class RapmUtils {
         const [ offOffset, defOffset ] = ({
           "ppp": [ ctx.avgEfficiency, ctx.avgEfficiency ],
           "adj_ppp": [ ctx.avgEfficiency, ctx.avgEfficiency ],
-        } as Record<string, any>)[partialField] || [
+        } as Record<string, [number, number]>)[partialField] || [
           statsAverages[`off_${partialField}`]?.value || getVal(ctx.teamInfo[`off_${partialField}`]),
           statsAverages[`def_${partialField}`]?.value || getVal(ctx.teamInfo[`def_${partialField}`])
         ];
