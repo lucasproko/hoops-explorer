@@ -37,6 +37,7 @@ import TeamRosterStatsConfigModal, { TeamRosterStatsConfig } from './shared/Team
 import AsyncFormControl from './shared/AsyncFormControl';
 
 // Util imports
+import { StatModels, PureStatSet, PlayerCodeId, PlayerCode, PlayerId, Statistic, TeamStatSet, LineupStatSet, IndivStatSet } from "../utils/StatModels";
 import { getCommonFilterParams, TeamReportFilterParams, ParamDefaults, LuckParams } from '../utils/FilterModels';
 import { PlayerOnOffStats, LineupUtils } from '../utils/stats/LineupUtils';
 import { RatingUtils } from '../utils/stats/RatingUtils';
@@ -208,7 +209,7 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({startingState, da
       // Luck
 
       // The luck baseline can either be the user-selecteed baseline or the entire season
-      const [ baseOrSeasonTeamStats, baseOrSeason3PMap ] = (() => {
+      const baseLuckBuilder: () => [TeamStatSet, Record<PlayerId, IndivStatSet>] = () => {
         if (adjustForLuck) {
           switch (luckConfig.base) {
             case "baseline":
@@ -220,16 +221,19 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({startingState, da
                 inTeamStats.global, _.fromPairs((inRosterStats.global || []).map((p: any) => [ p.key, p ]))
               ];
           }
-        } else return [ {}, {} ]; //(not used)
-      })();
+        } else return [ StatModels.emptyTeam(), {} ]; //(not used)
+      };
+      const [ baseOrSeasonTeamStats, baseOrSeason3PMap ] = baseLuckBuilder();
 
       // Mutate lineups:
       _.forEach(inLineupStats?.lineups || [], (lineup) => {
-        const codesAndIds = lineup.players_array?.hits?.hits?.[0]?._source?.players || [];
+        const codesAndIds = LineupTableUtils.buildCodesAndIds(lineup);
 
-        const perLineupPlayerLuckMap = _.fromPairs(codesAndIds.map((cid: { code: string, id: string }) => {
-          return [  cid.id, baseOrSeason3PMap[cid.id] ];
-        }));
+        const perLineupPlayerLuckMap: Record<PlayerId, IndivStatSet> = _.fromPairs(
+          codesAndIds.map((cid: PlayerCodeId) => {
+            return [  cid.id, baseOrSeason3PMap[cid.id] || StatModels.emptyIndiv()];
+          })
+        );
         const luckAdj = (adjustForLuck && lineup?.doc_count) ? [
           LuckUtils.calcOffTeamLuckAdj(
             lineup, inRosterStats.baseline || [], baseOrSeasonTeamStats, perLineupPlayerLuckMap, avgEfficiency

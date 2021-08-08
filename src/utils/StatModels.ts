@@ -55,8 +55,8 @@ export type IndivMetadata = {
   /** eg 'Ayala, Eric' - Id and Key are considered equivalent here  - this field is required */
   key: PlayerId,
 
-  /** Another required field - can just use to tell if the object is empty */
-  doc_count: number,
+  /** For responses that come from ES, a useful indicator of whether the query matched */
+  doc_count?: number,
 
   /** Comes from the ES response */
   player_array?: any, //(long nested type)
@@ -101,6 +101,7 @@ export type IndivEnrichment = {
 
   /** Positional diag info */
   posClass?: number[],
+  //TODO: posConfidences
 
   /** Luck diags */
   off_luck?: OffLuckAdjustmentDiags,
@@ -160,8 +161,8 @@ export type LineupMetadata = {
   conf?: string,
   team?: string,
   year?: string,
-  /** TODO: add type here */
-  player_info?: any,
+  /** Injected info about players for lineup leaderboards */
+  player_info?: Record<PlayerId, IndivStatSet>,
 };
 
 /** Derived stats we add to the individual's stat set */
@@ -197,7 +198,7 @@ export type LineupStatSet = PureStatSet & LineupEnrichment & LineupMetadata;
 
 /** Useful constants */
 export class StatModels {
-  static emptyIndiv: () => IndivStatSet = () => { return { key: "empty", doc_count: 0 } as IndivStatSet; }
+  static emptyIndiv: () => IndivStatSet = () => { return { key: "empty" } as IndivStatSet; }
   static emptyTeam: () => TeamStatSet = () => { return { doc_count: 0 } as TeamStatSet };
   static emptyLineup: () => LineupStatSet = () => { return { key: "empty", doc_count: 0 } as LineupStatSet };
 }

@@ -138,7 +138,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
   const avgEfficiency = efficiencyAverages[genderYearLookup] || efficiencyAverages.fallback;
 
   // The luck baseline can either be the user-selecteed baseline or the entire season
-  const [ baseOrSeasonTeamStats, baseOrSeason3PMap ] = (() => {
+  const baseLuckBuilder: () => [TeamStatSet, Record<PlayerId, IndivStatSet>] = () => {
     if (adjustForLuck) {
       switch (luckConfig.base) {
         case "baseline":
@@ -150,8 +150,9 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
             teamStats.global, _.fromPairs((rosterStats.global || []).map((p: any) => [ p.key, p ]))
           ];
       }
-    } else return [ {}, {} ]; //(not used)
-  })();
+    } else return [ StatModels.emptyTeam(), {} ]; //(not used)
+  };
+  const [ baseOrSeasonTeamStats, baseOrSeason3PMap ] = baseLuckBuilder();
 
   // Create luck adjustments, inject luck into mutable stat sets, and calculate efficiency margins
   const luckAdjustment = _.fromPairs(([ "on", "off", "baseline" ] as OnOffBaselineEnum[]).map(k => {

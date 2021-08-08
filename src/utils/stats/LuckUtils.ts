@@ -1,6 +1,7 @@
 import _ from "lodash";
 
-import { OverrideUtils } from "./OverrideUtils"
+import { OverrideUtils } from "./OverrideUtils";
+import { StatModels, PureStatSet, PlayerCodeId, PlayerCode, PlayerId, Statistic, TeamStatSet, LineupStatSet, IndivStatSet } from "../StatModels";
 
 /** Whether to calculate the luck adjustment over the baseline or the entire season
     Baseline will be subject to more noise but enables luck to be reduced in cases
@@ -100,7 +101,7 @@ export class LuckUtils {
 
   /** Calculate the offensive luck adjustment for a player */
   static readonly calcOffPlayerLuckAdj = (
-    samplePlayer: Record<string, any>, basePlayer: Record<string, any>,
+    samplePlayer: IndivStatSet, basePlayer: IndivStatSet,
     avgEff: number
   ) => {
     // The team calc basically works fine here, apart from ORBs, which we'll ignore
@@ -111,11 +112,11 @@ export class LuckUtils {
 
   /** Calculate the offensive luck adjustment for a team ...samplePlayers==players.map(_.on/off/baseline) */
   static readonly calcOffTeamLuckAdj = (
-    sampleTeam: Record<string, any>, samplePlayers: Record<string, any>[],
-    baseTeam: Record<string, any>, basePlayersMap: Record<string,any>,
+    sampleTeam: TeamStatSet | LineupStatSet | IndivStatSet, samplePlayers: Array<IndivStatSet>,
+    baseTeam: TeamStatSet | LineupStatSet | IndivStatSet, basePlayersMap: Record<PlayerId, IndivStatSet>,
     avgEff: number
   ) => {
-    const get = (maybeOld: any, fallback: number) => {
+    const get = (maybeOld: Statistic, fallback: number) => {
       // Uses the non-adjusted luck number if present
       return (_.isNil(maybeOld?.old_value) ? maybeOld?.value : maybeOld?.old_value) || fallback;
     }
@@ -199,16 +200,17 @@ export class LuckUtils {
   };
 
   /** Calculate the defensive luck adjustment for a player */
-  static readonly calcDefPlayerLuckAdj = (sample: Record<string, any>, base: Record<string, any>, avgEff: number) => {
-    const translate = (statSet: any) => {
+  static readonly calcDefPlayerLuckAdj = (sample: IndivStatSet, base: IndivStatSet, avgEff: number) => {
+    const translate = (statSet: IndivStatSet) => {
       return {
+        key: sample.key,
         def_3p: {
           value: (statSet.oppo_total_def_3p_made?.value || 0)
                 / (statSet.oppo_total_def_3p_attempts?.value || 1)
         },
         def_3p_opp: statSet.oppo_def_3p_opp,
         def_poss: statSet.oppo_total_def_poss,
-      };
+      } as IndivStatSet;
     };
     // We really just want the 3P delta:
     return LuckUtils.calcDefTeamLuckAdj(
@@ -217,7 +219,9 @@ export class LuckUtils {
   };
 
   /** Calculate the defensive luck adjustment for a team */
-  static readonly calcDefTeamLuckAdj = (sample: Record<string, any>, base: Record<string, any>, avgEff: number) => {
+  static readonly calcDefTeamLuckAdj = (
+    sample: IndivStatSet | TeamStatSet | LineupStatSet, base: IndivStatSet | TeamStatSet | LineupStatSet, avgEff: number
+  ) => {
     const get = (maybeOld: any, fallback: number) => {
       // Uses the non-adjusted luck number if present
       return (_.isNil(maybeOld?.old_value) ? maybeOld?.value : maybeOld?.old_value) || fallback;
@@ -283,7 +287,7 @@ export class LuckUtils {
 
   /** Mutates (in a reversible way) the team stats with luck adjustments */
   static readonly injectLuck = (
-    mutableStats: Record<string, any>,
+    mutableStats: TeamStatSet | IndivStatSet | LineupStatSet,
     offLuck: OffLuckAdjustmentDiags | undefined,
     defLuck: DefLuckAdjustmentDiags | undefined
   ) => {

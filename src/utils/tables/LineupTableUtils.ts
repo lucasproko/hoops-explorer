@@ -2,7 +2,7 @@
 import _ from "lodash";
 
 // Util imports
-import { PlayerCodeId, PlayerCode, PlayerId, Statistic, IndivStatSet, TeamStatSet, LineupStatSet } from "../StatModels";
+import { StatModels, PlayerCodeId, PlayerCode, PlayerId, Statistic, IndivStatSet, TeamStatSet, LineupStatSet } from "../StatModels";
 import { RatingUtils, OnBallDefenseModel } from "../stats/RatingUtils";
 import { PositionUtils } from "../stats/PositionUtils";
 import { LineupUtils } from "../stats/LineupUtils";
@@ -17,10 +17,10 @@ export class LineupTableUtils {
   static readonly totalLineupId = "TOTAL";
 
   /** Handy accessor for picking the player codes out of the lineup */
-  static buildCodesAndIds(lineup: any): Array<PlayerCodeId> {
+  static buildCodesAndIds(lineup: LineupStatSet): Array<PlayerCodeId> {
     return lineup.players_array ?
       (lineup.players_array?.hits?.hits?.[0]?._source?.players || []) :
-      _.toPairs(lineup.player_info as Record<string, any>).map(kv => { return { code: kv[1].code, id: kv[0] } }) //(leaderboard mode)
+      _.toPairs((lineup.player_info || {}) as Record<PlayerId, IndivStatSet>).map(kv => { return { code: kv[1].code, id: kv[0] } }) //(leaderboard mode)
       ;
   }
 
@@ -195,7 +195,7 @@ export class LineupTableUtils {
     positionFromPlayerKey: Record<PlayerId, any>, baselinePlayerInfo: Record<PlayerId, IndivStatSet>
   ): Array<LineupStatSet> {
     // The luck baseline can either be the user-selecteed baseline or the entire season
-    const [ baseOrSeasonTeamStats, baseOrSeason3PMap ] = (() => {
+    const baseLuckBuilder: () => [TeamStatSet, Record<PlayerId, IndivStatSet>] = () => {
       if (adjustForLuck) {
         switch (luckConfigBase) {
           case "baseline":
@@ -207,8 +207,9 @@ export class LineupTableUtils {
               globalTeamStats, _.fromPairs((players || []).map(p => [ p.key, p ]))
             ];
         }
-      } else return [ {}, {} ]; //(not used)
-    })();
+      } else return [ StatModels.emptyTeam(), {} ]; //(not used)
+    };
+    const [ baseOrSeasonTeamStats, baseOrSeason3PMap ] = baseLuckBuilder();
 
     /** Perform enrichment on each lineup, including luck adjustment */
     const enrichLineup = (lineup: LineupStatSet) => {
@@ -217,10 +218,14 @@ export class LineupTableUtils {
       const sortedCodesAndIds = (lineup.key == LineupTableUtils.totalLineupId) ? undefined :
         PositionUtils.orderLineup(codesAndIds, positionFromPlayerKey, teamSeasonLookup);
 
-      const perLineupPlayerLuckMap = _.fromPairs(codesAndIds.map((cid: { code: string, id: string }) => {
-        return [  cid.id, baseOrSeason3PMap[cid.id] ];
-      }));
-      const luckAdj = (adjustForLuck && lineup?.doc_count) ? [
+      const perLineupPlayerLuckMap: Record<PlayerId, IndivStatSet> = _.fromPairs(
+        codesAndIds.map((cid: PlayerCodeId) => {
+          return [  cid.id, baseOrSeason3PMap[cid.id] || StatModels.emptyIndiv()];
+        })
+      );
+      const luckAdj = (
+        (lineup.key != LineupTableUtils.totalLineupId) && adjustForLuck && lineup?.doc_count
+      ) ? [
         LuckUtils.calcOffTeamLuckAdj(
           lineup, players || [], baseOrSeasonTeamStats, perLineupPlayerLuckMap, avgEfficiency
         ),
@@ -230,9 +235,16 @@ export class LineupTableUtils {
       if (lineup?.doc_count) {
         LineupUtils.buildEfficiencyMargins(lineup);
 
-        LuckUtils.injectLuck(lineup, luckAdj?.[0], luckAdj?.[1]);
-        lineup.off_luck_diags = luckAdj?.[0];
-        lineup.def_luck_diags = luckAdj?.[1];
+        if (lineup.key != LineupTableUtils.totalLineupId) {
+          // don't inject luck into the total lineup calcs - a) empirically it's wrong so
+          // probably I'm doing something stupid, b) it seems wrong anyway, eg aggreegating
+          // the per-lineup players is not correct, (for team we have the actual 3PA numbers)
+          // but it's better than assuming all players play in their season poss ratios, which
+          // is what this appears to do...
+          LuckUtils.injectLuck(lineup, luckAdj?.[0], luckAdj?.[1]);
+          lineup.off_luck_diags = luckAdj?.[0];
+          lineup.def_luck_diags = luckAdj?.[1];
+        }
       }
       return lineup;
     };
@@ -240,6 +252,7 @@ export class LineupTableUtils {
     const enrichedLineups = filteredLineups.map(lineup => enrichLineup(lineup));
     const totalLineup = showTotalLineups ? [
       // Have to do this last in order to get the luck-mutated lineups
+      // TODO: luck adjusted lineups seemed completely wrong so I pulled it :(, see above
       enrichLineup(_.assign(LineupUtils.calculateAggregatedLineupStats(filteredLineups), {
         key: LineupTableUtils.totalLineupId,
         doc_count: filteredLineups.length //(just a dummy number >0 since doc_count is required)

@@ -407,14 +407,14 @@ export async function main() {
             "off_rtg", "off_usage", "def_orb", "key",
             "off_adj_rtg", "def_adj_rtg", "off_3pr",
             "off_ftr", "off_assist"
-          ]) as IndivStatSet;
+          ]);
           return [
             cid.id,
             { ...playerSubset, code: cid.code,
               // Both these are needed to order the players within the lineup
               posClass: positionFromPlayerKey[playerSubset.key]?.posClass,
               posConfidences: positionFromPlayerKey[playerSubset.key]?.posConfidences,
-            }
+            } as IndivStatSet
           ];
         }));
         //(now don't need this:)
