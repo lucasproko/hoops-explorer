@@ -365,7 +365,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
   // 3] Utils
   /** Sticks an overlay on top of the table if no query has ever been loaded */
   function needToLoadQuery() {
-    return teamStats.baseline.doc_count == 0;
+    return (teamStats.baseline.doc_count || 0) == 0;
   }
 
   // 4] View

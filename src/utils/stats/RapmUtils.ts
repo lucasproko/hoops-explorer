@@ -563,7 +563,6 @@ export class RapmUtils {
           } ];
         }).fromPairs().merge({
           key: `RAPM ${p.playerId}`,
-          doc_count: ctx.teamInfo?.doc_count || 1, //(required field)
           off_poss: ctx.teamInfo.off_poss, def_poss: ctx.teamInfo.def_poss
         }).value();
 

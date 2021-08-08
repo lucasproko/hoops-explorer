@@ -241,6 +241,7 @@ export class LineupTableUtils {
           // the per-lineup players is not correct, (for team we have the actual 3PA numbers)
           // but it's better than assuming all players play in their season poss ratios, which
           // is what this appears to do...
+          // (https://github.com/Alex-At-Home/cbb-on-off-analyzer/issues/100)
           LuckUtils.injectLuck(lineup, luckAdj?.[0], luckAdj?.[1]);
           lineup.off_luck_diags = luckAdj?.[0];
           lineup.def_luck_diags = luckAdj?.[1];
@@ -253,9 +254,10 @@ export class LineupTableUtils {
     const totalLineup = showTotalLineups ? [
       // Have to do this last in order to get the luck-mutated lineups
       // TODO: luck adjusted lineups seemed completely wrong so I pulled it :(, see above
+      // (https://github.com/Alex-At-Home/cbb-on-off-analyzer/issues/100)
       enrichLineup(_.assign(LineupUtils.calculateAggregatedLineupStats(filteredLineups), {
         key: LineupTableUtils.totalLineupId,
-        doc_count: filteredLineups.length //(just a dummy number >0 since doc_count is required)
+        doc_count: filteredLineups.length //(for doc_count >0 checks, calculateAggregatedLineupStats doesn't inject)
       }))
     ] : [];
 

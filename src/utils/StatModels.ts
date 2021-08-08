@@ -122,7 +122,7 @@ export type IndivStatSet = PureStatSet & IndivEnrichment & IndivMetadata;
 
 /** Non statistical metadata relating to teams */
 export type TeamMetadata = {
-  /** Another required field - can just use to tell if the object is empty */
+  /** For responses that come from ES, a useful indicator of whether the query matched */
   doc_count: number,
 
   /** Only present for global team info */
@@ -149,7 +149,8 @@ export type LineupMetadata = {
   /** Required, list of codes, _ separated */
   key: string,
 
-  doc_count: number,
+  /** For responses that come from ES, a useful indicator of whether the query matched */
+  doc_count?: number,
 
   /** Comes from the ES response */
   players_array?: any, //(long nested type)
@@ -198,7 +199,7 @@ export type LineupStatSet = PureStatSet & LineupEnrichment & LineupMetadata;
 
 /** Useful constants */
 export class StatModels {
-  static emptyIndiv: () => IndivStatSet = () => { return { key: "empty" } as IndivStatSet; }
+  static emptyIndiv: () => IndivStatSet = () => { return { key: "empty", doc_count: 0 } as IndivStatSet; }
   static emptyTeam: () => TeamStatSet = () => { return { doc_count: 0 } as TeamStatSet };
   static emptyLineup: () => LineupStatSet = () => { return { key: "empty", doc_count: 0 } as LineupStatSet };
 }

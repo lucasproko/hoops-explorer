@@ -134,7 +134,6 @@ Array [
       "override": "Test override",
       "value": "91.222",
     },
-    "doc_count": 0,
     "duration_mins": Object {
       "value": "342.042",
     },
@@ -193,7 +192,6 @@ Array [
       "override": "Test override",
       "value": "84.038",
     },
-    "doc_count": 0,
     "duration_mins": Object {
       "value": "131.068",
     },
@@ -258,7 +256,6 @@ Array [
       "override": "Test override",
       "value": "91.222",
     },
-    "doc_count": 0,
     "duration_mins": Object {
       "value": "342.042",
     },
@@ -317,7 +314,6 @@ Array [
       "override": "Test override",
       "value": "84.038",
     },
-    "doc_count": 0,
     "duration_mins": Object {
       "value": "131.068",
     },
@@ -376,7 +372,6 @@ Array [
       "override": "Test override",
       "value": "6.313",
     },
-    "doc_count": 0,
     "duration_mins": Object {
       "value": "79.905",
     },
@@ -440,7 +435,6 @@ Array [
       "override": "Test override",
       "value": "91.222",
     },
-    "doc_count": 0,
     "duration_mins": Object {
       "value": "342.042",
     },
@@ -499,7 +493,6 @@ Array [
       "override": "Test override",
       "value": "84.038",
     },
-    "doc_count": 0,
     "duration_mins": Object {
       "value": "131.068",
     },
@@ -564,7 +557,6 @@ Array [
       "override": "Test override",
       "value": "91.222",
     },
-    "doc_count": 0,
     "duration_mins": Object {
       "value": "342.042",
     },
@@ -623,7 +615,6 @@ Array [
       "override": "Test override",
       "value": "84.038",
     },
-    "doc_count": 0,
     "duration_mins": Object {
       "value": "131.068",
     },
@@ -688,7 +679,6 @@ Array [
       "override": "Test override",
       "value": "91.222",
     },
-    "doc_count": 0,
     "duration_mins": Object {
       "value": "342.042",
     },
@@ -747,7 +737,6 @@ Array [
       "override": "Test override",
       "value": "84.038",
     },
-    "doc_count": 0,
     "duration_mins": Object {
       "value": "131.068",
     },
@@ -806,7 +795,6 @@ Array [
       "override": "Test override",
       "value": "6.610",
     },
-    "doc_count": 0,
     "duration_mins": Object {
       "value": "79.905",
     },
@@ -870,7 +858,6 @@ Array [
       "override": "Test override",
       "value": "91.222",
     },
-    "doc_count": 0,
     "duration_mins": Object {
       "value": "342.042",
     },
@@ -929,7 +916,6 @@ Array [
       "override": "Test override",
       "value": "84.038",
     },
-    "doc_count": 0,
     "duration_mins": Object {
       "value": "131.068",
     },
@@ -988,7 +974,6 @@ Array [
       "override": "Test override",
       "value": "6.610",
     },
-    "doc_count": 0,
     "duration_mins": Object {
       "value": "79.905",
     },
@@ -1052,7 +1037,6 @@ Array [
       "override": "Test override",
       "value": "91.222",
     },
-    "doc_count": 0,
     "duration_mins": Object {
       "value": "342.042",
     },
@@ -1111,7 +1095,6 @@ Array [
       "override": "Test override",
       "value": "84.038",
     },
-    "doc_count": 0,
     "duration_mins": Object {
       "value": "131.068",
     },
@@ -1176,7 +1159,6 @@ Array [
       "override": "Test override",
       "value": "91.222",
     },
-    "doc_count": 0,
     "duration_mins": Object {
       "value": "342.042",
     },
@@ -1235,7 +1217,6 @@ Array [
       "override": "Test override",
       "value": "84.038",
     },
-    "doc_count": 0,
     "duration_mins": Object {
       "value": "131.068",
     },
@@ -1294,7 +1275,6 @@ Array [
       "override": "Test override",
       "value": "6.313",
     },
-    "doc_count": 0,
     "duration_mins": Object {
       "value": "79.905",
     },
@@ -1358,7 +1338,6 @@ Array [
       "override": "Test override",
       "value": "91.222",
     },
-    "doc_count": 0,
     "duration_mins": Object {
       "value": "342.042",
     },
@@ -1417,7 +1396,6 @@ Array [
       "override": "Test override",
       "value": "84.038",
     },
-    "doc_count": 0,
     "duration_mins": Object {
       "value": "131.068",
     },
@@ -1482,7 +1460,6 @@ Array [
       "override": "Test override",
       "value": "91.222",
     },
-    "doc_count": 0,
     "duration_mins": Object {
       "value": "342.042",
     },
@@ -1541,7 +1518,6 @@ Array [
       "override": "Test override",
       "value": "84.038",
     },
-    "doc_count": 0,
     "duration_mins": Object {
       "value": "131.068",
     },
@@ -1606,7 +1582,6 @@ Array [
       "override": "Test override",
       "value": "91.222",
     },
-    "doc_count": 0,
     "duration_mins": Object {
       "value": "342.042",
     },
@@ -1665,7 +1640,6 @@ Array [
       "override": "Test override",
       "value": "84.038",
     },
-    "doc_count": 0,
     "duration_mins": Object {
       "value": "131.068",
     },
@@ -1724,7 +1698,6 @@ Array [
       "override": "Test override",
       "value": "6.610",
     },
-    "doc_count": 0,
     "duration_mins": Object {
       "value": "79.905",
     },
@@ -1788,7 +1761,6 @@ Array [
       "override": "Test override",
       "value": "91.222",
     },
-    "doc_count": 0,
     "duration_mins": Object {
       "value": "342.042",
     },
@@ -1847,7 +1819,6 @@ Array [
       "override": "Test override",
       "value": "84.038",
     },
-    "doc_count": 0,
     "duration_mins": Object {
       "value": "131.068",
     },
@@ -1906,7 +1877,6 @@ Array [
       "override": "Test override",
       "value": "6.610",
     },
-    "doc_count": 0,
     "duration_mins": Object {
       "value": "79.905",
     },

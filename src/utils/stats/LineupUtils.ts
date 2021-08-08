@@ -137,7 +137,6 @@ export class LineupUtils {
       }).fromPairs().value();
     return {
       ...statsDiff,
-      doc_count: statSet1.doc_count + statSet2.doc_count, //(required field)
       off_title: offTitle,
       def_title: defTitle
     } as TeamStatSet;
@@ -211,15 +210,12 @@ export class LineupUtils {
             ).fromPairs().value(),
           on: {
             key: `'On' ${playerId}`,
-            doc_count: 0, //(required field)
           } as OnOffLineupStatSet,
           off: {
             key: `'Off' ${playerId}`,
-            doc_count: 0, //(required field)
           } as OnOffLineupStatSet,
           replacement: incReplacement ? {
             key: `'r:On-Off' ${playerId}`,
-            doc_count: 0, //(required field)
             lineupUsage: {},
             myLineups: _.chain(lineupReport.lineups || []).filter((lineup) => {
               const playersSet = getPlayerSet(lineup);

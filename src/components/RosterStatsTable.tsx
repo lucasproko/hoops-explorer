@@ -431,7 +431,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
     // Inject ORtg and DRB and Poss% (ie mutate player idempotently)
     ([ "on", "off", "baseline" ] as OnOffBaselineEnum[]).forEach((key) => {
       const stat = player[key];
-      const teamStat = (teamStats as any)[key] || {};
+      const teamStat = teamStats[key] || StatModels.emptyTeam();
       if (stat) {
         if (!varFirstRowKey) varFirstRowKey = key;
 

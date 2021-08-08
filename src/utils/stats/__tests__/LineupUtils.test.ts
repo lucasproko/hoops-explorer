@@ -104,7 +104,7 @@ describe("LineupUtils", () => {
             }).value();
           }).fromPairs().value();
 
-          expect(onOnlyOffVals).toEqual({ key: "'Off' Wiggins, Aaron", "doc_count": 0 }); //(all vals are 0)
+          expect(onOnlyOffVals).toEqual({ key: "'Off' Wiggins, Aaron" }); //(all vals are 0)
 
           // Spot check some values
 
@@ -182,7 +182,6 @@ describe("LineupUtils", () => {
           expect(emptyReplacementOnOff).toEqual(incOnOff ? [
             {
               key: "'r:On-Off' Wiggins, Aaron",
-              doc_count:  0,
               lineupUsage: {},
               myLineups: diagMode > 0 ? [] : undefined
             }
