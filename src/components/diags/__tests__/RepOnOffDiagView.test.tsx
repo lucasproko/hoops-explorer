@@ -1,20 +1,17 @@
 import renderer from 'react-test-renderer';
 import React from 'react';
-import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
 
 import { OnOffReportDiagUtils } from '../../../utils/tables/OnOffReportDiagUtils';
-import { CommonFilterParams } from "../../../utils/FilterModels";
 import { LineupUtils } from "../../../utils/stats/LineupUtils";
-import { LineupStatsModel } from '../../LineupStatsTable';
 import { sampleLineupStatsResponse } from "../../../sample-data/sampleLineupStatsResponse"
 
 import RepOnOffDiagView from "../RepOnOffDiagView";
+import { LineupStatSet } from '../../../utils/StatModels';
 
 describe("RepOnOffDiagView", () => {
 
   const lineupReport = {
-    lineups: sampleLineupStatsResponse.responses[0].aggregations.lineups.buckets,
+    lineups: sampleLineupStatsResponse.responses[0].aggregations.lineups.buckets as LineupStatSet[],
     avgEff: 100.0,
     error_code: "test"
   };

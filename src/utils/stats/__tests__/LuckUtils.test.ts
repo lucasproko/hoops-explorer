@@ -95,9 +95,9 @@ describe("LuckUtils", () => {
     // Check object with missing fields are preserved:
     const mutableEmpty = StatModels.emptyIndiv();
     LuckUtils.injectLuck(mutableEmpty, offTeamLuckAdj, defTeamLuckAdj);
-    expect(mutableEmpty).toEqual({});
+    expect(mutableEmpty).toEqual(StatModels.emptyIndiv());
     LuckUtils.injectLuck(mutableEmpty, undefined, undefined);
-    expect(mutableEmpty).toEqual({});
+    expect(mutableEmpty).toEqual(StatModels.emptyIndiv());
 
     // Check diffs are about what's expected
 
