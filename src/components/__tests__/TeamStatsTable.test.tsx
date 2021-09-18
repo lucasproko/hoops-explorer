@@ -7,6 +7,7 @@ import { sampleLineupStatsResponse } from "../../sample-data/sampleLineupStatsRe
 import { sampleTeamStatsResponse } from "../../sample-data/sampleTeamStatsResponse";
 import { samplePlayerStatsResponse } from "../../sample-data/samplePlayerStatsResponse";
 import { GameFilterParams } from '../../utils/FilterModels';
+import { StatModels, TeamStatSet, IndivStatSet } from '../../utils/StatModels';
 
 describe("TeamStatsTable", () => {
 
@@ -16,15 +17,15 @@ describe("TeamStatsTable", () => {
   ));
 
   const testData = _.assign(
-    sampleTeamStatsResponse.responses[0].aggregations.tri_filter.buckets as { on: any, off: any, baseline: any },
-    { global: {}, onOffMode: true }
-  );
+    sampleTeamStatsResponse.responses[0].aggregations.tri_filter.buckets as { on: TeamStatSet, off: TeamStatSet, baseline: TeamStatSet },
+    { global: StatModels.emptyTeam(), onOffMode: true }
+);
   const players = samplePlayerStatsResponse.responses[0].aggregations?.tri_filter?.buckets?.baseline?.player?.buckets || [];
   const testRosterData = {
-    on: _.cloneDeep(players),
-    off: _.cloneDeep(players),
-    baseline: samplePlayerStatsResponse.responses[0].aggregations?.tri_filter?.buckets?.baseline?.player?.buckets || [],
-    global: _.cloneDeep(players),
+    on: _.cloneDeep(players) as unknown as IndivStatSet[],
+    off: _.cloneDeep(players) as unknown as IndivStatSet[],
+    baseline: samplePlayerStatsResponse.responses[0].aggregations?.tri_filter?.buckets?.baseline?.player?.buckets as unknown as IndivStatSet[],
+    global: _.cloneDeep(players) as unknown as IndivStatSet[],
     error_code: undefined
   };
   const testLineupData = {
@@ -37,7 +38,7 @@ describe("TeamStatsTable", () => {
       gameFilterParams={{}}
       dataEvent={{
         teamStats: testData,
-        rosterStats: {},
+        rosterStats: { on: [], off: [], baseline: [], global: [] },
         lineupStats: []
       }}
       onChangeState={(newParams: GameFilterParams) => {}}
