@@ -2,7 +2,7 @@
 import _ from "lodash";
 
 // Util imports
-import { StatModels, PlayerCodeId, PlayerCode, PlayerId, Statistic, IndivStatSet, TeamStatSet, LineupStatSet } from "../StatModels";
+import { StatModels, PlayerCodeId, PlayerCode, PlayerId, Statistic, IndivStatSet, TeamStatSet, LineupStatSet, IndivPosInfo } from "../StatModels";
 import { RatingUtils, OnBallDefenseModel } from "../stats/RatingUtils";
 import { PositionUtils } from "../stats/PositionUtils";
 import { LineupUtils } from "../stats/LineupUtils";
@@ -124,7 +124,7 @@ export class LineupTableUtils {
   /** Builds positional info vs player key */
   static buildPositionPlayerMap(
     players: any[] | undefined, teamSeasonLookup: string
-  ) {
+  ): Record<PlayerId, IndivPosInfo> {
     const positionFromPlayerKey = _.chain(players || []).map((player: any) => {
       const rosterMeta = player.roster;
       const [ posConfs, posConfsDiags ] = PositionUtils.buildPositionConfidences(player, player.roster?.height_in);

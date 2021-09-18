@@ -5,6 +5,7 @@ import _ from 'lodash';
 import { erf } from 'mathjs';
 
 import { absolutePositionFixes, relativePositionFixes, RelativePositionFixRule } from './PositionalManualFixes';
+import { IndivPosInfo, PlayerCodeId } from '../StatModels';
 
 /** (just to make copy/pasting between colab and this code easier)*/
 const array = (v: number[]) => { return v; }
@@ -420,9 +421,9 @@ export class PositionUtils {
 
   /** Allows me to swap lineups around by hand when someone complains */
   private static applyRelativePositionalOverrides(
-    results: { code: string, id: string }[],
+    results: PlayerCodeId[],
     teamSeason: string
-  ) {
+  ): PlayerCodeId[] {
     const rules = relativePositionFixes[teamSeason];
     if (rules) {
       const ruleSet = _.find(rules, (rule: RelativePositionFixRule) => {
@@ -445,10 +446,10 @@ export class PositionUtils {
 
   /** Takes lineup in form X1_X2_X3_X4_X5 and returns an array of Xi ordered by position and some info for tooltips */
   static orderLineup(
-    playerCodesAndIds: { code: string, id: string }[],
-    playersById: Record<string, any>,
+    playerCodesAndIds: PlayerCodeId[],
+    playersById: Record<string, IndivPosInfo>,
     teamSeason: string
-  ): { code: string, id: string }[] {
+  ): PlayerCodeId[] {
 
     const playerIdToPlayerCode = _.fromPairs(
       playerCodesAndIds.map((codeId: { code: string, id: string}) => [ codeId.id, codeId.code ])

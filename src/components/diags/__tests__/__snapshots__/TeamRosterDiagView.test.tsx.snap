@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`TeamRosterDiagView TeamRosterDiagView 1`] = `
+exports[`TeamRosterDiagView TeamRosterDiagView - baseline only 1`] = `
 <Container
   fluid={false}
 >

@@ -1,4 +1,3 @@
-import renderer from 'react-test-renderer';
 import React from 'react';
 import _ from 'lodash';
 import TeamRosterDiagView from '../TeamRosterDiagView';
@@ -6,11 +5,11 @@ import { SampleDataUtils } from "../../../sample-data/SampleDataUtils";
 import { samplePlayerStatsResponse } from "../../../sample-data/samplePlayerStatsResponse";
 import { sampleTeamStatsResponse } from "../../../sample-data/sampleTeamStatsResponse";
 import { sampleLineupStatsResponse } from "../../../sample-data/sampleLineupStatsResponse";
-import { GameFilterParams } from "../../../utils/FilterModels";
 import { LineupTableUtils } from "../../../utils/tables/LineupTableUtils";
 import { RosterTableUtils } from "../../../utils/tables/RosterTableUtils";
 import { shallow } from 'enzyme'
 import toJson from 'enzyme-to-json'
+import { IndivStatSet, LineupStatSet } from '../../../utils/StatModels';
 
 describe("TeamRosterDiagView", () => {
   // Tidy up snapshot rendering:
@@ -32,7 +31,7 @@ describe("TeamRosterDiagView", () => {
   }
   const teamSeasonLookup = "Men_Maryland_2018/9";
   const rosterStatsByCode = RosterTableUtils.buildRosterTableByCode(testData.on, undefined, true, teamSeasonLookup);
-  const positionFromPlayerKey = _.chain(testData.on).map(p => { //inject pos class into data
+  const positionFromPlayerId = _.chain(testData.on).map(p => { //inject pos class into data
     const player = p.player_array?.hits?.hits?.[0]?._source?.player;
     const code = player?.code;
     const key = player?.id || "unknown";
@@ -41,17 +40,18 @@ describe("TeamRosterDiagView", () => {
       posClass: code ? rosterStatsByCode[code]?.posClass || "WG" : "WG"
     } ];
   }).fromPairs().value();
-  const rosterStatsByKey = LineupTableUtils.buildBaselinePlayerInfo(
-    testData.on, rosterStatsByCode, teamData.on, 100.0, true //(adjust for luck in this scenario, arbitrarily)
+  const rosterStatsById = LineupTableUtils.buildBaselinePlayerInfo(
+    testData.on as unknown as Array<IndivStatSet>, rosterStatsByCode, teamData.on, 100.0, true //(adjust for luck in this scenario, arbitrarily)
   );
-  test("TeamRosterDiagView", () => {
+  test("TeamRosterDiagView - baseline only", () => {
     const wrapper = shallow(
       <TeamRosterDiagView
-        positionInfo={LineupTableUtils.getPositionalInfo(
-          testLineupData.lineups || [], positionFromPlayerKey, teamSeasonLookup
+        positionInfoBase={LineupTableUtils.getPositionalInfo(
+          (testLineupData.lineups || []) as unknown as Array<LineupStatSet>, positionFromPlayerId, teamSeasonLookup
         )}
-        rosterStatsByKey={rosterStatsByKey}
-        positionFromPlayerKey={positionFromPlayerKey}
+        positionInfoSample={undefined}
+        rosterStatsByPlayerId={rosterStatsById}
+        positionFromPlayerId={positionFromPlayerId}
         teamSeasonLookup={teamSeasonLookup}
         showHelp={true}
       />

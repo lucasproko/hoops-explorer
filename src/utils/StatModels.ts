@@ -116,6 +116,13 @@ export type IndivEnrichment = {
 
 export type IndivStatSet = PureStatSet & IndivEnrichment & IndivMetadata;
 
+/** Contains stats defining the position role for a given player */
+export type IndivPosInfo = {
+  posClass: string,
+  posConfidences: number[],
+  roster?: RosterEntry
+};
+
 //////////////////////////////////////
 
 // Team
