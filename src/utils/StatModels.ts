@@ -100,8 +100,8 @@ export type IndivEnrichment = {
   role?: string,
 
   /** Positional diag info */
-  posClass?: number[],
-  //TODO: posConfidences
+  posClass?: string,
+  posConfidences?: number[],
 
   /** Luck diags */
   off_luck?: OffLuckAdjustmentDiags,

@@ -130,7 +130,9 @@ export class LineupTableUtils {
       const [ posConfs, posConfsDiags ] = PositionUtils.buildPositionConfidences(player, player.roster?.height_in);
       const [ pos, posDiags ] = PositionUtils.buildPosition(posConfs, posConfsDiags.confsNoHeight, player, teamSeasonLookup);
 
-      return [ player.key, { posConfidences: _.values(posConfs || {}), posClass: pos,
+      return [ player.key, { 
+        posConfidences: _.values(posConfs || {}), 
+        posClass: pos,
         roster: rosterMeta ? {
           height: rosterMeta.height,
           year_class: rosterMeta.year_class,

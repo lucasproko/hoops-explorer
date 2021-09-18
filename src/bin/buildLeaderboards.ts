@@ -320,6 +320,7 @@ export async function main() {
       }).map((kv: [PlayerId, IndivStatSet]) => {
         const posInfo = positionFromPlayerKey[kv[0]] || {};
         return {
+          key: kv[0],
           conf: conference,
           team: team,
           year: teamYear,
@@ -368,7 +369,7 @@ export async function main() {
           enrichedAndFilteredPlayers.map(p => [ p.key, p ])
         );
         (rapmInfo?.enrichedPlayers || []).forEach((rapmP, index) => {
-          const player = enrichedAndFilteredPlayersMap[rapmP.playerId];
+          const player = enrichedAndFilteredPlayersMap[rapmP.playerId] as Record<string, any>;
           // RAPM (rating + productions)
           if (player && rapmP.rapm) {
             player.off_adj_rapm = rapmP.rapm?.off_adj_ppp;
