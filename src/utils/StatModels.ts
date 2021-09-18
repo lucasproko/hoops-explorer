@@ -99,7 +99,7 @@ export type IndivEnrichment = {
   /** Positional info derived from statistics */
   role?: string,
 
-  /** Positional diag info */
+  /** Positional diag info - see also IndivPosInfo below */
   posClass?: string,
   posConfidences?: number[],
 

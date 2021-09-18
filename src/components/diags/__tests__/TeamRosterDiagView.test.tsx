@@ -46,7 +46,7 @@ describe("TeamRosterDiagView", () => {
   test("TeamRosterDiagView - baseline only", () => {
     const wrapper = shallow(
       <TeamRosterDiagView
-        positionInfoBase={LineupTableUtils.getPositionalInfo(
+        positionInfoGlobal={LineupTableUtils.getPositionalInfo(
           (testLineupData.lineups || []) as unknown as Array<LineupStatSet>, positionFromPlayerId, teamSeasonLookup
         )}
         positionInfoSample={undefined}

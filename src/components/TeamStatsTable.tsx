@@ -175,15 +175,20 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
   //(end luck calcs)
 
   /** Largest sample of player stats, by player key - use for ORtg calcs */
+  const globalRosterInfo = teamStats.global?.roster
   const globalRosterStatsByCode = RosterTableUtils.buildRosterTableByCode(
-    rosterStats.global || [], teamStats.global?.roster, showPlayTypes, teamSeasonLookup
+    rosterStats.global || [], globalRosterInfo, showPlayTypes, teamSeasonLookup
   ); //TODO: which set do I actually want to use for positional calcs here?
 
-  const positionFromPlayerId =
+  //TODO: need to do a better job of deciding which one to use (or possibly a blend?)
+  const positionFromPlayerIdGlobal =
     showRoster ? LineupTableUtils.buildPositionPlayerMap(rosterStats.global, teamSeasonLookup) : {};
-     //TODO: which set do I actually want to use for positional calcs here?
-
-
+  const positionFromPlayerIdBase =
+    showRoster && rosterStats.baseline?.length ? LineupTableUtils.buildPositionPlayerMap(rosterStats.baseline, teamSeasonLookup, globalRosterInfo) : {};
+  const positionFromPlayerIdOn =
+    showRoster && rosterStats.on?.length ? LineupTableUtils.buildPositionPlayerMap(rosterStats.on, teamSeasonLookup, globalRosterInfo) : {};
+  const positionFromPlayerIdOff =
+    showRoster && rosterStats.off?.length ? LineupTableUtils.buildPositionPlayerMap(rosterStats.off, teamSeasonLookup, globalRosterInfo) : {};
 
   // Calc diffs if required ... needs to be before injectPlayTypeInfo but after luck injection!
   const [ aMinusB, aMinusBase, bMinusBase ] = showDiffs ? (() => {
@@ -241,14 +246,14 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
       [ GenericTableOps.buildDataRow(teamStatsOn, defPrefixFn, defCellMetaFn) ],
       showRoster && teamStats.on?.doc_count ? [ GenericTableOps.buildTextRow(<span>
           <TeamRosterDiagView
-            positionInfoBase={LineupTableUtils.getPositionalInfo(
-              lineupStats[1]?.lineups || [], positionFromPlayerId, teamSeasonLookup
+            positionInfoGlobal={LineupTableUtils.getPositionalInfo(
+              lineupStats[1]?.lineups || [], positionFromPlayerIdGlobal, teamSeasonLookup
             )}
-            positionInfoSample={LineupTableUtils.getPositionalInfo(
-              lineupStats[1]?.lineups || [], positionFromPlayerId, teamSeasonLookup
-            )}
+            positionInfoSample={(teamStats.on.doc_count < teamStats.global.doc_count) ? LineupTableUtils.getPositionalInfo(
+              lineupStats[1]?.lineups || [], positionFromPlayerIdOn, teamSeasonLookup
+            ) : undefined}
             rosterStatsByPlayerId={playerInfoByIdBy0AB[1] || {}}
-            positionFromPlayerId={positionFromPlayerId}
+            positionFromPlayerId={positionFromPlayerIdGlobal}
             teamSeasonLookup={teamSeasonLookup}
             showHelp={showHelp}
           />
@@ -280,14 +285,14 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
       [ GenericTableOps.buildDataRow(teamStatsOff, defPrefixFn, defCellMetaFn) ],
       showRoster && teamStats.off?.doc_count ? [ GenericTableOps.buildTextRow(<span>
           <TeamRosterDiagView
-            positionInfoBase={LineupTableUtils.getPositionalInfo(
-              lineupStats[2]?.lineups || [], positionFromPlayerId, teamSeasonLookup
+            positionInfoGlobal={LineupTableUtils.getPositionalInfo(
+              lineupStats[2]?.lineups || [], positionFromPlayerIdGlobal, teamSeasonLookup
             )}
-            positionInfoSample={LineupTableUtils.getPositionalInfo(
-              lineupStats[2]?.lineups || [], positionFromPlayerId, teamSeasonLookup
-            )}
+            positionInfoSample={(teamStats.off.doc_count < teamStats.global.doc_count) ? LineupTableUtils.getPositionalInfo(
+              lineupStats[2]?.lineups || [], positionFromPlayerIdOff, teamSeasonLookup
+            ) : undefined}
             rosterStatsByPlayerId={playerInfoByIdBy0AB[2] || {}}
-            positionFromPlayerId={positionFromPlayerId}
+            positionFromPlayerId={positionFromPlayerIdGlobal}
             teamSeasonLookup={teamSeasonLookup}
             showHelp={showHelp}
           />
@@ -319,12 +324,14 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dataE
       [ GenericTableOps.buildDataRow(teamStatsBaseline, defPrefixFn, defCellMetaFn) ],
       showRoster && teamStats.baseline?.doc_count ? [ GenericTableOps.buildTextRow(<span>
           <TeamRosterDiagView
-            positionInfoBase={LineupTableUtils.getPositionalInfo(
-              lineupStats[0]?.lineups || [], positionFromPlayerId, teamSeasonLookup
+            positionInfoGlobal={LineupTableUtils.getPositionalInfo(
+              lineupStats[0]?.lineups || [], positionFromPlayerIdGlobal, teamSeasonLookup
             )}
-            positionInfoSample={undefined}
+            positionInfoSample={(teamStats.baseline.doc_count < teamStats.global.doc_count) ? LineupTableUtils.getPositionalInfo(
+              lineupStats[0]?.lineups || [], positionFromPlayerIdBase, teamSeasonLookup
+            ) : undefined}
             rosterStatsByPlayerId={playerInfoByIdBy0AB[0] || {}}
-            positionFromPlayerId={positionFromPlayerId}
+            positionFromPlayerId={positionFromPlayerIdGlobal}
             teamSeasonLookup={teamSeasonLookup}
             showHelp={showHelp}
           />

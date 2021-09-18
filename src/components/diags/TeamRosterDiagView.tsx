@@ -1,9 +1,6 @@
 // React imports:
 import React, { useState } from 'react';
 
-// Next imports:
-import { NextPage } from 'next';
-
 import _ from "lodash";
 
 // Bootstrap imports:
@@ -11,15 +8,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Tooltip from 'react-bootstrap/Tooltip';
-import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 
 // Utils
-import { PositionUtils } from "../../utils/stats/PositionUtils";
 import { CommonTableDefs } from "../../utils/tables/CommonTableDefs";
 import { CbbColors } from "../../utils/CbbColors";
-import { LineupUtils } from "../../utils/stats/LineupUtils";
-import { LineupTableUtils, PositionInfo } from "../../utils/tables/LineupTableUtils";
+import { PositionInfo } from "../../utils/tables/LineupTableUtils";
 import { TableDisplayUtils } from "../../utils/tables/TableDisplayUtils";
 
 // Component imports
@@ -27,9 +20,9 @@ import GenericTable, { GenericTableOps, GenericTableColProps } from "../GenericT
 import { IndivStatSet, PlayerId, IndivPosInfo } from '../../utils/StatModels';
 
 type Props = {
-  /**  PositionInfo indexed first by position (0-4) then by player (arbitrary order) */
-  positionInfoBase: PositionInfo[][],
-  /**  PositionInfo indexed first by position (0-4) then by player (arbitrary order) */
+  /**  PositionInfo indexed first by position (0-4) then by player (arbitrary order) ... global stats */
+  positionInfoGlobal: PositionInfo[][],
+  /**  PositionInfo indexed first by position (0-4) then by player (arbitrary order) ... baseline stats */
   positionInfoSample: PositionInfo[][] | undefined,
   /** For the tooltip display */
   rosterStatsByPlayerId: Record<PlayerId, IndivStatSet>,
@@ -40,7 +33,7 @@ type Props = {
   useSampleStatsOverride?: boolean
 };
 const TeamRosterDiagView: React.FunctionComponent<Props> = ({
-  positionInfoSample, positionInfoBase, rosterStatsByPlayerId, positionFromPlayerId, 
+  positionInfoSample, positionInfoGlobal: positionInfoBase, rosterStatsByPlayerId, positionFromPlayerId, 
   teamSeasonLookup, showHelp, useSampleStatsOverride
 }) => {
 
@@ -66,7 +59,7 @@ const TeamRosterDiagView: React.FunctionComponent<Props> = ({
     ),
   };
 
-  const [ useSampleStats, setUseBaselineStats ] = useState(useSampleStatsOverride ? true : false);
+  const [ useSampleStats, setUseSampleStats ] = useState(useSampleStatsOverride ? true : false);
   const positionInfo = (positionInfoSample && useSampleStats) ? positionInfoSample : positionInfoBase;
 
   const possByPosPctInv = positionInfo.map(players => _.sumBy(players, "numPoss")).map(num => 100.0/(num || 1));
@@ -109,6 +102,13 @@ const TeamRosterDiagView: React.FunctionComponent<Props> = ({
     <Col xs={12}>
       <GenericTable responsive={false} tableCopyId="rosterView" tableFields={tableFields} tableData={tableData}/>
     </Col>
+    { positionInfoSample ?
+      <Col>
+        Using [{useSampleStats ? "sample" : "global"}] stats - <a 
+          href="#" onClick={(event) => { event.preventDefault(); setUseSampleStats(!useSampleStats) }}
+        >switch to {useSampleStats ? "global" : "sample"} stats</a>
+      </Col> : null
+    }
   </Container>;
 
 };
