@@ -3,7 +3,7 @@ import React from 'react';
 import RapmGlobalDiagView from '../RapmGlobalDiagView';
 
 // Needed to build the data
-import { StatModels, PureStatSet, PlayerCodeId, PlayerCode, PlayerId, Statistic, IndivStatSet, LineupStatSet } from "../StatModels";
+import { LineupStatSet } from "../../../utils/StatModels";
 import { sampleLineupStatsResponse } from "../../../sample-data/sampleLineupStatsResponse";
 import { LineupUtils } from "../../../utils/stats/LineupUtils";
 import { RapmUtils } from "../../../utils/stats/RapmUtils";

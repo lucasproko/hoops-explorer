@@ -99,9 +99,9 @@ export type IndivEnrichment = {
   /** Positional info derived from statistics */
   role?: string,
 
-  /** Positional diag info */
-  posClass?: number[],
-  //TODO: posConfidences
+  /** Positional diag info - see also IndivPosInfo below */
+  posClass?: string,
+  posConfidences?: number[],
 
   /** Luck diags */
   off_luck?: OffLuckAdjustmentDiags,
@@ -115,6 +115,13 @@ export type IndivEnrichment = {
 };
 
 export type IndivStatSet = PureStatSet & IndivEnrichment & IndivMetadata;
+
+/** Contains stats defining the position role for a given player */
+export type IndivPosInfo = {
+  posClass: string,
+  posConfidences: number[],
+  roster?: RosterEntry
+};
 
 //////////////////////////////////////
 

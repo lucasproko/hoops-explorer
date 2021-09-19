@@ -1,12 +1,12 @@
-import renderer from 'react-test-renderer';
-import React from 'react';
+
 import RosterStatsTable from '../RosterStatsTable';
 import { SampleDataUtils } from "../../sample-data/SampleDataUtils";
 import { samplePlayerStatsResponse } from "../../sample-data/samplePlayerStatsResponse";
-import { GameFilterParams } from "../utils/FilterModels";
+import { GameFilterParams } from "../../utils/FilterModels";
 import { shallow } from 'enzyme'
 import toJson from 'enzyme-to-json'
 import _ from "lodash";
+import { StatModels, IndivStatSet } from '../../utils/StatModels';
 
 describe("RosterStatsTable", () => {
 
@@ -19,15 +19,17 @@ describe("RosterStatsTable", () => {
     const testData = {
       on: [],
       off: [],
-      baseline: samplePlayerStatsResponse.responses[0].aggregations?.tri_filter?.buckets?.baseline?.player?.buckets || [],
-      global: _.cloneDeep(samplePlayerStatsResponse.responses[0].aggregations?.tri_filter?.buckets?.baseline?.player?.buckets || []),
+      baseline: samplePlayerStatsResponse.responses[0].aggregations?.tri_filter?.buckets?.baseline?.player?.buckets as unknown as IndivStatSet[],
+      global: _.cloneDeep(samplePlayerStatsResponse.responses[0].aggregations?.tri_filter?.buckets?.baseline?.player?.buckets as unknown as IndivStatSet[]),
       error_code: undefined
     };
     const wrapper = shallow(
     <RosterStatsTable
       gameFilterParams={{showExpanded: false}}
       dataEvent={{
-        teamStats: {on: {}, off: {}, global: {}, onOffMode: true, baseline: {}},
+        teamStats: {
+          on: StatModels.emptyTeam(), off: StatModels.emptyTeam(), global: StatModels.emptyTeam(), onOffMode: true, baseline: StatModels.emptyTeam()
+        },
         rosterStats: testData,
         lineupStats: []
       }}
@@ -40,15 +42,17 @@ describe("RosterStatsTable", () => {
     const testData = {
       on: [],
       off: [],
-      baseline: samplePlayerStatsResponse.responses[0].aggregations?.tri_filter?.buckets?.baseline?.player?.buckets || [],
-      global: _.cloneDeep(samplePlayerStatsResponse.responses[0].aggregations?.tri_filter?.buckets?.baseline?.player?.buckets || []),
+      baseline: samplePlayerStatsResponse.responses[0].aggregations?.tri_filter?.buckets?.baseline?.player?.buckets as unknown as IndivStatSet[],
+      global: _.cloneDeep(samplePlayerStatsResponse.responses[0].aggregations?.tri_filter?.buckets?.baseline?.player?.buckets as unknown as IndivStatSet[]),
       error_code: undefined
     };
     const wrapper = shallow(
     <RosterStatsTable
       gameFilterParams={{showExpanded: true}}
       dataEvent={{
-        teamStats: {on: {}, off: {}, global: {}, onOffMode: true, baseline: {}},
+        teamStats: {
+          on: StatModels.emptyTeam(), off: StatModels.emptyTeam(), global: StatModels.emptyTeam(), onOffMode: true, baseline: StatModels.emptyTeam()
+        },
         rosterStats: testData,
         lineupStats: []
       }}
@@ -59,17 +63,19 @@ describe("RosterStatsTable", () => {
   });
   test("RosterStatsTable (!expanded) - should create snapshot", () => {
     const testData = {
-      on: samplePlayerStatsResponse.responses[0].aggregations?.tri_filter?.buckets?.on?.player?.buckets || [],
-      off: samplePlayerStatsResponse.responses[0].aggregations?.tri_filter?.buckets?.off?.player?.buckets || [],
-      baseline: samplePlayerStatsResponse.responses[0].aggregations?.tri_filter?.buckets?.baseline?.player?.buckets || [],
-      global: _.cloneDeep(samplePlayerStatsResponse.responses[0].aggregations?.tri_filter?.buckets?.baseline?.player?.buckets || []),
+      on: samplePlayerStatsResponse.responses[0].aggregations?.tri_filter?.buckets?.on?.player?.buckets as unknown as IndivStatSet[],
+      off: samplePlayerStatsResponse.responses[0].aggregations?.tri_filter?.buckets?.off?.player?.buckets as unknown as IndivStatSet[],
+      baseline: samplePlayerStatsResponse.responses[0].aggregations?.tri_filter?.buckets?.baseline?.player?.buckets as unknown as IndivStatSet[],
+      global: _.cloneDeep(samplePlayerStatsResponse.responses[0].aggregations?.tri_filter?.buckets?.baseline?.player?.buckets as unknown as IndivStatSet[]),
       error_code: undefined
     };
     const wrapper = shallow(
     <RosterStatsTable
       gameFilterParams={{}}
       dataEvent={{
-        teamStats: {on: {}, off: {}, global: {}, onOffMode: true, baseline: {}},
+        teamStats: {
+          on: StatModels.emptyTeam(), off: StatModels.emptyTeam(), global: StatModels.emptyTeam(), onOffMode: true, baseline: StatModels.emptyTeam()
+        },
         rosterStats: testData,
         lineupStats: []
       }}
@@ -80,17 +86,19 @@ describe("RosterStatsTable", () => {
   });
   test("RosterStatsTable (expanded) - should create snapshot", () => {
     const testData = {
-      on: samplePlayerStatsResponse.responses[0].aggregations?.tri_filter?.buckets?.on?.player?.buckets || [],
-      off: samplePlayerStatsResponse.responses[0].aggregations?.tri_filter?.buckets?.off?.player?.buckets || [],
-      baseline: samplePlayerStatsResponse.responses[0].aggregations?.tri_filter?.buckets?.baseline?.player?.buckets || [],
-      global: _.cloneDeep(samplePlayerStatsResponse.responses[0].aggregations?.tri_filter?.buckets?.baseline?.player?.buckets || []),
+      on: samplePlayerStatsResponse.responses[0].aggregations?.tri_filter?.buckets?.on?.player?.buckets as unknown as IndivStatSet[],
+      off: samplePlayerStatsResponse.responses[0].aggregations?.tri_filter?.buckets?.off?.player?.buckets as unknown as IndivStatSet[],
+      baseline: samplePlayerStatsResponse.responses[0].aggregations?.tri_filter?.buckets?.baseline?.player?.buckets as unknown as IndivStatSet[],
+      global: _.cloneDeep(samplePlayerStatsResponse.responses[0].aggregations?.tri_filter?.buckets?.baseline?.player?.buckets as unknown as IndivStatSet[]),
       error_code: undefined
     };
     const wrapper = shallow(
     <RosterStatsTable
       gameFilterParams={{showExpanded: true}}
       dataEvent={{
-        teamStats: {on: {}, off: {}, global: {}, onOffMode: true, baseline: {}},
+        teamStats: {
+          on: StatModels.emptyTeam(), off: StatModels.emptyTeam(), global: StatModels.emptyTeam(), onOffMode: true, baseline: StatModels.emptyTeam()
+        },
         rosterStats: testData,
         lineupStats: []
       }}
@@ -101,10 +109,10 @@ describe("RosterStatsTable", () => {
   });
   test("RosterStatsTable (luck enabled, all the diags) - should create snapshot", () => {
     const testData = {
-      on: samplePlayerStatsResponse.responses[0].aggregations?.tri_filter?.buckets?.on?.player?.buckets || [],
-      off: samplePlayerStatsResponse.responses[0].aggregations?.tri_filter?.buckets?.off?.player?.buckets || [],
-      baseline: samplePlayerStatsResponse.responses[0].aggregations?.tri_filter?.buckets?.baseline?.player?.buckets || [],
-      global: _.cloneDeep(samplePlayerStatsResponse.responses[0].aggregations?.tri_filter?.buckets?.baseline?.player?.buckets || []),
+      on: samplePlayerStatsResponse.responses[0].aggregations?.tri_filter?.buckets?.on?.player?.buckets as unknown as IndivStatSet[],
+      off: samplePlayerStatsResponse.responses[0].aggregations?.tri_filter?.buckets?.off?.player?.buckets as unknown as IndivStatSet[],
+      baseline: samplePlayerStatsResponse.responses[0].aggregations?.tri_filter?.buckets?.baseline?.player?.buckets as unknown as IndivStatSet[],
+      global: _.cloneDeep(samplePlayerStatsResponse.responses[0].aggregations?.tri_filter?.buckets?.baseline?.player?.buckets as unknown as IndivStatSet[]),
       error_code: undefined
     };
 
@@ -112,7 +120,9 @@ describe("RosterStatsTable", () => {
     <RosterStatsTable
       gameFilterParams={{onOffLuck: true, showPlayerOnOffLuckDiags: true, showDiag: true, showPosDiag: true }}
       dataEvent={{
-        teamStats: {on: {}, off: {}, global: {}, onOffMode: true, baseline: {}},
+        teamStats: {
+          on: StatModels.emptyTeam(), off: StatModels.emptyTeam(), global: StatModels.emptyTeam(), onOffMode: true, baseline: StatModels.emptyTeam()
+        },
         rosterStats: testData,
         lineupStats: []
       }}
@@ -123,10 +133,10 @@ describe("RosterStatsTable", () => {
   });
   test("RosterStatsTable (manual enabled - manual dialog showing, all the diags) - should create snapshot", () => {
     const testData = {
-      on: samplePlayerStatsResponse.responses[0].aggregations?.tri_filter?.buckets?.on?.player?.buckets || [],
-      off: samplePlayerStatsResponse.responses[0].aggregations?.tri_filter?.buckets?.off?.player?.buckets || [],
-      baseline: samplePlayerStatsResponse.responses[0].aggregations?.tri_filter?.buckets?.baseline?.player?.buckets || [],
-      global: _.cloneDeep(samplePlayerStatsResponse.responses[0].aggregations?.tri_filter?.buckets?.baseline?.player?.buckets || []),
+      on: samplePlayerStatsResponse.responses[0].aggregations?.tri_filter?.buckets?.on?.player?.buckets as unknown as IndivStatSet[],
+      off: samplePlayerStatsResponse.responses[0].aggregations?.tri_filter?.buckets?.off?.player?.buckets as unknown as IndivStatSet[],
+      baseline: samplePlayerStatsResponse.responses[0].aggregations?.tri_filter?.buckets?.baseline?.player?.buckets as unknown as IndivStatSet[],
+      global: _.cloneDeep(samplePlayerStatsResponse.responses[0].aggregations?.tri_filter?.buckets?.baseline?.player?.buckets as unknown as IndivStatSet[]),
       error_code: undefined
     };
 
@@ -139,7 +149,9 @@ describe("RosterStatsTable", () => {
         showPlayerManual: true
        }}
       dataEvent={{
-        teamStats: {on: {}, off: {}, global: {}, onOffMode: true, baseline: {}},
+        teamStats: {
+          on: StatModels.emptyTeam(), off: StatModels.emptyTeam(), global: StatModels.emptyTeam(), onOffMode: true, baseline: StatModels.emptyTeam()
+        },
         rosterStats: testData,
         lineupStats: []
       }}
@@ -150,10 +162,10 @@ describe("RosterStatsTable", () => {
   });
   test("RosterStatsTable (luck+overrides enabled, all the diags) - should create snapshot", () => {
     const testData = {
-      on: samplePlayerStatsResponse.responses[0].aggregations?.tri_filter?.buckets?.on?.player?.buckets || [],
-      off: samplePlayerStatsResponse.responses[0].aggregations?.tri_filter?.buckets?.off?.player?.buckets || [],
-      baseline: samplePlayerStatsResponse.responses[0].aggregations?.tri_filter?.buckets?.baseline?.player?.buckets || [],
-      global: _.cloneDeep(samplePlayerStatsResponse.responses[0].aggregations?.tri_filter?.buckets?.baseline?.player?.buckets || []),
+      on: samplePlayerStatsResponse.responses[0].aggregations?.tri_filter?.buckets?.on?.player?.buckets as unknown as IndivStatSet[],
+      off: samplePlayerStatsResponse.responses[0].aggregations?.tri_filter?.buckets?.off?.player?.buckets as unknown as IndivStatSet[],
+      baseline: samplePlayerStatsResponse.responses[0].aggregations?.tri_filter?.buckets?.baseline?.player?.buckets as unknown as IndivStatSet[],
+      global: _.cloneDeep(samplePlayerStatsResponse.responses[0].aggregations?.tri_filter?.buckets?.baseline?.player?.buckets as unknown as IndivStatSet[]),
       error_code: undefined
     };
 
@@ -167,7 +179,9 @@ describe("RosterStatsTable", () => {
         showPlayerManual: true
        }}
       dataEvent={{
-        teamStats: {on: {}, off: {}, global: {}, onOffMode: true, baseline: {}},
+        teamStats: {
+          on: StatModels.emptyTeam(), off: StatModels.emptyTeam(), global: StatModels.emptyTeam(), onOffMode: true, baseline: StatModels.emptyTeam()
+        },
         rosterStats: testData,
         lineupStats: []
       }}

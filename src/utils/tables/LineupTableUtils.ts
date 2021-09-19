@@ -2,7 +2,7 @@
 import _ from "lodash";
 
 // Util imports
-import { StatModels, PlayerCodeId, PlayerCode, PlayerId, Statistic, IndivStatSet, TeamStatSet, LineupStatSet } from "../StatModels";
+import { StatModels, PlayerCodeId, PlayerCode, PlayerId, Statistic, IndivStatSet, TeamStatSet, LineupStatSet, IndivPosInfo, RosterEntry } from '../StatModels';
 import { RatingUtils, OnBallDefenseModel } from "../stats/RatingUtils";
 import { PositionUtils } from "../stats/PositionUtils";
 import { LineupUtils } from "../stats/LineupUtils";
@@ -123,14 +123,16 @@ export class LineupTableUtils {
 
   /** Builds positional info vs player key */
   static buildPositionPlayerMap(
-    players: any[] | undefined, teamSeasonLookup: string
-  ) {
-    const positionFromPlayerKey = _.chain(players || []).map((player: any) => {
-      const rosterMeta = player.roster;
-      const [ posConfs, posConfsDiags ] = PositionUtils.buildPositionConfidences(player, player.roster?.height_in);
+    players: IndivStatSet[] | undefined, teamSeasonLookup: string, externalRoster?: Record<PlayerId, RosterEntry>
+  ): Record<PlayerId, IndivPosInfo> {
+    const positionFromPlayerKey = _.chain(players || []).map((player: IndivStatSet) => {
+      const rosterMeta = player.roster || externalRoster?.[player.key];
+      const [ posConfs, posConfsDiags ] = PositionUtils.buildPositionConfidences(player, rosterMeta?.height_in);
       const [ pos, posDiags ] = PositionUtils.buildPosition(posConfs, posConfsDiags.confsNoHeight, player, teamSeasonLookup);
 
-      return [ player.key, { posConfidences: _.values(posConfs || {}), posClass: pos,
+      return [ player.key, { 
+        posConfidences: _.values(posConfs || {}), 
+        posClass: pos,
         roster: rosterMeta ? {
           height: rosterMeta.height,
           year_class: rosterMeta.year_class,
@@ -267,7 +269,7 @@ export class LineupTableUtils {
   /** Builds the list of where players play based on their lineup */
   static getPositionalInfo(
     lineups: Array<LineupStatSet>,
-    positionFromPlayerId: Record<PlayerId, any>,
+    positionFromPlayerId: Record<PlayerId, IndivPosInfo>,
     teamSeasonLookup: string
   ): PositionInfo[][] {
     return _.chain(lineups).transform((mutableAcc, lineup) => {

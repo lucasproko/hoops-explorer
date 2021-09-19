@@ -7,22 +7,23 @@ import { GameFilterParams, LineupFilterParams, TeamReportFilterParams } from "..
 import { samplePlayerStatsResponse } from "../../../sample-data/samplePlayerStatsResponse";
 import { sampleTeamStatsResponse } from "../../../sample-data/sampleTeamStatsResponse";
 import { sampleOffOnOffLuckDiagnostics, sampleDefOnOffLuckDiagnostics } from "../../../sample-data/sampleOnOffLuckDiagnostics";
+import { TeamStatSet, IndivStatSet, StatModels } from '../../StatModels';
 
 
 describe("LuckUtils", () => {
 
-  const baseTeam = sampleTeamStatsResponse.responses[0].aggregations.global.only.buckets.team;
+  const baseTeam = sampleTeamStatsResponse.responses[0].aggregations.global.only.buckets.team as TeamStatSet;
   const basePlayers =
-    samplePlayerStatsResponse.responses[0].aggregations.tri_filter.buckets.baseline.player.buckets;
+    samplePlayerStatsResponse.responses[0].aggregations.tri_filter.buckets.baseline.player.buckets as unknown as IndivStatSet[];
   const basePlayersMap = _.fromPairs(
     basePlayers.map((p: any) => [ p.key, p ])
   );
   const sampleTeamOn =
-    sampleTeamStatsResponse.responses[0].aggregations.tri_filter.buckets.on;
+    sampleTeamStatsResponse.responses[0].aggregations.tri_filter.buckets.on as TeamStatSet;
   const samplePlayersOn =
-    samplePlayerStatsResponse.responses[0].aggregations.tri_filter.buckets.on.player.buckets;
+    samplePlayerStatsResponse.responses[0].aggregations.tri_filter.buckets.on.player.buckets as unknown as IndivStatSet[];
   const sampleTeamOff =
-    sampleTeamStatsResponse.responses[0].aggregations.tri_filter.buckets.off;
+    sampleTeamStatsResponse.responses[0].aggregations.tri_filter.buckets.off as TeamStatSet;
 
   const savedSampleTeamOn = _.cloneDeep(sampleTeamOn);
 
@@ -63,12 +64,12 @@ describe("LuckUtils", () => {
     // (TODO this is a bit horrible, I'm just copy/pasting the logic I'm testing, but not sure
     //  how better to test)
     const samplePlayerWithExtraStats = _.assign(_.cloneDeep(samplePlayersOn[0] as any), {
-      def_3p: { value: samplePlayersOn[0].oppo_total_def_3p_made.value /  samplePlayersOn[0].oppo_total_def_3p_attempts.value },
+      def_3p: { value: samplePlayersOn[0].oppo_total_def_3p_made.value! /  samplePlayersOn[0].oppo_total_def_3p_attempts.value! },
       def_3p_opp: samplePlayersOn[0].oppo_def_3p_opp,
       def_poss: samplePlayersOn[0].oppo_total_def_poss
     });
     const basePlayerWithExtraStats = _.assign(_.cloneDeep(basePlayers[0] as any), {
-      def_3p: { value: basePlayers[0].oppo_total_def_3p_made.value /  basePlayers[0].oppo_total_def_3p_attempts.value },
+      def_3p: { value: basePlayers[0].oppo_total_def_3p_made.value! /  basePlayers[0].oppo_total_def_3p_attempts.value! },
       def_3p_opp: basePlayers[0].oppo_def_3p_opp,
       def_poss: basePlayers[0].oppo_total_def_poss
     });
@@ -92,11 +93,11 @@ describe("LuckUtils", () => {
     );
 
     // Check object with missing fields are preserved:
-    const mutableEmpty = {};
+    const mutableEmpty = StatModels.emptyIndiv();
     LuckUtils.injectLuck(mutableEmpty, offTeamLuckAdj, defTeamLuckAdj);
-    expect(mutableEmpty).toEqual({});
+    expect(mutableEmpty).toEqual(StatModels.emptyIndiv());
     LuckUtils.injectLuck(mutableEmpty, undefined, undefined);
-    expect(mutableEmpty).toEqual({});
+    expect(mutableEmpty).toEqual(StatModels.emptyIndiv());
 
     // Check diffs are about what's expected
 
@@ -133,13 +134,14 @@ describe("LuckUtils", () => {
     //Check injectLuck when called on individual player (diff on the defensive side)
 
     const samplePlayerDef = { // (only difference is this one field)
+      key: "test",
       oppo_total_def_3p_attempts: {
         value: 100
       },
       oppo_total_def_3p_made: {
         value: 25
       },
-    };
+    } as IndivStatSet;
     const testPlayerDef = _.cloneDeep(samplePlayerDef);
     LuckUtils.injectLuck(testPlayerDef, offTeamLuckAdj, defTeamLuckAdj);
     expect(testPlayerDef).toEqual(_.assign(_.cloneDeep(samplePlayerDef), {
