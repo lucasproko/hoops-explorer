@@ -848,17 +848,17 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
       [braceText("The higher 'Usg' (avg 20) the harder it is to keep ORtg high", "blue"), 2],
       calcRapm ? 
         [braceText(
-          <p style={{width: "120%"}}>2x O/D Ratings as pts/100 above D1 average (the 2 form a good range)</p>, 
+          <p style={{width: "120%"}}>2x {expandedView?`O/D`:`Off`} Ratings as pts/100 above D1 average (the 2 form a good range)</p>, 
           "purple", 75), 3] 
         : 
         [braceText(
-          <p style={{width: "160%"}}>O/D Ratings as pts/100 above D1 average</p>, 
+          <p style={{width: "160%"}}>{expandedView?`O/D Ratings`:`Off Rating`} as pts/100 above D1 average</p>, 
           "purple"), 2],
         //TODO: his works weirdly .. colSpan wrong but text right on refresh...
         //(for now I've worked around it by not saving the state of "+ Info")
       ["", 1],
       [braceText("Ball-handling", "brown"), 2],
-      ["", 1],
+      ["", expandedView ? 1 : 2], //(OR and DR are both on the top row if not expanded mode)
       [braceText(`Scoring signature (FTR is how often player is fouled shooting, ${whereIsAssistedPct})`, "teal"), 5],
       ["", 1],
       [braceText("Scoring quality", "green"), 4],
