@@ -1,6 +1,1465 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`TeamRosterDiagView TeamRosterDiagView - baseline only 1`] = `
+exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose baseline 1`] = `
+<Container
+  fluid={false}
+>
+  <Col
+    xs={12}
+  >
+    <GenericTable
+      responsive={false}
+      tableCopyId="rosterView"
+      tableData={
+        Array [
+          GenericTableDataRow {
+            "cellMetaFn": [Function],
+            "dataObj": Object {
+              "c": <ForwardRef
+                noGutters={false}
+              >
+                <ForwardRef
+                  className="pr-0 pl-0"
+                  xs="3"
+                >
+                  <div
+                    className="float-right"
+                    style={
+                      Object {
+                        "textShadow": "0px 0px 10px #ffa500",
+                      }
+                    }
+                  >
+                    100
+                    %
+                  </div>
+                </ForwardRef>
+                <ForwardRef
+                  xs="auto"
+                >
+                  <div
+                    className="float-left"
+                  >
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="AnCowanc0_info"
+                          placement="right"
+                        >
+                          <span>
+                            Cowan, Anthony
+                            <br />
+                          </span>
+                          <span>
+                            0.7608816899806605,0.23503457939493452,0.003893285388442086,0.00019043748354377016,7.752418955526866e-9
+                            <br />
+                          </span>
+                          <span>
+                            ORtg 116 on 24% (+5.8)
+                            <br />
+                          </span>
+                          <span>
+                            3P 33% on 49%, eFG 47%
+                            <br />
+                          </span>
+                          <span>
+                            Rim 56% on 33%, FTR 58%
+                            <br />
+                          </span>
+                          <span>
+                            AST 29% : TO 16%
+                            <br />
+                          </span>
+                          <span>
+                            ORB 1%, DRB 9%
+                            <br />
+                          </span>
+                        </ForwardRef>
+                      }
+                      placement="auto"
+                    >
+                      <div>
+                        <span>
+                          <span
+                            style={
+                              Object {
+                                "whiteSpace": "nowrap",
+                              }
+                            }
+                          >
+                            <ForwardRef
+                              pill={false}
+                              style={
+                                Object {
+                                  "backgroundColor": "#6cb66c80",
+                                }
+                              }
+                              variant="light"
+                            >
+                              <span
+                                style={
+                                  Object {
+                                    "fontSize": "small",
+                                    "fontWeight": 600,
+                                  }
+                                }
+                              >
+                                AnCowan
+                              </span>
+                            </ForwardRef>
+                            <span
+                              style={Object {}}
+                            >
+                              <sup
+                                className="threePointBadge"
+                              />
+                              <sub
+                                className="freeThrowBadge"
+                              />
+                              <sup
+                                className="megaAssistBadge"
+                              />
+                            </span>
+                          </span>
+                        </span>
+                      </div>
+                    </OverlayTrigger>
+                  </div>
+                </ForwardRef>
+              </ForwardRef>,
+              "pf": <ForwardRef
+                noGutters={false}
+              >
+                <ForwardRef
+                  className="pr-0 pl-0"
+                  xs="3"
+                >
+                  <div
+                    className="float-right"
+                    style={
+                      Object {
+                        "textShadow": "0px 0px 10px #ffbc43",
+                      }
+                    }
+                  >
+                    74
+                    %
+                  </div>
+                </ForwardRef>
+                <ForwardRef
+                  xs="auto"
+                >
+                  <div
+                    className="float-left"
+                  >
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="ErAyalapf0_info"
+                          placement="right"
+                        >
+                          <span>
+                            Ayala, Eric
+                            <br />
+                          </span>
+                          <span>
+                            
+                            <br />
+                          </span>
+                          <span>
+                            ORtg 0 on 0% (+0.0)
+                            <br />
+                          </span>
+                          <span>
+                            3P 0% on 0%, eFG 0%
+                            <br />
+                          </span>
+                          <span>
+                            Rim 0% on 0%, FTR 0%
+                            <br />
+                          </span>
+                          <span>
+                            AST 0% : TO 0%
+                            <br />
+                          </span>
+                          <span>
+                            ORB 0%, DRB 0%
+                            <br />
+                          </span>
+                        </ForwardRef>
+                      }
+                      placement="auto"
+                    >
+                      <div>
+                        <span>
+                          <span
+                            style={
+                              Object {
+                                "whiteSpace": "nowrap",
+                              }
+                            }
+                          >
+                            <ForwardRef
+                              pill={false}
+                              style={
+                                Object {
+                                  "backgroundColor": "grey",
+                                }
+                              }
+                              variant="light"
+                            >
+                              <span
+                                style={
+                                  Object {
+                                    "fontSize": "small",
+                                    "fontWeight": undefined,
+                                  }
+                                }
+                              >
+                                ErAyala
+                              </span>
+                            </ForwardRef>
+                          </span>
+                        </span>
+                      </div>
+                    </OverlayTrigger>
+                  </div>
+                </ForwardRef>
+              </ForwardRef>,
+              "pg": <ForwardRef
+                noGutters={false}
+              >
+                <ForwardRef
+                  className="pr-0 pl-0"
+                  xs="3"
+                >
+                  <div
+                    className="float-right"
+                    style={
+                      Object {
+                        "textShadow": "0px 0px 10px #ffa500",
+                      }
+                    }
+                  >
+                    100
+                    %
+                  </div>
+                </ForwardRef>
+                <ForwardRef
+                  xs="auto"
+                >
+                  <div
+                    className="float-left"
+                  >
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="AaWigginspg0_info"
+                          placement="right"
+                        >
+                          <span>
+                            Wiggins, Aaron
+                            <br />
+                          </span>
+                          <span>
+                            0.0072892947188542105,0.2984404921863898,0.45743042057193684,0.2368364746315466,0.0000033178912727678397
+                            <br />
+                          </span>
+                          <span>
+                            ORtg 96 on 21% (+0.3)
+                            <br />
+                          </span>
+                          <span>
+                            3P 29% on 54%, eFG 44%
+                            <br />
+                          </span>
+                          <span>
+                            Rim 71% on 20%, FTR 21%
+                            <br />
+                          </span>
+                          <span>
+                            AST 9% : TO 16%
+                            <br />
+                          </span>
+                          <span>
+                            ORB 4%, DRB 15%
+                            <br />
+                          </span>
+                        </ForwardRef>
+                      }
+                      placement="auto"
+                    >
+                      <div>
+                        <span>
+                          <span
+                            style={
+                              Object {
+                                "whiteSpace": "nowrap",
+                              }
+                            }
+                          >
+                            <ForwardRef
+                              pill={false}
+                              style={
+                                Object {
+                                  "backgroundColor": "#f8fcf880",
+                                }
+                              }
+                              variant="light"
+                            >
+                              <span
+                                style={
+                                  Object {
+                                    "fontSize": "small",
+                                    "fontWeight": 500,
+                                  }
+                                }
+                              >
+                                AaWiggins
+                              </span>
+                            </ForwardRef>
+                            <span
+                              style={Object {}}
+                            >
+                              <sup
+                                className="threePointBadge"
+                              />
+                            </span>
+                          </span>
+                        </span>
+                      </div>
+                    </OverlayTrigger>
+                  </div>
+                </ForwardRef>
+              </ForwardRef>,
+              "sf": <ForwardRef
+                noGutters={false}
+              >
+                <ForwardRef
+                  className="pr-0 pl-0"
+                  xs="3"
+                >
+                  <div
+                    className="float-right"
+                    style={
+                      Object {
+                        "textShadow": "0px 0px 10px #ffa500",
+                      }
+                    }
+                  >
+                    100
+                    %
+                  </div>
+                </ForwardRef>
+                <ForwardRef
+                  xs="auto"
+                >
+                  <div
+                    className="float-left"
+                  >
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="JaSmithsf0_info"
+                          placement="right"
+                        >
+                          <span>
+                            Smith, Jalen
+                            <br />
+                          </span>
+                          <span>
+                            
+                            <br />
+                          </span>
+                          <span>
+                            ORtg 0 on 0% (+0.0)
+                            <br />
+                          </span>
+                          <span>
+                            3P 0% on 0%, eFG 0%
+                            <br />
+                          </span>
+                          <span>
+                            Rim 0% on 0%, FTR 0%
+                            <br />
+                          </span>
+                          <span>
+                            AST 0% : TO 0%
+                            <br />
+                          </span>
+                          <span>
+                            ORB 0%, DRB 0%
+                            <br />
+                          </span>
+                        </ForwardRef>
+                      }
+                      placement="auto"
+                    >
+                      <div>
+                        <span>
+                          <span
+                            style={
+                              Object {
+                                "whiteSpace": "nowrap",
+                              }
+                            }
+                          >
+                            <ForwardRef
+                              pill={false}
+                              style={
+                                Object {
+                                  "backgroundColor": "grey",
+                                }
+                              }
+                              variant="light"
+                            >
+                              <span
+                                style={
+                                  Object {
+                                    "fontSize": "small",
+                                    "fontWeight": undefined,
+                                  }
+                                }
+                              >
+                                JaSmith
+                              </span>
+                            </ForwardRef>
+                          </span>
+                        </span>
+                      </div>
+                    </OverlayTrigger>
+                  </div>
+                </ForwardRef>
+              </ForwardRef>,
+              "sg": <ForwardRef
+                noGutters={false}
+              >
+                <ForwardRef
+                  className="pr-0 pl-0"
+                  xs="3"
+                >
+                  <div
+                    className="float-right"
+                    style={
+                      Object {
+                        "textShadow": "0px 0px 10px #ffbb3e",
+                      }
+                    }
+                  >
+                    76
+                    %
+                  </div>
+                </ForwardRef>
+                <ForwardRef
+                  xs="auto"
+                >
+                  <div
+                    className="float-left"
+                  >
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="DaMorsellsg0_info"
+                          placement="right"
+                        >
+                          <span>
+                            Morsell, Darryl
+                            <br />
+                          </span>
+                          <span>
+                            
+                            <br />
+                          </span>
+                          <span>
+                            ORtg 0 on 0% (+0.0)
+                            <br />
+                          </span>
+                          <span>
+                            3P 0% on 0%, eFG 0%
+                            <br />
+                          </span>
+                          <span>
+                            Rim 0% on 0%, FTR 0%
+                            <br />
+                          </span>
+                          <span>
+                            AST 0% : TO 0%
+                            <br />
+                          </span>
+                          <span>
+                            ORB 0%, DRB 0%
+                            <br />
+                          </span>
+                        </ForwardRef>
+                      }
+                      placement="auto"
+                    >
+                      <div>
+                        <span>
+                          <span
+                            style={
+                              Object {
+                                "whiteSpace": "nowrap",
+                              }
+                            }
+                          >
+                            <ForwardRef
+                              pill={false}
+                              style={
+                                Object {
+                                  "backgroundColor": "grey",
+                                }
+                              }
+                              variant="light"
+                            >
+                              <span
+                                style={
+                                  Object {
+                                    "fontSize": "small",
+                                    "fontWeight": undefined,
+                                  }
+                                }
+                              >
+                                DaMorsell
+                              </span>
+                            </ForwardRef>
+                          </span>
+                        </span>
+                      </div>
+                    </OverlayTrigger>
+                  </div>
+                </ForwardRef>
+              </ForwardRef>,
+            },
+            "kind": "data-row",
+            "prefixFn": [Function],
+            "tableFieldsOverride": undefined,
+          },
+          GenericTableDataRow {
+            "cellMetaFn": [Function],
+            "dataObj": Object {
+              "c": undefined,
+              "pf": <ForwardRef
+                noGutters={false}
+              >
+                <ForwardRef
+                  className="pr-0 pl-0"
+                  xs="3"
+                >
+                  <div
+                    className="float-right"
+                    style={
+                      Object {
+                        "textShadow": "0px 0px 10px #ffe8bc",
+                      }
+                    }
+                  >
+                    26
+                    %
+                  </div>
+                </ForwardRef>
+                <ForwardRef
+                  xs="auto"
+                >
+                  <div
+                    className="float-left"
+                  >
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="DoScottpf0_info"
+                          placement="right"
+                        >
+                          <span>
+                            Scott, Donta
+                            <br />
+                          </span>
+                          <span>
+                            
+                            <br />
+                          </span>
+                          <span>
+                            ORtg 0 on 0% (+0.0)
+                            <br />
+                          </span>
+                          <span>
+                            3P 0% on 0%, eFG 0%
+                            <br />
+                          </span>
+                          <span>
+                            Rim 0% on 0%, FTR 0%
+                            <br />
+                          </span>
+                          <span>
+                            AST 0% : TO 0%
+                            <br />
+                          </span>
+                          <span>
+                            ORB 0%, DRB 0%
+                            <br />
+                          </span>
+                        </ForwardRef>
+                      }
+                      placement="auto"
+                    >
+                      <div>
+                        <span>
+                          <span
+                            style={
+                              Object {
+                                "whiteSpace": "nowrap",
+                              }
+                            }
+                          >
+                            <ForwardRef
+                              pill={false}
+                              style={
+                                Object {
+                                  "backgroundColor": "grey",
+                                }
+                              }
+                              variant="light"
+                            >
+                              <span
+                                style={
+                                  Object {
+                                    "fontSize": "small",
+                                    "fontWeight": undefined,
+                                  }
+                                }
+                              >
+                                DoScott
+                              </span>
+                            </ForwardRef>
+                          </span>
+                        </span>
+                      </div>
+                    </OverlayTrigger>
+                  </div>
+                </ForwardRef>
+              </ForwardRef>,
+              "pg": undefined,
+              "sf": undefined,
+              "sg": <ForwardRef
+                noGutters={false}
+              >
+                <ForwardRef
+                  className="pr-0 pl-0"
+                  xs="3"
+                >
+                  <div
+                    className="float-right"
+                    style={
+                      Object {
+                        "textShadow": "0px 0px 10px #ffe9c1",
+                      }
+                    }
+                  >
+                    24
+                    %
+                  </div>
+                </ForwardRef>
+                <ForwardRef
+                  xs="auto"
+                >
+                  <div
+                    className="float-left"
+                  >
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="DoScottsg0_info"
+                          placement="right"
+                        >
+                          <span>
+                            Scott, Donta
+                            <br />
+                          </span>
+                          <span>
+                            
+                            <br />
+                          </span>
+                          <span>
+                            ORtg 0 on 0% (+0.0)
+                            <br />
+                          </span>
+                          <span>
+                            3P 0% on 0%, eFG 0%
+                            <br />
+                          </span>
+                          <span>
+                            Rim 0% on 0%, FTR 0%
+                            <br />
+                          </span>
+                          <span>
+                            AST 0% : TO 0%
+                            <br />
+                          </span>
+                          <span>
+                            ORB 0%, DRB 0%
+                            <br />
+                          </span>
+                        </ForwardRef>
+                      }
+                      placement="auto"
+                    >
+                      <div>
+                        <span>
+                          <span
+                            style={
+                              Object {
+                                "whiteSpace": "nowrap",
+                              }
+                            }
+                          >
+                            <ForwardRef
+                              pill={false}
+                              style={
+                                Object {
+                                  "backgroundColor": "grey",
+                                }
+                              }
+                              variant="light"
+                            >
+                              <span
+                                style={
+                                  Object {
+                                    "fontSize": "small",
+                                    "fontWeight": undefined,
+                                  }
+                                }
+                              >
+                                DoScott
+                              </span>
+                            </ForwardRef>
+                          </span>
+                        </span>
+                      </div>
+                    </OverlayTrigger>
+                  </div>
+                </ForwardRef>
+              </ForwardRef>,
+            },
+            "kind": "data-row",
+            "prefixFn": [Function],
+            "tableFieldsOverride": undefined,
+          },
+        ]
+      }
+      tableFields={
+        Object {
+          "c": GenericTableColProps {
+            "className": "",
+            "colName": "C",
+            "colorPicker": [Function],
+            "formatter": [Function],
+            "isTitle": false,
+            "missingData": undefined,
+            "rowSpan": [Function],
+            "toolTip": "Roster distribution for C slot",
+            "widthUnits": 2,
+          },
+          "pf": GenericTableColProps {
+            "className": "",
+            "colName": "PF",
+            "colorPicker": [Function],
+            "formatter": [Function],
+            "isTitle": false,
+            "missingData": undefined,
+            "rowSpan": [Function],
+            "toolTip": "Roster distribution for PF slot",
+            "widthUnits": 2,
+          },
+          "pg": GenericTableColProps {
+            "className": "",
+            "colName": "PG",
+            "colorPicker": [Function],
+            "formatter": [Function],
+            "isTitle": false,
+            "missingData": undefined,
+            "rowSpan": [Function],
+            "toolTip": "Roster distribution for PG slot",
+            "widthUnits": 2,
+          },
+          "sf": GenericTableColProps {
+            "className": "",
+            "colName": "SF",
+            "colorPicker": [Function],
+            "formatter": [Function],
+            "isTitle": false,
+            "missingData": undefined,
+            "rowSpan": [Function],
+            "toolTip": "Roster distribution for SF slot",
+            "widthUnits": 2,
+          },
+          "sg": GenericTableColProps {
+            "className": "",
+            "colName": "SG",
+            "colorPicker": [Function],
+            "formatter": [Function],
+            "isTitle": false,
+            "missingData": undefined,
+            "rowSpan": [Function],
+            "toolTip": "Roster distribution for SG slot",
+            "widthUnits": 2,
+          },
+          "title": GenericTableColProps {
+            "className": "",
+            "colName": "",
+            "colorPicker": [Function],
+            "formatter": [Function],
+            "isTitle": true,
+            "missingData": undefined,
+            "rowSpan": [Function],
+            "toolTip": "",
+            "widthUnits": 0,
+          },
+        }
+      }
+    />
+  </Col>
+  <Col>
+    Using [
+    global
+    ] stats - 
+    <a
+      href="#"
+      onClick={[Function]}
+    >
+      switch to 
+      sample
+       stats
+    </a>
+  </Col>
+</Container>
+`;
+
+exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose sample 1`] = `
+<Container
+  fluid={false}
+>
+  <Col
+    xs={12}
+  >
+    <GenericTable
+      responsive={false}
+      tableCopyId="rosterView"
+      tableData={
+        Array [
+          GenericTableDataRow {
+            "cellMetaFn": [Function],
+            "dataObj": Object {
+              "c": <ForwardRef
+                noGutters={false}
+              >
+                <ForwardRef
+                  className="pr-0 pl-0"
+                  xs="3"
+                >
+                  <div
+                    className="float-right"
+                    style={
+                      Object {
+                        "textShadow": "0px 0px 10px #ffa500",
+                      }
+                    }
+                  >
+                    100
+                    %
+                  </div>
+                </ForwardRef>
+                <ForwardRef
+                  xs="auto"
+                >
+                  <div
+                    className="float-left"
+                  >
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="AnCowanc0_info"
+                          placement="right"
+                        >
+                          <span>
+                            Cowan, Anthony
+                            <br />
+                          </span>
+                          <span>
+                            0.7608816899806605,0.23503457939493452,0.003893285388442086,0.00019043748354377016,7.752418955526866e-9
+                            <br />
+                          </span>
+                          <span>
+                            ORtg 116 on 24% (+5.8)
+                            <br />
+                          </span>
+                          <span>
+                            3P 33% on 49%, eFG 47%
+                            <br />
+                          </span>
+                          <span>
+                            Rim 56% on 33%, FTR 58%
+                            <br />
+                          </span>
+                          <span>
+                            AST 29% : TO 16%
+                            <br />
+                          </span>
+                          <span>
+                            ORB 1%, DRB 9%
+                            <br />
+                          </span>
+                        </ForwardRef>
+                      }
+                      placement="auto"
+                    >
+                      <div>
+                        <span>
+                          <span
+                            style={
+                              Object {
+                                "whiteSpace": "nowrap",
+                              }
+                            }
+                          >
+                            <ForwardRef
+                              pill={false}
+                              style={
+                                Object {
+                                  "backgroundColor": "#6cb66c80",
+                                }
+                              }
+                              variant="light"
+                            >
+                              <span
+                                style={
+                                  Object {
+                                    "fontSize": "small",
+                                    "fontWeight": 600,
+                                  }
+                                }
+                              >
+                                AnCowan
+                              </span>
+                            </ForwardRef>
+                            <span
+                              style={Object {}}
+                            >
+                              <sup
+                                className="threePointBadge"
+                              />
+                              <sub
+                                className="freeThrowBadge"
+                              />
+                              <sup
+                                className="megaAssistBadge"
+                              />
+                            </span>
+                          </span>
+                        </span>
+                      </div>
+                    </OverlayTrigger>
+                  </div>
+                </ForwardRef>
+              </ForwardRef>,
+              "pf": <ForwardRef
+                noGutters={false}
+              >
+                <ForwardRef
+                  className="pr-0 pl-0"
+                  xs="3"
+                >
+                  <div
+                    className="float-right"
+                    style={
+                      Object {
+                        "textShadow": "0px 0px 10px #ffa500",
+                      }
+                    }
+                  >
+                    100
+                    %
+                  </div>
+                </ForwardRef>
+                <ForwardRef
+                  xs="auto"
+                >
+                  <div
+                    className="float-left"
+                  >
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="ErAyalapf0_info"
+                          placement="right"
+                        >
+                          <span>
+                            Ayala, Eric
+                            <br />
+                          </span>
+                          <span>
+                            
+                            <br />
+                          </span>
+                          <span>
+                            ORtg 0 on 0% (+0.0)
+                            <br />
+                          </span>
+                          <span>
+                            3P 0% on 0%, eFG 0%
+                            <br />
+                          </span>
+                          <span>
+                            Rim 0% on 0%, FTR 0%
+                            <br />
+                          </span>
+                          <span>
+                            AST 0% : TO 0%
+                            <br />
+                          </span>
+                          <span>
+                            ORB 0%, DRB 0%
+                            <br />
+                          </span>
+                        </ForwardRef>
+                      }
+                      placement="auto"
+                    >
+                      <div>
+                        <span>
+                          <span
+                            style={
+                              Object {
+                                "whiteSpace": "nowrap",
+                              }
+                            }
+                          >
+                            <ForwardRef
+                              pill={false}
+                              style={
+                                Object {
+                                  "backgroundColor": "grey",
+                                }
+                              }
+                              variant="light"
+                            >
+                              <span
+                                style={
+                                  Object {
+                                    "fontSize": "small",
+                                    "fontWeight": undefined,
+                                  }
+                                }
+                              >
+                                ErAyala
+                              </span>
+                            </ForwardRef>
+                          </span>
+                        </span>
+                      </div>
+                    </OverlayTrigger>
+                  </div>
+                </ForwardRef>
+              </ForwardRef>,
+              "pg": <ForwardRef
+                noGutters={false}
+              >
+                <ForwardRef
+                  className="pr-0 pl-0"
+                  xs="3"
+                >
+                  <div
+                    className="float-right"
+                    style={
+                      Object {
+                        "textShadow": "0px 0px 10px #ffa500",
+                      }
+                    }
+                  >
+                    100
+                    %
+                  </div>
+                </ForwardRef>
+                <ForwardRef
+                  xs="auto"
+                >
+                  <div
+                    className="float-left"
+                  >
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="AaWigginspg0_info"
+                          placement="right"
+                        >
+                          <span>
+                            Wiggins, Aaron
+                            <br />
+                          </span>
+                          <span>
+                            0.0072892947188542105,0.2984404921863898,0.45743042057193684,0.2368364746315466,0.0000033178912727678397
+                            <br />
+                          </span>
+                          <span>
+                            ORtg 96 on 21% (+0.3)
+                            <br />
+                          </span>
+                          <span>
+                            3P 29% on 54%, eFG 44%
+                            <br />
+                          </span>
+                          <span>
+                            Rim 71% on 20%, FTR 21%
+                            <br />
+                          </span>
+                          <span>
+                            AST 9% : TO 16%
+                            <br />
+                          </span>
+                          <span>
+                            ORB 4%, DRB 15%
+                            <br />
+                          </span>
+                        </ForwardRef>
+                      }
+                      placement="auto"
+                    >
+                      <div>
+                        <span>
+                          <span
+                            style={
+                              Object {
+                                "whiteSpace": "nowrap",
+                              }
+                            }
+                          >
+                            <ForwardRef
+                              pill={false}
+                              style={
+                                Object {
+                                  "backgroundColor": "#f8fcf880",
+                                }
+                              }
+                              variant="light"
+                            >
+                              <span
+                                style={
+                                  Object {
+                                    "fontSize": "small",
+                                    "fontWeight": 500,
+                                  }
+                                }
+                              >
+                                AaWiggins
+                              </span>
+                            </ForwardRef>
+                            <span
+                              style={Object {}}
+                            >
+                              <sup
+                                className="threePointBadge"
+                              />
+                            </span>
+                          </span>
+                        </span>
+                      </div>
+                    </OverlayTrigger>
+                  </div>
+                </ForwardRef>
+              </ForwardRef>,
+              "sf": <ForwardRef
+                noGutters={false}
+              >
+                <ForwardRef
+                  className="pr-0 pl-0"
+                  xs="3"
+                >
+                  <div
+                    className="float-right"
+                    style={
+                      Object {
+                        "textShadow": "0px 0px 10px #ffa500",
+                      }
+                    }
+                  >
+                    100
+                    %
+                  </div>
+                </ForwardRef>
+                <ForwardRef
+                  xs="auto"
+                >
+                  <div
+                    className="float-left"
+                  >
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="JaSmithsf0_info"
+                          placement="right"
+                        >
+                          <span>
+                            Smith, Jalen
+                            <br />
+                          </span>
+                          <span>
+                            
+                            <br />
+                          </span>
+                          <span>
+                            ORtg 0 on 0% (+0.0)
+                            <br />
+                          </span>
+                          <span>
+                            3P 0% on 0%, eFG 0%
+                            <br />
+                          </span>
+                          <span>
+                            Rim 0% on 0%, FTR 0%
+                            <br />
+                          </span>
+                          <span>
+                            AST 0% : TO 0%
+                            <br />
+                          </span>
+                          <span>
+                            ORB 0%, DRB 0%
+                            <br />
+                          </span>
+                        </ForwardRef>
+                      }
+                      placement="auto"
+                    >
+                      <div>
+                        <span>
+                          <span
+                            style={
+                              Object {
+                                "whiteSpace": "nowrap",
+                              }
+                            }
+                          >
+                            <ForwardRef
+                              pill={false}
+                              style={
+                                Object {
+                                  "backgroundColor": "grey",
+                                }
+                              }
+                              variant="light"
+                            >
+                              <span
+                                style={
+                                  Object {
+                                    "fontSize": "small",
+                                    "fontWeight": undefined,
+                                  }
+                                }
+                              >
+                                JaSmith
+                              </span>
+                            </ForwardRef>
+                          </span>
+                        </span>
+                      </div>
+                    </OverlayTrigger>
+                  </div>
+                </ForwardRef>
+              </ForwardRef>,
+              "sg": <ForwardRef
+                noGutters={false}
+              >
+                <ForwardRef
+                  className="pr-0 pl-0"
+                  xs="3"
+                >
+                  <div
+                    className="float-right"
+                    style={
+                      Object {
+                        "textShadow": "0px 0px 10px #ffa500",
+                      }
+                    }
+                  >
+                    100
+                    %
+                  </div>
+                </ForwardRef>
+                <ForwardRef
+                  xs="auto"
+                >
+                  <div
+                    className="float-left"
+                  >
+                    <OverlayTrigger
+                      overlay={
+                        <ForwardRef
+                          id="DaMorsellsg0_info"
+                          placement="right"
+                        >
+                          <span>
+                            Morsell, Darryl
+                            <br />
+                          </span>
+                          <span>
+                            
+                            <br />
+                          </span>
+                          <span>
+                            ORtg 0 on 0% (+0.0)
+                            <br />
+                          </span>
+                          <span>
+                            3P 0% on 0%, eFG 0%
+                            <br />
+                          </span>
+                          <span>
+                            Rim 0% on 0%, FTR 0%
+                            <br />
+                          </span>
+                          <span>
+                            AST 0% : TO 0%
+                            <br />
+                          </span>
+                          <span>
+                            ORB 0%, DRB 0%
+                            <br />
+                          </span>
+                        </ForwardRef>
+                      }
+                      placement="auto"
+                    >
+                      <div>
+                        <span>
+                          <span
+                            style={
+                              Object {
+                                "whiteSpace": "nowrap",
+                              }
+                            }
+                          >
+                            <ForwardRef
+                              pill={false}
+                              style={
+                                Object {
+                                  "backgroundColor": "grey",
+                                }
+                              }
+                              variant="light"
+                            >
+                              <span
+                                style={
+                                  Object {
+                                    "fontSize": "small",
+                                    "fontWeight": undefined,
+                                  }
+                                }
+                              >
+                                DaMorsell
+                              </span>
+                            </ForwardRef>
+                          </span>
+                        </span>
+                      </div>
+                    </OverlayTrigger>
+                  </div>
+                </ForwardRef>
+              </ForwardRef>,
+            },
+            "kind": "data-row",
+            "prefixFn": [Function],
+            "tableFieldsOverride": undefined,
+          },
+        ]
+      }
+      tableFields={
+        Object {
+          "c": GenericTableColProps {
+            "className": "",
+            "colName": "C",
+            "colorPicker": [Function],
+            "formatter": [Function],
+            "isTitle": false,
+            "missingData": undefined,
+            "rowSpan": [Function],
+            "toolTip": "Roster distribution for C slot",
+            "widthUnits": 2,
+          },
+          "pf": GenericTableColProps {
+            "className": "",
+            "colName": "PF",
+            "colorPicker": [Function],
+            "formatter": [Function],
+            "isTitle": false,
+            "missingData": undefined,
+            "rowSpan": [Function],
+            "toolTip": "Roster distribution for PF slot",
+            "widthUnits": 2,
+          },
+          "pg": GenericTableColProps {
+            "className": "",
+            "colName": "PG",
+            "colorPicker": [Function],
+            "formatter": [Function],
+            "isTitle": false,
+            "missingData": undefined,
+            "rowSpan": [Function],
+            "toolTip": "Roster distribution for PG slot",
+            "widthUnits": 2,
+          },
+          "sf": GenericTableColProps {
+            "className": "",
+            "colName": "SF",
+            "colorPicker": [Function],
+            "formatter": [Function],
+            "isTitle": false,
+            "missingData": undefined,
+            "rowSpan": [Function],
+            "toolTip": "Roster distribution for SF slot",
+            "widthUnits": 2,
+          },
+          "sg": GenericTableColProps {
+            "className": "",
+            "colName": "SG",
+            "colorPicker": [Function],
+            "formatter": [Function],
+            "isTitle": false,
+            "missingData": undefined,
+            "rowSpan": [Function],
+            "toolTip": "Roster distribution for SG slot",
+            "widthUnits": 2,
+          },
+          "title": GenericTableColProps {
+            "className": "",
+            "colName": "",
+            "colorPicker": [Function],
+            "formatter": [Function],
+            "isTitle": true,
+            "missingData": undefined,
+            "rowSpan": [Function],
+            "toolTip": "",
+            "widthUnits": 0,
+          },
+        }
+      }
+    />
+  </Col>
+  <Col>
+    Using [
+    sample
+    ] stats - 
+    <a
+      href="#"
+      onClick={[Function]}
+    >
+      switch to 
+      global
+       stats
+    </a>
+  </Col>
+</Container>
+`;
+
+exports[`TeamRosterDiagView TeamRosterDiagView - global only 1`] = `
 <Container
   fluid={false}
 >
