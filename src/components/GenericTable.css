@@ -1,3 +1,11 @@
 .infoBadge::after {
   content: "*"
 }
+
+td.centerAlignCol {
+  text-align: center
+}
+
+td.bottomAlignCol {
+  vertical-align: bottom
+}

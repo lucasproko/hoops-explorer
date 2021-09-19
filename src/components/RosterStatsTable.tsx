@@ -1,5 +1,5 @@
 // React imports:
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, ReactNode } from 'react';
 
 // Next imports:
 import { NextPage } from 'next';
@@ -131,6 +131,9 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
     }
     setFactorMins(!factorMins);
   };
+
+  /** Whether to show sub-header with extra info */
+  const [ showInfoSubHeader, setShowInfoSubHeader ] = useState(false);
 
   /** Incorporates SoS into rating calcs "Adj [Eq] Rtg" */
   const [ adjORtgForSos, setAdjORtgForSos ] = useState(false);
@@ -824,6 +827,45 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
     }
   ];
 
+  const brace = (color: string, widthPct: number = 100) => <hr style={{
+    height: "2px", width: `${widthPct}%`, borderWidth: "0", color: color, backgroundColor: color,
+    marginBottom: "0px", paddingBottom: "0px",
+    marginTop: "-10px", paddingTop: "0px",
+    borderRadius: "5px"
+  }}/>;
+
+  // Can show some handy context in between the header and data rows:
+
+  const braceText = (text: ReactNode, color: string, braceWidth: number = 100) => <div><p style={{color: color}}>
+    <i>{text}</i>
+  </p>{brace(color, braceWidth)}</div>;
+  
+  const whereIsAssistedPct = expandedView ? "bottom row is assisted%" : "tooltip shows assisted%";
+
+  const maybeSubheaderRow = showInfoSubHeader ? [ 
+    GenericTableOps.buildSubHeaderRow([
+      ["", 2],
+      [braceText("The higher 'Usg' (avg 20) the harder it is to keep ORtg high", "blue"), 2],
+      calcRapm ? 
+        [braceText(
+          <p style={{width: "120%"}}>2x O/D Ratings as pts/100 above D1 average (the 2 form a good range)</p>, 
+          "purple", 75), 3] 
+        : 
+        [braceText(
+          <p style={{width: "160%"}}>O/D Ratings as pts/100 above D1 average</p>, 
+          "purple"), 2],
+        //TODO: his works weirdly .. colSpan wrong but text right on refresh...
+        //(for now I've worked around it by not saving the state of "+ Info")
+      ["", 1],
+      [braceText("Ball-handling", "brown"), 2],
+      ["", 1],
+      [braceText(`Scoring signature (FTR is how often player is fouled shooting, ${whereIsAssistedPct})`, "teal"), 5],
+      ["", 1],
+      [braceText("Scoring quality", "green"), 4],
+      ["", 1],
+    ], "small centerAlignCol bottomAlignCol")
+  ] : [];
+
   // 4] View
 
   /** The sub-header builder */
@@ -1027,6 +1069,12 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
               toggled: showPlayTypes,
               onClick: () => setShowPlayTypes(!showPlayTypes)
             },
+            {
+              label: "+ Info",
+              tooltip: showInfoSubHeader ? "Hide extra info sub-header" : "Show extra info sub-header (not currently saved like other options)",
+              toggled: showInfoSubHeader,
+              onClick: () => setShowInfoSubHeader(!showInfoSubHeader)
+            },
           ]}/>
         </Col>
       </Form.Row>
@@ -1035,7 +1083,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
           <GenericTable
             tableCopyId="rosterStatsTable"
             tableFields={tableFields}
-            tableData={tableData}
+            tableData={maybeSubheaderRow.concat(tableData)}
             cellTooltipMode="none"
           />
         </Col>
