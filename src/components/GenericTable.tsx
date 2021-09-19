@@ -89,7 +89,21 @@ class GenericTableTextRow {
   readonly text: React.ReactNode;
   readonly className: string;
 }
-export type GenericTableRow = GenericTableDataRow | GenericTableSeparator | GenericTableTextRow;
+class GenericTableSubHeaderRow {
+  constructor(
+    cols: [React.ReactNode, number][],
+    className: string
+  ) {
+    this.cols = cols.map((nodeNum: [React.ReactNode, number]) => nodeNum[0]);
+    this.spans = cols.map((nodeNum: [React.ReactNode, number]) => nodeNum[1]);
+    this.className = className;
+  }
+  readonly kind: string = "subheader-row";
+  readonly cols: React.ReactNode[];
+  readonly spans: number[];
+  readonly className: string;
+}
+export type GenericTableRow = GenericTableDataRow | GenericTableSeparator | GenericTableTextRow | GenericTableSubHeaderRow;
 export class GenericTableOps {
 
   static readonly defaultFormatter = (val: any) => "" + val;
@@ -137,6 +151,9 @@ export class GenericTableOps {
   }
   static buildRowSeparator(): GenericTableRow {
     return new GenericTableSeparator();
+  }
+  static buildSubHeaderRow(cols: [React.ReactNode, number][], className: string = ""): GenericTableRow {
+    return new GenericTableSubHeaderRow(cols, className);
   }
 
   // Cols:
@@ -373,6 +390,12 @@ const GenericTable: React.FunctionComponent<Props> = ({responsive, tableFields, 
         return <tr key={"" + index}>{ renderTableRow(row, prefixAwareDataMap) }</tr>;
       } else if (row instanceof GenericTableTextRow) {
         return <tr key={"" + index}><td colSpan={totalTableCols} className={row.className}>{row.text}</td></tr>;
+      } else if (row instanceof GenericTableSubHeaderRow) {
+        return <tr key={"" + index}>{
+          row.cols.map((col, colIndex) => {
+            return <td key={"col" + index + colIndex} colSpan={row.spans?.[colIndex] || 1} className={row.className}>{col}</td>
+          })
+        }</tr>
       } else { //(separator, don't merge the cols because we don't have cell boundaries and that messes up spreadsheet)
         return <tr className="divider" key={"" + index}>{_.range(totalTableCols).map((i, j) => <td key={"" + j}></td>)}</tr>;
       }

@@ -5383,6 +5383,12 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                 "toggled": false,
                 "tooltip": "Show play style breakdowns",
               },
+              Object {
+                "label": "+ Info",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show extra info sub-header (not currently saved like other options)",
+              },
             ]
           }
         />
@@ -9135,6 +9141,12 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
                 "toggled": false,
                 "tooltip": "Show play style breakdowns",
               },
+              Object {
+                "label": "+ Info",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show extra info sub-header (not currently saved like other options)",
+              },
             ]
           }
         />
@@ -12069,6 +12081,12 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
                 "onClick": [Function],
                 "toggled": false,
                 "tooltip": "Show play style breakdowns",
+              },
+              Object {
+                "label": "+ Info",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show extra info sub-header (not currently saved like other options)",
               },
             ]
           }
@@ -17718,6 +17736,12 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
                 "onClick": [Function],
                 "toggled": false,
                 "tooltip": "Show play style breakdowns",
+              },
+              Object {
+                "label": "+ Info",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show extra info sub-header (not currently saved like other options)",
               },
             ]
           }
@@ -25496,6 +25520,12 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                 "onClick": [Function],
                 "toggled": false,
                 "tooltip": "Show play style breakdowns",
+              },
+              Object {
+                "label": "+ Info",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show extra info sub-header (not currently saved like other options)",
               },
             ]
           }
@@ -33995,6 +34025,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                 "onClick": [Function],
                 "toggled": true,
                 "tooltip": "Hide play style breakdowns",
+              },
+              Object {
+                "label": "+ Info",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show extra info sub-header (not currently saved like other options)",
               },
             ]
           }
@@ -45308,6 +45344,12 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                 "onClick": [Function],
                 "toggled": false,
                 "tooltip": "Show play style breakdowns",
+              },
+              Object {
+                "label": "+ Info",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show extra info sub-header (not currently saved like other options)",
               },
             ]
           }
