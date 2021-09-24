@@ -1,9 +1,6 @@
 // React imports:
 import React, { useState, useEffect } from 'react';
 
-// Next imports:
-import { NextPage } from 'next';
-
 // Lodash:
 import _ from "lodash";
 
@@ -28,14 +25,10 @@ import { faLink } from '@fortawesome/free-solid-svg-icons'
 import ClipboardJS from 'clipboard';
 
 // Component imports
-import GenericTable, { GenericTableOps, GenericTableColProps } from "./GenericTable";
-import { RosterStatsModel } from './RosterStatsTable';
-import { TeamStatsModel } from './TeamStatsTable';
-import LuckConfigModal from './shared/LuckConfigModal';
+import GenericTable, { GenericTableOps } from "./GenericTable";
 import GenericTogglingMenu from './shared/GenericTogglingMenu';
 import GenericTogglingMenuItem from './shared/GenericTogglingMenuItem';
 import ToggleButtonGroup from "./shared/ToggleButtonGroup";
-import LuckAdjDiagView from './diags/LuckAdjDiagView';
 import AsyncFormControl from './shared/AsyncFormControl';
 
 // Table building
@@ -44,17 +37,13 @@ import { LineupTableUtils } from "../utils/tables/LineupTableUtils";
 
 // Util imports
 import { UrlRouting } from "../utils/UrlRouting";
-import { LineupUtils } from "../utils/stats/LineupUtils";
-import { CbbColors } from "../utils/CbbColors";
 import { CommonTableDefs } from "../utils/tables/CommonTableDefs";
 import { PositionUtils } from "../utils/stats/PositionUtils";
-import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
-import { PlayerLeaderboardParams, ParamDefaults, LuckParams } from '../utils/FilterModels';
-import { AvailableTeams } from '../utils/internal-data/AvailableTeams';
+import { PlayerLeaderboardParams, ParamDefaults } from '../utils/FilterModels';
 import { ConferenceToNickname, NicknameToConference, Power6Conferences } from '../utils/public-data/ConferenceInfo';
 import { PlayerLeaderboardTracking } from '../utils/internal-data/LeaderboardTrackingLists';
 
-import ReactDOMServer from 'react-dom/server'
+import { RosterTableUtils } from '../utils/tables/RosterTableUtils';
 
 export type PlayerLeaderboardStatsModel = {
   players?: Array<any>,
@@ -191,6 +180,9 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
   // Misc display
 
   const [ posClasses, setPosClasses ] = useState(startingState.posClasses || "");
+
+  /** Whether to show sub-header with extra info */
+  const [ showInfoSubHeader, setShowInfoSubHeader ] = useState(false);
 
   /** Show the number of possessions as a % of total team count */
   const [ factorMins, setFactorMins ] = useState(_.isNil(startingState.factorMins) ?
@@ -513,17 +505,22 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
         [ GenericTableOps.buildRowSeparator() ]
       ]);
     });
+
+    /** The sub-header builder - Can show some handy context in between the header and data rows: */
+    const maybeSubheaderRow = 
+      showInfoSubHeader ? RosterTableUtils.buildInformationalSubheader(true, true): [];
+
     return <GenericTable
       tableCopyId="playerLeaderboardTable"
       tableFields={CommonTableDefs.onOffIndividualTable(true, possAsPct, factorMins, true)}
-      tableData={tableData}
+      tableData={maybeSubheaderRow.concat(tableData)}
       cellTooltipMode="none"
     />
 
   }, [ minPoss, maxTableSize, sortBy, filterStr,
       possAsPct, factorMins,
       useRapm,
-      confs, posClasses,
+      confs, posClasses, showInfoSubHeader,
       dataEvent ]);
 
   // 3.2] Sorting utils
@@ -848,6 +845,12 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
               tooltip: "Use RAPM (vs Adj Rtg) when displaying rankings",
               toggled: useRapm,
               onClick: () => friendlyChange(() => toggleUseRapm(), true)
+            },
+            {
+              label: "+ Info",
+              tooltip: showInfoSubHeader ? "Hide extra info sub-header" : "Show extra info sub-header (not currently saved like other options)",
+              toggled: showInfoSubHeader,
+              onClick: () => setShowInfoSubHeader(!showInfoSubHeader)
             },
           ] as Array<any>).concat(showHelp ? [
             //TODO: what to show here?

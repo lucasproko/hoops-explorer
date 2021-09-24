@@ -920,6 +920,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 "toggled": true,
                 "tooltip": "Use RAPM (vs Adj Rtg) when displaying rankings",
               },
+              Object {
+                "label": "+ Info",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show extra info sub-header (not currently saved like other options)",
+              },
             ]
           }
         />
@@ -7727,6 +7733,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 "toggled": true,
                 "tooltip": "Use RAPM (vs Adj Rtg) when displaying rankings",
               },
+              Object {
+                "label": "+ Info",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show extra info sub-header (not currently saved like other options)",
+              },
             ]
           }
         />
@@ -14533,6 +14545,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 "onClick": [Function],
                 "toggled": false,
                 "tooltip": "Use RAPM (vs Adj Rtg) when displaying rankings",
+              },
+              Object {
+                "label": "+ Info",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show extra info sub-header (not currently saved like other options)",
               },
             ]
           }
@@ -24236,6 +24254,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 "toggled": false,
                 "tooltip": "Use RAPM (vs Adj Rtg) when displaying rankings",
               },
+              Object {
+                "label": "+ Info",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show extra info sub-header (not currently saved like other options)",
+              },
             ]
           }
         />
@@ -31022,6 +31046,12 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 "onClick": [Function],
                 "toggled": false,
                 "tooltip": "Use RAPM (vs Adj Rtg) when displaying rankings",
+              },
+              Object {
+                "label": "+ Info",
+                "onClick": [Function],
+                "toggled": false,
+                "tooltip": "Show extra info sub-header (not currently saved like other options)",
               },
             ]
           }
