@@ -1,0 +1,118 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`efficiencyLookup efficiencyLookup 1`] = `
+{
+   "from": "0",
+   "_source": {
+      "includes": [
+         "ncaa_name",
+         "team_season.year",
+         "conf",
+         "stats.adj_off",
+         "stats.adj_def",
+         "stats.adj_margin",
+         "stats.adj_tempo",
+         "stats.off._3p_pct.value",
+         "total_poss",
+         "ncaa_seed"
+      ],
+      "excludes": []
+   },
+   "sort": [
+      {
+         "stats.adj_margin.rank": {
+            "order": "asc"
+         }
+      }
+   ],
+   "size": "1000",
+   "query": {
+      "bool": {
+         "filter": [],
+         "must_not": [],
+         "should": [],
+         "must": [
+            {
+               "query_string": {
+                  "query": "team_season.year:2021"
+               }
+            }
+         ]
+      }
+   },
+   "script_fields": {
+      "ncaa_name": {
+         "script": {
+            "lang": "painless",
+            "source": "// Use doc and params, return the field value\\ndef team = doc[\\"team_season.team.keyword\\"].value;\\ndef year = doc[\\"team_season.year\\"].value.toString();\\ndef paramKey = \\"kp_to_pbp\\";\\ndef pbp_team = params[paramKey][team];\\nif (null != pbp_team) {\\n   return pbp_team.NCAA_name;\\n} else {\\n   return team;\\n}",
+            "params": {
+               "kp_to_pbp": {
+                  "test": {
+                     "field": "value"
+                  }
+               }
+            }
+         }
+      },
+      "total_poss": {
+         "script": {
+            "lang": "painless",
+            "source": "// Use doc and params, return the field value\\ndef total_poss = 0;\\nfor (p in doc[\\"games.pace\\"]) {\\n   total_poss += p;\\n}\\nreturn total_poss;",
+            "params": {}
+         }
+      }
+   }
+}
+`;
+
+exports[`efficiencyLookup formatEfficiencyLookupResponse 1`] = `
+{
+   "Gonzaga": {
+      "team_season.year": 2021,
+      "conf": "West Coast Conference",
+      "stats.adj_off.rank": 1,
+      "stats.adj_off.value": 126.4,
+      "stats.adj_def.rank": 11,
+      "stats.adj_def.value": 89.9,
+      "stats.adj_margin.rank": 1,
+      "stats.adj_margin.value": 36.5,
+      "stats.adj_tempo.rank": 7,
+      "stats.adj_tempo.value": 73.8,
+      "stats.off._3p_pct.value": 36.8,
+      "total_poss": 2387,
+      "ncaa_seed": 1,
+      "is_high_major": 0
+   },
+   "Baylor": {
+      "team_season.year": 2021,
+      "conf": "Big 12 Conference",
+      "stats.adj_off.rank": 2,
+      "stats.adj_off.value": 125,
+      "stats.adj_def.rank": 22,
+      "stats.adj_def.value": 91.1,
+      "stats.adj_margin.rank": 2,
+      "stats.adj_margin.value": 33.900000000000006,
+      "stats.adj_tempo.rank": 213,
+      "stats.adj_tempo.value": 67.4,
+      "stats.off._3p_pct.value": 41.3,
+      "total_poss": 2086,
+      "is_high_major": 1
+   },
+   "Michigan": {
+      "team_season.year": 2021,
+      "conf": "Big Ten Conference",
+      "stats.adj_off.rank": 9,
+      "stats.adj_off.value": 117.6,
+      "stats.adj_def.rank": 4,
+      "stats.adj_def.value": 87.9,
+      "stats.adj_margin.rank": 3,
+      "stats.adj_margin.value": 29.69999999999999,
+      "stats.adj_tempo.rank": 256,
+      "stats.adj_tempo.value": 66.6,
+      "stats.off._3p_pct.value": 38.1,
+      "total_poss": 1902,
+      "ncaa_seed": 1,
+      "is_high_major": 1
+   }
+}
+`;

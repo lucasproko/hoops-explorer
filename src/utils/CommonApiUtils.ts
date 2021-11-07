@@ -1,19 +1,19 @@
 
 // System imports
-import { NextApiRequest, NextApiResponse } from 'next';
+import { NextApiResponse } from 'next';
 import fetch from 'isomorphic-unfetch';
 import _ from 'lodash';
+import LRUCache from 'lru-cache';
 
 // Application imports
-import { teamStatsQuery } from "./es-queries/teamStatsQueryTemplate";
-import { rosterCompareQuery } from "./es-queries/rosterCompareQueryTemplate";
-import { playerStatsQuery } from "./es-queries/playerStatsQueryTemplate";
 import { AvailableTeams } from './internal-data/AvailableTeams';
 import { efficiencyInfo } from './internal-data/efficiencyInfo';
+import { efficiencyLookup, formatEfficiencyLookupResponse } from './es-queries/efficiencyLookup';
 import { efficiencyAverages } from './public-data/efficiencyAverages';
+import { ncaaToKenpomLookup } from './public-data/ncaaToKenpomLookup';
 import { ServerRequestCache } from './ServerRequestCache';
 import { dataLastUpdated } from './internal-data/dataLastUpdated';
-import { ParamPrefixes, ParamDefaults, GameFilterParams, CommonFilterParams } from './FilterModels';
+import { ParamDefaults, CommonFilterParams } from './FilterModels';
 import { QueryUtils } from "./QueryUtils";
 
 const pxIsDebug = (process.env.NODE_ENV !== 'production');
@@ -26,6 +26,37 @@ if (pxIsDebug) {
 }
 
 export class CommonApiUtils {
+
+  private static efficiencyCache = new LRUCache<string, Record<string, any>>({
+  	max: 20, //20 years of data (but only implemented for current year so far)
+    maxAge: 24*3600*1000 //(in ms, 24h cache before age out)
+  });
+
+  /** Encodes the auth header */
+  private static authHeader = 
+    'Basic ' + Buffer.from(`${process.env.CLUSTER_USER}:${process.env.CLUSTER_PASS}`).toString('base64');
+  
+  /** Retrieve and cache the current men's efficiency */
+  private static async buildCurrentMenEfficiency(cacheKey: string, year: string, nameLookup: Record<string, Record<string, string>>)
+  {
+    console.log(`Refreshing men's efficiency cache for year=[${year}]`);
+
+    const effFetch = await fetch(`${process.env.CLUSTER_ID}/kenpom_all/_search`, {
+        method: 'post',
+        body:    JSON.stringify(efficiencyLookup(year, nameLookup)),
+        headers: { 
+          'Content-Type': 'application/json',
+          'Authorization': CommonApiUtils.authHeader
+        },
+    });
+    const transform = (x: any) => {
+      const toRet = formatEfficiencyLookupResponse(x || {});
+      return toRet;
+    };
+    const toCache = transform(await effFetch.json());
+    CommonApiUtils.efficiencyCache.set(cacheKey, toCache);
+    return toCache;
+  }
 
   static getHca(params: CommonFilterParams) {
     if (_.startsWith(params.year, "2020")) {
@@ -116,7 +147,28 @@ export class CommonApiUtils {
         ) || { index_template: null, year: null }:
         null;
 
-      const [ efficiency, lookup ] = efficiencyInfo[`${params.gender}_${params.year}`] || [ {}, {} ];
+      // The efficiency is either stored in the project or retrieved on the fly from the ES store
+      const genderYearKey = `${params.gender}_${params.year}`;
+      const [ tmpEfficiency, lookup ] = efficiencyInfo[genderYearKey] || [ undefined, {} ];
+      const getEfficiency = async () => {
+        const lookupForQuery = ncaaToKenpomLookup[genderYearKey];
+        if (lookupForQuery) {
+          const cachedEff = CommonApiUtils.efficiencyCache.get(genderYearKey);
+          if (cachedEff) {
+            return cachedEff;
+          } else {
+            const year = parseInt((params.year as string).substring(0, 4)) + 1; //(KP uses final year of season)
+            const newEff = await CommonApiUtils.buildCurrentMenEfficiency(
+              genderYearKey, year.toString(), lookupForQuery
+            );
+            return newEff;
+          }
+        } else { //(the data is not available in the ES store, so this just falls through to having no efficiency stats)
+          return {};
+        }
+      };
+      const efficiency = tmpEfficiency ? tmpEfficiency : await getEfficiency();
+
       const avgEfficiency = efficiencyAverages[`${params.gender}_${params.year}`] || efficiencyAverages.fallback;
 
       if (team == null) {

@@ -38,6 +38,10 @@ export const ConferenceToNickname: Record<string, string> = {
   "West Coast Conference": "WCC",
 };
 
+export const HighMajorConfs: Set<String> = new Set(
+  [ "Atlantic Coast Conference", "Big 12 Conference", "Big East Conference", "Big Ten Conference", "Pac 10 Conference", "Pac 12 Conference", "Southeastern Conference"]
+);
+
 export const NicknameToConference: Record<string, string> =
   _.chain(ConferenceToNickname).toPairs().map(kv => [ kv[1], kv[0] ]).fromPairs().value();
 

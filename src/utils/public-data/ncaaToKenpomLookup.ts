@@ -3,265 +3,249 @@ import _ from "lodash";
 
 /** The NCAA name to KenPom name mappings, built in 2020, can have per year changes */
 
-/* REMOVED THIS AND MOVED THE LOOKUP TO THE BUILD LOGIC
+/* For the current year only - this is maintained in the Efficiency spreadsheet for earlier years */
 
-export const ncaaToKenpomLookup_2019_20 = {
-   "A&M-Corpus Christi": {
-      "pbp_kp_team": "Texas A&M Corpus Chris"
+const ncaaToKenpomLookup_2021_22: Record<string, Record<string, string>> = {
+   "Charleston": {
+      "NCAA_name": "Col. of Charleston"
    },
-   "Albany (NY)": {
-      "pbp_kp_team": "Albany"
+   "Grambling St.": {
+      "NCAA_name": "Grambling"
    },
-   "Alcorn": {
-      "pbp_kp_team": "Alcorn St."
+   "Arkansas Pine Bluff": {
+      "NCAA_name": "Ark.-Pine Bluff"
    },
-   "Ark.-Pine Bluff": {
-     "pbp_kp_team": "Arkansas Pine Bluff"
+   "Detroit": {
+      "NCAA_name": "Detroit Mercy"
    },
-   "Army West Point": {
-      "pbp_kp_team": "Army"
+   "Northern Iowa": {
+      "NCAA_name": "UNI"
+   },
+   "Central Arkansas": {
+      "NCAA_name": "Central Ark."
+   },
+   "Texas A&M Corpus Chris": {
+      "NCAA_name": "A&M-Corpus Christi"
+   },
+   "Loyola MD": {
+      "NCAA_name": "Loyola Maryland"
+   },
+   "Miami OH": {
+      "NCAA_name": "Miami (OH)"
+   },
+   "North Alabama": {
+      "NCAA_name": "North Ala."
+   },
+   "Bethune Cookman": {
+      "NCAA_name": "Bethune-Cookman"
+   },
+   "Cal St. Bakersfield": {
+      "NCAA_name": "CSU Bakersfield"
+   },
+   "St. Francis NY": {
+      "NCAA_name": "St. Francis Brooklyn"
+   },
+   "Florida Atlantic": {
+      "NCAA_name": "Fla. Atlantic"
+   },
+   "East Tennessee St.": {
+      "NCAA_name": "ETSU"
+   },
+   "Central Connecticut": {
+      "NCAA_name": "Central Conn. St."
+   },
+   "Western Illinois": {
+      "NCAA_name": "Western Ill."
+   },
+   "Northern Colorado": {
+      "NCAA_name": "Northern Colo."
+   },
+   "Northern Kentucky": {
+      "NCAA_name": "Northern Ky."
+   },
+   "Southeast Missouri St.": {
+      "NCAA_name": "Southeast Mo. St."
+   },
+   "Maryland Eastern Shore": {
+      "NCAA_name": "UMES"
+   },
+   "South Florida": {
+      "NCAA_name": "South Fla."
+   },
+   "Miami FL": {
+      "NCAA_name": "Miami (FL)"
+   },
+   "Appalachian St.": {
+      "NCAA_name": "App State"
+   },
+   "Southern": {
+      "NCAA_name": "Southern U."
+   },
+   "Albany": {
+      "NCAA_name": "Albany (NY)"
+   },
+   "N.C. State": {
+      "NCAA_name": "NC State"
+   },
+   "Tennessee Martin": {
+      "NCAA_name": "UT Martin"
+   },
+   "Western Kentucky": {
+      "NCAA_name": "Western Ky."
+   },
+   "Eastern Kentucky": {
+      "NCAA_name": "Eastern Ky."
+   },
+   "Prairie View A&M": {
+      "NCAA_name": "Prairie View"
+   },
+   "Army": {
+      "NCAA_name": "Army West Point"
+   },
+   "Seattle": {
+      "NCAA_name": "Seattle U"
+   },
+   "Mississippi Valley St.": {
+      "NCAA_name": "Mississippi Val."
+   },
+   "Southeastern Louisiana": {
+      "NCAA_name": "Southeastern La."
    },
    "Auburn": {
-      "pbp_kp_team": "Auburn"
+      "NCAA_name": "Auburn"
    },
-   "Bethune-Cookman": {
-      "pbp_kp_team": "Bethune Cookman"
+   "Cal St. Northridge": {
+      "NCAA_name": "CSUN"
    },
-   "Boston U.": {
-      "pbp_kp_team": "Boston University"
+   "Western Michigan": {
+      "NCAA_name": "Western Mich."
    },
-   "California Baptist": {
-      "pbp_kp_team": "Cal Baptist"
+   "Saint Mary's": {
+      "NCAA_name": "Saint Mary's (CA)"
    },
-   "Central Ark.": {
-      "pbp_kp_team": "Central Arkansas"
+   "Boston University": {
+      "NCAA_name": "Boston U."
    },
-   "Central Conn. St.": {
-      "pbp_kp_team": "Central Connecticut"
+   "Alcorn St.": {
+      "NCAA_name": "Alcorn"
    },
-   "Central Mich.": {
-      "pbp_kp_team": "Central Michigan"
+   "Mississippi": {
+      "NCAA_name": "Ole Miss"
    },
-   "Charleston So.": {
-      "pbp_kp_team": "Charleston Southern"
+   "St. Francis PA": {
+      "NCAA_name": "Saint Francis (PA)"
    },
-   "Col. of Charleston": {
-      "pbp_kp_team": "Charleston"
+   "DePaul": {
+      "NCAA_name": "DePaul"
    },
-   "CSU Bakersfield": {
-      "pbp_kp_team": "Cal St. Bakersfield"
+   "SIU Edwardsville": {
+      "NCAA_name": "SIUE"
    },
-   "CSUN": {
-      "pbp_kp_team": "Cal St. Northridge"
+   "Connecticut": {
+      "NCAA_name": "UConn"
    },
-   "Detroit Mercy": {
-      "pbp_kp_team": "Detroit"
+   "Purdue Fort Wayne": {
+      "NCAA_name": "Purdue Fort Wayne"
    },
-   "Eastern Ill.": {
-      "pbp_kp_team": "Eastern Illinois"
+   "Eastern Illinois": {
+      "NCAA_name": "Eastern Ill."
    },
-   "Eastern Ky.": {
-      "pbp_kp_team": "Eastern Kentucky"
+   "Incarnate Word": {
+      "NCAA_name": "UIW"
    },
-   "Eastern Mich.": {
-      "pbp_kp_team": "Eastern Michigan"
+   "Southern Miss": {
+      "NCAA_name": "Southern Miss."
    },
-   "Eastern Wash.": {
-      "pbp_kp_team": "Eastern Washington"
+   "North Carolina Central": {
+      "NCAA_name": "N.C. Central"
    },
-   "ETSU": {
-      "pbp_kp_team": "East Tennessee St."
+   "Northern Arizona": {
+      "NCAA_name": "Northern Ariz."
    },
-   "FGCU": {
-      "pbp_kp_team": "Florida Gulf Coast"
+   "Louisiana Monroe": {
+      "NCAA_name": "ULM"
    },
-   "Fla. Atlantic": {
-      "pbp_kp_team": "Florida Atlantic"
+   "Eastern Washington": {
+      "NCAA_name": "Eastern Wash."
    },
-   "Ga. Southern": {
-      "pbp_kp_team": "Georgia Southern"
+   "Charleston Southern": {
+      "NCAA_name": "Charleston So."
    },
-   "Gardner-Webb": {
-      "pbp_kp_team": "Gardner Webb"
+   "Florida Gulf Coast": {
+      "NCAA_name": "FGCU"
    },
-   "Grambling": {
-      "pbp_kp_team": "Grambling St."
+   "Southern Illinois": {
+      "NCAA_name": "Southern Ill."
    },
-   "Kansas City": {
-      "pbp_kp_team": "UMKC"
+   "North Carolina A&T": {
+      "NCAA_name": "N.C. A&T"
    },
-   "La.-Monroe": {
-      "pbp_kp_team": "Louisiana Monroe"
+   "UMKC": {
+      "NCAA_name": "Kansas City"
    },
-   "Lamar University": {
-      "pbp_kp_team": "Lamar"
+   "Gardner Webb": {
+      "NCAA_name": "Gardner-Webb"
+   },
+   "Stephen F. Austin": {
+      "NCAA_name": "SFA"
+   },
+   "Denver": {
+      "NCAA_name": "Denver"
+   },
+   "Nebraska Omaha": {
+      "NCAA_name": "Omaha"
+   },
+   "UT Rio Grande Valley": {
+      "NCAA_name": "UTRGV"
+   },
+   "Cal Baptist": {
+      "NCAA_name": "California Baptist"
+   },
+   "USC": {
+      "NCAA_name": "Southern California"
+   },
+   "McNeese St.": {
+      "NCAA_name": "McNeese"
+   },
+   "UNC Wilmington": {
+      "NCAA_name": "UNCW"
+   },
+   "St. John's": {
+      "NCAA_name": "St. John's (NY)"
+   },
+   "Western Carolina": {
+      "NCAA_name": "Western Caro."
+   },
+   "Eastern Michigan": {
+      "NCAA_name": "Eastern Mich."
+   },
+   "Central Michigan": {
+      "NCAA_name": "Central Mich."
+   },
+   "Lamar": {
+      "NCAA_name": "Lamar University"
+   },
+   "Loyola Marymount": {
+      "NCAA_name": "LMU (CA)"
+   },
+   "Middle Tennessee": {
+      "NCAA_name": "Middle Tenn."
+   },
+   "Georgia Southern": {
+      "NCAA_name": "Ga. Southern"
+   },
+   "Northern Illinois": {
+      "NCAA_name": "Northern Ill."
    },
    "LIU": {
-      "pbp_kp_team": "LIU"
+      "NCAA_name": "LIU"
    },
-   "LMU (CA)": {
-      "pbp_kp_team": "Loyola Marymount"
-   },
-   "Loyola Maryland": {
-      "pbp_kp_team": "Loyola MD"
-   },
-   "McNeese": {
-      "pbp_kp_team": "McNeese St."
-   },
-   "Miami (FL)": {
-      "pbp_kp_team": "Miami FL"
-   },
-   "Miami (OH)": {
-      "pbp_kp_team": "Miami OH"
-   },
-   "Middle Tenn.": {
-      "pbp_kp_team": "Middle Tennessee"
-   },
-   "Mississippi Val.": {
-      "pbp_kp_team": "Mississippi Valley St."
-   },
-   "N.C. A&T": {
-      "pbp_kp_team": "North Carolina A&T"
-   },
-   "N.C. Central": {
-      "pbp_kp_team": "North Carolina Central"
-   },
-   "NC State": {
-      "pbp_kp_team": "N.C. State"
-   },
-   "North Ala.": {
-      "pbp_kp_team": "North Alabama"
-   },
-   "Northern Ariz.": {
-      "pbp_kp_team": "Northern Arizona"
-   },
-   "Northern Colo.": {
-      "pbp_kp_team": "Northern Colorado"
-   },
-   "Northern Ill.": {
-      "pbp_kp_team": "Northern Illinois"
-   },
-   "Northern Ky.": {
-      "pbp_kp_team": "Northern Kentucky"
-   },
-   "Ole Miss": {
-      "pbp_kp_team": "Mississippi"
-   },
-   "Omaha": {
-      "pbp_kp_team": "Nebraska Omaha"
-   },
-   "Prairie View": {
-      "pbp_kp_team": "Prairie View A&M"
-   },
-   "Purdue Fort Wayne": { //(this one changed recently)
-      "pbp_kp_team": "Purdue Fort Wayne"
-   },
-   "Saint Francis (PA)": {
-      "pbp_kp_team": "St. Francis PA"
-   },
-   "Saint Mary's (CA)": {
-      "pbp_kp_team": "Saint Mary's"
-   },
-   "Seattle U": {
-      "pbp_kp_team": "Seattle"
-   },
-   "SFA": {
-      "pbp_kp_team": "Stephen F. Austin"
-   },
-   "SIUE": {
-      "pbp_kp_team": "SIU Edwardsville"
-   },
-   "South Fla.": {
-      "pbp_kp_team": "South Florida"
-   },
-   "Southeast Mo. St.": {
-      "pbp_kp_team": "Southeast Missouri St."
-   },
-   "Southeastern La.": {
-      "pbp_kp_team": "Southeastern Louisiana"
-   },
-   "Southern California": {
-      "pbp_kp_team": "USC"
-   },
-   "Southern Ill.": {
-      "pbp_kp_team": "Southern Illinois"
-   },
-   "Southern Miss.": {
-      "pbp_kp_team": "Southern Miss"
-   },
-   "Southern U.": {
-      "pbp_kp_team": "Southern"
-   },
-   "St. Francis Brooklyn": {
-      "pbp_kp_team": "St. Francis NY"
-   },
-   "St. John's (NY)": {
-      "pbp_kp_team": "St. John's"
-   },
-   "UConn": {
-      "pbp_kp_team": "Connecticut"
-   },
-   "UIC": {
-      "pbp_kp_team": "Illinois Chicago"
-   },
-   "UIW": {
-      "pbp_kp_team": "Incarnate Word"
-   },
-   "UMES": {
-      "pbp_kp_team": "Maryland Eastern Shore"
-   },
-   "UNCW": {
-      "pbp_kp_team": "UNC Wilmington"
-   },
-   "UNI": {
-      "pbp_kp_team": "Northern Iowa"
-   },
-   "UT Martin": {
-      "pbp_kp_team": "Tennessee Martin"
-   },
-   "UTRGV": {
-      "pbp_kp_team": "UT Rio Grande Valley"
-   },
-   "Western Caro.": {
-      "pbp_kp_team": "Western Carolina"
-   },
-   "Western Ill.": {
-      "pbp_kp_team": "Western Illinois"
-   },
-   "Western Ky.": {
-      "pbp_kp_team": "Western Kentucky"
-   },
-   "Western Mich.": {
-      "pbp_kp_team": "Western Michigan"
+   "Illinois Chicago": {
+      "NCAA_name": "UIC"
    }
 };
 
-export const ncaaToKenpomLookup_2018_19 = _.assign(_.cloneDeep(ncaaToKenpomLookup_2019_20), {
-  "NC State": {
-     "pbp_kp_team": "North Carolina St."
-  },
-  "LIU": {
-     "pbp_kp_team": "LIU Brooklyn"
-  }
-});
-
-export const ncaaToKenpomLookup_2017_18 = _.assign(_.cloneDeep(ncaaToKenpomLookup_2018_19), {
-  "Col. of Charleston": {
-     "pbp_kp_team": "College of Charleston"
-  },
-  "Purdue Fort Wayne": {
-     "pbp_kp_team": "Fort Wayne"
-  },
-});
-
-export const ncaaToKenpomLookup_2016_17 = ncaaToKenpomLookup_2017_18;
-
-export const ncaaToKenpomLookup_2015_16 = _.assign(_.cloneDeep(ncaaToKenpomLookup_2016_17), {
-  "Purdue Fort Wayne": {
-     "pbp_kp_team": "IPFW"
-  },
-});
-
-export const ncaaToKenpomLookup_2014_15 = ncaaToKenpomLookup_2015_16;
-
-*/
+/** Contains NCAA/KP lookups for gender/years where we want to retrieve efficiency from the cache (current year only) */
+export const ncaaToKenpomLookup: Record<string, Record<string, Record<string, string>>> = {
+   "Men_2021/22": ncaaToKenpomLookup_2021_22
+};
