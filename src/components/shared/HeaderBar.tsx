@@ -138,6 +138,9 @@ const HeaderBar: React.FunctionComponent<Props> = ({thisPage, common, override})
   const playerLeaderboardTooltipNyNj2017 = (
     <Tooltip id="playerLeaderboardTooltipNyNj2017">Go to the (luck adjusted) Player Leaderboard page (Men, 'high' tier), filtered for NY/NJ-area players class of 2017+ (h/t jules99b from reddit)</Tooltip>
   );
+  const playerLeaderboardTooltipEuro2017 = (
+    <Tooltip id="playerLeaderboardTooltipEuro2017">Go to the (luck adjusted) Player Leaderboard page (Men, 'high' tier), filtered for European players class of 2017+</Tooltip>
+  );
   const baseGameTooltip = (
     <Tooltip id="baseGameTooltip">Go to the On/Off Analysis page with the current baseline query</Tooltip>
   );
@@ -266,6 +269,9 @@ const HeaderBar: React.FunctionComponent<Props> = ({thisPage, common, override})
             </Dropdown.Item>
             <Dropdown.Item>
               {buildNavItem("NY/NJ-area players (HS 2017+)", playerLeaderboardTooltipNyNj2017, getPlayerLeaderboardTrackingUrl("__NYNJ_2017__"), true)}
+            </Dropdown.Item>
+            <Dropdown.Item>
+              {buildNavItem("European players (HS 2017+)", playerLeaderboardTooltipEuro2017, getPlayerLeaderboardTrackingUrl("__EURO_2017__"), true)}
             </Dropdown.Item>
             {
               // Archived tracking lists:
