@@ -45,6 +45,11 @@ export const absolutePositionFixes: Record<string, Record<string, AbsolutePositi
       position: "S-PF"
     }
   },
+  "Men_Purdue_2021/22": {
+    "Ivey, Jaden": {
+      position: "s-PG"
+    }
+  },
   "Men_Maryland_2020/21": {
     "Smart, Aquan": {
       position: "s-PG"
