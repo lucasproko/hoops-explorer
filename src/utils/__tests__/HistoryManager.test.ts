@@ -1,9 +1,8 @@
 
 // Lodash
 import _ from "lodash";
-
+import { ParamDefaults, GameFilterParams, LineupFilterParams, TeamReportFilterParams } from "../FilterModels";
 import { HistoryManager } from "../HistoryManager";
-import { GameFilterParams, LineupFilterParams, TeamReportFilterParams } from "../utils/FilterModels";
 
 describe("HistoryManager", () => {
   test("HistoryManager - getHistory/addParamsToHistory/getLastQuery/clearHistory", () => {
@@ -56,7 +55,7 @@ describe("HistoryManager", () => {
       possAsPct: false
     };
     expect(HistoryManager.gameFilterSummary(game1b)).toBe(
-      `On/Off: 2020/21 test (M): on:'', auto-off, base:'', team:[show-on-off-luck-diags,show-diffs], players:[sort:test-sort,filter:test-fil,show-base,show-def,show-rtg-diags,show-pos-diags,show-play-types,poss-#]`
+      `On/Off: ${ParamDefaults.defaultYear} test (M): on:'', auto-off, base:'', team:[show-on-off-luck-diags,show-diffs], players:[sort:test-sort,filter:test-fil,show-base,show-def,show-rtg-diags,show-pos-diags,show-play-types,poss-#]`
     );
     const game2: GameFilterParams = {
       team: "test",
@@ -79,15 +78,15 @@ describe("HistoryManager", () => {
     const lineup1: LineupFilterParams = {
     };
     expect(HistoryManager.lineupFilterSummary(lineup1)).toBe(
-      `Lineups: 2020/21  (M): query:'' (max:50, min-poss:5)`
+      `Lineups: ${ParamDefaults.defaultYear}  (M): query:'' (max:50, min-poss:5)`
     );
     const lineup2: LineupFilterParams = {
       team: "team2",
       year: "2018/19", gender: "Women",
-      baseQuery: "test ''", maxTableSize: 11,
+      baseQuery: "test ''", maxTableSize: "11",
       minRank: "1", maxRank: "370",
       decorate: true,
-      minPoss: 10, sortBy: "test-sort",
+      minPoss: "10", sortBy: "test-sort",
       filter: "Test'Filter",
       luck: { base: "baseline" },
       showLineupLuckDiags: true
@@ -98,11 +97,11 @@ describe("HistoryManager", () => {
     const lineup3: LineupFilterParams = {
       team: "team2",
       year: "2018/19", gender: "Women",
-      baseQuery: "test ''", maxTableSize: 11,
+      baseQuery: "test ''", maxTableSize: "11",
       minRank: "1", maxRank: "370",
       decorate: false,
       showTotal: true,
-      minPoss: 10, sortBy: "test-sort",
+      minPoss: "10", sortBy: "test-sort",
       filter: "Test'Filter",
       lineupLuck: true,
       aggByPos: "PG"
@@ -115,7 +114,7 @@ describe("HistoryManager", () => {
     const report1: TeamReportFilterParams = { //(need to change this every season)
     };
     expect(HistoryManager.teamReportFilterSummary(report1)).toBe(
-      `On/Off Report: 2020/21  (M): query:'' (sort:desc:off_poss, filter:'', show:[])`
+      `On/Off Report: ${ParamDefaults.defaultYear}  (M): query:'' (sort:desc:off_poss, filter:'', show:[])`
     );
     const report2: TeamReportFilterParams = {
       team: "team3",
@@ -123,7 +122,6 @@ describe("HistoryManager", () => {
       baseQuery: "test ''",
       minRank: "10", maxRank: "370",
       sortBy: "test-sort",
-      players: [ "ignore1", "ignore2" ],
       filter: "Test'Filter",
       showComps: false
     };

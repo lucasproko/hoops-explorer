@@ -4,7 +4,6 @@ import { initGA, logPageView } from '../utils/GoogleAnalytics';
 // React imports:
 import React, { useState, useEffect, useRef } from 'react';
 import Router, { useRouter } from 'next/router';
-import Link from 'next/link';
 
 // Next imports:
 import { NextPage } from 'next';
@@ -21,9 +20,7 @@ import Col from 'react-bootstrap/Col';
 
 // App components:
 import { ParamPrefixes, LineupLeaderboardParams, ParamDefaults } from '../utils/FilterModels';
-import { HistoryManager } from '../utils/HistoryManager';
 import LineupLeaderboardTable, { LineupLeaderboardStatsModel } from '../components/LineupLeaderboardTable';
-import GenericCollapsibleCard from '../components/shared/GenericCollapsibleCard';
 import Footer from '../components/shared/Footer';
 import HeaderBar from '../components/shared/HeaderBar';
 
@@ -107,7 +104,7 @@ const LineupLeaderboardPage: NextPage<{}> = () => {
       "t100" : (paramObj.confOnly ? "conf" : "all");
 
     const gender = paramObj.gender || ParamDefaults.defaultGender;
-    const fullYear = (paramObj.year || ParamDefaults.defaultYear);
+    const fullYear = (paramObj.year || ParamDefaults.defaultLeaderboardYear);
     const year = fullYear.substring(0, 4);
     const tier = (paramObj.tier || ParamDefaults.defaultTier);
 

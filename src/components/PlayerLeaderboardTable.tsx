@@ -351,10 +351,10 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
           (_.find(filterFragmentsNve, (fragment) => strToTest.indexOf(fragment) >= 0) ? false : true))
         ;
     }).sortBy(
-      (year != "All") && (sortBy == ParamDefaults.defaultPlayerLboardSortBy(
+      (year != "All") && (tier != "All") && (sortBy == ParamDefaults.defaultPlayerLboardSortBy(
         ParamDefaults.defaultPlayerLboardUseRapm, ParamDefaults.defaultPlayerLboardFactorMins
       )) ? [] : //(can save on a sort if using the generated sort-order)
-        [ LineupTableUtils.sorter(sortBy) , (p) => { p.baseline?.off_team_poss?.value || 0 } ]
+        [ LineupTableUtils.sorter(sortBy) , (p) => p.baseline?.off_team_poss?.value || 0, (p) => p.key ]
     ).take(parseInt(maxTableSize)).value();
 
     const usefulSortCombo =  useRapm ?
@@ -387,6 +387,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
         <Tooltip id={`rankings_${playerIndex}`}>
           {factorMins ? "Production " : "Rating "}Ranks:<br/>
           {isGeneralSortOrFilter ? "[filtered/sorted subset] " : ""}{isGeneralSortOrFilter ? <br/> : null}
+          {player.tier ? `${player.tier} Tier` : null}{player.tier ? <br/> : null}
           [{useRapm ? "Net RAPM" : "Adj Net Rating+"}]<br/>
           [{useRapm ? "Offensive RAPM" : "Adj Offensive Rating+"}]<br/>
           [{useRapm ? "Defensive RAPM" : "Adj Defensive Rating+"}]
@@ -407,7 +408,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
             </OverlayTrigger>
             :
             <OverlayTrigger placement="auto" overlay={rankingsTooltip}>
-              <span>{generalRank}<small>{marginRank} ({offRank} / {defRank})</small></span>
+              <span>{generalRank}<small>{player.tier ? <b>{player.tier.substring(0, 1)}</b> : ""}{marginRank} ({offRank} / {defRank})</small></span>
             </OverlayTrigger>;
       };
       const rankings = getRankings();
@@ -499,10 +500,16 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       player.off_drb = player.def_orb; //(just for display, all processing should use def_orb)
       TableDisplayUtils.injectPlayTypeInfo(player, true, true, teamSeasonLookup);
 
-      return _.flatten([
+      const isDup = (tier == "All") && (playerIndex > 0) && 
+        (players[playerIndex - 1].key == player.key) && (players[playerIndex - 1].year == player.year);
+
+      return isDup ? _.flatten([
+        [ GenericTableOps.buildTextRow(rankings, "small") ] 
+      ])
+      : _.flatten([
+        playerIndex > 0 ? [ GenericTableOps.buildRowSeparator() ] : [],
         [ GenericTableOps.buildDataRow(player, offPrefixFn, offCellMetaFn) ],
         [ GenericTableOps.buildDataRow(player, defPrefixFn, defCellMetaFn) ],
-        [ GenericTableOps.buildRowSeparator() ]
       ]);
     });
 
@@ -582,7 +589,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
 
   function getCurrentConfsOrPlaceholder() {
     return (confs == "") ?
-      { label: `All Teams in ${tier} Tier` } :
+      { label: `All Teams in ${tier} Tier${tier == "All" ? "s" : ""}` } :
       confs.split(",").map((conf: string) => stringToOption(NicknameToConference[conf] || conf));
   }
 
@@ -666,7 +673,12 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       <Col xs={6} sm={6} md={3} lg={2}>
         <Select
           value={ stringToOption(year) }
-          options={[ "2018/9", "2019/20", "2020/21" ].concat(tier == "High" ? [ "All", "Extra" ] : []).map(
+          options={            
+            (
+              (tier == "High" || tier == "All") ?
+                [ "2018/9", "2019/20", "2020/21", "All" ] :
+                [ "2020/21", "All" ] 
+            ).concat(tier == "High" ? [ "Extra" ] : []).map(
             (r) => stringToOption(r)
           )}
           isSearchable={false}

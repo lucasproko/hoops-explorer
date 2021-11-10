@@ -112,23 +112,33 @@ const PlayLeaderboardPage: NextPage<{}> = () => {
       "t100" : (paramObj.confOnly ? "conf" : "all");
 
     const gender = paramObj.gender || ParamDefaults.defaultGender;
-    const fullYear = (paramObj.year || ParamDefaults.defaultYear);
+    const fullYear = (paramObj.year || ParamDefaults.defaultLeaderboardYear);
     const year = fullYear.substring(0, 4);
     const tier = (paramObj.tier || ParamDefaults.defaultTier);
 
-    if (year == "All") { //TODO: tidy this up
+    if ((year == "All") || (tier == "All")) { //TODO: tidy this up
       setDataEvent(dataEventInit); //(clear saved sub-events)
 
-      const years = [ "2018/9", "2019/20", "2020/21", "Extra" ];
-      const fetchAll = Promise.all(years.map(tmpYear => tmpYear.substring(0, 4)).map((subYear) => {
-        return fetch(`/leaderboards/lineups/players_${dataSubEventKey}_${gender}_${subYear}_${tier}.json`)
+      const years = _.filter([ "2018/9", "2019/20", "2020/21", "Extra" ], inYear => (year == "All") || (inYear == fullYear));
+      const tiers = _.filter([ "High", "Medium", "Low" ], inTier => (tier == "All") || (inTier == tier));
+
+      const yearsAndTiers = _.flatMap(years, inYear => tiers.map(inTier => [ inYear, inTier ]));
+ 
+      const fetchAll = Promise.all(yearsAndTiers.map(([ inYear, inTier ]) => {
+        const subYear = inYear.substring(0, 4);
+        return fetch(`/leaderboards/lineups/players_${dataSubEventKey}_${gender}_${subYear}_${inTier}.json`)
           .then((response: fetch.IsomorphicResponse) => {
-            return response.ok ? response.json() : Promise.resolve({ error: "No data available" });
+            return response.ok ? 
+            response.json().then((j: any) => { //(tag the tier in)
+              if (tier == "All") j.tier = inTier;
+              return j;
+            }) : 
+            Promise.resolve({ error: "No data available" });
           });
       }));
       fetchAll.then((jsons: any[]) => {
         setDataSubEvent({
-          players: _.chain(jsons).map(d => d.players || []).flatten().value(),
+          players: _.chain(jsons).map(d => (d.players || []).map((p: any) => { p.tier = d.tier; return p; }) || []).flatten().value(),
           confs: _.chain(jsons).map(d => d.confs || []).flatten().uniq().value(),
           lastUpdated: 0 //TODO use max?
         });

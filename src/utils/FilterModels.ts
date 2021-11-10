@@ -240,7 +240,8 @@ export class ParamDefaults {
   static readonly defaultTeamReportLuckAdjust = false;
   // Common
   static readonly defaultTeam = "";
-  static readonly defaultYear = "2020/21";
+  static readonly defaultYear = "2021/22";
+  static readonly defaultLeaderboardYear = "2020/21"; //(takes a while longer to get updated)
   static readonly defaultGender = "Men";
   static readonly defaultMinRank = "0";
   static readonly defaultMaxRank = "400";

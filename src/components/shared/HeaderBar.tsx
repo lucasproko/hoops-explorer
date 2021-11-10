@@ -1,10 +1,6 @@
 // React imports:
 import React, { useState, useEffect } from 'react';
-import Router, { useRouter } from 'next/router';
 import Link from 'next/link';
-
-// Next imports:
-import { NextPage } from 'next';
 
 // Lodash:
 import _ from "lodash";
@@ -15,7 +11,6 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
-import Popover from 'react-bootstrap/Popover';
 import Tooltip from 'react-bootstrap/Tooltip';
 import Dropdown from 'react-bootstrap/Dropdown';
 
@@ -24,7 +19,7 @@ import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 
 
 // Utils:
-import { getCommonFilterParams, getCommonLboardFilterParams, ParamPrefixes, CommonFilterParams, GameFilterParams, LineupFilterParams, TeamReportFilterParams, LineupLeaderboardParams, PlayerLeaderboardParams } from '../../utils/FilterModels';
+import { getCommonFilterParams, getCommonLboardFilterParams, ParamPrefixes, CommonFilterParams, GameFilterParams, LineupFilterParams, TeamReportFilterParams, LineupLeaderboardParams, PlayerLeaderboardParams, ParamDefaults } from '../../utils/FilterModels';
 import { UrlRouting } from "../../utils/UrlRouting";
 import { HistoryManager } from '../../utils/HistoryManager';
 
@@ -56,7 +51,7 @@ const HeaderBar: React.FunctionComponent<Props> = ({thisPage, common, override})
   const server = (typeof window === `undefined`) ? //(ensures SSR code still compiles)
     "server" : window.location.hostname;
 
-  const hasMidMajors = (!common.year || _.startsWith(common.year, "2020"));
+  const hasMidMajors = (!common.year || _.startsWith(common.year, "202")); //(2020 onwards)
 
   // Lineup Leaderboard
   function getLineupLeaderboardUrl(tier: "High" | "Medium" | "Low") {
@@ -65,7 +60,7 @@ const HeaderBar: React.FunctionComponent<Props> = ({thisPage, common, override})
     );
   }
   // Player Leaderboard
-  function getPlayerLeaderboardUrl(tier: "High" | "Medium" | "Low") {
+  function getPlayerLeaderboardUrl(tier: "High" | "Medium" | "Low" | "All") {
     return UrlRouting.getPlayerLeaderboardUrl(
       getCommonLboardFilterParams(common, tier) as PlayerLeaderboardParams
     );
@@ -75,6 +70,8 @@ const HeaderBar: React.FunctionComponent<Props> = ({thisPage, common, override})
       {
         ...(getCommonLboardFilterParams(common) as PlayerLeaderboardParams),
         gender: "Men",
+        tier: "All",
+        year: ParamDefaults.defaultLeaderboardYear,
         filter: trackingList
       }
     );
@@ -117,18 +114,19 @@ const HeaderBar: React.FunctionComponent<Props> = ({thisPage, common, override})
 
 //TODO sort all these out
 
-  const describeConfs = (tier: "High" | "Medium" | "Low") => {
+  const describeConfs = (tier: "High" | "Medium" | "Low" | "All") => {
     switch (tier) {
       case "High": return "P6 and friends, or any T150-better team";
       case "Medium": return "Mid majors, must be T275-better team"
       case "Low": return "Bottom 7 conferences, or any T250-worse team";
+      case "All": return "All conferences, can get slow";
     }
     return "";
   };
   const lineupLeaderboardTooltip = (tier: "High" | "Medium" | "Low") => {
     return <Tooltip id={"lineupLeaderboardTooltip" + tier}>Go to the (luck adjusted) Lineup T400 Leaderboard page ({describeConfs(tier)})</Tooltip>
   };
-  const playerLeaderboardTooltip = (tier: "High" | "Medium" | "Low") => {
+  const playerLeaderboardTooltip = (tier: "High" | "Medium" | "Low" | "All") => {
     return <Tooltip id={"playerLeaderboardTooltip" + tier}>Go to the (luck adjusted) Player Leaderboard T900 page ({describeConfs(tier)})</Tooltip>
   };
   const playerLeaderboardTooltipNba2021 = (
@@ -239,6 +237,10 @@ const HeaderBar: React.FunctionComponent<Props> = ({thisPage, common, override})
         {hasMidMajors ?
           <Dropdown.Menu style={dropdownStyle}>
             <Dropdown.Item>
+              {buildNavItem("Players - all tiers", playerLeaderboardTooltip("All"), getPlayerLeaderboardUrl("All"), true)}
+            </Dropdown.Item>
+            <Dropdown.Divider/>
+            <Dropdown.Item>
               {buildNavItem("Players - 'high' tier", playerLeaderboardTooltip("High"), getPlayerLeaderboardUrl("High"), true)}
             </Dropdown.Item>
             <Dropdown.Item>
@@ -260,14 +262,17 @@ const HeaderBar: React.FunctionComponent<Props> = ({thisPage, common, override})
             </Dropdown.Item>
             <Dropdown.Divider/>
             <Dropdown.Item>
-              {buildNavItem("2021 NBA prospects", playerLeaderboardTooltipNba2021, getPlayerLeaderboardTrackingUrl("__NBA_2021__"), true)}
-            </Dropdown.Item>
-            <Dropdown.Item>
               {buildNavItem("Md/DMV-area players (HS 2017+)", playerLeaderboardTooltipMdDmv2017, getPlayerLeaderboardTrackingUrl("__DMV_2017__"), true)}
             </Dropdown.Item>
             <Dropdown.Item>
               {buildNavItem("NY/NJ-area players (HS 2017+)", playerLeaderboardTooltipNyNj2017, getPlayerLeaderboardTrackingUrl("__NYNJ_2017__"), true)}
             </Dropdown.Item>
+            {
+              // Archived tracking lists:
+              // <Dropdown.Item>
+              // {buildNavItem("2021 NBA prospects", playerLeaderboardTooltipNba2021, getPlayerLeaderboardTrackingUrl("__NBA_2021__"), true)}
+              // </Dropdown.Item>
+            }
           </Dropdown.Menu>
           :
           <Dropdown.Menu style={dropdownStyle}>

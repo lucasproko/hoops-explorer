@@ -110,10 +110,6 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
                 "label": "Men",
                 "value": "Men",
               },
-              Object {
-                "label": "Women",
-                "value": "Women",
-              },
             ]
           }
           value={
@@ -151,6 +147,10 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
                 "value": "2020/21",
               },
               Object {
+                "label": "2021/22",
+                "value": "2021/22",
+              },
+              Object {
                 "label": "Extra",
                 "value": "Extra",
               },
@@ -158,8 +158,8 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
           }
           value={
             Object {
-              "label": "2020/21",
-              "value": "2020/21",
+              "label": "2021/22",
+              "value": "2021/22",
             }
           }
         />
@@ -209,6 +209,14 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
               Object {
                 "label": "Alabama A&M",
                 "value": "Alabama A&M",
+              },
+              Object {
+                "label": "Alabama St.",
+                "value": "Alabama St.",
+              },
+              Object {
+                "label": "Albany (NY)",
+                "value": "Albany (NY)",
               },
               Object {
                 "label": "Alcorn",
@@ -267,8 +275,16 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
                 "value": "Baylor",
               },
               Object {
+                "label": "Bellarmine",
+                "value": "Bellarmine",
+              },
+              Object {
                 "label": "Belmont",
                 "value": "Belmont",
+              },
+              Object {
+                "label": "Bethune-Cookman",
+                "value": "Bethune-Cookman",
               },
               Object {
                 "label": "Binghamton",
@@ -293,6 +309,10 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
               Object {
                 "label": "Bradley",
                 "value": "Bradley",
+              },
+              Object {
+                "label": "Brown",
+                "value": "Brown",
               },
               Object {
                 "label": "Bryant",
@@ -331,6 +351,10 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
                 "value": "California",
               },
               Object {
+                "label": "California Baptist",
+                "value": "California Baptist",
+              },
+              Object {
                 "label": "Campbell",
                 "value": "Campbell",
               },
@@ -339,8 +363,8 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
                 "value": "Canisius",
               },
               Object {
-                "label": "Central Ark.",
-                "value": "Central Ark.",
+                "label": "Central Ark",
+                "value": "Central Ark",
               },
               Object {
                 "label": "Central Conn. St.",
@@ -399,12 +423,24 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
                 "value": "Colorado St.",
               },
               Object {
+                "label": "Columbia",
+                "value": "Columbia",
+              },
+              Object {
                 "label": "Coppin St.",
                 "value": "Coppin St.",
               },
               Object {
+                "label": "Cornell",
+                "value": "Cornell",
+              },
+              Object {
                 "label": "Creighton",
                 "value": "Creighton",
+              },
+              Object {
+                "label": "Dartmouth",
+                "value": "Dartmouth",
               },
               Object {
                 "label": "Davidson",
@@ -433,6 +469,10 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
               Object {
                 "label": "Detroit Mercy",
                 "value": "Detroit Mercy",
+              },
+              Object {
+                "label": "Dixie St.",
+                "value": "Dixie St.",
               },
               Object {
                 "label": "Drake",
@@ -511,6 +551,10 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
                 "value": "Florida A&M",
               },
               Object {
+                "label": "Florida A&M",
+                "value": "Florida A&M",
+              },
+              Object {
                 "label": "Florida St.",
                 "value": "Florida St.",
               },
@@ -581,6 +625,10 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
               Object {
                 "label": "Hartford",
                 "value": "Hartford",
+              },
+              Object {
+                "label": "Harvard",
+                "value": "Harvard",
               },
               Object {
                 "label": "Hawaii",
@@ -759,6 +807,10 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
                 "value": "Loyola Maryland",
               },
               Object {
+                "label": "Maine",
+                "value": "Maine",
+              },
+              Object {
                 "label": "Manhattan",
                 "value": "Manhattan",
               },
@@ -789,6 +841,10 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
               Object {
                 "label": "Mercer",
                 "value": "Mercer",
+              },
+              Object {
+                "label": "Merrimack",
+                "value": "Merrimack",
               },
               Object {
                 "label": "Miami (FL)",
@@ -867,12 +923,20 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
                 "value": "N.C. A&T",
               },
               Object {
+                "label": "N.C. A&T",
+                "value": "N.C. A&T",
+              },
+              Object {
                 "label": "N.C. Central",
                 "value": "N.C. Central",
               },
               Object {
                 "label": "NC State",
                 "value": "NC State",
+              },
+              Object {
+                "label": "NJIT",
+                "value": "NJIT",
               },
               Object {
                 "label": "Navy",
@@ -913,6 +977,10 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
               Object {
                 "label": "Norfolk St.",
                 "value": "Norfolk St.",
+              },
+              Object {
+                "label": "North Ala.",
+                "value": "North Ala.",
               },
               Object {
                 "label": "North Carolina",
@@ -1015,6 +1083,10 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
                 "value": "Pacific",
               },
               Object {
+                "label": "Penn",
+                "value": "Penn",
+              },
+              Object {
                 "label": "Penn St.",
                 "value": "Penn St.",
               },
@@ -1041,6 +1113,10 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
               Object {
                 "label": "Presbyterian",
                 "value": "Presbyterian",
+              },
+              Object {
+                "label": "Princeton",
+                "value": "Princeton",
               },
               Object {
                 "label": "Providence",
@@ -1127,8 +1203,8 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
                 "value": "Saint Peter's",
               },
               Object {
-                "label": "Sam Houston St.",
-                "value": "Sam Houston St.",
+                "label": "Sam Houston",
+                "value": "Sam Houston",
               },
               Object {
                 "label": "Samford",
@@ -1161,6 +1237,10 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
               Object {
                 "label": "Seton Hall",
                 "value": "Seton Hall",
+              },
+              Object {
+                "label": "Siena",
+                "value": "Siena",
               },
               Object {
                 "label": "South Alabama",
@@ -1227,6 +1307,10 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
                 "value": "St. John's (NY)",
               },
               Object {
+                "label": "St. Thomas (MN)",
+                "value": "St. Thomas (MN)",
+              },
+              Object {
                 "label": "Stanford",
                 "value": "Stanford",
               },
@@ -1245,6 +1329,10 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
               Object {
                 "label": "TCU",
                 "value": "TCU",
+              },
+              Object {
+                "label": "Tarleton St.",
+                "value": "Tarleton St.",
               },
               Object {
                 "label": "Temple",
@@ -1323,6 +1411,10 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
                 "value": "UC Riverside",
               },
               Object {
+                "label": "UC San Diego",
+                "value": "UC San Diego",
+              },
+              Object {
                 "label": "UC Santa Barbara",
                 "value": "UC Santa Barbara",
               },
@@ -1353,6 +1445,10 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
               Object {
                 "label": "UMBC",
                 "value": "UMBC",
+              },
+              Object {
+                "label": "UMES",
+                "value": "UMES",
               },
               Object {
                 "label": "UMass Lowell",
@@ -1429,6 +1525,10 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
               Object {
                 "label": "Vanderbilt",
                 "value": "Vanderbilt",
+              },
+              Object {
+                "label": "Vermont",
+                "value": "Vermont",
               },
               Object {
                 "label": "Villanova",
@@ -1513,6 +1613,10 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
               Object {
                 "label": "Xavier",
                 "value": "Xavier",
+              },
+              Object {
+                "label": "Yale",
+                "value": "Yale",
               },
               Object {
                 "label": "Youngstown St.",
@@ -1705,7 +1809,7 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
               placeholder="eg 'Player1 AND NOT (WalkOn1 OR WalkOn2)'"
               readOnly={false}
               team=""
-              year="2020/21"
+              year="2021/22"
             />
           </div>
           <Dropdown
@@ -2125,6 +2229,10 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
               Object {
                 "label": "2020/21",
                 "value": "2020/21",
+              },
+              Object {
+                "label": "2021/22",
+                "value": "2021/22",
               },
               Object {
                 "label": "Extra",

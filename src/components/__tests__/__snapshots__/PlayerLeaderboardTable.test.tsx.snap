@@ -1160,6 +1160,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       >
                                         <span>
                                           <small>
+                                            
                                             <b>
                                               <big>
                                                 #
@@ -1434,6 +1435,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       >
                                         <span>
                                           <small>
+                                            
                                             <b>
                                               <big>
                                                 #
@@ -1711,6 +1713,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       >
                                         <span>
                                           <small>
+                                            
                                             <b>
                                               <big>
                                                 #
@@ -1985,6 +1988,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       >
                                         <span>
                                           <small>
+                                            
                                             <b>
                                               <big>
                                                 #
@@ -2262,6 +2266,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       >
                                         <span>
                                           <small>
+                                            
                                             <b>
                                               <big>
                                                 #
@@ -2536,6 +2541,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       >
                                         <span>
                                           <small>
+                                            
                                             <b>
                                               <big>
                                                 #
@@ -2813,6 +2819,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       >
                                         <span>
                                           <small>
+                                            
                                             <b>
                                               <big>
                                                 #
@@ -3087,6 +3094,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       >
                                         <span>
                                           <small>
+                                            
                                             <b>
                                               <big>
                                                 #
@@ -3364,6 +3372,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       >
                                         <span>
                                           <small>
+                                            
                                             <b>
                                               <big>
                                                 #
@@ -3638,6 +3647,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       >
                                         <span>
                                           <small>
+                                            
                                             <b>
                                               <big>
                                                 #
@@ -3915,6 +3925,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       >
                                         <span>
                                           <small>
+                                            
                                             <b>
                                               <big>
                                                 #
@@ -4189,6 +4200,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       >
                                         <span>
                                           <small>
+                                            
                                             <b>
                                               <big>
                                                 #
@@ -4466,6 +4478,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       >
                                         <span>
                                           <small>
+                                            
                                             <b>
                                               <big>
                                                 #
@@ -4740,6 +4753,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       >
                                         <span>
                                           <small>
+                                            
                                             <b>
                                               <big>
                                                 #
@@ -5017,6 +5031,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       >
                                         <span>
                                           <small>
+                                            
                                             <b>
                                               <big>
                                                 #
@@ -5291,6 +5306,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       >
                                         <span>
                                           <small>
+                                            
                                             <b>
                                               <big>
                                                 #
@@ -5568,6 +5584,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       >
                                         <span>
                                           <small>
+                                            
                                             <b>
                                               <big>
                                                 #
@@ -5842,6 +5859,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       >
                                         <span>
                                           <small>
+                                            
                                             <b>
                                               <big>
                                                 #
@@ -6119,6 +6137,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       >
                                         <span>
                                           <small>
+                                            
                                             <b>
                                               <big>
                                                 #
@@ -6393,6 +6412,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       >
                                         <span>
                                           <small>
+                                            
                                             <b>
                                               <big>
                                                 #
@@ -6472,9 +6492,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 "kind": "data-row",
                 "prefixFn": [Function],
                 "tableFieldsOverride": undefined,
-              },
-              GenericTableSeparator {
-                "kind": "separator",
               },
             ]
           }
@@ -7973,6 +7990,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       >
                                         <span>
                                           <small>
+                                            
                                             <b>
                                               <big>
                                                 #
@@ -8247,6 +8265,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       >
                                         <span>
                                           <small>
+                                            
                                             <b>
                                               <big>
                                                 #
@@ -8524,6 +8543,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       >
                                         <span>
                                           <small>
+                                            
                                             <b>
                                               <big>
                                                 #
@@ -8798,6 +8818,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       >
                                         <span>
                                           <small>
+                                            
                                             <b>
                                               <big>
                                                 #
@@ -9075,6 +9096,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       >
                                         <span>
                                           <small>
+                                            
                                             <b>
                                               <big>
                                                 #
@@ -9349,6 +9371,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       >
                                         <span>
                                           <small>
+                                            
                                             <b>
                                               <big>
                                                 #
@@ -9626,6 +9649,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       >
                                         <span>
                                           <small>
+                                            
                                             <b>
                                               <big>
                                                 #
@@ -9900,6 +9924,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       >
                                         <span>
                                           <small>
+                                            
                                             <b>
                                               <big>
                                                 #
@@ -10177,6 +10202,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       >
                                         <span>
                                           <small>
+                                            
                                             <b>
                                               <big>
                                                 #
@@ -10451,6 +10477,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       >
                                         <span>
                                           <small>
+                                            
                                             <b>
                                               <big>
                                                 #
@@ -10728,6 +10755,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       >
                                         <span>
                                           <small>
+                                            
                                             <b>
                                               <big>
                                                 #
@@ -11002,6 +11030,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       >
                                         <span>
                                           <small>
+                                            
                                             <b>
                                               <big>
                                                 #
@@ -11279,6 +11308,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       >
                                         <span>
                                           <small>
+                                            
                                             <b>
                                               <big>
                                                 #
@@ -11553,6 +11583,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       >
                                         <span>
                                           <small>
+                                            
                                             <b>
                                               <big>
                                                 #
@@ -11830,6 +11861,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       >
                                         <span>
                                           <small>
+                                            
                                             <b>
                                               <big>
                                                 #
@@ -12104,6 +12136,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       >
                                         <span>
                                           <small>
+                                            
                                             <b>
                                               <big>
                                                 #
@@ -12381,6 +12414,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       >
                                         <span>
                                           <small>
+                                            
                                             <b>
                                               <big>
                                                 #
@@ -12655,6 +12689,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       >
                                         <span>
                                           <small>
+                                            
                                             <b>
                                               <big>
                                                 #
@@ -12932,6 +12967,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       >
                                         <span>
                                           <small>
+                                            
                                             <b>
                                               <big>
                                                 #
@@ -13206,6 +13242,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       >
                                         <span>
                                           <small>
+                                            
                                             <b>
                                               <big>
                                                 #
@@ -13285,9 +13322,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 "kind": "data-row",
                 "prefixFn": [Function],
                 "tableFieldsOverride": undefined,
-              },
-              GenericTableSeparator {
-                "kind": "separator",
               },
             ]
           }
@@ -14795,6 +14829,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                              
                                           </span>
                                           <small>
+                                            
                                             #1
                                              (
                                             <b>
@@ -15077,6 +15112,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                              
                                           </span>
                                           <small>
+                                            
                                             #1
                                              (
                                             <b>
@@ -15362,6 +15398,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                              
                                           </span>
                                           <small>
+                                            
                                             #4
                                              (
                                             <b>
@@ -15644,6 +15681,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                              
                                           </span>
                                           <small>
+                                            
                                             #4
                                              (
                                             <b>
@@ -15929,6 +15967,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                              
                                           </span>
                                           <small>
+                                            
                                             #2
                                              (
                                             <b>
@@ -16211,6 +16250,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                              
                                           </span>
                                           <small>
+                                            
                                             #2
                                              (
                                             <b>
@@ -16496,6 +16536,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                              
                                           </span>
                                           <small>
+                                            
                                             #4
                                              (
                                             <b>
@@ -16778,6 +16819,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                              
                                           </span>
                                           <small>
+                                            
                                             #4
                                              (
                                             <b>
@@ -17063,6 +17105,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                              
                                           </span>
                                           <small>
+                                            
                                             #5
                                              (
                                             <b>
@@ -17345,6 +17388,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                              
                                           </span>
                                           <small>
+                                            
                                             #5
                                              (
                                             <b>
@@ -17630,6 +17674,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                              
                                           </span>
                                           <small>
+                                            
                                             #10
                                              (
                                             <b>
@@ -17912,6 +17957,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                              
                                           </span>
                                           <small>
+                                            
                                             #10
                                              (
                                             <b>
@@ -18197,6 +18243,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                              
                                           </span>
                                           <small>
+                                            
                                             #1
                                              (
                                             <b>
@@ -18479,6 +18526,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                              
                                           </span>
                                           <small>
+                                            
                                             #1
                                              (
                                             <b>
@@ -18764,6 +18812,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                              
                                           </span>
                                           <small>
+                                            
                                             #7
                                              (
                                             <b>
@@ -19046,6 +19095,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                              
                                           </span>
                                           <small>
+                                            
                                             #7
                                              (
                                             <b>
@@ -19331,6 +19381,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                              
                                           </span>
                                           <small>
+                                            
                                             #3
                                              (
                                             <b>
@@ -19613,6 +19664,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                              
                                           </span>
                                           <small>
+                                            
                                             #3
                                              (
                                             <b>
@@ -20445,6 +20497,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                              
                                           </span>
                                           <small>
+                                            
                                             #11
                                              (
                                             <b>
@@ -20727,6 +20780,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                              
                                           </span>
                                           <small>
+                                            
                                             #11
                                              (
                                             <b>
@@ -22993,9 +23047,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 "kind": "data-row",
                 "prefixFn": [Function],
                 "tableFieldsOverride": undefined,
-              },
-              GenericTableSeparator {
-                "kind": "separator",
               },
             ]
           }
@@ -24494,6 +24545,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       >
                                         <span>
                                           <small>
+                                            
                                             #2
                                              (
                                             <b>
@@ -24767,6 +24819,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       >
                                         <span>
                                           <small>
+                                            
                                             #2
                                              (
                                             <b>
@@ -25043,6 +25096,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       >
                                         <span>
                                           <small>
+                                            
                                             #4
                                              (
                                             <b>
@@ -25316,6 +25370,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       >
                                         <span>
                                           <small>
+                                            
                                             #4
                                              (
                                             <b>
@@ -25592,6 +25647,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       >
                                         <span>
                                           <small>
+                                            
                                             #3
                                              (
                                             <b>
@@ -25865,6 +25921,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       >
                                         <span>
                                           <small>
+                                            
                                             #3
                                              (
                                             <b>
@@ -26141,6 +26198,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       >
                                         <span>
                                           <small>
+                                            
                                             #1
                                              (
                                             <b>
@@ -26414,6 +26472,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       >
                                         <span>
                                           <small>
+                                            
                                             #1
                                              (
                                             <b>
@@ -26690,6 +26749,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       >
                                         <span>
                                           <small>
+                                            
                                             #5
                                              (
                                             <b>
@@ -26963,6 +27023,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       >
                                         <span>
                                           <small>
+                                            
                                             #5
                                              (
                                             <b>
@@ -27239,6 +27300,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       >
                                         <span>
                                           <small>
+                                            
                                             #13
                                              (
                                             <b>
@@ -27512,6 +27574,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       >
                                         <span>
                                           <small>
+                                            
                                             #13
                                              (
                                             <b>
@@ -27788,6 +27851,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       >
                                         <span>
                                           <small>
+                                            
                                             #15
                                              (
                                             <b>
@@ -28061,6 +28125,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       >
                                         <span>
                                           <small>
+                                            
                                             #15
                                              (
                                             <b>
@@ -28337,6 +28402,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       >
                                         <span>
                                           <small>
+                                            
                                             #16
                                              (
                                             <b>
@@ -28610,6 +28676,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       >
                                         <span>
                                           <small>
+                                            
                                             #16
                                              (
                                             <b>
@@ -28886,6 +28953,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       >
                                         <span>
                                           <small>
+                                            
                                             #7
                                              (
                                             <b>
@@ -29159,6 +29227,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       >
                                         <span>
                                           <small>
+                                            
                                             #7
                                              (
                                             <b>
@@ -29435,6 +29504,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       >
                                         <span>
                                           <small>
+                                            
                                             #9
                                              (
                                             <b>
@@ -29708,6 +29778,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       >
                                         <span>
                                           <small>
+                                            
                                             #9
                                              (
                                             <b>
@@ -29786,9 +29857,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 "kind": "data-row",
                 "prefixFn": [Function],
                 "tableFieldsOverride": undefined,
-              },
-              GenericTableSeparator {
-                "kind": "separator",
               },
             ]
           }
@@ -31287,6 +31355,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       >
                                         <span>
                                           <small>
+                                            
                                             #2
                                              (
                                             <b>
@@ -31560,6 +31629,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       >
                                         <span>
                                           <small>
+                                            
                                             #2
                                              (
                                             <b>
@@ -31836,6 +31906,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       >
                                         <span>
                                           <small>
+                                            
                                             #4
                                              (
                                             <b>
@@ -32109,6 +32180,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       >
                                         <span>
                                           <small>
+                                            
                                             #4
                                              (
                                             <b>
@@ -32385,6 +32457,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       >
                                         <span>
                                           <small>
+                                            
                                             #10
                                              (
                                             <b>
@@ -32658,6 +32731,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       >
                                         <span>
                                           <small>
+                                            
                                             #10
                                              (
                                             <b>
@@ -32934,6 +33008,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       >
                                         <span>
                                           <small>
+                                            
                                             #1
                                              (
                                             <b>
@@ -33207,6 +33282,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       >
                                         <span>
                                           <small>
+                                            
                                             #1
                                              (
                                             <b>
@@ -33483,6 +33559,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       >
                                         <span>
                                           <small>
+                                            
                                             #5
                                              (
                                             <b>
@@ -33756,6 +33833,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       >
                                         <span>
                                           <small>
+                                            
                                             #5
                                              (
                                             <b>
@@ -34032,6 +34110,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       >
                                         <span>
                                           <small>
+                                            
                                             #7
                                              (
                                             <b>
@@ -34305,6 +34384,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       >
                                         <span>
                                           <small>
+                                            
                                             #7
                                              (
                                             <b>
@@ -34581,6 +34661,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       >
                                         <span>
                                           <small>
+                                            
                                             #22
                                              (
                                             <b>
@@ -34854,6 +34935,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       >
                                         <span>
                                           <small>
+                                            
                                             #22
                                              (
                                             <b>
@@ -35130,6 +35212,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       >
                                         <span>
                                           <small>
+                                            
                                             #3
                                              (
                                             <b>
@@ -35403,6 +35486,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       >
                                         <span>
                                           <small>
+                                            
                                             #3
                                              (
                                             <b>
@@ -35679,6 +35763,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       >
                                         <span>
                                           <small>
+                                            
                                             #11
                                              (
                                             <b>
@@ -35952,6 +36037,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       >
                                         <span>
                                           <small>
+                                            
                                             #11
                                              (
                                             <b>
@@ -36228,6 +36314,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       >
                                         <span>
                                           <small>
+                                            
                                             #39
                                              (
                                             <b>
@@ -36501,6 +36588,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                       >
                                         <span>
                                           <small>
+                                            
                                             #39
                                              (
                                             <b>
@@ -36579,9 +36667,6 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 "kind": "data-row",
                 "prefixFn": [Function],
                 "tableFieldsOverride": undefined,
-              },
-              GenericTableSeparator {
-                "kind": "separator",
               },
             ]
           }
