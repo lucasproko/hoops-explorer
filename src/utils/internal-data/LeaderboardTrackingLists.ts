@@ -5,10 +5,11 @@ import _ from 'lodash';
 export const PlayerLeaderboardTracking = {
   "__DMV_2017__":  _.flatten([
     ["-YEAR2016,GrGolden"],
-    ["-YEAR2017,NaMarshall,DjHarvey,DaMorsell,JoCarlton,AnRafus,DePerry,TeHightower,NaWatson,JaPickett:George,EjObinna,AaThompson,DaDickens,MyDouglas,AnWalker,ChLykes,LuGarza"],
-    ["-YEAR2018,JaSmith:Mary,ImQuickley,SaBey,JeHarris,NoLocke,MoMathis,BrGolden,BrAdams,WyTabbs,LaHardnett,AmHarris,JaBynum,BrSlater,RaBolton,XaJohnson:Pitt,PrHubb,MyDead,TrWood,RiLindo"],
-    ["-YEAR2019,JuMoore,OlNkamhoua,JaBishop,YaGultekin,AbTsimbila,ChPaar,KaWilliams,LoCurtis,AnHarris,DeSeabron,QuWahab,MeLong,JaMcallister,XaJohnson:George,JoOduro,CaMorsell,JaHeath,MiMitchell,MlMitchell,AyHikim"],
-    ["-YEAR2020,EaTimberlake,HuDickinson,JuLewis,WoNewton,ChEvans,AdBaldwin,DiStevens,DaNguessan,ElWood,JeRoach,TeWilliams,ChHarris,MyStute,IsLeggett,TeIzay"],
+    ["-YEAR2017,NaMarshall,DjHarvey,DaMorsell,JoCarlton,JaMoultrie,ChWalker,DePerry,TeHightower,ElClarance,NiJackson:Wagner,OmHabwe,AnDuruji,NaWatson,JaPickett:George,EjObinna,AaThompson,DaDickens:Hampton,MyDouglas,AnWalker:Rhode,ChLykes,LuGarza"],
+    ["-YEAR2018,JaSmith:Mary,ImQuickley,SaBey,JeHarris,NoLocke,MoMathis,BrGolden,BrAdams,WyTabbs,LaHardnett,DeMims,AmHarris,JaBynum,AnHiggs,DiZdor,DoToatley,BrSlater,RaBolton,XaJohnson:Pitt,XaJohnson:Indiana,PrHubb,SaBey,MyDead,TrWood:Mass,DeFlowers,RiLindo"],
+    ["-YEAR2019,JuMoore,JaBishop,OlNkamhoua,JaYoung:Charl,YaGultekin,AbTsimbila,ChPaar,KaWilliams:Boston,MaPrice:Ohio,LoCurtis,CaMorsell,JaHeath,MiMitchell,MlMitchell,AyHikim,EjJarvis,AnHarris,DeSeabron,QuWahab,MeLong,JaMcallister,XaJohnson:George,JoOduro"],
+    ["-YEAR2020,EaTimberlake,HuDickinson,JuLewis,WoNewton,ChEvans,AdBaldwin,DiStevens,JoSmith:Seton,DaNguessan,ElWood,DwKoroma,JaWest:Alabama,TeWilliams,ChHarris:George,MyStute,IsLeggett,TeIzay,JeRoach,AnScreen,JoFreeman:Mich,AnGill:Salle"],
+    ["-YEAR2021,JoHawkins,JuReese,JaRobinson,RyConway,JaMiller,ErReynolds,AbSamb,QuAllen,MaDread,TrKeels,DaJohnson:UCF,BrMurray:LSU,BeWilliams:Syra"],
   ]).join(","),
 
   "__NYNJ_2017__":  _.flatten([

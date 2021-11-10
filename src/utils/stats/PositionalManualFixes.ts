@@ -163,5 +163,22 @@ export const relativePositionFixes: Record<string, RelativePositionFixRule[]> = 
       { code: "JsHamilton", id: "Hamilton, Jairus" },
       undefined
     ]
-  }])
+  }]),
+  // 10/11/2020: Fatts+Martinez are PGs, Ayala plays the 2
+  "Men_Maryland_2021/22": [{
+    key: [ "IaMartinez", "FaRussell", undefined, undefined, undefined ],
+    rule: [
+      { code: "FaRussell", id: "Russell, Fatts" },
+      { code: "IaMartinez", id: "Martinez, Ian" },
+      undefined, undefined, undefined
+    ]
+  }, {
+    key: [ undefined, "HaHart", "ErAyala", undefined, undefined ],
+    rule: [
+      undefined, 
+      { code: "ErAyala", id: "Ayala, Eric" },
+      { code: "HaHart", id: "Hart, Hakim" },
+      undefined, undefined
+    ]
+  }],  
 };

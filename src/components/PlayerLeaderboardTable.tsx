@@ -374,7 +374,13 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       (year == "All")
     );
 
+    var playerDuplicates = 0; //(annoying hack to keep track of playerIndex vs actual row)
     const tableData = players.flatMap((player, playerIndex) => {
+      const isDup = (tier == "All") && (playerIndex > 0) && 
+        (players[playerIndex - 1].key == player.key) && (players[playerIndex - 1].year == player.year);
+
+      if (isDup) playerDuplicates++;
+
       player.def_usage = <OverlayTrigger placement="auto" overlay={TableDisplayUtils.buildPositionTooltip(player.posClass, "Base")}>
         <small>{player.posClass}</small>
       </OverlayTrigger>;
@@ -382,7 +388,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       const confNickname = ConferenceToNickname[player.conf] || "???";
       const teamSeasonLookup = `${startingState.gender}_${player.team}_${startingState.year}`;
 
-      const generalRank = isGeneralSortOrFilter ? <span><i>(#{playerIndex + 1})</i>&nbsp;</span> : null;
+      const generalRank = isGeneralSortOrFilter ? <span><i>(#{playerIndex + 1 - playerDuplicates})</i>&nbsp;</span> : null;
       const rankingsTooltip = (
         <Tooltip id={`rankings_${playerIndex}`}>
           {factorMins ? "Production " : "Rating "}Ranks:<br/>
@@ -499,9 +505,6 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
 
       player.off_drb = player.def_orb; //(just for display, all processing should use def_orb)
       TableDisplayUtils.injectPlayTypeInfo(player, true, true, teamSeasonLookup);
-
-      const isDup = (tier == "All") && (playerIndex > 0) && 
-        (players[playerIndex - 1].key == player.key) && (players[playerIndex - 1].year == player.year);
 
       return isDup ? _.flatten([
         [ GenericTableOps.buildTextRow(rankings, "small") ] 
