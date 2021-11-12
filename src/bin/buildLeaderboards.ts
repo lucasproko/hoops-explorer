@@ -2,13 +2,14 @@
 //
 // NOTE: to compile this run "npm run dev" (then ctrl+c once "event - compiled successfully")
 // ("npm run build" also works but takes longer)
+// npm run build_leaderboards -- --year=<<eg 2021/22>> --tier=<<High|Low|Medium>> --gender=<<Men|Women>
 //
 
 // NOTE: test code is under src/__tests__
 
 // System imports
 import { NextApiRequest, NextApiResponse } from 'next';
-import fs from 'fs';
+import { promises as fs } from 'fs';
 import zlib from 'zlib';
 
 import _ from "lodash";
@@ -20,13 +21,12 @@ import { PlayerCode, PlayerId, Statistic, IndivStatSet, TeamStatSet, LineupStatS
 import calculateLineupStats from "../pages/api/calculateLineupStats";
 import calculateOnOffStats from "../pages/api/calculateOnOffStats";
 import calculateOnOffPlayerStats from "../pages/api/calculateOnOffPlayerStats";
+import { CommonApiUtils } from "../utils/CommonApiUtils";
 
 // Pre processing
 import { RequestUtils } from "../utils/RequestUtils";
 import { QueryUtils } from "../utils/QueryUtils";
 import { ParamDefaults } from "../utils/FilterModels";
-import { RapmUtils } from "../utils/stats/RapmUtils";
-import { LineupUtils } from "../utils/stats/LineupUtils";
 
 // Post processing
 import { efficiencyAverages } from '../utils/public-data/efficiencyAverages';
@@ -37,6 +37,7 @@ import { RosterTableUtils } from "../utils/tables/RosterTableUtils";
 import { TeamReportTableUtils } from "../utils/tables/TeamReportTableUtils";
 import { AvailableTeams } from '../utils/internal-data/AvailableTeams';
 import { dataLastUpdated } from '../utils/internal-data/dataLastUpdated';
+import { ncaaToKenpomLookup } from '../utils/public-data/ncaaToKenpomLookup'
 
 //process.argv 2... are the command line args passed via "-- (args)"
 
@@ -123,7 +124,7 @@ if (!testMode) console.log(`Args: gender=[${inGender}] year=[${inYear}]`);
 const onlyHasTopConferences = (inGender != "Men") || (parseInt(inYear.substring(0, 4)) < 2020);
 
 const testTeamFilter = undefined as Set<string> | undefined;
-//  (inYear == "2020/21") ? new Set([ "Maryland", "Iowa", "Michigan", "Dayton", "Rutgers", "Fordham" ]) : undefined;
+//  (inYear == "2021/22") ? new Set([ "Maryland", "Iowa", "Michigan", "Dayton", "Rutgers", "Fordham" ]) : undefined;
 
 /** All the conferences in a given tier plus the "guest" teams if it's not in the right tier */
 const mutableConferenceMap = {} as Record<string, string[]>;
@@ -140,6 +141,14 @@ const excludeFromMidMajor = new Set([
 
 /** Request data from ES, duplicate table processing over each team to build leaderboard (export for testing only) */
 export async function main() {
+  const globalGenderYearKey = `${inGender}_${inYear}`;
+  const lookupForQuery = ncaaToKenpomLookup[globalGenderYearKey];
+  var fallbackConfMapInfo: any = undefined;
+  if (lookupForQuery) {
+    console.log("Getting dynamic efficiency info (needed for conference map)");
+    //(also will cache it for subsequent requests)
+    fallbackConfMapInfo = await CommonApiUtils.buildCurrentMenEfficiency(globalGenderYearKey, inYear.substring(0, 4), lookupForQuery);
+  }
 
   const teamListChain = (inYear == "Extra") ?
     _.chain(AvailableTeams.extraTeamsBase) :
@@ -154,8 +163,8 @@ export async function main() {
       ((inYear == "Extra") || (team.year == inYear));
   }).filter(team => {
     const genderYearLookup = `${inGender}_${team.year}`;
-    const conference = efficiencyInfo?.[genderYearLookup]?.[0]?.[team.team]?.conf || "Unknown";
-    const rank = efficiencyInfo?.[genderYearLookup]?.[0]?.[team.team]?.["stats.adj_margin.rank"] || 400;
+    const conference = (efficiencyInfo?.[genderYearLookup]?.[0] || fallbackConfMapInfo)?.[team.team]?.conf || "Unknown";
+    const rank = (efficiencyInfo?.[genderYearLookup]?.[0]|| fallbackConfMapInfo)?.[team.team]?.["stats.adj_margin.rank"] || 400;
     // For years with lots of conferences, split into tiers:
     if (onlyHasTopConferences) {
       return true;
@@ -211,7 +220,7 @@ export async function main() {
     const teamSeasonLookup = `${fullRequestModel.gender}_${fullRequestModel.team}_${fullRequestModel.year}`;
 
     // Snag conference from D1 metadata
-    const conference = efficiencyInfo?.[genderYearLookup]?.[0]?.[team]?.conf || "Unknown";
+    const conference = (efficiencyInfo?.[genderYearLookup]?.[0] || fallbackConfMapInfo)?.[team]?.conf || "Unknown";
     const buildTeamAbbr = (t: string) => {
       const candidate1 = t.replace(/[^A-Z]/g, "");
       const addU = (abb: string) => {
@@ -255,7 +264,7 @@ export async function main() {
 
       // Also we're going to try fetching the roster
 
-      const rosterInfoJson = await fs.promises.readFile(
+      const rosterInfoJson = await fs.readFile(
         `./public/rosters/${inGender}_${(teamYear || "").substring(0, 4)}/${RequestUtils.fixRosterUrl(team, false)}.json`
       ).then((s: any) => JSON.parse(s)).catch((err: any) => {
         return undefined;
@@ -492,7 +501,7 @@ export function completeLineupLeaderboard(key: string, leaderboard: any[], topLi
   return rankedLineups;
 }
 
-if (!testMode) main().then(dummy => {
+if (!testMode) main().then(async dummy => {
   const topLineupSize = onlyHasTopConferences ? 300 : 400;
   const topPlayersSize = onlyHasTopConferences ? 700 : 900;
 
@@ -506,7 +515,7 @@ if (!testMode) main().then(dummy => {
   const lastUpdated =  //(will be new now for curr year + "Extra")
     dataLastUpdated[`${inGender}_${inYear}`] || new Date().getTime();
 
-  outputCases.forEach(kv => {
+  await Promise.all(_.flatMap(outputCases, kv => {
     const sortedLineups = completeLineupLeaderboard(kv[0], kv[1], topLineupSize);
     const sortedLineupsStr = JSON.stringify({
       lastUpdated: lastUpdated,
@@ -526,16 +535,22 @@ if (!testMode) main().then(dummy => {
     console.log(`${kv[0]} lineup count: [${sortedLineups.length}] ([${kv[1].length}])`);
     console.log(`${kv[0]} lineup length: [${sortedLineupsStr.length}]`);
     const lineupFilename = `./public/leaderboards/lineups/lineups_${kv[0]}_${inGender}_${inYear.substring(0, 4)}_${inTier}.json`;
-    fs.writeFile(`${lineupFilename}`,sortedLineupsStr, err => {});
+    const lineupsWritePromise = fs.writeFile(`${lineupFilename}`,sortedLineupsStr);
     console.log(`${kv[0]} player count: [${players.length}] ([${kv[2].length}])`);
     console.log(`${kv[0]} player length: [${playersStr.length}]`);
     const playersFilename = `./public/leaderboards/lineups/players_${kv[0]}_${inGender}_${inYear.substring(0, 4)}_${inTier}.json`;
-    fs.writeFile(`${playersFilename}`,playersStr, err => {});
+    const playersWritePromise = fs.writeFile(`${playersFilename}`,playersStr);
+
+    return [lineupsWritePromise, playersWritePromise];
 
    //(don't zip, the server/browser does it for us, so it's mainly just "wasting GH space")
    // zlib.gzip(sortedLineupsStr, (_, result) => {
    //   fs.writeFile(`${filename}.gz`,result, err => {});
    // });
- });
- console.log("File creation Complete!")
+  }));
+  console.log("File creation Complete!");
+  if (!testMode) {
+    console.log("(exiting process)");
+    process.exit(0);
+  }
 });

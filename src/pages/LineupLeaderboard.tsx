@@ -71,6 +71,14 @@ const LineupLeaderboardPage: NextPage<{}> = () => {
   const lineupLeaderboardParamsRef = useRef<LineupLeaderboardParams>();
   lineupLeaderboardParamsRef.current = lineupLeaderboardParams;
 
+  const getUrl = (oppo: string, gender: string, subYear: string, inTier: string) => {
+    if (ParamDefaults.defaultYear.startsWith(subYear)) { // Access from dynamic storage
+      return `/api/getLeaderboard?src=lineups&oppo=${oppo}&gender=${gender}&year=${subYear}&tier=${inTier}`;
+    } else { //archived
+      return `/leaderboards/lineups/lineups_${oppo}_${gender}_${subYear}_${inTier}.json`;
+    }
+  }
+  
   const onLineupLeaderboardParamsChange = (rawParams: LineupLeaderboardParams) => {
     const params = _.omit(rawParams, _.flatten([ // omit all defaults
       (!rawParams.t100) ? [ 't100' ] : [],
@@ -113,7 +121,7 @@ const LineupLeaderboardPage: NextPage<{}> = () => {
 
       const years = [ "2018/9", "2019/20", "2020/21", "Extra" ];
       const fetchAll = Promise.all(years.map(tmpYear => tmpYear.substring(0, 4)).map((subYear) => {
-        return fetch(`/leaderboards/lineups/lineups_${dataSubEventKey}_${gender}_${subYear}_${tier}.json`)
+        return fetch(getUrl(dataSubEventKey, gender, subYear, tier))
           .then((response: fetch.IsomorphicResponse) => {
             return response.ok ? response.json() : Promise.resolve({ error: "No data available" });
           });
@@ -132,7 +140,7 @@ const LineupLeaderboardPage: NextPage<{}> = () => {
         setCurrYear(fullYear);
         setCurrGender(gender)
         setDataSubEvent({ lineups: [], confs: [], lastUpdated: 0 }); //(set the spinner off)
-        fetch(`/leaderboards/lineups/lineups_${dataSubEventKey}_${gender}_${year}_${tier}.json`)
+        fetch(getUrl(dataSubEventKey, gender, year, tier))
           .then((response: fetch.IsomorphicResponse) => {
             return (response.ok ? response.json() : Promise.resolve({ error: "No data available" })).then((json: any) => {
               //(if year has changed then clear saved data events)

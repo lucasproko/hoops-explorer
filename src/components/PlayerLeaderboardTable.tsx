@@ -152,7 +152,7 @@ const expandedPosClasses = {
 } as Record<string, string[]>;
 
 /** When showing across multiple data sets, don't show intra-year rankings unless it's a full data set */
-const fullDataSetSeasons = new Set(["2018/9", "2019/20", "2020/21"]);
+const fullDataSetSeasons = new Set(["2018/9", "2019/20", "2020/21", "2021/22"]);
 
 // Functional component
 
@@ -679,7 +679,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
           options={            
             (
               (tier == "High" || tier == "All") ?
-                [ "2018/9", "2019/20", "2020/21", "All" ] :
+                [ "2018/9", "2019/20", "2020/21", "2021/22", "All" ] :
                 [ "2020/21", "All" ] 
             ).concat(tier == "High" ? [ "Extra" ] : []).map(
             (r) => stringToOption(r)

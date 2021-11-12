@@ -422,21 +422,28 @@ export class PositionUtils {
   /** Allows me to swap lineups around by hand when someone complains */
   private static applyRelativePositionalOverrides(
     results: PlayerCodeId[],
-    teamSeason: string
+    teamSeason: string,
+    recurseCount: number = 0
   ): PlayerCodeId[] {
     const rules = relativePositionFixes[teamSeason];
-    if (rules) {
+    if (rules && (recurseCount < rules.length)) {
       const ruleSet = _.find(rules, (rule: RelativePositionFixRule) => {
         return _.every(rule.key, (key: string | undefined, index: number) => {
           return (key == undefined) || (key == results[index].code);
         });
       });
       if (ruleSet) { // Matching rule
-        return results.map((val: {code: string, id: string}, index: number) => {
+        return PositionUtils.applyRelativePositionalOverrides(results.map((val: {code: string, id: string}, index: number) => {
           const changeRule = ruleSet.rule[index];
-          return (changeRule == undefined) ? val : changeRule;
-        });
-      } else { // The team/season didn't match
+          if (changeRule == undefined) {
+            return val;
+          } else if (typeof changeRule == "number") {
+            return results[changeRule as number - 1];
+          } else {
+            return changeRule;
+          }
+        }), teamSeason, recurseCount + 1); //(if we matched >0, we might need to match again)
+      } else { // No rules matched
         return results;
       }
     } else { // This team/season has no overrides

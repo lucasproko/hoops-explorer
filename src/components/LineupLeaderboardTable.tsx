@@ -116,7 +116,7 @@ const groupedOptions = [
 ];
 
 /** When showing across multiple data sets, don't show intra-year rankings unless it's a full data set */
- const fullDataSetSeasons = new Set(["2018/9", "2019/20", "2020/21"]);
+ const fullDataSetSeasons = new Set(["2018/9", "2019/20", "2020/21", "2021/22"]);
 // Functional component
 
 const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, dataEvent, onChangeState}) => {
@@ -521,7 +521,7 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       <Col xs={6} sm={6} md={3} lg={2}>
         <Select
           value={ stringToOption(year) }
-          options={[ "2018/9", "2019/20", "2020/21" ].concat(tier == "High" ? [ "All", "Extra" ] : []).map(
+          options={[ "2018/9", "2019/20", "2020/21", "2021/22" ].concat(tier == "High" ? [ "All", "Extra" ] : []).map(
             (r) => stringToOption(r)
           )}
           isSearchable={false}

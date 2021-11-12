@@ -37,7 +37,7 @@ export class CommonApiUtils {
     'Basic ' + Buffer.from(`${process.env.CLUSTER_USER}:${process.env.CLUSTER_PASS}`).toString('base64');
   
   /** Retrieve and cache the current men's efficiency */
-  private static async buildCurrentMenEfficiency(cacheKey: string, year: string, nameLookup: Record<string, Record<string, string>>)
+  static async buildCurrentMenEfficiency(cacheKey: string, year: string, nameLookup: Record<string, Record<string, string>>)
   {
     console.log(`Refreshing men's efficiency cache for year=[${year}]`);
 

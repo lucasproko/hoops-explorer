@@ -92,16 +92,16 @@ export type RelativePositionFixRule = {
   /** Every non-null code must match the position */
   key: Array<string | undefined>,
   /** How the positions are shuffled */
-  rule: Array<{code: string, id: string} | undefined>
+  rule: Array<{code: string, id: string} | number | undefined>
 };
 
 /** 7/6/2020: In 4-guard lineups, Morsell plays the 4 (18/19 and 19/20 seasons) */
 const Maryland_2018_2020 = [
   {
     // 2/2022: In 4-guard lineups, Morsell plays the 4 (even when he's supposedly playing the 2!)
-    key: [ undefined, "DaMorsell", "HaHart", "AaWiggins", undefined ],
+    key: [ undefined, "DaMorsell", undefined, "AaWiggins", undefined ],
     rule: [ undefined,
-      { code: "HaHart", id: "Hart, Hakim" },
+      3,
       { code: "AaWiggins", id: "Wiggins, Aaron" },
       { code: "DaMorsell", id: "Morsell, Darryl" },
       undefined
@@ -111,16 +111,6 @@ const Maryland_2018_2020 = [
     // 7/6/2020: In 4-guard lineups, Morsell plays the 4
     key: [ undefined, undefined, "DaMorsell", "AaWiggins", undefined ],
     rule: [ undefined, undefined,
-      { code: "AaWiggins", id: "Wiggins, Aaron" },
-      { code: "DaMorsell", id: "Morsell, Darryl" },
-      undefined
-    ]
-  },
-  {
-    // 7/6/2020: In 4-guard lineups, Morsell plays the 4
-    key: [ undefined, "DaMorsell", "SeSmith", "AaWiggins", undefined ],
-    rule: [ undefined,
-      { code: "SeSmith", id: "Smith, Serrel" },
       { code: "AaWiggins", id: "Wiggins, Aaron" },
       { code: "DaMorsell", id: "Morsell, Darryl" },
       undefined
@@ -164,7 +154,7 @@ export const relativePositionFixes: Record<string, RelativePositionFixRule[]> = 
       undefined
     ]
   }]),
-  // 10/11/2020: Fatts+Martinez are PGs, Ayala plays the 2
+  // 10/11/2020: Fatts+Martinez are PGs, Ayala plays the 2, Hart>XG
   "Men_Maryland_2021/22": [{
     key: [ "IaMartinez", "FaRussell", undefined, undefined, undefined ],
     rule: [
@@ -173,12 +163,27 @@ export const relativePositionFixes: Record<string, RelativePositionFixRule[]> = 
       undefined, undefined, undefined
     ]
   }, {
-    key: [ undefined, "HaHart", "ErAyala", undefined, undefined ],
+    key: [ undefined, undefined, "ErAyala", undefined, undefined ],
     rule: [
       undefined, 
       { code: "ErAyala", id: "Ayala, Eric" },
-      { code: "HaHart", id: "Hart, Hakim" },
+      2,
       undefined, undefined
+    ]
+  }, {
+    key: [ undefined, undefined, undefined, "ErAyala", undefined ],
+    rule: [
+      undefined, 
+      { code: "ErAyala", id: "Ayala, Eric" },
+      2, 3,
+      undefined
+    ]
+  }, {
+    key: [ undefined, undefined, "HaHart", "XaGreen", undefined ],
+    rule: [ undefined, undefined,
+      { code: "XaGreen", id: "Green, Xavier" },
+      { code: "HaHart", id: "Hart, Hakim" },
+      undefined
     ]
   }],  
 };
