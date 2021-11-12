@@ -20,6 +20,10 @@ const RosterStatsDiagView: React.FunctionComponent<Props> = ({ortgDiags, drtgDia
   const [ showMoreDRtg, setShowMoreDRtg ] = useState(undefined == expandAll ? false : expandAll);
   const [ showMoreOnBallDRtg, setShowMoreOnBallDRtg ] = useState(undefined == expandAll ? false : expandAll);
 
+  const formatNum = (n: number) => {
+    return Number.isInteger(n) ? n : n.toFixed(1);
+  };
+
   const o = ortgDiags;
   const d = drtgDiags;
   const dbd = drtgDiags.onBallDiags;
@@ -36,7 +40,7 @@ const RosterStatsDiagView: React.FunctionComponent<Props> = ({ortgDiags, drtgDia
       less Team_ORB_Contrib% [<b>{(100*o.teamOrbContribPct).toFixed(1)}%</b>]==[<b>{((o.ppFg + o.ppAssist + o.rawFtm)*o.teamOrbContribPct).toFixed(1)}</b>])
       </li>
       <ul>
-        <li><em>Compare raw stats: orb=[<b>{o.rawOrb.toFixed(1)}</b>], pts=[<b>{o.rawPts.toFixed(1)}</b>] (fg_pts=[<b>{o.ptsFgm.toFixed(1)}</b> = <b>3</b>*<b>{o.raw3Fgm.toFixed(1)}</b> + <b>2</b>*(<b>{o.raw2midFgm.toFixed(1)}</b> + <b>{o.raw2rimFgm.toFixed(1)}</b>)] + ftm=[<b>{o.rawFtm.toFixed(1)}</b>]), assists=[<b>{o.rawAssist.toFixed(1)}</b>]</em></li>
+        <li><em>Compare raw stats: orb=[<b>{formatNum(o.rawOrb)}</b>], pts=[<b>{formatNum(o.rawPts)}</b>] (fg_pts=[<b>{formatNum(o.ptsFgm)}</b> = <b>3</b>*<b>{formatNum(o.raw3Fgm)}</b> + <b>2</b>*(<b>{formatNum(o.raw2midFgm)}</b> + <b>{formatNum(o.raw2rimFgm)}</b>)] + ftm=[<b>{formatNum(o.rawFtm)}</b>]), assists=[<b>{formatNum(o.rawAssist)}</b>]</em></li>
       </ul>
       {showMoreORtgPts ?
       <span><li><u>Points section</u></li>
@@ -83,10 +87,10 @@ const RosterStatsDiagView: React.FunctionComponent<Props> = ({ortgDiags, drtgDia
           </ul>
         </ul>
       </ul></span> : null }
-      <li>Adjusted_Possessions: [<b>{o.adjPoss.toFixed(1)}</b>] = Scoring_Possessions [<b>{o.scoringPoss.toFixed(1)}</b>] + Missed_FG_Possessions [<b>{o.fgxPoss.toFixed(1)}</b>] + Missed_FT_Possessions [<b>{o.ftxPoss.toFixed(1)}</b>] + TO [<b>{o.rawTo}</b>]</li>
+      <li>Adjusted_Possessions: [<b>{o.adjPoss.toFixed(1)}</b>] = Scoring_Possessions [<b>{o.scoringPoss.toFixed(1)}</b>] + Missed_FG_Possessions [<b>{o.fgxPoss.toFixed(1)}</b>] + Missed_FT_Possessions [<b>{o.ftxPoss.toFixed(1)}</b>] + TO [<b>{formatNum(o.rawTo)}</b>]</li>
       <ul>
         <li>(Gives adjusted usage: Adj_Usage = [<b>{(100*o.adjPoss/(o.teamPoss || 1)).toFixed(1)}%</b>])</li>
-        <li><em>Compare raw stats: poss=[<b>{o.offPoss.toFixed(1)}</b>] (fga=[<b>{o.rawFga}</b> = <b>{o.raw3Fga}</b> + (<b>{o.raw2midFga}</b> + <b>{o.raw2rimFga}</b>)] + [<b>{o.actualFtaToPoss.toFixed(3)}</b>]*fta=[<b>{o.ftPoss.toFixed(1)}</b>] + to=[<b>{o.rawTo}</b>] - orb=[<b>{o.offPlaysLessPoss.toFixed(1)}</b>])</em></li>
+        <li><em>Compare raw stats: poss=[<b>{o.offPoss.toFixed(1)}</b>] (fga=[<b>{o.rawFga}</b> = <b>{o.raw3Fga}</b> + (<b>{o.raw2midFga}</b> + <b>{o.raw2rimFga}</b>)] + [<b>{o.actualFtaToPoss.toFixed(3)}</b>]*fta=[<b>{o.ftPoss.toFixed(1)}</b>] + to=[<b>{formatNum(o.rawTo)}</b>] - orb=[<b>{o.offPlaysLessPoss.toFixed(1)}</b>])</em></li>
       </ul>
       {showMoreORtgPoss ?
       <span><li><u>Possessions section</u></li>
@@ -106,7 +110,7 @@ const RosterStatsDiagView: React.FunctionComponent<Props> = ({ortgDiags, drtgDia
                 <li><em>([0.475]*FTA is standard for estimating the number of trips to the FT line; we use [<b>{o.actualFtaToPoss.toFixed(3)}</b>] inferred from the actual possession count)</em></li>
               </ul>
             </ul>
-            <li>Team_Total_Plays: [<b>{o.teamPlays.toFixed(1)}</b>] = Team_FGA [<b>{o.teamFga}</b>] + ([<b>{o.actualFtaToPoss.toFixed(3)}</b>]*Team_FTA) [<b>{(o.actualFtaToPoss*o.teamFta).toFixed(1)}</b>] + Team_TOV [<b>{o.teamTo}</b>]</li>
+            <li>Team_Total_Plays: [<b>{o.teamPlays.toFixed(1)}</b>] = Team_FGA [<b>{o.teamFga}</b>] + ([<b>{o.actualFtaToPoss.toFixed(3)}</b>]*Team_FTA) [<b>{(o.actualFtaToPoss*o.teamFta).toFixed(1)}</b>] + Team_TOV [<b>{formatNum(o.teamTo)}</b>]</li>
             <li><em>(Team_ORB_Weight is described in the points section, above. The cost of the play is reduced like the reward of the score)</em></li>
           </ul>
           <li>FG_Part: [<b>{o.fgPart.toFixed(1)}</b>] = FGM [<b>{o.rawFgm.toFixed(1)}</b>], less Team_Assist_Contrib% [<b>{(100*o.ppFgTeamAstPct).toFixed(1)}%</b>]===[<b>{(o.rawFgm-o.fgPart).toFixed(1)}</b>]</li>

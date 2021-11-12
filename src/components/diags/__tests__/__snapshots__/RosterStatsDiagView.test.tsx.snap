@@ -81,15 +81,15 @@ exports[`RosterStatsDiagView RosterStatsDiagView - expanded, should create snaps
         <em>
           Compare raw stats: orb=[
           <b>
-            17.0
+            17
           </b>
           ], pts=[
           <b>
-            506.0
+            506
           </b>
           ] (fg_pts=[
           <b>
-            334.0
+            334
           </b>
            = 
           <b>
@@ -97,7 +97,7 @@ exports[`RosterStatsDiagView RosterStatsDiagView - expanded, should create snaps
           </b>
           *
           <b>
-            56.0
+            56
           </b>
            + 
           <b>
@@ -105,19 +105,19 @@ exports[`RosterStatsDiagView RosterStatsDiagView - expanded, should create snaps
           </b>
           *(
           <b>
-            18.0
+            18
           </b>
            + 
           <b>
-            65.0
+            65
           </b>
           )] + ftm=[
           <b>
-            172.0
+            172
           </b>
           ]), assists=[
           <b>
-            147.0
+            147
           </b>
           ]
         </em>
@@ -1667,15 +1667,15 @@ exports[`RosterStatsDiagView RosterStatsDiagView - expanded, should create snaps
         <em>
           Compare raw stats: orb=[
           <b>
-            17.0
+            17
           </b>
           ], pts=[
           <b>
-            506.0
+            506
           </b>
           ] (fg_pts=[
           <b>
-            334.0
+            334
           </b>
            = 
           <b>
@@ -1683,7 +1683,7 @@ exports[`RosterStatsDiagView RosterStatsDiagView - expanded, should create snaps
           </b>
           *
           <b>
-            56.0
+            56
           </b>
            + 
           <b>
@@ -1691,19 +1691,19 @@ exports[`RosterStatsDiagView RosterStatsDiagView - expanded, should create snaps
           </b>
           *(
           <b>
-            18.0
+            18
           </b>
            + 
           <b>
-            65.0
+            65
           </b>
           )] + ftm=[
           <b>
-            172.0
+            172
           </b>
           ]), assists=[
           <b>
-            147.0
+            147
           </b>
           ]
         </em>
@@ -3789,15 +3789,15 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 1`] = 
         <em>
           Compare raw stats: orb=[
           <b>
-            17.0
+            17
           </b>
           ], pts=[
           <b>
-            506.0
+            506
           </b>
           ] (fg_pts=[
           <b>
-            334.0
+            334
           </b>
            = 
           <b>
@@ -3805,7 +3805,7 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 1`] = 
           </b>
           *
           <b>
-            56.0
+            56
           </b>
            + 
           <b>
@@ -3813,19 +3813,19 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 1`] = 
           </b>
           *(
           <b>
-            18.0
+            18
           </b>
            + 
           <b>
-            65.0
+            65
           </b>
           )] + ftm=[
           <b>
-            172.0
+            172
           </b>
           ]), assists=[
           <b>
-            147.0
+            147
           </b>
           ]
         </em>
@@ -4133,15 +4133,15 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 2`] = 
         <em>
           Compare raw stats: orb=[
           <b>
-            17.0
+            17
           </b>
           ], pts=[
           <b>
-            506.0
+            506
           </b>
           ] (fg_pts=[
           <b>
-            334.0
+            334
           </b>
            = 
           <b>
@@ -4149,7 +4149,7 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 2`] = 
           </b>
           *
           <b>
-            56.0
+            56
           </b>
            + 
           <b>
@@ -4157,19 +4157,19 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 2`] = 
           </b>
           *(
           <b>
-            18.0
+            18
           </b>
            + 
           <b>
-            65.0
+            65
           </b>
           )] + ftm=[
           <b>
-            172.0
+            172
           </b>
           ]), assists=[
           <b>
-            147.0
+            147
           </b>
           ]
         </em>

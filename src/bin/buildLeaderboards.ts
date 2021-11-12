@@ -118,7 +118,7 @@ const inTier = (_.find(commandLine, p => _.startsWith(p, "--tier="))
 const inGender = (_.find(commandLine, p => _.startsWith(p, "--gender="))
   || `--gender=${ParamDefaults.defaultGender}`).substring(9);
 const inYear = (_.find(commandLine, p => _.startsWith(p, "--year="))
-  || `--year=${ParamDefaults.defaultLeaderboardYear}`).substring(7);
+  || `--year=${testMode ? "2020/21": ParamDefaults.defaultLeaderboardYear}`).substring(7);
 if (!testMode) console.log(`Args: gender=[${inGender}] year=[${inYear}]`);
 
 const onlyHasTopConferences = (inGender != "Men") || (parseInt(inYear.substring(0, 4)) < 2020);

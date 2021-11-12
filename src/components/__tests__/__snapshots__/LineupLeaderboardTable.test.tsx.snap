@@ -80,6 +80,10 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                 "value": "2020/21",
               },
               Object {
+                "label": "2021/22",
+                "value": "2021/22",
+              },
+              Object {
                 "label": "All",
                 "value": "All",
               },
@@ -13281,6 +13285,10 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
               Object {
                 "label": "2020/21",
                 "value": "2020/21",
+              },
+              Object {
+                "label": "2021/22",
+                "value": "2021/22",
               },
               Object {
                 "label": "All",
@@ -32701,6 +32709,10 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
               Object {
                 "label": "2020/21",
                 "value": "2020/21",
+              },
+              Object {
+                "label": "2021/22",
+                "value": "2021/22",
               },
               Object {
                 "label": "All",
