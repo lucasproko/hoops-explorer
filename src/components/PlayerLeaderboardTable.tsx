@@ -341,7 +341,12 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
 
     // Filter, sort, and limit players part 2/2
     const players = _.chain(confDataEventPlayers).filter(player => {
-      const strToTest = `${(player.key || "")} ${player.team || ""}_${player.year || ""} ${player.roster?.year_class || ""}_${player.code || ""}:${player.team || ""}`;
+      const names = (player.key || "").split(" ");
+      const firstName = names ? names[names.length - 1] : ""; //(allows eg MiMitchell+Makhi)
+      const usefulFormatBuilder = (s: string) => {
+        return `${player.roster?.year_class || ""}_${s || ""}:${player.team || ""}_${player.year || ""}`;
+      };
+      const strToTest = `${(player.key || "")} ${usefulFormatBuilder(`${player.code || ""}+${firstName}`)} ${usefulFormatBuilder(player.code)}`;
 
       return(
         (filterFragmentsPve.length == 0) ||
