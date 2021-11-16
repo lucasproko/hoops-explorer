@@ -182,7 +182,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
   const [ posClasses, setPosClasses ] = useState(startingState.posClasses || "");
 
   /** Whether to show sub-header with extra info */
-  const [ showInfoSubHeader, setShowInfoSubHeader ] = useState(false);
+  const [ showInfoSubHeader, setShowInfoSubHeader ] = useState(startingState.showInfoSubHeader || false);
 
   /** Show the number of possessions as a % of total team count */
   const [ factorMins, setFactorMins ] = useState(_.isNil(startingState.factorMins) ?
@@ -289,11 +289,14 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       minPoss: minPoss,
       maxTableSize: maxTableSize,
       sortBy: sortBy,
-      filter: filterStr
+      filter: filterStr,
+      // Misc display
+      showInfoSubHeader: showInfoSubHeader
     };
     onChangeState(newState);
   }, [ minPoss, maxTableSize, sortBy, filterStr,
       isT100, isConfOnly, possAsPct, factorMins,
+      showInfoSubHeader,
       useRapm,
       posClasses,
       confs, year, gender ]);
@@ -302,8 +305,9 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
 
   // 3.1] Build individual info
 
+  const filterFragmentSeparator = filterStr.substring(0, 64).indexOf(";") >= 0 ? ";" : ",";
   const filterFragments =
-    filterStr.split(",").map(fragment => _.trim(fragment)).filter(fragment => fragment ? true : false);
+    filterStr.split(filterFragmentSeparator).map(fragment => _.trim(fragment)).filter(fragment => fragment ? true : false);
   const filterFragmentsPve =
     filterFragments.filter(fragment => fragment[0] != '-');
   const filterFragmentsNve =
@@ -496,7 +500,6 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       if (yearClass) {
         player.def_assist = <small><i className="text-secondary">{yearClass}</i></small>;
       }
-
 
       player.off_title = <div>
         <span className="float-left">
@@ -727,7 +730,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
               startingVal={filterStr}
               onChange={(t: string) => friendlyChange(() => setFilterStr(t), t != filterStr)}
               timeout={500}
-              placeholder = "eg [-]Year;[-]TeamA[_Year];[-][Class_]Player1Code[:Team];[-]Player2Names"
+              placeholder = "eg [-][Team][_Year];[-][Class_]PlayerCode[+Name][:Team];[-]PlayerNames"
             />
           </InputGroup>
         </Form.Group>
@@ -868,7 +871,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
             },
             {
               label: "+ Info",
-              tooltip: showInfoSubHeader ? "Hide extra info sub-header" : "Show extra info sub-header (not currently saved like other options)",
+              tooltip: showInfoSubHeader ? "Hide extra info sub-header" : "Show extra info sub-header",
               toggled: showInfoSubHeader,
               onClick: () => setShowInfoSubHeader(!showInfoSubHeader)
             },

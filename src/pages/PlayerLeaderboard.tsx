@@ -94,6 +94,8 @@ const PlayLeaderboardPage: NextPage<{}> = () => {
       (rawParams.factorMins == ParamDefaults.defaultPlayerLboardFactorMins) ? [ 'factorMins' ] : [],
       (rawParams.possAsPct == ParamDefaults.defaultPlayerLboardPossAsPct) ? [ 'possAsPct' ] : [],
 
+      (!rawParams.showInfoSubHeader) ? [ 'showInfoSubHeader' ] : [],
+
       (rawParams.minPoss == ParamDefaults.defaultPlayerLboardMinPos) ? [ 'minPoss' ] : [],
       (rawParams.maxTableSize == ParamDefaults.defaultPlayerLboardMaxTableSize) ? [ 'maxTableSize' ] : [],
       (rawParams.sortBy == ParamDefaults.defaultPlayerLboardSortBy(

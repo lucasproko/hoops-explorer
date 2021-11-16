@@ -261,7 +261,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
           </InputGroupPrepend>
           <AsyncFormControl
             onChange={[Function]}
-            placeholder="eg [-]Year;[-]TeamA[_Year];[-][Class_]Player1Code[:Team];[-]Player2Names"
+            placeholder="eg [-][Team][_Year];[-][Class_]PlayerCode[+Name][:Team];[-]PlayerNames"
             startingVal=""
             timeout={500}
           />
@@ -928,7 +928,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 "label": "+ Info",
                 "onClick": [Function],
                 "toggled": false,
-                "tooltip": "Show extra info sub-header (not currently saved like other options)",
+                "tooltip": "Show extra info sub-header",
               },
             ]
           }
@@ -7095,7 +7095,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
           </InputGroupPrepend>
           <AsyncFormControl
             onChange={[Function]}
-            placeholder="eg [-]Year;[-]TeamA[_Year];[-][Class_]Player1Code[:Team];[-]Player2Names"
+            placeholder="eg [-][Team][_Year];[-][Class_]PlayerCode[+Name][:Team];[-]PlayerNames"
             startingVal=""
             timeout={500}
           />
@@ -7762,7 +7762,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 "label": "+ Info",
                 "onClick": [Function],
                 "toggled": false,
-                "tooltip": "Show extra info sub-header (not currently saved like other options)",
+                "tooltip": "Show extra info sub-header",
               },
             ]
           }
@@ -13929,7 +13929,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
           </InputGroupPrepend>
           <AsyncFormControl
             onChange={[Function]}
-            placeholder="eg [-]Year;[-]TeamA[_Year];[-][Class_]Player1Code[:Team];[-]Player2Names"
+            placeholder="eg [-][Team][_Year];[-][Class_]PlayerCode[+Name][:Team];[-]PlayerNames"
             startingVal=""
             timeout={500}
           />
@@ -14596,7 +14596,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 "label": "+ Info",
                 "onClick": [Function],
                 "toggled": false,
-                "tooltip": "Show extra info sub-header (not currently saved like other options)",
+                "tooltip": "Show extra info sub-header",
               },
             ]
           }
@@ -23658,7 +23658,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
           </InputGroupPrepend>
           <AsyncFormControl
             onChange={[Function]}
-            placeholder="eg [-]Year;[-]TeamA[_Year];[-][Class_]Player1Code[:Team];[-]Player2Names"
+            placeholder="eg [-][Team][_Year];[-][Class_]PlayerCode[+Name][:Team];[-]PlayerNames"
             startingVal=""
             timeout={500}
           />
@@ -24325,7 +24325,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 "label": "+ Info",
                 "onClick": [Function],
                 "toggled": false,
-                "tooltip": "Show extra info sub-header (not currently saved like other options)",
+                "tooltip": "Show extra info sub-header",
               },
             ]
           }
@@ -30472,7 +30472,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
           </InputGroupPrepend>
           <AsyncFormControl
             onChange={[Function]}
-            placeholder="eg [-]Year;[-]TeamA[_Year];[-][Class_]Player1Code[:Team];[-]Player2Names"
+            placeholder="eg [-][Team][_Year];[-][Class_]PlayerCode[+Name][:Team];[-]PlayerNames"
             startingVal=""
             timeout={500}
           />
@@ -31139,7 +31139,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                 "label": "+ Info",
                 "onClick": [Function],
                 "toggled": false,
-                "tooltip": "Show extra info sub-header (not currently saved like other options)",
+                "tooltip": "Show extra info sub-header",
               },
             ]
           }

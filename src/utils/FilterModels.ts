@@ -145,6 +145,8 @@ export type PlayerLeaderboardParams = {
   useRapm?: boolean,
   // Filtering:
   filter?: string,
+  // Misc display:
+  showInfoSubHeader?: boolean,
   // Query pre-sets
   confOnly?: boolean,
   t100?: boolean
