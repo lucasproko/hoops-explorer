@@ -23,7 +23,9 @@ export class AvailableTeams {
         { team: "Maryland", year: "2018/9", gender: "Women", index_template: "women_bigten", category: "high" },
         { team: "Maryland", year: "2019/20", gender: "Women", index_template: "women_bigten", category: "high" },
         { team: "Maryland", year: "2020/21", gender: "Women", index_template: "women_bigten", category: "high" },
+        { team: "Maryland", year: "2021/22", gender: "Women", index_template: "women_bigten", category: "high" },
      ],
+
     "A&M-Corpus Christi": [
         { team: "A&M-Corpus Christi", year: "2020/21", gender: "Men", index_template: "southland", category: "low" },
         { team: "A&M-Corpus Christi", year: "2021/22", gender: "Men", index_template: "southland", category: "low" },
@@ -48,6 +50,7 @@ export class AvailableTeams {
         { team: "Alabama", year: "2018/9", gender: "Women", index_template: "women_sec", category: "high" },
         { team: "Alabama", year: "2019/20", gender: "Women", index_template: "women_sec", category: "high" },
         { team: "Alabama", year: "2020/21", gender: "Women", index_template: "women_sec", category: "high" },
+        { team: "Alabama", year: "2021/22", gender: "Women", index_template: "women_sec", category: "high" },
      ],
     "Alabama A&M": [
         { team: "Alabama A&M", year: "2020/21", gender: "Men", index_template: "swac", category: "low" },
@@ -81,6 +84,7 @@ export class AvailableTeams {
         { team: "Arizona", year: "2018/9", gender: "Women", index_template: "women_pactwelve", category: "high" },
         { team: "Arizona", year: "2019/20", gender: "Women", index_template: "women_pactwelve", category: "high" },
         { team: "Arizona", year: "2020/21", gender: "Women", index_template: "women_pactwelve", category: "high" },
+        { team: "Arizona", year: "2021/22", gender: "Women", index_template: "women_pactwelve", category: "high" },
      ],
     "Arizona St.": [
         { team: "Arizona St.", year: "2018/9", gender: "Men", index_template: "pactwelve", category: "high" },
@@ -90,6 +94,7 @@ export class AvailableTeams {
         { team: "Arizona St.", year: "2018/9", gender: "Women", index_template: "women_pactwelve", category: "high" },
         { team: "Arizona St.", year: "2019/20", gender: "Women", index_template: "women_pactwelve", category: "high" },
         { team: "Arizona St.", year: "2020/21", gender: "Women", index_template: "women_pactwelve", category: "high" },
+        { team: "Arizona St.", year: "2021/22", gender: "Women", index_template: "women_pactwelve", category: "high" },
      ],
     "Ark.-Pine Bluff": [
         { team: "Ark.-Pine Bluff", year: "2020/21", gender: "Men", index_template: "swac", category: "low" },
@@ -103,6 +108,7 @@ export class AvailableTeams {
         { team: "Arkansas", year: "2018/9", gender: "Women", index_template: "women_sec", category: "high" },
         { team: "Arkansas", year: "2019/20", gender: "Women", index_template: "women_sec", category: "high" },
         { team: "Arkansas", year: "2020/21", gender: "Women", index_template: "women_sec", category: "high" },
+        { team: "Arkansas", year: "2021/22", gender: "Women", index_template: "women_sec", category: "high" },
      ],
     "Arkansas St.": [
         { team: "Arkansas St.", year: "2020/21", gender: "Men", index_template: "sunbelt", category: "mid" },
@@ -120,6 +126,7 @@ export class AvailableTeams {
         { team: "Auburn", year: "2018/9", gender: "Women", index_template: "women_sec", category: "high" },
         { team: "Auburn", year: "2019/20", gender: "Women", index_template: "women_sec", category: "high" },
         { team: "Auburn", year: "2020/21", gender: "Women", index_template: "women_sec", category: "high" },
+        { team: "Auburn", year: "2021/22", gender: "Women", index_template: "women_sec", category: "high" },
      ],
     "Austin Peay": [
         { team: "Austin Peay", year: "2020/21", gender: "Men", index_template: "ovc", category: "midlow" },
@@ -143,6 +150,7 @@ export class AvailableTeams {
         { team: "Baylor", year: "2018/9", gender: "Women", index_template: "women_bigtwelve", category: "high" },
         { team: "Baylor", year: "2019/20", gender: "Women", index_template: "women_bigtwelve", category: "high" },
         { team: "Baylor", year: "2020/21", gender: "Women", index_template: "women_bigtwelve", category: "high" },
+        { team: "Baylor", year: "2021/22", gender: "Women", index_template: "women_bigtwelve", category: "high" },
      ],
     "Bellarmine": [
         { team: "Bellarmine", year: "2021/22", gender: "Men", index_template: "atlanticsun", category: "low" },
@@ -170,6 +178,7 @@ export class AvailableTeams {
         { team: "Boston College", year: "2018/9", gender: "Women", index_template: "women_acc", category: "high" },
         { team: "Boston College", year: "2019/20", gender: "Women", index_template: "women_acc", category: "high" },
         { team: "Boston College", year: "2020/21", gender: "Women", index_template: "women_acc", category: "high" },
+        { team: "Boston College", year: "2021/22", gender: "Women", index_template: "women_acc", category: "high" },
      ],
     "Boston U.": [
         { team: "Boston U.", year: "2020/21", gender: "Men", index_template: "patriot", category: "midlow" },
@@ -204,6 +213,7 @@ export class AvailableTeams {
         { team: "Butler", year: "2020/21", gender: "Men", index_template: "bigeast", category: "high" },
         { team: "Butler", year: "2021/22", gender: "Men", index_template: "bigeast", category: "high" },
         { team: "Butler", year: "2020/21", gender: "Women", index_template: "women_bigeast", category: "high" },
+        { team: "Butler", year: "2021/22", gender: "Women", index_template: "women_bigeast", category: "high" },
      ],
     "CSU Bakersfield": [
         { team: "CSU Bakersfield", year: "2020/21", gender: "Men", index_template: "bigwest", category: "mid" },
@@ -229,6 +239,7 @@ export class AvailableTeams {
         { team: "California", year: "2018/9", gender: "Women", index_template: "women_pactwelve", category: "high" },
         { team: "California", year: "2019/20", gender: "Women", index_template: "women_pactwelve", category: "high" },
         { team: "California", year: "2020/21", gender: "Women", index_template: "women_pactwelve", category: "high" },
+        { team: "California", year: "2021/22", gender: "Women", index_template: "women_pactwelve", category: "high" },
      ],
     "California Baptist": [
         { team: "California Baptist", year: "2021/22", gender: "Men", index_template: "wac", category: "midlow" },
@@ -279,6 +290,7 @@ export class AvailableTeams {
         { team: "Cincinnati", year: "2018/9", gender: "Women", index_template: "women_american", category: "midhigh" },
         { team: "Cincinnati", year: "2019/20", gender: "Women", index_template: "women_american", category: "midhigh" },
         { team: "Cincinnati", year: "2020/21", gender: "Women", index_template: "women_american", category: "midhigh" },
+        { team: "Cincinnati", year: "2021/22", gender: "Women", index_template: "women_american", category: "midhigh" },
      ],
     "Clemson": [
         { team: "Clemson", year: "2018/9", gender: "Men", index_template: "acc", category: "high" },
@@ -288,6 +300,7 @@ export class AvailableTeams {
         { team: "Clemson", year: "2018/9", gender: "Women", index_template: "women_acc", category: "high" },
         { team: "Clemson", year: "2019/20", gender: "Women", index_template: "women_acc", category: "high" },
         { team: "Clemson", year: "2020/21", gender: "Women", index_template: "women_acc", category: "high" },
+        { team: "Clemson", year: "2021/22", gender: "Women", index_template: "women_acc", category: "high" },
      ],
     "Cleveland St.": [
         { team: "Cleveland St.", year: "2020/21", gender: "Men", index_template: "horizon", category: "mid" },
@@ -313,6 +326,7 @@ export class AvailableTeams {
         { team: "Colorado", year: "2018/9", gender: "Women", index_template: "women_pactwelve", category: "high" },
         { team: "Colorado", year: "2019/20", gender: "Women", index_template: "women_pactwelve", category: "high" },
         { team: "Colorado", year: "2020/21", gender: "Women", index_template: "women_pactwelve", category: "high" },
+        { team: "Colorado", year: "2021/22", gender: "Women", index_template: "women_pactwelve", category: "high" },
      ],
     "Colorado St.": [
         { team: "Colorado St.", year: "2020/21", gender: "Men", index_template: "mountainwest", category: "midhigh" },
@@ -334,6 +348,7 @@ export class AvailableTeams {
         { team: "Creighton", year: "2020/21", gender: "Men", index_template: "bigeast", category: "high" },
         { team: "Creighton", year: "2021/22", gender: "Men", index_template: "bigeast", category: "high" },
         { team: "Creighton", year: "2020/21", gender: "Women", index_template: "women_bigeast", category: "high" },
+        { team: "Creighton", year: "2021/22", gender: "Women", index_template: "women_bigeast", category: "high" },
      ],
     "Dartmouth": [
         { team: "Dartmouth", year: "2021/22", gender: "Men", index_template: "ivy", category: "mid" },
@@ -356,6 +371,7 @@ export class AvailableTeams {
         { team: "DePaul", year: "2020/21", gender: "Men", index_template: "bigeast", category: "high" },
         { team: "DePaul", year: "2021/22", gender: "Men", index_template: "bigeast", category: "high" },
         { team: "DePaul", year: "2020/21", gender: "Women", index_template: "women_bigeast", category: "high" },
+        { team: "DePaul", year: "2021/22", gender: "Women", index_template: "women_bigeast", category: "high" },
      ],
     "Delaware": [
         { team: "Delaware", year: "2020/21", gender: "Men", index_template: "colonial", category: "mid" },
@@ -392,6 +408,7 @@ export class AvailableTeams {
         { team: "Duke", year: "2018/9", gender: "Women", index_template: "women_acc", category: "high" },
         { team: "Duke", year: "2019/20", gender: "Women", index_template: "women_acc", category: "high" },
         { team: "Duke", year: "2020/21", gender: "Women", index_template: "women_acc", category: "high" },
+        { team: "Duke", year: "2021/22", gender: "Women", index_template: "women_acc", category: "high" },
      ],
     "Duquesne": [
         { team: "Duquesne", year: "2018/9", gender: "Men", index_template: "atlanticten", category: "midhigh" },
@@ -411,6 +428,7 @@ export class AvailableTeams {
         { team: "East Carolina", year: "2018/9", gender: "Women", index_template: "women_american", category: "midhigh" },
         { team: "East Carolina", year: "2019/20", gender: "Women", index_template: "women_american", category: "midhigh" },
         { team: "East Carolina", year: "2020/21", gender: "Women", index_template: "women_american", category: "midhigh" },
+        { team: "East Carolina", year: "2021/22", gender: "Women", index_template: "women_american", category: "midhigh" },
      ],
     "Eastern Ill.": [
         { team: "Eastern Ill.", year: "2020/21", gender: "Men", index_template: "ovc", category: "midlow" },
@@ -464,6 +482,7 @@ export class AvailableTeams {
         { team: "Florida", year: "2018/9", gender: "Women", index_template: "women_sec", category: "high" },
         { team: "Florida", year: "2019/20", gender: "Women", index_template: "women_sec", category: "high" },
         { team: "Florida", year: "2020/21", gender: "Women", index_template: "women_sec", category: "high" },
+        { team: "Florida", year: "2021/22", gender: "Women", index_template: "women_sec", category: "high" },
      ],
     "Florida A&M": [
         { team: "Florida A&M", year: "2020/21", gender: "Men", index_template: "meac", category: "low" },
@@ -478,6 +497,7 @@ export class AvailableTeams {
         { team: "Florida St.", year: "2018/9", gender: "Women", index_template: "women_acc", category: "high" },
         { team: "Florida St.", year: "2019/20", gender: "Women", index_template: "women_acc", category: "high" },
         { team: "Florida St.", year: "2020/21", gender: "Women", index_template: "women_acc", category: "high" },
+        { team: "Florida St.", year: "2021/22", gender: "Women", index_template: "women_acc", category: "high" },
      ],
     "Fordham": [
         { team: "Fordham", year: "2018/9", gender: "Men", index_template: "atlanticten", category: "midhigh" },
@@ -519,6 +539,7 @@ export class AvailableTeams {
         { team: "Georgetown", year: "2020/21", gender: "Men", index_template: "bigeast", category: "high" },
         { team: "Georgetown", year: "2021/22", gender: "Men", index_template: "bigeast", category: "high" },
         { team: "Georgetown", year: "2020/21", gender: "Women", index_template: "women_bigeast", category: "high" },
+        { team: "Georgetown", year: "2021/22", gender: "Women", index_template: "women_bigeast", category: "high" },
      ],
     "Georgia": [
         { team: "Georgia", year: "2018/9", gender: "Men", index_template: "sec", category: "high" },
@@ -528,6 +549,7 @@ export class AvailableTeams {
         { team: "Georgia", year: "2018/9", gender: "Women", index_template: "women_sec", category: "high" },
         { team: "Georgia", year: "2019/20", gender: "Women", index_template: "women_sec", category: "high" },
         { team: "Georgia", year: "2020/21", gender: "Women", index_template: "women_sec", category: "high" },
+        { team: "Georgia", year: "2021/22", gender: "Women", index_template: "women_sec", category: "high" },
      ],
     "Georgia St.": [
         { team: "Georgia St.", year: "2020/21", gender: "Men", index_template: "sunbelt", category: "mid" },
@@ -541,6 +563,7 @@ export class AvailableTeams {
         { team: "Georgia Tech", year: "2018/9", gender: "Women", index_template: "women_acc", category: "high" },
         { team: "Georgia Tech", year: "2019/20", gender: "Women", index_template: "women_acc", category: "high" },
         { team: "Georgia Tech", year: "2020/21", gender: "Women", index_template: "women_acc", category: "high" },
+        { team: "Georgia Tech", year: "2021/22", gender: "Women", index_template: "women_acc", category: "high" },
      ],
     "Gonzaga": [
         { team: "Gonzaga", year: "2018/9", gender: "Men", index_template: "misc_conf", category: "midhigh" },
@@ -595,6 +618,7 @@ export class AvailableTeams {
         { team: "Houston", year: "2018/9", gender: "Women", index_template: "women_american", category: "midhigh" },
         { team: "Houston", year: "2019/20", gender: "Women", index_template: "women_american", category: "midhigh" },
         { team: "Houston", year: "2020/21", gender: "Women", index_template: "women_american", category: "midhigh" },
+        { team: "Houston", year: "2021/22", gender: "Women", index_template: "women_american", category: "midhigh" },
      ],
     "Houston Baptist": [
         { team: "Houston Baptist", year: "2020/21", gender: "Men", index_template: "southland", category: "low" },
@@ -624,6 +648,7 @@ export class AvailableTeams {
         { team: "Illinois", year: "2018/9", gender: "Women", index_template: "women_bigten", category: "high" },
         { team: "Illinois", year: "2019/20", gender: "Women", index_template: "women_bigten", category: "high" },
         { team: "Illinois", year: "2020/21", gender: "Women", index_template: "women_bigten", category: "high" },
+        { team: "Illinois", year: "2021/22", gender: "Women", index_template: "women_bigten", category: "high" },
      ],
     "Illinois St.": [
         { team: "Illinois St.", year: "2020/21", gender: "Men", index_template: "mvc", category: "mid" },
@@ -637,6 +662,7 @@ export class AvailableTeams {
         { team: "Indiana", year: "2018/9", gender: "Women", index_template: "women_bigten", category: "high" },
         { team: "Indiana", year: "2019/20", gender: "Women", index_template: "women_bigten", category: "high" },
         { team: "Indiana", year: "2020/21", gender: "Women", index_template: "women_bigten", category: "high" },
+        { team: "Indiana", year: "2021/22", gender: "Women", index_template: "women_bigten", category: "high" },
      ],
     "Indiana St.": [
         { team: "Indiana St.", year: "2020/21", gender: "Men", index_template: "mvc", category: "mid" },
@@ -654,6 +680,7 @@ export class AvailableTeams {
         { team: "Iowa", year: "2018/9", gender: "Women", index_template: "women_bigten", category: "high" },
         { team: "Iowa", year: "2019/20", gender: "Women", index_template: "women_bigten", category: "high" },
         { team: "Iowa", year: "2020/21", gender: "Women", index_template: "women_bigten", category: "high" },
+        { team: "Iowa", year: "2021/22", gender: "Women", index_template: "women_bigten", category: "high" },
      ],
     "Iowa St.": [
         { team: "Iowa St.", year: "2018/9", gender: "Men", index_template: "bigtwelve", category: "high" },
@@ -663,6 +690,7 @@ export class AvailableTeams {
         { team: "Iowa St.", year: "2018/9", gender: "Women", index_template: "women_bigtwelve", category: "high" },
         { team: "Iowa St.", year: "2019/20", gender: "Women", index_template: "women_bigtwelve", category: "high" },
         { team: "Iowa St.", year: "2020/21", gender: "Women", index_template: "women_bigtwelve", category: "high" },
+        { team: "Iowa St.", year: "2021/22", gender: "Women", index_template: "women_bigtwelve", category: "high" },
      ],
     "Jackson St.": [
         { team: "Jackson St.", year: "2020/21", gender: "Men", index_template: "swac", category: "low" },
@@ -688,6 +716,7 @@ export class AvailableTeams {
         { team: "Kansas", year: "2018/9", gender: "Women", index_template: "women_bigtwelve", category: "high" },
         { team: "Kansas", year: "2019/20", gender: "Women", index_template: "women_bigtwelve", category: "high" },
         { team: "Kansas", year: "2020/21", gender: "Women", index_template: "women_bigtwelve", category: "high" },
+        { team: "Kansas", year: "2021/22", gender: "Women", index_template: "women_bigtwelve", category: "high" },
      ],
     "Kansas City": [
         { team: "Kansas City", year: "2020/21", gender: "Men", index_template: "summit", category: "mid" },
@@ -701,6 +730,7 @@ export class AvailableTeams {
         { team: "Kansas St.", year: "2018/9", gender: "Women", index_template: "women_bigtwelve", category: "high" },
         { team: "Kansas St.", year: "2019/20", gender: "Women", index_template: "women_bigtwelve", category: "high" },
         { team: "Kansas St.", year: "2020/21", gender: "Women", index_template: "women_bigtwelve", category: "high" },
+        { team: "Kansas St.", year: "2021/22", gender: "Women", index_template: "women_bigtwelve", category: "high" },
      ],
     "Kennesaw St.": [
         { team: "Kennesaw St.", year: "2020/21", gender: "Men", index_template: "atlanticsun", category: "low" },
@@ -718,6 +748,7 @@ export class AvailableTeams {
         { team: "Kentucky", year: "2018/9", gender: "Women", index_template: "women_sec", category: "high" },
         { team: "Kentucky", year: "2019/20", gender: "Women", index_template: "women_sec", category: "high" },
         { team: "Kentucky", year: "2020/21", gender: "Women", index_template: "women_sec", category: "high" },
+        { team: "Kentucky", year: "2021/22", gender: "Women", index_template: "women_sec", category: "high" },
      ],
     "LIU": [
         { team: "LIU", year: "2020/21", gender: "Men", index_template: "nec", category: "low" },
@@ -735,6 +766,7 @@ export class AvailableTeams {
         { team: "LSU", year: "2018/9", gender: "Women", index_template: "women_sec", category: "high" },
         { team: "LSU", year: "2019/20", gender: "Women", index_template: "women_sec", category: "high" },
         { team: "LSU", year: "2020/21", gender: "Women", index_template: "women_sec", category: "high" },
+        { team: "LSU", year: "2021/22", gender: "Women", index_template: "women_sec", category: "high" },
      ],
     "La Salle": [
         { team: "La Salle", year: "2018/9", gender: "Men", index_template: "atlanticten", category: "midhigh" },
@@ -790,6 +822,7 @@ export class AvailableTeams {
         { team: "Louisville", year: "2018/9", gender: "Women", index_template: "women_acc", category: "high" },
         { team: "Louisville", year: "2019/20", gender: "Women", index_template: "women_acc", category: "high" },
         { team: "Louisville", year: "2020/21", gender: "Women", index_template: "women_acc", category: "high" },
+        { team: "Louisville", year: "2021/22", gender: "Women", index_template: "women_acc", category: "high" },
      ],
     "Loyola Chicago": [
         { team: "Loyola Chicago", year: "2020/21", gender: "Men", index_template: "mvc", category: "mid" },
@@ -817,6 +850,7 @@ export class AvailableTeams {
         { team: "Marquette", year: "2020/21", gender: "Men", index_template: "bigeast", category: "high" },
         { team: "Marquette", year: "2021/22", gender: "Men", index_template: "bigeast", category: "high" },
         { team: "Marquette", year: "2020/21", gender: "Women", index_template: "women_bigeast", category: "high" },
+        { team: "Marquette", year: "2021/22", gender: "Women", index_template: "women_bigeast", category: "high" },
      ],
     "Marshall": [
         { team: "Marshall", year: "2020/21", gender: "Men", index_template: "conferenceusa", category: "mid" },
@@ -840,6 +874,7 @@ export class AvailableTeams {
         { team: "Memphis", year: "2018/9", gender: "Women", index_template: "women_american", category: "midhigh" },
         { team: "Memphis", year: "2019/20", gender: "Women", index_template: "women_american", category: "midhigh" },
         { team: "Memphis", year: "2020/21", gender: "Women", index_template: "women_american", category: "midhigh" },
+        { team: "Memphis", year: "2021/22", gender: "Women", index_template: "women_american", category: "midhigh" },
      ],
     "Mercer": [
         { team: "Mercer", year: "2020/21", gender: "Men", index_template: "socon", category: "midlow" },
@@ -856,6 +891,7 @@ export class AvailableTeams {
         { team: "Miami (FL)", year: "2018/9", gender: "Women", index_template: "women_acc", category: "high" },
         { team: "Miami (FL)", year: "2019/20", gender: "Women", index_template: "women_acc", category: "high" },
         { team: "Miami (FL)", year: "2020/21", gender: "Women", index_template: "women_acc", category: "high" },
+        { team: "Miami (FL)", year: "2021/22", gender: "Women", index_template: "women_acc", category: "high" },
      ],
     "Miami (OH)": [
         { team: "Miami (OH)", year: "2020/21", gender: "Men", index_template: "mac", category: "mid" },
@@ -869,6 +905,7 @@ export class AvailableTeams {
         { team: "Michigan", year: "2018/9", gender: "Women", index_template: "women_bigten", category: "high" },
         { team: "Michigan", year: "2019/20", gender: "Women", index_template: "women_bigten", category: "high" },
         { team: "Michigan", year: "2020/21", gender: "Women", index_template: "women_bigten", category: "high" },
+        { team: "Michigan", year: "2021/22", gender: "Women", index_template: "women_bigten", category: "high" },
      ],
     "Michigan St.": [
         { team: "Michigan St.", year: "2018/9", gender: "Men", index_template: "bigten", category: "high" },
@@ -878,6 +915,7 @@ export class AvailableTeams {
         { team: "Michigan St.", year: "2018/9", gender: "Women", index_template: "women_bigten", category: "high" },
         { team: "Michigan St.", year: "2019/20", gender: "Women", index_template: "women_bigten", category: "high" },
         { team: "Michigan St.", year: "2020/21", gender: "Women", index_template: "women_bigten", category: "high" },
+        { team: "Michigan St.", year: "2021/22", gender: "Women", index_template: "women_bigten", category: "high" },
      ],
     "Middle Tenn.": [
         { team: "Middle Tenn.", year: "2020/21", gender: "Men", index_template: "conferenceusa", category: "mid" },
@@ -895,6 +933,7 @@ export class AvailableTeams {
         { team: "Minnesota", year: "2018/9", gender: "Women", index_template: "women_bigten", category: "high" },
         { team: "Minnesota", year: "2019/20", gender: "Women", index_template: "women_bigten", category: "high" },
         { team: "Minnesota", year: "2020/21", gender: "Women", index_template: "women_bigten", category: "high" },
+        { team: "Minnesota", year: "2021/22", gender: "Women", index_template: "women_bigten", category: "high" },
      ],
     "Mississippi St.": [
         { team: "Mississippi St.", year: "2018/9", gender: "Men", index_template: "sec", category: "high" },
@@ -904,6 +943,7 @@ export class AvailableTeams {
         { team: "Mississippi St.", year: "2018/9", gender: "Women", index_template: "women_sec", category: "high" },
         { team: "Mississippi St.", year: "2019/20", gender: "Women", index_template: "women_sec", category: "high" },
         { team: "Mississippi St.", year: "2020/21", gender: "Women", index_template: "women_sec", category: "high" },
+        { team: "Mississippi St.", year: "2021/22", gender: "Women", index_template: "women_sec", category: "high" },
      ],
     "Mississippi Val.": [
         { team: "Mississippi Val.", year: "2020/21", gender: "Men", index_template: "swac", category: "low" },
@@ -917,6 +957,7 @@ export class AvailableTeams {
         { team: "Missouri", year: "2018/9", gender: "Women", index_template: "women_sec", category: "high" },
         { team: "Missouri", year: "2019/20", gender: "Women", index_template: "women_sec", category: "high" },
         { team: "Missouri", year: "2020/21", gender: "Women", index_template: "women_sec", category: "high" },
+        { team: "Missouri", year: "2021/22", gender: "Women", index_template: "women_sec", category: "high" },
      ],
     "Missouri St.": [
         { team: "Missouri St.", year: "2020/21", gender: "Men", index_template: "mvc", category: "mid" },
@@ -967,6 +1008,7 @@ export class AvailableTeams {
         { team: "NC State", year: "2018/9", gender: "Women", index_template: "women_acc", category: "high" },
         { team: "NC State", year: "2019/20", gender: "Women", index_template: "women_acc", category: "high" },
         { team: "NC State", year: "2020/21", gender: "Women", index_template: "women_acc", category: "high" },
+        { team: "NC State", year: "2021/22", gender: "Women", index_template: "women_acc", category: "high" },
      ],
     "NJIT": [
         { team: "NJIT", year: "2020/21", gender: "Men", index_template: "americaeast", category: "low" },
@@ -984,6 +1026,7 @@ export class AvailableTeams {
         { team: "Nebraska", year: "2018/9", gender: "Women", index_template: "women_bigten", category: "high" },
         { team: "Nebraska", year: "2019/20", gender: "Women", index_template: "women_bigten", category: "high" },
         { team: "Nebraska", year: "2020/21", gender: "Women", index_template: "women_bigten", category: "high" },
+        { team: "Nebraska", year: "2021/22", gender: "Women", index_template: "women_bigten", category: "high" },
      ],
     "Nevada": [
         { team: "Nevada", year: "2020/21", gender: "Men", index_template: "mountainwest", category: "midhigh" },
@@ -1028,6 +1071,7 @@ export class AvailableTeams {
         { team: "North Carolina", year: "2018/9", gender: "Women", index_template: "women_acc", category: "high" },
         { team: "North Carolina", year: "2019/20", gender: "Women", index_template: "women_acc", category: "high" },
         { team: "North Carolina", year: "2020/21", gender: "Women", index_template: "women_acc", category: "high" },
+        { team: "North Carolina", year: "2021/22", gender: "Women", index_template: "women_acc", category: "high" },
      ],
     "North Dakota": [
         { team: "North Dakota", year: "2020/21", gender: "Men", index_template: "summit", category: "mid" },
@@ -1073,6 +1117,7 @@ export class AvailableTeams {
         { team: "Northwestern", year: "2018/9", gender: "Women", index_template: "women_bigten", category: "high" },
         { team: "Northwestern", year: "2019/20", gender: "Women", index_template: "women_bigten", category: "high" },
         { team: "Northwestern", year: "2020/21", gender: "Women", index_template: "women_bigten", category: "high" },
+        { team: "Northwestern", year: "2021/22", gender: "Women", index_template: "women_bigten", category: "high" },
      ],
     "Northwestern St.": [
         { team: "Northwestern St.", year: "2020/21", gender: "Men", index_template: "southland", category: "low" },
@@ -1086,6 +1131,7 @@ export class AvailableTeams {
         { team: "Notre Dame", year: "2018/9", gender: "Women", index_template: "women_acc", category: "high" },
         { team: "Notre Dame", year: "2019/20", gender: "Women", index_template: "women_acc", category: "high" },
         { team: "Notre Dame", year: "2020/21", gender: "Women", index_template: "women_acc", category: "high" },
+        { team: "Notre Dame", year: "2021/22", gender: "Women", index_template: "women_acc", category: "high" },
      ],
     "Oakland": [
         { team: "Oakland", year: "2020/21", gender: "Men", index_template: "horizon", category: "mid" },
@@ -1103,6 +1149,7 @@ export class AvailableTeams {
         { team: "Ohio St.", year: "2018/9", gender: "Women", index_template: "women_bigten", category: "high" },
         { team: "Ohio St.", year: "2019/20", gender: "Women", index_template: "women_bigten", category: "high" },
         { team: "Ohio St.", year: "2020/21", gender: "Women", index_template: "women_bigten", category: "high" },
+        { team: "Ohio St.", year: "2021/22", gender: "Women", index_template: "women_bigten", category: "high" },
      ],
     "Oklahoma": [
         { team: "Oklahoma", year: "2018/9", gender: "Men", index_template: "bigtwelve", category: "high" },
@@ -1112,6 +1159,7 @@ export class AvailableTeams {
         { team: "Oklahoma", year: "2018/9", gender: "Women", index_template: "women_bigtwelve", category: "high" },
         { team: "Oklahoma", year: "2019/20", gender: "Women", index_template: "women_bigtwelve", category: "high" },
         { team: "Oklahoma", year: "2020/21", gender: "Women", index_template: "women_bigtwelve", category: "high" },
+        { team: "Oklahoma", year: "2021/22", gender: "Women", index_template: "women_bigtwelve", category: "high" },
      ],
     "Oklahoma St.": [
         { team: "Oklahoma St.", year: "2018/9", gender: "Men", index_template: "bigtwelve", category: "high" },
@@ -1121,6 +1169,7 @@ export class AvailableTeams {
         { team: "Oklahoma St.", year: "2018/9", gender: "Women", index_template: "women_bigtwelve", category: "high" },
         { team: "Oklahoma St.", year: "2019/20", gender: "Women", index_template: "women_bigtwelve", category: "high" },
         { team: "Oklahoma St.", year: "2020/21", gender: "Women", index_template: "women_bigtwelve", category: "high" },
+        { team: "Oklahoma St.", year: "2021/22", gender: "Women", index_template: "women_bigtwelve", category: "high" },
      ],
     "Old Dominion": [
         { team: "Old Dominion", year: "2020/21", gender: "Men", index_template: "conferenceusa", category: "mid" },
@@ -1134,6 +1183,7 @@ export class AvailableTeams {
         { team: "Ole Miss", year: "2018/9", gender: "Women", index_template: "women_sec", category: "high" },
         { team: "Ole Miss", year: "2019/20", gender: "Women", index_template: "women_sec", category: "high" },
         { team: "Ole Miss", year: "2020/21", gender: "Women", index_template: "women_sec", category: "high" },
+        { team: "Ole Miss", year: "2021/22", gender: "Women", index_template: "women_sec", category: "high" },
      ],
     "Omaha": [
         { team: "Omaha", year: "2020/21", gender: "Men", index_template: "summit", category: "mid" },
@@ -1151,6 +1201,7 @@ export class AvailableTeams {
         { team: "Oregon", year: "2018/9", gender: "Women", index_template: "women_pactwelve", category: "high" },
         { team: "Oregon", year: "2019/20", gender: "Women", index_template: "women_pactwelve", category: "high" },
         { team: "Oregon", year: "2020/21", gender: "Women", index_template: "women_pactwelve", category: "high" },
+        { team: "Oregon", year: "2021/22", gender: "Women", index_template: "women_pactwelve", category: "high" },
      ],
     "Oregon St.": [
         { team: "Oregon St.", year: "2018/9", gender: "Men", index_template: "pactwelve", category: "high" },
@@ -1160,6 +1211,7 @@ export class AvailableTeams {
         { team: "Oregon St.", year: "2018/9", gender: "Women", index_template: "women_pactwelve", category: "high" },
         { team: "Oregon St.", year: "2019/20", gender: "Women", index_template: "women_pactwelve", category: "high" },
         { team: "Oregon St.", year: "2020/21", gender: "Women", index_template: "women_pactwelve", category: "high" },
+        { team: "Oregon St.", year: "2021/22", gender: "Women", index_template: "women_pactwelve", category: "high" },
      ],
     "Pacific": [
         { team: "Pacific", year: "2020/21", gender: "Men", index_template: "wcc", category: "midhigh" },
@@ -1176,6 +1228,7 @@ export class AvailableTeams {
         { team: "Penn St.", year: "2018/9", gender: "Women", index_template: "women_bigten", category: "high" },
         { team: "Penn St.", year: "2019/20", gender: "Women", index_template: "women_bigten", category: "high" },
         { team: "Penn St.", year: "2020/21", gender: "Women", index_template: "women_bigten", category: "high" },
+        { team: "Penn St.", year: "2021/22", gender: "Women", index_template: "women_bigten", category: "high" },
      ],
     "Pepperdine": [
         { team: "Pepperdine", year: "2020/21", gender: "Men", index_template: "wcc", category: "midhigh" },
@@ -1189,6 +1242,7 @@ export class AvailableTeams {
         { team: "Pittsburgh", year: "2018/9", gender: "Women", index_template: "women_acc", category: "high" },
         { team: "Pittsburgh", year: "2019/20", gender: "Women", index_template: "women_acc", category: "high" },
         { team: "Pittsburgh", year: "2020/21", gender: "Women", index_template: "women_acc", category: "high" },
+        { team: "Pittsburgh", year: "2021/22", gender: "Women", index_template: "women_acc", category: "high" },
      ],
     "Portland": [
         { team: "Portland", year: "2020/21", gender: "Men", index_template: "wcc", category: "midhigh" },
@@ -1215,6 +1269,7 @@ export class AvailableTeams {
         { team: "Providence", year: "2020/21", gender: "Men", index_template: "bigeast", category: "high" },
         { team: "Providence", year: "2021/22", gender: "Men", index_template: "bigeast", category: "high" },
         { team: "Providence", year: "2020/21", gender: "Women", index_template: "women_bigeast", category: "high" },
+        { team: "Providence", year: "2021/22", gender: "Women", index_template: "women_bigeast", category: "high" },
      ],
     "Purdue": [
         { team: "Purdue", year: "2018/9", gender: "Men", index_template: "bigten", category: "high" },
@@ -1224,6 +1279,7 @@ export class AvailableTeams {
         { team: "Purdue", year: "2018/9", gender: "Women", index_template: "women_bigten", category: "high" },
         { team: "Purdue", year: "2019/20", gender: "Women", index_template: "women_bigten", category: "high" },
         { team: "Purdue", year: "2020/21", gender: "Women", index_template: "women_bigten", category: "high" },
+        { team: "Purdue", year: "2021/22", gender: "Women", index_template: "women_bigten", category: "high" },
      ],
     "Purdue Fort Wayne": [
         { team: "Purdue Fort Wayne", year: "2020/21", gender: "Men", index_template: "horizon", category: "mid" },
@@ -1269,6 +1325,7 @@ export class AvailableTeams {
         { team: "Rutgers", year: "2018/9", gender: "Women", index_template: "women_bigten", category: "high" },
         { team: "Rutgers", year: "2019/20", gender: "Women", index_template: "women_bigten", category: "high" },
         { team: "Rutgers", year: "2020/21", gender: "Women", index_template: "women_bigten", category: "high" },
+        { team: "Rutgers", year: "2021/22", gender: "Women", index_template: "women_bigten", category: "high" },
      ],
     "SFA": [
         { team: "SFA", year: "2020/21", gender: "Men", index_template: "southland", category: "low" },
@@ -1286,6 +1343,7 @@ export class AvailableTeams {
         { team: "SMU", year: "2018/9", gender: "Women", index_template: "women_american", category: "midhigh" },
         { team: "SMU", year: "2019/20", gender: "Women", index_template: "women_american", category: "midhigh" },
         { team: "SMU", year: "2020/21", gender: "Women", index_template: "women_american", category: "midhigh" },
+        { team: "SMU", year: "2021/22", gender: "Women", index_template: "women_american", category: "midhigh" },
      ],
     "Sacramento St.": [
         { team: "Sacramento St.", year: "2020/21", gender: "Men", index_template: "bigsky", category: "midlow" },
@@ -1364,6 +1422,7 @@ export class AvailableTeams {
         { team: "Seton Hall", year: "2020/21", gender: "Men", index_template: "bigeast", category: "high" },
         { team: "Seton Hall", year: "2021/22", gender: "Men", index_template: "bigeast", category: "high" },
         { team: "Seton Hall", year: "2020/21", gender: "Women", index_template: "women_bigeast", category: "high" },
+        { team: "Seton Hall", year: "2021/22", gender: "Women", index_template: "women_bigeast", category: "high" },
      ],
     "Siena": [
         { team: "Siena", year: "2020/21", gender: "Men", index_template: "maac", category: "midlow" },
@@ -1381,6 +1440,7 @@ export class AvailableTeams {
         { team: "South Carolina", year: "2018/9", gender: "Women", index_template: "women_sec", category: "high" },
         { team: "South Carolina", year: "2019/20", gender: "Women", index_template: "women_sec", category: "high" },
         { team: "South Carolina", year: "2020/21", gender: "Women", index_template: "women_sec", category: "high" },
+        { team: "South Carolina", year: "2021/22", gender: "Women", index_template: "women_sec", category: "high" },
      ],
     "South Carolina St.": [
         { team: "South Carolina St.", year: "2020/21", gender: "Men", index_template: "meac", category: "low" },
@@ -1396,6 +1456,7 @@ export class AvailableTeams {
         { team: "South Dakota St.", year: "2018/9", gender: "Women", index_template: "women_misc_conf", category: "midhigh" },
         { team: "South Dakota St.", year: "2019/20", gender: "Women", index_template: "women_misc_conf", category: "midhigh" },
         { team: "South Dakota St.", year: "2020/21", gender: "Women", index_template: "women_misc_conf", category: "midhigh" },
+        { team: "South Dakota St.", year: "2021/22", gender: "Women", index_template: "women_misc_conf", category: "midhigh" },
      ],
     "South Fla.": [
         { team: "South Fla.", year: "2018/9", gender: "Men", index_template: "american", category: "midhigh" },
@@ -1405,6 +1466,7 @@ export class AvailableTeams {
         { team: "South Fla.", year: "2018/9", gender: "Women", index_template: "women_american", category: "midhigh" },
         { team: "South Fla.", year: "2019/20", gender: "Women", index_template: "women_american", category: "midhigh" },
         { team: "South Fla.", year: "2020/21", gender: "Women", index_template: "women_american", category: "midhigh" },
+        { team: "South Fla.", year: "2021/22", gender: "Women", index_template: "women_american", category: "midhigh" },
      ],
     "Southeast Mo. St.": [
         { team: "Southeast Mo. St.", year: "2020/21", gender: "Men", index_template: "ovc", category: "midlow" },
@@ -1422,6 +1484,7 @@ export class AvailableTeams {
         { team: "Southern California", year: "2018/9", gender: "Women", index_template: "women_pactwelve", category: "high" },
         { team: "Southern California", year: "2019/20", gender: "Women", index_template: "women_pactwelve", category: "high" },
         { team: "Southern California", year: "2020/21", gender: "Women", index_template: "women_pactwelve", category: "high" },
+        { team: "Southern California", year: "2021/22", gender: "Women", index_template: "women_pactwelve", category: "high" },
      ],
     "Southern Ill.": [
         { team: "Southern Ill.", year: "2020/21", gender: "Men", index_template: "mvc", category: "mid" },
@@ -1455,6 +1518,7 @@ export class AvailableTeams {
         { team: "St. John's (NY)", year: "2020/21", gender: "Men", index_template: "bigeast", category: "high" },
         { team: "St. John's (NY)", year: "2021/22", gender: "Men", index_template: "bigeast", category: "high" },
         { team: "St. John's (NY)", year: "2020/21", gender: "Women", index_template: "women_bigeast", category: "high" },
+        { team: "St. John's (NY)", year: "2021/22", gender: "Women", index_template: "women_bigeast", category: "high" },
      ],
     "St. Thomas (MN)": [
         { team: "St. Thomas (MN)", year: "2021/22", gender: "Men", index_template: "summit", category: "mid" },
@@ -1467,6 +1531,7 @@ export class AvailableTeams {
         { team: "Stanford", year: "2018/9", gender: "Women", index_template: "women_pactwelve", category: "high" },
         { team: "Stanford", year: "2019/20", gender: "Women", index_template: "women_pactwelve", category: "high" },
         { team: "Stanford", year: "2020/21", gender: "Women", index_template: "women_pactwelve", category: "high" },
+        { team: "Stanford", year: "2021/22", gender: "Women", index_template: "women_pactwelve", category: "high" },
      ],
     "Stetson": [
         { team: "Stetson", year: "2020/21", gender: "Men", index_template: "atlanticsun", category: "low" },
@@ -1484,6 +1549,7 @@ export class AvailableTeams {
         { team: "Syracuse", year: "2018/9", gender: "Women", index_template: "women_acc", category: "high" },
         { team: "Syracuse", year: "2019/20", gender: "Women", index_template: "women_acc", category: "high" },
         { team: "Syracuse", year: "2020/21", gender: "Women", index_template: "women_acc", category: "high" },
+        { team: "Syracuse", year: "2021/22", gender: "Women", index_template: "women_acc", category: "high" },
      ],
     "TCU": [
         { team: "TCU", year: "2018/9", gender: "Men", index_template: "bigtwelve", category: "high" },
@@ -1493,6 +1559,7 @@ export class AvailableTeams {
         { team: "TCU", year: "2018/9", gender: "Women", index_template: "women_bigtwelve", category: "high" },
         { team: "TCU", year: "2019/20", gender: "Women", index_template: "women_bigtwelve", category: "high" },
         { team: "TCU", year: "2020/21", gender: "Women", index_template: "women_bigtwelve", category: "high" },
+        { team: "TCU", year: "2021/22", gender: "Women", index_template: "women_bigtwelve", category: "high" },
      ],
     "Tarleton St.": [
         { team: "Tarleton St.", year: "2021/22", gender: "Men", index_template: "wac", category: "midlow" },
@@ -1505,6 +1572,7 @@ export class AvailableTeams {
         { team: "Temple", year: "2018/9", gender: "Women", index_template: "women_american", category: "midhigh" },
         { team: "Temple", year: "2019/20", gender: "Women", index_template: "women_american", category: "midhigh" },
         { team: "Temple", year: "2020/21", gender: "Women", index_template: "women_american", category: "midhigh" },
+        { team: "Temple", year: "2021/22", gender: "Women", index_template: "women_american", category: "midhigh" },
      ],
     "Tennessee": [
         { team: "Tennessee", year: "2018/9", gender: "Men", index_template: "sec", category: "high" },
@@ -1514,6 +1582,7 @@ export class AvailableTeams {
         { team: "Tennessee", year: "2018/9", gender: "Women", index_template: "women_sec", category: "high" },
         { team: "Tennessee", year: "2019/20", gender: "Women", index_template: "women_sec", category: "high" },
         { team: "Tennessee", year: "2020/21", gender: "Women", index_template: "women_sec", category: "high" },
+        { team: "Tennessee", year: "2021/22", gender: "Women", index_template: "women_sec", category: "high" },
      ],
     "Tennessee St.": [
         { team: "Tennessee St.", year: "2020/21", gender: "Men", index_template: "ovc", category: "midlow" },
@@ -1531,6 +1600,7 @@ export class AvailableTeams {
         { team: "Texas", year: "2018/9", gender: "Women", index_template: "women_bigtwelve", category: "high" },
         { team: "Texas", year: "2019/20", gender: "Women", index_template: "women_bigtwelve", category: "high" },
         { team: "Texas", year: "2020/21", gender: "Women", index_template: "women_bigtwelve", category: "high" },
+        { team: "Texas", year: "2021/22", gender: "Women", index_template: "women_bigtwelve", category: "high" },
      ],
     "Texas A&M": [
         { team: "Texas A&M", year: "2018/9", gender: "Men", index_template: "sec", category: "high" },
@@ -1540,6 +1610,7 @@ export class AvailableTeams {
         { team: "Texas A&M", year: "2018/9", gender: "Women", index_template: "women_sec", category: "high" },
         { team: "Texas A&M", year: "2019/20", gender: "Women", index_template: "women_sec", category: "high" },
         { team: "Texas A&M", year: "2020/21", gender: "Women", index_template: "women_sec", category: "high" },
+        { team: "Texas A&M", year: "2021/22", gender: "Women", index_template: "women_sec", category: "high" },
      ],
     "Texas Southern": [
         { team: "Texas Southern", year: "2020/21", gender: "Men", index_template: "swac", category: "low" },
@@ -1557,6 +1628,7 @@ export class AvailableTeams {
         { team: "Texas Tech", year: "2018/9", gender: "Women", index_template: "women_bigtwelve", category: "high" },
         { team: "Texas Tech", year: "2019/20", gender: "Women", index_template: "women_bigtwelve", category: "high" },
         { team: "Texas Tech", year: "2020/21", gender: "Women", index_template: "women_bigtwelve", category: "high" },
+        { team: "Texas Tech", year: "2021/22", gender: "Women", index_template: "women_bigtwelve", category: "high" },
      ],
     "The Citadel": [
         { team: "The Citadel", year: "2020/21", gender: "Men", index_template: "socon", category: "midlow" },
@@ -1582,6 +1654,7 @@ export class AvailableTeams {
         { team: "Tulane", year: "2018/9", gender: "Women", index_template: "women_american", category: "midhigh" },
         { team: "Tulane", year: "2019/20", gender: "Women", index_template: "women_american", category: "midhigh" },
         { team: "Tulane", year: "2020/21", gender: "Women", index_template: "women_american", category: "midhigh" },
+        { team: "Tulane", year: "2021/22", gender: "Women", index_template: "women_american", category: "midhigh" },
      ],
     "Tulsa": [
         { team: "Tulsa", year: "2018/9", gender: "Men", index_template: "american", category: "midhigh" },
@@ -1591,6 +1664,7 @@ export class AvailableTeams {
         { team: "Tulsa", year: "2018/9", gender: "Women", index_template: "women_american", category: "midhigh" },
         { team: "Tulsa", year: "2019/20", gender: "Women", index_template: "women_american", category: "midhigh" },
         { team: "Tulsa", year: "2020/21", gender: "Women", index_template: "women_american", category: "midhigh" },
+        { team: "Tulsa", year: "2021/22", gender: "Women", index_template: "women_american", category: "midhigh" },
      ],
     "UAB": [
         { team: "UAB", year: "2020/21", gender: "Men", index_template: "conferenceusa", category: "mid" },
@@ -1623,6 +1697,7 @@ export class AvailableTeams {
         { team: "UCF", year: "2018/9", gender: "Women", index_template: "women_american", category: "midhigh" },
         { team: "UCF", year: "2019/20", gender: "Women", index_template: "women_american", category: "midhigh" },
         { team: "UCF", year: "2020/21", gender: "Women", index_template: "women_american", category: "midhigh" },
+        { team: "UCF", year: "2021/22", gender: "Women", index_template: "women_american", category: "midhigh" },
      ],
     "UCLA": [
         { team: "UCLA", year: "2018/9", gender: "Men", index_template: "pactwelve", category: "high" },
@@ -1632,6 +1707,7 @@ export class AvailableTeams {
         { team: "UCLA", year: "2018/9", gender: "Women", index_template: "women_pactwelve", category: "high" },
         { team: "UCLA", year: "2019/20", gender: "Women", index_template: "women_pactwelve", category: "high" },
         { team: "UCLA", year: "2020/21", gender: "Women", index_template: "women_pactwelve", category: "high" },
+        { team: "UCLA", year: "2021/22", gender: "Women", index_template: "women_pactwelve", category: "high" },
      ],
     "UConn": [
         { team: "UConn", year: "2018/9", gender: "Men", index_template: "american", category: "midhigh" },
@@ -1641,6 +1717,7 @@ export class AvailableTeams {
         { team: "UConn", year: "2018/9", gender: "Women", index_template: "women_american", category: "midhigh" },
         { team: "UConn", year: "2019/20", gender: "Women", index_template: "women_american", category: "midhigh" },
         { team: "UConn", year: "2020/21", gender: "Women", index_template: "women_bigeast", category: "high" },
+        { team: "UConn", year: "2021/22", gender: "Women", index_template: "women_bigeast", category: "high" },
      ],
     "UIC": [
         { team: "UIC", year: "2020/21", gender: "Men", index_template: "horizon", category: "mid" },
@@ -1717,6 +1794,7 @@ export class AvailableTeams {
         { team: "Utah", year: "2018/9", gender: "Women", index_template: "women_pactwelve", category: "high" },
         { team: "Utah", year: "2019/20", gender: "Women", index_template: "women_pactwelve", category: "high" },
         { team: "Utah", year: "2020/21", gender: "Women", index_template: "women_pactwelve", category: "high" },
+        { team: "Utah", year: "2021/22", gender: "Women", index_template: "women_pactwelve", category: "high" },
      ],
     "Utah St.": [
         { team: "Utah St.", year: "2018/9", gender: "Men", index_template: "misc_conf", category: "midhigh" },
@@ -1750,6 +1828,7 @@ export class AvailableTeams {
         { team: "Vanderbilt", year: "2018/9", gender: "Women", index_template: "women_sec", category: "high" },
         { team: "Vanderbilt", year: "2019/20", gender: "Women", index_template: "women_sec", category: "high" },
         { team: "Vanderbilt", year: "2020/21", gender: "Women", index_template: "women_sec", category: "high" },
+        { team: "Vanderbilt", year: "2021/22", gender: "Women", index_template: "women_sec", category: "high" },
      ],
     "Vermont": [
         { team: "Vermont", year: "2020/21", gender: "Men", index_template: "americaeast", category: "low" },
@@ -1761,6 +1840,7 @@ export class AvailableTeams {
         { team: "Villanova", year: "2020/21", gender: "Men", index_template: "bigeast", category: "high" },
         { team: "Villanova", year: "2021/22", gender: "Men", index_template: "bigeast", category: "high" },
         { team: "Villanova", year: "2020/21", gender: "Women", index_template: "women_bigeast", category: "high" },
+        { team: "Villanova", year: "2021/22", gender: "Women", index_template: "women_bigeast", category: "high" },
      ],
     "Virginia": [
         { team: "Virginia", year: "2018/9", gender: "Men", index_template: "acc", category: "high" },
@@ -1770,6 +1850,7 @@ export class AvailableTeams {
         { team: "Virginia", year: "2018/9", gender: "Women", index_template: "women_acc", category: "high" },
         { team: "Virginia", year: "2019/20", gender: "Women", index_template: "women_acc", category: "high" },
         { team: "Virginia", year: "2020/21", gender: "Women", index_template: "women_acc", category: "high" },
+        { team: "Virginia", year: "2021/22", gender: "Women", index_template: "women_acc", category: "high" },
      ],
     "Virginia Tech": [
         { team: "Virginia Tech", year: "2018/9", gender: "Men", index_template: "acc", category: "high" },
@@ -1779,6 +1860,7 @@ export class AvailableTeams {
         { team: "Virginia Tech", year: "2018/9", gender: "Women", index_template: "women_acc", category: "high" },
         { team: "Virginia Tech", year: "2019/20", gender: "Women", index_template: "women_acc", category: "high" },
         { team: "Virginia Tech", year: "2020/21", gender: "Women", index_template: "women_acc", category: "high" },
+        { team: "Virginia Tech", year: "2021/22", gender: "Women", index_template: "women_acc", category: "high" },
      ],
     "Wagner": [
         { team: "Wagner", year: "2020/21", gender: "Men", index_template: "nec", category: "low" },
@@ -1792,6 +1874,7 @@ export class AvailableTeams {
         { team: "Wake Forest", year: "2018/9", gender: "Women", index_template: "women_acc", category: "high" },
         { team: "Wake Forest", year: "2019/20", gender: "Women", index_template: "women_acc", category: "high" },
         { team: "Wake Forest", year: "2020/21", gender: "Women", index_template: "women_acc", category: "high" },
+        { team: "Wake Forest", year: "2021/22", gender: "Women", index_template: "women_acc", category: "high" },
      ],
     "Washington": [
         { team: "Washington", year: "2018/9", gender: "Men", index_template: "pactwelve", category: "high" },
@@ -1801,6 +1884,7 @@ export class AvailableTeams {
         { team: "Washington", year: "2018/9", gender: "Women", index_template: "women_pactwelve", category: "high" },
         { team: "Washington", year: "2019/20", gender: "Women", index_template: "women_pactwelve", category: "high" },
         { team: "Washington", year: "2020/21", gender: "Women", index_template: "women_pactwelve", category: "high" },
+        { team: "Washington", year: "2021/22", gender: "Women", index_template: "women_pactwelve", category: "high" },
      ],
     "Washington St.": [
         { team: "Washington St.", year: "2018/9", gender: "Men", index_template: "pactwelve", category: "high" },
@@ -1810,6 +1894,7 @@ export class AvailableTeams {
         { team: "Washington St.", year: "2018/9", gender: "Women", index_template: "women_pactwelve", category: "high" },
         { team: "Washington St.", year: "2019/20", gender: "Women", index_template: "women_pactwelve", category: "high" },
         { team: "Washington St.", year: "2020/21", gender: "Women", index_template: "women_pactwelve", category: "high" },
+        { team: "Washington St.", year: "2021/22", gender: "Women", index_template: "women_pactwelve", category: "high" },
      ],
     "Weber St.": [
         { team: "Weber St.", year: "2020/21", gender: "Men", index_template: "bigsky", category: "midlow" },
@@ -1823,6 +1908,7 @@ export class AvailableTeams {
         { team: "West Virginia", year: "2018/9", gender: "Women", index_template: "women_bigtwelve", category: "high" },
         { team: "West Virginia", year: "2019/20", gender: "Women", index_template: "women_bigtwelve", category: "high" },
         { team: "West Virginia", year: "2020/21", gender: "Women", index_template: "women_bigtwelve", category: "high" },
+        { team: "West Virginia", year: "2021/22", gender: "Women", index_template: "women_bigtwelve", category: "high" },
      ],
     "Western Caro.": [
         { team: "Western Caro.", year: "2020/21", gender: "Men", index_template: "socon", category: "midlow" },
@@ -1848,6 +1934,7 @@ export class AvailableTeams {
         { team: "Wichita St.", year: "2018/9", gender: "Women", index_template: "women_american", category: "midhigh" },
         { team: "Wichita St.", year: "2019/20", gender: "Women", index_template: "women_american", category: "midhigh" },
         { team: "Wichita St.", year: "2020/21", gender: "Women", index_template: "women_american", category: "midhigh" },
+        { team: "Wichita St.", year: "2021/22", gender: "Women", index_template: "women_american", category: "midhigh" },
      ],
     "William & Mary": [
         { team: "William & Mary", year: "2020/21", gender: "Men", index_template: "colonial", category: "mid" },
@@ -1865,6 +1952,7 @@ export class AvailableTeams {
         { team: "Wisconsin", year: "2018/9", gender: "Women", index_template: "women_bigten", category: "high" },
         { team: "Wisconsin", year: "2019/20", gender: "Women", index_template: "women_bigten", category: "high" },
         { team: "Wisconsin", year: "2020/21", gender: "Women", index_template: "women_bigten", category: "high" },
+        { team: "Wisconsin", year: "2021/22", gender: "Women", index_template: "women_bigten", category: "high" },
      ],
     "Wofford": [
         { team: "Wofford", year: "2020/21", gender: "Men", index_template: "socon", category: "midlow" },
@@ -1884,6 +1972,7 @@ export class AvailableTeams {
         { team: "Xavier", year: "2020/21", gender: "Men", index_template: "bigeast", category: "high" },
         { team: "Xavier", year: "2021/22", gender: "Men", index_template: "bigeast", category: "high" },
         { team: "Xavier", year: "2020/21", gender: "Women", index_template: "women_bigeast", category: "high" },
+        { team: "Xavier", year: "2021/22", gender: "Women", index_template: "women_bigeast", category: "high" },
      ],
     "Yale": [
         { team: "Yale", year: "2021/22", gender: "Men", index_template: "ivy", category: "mid" },
@@ -1892,7 +1981,7 @@ export class AvailableTeams {
         { team: "Youngstown St.", year: "2020/21", gender: "Men", index_template: "horizon", category: "mid" },
         { team: "Youngstown St.", year: "2021/22", gender: "Men", index_template: "horizon", category: "mid" },
      ],
-  };
+    };
 
   /** These are extra teams I've added for specific years */
   static readonly extraTeamsBase = [
