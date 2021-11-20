@@ -262,7 +262,7 @@ export class TableDisplayUtils {
     // Pending fixing this issue (https://github.com/Alex-At-Home/cbb-on-off-analyzer/issues/142),
     // just filter out any teams that suffer from it (All women teams and a few men's teams)
     const workaroundTempoBug = teamSeasonLookup && (
-      (_.startsWith(teamSeasonLookup, "Women_") && !_.endsWith(teamSeasonLookup, "2020/21")) ||
+      (_.startsWith(teamSeasonLookup, "Women_") && ((teamSeasonLookup || "0000").substring(0, 4) < "2020")) ||
 
       (teamSeasonLookup == "Men_West Virginia_2018/9") ||
       (teamSeasonLookup == "Men_Florida St._2018/9") ||
