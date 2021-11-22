@@ -110,6 +110,10 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
                 "label": "Men",
                 "value": "Men",
               },
+              Object {
+                "label": "Women",
+                "value": "Women",
+              },
             ]
           }
           value={
