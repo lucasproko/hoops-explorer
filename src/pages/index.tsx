@@ -126,6 +126,7 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
       (rawParams.showPlayerManual == false) ? [ 'showPlayerManual' ] : [],
       (rawParams.showOnBallConfig == false) ? [ 'showOnBallConfig' ] : [],
       (rawParams.calcRapm == ParamDefaults.defaultPlayerCalcRapm) ? [ 'calcRapm' ] : [],
+      (!rawParams.showInfoSubHeader) ? [ 'showInfoSubHeader' ] : [],
     ]));
     if (!_.isEqual(params, gameFilterParamsRef.current)) { //(to avoid recursion)
       // Currently: game info requires an extra possibly expensive query component so we make it on demand only

@@ -78,6 +78,8 @@ export type GameFilterParams = {
   showOnOffLuckDiags?: boolean,
   showPlayerOnOffLuckDiags?: boolean,
   showPlayerPlayTypes?: boolean,
+  // Misc display:
+  showInfoSubHeader?: boolean,
   // Filtering of individual view:
   filter?: string,
   sortBy?: string,

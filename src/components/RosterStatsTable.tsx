@@ -133,7 +133,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
   };
 
   /** Whether to show sub-header with extra info */
-  const [ showInfoSubHeader, setShowInfoSubHeader ] = useState(false);
+  const [ showInfoSubHeader, setShowInfoSubHeader ] = useState(gameFilterParams.showInfoSubHeader || false);
 
   /** Incorporates SoS into rating calcs "Adj [Eq] Rtg" */
   const [ adjORtgForSos, setAdjORtgForSos ] = useState(false);
@@ -233,12 +233,14 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
       onOffLuck: adjustForLuck,
       showPlayerOnOffLuckDiags: showLuckAdjDiags,
       showPlayerManual: showManualOverrides,
-      showOnBallConfig: showOnBallConfig
+      showOnBallConfig: showOnBallConfig,
+      showInfoSubHeader: showInfoSubHeader
     };
     onChangeState(newState);
 
   }, [ sortBy, filterStr, showDiagMode, alwaysShowBaseline, expandedView, possAsPct, showPositionDiags,
-      showPlayTypes, luckConfig, adjustForLuck, showLuckAdjDiags, showManualOverrides, showOnBallConfig, manualOverrides, calcRapm, factorMins
+      showPlayTypes, luckConfig, adjustForLuck, showLuckAdjDiags, showManualOverrides, showOnBallConfig, 
+      manualOverrides, calcRapm, factorMins, showInfoSubHeader
     ]);
 
   // 2] Data Model
