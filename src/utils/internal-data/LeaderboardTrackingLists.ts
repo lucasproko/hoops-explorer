@@ -35,6 +35,8 @@ export const PlayerLeaderboardTracking = {
     [
       // Built from https://docs.google.com/spreadsheets/d/1UcS-f0yhEg1xzJKOZfZdqZn6T2_BefjrLooZMJdMnyQ/edit#gid=879295464
       "EmAkot,MaMoncreiffe,KeAmbrose-Hy,FaAimaq,JaBlair,OSBrissett,IgBrazdeikis,JaBediako,R.Barrett,JoBrown,ChBediako,KhBennett,KeBarthelemy,MaBailey,DaBanton,JaBrown,JoBascoe,EnBoakye,MaCalloo,MaCarr,MaCase,NaCayo,KoCharles,AlChristie,JaColley,AlComanita,IvCucak,ShDaniel,ChDavid,DaDeAveiro,AjEdu,DaDjuricic,LuDort,ChDuarte,KyDuke-Simps,ZaEdey,TrEdwards,KoElvis,KaEzeagu,JuFarquhar,KyFilewich,SaGasana,ShGilgeous-A,ThGilgeous-A,MaGrace,ClGriffith,QuGuerrier,BaHaidara,BeHendriks,JaHenry,RjEytle-Rock,CaHoustan,ElIfejeh,NaJack,FaJenneto,JoKabongo,AbKigab,NoKirkwood,JeKoulibaly,BeKrikke,AjLawson,GeLefebvre,BeLi,JaLlewellyn,AnLongpre,AdMakuoi,BeMathurin,LiMcChesney,EmMiller,SeMiller-Moo,TrMinott,JdMuila,MaNdur,JaNeath,AnNembhard,RyNembhard,MiNenadic,BrNewton,ElNsoseme,AlNwagha,PrOduro,MiOkafor,GaOsabuohien,NaOwusu-Anan,WhPanzo,AdPatterson,JoPrimo,OlProsper,JaPryce-Noel,DaQuest,ViRadocaj,ShRathan-May,SaRautins,DaSackey,LuSakota,TySamuel,KeSaunders,JeScott,ThShelton-Sz,SiShittu,TaSimms,StSmith,DaSquire,ShStevenson,CoStucke,BrTalbot,JaTelfort,TaTodd,MiTomley,NaTshimanga,AnVernon,JoVrankic,NiAlexander-,JaWarren,HoWashington,LiWigginton",
+      // By hand from eg canballreport twitter
+      "NiDjogo+Nikola"
     ]
   ]).join(",")
 
