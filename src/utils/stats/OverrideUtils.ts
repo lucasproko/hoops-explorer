@@ -106,4 +106,35 @@ export class OverrideUtils {
     }
   };
 
+  static readonly shotQualityMetricMap: Record<string, string> = {
+    "sq_2prim": "Shot Quality Rim TS%",
+    "sq_2pmid": "Shot Quality Mid FG%",
+    "sq_3p": "Shot Quality 3P FG%",
+  };
+
+  static readonly parseShotQualityStats = (playTypes: string[], shotQualityPpp: string[], counts: string[]) => {   
+    const state = {
+      av_rim: 0, av_mid: 0, av_3p: 0,
+      total_rim: 0, total_mid: 0, total_3p: 0
+    };
+    const combined = _.zip(playTypes, shotQualityPpp, counts);
+    _.transform(combined, (acc, type_pts) => {
+      const playType = type_pts[0] || "";
+      const sqPpp = parseFloat(type_pts[1] || "");
+      const count = parseInt(type_pts[2] || "");
+      if (playType && !_.isNaN(sqPpp) && !_.isNaN(count)) {
+        if (playType.indexOf("Three") >= 0) {
+          acc.total_3p += count;
+          acc.av_3p += count*sqPpp;
+        } else if (playType.indexOf("Midrange") >= 0) {
+          acc.total_mid += count;
+          acc.av_mid += count*sqPpp;
+        } else if (playType != "") {
+          acc.total_rim += count;
+          acc.av_rim += count*sqPpp;
+        }
+      }
+    }, state);
+    return state;
+  }
 }
