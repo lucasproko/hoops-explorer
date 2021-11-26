@@ -3,17 +3,19 @@
 import _ from 'lodash'
 
 import { ManualOverride, ParamPrefixesType, ParamPrefixes } from "../FilterModels";
+import { IndivStatSet, Statistic } from '../StatModels';
 
 /** Utilities for managing luck or manual overrides to individual/team stats */
 export class OverrideUtils {
 
   /** Returns the original value regardless of whether it's overridden or not */
-  private static readonly getOriginalVal = (mutableVal: any) => {
-    return _.isNil(mutableVal?.old_value) ? mutableVal?.value : mutableVal?.old_value;
+  private static readonly getOriginalVal = (mutableVal: Statistic): number | undefined => {
+    return (_.isNil(mutableVal?.old_value) ? mutableVal?.value : mutableVal?.old_value);
   };
 
-  /** If the old value was null we leave it alone */
-  private static readonly getIgnoreNull = (val: any) => (val?.old_value == null) ? { value: null }  : val;
+
+  /** If the old value was nil we leave it alone */
+  private static readonly getIgnoreNil = (val: Statistic) => _.isNil(val?.old_value) ? { value: undefined }  : val;
 
   /** Shared format for individual override row ids */
   static readonly getPlayerRowId = (playerId: string, rowSubType: "On" | "Off" | "Baseline" | "Global") => {
@@ -52,18 +54,23 @@ export class OverrideUtils {
 
   /** Overrides the specified key (newVal undefined means set back), returns true if mutated */
   static readonly overrideMutableVal = (
-    mutableStats: any, key: string, newVal: number | { delta: number } | undefined, reason: string | undefined
+    mutableStats: IndivStatSet, inKey: string, newVal: number | { delta: number } | undefined, reason: string | undefined
   ) => {
+    const key = inKey.startsWith(OverrideUtils.shotQualityPrefix) ? 
+      `off_${inKey.substring(OverrideUtils.shotQualityPrefix.length)}` : inKey;
+
     if (mutableStats[key]) {
-      const originalVal = OverrideUtils.getOriginalVal(mutableStats[key]);
+      const originalVal = (OverrideUtils.shotQualityRim == inKey) ?
+        OverrideUtils.getRimPctFromTs(mutableStats) :
+        OverrideUtils.getOriginalVal(mutableStats[key]);
       const maybeReason = mutableStats[key]?.override;
       // (don't unset an param that was overridden for a different reason - though empty reason always unsets)
       const noOverwrite = _.isNil(newVal) && !_.isNil(maybeReason) && !_.isNil(reason) && (maybeReason != reason);
       if (!noOverwrite) {
         mutableStats[key] = _.isNil(newVal) ? {
           value: originalVal
-        } : OverrideUtils.getIgnoreNull({
-          value: _.isNumber(newVal) ? newVal : originalVal + (newVal?.delta || 0),
+        } : OverrideUtils.getIgnoreNil({
+          value: _.isNumber(newVal) ? newVal : (originalVal || 0) + (newVal?.delta || 0),
           old_value: originalVal,
           override: reason
         });
@@ -80,7 +87,7 @@ export class OverrideUtils {
   };
 
   /** Where overrides to shooting have occurred, update 4 factors - overwrites any luck values */
-  static readonly updateDerivedStats = (mutableStats: any, reason: string | undefined) => {
+  static readonly updateDerivedStats = (mutableStats: IndivStatSet, reason: string | undefined) => {
 
     //TODO: this is a bit of a mess ... should handle luck and override derived vals in one place
 
@@ -106,35 +113,38 @@ export class OverrideUtils {
     }
   };
 
+  // Some utils needed for Shot Quality overrides
+
+  static readonly shotQualityPrefix = "sq_";
+  static readonly shotQualityRim = "sq_2prim";
+  static readonly shotQualityMid = "sq_2pmid";
+  static readonly shotQualityThree = "sq_3p";
+
   static readonly shotQualityMetricMap: Record<string, string> = {
-    "sq_2prim": "Shot Quality Rim TS%",
-    "sq_2pmid": "Shot Quality Mid FG%",
-    "sq_3p": "Shot Quality 3P FG%",
+    [OverrideUtils.shotQualityRim]: "Shot Quality Rim TS%",
+    [OverrideUtils.shotQualityMid]: "Shot Quality Mid FG%",
+    [OverrideUtils.shotQualityThree]: "Shot Quality 3P FG%",
+  };  
+
+  /** 
+   * Calculates the rim true shooting from the raw numbers (ie before any overrides)
+   * We assume that FTs _all_ come from the rim, since anything else is too complicated 
+   */
+   static readonly getOldRimTs = (statSet: IndivStatSet) => {
+    const rimr = (statSet.off_2primr?.value || 0); // eg 50% would be 100 2PA (if 200 FGA)
+    const rimFtr = (statSet.off_ftr?.value || 0); //eg 25% would be 25%*200FGA == 50 FTA, ie 50% rim FTR
+
+    // Example: 100 FGA: 30 2PAs (30% rimr) + 20 FTA (20% ftr) ... 15 FGM + 15 FTM => 45pts / 2*(30 + 0.44*20) => 45/70 ~= 65%
+    // We use 88% of both FTA/FTR because a) we only care about 2FTs, b) some of the FTs are 3P/bonus
+
+    const ts = 
+      (2*rimr*(OverrideUtils.getOriginalVal(statSet.off_2prim || {}) || 0) + 
+        0.88*rimFtr*(OverrideUtils.getOriginalVal(statSet.off_ft || {}) || 0))/(2*rimr + 0.88*rimFtr);
+    return ts;
   };
 
-  static readonly parseShotQualityStats = (playTypes: string[], shotQualityPpp: string[], counts: string[]) => {   
-    const state = {
-      av_rim: 0, av_mid: 0, av_3p: 0,
-      total_rim: 0, total_mid: 0, total_3p: 0
-    };
-    const combined = _.zip(playTypes, shotQualityPpp, counts);
-    _.transform(combined, (acc, type_pts) => {
-      const playType = type_pts[0] || "";
-      const sqPpp = parseFloat(type_pts[1] || "");
-      const count = parseInt(type_pts[2] || "");
-      if (playType && !_.isNaN(sqPpp) && !_.isNaN(count)) {
-        if (playType.indexOf("Three") >= 0) {
-          acc.total_3p += count;
-          acc.av_3p += count*sqPpp;
-        } else if (playType.indexOf("Midrange") >= 0) {
-          acc.total_mid += count;
-          acc.av_mid += count*sqPpp;
-        } else if (playType != "") {
-          acc.total_rim += count;
-          acc.av_rim += count*sqPpp;
-        }
-      }
-    }, state);
-    return state;
+  static readonly getRimPctFromTs = (statSet: IndivStatSet) => {
+    return 0; //TODO
   }
+
 }

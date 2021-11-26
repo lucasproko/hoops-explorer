@@ -24,6 +24,7 @@ import GenericTable, { GenericTableOps } from "../GenericTable";
 import { ManualOverride, ParamPrefixes, ParamPrefixesType } from '../../utils/FilterModels';
 import { CommonTableDefs } from "../../utils/tables/CommonTableDefs";
 import { OverrideUtils } from "../../utils/stats/OverrideUtils";
+import { Statistic, IndivStatSet } from '../../utils/StatModels';
 
 // External Data Model
 
@@ -31,7 +32,7 @@ const shotQualityOverride = "shot_quality";
 
 type Props = {
   tableType: ParamPrefixesType,
-  inStats: any[],
+  inStats: IndivStatSet[],
   filteredPlayers?: Set<string>,
   statsAsTable: Record<string, any[]>,
   show: boolean,
@@ -79,9 +80,9 @@ const ManualOverrideModal: React.FunctionComponent<Props> = (
   // Player/lineup/row
 
   /** Formats a stat set into a label */
-  const statToOption = (statSet: any) => {
+  const statToOption = (statSet: IndivStatSet) => {
     if (statSet) {
-      const labelAndVal = OverrideUtils.getPlayerRowId(statSet.key, statSet.onOffKey);
+      const labelAndVal = OverrideUtils.getPlayerRowId(statSet.key, statSet.onOffKey || "Baseline");
       return [{
         label: labelAndVal,
         value: labelAndVal
@@ -90,7 +91,7 @@ const ManualOverrideModal: React.FunctionComponent<Props> = (
   };
 
   /** From stat set label to stat set */
-  const valueToStatMap = _.fromPairs(
+  const valueToStatMap: Record<string, IndivStatSet> = _.fromPairs(
     _.flatMap(inStats, stat => statToOption(stat).map(s =>  [s.label, stat ]))
   );
 
@@ -111,7 +112,7 @@ const ManualOverrideModal: React.FunctionComponent<Props> = (
 
   // Control
 
-  const getOldVal = (playerStat: any) => {
+  const getOldVal = (playerStat: Statistic | undefined) => {
     return (_.isNil(playerStat?.old_value) ? playerStat?.value : playerStat?.old_value) || 0;
   }
 
@@ -121,7 +122,7 @@ const ManualOverrideModal: React.FunctionComponent<Props> = (
   /** When the player/stat is changed, recalc the stats */
   const updateValues = (inStat: string, statName: string) => {
     if (isDefined(inStat, statName)) {
-      const playerStat = valueToStatMap?.[inStat]?.[statName];
+      const playerStat = valueToStatMap?.[inStat]?.[statName] as Statistic | undefined;
       const startingVal = 100*getOldVal(playerStat);
       const currVal = 100*(playerStat?.value || 0);
       setOldStatVal(startingVal);
@@ -171,6 +172,32 @@ const ManualOverrideModal: React.FunctionComponent<Props> = (
 
   // Shot Quality override logic
 
+  const parseShotQualityStats = (playTypes: string[], shotQualityPpp: string[], counts: string[]) => {   
+    const state = {
+      av_rim: 0, av_mid: 0, av_3p: 0,
+      total_rim: 0, total_mid: 0, total_3p: 0
+    };
+    const combined = _.zip(playTypes, shotQualityPpp, counts);
+    _.transform(combined, (acc, type_pts) => {
+      const playType = type_pts[0] || "";
+      const sqPpp = parseFloat(type_pts[1] || "");
+      const count = parseInt(type_pts[2] || "");
+      if (playType && !_.isNaN(sqPpp) && !_.isNaN(count)) {
+        if (playType.indexOf("Three") >= 0) {
+          acc.total_3p += count;
+          acc.av_3p += count*sqPpp;
+        } else if (playType.indexOf("Midrange") >= 0) {
+          acc.total_mid += count;
+          acc.av_mid += count*sqPpp;
+        } else if (playType != "") {
+          acc.total_rim += count;
+          acc.av_rim += count*sqPpp;
+        }
+      }
+    }, state);
+    return state;
+  };
+
   const [ shotQualityContents, setShotQualityContents ] = useState("");
   const [ shotQualityChanged, setShotQualityChanged ] = useState(false);
   const onShotQualityApply = (clipboard?: string) => {
@@ -178,25 +205,24 @@ const ManualOverrideModal: React.FunctionComponent<Props> = (
     // Analyze incoming data:
     const rowsCols: string[][] = contents.split("\n").map(line => _.drop(line.split("\t"), 1));
 
-    const shotQualityState = 
-      OverrideUtils.parseShotQualityStats(rowsCols[0] || [], rowsCols[1] || [], rowsCols[3] || []);
+    const shotQualityState = parseShotQualityStats(rowsCols[0] || [], rowsCols[1] || [], rowsCols[3] || []);
 
     const sqOverrides = _.flatten([
       shotQualityState.total_rim > 0 ? [{
         rowId: currInStat,
-        statName: "sq_2prim",
+        statName: OverrideUtils.shotQualityRim,
         newVal: shotQualityState.av_rim*0.5/shotQualityState.total_rim,
         use: true
       }] : [],
       shotQualityState.total_mid > 0 ? [{
         rowId: currInStat,
-        statName: "sq_2pmid",
+        statName: OverrideUtils.shotQualityMid,
         newVal: shotQualityState.av_mid*0.5/shotQualityState.total_mid,
         use: true
       }] : [],
       shotQualityState.total_3p > 0 ? [{
         rowId: currInStat,
-        statName: "sq_3p",
+        statName: OverrideUtils.shotQualityThree,
         newVal: (shotQualityState.av_3p/shotQualityState.total_3p)/3,
         use: true
       }] : [],
@@ -206,18 +232,6 @@ const ManualOverrideModal: React.FunctionComponent<Props> = (
 
     setShotQualityContents(contents);
   };
-
-  /** We assume that FTs _all_ come from the rim, since anything else is too complicated */
-  const getOldRimTs = (statSet: any) => {
-    const rimr = (statSet.off_2primr?.value || 0); // eg 50% would be 100 2PA (if 200 FGA)
-    const rimFtr = (statSet.off_ftr?.value || 0); //eg 25% would be 25%*200FGA == 50 FTA, ie 50% rim FTR
-
-    // Example: 100 FGA: 30 2PAs (30% rimr) + 20 FTA (20% ftr) ... 15 FGM + 15 FTM => 45pts / 2*(30 + 0.44*20) => 45/70 ~= 65%
-    // We use 88% of both FTA/FTR because a) we only care about 2FTs, b) some of the FTs are 3P/bonus
-
-    const ts = (2*rimr*getOldVal(statSet.off_2prim) + 0.88*rimFtr*getOldVal(statSet.off_ft))/(2*rimr + 0.88*rimFtr);
-    return ts;
-  }
 
   // Table building:
 
@@ -230,9 +244,11 @@ const ManualOverrideModal: React.FunctionComponent<Props> = (
   };
 
   const tableData = _.chain(overrides).sortBy([ "rowId", "statName" ]).flatMap((over) => {
-    const statNameKey = over.statName.startsWith("sq_") ? `off_${over.statName.substring(3)}` : over.statName; 
+    const statNameKey = over.statName.startsWith(OverrideUtils.shotQualityPrefix) ? 
+      `off_${over.statName.substring(OverrideUtils.shotQualityPrefix.length)}` : over.statName; 
     const playerRow = valueToStatMap[over.rowId];
-    const oldVal = (over.statName == "sq_2prim") ? getOldRimTs(playerRow) : getOldVal(playerRow[statNameKey]);
+    const oldVal = (over.statName == OverrideUtils.shotQualityRim) ? 
+      OverrideUtils.getOldRimTs(playerRow) : getOldVal(playerRow[statNameKey]);
     if (playerRow) {
       return [GenericTableOps.buildDataRow({
         title: <span>
