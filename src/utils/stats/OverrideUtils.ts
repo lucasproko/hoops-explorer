@@ -54,15 +54,17 @@ export class OverrideUtils {
 
   /** Overrides the specified key (newVal undefined means set back), returns true if mutated */
   static readonly overrideMutableVal = (
-    mutableStats: IndivStatSet, inKey: string, newVal: number | { delta: number } | undefined, reason: string | undefined
+    mutableStats: IndivStatSet, inKey: string, inNewVal: number | { delta: number } | undefined, reason: string | undefined
   ) => {
     const key = inKey.startsWith(OverrideUtils.shotQualityPrefix) ? 
       `off_${inKey.substring(OverrideUtils.shotQualityPrefix.length)}` : inKey;
 
     if (mutableStats[key]) {
-      const originalVal = (OverrideUtils.shotQualityRim == inKey) ?
-        OverrideUtils.getRimPctFromTs(mutableStats) :
-        OverrideUtils.getOriginalVal(mutableStats[key]);
+      const originalVal = OverrideUtils.getOriginalVal(mutableStats[key]);
+
+      const newVal = (OverrideUtils.shotQualityRim == inKey) ?
+        OverrideUtils.getRimPctFromTs(inNewVal as number | undefined, mutableStats) : inNewVal;
+
       const maybeReason = mutableStats[key]?.override;
       // (don't unset an param that was overridden for a different reason - though empty reason always unsets)
       const noOverwrite = _.isNil(newVal) && !_.isNil(maybeReason) && !_.isNil(reason) && (maybeReason != reason);
@@ -126,6 +128,9 @@ export class OverrideUtils {
     [OverrideUtils.shotQualityThree]: "Shot Quality 3P FG%",
   };  
 
+  /** see getOldRimTs */
+  static readonly sqFtWeight = 0.88;
+
   /** 
    * Calculates the rim true shooting from the raw numbers (ie before any overrides)
    * We assume that FTs _all_ come from the rim, since anything else is too complicated 
@@ -136,15 +141,42 @@ export class OverrideUtils {
 
     // Example: 100 FGA: 30 2PAs (30% rimr) + 20 FTA (20% ftr) ... 15 FGM + 15 FTM => 45pts / 2*(30 + 0.44*20) => 45/70 ~= 65%
     // We use 88% of both FTA/FTR because a) we only care about 2FTs, b) some of the FTs are 3P/bonus
+  
+    const weight = OverrideUtils.sqFtWeight;
+    const ftPct = OverrideUtils.getOriginalVal(statSet.off_ft || {}) || 0;
 
     const ts = 
-      (2*rimr*(OverrideUtils.getOriginalVal(statSet.off_2prim || {}) || 0) + 
-        0.88*rimFtr*(OverrideUtils.getOriginalVal(statSet.off_ft || {}) || 0))/(2*rimr + 0.88*rimFtr);
+      (2*rimr*(OverrideUtils.getOriginalVal(statSet.off_2prim || {}) || 0) + weight*rimFtr*ftPct)
+        /(2*rimr + weight*rimFtr);
+
     return ts;
   };
 
-  static readonly getRimPctFromTs = (statSet: IndivStatSet) => {
-    return 0; //TODO
+  /** Opposite of getOldRimTs */
+  private static readonly getRimPctFromTs = (ts: number | undefined, statSet: IndivStatSet) => {
+    const rimr = (statSet.off_2primr?.value || 0); // eg 50% would be 100 2PA (if 200 FGA)
+    const rimFtr = (statSet.off_ftr?.value || 0); //eg 25% would be 25%*200FGA == 50 FTA, ie 50% rim FTR
+
+    const weight = OverrideUtils.sqFtWeight;
+    const ftPct = OverrideUtils.getOriginalVal(statSet.off_ft || {}) || 0;
+
+    const newRim = ts ? (ts*(2*rimr + weight*rimFtr) - weight*rimFtr*ftPct) / (2*rimr || 1) : 0;
+
+    return newRim;
   }
 
+  /** Switches from sq_ to the corresponding stat set key */
+  static readonly shotQualityKeyToKey = (key: string) => {
+    const statNameKey = key.startsWith(OverrideUtils.shotQualityPrefix) ? 
+      `off_${key.substring(OverrideUtils.shotQualityPrefix.length)}` : key 
+    return statNameKey;
+  };
+
+    /** Switches from sq_ to the corresponding stat set key */
+    static readonly keyToShotQualityKey = (key: string): string | undefined => {
+      const candidate = `sq_${key.substring(4)}`;
+      const sqKey = OverrideUtils.shotQualityMetricMap[candidate];
+      return sqKey ? candidate : undefined;
+    };
+  
 }

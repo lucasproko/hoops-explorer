@@ -244,12 +244,13 @@ const ManualOverrideModal: React.FunctionComponent<Props> = (
   };
 
   const tableData = _.chain(overrides).sortBy([ "rowId", "statName" ]).flatMap((over) => {
-    const statNameKey = over.statName.startsWith(OverrideUtils.shotQualityPrefix) ? 
-      `off_${over.statName.substring(OverrideUtils.shotQualityPrefix.length)}` : over.statName; 
+    const statNameKey = OverrideUtils.shotQualityKeyToKey(over.statName);
+      
     const playerRow = valueToStatMap[over.rowId];
-    const oldVal = (over.statName == OverrideUtils.shotQualityRim) ? 
-      OverrideUtils.getOldRimTs(playerRow) : getOldVal(playerRow[statNameKey]);
     if (playerRow) {
+      const oldVal = (over.statName == OverrideUtils.shotQualityRim) ? 
+        OverrideUtils.getOldRimTs(playerRow) : getOldVal(playerRow[statNameKey]);
+
       return [GenericTableOps.buildDataRow({
         title: <span>
           {over.use ? over.rowId : <del>{over.rowId}</del>}<br/>

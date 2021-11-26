@@ -159,7 +159,9 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
 
   // Transform the list into a map of maps of values
   const manualOverridesAsMap = OverrideUtils.buildOverrideAsMap(manualOverrides);
-  const overridableStatsList = _.keys(OverrideUtils.getOverridableStats(ParamPrefixes.player));
+  const overridableStatsList = _.keys(OverrideUtils.shotQualityMetricMap).concat(
+    _.keys(OverrideUtils.getOverridableStats(ParamPrefixes.player))    
+  ); //(do SQ first, _then_ manual overrides)
 
   const [ showManualOverrides, setShowManualOverrides ] = useState(_.isNil(gameFilterParams.showPlayerManual) ?
     false : gameFilterParams.showPlayerManual
@@ -494,8 +496,13 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
         const overrides = manualOverridesAsMap[playerOverrideKey];
         const overrodeOffFields = _.reduce(overridableStatsList, (acc, statName) => {
           const override = overrides?.[statName];
-          const maybeDoOverride = OverrideUtils.overrideMutableVal(stat, statName, override, "Manually adjusted");
-          return acc || maybeDoOverride;
+
+          if (_.isNil(override) && overrides?.hasOwnProperty(OverrideUtils.keyToShotQualityKey(statName) || "")) {
+            return acc; //(if there is an SQ override and not a normal one then don't unset the SQ one)
+          } else {
+            const maybeDoOverride = OverrideUtils.overrideMutableVal(stat, statName, override, "Manually adjusted");
+            return acc || maybeDoOverride;
+          }
         }, false);
 
         const adjustmentReason = (() => {
