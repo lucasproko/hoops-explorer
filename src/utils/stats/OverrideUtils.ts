@@ -59,7 +59,10 @@ export class OverrideUtils {
     const key = inKey.startsWith(OverrideUtils.shotQualityPrefix) ? 
       `off_${inKey.substring(OverrideUtils.shotQualityPrefix.length)}` : inKey;
 
-    if (mutableStats[key]) {
+    const sqIgnoreNil = (key != inKey) && !inNewVal;
+      //(Don't _unset_ an SQ null, that's handled by the non-SQ fields)
+    
+    if (!sqIgnoreNil && mutableStats[key]) {
       const originalVal = OverrideUtils.getOriginalVal(mutableStats[key]);
 
       const newVal = (OverrideUtils.shotQualityRim == inKey) ?
