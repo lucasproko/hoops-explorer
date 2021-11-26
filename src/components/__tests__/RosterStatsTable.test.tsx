@@ -175,6 +175,9 @@ describe("RosterStatsTable", () => {
         showPlayerOnOffLuckDiags: true, showDiag: true, showPosDiag: true, showPlayerPlayTypes: true,
         manual: [
           { rowId: "Cowan, Anthony / Baseline", newVal: 0.5, statName: "off_3p", use: true },
+          { rowId: "Wiggins, Aaron / Baseline", newVal: 0.5, statName: "sq_3p", use: true }, //(applied)
+          { rowId: "Wiggins, Aaron / Baseline", newVal: 0.1, statName: "sq_2pmid", use: true }, //(ignored)
+          { rowId: "Wiggins, Aaron / Baseline", newVal: 0.6, statName: "off_2pmid", use: true }, //(overwrites the above)
         ],
         showPlayerManual: true
        }}

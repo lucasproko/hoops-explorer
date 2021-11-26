@@ -29233,10 +29233,22 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
             }
 
             diag_off_rtg: {
-               "oRtg": 100.50917346010739,
-               "adjORtg": 104.70398539896928,
-               "adjORtgPlus": 0.9407970797938561
+               "oRtg": 122.90485209699797,
+               "adjORtg": 125.24590771845932,
+               "adjORtgPlus": 5.049181543691865
             }
+
+            off_2p: Object {
+                        "old_value": 0.45112781954887216,
+                        "override": "Derived from luck adjustments and manual overrides",
+                        "value": 0.6496240601503759,
+                      }
+
+            off_2pmid: Object {
+                        "old_value": 0.24324324324324326,
+                        "override": "Manually adjusted",
+                        "value": 0.6,
+                      }
 
             off_2pmidr: Object {
                         "extraInfo": <span>
@@ -29254,8 +29266,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
 
             off_3p: Object {
                         "old_value": 0.31736526946107785,
-                        "override": "Luck adjusted",
-                        "value": 0.31736526946107785,
+                        "override": "Manually adjusted",
+                        "value": 0.5,
                       }
 
             off_3pr: Object {
@@ -29267,14 +29279,14 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
 
             off_adj_prod: Object {
                         "old_value": 0.9407970797938561,
-                        "override": "Derived from luck adjustments",
-                        "value": 0.9407970797938561,
+                        "override": "Derived from luck adjustments and manual overrides",
+                        "value": 5.049181543691865,
                       }
 
             off_adj_rtg: Object {
                         "old_value": 0.9407970797938561,
-                        "override": "Derived from luck adjustments",
-                        "value": 0.9407970797938561,
+                        "override": "Derived from luck adjustments and manual overrides",
+                        "value": 5.049181543691865,
                       }
 
             off_assist: Object {
@@ -29300,6 +29312,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                         "value": 0.1380952380952381,
                       }
 
+            off_efg: Object {
+                        "old_value": 0.465,
+                        "override": "Derived from luck adjustments and manual overrides",
+                        "value": 0.7055,
+                      }
+
             off_ftr: Object {
                         "extraInfo": <span>
                           FT: 
@@ -29317,8 +29335,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
 
             off_rtg: Object {
                         "old_value": 100.50917346010739,
-                        "override": "Derived from luck adjustments",
-                        "value": 100.50917346010739,
+                        "override": "Derived from luck adjustments and manual overrides",
+                        "value": 122.90485209699797,
                       }
 
             off_team_poss: Object {
@@ -29641,6 +29659,24 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
             "newVal": 0.5,
             "rowId": "Cowan, Anthony / Baseline",
             "statName": "off_3p",
+            "use": true,
+          },
+          Object {
+            "newVal": 0.5,
+            "rowId": "Wiggins, Aaron / Baseline",
+            "statName": "sq_3p",
+            "use": true,
+          },
+          Object {
+            "newVal": 0.1,
+            "rowId": "Wiggins, Aaron / Baseline",
+            "statName": "sq_2pmid",
+            "use": true,
+          },
+          Object {
+            "newVal": 0.6,
+            "rowId": "Wiggins, Aaron / Baseline",
+            "statName": "off_2pmid",
             "use": true,
           },
         ]
@@ -31858,10 +31894,22 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                 }
 
                 diag_off_rtg: {
-                   "oRtg": 100.50917346010739,
-                   "adjORtg": 104.70398539896928,
-                   "adjORtgPlus": 0.9407970797938561
+                   "oRtg": 122.90485209699797,
+                   "adjORtg": 125.24590771845932,
+                   "adjORtgPlus": 5.049181543691865
                 }
+
+                off_2p: Object {
+                                "old_value": 0.45112781954887216,
+                                "override": "Derived from luck adjustments and manual overrides",
+                                "value": 0.6496240601503759,
+                              }
+
+                off_2pmid: Object {
+                                "old_value": 0.24324324324324326,
+                                "override": "Manually adjusted",
+                                "value": 0.6,
+                              }
 
                 off_2pmidr: Object {
                                 "extraInfo": <span>
@@ -31879,8 +31927,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
 
                 off_3p: Object {
                                 "old_value": 0.31736526946107785,
-                                "override": "Luck adjusted",
-                                "value": 0.31736526946107785,
+                                "override": "Manually adjusted",
+                                "value": 0.5,
                               }
 
                 off_3pr: Object {
@@ -31892,14 +31940,14 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
 
                 off_adj_prod: Object {
                                 "old_value": 0.9407970797938561,
-                                "override": "Derived from luck adjustments",
-                                "value": 0.9407970797938561,
+                                "override": "Derived from luck adjustments and manual overrides",
+                                "value": 5.049181543691865,
                               }
 
                 off_adj_rtg: Object {
                                 "old_value": 0.9407970797938561,
-                                "override": "Derived from luck adjustments",
-                                "value": 0.9407970797938561,
+                                "override": "Derived from luck adjustments and manual overrides",
+                                "value": 5.049181543691865,
                               }
 
                 off_assist: Object {
@@ -31925,6 +31973,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                 "value": 0.1380952380952381,
                               }
 
+                off_efg: Object {
+                                "old_value": 0.465,
+                                "override": "Derived from luck adjustments and manual overrides",
+                                "value": 0.7055,
+                              }
+
                 off_ftr: Object {
                                 "extraInfo": <span>
                                   FT: 
@@ -31942,8 +31996,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
 
                 off_rtg: Object {
                                 "old_value": 100.50917346010739,
-                                "override": "Derived from luck adjustments",
-                                "value": 100.50917346010739,
+                                "override": "Derived from luck adjustments and manual overrides",
+                                "value": 122.90485209699797,
                               }
 
                 off_team_poss: Object {
@@ -32120,10 +32174,22 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                 }
 
                 diag_off_rtg: {
-                   "oRtg": 100.50917346010739,
-                   "adjORtg": 104.70398539896928,
-                   "adjORtgPlus": 0.9407970797938561
+                   "oRtg": 122.90485209699797,
+                   "adjORtg": 125.24590771845932,
+                   "adjORtgPlus": 5.049181543691865
                 }
+
+                off_2p: Object {
+                                "old_value": 0.45112781954887216,
+                                "override": "Derived from luck adjustments and manual overrides",
+                                "value": 0.6496240601503759,
+                              }
+
+                off_2pmid: Object {
+                                "old_value": 0.24324324324324326,
+                                "override": "Manually adjusted",
+                                "value": 0.6,
+                              }
 
                 off_2pmidr: Object {
                                 "extraInfo": <span>
@@ -32141,8 +32207,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
 
                 off_3p: Object {
                                 "old_value": 0.31736526946107785,
-                                "override": "Luck adjusted",
-                                "value": 0.31736526946107785,
+                                "override": "Manually adjusted",
+                                "value": 0.5,
                               }
 
                 off_3pr: Object {
@@ -32154,14 +32220,14 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
 
                 off_adj_prod: Object {
                                 "old_value": 0.9407970797938561,
-                                "override": "Derived from luck adjustments",
-                                "value": 0.9407970797938561,
+                                "override": "Derived from luck adjustments and manual overrides",
+                                "value": 5.049181543691865,
                               }
 
                 off_adj_rtg: Object {
                                 "old_value": 0.9407970797938561,
-                                "override": "Derived from luck adjustments",
-                                "value": 0.9407970797938561,
+                                "override": "Derived from luck adjustments and manual overrides",
+                                "value": 5.049181543691865,
                               }
 
                 off_assist: Object {
@@ -32187,6 +32253,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                 "value": 0.1380952380952381,
                               }
 
+                off_efg: Object {
+                                "old_value": 0.465,
+                                "override": "Derived from luck adjustments and manual overrides",
+                                "value": 0.7055,
+                              }
+
                 off_ftr: Object {
                                 "extraInfo": <span>
                                   FT: 
@@ -32204,8 +32276,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
 
                 off_rtg: Object {
                                 "old_value": 100.50917346010739,
-                                "override": "Derived from luck adjustments",
-                                "value": 100.50917346010739,
+                                "override": "Derived from luck adjustments and manual overrides",
+                                "value": 122.90485209699797,
                               }
 
                 off_team_poss: Object {
@@ -33202,10 +33274,22 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
             }
 
             diag_off_rtg: {
-               "oRtg": 100.50917346010739,
-               "adjORtg": 104.70398539896928,
-               "adjORtgPlus": 0.9407970797938561
+               "oRtg": 122.90485209699797,
+               "adjORtg": 125.24590771845932,
+               "adjORtgPlus": 5.049181543691865
             }
+
+            off_2p: Object {
+                        "old_value": 0.45112781954887216,
+                        "override": "Derived from luck adjustments and manual overrides",
+                        "value": 0.6496240601503759,
+                      }
+
+            off_2pmid: Object {
+                        "old_value": 0.24324324324324326,
+                        "override": "Manually adjusted",
+                        "value": 0.6,
+                      }
 
             off_2pmidr: Object {
                         "extraInfo": <span>
@@ -33223,8 +33307,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
 
             off_3p: Object {
                         "old_value": 0.31736526946107785,
-                        "override": "Luck adjusted",
-                        "value": 0.31736526946107785,
+                        "override": "Manually adjusted",
+                        "value": 0.5,
                       }
 
             off_3pr: Object {
@@ -33236,14 +33320,14 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
 
             off_adj_prod: Object {
                         "old_value": 0.9407970797938561,
-                        "override": "Derived from luck adjustments",
-                        "value": 0.9407970797938561,
+                        "override": "Derived from luck adjustments and manual overrides",
+                        "value": 5.049181543691865,
                       }
 
             off_adj_rtg: Object {
                         "old_value": 0.9407970797938561,
-                        "override": "Derived from luck adjustments",
-                        "value": 0.9407970797938561,
+                        "override": "Derived from luck adjustments and manual overrides",
+                        "value": 5.049181543691865,
                       }
 
             off_assist: Object {
@@ -33269,6 +33353,12 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                         "value": 0.1380952380952381,
                       }
 
+            off_efg: Object {
+                        "old_value": 0.465,
+                        "override": "Derived from luck adjustments and manual overrides",
+                        "value": 0.7055,
+                      }
+
             off_ftr: Object {
                         "extraInfo": <span>
                           FT: 
@@ -33286,8 +33376,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
 
             off_rtg: Object {
                         "old_value": 100.50917346010739,
-                        "override": "Derived from luck adjustments",
-                        "value": 100.50917346010739,
+                        "override": "Derived from luck adjustments and manual overrides",
+                        "value": 122.90485209699797,
                       }
 
             off_team_poss: Object {
@@ -34012,7 +34102,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                       pill={false}
                       variant="dark"
                     >
-                      1
+                      4
                     </ForwardRef>
                   </small>
                 </span>,
