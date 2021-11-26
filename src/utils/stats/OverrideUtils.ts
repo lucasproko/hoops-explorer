@@ -3,7 +3,7 @@
 import _ from 'lodash'
 
 import { ManualOverride, ParamPrefixesType, ParamPrefixes } from "../FilterModels";
-import { IndivStatSet, Statistic } from '../StatModels';
+import { IndivStatSet, Statistic, TeamStatSet, LineupStatSet } from '../StatModels';
 
 /** Utilities for managing luck or manual overrides to individual/team stats */
 export class OverrideUtils {
@@ -54,7 +54,7 @@ export class OverrideUtils {
 
   /** Overrides the specified key (newVal undefined means set back), returns true if mutated */
   static readonly overrideMutableVal = (
-    mutableStats: IndivStatSet, inKey: string, inNewVal: number | { delta: number } | undefined, reason: string | undefined
+    mutableStats: IndivStatSet | TeamStatSet | LineupStatSet, inKey: string, inNewVal: number | { delta: number } | undefined, reason: string | undefined
   ) => {
     const key = inKey.startsWith(OverrideUtils.shotQualityPrefix) ? 
       `off_${inKey.substring(OverrideUtils.shotQualityPrefix.length)}` : inKey;
@@ -156,7 +156,7 @@ export class OverrideUtils {
   };
 
   /** Opposite of getOldRimTs */
-  private static readonly getRimPctFromTs = (ts: number | undefined, statSet: IndivStatSet) => {
+  private static readonly getRimPctFromTs = (ts: number | undefined, statSet: IndivStatSet | TeamStatSet | LineupStatSet) => {
     const rimr = (statSet.off_2primr?.value || 0); // eg 50% would be 100 2PA (if 200 FGA)
     const rimFtr = (statSet.off_ftr?.value || 0); //eg 25% would be 25%*200FGA == 50 FTA, ie 50% rim FTR
 
