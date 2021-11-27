@@ -383,6 +383,9 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       (year == "All")
     );
 
+    /** Compresses number/height/year into 1 double-width column */
+    const rosterInfoSpanCalculator = (key: string) => key == "efg" ? 2 : (key == "assist" ? 0 : 1);
+
     var playerDuplicates = 0; //(annoying hack to keep track of playerIndex vs actual row)
     const tableData = players.flatMap((player, playerIndex) => {
       const isDup = (tier == "All") && (playerIndex > 0) && 
@@ -493,12 +496,11 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
 
       const height = player.roster?.height;
       const yearClass = player.roster?.year_class;
+      const rosterNum = player.roster?.number;
+      const rosterInfoText = `${(height && height != "-") ? height : ""} ${yearClass ? yearClass : ""}${rosterNum ? ` / #${rosterNum}` : ""}`
 
-      if (height && height != "-") {
-        player.def_efg = <small><i className="text-secondary">{height}</i></small>;
-      }
-      if (yearClass) {
-        player.def_assist = <small><i className="text-secondary">{yearClass}</i></small>;
+      if (rosterInfoText.length > 2) {
+        player.def_efg = <small><i className="text-secondary">{rosterInfoText}</i></small>;
       }
 
       player.off_title = <div>
@@ -520,7 +522,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({startingState, 
       : _.flatten([
         playerIndex > 0 ? [ GenericTableOps.buildRowSeparator() ] : [],
         [ GenericTableOps.buildDataRow(player, offPrefixFn, offCellMetaFn) ],
-        [ GenericTableOps.buildDataRow(player, defPrefixFn, defCellMetaFn) ],
+        [ GenericTableOps.buildDataRow(player, defPrefixFn, defCellMetaFn, undefined, rosterInfoSpanCalculator) ],
       ]);
     });
 

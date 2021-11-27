@@ -61,18 +61,22 @@ class GenericTableDataRow { //TODO: remove generic table
     dataObj: any,
     prefixFn: (key: string) => string,
     cellMetaFn: (key: string, value: any) => string, //TODO: make this a generic
-    tableFieldsOverride: Record<string, GenericTableColProps> | undefined
+    tableFieldsOverride: Record<string, GenericTableColProps> | undefined,
+    colSpanOverride: undefined | ((key: string) => number)
   ) {
     this.dataObj = dataObj;
     this.prefixFn = prefixFn;
     this.cellMetaFn = cellMetaFn;
     this.tableFieldsOverride = tableFieldsOverride;
+    this.colSpanOverride = colSpanOverride;
   }
   readonly kind: string = "data-row";
   readonly dataObj: any;
   readonly prefixFn: (key: string) => string;
   readonly cellMetaFn: (key: string, value: any) => string;
   readonly tableFieldsOverride: Record<string, GenericTableColProps> | undefined;
+  readonly colSpanOverride: undefined | ((key: string) => number);
+
 }
 class GenericTableSeparator {
   readonly kind: string = "separator";
@@ -142,9 +146,10 @@ export class GenericTableOps {
     dataObj: any,
     prefixFn: (key: string) => string,
     cellMetaFn: (key: string, value: any) => string,
-    tableFieldsOverride: Record<string, GenericTableColProps> | undefined = undefined
+    tableFieldsOverride: Record<string, GenericTableColProps> | undefined = undefined,
+    colSpanOverride: undefined | ((key: string) => number) = undefined
   ): GenericTableRow {
-    return new GenericTableDataRow(dataObj, prefixFn, cellMetaFn, tableFieldsOverride);
+    return new GenericTableDataRow(dataObj, prefixFn, cellMetaFn, tableFieldsOverride, colSpanOverride);
   }
   static buildTextRow(text: React.ReactNode, className: string = ""): GenericTableRow {
     return new GenericTableTextRow(text, className);
@@ -351,10 +356,12 @@ const GenericTable: React.FunctionComponent<Props> = ({responsive, tableFields, 
         const cellMeta = row.cellMetaFn(key, val);
         const rowSpan = colProp.rowSpan(cellMeta);
         const className = colProp.className;
-        return (rowSpan > 0) ?
+        const colSpan = row.colSpanOverride ? row.colSpanOverride(key) : 1;
+        return (rowSpan > 0) && (colSpan > 0) ?
             <td
               className={className}
               rowSpan={rowSpan}
+              colSpan={colSpan}
               key={"" + index} style={style}
             >{(cellTooltip != null) ?
               ((lockMode == "row" || lockMode == "col") ?

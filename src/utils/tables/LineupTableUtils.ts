@@ -134,6 +134,7 @@ export class LineupTableUtils {
         posConfidences: _.values(posConfs || {}), 
         posClass: pos,
         roster: rosterMeta ? {
+          number: rosterMeta.number,
           height: rosterMeta.height,
           year_class: rosterMeta.year_class,
           pos: rosterMeta.pos,

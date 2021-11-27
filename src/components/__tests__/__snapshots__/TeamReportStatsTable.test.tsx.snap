@@ -1412,6 +1412,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
               Array [
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -1848,6 +1849,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -2030,6 +2032,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -2462,6 +2465,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -2643,6 +2647,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -3079,6 +3084,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -3261,6 +3267,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -3693,6 +3700,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -3874,6 +3882,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -4310,6 +4319,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -4492,6 +4502,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -4924,6 +4935,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -5105,6 +5117,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -5541,6 +5554,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -5723,6 +5737,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -6174,6 +6189,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -6374,6 +6390,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -6810,6 +6827,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -6992,6 +7010,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -7443,6 +7462,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -7643,6 +7663,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -8079,6 +8100,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -8261,6 +8283,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -8712,6 +8735,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -10973,6 +10997,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
               Array [
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -11449,6 +11474,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -11671,6 +11697,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -12103,6 +12130,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -12281,6 +12309,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": Object {
                     "def_title": "",
                     "key": "'r:On-Off' Wiggins, Aaron",
@@ -12559,6 +12588,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": Object {
                     "def_title": "",
                     "key": "'r:On-Off' Wiggins, Aaron",
@@ -12840,6 +12870,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -13316,6 +13347,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -13538,6 +13570,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -13970,6 +14003,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -14148,6 +14182,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": Object {
                     "def_title": "",
                     "key": "'r:On-Off' Cowan, Anthony",
@@ -14426,6 +14461,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": Object {
                     "def_title": "",
                     "key": "'r:On-Off' Cowan, Anthony",
@@ -14707,6 +14743,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -15183,6 +15220,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -15405,6 +15443,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -15837,6 +15876,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -16015,6 +16055,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": Object {
                     "def_title": "",
                     "key": "'r:On-Off' Smith, Jalen",
@@ -16293,6 +16334,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": Object {
                     "def_title": "",
                     "key": "'r:On-Off' Smith, Jalen",
@@ -16574,6 +16616,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -17050,6 +17093,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -17272,6 +17316,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -17763,6 +17808,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -18000,6 +18046,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_3p: Object {
                                         "old_value": 0.011133776568093948,
@@ -18326,6 +18373,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_3p: Object {
                                         "old_value": 0.011133776568093948,
@@ -18655,6 +18703,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -19131,6 +19180,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -19353,6 +19403,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -19844,6 +19895,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -20081,6 +20133,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_3p: Object {
                                         "old_value": 0.001138228575060165,
@@ -20407,6 +20460,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_3p: Object {
                                         "old_value": 0.001138228575060165,
@@ -20736,6 +20790,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -21212,6 +21267,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -21434,6 +21490,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -21925,6 +21982,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -22162,6 +22220,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_3p: Object {
                                         "old_value": -0.012275072029481748,
@@ -22488,6 +22547,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_3p: Object {
                                         "old_value": -0.012275072029481748,
@@ -24878,6 +24938,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
               Array [
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -25314,6 +25375,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -25496,6 +25558,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -25928,6 +25991,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -26106,6 +26170,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": Object {
                     "def_title": "",
                     "key": "'r:On-Off' Wiggins, Aaron",
@@ -26384,6 +26449,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": Object {
                     "def_title": "",
                     "key": "'r:On-Off' Wiggins, Aaron",
@@ -26665,6 +26731,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -27101,6 +27168,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -27283,6 +27351,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -27715,6 +27784,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -27893,6 +27963,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": Object {
                     "def_title": "",
                     "key": "'r:On-Off' Cowan, Anthony",
@@ -28171,6 +28242,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": Object {
                     "def_title": "",
                     "key": "'r:On-Off' Cowan, Anthony",
@@ -28452,6 +28524,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -28888,6 +28961,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -29070,6 +29144,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -29502,6 +29577,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -29680,6 +29756,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": Object {
                     "def_title": "",
                     "key": "'r:On-Off' Smith, Jalen",
@@ -29958,6 +30035,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": Object {
                     "def_title": "",
                     "key": "'r:On-Off' Smith, Jalen",
@@ -30239,6 +30317,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -30675,6 +30754,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -30857,6 +30937,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -31308,6 +31389,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -31505,6 +31587,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_title: ""
 
@@ -31783,6 +31866,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_title: ""
 
@@ -32064,6 +32148,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -32500,6 +32585,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -32682,6 +32768,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -33133,6 +33220,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -33330,6 +33418,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_title: ""
 
@@ -33608,6 +33697,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_title: ""
 
@@ -33889,6 +33979,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -34325,6 +34416,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -34507,6 +34599,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -34958,6 +35051,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -35155,6 +35249,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_title: ""
 
@@ -35433,6 +35528,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_title: ""
 
@@ -37775,6 +37871,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
               Array [
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -38211,6 +38308,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -38393,6 +38491,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -38825,6 +38924,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -39003,6 +39103,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": Object {
                     "def_title": "",
                     "key": "'r:On-Off' Wiggins, Aaron",
@@ -39282,6 +39383,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": Object {
                     "def_title": "",
                     "key": "'r:On-Off' Wiggins, Aaron",
@@ -39954,6 +40056,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -40390,6 +40493,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -40572,6 +40676,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -41004,6 +41109,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -41182,6 +41288,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": Object {
                     "def_title": "",
                     "key": "'r:On-Off' Cowan, Anthony",
@@ -41461,6 +41568,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": Object {
                     "def_title": "",
                     "key": "'r:On-Off' Cowan, Anthony",
@@ -42133,6 +42241,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -42569,6 +42678,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -42751,6 +42861,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -43183,6 +43294,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -43361,6 +43473,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": Object {
                     "def_title": "",
                     "key": "'r:On-Off' Smith, Jalen",
@@ -43640,6 +43753,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": Object {
                     "def_title": "",
                     "key": "'r:On-Off' Smith, Jalen",
@@ -44312,6 +44426,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -44748,6 +44863,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -44930,6 +45046,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -45381,6 +45498,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -45578,6 +45696,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_title: ""
 
@@ -45911,6 +46030,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_title: ""
 
@@ -46835,6 +46955,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -47271,6 +47392,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -47453,6 +47575,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -47904,6 +48027,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -48101,6 +48225,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_title: ""
 
@@ -48434,6 +48559,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_title: ""
 
@@ -49358,6 +49484,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -49794,6 +49921,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -49976,6 +50104,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -50427,6 +50556,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -50624,6 +50754,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_title: ""
 
@@ -50957,6 +51088,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_title: ""
 
@@ -53942,6 +54074,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
               Array [
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -54378,6 +54511,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -54560,6 +54694,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -54992,6 +55127,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -55170,6 +55306,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": Object {
                     "def_title": "",
                     "key": "'r:On-Off' Wiggins, Aaron",
@@ -55449,6 +55586,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": Object {
                     "def_title": "",
                     "key": "'r:On-Off' Wiggins, Aaron",
@@ -57894,6 +58032,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
               Array [
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -58330,6 +58469,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -58512,6 +58652,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -58944,6 +59085,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -59125,6 +59267,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -59561,6 +59704,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -59743,6 +59887,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -60175,6 +60320,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -60356,6 +60502,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -60792,6 +60939,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -60974,6 +61122,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -61406,6 +61555,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -61587,6 +61737,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -62023,6 +62174,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -62205,6 +62357,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -62656,6 +62809,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -62856,6 +63010,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -63292,6 +63447,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -63474,6 +63630,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -63925,6 +64082,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -64125,6 +64283,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -64561,6 +64720,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -64743,6 +64903,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>
@@ -65194,6 +65355,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                 },
                 GenericTableDataRow {
                   "cellMetaFn": [Function],
+                  "colSpanOverride": undefined,
                   "dataObj": {
                     def_2pmidr: Object {
                                         "extraInfo": <span>

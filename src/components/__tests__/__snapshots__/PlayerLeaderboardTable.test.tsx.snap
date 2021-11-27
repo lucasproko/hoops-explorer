@@ -972,6 +972,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
             Array [
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -1036,19 +1037,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -4.483,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Jr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-8
+                                      6-8 Jr
                                     </i>
                                   </small>
 
@@ -1247,6 +1240,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": [Function],
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -1311,19 +1305,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -4.483,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Jr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-8
+                                      6-8 Jr
                                     </i>
                                   </small>
 
@@ -1525,6 +1511,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -1589,19 +1576,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -1.9278,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Jr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-11
+                                      6-11 Jr
                                     </i>
                                   </small>
 
@@ -1800,6 +1779,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": [Function],
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -1864,19 +1844,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -1.9278,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Jr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-11
+                                      6-11 Jr
                                     </i>
                                   </small>
 
@@ -2078,6 +2050,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -2142,19 +2115,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -5.2444,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Sr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      7-0
+                                      7-0 Sr
                                     </i>
                                   </small>
 
@@ -2353,6 +2318,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": [Function],
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -2417,19 +2383,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -5.2444,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Sr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      7-0
+                                      7-0 Sr
                                     </i>
                                   </small>
 
@@ -2631,6 +2589,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -2695,19 +2654,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -2.7831,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Jr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-1
+                                      6-1 Jr
                                     </i>
                                   </small>
 
@@ -2906,6 +2857,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": [Function],
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -2970,19 +2922,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -2.7831,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Jr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-1
+                                      6-1 Jr
                                     </i>
                                   </small>
 
@@ -3184,6 +3128,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -3248,19 +3193,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -3.6632,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Fr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-10
+                                      6-10 Fr
                                     </i>
                                   </small>
 
@@ -3459,6 +3396,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": [Function],
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -3523,19 +3461,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -3.6632,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Fr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-10
+                                      6-10 Fr
                                     </i>
                                   </small>
 
@@ -3737,6 +3667,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -3801,19 +3732,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -1.1852,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Sr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-2
+                                      6-2 Sr
                                     </i>
                                   </small>
 
@@ -4012,6 +3935,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": [Function],
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -4076,19 +4000,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -1.1852,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Sr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-2
+                                      6-2 Sr
                                     </i>
                                   </small>
 
@@ -4290,6 +4206,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -4354,19 +4271,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -1.7676,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Sr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-0
+                                      6-0 Sr
                                     </i>
                                   </small>
 
@@ -4565,6 +4474,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": [Function],
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -4629,19 +4539,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -1.7676,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Sr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-0
+                                      6-0 Sr
                                     </i>
                                   </small>
 
@@ -4843,6 +4745,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -4907,19 +4810,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -3.034,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      So
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-2
+                                      6-2 So
                                     </i>
                                   </small>
 
@@ -5118,6 +5013,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": [Function],
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -5182,19 +5078,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -3.034,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      So
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-2
+                                      6-2 So
                                     </i>
                                   </small>
 
@@ -5396,6 +5284,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -5460,19 +5349,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -2.9049,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Jr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-0
+                                      6-0 Jr
                                     </i>
                                   </small>
 
@@ -5671,6 +5552,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": [Function],
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -5735,19 +5617,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -2.9049,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Jr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-0
+                                      6-0 Jr
                                     </i>
                                   </small>
 
@@ -5949,6 +5823,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -6013,19 +5888,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -0.6305,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Sr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      5-11
+                                      5-11 Sr
                                     </i>
                                   </small>
 
@@ -6224,6 +6091,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": [Function],
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -6288,19 +6156,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -0.6305,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Sr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      5-11
+                                      5-11 Sr
                                     </i>
                                   </small>
 
@@ -7806,6 +7666,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
             Array [
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -7870,19 +7731,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -1.1852,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Sr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-2
+                                      6-2 Sr
                                     </i>
                                   </small>
 
@@ -8081,6 +7934,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": [Function],
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -8145,19 +7999,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -1.1852,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Sr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-2
+                                      6-2 Sr
                                     </i>
                                   </small>
 
@@ -8359,6 +8205,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -8423,19 +8270,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -1.9278,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Jr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-11
+                                      6-11 Jr
                                     </i>
                                   </small>
 
@@ -8634,6 +8473,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": [Function],
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -8698,19 +8538,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -1.9278,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Jr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-11
+                                      6-11 Jr
                                     </i>
                                   </small>
 
@@ -8912,6 +8744,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -8976,19 +8809,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -4.483,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Jr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-8
+                                      6-8 Jr
                                     </i>
                                   </small>
 
@@ -9187,6 +9012,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": [Function],
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -9251,19 +9077,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -4.483,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Jr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-8
+                                      6-8 Jr
                                     </i>
                                   </small>
 
@@ -9465,6 +9283,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -9529,19 +9348,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -2.7831,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Jr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-1
+                                      6-1 Jr
                                     </i>
                                   </small>
 
@@ -9740,6 +9551,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": [Function],
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -9804,19 +9616,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -2.7831,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Jr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-1
+                                      6-1 Jr
                                     </i>
                                   </small>
 
@@ -10018,6 +9822,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -10082,19 +9887,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -2.9049,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Jr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-0
+                                      6-0 Jr
                                     </i>
                                   </small>
 
@@ -10293,6 +10090,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": [Function],
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -10357,19 +10155,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -2.9049,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Jr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-0
+                                      6-0 Jr
                                     </i>
                                   </small>
 
@@ -10571,6 +10361,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -10635,19 +10426,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -3.034,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      So
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-2
+                                      6-2 So
                                     </i>
                                   </small>
 
@@ -10846,6 +10629,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": [Function],
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -10910,19 +10694,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -3.034,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      So
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-2
+                                      6-2 So
                                     </i>
                                   </small>
 
@@ -11124,6 +10900,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -11188,19 +10965,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -1.7676,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Sr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-0
+                                      6-0 Sr
                                     </i>
                                   </small>
 
@@ -11399,6 +11168,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": [Function],
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -11463,19 +11233,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -1.7676,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Sr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-0
+                                      6-0 Sr
                                     </i>
                                   </small>
 
@@ -11677,6 +11439,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -11741,19 +11504,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -0.6305,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Sr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      5-11
+                                      5-11 Sr
                                     </i>
                                   </small>
 
@@ -11952,6 +11707,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": [Function],
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -12016,19 +11772,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -0.6305,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Sr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      5-11
+                                      5-11 Sr
                                     </i>
                                   </small>
 
@@ -12230,6 +11978,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -12294,19 +12043,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -5.2444,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Sr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      7-0
+                                      7-0 Sr
                                     </i>
                                   </small>
 
@@ -12505,6 +12246,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": [Function],
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -12569,19 +12311,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -5.2444,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Sr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      7-0
+                                      7-0 Sr
                                     </i>
                                   </small>
 
@@ -12783,6 +12517,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -12847,19 +12582,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -3.6632,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Fr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-10
+                                      6-10 Fr
                                     </i>
                                   </small>
 
@@ -13058,6 +12785,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": [Function],
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -13122,19 +12850,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -3.6632,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Fr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-10
+                                      6-10 Fr
                                     </i>
                                   </small>
 
@@ -14640,6 +14360,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
             Array [
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -14704,19 +14425,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -4.2555,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Fr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-7
+                                      6-7 Fr
                                     </i>
                                   </small>
 
@@ -14923,6 +14636,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": [Function],
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -14987,19 +14701,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -4.2555,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Fr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-7
+                                      6-7 Fr
                                     </i>
                                   </small>
 
@@ -15209,6 +14915,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -15273,19 +14980,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -1.9024,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Jr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-0
+                                      6-0 Jr
                                     </i>
                                   </small>
 
@@ -15492,6 +15191,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": [Function],
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -15556,19 +15256,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -1.9024,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Jr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-0
+                                      6-0 Jr
                                     </i>
                                   </small>
 
@@ -15778,6 +15470,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -15842,19 +15535,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -4.5872,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Jr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-8
+                                      6-8 Jr
                                     </i>
                                   </small>
 
@@ -16061,6 +15746,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": [Function],
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -16125,19 +15811,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -4.5872,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Jr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-8
+                                      6-8 Jr
                                     </i>
                                   </small>
 
@@ -16347,6 +16025,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -16411,19 +16090,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -1.9278,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Jr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-11
+                                      6-11 Jr
                                     </i>
                                   </small>
 
@@ -16630,6 +16301,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": [Function],
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -16694,19 +16366,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -1.9278,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Jr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-11
+                                      6-11 Jr
                                     </i>
                                   </small>
 
@@ -16916,6 +16580,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -16980,19 +16645,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -2.9991,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Sr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-8
+                                      6-8 Sr
                                     </i>
                                   </small>
 
@@ -17199,6 +16856,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": [Function],
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -17263,19 +16921,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -2.9991,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Sr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-8
+                                      6-8 Sr
                                     </i>
                                   </small>
 
@@ -17485,6 +17135,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -17549,19 +17200,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -2.3311,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      So
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-7
+                                      6-7 So
                                     </i>
                                   </small>
 
@@ -17768,6 +17411,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": [Function],
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -17832,19 +17476,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -2.3311,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      So
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-7
+                                      6-7 So
                                     </i>
                                   </small>
 
@@ -18054,6 +17690,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -18118,19 +17755,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -3.6632,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Fr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-10
+                                      6-10 Fr
                                     </i>
                                   </small>
 
@@ -18337,6 +17966,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": [Function],
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -18401,19 +18031,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -3.6632,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Fr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-10
+                                      6-10 Fr
                                     </i>
                                   </small>
 
@@ -18623,6 +18245,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -18687,19 +18310,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -2.7831,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Jr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-1
+                                      6-1 Jr
                                     </i>
                                   </small>
 
@@ -18906,6 +18521,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": [Function],
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -18970,19 +18586,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -2.7831,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Jr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-1
+                                      6-1 Jr
                                     </i>
                                   </small>
 
@@ -19192,6 +18800,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -19256,19 +18865,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -5.2444,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Sr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      7-0
+                                      7-0 Sr
                                     </i>
                                   </small>
 
@@ -19475,6 +19076,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": [Function],
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -19539,19 +19141,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -5.2444,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Sr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      7-0
+                                      7-0 Sr
                                     </i>
                                   </small>
 
@@ -19761,6 +19355,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -19825,19 +19420,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -1.6033,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Fr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-3
+                                      6-3 Fr
                                     </i>
                                   </small>
 
@@ -20033,6 +19620,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": [Function],
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -20097,19 +19685,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -1.6033,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Fr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-3
+                                      6-3 Fr
                                     </i>
                                   </small>
 
@@ -20308,6 +19888,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -20372,19 +19953,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -4.483,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Jr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-8
+                                      6-8 Jr
                                     </i>
                                   </small>
 
@@ -20591,6 +20164,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": [Function],
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -20655,19 +20229,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -4.483,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Jr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-8
+                                      6-8 Jr
                                     </i>
                                   </small>
 
@@ -20877,6 +20443,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -20941,19 +20508,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -1.8189,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      So
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-3
+                                      6-3 So
                                     </i>
                                   </small>
 
@@ -21149,6 +20708,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": [Function],
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -21213,19 +20773,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -1.8189,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      So
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-3
+                                      6-3 So
                                     </i>
                                   </small>
 
@@ -21424,6 +20976,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -21488,19 +21041,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -1.8276,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      So
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-0
+                                      6-0 So
                                     </i>
                                   </small>
 
@@ -21696,6 +21241,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": [Function],
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -21760,19 +21306,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -1.8276,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      So
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-0
+                                      6-0 So
                                     </i>
                                   </small>
 
@@ -21971,6 +21509,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -22035,19 +21574,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -3.0688,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Jr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-9
+                                      6-9 Jr
                                     </i>
                                   </small>
 
@@ -22243,6 +21774,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": [Function],
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -22307,19 +21839,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -3.0688,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Jr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-9
+                                      6-9 Jr
                                     </i>
                                   </small>
 
@@ -22518,6 +22042,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -22582,19 +22107,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -1.3961,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      So
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-7
+                                      6-7 So
                                     </i>
                                   </small>
 
@@ -22790,6 +22307,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": [Function],
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -22854,19 +22372,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -1.3961,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      So
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-7
+                                      6-7 So
                                     </i>
                                   </small>
 
@@ -24369,6 +23879,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
             Array [
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -24433,19 +23944,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -0.6305,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Sr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      5-11
+                                      5-11 Sr
                                     </i>
                                   </small>
 
@@ -24643,6 +24146,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": [Function],
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -24707,19 +24211,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -0.6305,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Sr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      5-11
+                                      5-11 Sr
                                     </i>
                                   </small>
 
@@ -24920,6 +24416,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -24984,19 +24481,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -1.1852,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Sr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-2
+                                      6-2 Sr
                                     </i>
                                   </small>
 
@@ -25194,6 +24683,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": [Function],
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -25258,19 +24748,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -1.1852,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Sr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-2
+                                      6-2 Sr
                                     </i>
                                   </small>
 
@@ -25471,6 +24953,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -25535,19 +25018,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -1.9278,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Jr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-11
+                                      6-11 Jr
                                     </i>
                                   </small>
 
@@ -25745,6 +25220,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": [Function],
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -25809,19 +25285,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -1.9278,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Jr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-11
+                                      6-11 Jr
                                     </i>
                                   </small>
 
@@ -26022,6 +25490,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -26086,19 +25555,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -3.034,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      So
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-2
+                                      6-2 So
                                     </i>
                                   </small>
 
@@ -26296,6 +25757,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": [Function],
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -26360,19 +25822,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -3.034,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      So
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-2
+                                      6-2 So
                                     </i>
                                   </small>
 
@@ -26573,6 +26027,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -26637,19 +26092,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -2.7831,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Jr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-1
+                                      6-1 Jr
                                     </i>
                                   </small>
 
@@ -26847,6 +26294,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": [Function],
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -26911,19 +26359,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -2.7831,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Jr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-1
+                                      6-1 Jr
                                     </i>
                                   </small>
 
@@ -27124,6 +26564,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -27188,19 +26629,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -1.7676,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Sr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-0
+                                      6-0 Sr
                                     </i>
                                   </small>
 
@@ -27398,6 +26831,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": [Function],
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -27462,19 +26896,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -1.7676,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Sr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-0
+                                      6-0 Sr
                                     </i>
                                   </small>
 
@@ -27675,6 +27101,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -27739,19 +27166,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -3.6632,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Fr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-10
+                                      6-10 Fr
                                     </i>
                                   </small>
 
@@ -27949,6 +27368,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": [Function],
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -28013,19 +27433,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -3.6632,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Fr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-10
+                                      6-10 Fr
                                     </i>
                                   </small>
 
@@ -28226,6 +27638,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -28290,19 +27703,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -2.9049,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Jr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-0
+                                      6-0 Jr
                                     </i>
                                   </small>
 
@@ -28500,6 +27905,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": [Function],
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -28564,19 +27970,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -2.9049,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Jr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-0
+                                      6-0 Jr
                                     </i>
                                   </small>
 
@@ -28777,6 +28175,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -28841,19 +28240,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -4.483,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Jr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-8
+                                      6-8 Jr
                                     </i>
                                   </small>
 
@@ -29051,6 +28442,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": [Function],
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -29115,19 +28507,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -4.483,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Jr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-8
+                                      6-8 Jr
                                     </i>
                                   </small>
 
@@ -29328,6 +28712,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -29392,19 +28777,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -5.2444,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Sr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      7-0
+                                      7-0 Sr
                                     </i>
                                   </small>
 
@@ -29602,6 +28979,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": [Function],
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -29666,19 +29044,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -5.2444,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Sr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      7-0
+                                      7-0 Sr
                                     </i>
                                   </small>
 
@@ -31183,6 +30553,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
             Array [
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -31247,19 +30618,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -0.6305,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Sr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      5-11
+                                      5-11 Sr
                                     </i>
                                   </small>
 
@@ -31457,6 +30820,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": [Function],
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -31521,19 +30885,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -0.6305,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Sr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      5-11
+                                      5-11 Sr
                                     </i>
                                   </small>
 
@@ -31734,6 +31090,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -31798,19 +31155,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -1.9278,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Jr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-11
+                                      6-11 Jr
                                     </i>
                                   </small>
 
@@ -32008,6 +31357,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": [Function],
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -32072,19 +31422,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -1.9278,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Jr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-11
+                                      6-11 Jr
                                     </i>
                                   </small>
 
@@ -32285,6 +31627,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -32349,19 +31692,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -1.1852,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Sr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-2
+                                      6-2 Sr
                                     </i>
                                   </small>
 
@@ -32559,6 +31894,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": [Function],
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -32623,19 +31959,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -1.1852,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Sr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-2
+                                      6-2 Sr
                                     </i>
                                   </small>
 
@@ -32836,6 +32164,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -32900,19 +32229,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -3.6632,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Fr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-10
+                                      6-10 Fr
                                     </i>
                                   </small>
 
@@ -33110,6 +32431,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": [Function],
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -33174,19 +32496,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -3.6632,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Fr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-10
+                                      6-10 Fr
                                     </i>
                                   </small>
 
@@ -33387,6 +32701,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -33451,19 +32766,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -3.034,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      So
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-2
+                                      6-2 So
                                     </i>
                                   </small>
 
@@ -33661,6 +32968,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": [Function],
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -33725,19 +33033,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -3.034,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      So
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-2
+                                      6-2 So
                                     </i>
                                   </small>
 
@@ -33938,6 +33238,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -34002,19 +33303,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -2.7831,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Jr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-1
+                                      6-1 Jr
                                     </i>
                                   </small>
 
@@ -34212,6 +33505,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": [Function],
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -34276,19 +33570,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -2.7831,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Jr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-1
+                                      6-1 Jr
                                     </i>
                                   </small>
 
@@ -34489,6 +33775,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -34553,19 +33840,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -1.7676,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Sr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-0
+                                      6-0 Sr
                                     </i>
                                   </small>
 
@@ -34763,6 +34042,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": [Function],
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -34827,19 +34107,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -1.7676,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Sr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-0
+                                      6-0 Sr
                                     </i>
                                   </small>
 
@@ -35040,6 +34312,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -35104,19 +34377,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -5.2444,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Sr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      7-0
+                                      7-0 Sr
                                     </i>
                                   </small>
 
@@ -35314,6 +34579,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": [Function],
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -35378,19 +34644,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -5.2444,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Sr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      7-0
+                                      7-0 Sr
                                     </i>
                                   </small>
 
@@ -35591,6 +34849,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -35655,19 +34914,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -4.483,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Jr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-8
+                                      6-8 Jr
                                     </i>
                                   </small>
 
@@ -35865,6 +35116,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": [Function],
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -35929,19 +35181,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -4.483,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Jr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-8
+                                      6-8 Jr
                                     </i>
                                   </small>
 
@@ -36142,6 +35386,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -36206,19 +35451,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -2.9049,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Jr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-0
+                                      6-0 Jr
                                     </i>
                                   </small>
 
@@ -36416,6 +35653,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": [Function],
                 "dataObj": {
                   def_2pmidr: <small
                                     style={
@@ -36480,19 +35718,11 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                                     "value": -2.9049,
                                   }
 
-                  def_assist: <small>
-                                    <i
-                                      className="text-secondary"
-                                    >
-                                      Jr
-                                    </i>
-                                  </small>
-
                   def_efg: <small>
                                     <i
                                       className="text-secondary"
                                     >
-                                      6-0
+                                      6-0 Jr
                                     </i>
                                   </small>
 

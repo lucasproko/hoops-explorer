@@ -56,6 +56,7 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
             },
             GenericTableDataRow {
               "cellMetaFn": [Function],
+              "colSpanOverride": undefined,
               "dataObj": Object {
                 "source_3p_ast": Object {
                   "extraInfo": <div>
@@ -137,6 +138,7 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
             },
             GenericTableDataRow {
               "cellMetaFn": [Function],
+              "colSpanOverride": undefined,
               "dataObj": Object {
                 "source_3p_ast": Object {
                   "value": 0.09026534900007782,
@@ -173,6 +175,7 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
             },
             GenericTableDataRow {
               "cellMetaFn": [Function],
+              "colSpanOverride": undefined,
               "dataObj": Object {
                 "order": 0,
                 "source_3p_ast": Object {
@@ -292,6 +295,7 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
             },
             GenericTableDataRow {
               "cellMetaFn": [Function],
+              "colSpanOverride": undefined,
               "dataObj": Object {
                 "order": 1,
                 "source_3p_ast": Object {
@@ -414,6 +418,7 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
             },
             GenericTableDataRow {
               "cellMetaFn": [Function],
+              "colSpanOverride": undefined,
               "dataObj": Object {
                 "order": 2,
                 "title": <span>
@@ -431,6 +436,7 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
             },
             GenericTableDataRow {
               "cellMetaFn": [Function],
+              "colSpanOverride": undefined,
               "dataObj": Object {
                 "source_3p_ast": Object {
                   "value": 0.018675589448291962,
@@ -469,6 +475,7 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
             },
             GenericTableDataRow {
               "cellMetaFn": [Function],
+              "colSpanOverride": undefined,
               "dataObj": Object {
                 "source_3p_ast": Object {
                   "value": 0.012450392965527975,
@@ -781,6 +788,7 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
             },
             GenericTableDataRow {
               "cellMetaFn": [Function],
+              "colSpanOverride": undefined,
               "dataObj": Object {
                 "source_3p_ast": Object {
                   "extraInfo": <div>
@@ -862,6 +870,7 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
             },
             GenericTableDataRow {
               "cellMetaFn": [Function],
+              "colSpanOverride": undefined,
               "dataObj": Object {
                 "source_3p_ast": Object {
                   "value": 0.09026534900007782,
@@ -898,6 +907,7 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
             },
             GenericTableDataRow {
               "cellMetaFn": [Function],
+              "colSpanOverride": undefined,
               "dataObj": Object {
                 "order": 0,
                 "source_3p_ast": Object {
@@ -1017,6 +1027,7 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
             },
             GenericTableDataRow {
               "cellMetaFn": [Function],
+              "colSpanOverride": undefined,
               "dataObj": Object {
                 "order": 1,
                 "source_3p_ast": Object {
@@ -1139,6 +1150,7 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
             },
             GenericTableDataRow {
               "cellMetaFn": [Function],
+              "colSpanOverride": undefined,
               "dataObj": Object {
                 "order": 2,
                 "title": <span>
@@ -1156,6 +1168,7 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
             },
             GenericTableDataRow {
               "cellMetaFn": [Function],
+              "colSpanOverride": undefined,
               "dataObj": Object {
                 "source_3p_ast": Object {
                   "value": 0.018675589448291962,
@@ -1194,6 +1207,7 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
             },
             GenericTableDataRow {
               "cellMetaFn": [Function],
+              "colSpanOverride": undefined,
               "dataObj": Object {
                 "source_3p_ast": Object {
                   "value": 0.012450392965527975,
@@ -1244,6 +1258,7 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
             },
             GenericTableDataRow {
               "cellMetaFn": [Function],
+              "colSpanOverride": undefined,
               "dataObj": Object {
                 "code": "JaSmith",
                 "source_3p_ast": Object {
@@ -1339,6 +1354,7 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
             },
             GenericTableDataRow {
               "cellMetaFn": [Function],
+              "colSpanOverride": undefined,
               "dataObj": Object {
                 "code": "DaMorsell",
                 "source_3p_ast": Object {
@@ -1434,6 +1450,7 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
             },
             GenericTableDataRow {
               "cellMetaFn": [Function],
+              "colSpanOverride": undefined,
               "dataObj": Object {
                 "code": "ErAyala",
                 "source_3p_ast": Object {
@@ -1514,6 +1531,7 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
             },
             GenericTableDataRow {
               "cellMetaFn": [Function],
+              "colSpanOverride": undefined,
               "dataObj": Object {
                 "code": "AaWiggins",
                 "source_3p_ast": Object {
@@ -1610,6 +1628,7 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
             },
             GenericTableDataRow {
               "cellMetaFn": [Function],
+              "colSpanOverride": undefined,
               "dataObj": Object {
                 "code": "DoScott",
                 "source_3p_ast": Object {
@@ -1675,6 +1694,7 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
             },
             GenericTableDataRow {
               "cellMetaFn": [Function],
+              "colSpanOverride": undefined,
               "dataObj": Object {
                 "code": "MlMitchell",
                 "source_3p_ast": Object {
@@ -1725,6 +1745,7 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
             },
             GenericTableDataRow {
               "cellMetaFn": [Function],
+              "colSpanOverride": undefined,
               "dataObj": Object {
                 "code": "MiMitchell",
                 "source_rim_ast": Object {
@@ -1775,6 +1796,7 @@ exports[`PlayerPlayTypeDiagView PlayerPlayTypeDiagView - should create snapshot 
             },
             GenericTableDataRow {
               "cellMetaFn": [Function],
+              "colSpanOverride": undefined,
               "dataObj": Object {
                 "code": "JoTomaic",
                 "target_ast": Object {

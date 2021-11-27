@@ -711,6 +711,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
             Array [
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
                 "dataObj": {
                   def_2pmidr: Object {
                                     "extraInfo": <span>
@@ -1172,6 +1173,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
                 "dataObj": {
                   def_2pmidr: Object {
                                     "extraInfo": <span>
@@ -1636,6 +1638,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
                 "dataObj": {
                   def_2pmidr: Object {
                                     "extraInfo": <span>
@@ -2097,6 +2100,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
                 "dataObj": {
                   def_2pmidr: Object {
                                     "extraInfo": <span>
@@ -2561,6 +2565,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
                 "dataObj": {
                   def_2pmidr: Object {
                                     "extraInfo": <span>
@@ -3022,6 +3027,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
                 "dataObj": {
                   def_2pmidr: Object {
                                     "extraInfo": <span>
@@ -4472,6 +4478,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
             Array [
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
                 "dataObj": {
                   def_2pmidr: Object {
                                     "extraInfo": <span>
@@ -4789,6 +4796,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
                 "dataObj": {
                   def_2pmidr: Object {
                                     "extraInfo": <span>
@@ -5132,6 +5140,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
                 "dataObj": {
                   def_2pmidr: Object {
                                     "extraInfo": <span>
@@ -5449,6 +5458,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
                 "dataObj": {
                   def_2pmidr: Object {
                                     "extraInfo": <span>
@@ -5792,6 +5802,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
                 "dataObj": {
                   def_2pmidr: Object {
                                     "extraInfo": <span>
@@ -6109,6 +6120,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
                 "dataObj": {
                   def_2pmidr: Object {
                                     "extraInfo": <span>
@@ -7438,6 +7450,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
             Array [
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
                 "dataObj": {
                   def_2pmidr: Object {
                                     "extraInfo": <span>
@@ -7913,6 +7926,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
                 "dataObj": {
                   def_2pmidr: Object {
                                     "extraInfo": <span>
@@ -8391,6 +8405,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
                 "dataObj": {
                   def_2pmidr: Object {
                                     "extraInfo": <span>
@@ -8866,6 +8881,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
                 "dataObj": {
                   def_2pmidr: Object {
                                     "extraInfo": <span>
@@ -9344,6 +9360,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
                 "dataObj": {
                   def_2pmidr: Object {
                                     "extraInfo": <span>
@@ -9819,6 +9836,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
                 "dataObj": {
                   def_2pmidr: Object {
                                     "extraInfo": <span>
@@ -11283,6 +11301,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
             Array [
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
                 "dataObj": {
                   def_2pmidr: Object {
                                     "extraInfo": <span>
@@ -11758,6 +11777,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
                 "dataObj": {
                   def_2pmidr: Object {
                                     "extraInfo": <span>
@@ -12236,6 +12256,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
                 "dataObj": {
                   def_2pmidr: Object {
                                     "extraInfo": <span>
@@ -12711,6 +12732,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
                 "dataObj": {
                   def_2pmidr: Object {
                                     "extraInfo": <span>
@@ -13189,6 +13211,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
                 "dataObj": {
                   def_2pmidr: Object {
                                     "extraInfo": <span>
@@ -13664,6 +13687,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
+                "colSpanOverride": undefined,
                 "dataObj": {
                   def_2pmidr: Object {
                                     "extraInfo": <span>

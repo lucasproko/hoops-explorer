@@ -478,16 +478,14 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
 
         const height = rosterEntry.height;
         const heightIn = rosterEntry.height_in;
-
         const yearClass = rosterEntry.year_class;
-        const rosterPos = rosterEntry.pos;
+        const rosterNum = rosterEntry.number;
+        const rosterInfoText = `${(height && height != "-") ? height : ""} ${yearClass ? yearClass : ""}${rosterNum ? ` / #${rosterNum}` : ""}`
+
         const rosterVisibility = ((key ==  varFirstRowKey) || (showPositionDiags || showLuckAdjDiags || showPlayTypes)) ? 100 : 0;
           //^(means it will be visible on table export but not on the page)
-        if (height && height != "-") {
-          stat.def_efg = <small><i className="text-secondary" style={{opacity:rosterVisibility}}>{height}</i></small>;
-        }
-        if (yearClass) {
-          stat.def_assist = <small><i className="text-secondary" style={{opacity:rosterVisibility}}>{yearClass}</i></small>;
+        if (rosterInfoText.length > 2) {
+          stat.def_efg = <small><i className="text-secondary" style={{opacity:rosterVisibility}}>{rosterInfoText}</i></small>;
         }
 
         // Once luck is applied apply any manual overrides
@@ -648,13 +646,17 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
         (_.find(filterFragmentsNve, (fragment) => strToTest.indexOf(fragment) >= 0) ? false : true))
       ;
   });
+
+  /** Compresses number/height/year into 1 double-width column */
+  const rosterInfoSpanCalculator = (key: string) => key == "efg" ? 2 : (key == "assist" ? 0 : 1);
+
   const tableData = _.chain(filteredPlayers).sortBy(
     [ sorter(sortBy) , (p) => { p.baseline?.off_team_poss?.value || 0 } ]
   ).flatMap((p) => {
     return _.flatten([
       _.isNil(p.on?.off_title) ? [ ] : _.flatten([
         [ GenericTableOps.buildDataRow(p.on, offPrefixFn, offCellMetaFn) ],
-        expandedView ? [ GenericTableOps.buildDataRow(p.on, defPrefixFn, defCellMetaFn) ] : [],
+        expandedView ? [ GenericTableOps.buildDataRow(p.on, defPrefixFn, defCellMetaFn, undefined, rosterInfoSpanCalculator) ] : [],
         showDiagMode && p.on?.diag_off_rtg && p.on?.diag_def_rtg ?
           [ GenericTableOps.buildTextRow(<RosterStatsDiagView ortgDiags={p.on?.diag_off_rtg} drtgDiags={p.on?.diag_def_rtg}/>, "small") ] : [],
         showPositionDiags ?
@@ -679,7 +681,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
       ]),
       _.isNil(p.off?.off_title) ? [ ] : _.flatten([
         [ GenericTableOps.buildDataRow(p.off, offPrefixFn, offCellMetaFn) ],
-        expandedView ? [ GenericTableOps.buildDataRow(p.off, defPrefixFn, defCellMetaFn) ] : [],
+        expandedView ? [ GenericTableOps.buildDataRow(p.off, defPrefixFn, defCellMetaFn, undefined, rosterInfoSpanCalculator) ] : [],
         showDiagMode && p.off?.diag_off_rtg && p.off?.diag_def_rtg ?
           [ GenericTableOps.buildTextRow(<RosterStatsDiagView ortgDiags={p.off?.diag_off_rtg} drtgDiags={p.off?.diag_def_rtg}/>, "small") ] : [],
         showPositionDiags ?
@@ -704,7 +706,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
       ]),
       (skipBaseline || _.isNil(p.baseline?.off_title)) ? [ ] : _.flatten([
         [ GenericTableOps.buildDataRow(p.baseline, offPrefixFn, offCellMetaFn) ],
-        expandedView ? [ GenericTableOps.buildDataRow(p.baseline, defPrefixFn, defCellMetaFn) ] : [],
+        expandedView ? [ GenericTableOps.buildDataRow(p.baseline, defPrefixFn, defCellMetaFn, undefined, rosterInfoSpanCalculator) ] : [],
         showDiagMode && p.baseline?.diag_off_rtg && p.baseline?.diag_def_rtg ?
           [ GenericTableOps.buildTextRow(<RosterStatsDiagView ortgDiags={p.baseline?.diag_off_rtg} drtgDiags={p.baseline?.diag_def_rtg}/>, "small") ] : [],
         showPositionDiags ?
