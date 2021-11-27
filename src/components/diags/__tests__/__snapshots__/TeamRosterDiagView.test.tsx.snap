@@ -39,6 +39,11 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose base
                 >
                   <div
                     className="float-left"
+                    style={
+                      Object {
+                        "display": "flex",
+                      }
+                    }
                   >
                     <OverlayTrigger
                       overlay={
@@ -151,6 +156,11 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose base
                 >
                   <div
                     className="float-left"
+                    style={
+                      Object {
+                        "display": "flex",
+                      }
+                    }
                   >
                     <OverlayTrigger
                       overlay={
@@ -250,6 +260,11 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose base
                 >
                   <div
                     className="float-left"
+                    style={
+                      Object {
+                        "display": "flex",
+                      }
+                    }
                   >
                     <OverlayTrigger
                       overlay={
@@ -356,6 +371,11 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose base
                 >
                   <div
                     className="float-left"
+                    style={
+                      Object {
+                        "display": "flex",
+                      }
+                    }
                   >
                     <OverlayTrigger
                       overlay={
@@ -455,6 +475,11 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose base
                 >
                   <div
                     className="float-left"
+                    style={
+                      Object {
+                        "display": "flex",
+                      }
+                    }
                   >
                     <OverlayTrigger
                       overlay={
@@ -563,6 +588,11 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose base
                 >
                   <div
                     className="float-left"
+                    style={
+                      Object {
+                        "display": "flex",
+                      }
+                    }
                   >
                     <OverlayTrigger
                       overlay={
@@ -664,6 +694,11 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose base
                 >
                   <div
                     className="float-left"
+                    style={
+                      Object {
+                        "display": "flex",
+                      }
+                    }
                   >
                     <OverlayTrigger
                       overlay={
@@ -873,6 +908,11 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose samp
                 >
                   <div
                     className="float-left"
+                    style={
+                      Object {
+                        "display": "flex",
+                      }
+                    }
                   >
                     <OverlayTrigger
                       overlay={
@@ -985,6 +1025,11 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose samp
                 >
                   <div
                     className="float-left"
+                    style={
+                      Object {
+                        "display": "flex",
+                      }
+                    }
                   >
                     <OverlayTrigger
                       overlay={
@@ -1084,6 +1129,11 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose samp
                 >
                   <div
                     className="float-left"
+                    style={
+                      Object {
+                        "display": "flex",
+                      }
+                    }
                   >
                     <OverlayTrigger
                       overlay={
@@ -1190,6 +1240,11 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose samp
                 >
                   <div
                     className="float-left"
+                    style={
+                      Object {
+                        "display": "flex",
+                      }
+                    }
                   >
                     <OverlayTrigger
                       overlay={
@@ -1289,6 +1344,11 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose samp
                 >
                   <div
                     className="float-left"
+                    style={
+                      Object {
+                        "display": "flex",
+                      }
+                    }
                   >
                     <OverlayTrigger
                       overlay={
@@ -1498,6 +1558,11 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global only 1`] = `
                 >
                   <div
                     className="float-left"
+                    style={
+                      Object {
+                        "display": "flex",
+                      }
+                    }
                   >
                     <OverlayTrigger
                       overlay={
@@ -1610,6 +1675,11 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global only 1`] = `
                 >
                   <div
                     className="float-left"
+                    style={
+                      Object {
+                        "display": "flex",
+                      }
+                    }
                   >
                     <OverlayTrigger
                       overlay={
@@ -1709,6 +1779,11 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global only 1`] = `
                 >
                   <div
                     className="float-left"
+                    style={
+                      Object {
+                        "display": "flex",
+                      }
+                    }
                   >
                     <OverlayTrigger
                       overlay={
@@ -1815,6 +1890,11 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global only 1`] = `
                 >
                   <div
                     className="float-left"
+                    style={
+                      Object {
+                        "display": "flex",
+                      }
+                    }
                   >
                     <OverlayTrigger
                       overlay={
@@ -1914,6 +1994,11 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global only 1`] = `
                 >
                   <div
                     className="float-left"
+                    style={
+                      Object {
+                        "display": "flex",
+                      }
+                    }
                   >
                     <OverlayTrigger
                       overlay={
@@ -2022,6 +2107,11 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global only 1`] = `
                 >
                   <div
                     className="float-left"
+                    style={
+                      Object {
+                        "display": "flex",
+                      }
+                    }
                   >
                     <OverlayTrigger
                       overlay={
@@ -2123,6 +2213,11 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global only 1`] = `
                 >
                   <div
                     className="float-left"
+                    style={
+                      Object {
+                        "display": "flex",
+                      }
+                    }
                   >
                     <OverlayTrigger
                       overlay={

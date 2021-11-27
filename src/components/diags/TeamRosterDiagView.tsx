@@ -80,13 +80,19 @@ const TeamRosterDiagView: React.FunctionComponent<Props> = ({
         const decoratedPlayerInfo = TableDisplayUtils.buildDecoratedLineup(
           playerCodeId.code + col, [ playerCodeId ], rosterStatsByPlayerId, positionFromPlayerId, "off_adj_rtg", true, true
         );
+        const playerNum = rosterStatsByPlayerId[playerCodeId.id]?.roster?.number;
         return [ col, <Row>
             <Col className="pr-0 pl-0" xs="3"><div className="float-right"
               style={CommonTableDefs.getTextShadow({ value: pct }, CbbColors.posFreq)}
             >
               {pct.toFixed(0)}%
             </div></Col>
-            <Col xs="auto"><div className="float-left">{decoratedPlayerInfo}</div></Col>
+            <Col xs="auto">              
+              <div className="float-left" style={{display : 'flex'}}>
+                {playerNum ? <i style={{ marginRight: '.1rem' }} ><small>#{playerNum}</small></i> : null}
+                {decoratedPlayerInfo}
+              </div>
+            </Col>
           </Row>
         ];
       } else {

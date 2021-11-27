@@ -154,13 +154,21 @@ export const relativePositionFixes: Record<string, RelativePositionFixRule[]> = 
       undefined
     ]
   }]),
-  // 10/11/2020: Fatts+Martinez are PGs, Ayala plays the 2, Hart>XG
+  // 10/11/2020: Fatts+Martinez are PGs, Ayala plays the 2, Hart plays SF, except Hart>XG  for SG/PF
   "Men_Maryland_2021/22": [{
-    key: [ "IaMartinez", "FaRussell", undefined, undefined, undefined ],
+    key: [ "HaHart", "IaMartinez", undefined, undefined, undefined ],
     rule: [
-      { code: "FaRussell", id: "Russell, Fatts" },
       { code: "IaMartinez", id: "Martinez, Ian" },
+      { code: "HaHart", id: "Hart, Hakim" },
       undefined, undefined, undefined
+    ]
+  }, {
+    key: [ undefined, "HaHart", "IaMartinez", undefined, undefined ],
+    rule: [
+      undefined, 
+      { code: "IaMartinez", id: "Martinez, Ian" },
+      { code: "HaHart", id: "Hart, Hakim" },
+      undefined, undefined
     ]
   }, {
     key: [ undefined, undefined, "ErAyala", undefined, undefined ],
