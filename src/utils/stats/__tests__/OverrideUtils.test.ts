@@ -4,6 +4,7 @@ import _ from 'lodash';
 
 import { OverrideUtils } from "../OverrideUtils";
 import { ParamPrefixes, ManualOverride } from "../../FilterModels";
+import { IndivStatSet } from '../../StatModels';
 
 describe("OverrideUtils", () => {
 
@@ -38,45 +39,45 @@ describe("OverrideUtils", () => {
   });
   test("OverrideUtils - overrideMutableVal", () => {
     //(all the different combos for this rather horrible method)
-    const test1 = { };
-    const test2a = { key: { value: 1.0 } };
+    const test1 = { key: "test" } as IndivStatSet;
+    const test2a = { key: "test", num_key: { value: 1.0 } } as IndivStatSet;
     const test2b = _.clone(test2a);
     const test2c = _.clone(test2a);
-    const test3a = { key: { value: 1.0, old_value: 10.0, override: "test reason" } };
+    const test3a = { key: "test", num_key: { value: 1.0, old_value: 10.0, override: "test reason" } } as IndivStatSet;
     const test3b = _.clone(test3a);
     const test3c = _.clone(test3a);
-    const test4a = { key: { value: 1.0, old_value: 10.0, override: "wrong reason" } };
+    const test4a = { key: "test", num_key: { value: 1.0, old_value: 10.0, override: "wrong reason" } } as IndivStatSet;
     const test4b = _.clone(test4a);
-    const test5a = { key: { value: 1.0, old_value: 10.0 } };
+    const test5a = { key: "test", num_key: { value: 1.0, old_value: 10.0 } } as IndivStatSet;
     // Add override (abs)
-    expect(OverrideUtils.overrideMutableVal(test1, "key", 4.0, "test reason")).toBe(false);
-    expect(test1).toEqual({});
-    expect(OverrideUtils.overrideMutableVal(test2a, "key", 4.0, "test reason")).toBe(true);
-    expect(test2a).toEqual({ key: { value: 4.0, old_value: 1.0, override: "test reason" } });
-    expect(OverrideUtils.overrideMutableVal(test3a, "key", 4.0, "test reason")).toBe(true);
-    expect(test3a).toEqual({ key: { value: 4.0, old_value: 10.0, override: "test reason" } });
-    expect(OverrideUtils.overrideMutableVal(test4a, "key", 4.0, "test reason")).toBe(true);
-    expect(test4a).toEqual({ key: { value: 4.0, old_value: 10.0, override: "test reason" } });
+    expect(OverrideUtils.overrideMutableVal(test1, "num_key", 4.0, "test reason")).toBe(false);
+    expect(test1).toEqual({ key: "test" });
+    expect(OverrideUtils.overrideMutableVal(test2a, "num_key", 4.0, "test reason")).toBe(true);
+    expect(test2a).toEqual({ key: "test", num_key: { value: 4.0, old_value: 1.0, override: "test reason" } });
+    expect(OverrideUtils.overrideMutableVal(test3a, "num_key", 4.0, "test reason")).toBe(true);
+    expect(test3a).toEqual({ key: "test", num_key: { value: 4.0, old_value: 10.0, override: "test reason" } });
+    expect(OverrideUtils.overrideMutableVal(test4a, "num_key", 4.0, "test reason")).toBe(true);
+    expect(test4a).toEqual({ key: "test", num_key: { value: 4.0, old_value: 10.0, override: "test reason" } });
     // Add override (delta)
-    expect(OverrideUtils.overrideMutableVal(test1, "key", { delta: 20.0 }, "test reason")).toBe(false);
-    expect(test1).toEqual({});
-    expect(OverrideUtils.overrideMutableVal(test2b, "key", { delta: 20.0 }, "test reason")).toBe(true);
-    expect(test2b).toEqual({ key: { value: 21.0, old_value: 1.0, override: "test reason" } });
-    expect(OverrideUtils.overrideMutableVal(test3b, "key", { delta: 20.0 }, "test reason")).toBe(true);
-    expect(test3b).toEqual({ key: { value: 30.0, old_value: 10.0, override: "test reason" } });
+    expect(OverrideUtils.overrideMutableVal(test1, "num_key", { delta: 20.0 }, "test reason")).toBe(false);
+    expect(test1).toEqual({ key: "test" });
+    expect(OverrideUtils.overrideMutableVal(test2b, "num_key", { delta: 20.0 }, "test reason")).toBe(true);
+    expect(test2b).toEqual({ key: "test", num_key: { value: 21.0, old_value: 1.0, override: "test reason" } });
+    expect(OverrideUtils.overrideMutableVal(test3b, "num_key", { delta: 20.0 }, "test reason")).toBe(true);
+    expect(test3b).toEqual({ key: "test", num_key: { value: 30.0, old_value: 10.0, override: "test reason" } });
     // Remove override:
-    expect(OverrideUtils.overrideMutableVal(test1, "key", undefined, "test reason")).toBe(false);
-    expect(test1).toEqual({});
-    expect(OverrideUtils.overrideMutableVal(test2c, "key", undefined, "test reason")).toBe(false);
-    expect(test2c).toEqual({ key: { value: 1.0 } });
-    expect(OverrideUtils.overrideMutableVal(test3c, "key", undefined, "test reason")).toBe(false);
-    expect(test3c).toEqual({ key: { value: 10.0 } });
-    expect(OverrideUtils.overrideMutableVal(test4b, "key", undefined, "test reason")).toBe(false);
-    expect(test4b).toEqual({ key: { value: 1.0, old_value: 10.0, override: "wrong reason" } });
-    expect(OverrideUtils.overrideMutableVal(test4b, "key", undefined, undefined)).toBe(false);
-    expect(test4b).toEqual({ key: { value: 10.0 } });
-    expect(OverrideUtils.overrideMutableVal(test5a, "key", undefined, "test reason")).toBe(false);
-    expect(test5a).toEqual({ key: { value: 10.0 } });
+    expect(OverrideUtils.overrideMutableVal(test1, "num_key", undefined, "test reason")).toBe(false);
+    expect(test1).toEqual({ key: "test" });
+    expect(OverrideUtils.overrideMutableVal(test2c, "num_key", undefined, "test reason")).toBe(false);
+    expect(test2c).toEqual({ key: "test", num_key: { value: 1.0 } });
+    expect(OverrideUtils.overrideMutableVal(test3c, "num_key", undefined, "test reason")).toBe(false);
+    expect(test3c).toEqual({ key: "test", num_key: { value: 10.0 } });
+    expect(OverrideUtils.overrideMutableVal(test4b, "num_key", undefined, "test reason")).toBe(false);
+    expect(test4b).toEqual({ key: "test", num_key: { value: 1.0, old_value: 10.0, override: "wrong reason" } });
+    expect(OverrideUtils.overrideMutableVal(test4b, "num_key", undefined, undefined)).toBe(false);
+    expect(test4b).toEqual({ key: "test", num_key: { value: 10.0 } });
+    expect(OverrideUtils.overrideMutableVal(test5a, "num_key", undefined, "test reason")).toBe(false);
+    expect(test5a).toEqual({ key: "test", num_key: { value: 10.0 } });
   });
   test("OverrideUtils - diff", () => {
     expect(OverrideUtils.diff({})).toBe(0);
@@ -85,6 +86,7 @@ describe("OverrideUtils", () => {
   });
   test("OverrideUtils - updateDerivedStats", () => {
     const testIn1 = {
+      key: "test",
       off_3pr: { value: 0.5 },
       off_2pmidr: { value: 0.25 },
       off_2primr: { value: 0.25 },
@@ -94,9 +96,10 @@ describe("OverrideUtils", () => {
 
       off_2p: { value: 10 },
       off_efg: { value: -1000, old_value: 20 },
-    };
+    } as IndivStatSet;
     const testOut1 = _.clone(testIn1);
     const testIn2 = {
+      key: "test",
       off_3pr: { value: 0.5 },
       off_2pmidr: { value: 0.25 },
       off_2primr: { value: 0.25 },
@@ -107,7 +110,7 @@ describe("OverrideUtils", () => {
 
       off_2p: { value: 10, old_value: 30, override: "test2-in" },
       off_efg: { value: -1000, old_value: 20 },
-    };
+    } as IndivStatSet;
     const testOut2 = _.clone(testIn2);
     OverrideUtils.updateDerivedStats(testIn1, "test1");
     expect(testIn1).toEqual({

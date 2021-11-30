@@ -5,6 +5,7 @@ import toJson from 'enzyme-to-json';
 import renderer from 'react-test-renderer';
 import { ParamPrefixes, ManualOverride } from '../../../utils/FilterModels';
 import { GenericTableOps } from '../../GenericTable';
+import { IndivStatSet } from '../../../utils/StatModels';
 
 describe("ManualOverride", () => {
   test("ManualOverride - should create snapshot (not initialized at all)", () => {
@@ -36,8 +37,8 @@ describe("ManualOverride", () => {
         <ManualOverrideModal
           tableType={ParamPrefixes.player}
           inStats={[
-            { onOffKey: "Baseline", key: "Player1", off_3p: { value: 0.3 } },
-            { onOffKey: "On", key: "Player2", off_3p: { value: 0.4 } }
+            { onOffKey: "Baseline", key: "Player1", off_3p: { value: 0.3 } } as IndivStatSet,
+            { onOffKey: "On", key: "Player2", off_3p: { value: 0.4 } } as IndivStatSet
           ]}
           statsAsTable={{
             "Player1 / Baseline": [
@@ -63,8 +64,8 @@ describe("ManualOverride", () => {
         <ManualOverrideModal
           tableType={ParamPrefixes.player}
           inStats={[
-            { onOffKey: "Baseline", key: "Player1", off_3p: { value: 0.3 } },
-            { onOffKey: "On", key: "Player2", off_3p: { value: 0.4 } }
+            { onOffKey: "Baseline", key: "Player1", off_3p: { value: 0.3 } } as IndivStatSet,
+            { onOffKey: "On", key: "Player2", off_3p: { value: 0.4 } } as IndivStatSet
           ]}
           statsAsTable={{
             "Player1 / Baseline": [
@@ -90,9 +91,9 @@ describe("ManualOverride", () => {
         <ManualOverrideModal
           tableType={ParamPrefixes.player}
           inStats={[
-            { onOffKey: "Baseline", key: "Player1", off_3p: { value: 0.3 } },
-            { onOffKey: "On", key: "Player2", off_3p: { value: 0.4 } },
-            { onOffKey: "Off", key: "Player3", off_3p: { value: 0.4 } }
+            { onOffKey: "Baseline", key: "Player1", off_3p: { value: 0.3 } } as IndivStatSet,
+            { onOffKey: "On", key: "Player2", off_3p: { value: 0.4 } } as IndivStatSet,
+            { onOffKey: "Off", key: "Player3", off_3p: { value: 0.4 } } as IndivStatSet
           ]}
           statsAsTable={{
             "Player1 / Baseline": [
@@ -126,9 +127,9 @@ describe("ManualOverride", () => {
           tableType={ParamPrefixes.player}
           filteredPlayers={new Set(["Player1"])}
           inStats={[
-            { onOffKey: "Baseline", key: "Player1", off_3p: { value: 0.3 } },
-            { onOffKey: "On", key: "Player2", off_3p: { value: 0.4 } },
-            { onOffKey: "Off", key: "Player3", off_3p: { value: 0.4 } }
+            { onOffKey: "Baseline", key: "Player1", off_3p: { value: 0.3 } } as IndivStatSet,
+            { onOffKey: "On", key: "Player2", off_3p: { value: 0.4 } } as IndivStatSet,
+            { onOffKey: "Off", key: "Player3", off_3p: { value: 0.4 } } as IndivStatSet
           ]}
           statsAsTable={{
             "Player1 / Baseline": [

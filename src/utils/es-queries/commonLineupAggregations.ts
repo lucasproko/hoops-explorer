@@ -310,11 +310,22 @@ export const commonAggregations = function(
   };
 }
 
-export const commonLineupAggregations = function(publicEfficiency: any, lookup: any, avgEff: number, hca: number) {
+const shotInfoAggregations = function() {
+  return _.chain([ "ast_3pm", "unast_3pm", "early_3pa", "unknown_3pM" ]).flatMap(field => {
+    return [
+      [ `shot_info_${field}`, { "sum": {
+        "field": `team_stats.player_shot_info.${field}`
+      } } ]
+    ];
+  }).fromPairs().value();
+}
+
+export const commonLineupAggregations = function(publicEfficiency: any, lookup: any, avgEff: number, hca: number, lineupAgg: Boolean = false) {
   return {
     // Derived
     ...commonAggregations("team_stats", "off", publicEfficiency, lookup, avgEff, hca),
     ...commonAggregations("opponent_stats", "def", publicEfficiency, lookup, avgEff, hca),
+    ...(lineupAgg ? shotInfoAggregations() : {}),
     ...timeAnalysis()
    };
 }

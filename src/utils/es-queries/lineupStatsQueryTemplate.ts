@@ -58,7 +58,7 @@ export const lineupStatsQuery = function(
         "lineups": {
            "aggregations": {
              ...buildGameInfoRequest(params),
-             ...commonLineupAggregations(publicEfficiency, lookup, avgEfficiency, hca),
+             ...commonLineupAggregations(publicEfficiency, lookup, avgEfficiency, hca, true),
              "players_array": {
                 "top_hits": {
                   "size": 1,

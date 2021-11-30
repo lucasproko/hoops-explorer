@@ -1892,6 +1892,26 @@ exports[`lineupStatsQuery lineupStatsQuery 1`] = `
                   }
                }
             },
+            "shot_info_ast_3pm": {
+               "sum": {
+                  "field": "team_stats.player_shot_info.ast_3pm"
+               }
+            },
+            "shot_info_unast_3pm": {
+               "sum": {
+                  "field": "team_stats.player_shot_info.unast_3pm"
+               }
+            },
+            "shot_info_early_3pa": {
+               "sum": {
+                  "field": "team_stats.player_shot_info.early_3pa"
+               }
+            },
+            "shot_info_unknown_3pM": {
+               "sum": {
+                  "field": "team_stats.player_shot_info.unknown_3pM"
+               }
+            },
             "duration_mins": {
                "sum": {
                   "field": "duration_mins"

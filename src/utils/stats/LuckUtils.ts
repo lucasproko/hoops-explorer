@@ -37,7 +37,10 @@ export type OffLuckAdjustmentDiags = {
   deltaOffOrbFactor: number,
   deltaPtsOffMisses: number,
   deltaOffPpp: number,
-  deltaOffAdjEff: number
+  deltaOffAdjEff: number,
+
+  //TODO: not quite sure what to do with this yet
+  playerShotInfo?: Record<string, any>
 };
 
 /** Holds all the info required to calculate and explain the delta when luck is regressed away */
@@ -85,6 +88,9 @@ export type DefLuckAdjustmentDiags = {
   deltaDefAdjEff: number
 };
 
+/** Remove this once the data is all completely shot info driven or not at all */
+const allowLuckLogic = false;
+
 /** Contains logic to help other stats modules adjust for luck */
 export class LuckUtils {
 
@@ -130,13 +136,34 @@ export class LuckUtils {
 
     // Loop over sample roster - lookup into base to get 3PA shots 3P%
 
+    // If we don't have roster but we do have lineup shot info then use that instead
+    const deserializeLineupSum = (n: Statistic | undefined) => {
+      return { value: [ 0, 1, 2, 3, 4 ].map(index => {
+        return ((n?.value || 0)/Math.pow(2, 10*index)) & 0x3FF;
+      }) };
+    }
+    const playerShotInfo = 
+      _.transform([ "shot_info_ast_3pm", "shot_info_unast_3pm", "shot_info_early_3pa", "shot_info_unknown_3pM" ], (acc, field) => {
+        if (sampleTeam[field]) {
+          const toAdd = deserializeLineupSum(sampleTeam[field]); //(exists and is >0)
+          acc[field] = toAdd;
+          acc.total = _.zipWith(toAdd.value, acc.total as number[], (a, b) => a + b);
+          acc.hasLineupInfo = allowLuckLogic;
+        }
+      }, { hasLineupInfo: false, total: [0, 0, 0, 0, 0] } as Record<string, any>);
+    
     var varTotal3PA = 0.0;
     var varTotal3P = 0.0;
-    const player3PInfo = _.chain(samplePlayers).flatMap((player: any) => {
-      const playerInfo = basePlayersMap[player.key];
+
+    const player3PInfo = _.chain(samplePlayers).flatMap((player: IndivStatSet, index: number) => {
+      const playerInfo = (playerShotInfo.hasLineupInfo &&  basePlayersMap[player.key]) ? {
+        samplePlayer3PA: { value: (index < 5) ? playerShotInfo.total[index] : 0 } //(lineup info if available)
+      } : basePlayersMap[player.key];
+
       if (playerInfo) {
         //(we use the sample size but the base 3P%)
-        const samplePlayer3PA = get(player.total_off_3p_attempts, 0);
+        const samplePlayer3PA = playerInfo.samplePlayer3PA ? 
+          playerInfo.samplePlayer3PA?.value || 0 : get(player.total_off_3p_attempts, 0);
         const basePlayer3P = get(basePlayersMap[player.key]?.off_3p, 0);
         varTotal3PA += samplePlayer3PA;
         varTotal3P += samplePlayer3PA*basePlayer3P;
@@ -195,7 +222,9 @@ export class LuckUtils {
 
       delta3P, deltaOffEfg, deltaMissesPct, deltaOffPppNoOrb,
 
-      deltaOffOrbFactor, deltaPtsOffMisses, deltaOffPpp, deltaOffAdjEff
+      deltaOffOrbFactor, deltaPtsOffMisses, deltaOffPpp, deltaOffAdjEff,
+
+      playerShotInfo: allowLuckLogic ? playerShotInfo : undefined
     } as OffLuckAdjustmentDiags;
   };
 

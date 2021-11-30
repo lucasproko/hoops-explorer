@@ -230,7 +230,7 @@ export class LineupTableUtils {
         (lineup.key != LineupTableUtils.totalLineupId) && adjustForLuck && lineup?.doc_count
       ) ? [
         LuckUtils.calcOffTeamLuckAdj(
-          lineup, players || [], baseOrSeasonTeamStats, perLineupPlayerLuckMap, avgEfficiency
+          lineup, codesAndIds.map(cid => perLineupPlayerLuckMap[cid.id]), baseOrSeasonTeamStats, perLineupPlayerLuckMap, avgEfficiency
         ),
         LuckUtils.calcDefTeamLuckAdj(lineup, baseOrSeasonTeamStats, avgEfficiency),
       ] as [OffLuckAdjustmentDiags, DefLuckAdjustmentDiags] : undefined;

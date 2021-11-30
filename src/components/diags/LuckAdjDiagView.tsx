@@ -53,6 +53,11 @@ const LuckAdjDiagView: React.FunctionComponent<Props> = ({name, offLuck, defLuck
          </span> : null}
         &nbsp;(<a href="#" onClick={(event) => { event.preventDefault(); setShowDetails(!showDetails) }}>show {showDetails ? "less" : "more"}</a>)
       </span>
+      { /* }
+      <p>
+        { JSON.stringify(offLuck.playerShotInfo) }
+      </p>
+      { */ }
       { showDetails ? <ul>
         <li><b>Offense</b>:
         {!individualMode ? <span> adjustment [<b>{o.deltaOffAdjEff.toFixed(1)}</b>] pts/100</span> : null}</li>
