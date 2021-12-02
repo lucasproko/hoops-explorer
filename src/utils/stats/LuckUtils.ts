@@ -2,6 +2,7 @@ import _ from "lodash";
 
 import { OverrideUtils } from "./OverrideUtils";
 import { StatModels, PureStatSet, PlayerCodeId, PlayerCode, PlayerId, Statistic, TeamStatSet, LineupStatSet, IndivStatSet } from "../StatModels";
+import { LineupUtils } from './LineupUtils';
 
 /** Whether to calculate the luck adjustment over the baseline or the entire season
     Baseline will be subject to more noise but enables luck to be reduced in cases
@@ -88,11 +89,13 @@ export type DefLuckAdjustmentDiags = {
   deltaDefAdjEff: number
 };
 
-/** Remove this once the data is all completely shot info driven or not at all */
-const allowLuckLogic = false;
-
 /** Contains logic to help other stats modules adjust for luck */
 export class LuckUtils {
+
+  static readonly lineupShotInfoFields = [
+    "ast_3pm", "unast_3pm", "early_3pa", "unknown_3pM"
+  ];
+  static readonly lineupAggregatedShotInfoFields = LuckUtils.lineupShotInfoFields.map(i => `shot_info_${i}`);
 
   /** Set of all the fields that are affected by luck adjustments */
   static readonly affectedFieldSet = new Set([
@@ -143,12 +146,12 @@ export class LuckUtils {
       }) };
     }
     const playerShotInfo = 
-      _.transform([ "shot_info_ast_3pm", "shot_info_unast_3pm", "shot_info_early_3pa", "shot_info_unknown_3pM" ], (acc, field) => {
+      _.transform(LuckUtils.lineupAggregatedShotInfoFields, (acc, field) => {
         if (sampleTeam[field]) {
           const toAdd = deserializeLineupSum(sampleTeam[field]); //(exists and is >0)
           acc[field] = toAdd;
           acc.total = _.zipWith(toAdd.value, acc.total as number[], (a, b) => a + b);
-          acc.hasLineupInfo = allowLuckLogic;
+          acc.hasLineupInfo = acc.hasLineupInfo || ((sampleTeam[field].value || 0) > 0);
         }
       }, { hasLineupInfo: false, total: [0, 0, 0, 0, 0] } as Record<string, any>);
     
@@ -224,7 +227,7 @@ export class LuckUtils {
 
       deltaOffOrbFactor, deltaPtsOffMisses, deltaOffPpp, deltaOffAdjEff,
 
-      playerShotInfo: allowLuckLogic ? playerShotInfo : undefined
+      playerShotInfo
     } as OffLuckAdjustmentDiags;
   };
 

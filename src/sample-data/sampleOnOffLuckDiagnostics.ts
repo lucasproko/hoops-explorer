@@ -17,6 +17,10 @@ export const sampleOffOnOffLuckDiagnostics =
          "base3P": 0.31736526946107785
       }
    },
+   "playerShotInfo": {
+      "hasLineupInfo": false,
+      "total": [0, 0, 0, 0, 0]
+   },
    "sampleBase3P": 0.3196910051427085,
    "regress3P": 0.31964633922358715,
    "sampleOff3PRate": 0.4279411764705882,

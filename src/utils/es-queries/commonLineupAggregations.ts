@@ -1,5 +1,6 @@
 
 import _ from "lodash";
+import { LuckUtils } from '../stats/LuckUtils';
 
 /////////////////////////////////////////////////////////////
 
@@ -310,8 +311,9 @@ export const commonAggregations = function(
   };
 }
 
+/** For lineups, we have some per-player info to help with (currently) luck calcs */
 const shotInfoAggregations = function() {
-  return _.chain([ "ast_3pm", "unast_3pm", "early_3pa", "unknown_3pM" ]).flatMap(field => {
+  return _.chain(LuckUtils.lineupShotInfoFields).flatMap(field => {
     return [
       [ `shot_info_${field}`, { "sum": {
         "field": `team_stats.player_shot_info.${field}`
