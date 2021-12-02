@@ -9,34 +9,42 @@ export const sampleOffOnOffLuckDiagnostics =
    "base3PA": 765,
    "player3PInfo": {
       "Cowan, Anthony": {
-         "sample3PA": 144,
-         "base3P": 0.3218390804597701
+         "shot_info_ast_3pm": 35,
+         "shot_info_early_3pa": 23,
+         "shot_info_unast_3pm": 13,
+         "shot_info_unknown_3pM": 103,
+         "shot_info_total": 174,
+         "base3P": 0.3218390804597701,
+         "unassisted3P": 0.28433908045977013,
+         "assisted3P": 0.34433908045977013
       },
       "Wiggins, Aaron": {
-         "sample3PA": 133,
-         "base3P": 0.31736526946107785
+         "shot_info_ast_3pm": 49,
+         "shot_info_early_3pa": 47,
+         "shot_info_unast_3pm": 0,
+         "shot_info_unknown_3pM": 71,
+         "shot_info_total": 167,
+         "base3P": 0.31736526946107785,
+         "unassisted3P": 0.2618935713478703,
+         "assisted3P": 0.3218935713478703
       }
    },
-   "playerShotInfo": {
-      "hasLineupInfo": false,
-      "total": [0, 0, 0, 0, 0]
-   },
-   "sampleBase3P": 0.3196910051427085,
-   "regress3P": 0.31964633922358715,
+   "sampleBase3P": 0.3196480938416422,
+   "regress3P": 0.31962196866284803,
    "sampleOff3PRate": 0.4279411764705882,
    "sampleOffFGA": 1360,
    "sampleOffOrb": 0.30924170616113744,
    "sampleOffEfg": 0.49779411764705883,
    "sampleOffPpp": 108.3645443196005,
    "sampleDefSos": 96.33476903870161,
-   "delta3P": 0.000058710357607794084,
-   "deltaOffEfg": 0.00003768686925853252,
-   "deltaMissesPct": -0.00002512457950568835,
-   "deltaOffPppNoOrb": 0.006398769312310142,
-   "deltaOffOrbFactor": -0.000007769507467204917,
-   "deltaPtsOffMisses": -0.0008419888515573471,
-   "deltaOffPpp": 0.005556780460752794,
-   "deltaOffAdjEff": 0.0057681982488798095
+   "delta3P": 0.0000343397968686765,
+   "deltaOffEfg": 0.00002204311960761366,
+   "deltaMissesPct": -0.000014695413071742441,
+   "deltaOffPppNoOrb": 0.0037426520182714832,
+   "deltaOffOrbFactor": -0.00000454441395925623,
+   "deltaPtsOffMisses": -0.0004924703560545094,
+   "deltaOffPpp": 0.003250181662216974,
+   "deltaOffAdjEff": 0.0033738407167522694
 };
 
 /** Manually built by copying the snapshot from src/utils/stats/__tests__/LuckUtils.test.ts */

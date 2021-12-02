@@ -17,7 +17,7 @@ import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 // Utils
 import { CommonTableDefs } from "../../utils/tables/CommonTableDefs";
 import { CbbColors } from "../../utils/CbbColors";
-import { LuckAdjustmentBaseline, OffLuckAdjustmentDiags, DefLuckAdjustmentDiags } from "../../utils/stats/LuckUtils";
+import { LuckAdjustmentBaseline, OffLuckAdjustmentDiags, DefLuckAdjustmentDiags, OffLuckShotTypeAndAdj3P } from "../../utils/stats/LuckUtils";
 
 // Component imports
 import GenericTable, { GenericTableOps, GenericTableColProps } from "../GenericTable";
@@ -53,11 +53,6 @@ const LuckAdjDiagView: React.FunctionComponent<Props> = ({name, offLuck, defLuck
          </span> : null}
         &nbsp;(<a href="#" onClick={(event) => { event.preventDefault(); setShowDetails(!showDetails) }}>show {showDetails ? "less" : "more"}</a>)
       </span>
-      { /* }
-      <p>
-        { JSON.stringify(offLuck.playerShotInfo) }
-      </p>
-      { */ }
       { showDetails ? <ul>
         <li><b>Offense</b>:
         {!individualMode ? <span> adjustment [<b>{o.deltaOffAdjEff.toFixed(1)}</b>] pts/100</span> : null}</li>
@@ -76,10 +71,14 @@ const LuckAdjDiagView: React.FunctionComponent<Props> = ({name, offLuck, defLuck
               <li>Adj_3P_Off: [<b>{(100*(o.delta3P + o.sample3P)).toFixed(1)}</b>%] = <i>Weighted_Mean</i>(
                 Expected_3P% [<b>{(100*o.sampleBase3P).toFixed(1)}</b>%], Base_3PA [<b>{o.base3PA.toFixed(0)}</b>],
               Sample_3P% [<b>{(100*o.sample3P).toFixed(1)}</b>%], Sample_3PA [<b>{o.sample3PA.toFixed(0)}</b>])</li>
-              <li>Expected_3P%: [<b>{(100*o.sampleBase3P).toFixed(1)}</b>%] = Calculated from <i>Weighted_Mean</i> of:</li>
+              <li>Expected_3P%: [<b>{(100*o.sampleBase3P).toFixed(1)}</b>%] = Calculated from <i>Weighted_Mean</i> of: (early / assisted / solo / unknown)</li>
               <ul>
-                {_.toPairs(o.player3PInfo).map((pV: [ string, any ], index: number) => {
-                  return <li key={index}>[<b>{pV[0]}</b>]: Sample_3PA=[<b>{((pV[1]?.sample3PA || 0)).toFixed(0)}</b>] Base_3P%=[<b>{(100*(pV[1]?.base3P || 0)).toFixed(1)}</b>%]</li>
+                {_.toPairs(o.player3PInfo).map((pV: [ string, OffLuckShotTypeAndAdj3P ], index: number) => {
+                  const info = pV[1];
+                  const countStr = 
+                    `${info.shot_info_total}: ${info.shot_info_early_3pa} / ${info.shot_info_ast_3pm} / ${info.shot_info_unast_3pm} / ${info.shot_info_unknown_3pM}`;
+                  const _3Pstr = `${(100*info.base3P).toFixed(1)} / ${(100*info.assisted3P).toFixed(1)} / ${(100*info.unassisted3P).toFixed(1)} / ${(100*info.base3P).toFixed(1)}`
+                  return <li key={index}>[<b>{pV[0]}</b>]: Sample_3PA=[<b>{countStr}</b>] Base_3P%=[<b>{_3Pstr}</b>%]</li>
                 })}
               </ul>
             </ul>

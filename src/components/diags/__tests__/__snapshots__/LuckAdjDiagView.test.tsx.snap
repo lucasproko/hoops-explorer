@@ -149,7 +149,7 @@ exports[`LuckAdjDiagView LuckAdjDiagView - should create snapshot (baseline, ove
             <i>
               Weighted_Mean
             </i>
-             of:
+             of: (early / assisted / solo / unknown)
           </li>
           <ul>
             <li
@@ -161,11 +161,11 @@ exports[`LuckAdjDiagView LuckAdjDiagView - should create snapshot (baseline, ove
               </b>
               ]: Sample_3PA=[
               <b>
-                144
+                174: 23 / 35 / 13 / 103
               </b>
               ] Base_3P%=[
               <b>
-                32.2
+                32.2 / 34.4 / 28.4 / 32.2
               </b>
               %]
             </li>
@@ -178,11 +178,11 @@ exports[`LuckAdjDiagView LuckAdjDiagView - should create snapshot (baseline, ove
               </b>
               ]: Sample_3PA=[
               <b>
-                133
+                167: 47 / 49 / 0 / 71
               </b>
               ] Base_3P%=[
               <b>
-                31.7
+                31.7 / 32.2 / 26.2 / 31.7
               </b>
               %]
             </li>
@@ -692,7 +692,7 @@ exports[`LuckAdjDiagView LuckAdjDiagView - should create snapshot (individual mo
             <i>
               Weighted_Mean
             </i>
-             of:
+             of: (early / assisted / solo / unknown)
           </li>
           <ul>
             <li
@@ -704,11 +704,11 @@ exports[`LuckAdjDiagView LuckAdjDiagView - should create snapshot (individual mo
               </b>
               ]: Sample_3PA=[
               <b>
-                144
+                174: 23 / 35 / 13 / 103
               </b>
               ] Base_3P%=[
               <b>
-                32.2
+                32.2 / 34.4 / 28.4 / 32.2
               </b>
               %]
             </li>
@@ -721,11 +721,11 @@ exports[`LuckAdjDiagView LuckAdjDiagView - should create snapshot (individual mo
               </b>
               ]: Sample_3PA=[
               <b>
-                133
+                167: 47 / 49 / 0 / 71
               </b>
               ] Base_3P%=[
               <b>
-                31.7
+                31.7 / 32.2 / 26.2 / 31.7
               </b>
               %]
             </li>

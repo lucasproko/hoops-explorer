@@ -1,4 +1,4 @@
-import _ from "lodash";
+import _, { forEach } from "lodash";
 
 import { OverrideUtils } from "./OverrideUtils";
 import { StatModels, PureStatSet, PlayerCodeId, PlayerCode, PlayerId, Statistic, TeamStatSet, LineupStatSet, IndivStatSet } from "../StatModels";
@@ -10,6 +10,22 @@ import { LineupUtils } from './LineupUtils';
 */
 export type LuckAdjustmentBaseline = "baseline" | "season";
 
+export type OffLuckShotInfo = {
+  shot_info_ast_3pm: number,
+  shot_info_early_3pa: number,
+  shot_info_unast_3pm: number,
+  shot_info_unknown_3pM: number,
+  shot_info_total: number
+};
+
+export type OffLuckAdj3P = {
+  base3P: number,
+  unassisted3P: number,
+  assisted3P: number
+};
+
+export type OffLuckShotTypeAndAdj3P = OffLuckShotInfo & OffLuckAdj3P;
+
 /** Holds all the info required to calculate and explain the delta when luck is regressed away */
 export type OffLuckAdjustmentDiags = {
   avgEff: number,
@@ -17,7 +33,7 @@ export type OffLuckAdjustmentDiags = {
   sample3P: number,
   sample3PA: number,
   base3PA: number,
-  player3PInfo: Record<string, { sample3PA: number, base3P: number }>,
+  player3PInfo: Record<string, OffLuckShotTypeAndAdj3P>,
   sampleBase3P: number,
   regress3P: number,
 
@@ -39,9 +55,6 @@ export type OffLuckAdjustmentDiags = {
   deltaPtsOffMisses: number,
   deltaOffPpp: number,
   deltaOffAdjEff: number,
-
-  //TODO: not quite sure what to do with this yet
-  playerShotInfo?: Record<string, any>
 };
 
 /** Holds all the info required to calculate and explain the delta when luck is regressed away */
@@ -119,23 +132,19 @@ export class LuckUtils {
     );
   }
 
-  /** Calculate the offensive luck adjustment for a team ...samplePlayers==players.map(_.on/off/baseline) */
+ /** Calculate the offensive luck adjustment for a team ...samplePlayers==players.map(_.on/off/baseline) */
   static readonly calcOffTeamLuckAdj = (
     sampleTeam: TeamStatSet | LineupStatSet | IndivStatSet, samplePlayers: Array<IndivStatSet>,
     baseTeam: TeamStatSet | LineupStatSet | IndivStatSet, basePlayersMap: Record<PlayerId, IndivStatSet>,
     avgEff: number
   ) => {
-    const get = (maybeOld: Statistic, fallback: number) => {
-      // Uses the non-adjusted luck number if present
-      return (_.isNil(maybeOld?.old_value) ? maybeOld?.value : maybeOld?.old_value) || fallback;
-    }
 
     // Number of 3P shots taken in sample
 
-    const samplePoss = get(sampleTeam?.off_poss, 0);
-    const sample3P = get(sampleTeam?.off_3p, 0);
-    const sample3PA = get(sampleTeam?.total_off_3p_attempts, 0);
-    const base3PA = get(baseTeam?.total_off_3p_attempts, 0);
+    const samplePoss = LuckUtils.get(sampleTeam?.off_poss, 0);
+    const sample3P = LuckUtils.get(sampleTeam?.off_3p, 0);
+    const sample3PA = LuckUtils.get(sampleTeam?.total_off_3p_attempts, 0);
+    const base3PA = LuckUtils.get(baseTeam?.total_off_3p_attempts, 0);
 
     // Loop over sample roster - lookup into base to get 3PA shots 3P%
 
@@ -149,7 +158,7 @@ export class LuckUtils {
       _.transform(LuckUtils.lineupAggregatedShotInfoFields, (acc, field) => {
         if (sampleTeam[field]) {
           const toAdd = deserializeLineupSum(sampleTeam[field]); //(exists and is >0)
-          acc[field] = toAdd;
+          acc[field] = toAdd.value;
           acc.total = _.zipWith(toAdd.value, acc.total as number[], (a, b) => a + b);
           acc.hasLineupInfo = acc.hasLineupInfo || ((sampleTeam[field].value || 0) > 0);
         }
@@ -158,21 +167,34 @@ export class LuckUtils {
     var varTotal3PA = 0.0;
     var varTotal3P = 0.0;
 
+    const buildShotLineupInfo = (basePlayer: IndivStatSet, index: number) => {
+      return _.transform(LuckUtils.lineupAggregatedShotInfoFields, (acc, field) => {
+        acc[field] = playerShotInfo?.[field]?.[index] || 0;
+      }, {
+        shot_info_total: playerShotInfo.total[index] || 0,
+        ...LuckUtils.buildAdjusted3P(basePlayer)
+      } as Record<string, number>)
+    };
+
     const player3PInfo = _.chain(samplePlayers).flatMap((player: IndivStatSet, index: number) => {
-      const playerInfo = (playerShotInfo.hasLineupInfo &&  basePlayersMap[player.key]) ? {
-        samplePlayer3PA: { value: (index < 5) ? playerShotInfo.total[index] : 0 } //(lineup info if available)
-      } : basePlayersMap[player.key];
+      const basePlayerStats = basePlayersMap[player.key];
+      const playerInfo = (((index < 5) && playerShotInfo.hasLineupInfo && basePlayerStats) ? {
+        ...buildShotLineupInfo(basePlayerStats, index)
+      } : {
+        ...LuckUtils.buildBaseShotInfo(basePlayerStats || {}),
+        ...LuckUtils.buildAdjusted3P(basePlayerStats || {})        
+      }) as OffLuckShotTypeAndAdj3P;
 
       if (playerInfo) {
         //(we use the sample size but the base 3P%)
-        const samplePlayer3PA = playerInfo.samplePlayer3PA ? 
-          playerInfo.samplePlayer3PA?.value || 0 : get(player.total_off_3p_attempts, 0);
-        const basePlayer3P = get(basePlayersMap[player.key]?.off_3p, 0);
+        const samplePlayer3PA = playerInfo.shot_info_total || 0;
+        
+        const basePlayer3P = playerInfo.base3P || 0;;
         varTotal3PA += samplePlayer3PA;
         varTotal3P += samplePlayer3PA*basePlayer3P;
 
         return (samplePlayer3PA > 0) ? //(don't bother with any players who didn't take a 3P shot)
-          [ [ player.key, { sample3PA: samplePlayer3PA, base3P: basePlayer3P }  ] ] : [];
+          [ [ player.key, playerInfo  ] ] : [];
         } else {
           return []; //(player not in this lineup)
         }
@@ -189,14 +211,14 @@ export class LuckUtils {
     const regress3P = (sampleBase3P*base3PA + sample3P*sample3PA)/total3PA;
 
     // Calculate effects similarly to calcDefTeamLuckAdj
-    const sampleOff3PRate = get(sampleTeam?.off_3pr, 0);
-    const sampleOffFGA = get(sampleTeam?.total_off_2p_attempts, 0) + get(sampleTeam?.total_off_3p_attempts, 0);
-    const rawSampleOffOrb = get(sampleTeam?.off_orb, 0);
+    const sampleOff3PRate = LuckUtils.get(sampleTeam?.off_3pr, 0);
+    const sampleOffFGA = LuckUtils.get(sampleTeam?.total_off_2p_attempts, 0) + LuckUtils.get(sampleTeam?.total_off_3p_attempts, 0);
+    const rawSampleOffOrb = LuckUtils.get(sampleTeam?.off_orb, 0);
     const sampleOffOrb = rawSampleOffOrb > 0.66 ? 0.66 : rawSampleOffOrb;
 
-    const sampleOffEfg = get(sampleTeam?.off_efg, 0);
-    const sampleOffPpp = get(sampleTeam?.off_ppp, 0);
-    const sampleDefSos = get(sampleTeam?.def_adj_opp, 0);
+    const sampleOffEfg = LuckUtils.get(sampleTeam?.off_efg, 0);
+    const sampleOffPpp = LuckUtils.get(sampleTeam?.off_ppp, 0);
+    const sampleDefSos = LuckUtils.get(sampleTeam?.def_adj_opp, 0);
 
     // const threePointRate = sampleDef3PA/((sampleDef3PA + sampleDef2PA) || 1)
     const delta3P = regress3P - sample3P;
@@ -226,8 +248,6 @@ export class LuckUtils {
       delta3P, deltaOffEfg, deltaMissesPct, deltaOffPppNoOrb,
 
       deltaOffOrbFactor, deltaPtsOffMisses, deltaOffPpp, deltaOffAdjEff,
-
-      playerShotInfo
     } as OffLuckAdjustmentDiags;
   };
 
@@ -396,4 +416,46 @@ export class LuckUtils {
     );
 
   };
+
+  // Some utils
+
+  /** Util - Uses the non-adjusted luck number if present */
+  static readonly get = (maybeOld: Statistic, fallback: number) => {
+    return (_.isNil(maybeOld?.old_value) ? maybeOld?.value : maybeOld?.old_value) || fallback;
+  }
+
+  /** Builds the different shot types when you don't have the lineup info */
+  static readonly buildBaseShotInfo = (p: IndivStatSet) => {
+    //"ast_3pm", "unast_3pm", "early_3pa", "unknown_3pM"
+
+    const shot_info_ast_3pm = p.total_off_3p_ast?.value || 0;
+    const shot_info_early_3pa = p.total_off_trans_3p_attempts?.value || 0;
+    const shot_info_unast_3pm = Math.max(
+      (p.total_off_3p_made?.value || 0) - shot_info_ast_3pm - (p.total_off_trans_3p_made?.value || 0), 0
+    );
+    const shot_info_total = (p.total_off_3p_attempts?.value || 0);
+    const shot_info_unknown_3pM = Math.max(
+      shot_info_total - shot_info_ast_3pm - shot_info_early_3pa - shot_info_unast_3pm
+    )
+    return {
+      shot_info_ast_3pm,
+      shot_info_early_3pa,
+      shot_info_unast_3pm,
+      shot_info_unknown_3pM,
+      shot_info_total
+    } as OffLuckShotInfo;
+  };
+  /** Calculates approx unassisted/assisted 3P */
+  static readonly buildAdjusted3P = (p: IndivStatSet) => {
+    const base3P = LuckUtils.get(p?.off_3p, 0);
+    const baseAssistPct = Math.max(0, Math.min(p.off_3p_ast?.value || 0, 1));
+    const weight = 0.06; // (we estimate the average diff between assisted and unassisted 3P% as 6%)
+    return {
+      base3P,
+      unassisted3P: base3P - baseAssistPct*weight,
+      assisted3P: base3P + (1 - baseAssistPct)*weight
+    } as OffLuckAdj3P;
+  }
+    
+   
 };

@@ -9,7 +9,7 @@ export const PlayerLeaderboardTracking = {
     ["-YEAR2018,JaSmith:Mary,ImQuickley,SaBey,JeHarris,NoLocke,MoMathis,BrGolden,BrAdams,WyTabbs,LaHardnett,DeMims,AmHarris,JaBynum,AnHiggs,DiZdor,DoToatley,BrSlater,RaBolton,XaJohnson:Pitt,XaJohnson:Indiana,PrHubb,SaBey,MyDead,TrWood:Mass,DeFlowers,RiLindo"],
     ["-YEAR2019,JuMoore,JaBishop,OlNkamhoua,JaYoung:Charl,YaGultekin,AbTsimbila,ChPaar,KaWilliams:Boston,MaPrice:Ohio,LoCurtis,CaMorsell,JaHeath,MiMitchell+Makhi,MlMitchell+Makhel,AyHikim,EjJarvis,AnHarris,DeSeabron,QuWahab,MeLong,JaMcallister,XaJohnson:George,JoOduro"],
     ["-YEAR2020,EaTimberlake,HuDickinson,JuLewis+Justin,WoNewton,ChEvans,AdBaldwin,MaDockery,DiStevens,JoSmith:Seton,DaNguessan,ElWood,DwKoroma,JaWest:Alabama,TeWilliams+Terrance,DaMiles+Darius,ChHarris:George,MyStute,IsLeggett,TeIzay,JeRoach,AnScreen,JoFreeman:Mich,AnGill+Anwar"],
-    ["-YEAR2021,JoHawkins,JuReese,IkCornish,JaRobinson,RyConway,JaMiller,ErReynolds,AbSamb,QuAllen,MaDread,TrKeels,DaJohnson:UCF,BrMurray:LSU,BeWilliams:Syra,BrFreeman:George"],
+    ["-YEAR2021,JoHawkins,JuReese,IkCornish,JaRobinson,RyConway,JaMiller,ErReynolds,AbSamb,QuAllen,MaDread,TrKeels,DaJohnson:UCF,BrMurray:LSU,BeWilliams:Syra,BrFreeman:George,ElHawkins:Elijah"],
   ]).join(","),
 
   "__NYNJ_2017__":  _.flatten([
