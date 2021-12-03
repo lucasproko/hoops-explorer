@@ -46,9 +46,9 @@ exports[`LuckUtils LuckUtils - calcOffTeamLuckAdj: Offensive Luck Adjustments 1`
          "shot_info_unknown_3pM": 103,
          "shot_info_total": 174,
          "base3P": 0.3218390804597701,
-         "unassisted3P": 0.28433908045977013,
-         "assisted3P": 0.34433908045977013,
-         "expected3P": 0.3235632183908046
+         "unassisted3P": 0.2780890804597701,
+         "assisted3P": 0.3380890804597701,
+         "expected3P": 0.3218390804597701
       },
       "Wiggins, Aaron": {
          "shot_info_ast_3pm": 49,
@@ -57,34 +57,34 @@ exports[`LuckUtils LuckUtils - calcOffTeamLuckAdj: Offensive Luck Adjustments 1`
          "shot_info_unknown_3pM": 71,
          "shot_info_total": 167,
          "base3P": 0.31736526946107785,
-         "unassisted3P": 0.2618935713478703,
-         "assisted3P": 0.3218935713478703,
-         "expected3P": 0.3186939328889391
+         "unassisted3P": 0.25736526946107785,
+         "assisted3P": 0.31736526946107785,
+         "expected3P": 0.31736526946107785
       }
    },
-   "sampleBase3P": 0.32117855364355663,
-   "regress3P": 0.3204911607552493,
+   "sampleBase3P": 0.3196480938416422,
+   "regress3P": 0.31962196866284803,
    "sampleOff3PRate": 0.4279411764705882,
    "sampleOffFGA": 1360,
    "sampleOffOrb": 0.30924170616113744,
    "sampleOffEfg": 0.49779411764705883,
    "sampleOffPpp": 108.3645443196005,
    "sampleDefSos": 96.33476903870161,
-   "delta3P": 0.0009035318892699484,
-   "deltaOffEfg": 0.0005799877495093125,
-   "deltaMissesPct": -0.00038665849967287497,
-   "deltaOffPppNoOrb": 0.09847482388672471,
-   "deltaOffOrbFactor": -0.00011955663864158037,
-   "deltaPtsOffMisses": -0.012967473985712715,
-   "deltaOffPpp": 0.085507349901012,
-   "deltaOffAdjEff": 0.08876063206905101
+   "delta3P": 0.0000343397968686765,
+   "deltaOffEfg": 0.00002204311960761366,
+   "deltaMissesPct": -0.000014695413071742441,
+   "deltaOffPppNoOrb": 0.0037426520182714832,
+   "deltaOffOrbFactor": -0.00000454441395925623,
+   "deltaPtsOffMisses": -0.0004924703560545094,
+   "deltaOffPpp": 0.003250181662216974,
+   "deltaOffAdjEff": 0.0033738407167522694
 }
 `;
 
 exports[`LuckUtils LuckUtils - injectLuck 1`] = `
 {
    "off_adj_ppp": {
-      "value": 115.29989828118829,
+      "value": 115.21451148983599,
       "old_value": 115.21113764911924,
       "override": "Adjusted from Off 3P%"
    },
@@ -94,17 +94,17 @@ exports[`LuckUtils LuckUtils - injectLuck 1`] = `
       "override": "Adjusted from Def 3P%"
    },
    "off_3p": {
-      "value": 0.3204911607552493,
+      "value": 0.31962196866284803,
       "old_value": 0.31958762886597936,
       "override": "Luck adjusted"
    },
    "off_ppp": {
-      "value": 108.4500516695015,
+      "value": 108.36779450126271,
       "old_value": 108.3645443196005,
       "override": "Adjusted from Off 3P%"
    },
    "off_efg": {
-      "value": 0.4983741053965681,
+      "value": 0.49781616076666646,
       "old_value": 0.49779411764705883,
       "override": "Adjusted from Off 3P%"
    },
