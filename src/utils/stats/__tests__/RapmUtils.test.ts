@@ -166,7 +166,7 @@ describe("RapmUtils", () => {
         strongWeight ? [ "-8.48", "-10.69", "-8.83" ] : []
       ]);
       const oldValResults = RapmUtils.calcLineupOutputs(
-        "adj_ppp", 100.0, 100.0, context, strongWeight < 0 ? adapativeWeights : undefined, true
+        "adj_ppp", 100.0, 100.0, context, strongWeight < 0 ? adapativeWeights : undefined, [ false, true ]
       );
       expect(tidyResults(oldValResults)).toEqual([
         strongWeight ? [ "13.07", "5.84", "7.70" ] : [],
@@ -182,19 +182,19 @@ describe("RapmUtils", () => {
     [ true, false ].forEach((luckAdjusted) => {
       const [ offResults, defResults ] = RapmUtils.pickRidgeRegression(
         semiRealRapmResults.testOffWeights, semiRealRapmResults.testDefWeights, semiRealRapmResults.testContext, undefined, false,
-        luckAdjusted ? "value" : "old_value", luckAdjusted ? "old_value" : "value"
+        luckAdjusted ? "value" : "old_value", [ luckAdjusted ? "old_value" : "value", luckAdjusted ? "old_value" : "value" ]
       );
       var testContext1 = _.cloneDeep(semiRealRapmResults.testContext);
       testContext1.priorInfo.strongWeight = -1;
       const [ offResults1, defResults1 ] = RapmUtils.pickRidgeRegression(
         semiRealRapmResults.testOffWeights, semiRealRapmResults.testDefWeights, testContext1, adapativeWeights1, false,
-        luckAdjusted ? "value" : "old_value", luckAdjusted ? "old_value" : "value"
+        luckAdjusted ? "value" : "old_value", [ luckAdjusted ? "old_value" : "value", luckAdjusted ? "old_value" : "value" ]
       );
       var testContext2 = _.cloneDeep(semiRealRapmResults.testContext);
       testContext2.priorInfo.strongWeight = -1;
       const [ offResults2, defResults2 ] = RapmUtils.pickRidgeRegression(
         semiRealRapmResults.testOffWeights, semiRealRapmResults.testDefWeights, testContext2, adapativeWeights2, false,
-        luckAdjusted ? "value" : "old_value", luckAdjusted ? "old_value" : "value"
+        luckAdjusted ? "value" : "old_value", [ luckAdjusted ? "old_value" : "value", luckAdjusted ? "old_value" : "value" ]
       );
       expect(offResults1).toEqual(offResults); //(same adaptive weights)
       expect(offResults2).not.toEqual(offResults); //(same adaptive weights)
@@ -231,7 +231,7 @@ describe("RapmUtils", () => {
     [ true, false ].forEach((luckAdjusted) => {
       const [ offResults, defResults ] = RapmUtils.pickRidgeRegression(
         semiRealRapmResults.testOffWeights, semiRealRapmResults.testDefWeights, semiRealRapmResults.testContext, undefined,
-        false, luckAdjusted ? "value" : "old_value", luckAdjusted ? "old_value" : "value"
+        false, luckAdjusted ? "value" : "old_value", [ luckAdjusted ? "old_value" : "value", luckAdjusted ? "old_value" : "value" ]
         //^(note diag=true|false gives a different answer because the data is malformed so picks a really early lambda)
       );
       const onOffReport = LineupUtils.lineupToTeamReport(lineupReport);
@@ -241,16 +241,16 @@ describe("RapmUtils", () => {
       if (luckAdjusted) {  //(needs to be run in normal mode first)
         RapmUtils.injectRapmIntoPlayers(
           players, offResults, defResults, {}, semiRealRapmResults.testContext, undefined,
-          "old_value", "value"
+          [ "value", "old_value" ], "value"
         );
         RapmUtils.injectRapmIntoPlayers(
           players, offResults, defResults, {}, semiRealRapmResults.testContext, undefined,
-          "old_value", "old_value"
+          [ "old_value", "old_value" ], "old_value"
         );
       } else { //(not luck adjusted readKeyValue can be either value or old value, it doesn't matter)
         RapmUtils.injectRapmIntoPlayers(
           players, offResults, defResults, {}, semiRealRapmResults.testContext, undefined,
-          "value", "value"
+          [ "value", "value" ], "value"
         );
       }
 

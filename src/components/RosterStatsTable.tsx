@@ -281,7 +281,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({gameFilterParams, dat
     );
     const rapmInfo = TeamReportTableUtils.buildOrInjectRapm(
       preRapmTableData, playerInfo,
-      adjustForLuck, avgEfficiency
+      adjustForLuck, avgEfficiency, genderYearLookup
     );
     return _.fromPairs(
       (rapmInfo?.enrichedPlayers || []).map(

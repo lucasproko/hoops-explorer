@@ -111,6 +111,8 @@ const getStrongWeight = (prior: RapmPriorInfo, maybeAdaptiveFallback: number | u
   }
 };
 
+type ValueKey = "value" | "old_value";
+
 /** Useful intermediate results */
 export type RapmPlayerContext = {
   /** If true, then adds an additional row with the desired final result */
@@ -194,7 +196,7 @@ export class RapmUtils {
     playersBaseline: Record<PlayerId, IndivStatSet>,
     colToPlayer: Array<string>,
     priorMode: number, //(-1 for adaptive mode, -2 for no prior)
-    valueKey: "value" | "old_value" = "value" //(allows use of luck adjusted parameters)
+    valueKey: ValueKey = "value" //(allows use of luck adjusted parameters)
   ): RapmPriorInfo {
     const getVal = (o: any) => {
       return (_.isNil(o?.[valueKey]) ? o?.value : o?.[valueKey]) || 0;
@@ -254,7 +256,7 @@ export class RapmUtils {
     ,
     avgEfficiency: number
     ,
-    aggValueKey: "value" | "old_value" = "value" //(allows use of luck adjusted parameters in prior calcs only)
+    aggValueKey: ValueKey = "value" //(allows use of luck adjusted parameters, note applies to prior calcs only)
     ,
     priorMode: number = -1, //(or 0-1 for fixed strong prior)
     removalPct: number = 0.06,
@@ -394,13 +396,19 @@ export class RapmUtils {
     offOffset: number, defOffset: number,
     ctx: RapmPlayerContext,
     adaptiveCorrelWeights: number[] | undefined,
-    useOldValIfPossible: boolean = false
+    useOldValIfPossible: [ boolean, boolean ] = [ false, false ]
   ) {
-    const getVal = (o: any) => {
-      return useOldValIfPossible ?
+    const getOffVal = (o: any) => {
+      return useOldValIfPossible[0]! ?
         ((_.isNil(o?.old_value) ? o?.value : o?.old_value) || 0) :
         o?.value || 0;
     };
+    const getDefVal = (o: any) => {
+      return useOldValIfPossible[1] ?
+        ((_.isNil(o?.old_value) ? o?.value : o?.old_value) || 0) :
+        o?.value || 0;
+    };
+    const getVal = { off: getOffVal, def: getDefVal };
     const offsets = {
       off: offOffset,
       def: defOffset
@@ -410,7 +418,7 @@ export class RapmUtils {
         const possCount = (lineup as any)[`${prefix}_poss`]?.value || 0;
         const lineupPossCount = ((ctx as any)[`${prefix}LineupPoss`] || 1);
         const possCountWeight = Math.sqrt(possCount/lineupPossCount);
-        const val = getVal((lineup as any)[`${prefix}_${field}`]);
+        const val = getVal[prefix]((lineup as any)[`${prefix}_${field}`]);
 
         const inPlayers = lineup?.players_array?.hits?.hits?.[0]?._source?.players || [];
         const priorOffset = _.reduce(inPlayers, (acc: number, player: any) => {
@@ -431,8 +439,8 @@ export class RapmUtils {
             if (removedPlayerInfo) {
               const removedPlayerStat = removedPlayerInfo[2] || {};
               const removedPlayerStatAboveMean = (field == "adj_ppp") ?
-                getVal(removedPlayerStat[`${prefix}_adj_rtg`]) :
-                (getVal(removedPlayerStat[`${prefix}_${field}`]) - offsets[prefix]);
+              getVal[prefix](removedPlayerStat[`${prefix}_adj_rtg`]) :
+                (getVal[prefix](removedPlayerStat[`${prefix}_${field}`]) - offsets[prefix]);
               return acc + removedPlayerStatAboveMean;
             } else {  //(else exception case)
               return acc;
@@ -449,13 +457,13 @@ export class RapmUtils {
       calculateVector("off").concat(
         extra ?
         (ctx.priorInfo.includeStrong[`off_${field}`] ?
-          [ 0 ] : [ ctx.unbiasWeight*(getVal(ctx.teamInfo[`off_${field}`])  - offOffset) ])
+          [ 0 ] : [ ctx.unbiasWeight*(getOffVal(ctx.teamInfo[`off_${field}`])  - offOffset) ])
           : []
       ),
       calculateVector("def").concat(
         extra ?
         (ctx.priorInfo.includeStrong[`def_${field}`] ?
-          [ 0 ] : [ ctx.unbiasWeight*(getVal(ctx.teamInfo[`def_${field}`])  - defOffset) ])
+          [ 0 ] : [ ctx.unbiasWeight*(getDefVal(ctx.teamInfo[`def_${field}`])  - defOffset) ])
           : []
       )
     ];
@@ -500,14 +508,20 @@ export class RapmUtils {
     statsAverages: PureStatSet,
     ctx: RapmPlayerContext,
     adaptiveCorrelWeights: number[] | undefined,
-    readValueKey: "value" | "old_value" = "value",
-    writeValueKey: "value" | "old_value" = "value"
+    readValueKeys: [ ValueKey, ValueKey ] = [ "value", "value" ],
+    writeValueKey: ValueKey = "value"
   ) {
     const writeOtherVals = writeValueKey == "old_value";
-    const readOtherVals = readValueKey == "old_value";
-    const getVal = (o: any) => { //(in practice we're going to discard fields without old_value anyway)
-      return readOtherVals ?
-        ((_.isNil(o?.[readValueKey]) ? o?.value : o?.[readValueKey]) || 0) :
+    const readOtherValsOff = readValueKeys[0]! == "old_value";
+    const readOtherValsDef = readValueKeys[1]! == "old_value";
+    const getOffVal = (o: any) => { //(in practice we're going to discard fields without old_value anyway)
+      return readOtherValsOff ?
+        ((_.isNil(o?.[readValueKeys[0]]) ? o?.value : o?.[readValueKeys[0]]) || 0) :
+        o?.value || 0;
+    };
+    const getDefVal = (o: any) => { //(in practice we're going to discard fields without old_value anyway)
+      return readOtherValsDef ?
+        ((_.isNil(o?.[readValueKeys[1]]) ? o?.value : o?.[readValueKeys[1]]) || 0) :
         o?.value || 0;
     };
     if (offRapmInput.solnMatrix && defRapmInput.solnMatrix) {
@@ -526,11 +540,11 @@ export class RapmUtils {
           "ppp": [ ctx.avgEfficiency, ctx.avgEfficiency ],
           "adj_ppp": [ ctx.avgEfficiency, ctx.avgEfficiency ],
         } as Record<string, [number, number]>)[partialField] || [
-          statsAverages[`off_${partialField}`]?.value || getVal(ctx.teamInfo[`off_${partialField}`]),
-          statsAverages[`def_${partialField}`]?.value || getVal(ctx.teamInfo[`def_${partialField}`])
+          statsAverages[`off_${partialField}`]?.value || getOffVal(ctx.teamInfo[`off_${partialField}`]),
+          statsAverages[`def_${partialField}`]?.value || getDefVal(ctx.teamInfo[`def_${partialField}`])
         ];
         const [ offVal, defVal ] = RapmUtils.calcLineupOutputs(
-          partialField, offOffset, defOffset, ctx, adaptiveCorrelWeights, readOtherVals //TODO: adaptive weight here
+          partialField, offOffset, defOffset, ctx, adaptiveCorrelWeights, [ readOtherValsOff, readOtherValsDef ] //TODO: adaptive weight here
         );
         const vals = {
           off: offVal, def: defVal
@@ -611,8 +625,8 @@ export class RapmUtils {
     ctx: RapmPlayerContext,
     adaptiveCorrelWeights: number[] | undefined,
     diagMode: boolean,
-    aggValueKey: "value" | "old_value" = "value", // not indiv lineup numbers - just player and team aggregates
-    lineupValueKey: "value" | "old_value" = "value" // indiv lineup numbers
+    aggValueKey: ValueKey = "value", // not indiv lineup numbers - just player and team aggregates
+    lineupValueKeys: [ ValueKey, ValueKey] = [ "value", "value" ] // indiv lineup numbers
   ) {
     const useAggOldValIfPossible = aggValueKey == "old_value";
     const getAggVal = (o: any) => {
@@ -620,7 +634,7 @@ export class RapmUtils {
         ((_.isNil(o?.[aggValueKey]) ? o?.value : o?.[aggValueKey]) || 0) :
         o?.value || 0;
     };
-    const useLineupOldValIfPossible = lineupValueKey == "old_value";
+    const useLineupOldValIfPossible: [boolean, boolean] = [ lineupValueKeys[0] == "old_value", lineupValueKeys[1] == "old_value" ];
 
     // Some test + diag artefacts
     const offDefDebugMode = {

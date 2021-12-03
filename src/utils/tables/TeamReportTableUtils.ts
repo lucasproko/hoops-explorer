@@ -12,7 +12,7 @@ export class TeamReportTableUtils {
   /** For a given lineup set, calculate RAPM as quickly as possible */
   static buildOrInjectRapm(
     enrichedLineups: Array<LineupStatSet>, playerInfo: Record<PlayerId, IndivStatSet>,
-    adjustForLuck: Boolean, avgEfficiency: number,
+    adjustForLuck: Boolean, avgEfficiency: number, genderYearLookup: string, 
     preCalcTeamReport: undefined | Record<string, any> = undefined, //(can calculate this in advance if using anyway)
     rapmPriorMode: number = -1, rapmDiagMode: string = ""
   ): RapmInfo | undefined {
@@ -25,6 +25,19 @@ export class TeamReportTableUtils {
     const tempTeamReport = preCalcTeamReport || LineupUtils.lineupToTeamReport({ //(calcs for both luck and non-luck versions)
       lineups: enrichedLineups
     });
+
+    /** If we have per-player shot info in lineups then use luck-adjusted lineups in offensive RAPM, else don't */
+    const lineupsHavePlayerShotInfo = (gy: string) => {
+      if (("Men_2021/22" == gy) 
+          || ("Men_2014/5" == gy)
+      )
+      {
+        return true;
+      } else {
+        return false;
+      }
+    };
+    const ignoreLineupLuckKey = adjustForLuck ? "old_value" : "value";
 
     // Has to be in this order, else injectRapmIntoPlayers doesn't work properly
     const results = ([ "value", "old_value"  ] as Array<"value" | "old_value">).filter(valueKey => {
@@ -44,14 +57,18 @@ export class TeamReportTableUtils {
         const [ offRapmInputs, defRapmInputs ] = RapmUtils.pickRidgeRegression(
           offRapmWeights, defRapmWeights, rapmContext, preProcDiags.adaptiveCorrelWeights, (rapmDiagMode != ""),
           valueKey, //<- we fit to the overall efficiency, be it luck adjusted or not
-          adjustForLuck ? "old_value" : "value" //<-never use luck adjusted _lineup_ values though, too noisy
+          [
+            lineupsHavePlayerShotInfo(genderYearLookup) ? valueKey : ignoreLineupLuckKey, 
+            ignoreLineupLuckKey //<-never use luck adjusted _lineup_ values for defense, too noisy
+          ]          
         );
         RapmUtils.injectRapmIntoPlayers(
           tempTeamReport.players || [], offRapmInputs, defRapmInputs, {}, rapmContext, preProcDiags.adaptiveCorrelWeights,
-          adjustForLuck ? "old_value" : "value", //(read)
+          [
+            lineupsHavePlayerShotInfo(genderYearLookup) ? valueKey : ignoreLineupLuckKey, 
+            ignoreLineupLuckKey //<-never use luck adjusted _lineup_ values for defense, too noisy
+          ],
           valueKey //(write)
-          //^ currently: not using luck in lineup calcs (ie old_value if it exists) - they are too nosiy,
-          // but writing a luck-adjusted version based on different priors
         );
         return {
           enrichedPlayers: tempTeamReport.players || [],

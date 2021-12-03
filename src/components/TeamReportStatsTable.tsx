@@ -262,7 +262,7 @@ const TeamReportStatsTable: React.FunctionComponent<Props> = ({startingState, da
         );
         const rapmInfo = TeamReportTableUtils.buildOrInjectRapm( //(mutates tempTeamReport)
           lineupStats.lineups || [], rapmPriorsBaseline,
-          adjustForLuck, avgEfficiency,
+          adjustForLuck, avgEfficiency, genderYearLookup,
           tempTeamReport, rapmPriorMode, rapmDiagMode
         );
         if (rapmInfo) setRapmInfo(rapmInfo);
