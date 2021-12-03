@@ -1004,7 +1004,7 @@ Array [
     "off_3p": Object {
       "old_value": 0.3055555555555556,
       "override": "Luck adjusted",
-      "value": 0.3184358324836993,
+      "value": 0.31983463982953503,
     },
     "off_3p_ast": Object {
       "value": 0.9545454545454546,
@@ -1018,7 +1018,7 @@ Array [
     "off_adj_ppp": Object {
       "old_value": 116.18465333545907,
       "override": "Adjusted from Off 3P%",
-      "value": 117.40673412047111,
+      "value": 117.53920331726266,
     },
     "off_adj_ppp_rank": 3,
     "off_assist": Object {
@@ -1036,7 +1036,7 @@ Array [
     "off_efg": Object {
       "old_value": 0.47126436781609193,
       "override": "Adjusted from Off 3P%",
-      "value": 0.47925902246114666,
+      "value": 0.4801272477102861,
     },
     "off_ft": Object {
       "value": 0.7126436781609196,
@@ -1047,18 +1047,19 @@ Array [
     "off_luck_diags": Object {
       "avgEff": 102.2,
       "base3PA": 765,
-      "delta3P": 0.012880276928143697,
-      "deltaMissesPct": -0.0053297697633698056,
-      "deltaOffAdjEff": 1.2220807850120408,
-      "deltaOffEfg": 0.007994654645054708,
-      "deltaOffOrbFactor": -0.0016971276307072938,
-      "deltaOffPpp": 1.1345342775280345,
-      "deltaOffPppNoOrb": 1.3185496760564164,
-      "deltaPtsOffMisses": -0.18401539852838195,
+      "delta3P": 0.014279084273979448,
+      "deltaMissesPct": -0.005908586596129427,
+      "deltaOffAdjEff": 1.3545499818035853,
+      "deltaOffEfg": 0.00886287989419414,
+      "deltaOffOrbFactor": -0.001881090210636343,
+      "deltaOffPpp": 1.2575137452684864,
+      "deltaOffPppNoOrb": 1.461745119990313,
+      "deltaPtsOffMisses": -0.20423137472182679,
       "player3PInfo": Object {
         "Cowan, Anthony": Object {
           "assisted3P": 0.34433908045977013,
           "base3P": 0.3218390804597701,
+          "expected3P": 0.3235632183908046,
           "shot_info_ast_3pm": 35,
           "shot_info_early_3pa": 23,
           "shot_info_total": 174,
@@ -1069,6 +1070,7 @@ Array [
         "Wiggins, Aaron": Object {
           "assisted3P": 0.3218935713478703,
           "base3P": 0.31736526946107785,
+          "expected3P": 0.3186939328889391,
           "shot_info_ast_3pm": 49,
           "shot_info_early_3pa": 47,
           "shot_info_total": 167,
@@ -1077,10 +1079,10 @@ Array [
           "unassisted3P": 0.2618935713478703,
         },
       },
-      "regress3P": 0.3184358324836993,
+      "regress3P": 0.31983463982953503,
       "sample3P": 0.3055555555555556,
       "sample3PA": 72,
-      "sampleBase3P": 0.3196480938416422,
+      "sampleBase3P": 0.32117855364355663,
       "sampleDefSos": 94.87867298578198,
       "sampleOff3PRate": 0.41379310344827586,
       "sampleOffEfg": 0.47126436781609193,
@@ -1092,7 +1094,7 @@ Array [
     "off_net": Object {
       "old_value": 36.82854462721707,
       "override": "Adjusted from Off 3P% and Def 3P%",
-      "value": 33.898788323369196,
+      "value": 34.03125752016074,
     },
     "off_orb": Object {
       "value": 0.31896551724137934,
@@ -1103,12 +1105,12 @@ Array [
     "off_ppp": Object {
       "old_value": 107.1090047393365,
       "override": "Adjusted from Off 3P%",
-      "value": 108.24353901686453,
+      "value": 108.36651848460498,
     },
     "off_raw_net": Object {
       "old_value": 23.071446053890483,
       "override": "Adjusted from Off 3P% and Def 3P%",
-      "value": 19.759528855268567,
+      "value": 19.88250832300902,
     },
     "off_scramble_2p": Object {
       "value": 0.75,
@@ -1586,7 +1588,7 @@ Array [
     "off_3p": Object {
       "old_value": 0.30612244897959184,
       "override": "Luck adjusted",
-      "value": 0.3174679734526933,
+      "value": 0.3187517472996939,
     },
     "off_3p_ast": Object {
       "value": 0.7777777777777778,
@@ -1600,7 +1602,7 @@ Array [
     "off_adj_ppp": Object {
       "old_value": 123.30858896547036,
       "override": "Adjusted from Off 3P%",
-      "value": 124.4339912388622,
+      "value": 124.56112448081852,
     },
     "off_adj_ppp_rank": 1,
     "off_assist": Object {
@@ -1618,7 +1620,7 @@ Array [
     "off_efg": Object {
       "old_value": 0.5092879256965944,
       "override": "Adjusted from Off 3P%",
-      "value": 0.5170330902362813,
+      "value": 0.5179094745497911,
     },
     "off_ft": Object {
       "value": 0.7663043478260869,
@@ -1629,18 +1631,19 @@ Array [
     "off_luck_diags": Object {
       "avgEff": 102.2,
       "base3PA": 765,
-      "delta3P": 0.011345524473101443,
-      "deltaMissesPct": -0.0051634430264579315,
-      "deltaOffAdjEff": 1.125402273391837,
-      "deltaOffEfg": 0.007745164539686898,
-      "deltaOffOrbFactor": -0.0014730962222976021,
-      "deltaOffPpp": 1.0732295794120812,
-      "deltaOffPppNoOrb": 1.2477247612562934,
-      "deltaPtsOffMisses": -0.17449518184421223,
+      "delta3P": 0.012629298320102067,
+      "deltaMissesPct": -0.005747699235464408,
+      "deltaOffAdjEff": 1.2525355153481634,
+      "deltaOffEfg": 0.008621548853196612,
+      "deltaOffOrbFactor": -0.0016395073828952007,
+      "deltaOffPpp": 1.1944690322015785,
+      "deltaOffPppNoOrb": 1.3889078701159632,
+      "deltaPtsOffMisses": -0.19443883791438454,
       "player3PInfo": Object {
         "Cowan, Anthony": Object {
           "assisted3P": 0.34433908045977013,
           "base3P": 0.3218390804597701,
+          "expected3P": 0.3235632183908046,
           "shot_info_ast_3pm": 35,
           "shot_info_early_3pa": 23,
           "shot_info_total": 174,
@@ -1651,6 +1654,7 @@ Array [
         "Wiggins, Aaron": Object {
           "assisted3P": 0.3218935713478703,
           "base3P": 0.31736526946107785,
+          "expected3P": 0.3186939328889391,
           "shot_info_ast_3pm": 49,
           "shot_info_early_3pa": 47,
           "shot_info_total": 167,
@@ -1659,10 +1663,10 @@ Array [
           "unassisted3P": 0.2618935713478703,
         },
       },
-      "regress3P": 0.3174679734526933,
+      "regress3P": 0.3187517472996939,
       "sample3P": 0.30612244897959184,
       "sample3PA": 147,
-      "sampleBase3P": 0.3196480938416422,
+      "sampleBase3P": 0.32117855364355663,
       "sampleDefSos": 97.46209476309228,
       "sampleOff3PRate": 0.4551083591331269,
       "sampleOffEfg": 0.5092879256965944,
@@ -1674,7 +1678,7 @@ Array [
     "off_net": Object {
       "old_value": 35.440941110261065,
       "override": "Adjusted from Off 3P% and Def 3P%",
-      "value": 33.72965606819886,
+      "value": 33.85678931015518,
     },
     "off_orb": Object {
       "value": 0.2857142857142857,
@@ -1685,12 +1689,12 @@ Array [
     "off_ppp": Object {
       "old_value": 117.2069825436409,
       "override": "Adjusted from Off 3P%",
-      "value": 118.28021212305299,
+      "value": 118.40145157584249,
     },
     "off_raw_net": Object {
       "old_value": 23.908013471475954,
       "override": "Adjusted from Off 3P% and Def 3P%",
-      "value": 21.974012264978786,
+      "value": 22.09525171776828,
     },
     "off_scramble_2p": Object {
       "value": 0.7,
@@ -2168,7 +2172,7 @@ Array [
     "off_3p": Object {
       "old_value": 0.3373493975903614,
       "override": "Luck adjusted",
-      "value": 0.32138065069440597,
+      "value": 0.32276131313363304,
     },
     "off_3p_ast": Object {
       "value": 0.8571428571428571,
@@ -2182,7 +2186,7 @@ Array [
     "off_adj_ppp": Object {
       "old_value": 120.3613605770025,
       "override": "Adjusted from Off 3P%",
-      "value": 118.4679298217034,
+      "value": 118.63197997521208,
     },
     "off_adj_ppp_rank": 2,
     "off_assist": Object {
@@ -2200,7 +2204,7 @@ Array [
     "off_efg": Object {
       "old_value": 0.521978021978022,
       "override": "Adjusted from Off 3P%",
-      "value": 0.5110543462167778,
+      "value": 0.5119988103578974,
     },
     "off_ft": Object {
       "value": 0.7560975609756098,
@@ -2211,18 +2215,19 @@ Array [
     "off_luck_diags": Object {
       "avgEff": 102.2,
       "base3PA": 765,
-      "delta3P": -0.015968746895955455,
-      "deltaMissesPct": 0.0072824505074961686,
-      "deltaOffAdjEff": -1.8934307552991017,
-      "deltaOffEfg": -0.010923675761244252,
-      "deltaOffOrbFactor": 0.0022978915075447187,
-      "deltaOffPpp": -1.7652390210392048,
-      "deltaOffPppNoOrb": -2.0183847599456386,
-      "deltaPtsOffMisses": 0.2531457389064337,
+      "delta3P": -0.014588084456728379,
+      "deltaMissesPct": 0.006652807746749755,
+      "deltaOffAdjEff": -1.7293806017904219,
+      "deltaOffEfg": -0.009979211620124632,
+      "deltaOffOrbFactor": 0.002098798166790647,
+      "deltaOffPpp": -1.6122956236793962,
+      "deltaOffPppNoOrb": -1.8438746343783583,
+      "deltaPtsOffMisses": 0.23157901069896225,
       "player3PInfo": Object {
         "Cowan, Anthony": Object {
           "assisted3P": 0.34433908045977013,
           "base3P": 0.3218390804597701,
+          "expected3P": 0.3235632183908046,
           "shot_info_ast_3pm": 35,
           "shot_info_early_3pa": 23,
           "shot_info_total": 174,
@@ -2233,6 +2238,7 @@ Array [
         "Wiggins, Aaron": Object {
           "assisted3P": 0.3218935713478703,
           "base3P": 0.31736526946107785,
+          "expected3P": 0.3186939328889391,
           "shot_info_ast_3pm": 49,
           "shot_info_early_3pa": 47,
           "shot_info_total": 167,
@@ -2241,10 +2247,10 @@ Array [
           "unassisted3P": 0.2618935713478703,
         },
       },
-      "regress3P": 0.32138065069440597,
+      "regress3P": 0.32276131313363304,
       "sample3P": 0.3373493975903614,
       "sample3PA": 83,
-      "sampleBase3P": 0.3196480938416422,
+      "sampleBase3P": 0.32117855364355663,
       "sampleDefSos": 95.28071065989847,
       "sampleOff3PRate": 0.45604395604395603,
       "sampleOffEfg": 0.521978021978022,
@@ -2256,7 +2262,7 @@ Array [
     "off_net": Object {
       "old_value": 38.2719272157307,
       "override": "Adjusted from Off 3P% and Def 3P%",
-      "value": 28.90553021011739,
+      "value": 29.06958036362607,
     },
     "off_orb": Object {
       "value": 0.3148148148148148,
@@ -2267,12 +2273,12 @@ Array [
     "off_ppp": Object {
       "old_value": 112.18274111675127,
       "override": "Adjusted from Off 3P%",
-      "value": 110.41750209571207,
+      "value": 110.57044549307187,
     },
     "off_raw_net": Object {
       "old_value": 25.136108992398945,
       "override": "Adjusted from Off 3P% and Def 3P%",
-      "value": 15.439704042312885,
+      "value": 15.592647439672694,
     },
     "off_scramble_2p": Object {
       "value": 0.5384615384615384,
@@ -2755,7 +2761,7 @@ Array [
     "off_3p": Object {
       "old_value": 0.30612244897959184,
       "override": "Luck adjusted",
-      "value": 0.3174679734526933,
+      "value": 0.3187517472996939,
     },
     "off_3p_ast": Object {
       "value": 0.7777777777777778,
@@ -2769,7 +2775,7 @@ Array [
     "off_adj_ppp": Object {
       "old_value": 123.30858896547036,
       "override": "Adjusted from Off 3P%",
-      "value": 124.4339912388622,
+      "value": 124.56112448081852,
     },
     "off_adj_ppp_rank": 1,
     "off_assist": Object {
@@ -2787,7 +2793,7 @@ Array [
     "off_efg": Object {
       "old_value": 0.5092879256965944,
       "override": "Adjusted from Off 3P%",
-      "value": 0.5170330902362813,
+      "value": 0.5179094745497911,
     },
     "off_ft": Object {
       "value": 0.7663043478260869,
@@ -2798,18 +2804,19 @@ Array [
     "off_luck_diags": Object {
       "avgEff": 102.2,
       "base3PA": 765,
-      "delta3P": 0.011345524473101443,
-      "deltaMissesPct": -0.0051634430264579315,
-      "deltaOffAdjEff": 1.125402273391837,
-      "deltaOffEfg": 0.007745164539686898,
-      "deltaOffOrbFactor": -0.0014730962222976021,
-      "deltaOffPpp": 1.0732295794120812,
-      "deltaOffPppNoOrb": 1.2477247612562934,
-      "deltaPtsOffMisses": -0.17449518184421223,
+      "delta3P": 0.012629298320102067,
+      "deltaMissesPct": -0.005747699235464408,
+      "deltaOffAdjEff": 1.2525355153481634,
+      "deltaOffEfg": 0.008621548853196612,
+      "deltaOffOrbFactor": -0.0016395073828952007,
+      "deltaOffPpp": 1.1944690322015785,
+      "deltaOffPppNoOrb": 1.3889078701159632,
+      "deltaPtsOffMisses": -0.19443883791438454,
       "player3PInfo": Object {
         "Cowan, Anthony": Object {
           "assisted3P": 0.34433908045977013,
           "base3P": 0.3218390804597701,
+          "expected3P": 0.3235632183908046,
           "shot_info_ast_3pm": 35,
           "shot_info_early_3pa": 23,
           "shot_info_total": 174,
@@ -2820,6 +2827,7 @@ Array [
         "Wiggins, Aaron": Object {
           "assisted3P": 0.3218935713478703,
           "base3P": 0.31736526946107785,
+          "expected3P": 0.3186939328889391,
           "shot_info_ast_3pm": 49,
           "shot_info_early_3pa": 47,
           "shot_info_total": 167,
@@ -2828,10 +2836,10 @@ Array [
           "unassisted3P": 0.2618935713478703,
         },
       },
-      "regress3P": 0.3174679734526933,
+      "regress3P": 0.3187517472996939,
       "sample3P": 0.30612244897959184,
       "sample3PA": 147,
-      "sampleBase3P": 0.3196480938416422,
+      "sampleBase3P": 0.32117855364355663,
       "sampleDefSos": 97.46209476309228,
       "sampleOff3PRate": 0.4551083591331269,
       "sampleOffEfg": 0.5092879256965944,
@@ -2843,7 +2851,7 @@ Array [
     "off_net": Object {
       "old_value": 35.440941110261065,
       "override": "Adjusted from Off 3P% and Def 3P%",
-      "value": 33.72965606819886,
+      "value": 33.85678931015518,
     },
     "off_orb": Object {
       "value": 0.2857142857142857,
@@ -2854,12 +2862,12 @@ Array [
     "off_ppp": Object {
       "old_value": 117.2069825436409,
       "override": "Adjusted from Off 3P%",
-      "value": 118.28021212305299,
+      "value": 118.40145157584249,
     },
     "off_raw_net": Object {
       "old_value": 23.908013471475954,
       "override": "Adjusted from Off 3P% and Def 3P%",
-      "value": 21.974012264978786,
+      "value": 22.09525171776828,
     },
     "off_scramble_2p": Object {
       "value": 0.7,

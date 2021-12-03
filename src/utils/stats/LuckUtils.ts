@@ -21,7 +21,8 @@ export type OffLuckShotInfo = {
 export type OffLuckAdj3P = {
   base3P: number,
   unassisted3P: number,
-  assisted3P: number
+  assisted3P: number,
+  expected3P?: number
 };
 
 export type OffLuckShotTypeAndAdj3P = OffLuckShotInfo & OffLuckAdj3P;
@@ -186,20 +187,19 @@ export class LuckUtils {
       }) as OffLuckShotTypeAndAdj3P;
 
       if (playerInfo) {
-        //(we use the sample size but the base 3P%)
-        const samplePlayer3PA = playerInfo.shot_info_total || 0;
-        
-        const basePlayer3P = playerInfo.base3P || 0;;
-        varTotal3PA += samplePlayer3PA;
-        varTotal3P += samplePlayer3PA*basePlayer3P;
+        //(we use the sample size but the expected 3P% based on base3P% and sample distribution)        
+        varTotal3PA += playerInfo.shot_info_total;
+        const totalTimes3P = LuckUtils.buildExp3P(playerInfo)
+        playerInfo.expected3P = totalTimes3P/(playerInfo.shot_info_total || 1)
+        varTotal3P += totalTimes3P;
 
-        return (samplePlayer3PA > 0) ? //(don't bother with any players who didn't take a 3P shot)
+        return (playerInfo.shot_info_total > 0) ? //(don't bother with any players who didn't take a 3P shot)
           [ [ player.key, playerInfo  ] ] : [];
         } else {
           return []; //(player not in this lineup)
         }
 
-    }).sortBy((pV: any[]) => -1*(pV?.[1]?.sample3PA || 0)).fromPairs().value();
+    }).sortBy((pV: any[]) => -1*(pV?.[1]?.shot_info_total || 0)).fromPairs().value();
 
     // Calculate average weight of 3P% weighted by 3PA
 
@@ -453,9 +453,14 @@ export class LuckUtils {
     return {
       base3P,
       unassisted3P: base3P - baseAssistPct*weight,
-      assisted3P: base3P + (1 - baseAssistPct)*weight
+      assisted3P: base3P + (1 - baseAssistPct)*weight,
     } as OffLuckAdj3P;
   }
-    
+  /** Returns (3P%*total 3P) */
+  static readonly buildExp3P = (info: OffLuckShotTypeAndAdj3P) => {
+    return info.shot_info_ast_3pm*info.assisted3P + info.shot_info_unast_3pm*info.unassisted3P
+            + (info.shot_info_early_3pa + info.shot_info_unknown_3pM)*info.base3P;
+  };
+
    
 };

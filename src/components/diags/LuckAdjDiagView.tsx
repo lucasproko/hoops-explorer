@@ -70,15 +70,15 @@ const LuckAdjDiagView: React.FunctionComponent<Props> = ({name, offLuck, defLuck
               <li><i>(The idea is we'll calculate the expected shooting performance of the players in the lineup set, weighted by their usage, and then regress the actual 3P shooting agains that.)</i></li>
               <li>Adj_3P_Off: [<b>{(100*(o.delta3P + o.sample3P)).toFixed(1)}</b>%] = <i>Weighted_Mean</i>(
                 Expected_3P% [<b>{(100*o.sampleBase3P).toFixed(1)}</b>%], Base_3PA [<b>{o.base3PA.toFixed(0)}</b>],
-              Sample_3P% [<b>{(100*o.sample3P).toFixed(1)}</b>%], Sample_3PA [<b>{o.sample3PA.toFixed(0)}</b>])</li>
+              Sample_3P% [<b>{(100*o.sample3P).toFixed(1)}</b>%], Sample_3PA [<b>{o.sample3PA.toFixed(0)}</b>] )</li>
               <li>Expected_3P%: [<b>{(100*o.sampleBase3P).toFixed(1)}</b>%] = Calculated from <i>Weighted_Mean</i> of: (early / assisted / solo / unknown)</li>
               <ul>
                 {_.toPairs(o.player3PInfo).map((pV: [ string, OffLuckShotTypeAndAdj3P ], index: number) => {
                   const info = pV[1];
                   const countStr = 
                     `${info.shot_info_total}: ${info.shot_info_early_3pa} / ${info.shot_info_ast_3pm} / ${info.shot_info_unast_3pm} / ${info.shot_info_unknown_3pM}`;
-                  const _3Pstr = `${(100*info.base3P).toFixed(1)} / ${(100*info.assisted3P).toFixed(1)} / ${(100*info.unassisted3P).toFixed(1)} / ${(100*info.base3P).toFixed(1)}`
-                  return <li key={index}>[<b>{pV[0]}</b>]: Sample_3PA=[<b>{countStr}</b>] Base_3P%=[<b>{_3Pstr}</b>%]</li>
+                  const _3Pstr = `${(100*(info.expected3P || 0)).toFixed(1)}%: ${(100*info.base3P).toFixed(1)} / ${(100*info.assisted3P).toFixed(1)} / ${(100*info.unassisted3P).toFixed(1)} / ${(100*info.base3P).toFixed(1)}`
+                  return <li key={index}>[<b>{pV[0]}</b>]: Sample_3PA=[<b>{countStr}</b>] Base_3P%=[<b>{_3Pstr}</b>]</li>
                 })}
               </ul>
             </ul>
