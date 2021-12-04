@@ -372,7 +372,7 @@ export async function main() {
         const rapmInfo = TeamReportTableUtils.buildOrInjectRapm(
           preRapmTableData, baselinePlayerInfo,
           true, //<-always adjust for luck
-          avgEfficiency
+          avgEfficiency, genderYearLookup
         );
         const enrichedAndFilteredPlayersMap = _.fromPairs(
           enrichedAndFilteredPlayers.map(p => [ p.key, p ])
