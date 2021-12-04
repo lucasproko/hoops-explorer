@@ -123,8 +123,9 @@ if (!testMode) console.log(`Args: gender=[${inGender}] year=[${inYear}]`);
 
 const onlyHasTopConferences = (inGender != "Men") || (parseInt(inYear.substring(0, 4)) < 2020);
 
-const testTeamFilter = undefined as Set<string> | undefined;
+const testTeamFilter = //undefined as Set<string> | undefined;
 //  (inYear == "2021/22") ? new Set([ "Maryland", "Iowa", "Michigan", "Dayton", "Rutgers", "Fordham" ]) : undefined;
+  (inYear == "2021/22") ? new Set([ "Princeton" ]) : undefined;
 
 /** All the conferences in a given tier plus the "guest" teams if it's not in the right tier */
 const mutableConferenceMap = {} as Record<string, string[]>;
@@ -147,7 +148,8 @@ export async function main() {
   if (lookupForQuery) {
     console.log("Getting dynamic efficiency info (needed for conference map)");
     //(also will cache it for subsequent requests)
-    fallbackConfMapInfo = await CommonApiUtils.buildCurrentMenEfficiency(globalGenderYearKey, inYear.substring(0, 4), lookupForQuery);
+    const efficiencyYear = (parseInt(inYear.substring(0, 4)) + 1).toString(); //(+1 from the input year)
+    fallbackConfMapInfo = await CommonApiUtils.buildCurrentMenEfficiency(globalGenderYearKey, efficiencyYear, lookupForQuery);
   }
 
   const teamListChain = (inYear == "Extra") ?
