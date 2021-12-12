@@ -504,7 +504,7 @@ export function completeLineupLeaderboard(key: string, leaderboard: any[], topLi
 
 if (!testMode) main().then(async dummy => {
   const topLineupSize = onlyHasTopConferences ? 300 : 400;
-  const topPlayersSize = onlyHasTopConferences ? 700 : 900;
+  const topPlayersSize = onlyHasTopConferences ? 700 : 1000;
 
   console.log("Processing Complete!");
 
