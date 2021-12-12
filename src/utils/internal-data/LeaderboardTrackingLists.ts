@@ -28,7 +28,9 @@ export const PlayerLeaderboardTracking = {
       // By hand from CBB_Europe twitter (11/24):
       "MaRaynaud,ShWalters+Shaquille,DaAkin+Daniel,SaStefanovic+Sasha,JaGrandison+Jacob,MoDiabate+Moussa,KaKostmayer+Kai,SeSiJawara,NaRobinson+Nate,ViRajkovic+Vic=ktor,",
       // By hand from CBB_Europe twitter (12/5):
-      "JeEdwards+Jesse,ToEvbuomwan,EtPrice+Ethan,AjMitchell+Ajay"
+      "JeEdwards+Jesse,ToEvbuomwan,EtPrice+Ethan,AjMitchell+Ajay",
+      // By hand from CBB_Europp twitter (12/12):
+      "AuMarciulion+Augustus,AlCardenas+Alvaro,SeForsling+Seb"
     ]
   ]).join(","),
 
@@ -40,7 +42,9 @@ export const PlayerLeaderboardTracking = {
       // By hand from eg CanBallReport twitter (11/24):
       "NiDjogo+Nikola,KuJongkuch+Kur,JaJean-marie,StIngo+Stephane",
       // By hand from eg CanBallReport twitter (12/5):
-      "AaRai+Aaryn,RuWilliams+Rudi,ShGivance+Shamar,JaKarnik+James,RuWilliams+Rudi,EmBandoumel,KoMcewen+Koby,JaCampbell+Jaden,hearn+Dylan,JeDesrosiers+Jerome"
+      "AaRai+Aaryn,RuWilliams+Rudi,ShGivance+Shamar,JaKarnik+James,RuWilliams+Rudi,EmBandoumel,KoMcewen+Koby,JaCampbell+Jaden,hearn+Dylan,JeDesrosiers+Jerome",
+      // By hand from eg CanBallReport twitter (12/12):
+      "AdEleeda+Adham,MiNuga+Mich"
     ]
   ]).join(",")
 

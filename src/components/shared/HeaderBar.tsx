@@ -295,9 +295,11 @@ const HeaderBar: React.FunctionComponent<Props> = ({thisPage, common, override})
               {buildNavItem("Lineups - 'high' tier", lineupLeaderboardTooltip("High"), getLineupLeaderboardUrl("High"), true)}
             </Dropdown.Item>
             <Dropdown.Divider/>
-            <Dropdown.Item>
-              {buildNavItem("2021 NBA prospects", playerLeaderboardTooltipNba2021, getPlayerLeaderboardTrackingUrl("__NBA_2021__"), true)}
-            </Dropdown.Item>
+            {
+            // <Dropdown.Item>
+            //   {buildNavItem("2021 NBA prospects", playerLeaderboardTooltipNba2021, getPlayerLeaderboardTrackingUrl("__NBA_2021__"), true)}
+            // </Dropdown.Item>
+            }
             <Dropdown.Item>
               {buildNavItem("Md/DMV-area players (HS 2017+)", playerLeaderboardTooltipMdDmv2017, getPlayerLeaderboardTrackingUrl("__DMV_2017__"), true)}
             </Dropdown.Item>
