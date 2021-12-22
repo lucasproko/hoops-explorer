@@ -9,6 +9,7 @@ import { SampleDataUtils } from "../../../sample-data/SampleDataUtils";
 import { sampleLineupStatsResponse } from "../../../sample-data/sampleLineupStatsResponse";
 import { samplePlayerStatsResponse } from "../../../sample-data/samplePlayerStatsResponse";
 import { sampleTeamStatsResponse } from "../../../sample-data/sampleTeamStatsResponse";
+import { IndivStatSet, LineupStatSet } from '../../StatModels';
 
 describe("TableDisplayUtils", () => {
 
@@ -109,7 +110,7 @@ describe("TableDisplayUtils", () => {
   test("injectPlayTypeInfo - lineups", () => {
     injectData(sampleData, sampleLineupStatsResponse.responses[0].aggregations.lineups.buckets[1]);
     expect(TableDisplayUtils.injectPlayTypeInfo(
-      sampleLineupStatsResponse.responses[0].aggregations.lineups.buckets[0],
+      sampleLineupStatsResponse.responses[0].aggregations.lineups.buckets[0] as unknown as LineupStatSet,
       false, false
     )).toMatchSnapshot();
   });
@@ -119,7 +120,7 @@ describe("TableDisplayUtils", () => {
       samplePlayerStatsResponse.responses[0].aggregations.tri_filter.buckets.baseline.player.buckets[1]
     );
     expect(TableDisplayUtils.injectPlayTypeInfo(
-      samplePlayerStatsResponse.responses[0].aggregations.tri_filter.buckets.baseline.player.buckets[0],
+      samplePlayerStatsResponse.responses[0].aggregations.tri_filter.buckets.baseline.player.buckets[0] as unknown as IndivStatSet,
       false, true
     )).toMatchSnapshot();
   });
@@ -129,7 +130,7 @@ describe("TableDisplayUtils", () => {
       samplePlayerStatsResponse.responses[0].aggregations.tri_filter.buckets.baseline.player.buckets[1]
     );
     expect(TableDisplayUtils.injectPlayTypeInfo(
-      samplePlayerStatsResponse.responses[0].aggregations.tri_filter.buckets.baseline.player.buckets[0],
+      samplePlayerStatsResponse.responses[0].aggregations.tri_filter.buckets.baseline.player.buckets[0] as unknown as IndivStatSet,
       true, true
     )).toMatchSnapshot();
   });

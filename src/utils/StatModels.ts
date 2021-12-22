@@ -15,6 +15,17 @@ export type Statistic = {
   /** Gives some details about how value was derived from old_value */
   override?: string | React.ReactNode
 };
+/** Like statistic, but can take an HTML val in its value */
+export type StatisticOrRender = {
+  /** The current most relevant number */
+  value?: number | React.ReactNode | string,
+  /** If a number was overridden by manual or luck adjustments, the original */
+  old_value?: number | React.ReactNode | string,
+  /** Provides some context for value */
+  extraInfo?: string | React.ReactNode
+  /** Gives some details about how value was derived from old_value */
+  override?: string | React.ReactNode
+};
 
 /** TODO: consider coming up with a list of all possible fields from ES and using a mapped type? */
 export type PureStatSet = Record<string, Statistic>;
@@ -75,6 +86,13 @@ export type IndivMetadata = {
 
   /** Gets abused to display roster info (year/class) in the table */
   def_assist?: React.ReactNode,
+
+  /** Gets abused to display assist% */
+  def_2primr?: React.ReactNode,
+  /** Gets abused to display assist% */
+  def_2pmidr?: React.ReactNode,
+  /** Gets abused to display assist% */
+  def_3pr?: React.ReactNode,
 
   /** Gets abused to display positional information in the table */
   def_usage?: React.ReactNode,
@@ -140,7 +158,10 @@ export type TeamMetadata = {
 export type TeamEnrichment = {
   // Title info for tables
   off_title?: string | React.ReactNode,
-  def_title?: string | React.ReactNode
+  def_title?: string | React.ReactNode,
+
+  /** Abused to contain the raw net rating (adjusted is in off_net) */
+  def_net?: StatisticOrRender,
 };
 
 export type TeamStatSet = PureStatSet & TeamEnrichment & TeamMetadata;
@@ -193,6 +214,9 @@ export type LineupEnrichment = {
   // Title info for tables
   off_title?: string | React.ReactNode,
   def_title?: string | React.ReactNode,
+
+  /** Abused to contain the raw net rating (adjusted is in off_net) */
+  def_net?: StatisticOrRender,
 
   /** Temp hacky flag to optimize some loops during RAPM */
   rapmRemove?: boolean,

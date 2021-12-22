@@ -14,6 +14,7 @@ import { PositionUtils } from "../stats/PositionUtils";
 
 import { CommonTableDefs } from "../tables/CommonTableDefs";
 import "./TableDisplayUtils.css";
+import { TeamStatSet, LineupStatSet, PureStatSet, Statistic, IndivStatSet, LineupEnrichment, TeamEnrichment } from '../StatModels';
 
 /** Encapsulates some of the logic used to build decorated lineups in LineupStatsTable */
 export class TableDisplayUtils {
@@ -192,18 +193,18 @@ export class TableDisplayUtils {
   }
 
   /** Inject various assist info into the table cell inputs */
-  static injectPlayTypeInfo(stat: Record<string, any>, expandedView: boolean, playerView: boolean, teamSeasonLookup?: string) {
+  static injectPlayTypeInfo(statSet: TeamStatSet | IndivStatSet | LineupStatSet, expandedView: boolean, playerView: boolean, teamSeasonLookup?: string) {
     if (playerView) {
       // Put assist %s as the row underneath shot types:
-      const buildInfoRow = (stat: any) =>
+      const buildInfoRow = (stat: Statistic) =>
         <small style={CommonTableDefs.getTextShadow(stat, CbbColors.fgr_offDef)}>
           <i>{(100*(stat?.value || 0)).toFixed(0)}%</i>
         </small>;
-      stat.def_2primr = buildInfoRow(stat.off_2prim_ast);
-      stat.def_2pmidr = buildInfoRow(stat.off_2pmid_ast);
-      stat.def_3pr = buildInfoRow(stat.off_3p_ast);
+      (statSet as IndivStatSet).def_2primr = buildInfoRow(statSet.off_2prim_ast);
+      (statSet as IndivStatSet).def_2pmidr = buildInfoRow(statSet.off_2pmid_ast);
+      (statSet as IndivStatSet).def_3pr = buildInfoRow(statSet.off_3p_ast);
     }
-    const assistBuilder = (stat: any, offDef: "off" | "def") => {
+    const assistBuilder = (stat: PureStatSet, offDef: "off" | "def") => {
       const rimPct = (100*(stat[`${offDef}_ast_rim`]?.value || 0)).toFixed(0);
       const midPct = (100*(stat[`${offDef}_ast_mid`]?.value || 0)).toFixed(0);
       const threePct = (100*(stat[`${offDef}_ast_3p`]?.value || 0)).toFixed(0);
@@ -214,7 +215,8 @@ export class TableDisplayUtils {
         <li>{rimPct}% at the rim</li>
       </span>;
     }
-    const playCategoryBuilder = (stat: any, offDef: "off" | "def") => {
+    /** See also TeamExtraStatsInfoView */
+    const playCategoryBuilder = (stat: PureStatSet, offDef: "off" | "def") => {
       const totalPoss = stat[`total_${offDef}_poss`]?.value || 1;
       const scramblePct = 100*(stat[`total_${offDef}_scramble_poss`]?.value || 0)/totalPoss;
       const transPct = 100*(stat[`total_${offDef}_trans_poss`]?.value || 0)/totalPoss;
@@ -238,7 +240,8 @@ export class TableDisplayUtils {
         }
       </span>;
     };
-    const paceBuilder = (stat: any, isPlayer: boolean) => {
+    /** See also TeamExtraStatsInfoView */
+    const paceBuilder = (stat: PureStatSet, isPlayer: boolean) => {
       const totalOffPoss = (isPlayer ? stat[`off_team_poss`]?.value : stat[`off_poss`]?.value) || 0;
       const totalDefPoss = (isPlayer ? totalOffPoss : stat[`def_poss`]?.value) || 0;
       const totalTime = stat[`duration_mins`]?.value || 0;
@@ -246,18 +249,17 @@ export class TableDisplayUtils {
       return totalTime > 0 ? <span>{possPer40.toFixed(1)} poss/g</span> : undefined;
     }
 
-    if (stat.off_assist) {
-      stat.off_assist.extraInfo = assistBuilder(stat, "off");
+    if (statSet.off_assist) {
+      statSet.off_assist.extraInfo = assistBuilder(statSet, "off");
     }
     // Offensive FT%: team/lineup/player
-    if (stat.off_ftr) {
-      stat.off_ftr.extraInfo = <span>FT: {(100*(stat.off_ft?.value || 0)).toFixed(1)}%</span>;
+    if (statSet.off_ftr) {
+      statSet.off_ftr.extraInfo = <span>FT: {(100*(statSet.off_ft?.value || 0)).toFixed(1)}%</span>;
     }
 
-    const buildText = (stat: any) => {
+    const buildText = (stat: Statistic) => {
       return `${(100*(stat?.value || 0)).toFixed(0)}% assisted`
     }
-
 
     // Pending fixing this issue (https://github.com/Alex-At-Home/cbb-on-off-analyzer/issues/142),
     // just filter out any teams that suffer from it (All women teams and a few men's teams)
@@ -280,84 +282,84 @@ export class TableDisplayUtils {
 
     // Handle adding and removing of extra info:
     if (expandedView) {
-      if (stat.off_2primr) {
-        delete stat.off_2primr.extraInfo;
+      if (statSet.off_2primr) {
+        delete statSet.off_2primr.extraInfo;
       }
-      if (stat.off_2pmidr) {
-        delete stat.off_2pmidr.extraInfo;
+      if (statSet.off_2pmidr) {
+        delete statSet.off_2pmidr.extraInfo;
       }
-      if (stat.off_3pr) {
-        delete stat.off_3pr.extraInfo;
+      if (statSet.off_3pr) {
+        delete statSet.off_3pr.extraInfo;
       }
     } else {
-      if (stat.off_2primr) {
-        stat.off_2primr.extraInfo = <span>{buildText(stat.off_2prim_ast)}</span>;
+      if (statSet.off_2primr) {
+        statSet.off_2primr.extraInfo = <span>{buildText(statSet.off_2prim_ast)}</span>;
       }
-      if (stat.off_2pmidr) {
-        stat.off_2pmidr.extraInfo = <span>{buildText(stat.off_2pmid_ast)}</span>;
+      if (statSet.off_2pmidr) {
+        statSet.off_2pmidr.extraInfo = <span>{buildText(statSet.off_2pmid_ast)}</span>;
       }
-      if (stat.off_3pr) {
-        stat.off_3pr.extraInfo = <span>{buildText(stat.off_3p_ast)}</span>;
+      if (statSet.off_3pr) {
+        statSet.off_3pr.extraInfo = <span>{buildText(statSet.off_3p_ast)}</span>;
       }
     }
     if (!playerView) { // team/lineup views have both offense and defense
-      if (stat.off_ppp) {
-        stat.off_ppp.extraInfo = playCategoryBuilder(stat, "off");
+      if (statSet.off_ppp) {
+        statSet.off_ppp.extraInfo = playCategoryBuilder(statSet, "off");
       }
-      if (stat.def_ppp) {
-        stat.def_ppp.extraInfo = playCategoryBuilder(stat, "def");
+      if (statSet.def_ppp) {
+        statSet.def_ppp.extraInfo = playCategoryBuilder(statSet, "def");
       }
-      if (stat.def_assist) {
-        stat.def_assist.extraInfo = assistBuilder(stat, "def");
+      if (statSet.def_assist) {
+        (statSet as TeamStatSet | LineupStatSet).def_assist.extraInfo = assistBuilder(statSet, "def");
       }
-      if (stat.def_2primr) {
-        stat.def_2primr.extraInfo = <span>{buildText(stat.def_2prim_ast)}</span>;
+      if (statSet.def_2primr) {
+        (statSet as TeamStatSet | LineupStatSet).def_2primr.extraInfo = <span>{buildText(statSet.def_2prim_ast)}</span>;
       }
-      if (stat.def_2pmidr) {
-        stat.def_2pmidr.extraInfo = <span>{buildText(stat.def_2pmid_ast)}</span>;
+      if (statSet.def_2pmidr) {
+        (statSet as TeamStatSet | LineupStatSet).def_2pmidr.extraInfo = <span>{buildText(statSet.def_2pmid_ast)}</span>;
       }
-      if (stat.def_3pr) {
-        stat.def_3pr.extraInfo = <span>{buildText(stat.def_3p_ast)}</span>;
+      if (statSet.def_3pr) {
+        (statSet as TeamStatSet | LineupStatSet).def_3pr.extraInfo = <span>{buildText(statSet.def_3p_ast)}</span>;
       }
-      if (stat.off_poss) {
+      if (statSet.off_poss) {
         //TODO: see https://github.com/Alex-At-Home/cbb-on-off-analyzer/issues/142
         if (workaroundTempoBug) {
-          stat.off_poss.extraInfo = <i>(data not available for this team, contact me for more details)</i>;
+          statSet.off_poss.extraInfo = <i>(data not available for this team, contact me for more details)</i>;
         } else {
-          stat.off_poss.extraInfo = paceBuilder(stat, false);
+          statSet.off_poss.extraInfo = paceBuilder(statSet, false);
         }
       }
       // Defensive FT%: team/lineup/ only
-      if (stat.def_ftr) {
-        stat.def_ftr.extraInfo = <span>FT: {(100*(stat.def_ft?.value || 0)).toFixed(1)}%</span>;
+      if (statSet.def_ftr) {
+        statSet.def_ftr.extraInfo = <span>FT: {(100*(statSet.def_ft?.value || 0)).toFixed(1)}%</span>;
       }
-      if (stat.off_raw_net) { // Copy raw net as a small extra info in the defensive column
-        stat.def_net = {
-          ...stat.off_raw_net,
-          value: <small style={CommonTableDefs.getTextShadow(stat.off_raw_net, CbbColors.off_diff35_p100_redGreen)}><i>
-            {(stat.off_raw_net?.value || 0).toFixed(1)}
+      if (statSet.off_raw_net) { // Copy raw net as a small extra info in the defensive column
+        (statSet as TeamEnrichment | LineupEnrichment).def_net = {
+          ...statSet.off_raw_net,
+          value: <small style={CommonTableDefs.getTextShadow(statSet.off_raw_net, CbbColors.off_diff35_p100_redGreen)}><i>
+            {(statSet.off_raw_net?.value || 0).toFixed(1)}
           </i></small>
         };
       }
     } else {
-      if (stat.off_team_poss) {
+      if (statSet.off_team_poss) {
         //TODO: see https://github.com/Alex-At-Home/cbb-on-off-analyzer/issues/142
         if (workaroundTempoBug) {
-          stat.off_team_poss.extraInfo = <i>(data not available for this team, contact me for more details)</i>;
+          statSet.off_team_poss.extraInfo = <i>(data not available for this team, contact me for more details)</i>;
         } else {
-          stat.off_team_poss.extraInfo = paceBuilder(stat, true);
+          statSet.off_team_poss.extraInfo = paceBuilder(statSet, true);
         }
       }
-      if (stat.off_team_poss_pct) {
+      if (statSet.off_team_poss_pct) {
         //TODO: see https://github.com/Alex-At-Home/cbb-on-off-analyzer/issues/142
         if (workaroundTempoBug) {
-          stat.off_team_poss_pct.extraInfo = <i>(data not available for this team, contact me for more details)</i>;
+          statSet.off_team_poss_pct.extraInfo = <i>(data not available for this team, contact me for more details)</i>;
         } else {
-          stat.off_team_poss_pct.extraInfo = paceBuilder(stat, true);
+          statSet.off_team_poss_pct.extraInfo = paceBuilder(statSet, true);
         }
       }
     }
-    return stat;
+    return statSet;
   }
 
 }
